@@ -1,0 +1,6 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+   <qresource>
+       <file alias="fr">gns-3_fr.qm</file>
+   </qresource>
+</RCC>

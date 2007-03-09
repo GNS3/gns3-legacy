@@ -1,0 +1,126 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>798</width>
+    <height>605</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>gns-3</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QHBoxLayout" >
+    <property name="margin" >
+     <number>9</number>
+    </property>
+    <property name="spacing" >
+     <number>6</number>
+    </property>
+    <item>
+     <widget class="QTreeWidget" name="treeWidget" >
+      <property name="sizePolicy" >
+       <sizepolicy>
+        <hsizetype>0</hsizetype>
+        <vsizetype>7</vsizetype>
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <column>
+       <property name="text" >
+        <string>Elements</string>
+       </property>
+      </column>
+      <item>
+       <property name="text" >
+        <string>Infrastructure</string>
+       </property>
+       <item>
+        <property name="text" >
+         <string>Router</string>
+        </property>
+        <property name="icon" >
+         <iconset>router.svg</iconset>
+        </property>
+       </item>
+      </item>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGraphicsViewCustom" name="graphicsView" />
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>798</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_About" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="action_About" />
+   </widget>
+   <widget class="QMenu" name="menu_File" >
+    <property name="title" >
+     <string>&amp;File</string>
+    </property>
+    <addaction name="action_Open" />
+    <addaction name="action_Quit" />
+   </widget>
+   <addaction name="menu_File" />
+   <addaction name="menu_About" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <action name="action_About" >
+   <property name="text" >
+    <string>&amp;About</string>
+   </property>
+  </action>
+  <action name="action_Quit" >
+   <property name="text" >
+    <string>&amp;Quit</string>
+   </property>
+  </action>
+  <action name="action_Open" >
+   <property name="text" >
+    <string>&amp;Open</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QGraphicsViewCustom</class>
+   <extends>QGraphicsView</extends>
+   <header>QGraphicsViewCustom</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>action_Quit</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>398</x>
+     <y>302</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

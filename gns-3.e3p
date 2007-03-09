@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Project SYSTEM "Project-3.9.dtd">
+<!-- Project file for project gns-3 -->
+<!-- Saved: 2007-03-08, 19:38:21 -->
+<!-- Copyright (C) 2007 Jeremy Grossmann, jeremy.grossmann@cersti.edu -->
+<Project version="3.9">
+  <ProgLanguage mixed="0">Python</ProgLanguage>
+  <UIType>Qt4</UIType>
+  <Description>Configurator and animator GUI for ns-3 project</Description>
+  <Version>0.1</Version>
+  <Author>Jeremy Grossmann</Author>
+  <Email>jeremy.grossmann@cersti.edu</Email>
+  <Sources>
+    <Source>
+      <Dir>forms</Dir>
+      <Name>Ui_MainWindow.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Name>translations.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Name>MainWindow.py</Name>
+    </Source>
+    <Source>
+      <Name>gns-3.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Name>QGraphicsViewCustom.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Name>NamFileSimulation.py</Name>
+    </Source>
+  </Sources>
+  <Forms>
+    <Form>
+      <Dir>forms</Dir>
+      <Name>MainWindow.ui</Name>
+    </Form>
+  </Forms>
+  <Translations>
+  </Translations>
+  <Interfaces>
+  </Interfaces>
+  <Others>
+    <Other>
+      <Name>test</Name>
+    </Other>
+  </Others>
+  <MainScript>
+    <Name>gns-3.py</Name>
+  </MainScript>
+  <Vcs>
+    <VcsType>None</VcsType>
+  </Vcs>
+  <Eric3Doc>
+    <Eric3DocParams>(dp0
+S'sourceExtensions'
+p1
+(lp2
+V
+p3
+as.</Eric3DocParams>
+  </Eric3Doc>
+  <Eric3Api>
+    <Eric3ApiParams>(dp0
+S'sourceExtensions'
+p1
+(lp2
+V
+p3
+asS'outputFile'
+p4
+Vtest
+p5
+s.</Eric3ApiParams>
+  </Eric3Api>
+  <FiletypeAssociations>
+    <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
+    <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
+    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
+  </FiletypeAssociations>
+</Project>
