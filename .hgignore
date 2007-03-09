@@ -1,0 +1,9 @@
+syntax: glob
+*~
+src/*.pyc
+forms/*.pyc
+docs/*
+api/*
+
+syntax: regexp
+(.*/)?\#[^/]*\#$
