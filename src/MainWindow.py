@@ -21,6 +21,7 @@ import sys
 from PyQt4 import QtCore, QtGui, QtSvg
 from Ui_MainWindow import *
 from NamFileSimulation import *
+import layout
 
 # emplacement temporaire de Edge pour les tests
 class Edge(QtGui.QGraphicsLineItem):
@@ -65,6 +66,18 @@ class Node(QtSvg.QGraphicsSvgItem):
     
         self.edgeList.append(edge)
         edge.adjust()
+    
+    def ajustAllEdges(self):
+    
+        for edge in self.edgeList:
+            edge.adjust()
+            
+    def hasEdgeToNode(self, node_id):
+    
+        for edge in self.edgeList:
+            if edge.dest.id == node_id:
+                return 1
+        return 0
         
     def itemChange(self, change, value):
     
@@ -149,3 +162,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 new_node.setPos(-100, -(new_node.id * 50))
             if event['type'] == 'link':
                 self.scene.addItem(Edge(nodes[event['src']], nodes[event['dst']]))
+
+        # test of a simple layout algorithm
+        #pos = layout.circular_layout(nodes, 200)
+        pos = layout.spring_layout(nodes)
+        for id in pos:
+            nodes[id].setPos(pos[id][0] * 200, pos[id][1] * 200) 
+            nodes[id].ajustAllEdges()

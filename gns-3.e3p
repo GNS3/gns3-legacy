@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project gns-3 -->
-<!-- Saved: 2007-03-08, 19:38:21 -->
+<!-- Saved: 2007-03-09, 21:36:58 -->
 <!-- Copyright (C) 2007 Jeremy Grossmann, jeremy.grossmann@cersti.edu -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -33,6 +33,10 @@
     <Source>
       <Dir>src</Dir>
       <Name>NamFileSimulation.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Name>layout.py</Name>
     </Source>
   </Sources>
   <Forms>
@@ -80,9 +84,9 @@ s.</Eric3ApiParams>
   </Eric3Api>
   <FiletypeAssociations>
     <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
-    <FiletypeAssociation pattern="*.ui" type="FORMS" />
-    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
-    <FiletypeAssociation pattern="*.py" type="SOURCES" />
     <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
   </FiletypeAssociations>
 </Project>
