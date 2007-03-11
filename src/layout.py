@@ -8,7 +8,8 @@
 #    http://www.gnu.org/copyleft/lesser.html
 #
 #    Imported from NetworkX (https://networkx.lanl.gov) and modified for gns-3 
-#    by Jeremy Grossmann <jeremy.grossmann@gns3.net>
+#    Contact: developers@gns3.net
+#
 
 from math import pi,sin,cos,sqrt
 import sys
@@ -95,20 +96,21 @@ def spring_layout(G, iterations=50, dim=2, node_pos=False):
 ##    """
 ##    Return sample sequence of length n from a uniform distribution.
 ##    """
-##    return [ random.uniform(0,n) for i in xrange(n)]
-
+##    return [random.uniform(0,n) for i in xrange(n)]
+##
 ##def spectral_layout(G, dim=2, vpos=None, iterations=1000, eps=1.e-3):
 ##    """
 ##    Return the position vectors for drawing G using spectral layout.
 ##    """
 ##    # check silly cases
-##    n=G.order()
+##    n=len(G)
 ##    if iterations==0 or n==0:
 ##        return vpos or {}
 ##    # create initial guesses for positions
 ##    if vpos is None:
 ##        # start with random positions
-##        nodes=G.nodes()
+##        nodes=G.keys()
+##        print nodes
 ##        uhat=[ ]
 ##        for p in range(dim):
 ##            rx=uniform_sequence(n)
@@ -140,7 +142,7 @@ def spring_layout(G, iterations=50, dim=2, node_pos=False):
 ##    iterations -- maximum number of iterations to use.
 ##    """
 ##    # set up element value for constant eigenvector (squared)
-##    constant=1.0/G.order()
+##    constant=1.0/len(G)
 ##    # set up data for faster iteration
 ##    gg_data=_gershgorin_setup(G)
 ##    # 

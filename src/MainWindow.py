@@ -14,7 +14,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Author: Jeremy Grossmann <jeremy.grossmann@gns3.net>
+# Contact: developers@gns3.net
 #
 
 import sys
@@ -167,5 +167,5 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         #pos = layout.circular_layout(nodes, 200)
         pos = layout.spring_layout(nodes)
         for id in pos:
-            nodes[id].setPos(pos[id][0] * 200, pos[id][1] * 200) 
+            nodes[id].setPos(pos[id][0] * 1500, pos[id][1] * 1500) 
             nodes[id].ajustAllEdges()
