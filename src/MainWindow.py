@@ -20,6 +20,7 @@
 import sys
 from PyQt4 import QtCore, QtGui, QtSvg
 from Ui_MainWindow import *
+from Ui_Inspector import *
 from NamFileSimulation import *
 import layout
 
@@ -85,6 +86,14 @@ class Node(QtSvg.QGraphicsSvgItem):
             for edge in self.edgeList:
                 edge.adjust()
         return QtGui.QGraphicsItem.itemChange(self, change, value)
+        
+    def mouseDoubleClickEvent(self, event):
+    
+        inspector = QtGui.QDialog()
+        ui = Ui_FormInspector()
+        ui.setupUi(inspector)
+        inspector.show()
+        inspector.exec_()
         
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     ''' Main window '''
