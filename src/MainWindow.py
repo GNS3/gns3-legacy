@@ -117,18 +117,26 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.graphicsView.setResizeAnchor(QtGui.QGraphicsView.AnchorViewCenter)
         
         # Example of use
-        node1 = Node("router.svg")
-        node2 = Node("router.svg")
-        node3 = Node("router.svg")
+        node1 = Node("svg/symbols/switch.svg")
+        node2 = Node("svg/symbols/route_switch_processor.svg")
+        node3 = Node("svg/symbols/multilayer_switch.svg")
+        node4 = Node("svg/symbols/router_firewall.svg")
+        node5 = Node("svg/symbols/router.svg")
         self.scene.addItem(node1)
         self.scene.addItem(node2)
         self.scene.addItem(node3)
+        self.scene.addItem(node4)
+        self.scene.addItem(node5)
         node1.setPos(0, 0)
         node2.setPos(150, 150)
-        node3.setPos(0, 150)
+        node3.setPos(-100, 150)
+        node4.setPos(150, -150)
+        node5.setPos(-150, -150)
         self.scene.addItem(Edge(node1, node2))
         self.scene.addItem(Edge(node2, node3))
         self.scene.addItem(Edge(node3, node1))
+        self.scene.addItem(Edge(node1, node4))
+        self.scene.addItem(Edge(node1, node5))
         # End of example
 
 

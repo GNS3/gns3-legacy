@@ -16,7 +16,7 @@ import sys
 try:
     import Numeric as N
 except ImportError:
-    raise
+    pass
 
 def circular_layout(G, radius = 1.0, dim=2):
     """

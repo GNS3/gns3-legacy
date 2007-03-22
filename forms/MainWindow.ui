@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>798</width>
-    <height>605</height>
+    <height>602</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -44,7 +44,47 @@
          <string>Router</string>
         </property>
         <property name="icon" >
-         <iconset>router.svg</iconset>
+         <iconset>../svg/symbols/router.svg</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>Edge label switch router</string>
+        </property>
+        <property name="icon" >
+         <iconset>../svg/symbols/edge_label_switch_router.svg</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>Router with firewall</string>
+        </property>
+        <property name="icon" >
+         <iconset>../svg/symbols/router_firewall.svg</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>Switch</string>
+        </property>
+        <property name="icon" >
+         <iconset>../svg/symbols/switch.svg</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>Multilayer switch</string>
+        </property>
+        <property name="icon" >
+         <iconset>../svg/symbols/multilayer_switch.svg</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>Route switch processor</string>
+        </property>
+        <property name="icon" >
+         <iconset>../svg/symbols/route_switch_processor.svg</iconset>
         </property>
        </item>
       </item>
