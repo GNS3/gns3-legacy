@@ -32,6 +32,8 @@ class Edge(QtGui.QGraphicsLineItem):
     def __init__(self, sourceNode, destNode):
     
         QtGui.QGraphicsLineItem.__init__(self)
+        #self.setFlag(self.ItemIsMovable)
+        #self.setZValue(2)
         self.source = sourceNode
         self.dest = destNode
         self.source.addEdge(self)
@@ -40,16 +42,27 @@ class Edge(QtGui.QGraphicsLineItem):
 
     def adjust(self):
 
-        #TODO: A better links management
-        line = QtCore.QLineF(self.mapFromItem(self.source, 30, 25), self.mapFromItem(self.dest, 30, 25))
-        length = line.length()
-        edgeoffset = QtCore.QPointF((line.dx() * 5) / length, (line.dy() * 5) / length)
-        self.prepareGeometryChange()
-        self.sourcepoint = line.p1() + edgeoffset
-        self.destpoint = line.p2() - edgeoffset
-        line = QtCore.QLineF(self.sourcepoint, self.destpoint)
-        self.setLine(line)
+        # Line style
+        pen = QtGui.QPen(QtCore.Qt.black, 1, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin)
+        self.setPen(pen) 
+        
+        #TODO: Correct the bug when you throw the node
 
+        rectsource = self.source.boundingRect()
+        topmiddle = rectsource.topRight() / 2
+        leftmiddle = rectsource.bottomLeft() / 2
+        sourcecenter = QtCore.QPointF(topmiddle.x(), leftmiddle.y())
+        
+        rectdest= self.dest.boundingRect()
+        topmiddle = rectdest.topRight() / 2
+        leftmiddle = rectdest.bottomLeft() / 2
+        destcenter = QtCore.QPointF(topmiddle.x(), leftmiddle.y())
+
+        line = QtCore.QLineF(self.source.mapToScene(sourcecenter), self.dest.mapToScene(destcenter))        
+        self.setLine(line)
+        
+
+    
 # emplacement temporaire de Node pour les tests
 class Node(QtSvg.QGraphicsSvgItem):
     '''Node for QGraphicsScene'''
@@ -60,6 +73,7 @@ class Node(QtSvg.QGraphicsSvgItem):
     def __init__(self, svgfile):
         
         QtSvg.QGraphicsSvgItem.__init__(self, svgfile)
+        self.setCursor(QtCore.Qt.OpenHandCursor)
         self.setFlag(self.ItemIsMovable)
         self.setFlag(self.ItemIsSelectable)
         self.setZValue(1)
@@ -123,11 +137,18 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         node3 = Node(":Multilayer switch")
         node4 = Node(":Router firewall")
         node5 = Node(":Router")
+
+##        text = QtGui.QGraphicsTextItem("10.10.1.45")
+##        text.setFlag(text.ItemIsMovable)
+##        text.setZValue(2)
+##        self.scene.addItem(text)
+
         self.scene.addItem(node1)
         self.scene.addItem(node2)
         self.scene.addItem(node3)
         self.scene.addItem(node4)
         self.scene.addItem(node5)
+
         node1.setPos(0, 0)
         node2.setPos(150, 150)
         node3.setPos(-100, 150)
@@ -173,7 +194,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             if (event == {}):
                 continue
             if event['type'] == 'node':
-                new_node = Node("router.svg")
+                new_node = Node(":Router")
                 new_node.id = event['id']
                 nodes[new_node.id] = new_node
                 self.scene.addItem(new_node)
