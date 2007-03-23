@@ -23,6 +23,7 @@ from Ui_MainWindow import *
 from Ui_Inspector import *
 from NamFileSimulation import *
 import layout
+import svg_resources_rc
 
 # emplacement temporaire de Edge pour les tests
 class Edge(QtGui.QGraphicsLineItem):
@@ -117,11 +118,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.graphicsView.setResizeAnchor(QtGui.QGraphicsView.AnchorViewCenter)
         
         # Example of use
-        node1 = Node("svg/symbols/switch.svg")
-        node2 = Node("svg/symbols/route_switch_processor.svg")
-        node3 = Node("svg/symbols/multilayer_switch.svg")
-        node4 = Node("svg/symbols/router_firewall.svg")
-        node5 = Node("svg/symbols/router.svg")
+        node1 = Node(":Switch")
+        node2 = Node(":Route switch processor")
+        node3 = Node(":Multilayer switch")
+        node4 = Node(":Router firewall")
+        node5 = Node(":Router")
         self.scene.addItem(node1)
         self.scene.addItem(node2)
         self.scene.addItem(node3)
