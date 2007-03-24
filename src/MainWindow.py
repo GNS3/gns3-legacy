@@ -24,7 +24,7 @@ from Ui_Inspector import *
 from NamFileSimulation import *
 import layout
 import svg_resources_rc
-
+        
 # emplacement temporaire de Edge pour les tests
 class Edge(QtGui.QGraphicsLineItem):
     '''Edge for QGraphicsScene'''
@@ -33,6 +33,8 @@ class Edge(QtGui.QGraphicsLineItem):
     
         QtGui.QGraphicsLineItem.__init__(self)
         #self.setFlag(self.ItemIsMovable)
+        self.statussource = QtGui.QGraphicsEllipseItem(self)
+        self.statusdest = QtGui.QGraphicsEllipseItem(self)
         #self.setZValue(2)
         self.source = sourceNode
         self.dest = destNode
@@ -52,7 +54,7 @@ class Edge(QtGui.QGraphicsLineItem):
         topmiddle = rectsource.topRight() / 2
         leftmiddle = rectsource.bottomLeft() / 2
         sourcecenter = QtCore.QPointF(topmiddle.x(), leftmiddle.y())
-        
+
         rectdest= self.dest.boundingRect()
         topmiddle = rectdest.topRight() / 2
         leftmiddle = rectdest.bottomLeft() / 2
@@ -60,8 +62,19 @@ class Edge(QtGui.QGraphicsLineItem):
 
         line = QtCore.QLineF(self.source.mapToScene(sourcecenter), self.dest.mapToScene(destcenter))        
         self.setLine(line)
+        self.adjustStatusPoints(line)
         
+    def adjustStatusPoints(self, line):
+        
+        #TODO: Finish to put a status point on the link
+        pen = QtGui.QPen(QtCore.Qt.red, 1, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin)
+        self.statusdest.setPen(pen)
+        self.statusdest.setBrush(QtGui.QBrush(QtCore.Qt.red))
 
+##            self.statusdest.setRect(line.p2().x() - (line.dx() /  2), line.p2().y() - (line.dy() / 2), 10, 10)   
+##    
+##            test = line.pointAt(0.50)
+##            self.statusdest.setRect(test.x() , test.y() , 10, 10)
     
 # emplacement temporaire de Node pour les tests
 class Node(QtSvg.QGraphicsSvgItem):
@@ -125,12 +138,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.graphicsView.setScene(self.scene)
         self.scene.setItemIndexMethod(QtGui.QGraphicsScene.NoIndex)
         #TODO: A better management of the scene size
-        self.scene.setSceneRect(-2000, -2000, 4000, 4000)
+        self.scene.setSceneRect(-500, -500, 1000, 1000)
         self.graphicsView.setCacheMode(QtGui.QGraphicsView.CacheBackground)
         self.graphicsView.setRenderHint(QtGui.QPainter.Antialiasing)
         self.graphicsView.setTransformationAnchor(QtGui.QGraphicsView.AnchorUnderMouse)
         self.graphicsView.setResizeAnchor(QtGui.QGraphicsView.AnchorViewCenter)
-        
+
         # Example of use
         node1 = Node(":Switch")
         node2 = Node(":Route switch processor")
@@ -167,6 +180,41 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         #self.graphicsView.setBackgroundBrush(background)
         #self.graphicsView.scale(0.8, 0.8)
 
+    def SaveToFile(self):
+    
+        filedialog = QtGui.QFileDialog(self)
+        selected = QtCore.QString()
+        exports = 'PNG File (*.png);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm)'
+        path = QtGui.QFileDialog.getSaveFileName(filedialog, 'Export', '.', exports, selected)
+        if not path:
+            return
+        path = unicode(path)
+        if str(selected) == 'PNG File (*.png)' and path[-4:] != '.png':
+            path = path + '.png'
+        if str(selected) == 'JPG File (*.jpeg *.jpg)' and (path[-4:] != '.jpg' or  path[-5:] != '.jpeg'):
+            path = path + '.jpeg'
+        if str(selected) == 'BMP File (*.bmp)' and path[-4:] != '.bmp':
+            path = path + '.bmp'
+        if str(selected) == 'BMP File (*.bmp)' and (path[-4:] != '.xpm' or path[-4:] != '.xbm'):
+            path = path + '.xpm'
+        try:
+            self.Export(path, str(str(selected)[:3]))
+        except IOError, (errno, strerror):
+            QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
+        
+    def Export(self, name, format):
+    
+        rect = self.graphicsView.viewport().rect()
+        pixmap = QtGui.QPixmap(rect.width(), rect.height())
+        #FIXME: We should set a white background on the scene, not on the pixmap
+        pixmap.fill(QtCore.Qt.white)
+        painter = QtGui.QPainter(pixmap)
+        painter.setRenderHint(QtGui.QPainter.Antialiasing)
+        #self.scene.render(painter)
+        self.graphicsView.render(painter)
+        painter.end()
+        print pixmap.save(name, format)
+        
     def OpenNewFile(self):
         
         filedialog = QtGui.QFileDialog(self)

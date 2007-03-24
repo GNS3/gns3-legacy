@@ -115,6 +115,8 @@
      <string>&amp;File</string>
     </property>
     <addaction name="action_Open" />
+    <addaction name="action_Save" />
+    <addaction name="separator" />
     <addaction name="action_Quit" />
    </widget>
    <addaction name="menu_File" />
@@ -134,6 +136,11 @@
   <action name="action_Open" >
    <property name="text" >
     <string>&amp;Open</string>
+   </property>
+  </action>
+  <action name="action_Save" >
+   <property name="text" >
+    <string>&amp;Save</string>
    </property>
   </action>
  </widget>

@@ -29,7 +29,7 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
     def scaleView(self, scale_factor):
     
         factor = self.matrix().scale(scale_factor, scale_factor).mapRect(QtCore.QRectF(0, 0, 1, 1)).width()
-        if (factor < 0.07 or factor > 100):
+        if (factor < 0.20 or factor > 5):
             return
         self.scale(scale_factor, scale_factor)
         

@@ -37,6 +37,7 @@ class Main:
         #    app.installTranslator(translator)
         win = MainWindow()
         win.connect(win.action_Open, QtCore.SIGNAL('activated()'), win.OpenNewFile)
+        win.connect(win.action_Save, QtCore.SIGNAL('activated()'), win.SaveToFile)
         win.show()
         sys.exit(app.exec_())
 

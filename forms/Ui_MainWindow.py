@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Thu Mar 22 19:43:39 2007
+# Created: Sat Mar 24 17:07:18 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -61,8 +61,13 @@ class Ui_MainWindow(object):
 
         self.action_Open = QtGui.QAction(MainWindow)
         self.action_Open.setObjectName("action_Open")
+
+        self.action_Save = QtGui.QAction(MainWindow)
+        self.action_Save.setObjectName("action_Save")
         self.menu_About.addAction(self.action_About)
         self.menu_File.addAction(self.action_Open)
+        self.menu_File.addAction(self.action_Save)
+        self.menu_File.addSeparator()
         self.menu_File.addAction(self.action_Quit)
         self.menubar.addAction(self.menu_File.menuAction())
         self.menubar.addAction(self.menu_About.menuAction())
@@ -107,5 +112,6 @@ class Ui_MainWindow(object):
         self.action_About.setText(QtGui.QApplication.translate("MainWindow", "&About", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setText(QtGui.QApplication.translate("MainWindow", "&Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Open.setText(QtGui.QApplication.translate("MainWindow", "&Open", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Save.setText(QtGui.QApplication.translate("MainWindow", "&Save", None, QtGui.QApplication.UnicodeUTF8))
 
 from QGraphicsViewCustom import QGraphicsViewCustom
