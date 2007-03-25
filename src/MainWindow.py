@@ -138,7 +138,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.graphicsView.setScene(self.scene)
         self.scene.setItemIndexMethod(QtGui.QGraphicsScene.NoIndex)
         #TODO: A better management of the scene size
-        self.scene.setSceneRect(-500, -500, 1000, 1000)
+        self.scene.setSceneRect(-250, -250, 500, 500)
         self.graphicsView.setCacheMode(QtGui.QGraphicsView.CacheBackground)
         self.graphicsView.setRenderHint(QtGui.QPainter.Antialiasing)
         self.graphicsView.setTransformationAnchor(QtGui.QGraphicsView.AnchorUnderMouse)
@@ -254,5 +254,5 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         #pos = layout.circular_layout(nodes, 200)
         pos = layout.spring_layout(nodes)
         for id in pos:
-            nodes[id].setPos(pos[id][0] * 1500, pos[id][1] * 1500) 
+            nodes[id].setPos(pos[id][0] * 500, pos[id][1] * 500) 
             nodes[id].ajustAllEdges()

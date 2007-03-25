@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-3.8.dtd">
 <!-- Tasks file for project gns-3 -->
-<!-- Saved: 2007-03-24, 17:52:27 -->
+<!-- Saved: 2007-03-25, 18:43:42 -->
 <Tasks version="3.8">
   <Task priority="1" completed="0" bugfix="0">
     <Description>TODO: Correct the bug when you throw the node</Description>
-    <Created>2007-03-24, 17:47:09</Created>
+    <Created>2007-03-25, 18:42:00</Created>
     <Resource>
       <Filename>
         <Dir>src</Dir>
@@ -16,7 +16,7 @@
   </Task>
   <Task priority="1" completed="0" bugfix="0">
     <Description>TODO: Finish to put a status point on the link</Description>
-    <Created>2007-03-24, 17:47:09</Created>
+    <Created>2007-03-25, 18:42:00</Created>
     <Resource>
       <Filename>
         <Dir>src</Dir>
@@ -27,7 +27,7 @@
   </Task>
   <Task priority="1" completed="0" bugfix="0">
     <Description>TODO: A better management of the scene size</Description>
-    <Created>2007-03-24, 17:47:09</Created>
+    <Created>2007-03-25, 18:42:00</Created>
     <Resource>
       <Filename>
         <Dir>src</Dir>
@@ -38,7 +38,7 @@
   </Task>
   <Task priority="1" completed="0" bugfix="1">
     <Description>FIXME: We should set a white background on the scene, not on the pixmap</Description>
-    <Created>2007-03-24, 17:47:09</Created>
+    <Created>2007-03-25, 18:42:00</Created>
     <Resource>
       <Filename>
         <Dir>src</Dir>

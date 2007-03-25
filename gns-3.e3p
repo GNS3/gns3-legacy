@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project gns-3 -->
-<!-- Saved: 2007-03-14, 10:06:28 -->
+<!-- Saved: 2007-03-25, 18:43:42 -->
 <!-- Copyright (C) 2007 Jeremy Grossmann, jeremy.grossmann@cersti.edu -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -12,19 +12,12 @@
   <Email>jeremy.grossmann@cersti.edu</Email>
   <Sources>
     <Source>
-      <Dir>forms</Dir>
-      <Name>Ui_MainWindow.py</Name>
-    </Source>
-    <Source>
       <Dir>src</Dir>
       <Name>translations.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
       <Name>MainWindow.py</Name>
-    </Source>
-    <Source>
-      <Name>gns-3.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
@@ -39,19 +32,23 @@
       <Name>layout.py</Name>
     </Source>
     <Source>
+      <Dir>src</Dir>
+      <Name>gns-3.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Name>svg_resources_rc.py</Name>
+    </Source>
+    <Source>
+      <Dir>forms</Dir>
+      <Name>Ui_MainWindow.py</Name>
+    </Source>
+    <Source>
       <Dir>forms</Dir>
       <Name>Ui_Inspector.py</Name>
     </Source>
   </Sources>
   <Forms>
-    <Form>
-      <Dir>forms</Dir>
-      <Name>MainWindow.ui</Name>
-    </Form>
-    <Form>
-      <Dir>forms</Dir>
-      <Name>Inspector.ui</Name>
-    </Form>
   </Forms>
   <Translations>
   </Translations>
@@ -63,6 +60,8 @@
     </Other>
   </Others>
   <MainScript>
+    <Dir>.</Dir>
+    <Dir>src</Dir>
     <Name>gns-3.py</Name>
   </MainScript>
   <Vcs>
@@ -94,7 +93,7 @@ s.</Eric3ApiParams>
     <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
     <FiletypeAssociation pattern="*.ui" type="FORMS" />
     <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
-    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
     <FiletypeAssociation pattern="*.py" type="SOURCES" />
+    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
   </FiletypeAssociations>
 </Project>

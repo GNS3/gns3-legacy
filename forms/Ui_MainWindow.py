@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Sat Mar 24 17:07:18 2007
+# Created: Sun Mar 25 18:43:27 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -86,27 +86,27 @@ class Ui_MainWindow(object):
 
         item1 = QtGui.QTreeWidgetItem(item)
         item1.setText(0,QtGui.QApplication.translate("MainWindow", "Router", None, QtGui.QApplication.UnicodeUTF8))
-        item1.setIcon(0,QtGui.QIcon("svg/symbols/router.svg"))
+        item1.setIcon(0,QtGui.QIcon("../svg/symbols/router.svg"))
 
         item2 = QtGui.QTreeWidgetItem(item)
         item2.setText(0,QtGui.QApplication.translate("MainWindow", "Edge label switch router", None, QtGui.QApplication.UnicodeUTF8))
-        item2.setIcon(0,QtGui.QIcon("svg/symbols/edge_label_switch_router.svg"))
+        item2.setIcon(0,QtGui.QIcon("../svg/symbols/edge_label_switch_router.svg"))
 
         item3 = QtGui.QTreeWidgetItem(item)
         item3.setText(0,QtGui.QApplication.translate("MainWindow", "Router with firewall", None, QtGui.QApplication.UnicodeUTF8))
-        item3.setIcon(0,QtGui.QIcon("svg/symbols/router_firewall.svg"))
+        item3.setIcon(0,QtGui.QIcon("../svg/symbols/router_firewall.svg"))
 
         item4 = QtGui.QTreeWidgetItem(item)
         item4.setText(0,QtGui.QApplication.translate("MainWindow", "Switch", None, QtGui.QApplication.UnicodeUTF8))
-        item4.setIcon(0,QtGui.QIcon("svg/symbols/switch.svg"))
+        item4.setIcon(0,QtGui.QIcon("../svg/symbols/switch.svg"))
 
         item5 = QtGui.QTreeWidgetItem(item)
         item5.setText(0,QtGui.QApplication.translate("MainWindow", "Multilayer switch", None, QtGui.QApplication.UnicodeUTF8))
-        item5.setIcon(0,QtGui.QIcon("svg/symbols/multilayer_switch.svg"))
+        item5.setIcon(0,QtGui.QIcon("../svg/symbols/multilayer_switch.svg"))
 
         item6 = QtGui.QTreeWidgetItem(item)
         item6.setText(0,QtGui.QApplication.translate("MainWindow", "Route switch processor", None, QtGui.QApplication.UnicodeUTF8))
-        item6.setIcon(0,QtGui.QIcon("svg/symbols/route_switch_processor.svg"))
+        item6.setIcon(0,QtGui.QIcon("../svg/symbols/route_switch_processor.svg"))
         self.menu_About.setTitle(QtGui.QApplication.translate("MainWindow", "&Help", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_File.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
         self.action_About.setText(QtGui.QApplication.translate("MainWindow", "&About", None, QtGui.QApplication.UnicodeUTF8))

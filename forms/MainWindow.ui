@@ -104,12 +104,6 @@
      <height>25</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_About" >
-    <property name="title" >
-     <string>&amp;Help</string>
-    </property>
-    <addaction name="action_About" />
-   </widget>
    <widget class="QMenu" name="menu_File" >
     <property name="title" >
      <string>&amp;File</string>
@@ -118,6 +112,12 @@
     <addaction name="action_Save" />
     <addaction name="separator" />
     <addaction name="action_Quit" />
+   </widget>
+   <widget class="QMenu" name="menu_About" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="action_About" />
    </widget>
    <addaction name="menu_File" />
    <addaction name="menu_About" />
