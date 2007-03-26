@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Sun Mar 25 18:43:27 2007
+# Created: Mon Mar 26 11:01:56 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,7 +13,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(QtCore.QSize(QtCore.QRect(0,0,798,602).size()).expandedTo(MainWindow.minimumSizeHint()))
+        MainWindow.resize(QtCore.QSize(QtCore.QRect(0,0,798,603).size()).expandedTo(MainWindow.minimumSizeHint()))
 
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -42,16 +42,21 @@ class Ui_MainWindow(object):
         self.menubar.setGeometry(QtCore.QRect(0,0,798,25))
         self.menubar.setObjectName("menubar")
 
-        self.menu_About = QtGui.QMenu(self.menubar)
-        self.menu_About.setObjectName("menu_About")
-
         self.menu_File = QtGui.QMenu(self.menubar)
         self.menu_File.setObjectName("menu_File")
+
+        self.menu_About = QtGui.QMenu(self.menubar)
+        self.menu_About.setObjectName("menu_About")
         MainWindow.setMenuBar(self.menubar)
 
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+
+        self.toolBar = QtGui.QToolBar(MainWindow)
+        self.toolBar.setOrientation(QtCore.Qt.Horizontal)
+        self.toolBar.setObjectName("toolBar")
+        MainWindow.addToolBar(self.toolBar)
 
         self.action_About = QtGui.QAction(MainWindow)
         self.action_About.setObjectName("action_About")
@@ -60,17 +65,28 @@ class Ui_MainWindow(object):
         self.action_Quit.setObjectName("action_Quit")
 
         self.action_Open = QtGui.QAction(MainWindow)
+        self.action_Open.setIcon(QtGui.QIcon("../svg/icons/open.svg"))
         self.action_Open.setObjectName("action_Open")
 
         self.action_Save = QtGui.QAction(MainWindow)
+        self.action_Save.setIcon(QtGui.QIcon("../svg/icons/save.svg"))
         self.action_Save.setObjectName("action_Save")
-        self.menu_About.addAction(self.action_About)
+
+        self.action_Add_connection = QtGui.QAction(MainWindow)
+        self.action_Add_connection.setCheckable(True)
+        self.action_Add_connection.setIcon(QtGui.QIcon("../svg/icons/connection.svg"))
+        self.action_Add_connection.setObjectName("action_Add_connection")
         self.menu_File.addAction(self.action_Open)
         self.menu_File.addAction(self.action_Save)
         self.menu_File.addSeparator()
         self.menu_File.addAction(self.action_Quit)
+        self.menu_About.addAction(self.action_About)
         self.menubar.addAction(self.menu_File.menuAction())
         self.menubar.addAction(self.menu_About.menuAction())
+        self.toolBar.addAction(self.action_Open)
+        self.toolBar.addAction(self.action_Save)
+        self.toolBar.addSeparator()
+        self.toolBar.addAction(self.action_Add_connection)
 
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.action_Quit,QtCore.SIGNAL("activated()"),MainWindow.close)
@@ -107,11 +123,12 @@ class Ui_MainWindow(object):
         item6 = QtGui.QTreeWidgetItem(item)
         item6.setText(0,QtGui.QApplication.translate("MainWindow", "Route switch processor", None, QtGui.QApplication.UnicodeUTF8))
         item6.setIcon(0,QtGui.QIcon("../svg/symbols/route_switch_processor.svg"))
-        self.menu_About.setTitle(QtGui.QApplication.translate("MainWindow", "&Help", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_File.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
+        self.menu_About.setTitle(QtGui.QApplication.translate("MainWindow", "&Help", None, QtGui.QApplication.UnicodeUTF8))
         self.action_About.setText(QtGui.QApplication.translate("MainWindow", "&About", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setText(QtGui.QApplication.translate("MainWindow", "&Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Open.setText(QtGui.QApplication.translate("MainWindow", "&Open", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Save.setText(QtGui.QApplication.translate("MainWindow", "&Save", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Add_connection.setText(QtGui.QApplication.translate("MainWindow", "Add a connection", None, QtGui.QApplication.UnicodeUTF8))
 
 from QGraphicsViewCustom import QGraphicsViewCustom

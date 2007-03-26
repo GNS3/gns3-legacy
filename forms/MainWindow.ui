@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>798</width>
-    <height>602</height>
+    <height>603</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -123,6 +123,18 @@
    <addaction name="menu_About" />
   </widget>
   <widget class="QStatusBar" name="statusbar" />
+  <widget class="QToolBar" name="toolBar" >
+   <property name="orientation" >
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <attribute name="toolBarArea" >
+    <number>4</number>
+   </attribute>
+   <addaction name="action_Open" />
+   <addaction name="action_Save" />
+   <addaction name="separator" />
+   <addaction name="action_Add_connection" />
+  </widget>
   <action name="action_About" >
    <property name="text" >
     <string>&amp;About</string>
@@ -134,13 +146,30 @@
    </property>
   </action>
   <action name="action_Open" >
+   <property name="icon" >
+    <iconset>../svg/icons/open.svg</iconset>
+   </property>
    <property name="text" >
     <string>&amp;Open</string>
    </property>
   </action>
   <action name="action_Save" >
+   <property name="icon" >
+    <iconset>../svg/icons/save.svg</iconset>
+   </property>
    <property name="text" >
     <string>&amp;Save</string>
+   </property>
+  </action>
+  <action name="action_Add_connection" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="icon" >
+    <iconset>../svg/icons/connection.svg</iconset>
+   </property>
+   <property name="text" >
+    <string>Add a connection</string>
    </property>
   </action>
  </widget>

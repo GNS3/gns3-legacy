@@ -1,0 +1,35 @@
+V -t * -v 1.0a5 -a 0
+A -t * -n 1 -p 0 -o 0xffffffff -c 31 -a 1
+A -t * -h 1 -m 2147483647 -s 0
+n -t * -a 0 -s 0 -S UP -v circle -c black -i black
+n -t * -a 1 -s 1 -S UP -v circle -c black -i black
+n -t * -a 2 -s 2 -S UP -v circle -c black -i black
+n -t * -a 3 -s 3 -S UP -v circle -c black -i black
+n -t * -a 4 -s 4 -S UP -v circle -c black -i black
+n -t * -a 5 -s 5 -S UP -v circle -c black -i black
+n -t * -a 6 -s 6 -S UP -v circle -c black -i black
+n -t * -a 7 -s 7 -S UP -v circle -c black -i black
+n -t * -a 8 -s 8 -S UP -v circle -c black -i black
+n -t * -a 9 -s 9 -S UP -v circle -c black -i black
+n -t * -a 10 -s 10 -S UP -v circle -c black -i black
+n -t * -a 11 -s 11 -S UP -v circle -c black -i black
+n -t * -a 12 -s 12 -S UP -v circle -c black -i black
+n -t * -a 13 -s 13 -S UP -v circle -c black -i black
+n -t * -a 14 -s 14 -S UP -v circle -c black -i black
+n -t * -a 15 -s 15 -S UP -v circle -c black -i black
+n -t * -a 16 -s 16 -S UP -v circle -c black -i black
+n -t * -a 17 -s 17 -S UP -v circle -c black -i black
+n -t * -a 18 -s 18 -S UP -v circle -c black -i black
+n -t * -a 19 -s 19 -S UP -v circle -c black -i black
+n -t * -a 20 -s 20 -S UP -v circle -c black -i black
+n -t * -a 21 -s 21 -S UP -v circle -c black -i black
+n -t * -a 22 -s 22 -S UP -v circle -c black -i black
+n -t * -a 23 -s 23 -S UP -v circle -c black -i black
+n -t * -a 24 -s 24 -S UP -v circle -c black -i black
+n -t * -a 25 -s 25 -S UP -v circle -c black -i black
+n -t * -a 26 -s 26 -S UP -v circle -c black -i black
+n -t * -a 27 -s 27 -S UP -v circle -c black -i black
+n -t * -a 28 -s 28 -S UP -v circle -c black -i black
+n -t * -a 29 -s 29 -S UP -v circle -c black -i black
+n -t * -a 30 -s 30 -S UP -v circle -c black -i black
+n -t * -a 31 -s 31 -S UP -v circle -c black -i black

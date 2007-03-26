@@ -180,6 +180,14 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         #self.graphicsView.setBackgroundBrush(background)
         #self.graphicsView.scale(0.8, 0.8)
 
+    def AddEdge(self):
+
+        if not self.action_Add_connection.isChecked():
+            self.action_Add_connection.setIcon(QtGui.QIcon('../svg/icons/connection.svg'))
+        else:
+            self.action_Add_connection.setIcon(QtGui.QIcon('../svg/icons/stop.svg'))
+        
+        
     def SaveToFile(self):
     
         filedialog = QtGui.QFileDialog(self)
@@ -229,7 +237,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 self.NamSimulation(path)
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
-            
+    
     def NamSimulation(self, path):
         
         # Temporary example
