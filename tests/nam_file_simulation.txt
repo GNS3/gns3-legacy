@@ -1,0 +1,19 @@
+Unit tests for NamFileSimulation Class
+--------------------------------------
+>>> from NamFileSimulation import *
+
+>>> nam = NamFileSimulation('../tests/test.nam')
+>>> print nam.next()
+{'status': 'up', 'type': 'node', 'id': 0, 'address': 0}
+>>> print nam.next()
+{'status': 'up', 'type': 'node', 'id': 1, 'address': 1}
+>>> print nam.next()
+{'status': 'up', 'type': 'node', 'id': 2, 'address': 2}
+>>> print nam.next()
+{'status': 'up', 'type': 'node', 'id': 3, 'address': 3}
+>>> print nam.next()
+{'status': 'up', 'src': 0, 'dst': 2, 'delay': 0.01, 'bw': 1000000, 'type': 'link'}
+>>> print nam.next()
+{'status': 'up', 'src': 1, 'dst': 2, 'delay': 0.01, 'bw': 1000000, 'type': 'link'}
+>>> print nam.next()
+{'status': 'up', 'src': 2, 'dst': 3, 'delay': 0.01, 'bw': 1000000, 'type': 'link'}

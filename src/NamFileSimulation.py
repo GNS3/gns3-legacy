@@ -96,14 +96,16 @@ class NamFileSimulation:
             if (option == 'D'):
                 event['delay'] = float(value)
         return event
-        
+
+def _test_suite():
+
+    import doctest
+    suite = doctest.DocFileSuite('../tests/nam_file_simulation.txt')
+    return suite
+
 if __name__ == "__main__":
-    nam = NamFileSimulation('./out.nam')
-    while (1):
-        event = nam.next()
-        if (event == None):
-            break
-        if (event == {}):
-            continue
-        print event
+
+        import unittest
+        unittest.TextTestRunner().run(_test_suite())
+        
 

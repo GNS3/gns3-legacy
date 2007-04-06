@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project gns-3 -->
-<!-- Saved: 2007-03-25, 18:43:42 -->
+<!-- Saved: 2007-04-05, 20:45:41 -->
 <!-- Copyright (C) 2007 Jeremy Grossmann, jeremy.grossmann@cersti.edu -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -47,6 +47,10 @@
       <Dir>forms</Dir>
       <Name>Ui_Inspector.py</Name>
     </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Name>Console.py</Name>
+    </Source>
   </Sources>
   <Forms>
   </Forms>
@@ -91,9 +95,9 @@ s.</Eric3ApiParams>
   </Eric3Api>
   <FiletypeAssociations>
     <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
-    <FiletypeAssociation pattern="*.ui" type="FORMS" />
-    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
-    <FiletypeAssociation pattern="*.py" type="SOURCES" />
     <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
   </FiletypeAssociations>
 </Project>

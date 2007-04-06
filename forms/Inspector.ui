@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>559</width>
-    <height>342</height>
+    <width>682</width>
+    <height>416</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -24,9 +24,82 @@
      <property name="currentIndex" >
       <number>0</number>
      </property>
+     <widget class="QWidget" name="Console" >
+      <attribute name="title" >
+       <string>Console</string>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <layout class="QHBoxLayout" >
+         <property name="margin" >
+          <number>0</number>
+         </property>
+         <property name="spacing" >
+          <number>6</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_5" >
+           <property name="text" >
+            <string/>
+           </property>
+           <property name="pixmap" >
+            <pixmap>../svg/icons/led_green.svg</pixmap>
+           </property>
+           <property name="scaledContents" >
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>131</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton" >
+           <property name="text" >
+            <string>Start</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_2" >
+           <property name="text" >
+            <string>Shutdown</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="Console" name="textEditConsole" >
+         <property name="font" >
+          <font>
+           <family>Courier 10 Pitch</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="General" >
       <attribute name="title" >
-       <string>General</string>
+       <string>Quick configuration</string>
       </attribute>
       <layout class="QVBoxLayout" >
        <property name="margin" >
@@ -152,50 +225,22 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="Console" >
-      <attribute name="title" >
-       <string>Console</string>
-      </attribute>
-      <layout class="QVBoxLayout" >
-       <property name="margin" >
-        <number>9</number>
-       </property>
-       <property name="spacing" >
-        <number>6</number>
-       </property>
-       <item>
-        <widget class="QTextBrowser" name="textBrowser" />
-       </item>
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeType" >
-          <enum>QSizePolicy::Minimum</enum>
-         </property>
-         <property name="sizeHint" >
-          <size>
-           <width>20</width>
-           <height>16</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="lineEditCLI" />
-       </item>
-      </layout>
-     </widget>
     </widget>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Console</class>
+   <extends>QTextEdit</extends>
+   <header>Console</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>tabWidget</tabstop>
-  <tabstop>lineEditHostname</tabstop>
   <tabstop>lineEditIP</tabstop>
   <tabstop>lineEditMask</tabstop>
+  <tabstop>lineEditHostname</tabstop>
   <tabstop>lineEditGateway</tabstop>
  </tabstops>
  <resources/>

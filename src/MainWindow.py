@@ -18,103 +18,25 @@
 #
 
 import sys
-from PyQt4 import QtCore, QtGui, QtSvg
+from PyQt4 import QtCore, QtGui
 from Ui_MainWindow import *
-from Ui_Inspector import *
 from NamFileSimulation import *
 import layout
 import svg_resources_rc
+from Edge import *
+from MNode import *
+
+class TreeItem(QtSvg.QGraphicsSvgItem, QtGui.QTreeWidget):
+    '''Item for TreeWidget'''
+    
+    def __init__(self, treeView, object):
         
-# emplacement temporaire de Edge pour les tests
-class Edge(QtGui.QGraphicsLineItem):
-    '''Edge for QGraphicsScene'''
-
-    def __init__(self, sourceNode, destNode):
-    
-        QtGui.QGraphicsLineItem.__init__(self)
-        #self.setFlag(self.ItemIsMovable)
-        self.statussource = QtGui.QGraphicsEllipseItem(self)
-        self.statusdest = QtGui.QGraphicsEllipseItem(self)
-        #self.setZValue(2)
-        self.source = sourceNode
-        self.dest = destNode
-        self.source.addEdge(self)
-        self.dest.addEdge(self)
-        self.adjust()
-
-    def adjust(self):
-
-        # Line style
-        pen = QtGui.QPen(QtCore.Qt.black, 1, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin)
-        self.setPen(pen) 
+        QtGui.QTreeWidgetItem.__init__(self)
+        self = QtGui.QTreeWidgetItem(treeView)
         
-        #TODO: Correct the bug when you throw the node
-
-        rectsource = self.source.boundingRect()
-        topmiddle = rectsource.topRight() / 2
-        leftmiddle = rectsource.bottomLeft() / 2
-        sourcecenter = QtCore.QPointF(topmiddle.x(), leftmiddle.y())
-
-        rectdest= self.dest.boundingRect()
-        topmiddle = rectdest.topRight() / 2
-        leftmiddle = rectdest.bottomLeft() / 2
-        destcenter = QtCore.QPointF(topmiddle.x(), leftmiddle.y())
-
-        line = QtCore.QLineF(self.source.mapToScene(sourcecenter), self.dest.mapToScene(destcenter))        
-        self.setLine(line)
-        self.adjustStatusPoints(line)
-        
-    def adjustStatusPoints(self, line):
-        
-        #TODO: Finish to put a status point on the link
-        pen = QtGui.QPen(QtCore.Qt.red, 1, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin)
-        self.statusdest.setPen(pen)
-        self.statusdest.setBrush(QtGui.QBrush(QtCore.Qt.red))
-
-##            self.statusdest.setRect(line.p2().x() - (line.dx() /  2), line.p2().y() - (line.dy() / 2), 10, 10)   
-##    
-##            test = line.pointAt(0.50)
-##            self.statusdest.setRect(test.x() , test.y() , 10, 10)
+        self.setText(0,QtGui.QApplication.translate("MainWindow",  object, None, QtGui.QApplication.UnicodeUTF8))
+        self.setIcon(0,QtGui.QIcon("../svg/symbols/router.svg"))
     
-# emplacement temporaire de Node pour les tests
-class Node(QtSvg.QGraphicsSvgItem):
-    '''Node for QGraphicsScene'''
-   
-    id = None
-    edgeList = []
-    
-    def __init__(self, svgfile):
-        
-        QtSvg.QGraphicsSvgItem.__init__(self, svgfile)
-        self.setCursor(QtCore.Qt.OpenHandCursor)
-        self.setFlag(self.ItemIsMovable)
-        self.setFlag(self.ItemIsSelectable)
-        self.setZValue(1)
-
-    def addEdge(self, edge):
-    
-        self.edgeList.append(edge)
-        edge.adjust()
-    
-    def ajustAllEdges(self):
-    
-        for edge in self.edgeList:
-            edge.adjust()
-            
-    def hasEdgeToNode(self, node_id):
-    
-        for edge in self.edgeList:
-            if edge.dest.id == node_id:
-                return 1
-        return 0
-        
-    def itemChange(self, change, value):
-    
-        if change == self.ItemPositionChange:
-            for edge in self.edgeList:
-                edge.adjust()
-        return QtGui.QGraphicsItem.itemChange(self, change, value)
-        
     def mouseDoubleClickEvent(self, event):
     
         inspector = QtGui.QDialog()
@@ -122,7 +44,8 @@ class Node(QtSvg.QGraphicsSvgItem):
         ui.setupUi(inspector)
         inspector.show()
         inspector.exec_()
-        
+        self.setText(0,QtGui.QApplication.translate("MainWindow", "youhou", None, QtGui.QApplication.UnicodeUTF8))
+
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     ''' Main window '''
     
@@ -144,36 +67,35 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.graphicsView.setTransformationAnchor(QtGui.QGraphicsView.AnchorUnderMouse)
         self.graphicsView.setResizeAnchor(QtGui.QGraphicsView.AnchorViewCenter)
 
+        QtGui.QAbstractItemView.DoubleClicked
+    
         # Example of use
-        node1 = Node(":Switch")
-        node2 = Node(":Route switch processor")
-        node3 = Node(":Multilayer switch")
-        node4 = Node(":Router firewall")
-        node5 = Node(":Router")
+        node1 = MNode(":Switch", self.scene)
+        node2 = MNode(":Route switch processor", self.scene, 150, 150)
+        node3 = MNode(":Multilayer switch", self.scene, -100, 150)
+        node4 = MNode(":Router firewall", self.scene, 150, -150)
+        node5 = MNode(":Router", self.scene, -150, -150)
+        
+        # Example of edge
+        
+        Edge(node1, node2, self.scene)
+        Edge(node2, node3, self.scene)
+        Edge(node3, node1, self.scene)
+        Edge(node1, node4, self.scene)
+        Edge(node1, node5, self.scene)
+        
+        # Example of tree item
+   
+        #item1 = TreeItem(self.treeWidget, "Mon item")
+    
+        #node3 = MNode(":Router", self.scene, -100, 100)
+        # End of example
+        
 
 ##        text = QtGui.QGraphicsTextItem("10.10.1.45")
 ##        text.setFlag(text.ItemIsMovable)
 ##        text.setZValue(2)
 ##        self.scene.addItem(text)
-
-        self.scene.addItem(node1)
-        self.scene.addItem(node2)
-        self.scene.addItem(node3)
-        self.scene.addItem(node4)
-        self.scene.addItem(node5)
-
-        node1.setPos(0, 0)
-        node2.setPos(150, 150)
-        node3.setPos(-100, 150)
-        node4.setPos(150, -150)
-        node5.setPos(-150, -150)
-        self.scene.addItem(Edge(node1, node2))
-        self.scene.addItem(Edge(node2, node3))
-        self.scene.addItem(Edge(node3, node1))
-        self.scene.addItem(Edge(node1, node4))
-        self.scene.addItem(Edge(node1, node5))
-        # End of example
-
 
         # background test
         #background = QtGui.QBrush(QtGui.QPixmap("worldmap2.jpg"))

@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-3.8.dtd">
 <!-- Tasks file for project gns-3 -->
-<!-- Saved: 2007-03-26, 11:02:18 -->
+<!-- Saved: 2007-04-06, 11:24:42 -->
 <Tasks version="3.8">
   <Task priority="1" completed="0" bugfix="0">
     <Description>TODO: Correct the bug when you throw the node</Description>
-    <Created>2007-03-26, 11:00:55</Created>
+    <Created>2007-04-05, 00:50:32</Created>
     <Resource>
       <Filename>
         <Dir>src</Dir>
         <Name>MainWindow.py</Name>
       </Filename>
-      <Linenumber>51</Linenumber>
+      <Linenumber>167</Linenumber>
     </Resource>
   </Task>
   <Task priority="1" completed="0" bugfix="0">
     <Description>TODO: Finish to put a status point on the link</Description>
-    <Created>2007-03-26, 11:00:55</Created>
+    <Created>2007-04-05, 00:50:32</Created>
     <Resource>
       <Filename>
         <Dir>src</Dir>
         <Name>MainWindow.py</Name>
       </Filename>
-      <Linenumber>69</Linenumber>
+      <Linenumber>185</Linenumber>
     </Resource>
   </Task>
   <Task priority="1" completed="0" bugfix="0">
     <Description>TODO: A better management of the scene size</Description>
-    <Created>2007-03-26, 11:00:55</Created>
+    <Created>2007-04-05, 00:50:32</Created>
     <Resource>
       <Filename>
         <Dir>src</Dir>
         <Name>MainWindow.py</Name>
       </Filename>
-      <Linenumber>140</Linenumber>
+      <Linenumber>263</Linenumber>
     </Resource>
   </Task>
   <Task priority="1" completed="0" bugfix="1">
     <Description>FIXME: We should set a white background on the scene, not on the pixmap</Description>
-    <Created>2007-03-26, 11:00:55</Created>
+    <Created>2007-04-05, 00:50:32</Created>
     <Resource>
       <Filename>
         <Dir>src</Dir>
         <Name>MainWindow.py</Name>
       </Filename>
-      <Linenumber>217</Linenumber>
+      <Linenumber>340</Linenumber>
     </Resource>
   </Task>
 </Tasks>

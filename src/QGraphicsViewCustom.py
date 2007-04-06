@@ -18,6 +18,9 @@
 #
 
 from PyQt4 import QtCore, QtGui
+from MNode import *
+import re
+import string
 
 class QGraphicsViewCustom(QtGui.QGraphicsView):
     '''Custom QGraphicsView'''
@@ -39,8 +42,47 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
 
     def keyPressEvent(self, event):
 
-        if event.key() == QtCore.Qt.Key_Plus:
+        key = event.key()
+        if key == QtCore.Qt.Key_Plus:
             self.scaleView(1.2)
-        if event.key() == QtCore.Qt.Key_Minus:
+        elif key == QtCore.Qt.Key_Minus:
             self.scaleView(1 / 1.2)
-    
+##        else:
+##            QtGui.QGraphicsView.keyPressEvent(self, event)
+            
+    def dragEnterEvent(self, event):
+        #print "DragEnterEvent\n"
+        
+        if event.mimeData().hasText():
+         event.accept();
+        else:
+         event.ignore();
+        
+    def dragMoveEvent(self, event):
+        #print "Drag Move Event\n"
+        event.accept()
+     
+    def dropEvent(self, event):
+        print "Drop Event\n"
+        
+        if event.mimeData().hasText():
+
+         p = re.compile("/")
+         print event.mimeData().text()
+         s = p.split(str(event.mimeData().text()))
+         print "Mime : " + event.mimeData().text()
+         print "s %s " %(s[1],)
+         
+         
+         print "width : %f height : %f\nCoord x : %f y : %f\n" %(self.size().width(), self.size().height(), (self.size().width() /2)- event.pos().x(), (self.size().height()/2) - event.pos().y())
+         node = MNode(":"+ s[1], self.scene(), event.pos().x() - (self.size().width() /2), event.pos().y() - (self.size().height() /2))
+         event.setDropAction(QtCore.Qt.MoveAction)
+         event.accept()
+         
+        else :
+         event.ignore()
+        
+         
+    def dragLeaveEvent(self, event):
+        print "Drag Leave Event"
+        

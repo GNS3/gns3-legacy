@@ -21,7 +21,7 @@
      <number>6</number>
     </property>
     <item>
-     <widget class="QTreeWidget" name="treeWidget" >
+     <widget class="QTreeWidgetCustom" name="treeWidget" >
       <property name="sizePolicy" >
        <sizepolicy>
         <hsizetype>0</hsizetype>
@@ -29,6 +29,21 @@
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="editTriggers" >
+       <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed|QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="dragEnabled" >
+       <bool>true</bool>
+      </property>
+      <property name="iconSize" >
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="animated" >
+       <bool>true</bool>
       </property>
       <column>
        <property name="text" >
@@ -178,6 +193,11 @@
    <class>QGraphicsViewCustom</class>
    <extends>QGraphicsView</extends>
    <header>QGraphicsViewCustom</header>
+  </customwidget>
+  <customwidget>
+   <class>QTreeWidgetCustom</class>
+   <extends>QTreeWidget</extends>
+   <header>QTreeWidgetCustom</header>
   </customwidget>
  </customwidgets>
  <resources/>

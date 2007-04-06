@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Mon Mar 26 11:01:56 2007
+# Created: Fri Apr  6 12:09:02 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -23,13 +23,17 @@ class Ui_MainWindow(object):
         self.hboxlayout.setSpacing(6)
         self.hboxlayout.setObjectName("hboxlayout")
 
-        self.treeWidget = QtGui.QTreeWidget(self.centralwidget)
+        self.treeWidget = QTreeWidgetCustom(self.centralwidget)
 
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(7))
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.treeWidget.sizePolicy().hasHeightForWidth())
         self.treeWidget.setSizePolicy(sizePolicy)
+        self.treeWidget.setEditTriggers(QtGui.QAbstractItemView.DoubleClicked|QtGui.QAbstractItemView.EditKeyPressed|QtGui.QAbstractItemView.NoEditTriggers)
+        self.treeWidget.setDragEnabled(True)
+        self.treeWidget.setIconSize(QtCore.QSize(30,30))
+        self.treeWidget.setAnimated(True)
         self.treeWidget.setObjectName("treeWidget")
         self.hboxlayout.addWidget(self.treeWidget)
 
@@ -131,4 +135,5 @@ class Ui_MainWindow(object):
         self.action_Save.setText(QtGui.QApplication.translate("MainWindow", "&Save", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Add_connection.setText(QtGui.QApplication.translate("MainWindow", "Add a connection", None, QtGui.QApplication.UnicodeUTF8))
 
+from QTreeWidgetCustom import QTreeWidgetCustom
 from QGraphicsViewCustom import QGraphicsViewCustom
