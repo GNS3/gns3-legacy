@@ -30,13 +30,15 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
         QtGui.QGraphicsView.__init__(self, parent)
 
     def scaleView(self, scale_factor):
-    
+        '''QGraphicsView zoom'''
+
         factor = self.matrix().scale(scale_factor, scale_factor).mapRect(QtCore.QRectF(0, 0, 1, 1)).width()
         if (factor < 0.20 or factor > 5):
             return
         self.scale(scale_factor, scale_factor)
         
     def wheelEvent(self, event):
+        '''Zoom with the mouse wheel'''
         
         self.scaleView(pow(2.0, -event.delta() / 240.0))
 
@@ -44,45 +46,42 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
 
         key = event.key()
         if key == QtCore.Qt.Key_Plus:
+            # Zoom in
             self.scaleView(1.2)
         elif key == QtCore.Qt.Key_Minus:
+            # Zoom out
             self.scaleView(1 / 1.2)
-##        else:
-##            QtGui.QGraphicsView.keyPressEvent(self, event)
+        else:
+            QtGui.QGraphicsView.keyPressEvent(self, event)
             
     def dragEnterEvent(self, event):
-        #print "DragEnterEvent\n"
         
         if event.mimeData().hasText():
-         event.accept();
+            event.accept();
         else:
-         event.ignore();
+            event.ignore();
         
     def dragMoveEvent(self, event):
-        #print "Drag Move Event\n"
+    
         event.accept()
-     
-    def dropEvent(self, event):
-        print "Drop Event\n"
-        
-        if event.mimeData().hasText():
 
-         p = re.compile("/")
-         print event.mimeData().text()
-         s = p.split(str(event.mimeData().text()))
-         print "Mime : " + event.mimeData().text()
-         print "s %s " %(s[1],)
-         
-         
-         print "width : %f height : %f\nCoord x : %f y : %f\n" %(self.size().width(), self.size().height(), (self.size().width() /2)- event.pos().x(), (self.size().height()/2) - event.pos().y())
-         node = MNode(":"+ s[1], self.scene(), event.pos().x() - (self.size().width() /2), event.pos().y() - (self.size().height() /2))
-         event.setDropAction(QtCore.Qt.MoveAction)
-         event.accept()
-         
+    def dropEvent(self, event):
+
+        if event.mimeData().hasText():
+           
+            p = re.compile("/")
+##            print event.mimeData().text()
+            s = p.split(str(event.mimeData().text()))
+##            print "Mime : " + event.mimeData().text()
+##            print "s %s " %(s[1],)
+##            print "width : %f height : %f\nCoord x : %f y : %f\n" %(self.size().width(), self.size().height(), (self.size().width() /2)- event.pos().x(), (self.size().height()/2) - event.pos().y())
+            node = MNode(":"+ s[1], self.scene(), event.pos().x() - (self.size().width() /2), event.pos().y() - (self.size().height() /2))
+            event.setDropAction(QtCore.Qt.MoveAction)
+            event.accept()
+
         else :
-         event.ignore()
-        
-         
+            event.ignore()
+
     def dragLeaveEvent(self, event):
-        print "Drag Leave Event"
+        pass
         

@@ -41,6 +41,7 @@ class NamFileSimulation:
         self.mem.close()
     
     def next(self):
+        '''get the next event from the file'''
     
         line = self.mem.readline()
         if not line: 
@@ -107,5 +108,4 @@ if __name__ == "__main__":
 
         import unittest
         unittest.TextTestRunner().run(_test_suite())
-        
 

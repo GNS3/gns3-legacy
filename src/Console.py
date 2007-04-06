@@ -81,7 +81,6 @@ class Console(QtGui.QTextEdit):
         
         self.proc.start(prog,  ['-P', '3600', '--idle-pc', '0x60575b54', '/home/grossmj/Dynamips/c3640.bin'])
 
-
     def slotNewCmd(self, cmd):
     
         print cmd

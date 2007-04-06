@@ -26,6 +26,7 @@ import svg_resources_rc
 from Edge import *
 from MNode import *
 
+# Temporary emplacement for TreeItem
 class TreeItem(QtSvg.QGraphicsSvgItem, QtGui.QTreeWidget):
     '''Item for TreeWidget'''
     
@@ -59,6 +60,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     
         self.scene = QtGui.QGraphicsScene(self.graphicsView)
         self.graphicsView.setScene(self.scene)
+        
+        # Scene settings
         self.scene.setItemIndexMethod(QtGui.QGraphicsScene.NoIndex)
         #TODO: A better management of the scene size
         self.scene.setSceneRect(-250, -250, 500, 500)
@@ -73,11 +76,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         node1 = MNode(":Switch", self.scene)
         node2 = MNode(":Route switch processor", self.scene, 150, 150)
         node3 = MNode(":Multilayer switch", self.scene, -100, 150)
-        node4 = MNode(":Router firewall", self.scene, 150, -150)
+        node4 = MNode(":Router with firewall", self.scene, 150, -150)
         node5 = MNode(":Router", self.scene, -150, -150)
-        
-        # Example of edge
-        
+
         Edge(node1, node2, self.scene)
         Edge(node2, node3, self.scene)
         Edge(node3, node1, self.scene)
@@ -85,17 +86,13 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         Edge(node1, node5, self.scene)
         
         # Example of tree item
-   
-        #item1 = TreeItem(self.treeWidget, "Mon item")
-    
-        #node3 = MNode(":Router", self.scene, -100, 100)
-        # End of example
+        # item1 = TreeItem(self.treeWidget, "Mon item")
         
-
 ##        text = QtGui.QGraphicsTextItem("10.10.1.45")
 ##        text.setFlag(text.ItemIsMovable)
 ##        text.setZValue(2)
 ##        self.scene.addItem(text)
+        # End of example
 
         # background test
         #background = QtGui.QBrush(QtGui.QPixmap("worldmap2.jpg"))
@@ -103,10 +100,14 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         #self.graphicsView.scale(0.8, 0.8)
 
     def AddEdge(self):
-
+        '''Add a new edge from the menu'''
+    
         if not self.action_Add_connection.isChecked():
+            self.action_Add_connection.setText('Add an connection')
             self.action_Add_connection.setIcon(QtGui.QIcon('../svg/icons/connection.svg'))
+            
         else:
+            self.action_Add_connection.setText('Cancel')
             self.action_Add_connection.setIcon(QtGui.QIcon('../svg/icons/stop.svg'))
         
         
@@ -133,7 +134,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         
     def Export(self, name, format):
-    
+        '''Export the view to an image'''
+
         rect = self.graphicsView.viewport().rect()
         pixmap = QtGui.QPixmap(rect.width(), rect.height())
         #FIXME: We should set a white background on the scene, not on the pixmap

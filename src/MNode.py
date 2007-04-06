@@ -29,17 +29,19 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     def __init__(self, svgfile, QGraphicsScene, xPos=None, yPos=None):
         
         QtSvg.QGraphicsSvgItem.__init__(self, svgfile)
-        #MNode Properties
+        
+        # MNode settings
         self.setCursor(QtCore.Qt.OpenHandCursor)
         self.setFlag(self.ItemIsMovable)
         self.setFlag(self.ItemIsSelectable)
         self.setZValue(1)
         
+        # By default put the node to (0,0)
         if xPos is None : xPos = 0
         if yPos is None : yPos = 0 
         self.setPos(xPos, yPos)
         
-        #MNode Placemenet
+        # MNode placement
         QGraphicsScene.addItem(self)
         QGraphicsScene.update(self.sceneBoundingRect())
         
@@ -70,13 +72,11 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             for edge in self.edgeList:
                 edge.adjust()
         return QtGui.QGraphicsItem.itemChange(self, change, value)
-     
-    #TODO: Feature plus que alpha
         
-    #def mouseDoubleClickEvent(self, event):
-    #
-    #    inspector = QtGui.QDialog()
-    #    ui = Ui_FormInspector()
-    #    ui.setupUi(inspector)
-    #    inspector.show()
-    #    inspector.exec_()
+    def mouseDoubleClickEvent(self, event):
+    
+        inspector = QtGui.QDialog()
+        ui = Ui_FormInspector()
+        ui.setupUi(inspector)
+        inspector.show()
+        inspector.exec_()

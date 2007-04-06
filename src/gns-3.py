@@ -30,11 +30,15 @@ class Main:
     def __init__(self, argv):
 
         app = QtGui.QApplication(sys.argv)
+        
+        # translation management
         translator = QtCore.QTranslator(app)
         #print locale.getlocale()[0]
         #if translator.load(":/" + locale.getlocale()[0][:2]):
         #    app.installTranslator(translator)
         win = MainWindow()
+        
+        # signal/slot for the menu
         win.connect(win.action_Open, QtCore.SIGNAL('activated()'), win.OpenNewFile)
         win.connect(win.action_Save, QtCore.SIGNAL('activated()'), win.SaveToFile)
         win.connect(win.action_Add_connection, QtCore.SIGNAL('activated()'), win.AddEdge)

@@ -27,6 +27,7 @@ class QTreeWidgetCustom(QtGui.QTreeWidget ):
         QtGui.QTreeWidget.__init__(self, parent)
             
     def mouseMoveEvent(self, event):
+        '''Drag an element'''
     
         if ((event.buttons() & QtCore.Qt.LeftButton ) == None):
             return
