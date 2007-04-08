@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Inspector.ui'
 #
-# Created: Wed Apr  4 14:12:02 2007
+# Created: Sun Apr  8 17:56:38 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -36,22 +36,26 @@ class Ui_FormInspector(object):
         self.hboxlayout.setSpacing(6)
         self.hboxlayout.setObjectName("hboxlayout")
 
-        self.label_5 = QtGui.QLabel(self.Console)
-        self.label_5.setPixmap(QtGui.QPixmap("../svg/icons/led_green.svg"))
-        self.label_5.setScaledContents(False)
-        self.label_5.setObjectName("label_5")
-        self.hboxlayout.addWidget(self.label_5)
+        self.labelStatus = QtGui.QLabel(self.Console)
+        self.labelStatus.setPixmap(QtGui.QPixmap("../svg/icons/led_red.svg"))
+        self.labelStatus.setScaledContents(False)
+        self.labelStatus.setObjectName("labelStatus")
+        self.hboxlayout.addWidget(self.labelStatus)
 
         spacerItem = QtGui.QSpacerItem(131,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
         self.hboxlayout.addItem(spacerItem)
 
-        self.pushButton = QtGui.QPushButton(self.Console)
-        self.pushButton.setObjectName("pushButton")
-        self.hboxlayout.addWidget(self.pushButton)
+        self.pushButton_Hypervisor = QtGui.QPushButton(self.Console)
+        self.pushButton_Hypervisor.setObjectName("pushButton_Hypervisor")
+        self.hboxlayout.addWidget(self.pushButton_Hypervisor)
 
-        self.pushButton_2 = QtGui.QPushButton(self.Console)
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.hboxlayout.addWidget(self.pushButton_2)
+        self.pushButton_Start = QtGui.QPushButton(self.Console)
+        self.pushButton_Start.setObjectName("pushButton_Start")
+        self.hboxlayout.addWidget(self.pushButton_Start)
+
+        self.pushButton_Shutdown = QtGui.QPushButton(self.Console)
+        self.pushButton_Shutdown.setObjectName("pushButton_Shutdown")
+        self.hboxlayout.addWidget(self.pushButton_Shutdown)
         self.vboxlayout1.addLayout(self.hboxlayout)
 
         self.textEditConsole = Console(self.Console)
@@ -130,15 +134,19 @@ class Ui_FormInspector(object):
         self.retranslateUi(FormInspector)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(FormInspector)
-        FormInspector.setTabOrder(self.tabWidget,self.lineEditIP)
+        FormInspector.setTabOrder(self.textEditConsole,self.pushButton_Start)
+        FormInspector.setTabOrder(self.pushButton_Start,self.pushButton_Shutdown)
+        FormInspector.setTabOrder(self.pushButton_Shutdown,self.tabWidget)
+        FormInspector.setTabOrder(self.tabWidget,self.lineEditGateway)
+        FormInspector.setTabOrder(self.lineEditGateway,self.lineEditIP)
         FormInspector.setTabOrder(self.lineEditIP,self.lineEditMask)
         FormInspector.setTabOrder(self.lineEditMask,self.lineEditHostname)
-        FormInspector.setTabOrder(self.lineEditHostname,self.lineEditGateway)
 
     def retranslateUi(self, FormInspector):
         FormInspector.setWindowTitle(QtGui.QApplication.translate("FormInspector", "Node configuration", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton.setText(QtGui.QApplication.translate("FormInspector", "Start", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton_2.setText(QtGui.QApplication.translate("FormInspector", "Shutdown", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButton_Hypervisor.setText(QtGui.QApplication.translate("FormInspector", "Hypervisor", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButton_Start.setText(QtGui.QApplication.translate("FormInspector", "Start", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButton_Shutdown.setText(QtGui.QApplication.translate("FormInspector", "Shutdown", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.Console), QtGui.QApplication.translate("FormInspector", "Console", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("FormInspector", "IP address", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("FormInspector", "Mask", None, QtGui.QApplication.UnicodeUTF8))

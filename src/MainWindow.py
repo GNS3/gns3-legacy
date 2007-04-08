@@ -48,7 +48,7 @@ class TreeItem(QtSvg.QGraphicsSvgItem, QtGui.QTreeWidget):
         self.setText(0,QtGui.QApplication.translate("MainWindow", "youhou", None, QtGui.QApplication.UnicodeUTF8))
 
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
-    ''' Main window '''
+    '''Main window'''
     
     def __init__(self):
 
@@ -102,13 +102,13 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def AddEdge(self):
         '''Add a new edge from the menu'''
     
-        if not self.action_Add_connection.isChecked():
-            self.action_Add_connection.setText('Add an connection')
-            self.action_Add_connection.setIcon(QtGui.QIcon('../svg/icons/connection.svg'))
+        if not self.action_Add_link.isChecked():
+            self.action_Add_link.setText('Add an link')
+            self.action_Add_link.setIcon(QtGui.QIcon('../svg/icons/connection.svg'))
             
         else:
-            self.action_Add_connection.setText('Cancel')
-            self.action_Add_connection.setIcon(QtGui.QIcon('../svg/icons/stop.svg'))
+            self.action_Add_link.setText('Cancel')
+            self.action_Add_link.setIcon(QtGui.QIcon('../svg/icons/stop.svg'))
         
         
     def SaveToFile(self):

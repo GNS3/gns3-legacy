@@ -41,7 +41,7 @@ class Main:
         # signal/slot for the menu
         win.connect(win.action_Open, QtCore.SIGNAL('activated()'), win.OpenNewFile)
         win.connect(win.action_Save, QtCore.SIGNAL('activated()'), win.SaveToFile)
-        win.connect(win.action_Add_connection, QtCore.SIGNAL('activated()'), win.AddEdge)
+        win.connect(win.action_Add_link, QtCore.SIGNAL('activated()'), win.AddEdge)
         win.show()
         sys.exit(app.exec_())
 

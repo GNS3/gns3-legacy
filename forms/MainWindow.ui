@@ -39,7 +39,7 @@
       <property name="iconSize" >
        <size>
         <width>30</width>
-        <height>30</height>
+        <height>35</height>
        </size>
       </property>
       <property name="animated" >
@@ -148,7 +148,7 @@
    <addaction name="action_Open" />
    <addaction name="action_Save" />
    <addaction name="separator" />
-   <addaction name="action_Add_connection" />
+   <addaction name="action_Add_link" />
   </widget>
   <action name="action_About" >
    <property name="text" >
@@ -176,7 +176,7 @@
     <string>&amp;Save</string>
    </property>
   </action>
-  <action name="action_Add_connection" >
+  <action name="action_Add_link" >
    <property name="checkable" >
     <bool>true</bool>
    </property>
@@ -184,20 +184,26 @@
     <iconset>../svg/icons/connection.svg</iconset>
    </property>
    <property name="text" >
-    <string>Add a connection</string>
+    <string>Add a link</string>
+   </property>
+   <property name="iconText" >
+    <string>Add a link</string>
+   </property>
+   <property name="toolTip" >
+    <string>Add a link</string>
    </property>
   </action>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QGraphicsViewCustom</class>
-   <extends>QGraphicsView</extends>
-   <header>QGraphicsViewCustom</header>
-  </customwidget>
-  <customwidget>
    <class>QTreeWidgetCustom</class>
    <extends>QTreeWidget</extends>
    <header>QTreeWidgetCustom</header>
+  </customwidget>
+  <customwidget>
+   <class>QGraphicsViewCustom</class>
+   <extends>QGraphicsView</extends>
+   <header>QGraphicsViewCustom</header>
   </customwidget>
  </customwidgets>
  <resources/>

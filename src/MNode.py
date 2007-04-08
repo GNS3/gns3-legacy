@@ -18,7 +18,8 @@
 #
 
 from PyQt4 import QtCore, QtGui, QtSvg
-from Ui_Inspector import *
+#from Ui_Inspector import *
+from Inspector import Inspector
 
 class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     '''MNode for QGraphicsScene'''
@@ -26,7 +27,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     id = None
     edgeList = []
       
-    def __init__(self, svgfile, QGraphicsScene, xPos=None, yPos=None):
+    def __init__(self, svgfile, QGraphicsScene, xPos = None, yPos = None):
         
         QtSvg.QGraphicsSvgItem.__init__(self, svgfile)
         
@@ -74,9 +75,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         return QtGui.QGraphicsItem.itemChange(self, change, value)
         
     def mouseDoubleClickEvent(self, event):
-    
-        inspector = QtGui.QDialog()
-        ui = Ui_FormInspector()
-        ui.setupUi(inspector)
+
+        inspector = Inspector()
         inspector.show()
         inspector.exec_()

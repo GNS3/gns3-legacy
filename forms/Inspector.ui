@@ -44,12 +44,12 @@
           <number>6</number>
          </property>
          <item>
-          <widget class="QLabel" name="label_5" >
+          <widget class="QLabel" name="labelStatus" >
            <property name="text" >
             <string/>
            </property>
            <property name="pixmap" >
-            <pixmap>../svg/icons/led_green.svg</pixmap>
+            <pixmap>../svg/icons/led_red.svg</pixmap>
            </property>
            <property name="scaledContents" >
             <bool>false</bool>
@@ -70,14 +70,21 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton" >
+          <widget class="QPushButton" name="pushButton_Hypervisor" >
+           <property name="text" >
+            <string>Hypervisor</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_Start" >
            <property name="text" >
             <string>Start</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_2" >
+          <widget class="QPushButton" name="pushButton_Shutdown" >
            <property name="text" >
             <string>Shutdown</string>
            </property>
@@ -237,11 +244,14 @@
   </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>textEditConsole</tabstop>
+  <tabstop>pushButton_Start</tabstop>
+  <tabstop>pushButton_Shutdown</tabstop>
   <tabstop>tabWidget</tabstop>
+  <tabstop>lineEditGateway</tabstop>
   <tabstop>lineEditIP</tabstop>
   <tabstop>lineEditMask</tabstop>
   <tabstop>lineEditHostname</tabstop>
-  <tabstop>lineEditGateway</tabstop>
  </tabstops>
  <resources/>
  <connections/>

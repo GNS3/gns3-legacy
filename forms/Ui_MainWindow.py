@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Fri Apr  6 12:09:02 2007
+# Created: Sun Apr  8 13:03:07 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -32,7 +32,7 @@ class Ui_MainWindow(object):
         self.treeWidget.setSizePolicy(sizePolicy)
         self.treeWidget.setEditTriggers(QtGui.QAbstractItemView.DoubleClicked|QtGui.QAbstractItemView.EditKeyPressed|QtGui.QAbstractItemView.NoEditTriggers)
         self.treeWidget.setDragEnabled(True)
-        self.treeWidget.setIconSize(QtCore.QSize(30,30))
+        self.treeWidget.setIconSize(QtCore.QSize(30,35))
         self.treeWidget.setAnimated(True)
         self.treeWidget.setObjectName("treeWidget")
         self.hboxlayout.addWidget(self.treeWidget)
@@ -76,10 +76,10 @@ class Ui_MainWindow(object):
         self.action_Save.setIcon(QtGui.QIcon("../svg/icons/save.svg"))
         self.action_Save.setObjectName("action_Save")
 
-        self.action_Add_connection = QtGui.QAction(MainWindow)
-        self.action_Add_connection.setCheckable(True)
-        self.action_Add_connection.setIcon(QtGui.QIcon("../svg/icons/connection.svg"))
-        self.action_Add_connection.setObjectName("action_Add_connection")
+        self.action_Add_link = QtGui.QAction(MainWindow)
+        self.action_Add_link.setCheckable(True)
+        self.action_Add_link.setIcon(QtGui.QIcon("../svg/icons/connection.svg"))
+        self.action_Add_link.setObjectName("action_Add_link")
         self.menu_File.addAction(self.action_Open)
         self.menu_File.addAction(self.action_Save)
         self.menu_File.addSeparator()
@@ -90,7 +90,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.action_Open)
         self.toolBar.addAction(self.action_Save)
         self.toolBar.addSeparator()
-        self.toolBar.addAction(self.action_Add_connection)
+        self.toolBar.addAction(self.action_Add_link)
 
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.action_Quit,QtCore.SIGNAL("activated()"),MainWindow.close)
@@ -133,7 +133,9 @@ class Ui_MainWindow(object):
         self.action_Quit.setText(QtGui.QApplication.translate("MainWindow", "&Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Open.setText(QtGui.QApplication.translate("MainWindow", "&Open", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Save.setText(QtGui.QApplication.translate("MainWindow", "&Save", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_Add_connection.setText(QtGui.QApplication.translate("MainWindow", "Add a connection", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Add_link.setText(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Add_link.setIconText(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Add_link.setToolTip(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
 
 from QTreeWidgetCustom import QTreeWidgetCustom
 from QGraphicsViewCustom import QGraphicsViewCustom

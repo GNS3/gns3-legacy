@@ -61,7 +61,7 @@ class Edge(QtGui.QGraphicsItem, QtGui.QGraphicsScene):
         if self.source is None or self.dest is None:
             return
         
-        #TODO: Correct the bug when you throw the node
+        #FIXME: Correct the bug when you throw the node
         self.prepareGeometryChange()
         rectsource = self.source.boundingRect()
         srctopmiddle = rectsource.topRight() / 2
