@@ -24,6 +24,10 @@ import translations
 from PyQt4 import QtCore, QtGui
 from MainWindow import MainWindow
 
+# globals
+baseid = 0                  # Base to create IDs
+nodes = {}                # Node objects, indexed by the node ID
+
 class Main:
     ''' Entry point '''
 

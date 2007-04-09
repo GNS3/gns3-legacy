@@ -18,8 +18,8 @@
 #
 
 from PyQt4 import QtCore, QtGui, QtSvg
-#from Ui_Inspector import *
 from Inspector import Inspector
+import __main__
 
 class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     '''MNode for QGraphicsScene'''
@@ -30,6 +30,16 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     def __init__(self, svgfile, QGraphicsScene, xPos = None, yPos = None):
         
         QtSvg.QGraphicsSvgItem.__init__(self, svgfile)
+    
+        # Get access to globals
+        self.main = __main__
+        
+        # Create an ID
+        self.id = self.main.baseid
+        self.main.baseid += 1
+        
+        # Record the object
+        self.main.nodes[self.id] = self
         
         # MNode settings
         self.setCursor(QtCore.Qt.OpenHandCursor)

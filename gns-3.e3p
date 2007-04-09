@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project gns-3 -->
-<!-- Saved: 2007-04-08, 12:48:24 -->
-<!-- Copyright (C) 2007 Jeremy Grossmann, jeremy.grossmann@cersti.edu -->
+<!-- Saved: 2007-04-09, 17:38:31 -->
+<!-- Copyright (C) 2007 Jeremy Grossmann,  -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
   <UIType>Qt4</UIType>
   <Description>Configurator and animator GUI for ns-3 project</Description>
   <Version>0.1</Version>
   <Author>Jeremy Grossmann</Author>
-  <Email>jeremy.grossmann@cersti.edu</Email>
+  <Email></Email>
   <Sources>
     <Source>
       <Dir>src</Dir>
@@ -66,6 +66,10 @@
     <Source>
       <Dir>src</Dir>
       <Name>Inspector.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Name>Dynamips_lib.py</Name>
     </Source>
   </Sources>
   <Forms>
@@ -127,10 +131,10 @@ I01
 s.</Eric3ApiParams>
   </Eric3Api>
   <FiletypeAssociations>
-    <FiletypeAssociation pattern="*.py" type="SOURCES" />
     <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
+    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
     <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
     <FiletypeAssociation pattern="*.ui" type="FORMS" />
-    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
   </FiletypeAssociations>
 </Project>
