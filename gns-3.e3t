@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-3.8.dtd">
 <!-- Tasks file for project gns-3 -->
-<!-- Saved: 2007-04-09, 17:38:31 -->
+<!-- Saved: 2007-04-13, 00:04:00 -->
 <Tasks version="3.8">
   <Task priority="1" completed="0" bugfix="0">
     <Description>TODO: Finish the points management</Description>
-    <Created>2007-04-08, 18:34:30</Created>
+    <Created>2007-04-09, 17:54:12</Created>
     <Resource>
       <Filename>
         <Dir>src</Dir>
@@ -16,7 +16,7 @@
   </Task>
   <Task priority="1" completed="0" bugfix="1">
     <Description>FIXME: Correct the bug when you throw the node</Description>
-    <Created>2007-04-08, 18:34:30</Created>
+    <Created>2007-04-09, 17:54:12</Created>
     <Resource>
       <Filename>
         <Dir>src</Dir>
@@ -27,24 +27,24 @@
   </Task>
   <Task priority="1" completed="0" bugfix="0">
     <Description>TODO: A better management of the scene size</Description>
-    <Created>2007-04-09, 17:25:11</Created>
+    <Created>2007-04-11, 21:39:41</Created>
     <Resource>
       <Filename>
         <Dir>src</Dir>
         <Name>MainWindow.py</Name>
       </Filename>
-      <Linenumber>66</Linenumber>
+      <Linenumber>69</Linenumber>
     </Resource>
   </Task>
   <Task priority="1" completed="0" bugfix="1">
     <Description>FIXME: We should set a white background on the scene, not on the pixmap</Description>
-    <Created>2007-04-09, 17:25:11</Created>
+    <Created>2007-04-11, 21:39:41</Created>
     <Resource>
       <Filename>
         <Dir>src</Dir>
         <Name>MainWindow.py</Name>
       </Filename>
-      <Linenumber>141</Linenumber>
+      <Linenumber>144</Linenumber>
     </Resource>
   </Task>
 </Tasks>

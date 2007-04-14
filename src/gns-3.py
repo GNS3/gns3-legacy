@@ -23,18 +23,30 @@ import locale
 import translations
 from PyQt4 import QtCore, QtGui
 from MainWindow import MainWindow
+import Dynamips_lib as lib
 
 # globals
 baseid = 0                  # Base to create IDs
 nodes = {}                # Node objects, indexed by the node ID
+hypervisor = None     # Hypervisor connection
 
 class Main:
     ''' Entry point '''
 
     def __init__(self, argv):
 
+        # temporary emplacement for a connection to a local hypervisor
+        global hypervisor
+        try:
+            hypervisor = lib.Dynamips('localhost', 7200)
+            hypervisor.reset()
+            hypervisor.workingdir = '/tmp'
+        except lib.DynamipsError, msg:
+            print "Dynamips error: %s" % msg
+            hypervisor = None
+
         app = QtGui.QApplication(sys.argv)
-        
+
         # translation management
         translator = QtCore.QTranslator(app)
         #print locale.getlocale()[0]

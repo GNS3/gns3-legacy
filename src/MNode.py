@@ -19,21 +19,31 @@
 
 from PyQt4 import QtCore, QtGui, QtSvg
 from Inspector import Inspector
+import Dynamips_lib as lib
+import telnetlib
+import socket
 import __main__
+
+InspectorInstance = None
 
 class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     '''MNode for QGraphicsScene'''
-   
-    id = None
-    edgeList = []
-      
+
+    # Get access to globals
+    main = __main__
+        
     def __init__(self, svgfile, QGraphicsScene, xPos = None, yPos = None):
         
         QtSvg.QGraphicsSvgItem.__init__(self, svgfile)
-    
-        # Get access to globals
-        self.main = __main__
-        
+        self.edgeList = []
+        self.iosConfig = {}
+
+        self.neighborList = []
+        self.__telnet = telnetlib.Telnet()
+        self.console_host = None
+        self.console_port = None
+        self.ios = None
+
         # Create an ID
         self.id = self.main.baseid
         self.main.baseid += 1
@@ -56,12 +66,18 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         QGraphicsScene.addItem(self)
         QGraphicsScene.update(self.sceneBoundingRect())
         
+        self.configIOS()
+        
     def move(self, xPos, yPos):
     
         self.setPos(xPos, yPos)
 
     def addEdge(self, edge):
     
+        if edge.dest.id != self.id:
+            self.neighborList.append(edge.dest.id)
+        else:
+            self.neighborList.append(edge.source.id)
         self.edgeList.append(edge)
         edge.adjust()
     
@@ -73,9 +89,9 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     def hasEdgeToNode(self, node_id):
     
         for edge in self.edgeList:
-            if edge.dest.id == node_id:
-                return 1
-        return 0
+            if edge.dest.id == node_id or edge.source.id == node_id:
+                return True
+        return False
         
     def itemChange(self, change, value):
     
@@ -86,6 +102,80 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         
     def mouseDoubleClickEvent(self, event):
 
-        inspector = Inspector()
-        inspector.show()
-        inspector.exec_()
+        global InspectorInstance
+        if InspectorInstance == None:
+            InspectorInstance = Inspector()
+            InspectorInstance.loadNodeInfos(self.id) 
+            InspectorInstance.show()
+            InspectorInstance.exec_()
+            InspectorInstance = None
+        else:
+            InspectorInstance.loadNodeInfos(self.id)
+            
+############ ####### IOS stuff ###############################
+    
+    def configIOS(self):
+
+        self.ios = lib.C3600(self.main.hypervisor, chassis = '3640', name = 'R' + str(self.id))
+        self.ios.image = '/home/grossmj/Dynamips/c3640.bin'
+        self.ios.slot[0] = lib.NM_1FE_TX(self.ios,0)
+        self.ios.idlepc = '0x60575b54'
+        
+    def startIOS(self):
+        
+        # localport, remoteserver, remoteadapter, remoteport
+        # self.ios.slot[0].connect(0, self.main.hypervisor, esw.slot[1], 0)
+        #self.configIOS()
+        
+        for neighbor in self.neighborList:
+            node = self.main.nodes[neighbor]
+            if node.ios != None:
+                try:
+                    self.ios.slot[0].connect(0, self.main.hypervisor, node.ios.slot[0], 0)
+                    node.ios.slot[0].connect(0, self.main.hypervisor, self.ios.slot[0], 0)
+                except lib.DynamipsError, msg:
+                    print msg
+
+        print self.ios.start()
+        
+    def stopIOS(self):
+    
+        print self.ios.stop()
+        self.ios.delete()
+        self.ios = None
+    
+    def __settelnet(self, telnet):
+        """ Set telnet object
+            telnet: telnet object
+        """
+
+        self.__console = console
+    
+    def __gettelnet(self):
+        """ Returns telnet object
+        """
+        return self.__telnet
+        
+    telnet = property(__gettelnet, __settelnet, doc = 'The telnet connection')
+    
+    def connect(self):
+
+        try:
+            self.__telnet.open('localhost', self.ios.console)
+        except socket.error, (value, msg):
+            return False
+        self.console_host = 'localhost'
+        self.console_port = self.ios.console
+        return True
+        
+    def disconnect(self):
+
+        self.__telnet.close()
+        self.console_host = None
+        self.console_port = None
+        
+    def isConnected(self):
+    
+        if self.console_host and self.console_port:
+            return True
+        return False
