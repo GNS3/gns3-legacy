@@ -66,7 +66,8 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         QGraphicsScene.addItem(self)
         QGraphicsScene.update(self.sceneBoundingRect())
         
-        self.configIOS()
+        if self.main.hypervisor != None:
+            self.configIOS()
         
     def move(self, xPos, yPos):
     
@@ -112,7 +113,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         else:
             InspectorInstance.loadNodeInfos(self.id)
             
-############ ####### IOS stuff ###############################
+################### IOS stuff ###############################
     
     def configIOS(self):
 
