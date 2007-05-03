@@ -19,6 +19,9 @@
 
 from PyQt4 import QtCore, QtGui
 from MNode import *
+from PyQt4 import QtGui
+from PyQt4 import QtCore
+from PyQt4 import QtGui
 import re
 import string
 
@@ -31,11 +34,14 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
 
     def scaleView(self, scale_factor):
         '''QGraphicsView zoom'''
-
+        
         factor = self.matrix().scale(scale_factor, scale_factor).mapRect(QtCore.QRectF(0, 0, 1, 1)).width()
+        factory = self.matrix().scale(scale_factor, scale_factor).mapRect(QtCore.QRectF(0, 0, 1, 1)).height()
         if (factor < 0.20 or factor > 5):
             return
         self.scale(scale_factor, scale_factor)
+
+        
         
     def wheelEvent(self, event):
         '''Zoom with the mouse wheel'''
@@ -67,21 +73,76 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
 
     def dropEvent(self, event):
 
+        #Message de DEBUG  commentes
+        #print "----------------------------- START -----------------------------"
         if event.mimeData().hasText():
            
             p = re.compile("/")
-##            print event.mimeData().text()
             s = p.split(str(event.mimeData().text()))
-##            print "Mime : " + event.mimeData().text()
-##            print "s %s " %(s[1],)
-##            print "width : %f height : %f\nCoord x : %f y : %f\n" %(self.size().width(), self.size().height(), (self.size().width() /2)- event.pos().x(), (self.size().height()/2) - event.pos().y())
-            node = MNode(":"+ s[1], self.scene(), event.pos().x() - (self.size().width() /2), event.pos().y() - (self.size().height() /2))
+
+         #   print "Mouse X :%f\tY :%f" %(event.pos().x(), event.pos().y())  
+         #   print "Factor : %f" % (self.matrix().m11())
+            x = event.pos().x()  / self.matrix().m11() 
+            y = event.pos().y()  / self.matrix().m22() 
+            repx = (self.width() /2) /  self.matrix().m11()
+            repy = (self.height()/2) / self.matrix().m22()     
+            width =  x - repx 
+            height = y - repy
+            
+            
+         #   print "Scene\nwidth : %f height : %f\nCoord x : %f y : %f" %( ((self.width() /2) / self.matrix().m11()) ,((self.height()/2) / self.matrix().m11()) , width, height)
+         #   print "Width : %f\nHeight : %f" %(width, height)
+            
+            #node = MNode(":"+ s[1], self.scene(), width / self.matrix().m11() , height / self.matrix().m22())
+            node = MNode(":"+ s[1], self.scene(), width , height)
+            print "ID NODE " , node.getIdSvg()
+            node.setName(s[1])
             event.setDropAction(QtCore.Qt.MoveAction)
             event.accept()
 
         else :
             event.ignore()
+        #print "------------------------------ END -----------------------------------"
 
     def dragLeaveEvent(self, event):
         pass
-        
+    
+    
+    def interrogate(self, item):
+     """Print useful information about item."""
+     if hasattr(item, '__name__'):
+         print "NAME:    ", item.__name__
+     if hasattr(item, '__class__'):
+         print "CLASS:   ", item.__class__.__name__
+     print "ID:      ", id(item)
+     print "TYPE:    ", type(item)
+     print "VALUE:   ", repr(item)
+     print "DIR:     ", dir(item)
+     print "CALLABLE:",
+     if callable(item):
+         print "Yes"
+     else:
+         print "No"
+     doc = None
+     if hasattr(item, 'getName'):
+         doc = getattr(item, 'getName')
+     #doc = doc.strip()   # Remove leading/trailing whitespace.
+     #firstline = doc.split('\n')[0]
+     #print "DOC:     ", firstline   
+     print "Name " , doc
+    
+    def mousePressEvent(self, event):
+       '''We recover all items of the QGraphicsView'''
+       listItems = self.items(event.pos()) 
+       print "------------------ START ---------------------"
+       for item in listItems :
+           ''' We use only the QtGraphicsSvgItem '''
+           if isinstance(item, QtSvg.QGraphicsSvgItem) == True :
+                print id(item)  
+                #  .__self__.getName()
+       ''' Callback of original QGraphicsView object. So we can move the MNode on the scene'''
+       QtGui.QGraphicsView.mousePressEvent(self, event)
+       print "------------------- STOP -----------------------"
+       
+       
+   
