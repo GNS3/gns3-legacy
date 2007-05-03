@@ -21,31 +21,38 @@ from PyQt4 import QtCore, QtGui, QtSvg
 #from Ui_Inspector import *
 from Inspector import Inspector
 
-class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
+class MNode(QtSvg.QGraphicsSvgItem):#, QtGui.QGraphicsScene):
     '''MNode for QGraphicsScene'''
    
     id = None
     edgeList = []
+    mNodeName = None
+    inspector = None  
+    svg = None;
       
-    def __init__(self, svgfile, QGraphicsScene, xPos = None, yPos = None):
+    def __init__(self, svgfile, MQGraphicsScene, xPos = None, yPos = None):
         
-        QtSvg.QGraphicsSvgItem.__init__(self, svgfile)
-        
+        svg = QtSvg.QGraphicsSvgItem.__init__(self, svgfile)
         # MNode settings
         self.setCursor(QtCore.Qt.OpenHandCursor)
         self.setFlag(self.ItemIsMovable)
         self.setFlag(self.ItemIsSelectable)
         self.setZValue(1)
+       # self.setScale(self.matrix().m11(), self.matrix().m22())
         
         # By default put the node to (0,0)
         if xPos is None : xPos = 0
         if yPos is None : yPos = 0 
+        
+        #print "------- X : %f\tY: %f ----------" % (xPos, yPos)
         self.setPos(xPos, yPos)
         
         # MNode placement
-        QGraphicsScene.addItem(self)
-        QGraphicsScene.update(self.sceneBoundingRect())
+        MQGraphicsScene.addItem(self)
+        MQGraphicsScene.update(self.sceneBoundingRect())
+        self.inspector = Inspector()
         
+  
     def move(self, xPos, yPos):
     
         self.setPos(xPos, yPos)
@@ -75,7 +82,14 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         return QtGui.QGraphicsItem.itemChange(self, change, value)
         
     def mouseDoubleClickEvent(self, event):
-
-        inspector = Inspector()
-        inspector.show()
-        inspector.exec_()
+        self.inspector.show()
+    
+    def setName(self, name):
+        self.mNodeName = name
+    
+    def getName(self):
+        print self.mNodeName;
+        return self.mNodeName
+    
+    def getIdSvg(self):
+        return id(self.svg)
