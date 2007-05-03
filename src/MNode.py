@@ -118,7 +118,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     def configIOS(self):
 
         self.ios = lib.C3600(self.main.hypervisor, chassis = '3640', name = 'R' + str(self.id))
-        self.ios.image = '/home/grossmj/Dynamips/c3640.bin'
+        self.ios.image = '/home/grossmj/c3640.bin'
         self.ios.slot[0] = lib.NM_1FE_TX(self.ios,0)
         self.ios.idlepc = '0x60575b54'
         
