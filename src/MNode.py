@@ -30,6 +30,11 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     '''MNode for QGraphicsScene'''
 
     # Get access to globals
+    id = None
+    edgeList = []
+    mNodeName = None
+    InspectorInstance = None
+    svg = None
     main = __main__
         
     def __init__(self, svgfile, QGraphicsScene, xPos = None, yPos = None):
@@ -65,7 +70,9 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         # MNode placement
         QGraphicsScene.addItem(self)
         QGraphicsScene.update(self.sceneBoundingRect())
-        
+	self.InspectorInstance = Inspector()
+	self.InspectorInstance.loadNodeInfos(self.id) 
+
         if self.main.hypervisor != None:
             self.configIOS()
         
@@ -102,17 +109,9 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         return QtGui.QGraphicsItem.itemChange(self, change, value)
         
     def mouseDoubleClickEvent(self, event):
-
-        global InspectorInstance
-        if InspectorInstance == None:
-            InspectorInstance = Inspector()
-            InspectorInstance.loadNodeInfos(self.id) 
-            InspectorInstance.show()
-            InspectorInstance.exec_()
-            InspectorInstance = None
-        else:
-            InspectorInstance.loadNodeInfos(self.id)
-            
+        self.InspectorInstance.loadNodeInfos(self.id) 
+        self.InspectorInstance.show()
+                           
 ################### IOS stuff ###############################
     
     def configIOS(self):
@@ -180,3 +179,13 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         if self.console_host and self.console_port:
             return True
         return False
+
+    def setName(self, name):
+        self.mNodeName = name
+    
+    def getName(self):
+        print self.mNodeName;
+        return self.mNodeName
+    
+    def getIdSvg(self):
+        return id(self.svg)
