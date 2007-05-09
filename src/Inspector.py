@@ -205,32 +205,32 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         # If the IOS config is not empty, restore it
         if node.iosConfig != {}:
             self.slotRestoreIOSConfig()
-        else:
-            self.setDefaults()
+        #else:
+        #    self.setDefaults()
 
-    def setDefaults(self):
-    
-        node = self.main.nodes[self.nodeid]
-        self.comboBoxIOS.clear()
-        self.comboBoxChassis.clear()
-        self.lineEditIdlePC.clear()
-        self.lineEditConsolePort.clear()
-        self.lineEditStartupConfig.clear()
-        self.lineEditWorkingDirectory.clear()
-        self.checkBoxLocalHypervisor.setCheckState(QtCore.Qt.Checked)
-        self.lineEditHost.clear()
-        self.lineEditPort.clear()
-        self.spinBoxRamSize.setValue(128)
-        self.spinBoxRomSize.setValue(4)
-        self.spinBoxNvramSize.setValue(128)
-        self.spinBoxPcmciaDisk0Size.setValue(0)
-        self.spinBoxPcmciaDisk1Size.setValue(0)
-        self.checkBoxGhostFeature.setCheckState(QtCore.Qt.Unchecked)
-        self.spinBoxGhostFileSize.setValue(0)
-        self.checkBoxMapped.setCheckState(QtCore.Qt.Checked)
-        self.lineEditConfreg.setText('0x2102')
-        self.spinBoxExecArea.setValue(64)
-        self.spinBoxIomem.setValue(5)
+#    def setDefaults(self):
+#    
+#        node = self.main.nodes[self.nodeid]
+#        self.comboBoxIOS.clear()
+#        self.comboBoxChassis.clear()
+#        self.lineEditIdlePC.clear()
+#        self.lineEditConsolePort.clear()
+#        self.lineEditStartupConfig.clear()
+#        self.lineEditWorkingDirectory.clear()
+#        self.checkBoxLocalHypervisor.setCheckState(QtCore.Qt.Checked)
+#        self.lineEditHost.clear()
+#        self.lineEditPort.clear()
+#        self.spinBoxRamSize.setValue(128)
+#        self.spinBoxRomSize.setValue(4)
+#        self.spinBoxNvramSize.setValue(128)
+#        self.spinBoxPcmciaDisk0Size.setValue(0)
+#        self.spinBoxPcmciaDisk1Size.setValue(0)
+#        self.checkBoxGhostFeature.setCheckState(QtCore.Qt.Unchecked)
+#        self.spinBoxGhostFileSize.setValue(0)
+#        self.checkBoxMapped.setCheckState(QtCore.Qt.Checked)
+#        self.lineEditConfreg.setText('0x2102')
+#        self.spinBoxExecArea.setValue(64)
+#        self.spinBoxIomem.setValue(5)
 
     def saveIOSConfig(self):
     

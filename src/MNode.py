@@ -24,8 +24,6 @@ import telnetlib
 import socket
 import __main__
 
-InspectorInstance = None
-
 class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     '''MNode for QGraphicsScene'''
 
@@ -70,8 +68,9 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         # MNode placement
         QGraphicsScene.addItem(self)
         QGraphicsScene.update(self.sceneBoundingRect())
-	self.InspectorInstance = Inspector()
-	self.InspectorInstance.loadNodeInfos(self.id) 
+        
+        self.InspectorInstance = Inspector()
+        self.InspectorInstance.loadNodeInfos(self.id) 
 
         if self.main.hypervisor != None:
             self.configIOS()
@@ -109,6 +108,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         return QtGui.QGraphicsItem.itemChange(self, change, value)
         
     def mouseDoubleClickEvent(self, event):
+        
         self.InspectorInstance.loadNodeInfos(self.id) 
         self.InspectorInstance.show()
                            
