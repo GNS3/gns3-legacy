@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Sun Apr  8 13:03:07 2007
-#      by: PyQt4 UI code generator 4.1.1
+# Created: Thu May  3 12:14:27 2007
+#      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -80,6 +80,10 @@ class Ui_MainWindow(object):
         self.action_Add_link.setCheckable(True)
         self.action_Add_link.setIcon(QtGui.QIcon("../svg/icons/connection.svg"))
         self.action_Add_link.setObjectName("action_Add_link")
+
+        self.action_SwitchMode = QtGui.QAction(MainWindow)
+        self.action_SwitchMode.setIcon(QtGui.QIcon("../svg/icons/switch_simulation_mode.svg"))
+        self.action_SwitchMode.setObjectName("action_SwitchMode")
         self.menu_File.addAction(self.action_Open)
         self.menu_File.addAction(self.action_Save)
         self.menu_File.addSeparator()
@@ -91,6 +95,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.action_Save)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.action_Add_link)
+        self.toolBar.addAction(self.action_SwitchMode)
 
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.action_Quit,QtCore.SIGNAL("activated()"),MainWindow.close)
@@ -136,6 +141,7 @@ class Ui_MainWindow(object):
         self.action_Add_link.setText(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Add_link.setIconText(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Add_link.setToolTip(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_SwitchMode.setText(QtGui.QApplication.translate("MainWindow", "Simulation Mode", None, QtGui.QApplication.UnicodeUTF8))
 
 from QTreeWidgetCustom import QTreeWidgetCustom
 from QGraphicsViewCustom import QGraphicsViewCustom

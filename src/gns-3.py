@@ -26,9 +26,10 @@ from MainWindow import MainWindow
 import Dynamips_lib as lib
 
 # globals
-baseid = 0                  # Base to create IDs
+baseid = 0                # Base to create IDs
 nodes = {}                # Node objects, indexed by the node ID
-hypervisor = None     # Hypervisor connection
+hypervisor = None         # Hypervisor connection
+conception_mode = True    # If we are in conception mode
 
 class Main:
     ''' Entry point '''
@@ -54,10 +55,15 @@ class Main:
         #    app.installTranslator(translator)
         win = MainWindow()
         
+        # We start in conception mode
+        win.statusbar.showMessage('Conception Mode')
+        
         # signal/slot for the menu
         win.connect(win.action_Open, QtCore.SIGNAL('activated()'), win.OpenNewFile)
         win.connect(win.action_Save, QtCore.SIGNAL('activated()'), win.SaveToFile)
+        win.connect(win.action_About, QtCore.SIGNAL('activated()'), win.About)
         win.connect(win.action_Add_link, QtCore.SIGNAL('activated()'), win.AddEdge)
+        win.connect(win.action_SwitchMode, QtCore.SIGNAL('activated()'), win.SwitchMode)        
         win.show()
         sys.exit(app.exec_())
 

@@ -19,22 +19,24 @@
     
 from PyQt4 import QtCore, QtGui
 from MNode import *
-#from findertools import icon
+import __main__
 
 class QTreeWidgetCustom(QtGui.QTreeWidget ):
     
+    # Get access to globals
+    main = __main__
+
     def __init__(self, parent):
     
         QtGui.QTreeWidget.__init__(self, parent)
             
-   
-    ''' Core of Drag and Drop '''
     def drag_and_drop(self):
+        ''' Core of Drag and Drop '''        
+
         drag = QtGui.QDrag(self)
         mimedata = QtCore.QMimeData()
         mimedata.setText ("text/" + self.currentItem().text(self.currentColumn()))
 
-        #print self.currentItem().text()
         item = self.currentItem()
         iconeSize = self.iconSize()
         icone = item.icon(self.currentColumn())
@@ -43,18 +45,20 @@ class QTreeWidgetCustom(QtGui.QTreeWidget ):
                                         iconeSize.height()))
         drag.setPixmap(icone.pixmap(iconeSize))
         drag.start(QtCore.Qt.MoveAction)
-    
+
     def mouseMoveEvent(self, event):
-        '''Drag an element'''
+        ''' Drag an element '''
     
+        if (self.main.conception_mode == False):
+            return
+        
         if ((event.buttons() & QtCore.Qt.LeftButton ) == None):
             return
         
         if (self.currentItem() == None):
             return
+        
         self.drag_and_drop()
         
     def mouseDoubleClickEvent(self, event):
          pass
-    
-    

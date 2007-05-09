@@ -20,11 +20,13 @@
 import sys
 from PyQt4 import QtCore, QtGui
 from Ui_MainWindow import *
+from Ui_About import *
 from NamFileSimulation import *
 import layout
 import svg_resources_rc
 from Edge import *
 from MNode import *
+import __main__
 
 # Temporary emplacement for TreeItem
 class TreeItem(QtSvg.QGraphicsSvgItem, QtGui.QTreeWidget):
@@ -49,6 +51,9 @@ class TreeItem(QtSvg.QGraphicsSvgItem, QtGui.QTreeWidget):
 
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     '''Main window'''
+    
+    # Get access to globals
+    main = __main__
     
     def __init__(self):
 
@@ -113,6 +118,22 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.action_Add_link.setText('Cancel')
             self.action_Add_link.setIcon(QtGui.QIcon('../svg/icons/stop.svg'))
         
+    def SwitchMode(self):
+        '''Simulation/Conception Mode switching'''
+        
+        if self.action_SwitchMode.text() == 'Simulation Mode':
+            self.action_SwitchMode.setText('Conception Mode')
+            self.action_SwitchMode.setIcon(QtGui.QIcon('../svg/icons/switch_conception_mode.svg'))
+            self.statusbar.showMessage('Simulation Mode')
+            self.main.conception_mode = False
+            self.action_Add_link.setEnabled(False)
+            
+        elif self.action_SwitchMode.text() == 'Conception Mode':
+            self.action_SwitchMode.setText('Simulation Mode')
+            self.action_SwitchMode.setIcon(QtGui.QIcon('../svg/icons/switch_simulation_mode.svg'))
+            self.statusbar.showMessage('Conception Mode')
+            self.main.conception_mode = True
+            self.action_Add_link.setEnabled(True)
         
     def SaveToFile(self):
     
@@ -135,6 +156,15 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.Export(path, str(str(selected)[:3]))
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
+
+    def About(self):
+        '''Show about dialog'''
+        
+        dialog = QtGui.QDialog()
+        ui = Ui_AboutDialog()
+        ui.setupUi(dialog)
+        dialog.show()
+        dialog.exec_()
         
     def Export(self, name, format):
         '''Export the view to an image'''

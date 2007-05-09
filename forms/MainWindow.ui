@@ -149,6 +149,7 @@
    <addaction name="action_Save" />
    <addaction name="separator" />
    <addaction name="action_Add_link" />
+   <addaction name="action_SwitchMode" />
   </widget>
   <action name="action_About" >
    <property name="text" >
@@ -193,17 +194,25 @@
     <string>Add a link</string>
    </property>
   </action>
+  <action name="action_SwitchMode" >
+   <property name="icon" >
+    <iconset>../svg/icons/switch_simulation_mode.svg</iconset>
+   </property>
+   <property name="text" >
+    <string>Simulation Mode</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>QTreeWidgetCustom</class>
-   <extends>QTreeWidget</extends>
-   <header>QTreeWidgetCustom</header>
-  </customwidget>
   <customwidget>
    <class>QGraphicsViewCustom</class>
    <extends>QGraphicsView</extends>
    <header>QGraphicsViewCustom</header>
+  </customwidget>
+  <customwidget>
+   <class>QTreeWidgetCustom</class>
+   <extends>QTreeWidget</extends>
+   <header>QTreeWidgetCustom</header>
   </customwidget>
  </customwidgets>
  <resources/>
