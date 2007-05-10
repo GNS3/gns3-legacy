@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>798</width>
-    <height>603</height>
+    <width>758</width>
+    <height>538</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -115,16 +115,10 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>798</width>
+     <width>758</width>
      <height>25</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_About" >
-    <property name="title" >
-     <string>&amp;Help</string>
-    </property>
-    <addaction name="action_About" />
-   </widget>
    <widget class="QMenu" name="menu_File" >
     <property name="title" >
      <string>&amp;File</string>
@@ -139,6 +133,13 @@
      <string>Cisco IOS</string>
     </property>
     <addaction name="action_IOS_images" />
+   </widget>
+   <widget class="QMenu" name="menu_About" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="action_OnlineHelp" />
+    <addaction name="action_About" />
    </widget>
    <addaction name="menu_File" />
    <addaction name="menuIOS" />
@@ -214,17 +215,22 @@
     <string>IOS images</string>
    </property>
   </action>
+  <action name="action_OnlineHelp" >
+   <property name="text" >
+    <string>&amp;Online Help</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>QGraphicsViewCustom</class>
-   <extends>QGraphicsView</extends>
-   <header>QGraphicsViewCustom</header>
-  </customwidget>
   <customwidget>
    <class>QTreeWidgetCustom</class>
    <extends>QTreeWidget</extends>
    <header>QTreeWidgetCustom</header>
+  </customwidget>
+  <customwidget>
+   <class>QGraphicsViewCustom</class>
+   <extends>QGraphicsView</extends>
+   <header>QGraphicsViewCustom</header>
   </customwidget>
  </customwidgets>
  <resources/>

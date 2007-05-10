@@ -68,7 +68,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
     
     def slotAddIOS(self):
         
-        imagename = self.lineEditIOSImage.text()
+        imagename = str(self.lineEditIOSImage.text())
         if imagename != '' and not self.main.ios_images.has_key(imagename):
             item = QtGui.QTreeWidgetItem(self.treeWidgetIOSimages)
             item.setText(0, imagename)

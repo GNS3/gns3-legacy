@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'IOSDialog.ui'
 #
-# Created: Thu May 10 09:56:17 2007
+# Created: Thu May 10 17:20:28 2007
 #      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,7 +13,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_IOSDialog(object):
     def setupUi(self, IOSDialog):
         IOSDialog.setObjectName("IOSDialog")
-        IOSDialog.resize(QtCore.QSize(QtCore.QRect(0,0,620,316).size()).expandedTo(IOSDialog.minimumSizeHint()))
+        IOSDialog.resize(QtCore.QSize(QtCore.QRect(0,0,620,358).size()).expandedTo(IOSDialog.minimumSizeHint()))
 
         self.vboxlayout = QtGui.QVBoxLayout(IOSDialog)
         self.vboxlayout.setMargin(9)
@@ -140,6 +140,7 @@ class Ui_IOSDialog(object):
         self.gridlayout1.setObjectName("gridlayout1")
 
         self.checkBoxGhostFeature = QtGui.QCheckBox(self.groupBox)
+        self.checkBoxGhostFeature.setEnabled(True)
         self.checkBoxGhostFeature.setObjectName("checkBoxGhostFeature")
         self.gridlayout1.addWidget(self.checkBoxGhostFeature,4,0,1,3)
 

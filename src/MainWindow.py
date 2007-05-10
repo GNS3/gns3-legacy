@@ -82,7 +82,18 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         QtGui.QAbstractItemView.DoubleClicked
     
         # Example of use
-        node1 = MNode(":Switch", self.scene)
+        node1 = MNode(":Switch", self.scene, 0 , 0)
+
+        
+#        item = QtSvg.QGraphicsSvgItem(":Switch")
+#        item.setPos(200, 200)
+#        item.setData(0, QtCore.QVariant(42))
+#        self.scene.addItem(item)
+#        print item.data(0).toInt()
+#        test = self.scene.itemAt(200, 200)
+#        if isinstance(test, QtSvg.QGraphicsSvgItem) == True :
+#            print test.data(0).toInt()
+
         node2 = MNode(":Route switch processor", self.scene, 150, 150)
         node3 = MNode(":Multilayer switch", self.scene, -100, 150)
         node4 = MNode(":Router with firewall", self.scene, 150, -150)
@@ -93,6 +104,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         Edge(node3, node1, self.scene)
         Edge(node1, node4, self.scene)
         Edge(node1, node5, self.scene)
+
+#        listItems = self.scene.items()
+#        for item in listItems :
+#            if isinstance(item, QtSvg.QGraphicsSvgItem) == True:
+#                print item
+#                print item.data(0).toInt()
         
         # Example of tree item
         # item1 = TreeItem(self.treeWidget, "Mon item")

@@ -201,6 +201,8 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
             self.pushButton_Shutdown.setEnabled (False)
             self.labelStatus.setPixmap(QtGui.QPixmap('../svg/icons/led_red.svg'))
 
+        self.comboBoxIOS.addItems(self.main.ios_images.keys())
+
         # If the IOS config is not empty, restore it
         if node.iosConfig != {}:
             self.slotRestoreIOSConfig()

@@ -133,12 +133,21 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
     
     def mousePressEvent(self, event):
        '''We recover all items of the QGraphicsView'''
-       listItems = self.items(event.pos()) 
+       
+       test = self.itemAt(event.pos())
+       if isinstance(test, QtSvg.QGraphicsSvgItem) == True :
+           print test.data(0).toInt()
+           #test.findChild(QtGui.QHBoxLayout, QtCore.QString('hLayout_0'))
+           #test.children()
+       
+#       listItems = self.items(event.pos()) 
        print "------------------ START ---------------------"
-       for item in listItems :
-           ''' We use only the QtGraphicsSvgItem '''
-           if isinstance(item, QtSvg.QGraphicsSvgItem) == True :
-               print item.data(0).toInt()
+#       for item in listItems :
+#           ''' We use only the QtGraphicsSvgItem '''
+#           if isinstance(item, QtSvg.QGraphicsSvgItem) == True :
+#               #children = item.children()
+#               #print children
+#               print item.data(0).toInt()
 
        ''' Callback of original QGraphicsView object. So we can move the MNode on the scene'''
        QtGui.QGraphicsView.mousePressEvent(self, event)

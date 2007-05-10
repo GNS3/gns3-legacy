@@ -67,8 +67,6 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         
         # MNode placement
         self.setData(0, QtCore.QVariant(self.id))
-        variant = QtCore.QVariant(self.id)
-        print variant.toInt()
         QGraphicsScene.addItem(self)
         QGraphicsScene.update(self.sceneBoundingRect())
         

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Wed May  9 15:44:13 2007
+# Created: Thu May 10 18:06:32 2007
 #      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,7 +13,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(QtCore.QSize(QtCore.QRect(0,0,798,603).size()).expandedTo(MainWindow.minimumSizeHint()))
+        MainWindow.resize(QtCore.QSize(QtCore.QRect(0,0,758,538).size()).expandedTo(MainWindow.minimumSizeHint()))
 
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -43,17 +43,17 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,798,25))
+        self.menubar.setGeometry(QtCore.QRect(0,0,758,25))
         self.menubar.setObjectName("menubar")
-
-        self.menu_About = QtGui.QMenu(self.menubar)
-        self.menu_About.setObjectName("menu_About")
 
         self.menu_File = QtGui.QMenu(self.menubar)
         self.menu_File.setObjectName("menu_File")
 
         self.menuIOS = QtGui.QMenu(self.menubar)
         self.menuIOS.setObjectName("menuIOS")
+
+        self.menu_About = QtGui.QMenu(self.menubar)
+        self.menu_About.setObjectName("menu_About")
         MainWindow.setMenuBar(self.menubar)
 
         self.statusbar = QtGui.QStatusBar(MainWindow)
@@ -90,12 +90,16 @@ class Ui_MainWindow(object):
 
         self.action_IOS_images = QtGui.QAction(MainWindow)
         self.action_IOS_images.setObjectName("action_IOS_images")
-        self.menu_About.addAction(self.action_About)
+
+        self.action_OnlineHelp = QtGui.QAction(MainWindow)
+        self.action_OnlineHelp.setObjectName("action_OnlineHelp")
         self.menu_File.addAction(self.action_Open)
         self.menu_File.addAction(self.action_Save)
         self.menu_File.addSeparator()
         self.menu_File.addAction(self.action_Quit)
         self.menuIOS.addAction(self.action_IOS_images)
+        self.menu_About.addAction(self.action_OnlineHelp)
+        self.menu_About.addAction(self.action_About)
         self.menubar.addAction(self.menu_File.menuAction())
         self.menubar.addAction(self.menuIOS.menuAction())
         self.menubar.addAction(self.menu_About.menuAction())
@@ -140,9 +144,9 @@ class Ui_MainWindow(object):
         item6 = QtGui.QTreeWidgetItem(item)
         item6.setText(0,QtGui.QApplication.translate("MainWindow", "Route switch processor", None, QtGui.QApplication.UnicodeUTF8))
         item6.setIcon(0,QtGui.QIcon("../svg/symbols/route_switch_processor.svg"))
-        self.menu_About.setTitle(QtGui.QApplication.translate("MainWindow", "&Help", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_File.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
         self.menuIOS.setTitle(QtGui.QApplication.translate("MainWindow", "Cisco IOS", None, QtGui.QApplication.UnicodeUTF8))
+        self.menu_About.setTitle(QtGui.QApplication.translate("MainWindow", "&Help", None, QtGui.QApplication.UnicodeUTF8))
         self.action_About.setText(QtGui.QApplication.translate("MainWindow", "&About", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setText(QtGui.QApplication.translate("MainWindow", "&Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Open.setText(QtGui.QApplication.translate("MainWindow", "&Open", None, QtGui.QApplication.UnicodeUTF8))
@@ -152,6 +156,7 @@ class Ui_MainWindow(object):
         self.action_Add_link.setToolTip(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SwitchMode.setText(QtGui.QApplication.translate("MainWindow", "Simulation Mode", None, QtGui.QApplication.UnicodeUTF8))
         self.action_IOS_images.setText(QtGui.QApplication.translate("MainWindow", "IOS images", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_OnlineHelp.setText(QtGui.QApplication.translate("MainWindow", "&Online Help", None, QtGui.QApplication.UnicodeUTF8))
 
 from QTreeWidgetCustom import QTreeWidgetCustom
 from QGraphicsViewCustom import QGraphicsViewCustom
