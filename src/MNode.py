@@ -66,6 +66,9 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self.setPos(xPos, yPos)
         
         # MNode placement
+        self.setData(0, QtCore.QVariant(self.id))
+        variant = QtCore.QVariant(self.id)
+        print variant.toInt()
         QGraphicsScene.addItem(self)
         QGraphicsScene.update(self.sceneBoundingRect())
         
@@ -111,6 +114,18 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         
         self.InspectorInstance.loadNodeInfos(self.id) 
         self.InspectorInstance.show()
+
+    def setName(self, name):
+        self.mNodeName = name
+    
+    def getName(self):
+
+        print self.mNodeName;
+        return self.mNodeName
+
+    def getIdSvg(self):
+        
+        return id(self.svg)
                            
 ################### IOS stuff ###############################
     
@@ -120,7 +135,8 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self.ios.image = '/home/grossmj/c3640.bin'
         self.ios.slot[0] = lib.NM_1FE_TX(self.ios,0)
         self.ios.idlepc = '0x60575b54'
-        
+        self.ios.idlepc = '0x60483ae4'
+      
     def startIOS(self):
         
         # localport, remoteserver, remoteadapter, remoteport
@@ -179,13 +195,3 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         if self.console_host and self.console_port:
             return True
         return False
-
-    def setName(self, name):
-        self.mNodeName = name
-    
-    def getName(self):
-        print self.mNodeName;
-        return self.mNodeName
-    
-    def getIdSvg(self):
-        return id(self.svg)

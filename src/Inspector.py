@@ -196,67 +196,66 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
             self.pushButton_Start.setEnabled (False)
             self.pushButton_Shutdown.setEnabled (True)
             self.labelStatus.setPixmap(QtGui.QPixmap('../svg/icons/led_green.svg'))
-            node.telnet.write("\r\n")
         else:
             self.pushButton_Start.setEnabled (True)
             self.pushButton_Shutdown.setEnabled (False)
-            self.labelStatus.setPixmap(QtGui.QPixmap('../svg/icons/led_red.svg')) 
+            self.labelStatus.setPixmap(QtGui.QPixmap('../svg/icons/led_red.svg'))
 
         # If the IOS config is not empty, restore it
         if node.iosConfig != {}:
             self.slotRestoreIOSConfig()
-        #else:
-        #    self.setDefaults()
+        else:
+            self.setDefaults()
 
-#    def setDefaults(self):
-#    
-#        node = self.main.nodes[self.nodeid]
+    def setDefaults(self):
+    
+        node = self.main.nodes[self.nodeid]
 #        self.comboBoxIOS.clear()
 #        self.comboBoxChassis.clear()
 #        self.lineEditIdlePC.clear()
-#        self.lineEditConsolePort.clear()
-#        self.lineEditStartupConfig.clear()
-#        self.lineEditWorkingDirectory.clear()
+        self.lineEditConsolePort.clear()
+        self.lineEditStartupConfig.clear()
+        self.lineEditWorkingDirectory.clear()
 #        self.checkBoxLocalHypervisor.setCheckState(QtCore.Qt.Checked)
 #        self.lineEditHost.clear()
 #        self.lineEditPort.clear()
-#        self.spinBoxRamSize.setValue(128)
-#        self.spinBoxRomSize.setValue(4)
-#        self.spinBoxNvramSize.setValue(128)
-#        self.spinBoxPcmciaDisk0Size.setValue(0)
-#        self.spinBoxPcmciaDisk1Size.setValue(0)
+        self.spinBoxRamSize.setValue(128)
+        self.spinBoxRomSize.setValue(4)
+        self.spinBoxNvramSize.setValue(128)
+        self.spinBoxPcmciaDisk0Size.setValue(0)
+        self.spinBoxPcmciaDisk1Size.setValue(0)
 #        self.checkBoxGhostFeature.setCheckState(QtCore.Qt.Unchecked)
 #        self.spinBoxGhostFileSize.setValue(0)
-#        self.checkBoxMapped.setCheckState(QtCore.Qt.Checked)
-#        self.lineEditConfreg.setText('0x2102')
-#        self.spinBoxExecArea.setValue(64)
-#        self.spinBoxIomem.setValue(5)
+        self.checkBoxMapped.setCheckState(QtCore.Qt.Checked)
+        self.lineEditConfreg.setText('0x2102')
+        self.spinBoxExecArea.setValue(64)
+        self.spinBoxIomem.setValue(5)
 
     def saveIOSConfig(self):
     
         node = self.main.nodes[self.nodeid]
-        node.iosConfig['iosimage'] = str(self.comboBoxIOS.currentText())
-        node.iosConfig['chassis'] = str(self.comboBoxChassis.currentText())
-        node.iosConfig['idlepc'] = str(self.lineEditIdlePC.text())
+#        node.iosConfig['iosimage'] = str(self.comboBoxIOS.currentText())
+#        node.iosConfig['chassis'] = str(self.comboBoxChassis.currentText())
+#        node.iosConfig['idlepc'] = str(self.lineEditIdlePC.text())
         node.iosConfig['consoleport'] = str(self.lineEditConsolePort.text())
         node.iosConfig['startup-config'] = str(self.lineEditStartupConfig.text())
         node.iosConfig['workingdir'] = str(self.lineEditWorkingDirectory.text())
-        if self.checkBoxLocalHypervisor.checkState() == QtCore.Qt.Checked:
-            node.iosConfig['internal-hypervisor'] = True
-        else:
-            node.iosConfig['internal-hypervisor'] = False
-        node.iosConfig['hypervisor-host'] = str(self.lineEditHost.text())
-        node.iosConfig['hypervisor-port'] = str(self.lineEditPort.text())
+#        if self.checkBoxLocalHypervisor.checkState() == QtCore.Qt.Checked:
+#            node.iosConfig['internal-hypervisor'] = True
+#        else:
+#            node.iosConfig['internal-hypervisor'] = False
+#        node.iosConfig['hypervisor-host'] = str(self.lineEditHost.text())
+#        node.iosConfig['hypervisor-port'] = str(self.lineEditPort.text())
         node.iosConfig['RAM'] = self.spinBoxRamSize.value()
         node.iosConfig['ROM'] = self.spinBoxRomSize.value()
         node.iosConfig['NVRAM'] = self.spinBoxNvramSize.value()
         node.iosConfig['pcmcia-disk0'] = self.spinBoxPcmciaDisk0Size.value()
         node.iosConfig['pcmcia-disk1'] = self.spinBoxPcmciaDisk1Size.value()
-        if self.checkBoxGhostFeature.checkState() == QtCore.Qt.Checked:
-            node.iosConfig['ghost-feature'] = True
-        else:
-            node.iosConfig['ghost-feature'] = False
-        node.iosConfig['ghost-file'] = self.spinBoxGhostFileSize.value()
+#        if self.checkBoxGhostFeature.checkState() == QtCore.Qt.Checked:
+#            node.iosConfig['ghost-feature'] = True
+#        else:
+#            node.iosConfig['ghost-feature'] = False
+#        node.iosConfig['ghost-file'] = self.spinBoxGhostFileSize.value()
         if self.checkBoxMapped.checkState() == QtCore.Qt.Checked:
             node.iosConfig['mmap'] = True
         else:
@@ -275,28 +274,28 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         node = self.main.nodes[self.nodeid]
         if node.iosConfig == {}:
             return
-        self.comboBoxIOS.addItem(node.iosConfig['iosimage'])
-        self.comboBoxChassis.addItem(node.iosConfig['chassis'])
-        self.lineEditIdlePC.setText(node.iosConfig['idlepc'])
+        #self.comboBoxIOS.addItem(node.iosConfig['iosimage'])
+        #self.comboBoxChassis.addItem(node.iosConfig['chassis'])
+        #self.lineEditIdlePC.setText(node.iosConfig['idlepc'])
         self.lineEditConsolePort.setText(node.iosConfig['consoleport'])
         self.lineEditStartupConfig.setText(node.iosConfig['startup-config'])
         self.lineEditWorkingDirectory.setText(node.iosConfig['workingdir'])
-        if node.iosConfig['internal-hypervisor'] == True:
-            self.checkBoxLocalHypervisor.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.checkBoxLocalHypervisor.setCheckState(QtCore.Qt.Unchecked)
-        self.lineEditHost.setText(node.iosConfig['hypervisor-host'])
-        self.lineEditPort.setText(node.iosConfig['hypervisor-port'])
+#        if node.iosConfig['internal-hypervisor'] == True:
+#            self.checkBoxLocalHypervisor.setCheckState(QtCore.Qt.Checked)
+#        else:
+#            self.checkBoxLocalHypervisor.setCheckState(QtCore.Qt.Unchecked)
+#        self.lineEditHost.setText(node.iosConfig['hypervisor-host'])
+#        self.lineEditPort.setText(node.iosConfig['hypervisor-port'])
         self.spinBoxRamSize.setValue(node.iosConfig['RAM'])
         self.spinBoxRomSize.setValue(node.iosConfig['ROM'])
         self.spinBoxNvramSize.setValue(node.iosConfig['NVRAM'])
         self.spinBoxPcmciaDisk0Size.setValue(node.iosConfig['pcmcia-disk0'])
         self.spinBoxPcmciaDisk1Size.setValue(node.iosConfig['pcmcia-disk1'])
-        if node.iosConfig['ghost-feature'] == True:
-            self.checkBoxGhostFeature.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.checkBoxGhostFeature.setCheckState(QtCore.Qt.Unchecked)
-        self.spinBoxGhostFileSize.setValue(node.iosConfig['ghost-file'])
+#        if node.iosConfig['ghost-feature'] == True:
+#            self.checkBoxGhostFeature.setCheckState(QtCore.Qt.Checked)
+#        else:
+#            self.checkBoxGhostFeature.setCheckState(QtCore.Qt.Unchecked)
+#        self.spinBoxGhostFileSize.setValue(node.iosConfig['ghost-file'])
         if node.iosConfig['mmap'] == True:
             self.checkBoxMapped.setCheckState(QtCore.Qt.Checked)
         else:

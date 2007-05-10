@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Thu May  3 12:14:27 2007
+# Created: Wed May  9 15:44:13 2007
 #      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -46,11 +46,14 @@ class Ui_MainWindow(object):
         self.menubar.setGeometry(QtCore.QRect(0,0,798,25))
         self.menubar.setObjectName("menubar")
 
+        self.menu_About = QtGui.QMenu(self.menubar)
+        self.menu_About.setObjectName("menu_About")
+
         self.menu_File = QtGui.QMenu(self.menubar)
         self.menu_File.setObjectName("menu_File")
 
-        self.menu_About = QtGui.QMenu(self.menubar)
-        self.menu_About.setObjectName("menu_About")
+        self.menuIOS = QtGui.QMenu(self.menubar)
+        self.menuIOS.setObjectName("menuIOS")
         MainWindow.setMenuBar(self.menubar)
 
         self.statusbar = QtGui.QStatusBar(MainWindow)
@@ -84,12 +87,17 @@ class Ui_MainWindow(object):
         self.action_SwitchMode = QtGui.QAction(MainWindow)
         self.action_SwitchMode.setIcon(QtGui.QIcon("../svg/icons/switch_simulation_mode.svg"))
         self.action_SwitchMode.setObjectName("action_SwitchMode")
+
+        self.action_IOS_images = QtGui.QAction(MainWindow)
+        self.action_IOS_images.setObjectName("action_IOS_images")
+        self.menu_About.addAction(self.action_About)
         self.menu_File.addAction(self.action_Open)
         self.menu_File.addAction(self.action_Save)
         self.menu_File.addSeparator()
         self.menu_File.addAction(self.action_Quit)
-        self.menu_About.addAction(self.action_About)
+        self.menuIOS.addAction(self.action_IOS_images)
         self.menubar.addAction(self.menu_File.menuAction())
+        self.menubar.addAction(self.menuIOS.menuAction())
         self.menubar.addAction(self.menu_About.menuAction())
         self.toolBar.addAction(self.action_Open)
         self.toolBar.addAction(self.action_Save)
@@ -132,8 +140,9 @@ class Ui_MainWindow(object):
         item6 = QtGui.QTreeWidgetItem(item)
         item6.setText(0,QtGui.QApplication.translate("MainWindow", "Route switch processor", None, QtGui.QApplication.UnicodeUTF8))
         item6.setIcon(0,QtGui.QIcon("../svg/symbols/route_switch_processor.svg"))
-        self.menu_File.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_About.setTitle(QtGui.QApplication.translate("MainWindow", "&Help", None, QtGui.QApplication.UnicodeUTF8))
+        self.menu_File.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuIOS.setTitle(QtGui.QApplication.translate("MainWindow", "Cisco IOS", None, QtGui.QApplication.UnicodeUTF8))
         self.action_About.setText(QtGui.QApplication.translate("MainWindow", "&About", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setText(QtGui.QApplication.translate("MainWindow", "&Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Open.setText(QtGui.QApplication.translate("MainWindow", "&Open", None, QtGui.QApplication.UnicodeUTF8))
@@ -142,6 +151,7 @@ class Ui_MainWindow(object):
         self.action_Add_link.setIconText(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Add_link.setToolTip(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SwitchMode.setText(QtGui.QApplication.translate("MainWindow", "Simulation Mode", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_IOS_images.setText(QtGui.QApplication.translate("MainWindow", "IOS images", None, QtGui.QApplication.UnicodeUTF8))
 
 from QTreeWidgetCustom import QTreeWidgetCustom
 from QGraphicsViewCustom import QGraphicsViewCustom

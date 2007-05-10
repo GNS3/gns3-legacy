@@ -21,6 +21,7 @@ import sys
 from PyQt4 import QtCore, QtGui
 from Ui_MainWindow import *
 from Ui_About import *
+from IOSDialog import IOSDialog
 from NamFileSimulation import *
 import layout
 import svg_resources_rc
@@ -165,6 +166,13 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         ui.setupUi(dialog)
         dialog.show()
         dialog.exec_()
+
+    def IOSDialog(self):
+        '''Show IOS dialog'''
+        
+        dialog = IOSDialog()
+        dialog.show()
+        dialog.exec_()        
         
     def Export(self, name, format):
         '''Export the view to an image'''

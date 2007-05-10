@@ -119,6 +119,12 @@
      <height>25</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_About" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="action_About" />
+   </widget>
    <widget class="QMenu" name="menu_File" >
     <property name="title" >
      <string>&amp;File</string>
@@ -128,13 +134,14 @@
     <addaction name="separator" />
     <addaction name="action_Quit" />
    </widget>
-   <widget class="QMenu" name="menu_About" >
+   <widget class="QMenu" name="menuIOS" >
     <property name="title" >
-     <string>&amp;Help</string>
+     <string>Cisco IOS</string>
     </property>
-    <addaction name="action_About" />
+    <addaction name="action_IOS_images" />
    </widget>
    <addaction name="menu_File" />
+   <addaction name="menuIOS" />
    <addaction name="menu_About" />
   </widget>
   <widget class="QStatusBar" name="statusbar" />
@@ -200,6 +207,11 @@
    </property>
    <property name="text" >
     <string>Simulation Mode</string>
+   </property>
+  </action>
+  <action name="action_IOS_images" >
+   <property name="text" >
+    <string>IOS images</string>
    </property>
   </action>
  </widget>

@@ -138,8 +138,8 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
        for item in listItems :
            ''' We use only the QtGraphicsSvgItem '''
            if isinstance(item, QtSvg.QGraphicsSvgItem) == True :
-                print id(item)  
-                #  .__self__.getName()
+               print item.data(0).toInt()
+
        ''' Callback of original QGraphicsView object. So we can move the MNode on the scene'''
        QtGui.QGraphicsView.mousePressEvent(self, event)
        print "------------------- STOP -----------------------"
