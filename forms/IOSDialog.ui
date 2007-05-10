@@ -1,0 +1,520 @@
+<ui version="4.0" >
+ <class>IOSDialog</class>
+ <widget class="QDialog" name="IOSDialog" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>620</width>
+    <height>316</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Record an IOS image</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <property name="margin" >
+    <number>9</number>
+   </property>
+   <property name="spacing" >
+    <number>6</number>
+   </property>
+   <item>
+    <widget class="QTabWidget" name="tabWidget" >
+     <property name="currentIndex" >
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab" >
+      <attribute name="title" >
+       <string>IOS images</string>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QTreeWidget" name="treeWidgetIOSimages" >
+         <property name="indentation" >
+          <number>20</number>
+         </property>
+         <property name="rootIsDecorated" >
+          <bool>false</bool>
+         </property>
+         <column>
+          <property name="text" >
+           <string>IOS file name</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Platform</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Hypervisor</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" >
+         <property name="margin" >
+          <number>0</number>
+         </property>
+         <property name="spacing" >
+          <number>6</number>
+         </property>
+         <item>
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>341</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonEditIOS" >
+           <property name="text" >
+            <string>&amp;Edit</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonDeleteIOS" >
+           <property name="text" >
+            <string>&amp;Delete</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2" >
+      <attribute name="title" >
+       <string>Image settings</string>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <layout class="QGridLayout" >
+         <property name="margin" >
+          <number>0</number>
+         </property>
+         <property name="spacing" >
+          <number>6</number>
+         </property>
+         <item row="0" column="1" >
+          <widget class="QGroupBox" name="groupBox_2" >
+           <property name="sizePolicy" >
+            <sizepolicy>
+             <hsizetype>0</hsizetype>
+             <vsizetype>5</vsizetype>
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="title" >
+            <string>Hypervisor</string>
+           </property>
+           <layout class="QVBoxLayout" >
+            <property name="margin" >
+             <number>9</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" >
+              <property name="margin" >
+               <number>0</number>
+              </property>
+              <property name="spacing" >
+               <number>6</number>
+              </property>
+              <item>
+               <widget class="QCheckBox" name="checkBoxLocalHypervisor" >
+                <property name="text" >
+                 <string>Use the integrated hypervisor</string>
+                </property>
+                <property name="checked" >
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" >
+                 <size>
+                  <width>21</width>
+                  <height>23</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QListWidget" name="listWidgetHypervisors" >
+              <property name="sizePolicy" >
+               <sizepolicy>
+                <hsizetype>7</hsizetype>
+                <vsizetype>7</vsizetype>
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="2" >
+          <layout class="QHBoxLayout" >
+           <property name="margin" >
+            <number>0</number>
+           </property>
+           <property name="spacing" >
+            <number>6</number>
+           </property>
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>501</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButtonAddIOSImage" >
+             <property name="text" >
+              <string>Add IOS image</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="0" column="0" >
+          <widget class="QGroupBox" name="groupBox" >
+           <property name="sizePolicy" >
+            <sizepolicy>
+             <hsizetype>0</hsizetype>
+             <vsizetype>5</vsizetype>
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="title" >
+            <string>General settings</string>
+           </property>
+           <layout class="QVBoxLayout" >
+            <property name="margin" >
+             <number>9</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item>
+             <layout class="QGridLayout" >
+              <property name="margin" >
+               <number>0</number>
+              </property>
+              <property name="spacing" >
+               <number>6</number>
+              </property>
+              <item row="4" column="0" colspan="3" >
+               <widget class="QCheckBox" name="checkBoxGhostFeature" >
+                <property name="enabled" >
+                 <bool>true</bool>
+                </property>
+                <property name="text" >
+                 <string>Use ghost file</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1" colspan="4" >
+               <widget class="QLineEdit" name="lineEditIdlePC" >
+                <property name="text" >
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1" colspan="4" >
+               <widget class="QLineEdit" name="lineEditIOSImage" />
+              </item>
+              <item row="3" column="0" >
+               <widget class="QLabel" name="label_12" >
+                <property name="text" >
+                 <string>IDLE PC:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="5" >
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType" >
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" >
+                 <size>
+                  <width>31</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="0" column="5" >
+               <widget class="QPushButton" name="pushButtonSelectIOSImage" >
+                <property name="maximumSize" >
+                 <size>
+                  <width>31</width>
+                  <height>27</height>
+                 </size>
+                </property>
+                <property name="text" >
+                 <string>...</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="3" >
+               <widget class="QLabel" name="label_15" >
+                <property name="text" >
+                 <string>size:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0" >
+               <widget class="QLabel" name="label" >
+                <property name="text" >
+                 <string>Image file :</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="5" >
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType" >
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" >
+                 <size>
+                  <width>31</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="1" column="5" >
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType" >
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" >
+                 <size>
+                  <width>31</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="4" column="5" >
+               <spacer>
+                <property name="orientation" >
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType" >
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" >
+                 <size>
+                  <width>31</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="1" column="0" >
+               <widget class="QLabel" name="label_2" >
+                <property name="text" >
+                 <string>Platform:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="4" >
+               <widget class="QSpinBox" name="spinBoxGhostFileSize" >
+                <property name="singleStep" >
+                 <number>8</number>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0" >
+               <widget class="QLabel" name="label_6" >
+                <property name="text" >
+                 <string>Chassis:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1" colspan="4" >
+               <widget class="QComboBox" name="comboBoxChassis" >
+                <item>
+                 <property name="text" >
+                  <string>3640</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text" >
+                  <string>3660</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="1" column="1" colspan="4" >
+               <widget class="QComboBox" name="comboBoxPlatform" >
+                <item>
+                 <property name="text" >
+                  <string>3600</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_3" >
+      <attribute name="title" >
+       <string>Hypervisors</string>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item>
+        <widget class="QTreeWidget" name="treeWidgetHypervisor" >
+         <column>
+          <property name="text" >
+           <string>Host</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Port</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" >
+         <property name="margin" >
+          <number>0</number>
+         </property>
+         <property name="spacing" >
+          <number>6</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_3" >
+           <property name="text" >
+            <string>Host:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEditHost" />
+         </item>
+         <item>
+          <widget class="QLabel" name="label_4" >
+           <property name="text" >
+            <string>Port:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEditPort" >
+           <property name="sizePolicy" >
+            <sizepolicy>
+             <hsizetype>0</hsizetype>
+             <vsizetype>0</vsizetype>
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType" >
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonAddHypervisor" >
+           <property name="text" >
+            <string>&amp;Add</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonDeleteHypervisor" >
+           <property name="text" >
+            <string>&amp;Delete</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
