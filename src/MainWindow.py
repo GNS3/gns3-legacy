@@ -145,6 +145,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.statusbar.showMessage('Simulation Mode')
             self.main.conception_mode = False
             self.action_Add_link.setEnabled(False)
+            for node in self.main.nodes.keys():
+                self.main.nodes[node].configIOS()
             
         elif self.action_SwitchMode.text() == 'Conception Mode':
             self.action_SwitchMode.setText('Simulation Mode')

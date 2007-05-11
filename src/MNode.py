@@ -22,18 +22,19 @@ from Inspector import Inspector
 import Dynamips_lib as lib
 import telnetlib
 import socket
+import sys
 import __main__
 
 class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     '''MNode for QGraphicsScene'''
 
     # Get access to globals
+    main = __main__
     id = None
     edgeList = []
     mNodeName = None
     InspectorInstance = None
     svg = None
-    main = __main__
         
     def __init__(self, svgfile, QGraphicsScene, xPos = None, yPos = None):
         
@@ -71,10 +72,11 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         QGraphicsScene.update(self.sceneBoundingRect())
         
         self.InspectorInstance = Inspector()
-        self.InspectorInstance.loadNodeInfos(self.id) 
+        self.InspectorInstance.loadNodeInfos(self.id)
 
-        if self.main.hypervisor != None:
-            self.configIOS()
+        #FIXME: don't need this later
+#        if self.main.hypervisor != None:
+#            self.configIOS()
         
     def move(self, xPos, yPos):
     
@@ -129,24 +131,58 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     
     def configIOS(self):
 
+        self.InspectorInstance.comboBoxIOS.addItems(self.main.ios_images.keys())
+        self.InspectorInstance.saveIOSConfig()
+
+        print 'Set IOS config for node ' + str(self.id)
+        if self.main.hypervisor == None:
+            sys.stderr.write("No hypervisor !\n")
+            return
         self.ios = lib.C3600(self.main.hypervisor, chassis = '3640', name = 'R' + str(self.id))
-        self.ios.image = '/home/grossmj/c3640.bin'
-        self.ios.slot[0] = lib.NM_1FE_TX(self.ios,0)
-        self.ios.idlepc = '0x60575b54'
+
+        if self.iosConfig['iosimage'] == '':
+            sys.stderr.write("Node " + str(self.id) + ": no selected IOS image\n")
+            self.ios.delete()
+            return
+        
+        print self.iosConfig['iosimage']
+        self.ios.image = self.iosConfig['iosimage']
+
+        if self.iosConfig['startup-config'] != '':
+            self.ios.cnfg = self.iosConfig['startup-config']
+   
+        self.ios.ram = self.iosConfig['RAM']
+        self.ios.rom = self.iosConfig['ROM']
+        self.ios.nvram = self.iosConfig['NVRAM']
+        if self.iosConfig['pcmcia-disk0'] != 0:
+            self.ios.disk0 = self.iosConfig['pcmcia-disk0']
+        if self.iosConfig['pcmcia-disk1'] != 0:
+            self.ios.disk1 = self.iosConfig['pcmcia-disk1']
+        
+        self.ios.mmap = self.iosConfig['mmap']
+        if self.iosConfig['confreg'] != '':
+            self.ios.conf = self.iosConfig['confreg']
+
+        self.ios.exec_area = self.iosConfig['execarea']
+        
+        # Only for 3600 platform
+        #self.iosConfig['iomem']
+        
+        #TODO: slots/adapters
+        self.ios.slot[0] = lib.NM_1FE_TX(self.ios, 0)
+ 
         self.ios.idlepc = '0x60483ae4'
       
     def startIOS(self):
         
         # localport, remoteserver, remoteadapter, remoteport
         # self.ios.slot[0].connect(0, self.main.hypervisor, esw.slot[1], 0)
-        #self.configIOS()
-        
+
         for neighbor in self.neighborList:
             node = self.main.nodes[neighbor]
             if node.ios != None:
                 try:
                     self.ios.slot[0].connect(0, self.main.hypervisor, node.ios.slot[0], 0)
-                    node.ios.slot[0].connect(0, self.main.hypervisor, self.ios.slot[0], 0)
                 except lib.DynamipsError, msg:
                     print msg
 
@@ -155,8 +191,6 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     def stopIOS(self):
     
         print self.ios.stop()
-        self.ios.delete()
-        self.ios = None
     
     def __settelnet(self, telnet):
         """ Set telnet object
