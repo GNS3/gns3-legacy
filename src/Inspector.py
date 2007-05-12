@@ -47,6 +47,10 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         self.connect(self.pushButton_Start, QtCore.SIGNAL('clicked()'), self.slotStart)
         self.connect(self.pushButton_Shutdown, QtCore.SIGNAL('clicked()'), self.slotShutdown)
 
+
+        # Connect IOS combobox to a slot
+        self.connect(self.comboBoxIOS, QtCore.SIGNAL('currentIndexChanged(int)'), self.slotSelectedIOS)
+
         # Old code kept for future purposes
         #TODO: clean this code
 ##        # temporary emplacement for the hypervisor
@@ -173,6 +177,13 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         except EOFError, msg:
             QtGui.QMessageBox.critical(self, 'Disconnection',  unicode(msg))
             self.slotShutdown(close = False)
+            
+    def slotSelectedIOS(self, index):
+
+        imagename = str(self.comboBoxIOS.currentText())
+        if imagename != '':
+            if self.main.ios_images[imagename]['platform'] == '3600':
+                self.setDefaults3600Platform(imagename)
 
     def loadNodeInfos(self, id):
         '''Called when a node is selected'''
@@ -213,6 +224,7 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
 
     def setDefaults(self):
     
+        #FIXME: do we really need this ?
         node = self.main.nodes[self.nodeid]
         self.comboBoxIOS.clear()
         self.lineEditConsolePort.clear()
@@ -226,7 +238,29 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         self.lineEditConfreg.setText('0x2102')
         self.spinBoxExecArea.setValue(64)
         self.spinBoxIomem.setValue(5)
+        
+    def setDefaults3600Platform(self, imagename):
+        
+        network_modules = ['', 'NM-1E', 'NM-4E', 'NM-1FE-TX', 'NM-4T']
 
+        chassis = self.main.ios_images[imagename]['chassis']
+        if chassis == '3620':
+            self.comboBoxSlot0.addItems(network_modules)
+            self.comboBoxSlot1.addItems(network_modules)
+        elif chassis == '3640':
+            self.comboBoxSlot0.addItems(network_modules)
+            self.comboBoxSlot1.addItems(network_modules)
+            self.comboBoxSlot2.addItems(network_modules)
+            self.comboBoxSlot3.addItems(network_modules)
+        elif chassis == '3660':
+            self.comboBoxSlot0.addItems(network_modules)
+            self.comboBoxSlot1.addItems(network_modules)
+            self.comboBoxSlot2.addItems(network_modules)
+            self.comboBoxSlot3.addItems(network_modules)
+            self.comboBoxSlot4.addItems(network_modules)
+            self.comboBoxSlot5.addItems(network_modules)
+            self.comboBoxSlot6.addItems(network_modules)
+                
     def saveIOSConfig(self):
     
         node = self.main.nodes[self.nodeid]

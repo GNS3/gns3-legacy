@@ -114,6 +114,11 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         
         self.InspectorInstance.loadNodeInfos(self.id) 
         self.InspectorInstance.show()
+        
+    def mousePressEvent(self, event):
+        
+        print str(self.id) + ' pressed'
+        QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
 
     def setName(self, name):
         self.mNodeName = name
@@ -191,6 +196,10 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     def stopIOS(self):
     
         print self.ios.stop()
+        
+    def resetIOSConfig(self):
+    
+        self.ios.delete()
     
     def __settelnet(self, telnet):
         """ Set telnet object

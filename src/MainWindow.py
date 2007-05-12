@@ -154,7 +154,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.statusbar.showMessage('Conception Mode')
             self.main.conception_mode = True
             self.action_Add_link.setEnabled(True)
-        
+            for node in self.main.nodes.keys():
+                self.main.nodes[node].resetIOSConfig()
+            
     def SaveToFile(self):
     
         filedialog = QtGui.QFileDialog(self)
