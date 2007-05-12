@@ -111,14 +111,37 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         return QtGui.QGraphicsItem.itemChange(self, change, value)
         
     def mouseDoubleClickEvent(self, event):
-        
-        self.InspectorInstance.loadNodeInfos(self.id) 
-        self.InspectorInstance.show()
+
+        if (event.button() == QtCore.Qt.LeftButton):
+            self.InspectorInstance.loadNodeInfos(self.id) 
+            self.InspectorInstance.show()
         
     def mousePressEvent(self, event):
         
-        print str(self.id) + ' pressed'
+        if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == False:
+            self.menu = QtGui.QMenu()
+            self.menu.addAction('telnet')
+            self.menu.addAction('start')
+            self.menu.addAction('stop')
+            self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.simAction) 
+            self.menu.exec_(QtGui.QCursor.pos())
+#        self.menu = QtGui.QMenu()
+#        self.menu.addAction('f0/0')
+#        self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.selectedInterface) 
+#        self.menu.exec_(QtGui.QCursor.pos())
         QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
+#        
+#    def selectedInterface(self, action):
+#        
+#        print action.text()
+
+    def simAction(self, action):
+        
+        action = action.text()
+        if action == 'start':
+            self.startIOS()
+        elif action == 'stop':
+            self.stopIOS()
 
     def setName(self, name):
         self.mNodeName = name
@@ -172,11 +195,29 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         
         # Only for 3600 platform
         #self.iosConfig['iomem']
-        
-        #TODO: slots/adapters
-        self.ios.slot[0] = lib.NM_1FE_TX(self.ios, 0)
- 
+
+        self.configSlot(0, self.iosConfig['slot0'])
+        self.configSlot(1, self.iosConfig['slot1'])
+        self.configSlot(2, self.iosConfig['slot2'])
+        self.configSlot(3, self.iosConfig['slot3'])
+        self.configSlot(4, self.iosConfig['slot4'])
+        self.configSlot(5, self.iosConfig['slot5'])
+        self.configSlot(6, self.iosConfig['slot6'])
+
         self.ios.idlepc = '0x60483ae4'
+        
+    def configSlot(self, nb, module):
+        
+        if (module == ''):
+            return
+        elif (module == 'NM-1E'):
+            self.ios.slot[nb] = lib.NM_1E(self.ios, nb)
+        elif (module == 'NM-4E'):
+            self.ios.slot[nb] = lib.NM_4E(self.ios, nb)
+        elif (module == 'NM-1FE-TX'):
+            self.ios.slot[nb] = lib.NM_1FE_TX(self.ios, nb)
+        elif (module == 'NM-4T'):
+            self.ios.slot[nb] = lib.NM_4T(self.ios, nb)
       
     def startIOS(self):
         
@@ -187,7 +228,8 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             node = self.main.nodes[neighbor]
             if node.ios != None:
                 try:
-                    self.ios.slot[0].connect(0, self.main.hypervisor, node.ios.slot[0], 0)
+                    if self.ios.slot[0] != None and self.ios.slot[0].connected(0) == False:
+                        self.ios.slot[0].connect(0, self.main.hypervisor, node.ios.slot[0], 0)
                 except lib.DynamipsError, msg:
                     print msg
 
@@ -195,11 +237,13 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         
     def stopIOS(self):
     
-        print self.ios.stop()
+        if self.ios != None:
+            print self.ios.stop()
         
     def resetIOSConfig(self):
     
-        self.ios.delete()
+        if self.ios != None:
+            self.ios.delete()
     
     def __settelnet(self, telnet):
         """ Set telnet object

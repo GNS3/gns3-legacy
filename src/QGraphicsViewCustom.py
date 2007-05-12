@@ -19,14 +19,15 @@
 
 from PyQt4 import QtCore, QtGui
 from MNode import *
-from PyQt4 import QtGui
-from PyQt4 import QtCore
-from PyQt4 import QtGui
+from Edge import *
 import re
 import string
 
 class QGraphicsViewCustom(QtGui.QGraphicsView):
     '''Custom QGraphicsView'''
+    
+    ListEdge = []
+    _countClick = 0
 
     def __init__(self, parent):
     
@@ -131,27 +132,22 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
      #print "DOC:     ", firstline   
      print "Name " , doc
     
-    def mousePressEvent(self, event):
-       '''We recover all items of the QGraphicsView'''
-       
-       test = self.itemAt(event.pos())
-       if isinstance(test, QtSvg.QGraphicsSvgItem) == True :
-           print test.data(0).toInt()
-           #test.findChild(QtGui.QHBoxLayout, QtCore.QString('hLayout_0'))
-           #test.children()
-       
-#       listItems = self.items(event.pos()) 
-       print "------------------ START ---------------------"
-#       for item in listItems :
-#           ''' We use only the QtGraphicsSvgItem '''
-#           if isinstance(item, QtSvg.QGraphicsSvgItem) == True :
-#               #children = item.children()
-#               #print children
-#               print item.data(0).toInt()
-
-       ''' Callback of original QGraphicsView object. So we can move the MNode on the scene'''
-       QtGui.QGraphicsView.mousePressEvent(self, event)
-       print "------------------- STOP -----------------------"
-       
-       
-   
+#    def mousePressEvent(self, event):
+#       '''We recover all items of the QGraphicsView'''
+#
+#       print "------------------ START ---------------------"
+#
+#       if (self._countClick == 0):
+#          node = MNode(":Switch", self.scene(), 100 , 100)
+#          self._countClick = self._countClick + 1
+#          self.ListEdge.append(node)
+#       elif (self._countClick == 1):
+#          node = MNode(":Switch", self.scene(), 100 , 200)
+#          self.ListEdge.append(node)
+#          self._countClick = self._countClick + 1
+#       elif (self._countClick == 2):
+#          self._countClick = 0
+#          ed = Edge(self.ListEdge[0], self.ListEdge[1], self.scene())
+#          self.ListEdge = []
+#          self.scene().update(ed.boundingRect())
+#       QtGui.QGraphicsView.mousePressEvent(self, event)
