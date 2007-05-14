@@ -26,8 +26,6 @@ import socket
 import sys
 import __main__
 
-
-
 class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     '''MNode for QGraphicsScene'''
 
@@ -127,19 +125,43 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.InspectorInstance.show()
         
     def mousePressEvent(self, event):
-        
-        if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == False:
-            self.menu = QtGui.QMenu()
-            self.menu.addAction('telnet')
-            self.menu.addAction('start')
-            self.menu.addAction('stop')
-            self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.simAction) 
-            self.menu.exec_(QtGui.QCursor.pos())
+       '''We recover all items of the QGraphicsView'''
+   
+       if self.main.linkEnabled == False :
+           QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
+           return
+       print "------------------- START -----------------------"    
+       
+       print "countClick", self.main.countClick  
+#       ''' Callback of original QGraphicsView object. So we can move the MNode on the scene'''
+       if (self.main.countClick == 0):
+           self.main.countClick = 1
+           self.main.TabLinkMNode.append(self)
+       if (self.main.countClick == 1 and cmp(self.main.TabLinkMNode[0], self)):
+           print "ici"
+           self.main.TabLinkMNode.append(self)
+           self.main.countClick = 0
+           ed = Edge(self.main.TabLinkMNode[0], self.main.TabLinkMNode[1], self._QGraphicsScene)
+           self.main.TabLinkMNode= []
+           self._QGraphicsScene.update(ed.boundingRect())
+           '''if you want to make link one by one else comment lines'''
+           self.main.win.setCheckedLinkButton(False)
+           self.main.win.AddEdge()
+       QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
+       print "------------------- STOP -----------------------"
+       
+#       if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == False:
+#            self.menu = QtGui.QMenu()
+#            self.menu.addAction('telnet')
+#            self.menu.addAction('start')
+#            self.menu.addAction('stop')
+#            self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.simAction) 
+#            self.menu.exec_(QtGui.QCursor.pos())
 #        self.menu = QtGui.QMenu()
 #        self.menu.addAction('f0/0')
 #        self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.selectedInterface) 
 #        self.menu.exec_(QtGui.QCursor.pos())
-        QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
+#        QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
 #        
 #    def selectedInterface(self, action):
 #        
@@ -164,7 +186,8 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     def getIdSvg(self):
         
         #return id(self.svg)
-        return self.id                   
+        return self.id   
+                
 ################### IOS stuff ###############################
     
     def configIOS(self):
@@ -290,31 +313,3 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         if self.console_host and self.console_port:
             return True
         return False
-    
-    def mousePressEvent(self, event):
-       '''We recover all items of the QGraphicsView'''
-       global countClick
-       global TabLinkMNode
-       
-       if self.main.linkEnabled == False :
-           QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
-           return
-       print "------------------- START -----------------------"    
-       
-       print "countClick", self.main.countClick  
-#       ''' Callback of original QGraphicsView object. So we can move the MNode on the scene'''
-       if (self.main.countClick == 0):
-           self.main.countClick = 1
-           self.main.TabLinkMNode.append(self)
-       if (self.main.countClick == 1 and cmp(self.main.TabLinkMNode[0], self)):
-           print "ici"
-           self.main.TabLinkMNode.append(self)
-           self.main.countClick = 0
-           ed = Edge(self.main.TabLinkMNode[0], self.main.TabLinkMNode[1], self._QGraphicsScene)
-           self.main.TabLinkMNode= []
-           self._QGraphicsScene.update(ed.boundingRect())
-           '''if you want to make link one by one else comment lines'''
-           self.main.win.setCheckedLinkButton(False)
-           self.main.win.AddEdge()
-       QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
-       print "------------------- STOP -----------------------"

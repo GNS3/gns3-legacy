@@ -31,6 +31,7 @@ nodes = {}                # Node objects, indexed by the node ID
 ios_images = {}           # Registered Cisco IOS images
 hypervisor = None         # Hypervisor connection
 conception_mode = True    # If we are in conception mode
+
 linkEnabled = False
 TabLinkMNode = []
 countClick = 0
@@ -44,6 +45,7 @@ class Main:
         # temporary emplacement for a connection to a local hypervisor
         global hypervisor
         global win
+
         try:
             hypervisor = lib.Dynamips('localhost', 7200)
             hypervisor.reset()

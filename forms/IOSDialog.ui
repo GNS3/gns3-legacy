@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>620</width>
-    <height>358</height>
+    <height>359</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -51,6 +51,16 @@
          <column>
           <property name="text" >
            <string>Platform</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Chassis</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Idle PC</string>
           </property>
          </column>
          <column>
@@ -147,7 +157,7 @@
                <number>6</number>
               </property>
               <item>
-               <widget class="QCheckBox" name="checkBoxLocalHypervisor" >
+               <widget class="QCheckBox" name="checkBoxIntegratedHypervisor" >
                 <property name="text" >
                  <string>Use the integrated hypervisor</string>
                 </property>
@@ -173,6 +183,9 @@
             </item>
             <item>
              <widget class="QListWidget" name="listWidgetHypervisors" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
               <property name="sizePolicy" >
                <sizepolicy>
                 <hsizetype>7</hsizetype>
@@ -384,27 +397,10 @@
                </widget>
               </item>
               <item row="2" column="1" colspan="4" >
-               <widget class="QComboBox" name="comboBoxChassis" >
-                <item>
-                 <property name="text" >
-                  <string>3640</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text" >
-                  <string>3660</string>
-                 </property>
-                </item>
-               </widget>
+               <widget class="QComboBox" name="comboBoxChassis" />
               </item>
               <item row="1" column="1" colspan="4" >
-               <widget class="QComboBox" name="comboBoxPlatform" >
-                <item>
-                 <property name="text" >
-                  <string>3600</string>
-                 </property>
-                </item>
-               </widget>
+               <widget class="QComboBox" name="comboBoxPlatform" />
               </item>
              </layout>
             </item>
@@ -428,6 +424,9 @@
        </property>
        <item>
         <widget class="QTreeWidget" name="treeWidgetHypervisor" >
+         <property name="rootIsDecorated" >
+          <bool>false</bool>
+         </property>
          <column>
           <property name="text" >
            <string>Host</string>
@@ -436,6 +435,11 @@
          <column>
           <property name="text" >
            <string>Port</string>
+          </property>
+         </column>
+         <column>
+          <property name="text" >
+           <string>Working directory</string>
           </property>
          </column>
         </widget>
@@ -449,31 +453,25 @@
           <number>6</number>
          </property>
          <item>
-          <widget class="QLabel" name="label_3" >
+          <widget class="QLabel" name="label_5" >
            <property name="text" >
-            <string>Host:</string>
+            <string>Working directory:</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEditHost" />
+          <widget class="QLineEdit" name="lineEditWorkingDir" />
          </item>
          <item>
-          <widget class="QLabel" name="label_4" >
-           <property name="text" >
-            <string>Port:</string>
+          <widget class="QPushButton" name="pushButtonSelectWorkingDir" >
+           <property name="maximumSize" >
+            <size>
+             <width>31</width>
+             <height>27</height>
+            </size>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEditPort" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>0</hsizetype>
-             <vsizetype>0</vsizetype>
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+           <property name="text" >
+            <string>...</string>
            </property>
           </widget>
          </item>
@@ -499,6 +497,84 @@
             <string>&amp;Add</string>
            </property>
           </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" >
+         <property name="margin" >
+          <number>0</number>
+         </property>
+         <property name="spacing" >
+          <number>6</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_3" >
+           <property name="text" >
+            <string>Host:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType" >
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>81</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEditHost" >
+           <property name="text" >
+            <string>localhost</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_4" >
+           <property name="text" >
+            <string>Port:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEditPort" >
+           <property name="sizePolicy" >
+            <sizepolicy>
+             <hsizetype>0</hsizetype>
+             <vsizetype>0</vsizetype>
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text" >
+            <string>7200</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType" >
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>81</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item>
           <widget class="QPushButton" name="pushButtonDeleteHypervisor" >

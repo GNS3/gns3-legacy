@@ -127,10 +127,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     def AddEdge(self):
         '''Add a new edge from the menu'''
-        global linkEnabled
-        global countClick
-        global TabLinkMNode
-        
+
         if not self.action_Add_link.isChecked():
             self.action_Add_link.setText('Add an link')
             self.action_Add_link.setIcon(QtGui.QIcon('../svg/icons/connection.svg'))
