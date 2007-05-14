@@ -257,3 +257,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         for id in pos:
             nodes[id].setPos(pos[id][0] * 500, pos[id][1] * 500) 
             nodes[id].ajustAllEdges()
+    
+    
+    '''Accessors'''
+    def setCheckedLinkButton(self, b):
+        self.action_Add_link.setChecked(b)
+        
+    def LinkButtonIsChecked(self):
+        return (self.action_Add_link.isChecked())

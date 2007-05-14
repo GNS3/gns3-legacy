@@ -296,18 +296,25 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
        global countClick
        global TabLinkMNode
        
+       if self.main.linkEnabled == False :
+           QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
+           return
        print "------------------- START -----------------------"    
        
        print "countClick", self.main.countClick  
 #       ''' Callback of original QGraphicsView object. So we can move the MNode on the scene'''
        if (self.main.countClick == 0):
-           self.main.countClick = self.main.countClick + 1
+           self.main.countClick = 1
            self.main.TabLinkMNode.append(self)
-       elif (self.main.countClick == 1 and self.main.linkEnabled == True):
+       if (self.main.countClick == 1 and cmp(self.main.TabLinkMNode[0], self)):
+           print "ici"
            self.main.TabLinkMNode.append(self)
            self.main.countClick = 0
            ed = Edge(self.main.TabLinkMNode[0], self.main.TabLinkMNode[1], self._QGraphicsScene)
            self.main.TabLinkMNode= []
            self._QGraphicsScene.update(ed.boundingRect())
+           '''if you want to make link one by one else comment lines'''
+           self.main.win.setCheckedLinkButton(False)
+           self.main.win.AddEdge()
        QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
        print "------------------- STOP -----------------------"

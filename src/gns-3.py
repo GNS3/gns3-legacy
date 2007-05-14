@@ -34,6 +34,7 @@ conception_mode = True    # If we are in conception mode
 linkEnabled = False
 TabLinkMNode = []
 countClick = 0
+win = None
 
 class Main:
     ''' Entry point '''
@@ -42,6 +43,7 @@ class Main:
 
         # temporary emplacement for a connection to a local hypervisor
         global hypervisor
+        global win
         try:
             hypervisor = lib.Dynamips('localhost', 7200)
             hypervisor.reset()
