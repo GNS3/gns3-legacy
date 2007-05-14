@@ -37,6 +37,7 @@ class Edge(QtGui.QGraphicsItem, QtGui.QGraphicsScene):
        self.dest.addEdge(self)
        self.adjust()
        scene.addItem(self)
+       scene.update(self.sceneBoundingRect())
 
    def sourceNode(self):
       
