@@ -22,7 +22,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 import sys, os, re, base64
 from socket import socket, timeout, AF_INET, SOCK_STREAM
 
-version = "0.9.0.021807"
+version = "0.9.2.042807"
+# Minimum version of dynamips required. Currently 0.2.7-RC2 (addition of oldidle)
+# Specify an rc version of .999 for released versions.
+(MAJOR, MINOR, SUB, RCVER) = (0,2,7,.2)
+INTVER = MAJOR * 10000 + MINOR * 100 + SUB + RCVER
+STRVER = "0.2.7-RC2"
 NOSEND = False       # Disable sending any commands to the back end for debugging
 DEBUG = False
 
@@ -41,6 +46,81 @@ except NameError:
     DEBUGGER = False
 else:
     DEBUGGER = True
+
+ROUTERMODELS = ('c2600', 'c2691', 'c3725', 'c3745', 'c3600', 'c7200')
+DEVICETUPLE = ('2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM', '2691', '3725', '3745', '3620', '3640', '3660', '7200')  # A tuple of known device names
+CHASSIS2600 = ('2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM')
+CHASSIS3600 = ('3620', '3640', '3660')
+MB2CHASSIS2600 = {
+        '2610'  : 'CISCO2600-MB-1E',
+        '2611'  : 'CISCO2600-MB-2E',
+        '2620'  : 'CISCO2600-MB-1FE',
+        '2621'  : 'CISCO2600-MB-2FE',
+        '2610XM': 'CISCO2600-MB-1FE',
+        '2611XM': 'CISCO2600-MB-2FE',
+        '2620XM': 'CISCO2600-MB-1FE',
+        '2621XM': 'CISCO2600-MB-2FE',
+        '2650XM': 'CISCO2600-MB-1FE',
+        '2651XM': 'CISCO2600-MB-2FE'
+    }
+GENERIC_2600_NMS = ('NM-1FE-TX', 'NM-1E', 'NM-4E', 'NM-16ESW')
+GENERIC_3600_NMS = ('NM-1FE-TX', 'NM-1E', 'NM-4E', 'NM-16ESW', 'NM-4T')
+GENERIC_3700_NMS = ('NM-1FE-TX', 'NM-4T', 'NM-16ESW')
+GENERIC_7200_PAS = ('PA-A1', 'PA-FE-TX', 'PA-2FE-TX', 'PA-GE', 'PA-4T+', 'PA-8T', 'PA-4E', 'PA-8E', 'PA-POS-OC3')
+IO_7200 = ('C7200-IO-FE', 'C7200-IO-2FE', 'C7200-IO-GE-E')
+
+""" Build the adapter compatibility matrix:
+ADAPTER_MATRIX = {
+    'c3600' : {                     # Router model
+        '3620' : {                  # Router Chassis (if applicable)
+            { 0 : ('NM-1FE-TX', 'NM_1E', ...)
+            }
+        }
+    }
+"""
+ADAPTER_MATRIX = {}
+for model in ROUTERMODELS:
+    ADAPTER_MATRIX[model] = {}
+
+# 2600s have one or more interfaces on the MB and an available NM slot 1
+for chassis in CHASSIS2600:
+    ADAPTER_MATRIX['c2600'][chassis] = { 0 : MB2CHASSIS2600[chassis],
+                                    1 : GENERIC_2600_NMS }
+
+# 2691s have two FEs on the motherboard and one NM slot
+ADAPTER_MATRIX['c2691'][''] = { 0 : 'GT96100-FE',
+                           1 : GENERIC_3700_NMS }
+
+# 3620s have two generic NM slots
+ADAPTER_MATRIX['c3600']['3620'] = {}
+for slot in range(2):
+    ADAPTER_MATRIX['c3600']['3620'][slot] = GENERIC_3600_NMS
+
+# 3640s have four generic NM slots
+ADAPTER_MATRIX['c3600']['3640'] = {}
+for slot in range(4):
+    ADAPTER_MATRIX['c3600']['3640'][slot] = GENERIC_3600_NMS
+
+# 3660s have 2 FEs on the motherboard and 6 generic NM slots
+ADAPTER_MATRIX['c3600']['3660'] = { 0 : 'Leopard-2FE'}
+for slot in range(1,7):
+    ADAPTER_MATRIX['c3600']['3660'][slot] = GENERIC_3600_NMS
+
+# 3725s have 2 FEs on the motherboard and 2 generic NM slots
+ADAPTER_MATRIX['c3725'][''] = { 0 : 'GT96100-FE' }
+for slot in range(1,3):
+    ADAPTER_MATRIX['c3725'][''][slot] = GENERIC_3700_NMS
+
+# 3745s have 2 FEs on the motherboard and 4 generic NM slots
+ADAPTER_MATRIX['c3745'][''] = { 0 : 'GT96100-FE' }
+for slot in range(1,5):
+    ADAPTER_MATRIX['c3745'][''][slot] = GENERIC_3700_NMS
+
+# 7206s allow an IO controller in slot 0, and a generic PA in slots 1-6
+ADAPTER_MATRIX['c7200'][''] = { 0 : IO_7200 }
+for slot in range(1,7):
+    ADAPTER_MATRIX['c7200'][''][slot] = GENERIC_7200_PAS
+
 
 class Dynamips(object):
     """ Creates a new connection to a Dynamips server
@@ -65,10 +145,31 @@ class Dynamips(object):
         self.__baseconsole = 2000
         self.__udp = 10000
         try:
-            self.__version = send(self, 'hypervisor version')[0][4:]
+            version = send(self, 'hypervisor version')[0][4:]
         except IndexError:
             # Probably because NOSEND is set
-            self.__version = 'N/A'
+            version = 'N/A'
+        try:
+            # version formats are a.b.c-RCd-x86
+            (major, minor, sub) = version.split('-')[0].split('.')
+
+            release_candidate = version.split('-')[1]
+            if release_candidate[:2] == 'RC':
+                rcver = float('.' + release_candidate[2:])
+            else:
+                rcver = .999
+
+            intver = int(major) * 10000 + int(minor) * 100 + int(sub) + rcver
+
+        except:
+            print 'Warning: problem determing dynamips server version on host: %s. Skipping version check' % host
+            intver = 999999
+
+        if intver < INTVER:
+            raise DynamipsVerError, 'This version of Dynagen requires at least version %s of dynamips. \n Server %s is runnning version %s. \n Get the latest version from http://www.ipflow.utc.fr/blog/' \
+                % (STRVER, host, version)
+
+        self.__version = version
 
     def close(self):
         """ Close the connection to the Hypervisor (but leave it running)
@@ -150,7 +251,6 @@ class Dynamips(object):
         return self.__udp
 
     udp = property(__getudp, __setudp, doc = 'The next available UDP port for NIOs')
-
 
     def list(self, subsystem):
         """ Send a generic list command to Dynamips
@@ -422,10 +522,31 @@ class BaseAdapter(object):
         ports: the number of ports
     """
     def __init__(self, router, slot, adapter, ports, bindingcommand):
+
+        # Can this adapter be used in this slot on this router & chassis?
+        try:
+            chassis = router.chassis
+        except AttributeError:
+            chassis = ''
+
+        try:
+            if not adapter in ADAPTER_MATRIX[router.model][chassis][slot]:
+                raise DynamipsError, '%s is not supported in slot %i on router: %s' % (adapter, slot, router.name)
+        except KeyError:
+            raise DynamipsError, 'Invalid slot %i on router: %s' % (slot, router.name)
+
+        # Does this adapter already exist in this slot? If so skip inserting it again
+        try:
+            if router.slot[slot].adapter == adapter:
+                return
+        except AttributeError:
+            # Must not be any adapter in this slot
+            pass
+
         self.__adapter = adapter
         self.__router = router
         self.__slot = slot
-        self.ports = [None] * ports
+        self.ports = [None] * ports                 # This never gets populated, but other spots in the code check the length of this. Try to weed this out at some point.
         self.__nios = [None] * ports
 
         if bindingcommand != None:
@@ -464,7 +585,7 @@ class BaseAdapter(object):
         """
 
         # Call the generalized connect function
-        d = self.__router
+        #d = self.__router
         gen_connect(src_dynamips = self.__router.dynamips,
                     src_adapter = self,
                     src_port = localport,
@@ -571,35 +692,39 @@ class PA_C7200_IO_FE(PA):
     """ A C7200-IO-FE FastEthernet adapter
     """
     def __init__(self, router, slot):
-        if type(slot) != int or slot != 0:
-            raise DynamipsError, 'invalid slot. C7200-IO-FE only supported in slot 0'
-        PA.__init__(self, router, slot, 'C7200-IO-FE', 1)
-        
-        
+        if router.npe == 'npe-g2':
+            ports = 4
+        else:
+            ports = 1
+        PA.__init__(self, router, slot, 'C7200-IO-FE', ports)
+
+
 class PA_C7200_IO_2FE(PA):
     """ A C7200-IO-2FE FastEthernet adapter
     """
     def __init__(self, router, slot):
-        if type(slot) != int or slot != 0:
-            raise DynamipsError, 'invalid slot. C7200-IO-2FE only supported in slot 0'
-        PA.__init__(self, router, slot, 'C7200-IO-2FE', 2)
-        
-        
+        if router.npe == 'npe-g2':
+            ports = 4
+        else:
+            ports = 1
+        PA.__init__(self, router, slot, 'C7200-IO-2FE', ports)
+
+
 class PA_C7200_IO_GE_E(PA):
     """ A C7200-IO-GE-E FastEthernet adapter
     """
     def __init__(self, router, slot):
-        if type(slot) != int or slot != 0:
-            raise DynamipsError, 'invalid slot. C7200-IO-GE-E only supported in slot 0'
-        PA.__init__(self, router, slot, 'C7200-IO-GE-E', 1)
+        if router.npe == 'npe-g2':
+            ports = 4
+        else:
+            ports = 1
+        PA.__init__(self, router, slot, 'C7200-IO-GE-E', ports)
 
 
 class PA_A1(PA):
     """ A PA-A1 FastEthernet adapter
     """
     def __init__(self, router, slot):
-        if type(slot) != int or slot < 1 or slot >6:
-            raise DynamipsError, 'invalid slot. PA-A1 only supported in slots 1-6'
         PA.__init__(self, router, slot, 'PA-A1', 1)
 
 
@@ -607,25 +732,19 @@ class PA_FE_TX(PA):
     """ A PA-FE-TX FastEthernet adapter
     """
     def __init__(self, router, slot):
-        if type(slot) != int or slot < 1 or slot >6:
-            raise DynamipsError, 'invalid slot. PA-FE-TX only supported in slots 1-6'
         PA.__init__(self, router, slot, 'PA-FE-TX', 1)
-        
+
 class PA_2FE_TX(PA):
     """ A PA-2FE-TX FastEthernet adapter
     """
     def __init__(self, router, slot):
-        if type(slot) != int or slot < 1 or slot >6:
-            raise DynamipsError, 'invalid slot. PA-2FE-TX only supported in slots 1-6'
         PA.__init__(self, router, slot, 'PA-2FE-TX', 2)
-        
-        
+
+
 class PA_GE(PA):
     """ A PA-GE FastEthernet adapter
     """
     def __init__(self, router, slot):
-        if type(slot) != int or slot < 1 or slot >6:
-            raise DynamipsError, 'invalid slot. PA-GE only supported in slots 1-6'
         PA.__init__(self, router, slot, 'PA-GE', 1)
 
 
@@ -633,8 +752,6 @@ class PA_4T(PA):
     """ A PA_4T+ 4-port serial adapter
     """
     def __init__(self, router, slot):
-        if type(slot) != int or slot < 1 or slot >6:
-            raise DynamipsError, 'invalid slot. PA-4T+ only supported in slots 1-6'
         PA.__init__(self, router, slot, 'PA-4T+', 4)
 
 
@@ -642,8 +759,6 @@ class PA_8T(PA):
     """ A PA_8T 8-port serial adapter
     """
     def __init__(self, router, slot):
-        if type(slot) != int or slot < 1 or slot >6:
-            raise DynamipsError, 'invalid slot. PA-8T only supported in slots 1-6'
         PA.__init__(self, router, slot, 'PA-8T', 8)
 
 
@@ -651,8 +766,6 @@ class PA_4E(PA):
     """ A PA_4E 4-port ethernet adapter
     """
     def __init__(self, router, slot):
-        if type(slot) != int or slot < 1 or slot >6:
-            raise DynamipsError, 'invalid slot. PA-4E only supported in slots 1-6'
         PA.__init__(self, router, slot, 'PA-4E', 4)
 
 
@@ -660,8 +773,6 @@ class PA_8E(PA):
     """ A PA_8E 4-port ethernet adapter
     """
     def __init__(self, router, slot):
-        if type(slot) != int or slot < 1 or slot >6:
-            raise DynamipsError, 'invalid slot. PA-8E only supported in slots 1-6'
         PA.__init__(self, router, slot, 'PA-8E', 8)
 
 
@@ -669,8 +780,6 @@ class PA_POS_OC3(PA):
     """ A PA-POS-OC3 adapter
     """
     def __init__(self, router, slot):
-        if type(slot) != int or slot < 1 or slot >6:
-            raise DynamipsError, 'invalid slot. PA-POS-OC3 only supported in slots 1-6'
         PA.__init__(self, router, slot, 'PA-POS-OC3', 1)
 
 
@@ -684,14 +793,8 @@ class NM(BaseAdapter):
         ports: the number of ports
     """
     def __init__(self, router, slot, module, ports):
-        if router.model == 'c3600':
-            if router.chassis == '3660' and module != 'Leopard-2FE':
-                if slot == 0:
-                    raise DynamipsError, 'invalid slot. %s only supported in slots 1-6 on the 3660' % module
-
-        #if module in ['GT96100-FE', 'CISCO2600-MB-1E', 'CISCO2600-MB-2E', 'CISCO2600-MB-1FE', 'CISCO2600-MB-2FE']:
         if module in ['GT96100-FE']:
-            bindingcommand = None       # the GT96100-FE and the 2600 MBs are already integrated
+            bindingcommand = None       # the GT96100-FE are already configured on the MB
         else:
             bindingcommand = 'add_nm_binding'
         BaseAdapter.__init__(self, router, slot, module, ports, bindingcommand)
@@ -700,8 +803,6 @@ class Leopard_2FE(NM):
     """ Integrated 3660 2 Port FastEthernet adapter
     """
     def __init__(self, router, slot):
-        if type(slot) != int or slot != 0 or router.chassis != '3660':
-            raise DynamipsError, 'invalid slot. Leopard-2FE only supported in slot 0 on a 3660'
         NM.__init__(self, router, slot, 'Leopard-2FE', 2)
 
 
@@ -723,7 +824,7 @@ class NM_4E(NM):
     """ A NM-4E Ethernet adapter
     """
     def __init__(self, router, slot):
-        NM.__init__(self, router, slot, 'NM-4E', 4)
+         NM.__init__(self, router, slot, 'NM-4E', 4)
 
 
 class NM_4T(NM):
@@ -744,47 +845,37 @@ class GT96100_FE(NM):
     """ Integrated GT96100-FE 2691/3725/3745 2 Port FastEthernet adapter
     """
     def __init__(self, router, slot):
-        if type(slot) != int or slot != 0 or router.model not in ['c2691', 'c3725', 'c3745']:
-            raise DynamipsError, 'invalid slot. GT96100-FE only supported in slot 0 on a 2691/3725/3745'
         NM.__init__(self, router, slot, 'GT96100-FE', 2)
 
 class CISCO2600_MB_1E(NM):
     """ Integrated CISCO2600-MB-1E 2600 1 Port Ethernet adapter
     """
     def __init__(self, router, slot):
-        if type(slot) != int or slot != 0 or router.model not in ['c2600'] or router.chassis not in ['2610']:
-            raise DynamipsError, 'invalid slot. CISCO2600-MB-1E only supported in slot 0 on a 2610'
         NM.__init__(self, router, slot, 'CISCO2600-MB-1E', 1)
 
 class CISCO2600_MB_2E(NM):
     """ Integrated CISCO2600-MB-2E 2600 1 Port Ethernet adapter
     """
     def __init__(self, router, slot):
-        if type(slot) != int or slot != 0 or router.model not in ['c2600'] or router.chassis not in ['2611']:
-            raise DynamipsError, 'invalid slot. CISCO2600-MB-1E only supported in slot 0 on a 2611'
         NM.__init__(self, router, slot, 'CISCO2600-MB-2E', 2)
 
 class CISCO2600_MB_1FE(NM):
     """ Integrated CISCO2600-MB-1FE 2600 1 Port FastEthernet adapter
     """
     def __init__(self, router, slot):
-        if type(slot) != int or slot != 0 or router.model not in ['c2600'] or router.chassis not in ['2620', '2610XM', '2620XM', '2650XM']:
-            raise DynamipsError, 'invalid slot. CISCO2600-MB-1FE only supported in slot 0 on a 2620, 2610XM, 2620XM, or a 2650XM'
         NM.__init__(self, router, slot, 'CISCO2600-MB-1FE', 1)
 
 class CISCO2600_MB_2FE(NM):
     """ Integrated CISCO2600-MB-2FE 2600 2 Port FastEthernet adapter
     """
     def __init__(self, router, slot):
-        if type(slot) != int or slot != 0 or router.model not in ['c2600'] or router.chassis not in ['2621', '2611XM', '2621XM', '2651XM']:
-            raise DynamipsError, 'invalid slot. CISCO2600-MB-1FE only supported in slot 0 on a 2621, 2611XM, 2621XM, or a 2651XM'
-        NM.__init__(self, router, slot, 'CISCO2600-MB-1FE', 2)
+        NM.__init__(self, router, slot, 'CISCO2600-MB-2FE', 2)
 
 
 class Router(object):
     """ Creates a new Router instance
         dynamips: a Dynamips object
-        model: Router model number (currently only c7200 is supported)
+        model: Router model
         console (optional): TCP port that attaches to this router's console.
                             Defaults to TCP 2000 + the instance number
         name (optional): An optional name. Defaults to the instance number
@@ -799,7 +890,7 @@ class Router(object):
         self.__instance = Router.__instance_count
         Router.__instance_count += 1
 
-        if model in ('c2600', 'c2691', 'c3725', 'c3745', 'c3600', 'c7200'):
+        if model in ROUTERMODELS:
             self.__model = model
         else:
             raise DynamipsError, 'invalid router model'
@@ -820,7 +911,7 @@ class Router(object):
         self.__mmap = True
         self.__state = 'stopped'
         self.__ghost_status = 0
-        self._sparsemem = 0
+        self.__sparsemem = 0
         self.__idlemax = 1500
         self.__idlesleep = 30
 
@@ -1202,9 +1293,10 @@ class Router(object):
     def __getidlepcdrift(self):
         """ Returns the current idlepcdrift
         """
-        result = send(self.__d, 'vm show_timer_drift %s 0' % (self.__name))
-        if result[-1] == '100-OK': result.pop()
-        return result
+        if not DEBUGGER:
+            result = send(self.__d, 'vm show_timer_drift %s 0' % (self.__name))
+            if result[-1] == '100-OK': result.pop()
+            return result
 
     idlepcdrift = property(__getidlepcdrift, doc = 'The idle-pc drift valueof instance')
 
@@ -1235,6 +1327,30 @@ class Router(object):
         return self.__idlesleep
 
     idlesleep = property(__getidlesleep, __setidlesleep, doc = 'The idle sleep time of this instance')
+
+
+    def __setoldidle(self, state):
+        """ Set oldidle to True to use pre 0.2.7-RC1 idlepc values.
+            It disables direct jumps between JIT blocks
+            state: (bool) True to use old idlepc values, false to use RC2 and
+                later values
+        """
+        if type(state) != bool:
+            raise DynamipsError, 'invalid oldidle status'
+        self.__oldidle = state
+        if state == True:
+            val = 1
+        else:
+            val = 0
+        send(self.__d, 'vm set_blk_direct_jump %s %i' % (self.__name, val))
+
+    def __getoldidle(self):
+        """ Returns the current oldidle value
+        """
+        return self.__oldidle
+
+    oldidle = property(__getoldidle, __setoldidle, doc = 'Enable or disable legacy idle pc value option. Setting to True disables direct jumps between JIT blocks, allowing use of pre 0.2.7-RC2 idlepc values.')
+
 
     def __setexec_area(self, exec_area):
         """ Set the Exec Area size for this instance
@@ -1384,6 +1500,7 @@ class C2691(Router):
 
         # generate the slots for network modules
         Router.createslots(self, 2)
+        self.slot[0] = GT96100_FE(self, 0)
 
 class C2600(Router):
     """ Creates a new 2600 Router instance
@@ -1409,13 +1526,27 @@ class C2600(Router):
 
         self.chassis = chassis
         Router.createslots(self, 2)
+        # Insert the MB controller
+        chassis2600transform = {
+            "2610"  : CISCO2600_MB_1E,
+            "2611"  : CISCO2600_MB_2E,
+            "2620"  : CISCO2600_MB_1FE,
+            "2621"  : CISCO2600_MB_2FE,
+            "2610XM": CISCO2600_MB_1FE,
+            "2611XM": CISCO2600_MB_2FE,
+            "2620XM": CISCO2600_MB_1FE,
+            "2621XM": CISCO2600_MB_2FE,
+            "2650XM": CISCO2600_MB_1FE,
+            "2651XM": CISCO2600_MB_2FE
+        }
+        self.slot[0] = chassis2600transform[chassis](self, 0)
 
 
     def __setchassis(self, chassis):
         """ Set the chassis property
             chassis: (string) Set the chassis type
         """
-        if type(chassis) not in [str, unicode] or chassis not in ['2610', '2611', '2620', '2621', '2610XM', '2620XM', '2621XM', '2650XM', '2651XM']:
+        if type(chassis) not in [str, unicode] or chassis not in CHASSIS2600:
             debug("Invalid chassis passed to __setchassis")
             debug("chassis -> '" + str(chassis) +"'")
             debug("chassis type -> " + str(type(chassis)))
@@ -1547,6 +1678,11 @@ class C3600(Router):
     iomem = property(__getiomem, __setiomem, doc = 'The iomem size of this router')
 
 class DynamipsError(Exception):
+    pass
+class DynamipsErrorHandled(Exception):
+    pass
+
+class DynamipsVerError(Exception):
     pass
 
 class DynamipsWarning(Exception):
@@ -2170,7 +2306,7 @@ def send(dynamips, command):
             print "Error: lost communication with dynamips server %s" % dynamips.host
             print "Dynamips may have crashed. Check the Dynamips server output."
             print "Exiting..."
-            raise DynamipsError, "handled"  
+            raise DynamipsErrorHandled
 
         # Now retrieve the result
         data = []
@@ -2184,12 +2320,12 @@ def send(dynamips, command):
                 print "Error: timed out communicating with dynamips server %s" % dynamips.host
                 print message
                 print "Exiting..."
-                raise DynamipsError, "handled"
+                raise DynamipsErrorHandled
             except:
                 print "Error: could not communicate with dynamips server %s" % dynamips.host
                 print "Dynamips may have crashed. Check the Dynamips server output."
                 print "Exiting..."
-                raise DynamipsError, "handled"    
+                raise DynamipsErrorHandled
 
             # if the buffer doesn't end in '\n' then we can't be done
             try:
@@ -2199,7 +2335,7 @@ def send(dynamips, command):
                 print "Error: could not communicate with dynamips server %s" % dynamips.host
                 print "Dynamips may have crashed. Check the Dynamips server output."
                 print "Exiting..."
-                raise DynamipsError, "handled"
+                raise DynamipsErrorHandled
 
             data += buf.split('\r\n')
             if data[-1] == '': data.pop()
@@ -2363,10 +2499,11 @@ def debug(string):
 if __name__ == "__main__":
     # Testing
     DEBUG = True
-    """
-    IMAGE = '/opt/3660-images/c3660-ik9o3s-mz.124-10.image'
+
+    IMAGE = '/usr2/ios-images/3660-images/c3660-ik9o3s-mz.124-10.image'
     d = Dynamips('bender', 7200)
     d.reset()
+    """
     d.workingdir = '/home/greg/labs/tests/NM-16ESW'
 
     r1 = C3600(d, chassis = '3660', name='r1')

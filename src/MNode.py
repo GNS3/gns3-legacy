@@ -44,24 +44,21 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self.edgeList = []
         self.iosConfig = {}
 
-        
         self.neighborList = []
         self.__telnet = telnetlib.Telnet()
         self.console_host = None
         self.console_port = None
         self.ios = None
 
-
         # Create an ID
         self.id = self.main.baseid
         self.main.baseid += 1
         
         # Record the object
-        print id(self)
         self.main.nodes[self.id] = self
         
         # MNode settings
-        self.setCursor(QtCore.Qt.OpenHandCursor)
+        #self.setCursor(QtCore.Qt.OpenHandCursor)
         self.setFlag(self.ItemIsMovable)
         self.setFlag(self.ItemIsSelectable)
         self.setZValue(1)
@@ -72,9 +69,6 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self.setPos(xPos, yPos)
         
         # MNode placement
-        
-        print type(self)
-        self.setData(0, QtCore.QVariant(self.id))
         self._QGraphicsScene = QGraphicsScene
         self._QGraphicsScene.addItem(self)
         self._QGraphicsScene.update(self.sceneBoundingRect())
@@ -123,7 +117,16 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         if (event.button() == QtCore.Qt.LeftButton):
             self.InspectorInstance.loadNodeInfos(self.id) 
             self.InspectorInstance.show()
+
+    def menuInterface(self):
         
+        self.menu = QtGui.QMenu()
+        self.menu.addAction('f0/0')
+        self.menu.addAction('f0/1')
+        self.menu.addAction('f0/2')
+        self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.selectedInterface) 
+        self.menu.exec_(QtGui.QCursor.pos())
+     
     def mousePressEvent(self, event):
        '''We recover all items of the QGraphicsView'''
    
@@ -135,10 +138,11 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
        print "countClick", self.main.countClick  
 #       ''' Callback of original QGraphicsView object. So we can move the MNode on the scene'''
        if (self.main.countClick == 0):
+           self.menuInterface()
            self.main.countClick = 1
            self.main.TabLinkMNode.append(self)
        if (self.main.countClick == 1 and cmp(self.main.TabLinkMNode[0], self)):
-           print "ici"
+           self.menuInterface()
            self.main.TabLinkMNode.append(self)
            self.main.countClick = 0
            ed = Edge(self.main.TabLinkMNode[0], self.main.TabLinkMNode[1], self._QGraphicsScene)
@@ -163,9 +167,9 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
 #        self.menu.exec_(QtGui.QCursor.pos())
 #        QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
 #        
-#    def selectedInterface(self, action):
-#        
-#        print action.text()
+    def selectedInterface(self, action):
+        
+        print action.text()
 
     def simAction(self, action):
         
