@@ -26,6 +26,32 @@ import socket
 import sys
 import __main__
 
+ADAPTERS = {
+    "PA-C7200-IO-FE" : [lib.PA_C7200_IO_FE, 1, 'f'],
+    "PA-C7200-IO-2FE" : [lib.PA_C7200_IO_2FE, 2, 'f'],
+    "PA-C7200-IO-GE-E" : [lib.PA_C7200_IO_GE_E, 1, 'g'],
+    "PA-A1" : [lib.PA_A1, 1, 'a'],
+    "PA-FE-TX" : [lib.PA_FE_TX, 1, 'f'],
+    "PA-2FE-TX" : [lib.PA_2FE_TX, 2, 'f'],
+    "PA-GE" : [lib.PA_GE, 1, 'g'],
+    "PA-4T" : [lib.PA_4T, 4, 't'],
+    "PA-8T" : [lib.PA_8T, 8, 't'],
+    "PA-4E" : [lib.PA_4E, 4, 'e'],
+    "PA-8E" : [lib.PA_8E, 8, 'e'],
+    "PA-POS-OC3" : [lib.PA_POS_OC3, 1, 'p'],
+    "NM-1FE-TX"  : [lib.NM_1FE_TX, 1, 'f'],
+    "NM-1E"  : [lib.NM_1E, 1, 'e'],
+    "NM-4E": [lib.NM_4E, 4, 'e'],
+    "NM-4T": [lib.NM_4T, 4, 't'],
+    "NM-16ESW": [lib.NM_16ESW, 16, 'e'],
+    "Leopard-2FE": [lib.Leopard_2FE, 2, 'f'],
+    "GT96100-FE": [lib.GT96100_FE, 1, 'f'],
+    "CISCO2600-MB-1E": [lib.CISCO2600_MB_1E, 1, 'e'],
+    "CISCO2600-MB-2E": [lib.CISCO2600_MB_2E, 2, 'e'],
+    "CISCO2600-MB-1FE": [lib.CISCO2600_MB_1FE, 1, 'f'],
+    "CISCO2600-MB-2FE": [lib.CISCO2600_MB_2FE, 2, 'f']
+}
+
 class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     '''MNode for QGraphicsScene'''
 
@@ -247,14 +273,11 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         
         if (module == ''):
             return
-        elif (module == 'NM-1E'):
-            self.ios.slot[nb] = lib.NM_1E(self.ios, nb)
-        elif (module == 'NM-4E'):
-            self.ios.slot[nb] = lib.NM_4E(self.ios, nb)
-        elif (module == 'NM-1FE-TX'):
-            self.ios.slot[nb] = lib.NM_1FE_TX(self.ios, nb)
-        elif (module == 'NM-4T'):
-            self.ios.slot[nb] = lib.NM_4T(self.ios, nb)
+        if module in ADAPTERS:
+            self.ios.slot[nb] = ADAPTERS[module][0](self.ios, nb)
+        else:
+            sys.stderr.write(module + " module not found !\n")
+            return
       
     def startIOS(self):
         
@@ -265,6 +288,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             node = self.main.nodes[neighbor]
             if node.ios != None:
                 try:
+                    #TODO: slot dynamic assigment
                     if self.ios.slot[0] != None and self.ios.slot[0].connected(0) == False:
                         self.ios.slot[0].connect(0, self.main.hypervisor, node.ios.slot[0], 0)
                 except lib.DynamipsError, msg:

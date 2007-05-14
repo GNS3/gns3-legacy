@@ -76,8 +76,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.graphicsView.setRenderHint(QtGui.QPainter.Antialiasing)
         self.graphicsView.setTransformationAnchor(QtGui.QGraphicsView.AnchorUnderMouse)
         self.graphicsView.setResizeAnchor(QtGui.QGraphicsView.AnchorViewCenter)
-
-        QtGui.QAbstractItemView.DoubleClicked
     
         # Example of use
         #node1 = MNode(":Switch", self.scene, 0 , 0)

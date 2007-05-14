@@ -180,6 +180,7 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
             
     def slotSelectedIOS(self, index):
 
+        #FIXME: a bug adds more than once the network module list
         imagename = str(self.comboBoxIOS.currentText())
         if imagename != '':
             if self.main.ios_images[imagename]['platform'] == '3600':
