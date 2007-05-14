@@ -61,10 +61,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         QtGui.QMainWindow.__init__(self)
         self.setupUi(self)
         self.createScene()
+        self.treeWidget.expandItem(self.treeWidget.topLevelItem(0))
         
-    def test(self):
-        print 'toto'
-
     def createScene(self):
     
         self.scene = QtGui.QGraphicsScene(self.graphicsView)

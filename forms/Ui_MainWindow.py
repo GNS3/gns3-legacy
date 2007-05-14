@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'MainWindow.ui'
+# Form implementation generated from reading ui file 'forms/MainWindow.ui'
 #
-# Created: Fri May 11 19:06:59 2007
-#      by: PyQt4 UI code generator 4.1
+# Created: Mon May 14 17:34:15 2007
+#      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -32,8 +32,7 @@ class Ui_MainWindow(object):
         self.treeWidget.setSizePolicy(sizePolicy)
         self.treeWidget.setEditTriggers(QtGui.QAbstractItemView.DoubleClicked|QtGui.QAbstractItemView.EditKeyPressed|QtGui.QAbstractItemView.NoEditTriggers)
         self.treeWidget.setDragEnabled(True)
-        self.treeWidget.setIconSize(QtCore.QSize(30,35))
-        self.treeWidget.setAnimated(True)
+        self.treeWidget.setIconSize(QtCore.QSize(24,24))
         self.treeWidget.setObjectName("treeWidget")
         self.hboxlayout.addWidget(self.treeWidget)
 
@@ -43,7 +42,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,811,25))
+        self.menubar.setGeometry(QtCore.QRect(0,0,811,29))
         self.menubar.setObjectName("menubar")
 
         self.menu_File = QtGui.QMenu(self.menubar)

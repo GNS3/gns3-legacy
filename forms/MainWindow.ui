@@ -38,12 +38,9 @@
       </property>
       <property name="iconSize" >
        <size>
-        <width>30</width>
-        <height>35</height>
+        <width>24</width>
+        <height>24</height>
        </size>
-      </property>
-      <property name="animated" >
-       <bool>true</bool>
       </property>
       <column>
        <property name="text" >
@@ -116,7 +113,7 @@
      <x>0</x>
      <y>0</y>
      <width>811</width>
-     <height>25</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File" >
