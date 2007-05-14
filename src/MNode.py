@@ -18,12 +18,15 @@
 #
 
 from PyQt4 import QtCore, QtGui, QtSvg
+from Edge import *
 from Inspector import Inspector
 import Dynamips_lib as lib
 import telnetlib
 import socket
 import sys
 import __main__
+
+
 
 class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     '''MNode for QGraphicsScene'''
@@ -35,24 +38,28 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     mNodeName = None
     InspectorInstance = None
     svg = None
+    _QGraphicsScene = None
         
     def __init__(self, svgfile, QGraphicsScene, xPos = None, yPos = None):
         
-        QtSvg.QGraphicsSvgItem.__init__(self, svgfile)
+        svg = QtSvg.QGraphicsSvgItem.__init__(self, svgfile)
         self.edgeList = []
         self.iosConfig = {}
 
+        
         self.neighborList = []
         self.__telnet = telnetlib.Telnet()
         self.console_host = None
         self.console_port = None
         self.ios = None
 
+
         # Create an ID
         self.id = self.main.baseid
         self.main.baseid += 1
         
         # Record the object
+        print id(self)
         self.main.nodes[self.id] = self
         
         # MNode settings
@@ -67,9 +74,12 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self.setPos(xPos, yPos)
         
         # MNode placement
+        
+        print type(self)
         self.setData(0, QtCore.QVariant(self.id))
-        QGraphicsScene.addItem(self)
-        QGraphicsScene.update(self.sceneBoundingRect())
+        self._QGraphicsScene = QGraphicsScene
+        self._QGraphicsScene.addItem(self)
+        self._QGraphicsScene.update(self.sceneBoundingRect())
         
         self.InspectorInstance = Inspector()
         self.InspectorInstance.loadNodeInfos(self.id)
@@ -153,8 +163,8 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
 
     def getIdSvg(self):
         
-        return id(self.svg)
-                           
+        #return id(self.svg)
+        return self.id                   
 ################### IOS stuff ###############################
     
     def configIOS(self):
@@ -280,3 +290,24 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         if self.console_host and self.console_port:
             return True
         return False
+    
+    def mousePressEvent(self, event):
+       '''We recover all items of the QGraphicsView'''
+       global countClick
+       global TabLinkMNode
+       
+       print "------------------- START -----------------------"    
+       
+       print "countClick", self.main.countClick  
+#       ''' Callback of original QGraphicsView object. So we can move the MNode on the scene'''
+       if (self.main.countClick == 0):
+           self.main.countClick = self.main.countClick + 1
+           self.main.TabLinkMNode.append(self)
+       elif (self.main.countClick == 1 and self.main.linkEnabled == True):
+           self.main.TabLinkMNode.append(self)
+           self.main.countClick = 0
+           ed = Edge(self.main.TabLinkMNode[0], self.main.TabLinkMNode[1], self._QGraphicsScene)
+           self.main.TabLinkMNode= []
+           self._QGraphicsScene.update(ed.boundingRect())
+       QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
+       print "------------------- STOP -----------------------"

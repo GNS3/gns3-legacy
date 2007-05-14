@@ -82,7 +82,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         QtGui.QAbstractItemView.DoubleClicked
     
         # Example of use
-        node1 = MNode(":Switch", self.scene, 0 , 0)
+        #node1 = MNode(":Switch", self.scene, 0 , 0)
 
         
 #        item = QtSvg.QGraphicsSvgItem(":Switch")
@@ -94,16 +94,16 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 #        if isinstance(test, QtSvg.QGraphicsSvgItem) == True :
 #            print test.data(0).toInt()
 
-        node2 = MNode(":Route switch processor", self.scene, 150, 150)
-        node3 = MNode(":Multilayer switch", self.scene, -100, 150)
-        node4 = MNode(":Router with firewall", self.scene, 150, -150)
-        node5 = MNode(":Router", self.scene, -150, -150)
+        #node2 = MNode(":Route switch processor", self.scene, 150, 150)
+        #node3 = MNode(":Multilayer switch", self.scene, -100, 150)
+        #node4 = MNode(":Router with firewall", self.scene, 150, -150)
+        #node5 = MNode(":Router", self.scene, -150, -150)
 
-        Edge(node1, node2, self.scene)
-        Edge(node2, node3, self.scene)
-        Edge(node3, node1, self.scene)
-        Edge(node1, node4, self.scene)
-        Edge(node1, node5, self.scene)
+        #Edge(node1, node2, self.scene)
+        #Edge(node2, node3, self.scene)
+        #Edge(node3, node1, self.scene)
+        #Edge(node1, node4, self.scene)
+        #Edge(node1, node5, self.scene)
 
 #        listItems = self.scene.items()
 #        for item in listItems :
@@ -127,14 +127,21 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     def AddEdge(self):
         '''Add a new edge from the menu'''
-    
+        global linkEnabled
+        global countClick
+        global TabLinkMNode
+        
         if not self.action_Add_link.isChecked():
             self.action_Add_link.setText('Add an link')
             self.action_Add_link.setIcon(QtGui.QIcon('../svg/icons/connection.svg'))
-            
+            self.main.linkEnabled = False
+            self.main.countClick = 0
+            self.main.TabLinkMNode = []
         else:
             self.action_Add_link.setText('Cancel')
             self.action_Add_link.setIcon(QtGui.QIcon('../svg/icons/stop.svg'))
+            self.main.linkEnabled = True
+       
         
     def SwitchMode(self):
         '''Simulation/Conception Mode switching'''

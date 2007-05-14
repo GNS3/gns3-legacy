@@ -31,6 +31,9 @@ nodes = {}                # Node objects, indexed by the node ID
 ios_images = {}           # Registered Cisco IOS images
 hypervisor = None         # Hypervisor connection
 conception_mode = True    # If we are in conception mode
+linkEnabled = False
+TabLinkMNode = []
+countClick = 0
 
 class Main:
     ''' Entry point '''
