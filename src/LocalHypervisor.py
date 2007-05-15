@@ -34,7 +34,7 @@ class LocalHypervisor():
     
         self.proc = QtCore.QProcess(self.main.win)
         self.proc.setWorkingDirectory(QtCore.QString('/tmp')) # change this ?
-        #QtCore.QObject.connect(self.proc, QtCore.SIGNAL('readyReadStandardOutput()'), self.slotStandardOutput)
+        QtCore.QObject.connect(self.proc, QtCore.SIGNAL('readyReadStandardOutput()'), self.slotStandardOutput)
         QtCore.QObject.connect(self.proc, QtCore.SIGNAL('error(QProcess::ProcessError)'), self.slotProcessError)
         self.proc.start('/home/grossmj/workspace/gns3/dynamips/dynamips-0.2.7-RC3-x86.bin',  ['-H', '7200'])
         time.sleep(0.5)
@@ -48,9 +48,9 @@ class LocalHypervisor():
     
         self.proc.close()
 
-#    def slotStandardOutput(self):
-#
-#        print str(self.proc.readAllStandardOutput())
+    def slotStandardOutput(self):
+
+        print str(self.proc.readAllStandardOutput())
     
     def slotProcessError(self):
     

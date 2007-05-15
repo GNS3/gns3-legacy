@@ -255,8 +255,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     def getName(self):
         
         return self.mNodeName
-
-                
+        
 ################### IOS stuff ###############################
     
     def configIOS(self):
@@ -264,23 +263,38 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self.InspectorInstance.comboBoxIOS.addItems(self.main.ios_images.keys())
         self.InspectorInstance.saveIOSConfig()
 
-        print 'Set IOS config for node ' + str(self.id)
-        if self.main.hypervisor == None:
+        if self.iosConfig['iosimage'] == '':
+            sys.stderr.write("Node " + str(self.id) + ": no selected IOS image\n")
+            return
+        
+        image_settings = self.main.ios_images[self.iosConfig['iosimage']]
+        host = image_settings['hypervisor_host']
+        port = image_settings['hypervisor_port']
+        chassis = image_settings['chassis']
+
+        if host == None and port == None and self.main.hypervisor == None:    
             try:
+                # Use the integrated hypervisor
                 self.main.hypervisor = lib.Dynamips('localhost', 7200)
                 self.main.hypervisor.reset()
                 self.main.hypervisor.workingdir = '/tmp'
+                hypervisor = self.main.hypervisor
             except lib.DynamipsError, msg:
                 print "Dynamips error: %s" % msg
                 self.main.hypervisor = None
-            sys.stderr.write("No hypervisor !\n")
-            return
-        self.ios = lib.C3600(self.main.hypervisor, chassis = '3640', name = 'R' + str(self.id))
-
-        if self.iosConfig['iosimage'] == '':
-            sys.stderr.write("Node " + str(self.id) + ": no selected IOS image\n")
-            self.ios.delete()
-            return
+                return
+        elif self.main.hypervisor != None:
+            hypervisor = self.main.hypervisor
+        else:
+            try:
+                hypervisor = lib.Dynamips(host, port)
+                hypervisor.reset()
+                hypervisor.workingdir = '/tmp'
+            except lib.DynamipsError, msg:
+                print "Dynamips error: %s" % msg
+                return
+                
+        self.ios = lib.C3600(hypervisor, chassis = chassis, name = 'R' + str(self.id))
         
         print self.iosConfig['iosimage']
         self.ios.image = self.iosConfig['iosimage']

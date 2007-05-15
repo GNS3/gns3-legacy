@@ -66,10 +66,7 @@ class Main:
         win.connect(win.action_Add_link, QtCore.SIGNAL('activated()'), win.AddEdge)
         win.connect(win.action_SwitchMode, QtCore.SIGNAL('activated()'), win.SwitchMode) 
         
-        #LocalHypervisor()
-        # Is this the good way to do it ?
-        os.system("/home/grossmj/workspace/gns3/dynamips/dynamips-0.2.7-RC3-x86.bin -H 7200 &")
-        time.sleep(0.5)
+        local = LocalHypervisor()
         try:
             hypervisor = lib.Dynamips('localhost', 7200)
             hypervisor.reset()
@@ -79,10 +76,7 @@ class Main:
             hypervisor = None
             
         win.show()
-        exitcode = app.exec_()
-        # temporary clean
-        os.system('killall dynamips-0.2.7-RC3-x86.bin')
-        sys.exit(exitcode)
+        sys.exit(app.exec_())
 
 if __name__ == "__main__":
     Main(sys.argv)
