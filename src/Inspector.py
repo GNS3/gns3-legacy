@@ -281,13 +281,15 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         node.iosConfig['confreg'] = str(self.lineEditConfreg.text())
         node.iosConfig['execarea'] = self.spinBoxExecArea.value()
         node.iosConfig['iomem'] = self.spinBoxIomem.value()
-        node.iosConfig['slot0'] = str(self.comboBoxSlot0.currentText())
-        node.iosConfig['slot1'] = str(self.comboBoxSlot1.currentText())
-        node.iosConfig['slot2'] = str(self.comboBoxSlot2.currentText())
-        node.iosConfig['slot3'] = str(self.comboBoxSlot3.currentText())
-        node.iosConfig['slot4'] = str(self.comboBoxSlot4.currentText())
-        node.iosConfig['slot5'] = str(self.comboBoxSlot5.currentText())
-        node.iosConfig['slot6'] = str(self.comboBoxSlot6.currentText())
+        
+        node.iosConfig['slots'] = []
+        node.iosConfig['slots'].append(str(self.comboBoxSlot0.currentText()))
+        node.iosConfig['slots'].append(str(self.comboBoxSlot1.currentText()))
+        node.iosConfig['slots'].append(str(self.comboBoxSlot2.currentText()))
+        node.iosConfig['slots'].append(str(self.comboBoxSlot3.currentText()))
+        node.iosConfig['slots'].append(str(self.comboBoxSlot4.currentText()))
+        node.iosConfig['slots'].append(str(self.comboBoxSlot5.currentText()))
+        node.iosConfig['slots'].append(str(self.comboBoxSlot6.currentText()))
 
     def slotSaveIOSConfig(self, button):
     

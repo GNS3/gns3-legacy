@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Inspector.ui'
 #
-# Created: Fri May 11 19:07:10 2007
+# Created: Tue May 15 09:09:42 2007
 #      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,7 +13,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_FormInspector(object):
     def setupUi(self, FormInspector):
         FormInspector.setObjectName("FormInspector")
-        FormInspector.resize(QtCore.QSize(QtCore.QRect(0,0,696,363).size()).expandedTo(FormInspector.minimumSizeHint()))
+        FormInspector.resize(QtCore.QSize(QtCore.QRect(0,0,690,360).size()).expandedTo(FormInspector.minimumSizeHint()))
 
         self.vboxlayout = QtGui.QVBoxLayout(FormInspector)
         self.vboxlayout.setMargin(9)
@@ -496,7 +496,83 @@ class Ui_FormInspector(object):
         self.gridlayout5.addWidget(self.comboBoxSlot1,1,2,1,1)
         self.hboxlayout2.addLayout(self.gridlayout5)
 
-        spacerItem28 = QtGui.QSpacerItem(361,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
+        self.vboxlayout4 = QtGui.QVBoxLayout()
+        self.vboxlayout4.setMargin(0)
+        self.vboxlayout4.setSpacing(6)
+        self.vboxlayout4.setObjectName("vboxlayout4")
+
+        self.labelSlot0 = QtGui.QLabel(self.tab_2)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.labelSlot0.sizePolicy().hasHeightForWidth())
+        self.labelSlot0.setSizePolicy(sizePolicy)
+        self.labelSlot0.setObjectName("labelSlot0")
+        self.vboxlayout4.addWidget(self.labelSlot0)
+
+        self.labelSlot1 = QtGui.QLabel(self.tab_2)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.labelSlot1.sizePolicy().hasHeightForWidth())
+        self.labelSlot1.setSizePolicy(sizePolicy)
+        self.labelSlot1.setObjectName("labelSlot1")
+        self.vboxlayout4.addWidget(self.labelSlot1)
+
+        self.labelSlot2 = QtGui.QLabel(self.tab_2)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.labelSlot2.sizePolicy().hasHeightForWidth())
+        self.labelSlot2.setSizePolicy(sizePolicy)
+        self.labelSlot2.setObjectName("labelSlot2")
+        self.vboxlayout4.addWidget(self.labelSlot2)
+
+        self.labelSlot3 = QtGui.QLabel(self.tab_2)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.labelSlot3.sizePolicy().hasHeightForWidth())
+        self.labelSlot3.setSizePolicy(sizePolicy)
+        self.labelSlot3.setObjectName("labelSlot3")
+        self.vboxlayout4.addWidget(self.labelSlot3)
+
+        self.labelSlot4 = QtGui.QLabel(self.tab_2)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.labelSlot4.sizePolicy().hasHeightForWidth())
+        self.labelSlot4.setSizePolicy(sizePolicy)
+        self.labelSlot4.setObjectName("labelSlot4")
+        self.vboxlayout4.addWidget(self.labelSlot4)
+
+        self.labelSlot5 = QtGui.QLabel(self.tab_2)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.labelSlot5.sizePolicy().hasHeightForWidth())
+        self.labelSlot5.setSizePolicy(sizePolicy)
+        self.labelSlot5.setObjectName("labelSlot5")
+        self.vboxlayout4.addWidget(self.labelSlot5)
+
+        self.labelSlot6 = QtGui.QLabel(self.tab_2)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.labelSlot6.sizePolicy().hasHeightForWidth())
+        self.labelSlot6.setSizePolicy(sizePolicy)
+        self.labelSlot6.setObjectName("labelSlot6")
+        self.vboxlayout4.addWidget(self.labelSlot6)
+        self.hboxlayout2.addLayout(self.vboxlayout4)
+
+        spacerItem28 = QtGui.QSpacerItem(311,297,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
         self.hboxlayout2.addItem(spacerItem28)
         self.tabWidget.addTab(self.tab_2,"")
         self.vboxlayout.addWidget(self.tabWidget)
@@ -555,6 +631,13 @@ class Ui_FormInspector(object):
         self.label_19.setText(QtGui.QApplication.translate("FormInspector", "slot3:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_22.setText(QtGui.QApplication.translate("FormInspector", "slot6:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_15.setText(QtGui.QApplication.translate("FormInspector", "slot2:", None, QtGui.QApplication.UnicodeUTF8))
+        self.labelSlot0.setText(QtGui.QApplication.translate("FormInspector", "description", None, QtGui.QApplication.UnicodeUTF8))
+        self.labelSlot1.setText(QtGui.QApplication.translate("FormInspector", "description", None, QtGui.QApplication.UnicodeUTF8))
+        self.labelSlot2.setText(QtGui.QApplication.translate("FormInspector", "description", None, QtGui.QApplication.UnicodeUTF8))
+        self.labelSlot3.setText(QtGui.QApplication.translate("FormInspector", "description", None, QtGui.QApplication.UnicodeUTF8))
+        self.labelSlot4.setText(QtGui.QApplication.translate("FormInspector", "description", None, QtGui.QApplication.UnicodeUTF8))
+        self.labelSlot5.setText(QtGui.QApplication.translate("FormInspector", "description", None, QtGui.QApplication.UnicodeUTF8))
+        self.labelSlot6.setText(QtGui.QApplication.translate("FormInspector", "description", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QtGui.QApplication.translate("FormInspector", "Port adapters / Network modules", None, QtGui.QApplication.UnicodeUTF8))
 
 from Console import Console

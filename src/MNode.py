@@ -34,15 +34,15 @@ ADAPTERS = {
     "PA-FE-TX" : [lib.PA_FE_TX, 1, 'f'],
     "PA-2FE-TX" : [lib.PA_2FE_TX, 2, 'f'],
     "PA-GE" : [lib.PA_GE, 1, 'g'],
-    "PA-4T" : [lib.PA_4T, 4, 't'],
-    "PA-8T" : [lib.PA_8T, 8, 't'],
+    "PA-4T" : [lib.PA_4T, 4, 's'],
+    "PA-8T" : [lib.PA_8T, 8, 's'],
     "PA-4E" : [lib.PA_4E, 4, 'e'],
     "PA-8E" : [lib.PA_8E, 8, 'e'],
     "PA-POS-OC3" : [lib.PA_POS_OC3, 1, 'p'],
     "NM-1FE-TX"  : [lib.NM_1FE_TX, 1, 'f'],
     "NM-1E"  : [lib.NM_1E, 1, 'e'],
     "NM-4E": [lib.NM_4E, 4, 'e'],
-    "NM-4T": [lib.NM_4T, 4, 't'],
+    "NM-4T": [lib.NM_4T, 4, 's'],
     "NM-16ESW": [lib.NM_16ESW, 16, 'e'],
     "Leopard-2FE": [lib.Leopard_2FE, 2, 'f'],
     "GT96100-FE": [lib.GT96100_FE, 1, 'f'],
@@ -57,8 +57,8 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
 
     # Get access to globals
     main = __main__
-    id = None
-    edgeList = []
+    #id = None
+    #edgeList = []
     mNodeName = None
     InspectorInstance = None
     svg = None
@@ -69,7 +69,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         svg = QtSvg.QGraphicsSvgItem.__init__(self, svgfile)
         self.edgeList = []
         self.iosConfig = {}
-
+        self.interfaces = {}
         self.neighborList = []
         self.__telnet = telnetlib.Telnet()
         self.console_host = None
@@ -146,13 +146,36 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
 
     def menuInterface(self):
         
-        self.menu = QtGui.QMenu()
-        self.menu.addAction('f0/0')
-        self.menu.addAction('f0/1')
-        self.menu.addAction('f0/2')
-        self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.selectedInterface) 
-        self.menu.exec_(QtGui.QCursor.pos())
-     
+        menu = QtGui.QMenu()
+        
+        slotnb = 0
+        for module in self.iosConfig['slots']:
+            self.addInterfaceToMenu(menu, slotnb, module)           
+            slotnb += 1        
+
+        menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.selectedInterface) 
+        menu.exec_(QtGui.QCursor.pos())
+    
+    def addInterfaceToMenu(self, menu, slotnb, module):
+        
+        if (module == ''):
+            return
+        
+        if module in ADAPTERS:
+            (interfaces, abrv) = ADAPTERS[module][1:3]
+            for interface in range(interfaces):
+                menu.addAction(abrv + str(slotnb) + '/' + str(interface)) 
+        else:
+            sys.stderr.write(module + " module not found !\n")
+            return
+    
+    def checkIfmodule(self):
+        
+        for module in self.iosConfig['slots']:
+            if module != '':
+                return (True)
+        return (False)
+
     def mousePressEvent(self, event):
        '''We recover all items of the QGraphicsView'''
    
@@ -164,10 +187,14 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
        print "countClick", self.main.countClick  
 #       ''' Callback of original QGraphicsView object. So we can move the MNode on the scene'''
        if (self.main.countClick == 0):
+           if not self.checkIfmodule():
+               return
            self.menuInterface()
            self.main.countClick = 1
            self.main.TabLinkMNode.append(self)
        if (self.main.countClick == 1 and cmp(self.main.TabLinkMNode[0], self)):
+           if not self.checkIfmodule():
+               return
            self.menuInterface()
            self.main.TabLinkMNode.append(self)
            self.main.countClick = 0
@@ -195,7 +222,13 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
 #        
     def selectedInterface(self, action):
         
-        print action.text()
+        interface = action.text()
+        print interface
+        if (self.main.countClick == 0):
+            self.interfaces[interface] = []       
+        elif (self.main.countClick == 1 and cmp(self.main.TabLinkMNode[0], self)):
+            pass
+            #self.main.TabLinkMNode[1]
 
     def simAction(self, action):
         
@@ -259,22 +292,19 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         # Only for 3600 platform
         #self.iosConfig['iomem']
 
-        self.configSlot(0, self.iosConfig['slot0'])
-        self.configSlot(1, self.iosConfig['slot1'])
-        self.configSlot(2, self.iosConfig['slot2'])
-        self.configSlot(3, self.iosConfig['slot3'])
-        self.configSlot(4, self.iosConfig['slot4'])
-        self.configSlot(5, self.iosConfig['slot5'])
-        self.configSlot(6, self.iosConfig['slot6'])
+        slotnb = 0
+        for module in self.iosConfig['slots']:
+            self.configSlot(slotnb, module)
+            slotnb += 1
 
         self.ios.idlepc = '0x60483ae4'
         
-    def configSlot(self, nb, module):
+    def configSlot(self, slotnb, module):
         
         if (module == ''):
             return
         if module in ADAPTERS:
-            self.ios.slot[nb] = ADAPTERS[module][0](self.ios, nb)
+            self.ios.slot[slotnb] = ADAPTERS[module][0](self.ios, slotnb)
         else:
             sys.stderr.write(module + " module not found !\n")
             return
@@ -290,6 +320,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
                 try:
                     #TODO: slot dynamic assigment
                     if self.ios.slot[0] != None and self.ios.slot[0].connected(0) == False:
+                        lib.validate_connect(self.ios.slot[0], node.ios.slot[0])
                         self.ios.slot[0].connect(0, self.main.hypervisor, node.ios.slot[0], 0)
                 except lib.DynamipsError, msg:
                     print msg
