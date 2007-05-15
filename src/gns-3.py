@@ -17,13 +17,14 @@
 # Contact: developers@gns3.net
 #
 
-import sys
+import os, sys, time
 sys.path.append('../forms')
 import locale
 import translations
 from PyQt4 import QtCore, QtGui
 from MainWindow import MainWindow
 import Dynamips_lib as lib
+from LocalHypervisor import *
 
 # globals
 baseid = 0                # Base to create IDs
@@ -42,17 +43,8 @@ class Main:
 
     def __init__(self, argv):
 
-        # temporary emplacement for a connection to a local hypervisor
         global hypervisor
         global win
-
-        try:
-            hypervisor = lib.Dynamips('localhost', 7200)
-            hypervisor.reset()
-            hypervisor.workingdir = '/tmp'
-        except lib.DynamipsError, msg:
-            print "Dynamips error: %s" % msg
-            hypervisor = None
 
         app = QtGui.QApplication(sys.argv)
 
@@ -72,9 +64,25 @@ class Main:
         win.connect(win.action_IOS_images, QtCore.SIGNAL('activated()'), win.IOSDialog)
         win.connect(win.action_About, QtCore.SIGNAL('activated()'), win.About)
         win.connect(win.action_Add_link, QtCore.SIGNAL('activated()'), win.AddEdge)
-        win.connect(win.action_SwitchMode, QtCore.SIGNAL('activated()'), win.SwitchMode)        
+        win.connect(win.action_SwitchMode, QtCore.SIGNAL('activated()'), win.SwitchMode) 
+        
+        #LocalHypervisor()
+        # Is this the good way to do it ?
+        os.system("/home/grossmj/workspace/gns3/dynamips/dynamips-0.2.7-RC3-x86.bin -H 7200 &")
+        time.sleep(0.5)
+        try:
+            hypervisor = lib.Dynamips('localhost', 7200)
+            hypervisor.reset()
+            hypervisor.workingdir = '/tmp'
+        except lib.DynamipsError, msg:
+            print "Dynamips error: %s" % msg
+            hypervisor = None
+            
         win.show()
-        sys.exit(app.exec_())
+        exitcode = app.exec_()
+        # temporary clean
+        os.system('killall dynamips-0.2.7-RC3-x86.bin')
+        sys.exit(exitcode)
 
 if __name__ == "__main__":
     Main(sys.argv)

@@ -23,8 +23,7 @@ import __main__
 
 class Inspector(QtGui.QDialog, Ui_FormInspector):
     ''' Inspector class
-    
-        Get access to an IOS console
+
         Settings of the IOS
     '''
 
@@ -42,142 +41,10 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         # Connect IOS configuration buttons to slots
         self.connect(self.buttonBoxIOSConfig, QtCore.SIGNAL('clicked(QAbstractButton *)'), self.slotSaveIOSConfig)
         self.connect(self.buttonBoxIOSConfig, QtCore.SIGNAL('rejected()'), self.slotRestoreIOSConfig)
-        
-        # Connect console buttons to slots
-        self.connect(self.pushButton_Start, QtCore.SIGNAL('clicked()'), self.slotStart)
-        self.connect(self.pushButton_Shutdown, QtCore.SIGNAL('clicked()'), self.slotShutdown)
-
 
         # Connect IOS combobox to a slot
         self.connect(self.comboBoxIOS, QtCore.SIGNAL('currentIndexChanged(int)'), self.slotSelectedIOS)
 
-        # Old code kept for future purposes
-        #TODO: clean this code
-##        # temporary emplacement for the hypervisor
-##        self.proc = QtCore.QProcess(self)
-##        self.proc.setWorkingDirectory(QtCore.QString('/home/grossmj/Dynamips/'))
-##        QtCore.QObject.connect(self.proc, QtCore.SIGNAL('readyReadStandardOutput()'), self.slotStandardOutput)
-##        QtCore.QObject.connect(self.proc, QtCore.SIGNAL('error(QProcess::ProcessError)'), self.slotProcessError)
-##        self.proc.start('/home/grossmj/Dynamips/dynamips-0.2.7-RC1-x86.bin',  ['-H', '7200'])
-##        
-##        if self.proc.waitForStarted() == False:
-##            print 'Hypervisor not started !'
-##            return
-##        print 'Hypervisor started'
-
-##    def __del__(self):
-##    
-##        self.proc.close()
-
-##    def slotHypervisor(self):
-##
-##        self.telnet_hypervisor = telnetlib.Telnet('localhost', 7200)
-##        
-##        self.telnet_hypervisor.write("hypervisor version\r\n")
-##        self.telnet_hypervisor.write("hypervisor reset\r\n")
-##        self.telnet_hypervisor.write("hypervisor working_dir /tmp\r\n")
-##        
-##        self.telnet_hypervisor.write("c3600 create R1 0\r\n")
-##        self.telnet_hypervisor.write("c3600 set_chassis R1 3640\r\n")
-##        self.telnet_hypervisor.write("c3600 add_nm_binding R1 0 NM-1FE-TX\r\n")
-##
-##        self.telnet_hypervisor.write("vm set_con_tcp_port R1 2000\r\n")
-##        self.telnet_hypervisor.write("vm set_ram R1 128\r\n")
-##        self.telnet_hypervisor.write("vm set_disk0 R1 0\r\n")
-##        self.telnet_hypervisor.write("vm set_disk1 R1 0\r\n")
-##        self.telnet_hypervisor.write("vm set_idle_pc R1 0x60575b54\r\n")
-##        self.telnet_hypervisor.write("vm set_ios R1 /home/grossmj/Dynamips/c3640.bin\r\n")
-##        self.telnet_hypervisor.write("vm set_ram_mmap R1 1\r\n")
-##
-##        # "nio create_udp nio_udp0 10000 127.0.0.1 10001"
-##        # "nio create_udp nio_udp1 10001 127.0.0.1 10000"
-##        # "c3600 add_nio_binding R1 0 0 nio_udp0"
-##        # "c3600 add_nio_binding R2 0 0 nio_udp1"
-##
-##        # start the instance
-##        self.telnet_hypervisor.write("c3600 start R1\r\n")
-##        self.pushButton_Hypervisor.setEnabled(False)
-        
-##    # check the hypervisor output
-##    def slotStandardOutput(self):
-##        
-##        print str(self.proc.readAllStandardOutput())
-##    
-##    # check for any error
-##    def slotProcessError(self):
-##    
-##        print 'HYPERVISOR ERROR !'
-     
-    def slotStart(self):
-        '''Create a new IOS instance and connect a console to it'''
-
-        # Is there a connection to a hypervisor ? (temporary code)
-        if self.main.hypervisor == None:
-            print 'No hypervisor !'
-            return
-        
-        # Get the currently selected node
-        node = self.main.nodes[self.nodeid]
-        
-        # Start a new IOS instance
-        node.startIOS()
-        
-        self.textEditConsole.clear()
-        # Tell the console how to write key events on the telnet connection
-        self.textEditConsole.write = node.telnet.write
-        
-        # Get a telnet connection to the IOS
-        if node.connect() == False:
-            QtGui.QMessageBox.critical(self, 'Connection',  msg)
-            return
-            
-        # Notify us when data are available to read on the console socket
-        self.notifier = QtCore.QSocketNotifier(node.telnet.fileno(), QtCore.QSocketNotifier.Read)
-        self.connect(self.notifier, QtCore.SIGNAL("activated(int)"), self.slotReadAllOutput)
-        
-        self.textEditConsole.isConnected = True
-        self.pushButton_Start.setEnabled (False)
-        self.pushButton_Shutdown.setEnabled (True)
-        self.labelStatus.setPixmap(QtGui.QPixmap('../svg/icons/led_green.svg'))
-        
-    def slotShutdown(self, close = True):
-        '''Disconnect and shutdown a IOS instance'''
-    
-        # Is there a connection to a hypervisor ? (temporary code)
-        if self.main.hypervisor == None:
-            print 'No hypervisor !'
-            return
-
-        self.textEditConsole.isConnected = False
-        
-        # Get the currently selected node
-        node = self.main.nodes[self.nodeid]
-        
-        # Disconnect the telnet console
-        if close:
-            node.disconnect()
-            
-        # Stop the IOS instance
-        node.stopIOS()
-        
-        self.pushButton_Start.setEnabled (True)
-        self.pushButton_Shutdown.setEnabled(False)
-        self.labelStatus.setPixmap(QtGui.QPixmap('../svg/icons/led_red.svg'))
-        self.notifier.setEnabled(False)
-
-    def slotReadAllOutput(self):
-    
-        try:
-            # Get the currently selected node
-            node = self.main.nodes[self.nodeid]
-            
-            # Read data on the socket and display them on the console
-            self.textEditConsole.slotStandardOutput(node.telnet.read_very_eager())
-
-        except EOFError, msg:
-            QtGui.QMessageBox.critical(self, 'Disconnection',  unicode(msg))
-            self.slotShutdown(close = False)
-            
     def slotSelectedIOS(self, index):
 
         #FIXME: a bug adds more than once the network module list
@@ -189,29 +56,9 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
     def loadNodeInfos(self, id):
         '''Called when a node is selected'''
 
-        # Prevent data being sent to the console from another node
-        if self.nodeid != None and id != self.nodeid:
-            self.textEditConsole.isConnected = False
-            self.notifier.setEnabled(False)
-        
         # Set the currently selected node ID
         self.nodeid = id
-        self.textEditConsole.clear()
         node = self.main.nodes[self.nodeid]
-
-        # Connect the node telnet socket (if connected) to the console
-        if node.isConnected():
-            self.textEditConsole.write = node.telnet.write
-            self.textEditConsole.isConnected = True
-            self.notifier = QtCore.QSocketNotifier(node.telnet.fileno(), QtCore.QSocketNotifier.Read)
-            self.connect(self.notifier, QtCore.SIGNAL("activated(int)"), self.slotReadAllOutput)
-            self.pushButton_Start.setEnabled (False)
-            self.pushButton_Shutdown.setEnabled (True)
-            self.labelStatus.setPixmap(QtGui.QPixmap('../svg/icons/led_green.svg'))
-        else:
-            self.pushButton_Start.setEnabled (True)
-            self.pushButton_Shutdown.setEnabled (False)
-            self.labelStatus.setPixmap(QtGui.QPixmap('../svg/icons/led_red.svg'))
 
         # Show IOS recorded images
         self.comboBoxIOS.addItems(self.main.ios_images.keys())

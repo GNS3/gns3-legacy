@@ -17,11 +17,11 @@
 # Contact: developers@gns3.net
 #
 
+import os, time
 from PyQt4 import QtCore, QtGui, QtSvg
 from Edge import *
 from Inspector import Inspector
 import Dynamips_lib as lib
-import telnetlib
 import socket
 import sys
 import __main__
@@ -73,9 +73,6 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self.tmpif = None
         self.abort = False
         self.neighborList = []
-        self.__telnet = telnetlib.Telnet()
-        self.console_host = None
-        self.console_port = None
         self.ios = None
 
         # Create an ID
@@ -103,10 +100,6 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         
         self.InspectorInstance = Inspector()
         self.InspectorInstance.loadNodeInfos(self.id)
-
-        #FIXME: don't need this later
-#        if self.main.hypervisor != None:
-#            self.configIOS()
         
     def move(self, xPos, yPos):
     
@@ -181,6 +174,14 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
 
     def mousePressEvent(self, event):
    
+       if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == False:
+            self.menu = QtGui.QMenu()
+            self.menu.addAction('console')
+            self.menu.addAction('start')
+            self.menu.addAction('stop')
+            self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.simAction) 
+            self.menu.exec_(QtGui.QCursor.pos())
+   
        if self.main.linkEnabled == False :
            QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
            return
@@ -201,20 +202,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
            self.main.win.setCheckedLinkButton(False)
            self.main.win.AddEdge()
        QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
-       
-#       if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == False:
-#            self.menu = QtGui.QMenu()
-#            self.menu.addAction('telnet')
-#            self.menu.addAction('start')
-#            self.menu.addAction('stop')
-#            self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.simAction) 
-#            self.menu.exec_(QtGui.QCursor.pos())
-#        self.menu = QtGui.QMenu()
-#        self.menu.addAction('f0/0')
-#        self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.selectedInterface) 
-#        self.menu.exec_(QtGui.QCursor.pos())
-#        QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
-#        
+        
     def selectedInterface(self, action):
         
         self.abort = False
@@ -243,7 +231,19 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     def simAction(self, action):
         
         action = action.text()
-        if action == 'start':
+        if action == 'console':
+#        port = str(__main__.devices[device].console)
+#        host = str(__main__.devices[device].dynamips.host)
+
+#    if telnetstring and not __main__.notelnet:
+#        telnetstring = telnetstring.replace('%h', host)
+#        telnetstring = telnetstring.replace('%p', port)
+#        telnetstring = telnetstring.replace('%d', device)
+
+            os.system("xterm -e telnet localhost " + str(self.ios.console) + " > /dev/null 2>&1 &")
+            time.sleep(0.5)
+            
+        elif action == 'start':
             self.startIOS()
         elif action == 'stop':
             self.stopIOS()
@@ -266,6 +266,13 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
 
         print 'Set IOS config for node ' + str(self.id)
         if self.main.hypervisor == None:
+            try:
+                self.main.hypervisor = lib.Dynamips('localhost', 7200)
+                self.main.hypervisor.reset()
+                self.main.hypervisor.workingdir = '/tmp'
+            except lib.DynamipsError, msg:
+                print "Dynamips error: %s" % msg
+                self.main.hypervisor = None
             sys.stderr.write("No hypervisor !\n")
             return
         self.ios = lib.C3600(self.main.hypervisor, chassis = '3640', name = 'R' + str(self.id))
@@ -347,39 +354,19 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     
         if self.ios != None:
             self.ios.delete()
-    
-    def __settelnet(self, telnet):
-        """ Set telnet object
-            telnet: telnet object
-        """
-
-        self.__console = console
-    
-    def __gettelnet(self):
-        """ Returns telnet object
-        """
-        return self.__telnet
-        
-    telnet = property(__gettelnet, __settelnet, doc = 'The telnet connection')
-    
-    def connect(self):
-
-        try:
-            self.__telnet.open('localhost', self.ios.console)
-        except socket.error, (value, msg):
-            return False
-        self.console_host = 'localhost'
-        self.console_port = self.ios.console
-        return True
-        
-    def disconnect(self):
-
-        self.__telnet.close()
-        self.console_host = None
-        self.console_port = None
-        
-    def isConnected(self):
-    
-        if self.console_host and self.console_port:
-            return True
-        return False
+   
+#    def connect(self):
+#
+#        self.console_host = 'localhost'
+#        self.console_port = self.ios.console
+#        
+#    def disconnect(self):
+#
+#        self.console_host = None
+#        self.console_port = None
+#        
+#    def isConnected(self):
+#    
+#        if self.console_host and self.console_port:
+#            return True
+#        return False
