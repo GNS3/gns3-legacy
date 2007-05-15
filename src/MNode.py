@@ -70,6 +70,8 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self.edgeList = []
         self.iosConfig = {}
         self.interfaces = {}
+        self.tmpif = None
+        self.abort = False
         self.neighborList = []
         self.__telnet = telnetlib.Telnet()
         self.console_host = None
@@ -174,38 +176,31 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         for module in self.iosConfig['slots']:
             if module != '':
                 return (True)
+        QtGui.QMessageBox.critical(self.main.win, 'Connection',  'No interface available')
         return (False)
 
     def mousePressEvent(self, event):
-       '''We recover all items of the QGraphicsView'''
    
        if self.main.linkEnabled == False :
            QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
            return
-       print "------------------- START -----------------------"    
        
-       print "countClick", self.main.countClick  
-#       ''' Callback of original QGraphicsView object. So we can move the MNode on the scene'''
-       if (self.main.countClick == 0):
-           if not self.checkIfmodule():
-               return
+       if (self.main.countClick == 0) and self.checkIfmodule():
            self.menuInterface()
-           self.main.countClick = 1
-           self.main.TabLinkMNode.append(self)
-       if (self.main.countClick == 1 and cmp(self.main.TabLinkMNode[0], self)):
-           if not self.checkIfmodule():
-               return
+           if self.abort == False:
+               self.main.countClick = 1
+               self.main.TabLinkMNode.append(self)
+       if (self.main.countClick == 1 and cmp(self.main.TabLinkMNode[0], self) and self.checkIfmodule()):
            self.menuInterface()
-           self.main.TabLinkMNode.append(self)
+           if self.abort == False:    
+               self.main.TabLinkMNode.append(self)
+               ed = Edge(self.main.TabLinkMNode[0], self.main.TabLinkMNode[1], self._QGraphicsScene)
+               self._QGraphicsScene.update(ed.boundingRect())
            self.main.countClick = 0
-           ed = Edge(self.main.TabLinkMNode[0], self.main.TabLinkMNode[1], self._QGraphicsScene)
            self.main.TabLinkMNode= []
-           self._QGraphicsScene.update(ed.boundingRect())
-           '''if you want to make link one by one else comment lines'''
            self.main.win.setCheckedLinkButton(False)
            self.main.win.AddEdge()
        QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
-       print "------------------- STOP -----------------------"
        
 #       if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == False:
 #            self.menu = QtGui.QMenu()
@@ -222,13 +217,28 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
 #        
     def selectedInterface(self, action):
         
-        interface = action.text()
+        self.abort = False
+        interface = str(action.text())
         print interface
         if (self.main.countClick == 0):
-            self.interfaces[interface] = []       
+            self.tmpif = interface
+            if self.interfaces.has_key(interface):
+                QtGui.QMessageBox.critical(self.main.win, 'Connection',  'Already connected interface')
+                self.abort = True
+                return
         elif (self.main.countClick == 1 and cmp(self.main.TabLinkMNode[0], self)):
-            pass
-            #self.main.TabLinkMNode[1]
+            if self.interfaces.has_key(interface):
+                QtGui.QMessageBox.critical(self.main.win, 'Connection',  'Already connected interface')
+                self.abort = True
+                return
+            srcif = self.main.TabLinkMNode[0].tmpif
+            srcid = self.main.TabLinkMNode[0].id
+            if srcif[0] != interface[0]:
+                QtGui.QMessageBox.critical(self.main.win, 'Connection',  'Interfaces types mismatch !')
+                self.abort = True
+                return
+            self.interfaces[interface] = [srcid, srcif]
+            self.main.TabLinkMNode[0].interfaces[srcif] = [self.id, interface]
 
     def simAction(self, action):
         
@@ -239,17 +249,13 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.stopIOS()
 
     def setName(self, name):
+        
         self.mNodeName = name
     
     def getName(self):
-
-        print self.mNodeName;
+        
         return self.mNodeName
 
-    def getIdSvg(self):
-        
-        #return id(self.svg)
-        return self.id   
                 
 ################### IOS stuff ###############################
     
@@ -314,16 +320,21 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         # localport, remoteserver, remoteadapter, remoteport
         # self.ios.slot[0].connect(0, self.main.hypervisor, esw.slot[1], 0)
 
-        for neighbor in self.neighborList:
-            node = self.main.nodes[neighbor]
-            if node.ios != None:
-                try:
-                    #TODO: slot dynamic assigment
-                    if self.ios.slot[0] != None and self.ios.slot[0].connected(0) == False:
-                        lib.validate_connect(self.ios.slot[0], node.ios.slot[0])
-                        self.ios.slot[0].connect(0, self.main.hypervisor, node.ios.slot[0], 0)
-                except lib.DynamipsError, msg:
-                    print msg
+        for interface in self.interfaces.keys():
+            connection = self.interfaces[interface]
+            source_slot = int(interface[1])
+            source_port = int(interface[3])
+            dest_nodeid = int(connection[0])
+            dest_slot = int(connection[1][1])
+            dest_port = int(connection[1][3])
+            node = self.main.nodes[dest_nodeid]
+            assert(node != None)
+            try:
+                if self.ios.slot[source_slot] != None and self.ios.slot[source_slot].connected(source_port) == False:
+                    lib.validate_connect(self.ios.slot[source_slot], node.ios.slot[dest_slot])
+                    self.ios.slot[source_slot].connect(source_port, self.main.hypervisor, node.ios.slot[dest_slot], dest_port)
+            except lib.DynamipsError, msg:
+                print msg
 
         print self.ios.start()
         
