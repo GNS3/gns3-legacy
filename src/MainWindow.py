@@ -133,7 +133,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.graphicsView.setCursor(QtCore.Qt.ArrowCursor)
         else:
             self.action_Add_link.setText('Cancel')
-            self.action_Add_link.setIcon(QtGui.QIcon('../svg/icons/stop.svg'))
+            self.action_Add_link.setIcon(QtGui.QIcon('../svg/icons/cancel.svg'))
             self.main.linkEnabled = True
             self.graphicsView.setCursor(QtCore.Qt.CrossCursor)
         

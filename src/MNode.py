@@ -148,6 +148,10 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.addInterfaceToMenu(menu, slotnb, module)           
             slotnb += 1        
 
+        #FIXME: only to test links whitout the emulator
+        menu.addAction(QtGui.QIcon('../svg/icons/led_red.svg'), 's0/0')
+        menu.addAction(QtGui.QIcon('../svg/icons/led_red.svg'), 's0/1')
+                       
         menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.selectedInterface) 
         menu.exec_(QtGui.QCursor.pos())
     
@@ -159,13 +163,15 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         if module in ADAPTERS:
             (interfaces, abrv) = ADAPTERS[module][1:3]
             for interface in range(interfaces):
-                menu.addAction(abrv + str(slotnb) + '/' + str(interface)) 
+                menu.addAction(QtGui.QIcon('../svg/icons/led_red.svg'), abrv + str(slotnb) + '/' + str(interface)) 
         else:
             sys.stderr.write(module + " module not found !\n")
             return
     
     def checkIfmodule(self):
         
+        #FIXME: return True only to test links whitout the emulator
+        return (True)
         for module in self.iosConfig['slots']:
             if module != '':
                 return (True)
@@ -176,9 +182,9 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
    
        if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == False:
             self.menu = QtGui.QMenu()
-            self.menu.addAction('console')
-            self.menu.addAction('start')
-            self.menu.addAction('stop')
+            self.menu.addAction(QtGui.QIcon('../svg/icons/console.svg'), 'console')
+            self.menu.addAction(QtGui.QIcon('../svg/icons/play.svg'), 'start')
+            self.menu.addAction(QtGui.QIcon('../svg/icons/stop.svg'), 'stop')
             self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.simAction) 
             self.menu.exec_(QtGui.QCursor.pos())
    
@@ -199,15 +205,14 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
                self._QGraphicsScene.update(ed.boundingRect())
            self.main.countClick = 0
            self.main.TabLinkMNode= []
-           self.main.win.setCheckedLinkButton(False)
-           self.main.win.AddEdge()
+           #self.main.win.setCheckedLinkButton(False)
+           #self.main.win.AddEdge()
        QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
         
     def selectedInterface(self, action):
         
         self.abort = False
         interface = str(action.text())
-        print interface
         if (self.main.countClick == 0):
             self.tmpif = interface
             if self.interfaces.has_key(interface):
