@@ -419,13 +419,23 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             w = rect.width()
             h = rect.height()
             painter.setPen(QtGui.QPen(QtCore.Qt.red, 2, QtCore.Qt.DashLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
+            
+            '''                  1st line                    '''
+            '''        (x,y) ----------------- (x + w, y)    '''
+            '''             |                |               '''
+            '''  4th Line   |                | 2nd Line      ''' 
+            '''             |                |               '''
+            '''             |                |               '''
+            '''    (x,y + h)|________________|(x + w, y + h) '''
+            '''                   3rd Line                   '''
+            
             ''' first line '''
             painter.drawLine(x, y, x + w, y)
             ''' Second line '''
             painter.drawLine(x + w, y, x + w, y + h)
             ''' Third line '''
             painter.drawLine(x + w, y + h, x, y + h)
-            ''' fourst line '''
+            ''' fourth line '''
             painter.drawLine(x, y + h, x, y)
         QtSvg.QGraphicsSvgItem.paint(self,painter, option, widget)
    
