@@ -23,8 +23,10 @@ from PyQt4 import QtCore, QtGui
 from Ui_IOSDialog import *
 import __main__
 
-#TODO: add more platforms
-platforms = {'3600': ['3620', '3640', '3660'],
+PLATFORMS = {'2600': ['2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM', '2691'],
+             '3600': ['3620', '3640', '3660'],
+             '3700': ['3725', '3745'],
+             '7200': ['7201', '7202', '7204', '7206']
              }
 
 class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
@@ -51,8 +53,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         self.connect(self.checkBoxIntegratedHypervisor, QtCore.SIGNAL('stateChanged(int)'), self.slotCheckBoxIntegratedHypervisor)
 
         # insert existing platforms
-        global platforms
-        self.comboBoxPlatform.insertItems(0, platforms.keys())
+        self.comboBoxPlatform.insertItems(0, PLATFORMS.keys())
 
         self._reloadInfos()
   
@@ -124,15 +125,14 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             self.lineEditIOSImage.setText(path)
             platform = self._getIOSplatform(os.path.basename(path))
             if (platform != None):
-                global platforms
-                for platformname in platforms.keys():
+                for platformname in PLATFORMS.keys():
                     # retrieve all models for this platform
-                    for model in platforms[platformname]:
+                    for model in PLATFORMS[platformname]:
                         if platform == model:
                             index = self.comboBoxPlatform.findText(platformname)
                             if index != -1:
                                 self.comboBoxPlatform.setCurrentIndex(index)
-                            self.comboBoxChassis.insertItems(0, platforms[platformname])
+                            self.comboBoxChassis.insertItems(0, PLATFORMS[platformname])
                             index = self.comboBoxChassis.findText(model)
                             if index != -1:
                                 self.comboBoxChassis.setCurrentIndex(index)

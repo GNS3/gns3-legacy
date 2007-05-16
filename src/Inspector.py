@@ -21,6 +21,12 @@ from PyQt4 import QtCore, QtGui
 from Ui_Inspector import *
 import __main__
 
+GENERIC_2600_NMS = ('NM-1FE-TX', 'NM-1E', 'NM-4E', 'NM-16ESW')
+GENERIC_3600_NMS = ('NM-1FE-TX', 'NM-1E', 'NM-4E', 'NM-16ESW', 'NM-4T')
+GENERIC_3700_NMS = ('NM-1FE-TX', 'NM-4T', 'NM-16ESW')
+GENERIC_7200_PAS = ('PA-A1', 'PA-FE-TX', 'PA-2FE-TX', 'PA-GE', 'PA-4T+', 'PA-8T', 'PA-4E', 'PA-8E', 'PA-POS-OC3')
+IO_7200 = ('C7200-IO-FE', 'C7200-IO-2FE', 'C7200-IO-GE-E')
+
 class Inspector(QtGui.QDialog, Ui_FormInspector):
     """ Inspector class
         IOS Configuration
@@ -29,13 +35,15 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
     # get access to globals
     main = __main__
     
-    def __init__(self):
+    def __init__(self, id):
+        """ id: integer (node id)
+        """
 
         QtGui.QDialog.__init__(self)
         self.setupUi(self)
         
         # node ID currently used
-        self.nodeid = None
+        self.nodeid = id
         
         # connect IOS configuration buttons to slots
         self.connect(self.buttonBoxIOSConfig, QtCore.SIGNAL('clicked(QAbstractButton *)'), self.slotSaveIOSConfig)
@@ -59,29 +67,34 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
             self.comboBoxSlot6.clear()
             if self.main.ios_images[imagename]['platform'] == '3600':
                 self.setDefaults3600Platform(imagename)
-
-    def loadNodeInfos(self, id):
+            node = self.main.nodes[self.nodeid]
+            self.comboBoxSlot0.setCurrentIndex(self.comboBoxSlot0.findText(node.iosConfig['slots'][0]))
+            self.comboBoxSlot1.setCurrentIndex(self.comboBoxSlot0.findText(node.iosConfig['slots'][1]))
+            self.comboBoxSlot2.setCurrentIndex(self.comboBoxSlot0.findText(node.iosConfig['slots'][2]))
+            self.comboBoxSlot3.setCurrentIndex(self.comboBoxSlot0.findText(node.iosConfig['slots'][3]))
+            self.comboBoxSlot4.setCurrentIndex(self.comboBoxSlot0.findText(node.iosConfig['slots'][4]))
+            self.comboBoxSlot5.setCurrentIndex(self.comboBoxSlot0.findText(node.iosConfig['slots'][5]))
+            self.comboBoxSlot6.setCurrentIndex(self.comboBoxSlot0.findText(node.iosConfig['slots'][6]))
+            
+    def loadNodeInfos(self):
         """ Called when the inspector is open
             Load all node settings
-            id: integer
         """
-
-        # set the currently selected node ID
-        self.nodeid = id
-        node = self.main.nodes[self.nodeid]
 
         # Show IOS recorded images
         self.comboBoxIOS.clear()
         self.comboBoxIOS.addItems(self.main.ios_images.keys())
 
-        self.setDefaults()
-        self.saveIOSConfig()
+#        if node.iosConfig == {}:
+#             self.setDefaults()
+#             self.saveIOSConfig()
 
     def setDefaults(self):
         """ IOS default settings
         """
     
         #FIXME: do we really need this ?
+        print 'DEFAULTS'
         node = self.main.nodes[self.nodeid]
         self.comboBoxIOS.clear()
         self.lineEditConsolePort.clear()
@@ -125,7 +138,7 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
     def saveIOSConfig(self):
         """ Save IOS settings
         """
-    
+
         node = self.main.nodes[self.nodeid]
         node.iosConfig['iosimage'] = str(self.comboBoxIOS.currentText())
         node.iosConfig['consoleport'] = str(self.lineEditConsolePort.text())
@@ -142,7 +155,6 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         node.iosConfig['confreg'] = str(self.lineEditConfreg.text())
         node.iosConfig['execarea'] = self.spinBoxExecArea.value()
         node.iosConfig['iomem'] = self.spinBoxIomem.value()
-        
         node.iosConfig['slots'] = []
         node.iosConfig['slots'].append(str(self.comboBoxSlot0.currentText()))
         node.iosConfig['slots'].append(str(self.comboBoxSlot1.currentText()))
@@ -164,6 +176,7 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         """ Restore the IOS settings
         """
     
+        print 'RESTORE'
         node = self.main.nodes[self.nodeid]
         if node.iosConfig == {}:
             return

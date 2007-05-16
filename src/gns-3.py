@@ -24,7 +24,6 @@ import translations
 from PyQt4 import QtCore, QtGui
 from MainWindow import MainWindow
 import Dynamips_lib as lib
-from LocalHypervisor import *
 
 # globals
 baseid = 0                # Base to create IDs
@@ -67,17 +66,6 @@ class Main:
         win.connect(win.action_About, QtCore.SIGNAL('activated()'), win.About)
         win.connect(win.action_Add_link, QtCore.SIGNAL('activated()'), win.AddEdge)
         win.connect(win.action_SwitchMode, QtCore.SIGNAL('activated()'), win.SwitchMode) 
-        
-        # start a local hypervisor
-        local = LocalHypervisor()
-        try:
-            hypervisor = lib.Dynamips('localhost', 7200)
-            hypervisor.reset()
-            hypervisor.workingdir = '/tmp'
-        except lib.DynamipsError, msg:
-            print "Dynamips error: %s" % msg
-            hypervisor = None
-            
         win.show()
         sys.exit(app.exec_())
 

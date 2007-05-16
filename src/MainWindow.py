@@ -27,6 +27,7 @@ import layout
 import svg_resources_rc
 from Edge import *
 from MNode import *
+from LocalHypervisor import *
 import __main__
 
 # Temporary emplacement for TreeItem
@@ -64,8 +65,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         QtGui.QMainWindow.__init__(self)
         self.setupUi(self)
         self.createScene()
+        
         # expand items from the tree
         self.treeWidget.expandItem(self.treeWidget.topLevelItem(0))
+        
+        # start a local hypervisor
+        local = LocalHypervisor()
         
     def createScene(self):
         """ Create the scene
