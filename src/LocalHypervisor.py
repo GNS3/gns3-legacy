@@ -22,24 +22,22 @@ import time
 import __main__
 
 class LocalHypervisor():
-    ''' LocalHypervisor class
-
-        Control the local hypervisor program
-    '''
+    """ LocalHypervisor class
+        Start the local hypervisor program
+    """
     
-    # Get access to globals
+    # get access to globals
     main = __main__
 
     def __init__(self):
     
         self.proc = QtCore.QProcess(self.main.win)
-        self.proc.setWorkingDirectory(QtCore.QString('/tmp')) # change this ?
         QtCore.QObject.connect(self.proc, QtCore.SIGNAL('readyReadStandardOutput()'), self.slotStandardOutput)
         QtCore.QObject.connect(self.proc, QtCore.SIGNAL('error(QProcess::ProcessError)'), self.slotProcessError)
         self.proc.start('/home/grossmj/workspace/gns3/dynamips/dynamips-0.2.7-RC3-x86.bin',  ['-H', '7200'])
-        time.sleep(0.5)
+        #time.sleep(0.5)
         
-        if self.proc.waitForStarted() == False:
+        if self.proc.waitForStarted(5000) == False:
             print 'Local hypervisor not started !'
             return
         print 'Local hypervisor started'
@@ -49,9 +47,11 @@ class LocalHypervisor():
         self.proc.close()
 
     def slotStandardOutput(self):
+        """ Display the standard output of the process
+        """
 
         print str(self.proc.readAllStandardOutput())
     
     def slotProcessError(self):
-    
+
         print 'HYPERVISOR ERROR !'

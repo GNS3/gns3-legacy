@@ -22,12 +22,11 @@ from Ui_Inspector import *
 import __main__
 
 class Inspector(QtGui.QDialog, Ui_FormInspector):
-    ''' Inspector class
+    """ Inspector class
+        IOS Configuration
+    """
 
-        Settings of the IOS
-    '''
-
-    # Get access to globals
+    # get access to globals
     main = __main__
     
     def __init__(self):
@@ -35,43 +34,52 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         QtGui.QDialog.__init__(self)
         self.setupUi(self)
         
-        # Node ID currently used
+        # node ID currently used
         self.nodeid = None
         
-        # Connect IOS configuration buttons to slots
+        # connect IOS configuration buttons to slots
         self.connect(self.buttonBoxIOSConfig, QtCore.SIGNAL('clicked(QAbstractButton *)'), self.slotSaveIOSConfig)
-        self.connect(self.buttonBoxIOSConfig, QtCore.SIGNAL('rejected()'), self.slotRestoreIOSConfig)
+        #self.connect(self.buttonBoxIOSConfig, QtCore.SIGNAL('rejected()'), self.slotRestoreIOSConfig)
 
-        # Connect IOS combobox to a slot
+        # connect IOS combobox to a slot
         self.connect(self.comboBoxIOS, QtCore.SIGNAL('currentIndexChanged(int)'), self.slotSelectedIOS)
 
     def slotSelectedIOS(self, index):
+        """ Add network modules / port adapters to combo boxes
+        """
 
-        #FIXME: a bug adds more than once the network module list
         imagename = str(self.comboBoxIOS.currentText())
         if imagename != '':
+            self.comboBoxSlot0.clear()
+            self.comboBoxSlot1.clear()
+            self.comboBoxSlot2.clear()
+            self.comboBoxSlot3.clear()
+            self.comboBoxSlot4.clear()
+            self.comboBoxSlot5.clear()
+            self.comboBoxSlot6.clear()
             if self.main.ios_images[imagename]['platform'] == '3600':
                 self.setDefaults3600Platform(imagename)
 
     def loadNodeInfos(self, id):
-        '''Called when a node is selected'''
+        """ Called when the inspector is open
+            Load all node settings
+            id: integer
+        """
 
-        # Set the currently selected node ID
+        # set the currently selected node ID
         self.nodeid = id
         node = self.main.nodes[self.nodeid]
 
         # Show IOS recorded images
+        self.comboBoxIOS.clear()
         self.comboBoxIOS.addItems(self.main.ios_images.keys())
-        
-        # If the IOS config is not empty, restore it
-        if node.iosConfig != {}:
-            'RESTORE !!!'
-            self.slotRestoreIOSConfig()
-        else:
-            self.setDefaults()
-            self.saveIOSConfig()
+
+        self.setDefaults()
+        self.saveIOSConfig()
 
     def setDefaults(self):
+        """ IOS default settings
+        """
     
         #FIXME: do we really need this ?
         node = self.main.nodes[self.nodeid]
@@ -88,7 +96,11 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         self.spinBoxExecArea.setValue(64)
         self.spinBoxIomem.setValue(5)
         
+    #TODO: a more generic way to do plaform network modules/adapters
     def setDefaults3600Platform(self, imagename):
+        """ 3600 platform network modules
+            imagename: string
+        """
         
         network_modules = ['', 'NM-1E', 'NM-4E', 'NM-1FE-TX', 'NM-4T']
 
@@ -111,6 +123,8 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
             self.comboBoxSlot6.addItems(network_modules)
                 
     def saveIOSConfig(self):
+        """ Save IOS settings
+        """
     
         node = self.main.nodes[self.nodeid]
         node.iosConfig['iosimage'] = str(self.comboBoxIOS.currentText())
@@ -139,11 +153,16 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         node.iosConfig['slots'].append(str(self.comboBoxSlot6.currentText()))
 
     def slotSaveIOSConfig(self, button):
+        """ Launch the ios save
+            button: QtGui.QAbstractButton
+        """
     
         if self.buttonBoxIOSConfig.buttonRole(button) == QtGui.QDialogButtonBox.ApplyRole:
             self.saveIOSConfig()
 
     def slotRestoreIOSConfig(self):
+        """ Restore the IOS settings
+        """
     
         node = self.main.nodes[self.nodeid]
         if node.iosConfig == {}:

@@ -53,12 +53,12 @@ ADAPTERS = {
 }
 
 class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
-    '''MNode for QGraphicsScene'''
+    """ MNode class
+        Node item for the scene
+    """
 
-    # Get access to globals
+    # get access to globals
     main = __main__
-    #id = None
-    #edgeList = []
     mNodeName = None
     InspectorInstance = None
     svg = None
@@ -66,6 +66,11 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     _MNodeSelected = None
         
     def __init__(self, svgfile, QGraphicsScene, xPos = None, yPos = None):
+        """ svgfile: string
+            QGraphicsScene: QtGui.QGraphicsScene instance
+            xPos: integer
+            yPos: integer
+        """
         
         svg = QtSvg.QGraphicsSvgItem.__init__(self, svgfile)
         self.edgeList = []
@@ -76,11 +81,11 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self.neighborList = []
         self.ios = None
 
-        # Create an ID
+        # create an ID
         self.id = self.main.baseid
         self.main.baseid += 1
         
-        # Record the object
+        # save the object
         self.main.nodes[self.id] = self
         
         # MNode settings
@@ -89,7 +94,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self.setFlag(self.ItemIsSelectable)
         self.setZValue(1)
         
-        # By default put the node to (0,0)
+        # by default put the node to (0,0)
         if xPos is None : xPos = 0
         if yPos is None : yPos = 0 
         self.setPos(xPos, yPos)
@@ -103,10 +108,17 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self.InspectorInstance.loadNodeInfos(self.id)
         
     def move(self, xPos, yPos):
-    
+        """ Set the node position on the scene
+            xPos: integer
+            yPos: integer
+        """
+
         self.setPos(xPos, yPos)
 
     def addEdge(self, edge):
+        """ Save the edge
+            edge: Edge instance
+        """
     
         if edge.dest.id != self.id:
             self.neighborList.append(edge.dest.id)
@@ -116,11 +128,16 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         edge.adjust()
     
     def ajustAllEdges(self):
+        """ Refresh edges drawing
+        """
     
         for edge in self.edgeList:
             edge.adjust()
-            
+
     def hasEdgeToNode(self, node_id):
+        """ Tell if we are connected to node_id
+            node_id: integer
+        """
     
         for edge in self.edgeList:
             if edge.dest.id == node_id or edge.source.id == node_id:
@@ -128,6 +145,10 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         return False
         
     def itemChange(self, change, value):
+        """ Notify custom items that some part of the item's state changes
+            change: enum QtGui.QGraphicsItem.GraphicsItemChange
+            value: QtCore.QVariant instance
+        """
     
         if change == self.ItemPositionChange:
             for edge in self.edgeList:
@@ -135,12 +156,16 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         return QtGui.QGraphicsItem.itemChange(self, change, value)
         
     def mouseDoubleClickEvent(self, event):
+        """ Show the inspector instance
+        """
 
         if (event.button() == QtCore.Qt.LeftButton):
             self.InspectorInstance.loadNodeInfos(self.id) 
             self.InspectorInstance.show()
 
     def menuInterface(self):
+        """ Show a contextual menu to choose an interface
+        """
         
         menu = QtGui.QMenu()
         
@@ -152,24 +177,38 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         #FIXME: only to test links whitout the emulator
         menu.addAction(QtGui.QIcon('../svg/icons/led_red.svg'), 's0/0')
         menu.addAction(QtGui.QIcon('../svg/icons/led_red.svg'), 's0/1')
-                       
+
+        # connect the menu
         menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.selectedInterface) 
         menu.exec_(QtGui.QCursor.pos())
     
     def addInterfaceToMenu(self, menu, slotnb, module):
+        """ Add entries to the menu
+        """
         
         if (module == ''):
             return
         
+        # add interfaces corresponding to the given module
         if module in ADAPTERS:
+            # get number of interfaces and the abbreviation letter
             (interfaces, abrv) = ADAPTERS[module][1:3]
+            # for each interface, add an entry to the menu
             for interface in range(interfaces):
-                menu.addAction(QtGui.QIcon('../svg/icons/led_red.svg'), abrv + str(slotnb) + '/' + str(interface)) 
+                name = abrv + str(slotnb) + '/' + str(interface)
+                if self.interfaces.has_key(name):
+                    # already connected interface
+                    menu.addAction(QtGui.QIcon('../svg/icons/led_green.svg'), name)
+                else:
+                    # disconnected interface
+                    menu.addAction(QtGui.QIcon('../svg/icons/led_red.svg'), name) 
         else:
             sys.stderr.write(module + " module not found !\n")
             return
     
     def checkIfmodule(self):
+        """ Check if at least one module is configured
+        """
         
         #FIXME: return True only to test links whitout the emulator
         return (True)
@@ -180,31 +219,39 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         return (False)
 
     def mousePressEvent(self, event):
-   
-       if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == False:
+        """ Call when the node is clicked
+        """
+
+        if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == False:
             self.menu = QtGui.QMenu()
             self.menu.addAction(QtGui.QIcon('../svg/icons/console.svg'), 'console')
             self.menu.addAction(QtGui.QIcon('../svg/icons/play.svg'), 'start')
             self.menu.addAction(QtGui.QIcon('../svg/icons/stop.svg'), 'stop')
-            self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.simAction) 
+            self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.simAction)
             self.menu.exec_(QtGui.QCursor.pos())
         
-       if self.main.linkEnabled == False :
+        if self.main.linkEnabled == False :
            QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
            return
-       if (self._MNodeSelected == True):
-           self._MNodeSelected = False
-           self.resetList()
-           QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
-           return 
-       if (self.main.countClick == 0) and self.checkIfmodule():
-           self.menuInterface()
-           if self.abort == False:
-               self.main.countClick = 1
-               self.main.TabLinkMNode.append(self)
-               self._MNodeSelected = True
-               self._QGraphicsScene.update()
-       elif (self.main.countClick == 1 and cmp(self.main.TabLinkMNode[0], self) and self.checkIfmodule()):
+
+        if (self._MNodeSelected == True):
+            # MNode is selected
+            self._MNodeSelected = False
+            self.resetList()
+            QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
+            return
+
+        if (self.main.countClick == 0) and self.checkIfmodule():
+            # source node is clicked
+            self.menuInterface()
+            if self.abort == False:
+                self.main.countClick = 1
+                self.main.TabLinkMNode.append(self)
+                self._MNodeSelected = True
+                self._QGraphicsScene.update()
+
+        elif (self.main.countClick == 1 and cmp(self.main.TabLinkMNode[0], self) and self.checkIfmodule()):
+            # destination node is clicked
            self.menuInterface()
            self._MNodeSelected = True
            self._QGraphicsScene.update()
@@ -213,11 +260,12 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
                ed = Edge(self.main.TabLinkMNode[0], self.main.TabLinkMNode[1], self._QGraphicsScene)
                self._QGraphicsScene.update(ed.boundingRect())
            self.resetList()
-           #self.main.win.setCheckedLinkButton(False)
-           #self.main.win.AddEdge()
-       QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
+        QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
     
     def resetList(self):
+        """ Reset
+        """
+
         i = 0
         while (i < len(self.main.TabLinkMNode)):
            self.main.TabLinkMNode[i].setMNodeSelected(False)
@@ -226,16 +274,24 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self.main.TabLinkMNode= []
         
     def selectedInterface(self, action):
+        """ Called when an interface is selected from the contextual menu
+            in conception mode
+            action: QtCore.QAction instance
+        """
         
         self.abort = False
         interface = str(action.text())
         if (self.main.countClick == 0):
+            # source node
             self.tmpif = interface
+            # check if already connected
             if self.interfaces.has_key(interface):
                 QtGui.QMessageBox.critical(self.main.win, 'Connection',  'Already connected interface')
                 self.abort = True
                 return
+            
         elif (self.main.countClick == 1 and cmp(self.main.TabLinkMNode[0], self)):
+            # destination node
             if self.interfaces.has_key(interface):
                 QtGui.QMessageBox.critical(self.main.win, 'Connection',  'Already connected interface')
                 self.abort = True
@@ -250,9 +306,13 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.main.TabLinkMNode[0].interfaces[srcif] = [self.id, interface]
 
     def simAction(self, action):
+        """ Called when an interface is selected from the contextual menu
+            in simulation mode
+            action: QtCore.QAction instance
+        """
         
         action = action.text()
-        if action == 'console':
+        if action == 'console' and self.ios.console != None:
 #        port = str(__main__.devices[device].console)
 #        host = str(__main__.devices[device].dynamips.host)
 
@@ -280,6 +340,8 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
 ################### IOS stuff ###############################
     
     def configIOS(self):
+        """ Create the IOS configuration on the hypervisor
+        """
 
         self.InspectorInstance.comboBoxIOS.addItems(self.main.ios_images.keys())
         self.InspectorInstance.saveIOSConfig()
@@ -291,11 +353,12 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         image_settings = self.main.ios_images[self.iosConfig['iosimage']]
         host = image_settings['hypervisor_host']
         port = image_settings['hypervisor_port']
+        working_directory = image_settings['working_directory']
         chassis = image_settings['chassis']
 
         if host == None and port == None and self.main.hypervisor == None:    
             try:
-                # Use the integrated hypervisor
+                # use the integrated hypervisor
                 self.main.hypervisor = lib.Dynamips('localhost', 7200)
                 self.main.hypervisor.reset()
                 self.main.hypervisor.workingdir = '/tmp'
@@ -307,10 +370,11 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         elif self.main.hypervisor != None:
             hypervisor = self.main.hypervisor
         else:
+            # use an external hypervisor
             try:
                 hypervisor = lib.Dynamips(host, port)
                 hypervisor.reset()
-                hypervisor.workingdir = '/tmp'
+                hypervisor.workingdir = working_directory
             except lib.DynamipsError, msg:
                 print "Dynamips error: %s" % msg
                 return
@@ -348,6 +412,10 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self.ios.idlepc = '0x60483ae4'
         
     def configSlot(self, slotnb, module):
+        """ Add an new module into a slot
+            slotnb: integer
+            module: string
+        """
         
         if (module == ''):
             return
@@ -358,6 +426,9 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             return
       
     def startIOS(self):
+        """ Create connections between nodes
+            Start the IOS instance
+        """
         
         # localport, remoteserver, remoteadapter, remoteport
         # self.ios.slot[0].connect(0, self.main.hypervisor, esw.slot[1], 0)
@@ -381,37 +452,31 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         print self.ios.start()
         
     def stopIOS(self):
+        """ Stop the IOS instance
+        """
     
         if self.ios != None:
             print self.ios.stop()
         
     def resetIOSConfig(self):
+        """ Delete the IOS instance
+        """
     
         if self.ios != None:
             self.ios.delete()
     
     def setMNodeSelected(self, b):
+
          self._MNodeSelected = b
      
     def getMNodeSelected(self):
+        
         return self._MNodeSelected  
-#    def connect(self):
-#
-#        self.console_host = 'localhost'
-#        self.console_port = self.ios.console
-#        
-#    def disconnect(self):
-#
-#        self.console_host = None
-#        self.console_port = None
-#        
-#    def isConnected(self):
-#    
-#        if self.console_host and self.console_port:
-#            return True
-#        return False
 
     def paint(self, painter, option, widget):
+        """ Draw a rectangle around the node
+        """
+        
         if self._MNodeSelected == True:
             rect = self.boundingRect()
             x = rect.x()
@@ -420,22 +485,22 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             h = rect.height()
             painter.setPen(QtGui.QPen(QtCore.Qt.red, 2, QtCore.Qt.DashLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
             
-            '''                  1st line                    '''
-            '''        (x,y) ----------------- (x + w, y)    '''
-            '''             |                |               '''
-            '''  4th Line   |                | 2nd Line      ''' 
-            '''             |                |               '''
-            '''             |                |               '''
-            '''    (x,y + h)|________________|(x + w, y + h) '''
-            '''                   3rd Line                   '''
+            #                  1st line
+            #        (x,y) ----------------- (x + w, y)
+            #             |                |
+            #  4th Line   |                | 2nd Line
+            #             |                |
+            #             |                |
+            #    (x,y + h)|________________|(x + w, y + h)
+            #                   3rd Line
             
-            ''' first line '''
+            # first line
             painter.drawLine(x, y, x + w, y)
-            ''' Second line '''
+            # Second line
             painter.drawLine(x + w, y, x + w, y + h)
-            ''' Third line '''
+            # Third line
             painter.drawLine(x + w, y + h, x, y + h)
-            ''' fourth line '''
+            # fourth line
             painter.drawLine(x, y + h, x, y)
         QtSvg.QGraphicsSvgItem.paint(self,painter, option, widget)
    
