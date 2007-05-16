@@ -21,43 +21,64 @@ from PyQt4 import QtCore, QtGui
 import math
 
 class Edge(QtGui.QGraphicsItem, QtGui.QGraphicsScene):
+    """ Edge class
+        Create a link between nodes
+    """
 
-   def __init__(self, sourceNode, destNode, scene):
+    def __init__(self, sourceNode, destNode, scene, fake = False):
+        """ sourceNode: MNode instance
+            destNode: MNode instance
+            scene: QtGui.QGraphicsScene instance
+            fake: boolean
+            
+            fake is for temporary adding an edge between 2 nodes
+        """
    
-       QtGui.QGraphicsItem.__init__(self)
-       
-       # Edge settings
-       self.setAcceptedMouseButtons(QtCore.Qt.NoButton)
-       #self.setZValue(2)
-       
-       self.pointSize = 10
-       self.source = sourceNode
-       self.dest = destNode
-       self.source.addEdge(self)
-       self.dest.addEdge(self)
-       self.adjust()
-       scene.addItem(self)
-       scene.update(self.sceneBoundingRect())
+        QtGui.QGraphicsItem.__init__(self)
+   
+        # edge settings
+        self.setAcceptedMouseButtons(QtCore.Qt.NoButton)
+        self.pointSize = 10
+        self.penWidth = 2.0
+        self.source = sourceNode
+        self.dest = destNode
+        if (fake == False):
+            self.source.addEdge(self)
+            self.dest.addEdge(self)
+        self.adjust()
+        scene.addItem(self)
+        scene.update(self.sceneBoundingRect())
 
-   def sourceNode(self):
-      
+    def sourceNode(self):
+        """ Returns the source node
+        """
+
         return self.source
 
-   def setSourceNode(self, node):
+    def setSourceNode(self, node):
+        """ Set the source node
+        """
         
         self.source = node
         self.adjust()
 
-   def destNode(self):
+    def destNode(self):
+        """ Returns the destination node
+        """
         
         return self.dest
 
-   def setDestNode(self, node):
+    def setDestNode(self, node):
+        """ Set the destination node
+        """
         
         self.dest = node
         self.adjust()
 
-   def adjust(self):
+    def adjust(self):
+        """ Compute the (new) source point and destination point
+            to draw a line
+        """
    
         if self.source is None or self.dest is None:
             return
@@ -65,44 +86,49 @@ class Edge(QtGui.QGraphicsItem, QtGui.QGraphicsScene):
         #FIXME: Correct the bug when you throw the node
         self.prepareGeometryChange()
         rectsource = self.source.boundingRect()
+        # compute the top middle and left middle of the bounding rectangle for the source
         srctopmiddle = rectsource.topRight() / 2
         srcleftmiddle = rectsource.bottomLeft() / 2
         rectdest= self.dest.boundingRect()
+        # compute the top middle and left middle of the bounding rectangle for the destination
         destopmiddle = rectdest.topRight() / 2
         desleftmiddle = rectdest.bottomLeft() / 2
       
-        line = QtCore.QLineF(self.mapFromItem(self.source, srctopmiddle.x(), srcleftmiddle.y()),
+        # create the line from the center source node to the center destination node
+        self.line = QtCore.QLineF(self.mapFromItem(self.source, srctopmiddle.x(), srcleftmiddle.y()),
                              self.mapFromItem(self.dest, destopmiddle.x(), desleftmiddle.y()))
-        length = line.length()
+        length = self.line.length()
         
         # shift on the line
         if length == 0:
            self.edgeOffset = QtCore.QPointF(0, 0)
         else:
-           self.edgeOffset = QtCore.QPointF((line.dx() * 40) / length, (line.dy() * 40) / length)
+           self.edgeOffset = QtCore.QPointF((self.line.dx() * 40) / length, (self.line.dy() * 40) / length)
 
-        self.sourcePoint = line.p1()# + edgeOffset
-        self.destPoint = line.p2()# - edgeOffset
+        self.sourcePoint = self.line.p1()
+        self.destPoint = self.line.p2()
 
-   def boundingRect(self):
+    def boundingRect(self):
+        """ Bounding rectangle to tell the scene what redraw
+        """
       
-      if self.source is None or self.dest is None:
-         return QtCore.QRectF()
+        if self.source is None or self.dest is None:
+            return QtCore.QRectF()
 
-      penWidth = 1.0
-      extra = (penWidth + self.pointSize) / 2.0
-      return QtCore.QRectF(self.sourcePoint, QtCore.QSizeF(self.destPoint.x() - self.sourcePoint.x(),
+        extra = (self.penWidth + self.pointSize) / 2.0
+        return QtCore.QRectF(self.sourcePoint, QtCore.QSizeF(self.destPoint.x() - self.sourcePoint.x(),
                                                            self.destPoint.y() - self.sourcePoint.y())).normalized().adjusted(-extra, -extra, extra, extra)
 
-   def paint(self, painter, option, widget):
+    def paint(self, painter, option, widget):
+        """ Draw the line
+        """
    
         if self.source is None or self.dest is None:
             return QtCore.QRectF()
 
-        line = QtCore.QLineF(self.sourcePoint, self.destPoint)
-        # Line style
-        painter.setPen(QtGui.QPen(QtCore.Qt.black, 2, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
-        painter.drawLine(line)
+        # line style and drawing
+        painter.setPen(QtGui.QPen(QtCore.Qt.black, self.penWidth, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
+        painter.drawLine(self.line)
 
 ##      if line.length() == 0:
 ##         angle = 0.0

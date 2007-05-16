@@ -22,8 +22,11 @@ from MNode import *
 import __main__
 
 class QTreeWidgetCustom(QtGui.QTreeWidget ):
+    """ QTreeWidgetCustom class
+        Custom QTreeWidgetCustom
+    """
     
-    # Get access to globals
+    # get access to globals
     main = __main__
 
     def __init__(self, parent):
@@ -31,7 +34,8 @@ class QTreeWidgetCustom(QtGui.QTreeWidget ):
         QtGui.QTreeWidget.__init__(self, parent)
             
     def drag_and_drop(self):
-        ''' Core of Drag and Drop '''        
+        """ Core of Drag and Drop
+        """       
 
         drag = QtGui.QDrag(self)
         mimedata = QtCore.QMimeData()
@@ -47,7 +51,8 @@ class QTreeWidgetCustom(QtGui.QTreeWidget ):
         drag.start(QtCore.Qt.MoveAction)
 
     def mouseMoveEvent(self, event):
-        ''' Drag an element '''
+        """ Drag an element
+        """
     
         if (self.main.conception_mode == False):
             return

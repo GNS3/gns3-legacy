@@ -1,0 +1,4 @@
+==== KNOWN BUGS ====
+
+- Can't add a new IOS image with the same path and not the same hypervisor
+

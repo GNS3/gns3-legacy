@@ -22,7 +22,9 @@ import string
 import re
 
 class NamFileSimulation:
-    '''Simulation with a Nam file'''
+    """ NamFileSimulation class
+        Simulation with a Nam file
+    """
     
     known_types = 'nl'
     simulation_beginning = None
@@ -41,7 +43,8 @@ class NamFileSimulation:
         self.mem.close()
     
     def next(self):
-        '''get the next event from the file'''
+        """ Get the next event from the file
+        """
     
         line = self.mem.readline()
         if not line: 
@@ -63,7 +66,8 @@ class NamFileSimulation:
         return {}
     
     def n(self, args):
-        '''Node argument parsing'''
+        """ Node argument parsing
+        """
 
         event = {'type': 'node'}
         known_options = 'saS'
@@ -79,7 +83,8 @@ class NamFileSimulation:
         return event
     
     def l(self, args):
-        '''Link argument parsing'''
+        """ Link argument parsing
+        """
     
         event = {'type': 'link'}
         known_options = 'sdSrD'

@@ -32,14 +32,16 @@ nodes = {}                # Node objects, indexed by the node ID
 ios_images = {}           # Registered Cisco IOS images
 hypervisor = None         # Hypervisor connection
 conception_mode = True    # If we are in conception mode
+win = None                # ref to the main window
 
+# links management
 linkEnabled = False
 TabLinkMNode = []
 countClick = 0
-win = None
 
 class Main:
-    ''' Entry point '''
+    """ Entry point
+    """
 
     def __init__(self, argv):
 
@@ -48,14 +50,14 @@ class Main:
 
         app = QtGui.QApplication(sys.argv)
 
-        # translation management
+        #TODO: translation management
         translator = QtCore.QTranslator(app)
         #print locale.getlocale()[0]
         #if translator.load(":/" + locale.getlocale()[0][:2]):
         #    app.installTranslator(translator)
         win = MainWindow()
         
-        # We start in conception mode
+        # we start in conception mode
         win.statusbar.showMessage('Conception Mode')
         
         # signal/slot for the menu
@@ -66,6 +68,7 @@ class Main:
         win.connect(win.action_Add_link, QtCore.SIGNAL('activated()'), win.AddEdge)
         win.connect(win.action_SwitchMode, QtCore.SIGNAL('activated()'), win.SwitchMode) 
         
+        # start a local hypervisor
         local = LocalHypervisor()
         try:
             hypervisor = lib.Dynamips('localhost', 7200)
