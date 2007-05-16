@@ -63,6 +63,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     InspectorInstance = None
     svg = None
     _QGraphicsScene = None
+    _MNodeSelected = None
         
     def __init__(self, svgfile, QGraphicsScene, xPos = None, yPos = None):
         
@@ -187,27 +188,42 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.menu.addAction(QtGui.QIcon('../svg/icons/stop.svg'), 'stop')
             self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.simAction) 
             self.menu.exec_(QtGui.QCursor.pos())
-   
+        
        if self.main.linkEnabled == False :
            QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
            return
-       
+       if (self._MNodeSelected == True):
+           self._MNodeSelected = False
+           self.resetList()
+           QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
+           return 
        if (self.main.countClick == 0) and self.checkIfmodule():
            self.menuInterface()
            if self.abort == False:
                self.main.countClick = 1
                self.main.TabLinkMNode.append(self)
-       if (self.main.countClick == 1 and cmp(self.main.TabLinkMNode[0], self) and self.checkIfmodule()):
+               self._MNodeSelected = True
+               self._QGraphicsScene.update()
+       elif (self.main.countClick == 1 and cmp(self.main.TabLinkMNode[0], self) and self.checkIfmodule()):
            self.menuInterface()
-           if self.abort == False:    
+           self._MNodeSelected = True
+           self._QGraphicsScene.update()
+           if self.abort == False:
                self.main.TabLinkMNode.append(self)
                ed = Edge(self.main.TabLinkMNode[0], self.main.TabLinkMNode[1], self._QGraphicsScene)
                self._QGraphicsScene.update(ed.boundingRect())
-           self.main.countClick = 0
-           self.main.TabLinkMNode= []
+           self.resetList()
            #self.main.win.setCheckedLinkButton(False)
            #self.main.win.AddEdge()
        QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
+    
+    def resetList(self):
+        i = 0
+        while (i < len(self.main.TabLinkMNode)):
+           self.main.TabLinkMNode[i].setMNodeSelected(False)
+           i = i + 1
+        self.main.countClick = 0
+        self.main.TabLinkMNode= []
         
     def selectedInterface(self, action):
         
@@ -373,7 +389,12 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     
         if self.ios != None:
             self.ios.delete()
-   
+    
+    def setMNodeSelected(self, b):
+         self._MNodeSelected = b
+     
+    def getMNodeSelected(self):
+        return self._MNodeSelected  
 #    def connect(self):
 #
 #        self.console_host = 'localhost'
@@ -389,3 +410,23 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
 #        if self.console_host and self.console_port:
 #            return True
 #        return False
+
+    def paint(self, painter, option, widget):
+        if self._MNodeSelected == True:
+            rect = self.boundingRect()
+            x = rect.x()
+            y = rect.y()
+            w = rect.width()
+            h = rect.height()
+            painter.setPen(QtGui.QPen(QtCore.Qt.red, 2, QtCore.Qt.DashLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
+            ''' first line '''
+            painter.drawLine(x, y, x + w, y)
+            ''' Second line '''
+            painter.drawLine(x + w, y, x + w, y + h)
+            ''' Third line '''
+            painter.drawLine(x + w, y + h, x, y + h)
+            ''' fourst line '''
+            painter.drawLine(x, y + h, x, y)
+        QtSvg.QGraphicsSvgItem.paint(self,painter, option, widget)
+   
+    

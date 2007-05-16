@@ -19,6 +19,7 @@
     
 from PyQt4 import QtCore, QtGui
 from MNode import *
+from Finder.Finder_items import item
 import __main__
 
 class QTreeWidgetCustom(QtGui.QTreeWidget ):
