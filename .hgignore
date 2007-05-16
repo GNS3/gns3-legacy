@@ -1,5 +1,6 @@
 syntax: glob
 *~
+.settings/*
 src/*.pyc
 forms/*.pyc
 docs/*
