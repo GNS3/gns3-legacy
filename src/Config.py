@@ -19,6 +19,7 @@
 
 from PyQt4 import QtCore
 from Utils import Singleton
+import __main__
 
 _corpname = 'EPITECH'
 _appname = 'GNS-3'
@@ -64,3 +65,54 @@ class ConfDB(Singleton, QtCore.QSettings):
             if int(i) + 1 > max:
                 max = int(i) + 1
         return (key + '/' + str(max))
+    
+    
+class GNS_Conf(object):
+    """ GNS_Conf provide static class method for loading user config
+    """
+    
+    main = __main__
+    
+    def IOSimages(self):
+        """ Load IOSimages settings from config file
+        """
+        
+        print ">> (II) LoadingConf: IOSimages"
+        
+        # Loading IOS images conf
+        basegroup = "IOSimages/image"
+        c = ConfDB()
+        c.beginGroup(basegroup)
+        childGroups = c.childGroups()
+        c.endGroup()
+        
+        for img_num in childGroups:
+            cgroup = basegroup + '/' + img_num
+            
+            img_filename = c.get(cgroup + "/filename", '')
+            img_hyp_host = c.get(cgroup + "/hypervisor_host", '')
+            img_hyp_host_str = img_hyp_host
+            if img_hyp_host_str == "localhost":
+                img_hyp_host = None
+            
+            if img_filename == '' or img_hyp_host == '':
+                continue
+            
+            img_ref = img_hyp_host_str + ":" + img_filename
+            self.main.ios_images[img_ref] = {
+                    'confkey': cgroup,
+                    'filename' : img_filename,
+                    'platform' : c.get(cgroup + "/platform", ''),
+                    'chassis': c.get(cgroup + "/chassis", ''),
+                    'idlepc' : c.get(cgroup + "/idlepc", ''),
+                    'hypervisor_host' : img_hyp_host,
+                    'hypervisor_port' : c.get(cgroup + "/hypervisor_port", ''),
+                    'working_directory' : c.get(cgroup + "/working_directory", '')                
+            }
+
+
+        # Loading IOS hypervisors conf
+        # TODO: LoadingConfIOSHypervisors
+  
+    # Static Methods stuffs
+    load_IOSimages = classmethod(IOSimages)

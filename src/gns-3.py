@@ -21,6 +21,7 @@ import os, sys, time
 sys.path.append('../forms')
 import locale
 import translations
+from Config import *
 from PyQt4 import QtCore, QtGui
 from MainWindow import MainWindow
 import Dynamips_lib as lib
@@ -46,6 +47,9 @@ class Main:
 
         global win
         app = QtGui.QApplication(sys.argv)
+
+        # Loading user configuration values
+        GNS_Conf.load_IOSimages()
 
         #TODO: translation management
         translator = QtCore.QTranslator(app)

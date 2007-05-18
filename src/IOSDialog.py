@@ -58,58 +58,8 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         # insert existing platforms
         self.comboBoxPlatform.insertItems(0, PLATFORMS.keys())
 
-        self._loadConfSettings()
         self._reloadInfos()
-  
-    def _loadConfSettings(self):
-        """ Load IOSimages settings from config file
-        """
-        
-        print ">> (II): Loading IOS Configuration Settings..."
-        
-        # Loading IOS images conf
-        basegroup = "IOSimages/image"
-        c = ConfDB()
-        c.beginGroup(basegroup)
-        childGroups = c.childGroups()
-        c.endGroup()
-        
-        print ">> (II): Loading " + str(c.childGroups().count()) + " images..."
-        for img_num in childGroups:
-            cgroup = basegroup + '/' + img_num
-            
-            img_filename = c.get(cgroup + "/filename", '')
-            img_hyp_host = c.get(cgroup + "/hypervisor_host", '')
-            img_hyp_host_str = img_hyp_host
-            if img_hyp_host_str == "localhost":
-                img_hyp_host = None
-            
-            print "cgroup: " + cgroup
-            print "filename: " + img_filename
-            print "hyp_host: " + img_hyp_host_str
-            
-            if img_filename == '' or img_hyp_host == '':
-                continue
-            
-            print ">> (II): Loading: IOSimage: " + cgroup + " ==> " + \
-                img_hyp_host_str + ':' + img_filename
-            
-            img_ref = img_hyp_host_str + ":" + img_filename
-            self.main.ios_images[img_ref] = {
-                    'confkey': cgroup,
-                    'filename' : img_filename,
-                    'platform' : c.get(cgroup + "/platform", ''),
-                    'chassis': c.get(cgroup + "/chassis", ''),
-                    'idlepc' : c.get(cgroup + "/idlepc", ''),
-                    'hypervisor_host' : img_hyp_host,
-                    'hypervisor_port' : c.get(cgroup + "/hypervisor_port", ''),
-                    'working_directory' : c.get(cgroup + "/working_directory", '')                
-            }
 
-
-        # Loading IOS hypervisors conf
-        # TODO: LoadingConfIOSHypervisors
-  
     def _reloadInfos(self):
         """ Reload previously recorded IOS images
         """
