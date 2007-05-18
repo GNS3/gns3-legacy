@@ -21,6 +21,7 @@ import os
 import re
 from PyQt4 import QtCore, QtGui
 from Ui_IOSDialog import *
+from Config import ConfDB
 import __main__
 
 PLATFORMS = {'2600': ['2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM', '2691'],
@@ -56,7 +57,58 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         
         # insert existing platforms
         self.comboBoxPlatform.insertItems(0, PLATFORMS.keys())
+
+        self._loadConfSettings()
         self._reloadInfos()
+  
+    def _loadConfSettings(self):
+        """ Load IOSimages settings from config file
+        """
+        
+        print ">> (II): Loading IOS Configuration Settings..."
+        
+        # Loading IOS images conf
+        basegroup = "IOSimages/image"
+        c = ConfDB()
+        c.beginGroup(basegroup)
+        childGroups = c.childGroups()
+        c.endGroup()
+        
+        print ">> (II): Loading " + str(c.childGroups().count()) + " images..."
+        for img_num in childGroups:
+            cgroup = basegroup + '/' + img_num
+            
+            img_filename = c.get(cgroup + "/filename", '')
+            img_hyp_host = c.get(cgroup + "/hypervisor_host", '')
+            img_hyp_host_str = img_hyp_host
+            if img_hyp_host_str == "localhost":
+                img_hyp_host = None
+            
+            print "cgroup: " + cgroup
+            print "filename: " + img_filename
+            print "hyp_host: " + img_hyp_host_str
+            
+            if img_filename == '' or img_hyp_host == '':
+                continue
+            
+            print ">> (II): Loading: IOSimage: " + cgroup + " ==> " + \
+                img_hyp_host_str + ':' + img_filename
+            
+            img_ref = img_hyp_host_str + ":" + img_filename
+            self.main.ios_images[img_ref] = {
+                    'confkey': cgroup,
+                    'filename' : img_filename,
+                    'platform' : c.get(cgroup + "/platform", ''),
+                    'chassis': c.get(cgroup + "/chassis", ''),
+                    'idlepc' : c.get(cgroup + "/idlepc", ''),
+                    'hypervisor_host' : img_hyp_host,
+                    'hypervisor_port' : c.get(cgroup + "/hypervisor_port", ''),
+                    'working_directory' : c.get(cgroup + "/working_directory", '')                
+            }
+
+
+        # Loading IOS hypervisors conf
+        # TODO: LoadingConfIOSHypervisors
   
     def _reloadInfos(self):
         """ Reload previously recorded IOS images
@@ -75,7 +127,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             # idle pc column
             item.setText(3, image['idlepc'])
             # hypervisor column
-            if image['hypervisor_host'] == None and image['hypervisor_port'] == None:
+            if image['hypervisor_host'] == None:
                 # local hypervisor
                 item.setText(4, 'local')
             else:
@@ -205,8 +257,28 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                                                 'idlepc': idlepc,
                                                 'hypervisor_host': hypervisor_host,
                                                 'hypervisor_port': hypervisor_port,
-                                                'working_directory': working_directory
+                                                'working_directory': working_directory,
+                                                'confkey': ConfDB().getGroupNewNumChild("IOSimages/image")
                                                }
+            
+            confkey = self.main.ios_images[imagename]['confkey']
+            if hypervisor_host is None:
+                hypervisor_host = 'local'
+                hypervisor_port = ''
+                working_directory = ''
+            if hypervisor_port is None:
+                hypervisor_port = ''
+            if working_directory is None:
+                working_directory = ''
+            
+            ConfDB().set(confkey + "/filename", imagename)
+            ConfDB().set(confkey + "/platform", str(self.comboBoxPlatform.currentText()))
+            ConfDB().set(confkey + "/chassis", str(self.comboBoxChassis.currentText()))
+            ConfDB().set(confkey + "/idlepc", idlepc)
+            ConfDB().set(confkey + "/hypervisor_host", hypervisor_host)
+            ConfDB().set(confkey + "/hypervisor_port", hypervisor_port)
+            ConfDB().set(confkey + "/working_directory", working_directory)
+            
             self.treeWidgetIOSimages.addTopLevelItem(item)
             # switch to ios images tab
             self.tabWidget.setCurrentIndex(0)
