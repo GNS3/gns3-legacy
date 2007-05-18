@@ -35,15 +35,32 @@ class ConfDB(Singleton, QtCore.QSettings):
     def __del__(self):
         self.sync()
         
-    def get(self, key):
+    def get(self, key, default_value = None):
         value = self.value(key).toString()
-        if value == "":
-            if _ConfigDefaults.has_key(key):
-                value = _ConfigDefaults[key]
-            else:
-                raise ">>(EE): No default value for config key ``" + key + "''"
-        print ">> ConfDB[" + key + "] = " + str(value)
         
+        # if value not found is user/system config, or is empty
+        if value == "":
+            # return default_value if provided
+            if default_value is not None:
+                return default_value
+            # or return the app default if it exist
+            if _ConfigDefaults.has_key(key):
+                return _ConfigDefaults[key]
+            # or finally, return None
+            return None
+        # if conf exist, return it.
+        return value
+    
     def set(self, key, value):
         self.setValue(key, QtCore.QVariant(value))
-        print ">> ConfDB[" + key + "] =<< " + str(value)
+
+    def getGroupNewNumChild(self, key):
+        self.beginGroup(key)
+        childGroups = self.childGroups()
+        self.endGroup()
+        
+        max = 0
+        for i in childGroups:
+            if int(i) + 1 > max:
+                max = int(i) + 1
+        return (key + '/' + str(max))
