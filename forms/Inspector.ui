@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>685</width>
-    <height>402</height>
+    <width>625</width>
+    <height>386</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -63,7 +63,16 @@
              </widget>
             </item>
             <item row="0" column="1" >
-             <widget class="QComboBox" name="comboBoxIOS" />
+             <widget class="QComboBox" name="comboBoxIOS" >
+              <property name="sizePolicy" >
+               <sizepolicy>
+                <hsizetype>5</hsizetype>
+                <vsizetype>0</vsizetype>
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
             </item>
             <item row="1" column="0" >
              <widget class="QLabel" name="label_13" >
@@ -89,7 +98,16 @@
              </spacer>
             </item>
             <item row="1" column="1" >
-             <widget class="QLineEdit" name="lineEditConsolePort" />
+             <widget class="QLineEdit" name="lineEditConsolePort" >
+              <property name="sizePolicy" >
+               <sizepolicy>
+                <hsizetype>5</hsizetype>
+                <vsizetype>0</vsizetype>
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -146,7 +164,16 @@
              </widget>
             </item>
             <item row="0" column="1" >
-             <widget class="QLineEdit" name="lineEditStartupConfig" />
+             <widget class="QLineEdit" name="lineEditStartupConfig" >
+              <property name="sizePolicy" >
+               <sizepolicy>
+                <hsizetype>5</hsizetype>
+                <vsizetype>0</vsizetype>
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -187,8 +214,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>319</width>
-            <height>237</height>
+            <width>309</width>
+            <height>221</height>
            </rect>
           </property>
           <attribute name="label" >
@@ -366,8 +393,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>301</width>
-            <height>229</height>
+            <width>247</width>
+            <height>146</height>
            </rect>
           </property>
           <attribute name="label" >
@@ -548,14 +575,46 @@
       <attribute name="title" >
        <string>Port adapters / Network modules</string>
       </attribute>
-      <layout class="QHBoxLayout" >
+      <layout class="QGridLayout" >
        <property name="margin" >
         <number>9</number>
        </property>
        <property name="spacing" >
         <number>6</number>
        </property>
-       <item>
+       <item row="1" column="1" >
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType" >
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>301</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="1" >
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType" >
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>301</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="0" >
         <layout class="QGridLayout" >
          <property name="margin" >
           <number>0</number>
@@ -563,7 +622,40 @@
          <property name="spacing" >
           <number>6</number>
          </property>
-         <item row="0" column="1" >
+         <item row="2" column="0" >
+          <widget class="QLabel" name="label_15" >
+           <property name="sizePolicy" >
+            <sizepolicy>
+             <hsizetype>0</hsizetype>
+             <vsizetype>5</vsizetype>
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text" >
+            <string>slot2:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0" >
+          <widget class="QLabel" name="label_19" >
+           <property name="sizePolicy" >
+            <sizepolicy>
+             <hsizetype>0</hsizetype>
+             <vsizetype>5</vsizetype>
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text" >
+            <string>slot3:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2" >
+          <widget class="QComboBox" name="comboBoxSlot0" />
+         </item>
+         <item row="3" column="1" >
           <spacer>
            <property name="orientation" >
             <enum>Qt::Horizontal</enum>
@@ -578,21 +670,6 @@
             </size>
            </property>
           </spacer>
-         </item>
-         <item row="4" column="0" >
-          <widget class="QLabel" name="label_20" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>0</hsizetype>
-             <vsizetype>5</vsizetype>
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text" >
-            <string>slot4:</string>
-           </property>
-          </widget>
          </item>
          <item row="0" column="0" >
           <widget class="QLabel" name="label_6" >
@@ -609,8 +686,24 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="2" >
-          <widget class="QComboBox" name="comboBoxSlot0" />
+         <item row="0" column="1" >
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType" >
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="2" column="2" >
+          <widget class="QComboBox" name="comboBoxSlot2" />
          </item>
          <item row="1" column="0" >
           <widget class="QLabel" name="label_12" >
@@ -643,146 +736,10 @@
            </property>
           </spacer>
          </item>
-         <item row="2" column="1" >
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType" >
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="5" column="2" >
-          <widget class="QComboBox" name="comboBoxSlot5" />
-         </item>
-         <item row="2" column="2" >
-          <widget class="QComboBox" name="comboBoxSlot2" />
-         </item>
-         <item row="4" column="1" >
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType" >
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="5" column="0" >
-          <widget class="QLabel" name="label_21" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>0</hsizetype>
-             <vsizetype>5</vsizetype>
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text" >
-            <string>slot5:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0" >
-          <widget class="QLabel" name="label_19" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>0</hsizetype>
-             <vsizetype>5</vsizetype>
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text" >
-            <string>slot3:</string>
-           </property>
-          </widget>
-         </item>
          <item row="3" column="2" >
           <widget class="QComboBox" name="comboBoxSlot3" />
          </item>
-         <item row="3" column="1" >
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType" >
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="4" column="2" >
-          <widget class="QComboBox" name="comboBoxSlot4" />
-         </item>
-         <item row="6" column="0" >
-          <widget class="QLabel" name="label_22" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>0</hsizetype>
-             <vsizetype>5</vsizetype>
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text" >
-            <string>slot6:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="1" >
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType" >
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="2" column="0" >
-          <widget class="QLabel" name="label_15" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>0</hsizetype>
-             <vsizetype>5</vsizetype>
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text" >
-            <string>slot2:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="2" >
-          <widget class="QComboBox" name="comboBoxSlot6" />
-         </item>
-         <item row="6" column="1" >
+         <item row="2" column="1" >
           <spacer>
            <property name="orientation" >
             <enum>Qt::Horizontal</enum>
@@ -803,16 +760,54 @@
          </item>
         </layout>
        </item>
-       <item>
-        <layout class="QVBoxLayout" >
+       <item row="1" column="0" >
+        <layout class="QGridLayout" >
          <property name="margin" >
           <number>0</number>
          </property>
          <property name="spacing" >
           <number>6</number>
          </property>
-         <item>
-          <widget class="QLabel" name="labelSlot0" >
+         <item row="3" column="2" >
+          <widget class="QComboBox" name="comboBoxSlot7" />
+         </item>
+         <item row="2" column="1" >
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType" >
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="1" >
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType" >
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="2" >
+          <widget class="QComboBox" name="comboBoxSlot4" />
+         </item>
+         <item row="0" column="0" >
+          <widget class="QLabel" name="label_23" >
            <property name="sizePolicy" >
             <sizepolicy>
              <hsizetype>0</hsizetype>
@@ -822,12 +817,12 @@
             </sizepolicy>
            </property>
            <property name="text" >
-            <string>description</string>
+            <string>slot4:</string>
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLabel" name="labelSlot1" >
+         <item row="1" column="0" >
+          <widget class="QLabel" name="label_26" >
            <property name="sizePolicy" >
             <sizepolicy>
              <hsizetype>0</hsizetype>
@@ -837,12 +832,12 @@
             </sizepolicy>
            </property>
            <property name="text" >
-            <string>description</string>
+            <string>slot5:</string>
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLabel" name="labelSlot2" >
+         <item row="3" column="0" >
+          <widget class="QLabel" name="label_29" >
            <property name="sizePolicy" >
             <sizepolicy>
              <hsizetype>0</hsizetype>
@@ -852,12 +847,12 @@
             </sizepolicy>
            </property>
            <property name="text" >
-            <string>description</string>
+            <string>slot7:</string>
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLabel" name="labelSlot3" >
+         <item row="2" column="0" >
+          <widget class="QLabel" name="label_28" >
            <property name="sizePolicy" >
             <sizepolicy>
              <hsizetype>0</hsizetype>
@@ -867,72 +862,49 @@
             </sizepolicy>
            </property>
            <property name="text" >
-            <string>description</string>
+            <string>slot6:</string>
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLabel" name="labelSlot4" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>0</hsizetype>
-             <vsizetype>5</vsizetype>
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text" >
-            <string>description</string>
-           </property>
-          </widget>
+         <item row="2" column="2" >
+          <widget class="QComboBox" name="comboBoxSlot6" />
          </item>
-         <item>
-          <widget class="QLabel" name="labelSlot5" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>0</hsizetype>
-             <vsizetype>5</vsizetype>
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text" >
-            <string>description</string>
-           </property>
-          </widget>
+         <item row="1" column="2" >
+          <widget class="QComboBox" name="comboBoxSlot5" />
          </item>
-         <item>
-          <widget class="QLabel" name="labelSlot6" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>0</hsizetype>
-             <vsizetype>5</vsizetype>
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+         <item row="1" column="1" >
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
            </property>
-           <property name="text" >
-            <string>description</string>
+           <property name="sizeType" >
+            <enum>QSizePolicy::Fixed</enum>
            </property>
-          </widget>
+           <property name="sizeHint" >
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="3" column="1" >
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType" >
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
-       </item>
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeType" >
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" >
-          <size>
-           <width>311</width>
-           <height>297</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </widget>

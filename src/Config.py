@@ -50,7 +50,7 @@ class ConfDB(Singleton, QtCore.QSettings):
             # or finally, return None
             return None
         # if conf exist, return it.
-        return value
+        return str(value)
     
     def set(self, key, value):
         self.setValue(key, QtCore.QVariant(value))
@@ -98,7 +98,7 @@ class GNS_Conf(object):
             if img_filename == '' or img_hyp_host == '':
                 continue
             
-            img_ref = img_hyp_host_str + ":" + img_filename
+            img_ref = str(img_hyp_host_str + ":" + img_filename)
             self.main.ios_images[img_ref] = {
                     'confkey': cgroup,
                     'filename' : img_filename,

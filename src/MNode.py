@@ -43,7 +43,7 @@ ADAPTERS = {
     "NM-1E"  : (lib.NM_1E, 1, 'e'),
     "NM-4E": (lib.NM_4E, 4, 'e'),
     "NM-4T": (lib.NM_4T, 4, 's'),
-    "NM-16ESW": (lib.NM_16ESW, 16, 'e'),
+    "NM-16ESW": (lib.NM_16ESW, 16, 'f'),
     "Leopard-2FE": (lib.Leopard_2FE, 2, 'f'),
     "GT96100-FE": (lib.GT96100_FE, 1, 'f'),
     "CISCO2600-MB-1E": (lib.CISCO2600_MB_1E, 1, 'e'),
@@ -105,6 +105,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self._QGraphicsScene.update(self.sceneBoundingRect())
         
         self.InspectorInstance = Inspector(self.id)
+        self.InspectorInstance.setModal(True)
         self.InspectorInstance.saveIOSConfig()
         
     def move(self, xPos, yPos):

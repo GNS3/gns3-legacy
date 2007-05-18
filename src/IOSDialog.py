@@ -27,7 +27,7 @@ import __main__
 PLATFORMS = {'2600': ['2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM', '2691'],
              '3600': ['3620', '3640', '3660'],
              '3700': ['3725', '3745'],
-             '7200': ['7201', '7202', '7204', '7206']
+             '7200': []
              }
 
 class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
@@ -166,8 +166,6 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 return
 
             item = QtGui.QTreeWidgetItem(self.treeWidgetIOSimages)
-            # image name column
-            item.setText(0, imagename)
             # platform column
             item.setText(1, self.comboBoxPlatform.currentText())
             # chassis column
@@ -202,6 +200,10 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 host = 'localhost'
             else:
                 host = hypervisor_host
+
+            # image name column
+            item.setText(0, host + ':' + imagename)
+
             self.main.ios_images[host + ':' + imagename] = { 'platform': str(self.comboBoxPlatform.currentText()),
                                                 'chassis': str(self.comboBoxChassis.currentText()),
                                                 'idlepc': idlepc,
@@ -211,9 +213,9 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                                                 'confkey': ConfDB().getGroupNewNumChild("IOSimages/image")
                                                }
             
-            confkey = self.main.ios_images[imagename]['confkey']
+            confkey = self.main.ios_images[host + ':' + imagename]['confkey']
             if hypervisor_host is None:
-                hypervisor_host = 'local'
+                hypervisor_host = 'localhost'
                 hypervisor_port = ''
                 working_directory = ''
             if hypervisor_port is None:

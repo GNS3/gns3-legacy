@@ -19,13 +19,8 @@
 
 from PyQt4 import QtCore, QtGui
 from Ui_Inspector import *
+import Dynamips_lib as lib
 import __main__
-
-GENERIC_2600_NMS = ('NM-1FE-TX', 'NM-1E', 'NM-4E', 'NM-16ESW')
-GENERIC_3600_NMS = ('NM-1FE-TX', 'NM-1E', 'NM-4E', 'NM-16ESW', 'NM-4T')
-GENERIC_3700_NMS = ('NM-1FE-TX', 'NM-4T', 'NM-16ESW')
-GENERIC_7200_PAS = ('PA-A1', 'PA-FE-TX', 'PA-2FE-TX', 'PA-GE', 'PA-4T+', 'PA-8T', 'PA-4E', 'PA-8E', 'PA-POS-OC3')
-IO_7200 = ('C7200-IO-FE', 'C7200-IO-2FE', 'C7200-IO-GE-E')
 
 class Inspector(QtGui.QDialog, Ui_FormInspector):
     """ Inspector class
@@ -52,6 +47,34 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         # connect IOS combobox to a slot
         self.connect(self.comboBoxIOS, QtCore.SIGNAL('currentIndexChanged(int)'), self.slotSelectedIOS)
 
+    def configIOSAdapters(self, platform, chassis):
+        """ Configure IOS adapters (slot modules and motherboard)
+            platform: string
+            chassis: string
+        """
+        
+        # special case where the chassis is a platform in ADAPTER_MATRIX
+        if (chassis == '2691'):
+            self.comboBoxSlot0.addItems(list(lib.ADAPTER_MATRIX[chassis][''][0]))
+            self.comboBoxSlot1.addItems([''] + list(lib.ADAPTER_MATRIX[chassis][''][1]))   
+            return
+
+        try:
+            # some platforms have adapters on their motherboard (not optional)
+            if platform in ('c2600', 'c3660', 'c3725', 'c3745', 'c7200'):
+                self.comboBoxSlot0.addItems(list(lib.ADAPTER_MATRIX[platform][chassis][0]))
+            else:
+                self.comboBoxSlot0.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][0]))
+            self.comboBoxSlot1.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][1]))
+            self.comboBoxSlot2.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][2]))
+            self.comboBoxSlot3.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][3]))
+            self.comboBoxSlot4.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][4]))
+            self.comboBoxSlot5.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][5]))
+            self.comboBoxSlot6.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][6]))
+            self.comboBoxSlot7.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][7]))
+        except KeyError:
+            return
+    
     def slotSelectedIOS(self, index):
         """ Add network modules / port adapters to combo boxes
         """
@@ -65,8 +88,14 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
             self.comboBoxSlot4.clear()
             self.comboBoxSlot5.clear()
             self.comboBoxSlot6.clear()
-            if self.main.ios_images[imagename]['platform'] == '3600':
-                self.setDefaults3600Platform(imagename)
+
+            platform = self.main.ios_images[imagename]['platform']
+            chassis = self.main.ios_images[imagename]['chassis']
+            
+            self.configIOSAdapters('c' + platform, chassis)
+#            if self.main.ios_images[imagename]['platform'] == '3600':
+#                self.setDefaults3600Platform()
+                
             node = self.main.nodes[self.nodeid]
             self.comboBoxSlot0.setCurrentIndex(self.comboBoxSlot0.findText(node.iosConfig['slots'][0]))
             self.comboBoxSlot1.setCurrentIndex(self.comboBoxSlot0.findText(node.iosConfig['slots'][1]))
@@ -115,25 +144,19 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
             imagename: string
         """
         
-        network_modules = ['', 'NM-1E', 'NM-4E', 'NM-1FE-TX', 'NM-4T']
+        generic_3600_mns = ['', 'NM-1E', 'NM-4E', 'NM-1FE-TX', 'NM-4T']
 
         chassis = self.main.ios_images[imagename]['chassis']
-        if chassis == '3620':
-            self.comboBoxSlot0.addItems(network_modules)
-            self.comboBoxSlot1.addItems(network_modules)
-        elif chassis == '3640':
-            self.comboBoxSlot0.addItems(network_modules)
-            self.comboBoxSlot1.addItems(network_modules)
-            self.comboBoxSlot2.addItems(network_modules)
-            self.comboBoxSlot3.addItems(network_modules)
-        elif chassis == '3660':
-            self.comboBoxSlot0.addItems(network_modules)
-            self.comboBoxSlot1.addItems(network_modules)
-            self.comboBoxSlot2.addItems(network_modules)
-            self.comboBoxSlot3.addItems(network_modules)
-            self.comboBoxSlot4.addItems(network_modules)
-            self.comboBoxSlot5.addItems(network_modules)
-            self.comboBoxSlot6.addItems(network_modules)
+        if chassis == '3620' or chassis == '3640' or chassis == '3660':
+            self.comboBoxSlot0.addItems(generic_3600_mns)
+            self.comboBoxSlot1.addItems(generic_3600_mns)
+        if chassis == '3640' or chassis == '3660':
+            self.comboBoxSlot2.addItems(generic_3600_mns)
+            self.comboBoxSlot3.addItems(generic_3600_mns)
+        if chassis == '3660':
+            self.comboBoxSlot4.addItems(generic_3600_mns)
+            self.comboBoxSlot5.addItems(generic_3600_mns)
+            self.comboBoxSlot6.addItems(generic_3600_mns)
                 
     def saveIOSConfig(self):
         """ Save IOS settings

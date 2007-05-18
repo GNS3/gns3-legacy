@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Inspector.ui'
 #
-# Created: Tue May 15 17:31:17 2007
+# Created: Fri May 18 18:36:07 2007
 #      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,7 +13,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_FormInspector(object):
     def setupUi(self, FormInspector):
         FormInspector.setObjectName("FormInspector")
-        FormInspector.resize(QtCore.QSize(QtCore.QRect(0,0,685,402).size()).expandedTo(FormInspector.minimumSizeHint()))
+        FormInspector.resize(QtCore.QSize(QtCore.QRect(0,0,625,386).size()).expandedTo(FormInspector.minimumSizeHint()))
 
         self.vboxlayout = QtGui.QVBoxLayout(FormInspector)
         self.vboxlayout.setMargin(9)
@@ -49,6 +49,12 @@ class Ui_FormInspector(object):
         self.gridlayout.addWidget(self.label_5,0,0,1,1)
 
         self.comboBoxIOS = QtGui.QComboBox(self.groupBox)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(5),QtGui.QSizePolicy.Policy(0))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.comboBoxIOS.sizePolicy().hasHeightForWidth())
+        self.comboBoxIOS.setSizePolicy(sizePolicy)
         self.comboBoxIOS.setObjectName("comboBoxIOS")
         self.gridlayout.addWidget(self.comboBoxIOS,0,1,1,1)
 
@@ -60,6 +66,12 @@ class Ui_FormInspector(object):
         self.gridlayout.addItem(spacerItem,0,2,2,1)
 
         self.lineEditConsolePort = QtGui.QLineEdit(self.groupBox)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(5),QtGui.QSizePolicy.Policy(0))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lineEditConsolePort.sizePolicy().hasHeightForWidth())
+        self.lineEditConsolePort.setSizePolicy(sizePolicy)
         self.lineEditConsolePort.setObjectName("lineEditConsolePort")
         self.gridlayout.addWidget(self.lineEditConsolePort,1,1,1,1)
         self.vboxlayout1.addLayout(self.gridlayout)
@@ -88,6 +100,12 @@ class Ui_FormInspector(object):
         self.gridlayout1.addWidget(self.label_18,0,0,1,1)
 
         self.lineEditStartupConfig = QtGui.QLineEdit(self.groupBox)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(5),QtGui.QSizePolicy.Policy(0))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lineEditStartupConfig.sizePolicy().hasHeightForWidth())
+        self.lineEditStartupConfig.setSizePolicy(sizePolicy)
         self.lineEditStartupConfig.setObjectName("lineEditStartupConfig")
         self.gridlayout1.addWidget(self.lineEditStartupConfig,0,1,1,1)
         self.vboxlayout1.addLayout(self.gridlayout1)
@@ -106,7 +124,7 @@ class Ui_FormInspector(object):
         self.toolBox.setObjectName("toolBox")
 
         self.page_3 = QtGui.QWidget()
-        self.page_3.setGeometry(QtCore.QRect(0,0,319,237))
+        self.page_3.setGeometry(QtCore.QRect(0,0,309,221))
         self.page_3.setObjectName("page_3")
 
         self.gridlayout2 = QtGui.QGridLayout(self.page_3)
@@ -179,7 +197,7 @@ class Ui_FormInspector(object):
         self.toolBox.addItem(self.page_3,"")
 
         self.page_5 = QtGui.QWidget()
-        self.page_5.setGeometry(QtCore.QRect(0,0,301,229))
+        self.page_5.setGeometry(QtCore.QRect(0,0,247,146))
         self.page_5.setObjectName("page_5")
 
         self.gridlayout3 = QtGui.QGridLayout(self.page_5)
@@ -248,113 +266,21 @@ class Ui_FormInspector(object):
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName("tab_2")
 
-        self.hboxlayout1 = QtGui.QHBoxLayout(self.tab_2)
-        self.hboxlayout1.setMargin(9)
-        self.hboxlayout1.setSpacing(6)
-        self.hboxlayout1.setObjectName("hboxlayout1")
-
-        self.gridlayout4 = QtGui.QGridLayout()
-        self.gridlayout4.setMargin(0)
+        self.gridlayout4 = QtGui.QGridLayout(self.tab_2)
+        self.gridlayout4.setMargin(9)
         self.gridlayout4.setSpacing(6)
         self.gridlayout4.setObjectName("gridlayout4")
 
-        spacerItem14 = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
-        self.gridlayout4.addItem(spacerItem14,0,1,1,1)
+        spacerItem14 = QtGui.QSpacerItem(301,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
+        self.gridlayout4.addItem(spacerItem14,1,1,1,1)
 
-        self.label_20 = QtGui.QLabel(self.tab_2)
+        spacerItem15 = QtGui.QSpacerItem(301,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
+        self.gridlayout4.addItem(spacerItem15,0,1,1,1)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_20.sizePolicy().hasHeightForWidth())
-        self.label_20.setSizePolicy(sizePolicy)
-        self.label_20.setObjectName("label_20")
-        self.gridlayout4.addWidget(self.label_20,4,0,1,1)
-
-        self.label_6 = QtGui.QLabel(self.tab_2)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
-        self.label_6.setSizePolicy(sizePolicy)
-        self.label_6.setObjectName("label_6")
-        self.gridlayout4.addWidget(self.label_6,0,0,1,1)
-
-        self.comboBoxSlot0 = QtGui.QComboBox(self.tab_2)
-        self.comboBoxSlot0.setObjectName("comboBoxSlot0")
-        self.gridlayout4.addWidget(self.comboBoxSlot0,0,2,1,1)
-
-        self.label_12 = QtGui.QLabel(self.tab_2)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_12.sizePolicy().hasHeightForWidth())
-        self.label_12.setSizePolicy(sizePolicy)
-        self.label_12.setObjectName("label_12")
-        self.gridlayout4.addWidget(self.label_12,1,0,1,1)
-
-        spacerItem15 = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
-        self.gridlayout4.addItem(spacerItem15,1,1,1,1)
-
-        spacerItem16 = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
-        self.gridlayout4.addItem(spacerItem16,2,1,1,1)
-
-        self.comboBoxSlot5 = QtGui.QComboBox(self.tab_2)
-        self.comboBoxSlot5.setObjectName("comboBoxSlot5")
-        self.gridlayout4.addWidget(self.comboBoxSlot5,5,2,1,1)
-
-        self.comboBoxSlot2 = QtGui.QComboBox(self.tab_2)
-        self.comboBoxSlot2.setObjectName("comboBoxSlot2")
-        self.gridlayout4.addWidget(self.comboBoxSlot2,2,2,1,1)
-
-        spacerItem17 = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
-        self.gridlayout4.addItem(spacerItem17,4,1,1,1)
-
-        self.label_21 = QtGui.QLabel(self.tab_2)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_21.sizePolicy().hasHeightForWidth())
-        self.label_21.setSizePolicy(sizePolicy)
-        self.label_21.setObjectName("label_21")
-        self.gridlayout4.addWidget(self.label_21,5,0,1,1)
-
-        self.label_19 = QtGui.QLabel(self.tab_2)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_19.sizePolicy().hasHeightForWidth())
-        self.label_19.setSizePolicy(sizePolicy)
-        self.label_19.setObjectName("label_19")
-        self.gridlayout4.addWidget(self.label_19,3,0,1,1)
-
-        self.comboBoxSlot3 = QtGui.QComboBox(self.tab_2)
-        self.comboBoxSlot3.setObjectName("comboBoxSlot3")
-        self.gridlayout4.addWidget(self.comboBoxSlot3,3,2,1,1)
-
-        spacerItem18 = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
-        self.gridlayout4.addItem(spacerItem18,3,1,1,1)
-
-        self.comboBoxSlot4 = QtGui.QComboBox(self.tab_2)
-        self.comboBoxSlot4.setObjectName("comboBoxSlot4")
-        self.gridlayout4.addWidget(self.comboBoxSlot4,4,2,1,1)
-
-        self.label_22 = QtGui.QLabel(self.tab_2)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_22.sizePolicy().hasHeightForWidth())
-        self.label_22.setSizePolicy(sizePolicy)
-        self.label_22.setObjectName("label_22")
-        self.gridlayout4.addWidget(self.label_22,6,0,1,1)
-
-        spacerItem19 = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
-        self.gridlayout4.addItem(spacerItem19,5,1,1,1)
+        self.gridlayout5 = QtGui.QGridLayout()
+        self.gridlayout5.setMargin(0)
+        self.gridlayout5.setSpacing(6)
+        self.gridlayout5.setObjectName("gridlayout5")
 
         self.label_15 = QtGui.QLabel(self.tab_2)
 
@@ -364,116 +290,158 @@ class Ui_FormInspector(object):
         sizePolicy.setHeightForWidth(self.label_15.sizePolicy().hasHeightForWidth())
         self.label_15.setSizePolicy(sizePolicy)
         self.label_15.setObjectName("label_15")
-        self.gridlayout4.addWidget(self.label_15,2,0,1,1)
+        self.gridlayout5.addWidget(self.label_15,2,0,1,1)
 
-        self.comboBoxSlot6 = QtGui.QComboBox(self.tab_2)
-        self.comboBoxSlot6.setObjectName("comboBoxSlot6")
-        self.gridlayout4.addWidget(self.comboBoxSlot6,6,2,1,1)
+        self.label_19 = QtGui.QLabel(self.tab_2)
 
-        spacerItem20 = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
-        self.gridlayout4.addItem(spacerItem20,6,1,1,1)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_19.sizePolicy().hasHeightForWidth())
+        self.label_19.setSizePolicy(sizePolicy)
+        self.label_19.setObjectName("label_19")
+        self.gridlayout5.addWidget(self.label_19,3,0,1,1)
+
+        self.comboBoxSlot0 = QtGui.QComboBox(self.tab_2)
+        self.comboBoxSlot0.setObjectName("comboBoxSlot0")
+        self.gridlayout5.addWidget(self.comboBoxSlot0,0,2,1,1)
+
+        spacerItem16 = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
+        self.gridlayout5.addItem(spacerItem16,3,1,1,1)
+
+        self.label_6 = QtGui.QLabel(self.tab_2)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
+        self.label_6.setSizePolicy(sizePolicy)
+        self.label_6.setObjectName("label_6")
+        self.gridlayout5.addWidget(self.label_6,0,0,1,1)
+
+        spacerItem17 = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
+        self.gridlayout5.addItem(spacerItem17,0,1,1,1)
+
+        self.comboBoxSlot2 = QtGui.QComboBox(self.tab_2)
+        self.comboBoxSlot2.setObjectName("comboBoxSlot2")
+        self.gridlayout5.addWidget(self.comboBoxSlot2,2,2,1,1)
+
+        self.label_12 = QtGui.QLabel(self.tab_2)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_12.sizePolicy().hasHeightForWidth())
+        self.label_12.setSizePolicy(sizePolicy)
+        self.label_12.setObjectName("label_12")
+        self.gridlayout5.addWidget(self.label_12,1,0,1,1)
+
+        spacerItem18 = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
+        self.gridlayout5.addItem(spacerItem18,1,1,1,1)
+
+        self.comboBoxSlot3 = QtGui.QComboBox(self.tab_2)
+        self.comboBoxSlot3.setObjectName("comboBoxSlot3")
+        self.gridlayout5.addWidget(self.comboBoxSlot3,3,2,1,1)
+
+        spacerItem19 = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
+        self.gridlayout5.addItem(spacerItem19,2,1,1,1)
 
         self.comboBoxSlot1 = QtGui.QComboBox(self.tab_2)
         self.comboBoxSlot1.setObjectName("comboBoxSlot1")
-        self.gridlayout4.addWidget(self.comboBoxSlot1,1,2,1,1)
-        self.hboxlayout1.addLayout(self.gridlayout4)
+        self.gridlayout5.addWidget(self.comboBoxSlot1,1,2,1,1)
+        self.gridlayout4.addLayout(self.gridlayout5,0,0,1,1)
 
-        self.vboxlayout2 = QtGui.QVBoxLayout()
-        self.vboxlayout2.setMargin(0)
-        self.vboxlayout2.setSpacing(6)
-        self.vboxlayout2.setObjectName("vboxlayout2")
+        self.gridlayout6 = QtGui.QGridLayout()
+        self.gridlayout6.setMargin(0)
+        self.gridlayout6.setSpacing(6)
+        self.gridlayout6.setObjectName("gridlayout6")
 
-        self.labelSlot0 = QtGui.QLabel(self.tab_2)
+        self.comboBoxSlot7 = QtGui.QComboBox(self.tab_2)
+        self.comboBoxSlot7.setObjectName("comboBoxSlot7")
+        self.gridlayout6.addWidget(self.comboBoxSlot7,3,2,1,1)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.labelSlot0.sizePolicy().hasHeightForWidth())
-        self.labelSlot0.setSizePolicy(sizePolicy)
-        self.labelSlot0.setObjectName("labelSlot0")
-        self.vboxlayout2.addWidget(self.labelSlot0)
+        spacerItem20 = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
+        self.gridlayout6.addItem(spacerItem20,2,1,1,1)
 
-        self.labelSlot1 = QtGui.QLabel(self.tab_2)
+        spacerItem21 = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
+        self.gridlayout6.addItem(spacerItem21,0,1,1,1)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.labelSlot1.sizePolicy().hasHeightForWidth())
-        self.labelSlot1.setSizePolicy(sizePolicy)
-        self.labelSlot1.setObjectName("labelSlot1")
-        self.vboxlayout2.addWidget(self.labelSlot1)
+        self.comboBoxSlot4 = QtGui.QComboBox(self.tab_2)
+        self.comboBoxSlot4.setObjectName("comboBoxSlot4")
+        self.gridlayout6.addWidget(self.comboBoxSlot4,0,2,1,1)
 
-        self.labelSlot2 = QtGui.QLabel(self.tab_2)
+        self.label_23 = QtGui.QLabel(self.tab_2)
 
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.labelSlot2.sizePolicy().hasHeightForWidth())
-        self.labelSlot2.setSizePolicy(sizePolicy)
-        self.labelSlot2.setObjectName("labelSlot2")
-        self.vboxlayout2.addWidget(self.labelSlot2)
+        sizePolicy.setHeightForWidth(self.label_23.sizePolicy().hasHeightForWidth())
+        self.label_23.setSizePolicy(sizePolicy)
+        self.label_23.setObjectName("label_23")
+        self.gridlayout6.addWidget(self.label_23,0,0,1,1)
 
-        self.labelSlot3 = QtGui.QLabel(self.tab_2)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.labelSlot3.sizePolicy().hasHeightForWidth())
-        self.labelSlot3.setSizePolicy(sizePolicy)
-        self.labelSlot3.setObjectName("labelSlot3")
-        self.vboxlayout2.addWidget(self.labelSlot3)
-
-        self.labelSlot4 = QtGui.QLabel(self.tab_2)
+        self.label_26 = QtGui.QLabel(self.tab_2)
 
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.labelSlot4.sizePolicy().hasHeightForWidth())
-        self.labelSlot4.setSizePolicy(sizePolicy)
-        self.labelSlot4.setObjectName("labelSlot4")
-        self.vboxlayout2.addWidget(self.labelSlot4)
+        sizePolicy.setHeightForWidth(self.label_26.sizePolicy().hasHeightForWidth())
+        self.label_26.setSizePolicy(sizePolicy)
+        self.label_26.setObjectName("label_26")
+        self.gridlayout6.addWidget(self.label_26,1,0,1,1)
 
-        self.labelSlot5 = QtGui.QLabel(self.tab_2)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.labelSlot5.sizePolicy().hasHeightForWidth())
-        self.labelSlot5.setSizePolicy(sizePolicy)
-        self.labelSlot5.setObjectName("labelSlot5")
-        self.vboxlayout2.addWidget(self.labelSlot5)
-
-        self.labelSlot6 = QtGui.QLabel(self.tab_2)
+        self.label_29 = QtGui.QLabel(self.tab_2)
 
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.labelSlot6.sizePolicy().hasHeightForWidth())
-        self.labelSlot6.setSizePolicy(sizePolicy)
-        self.labelSlot6.setObjectName("labelSlot6")
-        self.vboxlayout2.addWidget(self.labelSlot6)
-        self.hboxlayout1.addLayout(self.vboxlayout2)
+        sizePolicy.setHeightForWidth(self.label_29.sizePolicy().hasHeightForWidth())
+        self.label_29.setSizePolicy(sizePolicy)
+        self.label_29.setObjectName("label_29")
+        self.gridlayout6.addWidget(self.label_29,3,0,1,1)
 
-        spacerItem21 = QtGui.QSpacerItem(311,297,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
-        self.hboxlayout1.addItem(spacerItem21)
+        self.label_28 = QtGui.QLabel(self.tab_2)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_28.sizePolicy().hasHeightForWidth())
+        self.label_28.setSizePolicy(sizePolicy)
+        self.label_28.setObjectName("label_28")
+        self.gridlayout6.addWidget(self.label_28,2,0,1,1)
+
+        self.comboBoxSlot6 = QtGui.QComboBox(self.tab_2)
+        self.comboBoxSlot6.setObjectName("comboBoxSlot6")
+        self.gridlayout6.addWidget(self.comboBoxSlot6,2,2,1,1)
+
+        self.comboBoxSlot5 = QtGui.QComboBox(self.tab_2)
+        self.comboBoxSlot5.setObjectName("comboBoxSlot5")
+        self.gridlayout6.addWidget(self.comboBoxSlot5,1,2,1,1)
+
+        spacerItem22 = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
+        self.gridlayout6.addItem(spacerItem22,1,1,1,1)
+
+        spacerItem23 = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
+        self.gridlayout6.addItem(spacerItem23,3,1,1,1)
+        self.gridlayout4.addLayout(self.gridlayout6,1,0,1,1)
         self.tabWidget.addTab(self.tab_2,"")
         self.vboxlayout.addWidget(self.tabWidget)
 
-        self.hboxlayout2 = QtGui.QHBoxLayout()
-        self.hboxlayout2.setMargin(0)
-        self.hboxlayout2.setSpacing(6)
-        self.hboxlayout2.setObjectName("hboxlayout2")
+        self.hboxlayout1 = QtGui.QHBoxLayout()
+        self.hboxlayout1.setMargin(0)
+        self.hboxlayout1.setSpacing(6)
+        self.hboxlayout1.setObjectName("hboxlayout1")
 
-        spacerItem22 = QtGui.QSpacerItem(91,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.hboxlayout2.addItem(spacerItem22)
+        spacerItem24 = QtGui.QSpacerItem(91,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        self.hboxlayout1.addItem(spacerItem24)
 
         self.buttonBoxIOSConfig = QtGui.QDialogButtonBox(FormInspector)
         self.buttonBoxIOSConfig.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.buttonBoxIOSConfig.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBoxIOSConfig.setStandardButtons(QtGui.QDialogButtonBox.Apply|QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.NoButton)
         self.buttonBoxIOSConfig.setObjectName("buttonBoxIOSConfig")
-        self.hboxlayout2.addWidget(self.buttonBoxIOSConfig)
-        self.vboxlayout.addLayout(self.hboxlayout2)
+        self.hboxlayout1.addWidget(self.buttonBoxIOSConfig)
+        self.vboxlayout.addLayout(self.hboxlayout1)
 
         self.retranslateUi(FormInspector)
         self.tabWidget.setCurrentIndex(0)
@@ -507,19 +475,13 @@ class Ui_FormInspector(object):
         self.spinBoxExecArea.setSuffix(QtGui.QApplication.translate("FormInspector", " MB", None, QtGui.QApplication.UnicodeUTF8))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_5), QtGui.QApplication.translate("FormInspector", "Advanced settings", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QtGui.QApplication.translate("FormInspector", "IOS configuration", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_20.setText(QtGui.QApplication.translate("FormInspector", "slot4:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_15.setText(QtGui.QApplication.translate("FormInspector", "slot2:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_19.setText(QtGui.QApplication.translate("FormInspector", "slot3:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_6.setText(QtGui.QApplication.translate("FormInspector", "slot0:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_12.setText(QtGui.QApplication.translate("FormInspector", "slot1:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_21.setText(QtGui.QApplication.translate("FormInspector", "slot5:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_19.setText(QtGui.QApplication.translate("FormInspector", "slot3:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_22.setText(QtGui.QApplication.translate("FormInspector", "slot6:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_15.setText(QtGui.QApplication.translate("FormInspector", "slot2:", None, QtGui.QApplication.UnicodeUTF8))
-        self.labelSlot0.setText(QtGui.QApplication.translate("FormInspector", "description", None, QtGui.QApplication.UnicodeUTF8))
-        self.labelSlot1.setText(QtGui.QApplication.translate("FormInspector", "description", None, QtGui.QApplication.UnicodeUTF8))
-        self.labelSlot2.setText(QtGui.QApplication.translate("FormInspector", "description", None, QtGui.QApplication.UnicodeUTF8))
-        self.labelSlot3.setText(QtGui.QApplication.translate("FormInspector", "description", None, QtGui.QApplication.UnicodeUTF8))
-        self.labelSlot4.setText(QtGui.QApplication.translate("FormInspector", "description", None, QtGui.QApplication.UnicodeUTF8))
-        self.labelSlot5.setText(QtGui.QApplication.translate("FormInspector", "description", None, QtGui.QApplication.UnicodeUTF8))
-        self.labelSlot6.setText(QtGui.QApplication.translate("FormInspector", "description", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_23.setText(QtGui.QApplication.translate("FormInspector", "slot4:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_26.setText(QtGui.QApplication.translate("FormInspector", "slot5:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_29.setText(QtGui.QApplication.translate("FormInspector", "slot7:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_28.setText(QtGui.QApplication.translate("FormInspector", "slot6:", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QtGui.QApplication.translate("FormInspector", "Port adapters / Network modules", None, QtGui.QApplication.UnicodeUTF8))
 

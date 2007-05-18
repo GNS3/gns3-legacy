@@ -212,6 +212,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         """
         
         dialog = IOSDialog()
+        dialog.setModal(True)
         dialog.show()
         dialog.exec_()       
         
