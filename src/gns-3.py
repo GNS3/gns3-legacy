@@ -44,9 +44,7 @@ class Main:
 
     def __init__(self, argv):
 
-        global hypervisor
         global win
-
         app = QtGui.QApplication(sys.argv)
 
         #TODO: translation management
@@ -55,7 +53,7 @@ class Main:
         #if translator.load(":/" + locale.getlocale()[0][:2]):
         #    app.installTranslator(translator)
         win = MainWindow()
-        
+ 
         # we start in conception mode
         win.statusbar.showMessage('Conception Mode')
         
@@ -67,6 +65,7 @@ class Main:
         win.connect(win.action_Add_link, QtCore.SIGNAL('activated()'), win.AddEdge)
         win.connect(win.action_SwitchMode, QtCore.SIGNAL('activated()'), win.SwitchMode) 
         win.show()
+        #app.connect(app, QtCore.SIGNAL('lastWindowClosed()'), app, QtCore.SLOT('quit()'))
         sys.exit(app.exec_())
 
 if __name__ == "__main__":

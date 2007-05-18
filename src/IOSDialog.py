@@ -52,9 +52,10 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         self.connect(self.pushButtonSelectWorkingDir, QtCore.SIGNAL('clicked()'), self.slotWorkingDirectory)  
         self.connect(self.checkBoxIntegratedHypervisor, QtCore.SIGNAL('stateChanged(int)'), self.slotCheckBoxIntegratedHypervisor)
 
+        self.connect(self.comboBoxPlatform, QtCore.SIGNAL('currentIndexChanged(const QString &)'), self.slotSelectedPlatform)
+        
         # insert existing platforms
         self.comboBoxPlatform.insertItems(0, PLATFORMS.keys())
-
         self._reloadInfos()
   
     def _reloadInfos(self):
@@ -86,18 +87,25 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 item.setText(4,  image['hypervisor_host'] + ':' +  str(image['hypervisor_port']) + ' ' + working_dir)
 
             self.treeWidgetIOSimages.addTopLevelItem(item)
-            self.treeWidgetIOSimages.resizeColumnToContents(0)
 
     def _getIOSplatform(self, imagename):
         """ Extract platform information from imagename
             imagename: string
         """
-        
+
         m = re.match("^c([0-9]*)\w*", imagename)
         if (m != None):
             return m.group(1)
         return (None)
-    
+
+    def slotSelectedPlatform(self, platform):
+        """ Called when a platform is selected
+            platform: QtCore.QString instance
+        """
+        
+        self.comboBoxChassis.clear()
+        self.comboBoxChassis.insertItems(0, PLATFORMS[str(platform)])
+
     def slotCheckBoxIntegratedHypervisor(self, state):
         """ Enable or disable the hypervisors list
             state: integer
@@ -107,7 +115,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             self.listWidgetHypervisors.setEnabled(False)
         else:
             self.listWidgetHypervisors.setEnabled(True)
-   
+
     def slotSelectIOS(self):
         """ Get an IOS image file from the file system
             Insert platforms and models
@@ -132,7 +140,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                             index = self.comboBoxPlatform.findText(platformname)
                             if index != -1:
                                 self.comboBoxPlatform.setCurrentIndex(index)
-                            self.comboBoxChassis.insertItems(0, PLATFORMS[platformname])
+                            #self.comboBoxChassis.insertItems(0, PLATFORMS[platformname])
                             index = self.comboBoxChassis.findText(model)
                             if index != -1:
                                 self.comboBoxChassis.setCurrentIndex(index)
@@ -188,8 +196,11 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                     hypervisor_port = int(splittab[0])
                     if len(splittab[1]):
                         working_directory = splittab[1]
-            #TODO: change the way we record the associated hypervisor
-            self.main.ios_images[imagename] = { 'platform': str(self.comboBoxPlatform.currentText()),
+            if hypervisor_host == None:
+                host = 'localhost'
+            else:
+                host = hypervisor_host
+            self.main.ios_images[host + ':' + imagename] = { 'platform': str(self.comboBoxPlatform.currentText()),
                                                 'chassis': str(self.comboBoxChassis.currentText()),
                                                 'idlepc': idlepc,
                                                 'hypervisor_host': hypervisor_host,
@@ -197,7 +208,6 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                                                 'working_directory': working_directory
                                                }
             self.treeWidgetIOSimages.addTopLevelItem(item)
-            self.treeWidgetIOSimages.resizeColumnToContents(0)
             # switch to ios images tab
             self.tabWidget.setCurrentIndex(0)
 

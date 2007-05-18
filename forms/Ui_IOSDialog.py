@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'IOSDialog.ui'
 #
-# Created: Mon May 14 14:56:07 2007
+# Created: Fri May 18 10:35:23 2007
 #      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -311,7 +311,7 @@ class Ui_IOSDialog(object):
         self.label.setText(QtGui.QApplication.translate("IOSDialog", "Image file :", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("IOSDialog", "Platform:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_6.setText(QtGui.QApplication.translate("IOSDialog", "Chassis:", None, QtGui.QApplication.UnicodeUTF8))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QtGui.QApplication.translate("IOSDialog", "Image settings", None, QtGui.QApplication.UnicodeUTF8))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QtGui.QApplication.translate("IOSDialog", "New IOS image", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetHypervisor.headerItem().setText(0,QtGui.QApplication.translate("IOSDialog", "Host", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetHypervisor.headerItem().setText(1,QtGui.QApplication.translate("IOSDialog", "Port", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetHypervisor.headerItem().setText(2,QtGui.QApplication.translate("IOSDialog", "Working directory", None, QtGui.QApplication.UnicodeUTF8))

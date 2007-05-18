@@ -349,7 +349,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         if self.iosConfig['iosimage'] == '':
             sys.stderr.write("Node " + str(self.id) + ": no selected IOS image\n")
             return
-        
+
         image_settings = self.main.ios_images[self.iosConfig['iosimage']]
         host = image_settings['hypervisor_host']
         port = image_settings['hypervisor_port']
@@ -380,9 +380,8 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
                 return
                 
         self.ios = lib.C3600(hypervisor, chassis = chassis, name = 'R' + str(self.id))
-        
-        print self.iosConfig['iosimage']
-        self.ios.image = self.iosConfig['iosimage']
+
+        self.ios.image = self.iosConfig['iosimage'].split(':')[1]
 
         if self.iosConfig['startup-config'] != '':
             self.ios.cnfg = self.iosConfig['startup-config']
@@ -432,6 +431,8 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         
         # localport, remoteserver, remoteadapter, remoteport
         # self.ios.slot[0].connect(0, self.main.hypervisor, esw.slot[1], 0)
+        if self.ios == None:
+            return
 
         for interface in self.interfaces.keys():
             connection = self.interfaces[interface]

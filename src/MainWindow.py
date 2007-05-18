@@ -70,7 +70,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.treeWidget.expandItem(self.treeWidget.topLevelItem(0))
         
         # start a local hypervisor
-        local = LocalHypervisor()
+        self.local = LocalHypervisor()
         
     def createScene(self):
         """ Create the scene
@@ -213,7 +213,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         
         dialog = IOSDialog()
         dialog.show()
-        dialog.exec_()        
+        dialog.exec_()       
         
     def Export(self, name, format):
         """ Export the view to an image

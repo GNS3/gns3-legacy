@@ -35,7 +35,6 @@ class LocalHypervisor():
         #QtCore.QObject.connect(self.proc, QtCore.SIGNAL('readyReadStandardOutput()'), self.slotStandardOutput)
         #QtCore.QObject.connect(self.proc, QtCore.SIGNAL('error(QProcess::ProcessError)'), self.slotProcessError)
         self.proc.start('/home/grossmj/workspace/gns3/dynamips/dynamips-0.2.7-RC3-x86.bin',  ['-H', '7200'])
-        #time.sleep(0.5)
         
         if self.proc.waitForStarted() == False:
             print 'Local hypervisor not started !'

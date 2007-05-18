@@ -111,7 +111,7 @@
      </widget>
      <widget class="QWidget" name="tab_2" >
       <attribute name="title" >
-       <string>Image settings</string>
+       <string>New IOS image</string>
       </attribute>
       <layout class="QVBoxLayout" >
        <property name="margin" >
