@@ -91,11 +91,7 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
 
             platform = self.main.ios_images[imagename]['platform']
             chassis = self.main.ios_images[imagename]['chassis']
-            
             self.configIOSAdapters('c' + platform, chassis)
-#            if self.main.ios_images[imagename]['platform'] == '3600':
-#                self.setDefaults3600Platform()
-                
             node = self.main.nodes[self.nodeid]
             self.comboBoxSlot0.setCurrentIndex(self.comboBoxSlot0.findText(node.iosConfig['slots'][0]))
             self.comboBoxSlot1.setCurrentIndex(self.comboBoxSlot0.findText(node.iosConfig['slots'][1]))
@@ -137,27 +133,7 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         self.lineEditConfreg.setText('0x2102')
         self.spinBoxExecArea.setValue(64)
         self.spinBoxIomem.setValue(5)
-        
-    #TODO: a more generic way to do plaform network modules/adapters
-    def setDefaults3600Platform(self, imagename):
-        """ 3600 platform network modules
-            imagename: string
-        """
-        
-        generic_3600_mns = ['', 'NM-1E', 'NM-4E', 'NM-1FE-TX', 'NM-4T']
 
-        chassis = self.main.ios_images[imagename]['chassis']
-        if chassis == '3620' or chassis == '3640' or chassis == '3660':
-            self.comboBoxSlot0.addItems(generic_3600_mns)
-            self.comboBoxSlot1.addItems(generic_3600_mns)
-        if chassis == '3640' or chassis == '3660':
-            self.comboBoxSlot2.addItems(generic_3600_mns)
-            self.comboBoxSlot3.addItems(generic_3600_mns)
-        if chassis == '3660':
-            self.comboBoxSlot4.addItems(generic_3600_mns)
-            self.comboBoxSlot5.addItems(generic_3600_mns)
-            self.comboBoxSlot6.addItems(generic_3600_mns)
-                
     def saveIOSConfig(self):
         """ Save IOS settings
         """

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Inspector.ui'
 #
-# Created: Fri May 18 18:36:07 2007
+# Created: Fri May 18 19:24:38 2007
 #      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -49,12 +49,7 @@ class Ui_FormInspector(object):
         self.gridlayout.addWidget(self.label_5,0,0,1,1)
 
         self.comboBoxIOS = QtGui.QComboBox(self.groupBox)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(5),QtGui.QSizePolicy.Policy(0))
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.comboBoxIOS.sizePolicy().hasHeightForWidth())
-        self.comboBoxIOS.setSizePolicy(sizePolicy)
+        self.comboBoxIOS.setMaximumSize(QtCore.QSize(110,80))
         self.comboBoxIOS.setObjectName("comboBoxIOS")
         self.gridlayout.addWidget(self.comboBoxIOS,0,1,1,1)
 
@@ -67,7 +62,7 @@ class Ui_FormInspector(object):
 
         self.lineEditConsolePort = QtGui.QLineEdit(self.groupBox)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(5),QtGui.QSizePolicy.Policy(0))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(0))
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lineEditConsolePort.sizePolicy().hasHeightForWidth())
@@ -101,7 +96,7 @@ class Ui_FormInspector(object):
 
         self.lineEditStartupConfig = QtGui.QLineEdit(self.groupBox)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(5),QtGui.QSizePolicy.Policy(0))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(0))
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lineEditStartupConfig.sizePolicy().hasHeightForWidth())
@@ -124,7 +119,7 @@ class Ui_FormInspector(object):
         self.toolBox.setObjectName("toolBox")
 
         self.page_3 = QtGui.QWidget()
-        self.page_3.setGeometry(QtCore.QRect(0,0,309,221))
+        self.page_3.setGeometry(QtCore.QRect(0,0,293,221))
         self.page_3.setObjectName("page_3")
 
         self.gridlayout2 = QtGui.QGridLayout(self.page_3)

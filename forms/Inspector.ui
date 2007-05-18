@@ -64,13 +64,11 @@
             </item>
             <item row="0" column="1" >
              <widget class="QComboBox" name="comboBoxIOS" >
-              <property name="sizePolicy" >
-               <sizepolicy>
-                <hsizetype>5</hsizetype>
-                <vsizetype>0</vsizetype>
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
+              <property name="maximumSize" >
+               <size>
+                <width>110</width>
+                <height>80</height>
+               </size>
               </property>
              </widget>
             </item>
@@ -101,7 +99,7 @@
              <widget class="QLineEdit" name="lineEditConsolePort" >
               <property name="sizePolicy" >
                <sizepolicy>
-                <hsizetype>5</hsizetype>
+                <hsizetype>0</hsizetype>
                 <vsizetype>0</vsizetype>
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
@@ -167,7 +165,7 @@
              <widget class="QLineEdit" name="lineEditStartupConfig" >
               <property name="sizePolicy" >
                <sizepolicy>
-                <hsizetype>5</hsizetype>
+                <hsizetype>0</hsizetype>
                 <vsizetype>0</vsizetype>
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
@@ -214,7 +212,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>309</width>
+            <width>293</width>
             <height>221</height>
            </rect>
           </property>
