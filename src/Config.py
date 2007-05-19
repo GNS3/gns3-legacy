@@ -92,13 +92,13 @@ class GNS_Conf(object):
             img_filename = c.get(cgroup + "/filename", '')
             img_hyp_host = c.get(cgroup + "/hypervisor_host", '')
             img_hyp_host_str = img_hyp_host
-            if img_hyp_host_str == "localhost":
-                img_hyp_host = None
+#            if img_hyp_host_str == "localhost":
+#                img_hyp_host = None
             
             if img_filename == '' or img_hyp_host == '':
                 continue
             
-            img_ref = str(img_hyp_host_str + ":" + img_filename)
+            img_ref = str(img_filename)
             self.main.ios_images[img_ref] = {
                     'confkey': cgroup,
                     'filename' : img_filename,

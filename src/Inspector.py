@@ -39,16 +39,24 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         
         # node ID currently used
         self.nodeid = id
-        
         # connect IOS configuration buttons to slots
-        self.connect(self.buttonBoxIOSConfig, QtCore.SIGNAL('clicked(QAbstractButton *)'), self.slotSaveIOSConfig)
-        #self.connect(self.buttonBoxIOSConfig, QtCore.SIGNAL('rejected()'), self.slotRestoreIOSConfig)
-
+        self.connect(self.buttonBoxIOSConfig, QtCore.SIGNAL('clicked(QAbstractButton *)'), self.slotButtons)
+        self.connect(self.pushButtonStartupConfig, QtCore.SIGNAL('clicked()'), self.slotSelectStartupConfig)
+        
         # connect IOS combobox to a slot
         self.connect(self.comboBoxIOS, QtCore.SIGNAL('currentIndexChanged(int)'), self.slotSelectedIOS)
 
-    def configIOSAdapters(self, platform, chassis):
-        """ Configure IOS adapters (slot modules and motherboard)
+        self.slots_list = [self.comboBoxSlot0,
+                           self.comboBoxSlot1,
+                           self.comboBoxSlot2,
+                           self.comboBoxSlot3,
+                           self.comboBoxSlot4,
+                           self.comboBoxSlot5,
+                           self.comboBoxSlot6,
+                           self.comboBoxSlot7]
+
+    def createIOSslotsEntries(self, platform, chassis):
+        """ Create entries for IOS slots (modules and motherboard)
             platform: string
             chassis: string
         """
@@ -56,51 +64,69 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         # special case where the chassis is a platform in ADAPTER_MATRIX
         if (chassis == '2691'):
             self.comboBoxSlot0.addItems(list(lib.ADAPTER_MATRIX[chassis][''][0]))
-            self.comboBoxSlot1.addItems([''] + list(lib.ADAPTER_MATRIX[chassis][''][1]))   
+            self.comboBoxSlot1.addItems([''] + list(lib.ADAPTER_MATRIX[chassis][''][1]))
             return
-
         try:
             # some platforms have adapters on their motherboard (not optional)
             if platform in ('c2600', 'c3660', 'c3725', 'c3745', 'c7200'):
                 self.comboBoxSlot0.addItems(list(lib.ADAPTER_MATRIX[platform][chassis][0]))
             else:
-                self.comboBoxSlot0.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][0]))
-            self.comboBoxSlot1.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][1]))
-            self.comboBoxSlot2.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][2]))
-            self.comboBoxSlot3.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][3]))
-            self.comboBoxSlot4.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][4]))
-            self.comboBoxSlot5.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][5]))
-            self.comboBoxSlot6.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][6]))
-            self.comboBoxSlot7.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][7]))
+                self.comboBoxSlot0.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][0]))    
+            index = 1
+            for widget in self.slots_list[1:]:
+                widget.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][index]))
+                index += 1
         except KeyError:
             return
     
     def slotSelectedIOS(self, index):
         """ Add network modules / port adapters to combo boxes
+            Specifics platform configuration
+            index: integer
         """
 
-        imagename = str(self.comboBoxIOS.currentText())
-        if imagename != '':
-            self.comboBoxSlot0.clear()
-            self.comboBoxSlot1.clear()
-            self.comboBoxSlot2.clear()
-            self.comboBoxSlot3.clear()
-            self.comboBoxSlot4.clear()
-            self.comboBoxSlot5.clear()
-            self.comboBoxSlot6.clear()
+        for widget in self.slots_list:
+            widget.clear()
 
-            platform = self.main.ios_images[imagename]['platform']
-            chassis = self.main.ios_images[imagename]['chassis']
-            self.configIOSAdapters('c' + platform, chassis)
-            node = self.main.nodes[self.nodeid]
-            self.comboBoxSlot0.setCurrentIndex(self.comboBoxSlot0.findText(node.iosConfig['slots'][0]))
-            self.comboBoxSlot1.setCurrentIndex(self.comboBoxSlot0.findText(node.iosConfig['slots'][1]))
-            self.comboBoxSlot2.setCurrentIndex(self.comboBoxSlot0.findText(node.iosConfig['slots'][2]))
-            self.comboBoxSlot3.setCurrentIndex(self.comboBoxSlot0.findText(node.iosConfig['slots'][3]))
-            self.comboBoxSlot4.setCurrentIndex(self.comboBoxSlot0.findText(node.iosConfig['slots'][4]))
-            self.comboBoxSlot5.setCurrentIndex(self.comboBoxSlot0.findText(node.iosConfig['slots'][5]))
-            self.comboBoxSlot6.setCurrentIndex(self.comboBoxSlot0.findText(node.iosConfig['slots'][6]))
-            
+        imagename = str(self.comboBoxIOS.currentText())
+        if imagename == '':
+            return
+
+        # create slots entries
+        platform = self.main.ios_images[imagename]['platform']
+        chassis = self.main.ios_images[imagename]['chassis']
+        self.createIOSslotsEntries('c' + platform, chassis)
+
+        # restore previous selected modules
+        node = self.main.nodes[self.nodeid]
+        index = 0
+        for widget in self.slots_list:
+            combobox_index = widget.findText(node.iosConfig['slots'][index])
+            if (combobox_index != -1):
+                widget.setCurrentIndex(combobox_index)
+            index += 1
+
+        self.comboBoxMidplane.clear()
+        self.comboBoxMidplane.setEnabled(False)
+        self.comboBoxNPE.clear()
+        self.comboBoxNPE.setEnabled(False)
+        self.spinBoxIomem.setEnabled(False)
+
+        if platform == '7200':
+            self.comboBoxMidplane.addItems(['std', 'vxr'])
+            self.comboBoxMidplane.setEnabled(True)
+            index = self.comboBoxMidplane.findText(node.iosConfig['midplane'])
+            if index != -1:
+                self.comboBoxMidplane.setCurrentIndex(index)
+            self.comboBoxNPE.addItems(['npe-100', 'npe-150', 'npe-175', 'npe-200', 'npe-225', 'npe-300', 'npe-400', 'npe-g1', 'npe-g2'])
+            self.comboBoxNPE.setEnabled(True)
+            index = self.comboBoxNPE.findText(node.iosConfig['npe'])
+            if index != -1:
+                self.comboBoxNPE.setCurrentIndex(index)
+        if platform == '3600':
+            self.spinBoxIomem.setEnabled(True)
+            self.spinBoxIomem.setValue(node.iosConfig['iomem'])
+
     def loadNodeInfos(self):
         """ Called when the inspector is open
             Load all node settings
@@ -110,18 +136,52 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         self.comboBoxIOS.clear()
         self.comboBoxIOS.addItems(self.main.ios_images.keys())
 
+        node = self.main.nodes[self.nodeid]
+        index = self.comboBoxIOS.findText(node.iosConfig['iosimage'])
+        if index != -1:
+            self.comboBoxIOS.setCurrentIndex(index)
+
 #        if node.iosConfig == {}:
 #             self.setDefaults()
 #             self.saveIOSConfig()
 
+    def slotSelectStartupConfig(self):
+        """ Get startup-config from the file system
+        """
+        
+        filedialog = QtGui.QFileDialog(self)
+        selected = QtCore.QString()
+        path = QtGui.QFileDialog.getOpenFileName(filedialog, 'Startup-config', '.', \
+                    '(*.*)', selected)
+        if not path:
+            return
+        path = unicode(path)
+        try:
+            self.lineEditStartupConfig.clear()
+            self.lineEditStartupConfig.setText(path)
+        except IOError, (errno, strerror):
+            QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
+
+    def slotButtons(self, button):
+        """ Slot for buttons (defaults, apply, cancel and close)
+            button: QtGui.QAbstractButton
+        """
+    
+        if self.buttonBoxIOSConfig.buttonRole(button) == QtGui.QDialogButtonBox.ApplyRole:
+            self.saveIOSConfig()
+        if self.buttonBoxIOSConfig.buttonRole(button) == QtGui.QDialogButtonBox.RejectRole:
+            if self.buttonBoxIOSConfig.standardButton(button) == QtGui.QDialogButtonBox.Cancel:
+                self.restoreIOSConfig()
+            else:
+                self.close()
+        if self.buttonBoxIOSConfig.buttonRole(button) == QtGui.QDialogButtonBox.ResetRole:
+            self.setDefaults()
+
     def setDefaults(self):
         """ IOS default settings
         """
-    
-        #FIXME: do we really need this ?
-        print 'DEFAULTS'
+
         node = self.main.nodes[self.nodeid]
-        self.comboBoxIOS.clear()
         self.lineEditConsolePort.clear()
         self.lineEditStartupConfig.clear()
         self.spinBoxRamSize.setValue(128)
@@ -154,32 +214,22 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         node.iosConfig['confreg'] = str(self.lineEditConfreg.text())
         node.iosConfig['execarea'] = self.spinBoxExecArea.value()
         node.iosConfig['iomem'] = self.spinBoxIomem.value()
+        node.iosConfig['midplane'] = str(self.comboBoxMidplane.currentText())
+        node.iosConfig['npe'] = str(self.comboBoxNPE.currentText())
         node.iosConfig['slots'] = []
-        node.iosConfig['slots'].append(str(self.comboBoxSlot0.currentText()))
-        node.iosConfig['slots'].append(str(self.comboBoxSlot1.currentText()))
-        node.iosConfig['slots'].append(str(self.comboBoxSlot2.currentText()))
-        node.iosConfig['slots'].append(str(self.comboBoxSlot3.currentText()))
-        node.iosConfig['slots'].append(str(self.comboBoxSlot4.currentText()))
-        node.iosConfig['slots'].append(str(self.comboBoxSlot5.currentText()))
-        node.iosConfig['slots'].append(str(self.comboBoxSlot6.currentText()))
+        for widget in self.slots_list:
+            node.iosConfig['slots'].append(str(widget.currentText()))
 
-    def slotSaveIOSConfig(self, button):
-        """ Launch the ios save
-            button: QtGui.QAbstractButton
-        """
-    
-        if self.buttonBoxIOSConfig.buttonRole(button) == QtGui.QDialogButtonBox.ApplyRole:
-            self.saveIOSConfig()
-
-    def slotRestoreIOSConfig(self):
+    def restoreIOSConfig(self):
         """ Restore the IOS settings
         """
-    
-        print 'RESTORE'
+
         node = self.main.nodes[self.nodeid]
         if node.iosConfig == {}:
             return
-        #self.comboBoxIOS.addItem(node.iosConfig['iosimage'])
+        index = self.comboBoxIOS.findText(node.iosConfig['iosimage'])
+        if index != -1:
+            self.comboBoxIOS.setCurrentIndex(index)
         self.lineEditConsolePort.setText(node.iosConfig['consoleport'])
         self.lineEditStartupConfig.setText(node.iosConfig['startup-config'])
         self.spinBoxRamSize.setValue(node.iosConfig['RAM'])
@@ -193,4 +243,3 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
             self.checkBoxMapped.setCheckState(QtCore.Qt.Unchecked)
         self.lineEditConfreg.setText(node.iosConfig['confreg'])
         self.spinBoxExecArea.setValue(node.iosConfig['execarea'])
-        self.spinBoxIomem.setValue(node.iosConfig['iomem'])

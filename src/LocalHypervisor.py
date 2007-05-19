@@ -21,7 +21,7 @@ from PyQt4 import QtCore, QtGui
 import time
 import __main__
 
-class LocalHypervisor():
+class LocalHypervisor:
     """ LocalHypervisor class
         Start the local hypervisor program
     """

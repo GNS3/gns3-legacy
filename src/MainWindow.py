@@ -27,7 +27,6 @@ import layout
 import svg_resources_rc
 from Edge import *
 from MNode import *
-from LocalHypervisor import *
 import __main__
 
 # Temporary emplacement for TreeItem
@@ -68,9 +67,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         
         # expand items from the tree
         self.treeWidget.expandItem(self.treeWidget.topLevelItem(0))
-        
-        # start a local hypervisor
-        self.local = LocalHypervisor()
         
     def createScene(self):
         """ Create the scene
@@ -160,8 +156,13 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.statusbar.showMessage('Simulation Mode')
             self.main.conception_mode = False
             self.action_Add_link.setEnabled(False)
-            for node in self.main.nodes.keys():
-                self.main.nodes[node].configIOS()
+            try:
+                for node in self.main.nodes.keys():
+                    self.main.nodes[node].configIOS()
+            except lib.DynamipsError, msg:
+                #print "Dynamips error: %s" % msg
+                QtGui.QMessageBox.critical(self, 'Dynamips error',  msg)
+                return
             
         elif self.action_SwitchMode.text() == 'Conception Mode':
             # simulation mode
@@ -170,8 +171,13 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.statusbar.showMessage('Conception Mode')
             self.main.conception_mode = True
             self.action_Add_link.setEnabled(True)
-            for node in self.main.nodes.keys():
-                self.main.nodes[node].resetIOSConfig()
+            try:
+                for node in self.main.nodes.keys():
+                    self.main.nodes[node].resetIOSConfig()
+            except lib.DynamipsError, msg:
+                #print "Dynamips error: %s" % msg
+                QtGui.QMessageBox.critical(self, 'Dynamips error',  msg)
+                return
             
     def SaveToFile(self):
         """ Save an image file

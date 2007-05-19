@@ -161,9 +161,9 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             if idlepc == '':
                 # no idle PC, that's bad ...
                 QtGui.QMessageBox.warning(self, 'IOS', 'IDLE PC is important')
-            if self.main.ios_images.has_key(imagename):
-                QtGui.QMessageBox.critical(self, 'IOS',  'IOS already exits')
-                return
+#            if self.main.ios_images.has_key(imagename):
+#                QtGui.QMessageBox.critical(self, 'IOS',  'IOS already exits')
+#                return
 
             item = QtGui.QTreeWidgetItem(self.treeWidgetIOSimages)
             # platform column
@@ -173,18 +173,20 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             # idle pc column
             item.setText(3, idlepc)
             # hypervisor column
-            hypervisor_host = None
-            hypervisor_port = None
-            working_directory = None
+            #TODO: get defaults value from conf file
+            hypervisor_host = 'localhost'
+            hypervisor_port = 7200
+            working_directory = '/tmp'
+            
             if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Checked:
-                # local hypervisor
-                item.setText(4, 'local')
+                # integrated hypervisor
+                item.setText(4, hypervisor_host + ':' + str(hypervisor_port))
             else:
                 # external hypervisor
                 items = self.listWidgetHypervisors.selectedItems()
                 if len(items) == 0:
                     QtGui.QMessageBox.warning(self, 'IOS', 'No hypervisor selected, use local hypervisor')
-                    item.setText(4, 'local')
+                    item.setText(4, hypervisor_host + ':' + str(hypervisor_port))
                 else:
                     # get the selected hypervisor
                     selected = str(items[0].text())
@@ -196,33 +198,21 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                     hypervisor_port = int(splittab[0])
                     if len(splittab[1]):
                         working_directory = splittab[1]
-            if hypervisor_host == None:
-                host = 'localhost'
-            else:
-                host = hypervisor_host
 
             # image name column
-            item.setText(0, host + ':' + imagename)
+            imagename = hypervisor_host + ':' + imagename
+            item.setText(0, imagename)
 
-            self.main.ios_images[host + ':' + imagename] = { 'platform': str(self.comboBoxPlatform.currentText()),
+            self.main.ios_images[imagename] = { 'platform': str(self.comboBoxPlatform.currentText()),
                                                 'chassis': str(self.comboBoxChassis.currentText()),
                                                 'idlepc': idlepc,
                                                 'hypervisor_host': hypervisor_host,
                                                 'hypervisor_port': hypervisor_port,
                                                 'working_directory': working_directory,
-                                                'confkey': ConfDB().getGroupNewNumChild("IOSimages/image")
+                                                'confkey': str(ConfDB().getGroupNewNumChild("IOSimages/image"))
                                                }
             
-            confkey = self.main.ios_images[host + ':' + imagename]['confkey']
-            if hypervisor_host is None:
-                hypervisor_host = 'localhost'
-                hypervisor_port = ''
-                working_directory = ''
-            if hypervisor_port is None:
-                hypervisor_port = ''
-            if working_directory is None:
-                working_directory = ''
-            
+            confkey = self.main.ios_images[imagename]['confkey']
             ConfDB().set(confkey + "/filename", imagename)
             ConfDB().set(confkey + "/platform", str(self.comboBoxPlatform.currentText()))
             ConfDB().set(confkey + "/chassis", str(self.comboBoxChassis.currentText()))

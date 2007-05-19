@@ -24,6 +24,7 @@ import translations
 from Config import *
 from PyQt4 import QtCore, QtGui
 from MainWindow import MainWindow
+from LocalHypervisor import *
 import Dynamips_lib as lib
 
 # globals
@@ -57,6 +58,9 @@ class Main:
         #if translator.load(":/" + locale.getlocale()[0][:2]):
         #    app.installTranslator(translator)
         win = MainWindow()
+ 
+        # start a local hypervisor
+        local = LocalHypervisor()
  
         # we start in conception mode
         win.statusbar.showMessage('Conception Mode')

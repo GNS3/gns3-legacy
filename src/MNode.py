@@ -27,20 +27,20 @@ import sys
 import __main__
 
 ADAPTERS = {
-    "PA-C7200-IO-FE" : (lib.PA_C7200_IO_FE, 1, 'f'),
-    "PA-C7200-IO-2FE" : (lib.PA_C7200_IO_2FE, 2, 'f'),
-    "PA-C7200-IO-GE-E" : (lib.PA_C7200_IO_GE_E, 1, 'g'),
-    "PA-A1" : (lib.PA_A1, 1, 'a'),
-    "PA-FE-TX" : (lib.PA_FE_TX, 1, 'f'),
-    "PA-2FE-TX" : (lib.PA_2FE_TX, 2, 'f'),
-    "PA-GE" : (lib.PA_GE, 1, 'g'),
-    "PA-4T" : (lib.PA_4T, 4, 's'),
-    "PA-8T" : (lib.PA_8T, 8, 's'),
-    "PA-4E" : (lib.PA_4E, 4, 'e'),
-    "PA-8E" : (lib.PA_8E, 8, 'e'),
-    "PA-POS-OC3" : (lib.PA_POS_OC3, 1, 'p'),
-    "NM-1FE-TX"  : (lib.NM_1FE_TX, 1, 'f'),
-    "NM-1E"  : (lib.NM_1E, 1, 'e'),
+    "PA-C7200-IO-FE": (lib.PA_C7200_IO_FE, 1, 'f'),
+    "PA-C7200-IO-2FE": (lib.PA_C7200_IO_2FE, 2, 'f'),
+    "PA-C7200-IO-GE-E": (lib.PA_C7200_IO_GE_E, 1, 'g'),
+    "PA-A1": (lib.PA_A1, 1, 'a'),
+    "PA-FE-TX": (lib.PA_FE_TX, 1, 'f'),
+    "PA-2FE-TX": (lib.PA_2FE_TX, 2, 'f'),
+    "PA-GE": (lib.PA_GE, 1, 'g'),
+    "PA-4T": (lib.PA_4T, 4, 's'),
+    "PA-8T": (lib.PA_8T, 8, 's'),
+    "PA-4E": (lib.PA_4E, 4, 'e'),
+    "PA-8E": (lib.PA_8E, 8, 'e'),
+    "PA-POS-OC3": (lib.PA_POS_OC3, 1, 'p'),
+    "NM-1FE-TX" : (lib.NM_1FE_TX, 1, 'f'),
+    "NM-1E": (lib.NM_1E, 1, 'e'),
     "NM-4E": (lib.NM_4E, 4, 'e'),
     "NM-4T": (lib.NM_4T, 4, 's'),
     "NM-16ESW": (lib.NM_16ESW, 16, 'f'),
@@ -50,6 +50,15 @@ ADAPTERS = {
     "CISCO2600-MB-2E": (lib.CISCO2600_MB_2E, 2, 'e'),
     "CISCO2600-MB-1FE": (lib.CISCO2600_MB_1FE, 1, 'f'),
     "CISCO2600-MB-2FE": (lib.CISCO2600_MB_2FE, 2, 'f')
+}
+
+ROUTERS = {
+    "7200": lib.C7200,
+    "2691": lib.C2691,
+    "2600": lib.C2600,
+    "3725": lib.C3725,
+    "3745": lib.C3745,
+    "3600": lib.C3600
 }
 
 class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
@@ -355,38 +364,28 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         host = image_settings['hypervisor_host']
         port = image_settings['hypervisor_port']
         working_directory = image_settings['working_directory']
+        platform = image_settings['platform']
         chassis = image_settings['chassis']
+        idlepc = image_settings['idlepc']
 
-        if host == None and port == None and self.main.hypervisor == None:    
-            try:
-                # use the integrated hypervisor
-                self.main.hypervisor = lib.Dynamips('localhost', 7200)
-                self.main.hypervisor.reset()
-                self.main.hypervisor.workingdir = '/tmp'
-                hypervisor = self.main.hypervisor
-            except lib.DynamipsError, msg:
-                print "Dynamips error: %s" % msg
-                self.main.hypervisor = None
-                return
-        elif self.main.hypervisor != None:
-            hypervisor = self.main.hypervisor
-        else:
-            # use an external hypervisor
-            try:
-                hypervisor = lib.Dynamips(host, port)
-                hypervisor.reset()
-                hypervisor.workingdir = working_directory
-            except lib.DynamipsError, msg:
-                print "Dynamips error: %s" % msg
-                return
-                
+        # connect to hypervisor
+        hypervisor = lib.Dynamips(host, port)
+        hypervisor.reset()
+        hypervisor.workingdir = working_directory
+          
+        #ROUTERS
+        if platform == '7200':
+            ROUTERS[platform](hypervisor, name = 'R' + str(self.id))
+        if chassis in ('2691', '3725', '3745'):
+            ROUTERS[chassis](hypervisor, name = 'R' + str(self.id))
+        elif platform in ('3600', '2600'):
+            ROUTERS[platform](hypervisor, chassis = chassis, name = 'R' + str(self.id))
+
         self.ios = lib.C3600(hypervisor, chassis = chassis, name = 'R' + str(self.id))
 
         self.ios.image = self.iosConfig['iosimage'].split(':')[1]
-
         if self.iosConfig['startup-config'] != '':
             self.ios.cnfg = self.iosConfig['startup-config']
-   
         self.ios.ram = self.iosConfig['RAM']
         self.ios.rom = self.iosConfig['ROM']
         self.ios.nvram = self.iosConfig['NVRAM']
@@ -394,22 +393,22 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.ios.disk0 = self.iosConfig['pcmcia-disk0']
         if self.iosConfig['pcmcia-disk1'] != 0:
             self.ios.disk1 = self.iosConfig['pcmcia-disk1']
-        
         self.ios.mmap = self.iosConfig['mmap']
         if self.iosConfig['confreg'] != '':
             self.ios.conf = self.iosConfig['confreg']
-
         self.ios.exec_area = self.iosConfig['execarea']
-        
-        # Only for 3600 platform
-        #self.iosConfig['iomem']
+        if platform == '3600':
+            self.ios.iomem = self.iosConfig['iomem']
+        if platform == '7200':
+            self.ios.midplane = self.iosConfig['midplane']
+            self.ios.npe = self.iosConfig['npe']
 
         slotnb = 0
         for module in self.iosConfig['slots']:
             self.configSlot(slotnb, module)
             slotnb += 1
 
-        self.ios.idlepc = '0x60483ae4'
+        self.ios.idlepc = idlepc #'0x60483ae4'
         
     def configSlot(self, slotnb, module):
         """ Add an new module into a slot
