@@ -136,7 +136,27 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.neighborList.append(edge.source.id)
         self.edgeList.append(edge)
         edge.adjust()
-    
+        
+    def deleteEdge(self, edge):
+        """ Delete the edge
+            edge: Edge instance
+        """
+        
+        if edge.dest.id != self.id:
+            neighborid = edge.dest.id
+        else:
+            neighborid = edge.source.id
+        self.neighborList.remove(neighborid)
+        self.edgeList.remove(edge)
+
+        tmp = self.interfaces
+        delete_list = []
+        for interface in tmp:
+            if tmp[interface][0] == neighborid:
+                delete_list.append(interface)
+        for interface in delete_list:
+            del self.interfaces[interface]
+
     def ajustAllEdges(self):
         """ Refresh edges drawing
         """
@@ -230,6 +250,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
 
     def mousePressEvent(self, event):
         """ Call when the node is clicked
+            event: QtGui.QGraphicsSceneMouseEvent instance
         """
 
         if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == False:
@@ -238,6 +259,13 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.menu.addAction(QtGui.QIcon('../svg/icons/play.svg'), 'start')
             self.menu.addAction(QtGui.QIcon('../svg/icons/stop.svg'), 'stop')
             self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.simAction)
+            self.menu.exec_(QtGui.QCursor.pos())
+
+        if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == True:
+            self.menu = QtGui.QMenu()
+            self.menu.addAction(QtGui.QIcon('../svg/icons/switch_conception_mode.svg'), 'configuration')
+            self.menu.addAction(QtGui.QIcon('../svg/icons/delete.svg'), 'delete')
+            self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.conceptionAction)
             self.menu.exec_(QtGui.QCursor.pos())
         
         if self.main.linkEnabled == False :
@@ -338,7 +366,33 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.startIOS()
         elif action == 'stop':
             self.stopIOS()
-
+            
+    def conceptionAction(self, action):
+        """ Called when an option is selected from the contextual menu
+            in conception mode
+            action: QtCore.QAction instance
+        """
+        
+        action = action.text()
+        delete_list = []
+        if action == 'delete':
+            print self.edgeList
+            for edge in self.edgeList:
+                self._QGraphicsScene.removeItem(edge)
+                delete_list.append(edge)
+            for edge in delete_list:
+                if edge.dest.id != self.id:
+                    neighborid = edge.dest.id
+                else:
+                    neighborid = edge.source.id
+                self.main.nodes[neighborid].deleteEdge(edge)
+                self.deleteEdge(edge)
+            del self.main.nodes[self.id]
+            self._QGraphicsScene.removeItem(self)
+        if action == 'configuration':
+            self.InspectorInstance.loadNodeInfos() 
+            self.InspectorInstance.show()
+    
     def setName(self, name):
         
         self.mNodeName = name
@@ -371,17 +425,16 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         # connect to hypervisor
         hypervisor = lib.Dynamips(host, port)
         hypervisor.reset()
-        hypervisor.workingdir = working_directory
-          
+        if working_directory:
+            hypervisor.workingdir = working_directory
+        
         #ROUTERS
         if platform == '7200':
-            ROUTERS[platform](hypervisor, name = 'R' + str(self.id))
+            self.ios = ROUTERS[platform](hypervisor, name = 'R' + str(self.id))
         if chassis in ('2691', '3725', '3745'):
-            ROUTERS[chassis](hypervisor, name = 'R' + str(self.id))
+            self.ios = ROUTERS[chassis](hypervisor, name = 'R' + str(self.id))
         elif platform in ('3600', '2600'):
-            ROUTERS[platform](hypervisor, chassis = chassis, name = 'R' + str(self.id))
-
-        self.ios = lib.C3600(hypervisor, chassis = chassis, name = 'R' + str(self.id))
+            self.ios = ROUTERS[platform](hypervisor, chassis = chassis, name = 'R' + str(self.id))
 
         self.ios.image = self.iosConfig['iosimage'].split(':')[1]
         if self.iosConfig['startup-config'] != '':
@@ -398,7 +451,9 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.ios.conf = self.iosConfig['confreg']
         self.ios.exec_area = self.iosConfig['execarea']
         if platform == '3600':
-            self.ios.iomem = self.iosConfig['iomem']
+            pass
+            # seems to have a bug here with the lib
+            #self.ios.iomem = str(self.iosConfig['iomem'])
         if platform == '7200':
             self.ios.midplane = self.iosConfig['midplane']
             self.ios.npe = self.iosConfig['npe']
@@ -407,8 +462,8 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         for module in self.iosConfig['slots']:
             self.configSlot(slotnb, module)
             slotnb += 1
-
-        self.ios.idlepc = idlepc #'0x60483ae4'
+        if idlepc:
+            self.ios.idlepc = idlepc #'0x60483ae4'
         
     def configSlot(self, slotnb, module):
         """ Add an new module into a slot

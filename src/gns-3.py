@@ -31,7 +31,7 @@ import Dynamips_lib as lib
 baseid = 0                # Base to create IDs
 nodes = {}                # Node objects, indexed by the node ID
 ios_images = {}           # Registered Cisco IOS images
-hypervisor = None         # Hypervisor connection
+#hypervisors = []          # Hypervisors
 conception_mode = True    # If we are in conception mode
 win = None                # ref to the main window
 

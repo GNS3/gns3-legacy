@@ -19,11 +19,15 @@
 
 from PyQt4 import QtCore, QtGui
 import math
+import __main__
 
 class Edge(QtGui.QGraphicsItem, QtGui.QGraphicsScene):
     """ Edge class
         Create a link between nodes
     """
+
+    # get access to globals
+    main = __main__
 
     def __init__(self, sourceNode, destNode, scene, fake = False):
         """ sourceNode: MNode instance
@@ -37,17 +41,17 @@ class Edge(QtGui.QGraphicsItem, QtGui.QGraphicsScene):
         QtGui.QGraphicsItem.__init__(self)
    
         # edge settings
-        self.setAcceptedMouseButtons(QtCore.Qt.NoButton)
         self.pointSize = 10
         self.penWidth = 2.0
         self.source = sourceNode
         self.dest = destNode
+        self.scene = scene
         if (fake == False):
             self.source.addEdge(self)
             self.dest.addEdge(self)
         self.adjust()
-        scene.addItem(self)
-        scene.update(self.sceneBoundingRect())
+        self.scene.addItem(self)
+        self.scene.update(self.sceneBoundingRect())
 
     def sourceNode(self):
         """ Returns the source node
@@ -74,6 +78,36 @@ class Edge(QtGui.QGraphicsItem, QtGui.QGraphicsScene):
         
         self.dest = node
         self.adjust()
+
+    def mousePressEvent(self, event):
+        """ Call when the edge is clicked
+            event: QtGui.QGraphicsSceneMouseEvent instance
+        """
+
+        if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == True:
+            self.menu = QtGui.QMenu()
+            self.menu.addAction(QtGui.QIcon('../svg/icons/delete.svg'), 'delete')
+            self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.conceptionAction)
+            self.menu.exec_(QtGui.QCursor.pos())
+        QtGui.QGraphicsItem.mousePressEvent(self, event)
+        
+    def conceptionAction(self, action):
+        """ Called when an option is selected from the contextual menu
+            in conception mode
+            action: QtCore.QAction instance
+        """
+        
+        action = action.text()
+        if action == 'delete':
+            self.delete()
+
+    def delete(self):
+        """ Delete the edge
+        """
+
+        self.source.deleteEdge(self)
+        self.dest.deleteEdge(self)
+        self.scene.removeItem(self)
 
     def adjust(self):
         """ Compute the (new) source point and destination point

@@ -160,8 +160,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 for node in self.main.nodes.keys():
                     self.main.nodes[node].configIOS()
             except lib.DynamipsError, msg:
-                #print "Dynamips error: %s" % msg
-                QtGui.QMessageBox.critical(self, 'Dynamips error',  msg)
+                print "Dynamips error: %s" % msg
+                QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
                 return
             
         elif self.action_SwitchMode.text() == 'Conception Mode':
@@ -175,8 +175,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 for node in self.main.nodes.keys():
                     self.main.nodes[node].resetIOSConfig()
             except lib.DynamipsError, msg:
-                #print "Dynamips error: %s" % msg
-                QtGui.QMessageBox.critical(self, 'Dynamips error',  msg)
+                print "Dynamips error: %s" % msg
+                QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
                 return
             
     def SaveToFile(self):

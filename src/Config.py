@@ -106,7 +106,7 @@ class GNS_Conf(object):
                     'chassis': c.get(cgroup + "/chassis", ''),
                     'idlepc' : c.get(cgroup + "/idlepc", ''),
                     'hypervisor_host' : img_hyp_host,
-                    'hypervisor_port' : c.get(cgroup + "/hypervisor_port", ''),
+                    'hypervisor_port' : int(c.get(cgroup + "/hypervisor_port", 0)),
                     'working_directory' : c.get(cgroup + "/working_directory", '')                
             }
 
