@@ -19,7 +19,7 @@
 
 import os, time
 from PyQt4 import QtCore, QtGui, QtSvg
-from Edge import *
+from Ethernet import *
 from Inspector import Inspector
 import Dynamips_lib as lib
 import socket
@@ -295,7 +295,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
            self._QGraphicsScene.update()
            if self.abort == False:
                self.main.TabLinkMNode.append(self)
-               ed = Edge(self.main.TabLinkMNode[0], self.main.TabLinkMNode[1], self._QGraphicsScene)
+               ed = Ethernet(self.main.TabLinkMNode[0], self.main.TabLinkMNode[1], self._QGraphicsScene)
                self._QGraphicsScene.update(ed.boundingRect())
            self.resetList()
         QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
@@ -376,7 +376,6 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         action = action.text()
         delete_list = []
         if action == 'delete':
-            print self.edgeList
             for edge in self.edgeList:
                 self._QGraphicsScene.removeItem(edge)
                 delete_list.append(edge)
@@ -423,10 +422,13 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         idlepc = image_settings['idlepc']
 
         # connect to hypervisor
-        hypervisor = lib.Dynamips(host, port)
-        hypervisor.reset()
-        if working_directory:
-            hypervisor.workingdir = working_directory
+        if self.main.hypervisor == None:
+            self.main.hypervisor = lib.Dynamips(host, port)
+            self.main.hypervisor.reset()
+            if working_directory:
+                self.main.hypervisor.workingdir = working_directory
+        
+        hypervisor = self.main.hypervisor
         
         #ROUTERS
         if platform == '7200':
@@ -464,6 +466,8 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             slotnb += 1
         if idlepc:
             self.ios.idlepc = idlepc #'0x60483ae4'
+            
+        print "Configuration for " + str(self.id) + " is completed" 
         
     def configSlot(self, slotnb, module):
         """ Add an new module into a slot

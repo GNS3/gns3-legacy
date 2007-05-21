@@ -25,7 +25,6 @@ from IOSDialog import IOSDialog
 from NamFileSimulation import *
 import layout
 import svg_resources_rc
-from Edge import *
 from MNode import *
 import __main__
 
@@ -150,12 +149,13 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         """
         
         if self.action_SwitchMode.text() == 'Simulation Mode':
-            # conception mode
+            # simulation mode
             self.action_SwitchMode.setText('Conception Mode')
             self.action_SwitchMode.setIcon(QtGui.QIcon('../svg/icons/switch_conception_mode.svg'))
             self.statusbar.showMessage('Simulation Mode')
             self.main.conception_mode = False
             self.action_Add_link.setEnabled(False)
+            print self.main.nodes
             try:
                 for node in self.main.nodes.keys():
                     self.main.nodes[node].configIOS()
@@ -165,7 +165,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 return
             
         elif self.action_SwitchMode.text() == 'Conception Mode':
-            # simulation mode
+            # conception mode
             self.action_SwitchMode.setText('Simulation Mode')
             self.action_SwitchMode.setIcon(QtGui.QIcon('../svg/icons/switch_simulation_mode.svg'))
             self.statusbar.showMessage('Conception Mode')
