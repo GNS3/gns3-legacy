@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'forms/MainWindow.ui'
+# Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Mon May 14 17:34:15 2007
-#      by: PyQt4 UI code generator 4.1.1
+# Created: Mon May 21 12:52:36 2007
+#      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -42,7 +42,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,811,29))
+        self.menubar.setGeometry(QtCore.QRect(0,0,811,25))
         self.menubar.setObjectName("menubar")
 
         self.menu_File = QtGui.QMenu(self.menubar)

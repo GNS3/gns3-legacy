@@ -1,0 +1,12 @@
+<RCC>
+    <qresource>
+        <file alias="Cloud">symbols/cloud.svg</file>
+        <file alias="Edge label switch router">symbols/edge_label_switch_router.svg</file>
+        <file alias="Multilayer switch">symbols/multilayer_switch.svg</file>
+        <file alias="Route switch processor">symbols/route_switch_processor.svg</file>
+        <file alias="Router">symbols/router.svg</file>
+        <file alias="Router with firewall">symbols/router_firewall.svg</file>
+        <file alias="Switch">symbols/switch.svg</file>
+	<file alias="ATM switch">symbols/atm_switch.svg</file>
+    </qresource>
+</RCC>

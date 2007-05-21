@@ -17,6 +17,8 @@
 # Contact: developers@gns3.net
 #
 
+from PyQt4 import QtCore, QtGui
+
 class  Singleton (object):
     _instance = None
     
@@ -25,3 +27,12 @@ class  Singleton (object):
             cls._instance = super(Singleton, cls).__new__(
                                 cls, *args, **kwargs)
         return cls._instance
+
+
+def translate(context, text):
+    """ return the translated text
+        context: string (classname)
+        text: string (original text)
+    """
+    
+    return unicode(QtGui.QApplication.translate(context, text, None, QtGui.QApplication.UnicodeUTF8))

@@ -24,32 +24,9 @@ from Ui_About import *
 from IOSDialog import IOSDialog
 from NamFileSimulation import *
 import layout
-import svg_resources_rc
+import SVGResources
 from MNode import *
 import __main__
-
-# Temporary emplacement for TreeItem
-class TreeItem(QtSvg.QGraphicsSvgItem, QtGui.QTreeWidget):
-    """ TreeItem class
-        Item for TreeWidget
-    """
-    
-    def __init__(self, treeView, object):
-        
-        QtGui.QTreeWidgetItem.__init__(self)
-        self = QtGui.QTreeWidgetItem(treeView)
-        
-        self.setText(0,QtGui.QApplication.translate("MainWindow",  object, None, QtGui.QApplication.UnicodeUTF8))
-        self.setIcon(0,QtGui.QIcon("../svg/symbols/router.svg"))
-    
-    def mouseDoubleClickEvent(self, event):
-    
-        inspector = QtGui.QDialog()
-        ui = Ui_FormInspector()
-        ui.setupUi(inspector)
-        inspector.show()
-        inspector.exec_()
-        self.setText(0,QtGui.QApplication.translate("MainWindow", "youhou", None, QtGui.QApplication.UnicodeUTF8))
 
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     """ MainWindow class

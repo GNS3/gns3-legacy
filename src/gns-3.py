@@ -17,10 +17,9 @@
 # Contact: developers@gns3.net
 #
 
-import os, sys, time
-sys.path.append('../forms')
-import locale
-import translations
+import os, sys, time, locale
+#sys.path.append('../forms')
+import Translations
 from Config import *
 from PyQt4 import QtCore, QtGui
 from MainWindow import MainWindow
@@ -31,7 +30,9 @@ import Dynamips_lib as lib
 baseid = 0                # Base to create IDs
 nodes = {}                # Node objects, indexed by the node ID
 ios_images = {}           # Registered Cisco IOS images
-hypervisor = None         # Hypervisors
+hypervisors = {}          # hypervisors
+#FIXME: temporary
+hypervisor = None         # global hypervisor
 conception_mode = True    # If we are in conception mode
 win = None                # ref to the main window
 
@@ -54,14 +55,10 @@ class Main:
 
         #TODO: translation management
         translator = QtCore.QTranslator(app)
-        #print locale.getlocale()[0]
-        #if translator.load(":/" + locale.getlocale()[0][:2]):
-        #    app.installTranslator(translator)
+        if translator.load(":" + locale.getlocale()[0][:2]):
+            app.installTranslator(translator)
+
         win = MainWindow()
- 
-        # start a local hypervisor
-        local = LocalHypervisor()
- 
         # we start in conception mode
         win.statusbar.showMessage('Conception Mode')
         
@@ -73,6 +70,9 @@ class Main:
         win.connect(win.action_Add_link, QtCore.SIGNAL('activated()'), win.AddEdge)
         win.connect(win.action_SwitchMode, QtCore.SIGNAL('activated()'), win.SwitchMode) 
         win.show()
+        
+        # start a local hypervisor
+        local = LocalHypervisor()
         #app.connect(app, QtCore.SIGNAL('lastWindowClosed()'), app, QtCore.SLOT('quit()'))
         sys.exit(app.exec_())
 

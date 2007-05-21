@@ -194,10 +194,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                     # split the line to get the host, port and working directory
                     splittab = selected.split(':')
                     hypervisor_host = splittab[0]
-                    splittab = splittab[1].split(' ')
-                    hypervisor_port = int(splittab[0])
-                    if len(splittab[1]):
-                        working_directory = splittab[1]
+                    hypervisor_port = splittab[1]
 
             # image name column
             imagename = hypervisor_host + ':' + imagename
@@ -207,7 +204,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                                                 'chassis': str(self.comboBoxChassis.currentText()),
                                                 'idlepc': idlepc,
                                                 'hypervisor_host': hypervisor_host,
-                                                'hypervisor_port': hypervisor_port,
+                                                'hypervisor_port': int(hypervisor_port),
                                                 'working_directory': working_directory,
                                                 'confkey': str(ConfDB().getGroupNewNumChild("IOSimages/image"))
                                                }
@@ -290,7 +287,12 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             self.treeWidgetHypervisor.addTopLevelItem(item)
             self.treeWidgetHypervisor.resizeColumnToContents(0)
             self.treeWidgetHypervisor.resizeColumnToContents(1)
-            self.listWidgetHypervisors.addItem(hypervisor_host + ':' + hypervisor_port + ' ' + working_dir)
+            
+            self.main.hypervisors[hypervisor_host + ':' + hypervisor_port] = { 'working_directory': working_directory,
+                                                                               'dynamips_instance': None
+                                                                             }
+
+            self.listWidgetHypervisors.addItem(hypervisor_host + ':' + hypervisor_port)
 
     def slotDeleteHypervisor(self):
         """ Remove a hypervisor from the hypervisors list
