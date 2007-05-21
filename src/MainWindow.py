@@ -19,6 +19,7 @@
 
 import sys
 from PyQt4 import QtCore, QtGui
+from Utils import translate
 from Ui_MainWindow import *
 from Ui_About import *
 from IOSDialog import IOSDialog
@@ -40,7 +41,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         QtGui.QMainWindow.__init__(self)
         self.setupUi(self)
         self.createScene()
-        
+
         # expand items from the tree
         self.treeWidget.expandItem(self.treeWidget.topLevelItem(0))
         
@@ -132,6 +133,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.statusbar.showMessage('Simulation Mode')
             self.main.conception_mode = False
             self.action_Add_link.setEnabled(False)
+            self.treeWidget.simulationMode()
             try:
                 for node in self.main.nodes.keys():
                     self.main.nodes[node].configIOS()
@@ -147,6 +149,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.statusbar.showMessage('Conception Mode')
             self.main.conception_mode = True
             self.action_Add_link.setEnabled(True)
+            self.treeWidget.conceptionMode()
             try:
                 for node in self.main.nodes.keys():
                     self.main.nodes[node].resetIOSConfig()
@@ -182,7 +185,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def About(self):
         """ Show the about dialog
         """
-        
+
         dialog = QtGui.QDialog()
         ui = Ui_AboutDialog()
         ui.setupUi(dialog)

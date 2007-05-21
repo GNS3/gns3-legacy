@@ -92,38 +92,13 @@ class Ethernet(Edge):
         painter.setPen(QtGui.QPen(QtCore.Qt.black, self.penWidth, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
         painter.drawLine(self.line)
 
-##      if line.length() == 0:
-##         angle = 0.0
-##      else:
-##         angle = math.acos(line.dx() / line.length())
-##      if line.dx() >= 0:
-##         angle = 6.28 - angle
-
-##      sourceArrowP1 = self.sourcePoint + QtCore.QPointF(math.sin(angle + 3.14 / 3.0) * self.pointSize,
-##                                                        math.cos(angle + 3.14 / 3.0) * self.pointSize)
-##      sourceArrowP2 = self.sourcePoint + QtCore.QPointF(math.sin(angle + 3.14 - 3.14 / 3.0) * self.pointSize,
-##                                                        math.cos(angle + 3.14 - 3.14 / 3.0) * self.pointSize)
-##
-##      destArrowP1 = self.destPoint + QtCore.QPointF(math.sin(angle - 3.14 / 3.0) * self.pointSize,
-##                                                    math.cos(angle - 3.14 / 3.0) * self.pointSize)
-##      destArrowP2 = self.destPoint + QtCore.QPointF(math.sin(angle - 3.14 + 3.14 / 3.0) * self.pointSize,
-##                                                    math.cos(angle - 3.14 + 3.14 / 3.0) * self.pointSize)
 
         #TODO: Finish the points management
-        painter.setBrush(QtCore.Qt.red)
-        painter.setPen(QtGui.QPen(QtCore.Qt.red, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
-        
-        point1 = QtCore.QPointF(self.sourcePoint +  self.edgeOffset)
-        painter.drawPoint(point1) 
-        
-        point2 = QtCore.QPointF(self.destPoint -  self.edgeOffset)
-        painter.drawPoint(point2) 
-        
-        # Old code ...
-##        length = line.length()
-##        edgeOffset = QtCore.QPointF((line.dx() * 35) / length, (line.dy() * 35) / length)
-##        test = line.p2() - edgeOffset
-##        self.statusdest.setRect(test.x() , test.y() , 10, 10)
-##        
-##        test = line.pointAt(0.50)
-##        self.statusdest.setRect(test.x() , test.y() , 10, 10)
+#        painter.setBrush(QtCore.Qt.red)
+#        painter.setPen(QtGui.QPen(QtCore.Qt.red, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
+#        
+#        point1 = QtCore.QPointF(self.sourcePoint +  self.edgeOffset)
+#        painter.drawPoint(point1) 
+#        
+#        point2 = QtCore.QPointF(self.destPoint -  self.edgeOffset)
+#        painter.drawPoint(point2) 

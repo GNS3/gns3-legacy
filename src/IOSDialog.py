@@ -161,9 +161,9 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             if idlepc == '':
                 # no idle PC, that's bad ...
                 QtGui.QMessageBox.warning(self, 'IOS', 'IDLE PC is important')
-#            if self.main.ios_images.has_key(imagename):
-#                QtGui.QMessageBox.critical(self, 'IOS',  'IOS already exits')
-#                return
+            if self.main.ios_images.has_key(imagename):
+                QtGui.QMessageBox.critical(self, 'IOS',  'IOS already exits')
+                return
 
             item = QtGui.QTreeWidgetItem(self.treeWidgetIOSimages)
             # platform column
@@ -288,7 +288,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             self.treeWidgetHypervisor.resizeColumnToContents(0)
             self.treeWidgetHypervisor.resizeColumnToContents(1)
             
-            self.main.hypervisors[hypervisor_host + ':' + hypervisor_port] = { 'working_directory': working_directory,
+            self.main.hypervisors[hypervisor_host + ':' + hypervisor_port] = { 'working_directory': working_dir,
                                                                                'dynamips_instance': None
                                                                              }
 

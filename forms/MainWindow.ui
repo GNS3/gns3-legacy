@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>811</width>
-    <height>562</height>
+    <width>812</width>
+    <height>561</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -42,64 +42,14 @@
         <height>24</height>
        </size>
       </property>
+      <property name="rootIsDecorated" >
+       <bool>false</bool>
+      </property>
       <column>
        <property name="text" >
         <string>Elements</string>
        </property>
       </column>
-      <item>
-       <property name="text" >
-        <string>Infrastructure</string>
-       </property>
-       <item>
-        <property name="text" >
-         <string>Router</string>
-        </property>
-        <property name="icon" >
-         <iconset>../svg/symbols/router.svg</iconset>
-        </property>
-       </item>
-       <item>
-        <property name="text" >
-         <string>Edge label switch router</string>
-        </property>
-        <property name="icon" >
-         <iconset>../svg/symbols/edge_label_switch_router.svg</iconset>
-        </property>
-       </item>
-       <item>
-        <property name="text" >
-         <string>Router with firewall</string>
-        </property>
-        <property name="icon" >
-         <iconset>../svg/symbols/router_firewall.svg</iconset>
-        </property>
-       </item>
-       <item>
-        <property name="text" >
-         <string>Switch</string>
-        </property>
-        <property name="icon" >
-         <iconset>../svg/symbols/switch.svg</iconset>
-        </property>
-       </item>
-       <item>
-        <property name="text" >
-         <string>Multilayer switch</string>
-        </property>
-        <property name="icon" >
-         <iconset>../svg/symbols/multilayer_switch.svg</iconset>
-        </property>
-       </item>
-       <item>
-        <property name="text" >
-         <string>Route switch processor</string>
-        </property>
-        <property name="icon" >
-         <iconset>../svg/symbols/route_switch_processor.svg</iconset>
-        </property>
-       </item>
-      </item>
      </widget>
     </item>
     <item>
@@ -112,7 +62,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>811</width>
+     <width>812</width>
      <height>25</height>
     </rect>
    </property>

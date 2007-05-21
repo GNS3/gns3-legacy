@@ -19,9 +19,19 @@
     
 from PyQt4 import QtCore, QtGui
 from MNode import *
+import SVGResources
+from Utils import translate
 import __main__
 
-class QTreeWidgetCustom(QtGui.QTreeWidget ):
+SYMBOLS = (("Router", "../svg/symbols/router.svg"),
+           ("Router with firewall", "../svg/symbols/router_firewall.svg"),
+           ("Edge label switch router", "../svg/symbols/edge_label_switch_router.svg"),
+           ("Switch", "../svg/symbols/switch.svg"),
+           ("Multilayer switch", "../svg/symbols/multilayer_switch.svg"),
+           ("Route switch processor", "../svg/symbols/route_switch_processor.svg"),
+           ("ATM switch", "../svg/symbols/atm_switch.svg"))
+
+class QTreeWidgetCustom(QtGui.QTreeWidget):
     """ QTreeWidgetCustom class
         Custom QTreeWidgetCustom
     """
@@ -32,7 +42,39 @@ class QTreeWidgetCustom(QtGui.QTreeWidget ):
     def __init__(self, parent):
     
         QtGui.QTreeWidget.__init__(self, parent)
+        self.conceptionMode()
+
+    def conceptionMode(self):
+        """ Create items for conception mode
+        """
+        
+        self.clear()
+        self.setRootIsDecorated(False)
+        for symbol in SYMBOLS:
+            item = QtGui.QTreeWidgetItem(self)
+            item.setText(0, translate("MainWindow", symbol[0]))
+            item.setIcon(0, QtGui.QIcon(symbol[1]))
+            self.insertTopLevelItem(0, item)
+
+    def simulationMode(self):
+        """ Create items for simulation mode
+        """
+        
+        self.clear()
+        self.setRootIsDecorated(True)
+        for node in self.main.nodes.keys():
+            rootitem = QtGui.QTreeWidgetItem(self)
+            rootitem.setText(0, translate("MainWindow", "Node " + str(self.main.nodes[node].id)))
+            rootitem.setIcon(0, QtGui.QIcon('../svg/icons/led_green.svg'))
             
+            #TODO: finish to put the tree in simulation mode
+#            interface = QtGui.QTreeWidgetItem(self)
+#            interface.setText(1, "Interface s0/0")
+#            rootitem.addChild(interface)
+            
+            rootitem.addChild(QtGui.QTreeWidgetItem(['test']))
+            self.insertTopLevelItem(0, rootitem)
+
     def drag_and_drop(self):
         """ Core of Drag and Drop
         """       

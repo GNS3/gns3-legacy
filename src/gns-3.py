@@ -24,6 +24,7 @@ from Config import *
 from PyQt4 import QtCore, QtGui
 from MainWindow import MainWindow
 from LocalHypervisor import *
+from Utils import translate
 import Dynamips_lib as lib
 
 # globals
@@ -48,19 +49,19 @@ class Main:
     def __init__(self, argv):
 
         global win
+        
         app = QtGui.QApplication(sys.argv)
 
         # Loading user configuration values
         GNS_Conf.load_IOSimages()
 
-        #TODO: translation management
         translator = QtCore.QTranslator(app)
-        if translator.load(":" + locale.getlocale()[0][:2]):
+        if locale.getlocale()[0] != None and translator.load(":" + locale.getlocale()[0][:2]):
             app.installTranslator(translator)
 
         win = MainWindow()
         # we start in conception mode
-        win.statusbar.showMessage('Conception Mode')
+        win.statusbar.showMessage(translate('Main', 'Conception Mode'))
         
         # signal/slot for the menu
         win.connect(win.action_Open, QtCore.SIGNAL('activated()'), win.OpenNewFile)

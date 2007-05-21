@@ -23,32 +23,6 @@ from Inspector import Inspector
 import Dynamips_lib as lib
 import __main__
 
-ADAPTERS = {
-    "PA-C7200-IO-FE": (lib.PA_C7200_IO_FE, 1, 'f'),
-    "PA-C7200-IO-2FE": (lib.PA_C7200_IO_2FE, 2, 'f'),
-    "PA-C7200-IO-GE-E": (lib.PA_C7200_IO_GE_E, 1, 'g'),
-    "PA-A1": (lib.PA_A1, 1, 'a'),
-    "PA-FE-TX": (lib.PA_FE_TX, 1, 'f'),
-    "PA-2FE-TX": (lib.PA_2FE_TX, 2, 'f'),
-    "PA-GE": (lib.PA_GE, 1, 'g'),
-    "PA-4T": (lib.PA_4T, 4, 's'),
-    "PA-8T": (lib.PA_8T, 8, 's'),
-    "PA-4E": (lib.PA_4E, 4, 'e'),
-    "PA-8E": (lib.PA_8E, 8, 'e'),
-    "PA-POS-OC3": (lib.PA_POS_OC3, 1, 'p'),
-    "NM-1FE-TX" : (lib.NM_1FE_TX, 1, 'f'),
-    "NM-1E": (lib.NM_1E, 1, 'e'),
-    "NM-4E": (lib.NM_4E, 4, 'e'),
-    "NM-4T": (lib.NM_4T, 4, 's'),
-    "NM-16ESW": (lib.NM_16ESW, 16, 'f'),
-    "Leopard-2FE": (lib.Leopard_2FE, 2, 'f'),
-    "GT96100-FE": (lib.GT96100_FE, 1, 'f'),
-    "CISCO2600-MB-1E": (lib.CISCO2600_MB_1E, 1, 'e'),
-    "CISCO2600-MB-2E": (lib.CISCO2600_MB_2E, 2, 'e'),
-    "CISCO2600-MB-1FE": (lib.CISCO2600_MB_1FE, 1, 'f'),
-    "CISCO2600-MB-2FE": (lib.CISCO2600_MB_2FE, 2, 'f')
-}
-
 ROUTERS = {
     "7200": lib.C7200,
     "2691": lib.C2691,
@@ -155,9 +129,9 @@ class Router(MNode):
             self.configSlot(slotnb, module)
             slotnb += 1
         if idlepc:
-            self.ios.idlepc = idlepc #'0x60483ae4'
-            
-        print "Configuration for " + str(self.id) + " is completed" 
+            self.ios.idlepc = idlepc
+        else: #FIXME: only for tests
+            self.ios.idlepc = '0x60483ae4'
         
     def configSlot(self, slotnb, module):
         """ Add an new module into a slot
