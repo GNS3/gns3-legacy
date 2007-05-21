@@ -18,9 +18,7 @@
 #
 
 from PyQt4 import QtCore, QtGui
-from Edge  import *
-from MNode import *
-from Edge import *
+from Router import *
 import re
 import string
 
@@ -90,7 +88,7 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
             repy = (self.height()/2) / self.matrix().m22()     
             width =  x - repx 
             height = y - repy
-            node = MNode(":"+ s[1], self.scene(), width , height)
+            node = Router(":"+ s[1], self.scene(), width , height)
             node.setName(s[1])
             event.setDropAction(QtCore.Qt.MoveAction)
             event.accept()
