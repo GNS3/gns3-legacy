@@ -76,6 +76,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self.abort = False
         self.neighborList = []
         self.ios = None
+        self.active_timer = False
 
         # create an ID
         self.id = self.main.baseid
@@ -164,18 +165,22 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             for edge in self.edgeList:
                 edge.adjust()
 
-        QtCore.QTimer.singleShot(200, self.refresh)
+        if self.active_timer == False:
+            self.active_timer = True
+            QtCore.QTimer.singleShot(500, self.refresh)
+
         return QtGui.QGraphicsItem.itemChange(self, change, value)
 
     def refresh(self):
         
         for edge in self.edgeList:
                 edge.adjust()
+        self.active_timer = False
 
     def menuInterface(self):
         """ Show a contextual menu to choose an interface
         """
-        
+
         menu = QtGui.QMenu()
         
         slotnb = 0
@@ -338,6 +343,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
 #        telnetstring = telnetstring.replace('%p', port)
 #        telnetstring = telnetstring.replace('%d', device)
 
+            #os.system("gnome-terminal -t Router -e telnet localhost " + str(self.ios.console) + " > /dev/null 2>&1 &")
             os.system("xterm -e telnet localhost " + str(self.ios.console) + " > /dev/null 2>&1 &")
             time.sleep(0.5)
             

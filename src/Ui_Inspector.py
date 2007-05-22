@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Inspector.ui'
 #
-# Created: Mon May 21 18:00:17 2007
+# Created: Tue May 22 10:58:37 2007
 #      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!

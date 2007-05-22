@@ -18,7 +18,6 @@
 #
 
 import os, sys, time, locale
-#sys.path.append('../forms')
 import Translations
 from Config import *
 from PyQt4 import QtCore, QtGui

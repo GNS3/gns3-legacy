@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'IOSDialog.ui'
 #
-# Created: Mon May 21 18:00:17 2007
+# Created: Tue May 22 10:58:37 2007
 #      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,7 +13,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_IOSDialog(object):
     def setupUi(self, IOSDialog):
         IOSDialog.setObjectName("IOSDialog")
-        IOSDialog.resize(QtCore.QSize(QtCore.QRect(0,0,620,359).size()).expandedTo(IOSDialog.minimumSizeHint()))
+        IOSDialog.resize(QtCore.QSize(QtCore.QRect(0,0,632,365).size()).expandedTo(IOSDialog.minimumSizeHint()))
 
         self.vboxlayout = QtGui.QVBoxLayout(IOSDialog)
         self.vboxlayout.setMargin(9)
@@ -52,6 +52,10 @@ class Ui_IOSDialog(object):
         self.pushButtonDeleteIOS = QtGui.QPushButton(self.tab)
         self.pushButtonDeleteIOS.setObjectName("pushButtonDeleteIOS")
         self.hboxlayout.addWidget(self.pushButtonDeleteIOS)
+
+        self.pushButtonClose = QtGui.QPushButton(self.tab)
+        self.pushButtonClose.setObjectName("pushButtonClose")
+        self.hboxlayout.addWidget(self.pushButtonClose)
         self.vboxlayout1.addLayout(self.hboxlayout)
         self.tabWidget.addTab(self.tab,"")
 
@@ -288,10 +292,11 @@ class Ui_IOSDialog(object):
 
         self.retranslateUi(IOSDialog)
         self.tabWidget.setCurrentIndex(0)
+        QtCore.QObject.connect(self.pushButtonClose,QtCore.SIGNAL("clicked()"),IOSDialog.close)
         QtCore.QMetaObject.connectSlotsByName(IOSDialog)
 
     def retranslateUi(self, IOSDialog):
-        IOSDialog.setWindowTitle(QtGui.QApplication.translate("IOSDialog", "Record an IOS image", None, QtGui.QApplication.UnicodeUTF8))
+        IOSDialog.setWindowTitle(QtGui.QApplication.translate("IOSDialog", "IOS images and hypervisors", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetIOSimages.headerItem().setText(0,QtGui.QApplication.translate("IOSDialog", "IOS file name", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetIOSimages.headerItem().setText(1,QtGui.QApplication.translate("IOSDialog", "Platform", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetIOSimages.headerItem().setText(2,QtGui.QApplication.translate("IOSDialog", "Chassis", None, QtGui.QApplication.UnicodeUTF8))
@@ -299,6 +304,7 @@ class Ui_IOSDialog(object):
         self.treeWidgetIOSimages.headerItem().setText(4,QtGui.QApplication.translate("IOSDialog", "Hypervisor", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonEditIOS.setText(QtGui.QApplication.translate("IOSDialog", "&Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonDeleteIOS.setText(QtGui.QApplication.translate("IOSDialog", "&Delete", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonClose.setText(QtGui.QApplication.translate("IOSDialog", "&Close", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QtGui.QApplication.translate("IOSDialog", "IOS images", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setTitle(QtGui.QApplication.translate("IOSDialog", "Hypervisor", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxIntegratedHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "Use the integrated hypervisor", None, QtGui.QApplication.UnicodeUTF8))
