@@ -5,12 +5,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>620</width>
-    <height>359</height>
+    <width>632</width>
+    <height>365</height>
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>Record an IOS image</string>
+   <string>IOS images and hypervisors</string>
   </property>
   <layout class="QVBoxLayout" >
    <property name="margin" >
@@ -102,6 +102,13 @@
           <widget class="QPushButton" name="pushButtonDeleteIOS" >
            <property name="text" >
             <string>&amp;Delete</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonClose" >
+           <property name="text" >
+            <string>&amp;Close</string>
            </property>
           </widget>
          </item>
@@ -592,5 +599,22 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButtonClose</sender>
+   <signal>clicked()</signal>
+   <receiver>IOSDialog</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>570</x>
+     <y>330</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>315</x>
+     <y>182</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

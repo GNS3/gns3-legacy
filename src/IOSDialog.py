@@ -59,6 +59,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         self.comboBoxPlatform.insertItems(0, PLATFORMS.keys())
 
         self._reloadInfos()
+        self.error = QtGui.QErrorMessage(self)
 
     def _reloadInfos(self):
         """ Reload previously recorded IOS images
@@ -160,7 +161,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             idlepc = str(self.lineEditIdlePC.text())
             if idlepc == '':
                 # no idle PC, that's bad ...
-                QtGui.QMessageBox.warning(self, 'IOS', 'IDLE PC is important')
+                self.error.showMessage("You should set the IDLE PC")
             if self.main.ios_images.has_key(imagename):
                 QtGui.QMessageBox.critical(self, 'IOS',  'IOS already exits')
                 return
@@ -173,10 +174,10 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             # idle pc column
             item.setText(3, idlepc)
             # hypervisor column
-            #TODO: get defaults value from conf file
+
             hypervisor_host = 'localhost'
-            hypervisor_port = 7200
-            working_directory = '/tmp'
+            hypervisor_port = ConfDB().get("Dynamips/hypervisor_port", 7200)
+            working_directory = ConfDB().get("Dynamips/hypervisor_working_directory", '')
             
             if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Checked:
                 # integrated hypervisor

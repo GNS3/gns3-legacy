@@ -52,7 +52,7 @@ class QTreeWidgetCustom(QtGui.QTreeWidget):
         self.setRootIsDecorated(False)
         for symbol in SYMBOLS:
             item = QtGui.QTreeWidgetItem(self)
-            item.setText(0, translate("MainWindow", symbol[0]))
+            item.setText(0, translate("QTreeWidgetCustom", symbol[0]))
             item.setIcon(0, QtGui.QIcon(symbol[1]))
             self.insertTopLevelItem(0, item)
 
@@ -65,14 +65,16 @@ class QTreeWidgetCustom(QtGui.QTreeWidget):
         for node in self.main.nodes.keys():
             rootitem = QtGui.QTreeWidgetItem(self)
             rootitem.setText(0, translate("MainWindow", "Node " + str(self.main.nodes[node].id)))
-            rootitem.setIcon(0, QtGui.QIcon('../svg/icons/led_green.svg'))
+            rootitem.setIcon(0, QtGui.QIcon('../svg/icons/led_red.svg'))
+            
+            print self.main.nodes[node].interfaces
             
             #TODO: finish to put the tree in simulation mode
-#            interface = QtGui.QTreeWidgetItem(self)
-#            interface.setText(1, "Interface s0/0")
-#            rootitem.addChild(interface)
+            interface = QtGui.QTreeWidgetItem()
+            interface.setText(0, "Interface s0/0")
+            rootitem.addChild(interface)
             
-            rootitem.addChild(QtGui.QTreeWidgetItem(['test']))
+            #rootitem.addChild(QtGui.QTreeWidgetItem(['test']))
             self.insertTopLevelItem(0, rootitem)
 
     def drag_and_drop(self):

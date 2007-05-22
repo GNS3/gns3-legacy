@@ -66,6 +66,10 @@ class Router(MNode):
             self.InspectorInstance.loadNodeInfos() 
             self.InspectorInstance.show()
 
+    def printoto(self):
+        
+        print "toto"
+
     def configIOS(self):
         """ Create the IOS configuration on the hypervisor
         """

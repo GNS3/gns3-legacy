@@ -18,6 +18,8 @@
 #
 
 from PyQt4 import QtCore, QtGui
+from Config import ConfDB
+from Utils import translate
 import time
 import __main__
 
@@ -32,14 +34,21 @@ class LocalHypervisor:
     def __init__(self):
     
         self.proc = QtCore.QProcess(self.main.win)
-        #QtCore.QObject.connect(self.proc, QtCore.SIGNAL('readyReadStandardOutput()'), self.slotStandardOutput)
-        #QtCore.QObject.connect(self.proc, QtCore.SIGNAL('error(QProcess::ProcessError)'), self.slotProcessError)
-        self.proc.start('/home/grossmj/workspace/gns3/dynamips/dynamips-0.2.7-RC3-x86.bin',  ['-H', '7200'])
         
-        if self.proc.waitForStarted() == False:
-            print 'Local hypervisor not started !'
-            return
-        print 'Local hypervisor started'
+        hypervisor_path = ConfDB().get("Dynamips/hypervisor_path", '')
+        hypervisor_port = ConfDB().get("Dynamips/hypervisor_port", 7200)
+        hypervisor_wd = ConfDB().get("Dynamips/hypervisor_working_directory", '')
+
+        if (hypervisor_path and hypervisor_port):
+            #QtCore.QObject.connect(self.proc, QtCore.SIGNAL('readyReadStandardOutput()'), self.slotStandardOutput)
+            
+            if hypervisor_wd:
+                self.proc.setWorkingDirectory(hypervisor_wd)
+            self.proc.start(hypervisor_path,  ['-H', hypervisor_port])
+        
+            if self.proc.waitForStarted() == False:
+                QtGui.QMessageBox.critical(self.main.win, 'Local hypervisor',  translate("LocalHypervisor", "Can't start the local hypervisor,\n check your configuration file"))
+                return
 
     def __del__(self):
     
@@ -50,7 +59,3 @@ class LocalHypervisor:
         """
 
         print str(self.proc.readAllStandardOutput())
-    
-    def slotProcessError(self):
-
-        print 'HYPERVISOR ERROR !'
