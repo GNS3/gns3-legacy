@@ -46,7 +46,7 @@
         <string/>
        </property>
        <property name="pixmap" >
-        <pixmap>../images/logo_gns3_transparency_small.png</pixmap>
+        <pixmap>../svg/images/logo_gns3_transparency_small.png</pixmap>
        </property>
       </widget>
      </item>
