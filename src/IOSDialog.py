@@ -63,6 +63,8 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
     def _reloadInfos(self):
         """ Reload previously recorded IOS images
         """
+        images_list = []
+        hypervisors_list = []
         
         for name in self.main.ios_images.keys():
             image = self.main.ios_images[name]
@@ -88,7 +90,25 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                     working_dir = image['working_directory']
                 item.setText(4,  image['hypervisor_host'] + ':' +  str(image['hypervisor_port']) + ' ' + working_dir)
 
-            self.treeWidgetIOSimages.addTopLevelItem(item)
+
+        for name in self.main.hypervisors.keys():
+            hypervisor = self.main.hypervisors[name]
+            
+            item = QtGui.QTreeWidgetItem(self.treeWidgetHypervisor)
+            item.setText(0, hypervisor['host'])
+            item.setText(1, hypervisor['port'])
+            item.setText(2, hypervisor['working_directory'])
+            hypervisors_list.append(item)
+        
+        # Add images to IOS.images treeview
+        self.treeWidgetIOSimages.addTopLevelItems(images_list)
+        self.treeWidgetIOSimages.sortItems(0, QtCore.Qt.AscendingOrder)
+        # Add hypervisors to IOS.hypervisors treeview
+        self.treeWidgetHypervisor.addTopLevelItems(hypervisors_list)
+        self.treeWidgetHypervisor.resizeColumnToContents(0)
+        self.treeWidgetHypervisor.resizeColumnToContents(1)
+        self.treeWidgetHypervisor.sortItems(0, QtCore.Qt.AscendingOrder)
+        
 
     def _getIOSplatform(self, imagename):
         """ Extract platform information from imagename
@@ -206,7 +226,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                                                 'hypervisor_host': hypervisor_host,
                                                 'hypervisor_port': int(hypervisor_port),
                                                 'working_directory': working_directory,
-                                                'confkey': str(ConfDB().getGroupNewNumChild("IOSimages/image"))
+                                                'confkey': str(ConfDB().getGroupNewNumChild("IOS.images"))
                                                }
             
             confkey = self.main.ios_images[imagename]['confkey']
@@ -248,6 +268,8 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         item = self.treeWidgetIOSimages.currentItem()
         if (item != None):
             self.treeWidgetIOSimages.takeTopLevelItem(self.treeWidgetIOSimages.indexOfTopLevelItem(item))
+            confkey = self.main.ios_images[str(item.text(0))]['confkey']
+            ConfDB().delete(confkey)
             del self.main.ios_images[str(item.text(0))]
 
     def slotWorkingDirectory(self):
@@ -289,8 +311,15 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             self.treeWidgetHypervisor.resizeColumnToContents(1)
             
             self.main.hypervisors[hypervisor_host + ':' + hypervisor_port] = { 'working_directory': working_dir,
-                                                                               'dynamips_instance': None
+                                                                               'dynamips_instance': None,
+                                                                               'confkey': str(ConfDB().getGroupNewNumChild("IOS.hypervisors"))
                                                                              }
+            
+            # Add hypervisor to user config
+            confkey = self.main.hypervisors[hypervisor_host + ':' + hypervisor_port]['confkey']
+            ConfDB().set(confkey + "/host", hypervisor_host)
+            ConfDB().set(confkey + "/port", hypervisor_port)
+            ConfDB().set(confkey + "/working_directory", working_dir)
 
             self.listWidgetHypervisors.addItem(hypervisor_host + ':' + hypervisor_port)
 
@@ -301,7 +330,12 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         item = self.treeWidgetHypervisor.currentItem()
         if (item != None):
            self.treeWidgetHypervisor.takeTopLevelItem(self.treeWidgetHypervisor.indexOfTopLevelItem(item))
-           mathstring = str(item.text(0)) + ':' + str(item.text(1))
-           items = self.listWidgetHypervisors.findItems(mathstring, QtCore.Qt.MatchFixedString)
+           matchstring = str(item.text(0)) + ':' + str(item.text(1))
+           
+           # Delete hypervisor from user config
+           confkey = self.main.hypervisors[matchstring]['confkey']
+           ConfDB().delete(confkey)
+           
+           items = self.listWidgetHypervisors.findItems(matchstring, QtCore.Qt.MatchFixedString)
            for i in items:
                 self.listWidgetHypervisors.takeItem(self.listWidgetHypervisors.row(i))

@@ -66,6 +66,8 @@ class ConfDB(Singleton, QtCore.QSettings):
                 max = int(i) + 1
         return (key + '/' + str(max))
     
+    def delete(self, key):
+        self.remove(key)
     
 class GNS_Conf(object):
     """ GNS_Conf provide static class method for loading user config
@@ -73,14 +75,14 @@ class GNS_Conf(object):
     
     main = __main__
     
-    def IOSimages(self):
-        """ Load IOSimages settings from config file
+    def IOS_images(self):
+        """ Load IOS images settings from config file
         """
         
-        print ">> (II) LoadingConf: IOSimages"
+        print ">> (II) LoadingConf: IOS.images"
         
         # Loading IOS images conf
-        basegroup = "IOSimages/image"
+        basegroup = "IOS.images"
         c = ConfDB()
         c.beginGroup(basegroup)
         childGroups = c.childGroups()
@@ -100,7 +102,7 @@ class GNS_Conf(object):
             
             img_ref = str(img_filename)
             self.main.ios_images[img_ref] = {
-                    'confkey': cgroup,
+                    'confkey': str(cgroup),
                     'filename' : img_filename,
                     'platform' : c.get(cgroup + "/platform", ''),
                     'chassis': c.get(cgroup + "/chassis", ''),
@@ -113,6 +115,39 @@ class GNS_Conf(object):
 
         # Loading IOS hypervisors conf
         # TODO: LoadingConfIOSHypervisors
+    
+    def IOS_hypervisors(self):
+        """ Load IOS hypervisors settings from config file
+        """
+                 
+        print ">> (II) LoadingConf: IOS.hypervisors"
+        
+        # Loading IOS images conf
+        basegroup = "IOS.hypervisors"
+        c = ConfDB()
+        c.beginGroup(basegroup)
+        childGroups = c.childGroups()
+        c.endGroup()
+        
+        for img_num in childGroups:
+            cgroup = basegroup + '/' + img_num
+            
+            hyp_port = c.get(cgroup + "/port", '')
+            hyp_host = c.get(cgroup + "/host", '')
+            hyp_wdir = c.get(cgroup + "/working_directory", '')
+            
+            # We need at least `hyp_host' and `hyp_port' to be set
+            if hyp_host == '' or hyp_port == '':
+                continue
+            
+            img_ref = str(hyp_host + ':' + hyp_port)
+            self.main.hypervisors[img_ref] = {
+                    'confkey' : str(cgroup),
+                    'host'    : hyp_host,
+                    'port'    : hyp_port,
+                    'working_directory' : hyp_wdir
+            }
   
     # Static Methods stuffs
-    load_IOSimages = classmethod(IOSimages)
+    load_IOSimages = classmethod(IOS_images)
+    load_IOShypervisors = classmethod(IOS_hypervisors)
