@@ -1,12 +1,27 @@
-<RCC>
-    <qresource>
-        <file alias="Cloud">symbols/cloud.svg</file>
-        <file alias="Edge label switch router">symbols/edge_label_switch_router.svg</file>
-        <file alias="Multilayer switch">symbols/multilayer_switch.svg</file>
-        <file alias="Route switch processor">symbols/route_switch_processor.svg</file>
-        <file alias="Router">symbols/router.svg</file>
-        <file alias="Router with firewall">symbols/router_firewall.svg</file>
-        <file alias="Switch">symbols/switch.svg</file>
-	<file alias="ATM switch">symbols/atm_switch.svg</file>
-    </qresource>
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+	<file>symbols/cloud.svg</file>
+	<file>symbols/edge_label_switch_router.svg</file>
+	<file>symbols/multilayer_switch.svg</file>
+	<file>symbols/route_switch_processor.svg</file>
+	<file>symbols/router.svg</file>
+	<file>symbols/router_firewall.svg</file>
+	<file>symbols/switch.svg</file>
+	<file>symbols/atm_switch.svg</file>
+</qresource>
+<qresource>
+	<file>icons/cancel.svg</file>
+	<file>icons/connection.svg</file>
+	<file>icons/console.svg</file>
+	<file>icons/delete.svg</file>
+	<file>icons/led_green.svg</file>
+	<file>icons/led_red.svg</file>
+	<file>icons/open.svg</file>
+	<file>icons/play.svg</file>
+	<file>icons/save.svg</file>
+	<file>icons/save-as.svg</file>
+	<file>icons/stop.svg</file>
+	<file>icons/switch_conception_mode.svg</file>
+	<file>icons/switch_simulation_mode.svg</file>
+</qresource>
 </RCC>

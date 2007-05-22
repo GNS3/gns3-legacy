@@ -83,7 +83,7 @@ class Edge(QtGui.QGraphicsItem, QtGui.QGraphicsScene):
 
         if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == True:
             self.menu = QtGui.QMenu()
-            self.menu.addAction(QtGui.QIcon('../svg/icons/delete.svg'), 'delete')
+            self.menu.addAction(QtGui.QIcon(':/icons/delete.svg'), 'delete')
             self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.conceptionAction)
             self.menu.exec_(QtGui.QCursor.pos())
         QtGui.QGraphicsItem.mousePressEvent(self, event)

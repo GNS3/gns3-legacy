@@ -189,8 +189,8 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             slotnb += 1
 
         #FIXME: only to test links whitout the emulator
-        menu.addAction(QtGui.QIcon('../svg/icons/led_red.svg'), 's0/0')
-        menu.addAction(QtGui.QIcon('../svg/icons/led_red.svg'), 's0/1')
+        menu.addAction(QtGui.QIcon(':/icons/led_red.svg'), 's0/0')
+        menu.addAction(QtGui.QIcon(':/icons/led_red.svg'), 's0/1')
 
         # connect the menu
         menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.selectedInterface) 
@@ -212,10 +212,10 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
                 name = abrv + str(slotnb) + '/' + str(interface)
                 if self.interfaces.has_key(name):
                     # already connected interface
-                    menu.addAction(QtGui.QIcon('../svg/icons/led_green.svg'), name)
+                    menu.addAction(QtGui.QIcon(':/icons/led_green.svg'), name)
                 else:
                     # disconnected interface
-                    menu.addAction(QtGui.QIcon('../svg/icons/led_red.svg'), name) 
+                    menu.addAction(QtGui.QIcon(':/icons/led_red.svg'), name) 
         else:
             sys.stderr.write(module + " module not found !\n")
             return
@@ -239,16 +239,16 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
 
         if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == False:
             self.menu = QtGui.QMenu()
-            self.menu.addAction(QtGui.QIcon('../svg/icons/console.svg'), 'console')
-            self.menu.addAction(QtGui.QIcon('../svg/icons/play.svg'), 'start')
-            self.menu.addAction(QtGui.QIcon('../svg/icons/stop.svg'), 'stop')
+            self.menu.addAction(QtGui.QIcon(':/icons/console.svg'), 'console')
+            self.menu.addAction(QtGui.QIcon(':/icons/play.svg'), 'start')
+            self.menu.addAction(QtGui.QIcon(':/icons/stop.svg'), 'stop')
             self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.simAction)
             self.menu.exec_(QtGui.QCursor.pos())
 
         if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == True:
             self.menu = QtGui.QMenu()
-            self.menu.addAction(QtGui.QIcon('../svg/icons/switch_conception_mode.svg'), 'configuration')
-            self.menu.addAction(QtGui.QIcon('../svg/icons/delete.svg'), 'delete')
+            self.menu.addAction(QtGui.QIcon(':/icons/switch_conception_mode.svg'), 'configuration')
+            self.menu.addAction(QtGui.QIcon(':/icons/delete.svg'), 'delete')
             self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.conceptionAction)
             self.menu.exec_(QtGui.QCursor.pos())
         

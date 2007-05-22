@@ -18,6 +18,7 @@
 #
 
 from PyQt4 import QtCore, QtGui
+from QTreeWidgetCustom import SYMBOLS
 from Router import *
 import re
 import string
@@ -88,7 +89,15 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
             repy = (self.height()/2) / self.matrix().m22()     
             width =  x - repx 
             height = y - repy
-            node = Router(":"+ s[1], self.scene(), width , height)
+            
+            # Get resource corresponding to node type
+            svgrc = ":/icons/default.svg"
+            for item in SYMBOLS:
+                if item[0] == s[1]:
+                    svgrc = item[1]
+                    break
+            
+            node = Router(svgrc, self.scene(), width , height)
             node.setName(s[1])
             event.setDropAction(QtCore.Qt.MoveAction)
             event.accept()

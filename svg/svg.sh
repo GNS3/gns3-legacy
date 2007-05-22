@@ -1,4 +1,4 @@
 #!/bin/sh
 
-pyrcc4 svg_resources.qrc -o ../src/SVGResources.py
+pyrcc4 -compress 9 -o ../src/SVGResources.py svg_resources.qrc
 

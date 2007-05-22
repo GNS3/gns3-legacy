@@ -23,13 +23,13 @@ import SVGResources
 from Utils import translate
 import __main__
 
-SYMBOLS = (("Router", "../svg/symbols/router.svg"),
-           ("Router with firewall", "../svg/symbols/router_firewall.svg"),
-           ("Edge label switch router", "../svg/symbols/edge_label_switch_router.svg"),
-           ("Switch", "../svg/symbols/switch.svg"),
-           ("Multilayer switch", "../svg/symbols/multilayer_switch.svg"),
-           ("Route switch processor", "../svg/symbols/route_switch_processor.svg"),
-           ("ATM switch", "../svg/symbols/atm_switch.svg"))
+SYMBOLS = (("Router", ":/symbols/router.svg"),
+           ("Router with firewall", ":/symbols/router_firewall.svg"),
+           ("Edge label switch router", ":/symbols/edge_label_switch_router.svg"),
+           ("Switch", ":/symbols/switch.svg"),
+           ("Multilayer switch", ":/symbols/multilayer_switch.svg"),
+           ("Route switch processor", ":/symbols/route_switch_processor.svg"),
+           ("ATM switch", ":/symbols/atm_switch.svg"))
 
 class QTreeWidgetCustom(QtGui.QTreeWidget):
     """ QTreeWidgetCustom class
@@ -65,7 +65,7 @@ class QTreeWidgetCustom(QtGui.QTreeWidget):
         for node in self.main.nodes.keys():
             rootitem = QtGui.QTreeWidgetItem(self)
             rootitem.setText(0, translate("MainWindow", "Node " + str(self.main.nodes[node].id)))
-            rootitem.setIcon(0, QtGui.QIcon('../svg/icons/led_red.svg'))
+            rootitem.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
             
             print self.main.nodes[node].interfaces
             

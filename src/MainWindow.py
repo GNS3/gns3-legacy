@@ -111,14 +111,14 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         if not self.action_Add_link.isChecked():
             self.action_Add_link.setText('Add an link')
-            self.action_Add_link.setIcon(QtGui.QIcon('../svg/icons/connection.svg'))
+            self.action_Add_link.setIcon(QtGui.QIcon(':/icons/connection.svg'))
             self.main.linkEnabled = False
             self.main.countClick = 0
             self.main.TabLinkMNode = []
             self.graphicsView.setCursor(QtCore.Qt.ArrowCursor)
         else:
             self.action_Add_link.setText('Cancel')
-            self.action_Add_link.setIcon(QtGui.QIcon('../svg/icons/cancel.svg'))
+            self.action_Add_link.setIcon(QtGui.QIcon(':/icons/cancel.svg'))
             self.main.linkEnabled = True
             self.graphicsView.setCursor(QtCore.Qt.CrossCursor)
         
@@ -129,7 +129,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         if self.action_SwitchMode.text() == 'Simulation Mode':
             # simulation mode
             self.action_SwitchMode.setText('Conception Mode')
-            self.action_SwitchMode.setIcon(QtGui.QIcon('../svg/icons/switch_conception_mode.svg'))
+            self.action_SwitchMode.setIcon(QtGui.QIcon(':/icons/switch_conception_mode.svg'))
             self.statusbar.showMessage('Simulation Mode')
             self.main.conception_mode = False
             self.action_Add_link.setEnabled(False)
@@ -145,7 +145,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         elif self.action_SwitchMode.text() == 'Conception Mode':
             # conception mode
             self.action_SwitchMode.setText('Simulation Mode')
-            self.action_SwitchMode.setIcon(QtGui.QIcon('../svg/icons/switch_simulation_mode.svg'))
+            self.action_SwitchMode.setIcon(QtGui.QIcon(':/icons/switch_simulation_mode.svg'))
             self.statusbar.showMessage('Conception Mode')
             self.main.conception_mode = True
             self.action_Add_link.setEnabled(True)
@@ -247,7 +247,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             if (event == {}):
                 continue
             if event['type'] == 'node':
-                new_node = Node(":Router")
+                new_node = Node(":/symbols/router.svg")
                 new_node.id = event['id']
                 nodes[new_node.id] = new_node
                 self.scene.addItem(new_node)
