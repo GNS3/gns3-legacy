@@ -63,9 +63,22 @@
      <x>0</x>
      <y>0</y>
      <width>812</width>
-     <height>25</height>
+     <height>29</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_About" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="action_OnlineHelp" />
+    <addaction name="action_About" />
+   </widget>
+   <widget class="QMenu" name="menuIOS" >
+    <property name="title" >
+     <string>Cisco IOS</string>
+    </property>
+    <addaction name="action_IOS_images" />
+   </widget>
    <widget class="QMenu" name="menu_File" >
     <property name="title" >
      <string>&amp;File</string>
@@ -74,19 +87,6 @@
     <addaction name="action_Save" />
     <addaction name="separator" />
     <addaction name="action_Quit" />
-   </widget>
-   <widget class="QMenu" name="menuIOS" >
-    <property name="title" >
-     <string>Cisco IOS</string>
-    </property>
-    <addaction name="action_IOS_images" />
-   </widget>
-   <widget class="QMenu" name="menu_About" >
-    <property name="title" >
-     <string>&amp;Help</string>
-    </property>
-    <addaction name="action_OnlineHelp" />
-    <addaction name="action_About" />
    </widget>
    <addaction name="menu_File" />
    <addaction name="menuIOS" />
@@ -118,7 +118,7 @@
   </action>
   <action name="action_Open" >
    <property name="icon" >
-    <iconset>../svg/icons/open.svg</iconset>
+    <iconset resource="../svg/svg_resources.qrc" >:/icons/open.svg</iconset>
    </property>
    <property name="text" >
     <string>&amp;Open</string>
@@ -126,7 +126,7 @@
   </action>
   <action name="action_Save" >
    <property name="icon" >
-    <iconset>../svg/icons/save.svg</iconset>
+    <iconset resource="../svg/svg_resources.qrc" >:/icons/save.svg</iconset>
    </property>
    <property name="text" >
     <string>&amp;Save</string>
@@ -137,7 +137,7 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset>../svg/icons/connection.svg</iconset>
+    <iconset resource="../svg/svg_resources.qrc" >:/icons/connection.svg</iconset>
    </property>
    <property name="text" >
     <string>Add a link</string>
@@ -151,7 +151,7 @@
   </action>
   <action name="action_SwitchMode" >
    <property name="icon" >
-    <iconset>../svg/icons/switch_simulation_mode.svg</iconset>
+    <iconset resource="../svg/svg_resources.qrc" >:/icons/switch_simulation_mode.svg</iconset>
    </property>
    <property name="text" >
     <string>Simulation Mode</string>
@@ -170,17 +170,19 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QTreeWidgetCustom</class>
-   <extends>QTreeWidget</extends>
-   <header>QTreeWidgetCustom</header>
-  </customwidget>
-  <customwidget>
    <class>QGraphicsViewCustom</class>
    <extends>QGraphicsView</extends>
    <header>QGraphicsViewCustom</header>
   </customwidget>
+  <customwidget>
+   <class>QTreeWidgetCustom</class>
+   <extends>QTreeWidget</extends>
+   <header>QTreeWidgetCustom</header>
+  </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../svg/svg_resources.qrc" />
+ </resources>
  <connections>
   <connection>
    <sender>action_Quit</sender>

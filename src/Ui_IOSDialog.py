@@ -2,12 +2,11 @@
 
 # Form implementation generated from reading ui file 'IOSDialog.ui'
 #
-# Created: Tue May 22 10:58:37 2007
-#      by: PyQt4 UI code generator 4.1
+# Created: Tue May 22 23:18:02 2007
+#      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
 
-import sys
 from PyQt4 import QtCore, QtGui
 
 class Ui_IOSDialog(object):

@@ -25,7 +25,7 @@ from Ui_About import *
 from IOSDialog import IOSDialog
 from NamFileSimulation import *
 import layout
-import SVGResources
+import svg_resources_rc
 from MNode import *
 import __main__
 

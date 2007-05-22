@@ -19,7 +19,7 @@
     
 from PyQt4 import QtCore, QtGui
 from MNode import *
-import SVGResources
+import svg_resources_rc
 from Utils import translate
 import __main__
 

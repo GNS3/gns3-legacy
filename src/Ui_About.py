@@ -2,12 +2,11 @@
 
 # Form implementation generated from reading ui file 'About.ui'
 #
-# Created: Tue May 22 10:58:37 2007
-#      by: PyQt4 UI code generator 4.1
+# Created: Tue May 22 23:18:02 2007
+#      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
 
-import sys
 from PyQt4 import QtCore, QtGui
 
 class Ui_AboutDialog(object):
@@ -29,7 +28,7 @@ class Ui_AboutDialog(object):
         self.gridlayout.addItem(spacerItem,4,0,1,1)
 
         self.label = QtGui.QLabel(AboutDialog)
-        self.label.setPixmap(QtGui.QPixmap("../images/logo_gns3_transparency_small.png"))
+        self.label.setPixmap(QtGui.QPixmap("../svg/images/logo_gns3_transparency_small.png"))
         self.label.setObjectName("label")
         self.gridlayout.addWidget(self.label,1,0,3,1)
 
