@@ -270,8 +270,8 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             slotnb += 1
 
         #FIXME: only to test links whitout the emulator
-        menu.addAction(QtGui.QIcon(':/icons/led_red.svg'), 's0/0')
-        menu.addAction(QtGui.QIcon(':/icons/led_red.svg'), 's0/1')
+        #menu.addAction(QtGui.QIcon(':/icons/led_red.svg'), 's0/0')
+        #menu.addAction(QtGui.QIcon(':/icons/led_red.svg'), 's0/1')
 
         # connect the menu
         menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.selectedInterface) 
@@ -306,7 +306,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         """
         
         #FIXME: return True only to test links whitout the emulator
-        return (True)
+        #return (True)
         for module in self.iosConfig['slots']:
             if module != '':
                 return (True)

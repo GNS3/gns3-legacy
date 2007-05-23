@@ -182,9 +182,6 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             if idlepc == '':
                 # no idle PC, that's bad ...
                 self.error.showMessage("You should set the IDLE PC")
-            if self.main.ios_images.has_key(imagename):
-                QtGui.QMessageBox.critical(self, 'IOS',  'IOS already exits')
-                return
 
             item = QtGui.QTreeWidgetItem(self.treeWidgetIOSimages)
             # platform column
@@ -221,6 +218,12 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             imagename = hypervisor_host + ':' + imagename
             item.setText(0, imagename)
 
+            # update an already existing IOS image
+            if self.main.ios_images.has_key(imagename):
+                delitem = self.treeWidgetIOSimages.findItems(imagename, QtCore.Qt.MatchFixedString)[0]
+                self.treeWidgetIOSimages.setCurrentItem(delitem)
+                self.slotDeleteIOS()
+
             newimage_confkey = str(ConfDB().getGroupNewNumChild("IOS.images"))
             newimage_dict = {'filename': imagename,
                             'platform': str(self.comboBoxPlatform.currentText()),
@@ -247,7 +250,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         item = self.treeWidgetIOSimages.currentItem()
         if (item != None):
             # restore image name
-            self.lineEditIOSImage.setText(str(item.text(0)))
+            self.lineEditIOSImage.setText(str(item.text(0)).split(':')[1])
             # restore platform
             index = self.comboBoxPlatform.findText(str(item.text(1)))
             self.comboBoxPlatform.setCurrentIndex(index)

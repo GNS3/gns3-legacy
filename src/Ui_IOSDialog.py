@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'IOSDialog.ui'
 #
-# Created: Wed May 23 17:28:54 2007
+# Created: Wed May 23 18:09:36 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_IOSDialog(object):
     def setupUi(self, IOSDialog):
         IOSDialog.setObjectName("IOSDialog")
-        IOSDialog.resize(QtCore.QSize(QtCore.QRect(0,0,632,365).size()).expandedTo(IOSDialog.minimumSizeHint()))
+        IOSDialog.resize(QtCore.QSize(QtCore.QRect(0,0,632,342).size()).expandedTo(IOSDialog.minimumSizeHint()))
 
         self.vboxlayout = QtGui.QVBoxLayout(IOSDialog)
         self.vboxlayout.setMargin(9)
@@ -307,7 +307,7 @@ class Ui_IOSDialog(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QtGui.QApplication.translate("IOSDialog", "IOS images", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setTitle(QtGui.QApplication.translate("IOSDialog", "Hypervisor", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxIntegratedHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "Use the integrated hypervisor", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonAddIOSImage.setText(QtGui.QApplication.translate("IOSDialog", "Add IOS image", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonAddIOSImage.setText(QtGui.QApplication.translate("IOSDialog", "Save IOS image", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox.setTitle(QtGui.QApplication.translate("IOSDialog", "General settings", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxGhostFeature.setText(QtGui.QApplication.translate("IOSDialog", "Use ghost file", None, QtGui.QApplication.UnicodeUTF8))
         self.label_12.setText(QtGui.QApplication.translate("IOSDialog", "IDLE PC:", None, QtGui.QApplication.UnicodeUTF8))

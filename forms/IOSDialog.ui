@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>632</width>
-    <height>365</height>
+    <height>342</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -230,7 +230,7 @@
            <item>
             <widget class="QPushButton" name="pushButtonAddIOSImage" >
              <property name="text" >
-              <string>Add IOS image</string>
+              <string>Save IOS image</string>
              </property>
             </widget>
            </item>

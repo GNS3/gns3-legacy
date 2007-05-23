@@ -94,11 +94,11 @@ class Ethernet(Edge):
 
 
         #TODO: Finish the points management
-#        painter.setBrush(QtCore.Qt.red)
-#        painter.setPen(QtGui.QPen(QtCore.Qt.red, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
-#        
-#        point1 = QtCore.QPointF(self.sourcePoint +  self.edgeOffset)
-#        painter.drawPoint(point1) 
-#        
-#        point2 = QtCore.QPointF(self.destPoint -  self.edgeOffset)
-#        painter.drawPoint(point2) 
+        painter.setBrush(QtCore.Qt.red)
+        painter.setPen(QtGui.QPen(QtCore.Qt.red, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
+        
+        point1 = QtCore.QPointF(self.sourcePoint +  self.edgeOffset)
+        painter.drawPoint(point1) 
+        
+        point2 = QtCore.QPointF(self.destPoint -  self.edgeOffset)
+        painter.drawPoint(point2) 
