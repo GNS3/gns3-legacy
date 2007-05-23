@@ -86,6 +86,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         #self.setCursor(QtCore.Qt.OpenHandCursor)
         self.setFlag(self.ItemIsMovable)
         self.setFlag(self.ItemIsSelectable)
+        self.setFlag(self.ItemIsFocusable)
         self.setZValue(1)
         
         # by default put the node to (0,0)
@@ -232,6 +233,16 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         QtGui.QMessageBox.critical(self.main.win, 'Connection',  'No interface available')
         return (False)
 
+    def keyPressEvent(self, event):
+        """ key press handler for MNodes
+        """
+        
+        key = event.key()
+        if key == QtCore.Qt.Key_Delete:
+            self.delete()
+        else:
+            QtGui.QGraphicsScene.keyPressEvent(self, event)
+
     def mousePressEvent(self, event):
         """ Call when the node is clicked
             event: QtGui.QGraphicsSceneMouseEvent instance
@@ -351,7 +362,25 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.startIOS()
         elif action == 'stop':
             self.stopIOS()
-            
+    
+    def delete(self):
+        """ Delete the current node
+        """
+        delete_list = []
+        
+        for edge in self.edgeList:
+            self._QGraphicsScene.removeItem(edge)
+            delete_list.append(edge)
+        for edge in delete_list:
+            if edge.dest.id != self.id:
+                neighborid = edge.dest.id
+            else:
+                neighborid = edge.source.id
+            self.main.nodes[neighborid].deleteEdge(edge)
+            self.deleteEdge(edge)
+        del self.main.nodes[self.id]
+        self._QGraphicsScene.removeItem(self)
+    
     def conceptionAction(self, action):
         """ Called when an option is selected from the contextual menu
             in conception mode
@@ -359,20 +388,8 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         """
         
         action = action.text()
-        delete_list = []
         if action == 'delete':
-            for edge in self.edgeList:
-                self._QGraphicsScene.removeItem(edge)
-                delete_list.append(edge)
-            for edge in delete_list:
-                if edge.dest.id != self.id:
-                    neighborid = edge.dest.id
-                else:
-                    neighborid = edge.source.id
-                self.main.nodes[neighborid].deleteEdge(edge)
-                self.deleteEdge(edge)
-            del self.main.nodes[self.id]
-            self._QGraphicsScene.removeItem(self)
+            self.delete()
         if action == 'configuration':
             self.InspectorInstance.loadNodeInfos() 
             self.InspectorInstance.show()

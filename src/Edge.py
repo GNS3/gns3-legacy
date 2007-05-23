@@ -51,6 +51,9 @@ class Edge(QtGui.QGraphicsItem, QtGui.QGraphicsScene):
             self.dest.addEdge(self)
         self.scene.addItem(self)
         self.scene.update(self.sceneBoundingRect())
+        
+        # Set item focusable
+        self.setFlag(self.ItemIsFocusable)
 
     def sourceNode(self):
         """ Returns the source node
@@ -75,6 +78,16 @@ class Edge(QtGui.QGraphicsItem, QtGui.QGraphicsScene):
         """
 
         self.dest = node
+
+    def keyPressEvent(self, event):
+        """ key press handler for Edges
+        """
+        
+        key = event.key()
+        if key == QtCore.Qt.Key_Delete:
+            self.delete()
+        else:
+            QtGui.QGraphicsScene.keyPressEvent(self, event)
 
     def mousePressEvent(self, event):
         """ Call when the edge is clicked
