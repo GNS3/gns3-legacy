@@ -10,6 +10,8 @@
 	<file>symbols/atm_switch.svg</file>
 </qresource>
 <qresource>
+	<file alias="icons/default.svg">icons/cancel.svg</file>
+	<file alias="icons/configuration.svg">icons/switch_conception_mode.svg</file>
 	<file>icons/cancel.svg</file>
 	<file>icons/connection.svg</file>
 	<file>icons/console.svg</file>

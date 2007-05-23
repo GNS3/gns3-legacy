@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="fr">
 <context>
+    <name>MNode</name>
+    <message>
+        <location filename="../src/MNode.py" line="118"/>
+        <source>Delete</source>
+        <translation>Supprimer</translation>
+    </message>
+    <message>
+        <location filename="../src/MNode.py" line="125"/>
+        <source>Console</source>
+        <translation>Console</translation>
+    </message>
+    <message>
+        <location filename="../src/MNode.py" line="132"/>
+        <source>Start</source>
+        <translation>Démarrer</translation>
+    </message>
+    <message>
+        <location filename="../src/MNode.py" line="139"/>
+        <source>Stop</source>
+        <translation>Arrêter</translation>
+    </message>
+    <message>
+        <location filename="../src/MNode.py" line="111"/>
+        <source>Configure</source>
+        <translation>Configurer</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="../forms/MainWindow.ui" line="111"/>
@@ -30,7 +58,7 @@
     <message>
         <location filename="../forms/MainWindow.ui" line="50"/>
         <source>Elements</source>
-        <translation type="unfinished"></translation>
+        <translation>Noeuds</translation>
     </message>
     <message>
         <location filename="../forms/MainWindow.ui" line="78"/>
@@ -53,7 +81,7 @@
         <translation>Ajouter un lien</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.py" line="151"/>
+        <location filename="../src/MainWindow.py" line="147"/>
         <source>Simulation Mode</source>
         <translation>Mode simulation</translation>
     </message>
@@ -68,7 +96,7 @@
         <translation>&amp;Aide en ligne</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.py" line="153"/>
+        <location filename="../src/MainWindow.py" line="149"/>
         <source>Conception Mode</source>
         <translation>Mode Conception</translation>
     </message>

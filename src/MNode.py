@@ -20,6 +20,7 @@
 import sys, os, time
 from PyQt4 import QtCore, QtGui, QtSvg
 from Ethernet import *
+from Utils import translate
 import Dynamips_lib as lib
 import __main__
 
@@ -89,6 +90,9 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self.setFlag(self.ItemIsFocusable)
         self.setZValue(1)
         
+        # Init action applicable to the node
+        self.__initActions()
+        
         # by default put the node to (0,0)
         if xPos is None : xPos = 0
         if yPos is None : yPos = 0 
@@ -99,6 +103,82 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self._QGraphicsScene.addItem(self)
         self._QGraphicsScene.update(self.sceneBoundingRect())
         
+    def __initActions(self):
+        """ Initialize all menu actions who belongs to MNode
+        """
+        
+        # Action: Configure (Configure the node)
+        self.configAct = QtGui.QAction(translate('MNode', 'Configure'), self)
+        self.configAct.setIcon(QtGui.QIcon(":/icons/configuration.svg"))
+        #self.configAct.setText('Configure Node')
+        #self.configAct.setStatusTip('Configure the node')
+        self.connect(self.configAct, QtCore.SIGNAL('activated()'), self.__configAction)
+        
+        # Action: Delete (Delete the node)
+        self.deleteAct = QtGui.QAction(translate('MNode', 'Delete'), self)
+        self.deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
+        #self.deleteAct.setText('Delete Node')
+        #self.deleteAct.setStatusTip('Delete the node')
+        self.connect(self.deleteAct, QtCore.SIGNAL('activated()'), self.__deleteAction)
+        
+        # Action: Console (Connect to the node console (IOS))
+        self.consoleAct = QtGui.QAction(translate('MNode', 'Console'), self)
+        self.consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
+        #self.consoleAct.setText('Open Console')
+        #self.consoleAct.setStatusTip('Connect to the node console (IOS)')
+        self.connect(self.consoleAct, QtCore.SIGNAL('activated()'), self.__consoleAction)
+        
+        # Action: Start (Start IOS on hypervisor)
+        self.startAct = QtGui.QAction(translate('MNode', 'Start'), self)
+        self.startAct.setIcon(QtGui.QIcon(':/icons/play.svg'))
+        #self.startAct.setText('Start IOS')
+        #self.startAct.setStatusTip('Start IOS on hypervisor')
+        self.connect(self.startAct, QtCore.SIGNAL('activated()'), self.__startAction)
+        
+        # Action: Stop (Stop IOS on hypervisor)
+        self.stopAct = QtGui.QAction(translate('MNode', 'Stop'), self)
+        self.stopAct.setIcon(QtGui.QIcon(':/icons/stop.svg'))
+        #self.stopAct.setText('Stop IOS')
+        #self.stopAct.setStatusTip('Stop IOS on hypervisor')
+        self.connect(self.stopAct, QtCore.SIGNAL('activated()'), self.__stopAction)
+        
+    def __configAction(self):
+        """ Action called for node configuration
+        """
+        self.InspectorInstance.loadNodeInfos() 
+        self.InspectorInstance.show()
+        
+    def __deleteAction(self):
+        """ Action called for node deletion
+        """
+        self.delete()
+        
+    def __consoleAction(self):
+        """ Action called to start a node console
+        """
+#        port = str(__main__.devices[device].console)
+#        host = str(__main__.devices[device].dynamips.host)
+
+        if self.ios.console != None:
+#    if telnetstring and not __main__.notelnet:
+#        telnetstring = telnetstring.replace('%h', host)
+#        telnetstring = telnetstring.replace('%p', port)
+#        telnetstring = telnetstring.replace('%d', device)
+
+        #os.system("gnome-terminal -t Router -e telnet localhost " + str(self.ios.console) + " > /dev/null 2>&1 &")
+            os.system("xterm -e telnet localhost " + str(self.ios.console) + " > /dev/null 2>&1 &")
+            time.sleep(0.5)
+        
+    def __startAction(self):
+        """ Action called to start the IOS hypervisor on the node
+        """
+        self.startIOS()
+        
+    def __stopAction(self):
+        """ Action called to stop IOS hypervisor on the node
+        """
+        self.stopIOS()
+    
     def move(self, xPos, yPos):
         """ Set the node position on the scene
             xPos: integer
@@ -250,17 +330,15 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
 
         if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == False:
             self.menu = QtGui.QMenu()
-            self.menu.addAction(QtGui.QIcon(':/icons/console.svg'), 'console')
-            self.menu.addAction(QtGui.QIcon(':/icons/play.svg'), 'start')
-            self.menu.addAction(QtGui.QIcon(':/icons/stop.svg'), 'stop')
-            self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.simAction)
+            self.menu.addAction(self.consoleAct)
+            self.menu.addAction(self.startAct)
+            self.menu.addAction(self.stopAct)
             self.menu.exec_(QtGui.QCursor.pos())
 
         if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == True:
             self.menu = QtGui.QMenu()
-            self.menu.addAction(QtGui.QIcon(':/icons/switch_conception_mode.svg'), 'configuration')
-            self.menu.addAction(QtGui.QIcon(':/icons/delete.svg'), 'delete')
-            self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.conceptionAction)
+            self.menu.addAction(self.configAct)
+            self.menu.addAction(self.deleteAct)
             self.menu.exec_(QtGui.QCursor.pos())
         
         if self.main.linkEnabled == False :
@@ -337,31 +415,6 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
                 return
             self.interfaces[interface] = [srcid, srcif]
             self.main.TabLinkMNode[0].interfaces[srcif] = [self.id, interface]
-
-    def simAction(self, action):
-        """ Called when an interface is selected from the contextual menu
-            in simulation mode
-            action: QtCore.QAction instance
-        """
-        
-        action = action.text()
-        if action == 'console' and self.ios.console != None:
-#        port = str(__main__.devices[device].console)
-#        host = str(__main__.devices[device].dynamips.host)
-
-#    if telnetstring and not __main__.notelnet:
-#        telnetstring = telnetstring.replace('%h', host)
-#        telnetstring = telnetstring.replace('%p', port)
-#        telnetstring = telnetstring.replace('%d', device)
-
-            #os.system("gnome-terminal -t Router -e telnet localhost " + str(self.ios.console) + " > /dev/null 2>&1 &")
-            os.system("xterm -e telnet localhost " + str(self.ios.console) + " > /dev/null 2>&1 &")
-            time.sleep(0.5)
-            
-        elif action == 'start':
-            self.startIOS()
-        elif action == 'stop':
-            self.stopIOS()
     
     def delete(self):
         """ Delete the current node
@@ -380,19 +433,6 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.deleteEdge(edge)
         del self.main.nodes[self.id]
         self._QGraphicsScene.removeItem(self)
-    
-    def conceptionAction(self, action):
-        """ Called when an option is selected from the contextual menu
-            in conception mode
-            action: QtCore.QAction instance
-        """
-        
-        action = action.text()
-        if action == 'delete':
-            self.delete()
-        if action == 'configuration':
-            self.InspectorInstance.loadNodeInfos() 
-            self.InspectorInstance.show()
     
     def setName(self, name):
         
