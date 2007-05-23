@@ -22,6 +22,36 @@ from Ui_Inspector import *
 import Dynamips_lib as lib
 import __main__
 
+DEFAULTS = {
+           "7200":  { "ram": 256,
+                      "nvram": 128,
+                      "disk0": 64,
+                      "disk1": 0,
+                      "npe": "npe-200",
+                      "midplane": "vxr" },
+           "3600":  { "ram": 128,
+                     "nvram": 128,
+                     "disk0": 0,
+                     "disk1": 0,
+                     "iomem": 5 },
+           "2600":  { "ram": 64,
+                     "nvram": 128,
+                     "disk0": 8,
+                     "disk1": 8 },
+           "2691":  { "ram": 128,
+                     "nvram": 55,
+                     "disk0": 16,
+                     "disk1": 0 },
+           "3725":  { "ram": 128,
+                      "nvram": 55,
+                      "disk0": 16, 
+                      "disk1": 0 },
+           "3745":  { "ram": 128,
+                      "nvram": 151,
+                      "disk0": 16, 
+                      "disk1": 0 }
+}
+
 class Inspector(QtGui.QDialog, Ui_FormInspector):
     """ Inspector class
         IOS Configuration
@@ -184,11 +214,27 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         node = self.main.nodes[self.nodeid]
         self.lineEditConsolePort.clear()
         self.lineEditStartupConfig.clear()
-        self.spinBoxRamSize.setValue(128)
+        
+        imagename = str(self.comboBoxIOS.currentText())
+        if imagename:
+            platform = self.main.ios_images[imagename]['platform']
+            chassis = self.main.ios_images[imagename]['chassis']
+            if platform in ('7200', '3600', '2600'):
+                self.spinBoxRamSize.setValue(DEFAULTS[platform]["ram"])
+                self.spinBoxNvramSize.setValue(DEFAULTS[platform]["nvram"])
+                self.spinBoxPcmciaDisk0Size.setValue(DEFAULTS[platform]["disk0"])
+                self.spinBoxPcmciaDisk1Size.setValue(DEFAULTS[platform]["disk0"])
+            elif chassis in ('2691', '3725', '3745'):
+                self.spinBoxRamSize.setValue(DEFAULTS[chassis]["ram"])
+                self.spinBoxNvramSize.setValue(DEFAULTS[chassis]["nvram"])
+                self.spinBoxPcmciaDisk0Size.setValue(DEFAULTS[chassis]["disk0"])
+                self.spinBoxPcmciaDisk1Size.setValue(DEFAULTS[chassis]["disk0"])
+        else:
+            self.spinBoxRamSize.setValue(128)
+            self.spinBoxNvramSize.setValue(128)
+            self.spinBoxPcmciaDisk0Size.setValue(0)
+            self.spinBoxPcmciaDisk1Size.setValue(0)
         self.spinBoxRomSize.setValue(4)
-        self.spinBoxNvramSize.setValue(128)
-        self.spinBoxPcmciaDisk0Size.setValue(0)
-        self.spinBoxPcmciaDisk1Size.setValue(0)
         self.checkBoxMapped.setCheckState(QtCore.Qt.Checked)
         self.lineEditConfreg.setText('0x2102')
         self.spinBoxExecArea.setValue(64)

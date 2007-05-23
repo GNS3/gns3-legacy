@@ -2,11 +2,12 @@
 
 # Form implementation generated from reading ui file 'Inspector.ui'
 #
-# Created: Wed May 23 11:16:50 2007
-#      by: PyQt4 UI code generator 4.2
+# Created: Wed May 23 16:23:33 2007
+#      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
 
+import sys
 from PyQt4 import QtCore, QtGui
 
 class Ui_FormInspector(object):
