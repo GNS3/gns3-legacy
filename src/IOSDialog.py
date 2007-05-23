@@ -221,24 +221,21 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             imagename = hypervisor_host + ':' + imagename
             item.setText(0, imagename)
 
-            self.main.ios_images[imagename] = { 'platform': str(self.comboBoxPlatform.currentText()),
-                                                'chassis': str(self.comboBoxChassis.currentText()),
-                                                'idlepc': idlepc,
-                                                'hypervisor_host': hypervisor_host,
-                                                'hypervisor_port': int(hypervisor_port),
-                                                'working_directory': working_directory,
-                                                'confkey': str(ConfDB().getGroupNewNumChild("IOS.images"))
-                                               }
-            
-            confkey = self.main.ios_images[imagename]['confkey']
-            ConfDB().set(confkey + "/filename", imagename)
-            ConfDB().set(confkey + "/platform", str(self.comboBoxPlatform.currentText()))
-            ConfDB().set(confkey + "/chassis", str(self.comboBoxChassis.currentText()))
-            ConfDB().set(confkey + "/idlepc", idlepc)
-            ConfDB().set(confkey + "/hypervisor_host", hypervisor_host)
-            ConfDB().set(confkey + "/hypervisor_port", hypervisor_port)
-            ConfDB().set(confkey + "/working_directory", working_directory)
-            
+            newimage_confkey = str(ConfDB().getGroupNewNumChild("IOS.images"))
+            newimage_dict = {'filename': imagename,
+                            'platform': str(self.comboBoxPlatform.currentText()),
+                            'chassis': str(self.comboBoxChassis.currentText()),
+                            'idlepc': idlepc,
+                            'hypervisor_host': hypervisor_host,
+                            'hypervisor_port': int(hypervisor_port),
+                            'working_directory': working_directory
+            }
+            # Save `IOS image' to user config
+            ConfDB().setGroupDict(newimage_confkey, newimage_dict)
+            # Also, save a copy into the global dict.
+            newimage_dict['confkey'] = newimage_confkey
+            self.main.ios_images[imagename] = newimage_dict
+
             self.treeWidgetIOSimages.addTopLevelItem(item)
             # switch to ios images tab
             self.tabWidget.setCurrentIndex(0)
@@ -311,16 +308,20 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             self.treeWidgetHypervisor.resizeColumnToContents(0)
             self.treeWidgetHypervisor.resizeColumnToContents(1)
             
-            self.main.hypervisors[hypervisor_host + ':' + hypervisor_port] = { 'working_directory': working_dir,
-                                                                               'dynamips_instance': None,
-                                                                               'confkey': str(ConfDB().getGroupNewNumChild("IOS.hypervisors"))
-                                                                             }
+            # Save config into the global dict.
+            newhypervisor_confkey = str(ConfDB().getGroupNewNumChild("IOS.hypervisors"))
+            newhypervisor_dict = {'working_directory': working_dir,
+                                  'dynamips_instance': None,
+                                  'confkey': newhypervisor_confkey
+            }
+            self.main.hypervisors[hypervisor_host + ':' + hypervisor_port] = newhypervisor_dict
             
-            # Add hypervisor to user config
-            confkey = self.main.hypervisors[hypervisor_host + ':' + hypervisor_port]['confkey']
-            ConfDB().set(confkey + "/host", hypervisor_host)
-            ConfDB().set(confkey + "/port", hypervisor_port)
-            ConfDB().set(confkey + "/working_directory", working_dir)
+            # Save IOS hypervisors to user config
+            newhypconf_dict = {'host': hypervisor_host,
+                               'port': hypervisor_port,
+                               'working_directory': working_dir
+            }
+            ConfDB().setGroupDict(newhypervisor_confkey, newhypconf_dict)
 
             self.listWidgetHypervisors.addItem(hypervisor_host + ':' + hypervisor_port)
 
