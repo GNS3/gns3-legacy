@@ -35,8 +35,23 @@ class ConfDB(Singleton, QtCore.QSettings):
     
     def __del__(self):
         self.sync()
+
+    def delete(self, key):
+        """ Delete a config key
+        
+        Same as QSettings.remove()
+        """
+        self.remove(key)
         
     def get(self, key, default_value = None):
+        """ Get a config value for a specific key
+        
+        Get the config value for `key' key
+        If no value exists:
+          1) try to return default_value (if providen)
+          2) try to find a default value into apps _ConfigDefaults dict.
+          3) return None
+        """
         value = self.value(key).toString()
         
         # if value not found is user/system config, or is empty
@@ -53,9 +68,16 @@ class ConfDB(Singleton, QtCore.QSettings):
         return str(value)
     
     def set(self, key, value):
+        """ Set a value from a specific key
+        """
         self.setValue(key, QtCore.QVariant(value))
 
     def getGroupNewNumChild(self, key):
+        """ Get the maximum+1 numeric key from the specified config key group.
+        
+        Under config group `key', find the key with the max numeric value,
+        then return max+1
+        """
         self.beginGroup(key)
         childGroups = self.childGroups()
         self.endGroup()
@@ -66,9 +88,59 @@ class ConfDB(Singleton, QtCore.QSettings):
                 max = int(i) + 1
         return (key + '/' + str(max))
     
-    def delete(self, key):
-        self.remove(key)
-    
+    def getGroupDict(self, key, fields_dict = None):
+        """ Get all keys from a given `key' config group
+        
+        If fields_dict is providen, like { 'key': 'int' },
+        only theses keys will be return. Moreover in this
+        dictionnary, values represent the 'convertion' type
+        that will be applied.
+        """
+        __values = {}
+        self.beginGroup(key)
+        
+        print fields_dict
+        print kwargs
+        
+        childKeys = self.childKeys()
+        for child in childKeys:
+            # child key need to be a string
+            child = str(child)
+            # If fields_dict providen, check if the current
+            # value is wanted or not
+            if fields_dict != None and not fields_dict.has_key(child):
+                continue
+            
+            child_value = self.value(child)
+            # Try to find a suitable method for converting
+            # conf value to desired type
+            # default: provide a string
+            conv_to = "string"
+            if fields_dict != None \
+                and fields_dict.has_key(child) and fields_dict[child] != '':
+                conv_to = fields_dict[child]
+            
+            # Do the convertion, and assign the value
+            if   conv_to == "string": __values[child] = str(child_value.toString())
+            elif conv_to == "int":    __values[child] = int(child_value.toInt())
+            else: raise "convertion type not implemented"
+        
+        self.endGroup()
+        return __values
+        
+    def setGroupDict(self, key, dict_values):
+        """ Set config keys/values under a specific config group
+        
+        All key/value pair present in `dict_values' will be saved
+        in config under `key' group
+        """
+        
+        self.beginGroup(key)
+        for key in dict_values.keys():
+            key_str = str(key)
+            self.setValue(key_str, QtCore.QVariant(dict_values[key]))
+        self.endGroup()
+
 class GNS_Conf(object):
     """ GNS_Conf provide static class method for loading user config
     """
