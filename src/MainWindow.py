@@ -126,11 +126,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         """ Simulation/Conception mode switching
         """
         
-        if self.action_SwitchMode.text() == 'Simulation Mode':
+        if self.action_SwitchMode.text() == translate('MainWindow', 'Simulation Mode'):
             # simulation mode
-            self.action_SwitchMode.setText('Conception Mode')
+            self.action_SwitchMode.setText(translate('MainWindow', 'Conception Mode'))
             self.action_SwitchMode.setIcon(QtGui.QIcon(':/icons/switch_conception_mode.svg'))
-            self.statusbar.showMessage('Simulation Mode')
+            self.statusbar.showMessage(translate('MainWindow', 'Simulation Mode'))
             self.main.conception_mode = False
             self.action_Add_link.setEnabled(False)
             self.treeWidget.simulationMode()
@@ -142,11 +142,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
                 return
             
-        elif self.action_SwitchMode.text() == 'Conception Mode':
+        elif self.action_SwitchMode.text() == translate('MainWindow', 'Conception Mode'):
             # conception mode
-            self.action_SwitchMode.setText('Simulation Mode')
+            self.action_SwitchMode.setText(translate('MainWindow', 'Simulation Mode'))
             self.action_SwitchMode.setIcon(QtGui.QIcon(':/icons/switch_simulation_mode.svg'))
-            self.statusbar.showMessage('Conception Mode')
+            self.statusbar.showMessage(translate('MainWindow', 'Conception Mode'))
             self.main.conception_mode = True
             self.action_Add_link.setEnabled(True)
             self.treeWidget.conceptionMode()

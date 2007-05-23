@@ -61,7 +61,7 @@ class Main:
 
         win = MainWindow()
         # we start in conception mode
-        win.statusbar.showMessage(translate('Main', 'Conception Mode'))
+        win.statusbar.showMessage(translate('MainWindow', 'Conception Mode'))
         
         # signal/slot for the menu
         win.connect(win.action_Open, QtCore.SIGNAL('activated()'), win.OpenNewFile)
