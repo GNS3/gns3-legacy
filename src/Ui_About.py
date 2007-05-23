@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'About.ui'
 #
-# Created: Tue May 22 23:18:02 2007
+# Created: Wed May 23 11:16:51 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -28,7 +28,7 @@ class Ui_AboutDialog(object):
         self.gridlayout.addItem(spacerItem,4,0,1,1)
 
         self.label = QtGui.QLabel(AboutDialog)
-        self.label.setPixmap(QtGui.QPixmap("../svg/images/logo_gns3_transparency_small.png"))
+        self.label.setPixmap(QtGui.QPixmap(":/images/logo_gns3_transparency_small.png"))
         self.label.setObjectName("label")
         self.gridlayout.addWidget(self.label,1,0,3,1)
 
@@ -71,3 +71,4 @@ class Ui_AboutDialog(object):
         "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p>\n"
         "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">developers@gns3.net</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
 
+import svg_resources_rc

@@ -46,7 +46,7 @@
         <string/>
        </property>
        <property name="pixmap" >
-        <pixmap>../svg/images/logo_gns3_transparency_small.png</pixmap>
+        <pixmap resource="../svg/svg_resources.qrc" >:/images/logo_gns3_transparency_small.png</pixmap>
        </property>
       </widget>
      </item>
@@ -113,7 +113,9 @@ p, li { white-space: pre-wrap; }
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../svg/svg_resources.qrc" />
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>
