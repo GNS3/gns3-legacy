@@ -56,7 +56,7 @@ class Main:
         GNS_Conf.load_IOShypervisors()
 
         translator = QtCore.QTranslator(app)
-        if locale.getlocale()[0] != None and translator.load(":" + locale.getlocale()[0][:2]):
+        if translator.load(":/fr"):
             app.installTranslator(translator)
 
         win = MainWindow()

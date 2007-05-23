@@ -53,7 +53,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.graphicsView.setScene(self.scene)
         
         # scene settings
-        self.scene.setItemIndexMethod(QtGui.QGraphicsScene.NoIndex)
+        #self.scene.setItemIndexMethod(QtGui.QGraphicsScene.NoIndex)
         #TODO: A better management of the scene size
         self.scene.setSceneRect(-250, -250, 500, 500)
         self.graphicsView.setCacheMode(QtGui.QGraphicsView.CacheBackground)

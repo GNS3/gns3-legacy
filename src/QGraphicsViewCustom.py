@@ -19,6 +19,7 @@
 
 from PyQt4 import QtCore, QtGui
 from QTreeWidgetCustom import SYMBOLS
+from Utils import translate
 from Router import *
 import re
 import string
@@ -93,7 +94,7 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
             # Get resource corresponding to node type
             svgrc = ":/icons/default.svg"
             for item in SYMBOLS:
-                if item[0] == s[1]:
+                if translate("SYMBOLS", item[0]) == s[1]:
                     svgrc = item[1]
                     break
             

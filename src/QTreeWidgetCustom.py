@@ -52,7 +52,7 @@ class QTreeWidgetCustom(QtGui.QTreeWidget):
         self.setRootIsDecorated(False)
         for symbol in SYMBOLS:
             item = QtGui.QTreeWidgetItem(self)
-            item.setText(0, translate("QTreeWidgetCustom", symbol[0]))
+            item.setText(0, translate("SYMBOLS", symbol[0]))
             item.setIcon(0, QtGui.QIcon(symbol[1]))
             self.insertTopLevelItem(0, item)
 
