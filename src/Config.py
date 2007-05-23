@@ -79,8 +79,6 @@ class GNS_Conf(object):
         """ Load IOS images settings from config file
         """
         
-        print ">> (II) LoadingConf: IOS.images"
-        
         # Loading IOS images conf
         basegroup = "IOS.images"
         c = ConfDB()
@@ -119,9 +117,7 @@ class GNS_Conf(object):
     def IOS_hypervisors(self):
         """ Load IOS hypervisors settings from config file
         """
-                 
-        print ">> (II) LoadingConf: IOS.hypervisors"
-        
+ 
         # Loading IOS images conf
         basegroup = "IOS.hypervisors"
         c = ConfDB()
