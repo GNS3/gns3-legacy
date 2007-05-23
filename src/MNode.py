@@ -313,15 +313,15 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         QtGui.QMessageBox.critical(self.main.win, 'Connection',  'No interface available')
         return (False)
 
-    def keyPressEvent(self, event):
-        """ key press handler for MNodes
+    def keyReleaseEvent(self, event):
+        """ key release handler for MNodes
         """
         
         key = event.key()
         if key == QtCore.Qt.Key_Delete:
             self.delete()
         else:
-            QtGui.QGraphicsScene.keyPressEvent(self, event)
+            QtGui.QGraphicsItem.keyReleaseEvent(self, event)
 
     def mousePressEvent(self, event):
         """ Call when the node is clicked
