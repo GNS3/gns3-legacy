@@ -166,7 +166,13 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
 #        telnetstring = telnetstring.replace('%d', device)
 
         #os.system("gnome-terminal -t Router -e telnet localhost " + str(self.ios.console) + " > /dev/null 2>&1 &")
-            os.system("xterm -e telnet localhost " + str(self.ios.console) + " > /dev/null 2>&1 &")
+        #TODO : tester si une valeur est définie dans le fichier de conf
+            if sys.platform == "linux":
+                os.system("xterm -e telnet localhost " + str(self.ios.console) + " > /dev/null 2>&1 &")
+            elif sys.platform == "darwin":
+                os.system("/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet localhost " + str(self.ios.console) +"; exit\"' -e 'tell application \"Terminal\" to tell window 1  to set custom title to \"r1\"'")
+            elif sys.platform == "win32":
+                os.system("cmd telnet localhost " + str(self.ios.console))
             time.sleep(0.5)
         
     def __startAction(self):
