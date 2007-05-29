@@ -388,7 +388,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../forms/MainWindow.ui" line="111"/>
+        <location filename="../forms/MainWindow.ui" line="115"/>
         <source>&amp;About</source>
         <translation>&amp;A propos</translation>
     </message>
@@ -403,7 +403,7 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Fichier</translation>
     </message>
     <message>
-        <location filename="../forms/MainWindow.ui" line="116"/>
+        <location filename="../forms/MainWindow.ui" line="120"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
@@ -423,44 +423,54 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../forms/MainWindow.ui" line="130"/>
+        <location filename="../forms/MainWindow.ui" line="134"/>
         <source>&amp;Open</source>
         <translation>&amp;Ouvrir</translation>
     </message>
     <message>
-        <location filename="../forms/MainWindow.ui" line="138"/>
+        <location filename="../forms/MainWindow.ui" line="142"/>
         <source>&amp;Save</source>
         <translation>&amp;Sauver</translation>
     </message>
     <message>
-        <location filename="../forms/MainWindow.ui" line="155"/>
+        <location filename="../forms/MainWindow.ui" line="159"/>
         <source>Add a link</source>
         <translation>Ajouter un lien</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.py" line="147"/>
+        <location filename="../src/MainWindow.py" line="151"/>
         <source>Simulation Mode</source>
-        <translation>Mode simulation</translation>
+        <translation type="unfinished">Mode Simulation</translation>
     </message>
     <message>
-        <location filename="../forms/MainWindow.ui" line="168"/>
+        <location filename="../forms/MainWindow.ui" line="172"/>
         <source>IOS images</source>
         <translation>Images IOS</translation>
     </message>
     <message>
-        <location filename="../forms/MainWindow.ui" line="173"/>
+        <location filename="../forms/MainWindow.ui" line="177"/>
         <source>&amp;Online Help</source>
         <translation>&amp;Aide en ligne</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.py" line="149"/>
+        <location filename="../src/MainWindow.py" line="153"/>
         <source>Conception Mode</source>
         <translation>Mode Conception</translation>
     </message>
     <message>
-        <location filename="../forms/MainWindow.ui" line="122"/>
+        <location filename="../forms/MainWindow.ui" line="126"/>
         <source>Ctrl+Q</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../forms/MainWindow.ui" line="185"/>
+        <source>&amp;Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../forms/MainWindow.ui" line="193"/>
+        <source>&amp;Export</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

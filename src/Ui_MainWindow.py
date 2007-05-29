@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Wed May 23 18:09:36 2007
+# Created: Tue May 29 17:15:07 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -42,7 +42,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,812,29))
+        self.menubar.setGeometry(QtCore.QRect(0,0,812,25))
         self.menubar.setObjectName("menubar")
 
         self.menu_About = QtGui.QMenu(self.menubar)
@@ -84,7 +84,7 @@ class Ui_MainWindow(object):
         self.action_Add_link.setObjectName("action_Add_link")
 
         self.action_SwitchMode = QtGui.QAction(MainWindow)
-        self.action_SwitchMode.setIcon(QtGui.QIcon(":/icons/switch_simulation_mode.svg"))
+        self.action_SwitchMode.setIcon(QtGui.QIcon(":/icons/view-refresh.svg"))
         self.action_SwitchMode.setObjectName("action_SwitchMode")
 
         self.action_IOS_images = QtGui.QAction(MainWindow)
@@ -92,11 +92,22 @@ class Ui_MainWindow(object):
 
         self.action_OnlineHelp = QtGui.QAction(MainWindow)
         self.action_OnlineHelp.setObjectName("action_OnlineHelp")
+
+        self.action_Import = QtGui.QAction(MainWindow)
+        self.action_Import.setIcon(QtGui.QIcon(":/icons/edit-redo.svg"))
+        self.action_Import.setObjectName("action_Import")
+
+        self.action_Export = QtGui.QAction(MainWindow)
+        self.action_Export.setIcon(QtGui.QIcon(":/icons/edit-undo.svg"))
+        self.action_Export.setObjectName("action_Export")
         self.menu_About.addAction(self.action_OnlineHelp)
         self.menu_About.addAction(self.action_About)
         self.menuIOS.addAction(self.action_IOS_images)
         self.menu_File.addAction(self.action_Open)
         self.menu_File.addAction(self.action_Save)
+        self.menu_File.addSeparator()
+        self.menu_File.addAction(self.action_Import)
+        self.menu_File.addAction(self.action_Export)
         self.menu_File.addSeparator()
         self.menu_File.addAction(self.action_Quit)
         self.menubar.addAction(self.menu_File.menuAction())
@@ -105,8 +116,9 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.action_Open)
         self.toolBar.addAction(self.action_Save)
         self.toolBar.addSeparator()
-        self.toolBar.addAction(self.action_Add_link)
         self.toolBar.addAction(self.action_SwitchMode)
+        self.toolBar.addSeparator()
+        self.toolBar.addAction(self.action_Add_link)
 
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.action_Quit,QtCore.SIGNAL("activated()"),MainWindow.close)
@@ -129,6 +141,8 @@ class Ui_MainWindow(object):
         self.action_SwitchMode.setText(QtGui.QApplication.translate("MainWindow", "Simulation Mode", None, QtGui.QApplication.UnicodeUTF8))
         self.action_IOS_images.setText(QtGui.QApplication.translate("MainWindow", "IOS images", None, QtGui.QApplication.UnicodeUTF8))
         self.action_OnlineHelp.setText(QtGui.QApplication.translate("MainWindow", "&Online Help", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Import.setText(QtGui.QApplication.translate("MainWindow", "&Import", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Export.setText(QtGui.QApplication.translate("MainWindow", "&Export", None, QtGui.QApplication.UnicodeUTF8))
 
 from QTreeWidgetCustom import QTreeWidgetCustom
 from QGraphicsViewCustom import QGraphicsViewCustom
