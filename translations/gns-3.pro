@@ -1,5 +1,5 @@
 SOURCES = translations.py \
-	  ../src/gns-3.py \
+	  ../src/Main.py \
 	  ../src/QTreeWidgetCustom.py \
 	  ../src/MainWindow.py \
 	  ../src/MNode.py
