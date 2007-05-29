@@ -217,6 +217,7 @@ class GNS_Conf(object):
                     'confkey' : str(cgroup),
                     'host'    : hyp_host,
                     'port'    : hyp_port,
+                    'dynamips_instance': None,
                     'working_directory' : hyp_wdir
             }
 

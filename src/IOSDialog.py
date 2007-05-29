@@ -317,6 +317,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                                   'dynamips_instance': None,
                                   'confkey': newhypervisor_confkey
             }
+
             self.main.hypervisors[hypervisor_host + ':' + hypervisor_port] = newhypervisor_dict
             
             # Save IOS hypervisors to user config

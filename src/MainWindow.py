@@ -132,13 +132,14 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.action_SwitchMode.setIcon(QtGui.QIcon(':/icons/switch_conception_mode.svg'))
             self.statusbar.showMessage(translate('MainWindow', 'Simulation Mode'))
             self.main.conception_mode = False
+            self.action_Add_link.setChecked(False)
+            self.AddEdge()
             self.action_Add_link.setEnabled(False)
             self.treeWidget.simulationMode()
             try:
                 for node in self.main.nodes.keys():
                     self.main.nodes[node].configIOS()
             except lib.DynamipsError, msg:
-                print "Dynamips error: %s" % msg
                 QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
                 return
             
@@ -154,7 +155,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 for node in self.main.nodes.keys():
                     self.main.nodes[node].resetIOSConfig()
             except lib.DynamipsError, msg:
-                print "Dynamips error: %s" % msg
                 QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
                 return
             

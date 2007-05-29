@@ -97,8 +97,8 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
             self.comboBoxSlot1.addItems([''] + list(lib.ADAPTER_MATRIX[chassis][''][1]))
             return
         try:
-            # some platforms have adapters on their motherboard (not optional)
-            if platform in ('c2600', 'c3660', 'c3725', 'c3745', 'c7200'):
+            # some platforms/chassis have adapters on their motherboard (not optional)
+            if platform in ('c2600', 'c3700', 'c7200') or chassis == '3660':
                 self.comboBoxSlot0.addItems(list(lib.ADAPTER_MATRIX[platform][chassis][0]))
             else:
                 self.comboBoxSlot0.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][0]))    

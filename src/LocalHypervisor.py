@@ -49,6 +49,10 @@ class LocalHypervisor:
             if self.proc.waitForStarted() == False:
                 QtGui.QMessageBox.critical(self.main.win, 'Local hypervisor',  translate("LocalHypervisor", "Can't start the local hypervisor,\n check your configuration file"))
                 return
+            
+            self.main.integrated_hypervisor = {'port': int(hypervisor_port),
+                                               'working_directory': hypervisor_wd,
+                                               'dynamips_instance': None}
 
     def __del__(self):
     

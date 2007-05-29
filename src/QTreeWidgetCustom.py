@@ -65,14 +65,17 @@ class QTreeWidgetCustom(QtGui.QTreeWidget):
         for node in self.main.nodes.keys():
             rootitem = QtGui.QTreeWidgetItem(self)
             rootitem.setText(0, translate("MainWindow", "Node " + str(self.main.nodes[node].id)))
-            rootitem.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
+            #rootitem.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
             
-            print self.main.nodes[node].interfaces
+            interfaces = self.main.nodes[node].getInterfaces()
             
             #TODO: finish to put the tree in simulation mode
-            interface = QtGui.QTreeWidgetItem()
-            interface.setText(0, "Interface s0/0")
-            rootitem.addChild(interface)
+            items = []
+            for interface in interfaces:
+                item = QtGui.QTreeWidgetItem()
+                item.setText(0, 'interface ' + interface)
+                items.append(item)
+            rootitem.addChildren(items)
             
             #rootitem.addChild(QtGui.QTreeWidgetItem(['test']))
             self.insertTopLevelItem(0, rootitem)

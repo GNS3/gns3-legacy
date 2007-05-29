@@ -32,6 +32,32 @@ ROUTERS = {
     "3600": lib.C3600
 }
 
+ADAPTERS = {
+    "PA-C7200-IO-FE": (lib.PA_C7200_IO_FE, 1, 'f'),
+    "PA-C7200-IO-2FE": (lib.PA_C7200_IO_2FE, 2, 'f'),
+    "PA-C7200-IO-GE-E": (lib.PA_C7200_IO_GE_E, 1, 'g'),
+    "PA-A1": (lib.PA_A1, 1, 'a'),
+    "PA-FE-TX": (lib.PA_FE_TX, 1, 'f'),
+    "PA-2FE-TX": (lib.PA_2FE_TX, 2, 'f'),
+    "PA-GE": (lib.PA_GE, 1, 'g'),
+    "PA-4T": (lib.PA_4T, 4, 's'),
+    "PA-8T": (lib.PA_8T, 8, 's'),
+    "PA-4E": (lib.PA_4E, 4, 'e'),
+    "PA-8E": (lib.PA_8E, 8, 'e'),
+    "PA-POS-OC3": (lib.PA_POS_OC3, 1, 'p'),
+    "NM-1FE-TX" : (lib.NM_1FE_TX, 1, 'f'),
+    "NM-1E": (lib.NM_1E, 1, 'e'),
+    "NM-4E": (lib.NM_4E, 4, 'e'),
+    "NM-4T": (lib.NM_4T, 4, 's'),
+    "NM-16ESW": (lib.NM_16ESW, 16, 'f'),
+    "Leopard-2FE": (lib.Leopard_2FE, 2, 'f'),
+    "GT96100-FE": (lib.GT96100_FE, 1, 'f'),
+    "CISCO2600-MB-1E": (lib.CISCO2600_MB_1E, 1, 'e'),
+    "CISCO2600-MB-2E": (lib.CISCO2600_MB_2E, 2, 'e'),
+    "CISCO2600-MB-1FE": (lib.CISCO2600_MB_1FE, 1, 'f'),
+    "CISCO2600-MB-2FE": (lib.CISCO2600_MB_2FE, 2, 'f')
+}
+
 class Router(MNode):
     """ Router class
         Router item for the scene
@@ -57,6 +83,7 @@ class Router(MNode):
         self.InspectorInstance = Inspector(self.id)
         self.InspectorInstance.setModal(True)
         self.InspectorInstance.saveIOSConfig()
+        self.dynamips_instance = None
         
     def mouseDoubleClickEvent(self, event):
         """ Show the inspector instance
@@ -65,10 +92,6 @@ class Router(MNode):
         if (event.button() == QtCore.Qt.LeftButton):
             self.InspectorInstance.loadNodeInfos() 
             self.InspectorInstance.show()
-
-    def printoto(self):
-        
-        print "toto"
 
     def configIOS(self):
         """ Create the IOS configuration on the hypervisor
@@ -88,23 +111,32 @@ class Router(MNode):
         platform = image_settings['platform']
         chassis = image_settings['chassis']
         idlepc = image_settings['idlepc']
-
+        
         # connect to hypervisor
-        if self.main.hypervisor == None:
-            self.main.hypervisor = lib.Dynamips(host, port)
-            self.main.hypervisor.reset()
-            if working_directory:
-                self.main.hypervisor.workingdir = working_directory
-        
-        hypervisor = self.main.hypervisor
-        
+        if self.main.integrated_hypervisor != None and host == 'localhost' and \
+           self.main.integrated_hypervisor['port'] == port:
+            if self.main.integrated_hypervisor['dynamips_instance'] == None:
+                self.main.integrated_hypervisor['dynamips_instance'] = lib.Dynamips(host, port)
+                self.main.integrated_hypervisor['dynamips_instance'].reset()
+                if self.main.integrated_hypervisor['working_directory']:
+                    self.main.integrated_hypervisor['dynamips_instance'].workingdir = self.main.integrated_hypervisor['working_directory']
+            self.dynamips_instance = self.main.integrated_hypervisor['dynamips_instance']
+        else:
+            hypervisor = self.main.hypervisors[host + ':' + str(port)]
+            if hypervisor['dynamips_instance'] == None:
+                hypervisor['dynamips_instance'] = lib.Dynamips(host, port)
+                hypervisor['dynamips_instance'].reset()
+                if hypervisor['working_directory']:
+                    hypervisor['dynamips_instance'].workingdir = hypervisor['working_directory']
+            self.dynamips_instance = hypervisor['dynamips_instance']
+
         #ROUTERS
         if platform == '7200':
-            self.ios = ROUTERS[platform](hypervisor, name = 'R' + str(self.id))
+            self.ios = ROUTERS[platform](self.dynamips_instance, name = 'R' + str(self.id))
         if chassis in ('2691', '3725', '3745'):
-            self.ios = ROUTERS[chassis](hypervisor, name = 'R' + str(self.id))
+            self.ios = ROUTERS[chassis](self.dynamips_instance, name = 'R' + str(self.id))
         elif platform in ('3600', '2600'):
-            self.ios = ROUTERS[platform](hypervisor, chassis = chassis, name = 'R' + str(self.id))
+            self.ios = ROUTERS[platform](self.dynamips_instance, chassis = chassis, name = 'R' + str(self.id))
 
         self.ios.image = self.iosConfig['iosimage'].split(':')[1]
         if self.iosConfig['startup-config'] != '':
@@ -150,7 +182,27 @@ class Router(MNode):
         else:
             sys.stderr.write(module + " module not found !\n")
             return
-      
+
+    def getInterfaces(self):
+        """ Return all interfaces
+        """
+        
+        interface_list = []
+        slotnb = 0
+        for module in self.iosConfig['slots']:    
+            if (module == ''):
+                continue
+            # add interfaces corresponding to the given module
+            if module in ADAPTERS:
+                # get number of interfaces and the abbreviation letter
+                (interfaces, abrv) = ADAPTERS[module][1:3]
+                # for each interface, add an entry to the menu
+                for interface in range(interfaces):
+                    name = abrv + str(slotnb) + '/' + str(interface)
+                    interface_list.append(name)
+            slotnb += 1   
+        return (interface_list)
+
     def startIOS(self):
         """ Create connections between nodes
             Start the IOS instance
@@ -173,7 +225,7 @@ class Router(MNode):
             try:
                 if self.ios.slot[source_slot] != None and self.ios.slot[source_slot].connected(source_port) == False:
                     lib.validate_connect(self.ios.slot[source_slot], node.ios.slot[dest_slot])
-                    self.ios.slot[source_slot].connect(source_port, self.main.hypervisor, node.ios.slot[dest_slot], dest_port)
+                    self.ios.slot[source_slot].connect(source_port, self.dynamips_instance, node.ios.slot[dest_slot], dest_port)
             except lib.DynamipsError, msg:
                 print msg
 

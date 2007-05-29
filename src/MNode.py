@@ -19,36 +19,11 @@
 
 import sys, os, time
 from PyQt4 import QtCore, QtGui, QtSvg
+from Config import ConfDB
 from Ethernet import *
 from Utils import translate
 import Dynamips_lib as lib
 import __main__
-
-ADAPTERS = {
-    "PA-C7200-IO-FE": (lib.PA_C7200_IO_FE, 1, 'f'),
-    "PA-C7200-IO-2FE": (lib.PA_C7200_IO_2FE, 2, 'f'),
-    "PA-C7200-IO-GE-E": (lib.PA_C7200_IO_GE_E, 1, 'g'),
-    "PA-A1": (lib.PA_A1, 1, 'a'),
-    "PA-FE-TX": (lib.PA_FE_TX, 1, 'f'),
-    "PA-2FE-TX": (lib.PA_2FE_TX, 2, 'f'),
-    "PA-GE": (lib.PA_GE, 1, 'g'),
-    "PA-4T": (lib.PA_4T, 4, 's'),
-    "PA-8T": (lib.PA_8T, 8, 's'),
-    "PA-4E": (lib.PA_4E, 4, 'e'),
-    "PA-8E": (lib.PA_8E, 8, 'e'),
-    "PA-POS-OC3": (lib.PA_POS_OC3, 1, 'p'),
-    "NM-1FE-TX" : (lib.NM_1FE_TX, 1, 'f'),
-    "NM-1E": (lib.NM_1E, 1, 'e'),
-    "NM-4E": (lib.NM_4E, 4, 'e'),
-    "NM-4T": (lib.NM_4T, 4, 's'),
-    "NM-16ESW": (lib.NM_16ESW, 16, 'f'),
-    "Leopard-2FE": (lib.Leopard_2FE, 2, 'f'),
-    "GT96100-FE": (lib.GT96100_FE, 1, 'f'),
-    "CISCO2600-MB-1E": (lib.CISCO2600_MB_1E, 1, 'e'),
-    "CISCO2600-MB-2E": (lib.CISCO2600_MB_2E, 2, 'e'),
-    "CISCO2600-MB-1FE": (lib.CISCO2600_MB_1FE, 1, 'f'),
-    "CISCO2600-MB-2FE": (lib.CISCO2600_MB_2FE, 2, 'f')
-}
 
 class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     """ MNode class
@@ -145,45 +120,56 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     def __configAction(self):
         """ Action called for node configuration
         """
+        
         self.InspectorInstance.loadNodeInfos() 
         self.InspectorInstance.show()
         
     def __deleteAction(self):
         """ Action called for node deletion
         """
+        
         self.delete()
         
     def __consoleAction(self):
         """ Action called to start a node console
         """
-#        port = str(__main__.devices[device].console)
-#        host = str(__main__.devices[device].dynamips.host)
+
+        hypervisor_host = self.main.ios_images[self.iosConfig['iosimage']]['hypervisor_host']
 
         if self.ios.console != None:
-#    if telnetstring and not __main__.notelnet:
-#        telnetstring = telnetstring.replace('%h', host)
-#        telnetstring = telnetstring.replace('%p', port)
-#        telnetstring = telnetstring.replace('%d', device)
-
-        #os.system("gnome-terminal -t Router -e telnet localhost " + str(self.ios.console) + " > /dev/null 2>&1 &")
-        #TODO : tester si une valeur est définie dans le fichier de conf
-            if sys.platform == "linux" or sys.platform == "linux2":
-                os.system("xterm -e telnet localhost " + str(self.ios.console) + " > /dev/null 2>&1 &")
-            elif sys.platform == "darwin":
-                os.system("/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet localhost " + str(self.ios.console) +"; exit\"' -e 'tell application \"Terminal\" to tell window 1  to set custom title to \"r1\"'")
-            elif sys.platform == "win32":
-                os.system("cmd telnet localhost " + str(self.ios.console))
+            console = ConfDB().get("Dynamips/console", '')
+            if console:
+                console = console.replace('%h', hypervisor_host)
+                console = console.replace('%p', str(self.ios.console))
+                console = console.replace('%d', self.ios.name)
+                os.system(console)
+            else:
+                if sys.platform.startswith('darwin'):
+                    os.system("/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet " + hypervisor_host + " " + str(self.ios.console) +"; exit\"' -e 'tell application \"Terminal\" to tell window 1  to set custom title to \"" + self.ios.name + "\"'")
+                elif sys.platform.startswith('win32'):
+                    os.system("cmd telnet " +  hypervisor_host + " " + str(self.ios.console))
+                else:
+                    os.system("xterm -T " + self.ios.name + " -e telnet " + hypervisor_host + " " + str(self.ios.console) + " > /dev/null 2>&1 &")
             time.sleep(0.5)
-        
+
     def __startAction(self):
         """ Action called to start the IOS hypervisor on the node
         """
-        self.startIOS()
+
+        try:
+            self.startIOS()
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
         
     def __stopAction(self):
         """ Action called to stop IOS hypervisor on the node
         """
-        self.stopIOS()
+        
+        try:
+            self.stopIOS()
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
+        
     
     def move(self, xPos, yPos):
         """ Set the node position on the scene
@@ -268,56 +254,19 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         """ Show a contextual menu to choose an interface
         """
 
-        menu = QtGui.QMenu()
-        
-        slotnb = 0
-        for module in self.iosConfig['slots']:
-            self.addInterfaceToMenu(menu, slotnb, module)           
-            slotnb += 1
-
-        #FIXME: only to test links whitout the emulator
-        #menu.addAction(QtGui.QIcon(':/icons/led_red.svg'), 's0/0')
-        #menu.addAction(QtGui.QIcon(':/icons/led_red.svg'), 's0/1')
+        menu = QtGui.QMenu() 
+        interfaces_list = self.getInterfaces()
+        for interface in interfaces_list:
+            if self.interfaces.has_key(interface):
+                # already connected interface
+                menu.addAction(QtGui.QIcon(':/icons/led_green.svg'), interface)
+            else:
+                # disconnected interface
+                menu.addAction(QtGui.QIcon(':/icons/led_red.svg'), interface) 
 
         # connect the menu
         menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.selectedInterface) 
         menu.exec_(QtGui.QCursor.pos())
-    
-    def addInterfaceToMenu(self, menu, slotnb, module):
-        """ Add entries to the menu
-        """
-        
-        if (module == ''):
-            return
-        
-        # add interfaces corresponding to the given module
-        if module in ADAPTERS:
-            # get number of interfaces and the abbreviation letter
-            (interfaces, abrv) = ADAPTERS[module][1:3]
-            # for each interface, add an entry to the menu
-            for interface in range(interfaces):
-                name = abrv + str(slotnb) + '/' + str(interface)
-                if self.interfaces.has_key(name):
-                    # already connected interface
-                    menu.addAction(QtGui.QIcon(':/icons/led_green.svg'), name)
-                else:
-                    # disconnected interface
-                    menu.addAction(QtGui.QIcon(':/icons/led_red.svg'), name) 
-        else:
-            sys.stderr.write(module + " module not found !\n")
-            return
-    
-    def checkIfmodule(self):
-        """ Check if at least one module is configured
-        """
-        
-        #FIXME: return True only to test links whitout the emulator
-        #return (True)
-        for module in self.iosConfig['slots']:
-            if module != '':
-                return (True)
-        QtGui.QMessageBox.critical(self.main.win, 'Connection',  'No interface available')
-        return (False)
 
     def keyReleaseEvent(self, event):
         """ key release handler for MNodes
@@ -351,6 +300,10 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
            QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
            return
 
+        if len(self.getInterfaces()) == 0:
+            QtGui.QMessageBox.critical(self.main.win, 'Connection',  'No interface available')
+            return
+
         if (self._MNodeSelected == True):
             # MNode is selected
             self._MNodeSelected = False
@@ -358,7 +311,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
             return
 
-        if (self.main.countClick == 0) and self.checkIfmodule():
+        if self.main.countClick == 0:
             # source node is clicked
             self.menuInterface()
             if self.abort == False:
@@ -367,7 +320,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
                 self._MNodeSelected = True
                 self._QGraphicsScene.update()
 
-        elif (self.main.countClick == 1 and cmp(self.main.TabLinkMNode[0], self) and self.checkIfmodule()):
+        elif (self.main.countClick == 1 and cmp(self.main.TabLinkMNode[0], self)):
             # destination node is clicked
            self.menuInterface()
            self._MNodeSelected = True
@@ -415,6 +368,8 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
                 return
             srcif = self.main.TabLinkMNode[0].tmpif
             srcid = self.main.TabLinkMNode[0].id
+            #FIXME: bug ?
+            assert(srcif != None)
             if srcif[0] != interface[0]:
                 QtGui.QMessageBox.critical(self.main.win, 'Connection',  'Interfaces types mismatch !')
                 self.abort = True
@@ -486,5 +441,5 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             # fourth line
             painter.drawLine(x, y + h, x, y)
         QtSvg.QGraphicsSvgItem.paint(self,painter, option, widget)
-   
+
     
