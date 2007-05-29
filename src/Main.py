@@ -48,7 +48,7 @@ class Main:
     def __init__(self, argv):
 
         global win
-        
+
         app = QtGui.QApplication(sys.argv)
 
         # Loading user configuration values
@@ -62,16 +62,16 @@ class Main:
         win = MainWindow()
         # we start in conception mode
         win.statusbar.showMessage(translate('MainWindow', 'Conception Mode'))
-        
+
         # signal/slot for the menu
         win.connect(win.action_Open, QtCore.SIGNAL('activated()'), win.OpenNewFile)
         win.connect(win.action_Save, QtCore.SIGNAL('activated()'), win.SaveToFile)
         win.connect(win.action_IOS_images, QtCore.SIGNAL('activated()'), win.IOSDialog)
         win.connect(win.action_About, QtCore.SIGNAL('activated()'), win.About)
         win.connect(win.action_Add_link, QtCore.SIGNAL('activated()'), win.AddEdge)
-        win.connect(win.action_SwitchMode, QtCore.SIGNAL('activated()'), win.SwitchMode) 
+        win.connect(win.action_SwitchMode, QtCore.SIGNAL('activated()'), win.SwitchMode)
         win.show()
-        
+
         # start a local hypervisor
         local = LocalHypervisor()
         #app.connect(app, QtCore.SIGNAL('lastWindowClosed()'), app, QtCore.SLOT('quit()'))
