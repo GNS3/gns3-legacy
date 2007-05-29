@@ -42,6 +42,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.createScene()
 
+        switch_wdgt = self.toolBar.widgetForAction(self.action_SwitchMode)
+        switch_wdgt.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
+        switch_wdgt.setText(translate('MainWindow', 'Simulation Mode'))
+
         # expand items from the tree
         self.treeWidget.expandItem(self.treeWidget.topLevelItem(0))
 
@@ -129,7 +133,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         if self.action_SwitchMode.text() == translate('MainWindow', 'Simulation Mode'):
             # simulation mode
             self.action_SwitchMode.setText(translate('MainWindow', 'Conception Mode'))
-            self.action_SwitchMode.setIcon(QtGui.QIcon(':/icons/switch_conception_mode.svg'))
+            ##self.action_SwitchMode.setIcon(QtGui.QIcon(':/icons/switch_conception_mode.svg'))
             self.statusbar.showMessage(translate('MainWindow', 'Simulation Mode'))
             self.main.conception_mode = False
             self.action_Add_link.setEnabled(False)
@@ -145,7 +149,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         elif self.action_SwitchMode.text() == translate('MainWindow', 'Conception Mode'):
             # conception mode
             self.action_SwitchMode.setText(translate('MainWindow', 'Simulation Mode'))
-            self.action_SwitchMode.setIcon(QtGui.QIcon(':/icons/switch_simulation_mode.svg'))
+            ##self.action_SwitchMode.setIcon(QtGui.QIcon(':/icons/switch_simulation_mode.svg'))
             self.statusbar.showMessage(translate('MainWindow', 'Conception Mode'))
             self.main.conception_mode = True
             self.action_Add_link.setEnabled(True)
@@ -167,6 +171,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def SaveToFile(self):
         """ Save an image file
         """
+
+        print self.main.nodes
 
         pass
 

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Tue May 29 16:35:29 2007
+# Created: Tue May 29 17:15:07 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -84,7 +84,7 @@ class Ui_MainWindow(object):
         self.action_Add_link.setObjectName("action_Add_link")
 
         self.action_SwitchMode = QtGui.QAction(MainWindow)
-        self.action_SwitchMode.setIcon(QtGui.QIcon(":/icons/switch_simulation_mode.svg"))
+        self.action_SwitchMode.setIcon(QtGui.QIcon(":/icons/view-refresh.svg"))
         self.action_SwitchMode.setObjectName("action_SwitchMode")
 
         self.action_IOS_images = QtGui.QAction(MainWindow)
@@ -94,9 +94,11 @@ class Ui_MainWindow(object):
         self.action_OnlineHelp.setObjectName("action_OnlineHelp")
 
         self.action_Import = QtGui.QAction(MainWindow)
+        self.action_Import.setIcon(QtGui.QIcon(":/icons/edit-redo.svg"))
         self.action_Import.setObjectName("action_Import")
 
         self.action_Export = QtGui.QAction(MainWindow)
+        self.action_Export.setIcon(QtGui.QIcon(":/icons/edit-undo.svg"))
         self.action_Export.setObjectName("action_Export")
         self.menu_About.addAction(self.action_OnlineHelp)
         self.menu_About.addAction(self.action_About)
@@ -114,8 +116,9 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.action_Open)
         self.toolBar.addAction(self.action_Save)
         self.toolBar.addSeparator()
-        self.toolBar.addAction(self.action_Add_link)
         self.toolBar.addAction(self.action_SwitchMode)
+        self.toolBar.addSeparator()
+        self.toolBar.addAction(self.action_Add_link)
 
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.action_Quit,QtCore.SIGNAL("activated()"),MainWindow.close)
