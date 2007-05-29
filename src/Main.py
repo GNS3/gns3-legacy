@@ -55,9 +55,9 @@ class Main:
         GNS_Conf.load_IOSimages()
         GNS_Conf.load_IOShypervisors()
 
-        translator = QtCore.QTranslator(app)
-        if translator.load(":/fr"):
-            app.installTranslator(translator)
+        #translator = QtCore.QTranslator(app)
+        #if translator.load(":/fr"):
+        #    app.installTranslator(translator)
 
         win = MainWindow()
         # we start in conception mode
