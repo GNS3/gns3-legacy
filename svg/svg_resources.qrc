@@ -25,6 +25,10 @@
 	<file>icons/stop.svg</file>
 	<file>icons/switch_conception_mode.svg</file>
 	<file>icons/switch_simulation_mode.svg</file>
+	<file>icons/edit-undo.svg</file>
+	<file>icons/edit-redo.svg</file>
+	<file alias="icons/export.svg">icons/edit-undo.svg</file>
+	<file alias="icons/import.svg">icons/edit-redo.svg</file>
 </qresource>
 <qresource>
 	<file>images/logo_gns3_transparency_small.png</file>
