@@ -32,26 +32,30 @@ import __main__
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     """ MainWindow class
     """
-    
+
     # Get access to globals
     main = __main__
-    
+
     def __init__(self):
 
         QtGui.QMainWindow.__init__(self)
         self.setupUi(self)
         self.createScene()
 
+        switch_wdgt = self.toolBar.widgetForAction(self.action_SwitchMode)
+        switch_wdgt.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
+        switch_wdgt.setText(translate('MainWindow', 'Simulation Mode'))
+
         # expand items from the tree
         self.treeWidget.expandItem(self.treeWidget.topLevelItem(0))
-        
+
     def createScene(self):
         """ Create the scene
         """
-    
+
         self.scene = QtGui.QGraphicsScene(self.graphicsView)
         self.graphicsView.setScene(self.scene)
-        
+
         # scene settings
         #self.scene.setItemIndexMethod(QtGui.QGraphicsScene.NoIndex)
         #TODO: A better management of the scene size
@@ -60,11 +64,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.graphicsView.setRenderHint(QtGui.QPainter.Antialiasing)
         self.graphicsView.setTransformationAnchor(QtGui.QGraphicsView.AnchorUnderMouse)
         self.graphicsView.setResizeAnchor(QtGui.QGraphicsView.AnchorViewCenter)
-    
+
         # Example of use
         #node1 = MNode(":Switch", self.scene, 0 , 0)
 
-        
+
 #        item = QtSvg.QGraphicsSvgItem(":Switch")
 #        item.setPos(200, 200)
 #        item.setData(0, QtCore.QVariant(42))
@@ -90,10 +94,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 #            if isinstance(item, QtSvg.QGraphicsSvgItem) == True:
 #                print item
 #                print item.data(0).toInt()
-        
+
         # Example of tree item
         # item1 = TreeItem(self.treeWidget, "Mon item")
-        
+
 ##        text = QtGui.QGraphicsTextItem("10.10.1.45")
 ##        text.setFlag(text.ItemIsMovable)
 ##        text.setZValue(2)
@@ -121,15 +125,15 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.action_Add_link.setIcon(QtGui.QIcon(':/icons/cancel.svg'))
             self.main.linkEnabled = True
             self.graphicsView.setCursor(QtCore.Qt.CrossCursor)
-        
+
     def SwitchMode(self):
         """ Simulation/Conception mode switching
         """
-        
+
         if self.action_SwitchMode.text() == translate('MainWindow', 'Simulation Mode'):
             # simulation mode
             self.action_SwitchMode.setText(translate('MainWindow', 'Conception Mode'))
-            self.action_SwitchMode.setIcon(QtGui.QIcon(':/icons/switch_conception_mode.svg'))
+            ##self.action_SwitchMode.setIcon(QtGui.QIcon(':/icons/switch_conception_mode.svg'))
             self.statusbar.showMessage(translate('MainWindow', 'Simulation Mode'))
             self.main.conception_mode = False
             self.action_Add_link.setChecked(False)
@@ -142,11 +146,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             except lib.DynamipsError, msg:
                 QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
                 return
-            
+
         elif self.action_SwitchMode.text() == translate('MainWindow', 'Conception Mode'):
             # conception mode
             self.action_SwitchMode.setText(translate('MainWindow', 'Simulation Mode'))
-            self.action_SwitchMode.setIcon(QtGui.QIcon(':/icons/switch_simulation_mode.svg'))
+            ##self.action_SwitchMode.setIcon(QtGui.QIcon(':/icons/switch_simulation_mode.svg'))
             self.statusbar.showMessage(translate('MainWindow', 'Conception Mode'))
             self.main.conception_mode = True
             self.action_Add_link.setEnabled(True)
@@ -157,11 +161,44 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             except lib.DynamipsError, msg:
                 QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
                 return
-            
+
+    def OpenNewFile(self):
+        """ Open a previously saved GNS-3 scenario
+        """
+
+        pass
+
     def SaveToFile(self):
         """ Save an image file
         """
-    
+
+        print self.main.nodes
+
+        pass
+
+    def About(self):
+        """ Show the about dialog
+        """
+
+        dialog = QtGui.QDialog()
+        ui = Ui_AboutDialog()
+        ui.setupUi(dialog)
+        dialog.show()
+        dialog.exec_()
+
+    def IOSDialog(self):
+        """ Show IOS dialog
+        """
+
+        dialog = IOSDialog()
+        dialog.setModal(True)
+        dialog.show()
+        dialog.exec_()
+
+    def ExportToFile(self):
+        """ Open the export dialog to select the export file
+        """
+
         filedialog = QtGui.QFileDialog(self)
         selected = QtCore.QString()
         exports = 'PNG File (*.png);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm)'
@@ -182,25 +219,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
 
-    def About(self):
-        """ Show the about dialog
-        """
-
-        dialog = QtGui.QDialog()
-        ui = Ui_AboutDialog()
-        ui.setupUi(dialog)
-        dialog.show()
-        dialog.exec_()
-
-    def IOSDialog(self):
-        """ Show IOS dialog
-        """
-        
-        dialog = IOSDialog()
-        dialog.setModal(True)
-        dialog.show()
-        dialog.exec_()       
-        
     def Export(self, name, format):
         """ Export the view to an image
         """
@@ -215,11 +233,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.graphicsView.render(painter)
         painter.end()
         print pixmap.save(name, format)
-        
-    def OpenNewFile(self):
-        """ Open a new NAM file and start a simulation
+
+    def ImportNamFile(self):
+        """ Import a new NAM file and start a simulation
         """
-        
+
         filedialog = QtGui.QFileDialog(self)
         selected = QtCore.QString()
         path = QtGui.QFileDialog.getOpenFileName(filedialog, 'Choose a File', '.', \
@@ -236,7 +254,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def NamSimulation(self, path):
         """ NAM simulation
         """
-        
+
         # Temporary example
         nam = NamFileSimulation(path)
         nodes = {}
@@ -259,5 +277,5 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         #pos = layout.circular_layout(nodes, 200)
         pos = layout.spring_layout(nodes)
         for id in pos:
-            nodes[id].setPos(pos[id][0] * 500, pos[id][1] * 500) 
+            nodes[id].setPos(pos[id][0] * 500, pos[id][1] * 500)
             nodes[id].ajustAllEdges()
