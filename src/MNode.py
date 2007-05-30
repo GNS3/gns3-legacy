@@ -36,14 +36,14 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     svg = None
     _QGraphicsScene = None
     _MNodeSelected = None
-        
+
     def __init__(self, svgfile, QGraphicsScene, xPos = None, yPos = None):
         """ svgfile: string
             QGraphicsScene: QtGui.QGraphicsScene instance
             xPos: integer
             yPos: integer
         """
-        
+
         svg = QtSvg.QGraphicsSvgItem.__init__(self, svgfile)
         self.edgeList = []
         self.iosConfig = {}
@@ -57,79 +57,79 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         # create an ID
         self.id = self.main.baseid
         self.main.baseid += 1
-    
+
         # MNode settings
         #self.setCursor(QtCore.Qt.OpenHandCursor)
         self.setFlag(self.ItemIsMovable)
         self.setFlag(self.ItemIsSelectable)
         self.setFlag(self.ItemIsFocusable)
         self.setZValue(1)
-        
+
         # Init action applicable to the node
         self.__initActions()
-        
+
         # by default put the node to (0,0)
         if xPos is None : xPos = 0
-        if yPos is None : yPos = 0 
+        if yPos is None : yPos = 0
         self.setPos(xPos, yPos)
-        
+
         # MNode placement
         self._QGraphicsScene = QGraphicsScene
         self._QGraphicsScene.addItem(self)
         self._QGraphicsScene.update(self.sceneBoundingRect())
-        
+
     def __initActions(self):
         """ Initialize all menu actions who belongs to MNode
         """
-        
+
         # Action: Configure (Configure the node)
         self.configAct = QtGui.QAction(translate('MNode', 'Configure'), self)
         self.configAct.setIcon(QtGui.QIcon(":/icons/configuration.svg"))
         #self.configAct.setText('Configure Node')
         #self.configAct.setStatusTip('Configure the node')
         self.connect(self.configAct, QtCore.SIGNAL('activated()'), self.__configAction)
-        
+
         # Action: Delete (Delete the node)
         self.deleteAct = QtGui.QAction(translate('MNode', 'Delete'), self)
         self.deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
         #self.deleteAct.setText('Delete Node')
         #self.deleteAct.setStatusTip('Delete the node')
         self.connect(self.deleteAct, QtCore.SIGNAL('activated()'), self.__deleteAction)
-        
+
         # Action: Console (Connect to the node console (IOS))
         self.consoleAct = QtGui.QAction(translate('MNode', 'Console'), self)
         self.consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
         #self.consoleAct.setText('Open Console')
         #self.consoleAct.setStatusTip('Connect to the node console (IOS)')
         self.connect(self.consoleAct, QtCore.SIGNAL('activated()'), self.__consoleAction)
-        
+
         # Action: Start (Start IOS on hypervisor)
         self.startAct = QtGui.QAction(translate('MNode', 'Start'), self)
         self.startAct.setIcon(QtGui.QIcon(':/icons/play.svg'))
         #self.startAct.setText('Start IOS')
         #self.startAct.setStatusTip('Start IOS on hypervisor')
         self.connect(self.startAct, QtCore.SIGNAL('activated()'), self.__startAction)
-        
+
         # Action: Stop (Stop IOS on hypervisor)
         self.stopAct = QtGui.QAction(translate('MNode', 'Stop'), self)
         self.stopAct.setIcon(QtGui.QIcon(':/icons/stop.svg'))
         #self.stopAct.setText('Stop IOS')
         #self.stopAct.setStatusTip('Stop IOS on hypervisor')
         self.connect(self.stopAct, QtCore.SIGNAL('activated()'), self.__stopAction)
-        
+
     def __configAction(self):
         """ Action called for node configuration
         """
-        
-        self.InspectorInstance.loadNodeInfos() 
+
+        self.InspectorInstance.loadNodeInfos()
         self.InspectorInstance.show()
-        
+
     def __deleteAction(self):
         """ Action called for node deletion
         """
-        
+
         self.delete()
-        
+
     def __consoleAction(self):
         """ Action called to start a node console
         """
@@ -160,17 +160,17 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.startIOS()
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
-        
+
     def __stopAction(self):
         """ Action called to stop IOS hypervisor on the node
         """
-        
+
         try:
             self.stopIOS()
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
-        
-    
+
+
     def move(self, xPos, yPos):
         """ Set the node position on the scene
             xPos: integer
@@ -183,19 +183,19 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         """ Save the edge
             edge: Edge instance
         """
-    
+
         if edge.dest.id != self.id:
             self.neighborList.append(edge.dest.id)
         else:
             self.neighborList.append(edge.source.id)
         self.edgeList.append(edge)
         edge.adjust()
-        
+
     def deleteEdge(self, edge):
         """ Delete the edge
             edge: Edge instance
         """
-        
+
         if edge.dest.id != self.id:
             neighborid = edge.dest.id
         else:
@@ -214,7 +214,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     def ajustAllEdges(self):
         """ Refresh edges drawing
         """
-    
+
         for edge in self.edgeList:
             edge.adjust()
 
@@ -222,18 +222,18 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         """ Tell if we are connected to node_id
             node_id: integer
         """
-    
+
         for edge in self.edgeList:
             if edge.dest.id == node_id or edge.source.id == node_id:
                 return True
         return False
-        
+
     def itemChange(self, change, value):
         """ Notify custom items that some part of the item's state changes
             change: enum QtGui.QGraphicsItem.GraphicsItemChange
             value: QtCore.QVariant instance
         """
-    
+
         if change == self.ItemPositionChange:
             for edge in self.edgeList:
                 edge.adjust()
@@ -245,7 +245,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         return QtGui.QGraphicsItem.itemChange(self, change, value)
 
     def refresh(self):
-        
+
         for edge in self.edgeList:
                 edge.adjust()
         self.active_timer = False
@@ -254,7 +254,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         """ Show a contextual menu to choose an interface
         """
 
-        menu = QtGui.QMenu() 
+        menu = QtGui.QMenu()
         interfaces_list = self.getInterfaces()
         for interface in interfaces_list:
             if self.interfaces.has_key(interface):
@@ -262,16 +262,16 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
                 menu.addAction(QtGui.QIcon(':/icons/led_green.svg'), interface)
             else:
                 # disconnected interface
-                menu.addAction(QtGui.QIcon(':/icons/led_red.svg'), interface) 
+                menu.addAction(QtGui.QIcon(':/icons/led_red.svg'), interface)
 
         # connect the menu
-        menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.selectedInterface) 
+        menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.selectedInterface)
         menu.exec_(QtGui.QCursor.pos())
 
     def keyReleaseEvent(self, event):
         """ key release handler for MNodes
         """
-        
+
         key = event.key()
         if key == QtCore.Qt.Key_Delete:
             self.delete()
@@ -295,7 +295,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.menu.addAction(self.configAct)
             self.menu.addAction(self.deleteAct)
             self.menu.exec_(QtGui.QCursor.pos())
-        
+
         if self.main.linkEnabled == False :
            QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
            return
@@ -327,11 +327,14 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
            self._QGraphicsScene.update()
            if self.abort == False:
                self.main.TabLinkMNode.append(self)
-               ed = Ethernet(self.main.TabLinkMNode[0], self.main.TabLinkMNode[1], self._QGraphicsScene)
-               self._QGraphicsScene.update(ed.boundingRect())
+               self._addLinkToScene(self.main.TabLinkMNode[0], self.main.TabLinkMNode[1])
            self.resetList()
         QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
-    
+
+    def _addLinkToScene(self, node_src, node_dst):
+        link = Ethernet(node_src, node_dst, self._QGraphicsScene)
+        self._QGraphicsScene.update(link.boundingRect())
+
     def resetList(self):
         """ Reset
         """
@@ -342,13 +345,13 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
            i = i + 1
         self.main.countClick = 0
         self.main.TabLinkMNode= []
-        
+
     def selectedInterface(self, action):
         """ Called when an interface is selected from the contextual menu
             in conception mode
             action: QtCore.QAction instance
         """
-        
+
         self.abort = False
         interface = str(action.text())
         if (self.main.countClick == 0):
@@ -359,13 +362,14 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
                 QtGui.QMessageBox.critical(self.main.win, 'Connection',  'Already connected interface')
                 self.abort = True
                 return
-            
+
         elif (self.main.countClick == 1 and cmp(self.main.TabLinkMNode[0], self)):
             # destination node
             if self.interfaces.has_key(interface):
                 QtGui.QMessageBox.critical(self.main.win, 'Connection',  'Already connected interface')
                 self.abort = True
                 return
+            self.tmpif = interface
             srcif = self.main.TabLinkMNode[0].tmpif
             srcid = self.main.TabLinkMNode[0].id
             #FIXME: bug ?
@@ -376,12 +380,12 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
                 return
             self.interfaces[interface] = [srcid, srcif]
             self.main.TabLinkMNode[0].interfaces[srcif] = [self.id, interface]
-    
+
     def delete(self):
         """ Delete the current node
         """
         delete_list = []
-        
+
         for edge in self.edgeList:
             self._QGraphicsScene.removeItem(edge)
             delete_list.append(edge)
@@ -394,27 +398,27 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.deleteEdge(edge)
         del self.main.nodes[self.id]
         self._QGraphicsScene.removeItem(self)
-    
+
     def setName(self, name):
-        
+
         self.mNodeName = name
-    
+
     def getName(self):
-        
+
         return self.mNodeName
-   
+
     def setMNodeSelected(self, b):
 
          self._MNodeSelected = b
-     
+
     def getMNodeSelected(self):
-        
-        return self._MNodeSelected  
+
+        return self._MNodeSelected
 
     def paint(self, painter, option, widget):
         """ Draw a rectangle around the node
         """
-        
+
         if self._MNodeSelected == True:
             rect = self.boundingRect()
             x = rect.x()
@@ -422,7 +426,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             w = rect.width()
             h = rect.height()
             painter.setPen(QtGui.QPen(QtCore.Qt.red, 2, QtCore.Qt.DashLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
-            
+
             #                  1st line
             #        (x,y) ----------------- (x + w, y)
             #             |                |
@@ -431,7 +435,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             #             |                |
             #    (x,y + h)|________________|(x + w, y + h)
             #                   3rd Line
-            
+
             # first line
             painter.drawLine(x, y, x + w, y)
             # Second line
@@ -442,4 +446,3 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             painter.drawLine(x, y + h, x, y)
         QtSvg.QGraphicsSvgItem.paint(self,painter, option, widget)
 
-    

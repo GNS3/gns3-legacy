@@ -29,6 +29,7 @@ import Dynamips_lib as lib
 # globals
 baseid = 0                # Base to create IDs
 nodes = {}                # Node objects, indexed by the node ID
+links = {}                # node-Links objects, indexed by the link ID
 ios_images = {}           # Registered Cisco IOS images
 hypervisors = {}          # hypervisors
 #FIXME: temporary
@@ -56,8 +57,8 @@ class Main:
         GNS_Conf.load_IOShypervisors()
 
         translator = QtCore.QTranslator(app)
-        if translator.load(":/fr"):
-            app.installTranslator(translator)
+#        if translator.load(":/fr"):
+#            app.installTranslator(translator)
 
         win = MainWindow()
         # we start in conception mode

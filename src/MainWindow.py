@@ -23,7 +23,10 @@ from Utils import translate
 from Ui_MainWindow import *
 from Ui_About import *
 from IOSDialog import IOSDialog
+from xml.dom.minidom import Document, parse
 from NamFileSimulation import *
+from QTreeWidgetCustom import SYMBOLS
+from Router import Router
 import layout
 import svg_resources_rc
 from MNode import *
@@ -166,13 +169,184 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         """ Open a previously saved GNS-3 scenario
         """
 
-        pass
+        filedialog = QtGui.QFileDialog(self)
+        selected = QtCore.QString()
+        path = QtGui.QFileDialog.getOpenFileName(filedialog, 'Choose a scenario file', '.', \
+                    'GNS-3 Scenario (*.gns3s)', selected)
+        if not path:
+            return
+        path = unicode(path)
+        try:
+            if str(selected) == 'GNS-3 Scenario (*.gns3s)':
+                self._xmlLoad(path)
+        except IOError, (errno, strerror):
+            QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
 
     def SaveToFile(self):
         """ Save an image file
         """
 
-        print self.main.nodes
+        filedialog = QtGui.QFileDialog(self)
+        selected = QtCore.QString()
+        exports = 'GNS-3 Scenario (*.gns3s);;All files (*.*)'
+        path = QtGui.QFileDialog.getSaveFileName(filedialog, 'Export', '.', exports, selected)
+        if not path:
+            return
+        path = unicode(path)
+        if str(selected) == 'GNS-3 Scenario (*.gns3s)' and path[-6:] != '.gns3s':
+            path = path + '.gns3s'
+        try:
+            self._xmlSave(path, "gns3s")
+        except IOError, (errno, strerror):
+            QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
+
+
+    def _xmlSave(self, file, format):
+        # file: where to dump the xml content
+        # format: currently only `gns3s' xml format are implemented
+
+        fd = open(file, "w")
+
+        doc = Document()
+        # <gns3-scenario>
+        _s_xmlBase = doc.createElement("gns3-scenario")
+        doc.appendChild(_s_xmlBase)
+
+        # <topology>
+        _s_topoBase = doc.createElement("topology")
+        _s_xmlBase.appendChild(_s_topoBase)
+
+        # <topology><nodes>
+        _s_nodesBase = doc.createElement("nodes")
+        for (key, val) in self.main.nodes.iteritems():
+            _cnode = doc.createElement("node")
+            _cnode.setAttribute("id", str(key))
+            _cnode.setAttribute("type", str(val.getName()))
+            _cnode.setAttribute("x", str(val.pos().x()))
+            _cnode.setAttribute("y", str(val.pos().y()))
+
+            # <node>
+            for (cfg_key, cfg_val) in val.iosConfig.iteritems():
+                _x_type = str(type(cfg_val)).split("'")[1]
+                _cfg = doc.createElement("confkey")
+                _cfg.setAttribute("name", str(cfg_key))
+                _cfg.setAttribute("type", str(_x_type))
+                _cfg.setAttribute("value", str(cfg_val))
+                _cnode.appendChild(_cfg)
+            _s_nodesBase.appendChild(_cnode)
+        _s_topoBase.appendChild(_s_nodesBase)
+
+        # <topology><links>
+        _s_linksBase = doc.createElement("links")
+        for (key, val) in self.main.links.iteritems():
+            # <link>
+            _clink = doc.createElement("link")
+            _clink.setAttribute("id", str(key))
+            _clink.setAttribute("src_node", str(val.source.id))
+            _clink.setAttribute("src_if", str(val.source_if))
+            _clink.setAttribute("dst_node", str(val.dest.id))
+            _clink.setAttribute("dst_if", str(val.dest_if))
+            _s_linksBase.appendChild(_clink)
+        _s_topoBase.appendChild(_s_linksBase)
+
+        fd.write(doc.toprettyxml())
+
+    def _xmlLoad(self, file):
+
+        dom = parse(file)
+
+        # first, delete all node present on scene
+        _nodes = self.main.nodes.copy()
+        for (nodeid,node) in _nodes.iteritems():
+            node.delete()
+
+        nodes = dom.getElementsByTagName("node")
+        for node in nodes:
+            id = node.getAttribute("id")
+            type = node.getAttribute("type")
+            x = node.getAttribute("x")
+            y = node.getAttribute("y")
+
+            if not id or not type or not x or not y:
+                print ">> Invalid node"
+                continue
+
+            # now find the svg resource corresp. to the current node
+            svgrc = None
+            for sym in SYMBOLS:
+                if sym[0] == type:
+                    svgrc = sym[1]
+                    break
+            if svgrc is None:
+                print ">> No RES find for node type " + str(type)
+                continue
+
+            iosConfig = {
+                'consoleport': '',
+                'pcmcia-disk1': 0,
+                'pcmcia-disk2': 0,
+                'npe': '',
+                'mmap': True,
+                'iomem': 5,
+                'RAM': 128,
+                'iosimage': '',
+                'execarea': 64,
+                'NVRAM': 128,
+                'startup-config': '',
+                'slots': ['', '', '', '', '', '', '', ''],
+                'confreg': '0x2102',
+                'midplane': '',
+                'ROM': 4
+            }
+
+            # reload confkey for each nodes
+            for confkey in node.childNodes:
+                if confkey.nodeName != 'confkey':
+                    # invalid node
+                    continue
+                _cfg_name = confkey.getAttribute("name")
+                _cfg_type = confkey.getAttribute("type")
+                _cfg_value = confkey.getAttribute("value")
+
+                if _cfg_type == "str":
+                    iosConfig[_cfg_name] = str(_cfg_value)
+                elif _cfg_type == "int":
+                    iosConfig[_cfg_name] = int(_cfg_value)
+                elif _cfg_type == "bool":
+                    iosConfig[_cfg_name] = bool(_cfg_value)
+                elif _cfg_type == "list":
+                    _elems = _cfg_value.split("'")
+                    i = 1
+                    j = 0
+                    while i < len(_elems):
+                        iosConfig[_cfg_name][j] = str(_elems[i])
+                        i += 2
+                        j += 1
+
+            # Now we create the node
+            self.main.baseid = int(id)
+            r = Router(svgrc, self.scene, float(x), float(y))
+            r.setName(type)
+            r.iosConfig = iosConfig
+
+        links = dom.getElementsByTagName("link")
+        for link in links:
+            id = int(link.getAttribute("id"))
+            src_node = int(link.getAttribute("src_node"))
+            src_if = link.getAttribute("src_if")
+            dst_node = int(link.getAttribute("dst_node"))
+            dst_if = link.getAttribute("dst_if")
+
+            self.main.nodes[src_node].tmpif = src_if
+            self.main.nodes[dst_node].tmpif = dst_if
+            self.main.baseid = id
+
+            self.main.nodes[dst_node]._addLinkToScene(
+                        self.main.nodes[src_node], self.main.nodes[dst_node])
+
+            # update interface status
+            self.main.nodes[src_node].interfaces[src_if] = [dst_node, dst_if]
+            self.main.nodes[dst_node].interfaces[dst_if] = [src_node, src_if]
 
         pass
 

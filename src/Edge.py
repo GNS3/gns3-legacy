@@ -34,16 +34,25 @@ class Edge(QtGui.QGraphicsItem, QtGui.QGraphicsScene):
             destNode: MNode instance
             scene: QtGui.QGraphicsScene instance
             fake: boolean
-            
+
             fake is for temporary adding an edge between 2 nodes
         """
-   
+
         QtGui.QGraphicsItem.__init__(self)
-   
+
+        # create an ID
+        self.id = self.main.baseid
+        self.main.baseid += 1
+
+        # add link to the global list
+        self.main.links[self.id] = self
+
         # edge settings
         self.pointSize = 10
         self.penWidth = 2.0
+        self.source_if = sourceNode.tmpif
         self.source = sourceNode
+        self.dest_if = destNode.tmpif
         self.dest = destNode
         self.scene = scene
         if (fake == False):
@@ -51,7 +60,7 @@ class Edge(QtGui.QGraphicsItem, QtGui.QGraphicsScene):
             self.dest.addEdge(self)
         self.scene.addItem(self)
         self.scene.update(self.sceneBoundingRect())
-        
+
         # Set item focusable
         self.setFlag(self.ItemIsFocusable)
 
@@ -82,7 +91,7 @@ class Edge(QtGui.QGraphicsItem, QtGui.QGraphicsScene):
     def keyPressEvent(self, event):
         """ key press handler for Edges
         """
-        
+
         key = event.key()
         if key == QtCore.Qt.Key_Delete:
             self.delete()
@@ -100,13 +109,13 @@ class Edge(QtGui.QGraphicsItem, QtGui.QGraphicsScene):
             self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.conceptionAction)
             self.menu.exec_(QtGui.QCursor.pos())
         QtGui.QGraphicsItem.mousePressEvent(self, event)
-        
+
     def conceptionAction(self, action):
         """ Called when an option is selected from the contextual menu
             in conception mode
             action: QtCore.QAction instance
         """
-        
+
         action = action.text()
         if action == 'delete':
             self.delete()
@@ -115,6 +124,7 @@ class Edge(QtGui.QGraphicsItem, QtGui.QGraphicsScene):
         """ Delete the edge
         """
 
+        del self.main.links[id]
         self.source.deleteEdge(self)
         self.dest.deleteEdge(self)
         self.scene.removeItem(self)
