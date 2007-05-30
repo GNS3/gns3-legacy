@@ -5,6 +5,7 @@ src/*.pyc
 forms/*.pyc
 docs/*
 api/*
+gns3.conf
 
 syntax: regexp
 (.*/)?\#[^/]*\#$
