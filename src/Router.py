@@ -190,10 +190,8 @@ class Router(MNode):
         interface_list = []
         slotnb = 0
         for module in self.iosConfig['slots']:    
-            if (module == ''):
-                continue
             # add interfaces corresponding to the given module
-            if module in ADAPTERS:
+            if module and module in ADAPTERS:
                 # get number of interfaces and the abbreviation letter
                 (interfaces, abrv) = ADAPTERS[module][1:3]
                 # for each interface, add an entry to the menu

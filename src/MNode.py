@@ -334,6 +334,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
 
     def _addLinkToScene(self, node_src, node_dst):
+        
         link = Ethernet(node_src, node_dst, self._QGraphicsScene)
         self._QGraphicsScene.update(link.boundingRect())
 

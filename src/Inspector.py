@@ -243,6 +243,7 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         self.spinBoxExecArea.setValue(64)
         self.spinBoxIomem.setValue(5)
 
+    #TODO: move this to Router.py
     def _updateLinks(self, slotnb, module):
         """ Update already connected links to react to slot change
         """
@@ -254,7 +255,7 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         if module == '':
             for ifname in node_interfaces:
                 if int(ifname[1]) == slotnb:
-                    print ifname + " is still connected but no module into the slot !"
+                    print ifname + " is still connected but no module into the slot " + str(slotnb)
                     node.deleteInterface(ifname)
             return
         
@@ -263,18 +264,19 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         (interfaces, abrv) = Router.ADAPTERS[module][1:3]
 
         for ifname in node_interfaces:
-            print 'check ' + ifname
             ifslot = int(ifname[1])
             ifnb = int(ifname[3])
             found = False
             for modifnb in range(interfaces):
+                print ifslot
+                print ifnb
                 if ifslot == slotnb and ifnb == modifnb:
                     found = True
                     if ifname[0] != abrv:
                         print ifname + " is connected to another non-compatible interface"
                         node.deleteInterface(ifname)
-            if found == False:
-                print ifname + " is connected to a non-existing port in the slot"
+            if ifslot == slotnb and found == False:
+                print ifname + " is connected to a non-existing port in the slot " + str(slotnb)
                 node.deleteInterface(ifname)
 
     def saveIOSConfig(self):

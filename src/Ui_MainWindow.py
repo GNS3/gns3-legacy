@@ -2,11 +2,12 @@
 
 # Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Wed May 30 17:11:50 2007
-#      by: PyQt4 UI code generator 4.2
+# Created: Wed May 30 17:46:28 2007
+#      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
 
+import sys
 from PyQt4 import QtCore, QtGui
 
 class Ui_MainWindow(object):

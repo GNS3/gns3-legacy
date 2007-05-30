@@ -124,7 +124,7 @@ class Edge(QtGui.QGraphicsItem, QtGui.QGraphicsScene):
         """ Delete the edge
         """
 
-        del self.main.links[id]
+        del self.main.links[self.id]
         self.source.deleteEdge(self)
         self.dest.deleteEdge(self)
         self.scene.removeItem(self)

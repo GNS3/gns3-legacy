@@ -372,8 +372,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.main.nodes[src_node].interfaces[src_if] = [dst_node, dst_if]
             self.main.nodes[dst_node].interfaces[dst_if] = [src_node, src_if]
 
-        pass
-
     def About(self):
         """ Show the about dialog
         """
