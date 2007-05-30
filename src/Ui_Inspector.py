@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Inspector.ui'
 #
-# Created: Wed May 30 10:38:45 2007
+# Created: Wed May 30 17:11:53 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_FormInspector(object):
     def setupUi(self, FormInspector):
         FormInspector.setObjectName("FormInspector")
-        FormInspector.resize(QtCore.QSize(QtCore.QRect(0,0,528,316).size()).expandedTo(FormInspector.minimumSizeHint()))
+        FormInspector.resize(QtCore.QSize(QtCore.QRect(0,0,581,316).size()).expandedTo(FormInspector.minimumSizeHint()))
 
         self.vboxlayout = QtGui.QVBoxLayout(FormInspector)
         self.vboxlayout.setMargin(9)

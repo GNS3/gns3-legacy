@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Wed May 30 10:38:44 2007
+# Created: Wed May 30 17:11:50 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -48,11 +48,11 @@ class Ui_MainWindow(object):
         self.menu_About = QtGui.QMenu(self.menubar)
         self.menu_About.setObjectName("menu_About")
 
-        self.menuIOS = QtGui.QMenu(self.menubar)
-        self.menuIOS.setObjectName("menuIOS")
-
         self.menu_File = QtGui.QMenu(self.menubar)
         self.menu_File.setObjectName("menu_File")
+
+        self.menuIOS = QtGui.QMenu(self.menubar)
+        self.menuIOS.setObjectName("menuIOS")
         MainWindow.setMenuBar(self.menubar)
 
         self.statusbar = QtGui.QStatusBar(MainWindow)
@@ -100,9 +100,18 @@ class Ui_MainWindow(object):
         self.action_Export = QtGui.QAction(MainWindow)
         self.action_Export.setIcon(QtGui.QIcon(":/icons/edit-undo.svg"))
         self.action_Export.setObjectName("action_Export")
+
+        self.action_StartAll = QtGui.QAction(MainWindow)
+        self.action_StartAll.setEnabled(False)
+        self.action_StartAll.setIcon(QtGui.QIcon(":/icons/start_metal.svg"))
+        self.action_StartAll.setObjectName("action_StartAll")
+
+        self.action_StopAll = QtGui.QAction(MainWindow)
+        self.action_StopAll.setEnabled(False)
+        self.action_StopAll.setIcon(QtGui.QIcon(":/icons/stop_metal.svg"))
+        self.action_StopAll.setObjectName("action_StopAll")
         self.menu_About.addAction(self.action_OnlineHelp)
         self.menu_About.addAction(self.action_About)
-        self.menuIOS.addAction(self.action_IOS_images)
         self.menu_File.addAction(self.action_Open)
         self.menu_File.addAction(self.action_Save)
         self.menu_File.addSeparator()
@@ -110,6 +119,7 @@ class Ui_MainWindow(object):
         self.menu_File.addAction(self.action_Export)
         self.menu_File.addSeparator()
         self.menu_File.addAction(self.action_Quit)
+        self.menuIOS.addAction(self.action_IOS_images)
         self.menubar.addAction(self.menu_File.menuAction())
         self.menubar.addAction(self.menuIOS.menuAction())
         self.menubar.addAction(self.menu_About.menuAction())
@@ -119,6 +129,8 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.action_SwitchMode)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.action_Add_link)
+        self.toolBar.addAction(self.action_StartAll)
+        self.toolBar.addAction(self.action_StopAll)
 
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.action_Quit,QtCore.SIGNAL("activated()"),MainWindow.close)
@@ -128,8 +140,8 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "gns-3", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidget.headerItem().setText(0,QtGui.QApplication.translate("MainWindow", "Elements", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_About.setTitle(QtGui.QApplication.translate("MainWindow", "&Help", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuIOS.setTitle(QtGui.QApplication.translate("MainWindow", "Cisco IOS", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_File.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuIOS.setTitle(QtGui.QApplication.translate("MainWindow", "Cisco IOS", None, QtGui.QApplication.UnicodeUTF8))
         self.action_About.setText(QtGui.QApplication.translate("MainWindow", "&About", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setText(QtGui.QApplication.translate("MainWindow", "&Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))
@@ -143,6 +155,8 @@ class Ui_MainWindow(object):
         self.action_OnlineHelp.setText(QtGui.QApplication.translate("MainWindow", "&Online Help", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Import.setText(QtGui.QApplication.translate("MainWindow", "&Import", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Export.setText(QtGui.QApplication.translate("MainWindow", "&Export", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_StartAll.setText(QtGui.QApplication.translate("MainWindow", "Start All IOS", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_StopAll.setText(QtGui.QApplication.translate("MainWindow", "Stop all IOS", None, QtGui.QApplication.UnicodeUTF8))
 
 from QTreeWidgetCustom import QTreeWidgetCustom
 from QGraphicsViewCustom import QGraphicsViewCustom
