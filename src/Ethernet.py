@@ -73,7 +73,7 @@ class Ethernet(Edge):
     def boundingRect(self):
         """ Bounding rectangle to tell the scene what redraw
         """
-      
+        
         if self.source is None or self.dest is None:
             return QtCore.QRectF()
 

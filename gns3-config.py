@@ -37,30 +37,43 @@ This script will help you to configure gns3.conf and notably these settings:
 - The telnet program to use when connecting to an IOS
 '''
 
-hypervisor_path = ConfDB().get("Dynamips/hypervisor_path", '')
-sys.stdout.write('Hypervisor path ["' + hypervisor_path + '"]: ')
-path = sys.stdin.readline().strip()
-if path:
-    hypervisor_path = path
-print 'You have set: ' + hypervisor_path
-ConfDB().set("Dynamips/hypervisor_path", hypervisor_path)
+sys.stdout.write('Do you want to configure an integrated hypervisor ? (y/n) [y]: ')
+choice = sys.stdin.readline().strip()
+if not choice:
+    choice = 'y'
 
-hypervisor_port = ConfDB().get("Dynamips/hypervisor_port", '7200')
-sys.stdout.write('Hypervisor port [' + hypervisor_port + ']: ')
-port = sys.stdin.readline().strip()
-if port:
-    hypervisor_port = port
-print 'You have set: ' + hypervisor_port
-ConfDB().set("Dynamips/hypervisor_port", hypervisor_port)
+if choice == 'y':
+    
+    hypervisor_path = ConfDB().get("Dynamips/hypervisor_path", '')
+    sys.stdout.write('Hypervisor path ["' + hypervisor_path + '"]: ')
+    path = sys.stdin.readline().strip()
+    if path:
+        hypervisor_path = path
+    print 'You have set: ' + hypervisor_path
+    ConfDB().set("Dynamips/hypervisor_path", hypervisor_path)
 
-hypervisor_wd = ConfDB().get("Dynamips/hypervisor_working_directory", '')
-sys.stdout.write('Hypervisor working directory ["' + hypervisor_wd + '"]: ')
-wd = sys.stdin.readline().strip()
-if wd:
-    hypervisor_wd = wd
-if hypervisor_wd:
-    print 'You have set: ' + hypervisor_wd
-ConfDB().set("Dynamips/hypervisor_working_directory", hypervisor_wd)
+    hypervisor_port = ConfDB().get("Dynamips/hypervisor_port", '7200')
+    sys.stdout.write('Hypervisor port [' + hypervisor_port + ']: ')
+    port = sys.stdin.readline().strip()
+    if port:
+        hypervisor_port = port
+    print 'You have set: ' + hypervisor_port
+    ConfDB().set("Dynamips/hypervisor_port", hypervisor_port)
+
+    hypervisor_wd = ConfDB().get("Dynamips/hypervisor_working_directory", '')
+    sys.stdout.write('Hypervisor working directory ["' + hypervisor_wd + '"]: ')
+    wd = sys.stdin.readline().strip()
+    if wd:
+        hypervisor_wd = wd
+    if hypervisor_wd:
+        print 'You have set: ' + hypervisor_wd
+    ConfDB().set("Dynamips/hypervisor_working_directory", hypervisor_wd)
+
+elif choice == 'n':
+
+    ConfDB().delete("Dynamips/hypervisor_path")
+    ConfDB().delete("Dynamips/hypervisor_port")
+    ConfDB().delete("Dynamips/hypervisor_working_directory")
 
 print '''
 Specify the command to execute when using the telnet command from the CLI

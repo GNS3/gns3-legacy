@@ -289,12 +289,14 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.menu.addAction(self.startAct)
             self.menu.addAction(self.stopAct)
             self.menu.exec_(QtGui.QCursor.pos())
+            return
 
         if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == True:
             self.menu = QtGui.QMenu()
             self.menu.addAction(self.configAct)
             self.menu.addAction(self.deleteAct)
             self.menu.exec_(QtGui.QCursor.pos())
+            return
         
         if self.main.linkEnabled == False :
            QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
@@ -377,11 +379,30 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.interfaces[interface] = [srcid, srcif]
             self.main.TabLinkMNode[0].interfaces[srcif] = [self.id, interface]
     
+    def deleteInterface(self, ifname):
+        """ Delete an interface and the link that is connected to it (if present)
+            ifname: string
+        """
+        
+        destid = self.interfaces[ifname][0]
+        destif = self.interfaces[ifname][1]
+        delete_list = []
+
+        for edge in self.edgeList:
+            if edge.dest.id != self.id:
+                neighborid = edge.dest.id
+            else:
+                neighborid = edge.source.id
+            if neighborid == destid:
+                delete_list.append(edge)
+        for edge in delete_list:
+            edge.delete()
+        
     def delete(self):
         """ Delete the current node
         """
-        delete_list = []
         
+        delete_list = []
         for edge in self.edgeList:
             self._QGraphicsScene.removeItem(edge)
             delete_list.append(edge)

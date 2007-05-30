@@ -20,7 +20,7 @@
 from PyQt4 import QtCore, QtGui
 from QTreeWidgetCustom import SYMBOLS
 from Utils import translate
-from Router import *
+from Router import Router
 import re
 import string
 

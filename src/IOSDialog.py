@@ -181,7 +181,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             idlepc = str(self.lineEditIdlePC.text())
             if idlepc == '':
                 # no idle PC, that's bad ...
-                self.error.showMessage("You should set the IDLE PC")
+                self.error.showMessage("There is no IDLE PC")
 
             item = QtGui.QTreeWidgetItem(self.treeWidgetIOSimages)
             # platform column
