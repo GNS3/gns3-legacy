@@ -17,9 +17,11 @@
 # Contact: developers@gns3.net
 #
 
+
 from PyQt4 import QtCore, QtGui
 from Ui_Inspector import *
 import Dynamips_lib as lib
+import Router
 import __main__
 
 DEFAULTS = {
@@ -203,6 +205,7 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
             if self.buttonBoxIOSConfig.standardButton(button) == QtGui.QDialogButtonBox.Cancel:
                 self.restoreIOSConfig()
             else:
+                self.saveIOSConfig()
                 self.close()
         if self.buttonBoxIOSConfig.buttonRole(button) == QtGui.QDialogButtonBox.ResetRole:
             self.setDefaults()
@@ -240,6 +243,40 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         self.spinBoxExecArea.setValue(64)
         self.spinBoxIomem.setValue(5)
 
+    def _updateLinks(self, slotnb, module):
+        """ Update already connected links to react to slot change
+        """
+        
+        node = self.main.nodes[self.nodeid]
+        node_interfaces = node.interfaces.copy()
+        error = QtGui.QErrorMessage()
+
+        if module == '':
+            for ifname in node_interfaces:
+                if int(ifname[1]) == slotnb:
+                    print ifname + " is still connected but no module into the slot !"
+                    node.deleteInterface(ifname)
+            return
+        
+        assert(module in Router.ADAPTERS)
+         # get number of interfaces and the abbreviation letter
+        (interfaces, abrv) = Router.ADAPTERS[module][1:3]
+
+        for ifname in node_interfaces:
+            print 'check ' + ifname
+            ifslot = int(ifname[1])
+            ifnb = int(ifname[3])
+            found = False
+            for modifnb in range(interfaces):
+                if ifslot == slotnb and ifnb == modifnb:
+                    found = True
+                    if ifname[0] != abrv:
+                        print ifname + " is connected to another non-compatible interface"
+                        node.deleteInterface(ifname)
+            if found == False:
+                print ifname + " is connected to a non-existing port in the slot"
+                node.deleteInterface(ifname)
+
     def saveIOSConfig(self):
         """ Save IOS settings
         """
@@ -263,8 +300,12 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         node.iosConfig['midplane'] = str(self.comboBoxMidplane.currentText())
         node.iosConfig['npe'] = str(self.comboBoxNPE.currentText())
         node.iosConfig['slots'] = []
+        slotnb = 0
         for widget in self.slots_list:
-            node.iosConfig['slots'].append(str(widget.currentText()))
+            module = str(widget.currentText())
+            self._updateLinks(slotnb, module)
+            node.iosConfig['slots'].append(module)
+            slotnb += 1
 
     def restoreIOSConfig(self):
         """ Restore the IOS settings

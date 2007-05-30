@@ -89,7 +89,7 @@ class Router(MNode):
         """ Show the inspector instance
         """
 
-        if (event.button() == QtCore.Qt.LeftButton):
+        if (event.button() == QtCore.Qt.LeftButton) and self.main.conception_mode == True:
             self.InspectorInstance.loadNodeInfos() 
             self.InspectorInstance.show()
 

@@ -47,7 +47,7 @@ class LocalHypervisor:
             self.proc.start(hypervisor_path,  ['-H', hypervisor_port])
         
             if self.proc.waitForStarted() == False:
-                QtGui.QMessageBox.critical(self.main.win, 'Local hypervisor',  translate("LocalHypervisor", "Can't start the local hypervisor,\n check your configuration file"))
+                QtGui.QMessageBox.critical(self.main.win, 'Local hypervisor',  translate("LocalHypervisor", "Can't start the local hypervisor,\n check your configuration file or run gns3-config"))
                 return
             
             self.main.integrated_hypervisor = {'port': int(hypervisor_port),
