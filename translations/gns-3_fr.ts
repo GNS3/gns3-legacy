@@ -360,27 +360,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MNode</name>
     <message>
-        <location filename="../src/MNode.py" line="118"/>
+        <location filename="../src/MNode.py" line="93"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../src/MNode.py" line="125"/>
+        <location filename="../src/MNode.py" line="100"/>
         <source>Console</source>
         <translation>Console</translation>
     </message>
     <message>
-        <location filename="../src/MNode.py" line="132"/>
+        <location filename="../src/MNode.py" line="107"/>
         <source>Start</source>
         <translation>Démarrer</translation>
     </message>
     <message>
-        <location filename="../src/MNode.py" line="139"/>
+        <location filename="../src/MNode.py" line="114"/>
         <source>Stop</source>
         <translation>Arrêter</translation>
     </message>
     <message>
-        <location filename="../src/MNode.py" line="111"/>
+        <location filename="../src/MNode.py" line="86"/>
         <source>Configure</source>
         <translation>Configurer</translation>
     </message>
@@ -430,7 +430,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../forms/MainWindow.ui" line="142"/>
         <source>&amp;Save</source>
-        <translation>&amp;Sauver</translation>
+        <translation type="obsolete">&amp;Sauver</translation>
     </message>
     <message>
         <location filename="../forms/MainWindow.ui" line="159"/>
@@ -438,9 +438,9 @@ p, li { white-space: pre-wrap; }
         <translation>Ajouter un lien</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.py" line="151"/>
+        <location filename="../src/MainWindow.py" line="153"/>
         <source>Simulation Mode</source>
-        <translation type="unfinished">Mode Simulation</translation>
+        <translation>Mode Simulation</translation>
     </message>
     <message>
         <location filename="../forms/MainWindow.ui" line="172"/>
@@ -453,7 +453,7 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Aide en ligne</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.py" line="153"/>
+        <location filename="../src/MainWindow.py" line="155"/>
         <source>Conception Mode</source>
         <translation>Mode Conception</translation>
     </message>
@@ -471,6 +471,11 @@ p, li { white-space: pre-wrap; }
         <location filename="../forms/MainWindow.ui" line="193"/>
         <source>&amp;Export</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../forms/MainWindow.ui" line="142"/>
+        <source>&amp;Save As</source>
+        <translation>&amp;Sauver sous</translation>
     </message>
 </context>
 <context>

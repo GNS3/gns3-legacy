@@ -136,10 +136,10 @@
   </action>
   <action name="action_Save" >
    <property name="icon" >
-    <iconset resource="../svg/svg_resources.qrc" >:/icons/save.svg</iconset>
+    <iconset resource="../svg/svg_resources.qrc" >:/icons/save-as.svg</iconset>
    </property>
    <property name="text" >
-    <string>&amp;Save</string>
+    <string>&amp;Save As</string>
    </property>
   </action>
   <action name="action_Add_link" >
@@ -196,14 +196,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QGraphicsViewCustom</class>
-   <extends>QGraphicsView</extends>
-   <header>QGraphicsViewCustom</header>
-  </customwidget>
-  <customwidget>
    <class>QTreeWidgetCustom</class>
    <extends>QTreeWidget</extends>
    <header>QTreeWidgetCustom</header>
+  </customwidget>
+  <customwidget>
+   <class>QGraphicsViewCustom</class>
+   <extends>QGraphicsView</extends>
+   <header>QGraphicsViewCustom</header>
   </customwidget>
  </customwidgets>
  <resources>
