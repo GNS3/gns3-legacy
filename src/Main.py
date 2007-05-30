@@ -73,6 +73,8 @@ class Main:
         win.connect(win.action_About, QtCore.SIGNAL('activated()'), win.About)
         win.connect(win.action_Add_link, QtCore.SIGNAL('activated()'), win.AddEdge)
         win.connect(win.action_SwitchMode, QtCore.SIGNAL('activated()'), win.SwitchMode)
+        win.connect(win.action_StartAll, QtCore.SIGNAL('activated()'), win.StartAllIOS)
+        win.connect(win.action_StopAll, QtCore.SIGNAL('activated()'), win.StopAllIOS)
         win.show()
 
         # start a local hypervisor

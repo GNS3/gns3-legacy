@@ -73,12 +73,6 @@
     <addaction name="action_OnlineHelp" />
     <addaction name="action_About" />
    </widget>
-   <widget class="QMenu" name="menuIOS" >
-    <property name="title" >
-     <string>Cisco IOS</string>
-    </property>
-    <addaction name="action_IOS_images" />
-   </widget>
    <widget class="QMenu" name="menu_File" >
     <property name="title" >
      <string>&amp;File</string>
@@ -90,6 +84,12 @@
     <addaction name="action_Export" />
     <addaction name="separator" />
     <addaction name="action_Quit" />
+   </widget>
+   <widget class="QMenu" name="menuIOS" >
+    <property name="title" >
+     <string>Cisco IOS</string>
+    </property>
+    <addaction name="action_IOS_images" />
    </widget>
    <addaction name="menu_File" />
    <addaction name="menuIOS" />
@@ -109,6 +109,8 @@
    <addaction name="action_SwitchMode" />
    <addaction name="separator" />
    <addaction name="action_Add_link" />
+   <addaction name="action_StartAll" />
+   <addaction name="action_StopAll" />
   </widget>
   <action name="action_About" >
    <property name="text" >
@@ -191,6 +193,28 @@
    </property>
    <property name="text" >
     <string>&amp;Export</string>
+   </property>
+  </action>
+  <action name="action_StartAll" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="../svg/svg_resources.qrc" >:/icons/start_metal.svg</iconset>
+   </property>
+   <property name="text" >
+    <string>Start All IOS</string>
+   </property>
+  </action>
+  <action name="action_StopAll" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="../svg/svg_resources.qrc" >:/icons/stop_metal.svg</iconset>
+   </property>
+   <property name="text" >
+    <string>Stop all IOS</string>
    </property>
   </action>
  </widget>

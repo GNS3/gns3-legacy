@@ -9,4 +9,4 @@ pylupdate4 -verbose gns-3.pro
 lrelease-qt4 gns-3.pro || lrelease gns-3.pro
 
 # create ressource file (don't forget to add the .qm file to translations.qrc)
-pyrcc4 translations.qrc -o ../src/Translations.py
+pyrcc4 -compress 9 translations.qrc -o ../src/Translations.py

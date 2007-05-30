@@ -30,6 +30,8 @@
 	<file>icons/edit-redo.svg</file>
 	<file alias="icons/export.svg">icons/edit-undo.svg</file>
 	<file alias="icons/import.svg">icons/edit-redo.svg</file>
+	<file>icons/start_metal.svg</file>
+	<file>icons/stop_metal.svg</file>
 </qresource>
 <qresource>
 	<file>images/logo_gns3_transparency_small.png</file>

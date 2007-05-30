@@ -142,6 +142,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.action_Add_link.setChecked(False)
             self.AddEdge()
             self.action_Add_link.setEnabled(False)
+            self.action_StartAll.setEnabled(True)
+            self.action_StopAll.setEnabled(True)
             self.treeWidget.simulationMode()
             try:
                 for node in self.main.nodes.keys():
@@ -157,6 +159,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.statusbar.showMessage(translate('MainWindow', 'Conception Mode'))
             self.main.conception_mode = True
             self.action_Add_link.setEnabled(True)
+            self.action_StartAll.setEnabled(False)
+            self.action_StopAll.setEnabled(False)
             self.treeWidget.conceptionMode()
             try:
                 for node in self.main.nodes.keys():
@@ -164,6 +168,26 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             except lib.DynamipsError, msg:
                 QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
                 return
+            
+    def StartAllIOS(self):
+        """ Start all IOS instances
+        """
+
+        try:       
+            for node in self.main.nodes.keys():
+                self.main.nodes[node].startIOS()
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
+    
+    def StopAllIOS(self):
+        """ Stop all IOS instances
+        """
+        
+        try:       
+            for node in self.main.nodes.keys():
+                self.main.nodes[node].stopIOS()
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
 
     def OpenNewFile(self):
         """ Open a previously saved GNS-3 scenario
