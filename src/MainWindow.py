@@ -168,22 +168,22 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             except lib.DynamipsError, msg:
                 QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
                 return
-            
+
     def StartAllIOS(self):
         """ Start all IOS instances
         """
 
-        try:       
+        try:
             for node in self.main.nodes.keys():
                 self.main.nodes[node].startIOS()
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
-    
+
     def StopAllIOS(self):
         """ Stop all IOS instances
         """
-        
-        try:       
+
+        try:
             for node in self.main.nodes.keys():
                 self.main.nodes[node].stopIOS()
         except lib.DynamipsError, msg:
@@ -236,6 +236,43 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         _s_xmlBase = doc.createElement("gns3-scenario")
         doc.appendChild(_s_xmlBase)
 
+        # <config><dynamips>
+        _s_confBase = doc.createElement("config")
+        _s_xmlBase.appendChild(_s_confBase)
+        _s_confDynamips = doc.createElement("dynamips")
+        _s_confBase.appendChild(_s_confDynamips)
+        _s_confDm_Images = doc.createElement("images")
+        _s_confDynamips.appendChild(_s_confDm_Images)
+        _s_confDm_Hyp = doc.createElement("hypervisors")
+        _s_confDynamips.appendChild(_s_confDm_Hyp)
+
+        # <config><dynamips><images>
+        for (key_image, val_image) in self.main.ios_images.iteritems():
+            _x_image = doc.createElement("image")
+            _x_image.setAttribute("id", str(key_image))
+            for (key_dict, val_dict) in val_image.iteritems():
+                _x_image_sub = doc.createElement("confkey")
+                _x_image_sub.setAttribute("id", str(key_dict))
+                _x_image_sub.setAttribute("val", str(val_dict))
+                _x_image.appendChild(_x_image_sub)
+            _s_confDm_Images.appendChild(_x_image)
+        # <config><dynamips><hypervisors>
+        for (key_hyp, val_hyp) in self.main.hypervisors.iteritems():
+            _x_hyp = doc.createElement("hypervisor")
+            _x_hyp.setAttribute("id", str(key_hyp))
+
+            _t = key_hyp.split(":")
+            val_hyp["hypervisor_host"] = _t[0]
+            val_hyp["hypervisor_port"] = _t[1]
+            for (key_dict, val_dict) in val_hyp.iteritems():
+                if key_dict == "dynamips_instance": # don't save that
+                    continue
+                _x_hyp_sub = doc.createElement("confkey")
+                _x_hyp_sub.setAttribute("id", str(key_dict))
+                _x_hyp_sub.setAttribute("val", str(val_dict))
+                _x_hyp.appendChild(_x_hyp_sub)
+            _s_confDm_Hyp.appendChild(_x_hyp)
+
         # <topology>
         _s_topoBase = doc.createElement("topology")
         _s_xmlBase.appendChild(_s_topoBase)
@@ -280,10 +317,84 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         dom = parse(file)
 
         # first, delete all node present on scene
-        _nodes = self.main.nodes.copy()
-        for (nodeid,node) in _nodes.iteritems():
-            node.delete()
+        self._clearScene()
 
+        # Load config
+        images = dom.getElementsByTagName("image")
+        for image in images:
+            id = str(image.getAttribute("id"))
+
+            # if invalid image id, jump to the next one
+            if id == "":
+                continue
+
+            conf_dict = {
+                'filename': '',
+                'platform': '',
+                'chassis': '',
+                'idlepc': '',
+                'hypervisor_host': '',
+                'hypervisor_port': 0,
+                'working_directory': ''
+            }
+
+            for conf_entry in image.childNodes:
+                # if invalid node type, jump to next conf entry
+                if conf_entry.nodeName != 'confkey':
+                    continue
+                _c_id = str(conf_entry.getAttribute("id"))
+                _c_val = str(conf_entry.getAttribute("val"))
+
+                # confkey id can't be null
+                if _c_id == "":
+                    continue
+                if _c_id == "hypervisor_port":
+                    conf_dict[_c_id] = int(_c_val)
+                else:
+                    conf_dict[_c_id] = _c_val
+
+            # update global var
+            if not self.main.ios_images.has_key(id):
+                self.main.ios_images[id] = conf_dict
+
+        hypervisors = dom.getElementsByTagName("hypervisor")
+        for hyp in hypervisors:
+            id = str(hyp.getAttribute("id"))
+
+            # if invalid hypervisor id
+            if id == "":
+                continue
+
+            _t = id.split(":")
+
+            hyp_dict = {
+                    'working_directory': '',
+                    'dynamips_instance': None,
+                    'confkey': '',
+                    'host': _t[0],
+                    'port': _t[1]
+            }
+
+            for conf_entry in hyp.childNodes:
+                # if node is not a `confkey'
+                if conf_entry.nodeName != 'confkey':
+                    continue
+                _c_id = str(conf_entry.getAttribute("id"))
+                _c_val = str(conf_entry.getAttribute("val"))
+
+                # confkey id can't be null
+                if _c_id == "":
+                    continue
+                if _c_id == "hypervisor_port":
+                    hyp_dict[_c_id] = int(_c_val)
+                else:
+                    hyp_dict[_c_id] = _c_val
+
+            # update global var
+            if not self.main.hypervisors.has_key(id):
+                self.main.hypervisors[id] = hyp_dict
+
+        # Load Scene (Nodes + Link)
         nodes = dom.getElementsByTagName("node")
         for node in nodes:
             id = node.getAttribute("id")
@@ -371,6 +482,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             # update interface status
             self.main.nodes[src_node].interfaces[src_if] = [dst_node, dst_if]
             self.main.nodes[dst_node].interfaces[dst_if] = [src_node, src_if]
+
+    def _clearScene(self):
+        _nodes = self.main.nodes.copy()
+        for (nodeid,node) in _nodes.iteritems():
+            node.delete()
 
     def About(self):
         """ Show the about dialog
