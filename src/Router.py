@@ -281,4 +281,6 @@ class Router(MNode):
     
         if self.ios != None:
             self.ios.delete()
-     
+            for edge in self.edgeList:
+                edge.setStatus(self.id, False)
+ 
