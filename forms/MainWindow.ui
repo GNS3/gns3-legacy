@@ -108,6 +108,7 @@
    </attribute>
    <addaction name="action_Open" />
    <addaction name="action_Save" />
+   <addaction name="action_ShowHostnames" />
    <addaction name="separator" />
    <addaction name="action_SwitchMode" />
    <addaction name="separator" />
@@ -218,6 +219,14 @@
    </property>
    <property name="text" >
     <string>Stop all IOS</string>
+   </property>
+  </action>
+  <action name="action_ShowHostnames" >
+   <property name="icon" >
+    <iconset resource="../svg/svg_resources.qrc" >:/icons/show-hostname.svg</iconset>
+   </property>
+   <property name="text" >
+    <string>Show hostnames</string>
    </property>
   </action>
  </widget>

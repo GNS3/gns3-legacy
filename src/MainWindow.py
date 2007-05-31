@@ -104,7 +104,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         """
 
         if self.action_SwitchMode.text() == translate('MainWindow', 'Emulation Mode'):
-            # simulation mode
+            # emulation mode
             self.action_SwitchMode.setText(translate('MainWindow', 'Design Mode'))
             ##self.action_SwitchMode.setIcon(QtGui.QIcon(':/icons/switch_conception_mode.svg'))
             self.statusbar.showMessage(translate('MainWindow', 'Emulation Mode'))
@@ -123,7 +123,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 return
 
         elif self.action_SwitchMode.text() == translate('MainWindow', 'Design Mode'):
-            # conception mode
+            # design mode
             self.action_SwitchMode.setText(translate('MainWindow', 'Emulation Mode'))
             ##self.action_SwitchMode.setIcon(QtGui.QIcon(':/icons/switch_simulation_mode.svg'))
             self.statusbar.showMessage(translate('MainWindow', 'Design Mode'))
@@ -138,6 +138,19 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             except lib.DynamipsError, msg:
                 QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
                 return
+            
+    def ShowHostnames(self):
+        """ Show the hostnames of all nodes
+        """
+        
+        if self.action_ShowHostnames.text() == translate('MainWindow', 'Show hostnames'):
+            self.action_ShowHostnames.setText(translate('MainWindow', 'Hide hostnames'))
+            for node in self.main.nodes.keys():
+                self.main.nodes[node].showHostname()
+        elif self.action_ShowHostnames.text() == translate('MainWindow', 'Hide hostnames'):
+            self.action_ShowHostnames.setText(translate('MainWindow', 'Show hostnames'))                
+            for node in self.main.nodes.keys():
+                self.main.nodes[node].removeHostname()
 
     def StartAllIOS(self):
         """ Start all IOS instances

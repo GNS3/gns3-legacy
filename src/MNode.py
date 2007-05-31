@@ -77,11 +77,6 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self._QGraphicsScene = QGraphicsScene
         self._QGraphicsScene.addItem(self)
         self._QGraphicsScene.update(self.sceneBoundingRect())
-        
-        self.textItem = QtGui.QGraphicsTextItem("R " + str(self.id), self)
-        self.textItem.setFont(QtGui.QFont("Times", 10, QtGui.QFont.Bold))
-        self.textItem.setFlag(self.textItem.ItemIsMovable)
-        self.textItem.setZValue(2)
 
     def __initActions(self):
         """ Initialize all menu actions who belongs to MNode
@@ -100,13 +95,6 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         #self.deleteAct.setText('Delete Node')
         #self.deleteAct.setStatusTip('Delete the node')
         self.connect(self.deleteAct, QtCore.SIGNAL('activated()'), self.__deleteAction)
-        
-        # Action: Hostname (display the hostname on the scene)
-        self.hostnameAct = QtGui.QAction(translate('MNode', 'Hostname'), self)
-        #self.deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
-        #self.deleteAct.setText('Delete Node')
-        #self.deleteAct.setStatusTip('Delete the node')
-        self.connect(self.hostnameAct, QtCore.SIGNAL('activated()'), self.__displayHostname)
 
         # Action: Console (Connect to the node console (IOS))
         self.consoleAct = QtGui.QAction(translate('MNode', 'Console'), self)
@@ -141,16 +129,6 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         """
 
         self.delete()
-        
-    def __displayHostname(self):
-        """ Display the hostname on the scene
-        """
-
-        #if show == True:
-        self.textItem.setPos(20, -20)
-        self._QGraphicsScene.addItem(self.textItem)
-        #else:
-           # self._QGraphicsScene.addItem(self.textItem)
 
     def __consoleAction(self):
         """ Action called to start a node console
@@ -317,7 +295,6 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.menu = QtGui.QMenu()
             self.menu.addAction(self.configAct)
             self.menu.addAction(self.deleteAct)
-            self.menu.addAction(self.hostnameAct)
             self.menu.exec_(QtGui.QCursor.pos())
             return
         
@@ -445,6 +422,23 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.deleteEdge(edge)
         del self.main.nodes[self.id]
         self._QGraphicsScene.removeItem(self)
+        
+    def showHostname(self):
+        """ Show the hostname on the scene
+        """
+
+        self.textItem = QtGui.QGraphicsTextItem("R " + str(self.id), self)
+        self.textItem.setFont(QtGui.QFont("Times", 10, QtGui.QFont.Bold))
+        self.textItem.setFlag(self.textItem.ItemIsMovable)
+        self.textItem.setZValue(2)
+        self.textItem.setPos(20, -20)
+        self._QGraphicsScene.addItem(self.textItem)
+ 
+    def removeHostname(self):
+        """ Remove the hostname on the scene
+        """
+        
+        self._QGraphicsScene.removeItem(self.textItem)
 
     def setName(self, name):
 

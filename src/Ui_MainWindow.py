@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Thu May 31 18:05:07 2007
+# Created: Thu May 31 21:19:45 2007
 #      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -112,6 +112,10 @@ class Ui_MainWindow(object):
         self.action_StopAll.setEnabled(False)
         self.action_StopAll.setIcon(QtGui.QIcon(":/icons/stop_metal.svg"))
         self.action_StopAll.setObjectName("action_StopAll")
+
+        self.action_ShowHostnames = QtGui.QAction(MainWindow)
+        self.action_ShowHostnames.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
+        self.action_ShowHostnames.setObjectName("action_ShowHostnames")
         self.menu_About.addAction(self.action_OnlineHelp)
         self.menu_About.addAction(self.action_About)
         self.menu_File.addAction(self.action_Open)
@@ -127,6 +131,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menu_About.menuAction())
         self.toolBar.addAction(self.action_Open)
         self.toolBar.addAction(self.action_Save)
+        self.toolBar.addAction(self.action_ShowHostnames)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.action_SwitchMode)
         self.toolBar.addSeparator()
@@ -159,6 +164,7 @@ class Ui_MainWindow(object):
         self.action_Export.setText(QtGui.QApplication.translate("MainWindow", "&Export", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StartAll.setText(QtGui.QApplication.translate("MainWindow", "Start All IOS", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StopAll.setText(QtGui.QApplication.translate("MainWindow", "Stop all IOS", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ShowHostnames.setText(QtGui.QApplication.translate("MainWindow", "Show hostnames", None, QtGui.QApplication.UnicodeUTF8))
 
 from QTreeWidgetCustom import QTreeWidgetCustom
 from QGraphicsViewCustom import QGraphicsViewCustom

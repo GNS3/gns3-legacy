@@ -67,6 +67,7 @@ class Main:
         # signal/slot for the menu
         win.connect(win.action_Open, QtCore.SIGNAL('activated()'), win.OpenNewFile)
         win.connect(win.action_Save, QtCore.SIGNAL('activated()'), win.SaveToFile)
+        win.connect(win.action_ShowHostnames, QtCore.SIGNAL('activated()'), win.ShowHostnames)
         win.connect(win.action_Import, QtCore.SIGNAL('activated()'), win.ImportNamFile)
         win.connect(win.action_Export, QtCore.SIGNAL('activated()'), win.ExportToFile)
         win.connect(win.action_IOS_images, QtCore.SIGNAL('activated()'), win.IOSDialog)

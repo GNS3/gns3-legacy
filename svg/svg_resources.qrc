@@ -32,6 +32,7 @@
 	<file alias="icons/import.svg">icons/edit-redo.svg</file>
 	<file>icons/start_metal.svg</file>
 	<file>icons/stop_metal.svg</file>
+	<file>icons/show-hostname.svg</file>
 </qresource>
 <qresource>
 	<file>images/logo_gns3_transparency_small.png</file>
