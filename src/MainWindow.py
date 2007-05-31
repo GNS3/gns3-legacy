@@ -142,23 +142,31 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def StartAllIOS(self):
         """ Start all IOS instances
         """
-        try:
-            for node in self.main.nodes.keys():
+
+        for node in self.main.nodes.keys():
+            assert (self.main.nodes[node].ios != None)
+            try:
                 self.main.nodes[node].startIOS()
-        except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
+            except lib.DynamipsError, msg:
+                if self.main.nodes[node].ios.state == 'running':
+                    pass
+                else:
+                    QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
 
     def StopAllIOS(self):
         """ Stop all IOS instances
         """
-        try:
-            for node in self.main.nodes.keys():
+        
+        for node in self.main.nodes.keys():
+            assert (self.main.nodes[node].ios != None)
+            try:
                 self.main.nodes[node].stopIOS()
-        except lib.DynamipsError, msg:
-            if msg[0][-15:] == 'already stopped':
-                pass
-            else:
-                QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
+            except lib.DynamipsError, msg:
+                if self.main.nodes[node].ios.state == 'stopped':
+                    pass
+                else:
+                    QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
+
 
     def OpenNewFile(self):
         """ Open a previously saved GNS-3 scenario

@@ -18,6 +18,13 @@
 #
 
 import sys
+
+try:
+    import PyQt4
+except ImportError:
+    sys.stderr.write('PyQt is not installed')
+    sys.exit(False)
+
 sys.path.append("./src")
 from Main import *
 
