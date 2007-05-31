@@ -42,10 +42,10 @@ class QTreeWidgetCustom(QtGui.QTreeWidget):
     def __init__(self, parent):
     
         QtGui.QTreeWidget.__init__(self, parent)
-        self.conceptionMode()
+        self.designMode()
 
-    def conceptionMode(self):
-        """ Create items for conception mode
+    def designMode(self):
+        """ Create items for design mode
         """
         
         self.clear()
@@ -56,8 +56,8 @@ class QTreeWidgetCustom(QtGui.QTreeWidget):
             item.setIcon(0, QtGui.QIcon(symbol[1]))
             self.insertTopLevelItem(0, item)
 
-    def simulationMode(self):
-        """ Create items for simulation mode
+    def emulationMode(self):
+        """ Create items for emulation mode
         """
         
         self.clear()
@@ -101,7 +101,7 @@ class QTreeWidgetCustom(QtGui.QTreeWidget):
         """ Drag an element
         """
     
-        if (self.main.conception_mode == False):
+        if (self.main.design_mode == False):
             return
         
         if ((event.buttons() & QtCore.Qt.LeftButton ) == None):

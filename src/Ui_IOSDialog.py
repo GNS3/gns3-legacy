@@ -2,17 +2,19 @@
 
 # Form implementation generated from reading ui file 'IOSDialog.ui'
 #
-# Created: Wed May 30 17:11:53 2007
-#      by: PyQt4 UI code generator 4.2
+# Created: Thu May 31 16:25:00 2007
+#      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
 
+import sys
 from PyQt4 import QtCore, QtGui
 
 class Ui_IOSDialog(object):
     def setupUi(self, IOSDialog):
         IOSDialog.setObjectName("IOSDialog")
         IOSDialog.resize(QtCore.QSize(QtCore.QRect(0,0,632,342).size()).expandedTo(IOSDialog.minimumSizeHint()))
+        IOSDialog.setWindowIcon(QtGui.QIcon(":/images/logo_gns3_transparency_small.png"))
 
         self.vboxlayout = QtGui.QVBoxLayout(IOSDialog)
         self.vboxlayout.setMargin(9)
@@ -330,3 +332,4 @@ class Ui_IOSDialog(object):
         self.pushButtonDeleteHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "&Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QtGui.QApplication.translate("IOSDialog", "Hypervisors", None, QtGui.QApplication.UnicodeUTF8))
 
+import svg_resources_rc

@@ -2,17 +2,19 @@
 
 # Form implementation generated from reading ui file 'About.ui'
 #
-# Created: Wed May 30 17:11:53 2007
-#      by: PyQt4 UI code generator 4.2
+# Created: Thu May 31 16:25:00 2007
+#      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
 
+import sys
 from PyQt4 import QtCore, QtGui
 
 class Ui_AboutDialog(object):
     def setupUi(self, AboutDialog):
         AboutDialog.setObjectName("AboutDialog")
         AboutDialog.resize(QtCore.QSize(QtCore.QRect(0,0,504,287).size()).expandedTo(AboutDialog.minimumSizeHint()))
+        AboutDialog.setWindowIcon(QtGui.QIcon(":/images/logo_gns3_transparency_small.png"))
 
         self.vboxlayout = QtGui.QVBoxLayout(AboutDialog)
         self.vboxlayout.setMargin(9)

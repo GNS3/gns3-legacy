@@ -33,7 +33,7 @@ links = {}                           # node-Links objects, indexed by the link I
 ios_images = {}                      # Registered Cisco IOS images
 hypervisors = {}                     # hypervisors
 integrated_hypervisor = None         # global hypervisor
-conception_mode = True               # If we are in conception mode
+design_mode = True                   # If we are in design mode
 win = None                           # ref to the main window
 
 # links management
@@ -50,6 +50,7 @@ class Main:
         global win
 
         app = QtGui.QApplication(sys.argv)
+        app.connect(app, QtCore.SIGNAL('lastWindowClosed()'), app, QtCore.SLOT('quit()'))
 
         # Loading user configuration values
         GNS_Conf.load_IOSimages()
@@ -60,8 +61,8 @@ class Main:
         #    app.installTranslator(translator)
 
         win = MainWindow()
-        # we start in conception mode
-        win.statusbar.showMessage(translate('MainWindow', 'Conception Mode'))
+        # we start in design mode
+        win.statusbar.showMessage(translate('MainWindow', 'Design Mode'))
 
         # signal/slot for the menu
         win.connect(win.action_Open, QtCore.SIGNAL('activated()'), win.OpenNewFile)
@@ -78,7 +79,6 @@ class Main:
 
         # start a local hypervisor
         local = LocalHypervisor()
-        #app.connect(app, QtCore.SIGNAL('lastWindowClosed()'), app, QtCore.SLOT('quit()'))
         sys.exit(app.exec_())
 
 if __name__ == "__main__":

@@ -12,6 +12,9 @@
   <property name="windowTitle" >
    <string>Node configuration</string>
   </property>
+  <property name="windowIcon" >
+   <iconset resource="../svg/svg_resources.qrc" >:/images/logo_gns3_transparency_small.png</iconset>
+  </property>
   <layout class="QVBoxLayout" >
    <property name="margin" >
     <number>9</number>
@@ -938,6 +941,8 @@
  <tabstops>
   <tabstop>tabWidget</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../svg/svg_resources.qrc" />
+ </resources>
  <connections/>
 </ui>

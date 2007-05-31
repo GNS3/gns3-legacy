@@ -10,7 +10,10 @@
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>gns-3</string>
+   <string>GNS-3</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="../svg/svg_resources.qrc" >:/images/logo_gns3_transparency_small.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QHBoxLayout" >
@@ -166,7 +169,7 @@
     <iconset resource="../svg/svg_resources.qrc" >:/icons/view-refresh.svg</iconset>
    </property>
    <property name="text" >
-    <string>Simulation Mode</string>
+    <string>Emulation Mode</string>
    </property>
   </action>
   <action name="action_IOS_images" >

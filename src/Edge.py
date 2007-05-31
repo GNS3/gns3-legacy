@@ -50,6 +50,8 @@ class Edge(QtGui.QGraphicsItem, QtGui.QGraphicsScene):
         # edge settings
         self.pointSize = 10
         self.penWidth = 2.0
+        self.src_up = False
+        self.dest_up = False
         self.source_if = sourceNode.tmpif
         self.source = sourceNode
         self.dest_if = destNode.tmpif
@@ -103,16 +105,16 @@ class Edge(QtGui.QGraphicsItem, QtGui.QGraphicsScene):
             event: QtGui.QGraphicsSceneMouseEvent instance
         """
 
-        if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == True:
+        if (event.button() == QtCore.Qt.RightButton) and self.main.design_mode == True:
             self.menu = QtGui.QMenu()
             self.menu.addAction(QtGui.QIcon(':/icons/delete.svg'), 'delete')
-            self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.conceptionAction)
+            self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.designAction)
             self.menu.exec_(QtGui.QCursor.pos())
         QtGui.QGraphicsItem.mousePressEvent(self, event)
 
-    def conceptionAction(self, action):
+    def designAction(self, action):
         """ Called when an option is selected from the contextual menu
-            in conception mode
+            in design mode
             action: QtCore.QAction instance
         """
 
@@ -128,3 +130,15 @@ class Edge(QtGui.QGraphicsItem, QtGui.QGraphicsScene):
         self.source.deleteEdge(self)
         self.dest.deleteEdge(self)
         self.scene.removeItem(self)
+        
+    def setStatus(self, node_id, isup):
+        """ Set the status to up/down for the node
+            node_id: integer
+            isup: bolean
+        """
+        
+        if self.source.id == node_id:
+            self.src_up = isup
+        else:    
+            self.dest_up = isup
+        self.update()

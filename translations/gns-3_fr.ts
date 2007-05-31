@@ -331,12 +331,8 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <source>gns-3</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Elements</source>
-        <translation>Noeuds</translation>
+        <translation type="obsolete">Noeuds</translation>
     </message>
     <message>
         <source>Cisco IOS</source>
@@ -356,7 +352,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Simulation Mode</source>
-        <translation>Mode Simulation</translation>
+        <translation type="obsolete">Mode Simulation</translation>
     </message>
     <message>
         <source>IOS images</source>
@@ -368,7 +364,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Conception Mode</source>
-        <translation>Mode Conception</translation>
+        <translation type="obsolete">Mode Conception</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -385,6 +381,30 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>&amp;Save As</source>
         <translation>&amp;Sauver sous</translation>
+    </message>
+    <message>
+        <source>GNS-3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nodes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Emulation Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start All IOS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stop all IOS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Design Mode</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

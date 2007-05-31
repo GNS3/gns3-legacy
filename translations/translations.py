@@ -18,8 +18,7 @@
 #
 
 #
-# This is for pylupdate4, to allow us to translate strings (that we use dynamically in gns-3) 
-with Qtlinguist
+# This is for pylupdate4, to allow us to translate strings (that we use dynamically in gns-3) with Qtlinguist
 #
 
 translate("SYMBOLS", "Router")

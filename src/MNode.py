@@ -283,7 +283,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             event: QtGui.QGraphicsSceneMouseEvent instance
         """
 
-        if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == False:
+        if (event.button() == QtCore.Qt.RightButton) and self.main.design_mode == False:
             self.menu = QtGui.QMenu()
             self.menu.addAction(self.consoleAct)
             self.menu.addAction(self.startAct)
@@ -291,7 +291,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.menu.exec_(QtGui.QCursor.pos())
             return
 
-        if (event.button() == QtCore.Qt.RightButton) and self.main.conception_mode == True:
+        if (event.button() == QtCore.Qt.RightButton) and self.main.design_mode == True:
             self.menu = QtGui.QMenu()
             self.menu.addAction(self.configAct)
             self.menu.addAction(self.deleteAct)
@@ -351,7 +351,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
 
     def selectedInterface(self, action):
         """ Called when an interface is selected from the contextual menu
-            in conception mode
+            in design mode
             action: QtCore.QAction instance
         """
 

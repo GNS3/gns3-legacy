@@ -48,7 +48,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         switch_wdgt = self.toolBar.widgetForAction(self.action_SwitchMode)
         switch_wdgt.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
-        switch_wdgt.setText(translate('MainWindow', 'Simulation Mode'))
+        switch_wdgt.setText(translate('MainWindow', 'Emulation Mode'))
 
         # expand items from the tree
         self.treeWidget.expandItem(self.treeWidget.topLevelItem(0))
@@ -100,21 +100,21 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.graphicsView.setCursor(QtCore.Qt.CrossCursor)
 
     def SwitchMode(self):
-        """ Simulation/Conception mode switching
+        """ Emulation/Design mode switching
         """
 
-        if self.action_SwitchMode.text() == translate('MainWindow', 'Simulation Mode'):
+        if self.action_SwitchMode.text() == translate('MainWindow', 'Emulation Mode'):
             # simulation mode
-            self.action_SwitchMode.setText(translate('MainWindow', 'Conception Mode'))
+            self.action_SwitchMode.setText(translate('MainWindow', 'Design Mode'))
             ##self.action_SwitchMode.setIcon(QtGui.QIcon(':/icons/switch_conception_mode.svg'))
-            self.statusbar.showMessage(translate('MainWindow', 'Simulation Mode'))
-            self.main.conception_mode = False
+            self.statusbar.showMessage(translate('MainWindow', 'Emulation Mode'))
+            self.main.design_mode = False
             self.action_Add_link.setChecked(False)
             self.AddEdge()
             self.action_Add_link.setEnabled(False)
             self.action_StartAll.setEnabled(True)
             self.action_StopAll.setEnabled(True)
-            self.treeWidget.simulationMode()
+            self.treeWidget.emulationMode()
             try:
                 for node in self.main.nodes.keys():
                     self.main.nodes[node].configIOS()
@@ -122,16 +122,16 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
                 return
 
-        elif self.action_SwitchMode.text() == translate('MainWindow', 'Conception Mode'):
+        elif self.action_SwitchMode.text() == translate('MainWindow', 'Design Mode'):
             # conception mode
-            self.action_SwitchMode.setText(translate('MainWindow', 'Simulation Mode'))
+            self.action_SwitchMode.setText(translate('MainWindow', 'Emulation Mode'))
             ##self.action_SwitchMode.setIcon(QtGui.QIcon(':/icons/switch_simulation_mode.svg'))
-            self.statusbar.showMessage(translate('MainWindow', 'Conception Mode'))
-            self.main.conception_mode = True
+            self.statusbar.showMessage(translate('MainWindow', 'Design Mode'))
+            self.main.design_mode = True
             self.action_Add_link.setEnabled(True)
             self.action_StartAll.setEnabled(False)
             self.action_StopAll.setEnabled(False)
-            self.treeWidget.conceptionMode()
+            self.treeWidget.designMode()
             try:
                 for node in self.main.nodes.keys():
                     self.main.nodes[node].resetIOSConfig()
@@ -463,9 +463,19 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.main.nodes[dst_node].interfaces[dst_if] = [src_node, src_if]
 
     def _clearScene(self):
+        """ Clear the scene
+        """
+        
         _nodes = self.main.nodes.copy()
         for (nodeid,node) in _nodes.iteritems():
             node.delete()
+            
+    def close(self):
+        """ Slot called when closing the windows
+        """
+
+        self._clearScene()
+        QtGui.QWidget.close(self)
 
     def About(self):
         """ Show the about dialog

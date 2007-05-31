@@ -89,7 +89,7 @@ class Router(MNode):
         """ Show the inspector instance
         """
 
-        if (event.button() == QtCore.Qt.LeftButton) and self.main.conception_mode == True:
+        if (event.button() == QtCore.Qt.LeftButton) and self.main.design_mode == True:
             self.InspectorInstance.loadNodeInfos() 
             self.InspectorInstance.show()
 
@@ -263,6 +263,8 @@ class Router(MNode):
                 print msg
 
         print self.ios.start()
+        for edge in self.edgeList:
+            edge.setStatus(self.id, True)
         
     def stopIOS(self):
         """ Stop the IOS instance
@@ -270,6 +272,8 @@ class Router(MNode):
     
         if self.ios != None:
             print self.ios.stop()
+            for edge in self.edgeList:
+                edge.setStatus(self.id, False)
         
     def resetIOSConfig(self):
         """ Delete the IOS instance
