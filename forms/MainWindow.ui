@@ -47,7 +47,7 @@
       </property>
       <column>
        <property name="text" >
-        <string>Elements</string>
+        <string>Nodes</string>
        </property>
       </column>
      </widget>

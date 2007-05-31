@@ -121,7 +121,7 @@ class Router(MNode):
                 if self.main.integrated_hypervisor['working_directory']:
                     self.main.integrated_hypervisor['dynamips_instance'].workingdir = self.main.integrated_hypervisor['working_directory']
             self.dynamips_instance = self.main.integrated_hypervisor['dynamips_instance']
-        else:
+        elif self.main.hypervisors.has_key(host + ':' + str(port)):
             hypervisor = self.main.hypervisors[host + ':' + str(port)]
             if hypervisor['dynamips_instance'] == None:
                 hypervisor['dynamips_instance'] = lib.Dynamips(host, port)
@@ -129,6 +129,9 @@ class Router(MNode):
                 if hypervisor['working_directory']:
                     hypervisor['dynamips_instance'].workingdir = hypervisor['working_directory']
             self.dynamips_instance = hypervisor['dynamips_instance']
+        else:
+            raise DynamipsError, "No hypervisor registered in %s:%i" % (host, port)
+
 
         #ROUTERS
         if platform == '7200':
@@ -200,6 +203,38 @@ class Router(MNode):
                     interface_list.append(name)
             slotnb += 1   
         return (interface_list)
+
+    def updateLinks(self, slotnb, module):
+        """ Update already connected links to react to a slot change
+        """
+        
+        node_interfaces = self.interfaces.copy()
+        error = QtGui.QErrorMessage()
+
+        if module == '':
+            for ifname in node_interfaces:
+                if int(ifname[1]) == slotnb:
+                    print ifname + " is still connected but no module into the slot " + str(slotnb)
+                    self.deleteInterface(ifname)
+            return
+        
+        assert(module in ADAPTERS)
+         # get number of interfaces and the abbreviation letter
+        (interfaces, abrv) = ADAPTERS[module][1:3]
+
+        for ifname in node_interfaces:
+            ifslot = int(ifname[1])
+            ifnb = int(ifname[3])
+            found = False
+            for modifnb in range(interfaces):
+                if ifslot == slotnb and ifnb == modifnb:
+                    found = True
+                    if ifname[0] != abrv:
+                        print ifname + " is connected to another non-compatible interface"
+                        self.deleteInterface(ifname)
+            if ifslot == slotnb and found == False:
+                print ifname + " is connected to a non-existing port in the slot " + str(slotnb)
+                self.deleteInterface(ifname)
 
     def startIOS(self):
         """ Create connections between nodes

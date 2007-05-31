@@ -27,15 +27,14 @@ from Utils import translate
 import Dynamips_lib as lib
 
 # globals
-baseid = 0                # Base to create IDs
-nodes = {}                # Node objects, indexed by the node ID
-links = {}                # node-Links objects, indexed by the link ID
-ios_images = {}           # Registered Cisco IOS images
-hypervisors = {}          # hypervisors
-#FIXME: temporary
-hypervisor = None         # global hypervisor
-conception_mode = True    # If we are in conception mode
-win = None                # ref to the main window
+baseid = 0                           # Base to create IDs
+nodes = {}                           # Node objects, indexed by the node ID
+links = {}                           # node-Links objects, indexed by the link ID
+ios_images = {}                      # Registered Cisco IOS images
+hypervisors = {}                     # hypervisors
+integrated_hypervisor = None         # global hypervisor
+conception_mode = True               # If we are in conception mode
+win = None                           # ref to the main window
 
 # links management
 linkEnabled = False

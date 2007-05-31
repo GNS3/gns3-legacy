@@ -68,43 +68,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.graphicsView.setTransformationAnchor(QtGui.QGraphicsView.AnchorUnderMouse)
         self.graphicsView.setResizeAnchor(QtGui.QGraphicsView.AnchorViewCenter)
 
-        # Example of use
-        #node1 = MNode(":Switch", self.scene, 0 , 0)
 
-
-#        item = QtSvg.QGraphicsSvgItem(":Switch")
-#        item.setPos(200, 200)
-#        item.setData(0, QtCore.QVariant(42))
-#        self.scene.addItem(item)
-#        print item.data(0).toInt()
-#        test = self.scene.itemAt(200, 200)
-#        if isinstance(test, QtSvg.QGraphicsSvgItem) == True :
-#            print test.data(0).toInt()
-
-        #node2 = MNode(":Route switch processor", self.scene, 150, 150)
-        #node3 = MNode(":Multilayer switch", self.scene, -100, 150)
-        #node4 = MNode(":Router with firewall", self.scene, 150, -150)
-        #node5 = MNode(":Router", self.scene, -150, -150)
-
-        #Edge(node1, node2, self.scene)
-        #Edge(node2, node3, self.scene)
-        #Edge(node3, node1, self.scene)
-        #Edge(node1, node4, self.scene)
-        #Edge(node1, node5, self.scene)
-
-#        listItems = self.scene.items()
-#        for item in listItems :
-#            if isinstance(item, QtSvg.QGraphicsSvgItem) == True:
-#                print item
-#                print item.data(0).toInt()
-
-        # Example of tree item
-        # item1 = TreeItem(self.treeWidget, "Mon item")
-
-##        text = QtGui.QGraphicsTextItem("10.10.1.45")
-##        text.setFlag(text.ItemIsMovable)
-##        text.setZValue(2)
-##        self.scene.addItem(text)
+        # text test
+        # text = QtGui.QGraphicsTextItem("10.10.1.45")
+        # text.setFlag(text.ItemIsMovable)
+        # text.setZValue(2)
+        # self.scene.addItem(text)
         # End of example
 
         # background test
@@ -172,22 +141,28 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def StartAllIOS(self):
         """ Start all IOS instances
         """
-
-        try:       
-            for node in self.main.nodes.keys():
+            
+        for node in self.main.nodes.keys():
+            try:
                 self.main.nodes[node].startIOS()
-        except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
+            except lib.DynamipsError, msg:
+                if msg[0][-15:] == 'already running':
+                    pass
+                else:
+                    QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
     
     def StopAllIOS(self):
         """ Stop all IOS instances
         """
         
-        try:       
-            for node in self.main.nodes.keys():
+        for node in self.main.nodes.keys():   
+            try:
                 self.main.nodes[node].stopIOS()
-        except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
+            except lib.DynamipsError, msg:
+                if msg[0][-15:] == 'already stopped':
+                    pass
+                else:
+                    QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
 
     def OpenNewFile(self):
         """ Open a previously saved GNS-3 scenario

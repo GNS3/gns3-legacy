@@ -49,7 +49,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self.iosConfig = {}
         self.interfaces = {}
         self.tmpif = None
-        self.abort = False
+        self.abort = True
         self.neighborList = []
         self.ios = None
         self.active_timer = False
@@ -316,7 +316,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         if self.main.countClick == 0:
             # source node is clicked
             self.menuInterface()
-            if self.abort == False:
+            if self.abort == False and self.tmpif:
                 self.main.countClick = 1
                 self.main.TabLinkMNode.append(self)
                 self._MNodeSelected = True
@@ -355,8 +355,10 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             action: QtCore.QAction instance
         """
 
-        self.abort = False
         interface = str(action.text())
+        if not interface:
+            return
+        self.abort = False
         if (self.main.countClick == 0):
             # source node
             self.tmpif = interface

@@ -44,8 +44,7 @@ class Ethernet(Edge):
    
         if self.source is None or self.dest is None:
             return
-        
-        #FIXME: Correct the bug when you throw the node
+
         self.prepareGeometryChange()
         rectsource = self.source.boundingRect()
         # compute the top middle and left middle of the bounding rectangle for the source

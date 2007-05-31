@@ -21,7 +21,6 @@
 from PyQt4 import QtCore, QtGui
 from Ui_Inspector import *
 import Dynamips_lib as lib
-import Router
 import __main__
 
 DEFAULTS = {
@@ -243,42 +242,6 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         self.spinBoxExecArea.setValue(64)
         self.spinBoxIomem.setValue(5)
 
-    #TODO: move this to Router.py
-    def _updateLinks(self, slotnb, module):
-        """ Update already connected links to react to slot change
-        """
-        
-        node = self.main.nodes[self.nodeid]
-        node_interfaces = node.interfaces.copy()
-        error = QtGui.QErrorMessage()
-
-        if module == '':
-            for ifname in node_interfaces:
-                if int(ifname[1]) == slotnb:
-                    print ifname + " is still connected but no module into the slot " + str(slotnb)
-                    node.deleteInterface(ifname)
-            return
-        
-        assert(module in Router.ADAPTERS)
-         # get number of interfaces and the abbreviation letter
-        (interfaces, abrv) = Router.ADAPTERS[module][1:3]
-
-        for ifname in node_interfaces:
-            ifslot = int(ifname[1])
-            ifnb = int(ifname[3])
-            found = False
-            for modifnb in range(interfaces):
-                print ifslot
-                print ifnb
-                if ifslot == slotnb and ifnb == modifnb:
-                    found = True
-                    if ifname[0] != abrv:
-                        print ifname + " is connected to another non-compatible interface"
-                        node.deleteInterface(ifname)
-            if ifslot == slotnb and found == False:
-                print ifname + " is connected to a non-existing port in the slot " + str(slotnb)
-                node.deleteInterface(ifname)
-
     def saveIOSConfig(self):
         """ Save IOS settings
         """
@@ -305,7 +268,7 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         slotnb = 0
         for widget in self.slots_list:
             module = str(widget.currentText())
-            self._updateLinks(slotnb, module)
+            node.updateLinks(slotnb, module)
             node.iosConfig['slots'].append(module)
             slotnb += 1
 
