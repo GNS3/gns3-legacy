@@ -147,7 +147,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
                 if sys.platform.startswith('darwin'):
                     os.system("/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet " + hypervisor_host + " " + str(self.ios.console) +"; exit\"' -e 'tell application \"Terminal\" to tell window 1  to set custom title to \"" + self.ios.name + "\"'")
                 elif sys.platform.startswith('win32'):
-                    os.system("cmd telnet " +  hypervisor_host + " " + str(self.ios.console))
+                    os.system("start telnet " +  hypervisor_host + " " + str(self.ios.console))
                 else:
                     os.system("xterm -T " + self.ios.name + " -e telnet " + hypervisor_host + " " + str(self.ios.console) + " > /dev/null 2>&1 &")
             time.sleep(0.5)

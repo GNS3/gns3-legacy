@@ -64,16 +64,19 @@ class QTreeWidgetCustom(QtGui.QTreeWidget):
         self.setRootIsDecorated(True)
         for node in self.main.nodes.keys():
             rootitem = QtGui.QTreeWidgetItem(self)
-            rootitem.setText(0, translate("MainWindow", "Node " + str(self.main.nodes[node].id)))
+            rootitem.setText(0, translate("MainWindow", "R" + str(self.main.nodes[node].id)))
             #rootitem.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
             
             interfaces = self.main.nodes[node].getInterfaces()
-            
             #TODO: finish to put the tree in simulation mode
             items = []
             for interface in interfaces:
                 item = QtGui.QTreeWidgetItem()
-                item.setText(0, 'interface ' + interface)
+                if self.main.nodes[node].interfaces.has_key(interface):
+                    connection = self.main.nodes[node].interfaces[interface]
+                    item.setText(0, interface + ' is connected to R' + str(connection[0]) + ' in ' + str(connection[1]))
+                else:
+                    item.setText(0, interface + ' is not connected')
                 items.append(item)
             rootitem.addChildren(items)
             

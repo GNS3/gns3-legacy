@@ -22,11 +22,12 @@ import sys
 try:
     import PyQt4
 except ImportError:
-    sys.stderr.write('PyQt is not installed')
+    sys.stderr.write('PyQt is not installed, please see the README')
     sys.exit(False)
 
 sys.path.append("./src")
 from Main import *
+import traceback
 
 print   '''Welcome to gns3 !
   _____ _   _  _____      ____  
@@ -37,4 +38,18 @@ print   '''Welcome to gns3 !
  \_____|_| \_|_____/     |____/ 
 '''
 
+def exceptionHook(type, value, tb):
+        
+        if exceptionHook == None:
+            return
+        lines = traceback.format_exception(type, value, tb)
+        print "---------------------Traceback lines-----------------------"
+        print "\n" . join(lines)
+        print "-----------------------------------------------------------"
+#        logfile = open('exception.log','a')
+#        traceback.print_exc(file = logfile)
+#        logfile.close()
+
+sys.excepthook=exceptionHook
 Main(sys.argv)
+

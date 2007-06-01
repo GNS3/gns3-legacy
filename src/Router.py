@@ -141,7 +141,7 @@ class Router(MNode):
         elif platform in ('3600', '2600'):
             self.ios = ROUTERS[platform](self.dynamips_instance, chassis = chassis, name = 'R' + str(self.id))
 
-        self.ios.image = self.iosConfig['iosimage'].split(':')[1]
+        self.ios.image = self.iosConfig['iosimage'].split(':', 1)[1]
         if self.iosConfig['startup-config'] != '':
             self.ios.cnfg = self.iosConfig['startup-config']
         self.ios.ram = self.iosConfig['RAM']

@@ -90,7 +90,7 @@ if console == '':
     if sys.platform.startswith('darwin'):
         console = "/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet %h %p ; exit\"' -e 'tell application \"Terminal\" to tell window to set custom title to \"%d\"'"
     elif sys.platform.startswith('win32'):
-        console = "cmd telnet %h %p"
+        console = "start telnet %h %p"
     else:
         console = "xterm -T %d -e 'telnet %h %p > /dev/null 2>&1 &"  
 sys.stdout.write('Telnet command ["' + console + '"]: ')

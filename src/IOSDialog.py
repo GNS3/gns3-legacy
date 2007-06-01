@@ -250,7 +250,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         item = self.treeWidgetIOSimages.currentItem()
         if (item != None):
             # restore image name
-            self.lineEditIOSImage.setText(str(item.text(0)).split(':')[1])
+            self.lineEditIOSImage.setText(str(item.text(0)).split(':', 1)[1])
             # restore platform
             index = self.comboBoxPlatform.findText(str(item.text(1)))
             self.comboBoxPlatform.setCurrentIndex(index)

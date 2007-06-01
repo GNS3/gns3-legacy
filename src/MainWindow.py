@@ -40,7 +40,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     # Get access to globals
     main = __main__
 
-    def __init__(self):
+    def __init__(self, app):
 
         QtGui.QMainWindow.__init__(self)
         self.setupUi(self)
@@ -52,6 +52,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         # expand items from the tree
         self.treeWidget.expandItem(self.treeWidget.topLevelItem(0))
+        self.app = app
 
     def createScene(self):
         """ Create the scene
@@ -156,8 +157,17 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         """ Start all IOS instances
         """
 
+        count = len(self.main.nodes.keys())
+        progress = QtGui.QProgressDialog("Starting nodes ...", "Abort", 0, count, self)
+        progress.setMinimum(1)
+        progress.setWindowModality(QtCore.Qt.WindowModal)
+        current = 0
         for node in self.main.nodes.keys():
             assert (self.main.nodes[node].ios != None)
+            progress.setValue(current)
+            self.app.processEvents()
+            if progress.wasCanceled():
+                break
             try:
                 self.main.nodes[node].startIOS()
             except lib.DynamipsError, msg:
@@ -165,13 +175,24 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                     pass
                 else:
                     QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
+            current += 1
+        progress.setValue(count)
 
     def StopAllIOS(self):
         """ Stop all IOS instances
         """
         
+        count = len(self.main.nodes.keys())
+        progress = QtGui.QProgressDialog("Stopping nodes ...", "Abort", 0, count, self)
+        progress.setMinimum(1)
+        progress.setWindowModality(QtCore.Qt.WindowModal)
+        current = 0
         for node in self.main.nodes.keys():
             assert (self.main.nodes[node].ios != None)
+            progress.setValue(current)
+            self.app.processEvents()
+            if progress.wasCanceled():
+                break
             try:
                 self.main.nodes[node].stopIOS()
             except lib.DynamipsError, msg:
@@ -179,7 +200,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                     pass
                 else:
                     QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
-
+            current += 1
+        progress.setValue(count)
 
     def OpenNewFile(self):
         """ Open a previously saved GNS-3 scenario

@@ -55,12 +55,11 @@ class Main:
         # Loading user configuration values
         GNS_Conf.load_IOSimages()
         GNS_Conf.load_IOShypervisors()
-
         #translator = QtCore.QTranslator(app)
         #if translator.load(":/fr"):
         #    app.installTranslator(translator)
 
-        win = MainWindow()
+        win = MainWindow(app)
         # we start in design mode
         win.statusbar.showMessage(translate('MainWindow', 'Design Mode'))
 
@@ -79,8 +78,12 @@ class Main:
         win.show()
 
         # start a local hypervisor
-        local = LocalHypervisor()
+        self.localhypervisor = LocalHypervisor()
         sys.exit(app.exec_())
+    
+    def __del__(self):
+        
+        self.localhypervisor.proc.kill()
 
 if __name__ == "__main__":
     Main(sys.argv)
