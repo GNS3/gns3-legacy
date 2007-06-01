@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>632</width>
-    <height>342</height>
+    <width>635</width>
+    <height>347</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -93,6 +93,13 @@
             </size>
            </property>
           </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonNewIOS" >
+           <property name="text" >
+            <string>&amp;New</string>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pushButtonEditIOS" >

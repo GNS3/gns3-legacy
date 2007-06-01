@@ -91,22 +91,31 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
             platform: string
             chassis: string
         """
-        
+
         # special case where the chassis is a platform in ADAPTER_MATRIX
-        if (chassis == '2691'):
-            self.comboBoxSlot0.addItems(list(lib.ADAPTER_MATRIX[chassis][''][0]))
-            self.comboBoxSlot1.addItems([''] + list(lib.ADAPTER_MATRIX[chassis][''][1]))
-            return
         try:
+            if (chassis == '2691'):
+                self.comboBoxSlot0.addItem(lib.ADAPTER_MATRIX['c' + chassis][''][0])
+                self.comboBoxSlot1.addItems([''] + list(lib.ADAPTER_MATRIX['c' + chassis][''][1]))
+                return
+            elif platform == 'c3700':
+                self.comboBoxSlot0.addItem(lib.ADAPTER_MATRIX['c' + chassis][''][0])
+                index = 1
+                for widget in self.slots_list[1:]:
+                    widget.addItems([''] + list(lib.ADAPTER_MATRIX['c' + chassis][''][index]))
+                    index += 1
+                return
             # some platforms/chassis have adapters on their motherboard (not optional)
-            if platform in ('c2600', 'c3700', 'c7200') or chassis == '3660':
+            if platform == 'c2600' or chassis == '3660':
+                self.comboBoxSlot0.addItem(lib.ADAPTER_MATRIX[platform][chassis][0])
+            elif platform == 'c7200':
                 self.comboBoxSlot0.addItems(list(lib.ADAPTER_MATRIX[platform][chassis][0]))
             else:
                 self.comboBoxSlot0.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][0]))    
             index = 1
             for widget in self.slots_list[1:]:
                 widget.addItems([''] + list(lib.ADAPTER_MATRIX[platform][chassis][index]))
-                index += 1
+                index += 1   
         except KeyError:
             return
     
@@ -171,10 +180,6 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         index = self.comboBoxIOS.findText(node.iosConfig['iosimage'])
         if index != -1:
             self.comboBoxIOS.setCurrentIndex(index)
-
-#        if node.iosConfig == {}:
-#             self.setDefaults()
-#             self.saveIOSConfig()
 
     def slotSelectStartupConfig(self):
         """ Get startup-config from the file system

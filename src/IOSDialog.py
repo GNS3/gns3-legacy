@@ -27,7 +27,7 @@ import __main__
 PLATFORMS = {'2600': ['2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM', '2691'],
              '3600': ['3620', '3640', '3660'],
              '3700': ['3725', '3745'],
-             '7200': []
+             '7200': ['']
              }
 
 class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
@@ -44,6 +44,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         self.setupUi(self)
         
         # connect buttons to slots
+        self.connect(self.pushButtonNewIOS, QtCore.SIGNAL('clicked()'), self.slotNewIOS)
         self.connect(self.pushButtonAddIOSImage, QtCore.SIGNAL('clicked()'), self.slotAddIOS)
         self.connect(self.pushButtonSelectIOSImage, QtCore.SIGNAL('clicked()'), self.slotSelectIOS)
         self.connect(self.pushButtonDeleteIOS, QtCore.SIGNAL('clicked()'), self.slotDeleteIOS)
@@ -89,7 +90,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                     working_dir = ''
                 else:
                     working_dir = image['working_directory']
-                item.setText(4,  image['hypervisor_host'] + ':' +  str(image['hypervisor_port']) + ' ' + working_dir)
+                item.setText(4,  image['hypervisor_host'] + ':' +  str(image['hypervisor_port']))
 
 
         for name in self.main.hypervisors.keys():
@@ -120,6 +121,12 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         if (m != None):
             return m.group(1)
         return (None)
+
+    def slotNewIOS(self):
+        """ Switch to New IOS image tab
+        """
+        
+        self.tabWidget.setCurrentIndex(1)
 
     def slotSelectedPlatform(self, platform):
         """ Called when a platform is selected
@@ -159,7 +166,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 for platformname in PLATFORMS.keys():
                     # retrieve all models for this platform
                     for model in PLATFORMS[platformname]:
-                        if platform == model:
+                        if platform == model or platform == '7200':
                             index = self.comboBoxPlatform.findText(platformname)
                             if index != -1:
                                 self.comboBoxPlatform.setCurrentIndex(index)

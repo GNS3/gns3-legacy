@@ -33,14 +33,14 @@ ROUTERS = {
 }
 
 ADAPTERS = {
-    "PA-C7200-IO-FE": (lib.PA_C7200_IO_FE, 1, 'f'),
-    "PA-C7200-IO-2FE": (lib.PA_C7200_IO_2FE, 2, 'f'),
-    "PA-C7200-IO-GE-E": (lib.PA_C7200_IO_GE_E, 1, 'g'),
+    "C7200-IO-FE": (lib.PA_C7200_IO_FE, 1, 'f'),
+    "C7200-IO-2FE": (lib.PA_C7200_IO_2FE, 2, 'f'),
+    "C7200-IO-GE-E": (lib.PA_C7200_IO_GE_E, 1, 'g'),
     "PA-A1": (lib.PA_A1, 1, 'a'),
     "PA-FE-TX": (lib.PA_FE_TX, 1, 'f'),
     "PA-2FE-TX": (lib.PA_2FE_TX, 2, 'f'),
     "PA-GE": (lib.PA_GE, 1, 'g'),
-    "PA-4T": (lib.PA_4T, 4, 's'),
+    "PA-4T+": (lib.PA_4T, 4, 's'),
     "PA-8T": (lib.PA_8T, 8, 's'),
     "PA-4E": (lib.PA_4E, 4, 'e'),
     "PA-8E": (lib.PA_8E, 8, 'e'),
@@ -83,6 +83,7 @@ class Router(MNode):
         self.InspectorInstance = Inspector(self.id)
         self.InspectorInstance.setModal(True)
         self.InspectorInstance.saveIOSConfig()
+        
         self.dynamips_instance = None
         
     def mouseDoubleClickEvent(self, event):
@@ -142,6 +143,8 @@ class Router(MNode):
             self.ios = ROUTERS[platform](self.dynamips_instance, chassis = chassis, name = 'R' + str(self.id))
 
         self.ios.image = self.iosConfig['iosimage'].split(':', 1)[1]
+        if self.iosConfig['consoleport']:
+            self.ios.console = int(self.iosConfig['consoleport'])
         if self.iosConfig['startup-config'] != '':
             self.ios.cnfg = self.iosConfig['startup-config']
         self.ios.ram = self.iosConfig['RAM']
@@ -217,7 +220,7 @@ class Router(MNode):
                     print ifname + " is still connected but no module into the slot " + str(slotnb)
                     self.deleteInterface(ifname)
             return
-        
+
         assert(module in ADAPTERS)
          # get number of interfaces and the abbreviation letter
         (interfaces, abrv) = ADAPTERS[module][1:3]

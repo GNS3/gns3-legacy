@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'IOSDialog.ui'
 #
-# Created: Thu May 31 16:25:00 2007
+# Created: Fri Jun  1 17:39:35 2007
 #      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,7 +13,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_IOSDialog(object):
     def setupUi(self, IOSDialog):
         IOSDialog.setObjectName("IOSDialog")
-        IOSDialog.resize(QtCore.QSize(QtCore.QRect(0,0,632,342).size()).expandedTo(IOSDialog.minimumSizeHint()))
+        IOSDialog.resize(QtCore.QSize(QtCore.QRect(0,0,635,347).size()).expandedTo(IOSDialog.minimumSizeHint()))
         IOSDialog.setWindowIcon(QtGui.QIcon(":/images/logo_gns3_transparency_small.png"))
 
         self.vboxlayout = QtGui.QVBoxLayout(IOSDialog)
@@ -45,6 +45,10 @@ class Ui_IOSDialog(object):
 
         spacerItem = QtGui.QSpacerItem(341,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
         self.hboxlayout.addItem(spacerItem)
+
+        self.pushButtonNewIOS = QtGui.QPushButton(self.tab)
+        self.pushButtonNewIOS.setObjectName("pushButtonNewIOS")
+        self.hboxlayout.addWidget(self.pushButtonNewIOS)
 
         self.pushButtonEditIOS = QtGui.QPushButton(self.tab)
         self.pushButtonEditIOS.setObjectName("pushButtonEditIOS")
@@ -303,6 +307,7 @@ class Ui_IOSDialog(object):
         self.treeWidgetIOSimages.headerItem().setText(2,QtGui.QApplication.translate("IOSDialog", "Chassis", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetIOSimages.headerItem().setText(3,QtGui.QApplication.translate("IOSDialog", "Idle PC", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetIOSimages.headerItem().setText(4,QtGui.QApplication.translate("IOSDialog", "Hypervisor", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonNewIOS.setText(QtGui.QApplication.translate("IOSDialog", "&New", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonEditIOS.setText(QtGui.QApplication.translate("IOSDialog", "&Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonDeleteIOS.setText(QtGui.QApplication.translate("IOSDialog", "&Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonClose.setText(QtGui.QApplication.translate("IOSDialog", "&Close", None, QtGui.QApplication.UnicodeUTF8))

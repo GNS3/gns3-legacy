@@ -140,8 +140,6 @@ class ConfDB(Singleton, QtCore.QSettings):
             key_str = str(key)
             value_str = str(dict_values[key])
             if value_str == "None": value_str = ""
-            print ">> Key:   " + key_str
-            print ">> Value: " + value_str
             self.set(key_str, value_str)
         self.endGroup()
 
