@@ -22,6 +22,8 @@ import sys
 try:
     import PyQt4
 except ImportError:
+    import tkMessageBox
+    tkMessageBox.showwarning("PyQt", "PyQt is not installed, please see the README\n")
     sys.stderr.write('PyQt is not installed, please see the README')
     sys.exit(False)
 

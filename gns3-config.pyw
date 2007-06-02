@@ -23,6 +23,8 @@ sys.path.append("./src")
 try:
     from PyQt4 import QtGui
 except ImportError:
+    import tkMessageBox
+    tkMessageBox.showwarning("PyQt", "PyQt is not installed, please see the README\n")
     sys.stderr.write('PyQt is not installed, please see the README')
     sys.exit(False)
 
@@ -37,7 +39,7 @@ print   '''Welcome to gns3 !
 | |__| | |\  |____) |     ___) |
  \_____|_| \_|_____/     |____/ 
 
-This script will help you to configure gns3.conf and notably these settings:
+This program will help you to configure your gns3.conf with those settings:
 
 - The integrated hypervisor (hypervisor instance that will be launched directly by gns-3)
 - The telnet program to use when connecting to an IOS
