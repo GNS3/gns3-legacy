@@ -120,7 +120,8 @@ class Router(MNode):
                 self.main.integrated_hypervisor['dynamips_instance'] = lib.Dynamips(host, port)
                 self.main.integrated_hypervisor['dynamips_instance'].reset()
                 if self.main.integrated_hypervisor['working_directory']:
-                    self.main.integrated_hypervisor['dynamips_instance'].workingdir = self.main.integrated_hypervisor['working_directory']
+                    working_dir = '"' + self.main.integrated_hypervisor['working_directory'] + '"'
+                    self.main.integrated_hypervisor['dynamips_instance'].workingdir = working_dir
             self.dynamips_instance = self.main.integrated_hypervisor['dynamips_instance']
         elif self.main.hypervisors.has_key(host + ':' + str(port)):
             hypervisor = self.main.hypervisors[host + ':' + str(port)]
@@ -128,10 +129,11 @@ class Router(MNode):
                 hypervisor['dynamips_instance'] = lib.Dynamips(host, port)
                 hypervisor['dynamips_instance'].reset()
                 if hypervisor['working_directory']:
-                    hypervisor['dynamips_instance'].workingdir = hypervisor['working_directory']
+                    working_dir = '"' + hypervisor['working_directory'] + '"'
+                    hypervisor['dynamips_instance'].workingdir = working_dir
             self.dynamips_instance = hypervisor['dynamips_instance']
         else:
-            raise DynamipsError, "No hypervisor registered in %s:%i" % (host, port)
+            raise lib.DynamipsError, "No hypervisor registered in %s:%i" % (host, port)
 
 
         #ROUTERS
@@ -142,11 +144,13 @@ class Router(MNode):
         elif platform in ('3600', '2600'):
             self.ios = ROUTERS[platform](self.dynamips_instance, chassis = chassis, name = 'R' + str(self.id))
 
-        self.ios.image = self.iosConfig['iosimage'].split(':', 1)[1]
+        image = '"' + self.iosConfig['iosimage'].split(':', 1)[1] + '"'
+        self.ios.image = image
         if self.iosConfig['consoleport']:
             self.ios.console = int(self.iosConfig['consoleport'])
         if self.iosConfig['startup-config'] != '':
-            self.ios.cnfg = self.iosConfig['startup-config']
+            config = '"' + self.iosConfig['startup-config'] + '"'
+            self.ios.cnfg = config
         self.ios.ram = self.iosConfig['RAM']
         self.ios.rom = self.iosConfig['ROM']
         self.ios.nvram = self.iosConfig['NVRAM']

@@ -17,7 +17,7 @@
 # Contact: developers@gns3.net
 #
 
-import sys
+import sys, time
 from PyQt4 import QtCore, QtGui
 from Utils import translate
 from Ui_MainWindow import *
@@ -165,11 +165,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         progress = QtGui.QProgressDialog("Starting nodes ...", "Abort", 0, count, self)
         progress.setMinimum(1)
         progress.setWindowModality(QtCore.Qt.WindowModal)
+        self.app.processEvents(QtCore.QEventLoop.AllEvents)
         current = 0
         for node in self.main.nodes.keys():
             assert (self.main.nodes[node].ios != None)
             progress.setValue(current)
-            self.app.processEvents()
+            self.app.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 5000)
             if progress.wasCanceled():
                 break
             try:
@@ -190,11 +191,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         progress = QtGui.QProgressDialog("Stopping nodes ...", "Abort", 0, count, self)
         progress.setMinimum(1)
         progress.setWindowModality(QtCore.Qt.WindowModal)
+        self.app.processEvents(QtCore.QEventLoop.AllEvents)
         current = 0
         for node in self.main.nodes.keys():
             assert (self.main.nodes[node].ios != None)
             progress.setValue(current)
-            self.app.processEvents()
+            self.app.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
             if progress.wasCanceled():
                 break
             try:
