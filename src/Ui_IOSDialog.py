@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'IOSDialog.ui'
 #
-# Created: Fri Jun  1 17:39:35 2007
+# Created: Sun Jun  3 00:49:10 2007
 #      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,7 +13,8 @@ from PyQt4 import QtCore, QtGui
 class Ui_IOSDialog(object):
     def setupUi(self, IOSDialog):
         IOSDialog.setObjectName("IOSDialog")
-        IOSDialog.resize(QtCore.QSize(QtCore.QRect(0,0,635,347).size()).expandedTo(IOSDialog.minimumSizeHint()))
+        IOSDialog.resize(QtCore.QSize(QtCore.QRect(0,0,623,338).size()).expandedTo(IOSDialog.minimumSizeHint()))
+        IOSDialog.setMaximumSize(QtCore.QSize(700,400))
         IOSDialog.setWindowIcon(QtGui.QIcon(":/images/logo_gns3_transparency_small.png"))
 
         self.vboxlayout = QtGui.QVBoxLayout(IOSDialog)
@@ -67,68 +68,10 @@ class Ui_IOSDialog(object):
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName("tab_2")
 
-        self.vboxlayout2 = QtGui.QVBoxLayout(self.tab_2)
-        self.vboxlayout2.setMargin(9)
-        self.vboxlayout2.setSpacing(6)
-        self.vboxlayout2.setObjectName("vboxlayout2")
-
-        self.gridlayout = QtGui.QGridLayout()
-        self.gridlayout.setMargin(0)
+        self.gridlayout = QtGui.QGridLayout(self.tab_2)
+        self.gridlayout.setMargin(9)
         self.gridlayout.setSpacing(6)
         self.gridlayout.setObjectName("gridlayout")
-
-        self.groupBox_2 = QtGui.QGroupBox(self.tab_2)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
-        self.groupBox_2.setSizePolicy(sizePolicy)
-        self.groupBox_2.setObjectName("groupBox_2")
-
-        self.vboxlayout3 = QtGui.QVBoxLayout(self.groupBox_2)
-        self.vboxlayout3.setMargin(9)
-        self.vboxlayout3.setSpacing(6)
-        self.vboxlayout3.setObjectName("vboxlayout3")
-
-        self.hboxlayout1 = QtGui.QHBoxLayout()
-        self.hboxlayout1.setMargin(0)
-        self.hboxlayout1.setSpacing(6)
-        self.hboxlayout1.setObjectName("hboxlayout1")
-
-        self.checkBoxIntegratedHypervisor = QtGui.QCheckBox(self.groupBox_2)
-        self.checkBoxIntegratedHypervisor.setChecked(True)
-        self.checkBoxIntegratedHypervisor.setObjectName("checkBoxIntegratedHypervisor")
-        self.hboxlayout1.addWidget(self.checkBoxIntegratedHypervisor)
-
-        spacerItem1 = QtGui.QSpacerItem(21,23,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.hboxlayout1.addItem(spacerItem1)
-        self.vboxlayout3.addLayout(self.hboxlayout1)
-
-        self.listWidgetHypervisors = QtGui.QListWidget(self.groupBox_2)
-        self.listWidgetHypervisors.setEnabled(False)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7),QtGui.QSizePolicy.Policy(7))
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.listWidgetHypervisors.sizePolicy().hasHeightForWidth())
-        self.listWidgetHypervisors.setSizePolicy(sizePolicy)
-        self.listWidgetHypervisors.setObjectName("listWidgetHypervisors")
-        self.vboxlayout3.addWidget(self.listWidgetHypervisors)
-        self.gridlayout.addWidget(self.groupBox_2,0,1,1,1)
-
-        self.hboxlayout2 = QtGui.QHBoxLayout()
-        self.hboxlayout2.setMargin(0)
-        self.hboxlayout2.setSpacing(6)
-        self.hboxlayout2.setObjectName("hboxlayout2")
-
-        spacerItem2 = QtGui.QSpacerItem(501,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.hboxlayout2.addItem(spacerItem2)
-
-        self.pushButtonAddIOSImage = QtGui.QPushButton(self.tab_2)
-        self.pushButtonAddIOSImage.setObjectName("pushButtonAddIOSImage")
-        self.hboxlayout2.addWidget(self.pushButtonAddIOSImage)
-        self.gridlayout.addLayout(self.hboxlayout2,1,0,1,2)
 
         self.groupBox = QtGui.QGroupBox(self.tab_2)
 
@@ -139,66 +82,37 @@ class Ui_IOSDialog(object):
         self.groupBox.setSizePolicy(sizePolicy)
         self.groupBox.setObjectName("groupBox")
 
-        self.vboxlayout4 = QtGui.QVBoxLayout(self.groupBox)
-        self.vboxlayout4.setMargin(9)
-        self.vboxlayout4.setSpacing(6)
-        self.vboxlayout4.setObjectName("vboxlayout4")
-
-        self.gridlayout1 = QtGui.QGridLayout()
-        self.gridlayout1.setMargin(0)
+        self.gridlayout1 = QtGui.QGridLayout(self.groupBox)
+        self.gridlayout1.setMargin(9)
         self.gridlayout1.setSpacing(6)
         self.gridlayout1.setObjectName("gridlayout1")
 
-        self.checkBoxGhostFeature = QtGui.QCheckBox(self.groupBox)
-        self.checkBoxGhostFeature.setEnabled(True)
-        self.checkBoxGhostFeature.setObjectName("checkBoxGhostFeature")
-        self.gridlayout1.addWidget(self.checkBoxGhostFeature,4,0,1,3)
-
-        self.lineEditIdlePC = QtGui.QLineEdit(self.groupBox)
-        self.lineEditIdlePC.setObjectName("lineEditIdlePC")
-        self.gridlayout1.addWidget(self.lineEditIdlePC,3,1,1,4)
+        spacerItem1 = QtGui.QSpacerItem(31,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
+        self.gridlayout1.addItem(spacerItem1,3,4,1,1)
 
         self.lineEditIOSImage = QtGui.QLineEdit(self.groupBox)
         self.lineEditIOSImage.setObjectName("lineEditIOSImage")
-        self.gridlayout1.addWidget(self.lineEditIOSImage,0,1,1,4)
-
-        self.label_12 = QtGui.QLabel(self.groupBox)
-        self.label_12.setObjectName("label_12")
-        self.gridlayout1.addWidget(self.label_12,3,0,1,1)
-
-        spacerItem3 = QtGui.QSpacerItem(31,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
-        self.gridlayout1.addItem(spacerItem3,2,5,1,1)
-
-        self.pushButtonSelectIOSImage = QtGui.QPushButton(self.groupBox)
-        self.pushButtonSelectIOSImage.setMaximumSize(QtCore.QSize(31,27))
-        self.pushButtonSelectIOSImage.setObjectName("pushButtonSelectIOSImage")
-        self.gridlayout1.addWidget(self.pushButtonSelectIOSImage,0,5,1,1)
-
-        self.label_15 = QtGui.QLabel(self.groupBox)
-        self.label_15.setObjectName("label_15")
-        self.gridlayout1.addWidget(self.label_15,4,3,1,1)
+        self.gridlayout1.addWidget(self.lineEditIOSImage,0,1,1,3)
 
         self.label = QtGui.QLabel(self.groupBox)
         self.label.setObjectName("label")
         self.gridlayout1.addWidget(self.label,0,0,1,1)
 
-        spacerItem4 = QtGui.QSpacerItem(31,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
-        self.gridlayout1.addItem(spacerItem4,3,5,1,1)
+        self.pushButtonSelectIOSImage = QtGui.QPushButton(self.groupBox)
+        self.pushButtonSelectIOSImage.setMaximumSize(QtCore.QSize(31,27))
+        self.pushButtonSelectIOSImage.setObjectName("pushButtonSelectIOSImage")
+        self.gridlayout1.addWidget(self.pushButtonSelectIOSImage,0,4,1,1)
 
-        spacerItem5 = QtGui.QSpacerItem(31,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
-        self.gridlayout1.addItem(spacerItem5,1,5,1,1)
+        self.comboBoxPlatform = QtGui.QComboBox(self.groupBox)
+        self.comboBoxPlatform.setObjectName("comboBoxPlatform")
+        self.gridlayout1.addWidget(self.comboBoxPlatform,1,1,1,3)
 
-        spacerItem6 = QtGui.QSpacerItem(31,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
-        self.gridlayout1.addItem(spacerItem6,4,5,1,1)
+        spacerItem2 = QtGui.QSpacerItem(31,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
+        self.gridlayout1.addItem(spacerItem2,1,4,1,1)
 
         self.label_2 = QtGui.QLabel(self.groupBox)
         self.label_2.setObjectName("label_2")
         self.gridlayout1.addWidget(self.label_2,1,0,1,1)
-
-        self.spinBoxGhostFileSize = QtGui.QSpinBox(self.groupBox)
-        self.spinBoxGhostFileSize.setSingleStep(8)
-        self.spinBoxGhostFileSize.setObjectName("spinBoxGhostFileSize")
-        self.gridlayout1.addWidget(self.spinBoxGhostFileSize,4,4,1,1)
 
         self.label_6 = QtGui.QLabel(self.groupBox)
         self.label_6.setObjectName("label_6")
@@ -206,28 +120,103 @@ class Ui_IOSDialog(object):
 
         self.comboBoxChassis = QtGui.QComboBox(self.groupBox)
         self.comboBoxChassis.setObjectName("comboBoxChassis")
-        self.gridlayout1.addWidget(self.comboBoxChassis,2,1,1,4)
+        self.gridlayout1.addWidget(self.comboBoxChassis,2,1,1,3)
 
-        self.comboBoxPlatform = QtGui.QComboBox(self.groupBox)
-        self.comboBoxPlatform.setObjectName("comboBoxPlatform")
-        self.gridlayout1.addWidget(self.comboBoxPlatform,1,1,1,4)
-        self.vboxlayout4.addLayout(self.gridlayout1)
+        spacerItem3 = QtGui.QSpacerItem(31,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
+        self.gridlayout1.addItem(spacerItem3,2,4,1,1)
+
+        self.lineEditIdlePC = QtGui.QLineEdit(self.groupBox)
+        self.lineEditIdlePC.setObjectName("lineEditIdlePC")
+        self.gridlayout1.addWidget(self.lineEditIdlePC,3,1,1,3)
+
+        self.label_12 = QtGui.QLabel(self.groupBox)
+        self.label_12.setObjectName("label_12")
+        self.gridlayout1.addWidget(self.label_12,3,0,1,1)
+
+        spacerItem4 = QtGui.QSpacerItem(31,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
+        self.gridlayout1.addItem(spacerItem4,4,4,1,1)
+
+        self.spinBoxGhostFileSize = QtGui.QSpinBox(self.groupBox)
+        self.spinBoxGhostFileSize.setSingleStep(8)
+        self.spinBoxGhostFileSize.setObjectName("spinBoxGhostFileSize")
+        self.gridlayout1.addWidget(self.spinBoxGhostFileSize,4,3,1,1)
+
+        self.label_15 = QtGui.QLabel(self.groupBox)
+        self.label_15.setObjectName("label_15")
+        self.gridlayout1.addWidget(self.label_15,4,2,1,1)
+
+        self.checkBoxGhostFeature = QtGui.QCheckBox(self.groupBox)
+        self.checkBoxGhostFeature.setEnabled(True)
+        self.checkBoxGhostFeature.setObjectName("checkBoxGhostFeature")
+        self.gridlayout1.addWidget(self.checkBoxGhostFeature,4,0,1,2)
         self.gridlayout.addWidget(self.groupBox,0,0,1,1)
-        self.vboxlayout2.addLayout(self.gridlayout)
+
+        self.hboxlayout1 = QtGui.QHBoxLayout()
+        self.hboxlayout1.setMargin(0)
+        self.hboxlayout1.setSpacing(6)
+        self.hboxlayout1.setObjectName("hboxlayout1")
+
+        self.pushButtonAddIOSImage = QtGui.QPushButton(self.tab_2)
+        self.pushButtonAddIOSImage.setObjectName("pushButtonAddIOSImage")
+        self.hboxlayout1.addWidget(self.pushButtonAddIOSImage)
+
+        spacerItem5 = QtGui.QSpacerItem(501,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        self.hboxlayout1.addItem(spacerItem5)
+        self.gridlayout.addLayout(self.hboxlayout1,1,0,1,2)
+
+        self.groupBox_2 = QtGui.QGroupBox(self.tab_2)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
+        self.groupBox_2.setSizePolicy(sizePolicy)
+        self.groupBox_2.setObjectName("groupBox_2")
+
+        self.vboxlayout2 = QtGui.QVBoxLayout(self.groupBox_2)
+        self.vboxlayout2.setMargin(9)
+        self.vboxlayout2.setSpacing(6)
+        self.vboxlayout2.setObjectName("vboxlayout2")
+
+        self.hboxlayout2 = QtGui.QHBoxLayout()
+        self.hboxlayout2.setMargin(0)
+        self.hboxlayout2.setSpacing(6)
+        self.hboxlayout2.setObjectName("hboxlayout2")
+
+        self.checkBoxIntegratedHypervisor = QtGui.QCheckBox(self.groupBox_2)
+        self.checkBoxIntegratedHypervisor.setChecked(True)
+        self.checkBoxIntegratedHypervisor.setObjectName("checkBoxIntegratedHypervisor")
+        self.hboxlayout2.addWidget(self.checkBoxIntegratedHypervisor)
+
+        spacerItem6 = QtGui.QSpacerItem(21,23,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        self.hboxlayout2.addItem(spacerItem6)
+        self.vboxlayout2.addLayout(self.hboxlayout2)
+
+        self.listWidgetHypervisors = QtGui.QListWidget(self.groupBox_2)
+        self.listWidgetHypervisors.setEnabled(False)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7),QtGui.QSizePolicy.Policy(7))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.listWidgetHypervisors.sizePolicy().hasHeightForWidth())
+        self.listWidgetHypervisors.setSizePolicy(sizePolicy)
+        self.listWidgetHypervisors.setObjectName("listWidgetHypervisors")
+        self.vboxlayout2.addWidget(self.listWidgetHypervisors)
+        self.gridlayout.addWidget(self.groupBox_2,0,1,1,1)
         self.tabWidget.addTab(self.tab_2,"")
 
         self.tab_3 = QtGui.QWidget()
         self.tab_3.setObjectName("tab_3")
 
-        self.vboxlayout5 = QtGui.QVBoxLayout(self.tab_3)
-        self.vboxlayout5.setMargin(9)
-        self.vboxlayout5.setSpacing(6)
-        self.vboxlayout5.setObjectName("vboxlayout5")
+        self.vboxlayout3 = QtGui.QVBoxLayout(self.tab_3)
+        self.vboxlayout3.setMargin(9)
+        self.vboxlayout3.setSpacing(6)
+        self.vboxlayout3.setObjectName("vboxlayout3")
 
         self.treeWidgetHypervisor = QtGui.QTreeWidget(self.tab_3)
         self.treeWidgetHypervisor.setRootIsDecorated(False)
         self.treeWidgetHypervisor.setObjectName("treeWidgetHypervisor")
-        self.vboxlayout5.addWidget(self.treeWidgetHypervisor)
+        self.vboxlayout3.addWidget(self.treeWidgetHypervisor)
 
         self.hboxlayout3 = QtGui.QHBoxLayout()
         self.hboxlayout3.setMargin(0)
@@ -253,7 +242,7 @@ class Ui_IOSDialog(object):
         self.pushButtonAddHypervisor = QtGui.QPushButton(self.tab_3)
         self.pushButtonAddHypervisor.setObjectName("pushButtonAddHypervisor")
         self.hboxlayout3.addWidget(self.pushButtonAddHypervisor)
-        self.vboxlayout5.addLayout(self.hboxlayout3)
+        self.vboxlayout3.addLayout(self.hboxlayout3)
 
         self.hboxlayout4 = QtGui.QHBoxLayout()
         self.hboxlayout4.setMargin(0)
@@ -291,7 +280,7 @@ class Ui_IOSDialog(object):
         self.pushButtonDeleteHypervisor = QtGui.QPushButton(self.tab_3)
         self.pushButtonDeleteHypervisor.setObjectName("pushButtonDeleteHypervisor")
         self.hboxlayout4.addWidget(self.pushButtonDeleteHypervisor)
-        self.vboxlayout5.addLayout(self.hboxlayout4)
+        self.vboxlayout3.addLayout(self.hboxlayout4)
         self.tabWidget.addTab(self.tab_3,"")
         self.vboxlayout.addWidget(self.tabWidget)
 
@@ -312,17 +301,17 @@ class Ui_IOSDialog(object):
         self.pushButtonDeleteIOS.setText(QtGui.QApplication.translate("IOSDialog", "&Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonClose.setText(QtGui.QApplication.translate("IOSDialog", "&Close", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QtGui.QApplication.translate("IOSDialog", "IOS images", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox_2.setTitle(QtGui.QApplication.translate("IOSDialog", "Hypervisor", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxIntegratedHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "Use the integrated hypervisor", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonAddIOSImage.setText(QtGui.QApplication.translate("IOSDialog", "Save IOS image", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox.setTitle(QtGui.QApplication.translate("IOSDialog", "General settings", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxGhostFeature.setText(QtGui.QApplication.translate("IOSDialog", "Use ghost file", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_12.setText(QtGui.QApplication.translate("IOSDialog", "IDLE PC:", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonSelectIOSImage.setText(QtGui.QApplication.translate("IOSDialog", "...", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_15.setText(QtGui.QApplication.translate("IOSDialog", "size:", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("IOSDialog", "Image file :", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonSelectIOSImage.setText(QtGui.QApplication.translate("IOSDialog", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("IOSDialog", "Platform:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_6.setText(QtGui.QApplication.translate("IOSDialog", "Chassis:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_12.setText(QtGui.QApplication.translate("IOSDialog", "IDLE PC:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_15.setText(QtGui.QApplication.translate("IOSDialog", "size:", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxGhostFeature.setText(QtGui.QApplication.translate("IOSDialog", "Use ghost file", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonAddIOSImage.setText(QtGui.QApplication.translate("IOSDialog", "Save IOS image", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox_2.setTitle(QtGui.QApplication.translate("IOSDialog", "Hypervisor", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxIntegratedHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "Use the integrated hypervisor", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QtGui.QApplication.translate("IOSDialog", "New IOS image", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetHypervisor.headerItem().setText(0,QtGui.QApplication.translate("IOSDialog", "Host", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetHypervisor.headerItem().setText(1,QtGui.QApplication.translate("IOSDialog", "Port", None, QtGui.QApplication.UnicodeUTF8))
