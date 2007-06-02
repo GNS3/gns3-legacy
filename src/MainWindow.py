@@ -105,7 +105,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         """
 
         if self.action_SwitchMode.text() == translate('MainWindow', 'Emulation Mode'):
-            # emulation mode
+            # emulation mode 
+            if len(self.main.ios_images.keys()) == 0:
+                QtGui.QMessageBox.critical(self, 'IOS settings',  translate('MainWindow', 'Please configure your IOS images'))
+                self.IOSDialog()
+                return
             self.action_SwitchMode.setText(translate('MainWindow', 'Design Mode'))
             ##self.action_SwitchMode.setIcon(QtGui.QIcon(':/icons/switch_conception_mode.svg'))
             self.statusbar.showMessage(translate('MainWindow', 'Emulation Mode'))
