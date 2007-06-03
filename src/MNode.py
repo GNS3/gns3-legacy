@@ -358,7 +358,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         interface = str(action.text())
         if not interface:
             return
-        self.abort = False
+        self.abort = True
         if (self.main.countClick == 0):
             # source node
             self.tmpif = interface
@@ -367,6 +367,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
                 QtGui.QMessageBox.critical(self.main.win, 'Connection',  'Already connected interface')
                 self.abort = True
                 return
+            self.abort = False
 
         elif (self.main.countClick == 1 and cmp(self.main.TabLinkMNode[0], self)):
             # destination node
@@ -377,7 +378,6 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.tmpif = interface
             srcif = self.main.TabLinkMNode[0].tmpif
             srcid = self.main.TabLinkMNode[0].id
-            #FIXME: bug ?
             assert(srcif != None)
             if srcif[0] != interface[0]:
                 QtGui.QMessageBox.critical(self.main.win, 'Connection',  'Interfaces types mismatch !')
@@ -385,6 +385,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
                 return
             self.interfaces[interface] = [srcid, srcif]
             self.main.TabLinkMNode[0].interfaces[srcif] = [self.id, interface]
+            self.abort = False
     
     def deleteInterface(self, ifname):
         """ Delete an interface and the link that is connected to it (if present)
