@@ -1,4 +1,79 @@
-==== KNOWN BUGS ====
+INSTALLATION
+
+ * Here are the dependencies of GNS-3:
+
+ 	- Qt >= 4.2
+ 	- Python >= 2.4
+ 	- Sip >= 4.5
+ 	- PyQt >= 4.1
+
+ * WINDOWS users:
+
+	1. Download http://www.gns3.net/chrome/site/pyqt-gns3-setup.exe (~22 MB)
+   
+	This program will install multiple programs that GNS-3 and Dynamips depends on:
+
+ 		- WinPCAP 4.0
+ 		- Dynamips 0.2.7
+ 		- Python 2.5.1
+ 		- PyQt 4.2                   
+ 		- MinGW dll and Qt 4.3 dlls.
+
+	2. Run pyqt-gns3-setup.exe and follow the prompts. You will be asked to reboot your PC at the end.
+
+	3. Configure the integrated hypervisor by double-clicking on gns3-config.pyw (Optional if you want to start dynamips in hypervisor mode yourself).
+
+	4. Start GNS-3 by double-clicking on gns3.pyw.
+
+ * Linux users:
+
+ 	- If you are on debian/ubuntu, use apt-get install python-qt4 to install the dependencies and start GNS-3 by double-clicking on gns3.pyw.
 
 
+ * MacOS X users:
+
+	1. Download python 2.5.1 for Macintosh OS X on http://www.python.org/download/ and install it.
+
+	2. Download qt-mac-opensource-4.3.0.dmg on http://trolltech.com/developer/downloads/qt/mac and install it
+
+	3. PyQt
+
+	4. Start GNS-3 by double-clicking on gns3.pyw.
+
+
+CURRENT LIMITATIONS
+
+Those limitations will be corrected in future releases.
+
+ * Currently the symbols are purely decorative, meaning there isn't any difference between them.
+ * Ethernet links are drawn whether you choose a serial or Ethernet interface.
+
+TODO LIST
+
+ * Provide a way to do get a IDLE PC directly from GNS-3 and include/reuse an IDLE PC database.
+ * Use the ghost file and sparsemen features
+ * Option to suspend and resume IOS.
+ * Enable the use of iomem
+ * Use virtual ATM, Frame-Relay, Ethernet switches and the NIO bridge module provided by Dynamips
+ * Language support.
+ * Configuration of network modules dynamically when linking to other nodes.
+ * Users can change hostnames
+ * NET files import and export
+ * Connections to real NICs
+ * Include a Close option and a New option on the File menu
+ * Provide a way to select multiple devices to configure at the same time in Node Configuration. Right now, you have to configure each router separately.
+ * Provide a all-in-one package for Windows users.
+ * Do a slow 'start all IOS'
+ * Use the fast clock divisor of Dynamips.
+ * Add more 'Cisco-like' SVG symbols.
+
+OPEN ISSUES
+
+ * How about a telnet all button?
+ * On Windows, all telnet windows have the same window title bar "Telnet localhost"
+ * How can we get the status of an interface from the IOS?
+
+BUG REPORT
+
+Open a new ticket on the trac.
 
