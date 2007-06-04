@@ -46,7 +46,7 @@ This program will help you to configure your gns3.conf with those settings:
 '''
 
 if sys.platform.startswith('win32'):
-    DEFAULT_PATH = 'C:/Dynamips/dynamips-wxp.exe'
+    DEFAULT_PATH = 'C:\Program Files\gns3\Dynamips\dynamips-wxp.exe'
 else:
     DEFAULT_PATH = ''
     
