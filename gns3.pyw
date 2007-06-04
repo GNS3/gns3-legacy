@@ -48,9 +48,9 @@ def exceptionHook(type, value, tb):
         print "---------------------Traceback lines-----------------------"
         print "\n" . join(lines)
         print "-----------------------------------------------------------"
-#        logfile = open('exception.log','a')
-#        traceback.print_exc(file = logfile)
-#        logfile.close()
+        logfile = open('exception.log','a')
+        logfile.write("\n" . join(lines))
+        logfile.close()
 
 sys.excepthook=exceptionHook
 Main(sys.argv)

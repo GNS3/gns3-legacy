@@ -27,7 +27,7 @@ INSTALLATION
 
  * Linux users:
 
- 	- If you are on debian/ubuntu, use apt-get install python-qt4 to install the dependencies and start GNS-3 by double-clicking on gns3.pyw.
+ 	- If you are on debian/ubuntu, use apt-get install python-qt4 to install the dependencies and start GNS-3 by double-clicking on gns3.pyw or launching it from a command line.
 
 
  * MacOS X users:
@@ -62,7 +62,6 @@ TODO LIST
  * Connections to real NICs
  * Include a Close option and a New option on the File menu
  * Provide a way to select multiple devices to configure at the same time in Node Configuration. Right now, you have to configure each router separately.
- * Provide a all-in-one package for Windows users.
  * Do a slow 'start all IOS'
  * Use the fast clock divisor of Dynamips.
  * Add more 'Cisco-like' SVG symbols.
@@ -75,5 +74,5 @@ OPEN ISSUES
 
 BUG REPORT
 
-Open a new ticket on the trac.
+Open a new ticket on the trac (development tab on www.gns3.net). Please be as explicit as you can. Try to remember what was you last action and join the exception.log file if it exits.
 
