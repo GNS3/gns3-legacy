@@ -9,17 +9,17 @@ INSTALLATION
 
  * WINDOWS users:
 
-	1. Download http://www.gns3.net/chrome/site/pyqt-gns3-setup.exe (~22 MB)
+	1. Download GNS3 all-in-one for Windows on http://www.gns3.net (~23 MB)
    
-	This program will install multiple programs that GNS-3 and Dynamips depends on:
+	This program will install GNS-3, Dynamips and multiple programs that them depends on:
 
  		- WinPCAP 4.0
  		- Dynamips 0.2.7
  		- Python 2.5.1
- 		- PyQt 4.2                   
+ 		- PyQt 4.2
  		- MinGW dll and Qt 4.3 dlls.
 
-	2. Run pyqt-gns3-setup.exe and follow the prompts. You will be asked to reboot your PC at the end.
+	2. Run it and follow the prompts. You will be asked to reboot your PC at the end.
 
 	3. Configure the integrated hypervisor by double-clicking on gns3-config.pyw (Optional if you want to start dynamips in hypervisor mode yourself).
 
@@ -32,13 +32,17 @@ INSTALLATION
 
  * MacOS X users:
 
-	1. Download python 2.5.1 for Macintosh OS X on http://www.python.org/download/ and install it.
+	1. Install the Apple Devs Tools (on your Mac OS X DvD or download it on ADC account)
 
-	2. Download qt-mac-opensource-4.3.0.dmg on http://trolltech.com/developer/downloads/qt/mac and install it
+	2. Download python 2.5.1 for Macintosh OS X on http://www.python.org/download/ and install it.
 
-	3. PyQt
+	3. Download qt-mac-opensource-4.3.0.dmg on http://trolltech.com/developer/downloads/qt/mac and install it
 
-	4. Start GNS-3 by double-clicking on gns3.pyw.
+	4. Download SIP http://www.riverbankcomputing.com/Downloads/sip4/sip-4.6.tar.gz, compile and install it
+
+	5. Download PyQt hhttp://www.riverbankcomputing.com/Downloads/PyQt4/GPL/PyQt-mac-gpl-4.2.tar.gz, compile and install it
+
+	6. Start GNS-3 by double-clicking on gns3.pyw.
 
 
 CURRENT LIMITATIONS
@@ -65,11 +69,14 @@ TODO LIST
  * Do a slow 'start all IOS'
  * Use the fast clock divisor of Dynamips.
  * Add more 'Cisco-like' SVG symbols.
+ * An all-in-one installer for Mac OS X
+ * Show interface names on the scene (as an option).
+ * Correct minor drawing problems with the status points.
 
 OPEN ISSUES
 
  * How about a telnet all button?
- * On Windows, all telnet windows have the same window title bar "Telnet localhost"
+ * On Windows, all telnet windows have the same window title bar "Telnet localhost", alternate solution: using putty
  * How can we get the status of an interface from the IOS?
 
 BUG REPORT

@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
+# Copyright (C) 2007 GNS-3 Dev Team
+#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation;
@@ -17,12 +19,13 @@
 # Contact: developers@gns3.net
 #
 
-import sys, os, time
+import sys, time
 from PyQt4 import QtCore, QtGui, QtSvg
 from Config import ConfDB
 from Ethernet import *
 from Utils import translate
 import Dynamips_lib as lib
+import subprocess as sub
 import __main__
 
 class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
@@ -137,20 +140,22 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         hypervisor_host = self.main.ios_images[self.iosConfig['iosimage']]['hypervisor_host']
 
         if self.ios.console != None:
-            console = ConfDB().get("Dynamips/console", '')
-            if console:
-                console = console.replace('%h', hypervisor_host)
-                console = console.replace('%p', str(self.ios.console))
-                console = console.replace('%d', self.ios.name)
-                os.system(console)
-            else:
-                if sys.platform.startswith('darwin'):
-                    os.system("/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet " + hypervisor_host + " " + str(self.ios.console) +"; exit\"' -e 'tell application \"Terminal\" to tell window 1  to set custom title to \"" + self.ios.name + "\"'")
-                elif sys.platform.startswith('win32'):
-                    os.system("start telnet " +  hypervisor_host + " " + str(self.ios.console))
+            try:
+                console = ConfDB().get("Dynamips/console", '')
+                if console:
+                    console = console.replace('%h', hypervisor_host)
+                    console = console.replace('%p', str(self.ios.console))
+                    console = console.replace('%d', self.ios.name)
+                    sub.Popen(console, shell=True)
                 else:
-                    os.system("xterm -T " + self.ios.name + " -e telnet " + hypervisor_host + " " + str(self.ios.console) + " > /dev/null 2>&1 &")
-            time.sleep(0.5)
+                    if sys.platform.startswith('darwin'):
+                        sub.Popen("/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet " + hypervisor_host + " " + str(self.ios.console) +"; exit\"' -e 'tell application \"Terminal\" to tell window 1  to set custom title to \"" + self.ios.name + "\"'")
+                    elif sys.platform.startswith('win32'):
+                        sub.Popen("telnet " +  hypervisor_host + " " + str(self.ios.console), shell=True)
+                    else:
+                        sub.Popen("xterm -T " + self.ios.name + " -e telnet " + hypervisor_host + " " + str(self.ios.console) + " > /dev/null 2>&1 &", shell=True)
+            except OSError, (errno, strerror):
+                QtGui.QMessageBox.critical(self.main.win, 'Console error', strerror)
 
     def __startAction(self):
         """ Action called to start the IOS hypervisor on the node
