@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'IOSDialog.ui'
 #
-# Created: Sun Jun  3 00:49:10 2007
+# Created: Tue Jun  5 23:48:05 2007
 #      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -137,6 +137,7 @@ class Ui_IOSDialog(object):
         self.gridlayout1.addItem(spacerItem4,4,4,1,1)
 
         self.spinBoxGhostFileSize = QtGui.QSpinBox(self.groupBox)
+        self.spinBoxGhostFileSize.setEnabled(False)
         self.spinBoxGhostFileSize.setSingleStep(8)
         self.spinBoxGhostFileSize.setObjectName("spinBoxGhostFileSize")
         self.gridlayout1.addWidget(self.spinBoxGhostFileSize,4,3,1,1)
@@ -146,7 +147,7 @@ class Ui_IOSDialog(object):
         self.gridlayout1.addWidget(self.label_15,4,2,1,1)
 
         self.checkBoxGhostFeature = QtGui.QCheckBox(self.groupBox)
-        self.checkBoxGhostFeature.setEnabled(True)
+        self.checkBoxGhostFeature.setEnabled(False)
         self.checkBoxGhostFeature.setObjectName("checkBoxGhostFeature")
         self.gridlayout1.addWidget(self.checkBoxGhostFeature,4,0,1,2)
         self.gridlayout.addWidget(self.groupBox,0,0,1,1)
