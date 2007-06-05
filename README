@@ -72,6 +72,7 @@ TODO LIST
  * An all-in-one installer for Mac OS X
  * Show interface names on the scene (as an option).
  * Correct minor drawing problems with the status points.
+ * Warn users when configuration changes in the node affect links
 
 OPEN ISSUES
 
