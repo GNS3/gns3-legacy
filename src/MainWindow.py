@@ -121,6 +121,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.action_Add_link.setEnabled(False)
             self.action_StartAll.setEnabled(True)
             self.action_StopAll.setEnabled(True)
+            self.action_TelnetAll.setEnabled(True)
             self.treeWidget.emulationMode()
             try:
                 for node in self.main.nodes.keys():
@@ -138,6 +139,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.action_Add_link.setEnabled(True)
             self.action_StartAll.setEnabled(False)
             self.action_StopAll.setEnabled(False)
+            self.action_TelnetAll.setEnabled(False)
             self.treeWidget.designMode()
             try:
                 for node in self.main.nodes.keys():
@@ -210,6 +212,15 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                     QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
             current += 1
         progress.setValue(count)
+
+    def TelnetAllIOS(self):
+        """ Start a telnet console for all IOS
+        """
+        
+        for node in self.main.nodes.keys():
+            if self.main.nodes[node].ios.state == 'running':
+                if self.main.nodes[node].telnetToIOS() == False:
+                    return
 
     def OpenNewFile(self):
         """ Open a previously saved GNS-3 scenario
@@ -336,6 +347,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     def _xmlLoad(self, file):
 
+        if self.main.design_mode == False:
+            QtGui.QMessageBox.warning(self, 'Topology',  "You can't open a topology when in emulation mode")
+            return
+        
         dom = parse(file)
 
         # first, delete all node present on scene

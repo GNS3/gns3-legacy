@@ -113,6 +113,7 @@
    <addaction name="action_SwitchMode" />
    <addaction name="separator" />
    <addaction name="action_Add_link" />
+   <addaction name="action_TelnetAll" />
    <addaction name="action_StartAll" />
    <addaction name="action_StopAll" />
   </widget>
@@ -213,7 +214,7 @@
     <iconset resource="../svg/svg_resources.qrc" >:/icons/start_metal.svg</iconset>
    </property>
    <property name="text" >
-    <string>Start All IOS</string>
+    <string>Start all IOS</string>
    </property>
   </action>
   <action name="action_StopAll" >
@@ -233,6 +234,17 @@
    </property>
    <property name="text" >
     <string>Show hostnames</string>
+   </property>
+  </action>
+  <action name="action_TelnetAll" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="../svg/svg_resources.qrc" >:/icons/console.svg</iconset>
+   </property>
+   <property name="text" >
+    <string>Telnet all IOS</string>
    </property>
   </action>
  </widget>

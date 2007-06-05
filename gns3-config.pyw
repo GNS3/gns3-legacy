@@ -81,7 +81,7 @@ class Configurator(QtGui.QMainWindow, Ui_MainWindow):
             elif sys.platform.startswith('win32'):
                 console = "start telnet %h %p"
             else:
-                console = "xterm -T %d -e 'telnet %h %p > /dev/null 2>&1 &"
+                console = "xterm -T %d -e 'telnet %h %p' > /dev/null 2>&1 &"
         self.lineEditCommand.setText(console)
 
     def slotPath(self):

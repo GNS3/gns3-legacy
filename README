@@ -73,10 +73,10 @@ TODO LIST
  * Show interface names on the scene (as an option).
  * Correct minor drawing problems with the status points.
  * Warn users when configuration changes in the node affect links
+ * Connect links and new modules for the 7200 platform directly in emulation mode (hotplug)
 
 OPEN ISSUES
 
- * How about a telnet all button?
  * On Windows, all telnet windows have the same window title bar "Telnet localhost", alternate solution: using putty
  * How can we get the status of an interface from the IOS?
 

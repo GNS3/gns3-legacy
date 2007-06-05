@@ -77,6 +77,7 @@ class Main:
         win.connect(win.action_SwitchMode, QtCore.SIGNAL('activated()'), win.SwitchMode)
         win.connect(win.action_StartAll, QtCore.SIGNAL('activated()'), win.StartAllIOS)
         win.connect(win.action_StopAll, QtCore.SIGNAL('activated()'), win.StopAllIOS)
+        win.connect(win.action_TelnetAll, QtCore.SIGNAL('activated()'), win.TelnetAllIOS)
         win.show()
 
         # start a local hypervisor

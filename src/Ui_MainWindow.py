@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Mon Jun  4 13:01:53 2007
+# Created: Tue Jun  5 23:09:42 2007
 #      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -118,6 +118,11 @@ class Ui_MainWindow(object):
         self.action_ShowHostnames = QtGui.QAction(MainWindow)
         self.action_ShowHostnames.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
         self.action_ShowHostnames.setObjectName("action_ShowHostnames")
+
+        self.action_TelnetAll = QtGui.QAction(MainWindow)
+        self.action_TelnetAll.setEnabled(False)
+        self.action_TelnetAll.setIcon(QtGui.QIcon(":/icons/console.svg"))
+        self.action_TelnetAll.setObjectName("action_TelnetAll")
         self.menuIOS.addAction(self.action_IOS_images)
         self.menu_File.addAction(self.action_Open)
         self.menu_File.addAction(self.action_Save)
@@ -138,6 +143,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.action_SwitchMode)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.action_Add_link)
+        self.toolBar.addAction(self.action_TelnetAll)
         self.toolBar.addAction(self.action_StartAll)
         self.toolBar.addAction(self.action_StopAll)
 
@@ -164,9 +170,10 @@ class Ui_MainWindow(object):
         self.action_OnlineHelp.setText(QtGui.QApplication.translate("MainWindow", "&Online Help", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Import.setText(QtGui.QApplication.translate("MainWindow", "&Import", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Export.setText(QtGui.QApplication.translate("MainWindow", "&Export", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_StartAll.setText(QtGui.QApplication.translate("MainWindow", "Start All IOS", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_StartAll.setText(QtGui.QApplication.translate("MainWindow", "Start all IOS", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StopAll.setText(QtGui.QApplication.translate("MainWindow", "Stop all IOS", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ShowHostnames.setText(QtGui.QApplication.translate("MainWindow", "Show hostnames", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_TelnetAll.setText(QtGui.QApplication.translate("MainWindow", "Telnet all IOS", None, QtGui.QApplication.UnicodeUTF8))
 
 from QTreeWidgetCustom import QTreeWidgetCustom
 from QGraphicsViewCustom import QGraphicsViewCustom

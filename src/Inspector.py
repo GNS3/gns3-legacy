@@ -182,6 +182,7 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         index = self.comboBoxIOS.findText(node.iosConfig['iosimage'])
         if index != -1:
             self.comboBoxIOS.setCurrentIndex(index)
+        self.restoreIOSConfig()
 
     def slotSelectStartupConfig(self):
         """ Get startup-config from the file system
@@ -211,7 +212,7 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
             if self.buttonBoxIOSConfig.standardButton(button) == QtGui.QDialogButtonBox.Cancel:
                 self.restoreIOSConfig()
             else:
-                self.saveIOSConfig()
+                # self.saveIOSConfig()
                 self.close()
         if self.buttonBoxIOSConfig.buttonRole(button) == QtGui.QDialogButtonBox.ResetRole:
             self.setDefaults()

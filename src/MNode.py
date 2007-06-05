@@ -137,25 +137,8 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         """ Action called to start a node console
         """
 
-        hypervisor_host = self.main.ios_images[self.iosConfig['iosimage']]['hypervisor_host']
+        self.telnetToIOS()
 
-        if self.ios.console != None:
-            try:
-                console = ConfDB().get("Dynamips/console", '')
-                if console:
-                    console = console.replace('%h', hypervisor_host)
-                    console = console.replace('%p', str(self.ios.console))
-                    console = console.replace('%d', self.ios.name)
-                    sub.Popen(console, shell=True)
-                else:
-                    if sys.platform.startswith('darwin'):
-                        sub.Popen("/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet " + hypervisor_host + " " + str(self.ios.console) +"; exit\"' -e 'tell application \"Terminal\" to tell window 1  to set custom title to \"" + self.ios.name + "\"'")
-                    elif sys.platform.startswith('win32'):
-                        sub.Popen("telnet " +  hypervisor_host + " " + str(self.ios.console), shell=True)
-                    else:
-                        sub.Popen("xterm -T " + self.ios.name + " -e telnet " + hypervisor_host + " " + str(self.ios.console) + " > /dev/null 2>&1 &", shell=True)
-            except OSError, (errno, strerror):
-                QtGui.QMessageBox.critical(self.main.win, 'Console error', strerror)
 
     def __startAction(self):
         """ Action called to start the IOS hypervisor on the node
@@ -439,6 +422,31 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self.textItem.setZValue(2)
         self.textItem.setPos(20, -20)
         self._QGraphicsScene.addItem(self.textItem)
+        
+    def telnetToIOS(self):
+        """ Start a telnet console and connect it to an IOS
+        """
+        
+        hypervisor_host = self.main.ios_images[self.iosConfig['iosimage']]['hypervisor_host']
+        if self.ios.console != None:
+            try:
+                console = ConfDB().get("Dynamips/console", '')
+                if console:
+                    console = console.replace('%h', hypervisor_host)
+                    console = console.replace('%p', str(self.ios.console))
+                    console = console.replace('%d', self.ios.name)
+                    sub.Popen(console, shell=True)
+                else:
+                    if sys.platform.startswith('darwin'):
+                        sub.Popen("/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet " + hypervisor_host + " " + str(self.ios.console) +"; exit\"' -e 'tell application \"Terminal\" to tell window 1  to set custom title to \"" + self.ios.name + "\"'")
+                    elif sys.platform.startswith('win32'):
+                        sub.Popen("telnet " +  hypervisor_host + " " + str(self.ios.console), shell=True)
+                    else:
+                        sub.Popen("xterm -T " + self.ios.name + " -e telnet '" + hypervisor_host + " " + str(self.ios.console) + "' > /dev/null 2>&1 &", shell=True)
+            except OSError, (errno, strerror):
+                QtGui.QMessageBox.critical(self.main.win, 'Console error', strerror)
+                return (False)
+            return (True)
  
     def removeHostname(self):
         """ Remove the hostname on the scene
