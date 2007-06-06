@@ -107,7 +107,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         """
 
         if self.action_SwitchMode.text() == translate('MainWindow', 'Emulation Mode'):
-            # emulation mode 
+            # emulation mode
             if len(self.main.ios_images.keys()) == 0:
                 QtGui.QMessageBox.critical(self, 'IOS settings',  translate('MainWindow', 'Please configure your IOS images'))
                 self.IOSDialog()
@@ -153,17 +153,17 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             except lib.DynamipsErrorHandled:
                 QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
                 return
-            
+
     def ShowHostnames(self):
         """ Show the hostnames of all nodes
         """
-        
+
         if self.action_ShowHostnames.text() == translate('MainWindow', 'Show hostnames'):
             self.action_ShowHostnames.setText(translate('MainWindow', 'Hide hostnames'))
             for node in self.main.nodes.keys():
                 self.main.nodes[node].showHostname()
         elif self.action_ShowHostnames.text() == translate('MainWindow', 'Hide hostnames'):
-            self.action_ShowHostnames.setText(translate('MainWindow', 'Show hostnames'))                
+            self.action_ShowHostnames.setText(translate('MainWindow', 'Show hostnames'))
             for node in self.main.nodes.keys():
                 self.main.nodes[node].removeHostname()
 
@@ -202,7 +202,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def StopAllIOS(self):
         """ Stop all IOS instances
         """
-        
+
         count = len(self.main.nodes.keys())
         progress = QtGui.QProgressDialog("Stopping nodes ...", "Abort", 0, count, self)
         progress.setMinimum(1)
@@ -234,7 +234,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def TelnetAllIOS(self):
         """ Start a telnet console for all IOS
         """
-        
+
         for node in self.main.nodes.keys():
             if self.main.nodes[node].ios.state == 'running':
                 if self.main.nodes[node].telnetToIOS() == False:
@@ -368,7 +368,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         if self.main.design_mode == False:
             QtGui.QMessageBox.warning(self, 'Topology',  "You can't open a topology when in emulation mode")
             return
-        
+
         dom = parse(file)
 
         # first, delete all node present on scene
@@ -513,11 +513,20 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                         i += 2
                         j += 1
 
+            print ">>>>>>>>>>>>>>>> NODE <<<<<<<<<<<<<<<<"
+            print iosConfig
+            print "--------------------------------------"
+
             # Now we create the node
             self.main.baseid = int(id)
             r = Router(svgrc, self.scene, float(x), float(y))
             r.setName(type)
             r.iosConfig = iosConfig
+
+            print ">>> Dynamips :: IOS Images"
+            print self.main.ios_images
+            print ">>> Dynamips :: Hypervisors"
+            print self.main.hypervisors
 
         links = dom.getElementsByTagName("link")
         for link in links:
@@ -541,11 +550,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def _clearScene(self):
         """ Clear the scene
         """
-        
+
         _nodes = self.main.nodes.copy()
         for (nodeid,node) in _nodes.iteritems():
             node.delete()
-            
+
     def close(self):
         """ Slot called when closing the windows
         """
