@@ -84,3 +84,12 @@ BUG REPORT
 
 Open a new ticket on the trac (development tab on www.gns3.net). Please be as explicit as you can. Try to remember what was you last action and join the exception.log file if it exits.
 
+KNOW BUGS
+
+ * Currently on Windows we have some performance problems when loading a lot IOS instances, this problems could crash Dynamips.
+ * We have some warning from Qt 4.2.3 that will not longer appear with 4.3
+ 
+ADVICE
+
+ * We noticed that on Linux performances are far better than on Windows when loading many IOS.
+ 
