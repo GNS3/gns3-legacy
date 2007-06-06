@@ -513,20 +513,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                         i += 2
                         j += 1
 
-            print ">>>>>>>>>>>>>>>> NODE <<<<<<<<<<<<<<<<"
-            print iosConfig
-            print "--------------------------------------"
-
             # Now we create the node
             self.main.baseid = int(id)
             r = Router(svgrc, self.scene, float(x), float(y))
             r.setName(type)
             r.iosConfig = iosConfig
-
-            print ">>> Dynamips :: IOS Images"
-            print self.main.ios_images
-            print ">>> Dynamips :: Hypervisors"
-            print self.main.hypervisors
 
         links = dom.getElementsByTagName("link")
         for link in links:

@@ -76,7 +76,7 @@ class Router(MNode):
             xPos: integer
             yPos: integer
         """
-        
+
         MNode.__init__(self, svgfile, QGraphicsScene, xPos, yPos)
 
         # save the object
@@ -85,15 +85,15 @@ class Router(MNode):
         self.InspectorInstance = Inspector(self.id)
         self.InspectorInstance.setModal(True)
         self.InspectorInstance.saveIOSConfig()
-        
+
         self.dynamips_instance = None
-        
+
     def mouseDoubleClickEvent(self, event):
         """ Show the inspector instance
         """
 
         if (event.button() == QtCore.Qt.LeftButton) and self.main.design_mode == True:
-            self.InspectorInstance.loadNodeInfos() 
+            self.InspectorInstance.loadNodeInfos()
             self.InspectorInstance.show()
 
     def configIOS(self):
@@ -101,7 +101,7 @@ class Router(MNode):
         """
 
         self.InspectorInstance.comboBoxIOS.addItems(self.main.ios_images.keys())
-        self.InspectorInstance.saveIOSConfig()
+        #self.InspectorInstance.saveIOSConfig()
 
         if self.iosConfig['iosimage'] == '':
             sys.stderr.write("Node " + str(self.id) + ": no selected IOS image\n")
@@ -114,7 +114,7 @@ class Router(MNode):
         platform = image_settings['platform']
         chassis = image_settings['chassis']
         idlepc = image_settings['idlepc']
-        
+
         # connect to hypervisor
         if self.main.integrated_hypervisor != None and host == 'localhost' and \
            self.main.integrated_hypervisor['port'] == port:
@@ -180,13 +180,13 @@ class Router(MNode):
             self.ios.idlepc = idlepc
         else: #FIXME: only for tests
             self.ios.idlepc = '0x60483ae4'
-        
+
     def configSlot(self, slotnb, module):
         """ Add an new module into a slot
             slotnb: integer
             module: string
         """
-        
+
         if (module == ''):
             return
         if module in ADAPTERS:
@@ -198,10 +198,10 @@ class Router(MNode):
     def getInterfaces(self):
         """ Return all interfaces
         """
-        
+
         interface_list = []
         slotnb = 0
-        for module in self.iosConfig['slots']:    
+        for module in self.iosConfig['slots']:
             # add interfaces corresponding to the given module
             if module and module in ADAPTERS:
                 # get number of interfaces and the abbreviation letter
@@ -210,13 +210,13 @@ class Router(MNode):
                 for interface in range(interfaces):
                     name = abrv + str(slotnb) + '/' + str(interface)
                     interface_list.append(name)
-            slotnb += 1   
+            slotnb += 1
         return (interface_list)
 
     def updateLinks(self, slotnb, module):
         """ Update already connected links to react to a slot change
         """
-        
+
         node_interfaces = self.interfaces.copy()
         error = QtGui.QErrorMessage()
 
@@ -249,7 +249,7 @@ class Router(MNode):
         """ Create connections between nodes
             Start the IOS instance
         """
-        
+
         # localport, remoteserver, remoteadapter, remoteport
         # self.ios.slot[0].connect(0, self.main.hypervisor, esw.slot[1], 0)
         if self.ios == None:
@@ -274,22 +274,21 @@ class Router(MNode):
         print self.ios.start()
         for edge in self.edgeList:
             edge.setStatus(self.id, True)
-        
+
     def stopIOS(self):
         """ Stop the IOS instance
         """
-    
+
         if self.ios != None:
             print self.ios.stop()
             for edge in self.edgeList:
                 edge.setStatus(self.id, False)
-        
+
     def resetIOSConfig(self):
         """ Delete the IOS instance
         """
-    
+
         if self.ios != None:
             self.ios.delete()
             for edge in self.edgeList:
                 edge.setStatus(self.id, False)
- 
