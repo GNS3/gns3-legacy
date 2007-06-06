@@ -208,12 +208,11 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
     
         if self.buttonBoxIOSConfig.buttonRole(button) == QtGui.QDialogButtonBox.ApplyRole:
             self.saveIOSConfig()
+        if self.buttonBoxIOSConfig.buttonRole(button) == QtGui.QDialogButtonBox.AcceptRole:
+            self.saveIOSConfig()
+            self.close() 
         if self.buttonBoxIOSConfig.buttonRole(button) == QtGui.QDialogButtonBox.RejectRole:
-            if self.buttonBoxIOSConfig.standardButton(button) == QtGui.QDialogButtonBox.Cancel:
-                self.restoreIOSConfig()
-            else:
-                # self.saveIOSConfig()
-                self.close()
+            self.close()
         if self.buttonBoxIOSConfig.buttonRole(button) == QtGui.QDialogButtonBox.ResetRole:
             self.setDefaults()
 

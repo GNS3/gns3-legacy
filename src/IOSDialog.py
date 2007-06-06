@@ -251,6 +251,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             self.treeWidgetIOSimages.addTopLevelItem(item)
             # switch to ios images tab
             self.tabWidget.setCurrentIndex(0)
+            ConfDB().sync()
 
     def slotEditIOS(self):
         """ Load the selected line from the list of IOS images to edit it

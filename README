@@ -17,7 +17,7 @@ INSTALLATION
  		- Dynamips 0.2.7
  		- Python 2.5.1
  		- PyQt 4.2
- 		- MinGW dll and Qt 4.3 dlls.
+ 		- MinGW dll and Qt 4.2.3 dlls.
 
 	2. Run it and follow the prompts. You will be asked to reboot your PC at the end.
 

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Inspector.ui'
 #
-# Created: Sun Jun  3 00:58:36 2007
+# Created: Wed Jun  6 11:58:11 2007
 #      by: PyQt4 UI code generator 4.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -441,7 +441,7 @@ class Ui_FormInspector(object):
         self.buttonBoxIOSConfig = QtGui.QDialogButtonBox(FormInspector)
         self.buttonBoxIOSConfig.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.buttonBoxIOSConfig.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBoxIOSConfig.setStandardButtons(QtGui.QDialogButtonBox.Apply|QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Close|QtGui.QDialogButtonBox.NoButton|QtGui.QDialogButtonBox.RestoreDefaults)
+        self.buttonBoxIOSConfig.setStandardButtons(QtGui.QDialogButtonBox.Apply|QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.NoButton|QtGui.QDialogButtonBox.Ok|QtGui.QDialogButtonBox.RestoreDefaults)
         self.buttonBoxIOSConfig.setObjectName("buttonBoxIOSConfig")
         self.hboxlayout3.addWidget(self.buttonBoxIOSConfig)
         self.vboxlayout.addLayout(self.hboxlayout3)
