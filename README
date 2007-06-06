@@ -51,6 +51,9 @@ Those limitations will be corrected in future releases.
 
  * Currently the symbols are purely decorative, meaning there isn't any difference between them.
  * Ethernet links are drawn whether you choose a serial or Ethernet interface.
+ * We don't use the ghost feature.
+ * Sparsemem feature is set in hard in the source code.
+ * IOmem is not use at the moment.
 
 TODO LIST
 
@@ -74,6 +77,7 @@ TODO LIST
  * Correct minor drawing problems with the status points.
  * Warn users when configuration changes in the node affect links
  * Connect links and new modules for the 7200 platform directly in emulation mode (hotplug)
+ * Integrated hypervisor load-balancing to address the per process limit problem (http://dynagen.org/tutorial.htm#_Toc165530762)
 
 OPEN ISSUES
 

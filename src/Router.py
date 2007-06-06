@@ -96,6 +96,23 @@ class Router(MNode):
             self.InspectorInstance.loadNodeInfos()
             self.InspectorInstance.show()
 
+    def setMinimalConfig(self, imagename):
+        """ Set a minimal IOS configuration when the user hasn't set any settings
+        """
+        
+        self.iosConfig['iosimage'] = imagename
+        self.iosConfig['RAM'] = 128
+        self.iosConfig['ROM'] = 4
+        self.iosConfig['NVRAM'] = 128
+        self.iosConfig['mmap'] = True
+        self.iosConfig['execarea'] = 64
+        if self.main.ios_images[imagename]['platform'] == '3600':
+            self.iosConfig['iomem'] = 5
+        if self.main.ios_images[imagename]['platform'] == '7200':
+            self.iosConfig['midplane'] = 'vxr'
+            self.iosConfig['npe'] = 'npe-200'
+        self.iosConfig['slots'] = []
+        
     def configIOS(self):
         """ Create the IOS configuration on the hypervisor
         """
@@ -104,8 +121,12 @@ class Router(MNode):
         #self.InspectorInstance.saveIOSConfig()
 
         if self.iosConfig['iosimage'] == '':
-            sys.stderr.write("Node " + str(self.id) + ": no selected IOS image\n")
-            return
+            keys = self.main.ios_images.keys()
+            if keys:
+                self.setMinimalConfig(keys[0])
+            else:
+                sys.stderr.write("Node " + str(self.id) + ": no selected IOS image\n")
+                return
 
         image_settings = self.main.ios_images[self.iosConfig['iosimage']]
         host = image_settings['hypervisor_host']
@@ -180,6 +201,7 @@ class Router(MNode):
             self.ios.idlepc = idlepc
         else: #FIXME: only for tests
             self.ios.idlepc = '0x60483ae4'
+        self.sparsemem = True
 
     def configSlot(self, slotnb, module):
         """ Add an new module into a slot
