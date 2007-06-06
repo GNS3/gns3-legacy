@@ -129,6 +129,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             except lib.DynamipsError, msg:
                 QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
                 return
+            except lib.DynamipsErrorHandled:
+                QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
+                return
 
         elif self.action_SwitchMode.text() == translate('MainWindow', 'Design Mode'):
             # design mode
@@ -146,6 +149,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                     self.main.nodes[node].resetIOSConfig()
             except lib.DynamipsError, msg:
                 QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
+                return
+            except lib.DynamipsErrorHandled:
+                QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
                 return
             
     def ShowHostnames(self):
@@ -176,6 +182,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             progress.setValue(current)
             self.app.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 5000)
             if progress.wasCanceled():
+                progress.reset()
                 break
             try:
                 self.main.nodes[node].startIOS()
@@ -184,6 +191,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                     pass
                 else:
                     QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
+            except lib.DynamipsErrorHandled:
+                QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
+                for node in self.main.nodes.keys():
+                    self.main.nodes[node].cleanInterfaceStatus()
+                return
             current += 1
         progress.setValue(count)
 
@@ -195,13 +207,14 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         progress = QtGui.QProgressDialog("Stopping nodes ...", "Abort", 0, count, self)
         progress.setMinimum(1)
         progress.setWindowModality(QtCore.Qt.WindowModal)
-        self.app.processEvents(QtCore.QEventLoop.AllEvents)
+        self.app.processEvents()
         current = 0
         for node in self.main.nodes.keys():
             assert (self.main.nodes[node].ios != None)
             progress.setValue(current)
-            self.app.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+            self.app.processEvents()
             if progress.wasCanceled():
+                progress.reset()
                 break
             try:
                 self.main.nodes[node].stopIOS()
@@ -210,6 +223,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                     pass
                 else:
                     QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
+            except lib.DynamipsErrorHandled:
+                QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
+                for node in self.main.nodes.keys():
+                    self.main.nodes[node].cleanInterfaceStatus()
+                return
             current += 1
         progress.setValue(count)
 

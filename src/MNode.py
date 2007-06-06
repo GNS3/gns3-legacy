@@ -393,6 +393,13 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
                 delete_list.append(edge)
         for edge in delete_list:
             edge.delete()
+
+    def cleanInterfaceStatus(self):
+        """ Clean the interface status points
+        """
+        
+        for edge in self.edgeList:
+            edge.setStatus(self.id, False)
         
     def delete(self):
         """ Delete the current node

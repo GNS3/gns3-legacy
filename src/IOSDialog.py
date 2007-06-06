@@ -63,6 +63,10 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
         self._reloadInfos()
         self.error = QtGui.QErrorMessage(self)
+        
+    def __del__(self):
+        
+        ConfDB().sync()
 
     def _reloadInfos(self):
         """ Reload previously recorded IOS images
@@ -97,13 +101,13 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
         for name in self.main.hypervisors.keys():
             hypervisor = self.main.hypervisors[name]
-            
             item = QtGui.QTreeWidgetItem(self.treeWidgetHypervisor)
             item.setText(0, hypervisor['host'])
             item.setText(1, hypervisor['port'])
             item.setText(2, hypervisor['working_directory'])
             hypervisors_list.append(item)
-        
+            self.listWidgetHypervisors.addItem(hypervisor['host'] + ':' + hypervisor['port'])
+                    
         # Add images to IOS.images treeview
         self.treeWidgetIOSimages.addTopLevelItems(images_list)
         self.treeWidgetIOSimages.sortItems(0, QtCore.Qt.AscendingOrder)
@@ -210,6 +214,9 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 item.setText(4, hypervisor_host + ':' + str(hypervisor_port))
             else:
                 # external hypervisor
+                firstitem = self.listWidgetHypervisors.item(0)
+                if firstitem:
+                    self.listWidgetHypervisors.setCurrentItem(firstitem)
                 items = self.listWidgetHypervisors.selectedItems()
                 if len(items) == 0:
                     QtGui.QMessageBox.warning(self, 'IOS', 'No hypervisor selected, use local hypervisor')
@@ -218,7 +225,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                     # get the selected hypervisor
                     selected = str(items[0].text())
                     item.setText(4, selected)
-                    # split the line to get the host, port and working directory
+                    # split the line to get the host and port
                     splittab = selected.split(':')
                     hypervisor_host = splittab[0]
                     hypervisor_port = splittab[1]
@@ -251,7 +258,6 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             self.treeWidgetIOSimages.addTopLevelItem(item)
             # switch to ios images tab
             self.tabWidget.setCurrentIndex(0)
-            ConfDB().sync()
 
     def slotEditIOS(self):
         """ Load the selected line from the list of IOS images to edit it
@@ -323,7 +329,9 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             
             # Save config into the global dict.
             newhypervisor_confkey = str(ConfDB().getGroupNewNumChild("IOS.hypervisors"))
-            newhypervisor_dict = {'working_directory': working_dir,
+            newhypervisor_dict = {'host': hypervisor_host,
+                                  'port': hypervisor_port,
+                                  'working_directory': working_dir,
                                   'dynamips_instance': None,
                                   'confkey': newhypervisor_confkey
             }
