@@ -214,13 +214,14 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 item.setText(4, hypervisor_host + ':' + str(hypervisor_port))
             else:
                 # external hypervisor
-                firstitem = self.listWidgetHypervisors.item(0)
-                if firstitem:
-                    self.listWidgetHypervisors.setCurrentItem(firstitem)
                 items = self.listWidgetHypervisors.selectedItems()
                 if len(items) == 0:
-                    QtGui.QMessageBox.warning(self, 'IOS', 'No hypervisor selected, use local hypervisor')
-                    item.setText(4, hypervisor_host + ':' + str(hypervisor_port))
+                    firstitem = self.listWidgetHypervisors.item(0)
+                    if firstitem:
+                        item.setText(4, str(firstitem.text()))
+                    else:
+                        QtGui.QMessageBox.warning(self, 'IOS', 'No hypervisor selected, use local hypervisor')    
+                        item.setText(4, hypervisor_host + ':' + str(hypervisor_port))
                 else:
                     # get the selected hypervisor
                     selected = str(items[0].text())
