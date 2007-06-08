@@ -445,7 +445,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
                     sub.Popen(console, shell=True)
                 else:
                     if sys.platform.startswith('darwin'):
-                        sub.Popen("/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet " + hypervisor_host + " " + str(self.ios.console) +"; exit\"' -e 'tell application \"Terminal\" to tell window 1  to set custom title to \"" + self.ios.name + "\"'")
+                        sub.Popen("/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet " + hypervisor_host + " " + str(self.ios.console) +"; exit\"' -e 'tell application \"Terminal\" to tell window 1  to set custom title to \"" + self.ios.name + "\"'", shell=True)
                     elif sys.platform.startswith('win32'):
                         sub.Popen("telnet " +  hypervisor_host + " " + str(self.ios.console), shell=True)
                     else:
