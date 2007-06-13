@@ -23,6 +23,7 @@ import sys, time
 from PyQt4 import QtCore, QtGui, QtSvg
 from Config import ConfDB
 from Ethernet import *
+from Serial import *
 from Utils import translate
 import Dynamips_lib as lib
 import subprocess as sub
@@ -323,7 +324,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
 
     def _addLinkToScene(self, node_src, node_dst):
         
-        link = Ethernet(node_src, node_dst, self._QGraphicsScene)
+        link = Serial(node_src, node_dst, self._QGraphicsScene)
         self._QGraphicsScene.update(link.boundingRect())
 
     def resetList(self):

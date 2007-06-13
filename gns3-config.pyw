@@ -77,7 +77,7 @@ class Configurator(QtGui.QMainWindow, Ui_MainWindow):
         console = ConfDB().get("Dynamips/console", '')
         if console == '':
             if sys.platform.startswith('darwin'):
-                console = '"' + "/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet %h %p ; exit\"' -e 'tell application \"Terminal\" to tell window to set custom title to \"%d\"'" + '"'
+                console = "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"' -e 'tell application \"terminal\" to tell window 1 to set custom title to \"%d\"'"
             elif sys.platform.startswith('win32'):
                 console = "telnet %h %p"
             else:
