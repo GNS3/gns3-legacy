@@ -27,66 +27,69 @@ class Serial(Edge):
     """ Serial class
         Draw an serial link
     """
-    
+
     def __init__(self, sourceNode, destNode, scene, fake = False):
         """ sourceNode: MNode instance
             destNode: MNode instance
             scene: QtGui.QGraphicsScene instance
             fake: boolean
-            
+
             fake is for temporary adding an edge between 2 nodes
         """
-        
+
         Edge.__init__(self, sourceNode, destNode, scene, fake)
-        
+
 
 
     def adjust(self):
         """ Compute the (new) source point and destination point
             to draw a line
         """
-   
+
         if self.source is None or self.dest is None:
             return
 
         self.prepareGeometryChange()
-        rectsource = self.source.boundingRect()
-        # compute the top middle and left middle of the bounding rectangle for the source
-        srctopmiddle = rectsource.topRight() / 2
-        srcleftmiddle = rectsource.bottomLeft() / 2
-        rectdest= self.dest.boundingRect()
-        # compute the top middle and left middle of the bounding rectangle for the destination
-        destopmiddle = rectdest.topRight() / 2
-        desleftmiddle = rectdest.bottomLeft() / 2
-      
-        # create the path from the center source node to the center destination node
-        
-        self.line = QtCore.QLineF(self.mapFromItem(self.source, srctopmiddle.x(), srcleftmiddle.y()),
-                             self.mapFromItem(self.dest, destopmiddle.x(), desleftmiddle.y()))
-        
-        length = self.line.length()
-        
-        
-        self.path = QtGui.QPainterPath(self.line.p1())
-        
-        self.path.lineTo(self.line.pointAt(0.5).x(), self.line.pointAt(0.5).y() - 15)
-        self.path.lineTo(self.line.pointAt(0.5).x(), self.line.pointAt(0.5).y() + 15)
 
-        self.path.lineTo(self.line.p2())
-           
+        # Get center of self.source item and self.dest
+        src_rect = self.source.boundingRect()
+        src = self.mapFromItem(self.source,
+                    src_rect.width() / 2.0, src_rect.height() / 2.0)
+        dst_rect = self.dest.boundingRect()
+        dst = self.mapFromItem(self.dest,
+                    dst_rect.width() / 2.0, dst_rect.height() / 2.0)
+
+        # Get src->dest vector, and it angle
+        vector = QtCore.QPointF(dst.x() - src.x(), dst.y() - src.y())
+        vector_angle = math.atan2(vector.y(), vector.x())
+
+        # Get mini-vector, and it angle
+        rot_angle = math.pi / 4.0
+        vectrot = QtCore.QPointF(math.cos(vector_angle - rot_angle),
+                                 math.sin(vector_angle - rot_angle))
+        vectrot_angle = math.atan2(vectrot.y(), vectrot.x())
+
+        # Draw the path
+        self.path = QtGui.QPainterPath(src)
+        self.path.lineTo(src.x() + vector.x() / 2.0 + 15 * vectrot.x(),
+                         src.y() + vector.y() / 2.0 + 15 * vectrot.y())
+        self.path.lineTo(dst.x() - vector.x() / 2.0 - 15 * vectrot.x(),
+                         dst.y() - vector.y() / 2.0 - 15 * vectrot.y())
+        self.path.lineTo(dst)
+
 #        # shift on the line
-        if length == 0:
-           self.edgeOffset = QtCore.QPointF(0, 0)
-        else:
-           self.edgeOffset = QtCore.QPointF((self.line.dx() * 40) / length, (self.line.dy() * 40) / length)
+        #if length == 0:
+        #   self.edgeOffset = QtCore.QPointF(0, 0)
+        #else:
+        #   self.edgeOffset = QtCore.QPointF((self.line.dx() * 40) / length, (self.line.dy() * 40) / length)
 #
-        self.sourcePoint = self.line.p1()
-        self.destPoint = self.line.p2()
+        self.sourcePoint = src
+        self.destPoint = dst
 
     def boundingRect(self):
         """ Bounding rectangle to tell the scene what redraw
         """
-        
+
         if self.source is None or self.dest is None:
             return QtCore.QRectF()
 
@@ -98,7 +101,7 @@ class Serial(Edge):
     def paint(self, painter, option, widget):
         """ Draw the line
         """
-   
+
         if self.source is None or self.dest is None:
             return QtCore.QRectF()
 
@@ -111,19 +114,19 @@ class Serial(Edge):
 #            color = QtCore.Qt.green
 #        else:
 #            color = QtCore.Qt.red
-#        
+#
 #        painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
-#        
-#        
+#
+#
 #        point1 = QtCore.QPointF(self.sourcePoint +  self.edgeOffset)
-#        painter.drawPoint(point1) 
-#        
+#        painter.drawPoint(point1)
+#
 #        if self.dest_up == True:
 #            color = QtCore.Qt.green
 #        else:
 #            color = QtCore.Qt.red
-#        
+#
 #        painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
-#        
+#
 #        point2 = QtCore.QPointF(self.destPoint -  self.edgeOffset)
-#        painter.drawPoint(point2) 
+#        painter.drawPoint(point2)
