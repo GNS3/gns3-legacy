@@ -64,9 +64,9 @@ class Serial(Edge):
         vector_angle = math.atan2(vector.y(), vector.x())
 
         # Get mini-vector, and it angle
-        rot_angle = math.pi / 4.0
-        vectrot = QtCore.QPointF(math.cos(vector_angle - rot_angle),
-                                 math.sin(vector_angle - rot_angle))
+        rot_angle = - math.pi / 4.0
+        vectrot = QtCore.QPointF(math.cos(vector_angle + rot_angle),
+                                 math.sin(vector_angle + rot_angle))
         vectrot_angle = math.atan2(vectrot.y(), vectrot.x())
 
         # Draw the path
@@ -77,11 +77,12 @@ class Serial(Edge):
                          dst.y() - vector.y() / 2.0 - 15 * vectrot.y())
         self.path.lineTo(dst)
 
-#        # shift on the line
-        #if length == 0:
-        #   self.edgeOffset = QtCore.QPointF(0, 0)
-        #else:
-        #   self.edgeOffset = QtCore.QPointF((self.line.dx() * 40) / length, (self.line.dy() * 40) / length)
+#       # shift on the line
+        length = math.sqrt(vector.x() * vector.x() + vector.y() * vector.y())
+        if length == 0:
+           self.edgeOffset = QtCore.QPointF(0, 0)
+        else:
+           self.edgeOffset = QtCore.QPointF((vector.x() * 40) / length, (vector.y() * 40) / length)
 #
         self.sourcePoint = src
         self.destPoint = dst
@@ -110,23 +111,23 @@ class Serial(Edge):
         painter.drawPath(self.path)
 
         #TODO: Finish the points management
-#        if self.src_up == True:
-#            color = QtCore.Qt.green
-#        else:
-#            color = QtCore.Qt.red
-#
-#        painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
-#
-#
-#        point1 = QtCore.QPointF(self.sourcePoint +  self.edgeOffset)
-#        painter.drawPoint(point1)
-#
-#        if self.dest_up == True:
-#            color = QtCore.Qt.green
-#        else:
-#            color = QtCore.Qt.red
-#
-#        painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
-#
-#        point2 = QtCore.QPointF(self.destPoint -  self.edgeOffset)
-#        painter.drawPoint(point2)
+        if self.src_up == True:
+            color = QtCore.Qt.green
+        else:
+            color = QtCore.Qt.red
+
+        painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
+
+
+        point1 = QtCore.QPointF(self.sourcePoint +  self.edgeOffset)
+        painter.drawPoint(point1)
+
+        if self.dest_up == True:
+            color = QtCore.Qt.green
+        else:
+            color = QtCore.Qt.red
+
+        painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
+
+        point2 = QtCore.QPointF(self.destPoint -  self.edgeOffset)
+        painter.drawPoint(point2)

@@ -286,7 +286,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.menu.addAction(self.deleteAct)
             self.menu.exec_(QtGui.QCursor.pos())
             return
-        
+
         if self.main.linkEnabled == False :
            QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
            return
@@ -323,8 +323,11 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
 
     def _addLinkToScene(self, node_src, node_dst):
-        
-        link = Serial(node_src, node_dst, self._QGraphicsScene)
+
+        if node_src.tmpif[0] == "s" and node_dst.tmpif[0] == "s":
+            link = Serial(node_src, node_dst, self._QGraphicsScene)
+        else:
+            link = Ethernet(node_src, node_dst, self._QGraphicsScene)
         self._QGraphicsScene.update(link.boundingRect())
 
     def resetList(self):
@@ -375,12 +378,12 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.interfaces[interface] = [srcid, srcif]
             self.main.TabLinkMNode[0].interfaces[srcif] = [self.id, interface]
             self.abort = False
-    
+
     def deleteInterface(self, ifname):
         """ Delete an interface and the link that is connected to it (if present)
             ifname: string
         """
-        
+
         destid = self.interfaces[ifname][0]
         destif = self.interfaces[ifname][1]
         delete_list = []
@@ -398,14 +401,14 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
     def cleanInterfaceStatus(self):
         """ Clean the interface status points
         """
-        
+
         for edge in self.edgeList:
             edge.setStatus(self.id, False)
-        
+
     def delete(self):
         """ Delete the current node
         """
-        
+
         delete_list = []
         for edge in self.edgeList:
             self._QGraphicsScene.removeItem(edge)
@@ -419,7 +422,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             self.deleteEdge(edge)
         del self.main.nodes[self.id]
         self._QGraphicsScene.removeItem(self)
-        
+
     def showHostname(self):
         """ Show the hostname on the scene
         """
@@ -430,11 +433,11 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self.textItem.setZValue(2)
         self.textItem.setPos(20, -20)
         self._QGraphicsScene.addItem(self.textItem)
-        
+
     def telnetToIOS(self):
         """ Start a telnet console and connect it to an IOS
         """
-        
+
         hypervisor_host = self.main.ios_images[self.iosConfig['iosimage']]['hypervisor_host']
         if self.ios.console != None:
             try:
@@ -455,11 +458,11 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
                 QtGui.QMessageBox.critical(self.main.win, 'Console error', strerror)
                 return (False)
             return (True)
- 
+
     def removeHostname(self):
         """ Remove the hostname on the scene
         """
-        
+
         self._QGraphicsScene.removeItem(self.textItem)
 
     def setName(self, name):
