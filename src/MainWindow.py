@@ -159,10 +159,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         """
 
         if self.action_ShowHostnames.text() == translate('MainWindow', 'Show hostnames'):
+            self.main.flg_showhostname = True
             self.action_ShowHostnames.setText(translate('MainWindow', 'Hide hostnames'))
             for node in self.main.nodes.keys():
                 self.main.nodes[node].showHostname()
         elif self.action_ShowHostnames.text() == translate('MainWindow', 'Hide hostnames'):
+            self.main.flg_showhostname = False
             self.action_ShowHostnames.setText(translate('MainWindow', 'Show hostnames'))
             for node in self.main.nodes.keys():
                 self.main.nodes[node].removeHostname()

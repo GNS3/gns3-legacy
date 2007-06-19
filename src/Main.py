@@ -43,6 +43,9 @@ linkEnabled = False
 TabLinkMNode = []
 countClick = 0
 
+# Flags
+flg_showhostname = False
+
 class Main:
     """ Entry point
     """
@@ -83,9 +86,9 @@ class Main:
         # start a local hypervisor
         self.localhypervisor = LocalHypervisor()
         sys.exit(app.exec_())
-    
+
     def __del__(self):
-        
+
         self.localhypervisor.proc.kill()
 
 if __name__ == "__main__":

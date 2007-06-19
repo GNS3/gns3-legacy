@@ -82,6 +82,12 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         self._QGraphicsScene.addItem(self)
         self._QGraphicsScene.update(self.sceneBoundingRect())
 
+        # Flags
+        self.flg_hostname = False
+
+        if self.main.flg_showhostname == True:
+            self.showHostname()
+
     def __initActions(self):
         """ Initialize all menu actions who belongs to MNode
         """
@@ -427,12 +433,17 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         """ Show the hostname on the scene
         """
 
+        if self.flg_hostname == True:
+            # don't try to show hostname twice
+            return
+
         self.textItem = QtGui.QGraphicsTextItem("R " + str(self.id), self)
         self.textItem.setFont(QtGui.QFont("Times", 10, QtGui.QFont.Bold))
         self.textItem.setFlag(self.textItem.ItemIsMovable)
         self.textItem.setZValue(2)
         self.textItem.setPos(20, -20)
         self._QGraphicsScene.addItem(self.textItem)
+        self.flg_hostname = True
 
     def telnetToIOS(self):
         """ Start a telnet console and connect it to an IOS
@@ -463,7 +474,9 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
         """ Remove the hostname on the scene
         """
 
-        self._QGraphicsScene.removeItem(self.textItem)
+        if self.flg_hostname == True:
+            self._QGraphicsScene.removeItem(self.textItem)
+            self.flg_hostname = False
 
     def setName(self, name):
 
