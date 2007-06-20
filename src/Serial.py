@@ -69,13 +69,35 @@ class Serial(Edge):
                                  math.sin(vector_angle + rot_angle))
         vectrot_angle = math.atan2(vectrot.y(), vectrot.x())
 
+        # Get the rotated points position
+        angle_srcPt = QtCore.QPointF(
+            src.x() + vector.x() / 2.0 + 15 * vectrot.x(),
+            src.y() + vector.y() / 2.0 + 15 * vectrot.y()
+        )
+        angle_dstPt = QtCore.QPointF(
+            dst.x() - vector.x() / 2.0 - 15 * vectrot.x(),
+            dst.y() - vector.y() / 2.0 - 15 * vectrot.y()
+        )
+
         # Draw the path
         self.path = QtGui.QPainterPath(src)
-        self.path.lineTo(src.x() + vector.x() / 2.0 + 15 * vectrot.x(),
-                         src.y() + vector.y() / 2.0 + 15 * vectrot.y())
-        self.path.lineTo(dst.x() - vector.x() / 2.0 - 15 * vectrot.x(),
-                         dst.y() - vector.y() / 2.0 - 15 * vectrot.y())
+        self.path.lineTo(angle_srcPt)
+        self.path.lineTo(angle_dstPt)
         self.path.lineTo(dst)
+
+        # Settings the interface status point position
+        scale_vect = QtCore.QPointF(angle_srcPt.x() - src.x(),
+                                    angle_srcPt.y() - src.y())
+        scale_vect_diag = math.sqrt(scale_vect.x() ** 2 +
+                                    scale_vect.y() ** 2)
+        scale_coef = scale_vect_diag / 40.0
+
+        self.status_srcPt = QtCore.QPointF(
+                src.x() + scale_vect.x() / scale_coef,
+                src.y() + scale_vect.y() / scale_coef)
+        self.status_dstPt = QtCore.QPointF(
+                dst.x() - scale_vect.x() / scale_coef,
+                dst.y() - scale_vect.y() / scale_coef)
 
 #       # shift on the line
         length = math.sqrt(vector.x() * vector.x() + vector.y() * vector.y())
@@ -119,8 +141,8 @@ class Serial(Edge):
         painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
 
 
-        point1 = QtCore.QPointF(self.sourcePoint +  self.edgeOffset)
-        painter.drawPoint(point1)
+        #point1 = QtCore.QPointF(self.sourcePoint +  self.edgeOffset)
+        painter.drawPoint(self.status_srcPt)
 
         if self.dest_up == True:
             color = QtCore.Qt.green
@@ -129,5 +151,5 @@ class Serial(Edge):
 
         painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
 
-        point2 = QtCore.QPointF(self.destPoint -  self.edgeOffset)
-        painter.drawPoint(point2)
+        #point2 = QtCore.QPointF(self.destPoint -  self.edgeOffset)
+        painter.drawPoint(self.status_dstPt)
