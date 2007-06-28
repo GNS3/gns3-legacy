@@ -95,16 +95,26 @@ class Ethernet(Edge):
 
 
         #TODO: Finish the points management
+        
+        # If items are too close, points disappears
+        length = self.line.length()  
+        if length < 100:
+           return;
+       
+        
         if self.src_up == True:
             color = QtCore.Qt.green
         else:
             color = QtCore.Qt.red
         
         painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
+          
+          
+
         
-        
-        point1 = QtCore.QPointF(self.sourcePoint +  self.edgeOffset)
+        point1 = QtCore.QPointF(self.sourcePoint + self.edgeOffset)
         painter.drawPoint(point1) 
+        
         
         if self.dest_up == True:
             color = QtCore.Qt.green
