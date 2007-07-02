@@ -102,6 +102,12 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
             
             node = Router(svgrc, self.scene(), width , height)
             node.setName(s[1])
+
+            # Center node
+            pos_x = node.pos().x() - (node.boundingRect().width() / 2)
+            pos_y = node.pos().y() - (node.boundingRect().height() / 2)
+            node.setPos(pos_x, pos_y)
+
             event.setDropAction(QtCore.Qt.MoveAction)
             event.accept()
         else :
@@ -110,4 +116,3 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
     def dragLeaveEvent(self, event):
         pass
 
-         
