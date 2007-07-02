@@ -27,7 +27,36 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/GPL/2.0/" />
+        <dc:title>ATM switch</dc:title>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Jeremy Grossmann</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:description>Created for the GNS-3 project (www.gns3.net)</dc:description>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>GNS-3</dc:title>
+          </cc:Agent>
+        </dc:publisher>
       </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/GPL/2.0/">
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Reproduction" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Distribution" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/Notice" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/ShareAlike" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/SourceCode" />
+      </cc:License>
     </rdf:RDF>
   </metadata>
   <defs
@@ -161,8 +190,8 @@
        gradientTransform="matrix(1.117962,0,0,1.035008,-4.0973e-2,-6.788682e-3)" />
   </defs>
   <sodipodi:namedview
-     inkscape:window-height="970"
-     inkscape:window-width="1390"
+     inkscape:window-height="953"
+     inkscape:window-width="1280"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      guidetolerance="10.0"
