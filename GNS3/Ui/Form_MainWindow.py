@@ -2,32 +2,30 @@
 
 # Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Tue Jul  3 17:48:54 2007
-#      by: PyQt4 UI code generator 4.1
+# Created: Mon Jul  9 16:10:40 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
 
-import sys
 from PyQt4 import QtCore, QtGui
-from code import InteractiveInterpreter as Interpreter
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(QtCore.QSize(QtCore.QRect(0,0,810,572).size()).expandedTo(MainWindow.minimumSizeHint()))
+        MainWindow.resize(QtCore.QSize(QtCore.QRect(0,0,812,561).size()).expandedTo(MainWindow.minimumSizeHint()))
         MainWindow.setWindowIcon(QtGui.QIcon(":/images/logo_gns3_transparency_small.png"))
 
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
-        self.gridlayout = QtGui.QGridLayout(self.centralwidget)
-        self.gridlayout.setMargin(9)
-        self.gridlayout.setSpacing(6)
-        self.gridlayout.setObjectName("gridlayout")
+        self.hboxlayout = QtGui.QHBoxLayout(self.centralwidget)
+        self.hboxlayout.setSpacing(6)
+        self.hboxlayout.setMargin(9)
+        self.hboxlayout.setObjectName("hboxlayout")
 
         self.treeWidget = QTreeWidgetCustom(self.centralwidget)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(7))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.treeWidget.sizePolicy().hasHeightForWidth())
@@ -37,28 +35,15 @@ class Ui_MainWindow(object):
         self.treeWidget.setIconSize(QtCore.QSize(24,24))
         self.treeWidget.setRootIsDecorated(False)
         self.treeWidget.setObjectName("treeWidget")
-        self.gridlayout.addWidget(self.treeWidget,0,0,1,1)
+        self.hboxlayout.addWidget(self.treeWidget)
 
         self.graphicsView = QGraphicsViewCustom(self.centralwidget)
         self.graphicsView.setObjectName("graphicsView")
-        self.gridlayout.addWidget(self.graphicsView,0,1,1,1)
-
-        interpreter = Interpreter()
-        #interpreter.runsource("from console import Console")
-        self.textEdit = PyCutExt(interpreter, parent = self.centralwidget)
-        #self.textEdit = QtGui.QTextEdit(self.centralwidget)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7),QtGui.QSizePolicy.Policy(7))
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.textEdit.sizePolicy().hasHeightForWidth())
-        self.textEdit.setSizePolicy(sizePolicy)
-        self.textEdit.setObjectName("textEdit")
-        self.gridlayout.addWidget(self.textEdit,1,0,1,2)
+        self.hboxlayout.addWidget(self.graphicsView)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,810,25))
+        self.menubar.setGeometry(QtCore.QRect(0,0,812,25))
         self.menubar.setObjectName("menubar")
 
         self.menuIOS = QtGui.QMenu(self.menubar)
@@ -112,11 +97,9 @@ class Ui_MainWindow(object):
 
         self.action_Import = QtGui.QAction(MainWindow)
         self.action_Import.setEnabled(False)
-        self.action_Import.setIcon(QtGui.QIcon(":/icons/edit-redo.svg"))
         self.action_Import.setObjectName("action_Import")
 
         self.action_Export = QtGui.QAction(MainWindow)
-        self.action_Export.setIcon(QtGui.QIcon(":/icons/edit-undo.svg"))
         self.action_Export.setObjectName("action_Export")
 
         self.action_StartAll = QtGui.QAction(MainWindow)
@@ -189,7 +172,6 @@ class Ui_MainWindow(object):
         self.action_ShowHostnames.setText(QtGui.QApplication.translate("MainWindow", "Show hostnames", None, QtGui.QApplication.UnicodeUTF8))
         self.action_TelnetAll.setText(QtGui.QApplication.translate("MainWindow", "Telnet all IOS", None, QtGui.QApplication.UnicodeUTF8))
 
-from Shell import PyCutExt
-from QTreeWidgetCustom import QTreeWidgetCustom
-from QGraphicsViewCustom import QGraphicsViewCustom
+from Widget_QGraphicsViewCustom import QGraphicsViewCustom
+from Widget_QTreeWidgetCustom import QTreeWidgetCustom
 import svg_resources_rc

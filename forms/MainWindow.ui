@@ -17,18 +17,25 @@
   </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QHBoxLayout" >
-    <property name="margin" >
-     <number>9</number>
-    </property>
     <property name="spacing" >
      <number>6</number>
+    </property>
+    <property name="leftMargin" >
+     <number>9</number>
+    </property>
+    <property name="topMargin" >
+     <number>9</number>
+    </property>
+    <property name="rightMargin" >
+     <number>9</number>
+    </property>
+    <property name="bottomMargin" >
+     <number>9</number>
     </property>
     <item>
      <widget class="QTreeWidgetCustom" name="treeWidget" >
       <property name="sizePolicy" >
-       <sizepolicy>
-        <hsizetype>0</hsizetype>
-        <vsizetype>7</vsizetype>
+       <sizepolicy vsizetype="Expanding" hsizetype="Fixed" >
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
@@ -104,7 +111,10 @@
     <enum>Qt::Horizontal</enum>
    </property>
    <attribute name="toolBarArea" >
-    <number>4</number>
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
    </attribute>
    <addaction name="action_Open" />
    <addaction name="action_Save" />
@@ -192,7 +202,7 @@
     <bool>false</bool>
    </property>
    <property name="icon" >
-    <iconset resource="../svg/svg_resources.qrc" >:/icons/edit-redo.svg</iconset>
+    <iconset/>
    </property>
    <property name="text" >
     <string>&amp;Import</string>
@@ -200,7 +210,7 @@
   </action>
   <action name="action_Export" >
    <property name="icon" >
-    <iconset resource="../svg/svg_resources.qrc" >:/icons/edit-undo.svg</iconset>
+    <iconset/>
    </property>
    <property name="text" >
     <string>&amp;Export</string>
@@ -250,14 +260,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QTreeWidgetCustom</class>
-   <extends>QTreeWidget</extends>
-   <header>QTreeWidgetCustom</header>
-  </customwidget>
-  <customwidget>
    <class>QGraphicsViewCustom</class>
    <extends>QGraphicsView</extends>
-   <header>QGraphicsViewCustom</header>
+   <header>Widget_QGraphicsViewCustom</header>
+  </customwidget>
+  <customwidget>
+   <class>QTreeWidgetCustom</class>
+   <extends>QTreeWidget</extends>
+   <header>Widget_QTreeWidgetCustom</header>
   </customwidget>
  </customwidgets>
  <resources>

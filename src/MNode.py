@@ -29,7 +29,7 @@ import Dynamips_lib as lib
 import subprocess as sub
 import __main__
 
-class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
+class MNode(QtSvg.QGraphicsSvgItem):
     """ MNode class
         Node item for the scene
     """
@@ -229,7 +229,7 @@ class MNode(QtSvg.QGraphicsSvgItem, QtGui.QGraphicsScene):
             value: QtCore.QVariant instance
         """
 
-        if change == self.ItemPositionChange:
+        if change == self.ItemPositionHasChanged or change == self.ItemPositionChange:
             for edge in self.edgeList:
                 edge.adjust()
 

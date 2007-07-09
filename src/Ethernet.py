@@ -99,7 +99,7 @@ class Ethernet(Edge):
         # If items are too close, points disappears
         length = self.line.length()  
         if length < 100:
-           return;
+           return
        
         
         if self.src_up == True:
