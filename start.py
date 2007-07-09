@@ -19,12 +19,11 @@
 # Contact: developers@gns3.net
 #
 
-from GNS3.Node.AbstractNode import AbstractNode
+import sys
+from PyQt4 import QtGui
+from GNS3.MainWindow import MainWindow
 
-class Router(AbstractNode):
-    """ Router class
-    """
-
-    def __init__(self, svgfile, xPos = None, yPos = None):
-        
-        AbstractNode.__init__(self, svgfile, xPos, yPos)
+app = QtGui.QApplication(sys.argv)
+win = MainWindow()
+win.show()
+sys.exit(app.exec_())

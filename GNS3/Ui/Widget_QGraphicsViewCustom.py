@@ -20,13 +20,8 @@
 #
 
 from PyQt4 import QtCore, QtGui
-from Widget_QTreeWidgetCustom import SYMBOLS
-from Utils import translate
-
-#FIXME: temporary
-from Node.Router import Router
-import re
-import string
+from GNS3.Ui.Widget_QTreeWidgetCustom import SYMBOLS
+from GNS3.Utils import translate
 
 class QGraphicsViewCustom(QtGui.QGraphicsView):
     """ QGraphicsViewCustom class
@@ -65,44 +60,36 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
             self.scaleView(1 / 1.2)
         else:
             QtGui.QGraphicsView.keyPressEvent(self, event)
-            
-    def dragEnterEvent(self, event):
-        """ Drag enter event
-        """
-        
-        if event.mimeData().hasText():
-            event.accept();
-        else:
-            event.ignore();
-        
+      
     def dragMoveEvent(self, event):
         """ Drag move event
         """
+        
         event.accept()
 
     def dropEvent(self, event):
-        """ Drag drop event
+        """ Drop event
         """
 
         if event.mimeData().hasText():
-            p = re.compile("/")
-            s = p.split(str(event.mimeData().text()))
+            
+            symbolname = str(event.mimeData().text())
             x = event.pos().x()  / self.matrix().m11() 
             y = event.pos().y()  / self.matrix().m22() 
             repx = (self.width() /2) /  self.matrix().m11()
             repy = (self.height()/2) / self.matrix().m22()     
-            width =  x - repx 
-            height = y - repy
+            xPos =  x - repx 
+            yPos = y - repy
             
             # Get resource corresponding to node type
             svgrc = ":/icons/default.svg"
             for item in SYMBOLS:
-                if translate("SYMBOLS", item[0]) == s[1]:
+                if item[0] == symbolname:
                     svgrc = item[1]
+                    object = item[2]
                     break
-            
-            #FIXME: porcomode
-            node = Router(svgrc, width , height)
+
+            node = object(svgrc, xPos, yPos)
             #node.setName(s[1])
             self.scene().addItem(node)
             self.scene().update(node.sceneBoundingRect())
@@ -114,9 +101,6 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
 
             event.setDropAction(QtCore.Qt.MoveAction)
             event.accept()
-        else :
+        else:
             event.ignore()
-
-    def dragLeaveEvent(self, event):
-        pass
 

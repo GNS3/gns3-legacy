@@ -20,7 +20,7 @@
 #
 
 from PyQt4 import QtCore, QtGui
-from AbstractEdge import AbstractEdge
+from GNS3.Link.AbstractEdge import AbstractEdge
 
 class Serial(AbstractEdge):
     """ Serial class

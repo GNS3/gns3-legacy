@@ -21,17 +21,21 @@
     
 from PyQt4 import QtCore, QtGui
 import svg_resources_rc
-from Utils import translate
+from GNS3.Utils import translate
+
+from GNS3.Node.Router import Router
 
 #import __main__
 
-SYMBOLS = (("Router", ":/symbols/router.svg"),
-           ("Router with firewall", ":/symbols/router_firewall.svg"),
-           ("Edge label switch router", ":/symbols/edge_label_switch_router.svg"),
-           ("Switch", ":/symbols/switch.svg"),
-           ("Multilayer switch", ":/symbols/multilayer_switch.svg"),
-           ("Route switch processor", ":/symbols/route_switch_processor.svg"),
-           ("ATM switch", ":/symbols/atm_switch.svg"))
+#FIXME: all symbols are a Router
+
+SYMBOLS = (("Router", ":/symbols/router.svg", Router),
+           ("Router with firewall", ":/symbols/router_firewall.svg", Router),
+           ("Edge label switch router", ":/symbols/edge_label_switch_router.svg", Router),
+           ("Switch", ":/symbols/switch.svg", Router),
+           ("Multilayer switch", ":/symbols/multilayer_switch.svg", Router),
+           ("Route switch processor", ":/symbols/route_switch_processor.svg", Router),
+           ("ATM switch", ":/symbols/atm_switch.svg", Router))
 
 class QTreeWidgetCustom(QtGui.QTreeWidget):
     """ QTreeWidgetCustom class
@@ -85,37 +89,22 @@ class QTreeWidgetCustom(QtGui.QTreeWidget):
 #            #rootitem.addChild(QtGui.QTreeWidgetItem(['test']))
 #            self.insertTopLevelItem(0, rootitem)
 #
-    def drag_and_drop(self):
-        """ Core of Drag and Drop
-        """       
 
+    def mouseMoveEvent(self, event):
+        """ Drag event
+        """
+
+        if ((event.buttons() & QtCore.Qt.LeftButton ) == None 
+            or self.currentItem() == None):
+            return
+        
         drag = QtGui.QDrag(self)
-        mimedata = QtCore.QMimeData()
-        mimedata.setText ("text/" + self.currentItem().text(self.currentColumn()))
-
         item = self.currentItem()
+        mimedata = QtCore.QMimeData()
+        mimedata.setText(SYMBOLS[self.indexOfTopLevelItem(item)][0])
         iconeSize = self.iconSize()
         icone = item.icon(self.currentColumn())
         drag.setMimeData(mimedata)
-        drag.setHotSpot(QtCore.QPoint(iconeSize.width(),
-                                        iconeSize.height()))
+        drag.setHotSpot(QtCore.QPoint(iconeSize.width(), iconeSize.height()))
         drag.setPixmap(icone.pixmap(iconeSize))
         drag.start(QtCore.Qt.MoveAction)
-#
-    def mouseMoveEvent(self, event):
-        """ Drag an element
-        """
-    
-#        if (self.main.design_mode == False):
-#            return
-        
-        if ((event.buttons() & QtCore.Qt.LeftButton ) == None):
-            return
-        
-        if (self.currentItem() == None):
-            return
-        
-        self.drag_and_drop()
-        
-    def mouseDoubleClickEvent(self, event):
-         pass

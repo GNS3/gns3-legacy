@@ -19,12 +19,15 @@
 # Contact: developers@gns3.net
 #
 
-from GNS3.Node.AbstractNode import AbstractNode
+from PyQt4 import QtGui
 
-class Router(AbstractNode):
-    """ Router class
+class Scene(QtGui.QGraphicsScene):
+    """ Scene class
     """
 
-    def __init__(self, svgfile, xPos = None, yPos = None):
+    def __init__(self, parent = None):
         
-        AbstractNode.__init__(self, svgfile, xPos, yPos)
+        QtGui.QGraphicsScene.__init__(self, parent)
+        
+        #TODO: A better management of the scene size
+        self.setSceneRect(-250, -250, 500, 500)

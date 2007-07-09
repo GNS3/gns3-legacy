@@ -19,12 +19,9 @@
 # Contact: developers@gns3.net
 #
 
-#        
-#        # add itself to the scene
-#        self.scene.addItem(self)
-#        self.scene.update(self.sceneBoundingRect())
-
 from PyQt4 import QtCore, QtGui, QtSvg
+
+baseId = 0
 
 class AbstractNode(QtSvg.QGraphicsSvgItem):
     """ AbstractNode class
@@ -33,7 +30,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 
     def __init__(self, svgfile, xPos = None, yPos = None):
         """ svgfile: string
-            QGraphicsScene: QtGui.QGraphicsScene instance
             xPos: integer
             yPos: integer
         """
@@ -46,8 +42,9 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 #        self.neighborList = []
 #        self.ios = None
         # create an ID
-#        self.id = self.main.baseid
-#        self.main.baseid += 1
+        global baseId
+        self.id = baseId
+        baseId += 1
 
         # settings
         self.setFlag(self.ItemIsMovable)
@@ -145,27 +142,14 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 #            self.stopIOS()
 #        except lib.DynamipsError, msg:
 #            QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
-#
-#
-#    def move(self, xPos, yPos):
-#        """ Set the node position on the scene
-#            xPos: integer
-#            yPos: integer
-#        """
-#
-#        self.setPos(xPos, yPos)
-#
-#    def addEdge(self, edge):
-#        """ Save the edge
-#            edge: Edge instance
-#        """
-#
-#        if edge.dest.id != self.id:
-#            self.neighborList.append(edge.dest.id)
-#        else:
-#            self.neighborList.append(edge.source.id)
-#        self.edgeList.append(edge)
-#        edge.adjust()
+
+    def addEdge(self, edge):
+        """ Save the edge
+            edge: Edge instance
+        """
+
+        self.edgeList.append(edge)
+        edge.adjust()
 #
 #    def deleteEdge(self, edge):
 #        """ Delete the edge
@@ -193,17 +177,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 #
 #        for edge in self.edgeList:
 #            edge.adjust()
-#
-#    def hasEdgeToNode(self, node_id):
-#        """ Tell if we are connected to node_id
-#            node_id: integer
-#        """
-#
-#        for edge in self.edgeList:
-#            if edge.dest.id == node_id or edge.source.id == node_id:
-#                return True
-#        return False
-#
+
 #    def itemChange(self, change, value):
 #        """ Notify custom items that some part of the item's state changes
 #            change: enum QtGui.QGraphicsItem.GraphicsItemChange
@@ -219,13 +193,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 #            QtCore.QTimer.singleShot(500, self.refresh)
 #
 #        return QtGui.QGraphicsItem.itemChange(self, change, value)
-#
-#    def refresh(self):
-#
-#        for edge in self.edgeList:
-#                edge.adjust()
-#        self.active_timer = False
-#
+
 #    def menuInterface(self):
 #        """ Show a contextual menu to choose an interface
 #        """
@@ -259,20 +227,20 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 #            event: QtGui.QGraphicsSceneMouseEvent instance
 #        """
 #
-#        if (event.button() == QtCore.Qt.RightButton) and self.main.design_mode == False:
-#            self.menu = QtGui.QMenu()
-#            self.menu.addAction(self.consoleAct)
-#            self.menu.addAction(self.startAct)
-#            self.menu.addAction(self.stopAct)
-#            self.menu.exec_(QtGui.QCursor.pos())
-#            return
-#
-#        if (event.button() == QtCore.Qt.RightButton) and self.main.design_mode == True:
-#            self.menu = QtGui.QMenu()
-#            self.menu.addAction(self.configAct)
-#            self.menu.addAction(self.deleteAct)
-#            self.menu.exec_(QtGui.QCursor.pos())
-#            return
+##        if (event.button() == QtCore.Qt.RightButton) and self.main.design_mode == False:
+##            self.menu = QtGui.QMenu()
+##            self.menu.addAction(self.consoleAct)
+##            self.menu.addAction(self.startAct)
+##            self.menu.addAction(self.stopAct)
+##            self.menu.exec_(QtGui.QCursor.pos())
+##            return
+##
+##        if (event.button() == QtCore.Qt.RightButton) and self.main.design_mode == True:
+##            self.menu = QtGui.QMenu()
+##            self.menu.addAction(self.configAct)
+##            self.menu.addAction(self.deleteAct)
+##            self.menu.exec_(QtGui.QCursor.pos())
+##            return
 #
 #        if self.main.linkEnabled == False :
 #           QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
@@ -391,25 +359,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 #
 #        for edge in self.edgeList:
 #            edge.setStatus(self.id, False)
-#
-#    def delete(self):
-#        """ Delete the current node
-#        """
-#
-#        delete_list = []
-#        for edge in self.edgeList:
-#            self._QGraphicsScene.removeItem(edge)
-#            delete_list.append(edge)
-#        for edge in delete_list:
-#            if edge.dest.id != self.id:
-#                neighborid = edge.dest.id
-#            else:
-#                neighborid = edge.source.id
-#            self.main.nodes[neighborid].deleteEdge(edge)
-#            self.deleteEdge(edge)
-#        del self.main.nodes[self.id]
-#        self._QGraphicsScene.removeItem(self)
-#
+
 #    def showHostname(self):
 #        """ Show the hostname on the scene
 #        """
@@ -458,50 +408,3 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 #        if self.flg_hostname == True:
 #            self._QGraphicsScene.removeItem(self.textItem)
 #            self.flg_hostname = False
-#
-#    def setName(self, name):
-#
-#        self.mNodeName = name
-#
-#    def getName(self):
-#
-#        return self.mNodeName
-#
-#    def setMNodeSelected(self, b):
-#
-#         self._MNodeSelected = b
-#
-#    def getMNodeSelected(self):
-#
-#        return self._MNodeSelected
-#
-#    def paint(self, painter, option, widget):
-#        """ Draw a rectangle around the node
-#        """
-#
-#        if self._MNodeSelected == True:
-#            rect = self.boundingRect()
-#            x = rect.x()
-#            y = rect.y()
-#            w = rect.width()
-#            h = rect.height()
-#            painter.setPen(QtGui.QPen(QtCore.Qt.red, 2, QtCore.Qt.DashLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
-#
-#            #                  1st line
-#            #        (x,y) ----------------- (x + w, y)
-#            #             |                |
-#            #  4th Line   |                | 2nd Line
-#            #             |                |
-#            #             |                |
-#            #    (x,y + h)|________________|(x + w, y + h)
-#            #                   3rd Line
-#
-#            # first line
-#            painter.drawLine(x, y, x + w, y)
-#            # Second line
-#            painter.drawLine(x + w, y, x + w, y + h)
-#            # Third line
-#            painter.drawLine(x + w, y + h, x, y + h)
-#            # fourth line
-#            painter.drawLine(x, y + h, x, y)
-#        QtSvg.QGraphicsSvgItem.paint(self,painter, option, widget)

@@ -56,4 +56,3 @@ def exceptionHook(type, value, tb):
 
 sys.excepthook=exceptionHook
 Main(sys.argv)
-

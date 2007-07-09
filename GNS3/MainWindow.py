@@ -21,17 +21,22 @@
 
 import sys
 from PyQt4 import QtCore, QtGui
-from Ui.Form_MainWindow import Ui_MainWindow
+from GNS3.Ui.Form_MainWindow import Ui_MainWindow
+from GNS3.Node.AbstractNode import AbstractNode
+from GNS3.Utils import translate
+from GNS3.Scene import Scene
 
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     """ MainWindow class
     """
 
-    def __init__(self, app):
+    def __init__(self):
 
         QtGui.QMainWindow.__init__(self)
         self.setupUi(self)
         self.createScene()
+        
+        self.connect(self.action_Add_link, QtCore.SIGNAL('triggered()'), self.addLink)
 
 #        switch_wdgt = self.toolBar.widgetForAction(self.action_SwitchMode)
 #        switch_wdgt.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
@@ -45,21 +50,21 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         """ Create the scene
         """
 
-        self.scene = QtGui.QGraphicsScene(self.graphicsView)
+        self.scene = Scene(self.graphicsView)
         self.graphicsView.setScene(self.scene)
-
-        # scene settings
-        #self.scene.setItemIndexMethod(QtGui.QGraphicsScene.NoIndex)
-        #TODO: A better management of the scene size
-        self.scene.setSceneRect(-250, -250, 500, 500)
+        self.graphicsView.setDragMode(self.graphicsView.RubberBandDrag)
         self.graphicsView.setCacheMode(QtGui.QGraphicsView.CacheBackground)
         self.graphicsView.setRenderHint(QtGui.QPainter.Antialiasing)
         self.graphicsView.setTransformationAnchor(QtGui.QGraphicsView.AnchorUnderMouse)
         self.graphicsView.setResizeAnchor(QtGui.QGraphicsView.AnchorViewCenter)
-
-if __name__ == "__main__":
-
-        app = QtGui.QApplication(sys.argv)
-        win = MainWindow(app)
-        win.show()
-        sys.exit(app.exec_())
+        
+    def addLink(self):
+        
+        if not self.action_Add_link.isChecked():
+            self.action_Add_link.setText(translate('MainWindow', 'Add a link'))
+            self.action_Add_link.setIcon(QtGui.QIcon(':/icons/connection.svg'))
+            self.graphicsView.setCursor(QtCore.Qt.ArrowCursor)
+        else:
+            self.action_Add_link.setText(translate('MainWindow', 'Cancel'))
+            self.action_Add_link.setIcon(QtGui.QIcon(':/icons/cancel.svg'))
+            self.graphicsView.setCursor(QtCore.Qt.CrossCursor)
