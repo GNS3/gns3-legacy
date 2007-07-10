@@ -63,8 +63,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         if not self.action_Add_link.isChecked():
             self.action_Add_link.setText(translate('MainWindow', 'Add a link'))
             self.action_Add_link.setIcon(QtGui.QIcon(':/icons/connection.svg'))
+            self.scene.setAddingLinkFlag(False)
             self.graphicsView.setCursor(QtCore.Qt.ArrowCursor)
         else:
             self.action_Add_link.setText(translate('MainWindow', 'Cancel'))
             self.action_Add_link.setIcon(QtGui.QIcon(':/icons/cancel.svg'))
+            self.scene.setAddingLinkFlag(True)
             self.graphicsView.setCursor(QtCore.Qt.CrossCursor)

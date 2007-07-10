@@ -19,6 +19,7 @@
 # Contact: developers@gns3.net
 #
 
+import math
 from PyQt4 import QtGui
 
 class AbstractEdge(QtGui.QGraphicsPathItem):
@@ -37,8 +38,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem):
 
         self.source = sourceNode
         self.dest = destNode
-        self.scene = scene
-        
+
         # record the edge into the nodes
         self.source.addEdge(self)
         self.dest.addEdge(self)

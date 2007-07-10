@@ -12,9 +12,7 @@
 	<file>symbols/router_firewall.svg</file>
 	<file>symbols/router_firewall.sel.svg</file>
 	<file>symbols/switch.svg</file>
-	<file>symbols/switch.sel.svg</file>
 	<file>symbols/atm_switch.svg</file>
-	<file>symbols/atm_switch.sel.svg</file>
 </qresource>
 <qresource>
 	<file alias="icons/default.svg">icons/cancel.svg</file>

@@ -19,7 +19,7 @@
 # Contact: developers@gns3.net
 #
 
-from PyQt4 import QtCore, QtGui
+from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Ui.Widget_QTreeWidgetCustom import SYMBOLS
 from GNS3.Utils import translate
 
@@ -31,6 +31,13 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
     def __init__(self, parent):
     
         QtGui.QGraphicsView.__init__(self, parent)
+
+        for item in SYMBOLS:
+            item['renderer_normal'] = QtSvg.QSvgRenderer(item['normal_svg_file'])
+            if item['select_svg_file'] == None:
+                item['renderer_select'] = None
+            else:
+                item['renderer_select'] = QtSvg.QSvgRenderer(item['select_svg_file'])
 
     def scaleView(self, scale_factor):
         """ Zoom in and out
@@ -84,13 +91,18 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
             # Get resource corresponding to node type
             svgrc = ":/icons/default.svg"
             for item in SYMBOLS:
-                if item[0] == symbolname:
-                    svgrc = item[1]
-                    object = item[2]
+                if item['name'] == symbolname:
+                    renderer_normal = item['renderer_normal']
+                    renderer_select = item['renderer_select']
+                    object = item['object']
                     break
 
-            node = object(svgrc, xPos, yPos)
+            node = object(renderer_normal, renderer_select)
             #node.setName(s[1])
+            node.setPos(xPos, yPos)
+            QtCore.QObject.connect(node, QtCore.SIGNAL("Node clicked"), self.scene().slotNodeClicked)
+            
+            
             self.scene().addItem(node)
             self.scene().update(node.sceneBoundingRect())
 

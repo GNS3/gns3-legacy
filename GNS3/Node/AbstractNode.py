@@ -21,6 +21,7 @@
 
 from PyQt4 import QtCore, QtGui, QtSvg
 
+QT_VERSION = int(QtCore.QT_VERSION_STR.replace('.', ''))
 baseId = 0
 
 class AbstractNode(QtSvg.QGraphicsSvgItem):
@@ -28,43 +29,70 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         Base class to create nodes
     """
 
-    def __init__(self, svgfile, xPos = None, yPos = None):
-        """ svgfile: string
-            xPos: integer
-            yPos: integer
+    def __init__(self, render_normal, render_select):
+        """ renderer_normal: QtSvg.QSvgRenderer
+            renderer_select: QtSvg.QSvgRenderer
         """
 
-        QtSvg.QGraphicsSvgItem.__init__(self, svgfile)
+        QtSvg.QGraphicsSvgItem.__init__(self)
+        self.render_normal = render_normal
+        self.render_select = render_select
         self.edgeList = []
         
-
-#        self.abort = True
-#        self.neighborList = []
-#        self.ios = None
-        # create an ID
+        # create a unique ID
         global baseId
         self.id = baseId
         baseId += 1
 
         # settings
-        self.setFlag(self.ItemIsMovable)
-        self.setFlag(self.ItemIsSelectable)
-        self.setFlag(self.ItemIsFocusable)
+        self.setFlags(self.ItemIsMovable
+                    | self.ItemIsSelectable
+                    | self.ItemIsFocusable)
+        self.setAcceptsHoverEvents(True)
         self.setZValue(1)
 
+        self.setSharedRenderer(self.render_normal)
         # Init action applicable to the node
 #        self.__initActions()
-
-        # by default put the node to (0,0)
-        if xPos is None : xPos = 0
-        if yPos is None : yPos = 0
-        self.setPos(xPos, yPos)
 
 #        # Flags
 #        self.flg_hostname = False
 #
 #        if self.main.flg_showhostname == True:
 #            self.showHostname()
+
+    def itemChange(self, change, value):
+        """ do some action when item is changed...
+        """
+
+        # when the item is selected/unselected
+        # dynamically change the renderer
+        if change == self.ItemSelectedChange and self.render_select:
+            if value.toInt()[0] == 1:
+                self.setSharedRenderer(self.render_select)
+            else:
+                self.setSharedRenderer(self.render_normal)
+
+        if change == self.ItemPositionChange or (QT_VERSION >= 430 and change == self.ItemPositionHasChanged):
+            
+            for edge in self.edgeList:
+                edge.adjust()
+
+        return QtGui.QGraphicsItem.itemChange(self, change, value)
+    
+    def hoverEnterEvent(self, event):
+        """
+        """
+        
+        if not self.isSelected() and self.render_select:
+            self.setSharedRenderer(self.render_select)
+        
+    def hoverLeaveEvent(self, event):
+        """
+        """
+        
+        if not self.isSelected() and self.render_select:
+            self.setSharedRenderer(self.render_normal)
 
 #    def __initActions(self):
 #        """ Initialize all menu actions who belongs to Node
@@ -150,67 +178,24 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 
         self.edgeList.append(edge)
         edge.adjust()
-#
-#    def deleteEdge(self, edge):
-#        """ Delete the edge
-#            edge: Edge instance
-#        """
-#
-#        if edge.dest.id != self.id:
-#            neighborid = edge.dest.id
-#        else:
-#            neighborid = edge.source.id
-#        self.neighborList.remove(neighborid)
-#        self.edgeList.remove(edge)
-#
-#        tmp = self.interfaces
-#        delete_list = []
-#        for interface in tmp:
-#            if tmp[interface][0] == neighborid:
-#                delete_list.append(interface)
-#        for interface in delete_list:
-#            del self.interfaces[interface]
-#
-#    def ajustAllEdges(self):
-#        """ Refresh edges drawing
-#        """
-#
-#        for edge in self.edgeList:
-#            edge.adjust()
 
-#    def itemChange(self, change, value):
-#        """ Notify custom items that some part of the item's state changes
-#            change: enum QtGui.QGraphicsItem.GraphicsItemChange
-#            value: QtCore.QVariant instance
-#        """
-#
-#        if change == self.ItemPositionHasChanged or change == self.ItemPositionChange:
-#            for edge in self.edgeList:
-#                edge.adjust()
-#
-#        if self.active_timer == False:
-#            self.active_timer = True
-#            QtCore.QTimer.singleShot(500, self.refresh)
-#
-#        return QtGui.QGraphicsItem.itemChange(self, change, value)
+    def showMenuInterface(self):
+        """ Show a contextual menu to choose an interface
+        """
 
-#    def menuInterface(self):
-#        """ Show a contextual menu to choose an interface
-#        """
-#
-#        menu = QtGui.QMenu()
-#        interfaces_list = self.getInterfaces()
-#        for interface in interfaces_list:
-#            if self.interfaces.has_key(interface):
-#                # already connected interface
-#                menu.addAction(QtGui.QIcon(':/icons/led_green.svg'), interface)
-#            else:
-#                # disconnected interface
-#                menu.addAction(QtGui.QIcon(':/icons/led_red.svg'), interface)
-#
-#        # connect the menu
-#        menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.selectedInterface)
-#        menu.exec_(QtGui.QCursor.pos())
+        menu = QtGui.QMenu()
+        interfaces_list = ['f0/0', 's1/0']#self.getInterfaces()
+        for interface in interfaces_list:
+            if self.interfaces.has_key(interface):
+                # already connected interface
+                menu.addAction(QtGui.QIcon(':/icons/led_green.svg'), interface)
+            else:
+                # disconnected interface
+                menu.addAction(QtGui.QIcon(':/icons/led_red.svg'), interface)
+
+        # connect the menu
+        #menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.selectedInterface)
+        menu.exec_(QtGui.QCursor.pos())
 #
 #    def keyReleaseEvent(self, event):
 #        """ key release handler for MNodes
@@ -221,27 +206,29 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 #            self.delete()
 #        else:
 #            QtGui.QGraphicsItem.keyReleaseEvent(self, event)
+
+    def mousePressEvent(self, event):
+        """ Call when the node is clicked
+            event: QtGui.QGraphicsSceneMouseEvent instance
+        """
+
+        self.emit(QtCore.SIGNAL("Node clicked"), self.id)
+
+#        if (event.button() == QtCore.Qt.RightButton) and self.main.design_mode == False:
+#            self.menu = QtGui.QMenu()
+#            self.menu.addAction(self.consoleAct)
+#            self.menu.addAction(self.startAct)
+#            self.menu.addAction(self.stopAct)
+#            self.menu.exec_(QtGui.QCursor.pos())
+#            return
 #
-#    def mousePressEvent(self, event):
-#        """ Call when the node is clicked
-#            event: QtGui.QGraphicsSceneMouseEvent instance
-#        """
-#
-##        if (event.button() == QtCore.Qt.RightButton) and self.main.design_mode == False:
-##            self.menu = QtGui.QMenu()
-##            self.menu.addAction(self.consoleAct)
-##            self.menu.addAction(self.startAct)
-##            self.menu.addAction(self.stopAct)
-##            self.menu.exec_(QtGui.QCursor.pos())
-##            return
-##
-##        if (event.button() == QtCore.Qt.RightButton) and self.main.design_mode == True:
-##            self.menu = QtGui.QMenu()
-##            self.menu.addAction(self.configAct)
-##            self.menu.addAction(self.deleteAct)
-##            self.menu.exec_(QtGui.QCursor.pos())
-##            return
-#
+#        if (event.button() == QtCore.Qt.RightButton) and self.main.design_mode == True:
+#            self.menu = QtGui.QMenu()
+#            self.menu.addAction(self.configAct)
+#            self.menu.addAction(self.deleteAct)
+#            self.menu.exec_(QtGui.QCursor.pos())
+#            return
+
 #        if self.main.linkEnabled == False :
 #           QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
 #           return
@@ -275,7 +262,8 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 #               self.main.TabLinkMNode.append(self)
 #               self._addLinkToScene(self.main.TabLinkMNode[0], self.main.TabLinkMNode[1])
 #           self.resetList()
-#        QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
+
+        QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
 #
 #    def _addLinkToScene(self, node_src, node_dst):
 #
@@ -334,31 +322,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 #            self.main.TabLinkMNode[0].interfaces[srcif] = [self.id, interface]
 #            self.abort = False
 #
-#    def deleteInterface(self, ifname):
-#        """ Delete an interface and the link that is connected to it (if present)
-#            ifname: string
-#        """
-#
-#        destid = self.interfaces[ifname][0]
-#        destif = self.interfaces[ifname][1]
-#        delete_list = []
-#
-#        for edge in self.edgeList:
-#            if edge.dest.id != self.id:
-#                neighborid = edge.dest.id
-#            else:
-#                neighborid = edge.source.id
-#            if neighborid == destid:
-#                delete_list.append(edge)
-#        for edge in delete_list:
-#            edge.delete()
-#
-#    def cleanInterfaceStatus(self):
-#        """ Clean the interface status points
-#        """
-#
-#        for edge in self.edgeList:
-#            edge.setStatus(self.id, False)
 
 #    def showHostname(self):
 #        """ Show the hostname on the scene

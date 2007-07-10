@@ -19,12 +19,25 @@
 # Contact: developers@gns3.net
 #
 
-from GNS3.Node.AbstractNode import AbstractNode
+from GNS3.Link.Ethernet import Ethernet
 
-class Router(AbstractNode):
-    """ Router class
+class Topology:
+    """ Topology class
     """
 
-    def __init__(self, renderer_normal, renderer_select):
+    def __init__(self):
         
-        AbstractNode.__init__(self, renderer_normal, renderer_select)
+        self.__nodes = {}
+
+    def recordNode(self, node):
+        
+        self.__nodes[node.id] = node
+
+    def getNode(self, id):
+        
+        return self.__nodes[id]
+
+    def addLink(self, srcid, srcif, dstid, dstif):
+        
+       link = Ethernet(self.__nodes[srcid], self.__nodes[dstid])
+       return link

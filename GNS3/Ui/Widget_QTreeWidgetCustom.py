@@ -20,7 +20,7 @@
 #
     
 from PyQt4 import QtCore, QtGui
-import svg_resources_rc
+import GNS3.Ui.svg_resources_rc
 from GNS3.Utils import translate
 
 from GNS3.Node.Router import Router
@@ -29,13 +29,13 @@ from GNS3.Node.Router import Router
 
 #FIXME: all symbols are a Router
 
-SYMBOLS = (("Router", ":/symbols/router.svg", Router),
-           ("Router with firewall", ":/symbols/router_firewall.svg", Router),
-           ("Edge label switch router", ":/symbols/edge_label_switch_router.svg", Router),
-           ("Switch", ":/symbols/switch.svg", Router),
-           ("Multilayer switch", ":/symbols/multilayer_switch.svg", Router),
-           ("Route switch processor", ":/symbols/route_switch_processor.svg", Router),
-           ("ATM switch", ":/symbols/atm_switch.svg", Router))
+SYMBOLS = ({'name': "Router", 'normal_svg_file': ":/symbols/router.svg",  'select_svg_file': ":/symbols/router.sel.svg", 'object': Router},
+           {'name': "Router with firewall", 'normal_svg_file': ":/symbols/router_firewall.svg", 'select_svg_file': ":/symbols/router_firewall.sel.svg", 'object': Router},
+           {'name': "Edge label switch router", 'normal_svg_file': ":/symbols/edge_label_switch_router.svg", 'select_svg_file': ":/symbols/edge_label_switch_router.sel.svg", 'object': Router},
+           {'name': "Switch", 'normal_svg_file': ":/symbols/switch.svg", 'select_svg_file': ":/symbols/switch.sel.svg", 'object': Router},
+           {'name': "Multilayer switch", 'normal_svg_file': ":/symbols/multilayer_switch.svg", 'select_svg_file': ":/symbols/multilayer_switch.sel.svg", 'object': Router},
+           {'name': "Route switch processor", 'normal_svg_file': ":/symbols/route_switch_processor.svg", 'select_svg_file': ":/symbols/route_switch_processor.sel.svg", 'object': Router},
+           {'name': "ATM switch", 'normal_svg_file': ":/symbols/atm_switch.svg", 'select_svg_file': ":/symbols/atm_switch.sel.svg", 'object': Router})
 
 class QTreeWidgetCustom(QtGui.QTreeWidget):
     """ QTreeWidgetCustom class
@@ -58,8 +58,8 @@ class QTreeWidgetCustom(QtGui.QTreeWidget):
         self.setRootIsDecorated(False)
         for symbol in SYMBOLS:
             item = QtGui.QTreeWidgetItem(self)
-            item.setText(0, translate("SYMBOLS", symbol[0]))
-            item.setIcon(0, QtGui.QIcon(symbol[1]))
+            item.setText(0, translate("SYMBOLS", symbol['name']))
+            item.setIcon(0, QtGui.QIcon(symbol['normal_svg_file']))
             self.insertTopLevelItem(0, item)
 
     def emulationMode(self):
@@ -101,7 +101,7 @@ class QTreeWidgetCustom(QtGui.QTreeWidget):
         drag = QtGui.QDrag(self)
         item = self.currentItem()
         mimedata = QtCore.QMimeData()
-        mimedata.setText(SYMBOLS[self.indexOfTopLevelItem(item)][0])
+        mimedata.setText(SYMBOLS[self.indexOfTopLevelItem(item)]['name'])
         iconeSize = self.iconSize()
         icone = item.icon(self.currentColumn())
         drag.setMimeData(mimedata)
