@@ -101,6 +101,8 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
             #node.setName(s[1])
             node.setPos(xPos, yPos)
             QtCore.QObject.connect(node, QtCore.SIGNAL("Node clicked"), self.scene().slotNodeClicked)
+            QtCore.QObject.connect(node, QtCore.SIGNAL("Delete node"), self.scene().slotDeleteNode)
+            QtCore.QObject.connect(node, QtCore.SIGNAL("Node options"), self.scene().slotShowNodeOptions)
             
             
             self.scene().addItem(node)
@@ -115,4 +117,3 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
             event.accept()
         else:
             event.ignore()
-

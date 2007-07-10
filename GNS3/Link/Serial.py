@@ -27,12 +27,12 @@ class Serial(AbstractEdge):
         Draw a serial link
     """
 
-    def __init__(self, sourceNode, destNode):
+    def __init__(self, sourceNode, sourceIf, destNode, destIf):
         """ sourceNode: Node instance
             destNode: Node instance
         """
 
-        AbstractEdge.__init__(self, sourceNode, destNode)
+        AbstractEdge.__init__(self, sourceNode, sourceIf, destNode, destIf)
         self.setPen(QtGui.QPen(QtCore.Qt.red, self.penWidth, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
 
     def adjust(self):

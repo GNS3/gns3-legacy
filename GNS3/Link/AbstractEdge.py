@@ -20,14 +20,15 @@
 #
 
 import math
-from PyQt4 import QtGui
+from PyQt4 import QtCore, QtGui
+from GNS3.Utils import translate
 
 class AbstractEdge(QtGui.QGraphicsPathItem):
     """ AbstractEdge class
         Base class to create edges between nodes
     """
   
-    def __init__(self, sourceNode, destNode):
+    def __init__(self, sourceNode, sourceIf, destNode, destIf):
 
         QtGui.QGraphicsItem.__init__(self)
 
@@ -38,6 +39,8 @@ class AbstractEdge(QtGui.QGraphicsPathItem):
 
         self.source = sourceNode
         self.dest = destNode
+        self.srcIf = sourceIf
+        self.destIf = destIf
 
         # record the edge into the nodes
         self.source.addEdge(self)
@@ -65,3 +68,36 @@ class AbstractEdge(QtGui.QGraphicsPathItem):
         
         # compute the length of the line
         self.length = math.sqrt(self.dx * self.dx + self.dy * self.dy)
+        
+    def getLocalInterface(self, node):
+        """ Returns the local interface of the node
+        """
+        
+        if node == self.source:
+            return self.srcIf
+        else:
+            return self.destIf
+
+    def mousePressEvent(self, event):
+        """ Call when the edge is clicked
+            event: QtGui.QGraphicsSceneMouseEvent instance
+        """
+
+#        if (event.button() == QtCore.Qt.RightButton):
+#            self.menu = QtGui.QMenu()
+#            self.menu.addAction(QtGui.QIcon(':/icons/delete.svg'), 'delete')
+#            self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.slotAction)
+#            self.menu.exec_(QtGui.QCursor.pos())
+        
+        QtGui.QGraphicsItem.mousePressEvent(self, event)
+
+    def slotAction(self, action):
+        """ Called when an option is selected from the contextual menu
+            in design mode
+            action: QtCore.QAction instance
+        """
+
+        action = action.text()
+        if action == 'delete':
+           self.source.deleteEdge(self)
+           self.dest.deleteEdge(self)

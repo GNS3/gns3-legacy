@@ -28,6 +28,7 @@ class Topology:
     def __init__(self):
         
         self.__nodes = {}
+        self.__links = set()
 
     def recordNode(self, node):
         
@@ -36,8 +37,23 @@ class Topology:
     def getNode(self, id):
         
         return self.__nodes[id]
-
+        
     def addLink(self, srcid, srcif, dstid, dstif):
         
-       link = Ethernet(self.__nodes[srcid], self.__nodes[dstid])
+       link = Ethernet(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif)
+       self.__links.add(link)
        return link
+   
+    def deleteNode(self, id):
+       
+       del self.__nodes[id]
+   
+    def deleteLink(self, link):
+       
+       link.source.deleteEdge(link)
+       link.dest.deleteEdge(link)
+       if link in self.__links:
+           self.__links.remove(link)
+           return True
+       return False
+
