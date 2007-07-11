@@ -43,6 +43,11 @@ class AbstractEdge(QtGui.QGraphicsPathItem):
         self.dest = destNode
         self.srcIf = sourceIf
         self.destIf = destIf
+        
+        # create a unique ID
+        global baseId
+        self.id = baseId
+        baseId += 1
 
         # record the edge into the nodes
         self.source.addEdge(self)
@@ -50,13 +55,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem):
 
         # set item focusable
         self.setFlag(self.ItemIsFocusable)
-        
-        # create a unique ID
-        global baseId
-        self.id = baseId
-        baseId += 1
-
-        
+       
     def adjust(self):
         """ Compute the source point and destination point
             Must be called when overloaded

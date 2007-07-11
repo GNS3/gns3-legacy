@@ -22,6 +22,7 @@
 from PyQt4 import QtCore, QtGui
 from GNS3.Topology import Topology
 from GNS3.Utils import translate
+from GNS3.NodeConfigurator import NodeConfigurator
 
 class Scene(QtGui.QGraphicsScene):
     """ Scene class
@@ -83,8 +84,21 @@ class Scene(QtGui.QGraphicsScene):
         QtGui.QGraphicsScene.addItem(self, link)
         self.update(link.boundingRect())
 
+    def slotConfigNode(self):
+        """ Called to configure nodes
+        """
+        
+        print 'configuration'
+        print self.selectedItems()
+        
+        configurator = NodeConfigurator(self.selectedItems())
+        #configurator.setModal(True)
+        #configurator.loadItems(self.selectedItems())
+        configurator.show()
+        configurator.exec_()
+
     def slotDeleteNode(self):
-        """ Called to delete a node
+        """ Called to delete nodes
         """
 
         for item in self.selectedItems():

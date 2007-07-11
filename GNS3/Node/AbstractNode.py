@@ -56,12 +56,24 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.deleteAct = QtGui.QAction(translate('AbstractNode', 'Delete'), self)
         self.deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
         self.connect(self.deleteAct, QtCore.SIGNAL('activated()'), self.__deleteAction)
+        
+        # Action: Configure (Configure the node)
+        self.configAct = QtGui.QAction(translate('AbstractNode', 'Configure'), self)
+        self.configAct.setIcon(QtGui.QIcon(":/icons/configuration.svg"))
+        self.connect(self.configAct, QtCore.SIGNAL('activated()'), self.__configAction)
 
     def __deleteAction(self):
         """ Action called for node deletion
         """
 
         self.emit(QtCore.SIGNAL("Delete node"))
+        
+        
+    def __configAction(self):
+        """ Action called for node configuration
+        """
+        
+        self.emit(QtCore.SIGNAL("Config node"))
 
     def itemChange(self, change, value):
         """ do some action when item is changed...
@@ -135,6 +147,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         elif (event.button() == QtCore.Qt.RightButton):
             self.setSelected(True)
             self.menu = QtGui.QMenu()
+            self.menu.addAction(self.configAct)
             self.menu.addAction(self.deleteAct)
             self.menu.exec_(QtGui.QCursor.pos())
         QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
