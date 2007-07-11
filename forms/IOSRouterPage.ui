@@ -22,193 +22,118 @@
       <attribute name="title" >
        <string>General</string>
       </attribute>
-      <layout class="QVBoxLayout" >
-       <item>
-        <layout class="QGridLayout" >
-         <item row="0" column="0" colspan="2" >
-          <widget class="QLabel" name="label_5" >
-           <property name="text" >
-            <string>IOS image:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2" colspan="3" >
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>41</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="0" column="5" colspan="2" >
-          <widget class="QComboBox" name="comboBoxIOS" />
-         </item>
-         <item row="1" column="0" colspan="4" >
-          <widget class="QLabel" name="label_18" >
-           <property name="text" >
-            <string>Startup-config:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="4" >
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>16</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="1" column="5" >
-          <widget class="QLineEdit" name="lineEditStartupConfig" />
-         </item>
-         <item row="1" column="6" >
-          <widget class="QPushButton" name="pushButtonStartupConfig" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize" >
-            <size>
-             <width>31</width>
-             <height>27</height>
-            </size>
-           </property>
-           <property name="text" >
-            <string>...</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0" colspan="3" >
-          <widget class="QLabel" name="label_13" >
-           <property name="text" >
-            <string>Console port:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="3" colspan="2" >
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>21</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="2" column="5" >
-          <widget class="QLineEdit" name="lineEditConsolePort" />
-         </item>
-         <item row="3" column="0" >
-          <widget class="QLabel" name="label" >
-           <property name="text" >
-            <string>Midplane:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1" colspan="4" >
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>31</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="3" column="5" >
-          <widget class="QComboBox" name="comboBoxMidplane" >
-           <property name="enabled" >
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0" >
-          <widget class="QLabel" name="label_2" >
-           <property name="text" >
-            <string>NPE:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1" colspan="4" >
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>51</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="4" column="5" >
-          <widget class="QComboBox" name="comboBoxNPE" >
-           <property name="enabled" >
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="6" >
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="3" column="6" >
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="2" column="6" >
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
+      <layout class="QGridLayout" >
+       <item row="0" column="0" >
+        <widget class="QLabel" name="label_5" >
+         <property name="text" >
+          <string>IOS image:</string>
+         </property>
+        </widget>
        </item>
-       <item>
+       <item row="0" column="1" colspan="2" >
+        <widget class="QComboBox" name="comboBoxIOS" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" >
+        <widget class="QLabel" name="label_18" >
+         <property name="text" >
+          <string>Startup-config:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" >
+        <widget class="QLineEdit" name="lineEditStartupConfig" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2" >
+        <widget class="QPushButton" name="pushButtonStartupConfig" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize" >
+          <size>
+           <width>31</width>
+           <height>27</height>
+          </size>
+         </property>
+         <property name="text" >
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" >
+        <widget class="QLabel" name="label_13" >
+         <property name="text" >
+          <string>Console port:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1" colspan="2" >
+        <widget class="QLineEdit" name="lineEditConsolePort" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" >
+        <widget class="QLabel" name="label" >
+         <property name="text" >
+          <string>Midplane:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1" colspan="2" >
+        <widget class="QComboBox" name="comboBoxMidplane" >
+         <property name="enabled" >
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" >
+        <widget class="QLabel" name="label_2" >
+         <property name="text" >
+          <string>NPE:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1" colspan="2" >
+        <widget class="QComboBox" name="comboBoxNPE" >
+         <property name="enabled" >
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1" >
         <spacer>
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
@@ -216,7 +141,7 @@
          <property name="sizeHint" >
           <size>
            <width>20</width>
-           <height>40</height>
+           <height>91</height>
           </size>
          </property>
         </spacer>
@@ -234,50 +159,6 @@
           <string>Memories</string>
          </property>
          <layout class="QGridLayout" >
-          <property name="leftMargin" >
-           <number>9</number>
-          </property>
-          <property name="topMargin" >
-           <number>9</number>
-          </property>
-          <property name="rightMargin" >
-           <number>9</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>9</number>
-          </property>
-          <property name="horizontalSpacing" >
-           <number>6</number>
-          </property>
-          <property name="verticalSpacing" >
-           <number>6</number>
-          </property>
-          <item row="1" column="1" >
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>21</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="2" column="1" >
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>20</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
           <item row="0" column="0" >
            <widget class="QLabel" name="label_7" >
             <property name="text" >
@@ -286,27 +167,13 @@
            </widget>
           </item>
           <item row="0" column="1" >
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
+           <widget class="QSpinBox" name="spinBoxRamSize" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
-            <property name="sizeHint" >
-             <size>
-              <width>20</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="1" column="0" >
-           <widget class="QLabel" name="label_8" >
-            <property name="text" >
-             <string>ROM size:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="2" >
-           <widget class="QSpinBox" name="spinBoxNvramSize" >
             <property name="suffix" >
              <string> MB</string>
             </property>
@@ -321,15 +188,21 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0" >
-           <widget class="QLabel" name="label_9" >
+          <item row="1" column="0" >
+           <widget class="QLabel" name="label_8" >
             <property name="text" >
-             <string>NVRAM size:</string>
+             <string>ROM size:</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="2" >
+          <item row="1" column="1" >
            <widget class="QSpinBox" name="spinBoxRomSize" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="suffix" >
              <string> MB</string>
             </property>
@@ -344,8 +217,21 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="2" >
-           <widget class="QSpinBox" name="spinBoxRamSize" >
+          <item row="2" column="0" >
+           <widget class="QLabel" name="label_9" >
+            <property name="text" >
+             <string>NVRAM size:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" >
+           <widget class="QSpinBox" name="spinBoxNvramSize" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="suffix" >
              <string> MB</string>
             </property>
@@ -369,24 +255,6 @@
           <string>Disks</string>
          </property>
          <layout class="QGridLayout" >
-          <property name="leftMargin" >
-           <number>9</number>
-          </property>
-          <property name="topMargin" >
-           <number>9</number>
-          </property>
-          <property name="rightMargin" >
-           <number>9</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>9</number>
-          </property>
-          <property name="horizontalSpacing" >
-           <number>6</number>
-          </property>
-          <property name="verticalSpacing" >
-           <number>6</number>
-          </property>
           <item row="0" column="0" >
            <widget class="QLabel" name="label_10" >
             <property name="text" >
@@ -396,16 +264,12 @@
           </item>
           <item row="0" column="1" >
            <widget class="QSpinBox" name="spinBoxPcmciaDisk0Size" >
-            <property name="suffix" >
-             <string> MB</string>
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
-            <property name="singleStep" >
-             <number>4</number>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1" >
-           <widget class="QSpinBox" name="spinBoxPcmciaDisk1Size" >
             <property name="suffix" >
              <string> MB</string>
             </property>
@@ -421,8 +285,37 @@
             </property>
            </widget>
           </item>
+          <item row="1" column="1" >
+           <widget class="QSpinBox" name="spinBoxPcmciaDisk1Size" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="suffix" >
+             <string> MB</string>
+            </property>
+            <property name="singleStep" >
+             <number>4</number>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>20</width>
+           <height>21</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -430,151 +323,128 @@
       <attribute name="title" >
        <string>Slots</string>
       </attribute>
-      <layout class="QHBoxLayout" >
-       <item>
+      <layout class="QGridLayout" >
+       <item row="0" column="0" >
+        <widget class="QLabel" name="label_6" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text" >
+          <string>slot0:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" >
+        <widget class="QComboBox" name="comboBoxSlot0" />
+       </item>
+       <item row="1" column="0" >
+        <widget class="QLabel" name="label_12" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text" >
+          <string>slot1:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" >
+        <widget class="QComboBox" name="comboBoxSlot1" />
+       </item>
+       <item row="2" column="0" >
+        <widget class="QLabel" name="label_15" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text" >
+          <string>slot2:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1" >
+        <widget class="QComboBox" name="comboBoxSlot2" />
+       </item>
+       <item row="3" column="0" >
+        <widget class="QLabel" name="label_19" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text" >
+          <string>slot3:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1" >
+        <widget class="QComboBox" name="comboBoxSlot3" />
+       </item>
+       <item row="4" column="0" >
+        <widget class="QLabel" name="label_23" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text" >
+          <string>slot4:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1" >
+        <widget class="QComboBox" name="comboBoxSlot4" />
+       </item>
+       <item row="5" column="0" >
+        <widget class="QLabel" name="label_26" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text" >
+          <string>slot5:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1" >
+        <widget class="QComboBox" name="comboBoxSlot5" />
+       </item>
+       <item row="6" column="0" >
+        <widget class="QLabel" name="label_28" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text" >
+          <string>slot6:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1" >
+        <widget class="QComboBox" name="comboBoxSlot6" />
+       </item>
+       <item row="7" column="1" >
         <spacer>
          <property name="orientation" >
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeType" >
-          <enum>QSizePolicy::Fixed</enum>
+          <enum>Qt::Vertical</enum>
          </property>
          <property name="sizeHint" >
           <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <layout class="QGridLayout" >
-         <item row="0" column="0" >
-          <widget class="QLabel" name="label_6" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text" >
-            <string>slot0:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1" >
-          <widget class="QComboBox" name="comboBoxSlot0" />
-         </item>
-         <item row="1" column="0" >
-          <widget class="QLabel" name="label_12" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text" >
-            <string>slot1:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1" >
-          <widget class="QComboBox" name="comboBoxSlot1" />
-         </item>
-         <item row="2" column="0" >
-          <widget class="QLabel" name="label_15" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text" >
-            <string>slot2:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1" >
-          <widget class="QComboBox" name="comboBoxSlot2" />
-         </item>
-         <item row="3" column="0" >
-          <widget class="QLabel" name="label_19" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text" >
-            <string>slot3:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1" >
-          <widget class="QComboBox" name="comboBoxSlot3" />
-         </item>
-         <item row="4" column="0" >
-          <widget class="QLabel" name="label_23" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text" >
-            <string>slot4:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1" >
-          <widget class="QComboBox" name="comboBoxSlot4" />
-         </item>
-         <item row="5" column="0" >
-          <widget class="QLabel" name="label_26" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text" >
-            <string>slot5:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="1" >
-          <widget class="QComboBox" name="comboBoxSlot5" />
-         </item>
-         <item row="6" column="0" >
-          <widget class="QLabel" name="label_28" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text" >
-            <string>slot6:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="1" >
-          <widget class="QComboBox" name="comboBoxSlot6" />
-         </item>
-        </layout>
-       </item>
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeType" >
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" >
-          <size>
-           <width>40</width>
-           <height>20</height>
+           <width>20</width>
+           <height>31</height>
           </size>
          </property>
         </spacer>
@@ -585,134 +455,109 @@
       <attribute name="title" >
        <string>Advanced</string>
       </attribute>
-      <layout class="QVBoxLayout" >
-       <item>
-        <layout class="QGridLayout" >
-         <item row="0" column="0" >
-          <widget class="QCheckBox" name="checkBoxMapped" >
-           <property name="text" >
-            <string>Use mmap</string>
-           </property>
-           <property name="checked" >
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1" colspan="2" >
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>131</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="1" column="0" >
-          <widget class="QLabel" name="label_25" >
-           <property name="text" >
-            <string>confreg:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2" >
-          <widget class="QLineEdit" name="lineEditConfreg" >
-           <property name="text" >
-            <string>0x2102</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0" >
-          <widget class="QLabel" name="label_31" >
-           <property name="text" >
-            <string>exec area:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1" >
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>16</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="2" column="2" >
-          <widget class="QSpinBox" name="spinBoxExecArea" >
-           <property name="suffix" >
-            <string> MB</string>
-           </property>
-           <property name="maximum" >
-            <number>4096</number>
-           </property>
-           <property name="singleStep" >
-            <number>4</number>
-           </property>
-           <property name="value" >
-            <number>64</number>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0" >
-          <widget class="QLabel" name="label_22" >
-           <property name="text" >
-            <string>iomem :</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1" >
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>21</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="3" column="2" >
-          <widget class="QSpinBox" name="spinBoxIomem" >
-           <property name="enabled" >
-            <bool>false</bool>
-           </property>
-           <property name="suffix" >
-            <string> %</string>
-           </property>
-           <property name="maximum" >
-            <number>100</number>
-           </property>
-           <property name="value" >
-            <number>5</number>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1" >
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>21</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
+      <layout class="QGridLayout" >
+       <item row="0" column="0" >
+        <widget class="QCheckBox" name="checkBoxMapped" >
+         <property name="text" >
+          <string>Use mmap</string>
+         </property>
+         <property name="checked" >
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
-       <item>
+       <item row="0" column="1" >
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>121</width>
+           <height>23</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="0" >
+        <widget class="QLabel" name="label_25" >
+         <property name="text" >
+          <string>confreg:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" >
+        <widget class="QLineEdit" name="lineEditConfreg" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text" >
+          <string>0x2102</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" >
+        <widget class="QLabel" name="label_31" >
+         <property name="text" >
+          <string>exec area:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1" >
+        <widget class="QSpinBox" name="spinBoxExecArea" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="suffix" >
+          <string> MB</string>
+         </property>
+         <property name="maximum" >
+          <number>4096</number>
+         </property>
+         <property name="singleStep" >
+          <number>4</number>
+         </property>
+         <property name="value" >
+          <number>64</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" >
+        <widget class="QLabel" name="label_22" >
+         <property name="text" >
+          <string>iomem :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1" >
+        <widget class="QSpinBox" name="spinBoxIomem" >
+         <property name="enabled" >
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="suffix" >
+          <string> %</string>
+         </property>
+         <property name="maximum" >
+          <number>100</number>
+         </property>
+         <property name="value" >
+          <number>5</number>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1" >
         <spacer>
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
@@ -720,7 +565,7 @@
          <property name="sizeHint" >
           <size>
            <width>20</width>
-           <height>71</height>
+           <height>121</height>
           </size>
          </property>
         </spacer>

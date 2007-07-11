@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'IOSRouterPage.ui'
 #
-# Created: Wed Jul 11 18:20:29 2007
+# Created: Wed Jul 11 19:17:13 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
@@ -23,33 +23,36 @@ class Ui_IOSRouterPage(object):
         self.General = QtGui.QWidget()
         self.General.setObjectName("General")
 
-        self.vboxlayout1 = QtGui.QVBoxLayout(self.General)
-        self.vboxlayout1.setObjectName("vboxlayout1")
-
-        self.gridlayout = QtGui.QGridLayout()
+        self.gridlayout = QtGui.QGridLayout(self.General)
         self.gridlayout.setObjectName("gridlayout")
 
         self.label_5 = QtGui.QLabel(self.General)
         self.label_5.setObjectName("label_5")
-        self.gridlayout.addWidget(self.label_5,0,0,1,2)
-
-        spacerItem = QtGui.QSpacerItem(41,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.gridlayout.addItem(spacerItem,0,2,1,3)
+        self.gridlayout.addWidget(self.label_5,0,0,1,1)
 
         self.comboBoxIOS = QtGui.QComboBox(self.General)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.comboBoxIOS.sizePolicy().hasHeightForWidth())
+        self.comboBoxIOS.setSizePolicy(sizePolicy)
         self.comboBoxIOS.setObjectName("comboBoxIOS")
-        self.gridlayout.addWidget(self.comboBoxIOS,0,5,1,2)
+        self.gridlayout.addWidget(self.comboBoxIOS,0,1,1,2)
 
         self.label_18 = QtGui.QLabel(self.General)
         self.label_18.setObjectName("label_18")
-        self.gridlayout.addWidget(self.label_18,1,0,1,4)
-
-        spacerItem1 = QtGui.QSpacerItem(16,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.gridlayout.addItem(spacerItem1,1,4,1,1)
+        self.gridlayout.addWidget(self.label_18,1,0,1,1)
 
         self.lineEditStartupConfig = QtGui.QLineEdit(self.General)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lineEditStartupConfig.sizePolicy().hasHeightForWidth())
+        self.lineEditStartupConfig.setSizePolicy(sizePolicy)
         self.lineEditStartupConfig.setObjectName("lineEditStartupConfig")
-        self.gridlayout.addWidget(self.lineEditStartupConfig,1,5,1,1)
+        self.gridlayout.addWidget(self.lineEditStartupConfig,1,1,1,1)
 
         self.pushButtonStartupConfig = QtGui.QPushButton(self.General)
 
@@ -60,120 +63,124 @@ class Ui_IOSRouterPage(object):
         self.pushButtonStartupConfig.setSizePolicy(sizePolicy)
         self.pushButtonStartupConfig.setMaximumSize(QtCore.QSize(31,27))
         self.pushButtonStartupConfig.setObjectName("pushButtonStartupConfig")
-        self.gridlayout.addWidget(self.pushButtonStartupConfig,1,6,1,1)
+        self.gridlayout.addWidget(self.pushButtonStartupConfig,1,2,1,1)
 
         self.label_13 = QtGui.QLabel(self.General)
         self.label_13.setObjectName("label_13")
-        self.gridlayout.addWidget(self.label_13,2,0,1,3)
-
-        spacerItem2 = QtGui.QSpacerItem(21,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.gridlayout.addItem(spacerItem2,2,3,1,2)
+        self.gridlayout.addWidget(self.label_13,2,0,1,1)
 
         self.lineEditConsolePort = QtGui.QLineEdit(self.General)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lineEditConsolePort.sizePolicy().hasHeightForWidth())
+        self.lineEditConsolePort.setSizePolicy(sizePolicy)
         self.lineEditConsolePort.setObjectName("lineEditConsolePort")
-        self.gridlayout.addWidget(self.lineEditConsolePort,2,5,1,1)
+        self.gridlayout.addWidget(self.lineEditConsolePort,2,1,1,2)
 
         self.label = QtGui.QLabel(self.General)
         self.label.setObjectName("label")
         self.gridlayout.addWidget(self.label,3,0,1,1)
 
-        spacerItem3 = QtGui.QSpacerItem(31,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.gridlayout.addItem(spacerItem3,3,1,1,4)
-
         self.comboBoxMidplane = QtGui.QComboBox(self.General)
         self.comboBoxMidplane.setEnabled(False)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.comboBoxMidplane.sizePolicy().hasHeightForWidth())
+        self.comboBoxMidplane.setSizePolicy(sizePolicy)
         self.comboBoxMidplane.setObjectName("comboBoxMidplane")
-        self.gridlayout.addWidget(self.comboBoxMidplane,3,5,1,1)
+        self.gridlayout.addWidget(self.comboBoxMidplane,3,1,1,2)
 
         self.label_2 = QtGui.QLabel(self.General)
         self.label_2.setObjectName("label_2")
         self.gridlayout.addWidget(self.label_2,4,0,1,1)
 
-        spacerItem4 = QtGui.QSpacerItem(51,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.gridlayout.addItem(spacerItem4,4,1,1,4)
-
         self.comboBoxNPE = QtGui.QComboBox(self.General)
         self.comboBoxNPE.setEnabled(False)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.comboBoxNPE.sizePolicy().hasHeightForWidth())
+        self.comboBoxNPE.setSizePolicy(sizePolicy)
         self.comboBoxNPE.setObjectName("comboBoxNPE")
-        self.gridlayout.addWidget(self.comboBoxNPE,4,5,1,1)
+        self.gridlayout.addWidget(self.comboBoxNPE,4,1,1,2)
 
-        spacerItem5 = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.gridlayout.addItem(spacerItem5,4,6,1,1)
-
-        spacerItem6 = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.gridlayout.addItem(spacerItem6,3,6,1,1)
-
-        spacerItem7 = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.gridlayout.addItem(spacerItem7,2,6,1,1)
-        self.vboxlayout1.addLayout(self.gridlayout)
-
-        spacerItem8 = QtGui.QSpacerItem(20,40,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
-        self.vboxlayout1.addItem(spacerItem8)
+        spacerItem = QtGui.QSpacerItem(20,91,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        self.gridlayout.addItem(spacerItem,5,1,1,1)
         self.tabWidget.addTab(self.General,"")
 
         self.MemoriesDisks = QtGui.QWidget()
         self.MemoriesDisks.setObjectName("MemoriesDisks")
 
-        self.vboxlayout2 = QtGui.QVBoxLayout(self.MemoriesDisks)
-        self.vboxlayout2.setObjectName("vboxlayout2")
+        self.vboxlayout1 = QtGui.QVBoxLayout(self.MemoriesDisks)
+        self.vboxlayout1.setObjectName("vboxlayout1")
 
         self.groupBox_2 = QtGui.QGroupBox(self.MemoriesDisks)
         self.groupBox_2.setObjectName("groupBox_2")
 
         self.gridlayout1 = QtGui.QGridLayout(self.groupBox_2)
-        self.gridlayout1.setMargin(9)
-        self.gridlayout1.setSpacing(6)
         self.gridlayout1.setObjectName("gridlayout1")
-
-        spacerItem9 = QtGui.QSpacerItem(21,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.gridlayout1.addItem(spacerItem9,1,1,1,1)
-
-        spacerItem10 = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.gridlayout1.addItem(spacerItem10,2,1,1,1)
 
         self.label_7 = QtGui.QLabel(self.groupBox_2)
         self.label_7.setObjectName("label_7")
         self.gridlayout1.addWidget(self.label_7,0,0,1,1)
 
-        spacerItem11 = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.gridlayout1.addItem(spacerItem11,0,1,1,1)
+        self.spinBoxRamSize = QtGui.QSpinBox(self.groupBox_2)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.spinBoxRamSize.sizePolicy().hasHeightForWidth())
+        self.spinBoxRamSize.setSizePolicy(sizePolicy)
+        self.spinBoxRamSize.setMaximum(4096)
+        self.spinBoxRamSize.setSingleStep(4)
+        self.spinBoxRamSize.setProperty("value",QtCore.QVariant(128))
+        self.spinBoxRamSize.setObjectName("spinBoxRamSize")
+        self.gridlayout1.addWidget(self.spinBoxRamSize,0,1,1,1)
 
         self.label_8 = QtGui.QLabel(self.groupBox_2)
         self.label_8.setObjectName("label_8")
         self.gridlayout1.addWidget(self.label_8,1,0,1,1)
 
-        self.spinBoxNvramSize = QtGui.QSpinBox(self.groupBox_2)
-        self.spinBoxNvramSize.setMaximum(4096)
-        self.spinBoxNvramSize.setSingleStep(4)
-        self.spinBoxNvramSize.setProperty("value",QtCore.QVariant(128))
-        self.spinBoxNvramSize.setObjectName("spinBoxNvramSize")
-        self.gridlayout1.addWidget(self.spinBoxNvramSize,2,2,1,1)
+        self.spinBoxRomSize = QtGui.QSpinBox(self.groupBox_2)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.spinBoxRomSize.sizePolicy().hasHeightForWidth())
+        self.spinBoxRomSize.setSizePolicy(sizePolicy)
+        self.spinBoxRomSize.setMaximum(4096)
+        self.spinBoxRomSize.setSingleStep(4)
+        self.spinBoxRomSize.setProperty("value",QtCore.QVariant(4))
+        self.spinBoxRomSize.setObjectName("spinBoxRomSize")
+        self.gridlayout1.addWidget(self.spinBoxRomSize,1,1,1,1)
 
         self.label_9 = QtGui.QLabel(self.groupBox_2)
         self.label_9.setObjectName("label_9")
         self.gridlayout1.addWidget(self.label_9,2,0,1,1)
 
-        self.spinBoxRomSize = QtGui.QSpinBox(self.groupBox_2)
-        self.spinBoxRomSize.setMaximum(4096)
-        self.spinBoxRomSize.setSingleStep(4)
-        self.spinBoxRomSize.setProperty("value",QtCore.QVariant(4))
-        self.spinBoxRomSize.setObjectName("spinBoxRomSize")
-        self.gridlayout1.addWidget(self.spinBoxRomSize,1,2,1,1)
+        self.spinBoxNvramSize = QtGui.QSpinBox(self.groupBox_2)
 
-        self.spinBoxRamSize = QtGui.QSpinBox(self.groupBox_2)
-        self.spinBoxRamSize.setMaximum(4096)
-        self.spinBoxRamSize.setSingleStep(4)
-        self.spinBoxRamSize.setProperty("value",QtCore.QVariant(128))
-        self.spinBoxRamSize.setObjectName("spinBoxRamSize")
-        self.gridlayout1.addWidget(self.spinBoxRamSize,0,2,1,1)
-        self.vboxlayout2.addWidget(self.groupBox_2)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.spinBoxNvramSize.sizePolicy().hasHeightForWidth())
+        self.spinBoxNvramSize.setSizePolicy(sizePolicy)
+        self.spinBoxNvramSize.setMaximum(4096)
+        self.spinBoxNvramSize.setSingleStep(4)
+        self.spinBoxNvramSize.setProperty("value",QtCore.QVariant(128))
+        self.spinBoxNvramSize.setObjectName("spinBoxNvramSize")
+        self.gridlayout1.addWidget(self.spinBoxNvramSize,2,1,1,1)
+        self.vboxlayout1.addWidget(self.groupBox_2)
 
         self.groupBox_6 = QtGui.QGroupBox(self.MemoriesDisks)
         self.groupBox_6.setObjectName("groupBox_6")
 
         self.gridlayout2 = QtGui.QGridLayout(self.groupBox_6)
-        self.gridlayout2.setMargin(9)
-        self.gridlayout2.setSpacing(6)
         self.gridlayout2.setObjectName("gridlayout2")
 
         self.label_10 = QtGui.QLabel(self.groupBox_6)
@@ -181,31 +188,40 @@ class Ui_IOSRouterPage(object):
         self.gridlayout2.addWidget(self.label_10,0,0,1,1)
 
         self.spinBoxPcmciaDisk0Size = QtGui.QSpinBox(self.groupBox_6)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.spinBoxPcmciaDisk0Size.sizePolicy().hasHeightForWidth())
+        self.spinBoxPcmciaDisk0Size.setSizePolicy(sizePolicy)
         self.spinBoxPcmciaDisk0Size.setSingleStep(4)
         self.spinBoxPcmciaDisk0Size.setObjectName("spinBoxPcmciaDisk0Size")
         self.gridlayout2.addWidget(self.spinBoxPcmciaDisk0Size,0,1,1,1)
 
-        self.spinBoxPcmciaDisk1Size = QtGui.QSpinBox(self.groupBox_6)
-        self.spinBoxPcmciaDisk1Size.setSingleStep(4)
-        self.spinBoxPcmciaDisk1Size.setObjectName("spinBoxPcmciaDisk1Size")
-        self.gridlayout2.addWidget(self.spinBoxPcmciaDisk1Size,1,1,1,1)
-
         self.label_11 = QtGui.QLabel(self.groupBox_6)
         self.label_11.setObjectName("label_11")
         self.gridlayout2.addWidget(self.label_11,1,0,1,1)
-        self.vboxlayout2.addWidget(self.groupBox_6)
+
+        self.spinBoxPcmciaDisk1Size = QtGui.QSpinBox(self.groupBox_6)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.spinBoxPcmciaDisk1Size.sizePolicy().hasHeightForWidth())
+        self.spinBoxPcmciaDisk1Size.setSizePolicy(sizePolicy)
+        self.spinBoxPcmciaDisk1Size.setSingleStep(4)
+        self.spinBoxPcmciaDisk1Size.setObjectName("spinBoxPcmciaDisk1Size")
+        self.gridlayout2.addWidget(self.spinBoxPcmciaDisk1Size,1,1,1,1)
+        self.vboxlayout1.addWidget(self.groupBox_6)
+
+        spacerItem1 = QtGui.QSpacerItem(20,21,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        self.vboxlayout1.addItem(spacerItem1)
         self.tabWidget.addTab(self.MemoriesDisks,"")
 
         self.Slots = QtGui.QWidget()
         self.Slots.setObjectName("Slots")
 
-        self.hboxlayout = QtGui.QHBoxLayout(self.Slots)
-        self.hboxlayout.setObjectName("hboxlayout")
-
-        spacerItem12 = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
-        self.hboxlayout.addItem(spacerItem12)
-
-        self.gridlayout3 = QtGui.QGridLayout()
+        self.gridlayout3 = QtGui.QGridLayout(self.Slots)
         self.gridlayout3.setObjectName("gridlayout3")
 
         self.label_6 = QtGui.QLabel(self.Slots)
@@ -305,19 +321,15 @@ class Ui_IOSRouterPage(object):
         self.comboBoxSlot6 = QtGui.QComboBox(self.Slots)
         self.comboBoxSlot6.setObjectName("comboBoxSlot6")
         self.gridlayout3.addWidget(self.comboBoxSlot6,6,1,1,1)
-        self.hboxlayout.addLayout(self.gridlayout3)
 
-        spacerItem13 = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
-        self.hboxlayout.addItem(spacerItem13)
+        spacerItem2 = QtGui.QSpacerItem(20,31,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        self.gridlayout3.addItem(spacerItem2,7,1,1,1)
         self.tabWidget.addTab(self.Slots,"")
 
         self.Advanced = QtGui.QWidget()
         self.Advanced.setObjectName("Advanced")
 
-        self.vboxlayout3 = QtGui.QVBoxLayout(self.Advanced)
-        self.vboxlayout3.setObjectName("vboxlayout3")
-
-        self.gridlayout4 = QtGui.QGridLayout()
+        self.gridlayout4 = QtGui.QGridLayout(self.Advanced)
         self.gridlayout4.setObjectName("gridlayout4")
 
         self.checkBoxMapped = QtGui.QCheckBox(self.Advanced)
@@ -325,51 +337,59 @@ class Ui_IOSRouterPage(object):
         self.checkBoxMapped.setObjectName("checkBoxMapped")
         self.gridlayout4.addWidget(self.checkBoxMapped,0,0,1,1)
 
-        spacerItem14 = QtGui.QSpacerItem(131,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.gridlayout4.addItem(spacerItem14,0,1,1,2)
+        spacerItem3 = QtGui.QSpacerItem(121,23,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        self.gridlayout4.addItem(spacerItem3,0,1,1,1)
 
         self.label_25 = QtGui.QLabel(self.Advanced)
         self.label_25.setObjectName("label_25")
         self.gridlayout4.addWidget(self.label_25,1,0,1,1)
 
         self.lineEditConfreg = QtGui.QLineEdit(self.Advanced)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lineEditConfreg.sizePolicy().hasHeightForWidth())
+        self.lineEditConfreg.setSizePolicy(sizePolicy)
         self.lineEditConfreg.setObjectName("lineEditConfreg")
-        self.gridlayout4.addWidget(self.lineEditConfreg,1,2,1,1)
+        self.gridlayout4.addWidget(self.lineEditConfreg,1,1,1,1)
 
         self.label_31 = QtGui.QLabel(self.Advanced)
         self.label_31.setObjectName("label_31")
         self.gridlayout4.addWidget(self.label_31,2,0,1,1)
 
-        spacerItem15 = QtGui.QSpacerItem(16,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.gridlayout4.addItem(spacerItem15,2,1,1,1)
-
         self.spinBoxExecArea = QtGui.QSpinBox(self.Advanced)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.spinBoxExecArea.sizePolicy().hasHeightForWidth())
+        self.spinBoxExecArea.setSizePolicy(sizePolicy)
         self.spinBoxExecArea.setMaximum(4096)
         self.spinBoxExecArea.setSingleStep(4)
         self.spinBoxExecArea.setProperty("value",QtCore.QVariant(64))
         self.spinBoxExecArea.setObjectName("spinBoxExecArea")
-        self.gridlayout4.addWidget(self.spinBoxExecArea,2,2,1,1)
+        self.gridlayout4.addWidget(self.spinBoxExecArea,2,1,1,1)
 
         self.label_22 = QtGui.QLabel(self.Advanced)
         self.label_22.setObjectName("label_22")
         self.gridlayout4.addWidget(self.label_22,3,0,1,1)
 
-        spacerItem16 = QtGui.QSpacerItem(21,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.gridlayout4.addItem(spacerItem16,3,1,1,1)
-
         self.spinBoxIomem = QtGui.QSpinBox(self.Advanced)
         self.spinBoxIomem.setEnabled(False)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.spinBoxIomem.sizePolicy().hasHeightForWidth())
+        self.spinBoxIomem.setSizePolicy(sizePolicy)
         self.spinBoxIomem.setMaximum(100)
         self.spinBoxIomem.setProperty("value",QtCore.QVariant(5))
         self.spinBoxIomem.setObjectName("spinBoxIomem")
-        self.gridlayout4.addWidget(self.spinBoxIomem,3,2,1,1)
+        self.gridlayout4.addWidget(self.spinBoxIomem,3,1,1,1)
 
-        spacerItem17 = QtGui.QSpacerItem(21,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.gridlayout4.addItem(spacerItem17,1,1,1,1)
-        self.vboxlayout3.addLayout(self.gridlayout4)
-
-        spacerItem18 = QtGui.QSpacerItem(20,71,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
-        self.vboxlayout3.addItem(spacerItem18)
+        spacerItem4 = QtGui.QSpacerItem(20,121,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        self.gridlayout4.addItem(spacerItem4,4,1,1,1)
         self.tabWidget.addTab(self.Advanced,"")
         self.vboxlayout.addWidget(self.tabWidget)
 
@@ -388,16 +408,16 @@ class Ui_IOSRouterPage(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.General), QtGui.QApplication.translate("IOSRouterPage", "General", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setTitle(QtGui.QApplication.translate("IOSRouterPage", "Memories", None, QtGui.QApplication.UnicodeUTF8))
         self.label_7.setText(QtGui.QApplication.translate("IOSRouterPage", "RAM size:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_8.setText(QtGui.QApplication.translate("IOSRouterPage", "ROM size:", None, QtGui.QApplication.UnicodeUTF8))
-        self.spinBoxNvramSize.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MB", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_9.setText(QtGui.QApplication.translate("IOSRouterPage", "NVRAM size:", None, QtGui.QApplication.UnicodeUTF8))
-        self.spinBoxRomSize.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MB", None, QtGui.QApplication.UnicodeUTF8))
         self.spinBoxRamSize.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MB", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_8.setText(QtGui.QApplication.translate("IOSRouterPage", "ROM size:", None, QtGui.QApplication.UnicodeUTF8))
+        self.spinBoxRomSize.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MB", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_9.setText(QtGui.QApplication.translate("IOSRouterPage", "NVRAM size:", None, QtGui.QApplication.UnicodeUTF8))
+        self.spinBoxNvramSize.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MB", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_6.setTitle(QtGui.QApplication.translate("IOSRouterPage", "Disks", None, QtGui.QApplication.UnicodeUTF8))
         self.label_10.setText(QtGui.QApplication.translate("IOSRouterPage", "PCMCIA disk0 size:", None, QtGui.QApplication.UnicodeUTF8))
         self.spinBoxPcmciaDisk0Size.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MB", None, QtGui.QApplication.UnicodeUTF8))
-        self.spinBoxPcmciaDisk1Size.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MB", None, QtGui.QApplication.UnicodeUTF8))
         self.label_11.setText(QtGui.QApplication.translate("IOSRouterPage", "PCMCIA disk1 size:", None, QtGui.QApplication.UnicodeUTF8))
+        self.spinBoxPcmciaDisk1Size.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MB", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.MemoriesDisks), QtGui.QApplication.translate("IOSRouterPage", "Memories and disks", None, QtGui.QApplication.UnicodeUTF8))
         self.label_6.setText(QtGui.QApplication.translate("IOSRouterPage", "slot0:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_12.setText(QtGui.QApplication.translate("IOSRouterPage", "slot1:", None, QtGui.QApplication.UnicodeUTF8))
