@@ -56,4 +56,3 @@ class Topology:
            self.__links.remove(link)
            return True
        return False
-

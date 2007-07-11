@@ -41,74 +41,6 @@ class Scene(QtGui.QGraphicsScene):
         self.__destNodeID = None
         self.__sourceInterface = None
         self.__destInterface = None
-        self.__initActions()
-
-    def __initActions(self):
-        """ Initialize all menu actions who belongs to Node
-        """
-
-        # Action: Configure (Configure the node)
-        self.configAct = QtGui.QAction(translate('Scene', 'Configure'), self)
-        self.configAct.setIcon(QtGui.QIcon(":/icons/configuration.svg"))
-        self.connect(self.configAct, QtCore.SIGNAL('activated()'), self.__configAction)
-
-        # Action: Delete (Delete the node)
-        self.deleteAct = QtGui.QAction(translate('Scene', 'Delete'), self)
-        self.deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
-        self.connect(self.deleteAct, QtCore.SIGNAL('activated()'), self.__deleteAction)
-
-        # Action: Console (Connect to the node console (IOS))
-        self.consoleAct = QtGui.QAction(translate('Scene', 'Console'), self)
-        self.consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
-        self.connect(self.consoleAct, QtCore.SIGNAL('activated()'), self.__consoleAction)
-
-        # Action: Start (Start IOS on hypervisor)
-        self.startAct = QtGui.QAction(translate('Scene', 'Start'), self)
-        self.startAct.setIcon(QtGui.QIcon(':/icons/play.svg'))
-        self.connect(self.startAct, QtCore.SIGNAL('activated()'), self.__startAction)
-
-        # Action: Stop (Stop IOS on hypervisor)
-        self.stopAct = QtGui.QAction(translate('Scene', 'Stop'), self)
-        self.stopAct.setIcon(QtGui.QIcon(':/icons/stop.svg'))
-        self.connect(self.stopAct, QtCore.SIGNAL('activated()'), self.__stopAction)
-
-    def __configAction(self):
-        """ Action called for node configuration
-        """
-
-        print self.selectedItems()
-
-    def __deleteAction(self):
-        """ Action called for node deletion
-        """
-
-        for item in self.selectedItems():
-            item.delete()
-
-    def __consoleAction(self):
-        """ Action called to start a node console
-        """
-
-        self.telnetToIOS()
-
-
-    def __startAction(self):
-        """ Action called to start the IOS hypervisor on the node
-        """
-
-        try:
-            self.startIOS()
-        except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
-
-    def __stopAction(self):
-        """ Action called to stop IOS hypervisor on the node
-        """
-
-        try:
-            self.stopIOS()
-        except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
 
     def addItem(self, node):
         
@@ -151,17 +83,18 @@ class Scene(QtGui.QGraphicsScene):
         QtGui.QGraphicsScene.addItem(self, link)
         self.update(link.boundingRect())
 
-    def slotDeleteNode(self, id, linklist):
-        """ Called when a node is clicked
-            id: integer
-            edgelist: list of edge instances
+    def slotDeleteNode(self):
+        """ Called to delete a node
         """
-        
-        for link in linklist.copy():
-            if self.__topology.deleteLink(link):
-                self.removeItem(link)
-        self.removeItem(self.__topology.getNode(id))
-        self.__topology.deleteNode(id)
+
+        for item in self.selectedItems():
+            node = self.__topology.getNode(item.id)
+            for link in node.getEdgeList().copy():
+                if self.__topology.deleteLink(link):
+                    self.removeItem(link)
+            self.removeItem(node)
+            self.__topology.deleteNode(item.id)
+            self.update(self.sceneRect())
 
     def slotNodeClicked(self, id):
         """ Called when a node is clicked
@@ -203,44 +136,3 @@ class Scene(QtGui.QGraphicsScene):
         else:
             # destination node
             self.__destInterface = interface
-
-    def slotShowNodeOptions(self, id):
-        
-#        if (event.button() == QtCore.Qt.RightButton) and self.main.design_mode == False:
-#            self.menu = QtGui.QMenu()
-#            self.menu.addAction(self.consoleAct)
-#            self.menu.addAction(self.startAct)
-#            self.menu.addAction(self.stopAct)
-#            self.menu.exec_(QtGui.QCursor.pos())
-#            return
-#
-           node = self.__topology.getNode(id)
-           node.setSelected(True)
-           self.menu = QtGui.QMenu()
-           self.menu.addAction(self.configAct)
-           self.menu.addAction(self.deleteAct)
-           self.menu.exec_(QtGui.QCursor.pos())
-
-#    def showHostname(self):
-#        """ Show the hostname on the scene
-#        """
-#
-#        if self.flg_hostname == True:
-#            # don't try to show hostname twice
-#            return
-#
-#        self.textItem = QtGui.QGraphicsTextItem("R " + str(self.id), self)
-#        self.textItem.setFont(QtGui.QFont("Times", 10, QtGui.QFont.Bold))
-#        self.textItem.setFlag(self.textItem.ItemIsMovable)
-#        self.textItem.setZValue(2)
-#        self.textItem.setPos(20, -20)
-#        self._QGraphicsScene.addItem(self.textItem)
-#        self.flg_hostname = True
-
-#    def removeHostname(self):
-#        """ Remove the hostname on the scene
-#        """
-#
-#        if self.flg_hostname == True:
-#            self._QGraphicsScene.removeItem(self.textItem)
-#            self.flg_hostname = False

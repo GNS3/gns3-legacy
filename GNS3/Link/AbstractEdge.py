@@ -23,6 +23,8 @@ import math
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
 
+baseId = 0
+
 class AbstractEdge(QtGui.QGraphicsPathItem):
     """ AbstractEdge class
         Base class to create edges between nodes
@@ -48,6 +50,12 @@ class AbstractEdge(QtGui.QGraphicsPathItem):
 
         # set item focusable
         self.setFlag(self.ItemIsFocusable)
+        
+        # create a unique ID
+        global baseId
+        self.id = baseId
+        baseId += 1
+
         
     def adjust(self):
         """ Compute the source point and destination point

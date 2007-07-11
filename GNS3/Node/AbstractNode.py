@@ -20,6 +20,7 @@
 #
 
 from PyQt4 import QtCore, QtGui, QtSvg
+from GNS3.Utils import translate
 
 QT_VERSION = int(QtCore.QT_VERSION_STR.replace('.', ''))
 baseId = 0
@@ -50,6 +51,17 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.setAcceptsHoverEvents(True)
         self.setZValue(1)
         self.setSharedRenderer(self.__render_normal)
+          
+        # Action: Delete (Delete the node)
+        self.deleteAct = QtGui.QAction(translate('AbstractNode', 'Delete'), self)
+        self.deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
+        self.connect(self.deleteAct, QtCore.SIGNAL('activated()'), self.__deleteAction)
+
+    def __deleteAction(self):
+        """ Action called for node deletion
+        """
+
+        self.emit(QtCore.SIGNAL("Delete node"))
 
     def itemChange(self, change, value):
         """ do some action when item is changed...
@@ -99,11 +111,9 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         if edge in self.__edgeList:
             self.__edgeList.remove(edge)
 
-    def delete(self):
-        """ Send a signal to delete this node
-        """
-
-        self.emit(QtCore.SIGNAL("Delete node"), self.id, self.__edgeList)
+    def getEdgeList(self):
+        
+        return self.__edgeList
 
     def keyReleaseEvent(self, event):
         """ Key release handler
@@ -123,7 +133,10 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         if (event.button() == QtCore.Qt.LeftButton):
             self.emit(QtCore.SIGNAL("Node clicked"), self.id)
         elif (event.button() == QtCore.Qt.RightButton):
-            self.emit(QtCore.SIGNAL("Node options"), self.id)
+            self.setSelected(True)
+            self.menu = QtGui.QMenu()
+            self.menu.addAction(self.deleteAct)
+            self.menu.exec_(QtGui.QCursor.pos())
         QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
         
     def getConnectedInterfaceList(self):
