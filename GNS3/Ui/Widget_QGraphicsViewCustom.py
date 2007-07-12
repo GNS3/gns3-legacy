@@ -100,7 +100,7 @@ class QGraphicsViewCustom(QtGui.QGraphicsView):
             node = object(renderer_normal, renderer_select)
             #node.setName(s[1])
             node.setPos(xPos, yPos)
-            QtCore.QObject.connect(node, QtCore.SIGNAL("Node clicked"), self.scene().slotNodeClicked)
+            QtCore.QObject.connect(node, QtCore.SIGNAL("Add link"), self.scene().slotAddLink)
             QtCore.QObject.connect(node, QtCore.SIGNAL("Delete node"), self.scene().slotDeleteNode)
             QtCore.QObject.connect(node, QtCore.SIGNAL("Config node"), self.scene().slotConfigNode)
 

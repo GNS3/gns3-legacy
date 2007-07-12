@@ -19,6 +19,7 @@
 # Contact: developers@gns3.net
 #
 
+import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 from GNS3.Topology import Topology
 from GNS3.Utils import translate
@@ -36,7 +37,6 @@ class Scene(QtGui.QGraphicsScene):
         self.setSceneRect(-250, -250, 500, 500)
         
         self.__topology = Topology()
-        self.__addingLinkFlag = False
         self.__isFirstClick = True
         self.__sourceNodeID = None
         self.__destNodeID = None
@@ -47,42 +47,6 @@ class Scene(QtGui.QGraphicsScene):
         
         self.__topology.recordNode(node)
         QtGui.QGraphicsScene.addItem(self, node)
-
-    def showMenuInterface(self, node):
-        """ Show a contextual menu to choose an interface on a specific node
-            node: node instance
-        """
-
-        menu = QtGui.QMenu()
-        interfaces_list = node.interfaces
-        connected_list = node.getConnectedInterfaceList()
-        for interface in interfaces_list:
-            if interface in connected_list:
-                # already connected interface
-                menu.addAction(QtGui.QIcon(':/icons/led_green.svg'), interface)
-            else:
-                # disconnected interface
-                menu.addAction(QtGui.QIcon(':/icons/led_red.svg'), interface)
-
-        # connect the menu
-        menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.slotSelectedInterface)
-        menu.exec_(QtGui.QCursor.pos())
-
-    def setAddingLinkFlag(self, value):
-        
-        self.__addingLinkFlag = value
-
-    def __addLink(self):
-        
-#        if self.__sourceInterface[0] != self.__destInterface[0]:
-#            QtGui.QMessageBox.critical(self.win, 'Connection',  'Interfaces types mismatch !')
-#            return
-        if self.__sourceNodeID == self.__destNodeID:
-            return
-        
-        link = self.__topology.addLink(self.__sourceNodeID, self.__sourceInterface, self.__destNodeID, self.__destInterface)
-        QtGui.QGraphicsScene.addItem(self, link)
-        self.update(link.boundingRect())
 
     def slotConfigNode(self):
         """ Called to configure nodes
@@ -110,43 +74,34 @@ class Scene(QtGui.QGraphicsScene):
             self.__topology.deleteNode(item.id)
             self.update(self.sceneRect())
 
-    def slotNodeClicked(self, id):
-        """ Called when a node is clicked
-            id: integer
-        """
+    def __addLink(self):
         
-        if self.__addingLinkFlag:
+#        if self.__sourceInterface[0] != self.__destInterface[0]:
+#            QtGui.QMessageBox.critical(self.win, 'Connection',  'Interfaces types mismatch !')
+#            return
+        if self.__sourceNodeID == self.__destNodeID:
+            return
+        
+        link = self.__topology.addLink(self.__sourceNodeID, self.__sourceInterface, self.__destNodeID, self.__destInterface)
+        QtGui.QGraphicsScene.addItem(self, link)
+        self.update(link.boundingRect())
+            
+    def slotAddLink(self, id,  interface):
+        """ Called when a node wants to add a link
+            id: integer
+            interface: string
+        """
+
+        if globals.addingLinkFlag:
             # user is adding a link
             if self.__isFirstClick:
                 # source node
                 self.__sourceNodeID = id
-                self.__sourceInterface = None
-                node = self.__topology.getNode(id)
-                self.showMenuInterface(node)
-                #QtGui.QMessageBox.critical(self.main.win, 'Connection',  'Already connected interface')
+                self.__sourceInterface = interface
                 self.__isFirstClick = False
             else:
                 # destination node
                 self.__destNodeID = id
-                self.__destInterface = None
-                node = self.__topology.getNode(id)
-                self.showMenuInterface(node)
-                #QtGui.QMessageBox.critical(self.main.win, 'Connection',  'Already connected interface')
-                if self.__sourceInterface and self.__destInterface:
-                    self.__addLink()
+                self.__destInterface = interface
+                self.__addLink()
                 self.__isFirstClick = True
-
-    def slotSelectedInterface(self, action):
-        """ Called when an interface is selected from the contextual menu
-            in design mode
-            action: QtCore.QAction instance
-        """
-
-        interface = str(action.text())
-        assert(interface)
-        if self.__isFirstClick:
-            # source node
-            self.__sourceInterface = interface
-        else:
-            # destination node
-            self.__destInterface = interface

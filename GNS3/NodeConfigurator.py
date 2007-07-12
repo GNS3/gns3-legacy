@@ -38,6 +38,7 @@ class ConfigurationPageItem(QtGui.QTreeWidgetItem):
 #        if iconFile:
 #            self.setIcon(0, iconFile)
         self.__pageName = unicode(pageName)
+        self.__ids = []
 
     def getPageName(self):
         """ Public method to get the name of the associated configuration page.
@@ -45,6 +46,14 @@ class ConfigurationPageItem(QtGui.QTreeWidgetItem):
         """
 
         return self.__pageName
+        
+    def addID(self,  id):
+    
+        self.__ids.append(id)
+        
+    def getIDs(self):
+    
+        return self.__ids
 
 class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
     """  NodeConfigurator class
@@ -86,7 +95,9 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
 
         for node in nodeitems:
             parent = self.assocPage[type(node)]
-            ConfigurationPageItem(self.itmDict[parent], 'node ' + str(node.id), parent,  None)
+            self.itmDict[parent].addID(node.id)
+            item = ConfigurationPageItem(self.itmDict[parent], 'node ' + str(node.id), parent,  None)
+            item.addID(node.id)
 
         self.treeViewNodes.sortByColumn(0, QtCore.Qt.AscendingOrder)
         
@@ -179,6 +190,15 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         if self.configStack.currentWidget() != self.emptyPage:
             page = self.configStack.currentWidget()
             page.save()
+            
+            for item in self.treeViewNodes.selectedItems():
+                if item.parent():
+                    children = item.getIDs()
+                    for child in children:
+                        print child
+                else:
+                    print item.getIDs()
+            
             self.emit(QtCore.SIGNAL('preferencesChanged'))
 
     def on_resetButton_clicked(self):
