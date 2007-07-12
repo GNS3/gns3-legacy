@@ -41,6 +41,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.__edgeList = set()
         self.interfaces = set(['f0/0'])
         self.__selectedInterface = None
+        self.config = {}
         
         # create a unique ID
         global baseId

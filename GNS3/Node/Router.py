@@ -19,6 +19,7 @@
 # Contact: developers@gns3.net
 #
 
+import GNS3.NodeConfigs as config
 from GNS3.Node.AbstractNode import AbstractNode
 
 class Router(AbstractNode):
@@ -28,3 +29,6 @@ class Router(AbstractNode):
     def __init__(self, renderer_normal, renderer_select):
         
         AbstractNode.__init__(self, renderer_normal, renderer_select)
+        self.config = config.IOSConfig.copy()
+
+

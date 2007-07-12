@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.1.dtd">
 <!-- eric4 project file for project gns3 -->
-<!-- Saved: 2007-07-11, 16:31:05 -->
+<!-- Saved: 2007-07-12, 16:57:57 -->
 <!-- Copyright (C) 2007 ,  -->
 <Project version="4.1">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -289,7 +289,13 @@
     </Source>
     <Source>
       <Dir>GNS3</Dir>
-      <Name>NodeConfigurator.py</Name>
+      <Dir>Globals</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>NodeConfigs</Dir>
+      <Name>__init__.py</Name>
     </Source>
   </Sources>
   <Forms>

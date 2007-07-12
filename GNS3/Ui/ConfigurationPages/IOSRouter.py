@@ -19,7 +19,7 @@
 # contact@gns3.net
 #
 
-from PyQt4 import QtGui
+from PyQt4 import QtCore,  QtGui
 from Form_IOSRouterPage import Ui_IOSRouterPage
 
 class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
@@ -27,15 +27,35 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
     Class implementing the IOS router configuration page.
     """
     def __init__(self):
+    
+        QtGui.QWidget.__init__(self)
+        self.setupUi(self)
+        self.setObjectName("IOSRouter")
+        
+        # connect IOS combobox to a slot
+        self.connect(self.comboBoxIOS, QtCore.SIGNAL('currentIndexChanged(int)'), self.slotSelectedIOS)
+#        
+#        self.slots_list = [self.comboBoxSlot0,
+#                           self.comboBoxSlot1,
+#                           self.comboBoxSlot2,
+#                           self.comboBoxSlot3,
+#                           self.comboBoxSlot4,
+#                           self.comboBoxSlot5,
+#                           self.comboBoxSlot6,
+#                           self.comboBoxSlot7]
+        
+    def slotSelectedIOS(self, index):
+        """ Add network modules / port adapters to combo boxes
+            Specifics platform configuration
+            index: integer
+        """
+        
+        pass
 
-		QtGui.QWidget.__init__(self)
-		self.setupUi(self)
-		self.setObjectName("IOSRouter")
-		
     def save(self):
         
         pass
 
 def create(dlg):
-	
+
     return  IOSRouter()

@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 import os, cmd, time, re, StringIO, csv, base64
 from dynamips_lib import DynamipsError, DynamipsWarning, IDLEPROPGET, IDLEPROPSHOW, IDLEPROPSET
 from configobj import ConfigObj
+import Globals as gl
 
 interface_re = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)\/([0-9]+)$""",  re.IGNORECASE)     # Regex matching intefaces
 globaldebug = 0
@@ -50,9 +51,8 @@ class Console(cmd.Cmd):
         # Import the main namespace for use in this module
         # Yes, normally this is bad mojo, but I'm doing this to provide the console
         # access to the entire namespace in case the user wants to futz with stuff
-        import __main__
-        self.namespace = __main__
-        debuglevel = self.namespace.debuglevel
+
+        debuglevel = gl.debuglevel
         self.prompt = '=> '
         self.intro  = 'Dynagen management console for Dynamips \n'
 
@@ -61,7 +61,7 @@ class Console(cmd.Cmd):
         """list\nList all devices"""
         table = []
         print "%-10s %-10s %-10s %-15s %-10s" % ('Name','Type','State','Server','Console')
-        for device in self.namespace.devices.values():
+        for device in gl.devices.values():
             row = []
             row.append("%-10s" % device.name)
             try:
@@ -101,7 +101,7 @@ class Console(cmd.Cmd):
 
         devices = args.split(' ')
         if '/all' in devices:
-            for device in self.namespace.devices.values():
+            for device in gl.devices.values():
                 try:
                     for line in device.suspend(): print line.strip()
                 except IndexError:
@@ -115,7 +115,7 @@ class Console(cmd.Cmd):
 
         for device in devices:
             try:
-                print self.namespace.devices[device].suspend()[0].strip()
+                print gl.devices[device].suspend()[0].strip()
             except IndexError:
                 pass
             except (KeyError, AttributeError):
@@ -131,11 +131,11 @@ class Console(cmd.Cmd):
 
         devices = args.split(' ')
         if '/all' in devices:
-            for device in self.namespace.devices.values():
+            for device in gl.devices.values():
                 try:
                     if device.idlepc == None:
-                        if self.namespace.useridledb and device.imagename in self.namespace.useridledb:
-                            device.idlepc = self.namespace.useridledb[device.imagename]
+                        if gl.useridledb and device.imagename in gl.useridledb:
+                            device.idlepc = gl.useridledb[device.imagename]
                         else:
                             print("Warining: Starting %s with no idle-pc value" % device.name)
                     for line in device.start(): print line.strip()
@@ -150,10 +150,10 @@ class Console(cmd.Cmd):
 
         for devname in devices:
             try:
-                device = self.namespace.devices[devname]
+                device = gl.devices[devname]
                 if device.idlepc == None:
-                    if self.namespace.useridledb and device.imagename in self.namespace.useridledb:
-                        device.idlepc = self.namespace.useridledb[device.imagename]
+                    if gl.useridledb and device.imagename in gl.useridledb:
+                        device.idlepc = gl.useridledb[device.imagename]
                     else:
                         print("Warining: Starting %s with no idle-pc value" % device.name)
                 for line in device.start(): print line.strip()
@@ -172,7 +172,7 @@ class Console(cmd.Cmd):
 
         devices = args.split(' ')
         if '/all' in devices:
-            for device in self.namespace.devices.values():
+            for device in gl.devices.values():
                 try:
                     for line in device.stop(): print line.strip()
                 except IndexError:
@@ -186,7 +186,7 @@ class Console(cmd.Cmd):
 
         for device in devices:
             try:
-                print self.namespace.devices[device].stop()[0].strip()
+                print gl.devices[device].stop()[0].strip()
             except IndexError:
                 pass
             except (KeyError, AttributeError):
@@ -202,7 +202,7 @@ class Console(cmd.Cmd):
 
         devices = args.split(' ')
         if '/all' in devices:
-            for device in self.namespace.devices.values():
+            for device in gl.devices.values():
                 try:
                     for line in device.resume(): print line.strip()
                 except IndexError:
@@ -216,7 +216,7 @@ class Console(cmd.Cmd):
 
         for device in devices:
             try:
-                print self.namespace.devices[device].resume()[0].strip()
+                print gl.devices[device].resume()[0].strip()
             except IndexError:
                 pass
             except (KeyError, AttributeError):
@@ -232,7 +232,7 @@ class Console(cmd.Cmd):
 
         devices = args.split(' ')
         if '/all' in devices:
-            for device in self.namespace.devices.values():
+            for device in gl.devices.values():
                 try:
                     for line in device.stop(): print line.strip()
                     for line in device.start(): print line.strip()
@@ -247,8 +247,8 @@ class Console(cmd.Cmd):
 
         for device in devices:
             try:
-                print self.namespace.devices[device].stop()[0].strip()
-                print self.namespace.devices[device].start()[0].strip()
+                print gl.devices[device].stop()[0].strip()
+                print gl.devices[device].start()[0].strip()
             except IndexError:
                 pass
             except (KeyError, AttributeError):
@@ -259,9 +259,9 @@ class Console(cmd.Cmd):
 
     def do_ver(self, args):
         """Print the dynagen version"""
-        print 'dynagen ' + self.namespace.VERSION
+        print 'dynagen ' + gl.VERSION
         print 'dynamips version(s):'
-        for d in self.namespace.dynamips.values():
+        for d in gl.dynamips.values():
             print '  %s: %s'  % (d.host, d.version)
 
     def do_hist(self, args):
@@ -292,13 +292,13 @@ class Console(cmd.Cmd):
         devices = args.split(' ')
         if '/all' in args.split(' '):
             # Set devices to all the devices
-            devices = self.namespace.devices.values()
+            devices = gl.devices.values()
         else:
             devices = []
             for device in args.split(' '):
                 # Create a list of all the device objects
                 try:
-                    devices.append(self.namespace.devices[device])
+                    devices.append(gl.devices[device])
                 except KeyError:
                     error('unknown device: ' + device)
 
@@ -325,7 +325,7 @@ class Console(cmd.Cmd):
         params = args.split(' ')
         if params[0].lower() == 'mac':
             try:
-                result = self.namespace.devices[params[1]].show_mac()
+                result = gl.devices[params[1]].show_mac()
                 for chunks in result:
                     lines = chunks.strip().split('\r\n')
                     for line in lines:
@@ -348,7 +348,7 @@ class Console(cmd.Cmd):
         params = args.split(' ')
         if params[0].lower() == 'mac':
             try:
-                print self.namespace.devices[params[1]].clear_mac()[0].strip()
+                print gl.devices[params[1]].clear_mac()[0].strip()
             except IndexError:
                 error('missing device')
             except (KeyError, AttributeError):
@@ -365,16 +365,16 @@ class Console(cmd.Cmd):
         if '?' in args or args.strip() == '':
             print self.do_save.__doc__
             return
-        netfile = self.namespace.globalconfig
+        netfile = gl.globalconfig
         if '/all' in args.split(' '):
             # Set devices to all the devices
-            devices = self.namespace.devices.values()
+            devices = gl.devices.values()
         else:
             devices = []
             for device in args.split(' '):
                 # Create a list of all the device objects
                 try:
-                    devices.append(self.namespace.devices[device])
+                    devices.append(gl.devices[device])
                 except KeyError:
                     error('unknown device: ' + device)
 
@@ -411,7 +411,7 @@ class Console(cmd.Cmd):
                 if devtype.lower() == 'router' and devname == device.name:
                     netfile[serverSection][section]['configuration'] = config
                     # And populate the configurations dictionary
-                    self.namespace.configurations[device.name] = config
+                    gl.configurations[device.name] = config
                     print 'saved configuration from: ' + device.name
         netfile.write()
 
@@ -422,17 +422,17 @@ class Console(cmd.Cmd):
             print self.do_push.__doc__
             return
 
-        configurations = self.namespace.configurations
+        configurations = gl.configurations
 
         if '/all' in args.split(' '):
             # Set devices to all the devices
-            devices = self.namespace.devices.values()
+            devices = gl.devices.values()
         else:
             devices = []
             for device in args.split(' '):
                 # Create a list of all the device objects
                 try:
-                    devices.append(self.namespace.devices[device])
+                    devices.append(gl.devices[device])
                 except KeyError:
                     error('unknown device: ' + device)
 
@@ -472,13 +472,13 @@ class Console(cmd.Cmd):
 
         if '/all' in items:
             # Set devices to all the devices
-            devices = self.namespace.devices.values()
+            devices = gl.devices.values()
         else:
             devices = []
             for device in items:
                 # Create a list of all the device objects
                 try:
-                    devices.append(self.namespace.devices[device])
+                    devices.append(gl.devices[device])
                 except KeyError:
                     error('unknown device: ' + device)
                     return
@@ -486,7 +486,7 @@ class Console(cmd.Cmd):
         # Set the current directory to the one that contains our network file
         try:
             netdir = os.getcwd()
-            subdir = os.path.dirname(self.namespace.FILENAME)
+            subdir = os.path.dirname(gl.FILENAME)
             debug("current dir is -> " + os.getcwd())
             if subdir != '':
                 debug("changing dir to -> " + subdir)
@@ -549,7 +549,7 @@ class Console(cmd.Cmd):
         # Set the current directory to the one that contains our network file
         try:
             netdir = os.getcwd()
-            subdir = os.path.dirname(self.namespace.FILENAME)
+            subdir = os.path.dirname(gl.FILENAME)
             debug("current dir is -> " + os.getcwd())
             if subdir != '':
                 debug("changing dir to -> " + subdir)
@@ -576,7 +576,7 @@ class Console(cmd.Cmd):
                         f.close()
                         # Encodestring puts in a bunch of newlines. Split them out then join them back together
                         encoded = ''.join(base64.encodestring(config).split())
-                        self.namespace.devices[device].config_b64 = encoded
+                        gl.devices[device].config_b64 = encoded
                     except IOError, e:
                         error(e)
                         os.chdir(netdir)        # Reset the current working directory
@@ -614,7 +614,7 @@ Examples:
             print self.do_filter.__doc__
             return
 
-        if device not in self.namespace.devices:
+        if device not in gl.devices:
             print 'Unknown device: ' + device
             return
         if filterName not in filters:
@@ -636,7 +636,7 @@ Examples:
 
         # Apply the filter
         try:
-            self.namespace.devices[device].slot[slot].filter(port, filterName, direction, options)
+            gl.devices[device].slot[slot].filter(port, filterName, direction, options)
         except DynamipsError, e:
             print e
             return
@@ -692,7 +692,7 @@ Examples:
             print self.do_capture.__doc__
             return
 
-        if device not in self.namespace.devices:
+        if device not in gl.devices:
             print 'Unknown device: ' + device
             return
 
@@ -721,7 +721,7 @@ Examples:
 
         # Apply the filter
         try:
-            self.namespace.devices[device].slot[slot].filter(port, 'capture', 'both', linktype + " " + filename)
+            gl.devices[device].slot[slot].filter(port, 'capture', 'both', linktype + " " + filename)
         except DynamipsError, e:
             print e
             return
@@ -751,7 +751,7 @@ Examples:
             print 'Error parsing command'
             return
 
-        if device not in self.namespace.devices:
+        if device not in gl.devices:
             print 'Unknown device: ' + device
             return
 
@@ -770,7 +770,7 @@ Examples:
 
         # Remove the filter
         try:
-            self.namespace.devices[device].slot[slot].filter(port, 'none', 'both')
+            gl.devices[device].slot[slot].filter(port, 'none', 'both')
         except DynamipsError, e:
             print e
             return
@@ -794,9 +794,9 @@ Examples:
             print 'Error parsing command'
             return
 
-        #if host not in self.namespace.dynamips:
+        #if host not in gl.dynamips:
         found = False
-        for server in self.namespace.dynamips.values():
+        for server in gl.dynamips.values():
             if host.lower() == server.host.lower():
                 found = True
                 break
@@ -850,13 +850,13 @@ Examples:
             if command == 'get' or command == 'show':
                 device = params[0]
                 if command == 'get':
-                    if self.namespace.devices[device].idlepc != None:
+                    if gl.devices[device].idlepc != None:
                         print '%s already has an idlepc value applied.' % device
                         return
                     print 'Please wait while gathering statistics...'
-                    result = self.namespace.devices[device].idleprop(IDLEPROPGET)
+                    result = gl.devices[device].idleprop(IDLEPROPGET)
                 elif command == 'show':
-                    result = self.namespace.devices[device].idleprop(IDLEPROPSHOW)
+                    result = gl.devices[device].idleprop(IDLEPROPSHOW)
                 result.pop()        # Remove the '100-OK' line
                 idles = {}
                 i = 1
@@ -894,12 +894,12 @@ Examples:
                         return
 
                     # Apply the selected idle
-                    self.namespace.devices[device].idleprop(IDLEPROPSET, idles[selection])
+                    gl.devices[device].idleprop(IDLEPROPSET, idles[selection])
                     print "Applied idlepc value %s to %s\n" % (idles[selection], device)
 
             elif command == 'set':
                 (device, value) = params
-                self.namespace.devices[device].idleprop(IDLEPROPSET, value)
+                gl.devices[device].idleprop(IDLEPROPSET, value)
                 print "Applied idlepc value %s to %s\n" % (value, device)
 
             elif command == 'save':
@@ -914,14 +914,14 @@ Examples:
                 else:
                     raise ValueError
 
-                idlepc = self.namespace.devices[device].idlepc
+                idlepc = gl.devices[device].idlepc
                 if idlepc == None:
                     print "****Error: device %s has no idlepc value to save" % device
                     return
 
-                netfile = self.namespace.globalconfig
-                host = self.namespace.devices[device].dynamips.host
-                port = self.namespace.devices[device].dynamips.port
+                netfile = gl.globalconfig
+                host = gl.devices[device].dynamips.host
+                port = gl.devices[device].dynamips.port
                 # Find the dynamips config section for this device
                 if netfile.has_key(host): serverSection = host
                 elif netfile.has_key(host + ':' + str(port)): serverSection = host + ':' + str(port)
@@ -930,10 +930,10 @@ Examples:
 
                 if location.lower() == 'default':
                     # Find the default section for this device
-                    model = self.namespace.devices[device].model
+                    model = gl.devices[device].model
                     if model == 'c3600' or model == 'c2600':
                         # The section default is actually the chassis
-                        section = self.namespace.devices[device].chassis
+                        section = gl.devices[device].chassis
                     else:
                         try:
                             section = model[1:]
@@ -943,18 +943,18 @@ Examples:
 
                 elif location.lower() == 'db':
                     # Store the idlepc value for this image in the idlepc user database
-                    if not self.namespace.useridledb:
+                    if not gl.useridledb:
                         # We need to create a new file
-                        self.namespace.useridledb = ConfigObj()
-                        self.namespace.useridledb.filename = self.namespace.useridledbfile
+                        gl.useridledb = ConfigObj()
+                        gl.useridledb.filename = gl.useridledbfile
 
-                    self.namespace.useridledb[self.namespace.devices[device].imagename] = idlepc
+                    gl.useridledb[gl.devices[device].imagename] = idlepc
                     try:
-                        self.namespace.useridledb.write()
+                        gl.useridledb.write()
                     except IOError,e:
                         print '***Error: ' + str(e)
                         return
-                    print "idlepc value for image \"%s\" written to the database" % self.namespace.devices[device].imagename
+                    print "idlepc value for image \"%s\" written to the database" % gl.devices[device].imagename
                     return
 
                 else:
@@ -979,9 +979,9 @@ Examples:
 
             elif command == 'showdrift':
                 device = params[0]
-                print 'Current idlemax value: %i' % self.namespace.devices[device].idlemax
-                print 'Current idlesleep value: %i' % self.namespace.devices[device].idlesleep
-                result = self.namespace.devices[device].idlepcdrift
+                print 'Current idlemax value: %i' % gl.devices[device].idlemax
+                print 'Current idlesleep value: %i' % gl.devices[device].idlesleep
+                result = gl.devices[device].idlepcdrift
                 for line in result: print line[4:]
                 return
 
@@ -989,9 +989,9 @@ Examples:
                 (device, value) = params
                 value = int(value)
                 if command == 'idlemax':
-                    self.namespace.devices[device].idlemax = value
+                    gl.devices[device].idlemax = value
                 elif command == 'idlesleep':
-                    self.namespace.devices[device].idlesleep = value
+                    gl.devices[device].idlesleep = value
                 print 'OK'
                 return
 
@@ -1029,7 +1029,7 @@ Examples:
         self._locals  = {}      ## Initialize execution namespace for user
         self._globals = {}
         # Give the console access to the namespace
-        self._globals['namespace'] = self.namespace
+        self._globals['namespace'] = gl
 
     def postloop(self):
         """Take care of any unfinished business.
