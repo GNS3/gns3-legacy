@@ -29,13 +29,20 @@ from GNS3.Node.Router import Router
 
 #FIXME: all symbols are a Router
 
-SYMBOLS = ({'name': "Router", 'normal_svg_file': ":/symbols/router.svg",  'select_svg_file': ":/symbols/router.sel.svg", 'object': Router},
-           {'name': "Router with firewall", 'normal_svg_file': ":/symbols/router_firewall.svg", 'select_svg_file': ":/symbols/router_firewall.sel.svg", 'object': Router},
-           {'name': "Edge label switch router", 'normal_svg_file': ":/symbols/edge_label_switch_router.svg", 'select_svg_file': ":/symbols/edge_label_switch_router.sel.svg", 'object': Router},
-           {'name': "Switch", 'normal_svg_file': ":/symbols/switch.svg", 'select_svg_file': ":/symbols/switch.sel.svg", 'object': Router},
-           {'name': "Multilayer switch", 'normal_svg_file': ":/symbols/multilayer_switch.svg", 'select_svg_file': ":/symbols/multilayer_switch.sel.svg", 'object': Router},
-           {'name': "Route switch processor", 'normal_svg_file': ":/symbols/route_switch_processor.svg", 'select_svg_file': ":/symbols/route_switch_processor.sel.svg", 'object': Router},
-           {'name': "ATM switch", 'normal_svg_file': ":/symbols/atm_switch.svg", 'select_svg_file': ":/symbols/atm_switch.sel.svg", 'object': Router})
+SYMBOLS = ({'name': "Router", 'object': Router,
+            'normal_svg_file': ":/symbols/rt_standard.normal.svg", 'select_svg_file': ":/symbols/rt_standard.selected.svg"},
+           {'name': "Router with firewall", 'object': Router,
+            'normal_svg_file': ":/symbols/rt_firewall.normal.svg", 'select_svg_file': ":/symbols/rt_firewall.selected.svg"},
+           {'name': "Edge label switch router", 'object': Router,
+            'normal_svg_file': ":/symbols/edgelable_swproc.normal.svg", 'select_svg_file': ":/symbols/edgelable_swproc.selected.svg"},
+           {'name': "Switch", 'object': Router,
+            'normal_svg_file': ":/symbols/sw_standard.normal.svg", 'select_svg_file': ":/symbols/sw_standard.selected.svg"},
+           {'name': "Multilayer switch", 'object': Router,
+            'normal_svg_file': ":/symbols/sw_multilayer.normal.svg", 'select_svg_file': ":/symbols/sw_multilayer.normal.svg"},
+           {'name': "Route switch processor", 'object': Router,
+            'normal_svg_file': ":/symbols/route_swproc.normal.svg", 'select_svg_file': ":/symbols/route_swproc.selected.svg"},
+           {'name': "ATM switch", 'object': Router,
+            'normal_svg_file': ":/symbols/sw_atm.normal.svg", 'select_svg_file': ":/symbols/sw_atm.selected.svg"})
 
 class QTreeWidgetCustom(QtGui.QTreeWidget):
     """ QTreeWidgetCustom class

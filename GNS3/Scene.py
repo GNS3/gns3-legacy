@@ -102,6 +102,7 @@ class Scene(QtGui.QGraphicsScene):
         """
 
         for item in self.selectedItems():
+            #print "delete node: " + type(item)
             node = self.__topology.getNode(item.id)
             for link in node.getEdgeList().copy():
                 if self.__topology.deleteLink(link):
