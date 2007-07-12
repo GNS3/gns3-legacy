@@ -13,21 +13,42 @@
    <string>About</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="../svg/svg_resources.qrc" >:/images/logo_gns3_transparency_small.png</iconset>
+   <iconset/>
   </property>
   <layout class="QVBoxLayout" >
-   <property name="margin" >
-    <number>9</number>
-   </property>
    <property name="spacing" >
     <number>6</number>
    </property>
+   <property name="leftMargin" >
+    <number>9</number>
+   </property>
+   <property name="topMargin" >
+    <number>9</number>
+   </property>
+   <property name="rightMargin" >
+    <number>9</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>9</number>
+   </property>
    <item>
     <layout class="QGridLayout" >
-     <property name="margin" >
+     <property name="leftMargin" >
       <number>0</number>
      </property>
-     <property name="spacing" >
+     <property name="topMargin" >
+      <number>0</number>
+     </property>
+     <property name="rightMargin" >
+      <number>0</number>
+     </property>
+     <property name="bottomMargin" >
+      <number>0</number>
+     </property>
+     <property name="horizontalSpacing" >
+      <number>6</number>
+     </property>
+     <property name="verticalSpacing" >
       <number>6</number>
      </property>
      <item row="4" column="0" >
@@ -49,7 +70,7 @@
         <string/>
        </property>
        <property name="pixmap" >
-        <pixmap resource="../svg/svg_resources.qrc" >:/images/logo_gns3_transparency_small.png</pixmap>
+        <pixmap/>
        </property>
       </widget>
      </item>
@@ -117,7 +138,7 @@ p, li { white-space: pre-wrap; }
   </layout>
  </widget>
  <resources>
-  <include location="../svg/svg_resources.qrc" />
+  <include location="../../../gns3-artwork/svg_resources.qrc" />
  </resources>
  <connections>
   <connection>

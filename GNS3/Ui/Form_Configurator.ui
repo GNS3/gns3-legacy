@@ -13,15 +13,24 @@
    <string>GNS-3 configurator</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="../svg/svg_resources.qrc" >:/images/logo_gns3_transparency_small.png</iconset>
+   <iconset/>
   </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QVBoxLayout" >
-    <property name="margin" >
-     <number>9</number>
-    </property>
     <property name="spacing" >
      <number>6</number>
+    </property>
+    <property name="leftMargin" >
+     <number>9</number>
+    </property>
+    <property name="topMargin" >
+     <number>9</number>
+    </property>
+    <property name="rightMargin" >
+     <number>9</number>
+    </property>
+    <property name="bottomMargin" >
+     <number>9</number>
     </property>
     <item>
      <widget class="QGroupBox" name="groupBox_2" >
@@ -29,10 +38,22 @@
        <string>Dynamips</string>
       </property>
       <layout class="QGridLayout" >
-       <property name="margin" >
+       <property name="leftMargin" >
         <number>9</number>
        </property>
-       <property name="spacing" >
+       <property name="topMargin" >
+        <number>9</number>
+       </property>
+       <property name="rightMargin" >
+        <number>9</number>
+       </property>
+       <property name="bottomMargin" >
+        <number>9</number>
+       </property>
+       <property name="horizontalSpacing" >
+        <number>6</number>
+       </property>
+       <property name="verticalSpacing" >
         <number>6</number>
        </property>
        <item row="2" column="3" colspan="2" >
@@ -57,9 +78,7 @@
        <item row="1" column="4" >
         <widget class="QPushButton" name="pushButtonSelectWorkingDir" >
          <property name="sizePolicy" >
-          <sizepolicy>
-           <hsizetype>0</hsizetype>
-           <vsizetype>0</vsizetype>
+          <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -72,9 +91,7 @@
        <item row="0" column="4" >
         <widget class="QPushButton" name="pushButtonSelectPath" >
          <property name="sizePolicy" >
-          <sizepolicy>
-           <hsizetype>0</hsizetype>
-           <vsizetype>0</vsizetype>
+          <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -130,10 +147,22 @@
        <string>Connection</string>
       </property>
       <layout class="QGridLayout" >
-       <property name="margin" >
+       <property name="leftMargin" >
         <number>9</number>
        </property>
-       <property name="spacing" >
+       <property name="topMargin" >
+        <number>9</number>
+       </property>
+       <property name="rightMargin" >
+        <number>9</number>
+       </property>
+       <property name="bottomMargin" >
+        <number>9</number>
+       </property>
+       <property name="horizontalSpacing" >
+        <number>6</number>
+       </property>
+       <property name="verticalSpacing" >
         <number>6</number>
        </property>
        <item row="1" column="0" >
@@ -163,11 +192,20 @@ The following substitutions are performed:
     </item>
     <item>
      <layout class="QHBoxLayout" >
-      <property name="margin" >
-       <number>0</number>
-      </property>
       <property name="spacing" >
        <number>6</number>
+      </property>
+      <property name="leftMargin" >
+       <number>0</number>
+      </property>
+      <property name="topMargin" >
+       <number>0</number>
+      </property>
+      <property name="rightMargin" >
+       <number>0</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>0</number>
       </property>
       <item>
        <spacer>
@@ -202,14 +240,14 @@ The following substitutions are performed:
      <x>0</x>
      <y>0</y>
      <width>447</width>
-     <height>25</height>
+     <height>29</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar" />
  </widget>
  <resources>
-  <include location="../svg/svg_resources.qrc" />
+  <include location="../../../gns3-artwork/svg_resources.qrc" />
  </resources>
  <connections/>
 </ui>
