@@ -36,7 +36,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         QtGui.QMainWindow.__init__(self)
         self.setupUi(self)
-        self.createScene()
         
         self.connect(self.action_Add_link, QtCore.SIGNAL('triggered()'), self.addLink)
 
@@ -48,18 +47,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         #self.treeWidget.expandItem(self.treeWidget.topLevelItem(0))
         #self.app = app
 
-    def createScene(self):
-        """ Create the scene
-        """
-
-        self.scene = Scene(self.graphicsView)
-        self.graphicsView.setScene(self.scene)
-        self.graphicsView.setDragMode(self.graphicsView.RubberBandDrag)
-        self.graphicsView.setCacheMode(QtGui.QGraphicsView.CacheBackground)
-        self.graphicsView.setRenderHint(QtGui.QPainter.Antialiasing)
-        self.graphicsView.setTransformationAnchor(QtGui.QGraphicsView.AnchorUnderMouse)
-        self.graphicsView.setResizeAnchor(QtGui.QGraphicsView.AnchorViewCenter)
-        
     def addLink(self):
         
         if not self.action_Add_link.isChecked():

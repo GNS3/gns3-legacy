@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'MainWindow.ui'
+# Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Wed Jul 11 19:17:12 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070701
+# Created: Thu Jul 12 19:14:13 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -13,7 +13,6 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(QtCore.QSize(QtCore.QRect(0,0,812,561).size()).expandedTo(MainWindow.minimumSizeHint()))
-        MainWindow.setWindowIcon(QtGui.QIcon(":/images/logo_gns3_transparency_small.png"))
 
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -37,13 +36,13 @@ class Ui_MainWindow(object):
         self.treeWidget.setObjectName("treeWidget")
         self.hboxlayout.addWidget(self.treeWidget)
 
-        self.graphicsView = QGraphicsViewCustom(self.centralwidget)
+        self.graphicsView = Scene(self.centralwidget)
         self.graphicsView.setObjectName("graphicsView")
         self.hboxlayout.addWidget(self.graphicsView)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,812,25))
+        self.menubar.setGeometry(QtCore.QRect(0,0,812,29))
         self.menubar.setObjectName("menubar")
 
         self.menuIOS = QtGui.QMenu(self.menubar)
@@ -76,7 +75,7 @@ class Ui_MainWindow(object):
         self.action_Open.setObjectName("action_Open")
 
         self.action_Save = QtGui.QAction(MainWindow)
-        self.action_Save.setIcon(QtGui.QIcon(":/icons/save-as.svg"))
+        self.action_Save.setIcon(QtGui.QIcon(":/icons/save.svg"))
         self.action_Save.setObjectName("action_Save")
 
         self.action_Add_link = QtGui.QAction(MainWindow)
@@ -97,9 +96,11 @@ class Ui_MainWindow(object):
 
         self.action_Import = QtGui.QAction(MainWindow)
         self.action_Import.setEnabled(False)
+        self.action_Import.setIcon(QtGui.QIcon(":/icons/edit-redo.svg"))
         self.action_Import.setObjectName("action_Import")
 
         self.action_Export = QtGui.QAction(MainWindow)
+        self.action_Export.setIcon(QtGui.QIcon(":/icons/export.svg"))
         self.action_Export.setObjectName("action_Export")
 
         self.action_StartAll = QtGui.QAction(MainWindow)
@@ -172,6 +173,6 @@ class Ui_MainWindow(object):
         self.action_ShowHostnames.setText(QtGui.QApplication.translate("MainWindow", "Show hostnames", None, QtGui.QApplication.UnicodeUTF8))
         self.action_TelnetAll.setText(QtGui.QApplication.translate("MainWindow", "Telnet all IOS", None, QtGui.QApplication.UnicodeUTF8))
 
-from Widget_QGraphicsViewCustom import QGraphicsViewCustom
+from GNS3.Scene import Scene
 from Widget_QTreeWidgetCustom import QTreeWidgetCustom
 import svg_resources_rc

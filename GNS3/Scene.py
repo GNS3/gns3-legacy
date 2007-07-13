@@ -20,42 +20,61 @@
 #
 
 import GNS3.Globals as globals
-from PyQt4 import QtCore, QtGui
+from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Topology import Topology
 from GNS3.Utils import translate
 from GNS3.NodeConfigurator import NodeConfigurator
+from GNS3.Ui.Widget_QTreeWidgetCustom import SYMBOLS
 
-class Scene(QtGui.QGraphicsScene):
+
+class Scene(QtGui.QGraphicsView):
     """ Scene class
     """
 
     def __init__(self, parent = None):
         
-        QtGui.QGraphicsScene.__init__(self, parent)
-        
-        #TODO: A better management of the scene size
-        self.setSceneRect(-250, -250, 500, 500)
-        
+        QtGui.QGraphicsView.__init__(self, parent)
+
+        # Create the scene and register it to the GraphicsView
         self.__topology = Topology()
+        self.setScene(self.__topology)
+        
+        # Set custom flags for the view
+        self.setDragMode(self.RubberBandDrag)
+        self.setCacheMode(self.CacheBackground)
+        self.setRenderHint(QtGui.QPainter.Antialiasing)
+        self.setTransformationAnchor(self.AnchorUnderMouse)
+        self.setResizeAnchor(self.AnchorViewCenter)
+
+        # Flags for GUI state matching
         self.__isFirstClick = True
         self.__sourceNodeID = None
         self.__destNodeID = None
         self.__sourceInterface = None
         self.__destInterface = None
 
+        # Load all renders
+        self.renders = {}
+        for item in SYMBOLS:
+            name = item['name']
+            self.renders[name] = {}
+            self.renders[name]['normal'] = QtSvg.QSvgRenderer(item['normal_svg_file'])
+            self.renders[name]['selected'] = QtSvg.QSvgRenderer(item['select_svg_file'])
+
+    def topology(self):
+        return self.scene()
+
     def addItem(self, node):
-        
-        self.__topology.recordNode(node)
-        QtGui.QGraphicsScene.addItem(self, node)
+        self.__topology.addNode(node)
 
     def slotConfigNode(self):
         """ Called to configure nodes
         """
         
         print 'configuration'
-        print self.selectedItems()
+        print self.__topology.selectedItems()
         
-        configurator = NodeConfigurator(self.selectedItems())
+        configurator = NodeConfigurator(self.__topology.selectedItems())
         #configurator.setModal(True)
         #configurator.loadItems(self.selectedItems())
         configurator.show()
@@ -65,15 +84,11 @@ class Scene(QtGui.QGraphicsScene):
         """ Called to delete nodes
         """
 
-        for item in self.selectedItems():
+        for item in self.__topology.selectedItems():
             #print "delete node: " + type(item)
-            node = self.__topology.getNode(item.id)
-            for link in node.getEdgeList().copy():
-                if self.__topology.deleteLink(link):
-                    self.removeItem(link)
-            self.removeItem(node)
+            for link in item.getEdgeList().copy():
+                self.__topology.deleteLink(link)
             self.__topology.deleteNode(item.id)
-            self.update(self.sceneRect())
 
     def __addLink(self):
         
@@ -83,10 +98,9 @@ class Scene(QtGui.QGraphicsScene):
         if self.__sourceNodeID == self.__destNodeID:
             return
         
-        link = self.__topology.addLink(self.__sourceNodeID, self.__sourceInterface, self.__destNodeID, self.__destInterface)
-        QtGui.QGraphicsScene.addItem(self, link)
-        self.update(link.boundingRect())
-            
+        link = self.__topology.addLink(self.__sourceNodeID,
+                self.__sourceInterface, self.__destNodeID, self.__destInterface)
+
     def slotAddLink(self, id,  interface):
         """ Called when a node wants to add a link
             id: integer
@@ -106,3 +120,83 @@ class Scene(QtGui.QGraphicsScene):
                 self.__destInterface = interface
                 self.__addLink()
                 self.__isFirstClick = True
+
+
+    def scaleView(self, scale_factor):
+        """ Zoom in and out
+        """
+        
+        factor = self.matrix().scale(scale_factor, scale_factor).mapRect(QtCore.QRectF(0, 0, 1, 1)).width()
+        if (factor < 0.20 or factor > 5):
+            return
+        self.scale(scale_factor, scale_factor)
+
+    def wheelEvent(self, event):
+        """ Zoom with the mouse wheel
+        """
+        
+        self.scaleView(pow(2.0, -event.delta() / 240.0))
+
+    def keyPressEvent(self, event):
+        """ key press handler
+        """
+
+        key = event.key()
+        if key == QtCore.Qt.Key_Plus:
+            # Zoom in
+            self.scaleView(1.2)
+        elif key == QtCore.Qt.Key_Minus:
+            # Zoom out
+            self.scaleView(1 / 1.2)
+        elif key == QtCore.Qt.Key_Delete:
+            self.slotDeleteNode()
+        else:
+            QtGui.QGraphicsView.keyPressEvent(self, event)
+      
+    def dragMoveEvent(self, event):
+        """ Drag move event
+        """
+        
+        event.accept()
+
+    def dropEvent(self, event):
+        """ Drop event
+        """
+
+        if event.mimeData().hasText():
+            
+            symbolname = str(event.mimeData().text())
+            x = event.pos().x()  / self.matrix().m11() 
+            y = event.pos().y()  / self.matrix().m22() 
+            repx = (self.width() /2) /  self.matrix().m11()
+            repy = (self.height()/2) / self.matrix().m22()     
+            xPos =  x - repx 
+            yPos = y - repy
+            
+            # Get resource corresponding to node type
+            svgrc = ":/icons/default.svg"
+            for item in SYMBOLS:
+                if item['name'] == symbolname:
+                    renderer_normal = self.renders[symbolname]['normal']
+                    renderer_select = self.renders[symbolname]['selected']
+                    object = item['object']
+                    break
+
+            node = object(renderer_normal, renderer_select)
+            #node.setName(s[1])
+            node.setPos(xPos, yPos)
+            QtCore.QObject.connect(node, QtCore.SIGNAL("Add link"), self.slotAddLink)
+            QtCore.QObject.connect(node, QtCore.SIGNAL("Delete node"), self.slotDeleteNode)
+            QtCore.QObject.connect(node, QtCore.SIGNAL("Config node"), self.slotConfigNode)
+
+            self.__topology.addNode(node)
+
+            # Center node
+            pos_x = node.pos().x() - (node.boundingRect().width() / 2)
+            pos_y = node.pos().y() - (node.boundingRect().height() / 2)
+            node.setPos(pos_x, pos_y)
+
+            event.setDropAction(QtCore.Qt.MoveAction)
+            event.accept()
+        else:
+            event.ignore()

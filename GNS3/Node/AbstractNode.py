@@ -56,12 +56,12 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         # Action: Delete (Delete the node)
         self.deleteAct = QtGui.QAction(translate('AbstractNode', 'Delete'), self)
         self.deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
-        self.connect(self.deleteAct, QtCore.SIGNAL('activated()'), self.__deleteAction)
+        self.connect(self.deleteAct, QtCore.SIGNAL('triggered()'), self.__deleteAction)
         
         # Action: Configure (Configure the node)
         self.configAct = QtGui.QAction(translate('AbstractNode', 'Configure'), self)
         self.configAct.setIcon(QtGui.QIcon(":/icons/configuration.svg"))
-        self.connect(self.configAct, QtCore.SIGNAL('activated()'), self.__configAction)
+        self.connect(self.configAct, QtCore.SIGNAL('triggered()'), self.__configAction)
 
     def __deleteAction(self):
         """ Action called for node deletion
