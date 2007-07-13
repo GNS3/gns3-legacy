@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'About.ui'
+# Form implementation generated from reading ui file 'Form_About.ui'
 #
-# Created: Wed Jul 11 19:17:12 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070701
+# Created: Fri Jul 13 10:06:58 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -13,11 +13,10 @@ class Ui_AboutDialog(object):
     def setupUi(self, AboutDialog):
         AboutDialog.setObjectName("AboutDialog")
         AboutDialog.resize(QtCore.QSize(QtCore.QRect(0,0,504,287).size()).expandedTo(AboutDialog.minimumSizeHint()))
-        AboutDialog.setWindowIcon(QtGui.QIcon(":/images/logo_gns3_transparency_small.png"))
 
         self.vboxlayout = QtGui.QVBoxLayout(AboutDialog)
-        self.vboxlayout.setMargin(9)
         self.vboxlayout.setSpacing(6)
+        self.vboxlayout.setMargin(9)
         self.vboxlayout.setObjectName("vboxlayout")
 
         self.gridlayout = QtGui.QGridLayout()
@@ -29,7 +28,6 @@ class Ui_AboutDialog(object):
         self.gridlayout.addItem(spacerItem,4,0,1,1)
 
         self.label = QtGui.QLabel(AboutDialog)
-        self.label.setPixmap(QtGui.QPixmap(":/images/logo_gns3_transparency_small.png"))
         self.label.setObjectName("label")
         self.gridlayout.addWidget(self.label,1,0,3,1)
 

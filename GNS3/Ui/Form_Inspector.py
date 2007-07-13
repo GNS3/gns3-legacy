@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Inspector.ui'
+# Form implementation generated from reading ui file 'Form_Inspector.ui'
 #
-# Created: Wed Jul 11 19:17:12 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070701
+# Created: Fri Jul 13 10:06:58 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -14,11 +14,10 @@ class Ui_FormInspector(object):
         FormInspector.setObjectName("FormInspector")
         FormInspector.resize(QtCore.QSize(QtCore.QRect(0,0,607,346).size()).expandedTo(FormInspector.minimumSizeHint()))
         FormInspector.setMaximumSize(QtCore.QSize(700,400))
-        FormInspector.setWindowIcon(QtGui.QIcon(":/images/logo_gns3_transparency_small.png"))
 
         self.vboxlayout = QtGui.QVBoxLayout(FormInspector)
-        self.vboxlayout.setMargin(9)
         self.vboxlayout.setSpacing(6)
+        self.vboxlayout.setMargin(9)
         self.vboxlayout.setObjectName("vboxlayout")
 
         self.tabWidget = QtGui.QTabWidget(FormInspector)
@@ -28,8 +27,8 @@ class Ui_FormInspector(object):
         self.tab.setObjectName("tab")
 
         self.hboxlayout = QtGui.QHBoxLayout(self.tab)
-        self.hboxlayout.setMargin(9)
         self.hboxlayout.setSpacing(6)
+        self.hboxlayout.setMargin(9)
         self.hboxlayout.setObjectName("hboxlayout")
 
         self.groupBox = QtGui.QGroupBox(self.tab)
@@ -79,7 +78,7 @@ class Ui_FormInspector(object):
 
         self.pushButtonStartupConfig = QtGui.QPushButton(self.groupBox)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(1),QtGui.QSizePolicy.Policy(0))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.pushButtonStartupConfig.sizePolicy().hasHeightForWidth())
@@ -184,8 +183,8 @@ class Ui_FormInspector(object):
         self.gridlayout2.addItem(spacerItem11,1,0,1,1)
 
         self.hboxlayout1 = QtGui.QHBoxLayout()
-        self.hboxlayout1.setMargin(0)
         self.hboxlayout1.setSpacing(6)
+        self.hboxlayout1.setMargin(0)
         self.hboxlayout1.setObjectName("hboxlayout1")
 
         self.groupBox_2 = QtGui.QGroupBox(self.tab_3)
@@ -272,8 +271,8 @@ class Ui_FormInspector(object):
         self.tab_2.setObjectName("tab_2")
 
         self.hboxlayout2 = QtGui.QHBoxLayout(self.tab_2)
-        self.hboxlayout2.setMargin(9)
         self.hboxlayout2.setSpacing(6)
+        self.hboxlayout2.setMargin(9)
         self.hboxlayout2.setObjectName("hboxlayout2")
 
         self.gridlayout5 = QtGui.QGridLayout()
@@ -283,7 +282,7 @@ class Ui_FormInspector(object):
 
         self.label_15 = QtGui.QLabel(self.tab_2)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_15.sizePolicy().hasHeightForWidth())
@@ -293,7 +292,7 @@ class Ui_FormInspector(object):
 
         self.label_19 = QtGui.QLabel(self.tab_2)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_19.sizePolicy().hasHeightForWidth())
@@ -310,7 +309,7 @@ class Ui_FormInspector(object):
 
         self.label_6 = QtGui.QLabel(self.tab_2)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
@@ -327,7 +326,7 @@ class Ui_FormInspector(object):
 
         self.label_12 = QtGui.QLabel(self.tab_2)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_12.sizePolicy().hasHeightForWidth())
@@ -374,7 +373,7 @@ class Ui_FormInspector(object):
 
         self.label_23 = QtGui.QLabel(self.tab_2)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_23.sizePolicy().hasHeightForWidth())
@@ -384,7 +383,7 @@ class Ui_FormInspector(object):
 
         self.label_26 = QtGui.QLabel(self.tab_2)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_26.sizePolicy().hasHeightForWidth())
@@ -394,7 +393,7 @@ class Ui_FormInspector(object):
 
         self.label_29 = QtGui.QLabel(self.tab_2)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_29.sizePolicy().hasHeightForWidth())
@@ -404,7 +403,7 @@ class Ui_FormInspector(object):
 
         self.label_28 = QtGui.QLabel(self.tab_2)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_28.sizePolicy().hasHeightForWidth())
@@ -430,8 +429,8 @@ class Ui_FormInspector(object):
         self.vboxlayout.addWidget(self.tabWidget)
 
         self.hboxlayout3 = QtGui.QHBoxLayout()
-        self.hboxlayout3.setMargin(0)
         self.hboxlayout3.setSpacing(6)
+        self.hboxlayout3.setMargin(0)
         self.hboxlayout3.setObjectName("hboxlayout3")
 
         spacerItem24 = QtGui.QSpacerItem(91,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)

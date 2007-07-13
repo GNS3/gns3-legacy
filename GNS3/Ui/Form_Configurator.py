@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Configurator.ui'
+# Form implementation generated from reading ui file 'Form_Configurator.ui'
 #
-# Created: Wed Jul 11 19:17:12 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070701
+# Created: Fri Jul 13 10:06:59 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -13,14 +13,13 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(QtCore.QSize(QtCore.QRect(0,0,447,427).size()).expandedTo(MainWindow.minimumSizeHint()))
-        MainWindow.setWindowIcon(QtGui.QIcon(":/images/logo_gns3_transparency_small.png"))
 
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
         self.vboxlayout = QtGui.QVBoxLayout(self.centralwidget)
-        self.vboxlayout.setMargin(9)
         self.vboxlayout.setSpacing(6)
+        self.vboxlayout.setMargin(9)
         self.vboxlayout.setObjectName("vboxlayout")
 
         self.groupBox_2 = QtGui.QGroupBox(self.centralwidget)
@@ -44,7 +43,7 @@ class Ui_MainWindow(object):
 
         self.pushButtonSelectWorkingDir = QtGui.QPushButton(self.groupBox_2)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(0))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.pushButtonSelectWorkingDir.sizePolicy().hasHeightForWidth())
@@ -54,7 +53,7 @@ class Ui_MainWindow(object):
 
         self.pushButtonSelectPath = QtGui.QPushButton(self.groupBox_2)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(0))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.pushButtonSelectPath.sizePolicy().hasHeightForWidth())
@@ -104,8 +103,8 @@ class Ui_MainWindow(object):
         self.vboxlayout.addWidget(self.groupBox)
 
         self.hboxlayout = QtGui.QHBoxLayout()
-        self.hboxlayout.setMargin(0)
         self.hboxlayout.setSpacing(6)
+        self.hboxlayout.setMargin(0)
         self.hboxlayout.setObjectName("hboxlayout")
 
         spacerItem2 = QtGui.QSpacerItem(371,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
@@ -120,7 +119,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,447,25))
+        self.menubar.setGeometry(QtCore.QRect(0,0,447,29))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
 

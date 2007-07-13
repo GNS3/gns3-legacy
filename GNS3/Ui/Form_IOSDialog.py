@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'IOSDialog.ui'
+# Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Wed Jul 11 19:17:12 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070701
+# Created: Fri Jul 13 10:06:58 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -14,11 +14,10 @@ class Ui_IOSDialog(object):
         IOSDialog.setObjectName("IOSDialog")
         IOSDialog.resize(QtCore.QSize(QtCore.QRect(0,0,623,338).size()).expandedTo(IOSDialog.minimumSizeHint()))
         IOSDialog.setMaximumSize(QtCore.QSize(700,400))
-        IOSDialog.setWindowIcon(QtGui.QIcon(":/images/logo_gns3_transparency_small.png"))
 
         self.vboxlayout = QtGui.QVBoxLayout(IOSDialog)
-        self.vboxlayout.setMargin(9)
         self.vboxlayout.setSpacing(6)
+        self.vboxlayout.setMargin(9)
         self.vboxlayout.setObjectName("vboxlayout")
 
         self.tabWidget = QtGui.QTabWidget(IOSDialog)
@@ -28,8 +27,8 @@ class Ui_IOSDialog(object):
         self.tab.setObjectName("tab")
 
         self.vboxlayout1 = QtGui.QVBoxLayout(self.tab)
-        self.vboxlayout1.setMargin(9)
         self.vboxlayout1.setSpacing(6)
+        self.vboxlayout1.setMargin(9)
         self.vboxlayout1.setObjectName("vboxlayout1")
 
         self.treeWidgetIOSimages = QtGui.QTreeWidget(self.tab)
@@ -39,8 +38,8 @@ class Ui_IOSDialog(object):
         self.vboxlayout1.addWidget(self.treeWidgetIOSimages)
 
         self.hboxlayout = QtGui.QHBoxLayout()
-        self.hboxlayout.setMargin(0)
         self.hboxlayout.setSpacing(6)
+        self.hboxlayout.setMargin(0)
         self.hboxlayout.setObjectName("hboxlayout")
 
         spacerItem = QtGui.QSpacerItem(341,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
@@ -74,7 +73,7 @@ class Ui_IOSDialog(object):
 
         self.groupBox = QtGui.QGroupBox(self.tab_2)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.groupBox.sizePolicy().hasHeightForWidth())
@@ -152,8 +151,8 @@ class Ui_IOSDialog(object):
         self.gridlayout.addWidget(self.groupBox,0,0,1,1)
 
         self.hboxlayout1 = QtGui.QHBoxLayout()
-        self.hboxlayout1.setMargin(0)
         self.hboxlayout1.setSpacing(6)
+        self.hboxlayout1.setMargin(0)
         self.hboxlayout1.setObjectName("hboxlayout1")
 
         self.pushButtonAddIOSImage = QtGui.QPushButton(self.tab_2)
@@ -166,7 +165,7 @@ class Ui_IOSDialog(object):
 
         self.groupBox_2 = QtGui.QGroupBox(self.tab_2)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(5))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
@@ -174,13 +173,13 @@ class Ui_IOSDialog(object):
         self.groupBox_2.setObjectName("groupBox_2")
 
         self.vboxlayout2 = QtGui.QVBoxLayout(self.groupBox_2)
-        self.vboxlayout2.setMargin(9)
         self.vboxlayout2.setSpacing(6)
+        self.vboxlayout2.setMargin(9)
         self.vboxlayout2.setObjectName("vboxlayout2")
 
         self.hboxlayout2 = QtGui.QHBoxLayout()
-        self.hboxlayout2.setMargin(0)
         self.hboxlayout2.setSpacing(6)
+        self.hboxlayout2.setMargin(0)
         self.hboxlayout2.setObjectName("hboxlayout2")
 
         self.checkBoxIntegratedHypervisor = QtGui.QCheckBox(self.groupBox_2)
@@ -195,7 +194,7 @@ class Ui_IOSDialog(object):
         self.listWidgetHypervisors = QtGui.QListWidget(self.groupBox_2)
         self.listWidgetHypervisors.setEnabled(False)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7),QtGui.QSizePolicy.Policy(7))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.listWidgetHypervisors.sizePolicy().hasHeightForWidth())
@@ -209,8 +208,8 @@ class Ui_IOSDialog(object):
         self.tab_3.setObjectName("tab_3")
 
         self.vboxlayout3 = QtGui.QVBoxLayout(self.tab_3)
-        self.vboxlayout3.setMargin(9)
         self.vboxlayout3.setSpacing(6)
+        self.vboxlayout3.setMargin(9)
         self.vboxlayout3.setObjectName("vboxlayout3")
 
         self.treeWidgetHypervisor = QtGui.QTreeWidget(self.tab_3)
@@ -219,8 +218,8 @@ class Ui_IOSDialog(object):
         self.vboxlayout3.addWidget(self.treeWidgetHypervisor)
 
         self.hboxlayout3 = QtGui.QHBoxLayout()
-        self.hboxlayout3.setMargin(0)
         self.hboxlayout3.setSpacing(6)
+        self.hboxlayout3.setMargin(0)
         self.hboxlayout3.setObjectName("hboxlayout3")
 
         self.label_5 = QtGui.QLabel(self.tab_3)
@@ -245,8 +244,8 @@ class Ui_IOSDialog(object):
         self.vboxlayout3.addLayout(self.hboxlayout3)
 
         self.hboxlayout4 = QtGui.QHBoxLayout()
-        self.hboxlayout4.setMargin(0)
         self.hboxlayout4.setSpacing(6)
+        self.hboxlayout4.setMargin(0)
         self.hboxlayout4.setObjectName("hboxlayout4")
 
         self.label_3 = QtGui.QLabel(self.tab_3)
@@ -266,7 +265,7 @@ class Ui_IOSDialog(object):
 
         self.lineEditPort = QtGui.QLineEdit(self.tab_3)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(0),QtGui.QSizePolicy.Policy(0))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lineEditPort.sizePolicy().hasHeightForWidth())

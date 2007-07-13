@@ -1,10 +1,18 @@
 #!/bin/bash
 
-pyuic4 MainWindow.ui > Form_MainWindow.py
-pyuic4 Inspector.ui > Form_Inspector.py
-pyuic4 About.ui > Form_About.py
-pyuic4 IOSDialog.ui > Form_IOSDialog.py
-pyuic4 Configurator.ui > Form_Configurator.py
-pyuic4 NodeConfigurator.ui > Form_NodeConfigurator.py
-pyuic4 ./ConfigurationPages/IOSRouterPage.ui > ./ConfigurationPages/Form_IOSRouterPage.py
+# Set files without extension !
+FILES=" Form_MainWindow
+        Form_Inspector
+        Form_About
+        Form_IOSDialog
+        Form_Configurator
+        Form_NodeConfigurator
+        ./ConfigurationPages/Form_IOSRouterPage
+"
 
+# Update files...
+for file in $FILES;
+do
+    echo "Generating $file"
+    pyuic4 "$file.ui" > "$file.py"
+done

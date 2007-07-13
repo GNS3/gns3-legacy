@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'NodeConfigurator.ui'
+# Form implementation generated from reading ui file 'Form_NodeConfigurator.ui'
 #
-# Created: Wed Jul 11 19:17:13 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070701
+# Created: Fri Jul 13 10:06:59 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
 
