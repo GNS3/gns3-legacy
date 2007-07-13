@@ -20,10 +20,10 @@
 #
 
 IOSConfig = {
-                'image': None, 
-                'platform': None, 
-                'chassis': None,
-                'consoleport': None, 
+                'image': '', 
+                'platform': '', 
+                'chassis': '',
+                'consoleport': '', 
                 'RAM': 128, 
                 'ROM': 4, 
                 'NVRAM': 128,
@@ -31,6 +31,7 @@ IOSConfig = {
                 'pcmcia-disk0': 0,
                 'pcmcia-disk1': 0,
                 'confreg': '0x2102', 
+                'startup-config': '', 
                 'execarea': 64, 
                 'iomem': 5, 
                 'npe': "npe-200",
