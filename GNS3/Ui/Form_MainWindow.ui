@@ -63,7 +63,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QGraphicsViewCustom" name="graphicsView" />
+     <widget class="Scene" name="graphicsView" />
     </item>
    </layout>
   </widget>
@@ -260,14 +260,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QGraphicsViewCustom</class>
-   <extends>QGraphicsView</extends>
-   <header>Widget_QGraphicsViewCustom</header>
-  </customwidget>
-  <customwidget>
    <class>QTreeWidgetCustom</class>
    <extends>QTreeWidget</extends>
    <header>Widget_QTreeWidgetCustom</header>
+  </customwidget>
+  <customwidget>
+   <class>Scene</class>
+   <extends>QGraphicsView</extends>
+   <header>GNS3.Scene.h</header>
   </customwidget>
  </customwidgets>
  <resources>

@@ -19,40 +19,41 @@
 # Contact: developers@gns3.net
 #
 
+from PyQt4 import QtGui
 from GNS3.Link.Ethernet import Ethernet
 
-class Topology:
+class Topology(QtGui.QGraphicsScene):
     """ Topology class
     """
 
-    def __init__(self):
-        
+    def __init__(self, parent=None):
         self.__nodes = {}
         self.__links = set()
 
-    def recordNode(self, node):
-        
+        QtGui.QGraphicsScene.__init__(self, parent)
+
+        #TODO: A better management of the scene size
+        self.setSceneRect(-250, -250, 500, 500)
+
+    def addNode(self, node):
         self.__nodes[node.id] = node
+        self.addItem(node)
 
     def getNode(self, id):
-        
         return self.__nodes[id]
         
+    def deleteNode(self, id):
+        self.removeItem(self.__nodes[id])
+        del self.__nodes[id]
+   
     def addLink(self, srcid, srcif, dstid, dstif):
-        
        link = Ethernet(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif)
        self.__links.add(link)
-       return link
-   
-    def deleteNode(self, id):
-       
-       del self.__nodes[id]
+       self.addItem(link)
    
     def deleteLink(self, link):
-       
        link.source.deleteEdge(link)
        link.dest.deleteEdge(link)
        if link in self.__links:
            self.__links.remove(link)
-           return True
-       return False
+           self.removeItem(link)
