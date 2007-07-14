@@ -129,8 +129,8 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             itm: reference to the selected item (QTreeWidgetItem)
             column: column that was selected (integer) (ignored)
         """
-        pageName = itm.getPageName()
-        self.showConfigurationPageByName(pageName)
+
+        self.showConfigurationPageByName(itm)
 
     def __initPage(self, pageData):
         """ Private method to initialize a configuration page.
@@ -145,11 +145,12 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             pageData[-1] = page
         return page
         
-    def showConfigurationPageByName(self, pageName):
+    def showConfigurationPageByName(self, itm):
         """ Public slot to show a named configuration page.
-            pageName: name of the configuration page to show (string or QString)
+            itm: reference to the selected item (QTreeWidgetItem)
         """
-        pageName = unicode(pageName)
+        
+        pageName = unicode(itm.getPageName())
         pageData = self.configItems[pageName]
         if pageData[-1] is None and pageData[2] is not None:
             # the page was not loaded yet, create it
@@ -158,6 +159,9 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             page = pageData[-1]
         if page is None:
             page = self.emptyPage
+        else:
+            #TODO: parent
+            page.loadConfig(itm.getIDs())
         self.configStack.setCurrentWidget(page)
         if page != self.emptyPage:
             self.buttonBox.button(QtGui.QDialogButtonBox.Apply).setEnabled(True)
@@ -189,7 +193,8 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         """
         if self.configStack.currentWidget() != self.emptyPage:
             page = self.configStack.currentWidget()
-            page.save()
+            
+            #page.saveConfig(item.getIDs())
             
             for item in self.treeViewNodes.selectedItems():
                 if item.parent():

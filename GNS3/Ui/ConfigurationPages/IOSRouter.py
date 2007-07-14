@@ -52,7 +52,32 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         
         pass
 
-    def save(self):
+    def loadConfig(self,  ids):
+    
+        print 'LoadConfig'
+        if len(ids) > 1:
+            IOSconfig = node.config
+            node = self.main.nodes[self.nodeid]
+
+            index = self.comboBoxIOS.findText(node.iosConfig['iosimage'])
+            if index != -1:
+                self.comboBoxIOS.setCurrentIndex(index)
+            self.lineEditConsolePort.setText(IOSconfig['consoleport'])
+            self.lineEditStartupConfig.setText(IOSconfig['startup-config'])
+            self.spinBoxRamSize.setValue(IOSconfig['RAM'])
+            self.spinBoxRomSize.setValue(IOSconfig['ROM'])
+            self.spinBoxNvramSize.setValue(IOSconfig['NVRAM'])
+            self.spinBoxPcmciaDisk0Size.setValue(IOSconfig['pcmcia-disk0'])
+            self.spinBoxPcmciaDisk1Size.setValue(IOSconfig['pcmcia-disk1'])
+            if IOSconfig['mmap'] == True:
+                self.checkBoxMapped.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.checkBoxMapped.setCheckState(QtCore.Qt.Unchecked)
+            self.lineEditConfreg.setText(IOSconfig['confreg'])
+            self.spinBoxExecArea.setValue(IOSconfig['execarea'])
+
+        
+    def saveConfig(self,  ids):
         
         pass
 

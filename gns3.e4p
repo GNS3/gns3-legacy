@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.1.dtd">
 <!-- eric4 project file for project gns3 -->
-<!-- Saved: 2007-07-12, 16:57:57 -->
+<!-- Saved: 2007-07-13, 09:24:24 -->
 <!-- Copyright (C) 2007 ,  -->
 <Project version="4.1">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -143,11 +143,6 @@
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
       <Name>Form_Configurator.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Name>Form_IOSRouterConfig.py</Name>
     </Source>
     <Source>
       <Dir>GNS3</Dir>
@@ -297,40 +292,22 @@
       <Dir>NodeConfigs</Dir>
       <Name>__init__.py</Name>
     </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Dynagen</Dir>
+      <Dir>Globals</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Name>NodeConfigurator.py</Name>
+    </Source>
   </Sources>
   <Forms>
-    <Form>
-      <Dir>forms</Dir>
-      <Name>IOSDialog.ui</Name>
-    </Form>
-    <Form>
-      <Dir>forms</Dir>
-      <Name>About.ui</Name>
-    </Form>
-    <Form>
-      <Dir>forms</Dir>
-      <Name>MainWindow.ui</Name>
-    </Form>
-    <Form>
-      <Dir>forms</Dir>
-      <Name>Configurator.ui</Name>
-    </Form>
-    <Form>
-      <Dir>forms</Dir>
-      <Name>Inspector.ui</Name>
-    </Form>
-    <Form>
-      <Dir>forms</Dir>
-      <Name>NodeConfigurator.ui</Name>
-    </Form>
   </Forms>
   <Translations>
   </Translations>
   <Resources>
-    <Resource>
-      <Dir>svg</Dir>
-      <Name>svg_resources.qrc</Name>
-    </Resource>
     <Resource>
       <Dir>translations</Dir>
       <Name>translations.qrc</Name>
