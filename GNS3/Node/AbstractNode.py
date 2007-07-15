@@ -78,6 +78,12 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         
         self.emit(QtCore.SIGNAL("Config node"))
 
+    def paint(self, painter, option, widget=None):
+        _local_option = option
+        _local_option.state = QtGui.QStyle.State_None
+        QtSvg.QGraphicsSvgItem.paint(self, painter, _local_option, widget)
+
+
     def itemChange(self, change, value):
         """ do some action when item is changed...
         """
