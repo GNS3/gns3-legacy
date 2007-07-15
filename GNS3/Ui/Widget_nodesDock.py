@@ -27,9 +27,9 @@ from GNS3.Globals.Symbols import SYMBOLS
 
 #import __main__
 
-class QTreeWidgetCustom(QtGui.QTreeWidget):
-    """ QTreeWidgetCustom class
-        Custom QTreeWidgetCustom
+class nodesDock(QtGui.QListWidget):
+    """ Class for managing the node types list
+        Custom QListWidget
     """
     
     # get access to globals
@@ -37,7 +37,7 @@ class QTreeWidgetCustom(QtGui.QTreeWidget):
 
     def __init__(self, parent):
     
-        QtGui.QTreeWidget.__init__(self, parent)
+        QtGui.QListWidget.__init__(self, parent)
         self.designMode()
 
     def designMode(self):
@@ -45,12 +45,16 @@ class QTreeWidgetCustom(QtGui.QTreeWidget):
         """
         
         self.clear()
-        self.setRootIsDecorated(False)
+        #self.setRootIsDecorated(False)
+        rowNum = 0
         for symbol in SYMBOLS:
-            item = QtGui.QTreeWidgetItem(self)
-            item.setText(0, translate("SYMBOLS", symbol['name']))
-            item.setIcon(0, QtGui.QIcon(symbol['normal_svg_file']))
-            self.insertTopLevelItem(0, item)
+            # Use custom type to known the symbol type
+            item = QtGui.QListWidgetItem(self, 1000 + rowNum)
+            item.setText(translate("SYMBOLS", symbol['name']))
+            item.setIcon(QtGui.QIcon(symbol['normal_svg_file']))
+            #self.insertTopLevelItem(0, item)
+            self.insertItem(rowNum, item)
+            rowNum += 1
 
     def emulationMode(self):
         """ Create items for emulation mode
@@ -91,9 +95,12 @@ class QTreeWidgetCustom(QtGui.QTreeWidget):
         drag = QtGui.QDrag(self)
         item = self.currentItem()
         mimedata = QtCore.QMimeData()
-        mimedata.setText(SYMBOLS[self.indexOfTopLevelItem(item)]['name'])
+        
+        # Deduce item name from his CustomType
+        mimedata.setText(SYMBOLS[item.type()-1000]['name'])
+
         iconeSize = self.iconSize()
-        icone = item.icon(self.currentColumn())
+        icone = item.icon()
         drag.setMimeData(mimedata)
         drag.setHotSpot(QtCore.QPoint(iconeSize.width(), iconeSize.height()))
         drag.setPixmap(icone.pixmap(iconeSize))

@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>812</width>
-    <height>561</height>
+    <width>800</width>
+    <height>640</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -18,52 +18,29 @@
   <widget class="QWidget" name="centralwidget" >
    <layout class="QHBoxLayout" >
     <property name="spacing" >
-     <number>6</number>
+     <number>0</number>
     </property>
     <property name="leftMargin" >
-     <number>9</number>
+     <number>0</number>
     </property>
     <property name="topMargin" >
-     <number>9</number>
+     <number>0</number>
     </property>
     <property name="rightMargin" >
-     <number>9</number>
+     <number>0</number>
     </property>
     <property name="bottomMargin" >
-     <number>9</number>
+     <number>0</number>
     </property>
     <item>
-     <widget class="QTreeWidgetCustom" name="treeWidget" >
+     <widget class="Scene" name="graphicsView" >
       <property name="sizePolicy" >
-       <sizepolicy vsizetype="Expanding" hsizetype="Fixed" >
+       <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
-      <property name="editTriggers" >
-       <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed|QAbstractItemView::NoEditTriggers</set>
-      </property>
-      <property name="dragEnabled" >
-       <bool>true</bool>
-      </property>
-      <property name="iconSize" >
-       <size>
-        <width>24</width>
-        <height>24</height>
-       </size>
-      </property>
-      <property name="rootIsDecorated" >
-       <bool>false</bool>
-      </property>
-      <column>
-       <property name="text" >
-        <string>Nodes</string>
-       </property>
-      </column>
      </widget>
-    </item>
-    <item>
-     <widget class="Scene" name="graphicsView" />
     </item>
    </layout>
   </widget>
@@ -72,8 +49,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>812</width>
-     <height>29</height>
+     <width>800</width>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuIOS" >
@@ -101,7 +78,13 @@
     <addaction name="action_OnlineHelp" />
     <addaction name="action_About" />
    </widget>
+   <widget class="QMenu" name="menu_View" >
+    <property name="title" >
+     <string>&amp;View</string>
+    </property>
+   </widget>
    <addaction name="menu_File" />
+   <addaction name="menu_View" />
    <addaction name="menuIOS" />
    <addaction name="menu_About" />
   </widget>
@@ -126,6 +109,73 @@
    <addaction name="action_TelnetAll" />
    <addaction name="action_StartAll" />
    <addaction name="action_StopAll" />
+  </widget>
+  <widget class="QDockWidget" name="dockWidget_NodeTypes" >
+   <property name="sizePolicy" >
+    <sizepolicy vsizetype="Expanding" hsizetype="MinimumExpanding" >
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="allowedAreas" >
+    <set>Qt::LeftDockWidgetArea|Qt::NoDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle" >
+    <string>Nodes Types</string>
+   </property>
+   <attribute name="dockWidgetArea" >
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_NodeTypes" >
+    <property name="sizePolicy" >
+     <sizepolicy vsizetype="Expanding" hsizetype="MinimumExpanding" >
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <layout class="QHBoxLayout" >
+     <property name="leftMargin" >
+      <number>0</number>
+     </property>
+     <property name="topMargin" >
+      <number>0</number>
+     </property>
+     <property name="rightMargin" >
+      <number>0</number>
+     </property>
+     <property name="bottomMargin" >
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="nodesDock" name="panel_nodesTypesList" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Expanding" hsizetype="MinimumExpanding" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="dragEnabled" >
+        <bool>true</bool>
+       </property>
+       <property name="selectionBehavior" >
+        <enum>QAbstractItemView::SelectRows</enum>
+       </property>
+       <property name="iconSize" >
+        <size>
+         <width>24</width>
+         <height>24</height>
+        </size>
+       </property>
+       <property name="horizontalScrollMode" >
+        <enum>QAbstractItemView::ScrollPerPixel</enum>
+       </property>
+       <property name="resizeMode" >
+        <enum>QListView::Adjust</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <action name="action_About" >
    <property name="text" >
@@ -257,17 +307,32 @@
     <string>Telnet all IOS</string>
    </property>
   </action>
+  <action name="action_Design_Mode" >
+   <property name="text" >
+    <string>&amp;Design Mode</string>
+   </property>
+  </action>
+  <action name="action_Emulation_Mode" >
+   <property name="text" >
+    <string>&amp;Emulation Mode</string>
+   </property>
+  </action>
+  <action name="action_Simulation_Mode" >
+   <property name="text" >
+    <string>&amp;Simulation Mode</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>QTreeWidgetCustom</class>
-   <extends>QTreeWidget</extends>
-   <header>Widget_QTreeWidgetCustom</header>
-  </customwidget>
   <customwidget>
    <class>Scene</class>
    <extends>QGraphicsView</extends>
    <header>GNS3.Scene.h</header>
+  </customwidget>
+  <customwidget>
+   <class>nodesDock</class>
+   <extends>QListWidget</extends>
+   <header>GNS3.Ui.Widget_nodesDock.h</header>
   </customwidget>
  </customwidgets>
  <resources>

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Fri Jul 13 10:06:58 2007
+# Created: Mon Jul 16 00:28:02 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,37 +12,29 @@ from PyQt4 import QtCore, QtGui
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(QtCore.QSize(QtCore.QRect(0,0,812,561).size()).expandedTo(MainWindow.minimumSizeHint()))
+        MainWindow.resize(QtCore.QSize(QtCore.QRect(0,0,800,640).size()).expandedTo(MainWindow.minimumSizeHint()))
 
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
         self.hboxlayout = QtGui.QHBoxLayout(self.centralwidget)
-        self.hboxlayout.setSpacing(6)
-        self.hboxlayout.setMargin(9)
+        self.hboxlayout.setSpacing(0)
+        self.hboxlayout.setMargin(0)
         self.hboxlayout.setObjectName("hboxlayout")
 
-        self.treeWidget = QTreeWidgetCustom(self.centralwidget)
+        self.graphicsView = Scene(self.centralwidget)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Expanding)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.treeWidget.sizePolicy().hasHeightForWidth())
-        self.treeWidget.setSizePolicy(sizePolicy)
-        self.treeWidget.setEditTriggers(QtGui.QAbstractItemView.DoubleClicked|QtGui.QAbstractItemView.EditKeyPressed|QtGui.QAbstractItemView.NoEditTriggers)
-        self.treeWidget.setDragEnabled(True)
-        self.treeWidget.setIconSize(QtCore.QSize(24,24))
-        self.treeWidget.setRootIsDecorated(False)
-        self.treeWidget.setObjectName("treeWidget")
-        self.hboxlayout.addWidget(self.treeWidget)
-
-        self.graphicsView = Scene(self.centralwidget)
+        sizePolicy.setHeightForWidth(self.graphicsView.sizePolicy().hasHeightForWidth())
+        self.graphicsView.setSizePolicy(sizePolicy)
         self.graphicsView.setObjectName("graphicsView")
         self.hboxlayout.addWidget(self.graphicsView)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,812,29))
+        self.menubar.setGeometry(QtCore.QRect(0,0,800,27))
         self.menubar.setObjectName("menubar")
 
         self.menuIOS = QtGui.QMenu(self.menubar)
@@ -53,6 +45,9 @@ class Ui_MainWindow(object):
 
         self.menu_About = QtGui.QMenu(self.menubar)
         self.menu_About.setObjectName("menu_About")
+
+        self.menu_View = QtGui.QMenu(self.menubar)
+        self.menu_View.setObjectName("menu_View")
         MainWindow.setMenuBar(self.menubar)
 
         self.statusbar = QtGui.QStatusBar(MainWindow)
@@ -63,6 +58,46 @@ class Ui_MainWindow(object):
         self.toolBar.setOrientation(QtCore.Qt.Horizontal)
         self.toolBar.setObjectName("toolBar")
         MainWindow.addToolBar(self.toolBar)
+
+        self.dockWidget_NodeTypes = QtGui.QDockWidget(MainWindow)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.MinimumExpanding,QtGui.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.dockWidget_NodeTypes.sizePolicy().hasHeightForWidth())
+        self.dockWidget_NodeTypes.setSizePolicy(sizePolicy)
+        self.dockWidget_NodeTypes.setAllowedAreas(QtCore.Qt.LeftDockWidgetArea|QtCore.Qt.NoDockWidgetArea|QtCore.Qt.RightDockWidgetArea)
+        self.dockWidget_NodeTypes.setObjectName("dockWidget_NodeTypes")
+
+        self.dockWidgetContents_NodeTypes = QtGui.QWidget(self.dockWidget_NodeTypes)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.MinimumExpanding,QtGui.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.dockWidgetContents_NodeTypes.sizePolicy().hasHeightForWidth())
+        self.dockWidgetContents_NodeTypes.setSizePolicy(sizePolicy)
+        self.dockWidgetContents_NodeTypes.setObjectName("dockWidgetContents_NodeTypes")
+
+        self.hboxlayout1 = QtGui.QHBoxLayout(self.dockWidgetContents_NodeTypes)
+        self.hboxlayout1.setMargin(0)
+        self.hboxlayout1.setObjectName("hboxlayout1")
+
+        self.panel_nodesTypesList = nodesDock(self.dockWidgetContents_NodeTypes)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.MinimumExpanding,QtGui.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.panel_nodesTypesList.sizePolicy().hasHeightForWidth())
+        self.panel_nodesTypesList.setSizePolicy(sizePolicy)
+        self.panel_nodesTypesList.setDragEnabled(True)
+        self.panel_nodesTypesList.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
+        self.panel_nodesTypesList.setIconSize(QtCore.QSize(24,24))
+        self.panel_nodesTypesList.setHorizontalScrollMode(QtGui.QAbstractItemView.ScrollPerPixel)
+        self.panel_nodesTypesList.setResizeMode(QtGui.QListView.Adjust)
+        self.panel_nodesTypesList.setObjectName("panel_nodesTypesList")
+        self.hboxlayout1.addWidget(self.panel_nodesTypesList)
+        self.dockWidget_NodeTypes.setWidget(self.dockWidgetContents_NodeTypes)
+        MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(1),self.dockWidget_NodeTypes)
 
         self.action_About = QtGui.QAction(MainWindow)
         self.action_About.setObjectName("action_About")
@@ -121,6 +156,15 @@ class Ui_MainWindow(object):
         self.action_TelnetAll.setEnabled(False)
         self.action_TelnetAll.setIcon(QtGui.QIcon(":/icons/console.svg"))
         self.action_TelnetAll.setObjectName("action_TelnetAll")
+
+        self.action_Design_Mode = QtGui.QAction(MainWindow)
+        self.action_Design_Mode.setObjectName("action_Design_Mode")
+
+        self.action_Emulation_Mode = QtGui.QAction(MainWindow)
+        self.action_Emulation_Mode.setObjectName("action_Emulation_Mode")
+
+        self.action_Simulation_Mode = QtGui.QAction(MainWindow)
+        self.action_Simulation_Mode.setObjectName("action_Simulation_Mode")
         self.menuIOS.addAction(self.action_IOS_images)
         self.menu_File.addAction(self.action_Open)
         self.menu_File.addAction(self.action_Save)
@@ -132,6 +176,7 @@ class Ui_MainWindow(object):
         self.menu_About.addAction(self.action_OnlineHelp)
         self.menu_About.addAction(self.action_About)
         self.menubar.addAction(self.menu_File.menuAction())
+        self.menubar.addAction(self.menu_View.menuAction())
         self.menubar.addAction(self.menuIOS.menuAction())
         self.menubar.addAction(self.menu_About.menuAction())
         self.toolBar.addAction(self.action_Open)
@@ -151,10 +196,11 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "GNS-3", None, QtGui.QApplication.UnicodeUTF8))
-        self.treeWidget.headerItem().setText(0,QtGui.QApplication.translate("MainWindow", "Nodes", None, QtGui.QApplication.UnicodeUTF8))
         self.menuIOS.setTitle(QtGui.QApplication.translate("MainWindow", "Cisco IOS", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_File.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_About.setTitle(QtGui.QApplication.translate("MainWindow", "&Help", None, QtGui.QApplication.UnicodeUTF8))
+        self.menu_View.setTitle(QtGui.QApplication.translate("MainWindow", "&View", None, QtGui.QApplication.UnicodeUTF8))
+        self.dockWidget_NodeTypes.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Nodes Types", None, QtGui.QApplication.UnicodeUTF8))
         self.action_About.setText(QtGui.QApplication.translate("MainWindow", "&About", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setText(QtGui.QApplication.translate("MainWindow", "&Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))
@@ -172,7 +218,10 @@ class Ui_MainWindow(object):
         self.action_StopAll.setText(QtGui.QApplication.translate("MainWindow", "Stop all IOS", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ShowHostnames.setText(QtGui.QApplication.translate("MainWindow", "Show hostnames", None, QtGui.QApplication.UnicodeUTF8))
         self.action_TelnetAll.setText(QtGui.QApplication.translate("MainWindow", "Telnet all IOS", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Design_Mode.setText(QtGui.QApplication.translate("MainWindow", "&Design Mode", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Emulation_Mode.setText(QtGui.QApplication.translate("MainWindow", "&Emulation Mode", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Simulation_Mode.setText(QtGui.QApplication.translate("MainWindow", "&Simulation Mode", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.Scene import Scene
-from Widget_QTreeWidgetCustom import QTreeWidgetCustom
+from GNS3.Ui.Widget_nodesDock import nodesDock
 import svg_resources_rc
