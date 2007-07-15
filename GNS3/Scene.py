@@ -25,7 +25,7 @@ from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Topology import Topology
 from GNS3.Utils import translate
 from GNS3.NodeConfigurator import NodeConfigurator
-from GNS3.Ui.Widget_QTreeWidgetCustom import SYMBOLS
+from GNS3.Globals.Symbols import SYMBOLS
 
 
 class Scene(QtGui.QGraphicsView):

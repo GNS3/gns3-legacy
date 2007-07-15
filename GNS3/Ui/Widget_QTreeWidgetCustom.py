@@ -23,27 +23,9 @@
 from PyQt4 import QtCore, QtGui
 import GNS3.Ui.svg_resources_rc
 from GNS3.Utils import translate
-
-from GNS3.Node.Router import Router
+from GNS3.Globals.Symbols import SYMBOLS
 
 #import __main__
-
-#FIXME: all symbols are a Router
-
-SYMBOLS = ({'name': "Router", 'object': Router,
-            'normal_svg_file': ":/symbols/rt_standard.normal.svg", 'select_svg_file': ":/symbols/rt_standard.selected.svg"},
-           {'name': "Router with firewall", 'object': Router,
-            'normal_svg_file': ":/symbols/rt_firewall.normal.svg", 'select_svg_file': ":/symbols/rt_firewall.selected.svg"},
-           {'name': "Edge label switch router", 'object': Router,
-            'normal_svg_file': ":/symbols/edgelable_swproc.normal.svg", 'select_svg_file': ":/symbols/edgelable_swproc.selected.svg"},
-           {'name': "Switch", 'object': Router,
-            'normal_svg_file': ":/symbols/sw_standard.normal.svg", 'select_svg_file': ":/symbols/sw_standard.selected.svg"},
-           {'name': "Multilayer switch", 'object': Router,
-            'normal_svg_file': ":/symbols/sw_multilayer.normal.svg", 'select_svg_file': ":/symbols/sw_multilayer.selected.svg"},
-           {'name': "Route switch processor", 'object': Router,
-            'normal_svg_file': ":/symbols/route_swproc.normal.svg", 'select_svg_file': ":/symbols/route_swproc.selected.svg"},
-           {'name': "ATM switch", 'object': Router,
-            'normal_svg_file': ":/symbols/sw_atm.normal.svg", 'select_svg_file': ":/symbols/sw_atm.selected.svg"})
 
 class QTreeWidgetCustom(QtGui.QTreeWidget):
     """ QTreeWidgetCustom class
