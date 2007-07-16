@@ -21,3 +21,9 @@
 #
 
 addingLinkFlag = False
+
+# Enum
+class Mode:
+    Design = 0
+    Emulation = 1
+    Simulation = 2

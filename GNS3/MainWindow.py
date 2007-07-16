@@ -37,7 +37,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         QtGui.QMainWindow.__init__(self)
         self.setupUi(self)
-        self.setupUi_menuView(self)
         
         self.connect(self.action_Add_link, QtCore.SIGNAL('triggered()'), self.addLink)
 
@@ -49,33 +48,51 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         #self.treeWidget.expandItem(self.treeWidget.topLevelItem(0))
         #self.app = app
 
-    def setupUi_menuView(self, MainWindow):
+    def setupUi(self, MainWindow):
+        print ">>> __call: setupUi"
+        self.setupUi_preMenuView(MainWindow)
+        Ui_MainWindow.setupUi(self, MainWindow)
+        self.setupUi_postMenuView(MainWindow)
+
+    def setupUi_preMenuView(self, MainWindow):
+        print ">>> __call: setupUi_menuView"
 
         self.action_swMDesign = QtGui.QAction(MainWindow)
         self.action_swMDesign.setObjectName("action_switchMode_Design")
-        self.action_swMDesign.setText("Design Mode")
         self.action_swMDesign.setCheckable(True)
 
         self.action_swMEmulation = QtGui.QAction(MainWindow)
         self.action_swMEmulation.setObjectName("action_switchMode_Emulation")
-        self.action_swMEmulation.setText("Emulation Mode")
         self.action_swMEmulation.setCheckable(True)
 
         self.action_swMSimulation = QtGui.QAction(MainWindow)
         self.action_swMSimulation.setObjectName("action_switchMode_Simulation")
-        self.action_swMSimulation.setText("Simulation Mode")
         self.action_swMSimulation.setCheckable(True)
+        # Disable `simulation mode' because sim. project is not implemented
         self.action_swMSimulation.setEnabled(False)
-
+    
+        # Modes ActionGroup
         self.actiongrp_swMode = QtGui.QActionGroup(MainWindow)
         self.actiongrp_swMode.addAction(self.action_swMDesign)
         self.actiongrp_swMode.addAction(self.action_swMEmulation)
         self.actiongrp_swMode.addAction(self.action_swMSimulation)
         self.action_swMDesign.setChecked(True)
-
+    
+    def setupUi_postMenuView(self, MainWindow):
+        # Menu View
         self.menu_View.addActions(self.actiongrp_swMode.actions())
         self.menu_View.addSeparator().setText("Docks")
         self.menu_View.addAction(self.dockWidget_NodeTypes.toggleViewAction())
+
+    def retranslateUi(self, MainWindow):
+        self.retranslateUi_menuView(MainWindow)
+        Ui_MainWindow.retranslateUi(self, MainWindow)
+
+    def retranslateUi_menuView(self, MainWindow):
+        print self.action_swMDesign
+        self.action_swMDesign.setText(translate('MainWindow', 'Design Mode'))
+        self.action_swMEmulation.setText(translate('MainWindow', 'Emulation Mode'))
+        self.action_swMSimulation.setText(translate('MainWindow', 'Simulation Mode'))
 
     def addLink(self):
         

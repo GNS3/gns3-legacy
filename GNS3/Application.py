@@ -24,6 +24,7 @@ from PyQt4.QtGui import QApplication
 from PyQt4.QtCore import QMutex, QMutexLocker
 from GNS3.Utils import Singleton 
 from GNS3.MainWindow import MainWindow
+from GNS3.Workspace import Workspace
 import sys
 
 GApp = None
@@ -107,10 +108,9 @@ class Application(QApplication, Singleton):
     topology = property(__getTopology, __setTopology,
                     doc = 'Workspace instance')
 
-    def __createWindows(self):
-        self.mainWindow = MainWindow()
-
     def run(self):
-        self.__createWindows()
+        self.mainWindow = MainWindow()
+        # Create a new empty workspace
+        self.workspace =  Workspace(self.mainWindow, None)
         self.mainWindow.show()
         sys.exit(QApplication.exec_())
