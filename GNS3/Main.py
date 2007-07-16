@@ -20,10 +20,7 @@
 # Contact: contact@gns3.net
 #
 
-addingLinkFlag = False
+from GNS3.Application import Application
 
-# Enum
-class Mode:
-    Design = 0
-    Emulation = 1
-    Simulation = 2
+app = Application()
+app.run()

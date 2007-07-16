@@ -19,11 +19,4 @@
 # Contact: developers@gns3.net
 #
 
-import sys
-from PyQt4 import QtGui
-from GNS3.MainWindow import MainWindow
-
-app = QtGui.QApplication(sys.argv)
-win = MainWindow()
-win.show()
-sys.exit(app.exec_())
+import GNS3.Main
