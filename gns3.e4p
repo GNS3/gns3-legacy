@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.1.dtd">
 <!-- eric4 project file for project gns3 -->
-<!-- Saved: 2007-07-13, 09:24:24 -->
+<!-- Saved: 2007-07-16, 13:34:09 -->
 <!-- Copyright (C) 2007 ,  -->
 <Project version="4.1">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -137,22 +137,12 @@
     <Source>
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
-      <Name>Widget_QGraphicsViewCustom.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
       <Name>Form_Configurator.py</Name>
     </Source>
     <Source>
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
       <Name>svg_resources_rc.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Name>Widget_QTreeWidgetCustom.py</Name>
     </Source>
     <Source>
       <Dir>GNS3</Dir>

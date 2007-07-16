@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_NodeConfigurator.ui'
 #
-# Created: Fri Jul 13 10:06:59 2007
+# Created: Mon Jul 16 13:33:16 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -28,6 +28,7 @@ class Ui_NodeConfigurator(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.treeViewNodes.sizePolicy().hasHeightForWidth())
         self.treeViewNodes.setSizePolicy(sizePolicy)
+        self.treeViewNodes.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
         self.treeViewNodes.setObjectName("treeViewNodes")
 
         self.configStack = QtGui.QStackedWidget(self.splitter)
