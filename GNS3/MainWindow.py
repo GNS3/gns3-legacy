@@ -65,6 +65,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.action_swMSimulation.setObjectName("action_switchMode_Simulation")
         self.action_swMSimulation.setText("Simulation Mode")
         self.action_swMSimulation.setCheckable(True)
+        self.action_swMSimulation.setEnabled(False)
 
         self.actiongrp_swMode = QtGui.QActionGroup(MainWindow)
         self.actiongrp_swMode.addAction(self.action_swMDesign)

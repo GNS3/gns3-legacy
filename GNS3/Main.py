@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4:
 #
 # Copyright (C) 2007 GNS-3 Dev Team
 #
@@ -16,7 +17,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Contact: developers@gns3.net
+# Contact: contact@gns3.net
 #
 
-import GNS3.Main
+from GNS3.Application import Application
+
+app = Application()
+app.run()
