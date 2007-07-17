@@ -69,7 +69,7 @@ class Scene(QtGui.QGraphicsView):
         print globals.GApp.topology.selectedItems()
         
         configurator = NodeConfigurator(globals.GApp.topology.selectedItems())
-        #configurator.setModal(True)
+        configurator.setModal(True)
         #configurator.loadItems(self.selectedItems())
         configurator.show()
         configurator.exec_()

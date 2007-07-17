@@ -161,9 +161,9 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         if page is None:
             page = self.emptyPage
         else:
-            #TODO: parent
-            if itm.parent():
-                page.loadConfig(itm.getIDs()[0])
+            #TODO: parent ?
+            #if itm.parent():
+            page.loadConfig(itm.getIDs()[0])
         self.configStack.setCurrentWidget(page)
         if page != self.emptyPage:
             self.buttonBox.button(QtGui.QDialogButtonBox.Apply).setEnabled(True)
@@ -195,18 +195,16 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         """
         if self.configStack.currentWidget() != self.emptyPage:
             page = self.configStack.currentWidget()
-            
-            #page.saveConfig(item.getIDs())
-            
+
             for item in self.treeViewNodes.selectedItems():
                 if item.parent():
+                        page.saveConfig(item.getIDs()[0])
+                else:
                     children = item.getIDs()
                     for child in children:
-                        print child
-                else:
-                    print item.getIDs()
+                        page.saveConfig(child)
             
-            self.emit(QtCore.SIGNAL('preferencesChanged'))
+            #self.emit(QtCore.SIGNAL('preferencesChanged'))
 
     def on_resetButton_clicked(self):
         """ Private slot called to reset the settings of the current page.
