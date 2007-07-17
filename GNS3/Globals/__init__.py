@@ -21,6 +21,7 @@
 #
 
 addingLinkFlag = False
+GApp = None
 
 # Enum
 class Mode:

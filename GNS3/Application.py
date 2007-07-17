@@ -20,14 +20,13 @@
 # Contact: contact@gns3.net
 #
 
+import sys
 from PyQt4.QtGui import QApplication
 from PyQt4.QtCore import QMutex, QMutexLocker
-from GNS3.Utils import Singleton 
+from GNS3.Utils import Singleton
 from GNS3.MainWindow import MainWindow
 from GNS3.Workspace import Workspace
-import sys
-
-GApp = None
+import GNS3.Globals as globals
 
 class Application(QApplication, Singleton):
     """ GNS3 Application instance
@@ -49,7 +48,7 @@ class Application(QApplication, Singleton):
         self.__topology = None
     
         # set global app to ourself
-        GApp = self
+        globals.GApp = self
 
     # property: `mainWindow'
     def __setMainWindow(self, mw):
@@ -100,6 +99,7 @@ class Application(QApplication, Singleton):
         """
         QMutexLocker(self.__clsmutex)
         self.__topology = topology
+
     def __getTopology(self):
         """ return the Topology instance
         """

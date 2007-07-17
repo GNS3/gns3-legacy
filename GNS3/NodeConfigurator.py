@@ -162,7 +162,8 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             page = self.emptyPage
         else:
             #TODO: parent
-            page.loadConfig(itm.getIDs())
+            if itm.parent():
+                page.loadConfig(itm.getIDs()[0])
         self.configStack.setCurrentWidget(page)
         if page != self.emptyPage:
             self.buttonBox.button(QtGui.QDialogButtonBox.Apply).setEnabled(True)

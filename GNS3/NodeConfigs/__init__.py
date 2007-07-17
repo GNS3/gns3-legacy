@@ -28,7 +28,7 @@ IOSConfig = {
                 'RAM': 128, 
                 'ROM': 4, 
                 'NVRAM': 128,
-                'nmap': True, 
+                'mmap': True, 
                 'pcmcia-disk0': 0,
                 'pcmcia-disk1': 0,
                 'confreg': '0x2102', 

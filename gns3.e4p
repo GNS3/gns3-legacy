@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.1.dtd">
 <!-- eric4 project file for project gns3 -->
-<!-- Saved: 2007-07-16, 13:34:09 -->
+<!-- Saved: 2007-07-17, 15:59:40 -->
 <!-- Copyright (C) 2007 ,  -->
 <Project version="4.1">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -291,6 +291,14 @@
     <Source>
       <Dir>GNS3</Dir>
       <Name>NodeConfigurator.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Name>Workspace.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Name>Application.py</Name>
     </Source>
   </Sources>
   <Forms>

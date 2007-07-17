@@ -155,6 +155,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         
             self.__selectedInterface = None
             self.showMenuInterface()
+            #print globals.GApp.mainWindow
             #QtGui.QMessageBox.critical(self.main.win, 'Connection',  'Already connected interface')
             if self.__selectedInterface:
                 self.emit(QtCore.SIGNAL("Add link"), self.id,  self.__selectedInterface)
