@@ -26,6 +26,7 @@ from PyQt4.QtCore import QMutex, QMutexLocker
 from GNS3.Utils import Singleton
 from GNS3.MainWindow import MainWindow
 from GNS3.Workspace import Workspace
+from GNS3.Topology import Topology
 import GNS3.Globals as globals
 
 class Application(QApplication, Singleton):
@@ -109,7 +110,11 @@ class Application(QApplication, Singleton):
                     doc = 'Workspace instance')
 
     def run(self):
-        self.mainWindow = MainWindow()
+        self.__topology = Topology()
+        self.__mainWindow = MainWindow()
+        self.__scene = self.mainWindow.graphicsView
+        self.__scene.setScene(self.__topology)
+
         # Create a new empty workspace
         self.workspace =  Workspace(self.mainWindow, None)
         self.mainWindow.show()

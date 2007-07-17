@@ -27,7 +27,6 @@ from GNS3.Utils import translate
 from GNS3.NodeConfigurator import NodeConfigurator
 from GNS3.Globals.Symbols import SYMBOLS
 
-
 class Scene(QtGui.QGraphicsView):
     """ Scene class
     """
@@ -36,10 +35,6 @@ class Scene(QtGui.QGraphicsView):
         
         QtGui.QGraphicsView.__init__(self, parent)
 
-        # Create the scene and register it to the GraphicsView
-        self.__topology = Topology()
-        self.setScene(self.__topology)
-        
         # Set custom flags for the view
         self.setDragMode(self.RubberBandDrag)
         self.setCacheMode(self.CacheBackground)
@@ -62,20 +57,18 @@ class Scene(QtGui.QGraphicsView):
             self.renders[name]['normal'] = QtSvg.QSvgRenderer(item['normal_svg_file'])
             self.renders[name]['selected'] = QtSvg.QSvgRenderer(item['select_svg_file'])
 
-    def topology(self):
-        return self.scene()
-
     def addItem(self, node):
-        self.__topology.addNode(node)
+        globals.GApp.topology.addNode(node)
+        #-self.__topology.addNode(node)
 
     def slotConfigNode(self):
         """ Called to configure nodes
         """
         
         print 'configuration'
-        print self.__topology.selectedItems()
+        print globals.GApp.topology.selectedItems()
         
-        configurator = NodeConfigurator(self.__topology.selectedItems())
+        configurator = NodeConfigurator(globals.GApp.topology.selectedItems())
         #configurator.setModal(True)
         #configurator.loadItems(self.selectedItems())
         configurator.show()
@@ -85,11 +78,11 @@ class Scene(QtGui.QGraphicsView):
         """ Called to delete nodes
         """
 
-        for item in self.__topology.selectedItems():
+        for item in globals.GApp.topology.selectedItems():
             #print "delete node: " + type(item)
             for link in item.getEdgeList().copy():
-                self.__topology.deleteLink(link)
-            self.__topology.deleteNode(item.id)
+                globals.GApp.topology.selectedItems()
+            globals.GApp.topology.deleteNode(item.id)
 	# Work-around QGraphicsSvgItem caching bug:
 	#   Forcing to clear the QPixmapCache on node delete.
 	QtGui.QPixmapCache.clear()
@@ -102,8 +95,8 @@ class Scene(QtGui.QGraphicsView):
         if self.__sourceNodeID == self.__destNodeID:
             return
         
-        link = self.__topology.addLink(self.__sourceNodeID,
-                self.__sourceInterface, self.__destNodeID, self.__destInterface)
+        link = globals.GApp.topology.addLink(self.__sourceNodeID,
+            self.__sourceInterface, self.__destNodeID, self.__destInterface)
 
     def slotAddLink(self, id,  interface):
         """ Called when a node wants to add a link
@@ -193,7 +186,7 @@ class Scene(QtGui.QGraphicsView):
             QtCore.QObject.connect(node, QtCore.SIGNAL("Delete node"), self.slotDeleteNode)
             QtCore.QObject.connect(node, QtCore.SIGNAL("Config node"), self.slotConfigNode)
 
-            self.__topology.addNode(node)
+            globals.GApp.topology.addNode(node)
 
             # Center node
             pos_x = node.pos().x() - (node.boundingRect().width() / 2)

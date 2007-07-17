@@ -21,6 +21,9 @@
 #
 
 addingLinkFlag = False
+
+# A singleton instance of GNS3 Application
+#   used for storing / accessing highly used object.
 GApp = None
 
 # Enum
