@@ -214,6 +214,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_StartAll(self):
         
         for node in globals.GApp.topology.getNodes():
+            print 'start node ' + str(node.id)
             node.startIOS()
         
     def __action_StopAll(self):
