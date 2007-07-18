@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>746</width>
-    <height>631</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -52,7 +52,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>746</width>
+     <width>800</width>
      <height>31</height>
     </rect>
    </property>
@@ -79,8 +79,8 @@
     </property>
     <addaction name="action_New_Project" />
     <addaction name="action_Open" />
-    <addaction name="action_SaveAs" />
     <addaction name="action_Save" />
+    <addaction name="action_SaveAs" />
     <addaction name="separator" />
     <addaction name="action_Import" />
     <addaction name="action_Export" />
@@ -148,10 +148,7 @@
     <number>1</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_NodeTypes" >
-    <layout class="QHBoxLayout" >
-     <property name="spacing" >
-      <number>0</number>
-     </property>
+    <layout class="QGridLayout" >
      <property name="leftMargin" >
       <number>0</number>
      </property>
@@ -164,14 +161,14 @@
      <property name="bottomMargin" >
       <number>0</number>
      </property>
-     <item>
+     <property name="horizontalSpacing" >
+      <number>-1</number>
+     </property>
+     <property name="verticalSpacing" >
+      <number>-1</number>
+     </property>
+     <item row="0" column="0" >
       <widget class="nodesDock" name="panel_nodesTypesList" >
-       <property name="sizePolicy" >
-        <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="dragEnabled" >
         <bool>true</bool>
        </property>
@@ -201,7 +198,7 @@
    </attribute>
    <addaction name="action_Add_link" />
   </widget>
-  <widget class="QToolBar" name="toolBar_Simulation" >
+  <widget class="QToolBar" name="toolBar_Emulation" >
    <property name="windowTitle" >
     <string>Simulation</string>
    </property>
@@ -308,6 +305,9 @@
    </property>
    <property name="toolTip" >
     <string>Save project</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="action_Add_link" >
@@ -443,16 +443,13 @@
     <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/icons/save-as.svg</iconset>
    </property>
    <property name="text" >
-    <string>&amp;Save</string>
+    <string>Save &amp;As</string>
    </property>
    <property name="iconText" >
     <string>Save As</string>
    </property>
    <property name="toolTip" >
     <string>Save project as</string>
-   </property>
-   <property name="shortcut" >
-    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="action_New_Project" >
@@ -525,7 +522,7 @@
     <string>Select &amp;None</string>
    </property>
    <property name="shortcut" >
-    <string>Shift+A, Ctrl+A, Ctrl+Shift+A</string>
+    <string>Ctrl+Shift+A</string>
    </property>
   </action>
   <action name="action_SystemPreferences" >

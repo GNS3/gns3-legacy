@@ -51,15 +51,22 @@ class Workspace(QMainWindow, Ui_MainWindow):
     """
 
     def __init__(self, projType=None, projFile=None):
-        # Initialise the windows 
+        # Initialize some variables
+        self.currentMode = None
+
+        # Initialize the windows 
         QMainWindow.__init__(self)
         self.__createActions()
         Ui_MainWindow.setupUi(self, self)
         self.__createMenus()
         self.__connectActions()
 
-        self.currentMode = None
-        self.switchToMode(globals.Enum.Mode.Design)
+        # Force text to be shown for switchMode action
+        swWidget = self.toolBar_General.widgetForAction(self.action_SwitchMode)
+        swWidget.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
+
+        # Switch to default mode
+        self.switchToMode_Design()
 
     def __createActions(self):
         """ Add own custom action not providen by Ui_MainWindow
@@ -74,6 +81,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.action_swModeSimulation = QAction(self)
         self.action_swModeSimulation.setObjectName("action_swModeSimulation")
         self.action_swModeSimulation.setCheckable(True)
+        # FIXME: Re-enable swModeSimulation action when simulation mode is available
+        self.action_swModeSimulation.setEnabled(False)
         self.actgrp_swMode = QActionGroup(self)
         self.actgrp_swMode.addAction(self.action_swModeDesign)
         self.actgrp_swMode.addAction(self.action_swModeEmulation)
@@ -96,6 +105,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.menu_View.addActions(self.actgrp_swMode.actions())
         self.menu_View.addSeparator().setText("Docks")
         self.menu_View.addAction(self.dockWidget_NodeTypes.toggleViewAction())
+        self.menu_View.addAction(self.dockWidget_TopoSum.toggleViewAction())
+        self.menu_View.addAction(self.dockWidget_EventEditor.toggleViewAction())
 
     def retranslateUi(self, MainWindow):
         Ui_MainWindow.retranslateUi(self, MainWindow)
@@ -103,6 +114,35 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.action_swModeDesign.setText(translate(ctx, 'Design Mode'))
         self.action_swModeEmulation.setText(translate(ctx, 'Emulation Mode'))
         self.action_swModeSimulation.setText(translate(ctx, 'Simulation Mode'))
+
+    #-------------------------------------------------------------------------
+
+    def __getNextModeId(self):
+        count = 3   # Force number of modes
+        idx = globals.modesIds.index(self.currentMode)
+        print "CurrentModeId: %d" % (idx)
+        idx_next = (idx + 1) % count
+
+        while idx_next != idx:
+            if idx_next == globals.Enum.Mode.Design:
+                if self.action_swModeDesign.isEnabled():
+                    return idx_next
+            if idx_next == globals.Enum.Mode.Emulation:
+                if self.action_swModeEmulation.isEnabled():
+                    return idx_next
+            if idx_next == globals.Enum.Mode.Simulation:
+                if self.action_swModeSimulation.isEnabled():
+                    return idx_next
+            idx_next = (idx_next + 1) % 3
+        # if they no more avaible mode (`enabled'), return the currentMode
+        return self.currentMode
+
+    def __getNextModeName(self):
+        idx = self.__getNextModeId()
+        print "NextModeId: %d" % (idx)
+        print "NextModeIdName: %s" % (globals.modesNames[idx])
+        return globals.modesNames[idx]
+
 
     #-------------------------------------------------------------------------
 
@@ -121,21 +161,26 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def saveProject(self, projectFile):
         pass
 
-    def switchToMode(self, mode):
-        modeFunction = {
-            globals.Enum.Mode.Design: self.switchToMode_Design,
-            globals.Enum.Mode.Emulation: self.switchToMode_Emulation,
-            globals.Enum.Mode.Simulation: self.switchToMode_Simulation
-        }[mode]()
-       
     def switchToMode_Design(self):
         print ">>> switchToMode: DESIGN"
-        
+    
+        self.currentMode = globals.Enum.Mode.Design
+        nextMode_name = self.__getNextModeName() 
+        self.action_SwitchMode.setText(translate('Workspace', nextMode_name))
         self.statusbar.showMessage(translate('Workspace', 'Design Mode'))
-        self.action_Add_link.setEnabled(True)
-        self.action_StartAll.setEnabled(False)
-        self.action_StopAll.setEnabled(False)
-        self.action_TelnetAll.setEnabled(False)
+
+        # Enable / Disable toolbars for this mode
+        self.toolBar_General.setEnabled(True)
+        self.toolBar_Design.setEnabled(True)
+        self.toolBar_Emulation.setEnabled(False)
+        # Show&Enable / Hide&Disable docks for this mode
+        self.dockWidget_TopoSum.setVisible(False)
+        self.dockWidget_TopoSum.toggleViewAction().setEnabled(False)
+        self.dockWidget_EventEditor.setVisible(False)
+        self.dockWidget_EventEditor.toggleViewAction().setEnabled(False)
+        self.dockWidget_NodeTypes.setVisible(True)
+        self.dockWidget_NodeTypes.toggleViewAction().setEnabled(True)
+
 #        try:
 #            for node in self.main.nodes.keys():
 #                self.main.nodes[node].resetIOSConfig()
@@ -150,12 +195,23 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def switchToMode_Emulation(self):
         print ">>> switchToMode: EMULATION"
         
+        self.currentMode = globals.Enum.Mode.Emulation
+        nextMode_name = self.__getNextModeName()
+        self.action_SwitchMode.setText(translate('Workspace', nextMode_name))
         self.statusbar.showMessage(translate('Workspace', 'Emulation Mode'))
-        self.action_Add_link.setChecked(False)
-        self.action_Add_link.setEnabled(False)
-        self.action_StartAll.setEnabled(True)
-        self.action_StopAll.setEnabled(True)
-        self.action_TelnetAll.setEnabled(True)
+
+        # Enable / Disable toolbars for this mode
+        self.toolBar_General.setEnabled(True)
+        self.toolBar_Design.setEnabled(False)
+        self.toolBar_Emulation.setEnabled(True)
+        # Show&Enable / Hide&Disable docks for this mode
+        self.dockWidget_NodeTypes.setVisible(False)
+        self.dockWidget_NodeTypes.toggleViewAction().setEnabled(False)
+        self.dockWidget_EventEditor.setVisible(False)
+        self.dockWidget_EventEditor.toggleViewAction().setEnabled(False)
+        self.dockWidget_TopoSum.setVisible(True)
+        self.dockWidget_TopoSum.toggleViewAction().setEnabled(True)
+
         try:
             for node in globals.GApp.topology.getNodes():
                 node.configIOS()
@@ -194,5 +250,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         dialog.exec_()
         
     def __action_SwitchMode(self):
-    
-        self.switchToMode_Emulation()
+        switch = {
+            globals.Enum.Mode.Design: self.switchToMode_Design,
+            globals.Enum.Mode.Emulation: self.switchToMode_Emulation,
+            globals.Enum.Mode.Simulation: self.switchToMode_Simulation
+        }[self.__getNextModeId()]()

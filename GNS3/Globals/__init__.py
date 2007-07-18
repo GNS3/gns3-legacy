@@ -32,3 +32,15 @@ class Enum:
         Design = 0
         Emulation = 1
         Simulation = 2
+
+modesIds = [
+    Enum.Mode.Design,
+    Enum.Mode.Emulation,
+    Enum.Mode.Simulation,
+]
+modesNames = {
+    Enum.Mode.Design : 'Design Mode',
+    Enum.Mode.Emulation : 'Emulation Mode',
+    Enum.Mode.Simulation : 'Simulation Mode',
+}
+

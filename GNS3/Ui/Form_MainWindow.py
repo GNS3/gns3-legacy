@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Wed Jul 18 21:34:34 2007
+# Created: Wed Jul 18 22:49:17 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(QtCore.QSize(QtCore.QRect(0,0,746,631).size()).expandedTo(MainWindow.minimumSizeHint()))
+        MainWindow.resize(QtCore.QSize(QtCore.QRect(0,0,800,600).size()).expandedTo(MainWindow.minimumSizeHint()))
 
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -34,7 +34,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,746,31))
+        self.menubar.setGeometry(QtCore.QRect(0,0,800,31))
         self.menubar.setObjectName("menubar")
 
         self.menuIOS = QtGui.QMenu(self.menubar)
@@ -66,17 +66,16 @@ class Ui_MainWindow(object):
         self.dockWidgetContents_NodeTypes = QtGui.QWidget(self.dockWidget_NodeTypes)
         self.dockWidgetContents_NodeTypes.setObjectName("dockWidgetContents_NodeTypes")
 
-        self.hboxlayout = QtGui.QHBoxLayout(self.dockWidgetContents_NodeTypes)
-        self.hboxlayout.setSpacing(0)
-        self.hboxlayout.setMargin(0)
-        self.hboxlayout.setObjectName("hboxlayout")
+        self.gridlayout1 = QtGui.QGridLayout(self.dockWidgetContents_NodeTypes)
+        self.gridlayout1.setMargin(0)
+        self.gridlayout1.setObjectName("gridlayout1")
 
         self.panel_nodesTypesList = nodesDock(self.dockWidgetContents_NodeTypes)
         self.panel_nodesTypesList.setDragEnabled(True)
         self.panel_nodesTypesList.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
         self.panel_nodesTypesList.setIconSize(QtCore.QSize(24,24))
         self.panel_nodesTypesList.setObjectName("panel_nodesTypesList")
-        self.hboxlayout.addWidget(self.panel_nodesTypesList)
+        self.gridlayout1.addWidget(self.panel_nodesTypesList,0,0,1,1)
         self.dockWidget_NodeTypes.setWidget(self.dockWidgetContents_NodeTypes)
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(1),self.dockWidget_NodeTypes)
 
@@ -84,10 +83,10 @@ class Ui_MainWindow(object):
         self.toolBar_Design.setObjectName("toolBar_Design")
         MainWindow.addToolBar(self.toolBar_Design)
 
-        self.toolBar_Simulation = QtGui.QToolBar(MainWindow)
-        self.toolBar_Simulation.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
-        self.toolBar_Simulation.setObjectName("toolBar_Simulation")
-        MainWindow.addToolBar(self.toolBar_Simulation)
+        self.toolBar_Emulation = QtGui.QToolBar(MainWindow)
+        self.toolBar_Emulation.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
+        self.toolBar_Emulation.setObjectName("toolBar_Emulation")
+        MainWindow.addToolBar(self.toolBar_Emulation)
 
         self.dockWidget_TopoSum = QtGui.QDockWidget(MainWindow)
 
@@ -247,8 +246,8 @@ class Ui_MainWindow(object):
         self.menuIOS.addAction(self.action_ProjectPreferences)
         self.menu_File.addAction(self.action_New_Project)
         self.menu_File.addAction(self.action_Open)
-        self.menu_File.addAction(self.action_SaveAs)
         self.menu_File.addAction(self.action_Save)
+        self.menu_File.addAction(self.action_SaveAs)
         self.menu_File.addSeparator()
         self.menu_File.addAction(self.action_Import)
         self.menu_File.addAction(self.action_Export)
@@ -273,9 +272,9 @@ class Ui_MainWindow(object):
         self.toolBar_General.addAction(self.action_ShowHostnames)
         self.toolBar_General.addAction(self.action_SwitchMode)
         self.toolBar_Design.addAction(self.action_Add_link)
-        self.toolBar_Simulation.addAction(self.action_TelnetAll)
-        self.toolBar_Simulation.addAction(self.action_StartAll)
-        self.toolBar_Simulation.addAction(self.action_StopAll)
+        self.toolBar_Emulation.addAction(self.action_TelnetAll)
+        self.toolBar_Emulation.addAction(self.action_StartAll)
+        self.toolBar_Emulation.addAction(self.action_StopAll)
 
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.action_Quit,QtCore.SIGNAL("activated()"),MainWindow.close)
@@ -290,7 +289,7 @@ class Ui_MainWindow(object):
         self.toolBar_General.setWindowTitle(QtGui.QApplication.translate("MainWindow", "General", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidget_NodeTypes.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Nodes Types", None, QtGui.QApplication.UnicodeUTF8))
         self.toolBar_Design.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Design", None, QtGui.QApplication.UnicodeUTF8))
-        self.toolBar_Simulation.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Simulation", None, QtGui.QApplication.UnicodeUTF8))
+        self.toolBar_Emulation.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Simulation", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidget_TopoSum.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Topology Summary", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidget_EventEditor.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Event Editor", None, QtGui.QApplication.UnicodeUTF8))
         self.action_About.setText(QtGui.QApplication.translate("MainWindow", "&About", None, QtGui.QApplication.UnicodeUTF8))
@@ -301,6 +300,7 @@ class Ui_MainWindow(object):
         self.action_Open.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+O", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Save.setText(QtGui.QApplication.translate("MainWindow", "&Save", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Save.setToolTip(QtGui.QApplication.translate("MainWindow", "Save project", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Save.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+S", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Add_link.setText(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Add_link.setIconText(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Add_link.setToolTip(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
@@ -321,10 +321,9 @@ class Ui_MainWindow(object):
         self.action_Design_Mode.setText(QtGui.QApplication.translate("MainWindow", "&Design Mode", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Emulation_Mode.setText(QtGui.QApplication.translate("MainWindow", "&Emulation Mode", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Simulation_Mode.setText(QtGui.QApplication.translate("MainWindow", "&Simulation Mode", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_SaveAs.setText(QtGui.QApplication.translate("MainWindow", "&Save", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_SaveAs.setText(QtGui.QApplication.translate("MainWindow", "Save &As", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SaveAs.setIconText(QtGui.QApplication.translate("MainWindow", "Save As", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SaveAs.setToolTip(QtGui.QApplication.translate("MainWindow", "Save project as", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_SaveAs.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+S", None, QtGui.QApplication.UnicodeUTF8))
         self.action_New_Project.setText(QtGui.QApplication.translate("MainWindow", "&New", None, QtGui.QApplication.UnicodeUTF8))
         self.action_New_Project.setToolTip(QtGui.QApplication.translate("MainWindow", "New project", None, QtGui.QApplication.UnicodeUTF8))
         self.action_New_Project.setStatusTip(QtGui.QApplication.translate("MainWindow", "Create a new project", None, QtGui.QApplication.UnicodeUTF8))
@@ -341,7 +340,7 @@ class Ui_MainWindow(object):
         self.action_SelectAll.setText(QtGui.QApplication.translate("MainWindow", "Select &All", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SelectAll.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+A", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SelectNone.setText(QtGui.QApplication.translate("MainWindow", "Select &None", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_SelectNone.setShortcut(QtGui.QApplication.translate("MainWindow", "Shift+A, Ctrl+A, Ctrl+Shift+A", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_SelectNone.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+A", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SystemPreferences.setText(QtGui.QApplication.translate("MainWindow", "&System Preferences...", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SystemPreferences.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+O", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ProjectPreferences.setText(QtGui.QApplication.translate("MainWindow", "&Project Preferences...", None, QtGui.QApplication.UnicodeUTF8))
