@@ -5,21 +5,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>640</height>
+    <width>746</width>
+    <height>631</height>
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>GNS-3</string>
+   <string>GNS3</string>
   </property>
   <property name="windowIcon" >
    <iconset/>
   </property>
   <widget class="QWidget" name="centralwidget" >
-   <layout class="QHBoxLayout" >
-    <property name="spacing" >
-     <number>0</number>
-    </property>
+   <layout class="QGridLayout" >
     <property name="leftMargin" >
      <number>0</number>
     </property>
@@ -32,7 +29,13 @@
     <property name="bottomMargin" >
      <number>0</number>
     </property>
-    <item>
+    <property name="horizontalSpacing" >
+     <number>0</number>
+    </property>
+    <property name="verticalSpacing" >
+     <number>0</number>
+    </property>
+    <item row="0" column="0" >
      <widget class="Scene" name="graphicsView" >
       <property name="sizePolicy" >
        <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
@@ -49,21 +52,34 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>27</height>
+     <width>746</width>
+     <height>31</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuIOS" >
     <property name="title" >
-     <string>Cisco IOS</string>
+     <string>&amp;Edit</string>
     </property>
+    <addaction name="separator" />
+    <addaction name="actionCut" />
+    <addaction name="actionCopy" />
+    <addaction name="actionPast" />
+    <addaction name="separator" />
     <addaction name="action_IOS_images" />
+    <addaction name="separator" />
+    <addaction name="action_SelectAll" />
+    <addaction name="action_SelectNone" />
+    <addaction name="separator" />
+    <addaction name="action_SystemPreferences" />
+    <addaction name="action_ProjectPreferences" />
    </widget>
    <widget class="QMenu" name="menu_File" >
     <property name="title" >
      <string>&amp;File</string>
     </property>
+    <addaction name="action_New_Project" />
     <addaction name="action_Open" />
+    <addaction name="action_SaveAs" />
     <addaction name="action_Save" />
     <addaction name="separator" />
     <addaction name="action_Import" />
@@ -76,20 +92,35 @@
      <string>&amp;Help</string>
     </property>
     <addaction name="action_OnlineHelp" />
+    <addaction name="action_AboutQt" />
     <addaction name="action_About" />
    </widget>
    <widget class="QMenu" name="menu_View" >
     <property name="title" >
      <string>&amp;View</string>
     </property>
+    <addaction name="action_ZoomIn" />
+    <addaction name="action_ZoomOut" />
+    <addaction name="action_ZoomReset" />
+    <addaction name="action_ZoomFit" />
+    <addaction name="separator" />
    </widget>
    <addaction name="menu_File" />
-   <addaction name="menu_View" />
    <addaction name="menuIOS" />
+   <addaction name="menu_View" />
    <addaction name="menu_About" />
   </widget>
   <widget class="QStatusBar" name="statusbar" />
-  <widget class="QToolBar" name="toolBar" >
+  <widget class="QToolBar" name="toolBar_General" >
+   <property name="windowTitle" >
+    <string>General</string>
+   </property>
+   <property name="toolTip" >
+    <string/>
+   </property>
+   <property name="statusTip" >
+    <string/>
+   </property>
    <property name="orientation" >
     <enum>Qt::Horizontal</enum>
    </property>
@@ -101,22 +132,12 @@
    </attribute>
    <addaction name="action_Open" />
    <addaction name="action_Save" />
+   <addaction name="action_SaveAs" />
+   <addaction name="separator" />
    <addaction name="action_ShowHostnames" />
-   <addaction name="separator" />
    <addaction name="action_SwitchMode" />
-   <addaction name="separator" />
-   <addaction name="action_Add_link" />
-   <addaction name="action_TelnetAll" />
-   <addaction name="action_StartAll" />
-   <addaction name="action_StopAll" />
   </widget>
   <widget class="QDockWidget" name="dockWidget_NodeTypes" >
-   <property name="sizePolicy" >
-    <sizepolicy vsizetype="Expanding" hsizetype="MinimumExpanding" >
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
    <property name="allowedAreas" >
     <set>Qt::LeftDockWidgetArea|Qt::NoDockWidgetArea|Qt::RightDockWidgetArea</set>
    </property>
@@ -127,13 +148,10 @@
     <number>1</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_NodeTypes" >
-    <property name="sizePolicy" >
-     <sizepolicy vsizetype="Expanding" hsizetype="MinimumExpanding" >
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
     <layout class="QHBoxLayout" >
+     <property name="spacing" >
+      <number>0</number>
+     </property>
      <property name="leftMargin" >
       <number>0</number>
      </property>
@@ -149,7 +167,7 @@
      <item>
       <widget class="nodesDock" name="panel_nodesTypesList" >
        <property name="sizePolicy" >
-        <sizepolicy vsizetype="Expanding" hsizetype="MinimumExpanding" >
+        <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -166,20 +184,94 @@
          <height>24</height>
         </size>
        </property>
-       <property name="horizontalScrollMode" >
-        <enum>QAbstractItemView::ScrollPerPixel</enum>
-       </property>
-       <property name="resizeMode" >
-        <enum>QListView::Adjust</enum>
-       </property>
       </widget>
      </item>
     </layout>
    </widget>
   </widget>
+  <widget class="QToolBar" name="toolBar_Design" >
+   <property name="windowTitle" >
+    <string>Design</string>
+   </property>
+   <attribute name="toolBarArea" >
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_Add_link" />
+  </widget>
+  <widget class="QToolBar" name="toolBar_Simulation" >
+   <property name="windowTitle" >
+    <string>Simulation</string>
+   </property>
+   <property name="toolButtonStyle" >
+    <enum>Qt::ToolButtonIconOnly</enum>
+   </property>
+   <attribute name="toolBarArea" >
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_TelnetAll" />
+   <addaction name="action_StartAll" />
+   <addaction name="action_StopAll" />
+  </widget>
+  <widget class="QDockWidget" name="dockWidget_TopoSum" >
+   <property name="sizePolicy" >
+    <sizepolicy vsizetype="Expanding" hsizetype="Preferred" >
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize" >
+    <size>
+     <width>50</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="allowedAreas" >
+    <set>Qt::LeftDockWidgetArea|Qt::NoDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle" >
+    <string>Topology Summary</string>
+   </property>
+   <attribute name="dockWidgetArea" >
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_7" />
+  </widget>
+  <widget class="QDockWidget" name="dockWidget_EventEditor" >
+   <property name="sizePolicy" >
+    <sizepolicy vsizetype="Expanding" hsizetype="Preferred" >
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize" >
+    <size>
+     <width>50</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="allowedAreas" >
+    <set>Qt::LeftDockWidgetArea|Qt::NoDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle" >
+    <string>Event Editor</string>
+   </property>
+   <attribute name="dockWidgetArea" >
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_8" />
+  </widget>
   <action name="action_About" >
    <property name="text" >
     <string>&amp;About</string>
+   </property>
+   <property name="menuRole" >
+    <enum>QAction::AboutRole</enum>
    </property>
   </action>
   <action name="action_Quit" >
@@ -200,13 +292,22 @@
    <property name="text" >
     <string>&amp;Open</string>
    </property>
+   <property name="toolTip" >
+    <string>Open project</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+O</string>
+   </property>
   </action>
   <action name="action_Save" >
    <property name="icon" >
     <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/icons/save.svg</iconset>
    </property>
    <property name="text" >
-    <string>&amp;Save As</string>
+    <string>&amp;Save</string>
+   </property>
+   <property name="toolTip" >
+    <string>Save project</string>
    </property>
   </action>
   <action name="action_Add_link" >
@@ -224,6 +325,9 @@
    </property>
    <property name="toolTip" >
     <string>Add a link</string>
+   </property>
+   <property name="statusTip" >
+    <string>Add a link between two nodes</string>
    </property>
   </action>
   <action name="action_SwitchMode" >
@@ -276,6 +380,9 @@
    <property name="text" >
     <string>Start all IOS</string>
    </property>
+   <property name="statusTip" >
+    <string>Start all IOS instances</string>
+   </property>
   </action>
   <action name="action_StopAll" >
    <property name="enabled" >
@@ -287,12 +394,18 @@
    <property name="text" >
     <string>Stop all IOS</string>
    </property>
+   <property name="statusTip" >
+    <string>Stop all IOS instances</string>
+   </property>
   </action>
   <action name="action_ShowHostnames" >
    <property name="icon" >
     <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/icons/show-hostname.svg</iconset>
    </property>
    <property name="text" >
+    <string>Show hostnames</string>
+   </property>
+   <property name="toolTip" >
     <string>Show hostnames</string>
    </property>
   </action>
@@ -305,6 +418,9 @@
    </property>
    <property name="text" >
     <string>Telnet all IOS</string>
+   </property>
+   <property name="statusTip" >
+    <string>Start a console on all running IOS instances</string>
    </property>
   </action>
   <action name="action_Design_Mode" >
@@ -320,6 +436,136 @@
   <action name="action_Simulation_Mode" >
    <property name="text" >
     <string>&amp;Simulation Mode</string>
+   </property>
+  </action>
+  <action name="action_SaveAs" >
+   <property name="icon" >
+    <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/icons/save-as.svg</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Save</string>
+   </property>
+   <property name="iconText" >
+    <string>Save As</string>
+   </property>
+   <property name="toolTip" >
+    <string>Save project as</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="action_New_Project" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="text" >
+    <string>&amp;New</string>
+   </property>
+   <property name="toolTip" >
+    <string>New project</string>
+   </property>
+   <property name="statusTip" >
+    <string>Create a new project</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="action_AboutQt" >
+   <property name="text" >
+    <string>About &amp;Qt</string>
+   </property>
+   <property name="menuRole" >
+    <enum>QAction::AboutQtRole</enum>
+   </property>
+  </action>
+  <action name="action_ZoomIn" >
+   <property name="text" >
+    <string>Zoom &amp;In</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl++</string>
+   </property>
+  </action>
+  <action name="action_ZoomOut" >
+   <property name="text" >
+    <string>Zoom &amp;Out</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="action_ZoomReset" >
+   <property name="text" >
+    <string>Zoom &amp;Reset</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+/</string>
+   </property>
+  </action>
+  <action name="action_ZoomFit" >
+   <property name="text" >
+    <string>Zoom &amp;Fit</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+=</string>
+   </property>
+  </action>
+  <action name="action_SelectAll" >
+   <property name="text" >
+    <string>Select &amp;All</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="action_SelectNone" >
+   <property name="text" >
+    <string>Select &amp;None</string>
+   </property>
+   <property name="shortcut" >
+    <string>Shift+A, Ctrl+A, Ctrl+Shift+A</string>
+   </property>
+  </action>
+  <action name="action_SystemPreferences" >
+   <property name="text" >
+    <string>&amp;System Preferences...</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="action_ProjectPreferences" >
+   <property name="text" >
+    <string>&amp;Project Preferences...</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionCut" >
+   <property name="text" >
+    <string>Cut</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionCopy" >
+   <property name="text" >
+    <string>Copy</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionPast" >
+   <property name="text" >
+    <string>&amp;Paste</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+V</string>
    </property>
   </action>
  </widget>
