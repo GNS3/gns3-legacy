@@ -37,11 +37,6 @@ IOSConfig = {
                 'iomem': 5, 
                 'npe': "npe-200",
                 'midplane': "vxr", 
-                'slot0': None, 
-                'slot1': None, 
-                'slot2': None, 
-                'slot3': None, 
-                'slot4': None, 
-                'slot5': None, 
-                'slot6': None
+                'slots': ['',  '',  '',  '',  '',  '',  '']
+
              }

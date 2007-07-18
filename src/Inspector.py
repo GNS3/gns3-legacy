@@ -133,7 +133,7 @@ class Inspector(QtGui.QDialog, Ui_FormInspector):
         imagename = str(self.comboBoxIOS.currentText())
         if imagename == '':
             return
-
+            
         # create slots entries
         platform = self.main.ios_images[imagename]['platform']
         chassis = self.main.ios_images[imagename]['chassis']
