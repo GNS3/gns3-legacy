@@ -20,9 +20,11 @@
 # Contact: contact@gns3.net
 #
 
+import GNS3.Globals as globals
+#from GNS3.Config.Config import ConfDB
 from PyQt4 import QtCore, QtGui
 
-class  Singleton (object):
+class  Singleton(object):
     _instance = None
     
     def __new__(cls, *args, **kwargs):
@@ -39,3 +41,27 @@ def translate(context, text):
     """
     
     return unicode(QtGui.QApplication.translate(context, text, None, QtGui.QApplication.UnicodeUTF8))
+
+def telnet(host,  port,  name):
+        """ Start a telnet console and connect to it
+        """
+
+        pass
+#        try:
+#            console = ConfDB().get("Dynamips/console", '')
+#            if console:
+#                console = console.replace('%h', host)
+#                console = console.replace('%p', str(port))
+#                console = console.replace('%d', name)
+#                sub.Popen(console, shell=True)
+#            else:
+#                if sys.platform.startswith('darwin'):
+#                    sub.Popen("/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet " + host + " " + str(port) +"; exit\"' -e 'tell application \"Terminal\" to tell window 1  to set custom title to \"" + name + "\"'", shell=True)
+#                elif sys.platform.startswith('win32'):
+#                    sub.Popen("telnet " +  host + " " + str(port), shell=True)
+#                else:
+#                    sub.Popen("xterm -T " + name + " -e telnet '" + host + " " + str(port) + "' > /dev/null 2>&1 &", shell=True)
+#        except OSError, (errno, strerror):
+#            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Console error', strerror)
+#            return (False)
+#        return (True)

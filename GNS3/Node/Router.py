@@ -20,9 +20,11 @@
 # Contact: contact@gns3.net
 #
 
+import re
 import GNS3.NodeConfigs as config
 import GNS3.Dynagen.dynamips_lib as lib
-import GNS3.Dynagen.dynagen as dynagen
+import GNS3.Dynagen.Globals as dynagen
+from GNS3.Utils import telnet
 from GNS3.Node.AbstractNode import AbstractNode
 
 ROUTERS = {
@@ -60,6 +62,8 @@ ADAPTERS = {
     "CISCO2600-MB-2FE": (lib.CISCO2600_MB_2FE, 2, 'f')
 }
 
+IF_REGEXP = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)\/([0-9]+)$""") 
+
 class Router(AbstractNode):
     """ Router class
     """
@@ -72,10 +76,10 @@ class Router(AbstractNode):
 
     def configIOS(self):
     
-        lib.dynamips['localhost:7200'] = dynagen.Dynamips('localhost', 7200)
-        lib.dynamips['localhost:7200'].reset()
+        dynagen.dynamips['localhost:7200'] = lib.Dynamips('localhost', 7200)
+        dynagen.dynamips['localhost:7200'].reset()
         
-        self.dev = lib.C3600(dynagen.dynamips['localhost:7200'], chassis = '3640', name = 'R ' + str(self.id))
+        self.dev = lib.C3600(dynagen.dynamips['localhost:7200'],  chassis = '3640', name = 'R' + str(self.id))
         self.dev.image = '/home/grossmj/IOS/c3640.bin'
         self.dev.idlepc = '0x60483ae4'
 
@@ -152,11 +156,29 @@ class Router(AbstractNode):
 
     def startIOS(self):
     
-#        try:
-#            if self.ios.slot[source_slot] != None and self.ios.slot[source_slot].connected(source_port) == False:
-#                lib.validate_connect(self.ios.slot[source_slot], node.ios.slot[dest_slot])
-#                self.ios.slot[source_slot].connect(source_port, self.dynamips_instance, node.ios.slot[dest_slot], dest_port)
-#        except lib.DynamipsError, msg:
-#            print msg
+        for interface in self.getConnectedInterfaceList():
+
+            match_obj = IF_REGEXP.search(interface)
+            assert(match_obj)
+            (source_slot, source_port) = match_obj.group(2,3)
+        
+            (destnode, destinterface)  = getConnectedNeighbor(interface)
+            match_obj = IF_REGEXP.search(destinterface)
+            assert(match_obj)
+            (dest_slot, dest_port) = match_obj.group(2,3)
+        
+            try:
+                if self.dev.slot[source_slot] != None and self.dev.slot[source_slot].connected(source_port) == False:
+                    lib.validate_connect(self.dev.slot[source_slot], destnode.dev.slot[dest_slot])
+                    self.dev.slot[source_slot].connect(source_port, dynagen.dynamips['localhost:7200'], destnode.dev.slot[dest_slot], dest_port)
+            except lib.DynamipsError, msg:
+                print msg
 
         self.dev.start()
+        
+    def telnetToIOS(self):
+        """ Start a telnet console and connect it to an IOS
+        """
+
+        if self.dev.console != None:
+            telnet('localhost',  self.dev.console,  'R0')

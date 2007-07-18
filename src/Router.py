@@ -277,6 +277,8 @@ class Router(MNode):
         if self.ios == None:
             return
 
+        
+        
         for interface in self.interfaces.keys():
             connection = self.interfaces[interface]
             source_slot = int(interface[1])

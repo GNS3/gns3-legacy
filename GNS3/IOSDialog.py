@@ -23,7 +23,7 @@
 import os,  re
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_IOSDialog import Ui_IOSDialog
-from GNS3.Config import ConfDB
+from GNS3.Config.Config import ConfDB
 
 PLATFORMS = {'2600': ['2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM', '2691'],
              '3600': ['3620', '3640', '3660'],
