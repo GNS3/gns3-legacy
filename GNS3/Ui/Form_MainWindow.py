@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Wed Jul 18 22:49:17 2007
+# Created: Thu Jul 19 00:16:17 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -161,12 +161,12 @@ class Ui_MainWindow(object):
         self.action_Export.setObjectName("action_Export")
 
         self.action_StartAll = QtGui.QAction(MainWindow)
-        self.action_StartAll.setEnabled(False)
+        self.action_StartAll.setEnabled(True)
         self.action_StartAll.setIcon(QtGui.QIcon(":/icons/start_metal.svg"))
         self.action_StartAll.setObjectName("action_StartAll")
 
         self.action_StopAll = QtGui.QAction(MainWindow)
-        self.action_StopAll.setEnabled(False)
+        self.action_StopAll.setEnabled(True)
         self.action_StopAll.setIcon(QtGui.QIcon(":/icons/stop_metal.svg"))
         self.action_StopAll.setObjectName("action_StopAll")
 
@@ -175,7 +175,7 @@ class Ui_MainWindow(object):
         self.action_ShowHostnames.setObjectName("action_ShowHostnames")
 
         self.action_TelnetAll = QtGui.QAction(MainWindow)
-        self.action_TelnetAll.setEnabled(False)
+        self.action_TelnetAll.setEnabled(True)
         self.action_TelnetAll.setIcon(QtGui.QIcon(":/icons/console.svg"))
         self.action_TelnetAll.setObjectName("action_TelnetAll")
 

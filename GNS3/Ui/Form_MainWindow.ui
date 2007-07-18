@@ -372,7 +372,7 @@
   </action>
   <action name="action_StartAll" >
    <property name="enabled" >
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon" >
     <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/icons/start_metal.svg</iconset>
@@ -386,7 +386,7 @@
   </action>
   <action name="action_StopAll" >
    <property name="enabled" >
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon" >
     <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/icons/stop_metal.svg</iconset>
@@ -411,7 +411,7 @@
   </action>
   <action name="action_TelnetAll" >
    <property name="enabled" >
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon" >
     <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/icons/console.svg</iconset>
