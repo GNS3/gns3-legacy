@@ -153,6 +153,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.switchToMode_Emulation)
         self.connect(self.action_swModeSimulation, QtCore.SIGNAL('triggered()'),
             self.switchToMode_Simulation)
+        self.connect(self.action_SelectAll, QtCore.SIGNAL('triggered()'),
+            self.__action_SelectAll)
+        self.connect(self.action_SelectNone, QtCore.SIGNAL('triggered()'),
+            self.__action_SelectNone)
 
     def __createMenus(self):
         """
@@ -300,3 +304,16 @@ class Workspace(QMainWindow, Ui_MainWindow):
             globals.Enum.Mode.Emulation: self.switchToMode_Emulation,
             globals.Enum.Mode.Simulation: self.switchToMode_Simulation
         }[self.__getNextModeId()]()
+
+    def __action_SelectAll(self):
+        print ">>> ACTION: Select All"
+        painterpath = QtGui.QPainterPath()
+        painterpath.addRect(-250, -250, 750, 750)
+        globals.GApp.topology.setSelectionArea(painterpath)
+
+    def __action_SelectNone(self):
+        print ">>> ACTION: Select None"
+        painterpath = QtGui.QPainterPath()
+        painterpath.addRect(-300, -300, 0, 0)
+        globals.GApp.topology.setSelectionArea(painterpath)
+        
