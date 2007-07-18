@@ -77,8 +77,9 @@ class Router(AbstractNode):
     def configIOS(self):
     
         dynagen.dynamips['localhost:7200'] = lib.Dynamips('localhost', 7200)
-        dynagen.dynamips['localhost:7200'].reset()
+        #dynagen.dynamips['localhost:7200'].reset()
         
+        print 'R' + str(self.id)
         self.dev = lib.C3600(dynagen.dynamips['localhost:7200'],  chassis = '3640', name = 'R' + str(self.id))
         self.dev.image = '/home/grossmj/IOS/c3640.bin'
         self.dev.idlepc = '0x60483ae4'
@@ -99,7 +100,7 @@ class Router(AbstractNode):
         if (module == ''):
             return
         if module in ADAPTERS:
-            self.ios.slot[slotnb] = ADAPTERS[module][0](self.dev, slotnb)
+            self.dev.slot[slotnb] = ADAPTERS[module][0](self.dev, slotnb)
         else:
             #FIXME : graphical error msg
             sys.stderr.write(module + " module not found !\n")
@@ -162,11 +163,15 @@ class Router(AbstractNode):
             assert(match_obj)
             (source_slot, source_port) = match_obj.group(2,3)
         
-            (destnode, destinterface)  = getConnectedNeighbor(interface)
+            (destnode, destinterface)  = self.getConnectedNeighbor(interface)
             match_obj = IF_REGEXP.search(destinterface)
             assert(match_obj)
             (dest_slot, dest_port) = match_obj.group(2,3)
-        
+            print 'connect ' + source_slot + '/' + source_port + ' to ' + dest_slot + '/' + dest_port
+            source_slot = int(source_slot)
+            dest_slot = int(dest_slot)
+            source_port = int(source_port)
+            dest_port = int(dest_port)
             try:
                 if self.dev.slot[source_slot] != None and self.dev.slot[source_slot].connected(source_port) == False:
                     lib.validate_connect(self.dev.slot[source_slot], destnode.dev.slot[dest_slot])
@@ -181,4 +186,4 @@ class Router(AbstractNode):
         """
 
         if self.dev.console != None:
-            telnet('localhost',  self.dev.console,  'R0')
+            telnet('localhost',  self.dev.console,  'R' + str(self.id))

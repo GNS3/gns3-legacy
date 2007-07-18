@@ -89,7 +89,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__action_IOSImages)
         self.connect(self.action_SwitchMode,  SIGNAL('triggered()'),
             self.__action_SwitchMode)
-
+        self.connect(self.action_TelnetAll,  SIGNAL('triggered()'),
+            self.__action_TelnetAll)
+        self.connect(self.action_StartAll,  SIGNAL('triggered()'),
+            self.__action_StartAll)
+        self.connect(self.action_StopAll,  SIGNAL('triggered()'),
+            self.__action_StopAll)
+            
     def __createMenus(self):
         """
         """
@@ -196,3 +202,19 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_SwitchMode(self):
     
         self.switchToMode_Emulation()
+        
+    def __action_TelnetAll(self):
+    
+        for node in globals.GApp.topology.getNodes():
+            if node.dev.state == 'running':
+                node.telnetToIOS()
+#                if self.main.nodes[node].telnetToIOS() == False:
+#                    return
+
+    def __action_StartAll(self):
+        
+        for node in globals.GApp.topology.getNodes():
+            node.startIOS()
+        
+    def __action_StopAll(self):
+        pass
