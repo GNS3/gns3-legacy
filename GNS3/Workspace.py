@@ -235,6 +235,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def switchToMode_Design(self):
         print ">>> switchToMode: DESIGN"
         self.__switchToMode(globals.Enum.Mode.Design)
+        self.action_swModeDesign.setChecked(True)
         self.statusbar.showMessage(translate('MainWindow', 'Design Mode'))
 
 #        try:
@@ -251,6 +252,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def switchToMode_Emulation(self):
         print ">>> switchToMode: EMULATION"
         self.__switchToMode(globals.Enum.Mode.Emulation)
+        self.action_swModeEmulation.setChecked(True)
         self.statusbar.showMessage(translate('MainWindow', 'Emulation Mode'))
 
         try:
