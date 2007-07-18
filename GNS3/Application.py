@@ -111,8 +111,19 @@ class Application(QApplication, Singleton):
 
     def run(self):
         self.__topology = Topology()
-        self.__mainWindow = MainWindow()
-        self.__scene = self.mainWindow.graphicsView
+        self.__workspace = Workspace()
+
+        # seems strange to have mainWindow = Workspace, but actually,
+        # we don't use MDI style, so there not so much difference.
+        self.__mainWindow = self.__workspace
+
+        # In GNS3, the `scene' represent the widget where all graphical stuff
+        # are done (drawing Node, Animation), and in Qt, it's the QGraphicsView
+        # which handle all this stuff.
+        self.__scene = self.__mainWindow.graphicsView
+        # In GNS3, the `topology' repesent the network topology (Node, Link),
+        # and all this items are handled in Qt by QGraphicsScene
+        # (and remind the __scene is a QGraphicsView ;-))
         self.__scene.setScene(self.__topology)
 
         # Create a new empty workspace

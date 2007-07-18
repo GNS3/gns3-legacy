@@ -59,7 +59,6 @@ class Scene(QtGui.QGraphicsView):
 
     def addItem(self, node):
         globals.GApp.topology.addNode(node)
-        #-self.__topology.addNode(node)
 
     def slotConfigNode(self):
         """ Called to configure nodes

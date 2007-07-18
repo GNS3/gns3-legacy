@@ -20,32 +20,95 @@
 # Contact: contact@gns3.net
 #
 
-from GNS3.Globals import Mode
+import sys
+from PyQt4 import QtCore
+from PyQt4.QtCore import SIGNAL
+from PyQt4.QtGui import QMainWindow, QAction, QActionGroup, QAction, QIcon
+from GNS3.Ui.Form_MainWindow import Ui_MainWindow
+from GNS3.Utils import translate
 
-class Workspace:
+import GNS3.Globals as globals 
 
-    def __init__(self, mainWindow, projType=None, projFile=None):
-        self.mainWindow = mainWindow
-        self.projectType = projType 
-        self.projectFile = projFile
-        self.__states = {
-            'design_mode': {
-                'nodesDock': True,
-            },
-            'emulation_mode': {
-                'summaryDock': True,
-            },
-            'simulation_mode': {
-                'eventDock': True,
-            }
-        }
+__statesDefaults = {
+    'design_mode': {
+        'nodesDock': True,
+    },
+    'emulation_mode': {
+        'summaryDock': True,
+    },
+    'simulation_mode': {
+        'eventDock': True,
+    }
+}
 
-        self.loadProject(projFile)
+
+class Workspace(QMainWindow, Ui_MainWindow):
+    """ This class is for managing the whole `Workspace'.
+    
+    Currently a Workspace is similar to a MainWindow
+    """
+
+    def __init__(self, projType=None, projFile=None):
+        # Initialise the windows 
+        QMainWindow.__init__(self)
+        self.__createActions()
+        Ui_MainWindow.setupUi(self, self)
+        self.__createMenus()
+        self.__connectActions()
 
         self.currentMode = None
-        self.switchToMode(Mode.Design)
+        self.switchToMode(globals.Enum.Mode.Design)
 
-    def loadProject(self, projectFile):
+    def __createActions(self):
+        """ Add own custom action not providen by Ui_MainWindow
+        """
+        # action for switch between `GUI Modes'
+        self.action_swModeDesign = QAction(self)
+        self.action_swModeDesign.setObjectName("action_swModeDesign")
+        self.action_swModeDesign.setCheckable(True)
+        self.action_swModeEmulation = QAction(self)
+        self.action_swModeEmulation.setObjectName("action_swModeEmulation")
+        self.action_swModeEmulation.setCheckable(True)
+        self.action_swModeSimulation = QAction(self)
+        self.action_swModeSimulation.setObjectName("action_swModeSimulation")
+        self.action_swModeSimulation.setCheckable(True)
+        self.actgrp_swMode = QActionGroup(self)
+        self.actgrp_swMode.addAction(self.action_swModeDesign)
+        self.actgrp_swMode.addAction(self.action_swModeEmulation)
+        self.actgrp_swMode.addAction(self.action_swModeSimulation)
+        self.action_swModeDesign.setChecked(True) # check default mode
+
+    def __connectActions(self):
+        """ Connect all needed pair (action, SIGNAL)
+        """
+        self.connect(self.action_Add_link, SIGNAL('triggered()'),
+            self.__action_addLink)
+
+    def __createMenus(self):
+        """
+        """
+        self.menu_View.addActions(self.actgrp_swMode.actions())
+        self.menu_View.addSeparator().setText("Docks")
+        self.menu_View.addAction(self.dockWidget_NodeTypes.toggleViewAction())
+
+    def retranslateUi(self, MainWindow):
+        Ui_MainWindow.retranslateUi(self, MainWindow)
+        ctx = 'MainWindow'
+        self.action_swModeDesign.setText(translate(ctx, 'Design Mode'))
+        self.action_swModeEmulation.setText(translate(ctx, 'Emulation Mode'))
+        self.action_swModeSimulation.setText(translate(ctx, 'Simulation Mode'))
+
+    #-------------------------------------------------------------------------
+
+    def newProject(self, type, file):
+        self.projectType = type
+        self.projectFile = file
+        
+        # FIXME: Define step for project creation
+        self.loadProject(file)
+
+
+    def loadProject(self, projectFile=None):
         if projectFile is None:
             self.mainWindow.setWindowTitle("GNS3 - New Project")
 
@@ -54,9 +117,9 @@ class Workspace:
 
     def switchToMode(self, mode):
         modeFunction = {
-            Mode.Design: self.switchToMode_Design,
-            Mode.Emulation: self.switchToMode_Emulation,
-            Mode.Simulation: self.switchToMode_Simulation
+            globals.Enum.Mode.Design: self.switchToMode_Design,
+            globals.Enum.Mode.Emulation: self.switchToMode_Emulation,
+            globals.Enum.Mode.Simulation: self.switchToMode_Simulation
         }[mode]()
        
     def switchToMode_Design(self):
@@ -70,4 +133,20 @@ class Workspace:
     def switchToMode_Simulation(self):
         print ">>> switchToMode: SIMULATION"
         pass
+
+    #-----------------------------------------------------------------------
+    def __action_addLink(self):
+        print ">>> Add Link"
+        ctx = 'MainWindow'
+
+        if not self.action_Add_link.isChecked():
+            self.action_Add_link.setText(translate(ctx, 'Add a link'))
+            self.action_Add_link.setIcon(QIcon(':/icons/connection.svg'))
+            globals.addingLinkFlag = False
+            globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
+        else:
+            self.action_Add_link.setText(translate(ctx, 'Cancel'))
+            self.action_Add_link.setIcon(QIcon(':/icons/cancel.svg'))
+            globals.addingLinkFlag = True
+            globals.GApp.scene.setCursor(QtCore.Qt.CrossCursor)
 
