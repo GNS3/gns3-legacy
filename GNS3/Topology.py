@@ -42,6 +42,9 @@ class Topology(QtGui.QGraphicsScene):
 
     def getNode(self, id):
         return self.__nodes[id]
+    
+    def getNodes(self):
+        return self.__nodes.values()
         
     def deleteNode(self, id):
         self.removeItem(self.__nodes[id])

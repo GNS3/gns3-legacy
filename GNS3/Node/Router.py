@@ -23,7 +23,8 @@
 import re
 import GNS3.NodeConfigs as config
 import GNS3.Dynagen.dynamips_lib as lib
-import GNS3.Dynagen.dynagen as dynagen
+import GNS3.Dynagen.Globals as dynagen
+from GNS3.Utils import telnet
 from GNS3.Node.AbstractNode import AbstractNode
 
 ROUTERS = {
@@ -78,7 +79,7 @@ class Router(AbstractNode):
         dynagen.dynamips['localhost:7200'] = lib.Dynamips('localhost', 7200)
         dynagen.dynamips['localhost:7200'].reset()
         
-        self.dev = lib.C3600(dynagen.dynamips['localhost:7200'], chassis = '3640', name = 'R ' + str(self.id))
+        self.dev = lib.C3600(dynagen.dynamips['localhost:7200'],  chassis = '3640', name = 'R' + str(self.id))
         self.dev.image = '/home/grossmj/IOS/c3640.bin'
         self.dev.idlepc = '0x60483ae4'
 
@@ -174,3 +175,10 @@ class Router(AbstractNode):
                 print msg
 
         self.dev.start()
+        
+    def telnetToIOS(self):
+        """ Start a telnet console and connect it to an IOS
+        """
+
+        if self.dev.console != None:
+            telnet('localhost',  self.dev.console,  'R0')

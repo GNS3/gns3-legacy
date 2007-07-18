@@ -21,7 +21,8 @@
 #
 
 import sys
-from PyQt4 import QtCore
+import GNS3.Dynagen.dynamips_lib as lib
+from PyQt4 import QtGui, QtCore
 from PyQt4.QtCore import SIGNAL
 from PyQt4.QtGui import QMainWindow, QAction, QActionGroup, QAction, QIcon
 from GNS3.Ui.Form_MainWindow import Ui_MainWindow
@@ -86,6 +87,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__action_addLink)
         self.connect(self.action_IOS_images,  SIGNAL('triggered()'),
             self.__action_IOSImages)
+        self.connect(self.action_SwitchMode,  SIGNAL('triggered()'),
+            self.__action_SwitchMode)
 
     def __createMenus(self):
         """
@@ -153,15 +156,15 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.action_StartAll.setEnabled(True)
         self.action_StopAll.setEnabled(True)
         self.action_TelnetAll.setEnabled(True)
-#        try:
-#            for node in self.main.nodes.keys():
-#                self.main.nodes[node].configIOS()
-#        except lib.DynamipsError, msg:
-#            QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
-#            return
-#        except lib.DynamipsErrorHandled:
-#            QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
-#            return
+        try:
+            for node in globals.GApp.topology.getNodes():
+                node.configIOS()
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
+            return
+        except lib.DynamipsErrorHandled:
+            QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
+            return
 
     def switchToMode_Simulation(self):
         print ">>> switchToMode: SIMULATION"
@@ -189,3 +192,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         dialog.setModal(True)
         dialog.show()
         dialog.exec_()
+        
+    def __action_SwitchMode(self):
+    
+        self.switchToMode_Emulation()

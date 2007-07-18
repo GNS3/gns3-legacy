@@ -929,10 +929,9 @@ class Router(object):
                     break
                 else:
                     console += 1
-
+        
         # Append this router to the list of devices managed by this dynamips instance
         self.__d.devices.append(self)
-
 
     def setdefaults(self, ram, nvram, disk0, disk1, npe = None, midplane = None):
         """ Set the default values for this router
