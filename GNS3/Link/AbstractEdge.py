@@ -80,11 +80,20 @@ class AbstractEdge(QtGui.QGraphicsPathItem):
     def getLocalInterface(self, node):
         """ Returns the local interface of the node
         """
-        
+
         if node == self.source:
             return self.srcIf
         else:
             return self.destIf
+            
+    def getConnectedNeighbor(self, ifname):
+        """ Returns the connected neighbor's node and interface
+        """
+        if self.srcIf == ifname:
+            neighbor = (self.dest,  self.destIf)
+        else:
+            neighbor = (self.source,  self.srcIf)
+        return neighbor
 
     def mousePressEvent(self, event):
         """ Call when the edge is clicked
