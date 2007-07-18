@@ -19,7 +19,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 import re
-from dynamips_lib import PA_C7200_IO_FE, PA_A1, PA_FE_TX, PA_4T, PA_8T, \
+from GNS3.Dynagen.dynamips_lib import PA_C7200_IO_FE, PA_A1, PA_FE_TX, PA_4T, PA_8T, \
     PA_4E, PA_8E, PA_POS_OC3, C7200, C3600, Leopard_2FE, NM_1FE_TX, NM_1E, NM_4E, \
     NM_16ESW, NM_4T, C2691, C3725, C3745, GT96100_FE, C2600, \
     CISCO2600_MB_1E, CISCO2600_MB_2E, CISCO2600_MB_1FE, CISCO2600_MB_2FE, PA_2FE_TX, \

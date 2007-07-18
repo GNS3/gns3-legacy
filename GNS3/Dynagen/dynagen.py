@@ -597,6 +597,8 @@ class Dynagen:
                             # is it an interface?
                             if gl.interface_re.search(subitem):
                                 # Add the tuple to the list of connections to deal with later
+                                print 'subitem = ' + subitem
+                                print device[subitem]
                                 connectionlist.append((dev, subitem, device[subitem]))
                             # is it a frame relay or ATM vpi mapping?
                             elif gl.mapint_re.search(subitem) or gl.mapvci_re.search(subitem):

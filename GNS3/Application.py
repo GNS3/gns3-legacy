@@ -24,7 +24,6 @@ import sys
 from PyQt4.QtGui import QApplication
 from PyQt4.QtCore import QMutex, QMutexLocker
 from GNS3.Utils import Singleton
-from GNS3.MainWindow import MainWindow
 from GNS3.Workspace import Workspace
 from GNS3.Topology import Topology
 import GNS3.Globals as globals

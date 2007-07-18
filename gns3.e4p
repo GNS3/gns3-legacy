@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.1.dtd">
 <!-- eric4 project file for project gns3 -->
-<!-- Saved: 2007-07-17, 15:59:40 -->
+<!-- Saved: 2007-07-18, 09:55:55 -->
 <!-- Copyright (C) 2007 ,  -->
 <Project version="4.1">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -72,10 +72,6 @@
       <Dir>GNS3</Dir>
       <Dir>Dynagen</Dir>
       <Name>__init__.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Name>MainWindow.py</Name>
     </Source>
     <Source>
       <Dir>GNS3</Dir>
@@ -299,6 +295,10 @@
     <Source>
       <Dir>GNS3</Dir>
       <Name>Application.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Name>IOSDialog.py</Name>
     </Source>
   </Sources>
   <Forms>

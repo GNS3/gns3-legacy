@@ -23,6 +23,7 @@
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_IOSRouterPage import Ui_IOSRouterPage
+from GNS3.Dynagen.dynamips_lib import ADAPTER_MATRIX
 
 class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
     """
@@ -45,7 +46,40 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                            self.comboBoxSlot4,
                            self.comboBoxSlot5,
                            self.comboBoxSlot6]
-        
+                           
+    def createIOSslotsEntries(self, platform, chassis):
+        """ Create entries for IOS slots (modules and motherboard)
+            platform: string
+            chassis: string
+        """
+
+        # special case where the chassis is a platform in ADAPTER_MATRIX
+        try:
+            if (chassis == '2691'):
+                self.comboBoxSlot0.addItem(ADAPTER_MATRIX['c' + chassis][''][0])
+                self.comboBoxSlot1.addItems([''] + list(lADAPTER_MATRIX['c' + chassis][''][1]))
+                return
+            elif platform == 'c3700':
+                self.comboBoxSlot0.addItem(ADAPTER_MATRIX['c' + chassis][''][0])
+                index = 1
+                for widget in self.slots_list[1:]:
+                    widget.addItems([''] + list(ADAPTER_MATRIX['c' + chassis][''][index]))
+                    index += 1
+                return
+            # some platforms/chassis have adapters on their motherboard (not optional)
+            if platform == 'c2600' or chassis == '3660':
+                self.comboBoxSlot0.addItem(ADAPTER_MATRIX[platform][chassis][0])
+            elif platform == 'c7200':
+                self.comboBoxSlot0.addItems(list(ADAPTER_MATRIX[platform][chassis][0]))
+            else:
+                self.comboBoxSlot0.addItems([''] + list(ADAPTER_MATRIX[platform][chassis][0]))    
+            index = 1
+            for widget in self.slots_list[1:]:
+                widget.addItems([''] + list(ADAPTER_MATRIX[platform][chassis][index]))
+                index += 1   
+        except KeyError:
+            return
+
     def slotSelectedIOS(self, index):
         """ Add network modules / port adapters to combo boxes
             Specifics platform configuration
@@ -62,7 +96,7 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         # create slots entries
         platform = '3600'
         chassis = '3640'
-        #self.createIOSslotsEntries('c' + platform, chassis)
+        self.createIOSslotsEntries('c' + platform, chassis)
 
         # restore previous selected modules
         if self.currentNodeID != None:
@@ -83,20 +117,20 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                 self.comboBoxNPE.setEnabled(False)
                 self.spinBoxIomem.setEnabled(False)
     
-#            if platform == '7200':
-#                self.comboBoxMidplane.addItems(['std', 'vxr'])
-#                self.comboBoxMidplane.setEnabled(True)
-#                index = self.comboBoxMidplane.findText(IOSconfig['midplane'])
-#                if index != -1:
-#                    self.comboBoxMidplane.setCurrentIndex(index)
-#                self.comboBoxNPE.addItems(['npe-100', 'npe-150', 'npe-175', 'npe-200', 'npe-225', 'npe-300', 'npe-400', 'npe-g1', 'npe-g2'])
-#                self.comboBoxNPE.setEnabled(True)
-#                index = self.comboBoxNPE.findText(node.iosConfig['npe'])
-#                if index != -1:
-#                    self.comboBoxNPE.setCurrentIndex(index)
-#            if platform == '3600':
-#                self.spinBoxIomem.setEnabled(True)
-#                self.spinBoxIomem.setValue(node.iosConfig['iomem'])
+            if platform == '7200':
+                self.comboBoxMidplane.addItems(['std', 'vxr'])
+                self.comboBoxMidplane.setEnabled(True)
+                index = self.comboBoxMidplane.findText(IOSconfig['midplane'])
+                if index != -1:
+                    self.comboBoxMidplane.setCurrentIndex(index)
+                self.comboBoxNPE.addItems(['npe-100', 'npe-150', 'npe-175', 'npe-200', 'npe-225', 'npe-300', 'npe-400', 'npe-g1', 'npe-g2'])
+                self.comboBoxNPE.setEnabled(True)
+                index = self.comboBoxNPE.findText(IOSconfig['npe'])
+                if index != -1:
+                    self.comboBoxNPE.setCurrentIndex(index)
+            if platform == '3600':
+                self.spinBoxIomem.setEnabled(True)
+                self.spinBoxIomem.setValue(IOSconfig['iomem'])
 
     def loadConfig(self,  id):
     
@@ -105,6 +139,7 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         IOSconfig = node.config
 
         self.comboBoxIOS.clear()
+        # TODO: load ios image
         self.comboBoxIOS.addItems(['ios 1',  'ios 2',  'ios 3'])
         index = self.comboBoxIOS.findText(IOSconfig['image'])
         if index != -1:
@@ -153,6 +188,14 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             IOSconfig['midplane'] = str(self.comboBoxMidplane.currentText())
         if str(self.comboBoxNPE.currentText()):
             IOSconfig['npe'] = str(self.comboBoxNPE.currentText())
+            
+        IOSconfig['slots'] = []
+        slotnb = 0
+        for widget in self.slots_list:
+            module = str(widget.currentText())
+            node.updateLinks(slotnb, module)
+            IOSconfig['slots'].append(module)
+            slotnb += 1
 
 def create(dlg):
 

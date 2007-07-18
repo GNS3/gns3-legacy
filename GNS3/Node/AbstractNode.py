@@ -40,7 +40,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.__render_normal = render_normal
         self.__render_select = render_select
         self.__edgeList = set()
-        self.interfaces = set(['f0/0'])
         self.__selectedInterface = None
         self.config = {}
         
@@ -155,12 +154,12 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         
             self.__selectedInterface = None
             self.showMenuInterface()
-            #print globals.GApp.mainWindow
-            #QtGui.QMessageBox.critical(self.main.win, 'Connection',  'Already connected interface')
             if self.__selectedInterface:
+                if self.__selectedInterface in self.getConnectedInterfaceList():
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Connection',  'Already connected interface')
+                    return
                 self.emit(QtCore.SIGNAL("Add link"), self.id,  self.__selectedInterface)
-            
-            
+
         elif (event.button() == QtCore.Qt.RightButton):
             self.setSelected(True)
             self.menu = QtGui.QMenu()
@@ -185,7 +184,10 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """
 
         menu = QtGui.QMenu()
-        interfaces_list = self.interfaces
+        interfaces_list = self.getInterfaces()
+        if len(interfaces_list) == 0:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Connection',  'Please, configure the slots')
+            return
         connected_list = self.getConnectedInterfaceList()
         for interface in interfaces_list:
             if interface in connected_list:
@@ -198,7 +200,18 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         # connect the menu
         menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.slotSelectedInterface)
         menu.exec_(QtGui.QCursor.pos())
+    
+    def deleteInterface(self, ifname):
+        """ Delete an interface and the link that is connected to it
+            ifname: string
+        """
 
+        interface_list = set()
+        for edge in self.__edgeList.copy():
+            interface = edge.getLocalInterface(self)
+            if ifname == interface:
+                self.emit(QtCore.SIGNAL("Delete link"), edge)
+        
     def slotSelectedInterface(self, action):
         """ Called when an interface is selected from the contextual menu
             in design mode

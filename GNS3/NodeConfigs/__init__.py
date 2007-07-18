@@ -38,5 +38,4 @@ IOSConfig = {
                 'npe': "npe-200",
                 'midplane': "vxr", 
                 'slots': ['',  '',  '',  '',  '',  '',  '']
-
              }

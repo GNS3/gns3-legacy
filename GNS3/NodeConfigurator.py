@@ -203,12 +203,13 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                     children = item.getIDs()
                     for child in children:
                         page.saveConfig(child)
-            
-            #self.emit(QtCore.SIGNAL('preferencesChanged'))
 
     def on_resetButton_clicked(self):
         """ Private slot called to reset the settings of the current page.
         """
+
+        pass
+        # TODO: reset
         if self.configStack.currentWidget() != self.emptyPage:
             currentPage = self.configStack.currentWidget()
             pageName =self.treeViewNodes.currentItem().getPageName()

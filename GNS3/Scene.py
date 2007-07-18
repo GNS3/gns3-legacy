@@ -82,18 +82,17 @@ class Scene(QtGui.QGraphicsView):
             for link in item.getEdgeList().copy():
                 globals.GApp.topology.selectedItems()
             globals.GApp.topology.deleteNode(item.id)
-	# Work-around QGraphicsSvgItem caching bug:
-	#   Forcing to clear the QPixmapCache on node delete.
-	QtGui.QPixmapCache.clear()
+    # Work-around QGraphicsSvgItem caching bug:
+    #   Forcing to clear the QPixmapCache on node delete.
+    QtGui.QPixmapCache.clear()
 
     def __addLink(self):
         
-#        if self.__sourceInterface[0] != self.__destInterface[0]:
-#            QtGui.QMessageBox.critical(self.win, 'Connection',  'Interfaces types mismatch !')
-#            return
+        if self.__sourceInterface[0] != self.__destInterface[0]:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Connection',  'Interfaces types mismatch !')
+            return
         if self.__sourceNodeID == self.__destNodeID:
             return
-        
         link = globals.GApp.topology.addLink(self.__sourceNodeID,
             self.__sourceInterface, self.__destNodeID, self.__destInterface)
 
@@ -117,6 +116,9 @@ class Scene(QtGui.QGraphicsView):
                 self.__addLink()
                 self.__isFirstClick = True
 
+    def slotDeleteLink(self,  edge):
+    
+        globals.GApp.topology.deleteLink(edge)
 
     def scaleView(self, scale_factor):
         """ Zoom in and out
@@ -182,6 +184,7 @@ class Scene(QtGui.QGraphicsView):
             #node.setName(s[1])
             node.setPos(xPos, yPos)
             QtCore.QObject.connect(node, QtCore.SIGNAL("Add link"), self.slotAddLink)
+            QtCore.QObject.connect(node, QtCore.SIGNAL("Delete link"), self.slotDeleteLink)
             QtCore.QObject.connect(node, QtCore.SIGNAL("Delete node"), self.slotDeleteNode)
             QtCore.QObject.connect(node, QtCore.SIGNAL("Config node"), self.slotConfigNode)
 
