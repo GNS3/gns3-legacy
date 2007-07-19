@@ -27,6 +27,7 @@ from PyQt4.QtGui import QMainWindow, QAction, QActionGroup, QAction, QIcon
 from GNS3.Ui.Form_MainWindow import Ui_MainWindow
 from GNS3.IOSDialog import IOSDialog
 from GNS3.Utils import translate
+from GNS3.HypervisorManager import HypervisorManager
 
 import GNS3.Globals as globals 
 
@@ -65,6 +66,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         swWidget = self.toolBar_General.widgetForAction(self.action_SwitchMode)
         swWidget.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
 
+        self.hypervisor_manager = HypervisorManager()
+        
         # Switch to default mode
         self.switchToMode_Design()
 
@@ -298,6 +301,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 #            QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
 #            return
         
+        self.hypervisor_manager.stopProcHypervisors()
 
     def switchToMode_Emulation(self):
         """ Function called to switch to mode `Emulation'
@@ -307,6 +311,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.action_swModeEmulation.setChecked(True)
         self.statusbar.showMessage(translate('MainWindow', 'Emulation Mode'))
 
+        self.hypervisor_manager.startProcHypervisors()
         try:
             for node in globals.GApp.topology.getNodes():
                 node.configIOS()
@@ -392,7 +397,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 #                    return
 
     def __action_StartAll(self):
-        
+
         for node in globals.GApp.topology.getNodes():
             print 'start node ' + str(node.id)
             node.startIOS()

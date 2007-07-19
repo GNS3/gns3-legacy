@@ -72,19 +72,36 @@ class Router(AbstractNode):
         
         AbstractNode.__init__(self, renderer_normal, renderer_select)
         self.config = config.IOSConfig.copy()
-        
-#        dynagen.dynamips['localhost:7200'] = lib.Dynamips('localhost', 7200)
-#        dynagen.dynamips['localhost:7200'].reset()
+        self.hypervisor_host = None
+        self.hypervisor_port = None
+        self.baseUDP = None
 
+    def __getHypervisor(self):
+
+        key = self.hypervisor_host + ':' + str(self.hypervisor_port)
+        if not dynagen.dynamips.has_key(key):
+            dynagen.dynamips[key] = lib.Dynamips(self.hypervisor_host, self.hypervisor_port)
+            dynagen.dynamips[key].reset()
+            if self.baseUDP:
+                dynagen.dynamips[key] .setudp = self.baseUDP
+        return dynagen.dynamips[key]
+        
+    def configHypervisor(self,  host,  port, baseudp = None):
+    
+        print 'record hypervisor : ' + host + ' ' + str(port)
+        self.hypervisor_host = host
+        self.hypervisor_port = port
+        if  baseudp:
+            self.baseUDP = baseudp
+        
     def configIOS(self):
     
-        
-        self.dev = lib.C3600(dynagen.dynamips['localhost:7200'],  chassis = '3640', name = 'R' + str(self.id))
+        hypervisor = self.__getHypervisor()
+        self.dev = lib.C3600(hypervisor,  chassis = '3640', name = 'R' + str(self.id))
         self.dev.image = '/home/grossmj/IOS/c3640.bin'
         self.dev.idlepc = '0x60483ae4'
 
         slotnb = 0
-        print self.config['slots']
         for module in self.config['slots']:
             self.configSlot(slotnb, module)
             slotnb += 1
@@ -176,19 +193,11 @@ class Router(AbstractNode):
             try:
                 if self.dev.slot[source_slot] != None and self.dev.slot[source_slot].connected(source_port) == False:
                     lib.validate_connect(self.dev.slot[source_slot], destnode.dev.slot[dest_slot])
-                    print self.dev
-                    print self.dev.slot[source_slot]
-                    print source_slot
-                    print source_port
-                    print destnode.dev
-                    print destnode.dev.slot[dest_slot]
-                    print dest_slot
-                    print dest_port
-                    self.dev.slot[source_slot].connect(source_port, dynagen.dynamips['localhost:7200'], destnode.dev.slot[dest_slot], dest_port)
+                    self.dev.slot[source_slot].connect(source_port, self.__getHypervisor(), destnode.dev.slot[dest_slot], dest_port)
             except lib.DynamipsError, msg:
                 print msg
 
-#        self.dev.start()
+        self.dev.start()
 
     def telnetToIOS(self):
         """ Start a telnet console and connect it to an IOS
