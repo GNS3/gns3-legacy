@@ -28,6 +28,7 @@ from GNS3.Utils import translate
 
 MEM_USAGE_LIMIT = 128
 BASE_PORT_UDP = 10000
+HYPERVISOR_BASE_PORT = 7200
 
 class HypervisorManager:
     """ LocalHypervisor class
@@ -39,8 +40,8 @@ class HypervisorManager:
         self.hypervisors = []
 
         self.hypervisor_path = '/home/grossmj/Dynamips/dynamips-0.2.7-x86.bin' #ConfDB().get("Dynamips/hypervisor_path", '')
-        self.hypervisor_baseport = 7200 #ConfDB().get("Dynamips/hypervisor_port", 7200)
         self.hypervisor_wd = ''#ConfDB().get("Dynamips/hypervisor_working_directory", '')
+        self.hypervisor_baseport = HYPERVISOR_BASE_PORT #ConfDB().get("Dynamips/hypervisor_port", 7200)
         self.baseUDP = BASE_PORT_UDP
 
     def __del__(self):
@@ -95,13 +96,15 @@ class HypervisorManager:
             node.configHypervisor('localhost',  hypervisor['port'],  self.baseUDP)
             if mem >= MEM_USAGE_LIMIT:
                 hypervisor = self.__startNewHypervisor()
-                time.sleep(1)
+                time.sleep(2)
                 self.baseUDP += nb_node
                 mem = 0
         progress.setValue(count)
                 
     def stopProcHypervisors(self):
     
+#        self.hypervisor_baseport = HYPERVISOR_BASE_PORT
+#        self.baseUDP = BASE_PORT_UDP
         for hypervisor in self.hypervisors:
             hypervisor['proc_instance'].close()
         self.hypervisors = []
