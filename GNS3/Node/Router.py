@@ -83,12 +83,12 @@ class Router(AbstractNode):
             dynagen.dynamips[key] = lib.Dynamips(self.hypervisor_host, self.hypervisor_port)
             dynagen.dynamips[key].reset()
             if self.baseUDP:
-                dynagen.dynamips[key] .setudp = self.baseUDP
+                dynagen.dynamips[key] .udp = self.baseUDP
         return dynagen.dynamips[key]
         
     def configHypervisor(self,  host,  port, baseudp = None):
     
-        print 'record hypervisor : ' + host + ' ' + str(port)
+        print 'record hypervisor : ' + host + ' ' + str(port) + ' base UDP ' + str(baseudp)
         self.hypervisor_host = host
         self.hypervisor_port = port
         if  baseudp:
@@ -192,7 +192,6 @@ class Router(AbstractNode):
             dest_port = int(dest_port)
             try:
                 if self.dev.slot[source_slot] != None and self.dev.slot[source_slot].connected(source_port) == False:
-                    lib.validate_connect(self.dev.slot[source_slot], destnode.dev.slot[dest_slot])
                     self.dev.slot[source_slot].connect(source_port, destnode.getHypervisor(), destnode.dev.slot[dest_slot], dest_port)
             except lib.DynamipsError, msg:
                 print msg

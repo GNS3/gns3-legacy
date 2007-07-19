@@ -26,7 +26,7 @@ from PyQt4 import QtCore, QtGui
 from GNS3.Config.Config import ConfDB
 from GNS3.Utils import translate
 
-MEM_USAGE_LIMIT = 128
+MEM_USAGE_LIMIT = 256
 BASE_PORT_UDP = 10000
 HYPERVISOR_BASE_PORT = 7200
 
@@ -97,7 +97,7 @@ class HypervisorManager:
             if mem >= MEM_USAGE_LIMIT:
                 hypervisor = self.__startNewHypervisor()
                 time.sleep(2)
-                self.baseUDP += nb_node
+                self.baseUDP += 100 #nb_node
                 mem = 0
         progress.setValue(count)
                 
