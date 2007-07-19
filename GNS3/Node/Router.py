@@ -73,8 +73,8 @@ class Router(AbstractNode):
         AbstractNode.__init__(self, renderer_normal, renderer_select)
         self.config = config.IOSConfig.copy()
         
-        dynagen.dynamips['localhost:7200'] = lib.Dynamips('localhost', 7200)
-        dynagen.dynamips['localhost:7200'].reset()
+#        dynagen.dynamips['localhost:7200'] = lib.Dynamips('localhost', 7200)
+#        dynagen.dynamips['localhost:7200'].reset()
 
     def configIOS(self):
     

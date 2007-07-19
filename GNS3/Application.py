@@ -109,7 +109,8 @@ class Application(QApplication, Singleton):
                     doc = 'Workspace instance')
 
     def run(self):
-        self.__topology = Topology()
+        # INFO: Workspace create a ` Scene' object,
+        # so it also set self.__topology
         self.__workspace = Workspace()
 
         # seems strange to have mainWindow = Workspace, but actually,
@@ -120,10 +121,6 @@ class Application(QApplication, Singleton):
         # are done (drawing Node, Animation), and in Qt, it's the QGraphicsView
         # which handle all this stuff.
         self.__scene = self.__mainWindow.graphicsView
-        # In GNS3, the `topology' repesent the network topology (Node, Link),
-        # and all this items are handled in Qt by QGraphicsScene
-        # (and remind the __scene is a QGraphicsView ;-))
-        self.__scene.setScene(self.__topology)
 
         # Create a new empty workspace
         self.workspace =  Workspace(self.mainWindow, None)
