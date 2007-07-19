@@ -44,7 +44,7 @@ __statesDefaults = {
 
 
 class Workspace(QMainWindow, Ui_MainWindow):
-    """ This class is for managing the whole `Workspace'.
+    """ This class is for managing the whole GUI `Workspace'.
     
     Currently a Workspace is similar to a MainWindow
     """
@@ -69,6 +69,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.switchToMode_Design()
 
     def __initModeSwitching(self):
+        """ Initialize the action dictionnary for GUI mode switching
+        """
         self.__switchModeActions = {
             # Design Mode
             globals.Enum.Mode.Design: {
@@ -159,7 +161,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__action_SelectNone)
 
     def __createMenus(self):
-        """
+        """ Add own menu actions, and create new sub-menu
         """
         self.menu_View.addActions(self.actgrp_swMode.actions())
         self.menu_View.addSeparator().setText("Docks")
@@ -177,6 +179,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
     #-------------------------------------------------------------------------
 
     def __getNextModeId(self):
+        """ Return the next GUI mode.
+
+        - The function won't return mode which switch action `action_swMode*'
+        are disabled
+        - If none mode available, return current mode
+        """
         count = 3   # Force number of modes
         idx = globals.modesIds.index(self.currentMode)
         print "CurrentModeId: %d" % (idx)
@@ -197,10 +205,16 @@ class Workspace(QMainWindow, Ui_MainWindow):
         return self.currentMode
 
     def __getNextModeName(self):
+        """ Return the name of the next GUI mode.
+        """
         idx = self.__getNextModeId()
         return globals.modesNames[idx]
 
     def __switchToMode(self, id):
+        """ Update the workspace for the given mode.
+
+        - Show/Hide toolbar and docks depending of the mode to switch to.
+        """
         # Set current mode
         self.currentMode = id
         # Update switchMode button
@@ -222,6 +236,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
     #-------------------------------------------------------------------------
 
     def newProject(self, type, file):
+        """ Create a new project
+        """
         self.projectType = type
         self.projectFile = file
         
@@ -230,6 +246,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
 
     def loadProject(self, projectFile=None):
+        """ Load a project from the given file
+
+        - If projectFile=None, the loadProject function act like newProject
+        """
         if projectFile is None:
             self.mainWindow.setWindowTitle("GNS3 - New Project")
 
@@ -237,6 +257,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         pass
 
     def switchToMode_Design(self):
+        """ Function called to switch to mode `Design'
+        """
         print ">>> switchToMode: DESIGN"
         self.__switchToMode(globals.Enum.Mode.Design)
         self.action_swModeDesign.setChecked(True)
@@ -254,6 +276,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         
 
     def switchToMode_Emulation(self):
+        """ Function called to switch to mode `Emulation'
+        """
         print ">>> switchToMode: EMULATION"
         self.__switchToMode(globals.Enum.Mode.Emulation)
         self.action_swModeEmulation.setChecked(True)
@@ -270,6 +294,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             return
 
     def switchToMode_Simulation(self):
+        """ Function called to switch to mode `Simulation'
+        """
         print ">>> switchToMode: SIMULATION"
         self.__switchToMode(globals.Enum.Mode.Simulation)
         self.statusbar.showMessage(translate('MainWindow', 'Emulation Mode'))
@@ -277,6 +303,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
     #-----------------------------------------------------------------------
     def __action_addLink(self):
+        """ Implement the QAction `addLink'
+        - This function manage the creation of a connection between two nodes.
+        """
         print ">>> Add Link"
         ctx = 'MainWindow'
 
@@ -292,13 +321,20 @@ class Workspace(QMainWindow, Ui_MainWindow):
             globals.GApp.scene.setCursor(QtCore.Qt.CrossCursor)
             
     def __action_IOSImages(self):
-    
+        """ Implement the QAction `IOSImages'
+        - Show a dialog to configure IOSImages
+          - Add / Edit / Delete images
+          - Add / Edit / Delete hypervisors
+        """
         dialog = IOSDialog()
         dialog.setModal(True)
         dialog.show()
         dialog.exec_()
         
     def __action_SwitchMode(self):
+        """ Implement the QAction `SwitchMode'
+        - Switch to the next GUI mode, and call the corresp. function
+        """
         switch = {
             globals.Enum.Mode.Design: self.switchToMode_Design,
             globals.Enum.Mode.Emulation: self.switchToMode_Emulation,
@@ -306,12 +342,18 @@ class Workspace(QMainWindow, Ui_MainWindow):
         }[self.__getNextModeId()]()
 
     def __action_SelectAll(self):
+        """ Implement the QAction `SelectAll'
+        - Select all node on the topology
+        """
         print ">>> ACTION: Select All"
         painterpath = QtGui.QPainterPath()
         painterpath.addRect(-250, -250, 750, 750)
         globals.GApp.topology.setSelectionArea(painterpath)
 
     def __action_SelectNone(self):
+        """ Implement the QAction `SelectNone'
+        - Unselect all node on the topology
+        """
         print ">>> ACTION: Select None"
         painterpath = QtGui.QPainterPath()
         painterpath.addRect(-300, -300, 0, 0)
