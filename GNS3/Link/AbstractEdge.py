@@ -86,10 +86,11 @@ class AbstractEdge(QtGui.QGraphicsPathItem):
         else:
             return self.destIf
             
-    def getConnectedNeighbor(self, ifname):
+    def getConnectedNeighbor(self, node):
         """ Returns the connected neighbor's node and interface
         """
-        if self.srcIf == ifname:
+
+        if node == self.source:
             neighbor = (self.dest,  self.destIf)
         else:
             neighbor = (self.source,  self.srcIf)

@@ -159,6 +159,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__action_SelectAll)
         self.connect(self.action_SelectNone, QtCore.SIGNAL('triggered()'),
             self.__action_SelectNone)
+        self.connect(self.action_TelnetAll,  QtCore.SIGNAL('triggered()'),
+            self.__action_TelnetAll)
+        self.connect(self.action_StartAll,  QtCore.SIGNAL('triggered()'),
+            self.__action_StartAll)
+        self.connect(self.action_StopAll,  QtCore.SIGNAL('triggered()'),
+            self.__action_StopAll)
 
     def __createMenus(self):
         """ Add own menu actions, and create new sub-menu
@@ -359,3 +365,19 @@ class Workspace(QMainWindow, Ui_MainWindow):
         painterpath.addRect(-300, -300, 0, 0)
         globals.GApp.topology.setSelectionArea(painterpath)
         
+    def __action_TelnetAll(self):
+    
+        for node in globals.GApp.topology.getNodes():
+            if node.dev.state == 'running':
+                node.telnetToIOS()
+#                if self.main.nodes[node].telnetToIOS() == False:
+#                    return
+
+    def __action_StartAll(self):
+        
+        for node in globals.GApp.topology.getNodes():
+            print 'start node ' + str(node.id)
+            node.startIOS()
+        
+    def __action_StopAll(self):
+        pass

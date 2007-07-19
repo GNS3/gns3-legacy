@@ -72,18 +72,19 @@ class Router(AbstractNode):
         
         AbstractNode.__init__(self, renderer_normal, renderer_select)
         self.config = config.IOSConfig.copy()
-
+        
+        dynagen.dynamips['localhost:7200'] = lib.Dynamips('localhost', 7200)
+        dynagen.dynamips['localhost:7200'].reset()
 
     def configIOS(self):
     
-        dynagen.dynamips['localhost:7200'] = lib.Dynamips('localhost', 7200)
-        dynagen.dynamips['localhost:7200'].reset()
         
         self.dev = lib.C3600(dynagen.dynamips['localhost:7200'],  chassis = '3640', name = 'R' + str(self.id))
         self.dev.image = '/home/grossmj/IOS/c3640.bin'
         self.dev.idlepc = '0x60483ae4'
 
         slotnb = 0
+        print self.config['slots']
         for module in self.config['slots']:
             self.configSlot(slotnb, module)
             slotnb += 1
@@ -99,10 +100,10 @@ class Router(AbstractNode):
         if (module == ''):
             return
         if module in ADAPTERS:
-            self.ios.slot[slotnb] = ADAPTERS[module][0](self.dev, slotnb)
+            self.dev.slot[slotnb] = ADAPTERS[module][0](self.dev, slotnb)
         else:
             #FIXME : graphical error msg
-            sys.stderr.write(module + " module not found !\n")
+            print module + " module not found !\n"
             return
             
     def getInterfaces(self):
@@ -162,23 +163,36 @@ class Router(AbstractNode):
             assert(match_obj)
             (source_slot, source_port) = match_obj.group(2,3)
         
-            (destnode, destinterface)  = getConnectedNeighbor(interface)
+            (destnode, destinterface)  = self.getConnectedNeighbor(interface)
             match_obj = IF_REGEXP.search(destinterface)
             assert(match_obj)
             (dest_slot, dest_port) = match_obj.group(2,3)
-        
+            print 'connect node ' + str(self.id) + ' interface ' + source_slot + '/' + source_port + ' to node ' + str(destnode.id) + ' interface ' + dest_slot + '/' + dest_port
+
+            source_slot = int(source_slot)
+            dest_slot = int(dest_slot)
+            source_port = int(source_port)
+            dest_port = int(dest_port)
             try:
                 if self.dev.slot[source_slot] != None and self.dev.slot[source_slot].connected(source_port) == False:
                     lib.validate_connect(self.dev.slot[source_slot], destnode.dev.slot[dest_slot])
+                    print self.dev
+                    print self.dev.slot[source_slot]
+                    print source_slot
+                    print source_port
+                    print destnode.dev
+                    print destnode.dev.slot[dest_slot]
+                    print dest_slot
+                    print dest_port
                     self.dev.slot[source_slot].connect(source_port, dynagen.dynamips['localhost:7200'], destnode.dev.slot[dest_slot], dest_port)
             except lib.DynamipsError, msg:
                 print msg
 
-        self.dev.start()
-        
+#        self.dev.start()
+
     def telnetToIOS(self):
         """ Start a telnet console and connect it to an IOS
         """
 
         if self.dev.console != None:
-            telnet('localhost',  self.dev.console,  'R0')
+            telnet('localhost',  self.dev.console,  'R' + str(self.id))
