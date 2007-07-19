@@ -140,6 +140,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.actgrp_swMode.addAction(self.action_swModeSimulation)
         self.action_swModeDesign.setChecked(True) # check default mode
 
+        # Docks sub-menu
+        self.submenu_Docks = QtGui.QMenu()
+        # Toolbars sub-menu
+        self.submenu_Toolbars = QtGui.QMenu()
+
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)
         """
@@ -169,15 +174,28 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __createMenus(self):
         """ Add own menu actions, and create new sub-menu
         """
-        self.menu_View.addActions(self.actgrp_swMode.actions())
+        self.subm = self.submenu_Docks
+        self.subm.addAction(self.dockWidget_NodeTypes.toggleViewAction())
+        self.subm.addAction(self.dockWidget_TopoSum.toggleViewAction())
+        self.subm.addAction(self.dockWidget_EventEditor.toggleViewAction())
+
+        self.subm = self.submenu_Toolbars
+        self.subm.addAction(self.toolBar_General.toggleViewAction())
+        self.subm.addAction(self.toolBar_Design.toggleViewAction())
+        self.subm.addAction(self.toolBar_Emulation.toggleViewAction())
+
+        self.menu_View.insertActions(self.action_ZoomIn,
+            self.actgrp_swMode.actions())
+        self.menu_View.insertSeparator(self.action_ZoomIn)
         self.menu_View.addSeparator().setText("Docks")
-        self.menu_View.addAction(self.dockWidget_NodeTypes.toggleViewAction())
-        self.menu_View.addAction(self.dockWidget_TopoSum.toggleViewAction())
-        self.menu_View.addAction(self.dockWidget_EventEditor.toggleViewAction())
+        self.menu_View.addMenu(self.submenu_Docks)
+        self.menu_View.addMenu(self.submenu_Toolbars)
 
     def retranslateUi(self, MainWindow):
         Ui_MainWindow.retranslateUi(self, MainWindow)
         ctx = 'MainWindow'
+        self.submenu_Docks.setTitle(translate(ctx, 'Docks'))
+        self.submenu_Toolbars.setTitle(translate(ctx, 'Toolbars'))
         self.action_swModeDesign.setText(translate(ctx, 'Design Mode'))
         self.action_swModeEmulation.setText(translate(ctx, 'Emulation Mode'))
         self.action_swModeSimulation.setText(translate(ctx, 'Simulation Mode'))

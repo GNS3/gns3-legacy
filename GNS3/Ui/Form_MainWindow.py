@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Thu Jul 19 00:16:17 2007
+# Created: Thu Jul 19 10:51:49 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -34,11 +34,11 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,800,31))
+        self.menubar.setGeometry(QtCore.QRect(0,0,800,29))
         self.menubar.setObjectName("menubar")
 
-        self.menuIOS = QtGui.QMenu(self.menubar)
-        self.menuIOS.setObjectName("menuIOS")
+        self.menu_Edit = QtGui.QMenu(self.menubar)
+        self.menu_Edit.setObjectName("menu_Edit")
 
         self.menu_File = QtGui.QMenu(self.menubar)
         self.menu_File.setObjectName("menu_File")
@@ -224,26 +224,25 @@ class Ui_MainWindow(object):
         self.action_ProjectPreferences = QtGui.QAction(MainWindow)
         self.action_ProjectPreferences.setObjectName("action_ProjectPreferences")
 
-        self.actionCut = QtGui.QAction(MainWindow)
-        self.actionCut.setObjectName("actionCut")
+        self.action_Cut = QtGui.QAction(MainWindow)
+        self.action_Cut.setObjectName("action_Cut")
 
-        self.actionCopy = QtGui.QAction(MainWindow)
-        self.actionCopy.setObjectName("actionCopy")
+        self.action_Copy = QtGui.QAction(MainWindow)
+        self.action_Copy.setObjectName("action_Copy")
 
-        self.actionPast = QtGui.QAction(MainWindow)
-        self.actionPast.setObjectName("actionPast")
-        self.menuIOS.addSeparator()
-        self.menuIOS.addAction(self.actionCut)
-        self.menuIOS.addAction(self.actionCopy)
-        self.menuIOS.addAction(self.actionPast)
-        self.menuIOS.addSeparator()
-        self.menuIOS.addAction(self.action_IOS_images)
-        self.menuIOS.addSeparator()
-        self.menuIOS.addAction(self.action_SelectAll)
-        self.menuIOS.addAction(self.action_SelectNone)
-        self.menuIOS.addSeparator()
-        self.menuIOS.addAction(self.action_SystemPreferences)
-        self.menuIOS.addAction(self.action_ProjectPreferences)
+        self.action_Paste = QtGui.QAction(MainWindow)
+        self.action_Paste.setObjectName("action_Paste")
+        self.menu_Edit.addAction(self.action_Cut)
+        self.menu_Edit.addAction(self.action_Copy)
+        self.menu_Edit.addAction(self.action_Paste)
+        self.menu_Edit.addSeparator()
+        self.menu_Edit.addAction(self.action_IOS_images)
+        self.menu_Edit.addSeparator()
+        self.menu_Edit.addAction(self.action_SelectAll)
+        self.menu_Edit.addAction(self.action_SelectNone)
+        self.menu_Edit.addSeparator()
+        self.menu_Edit.addAction(self.action_SystemPreferences)
+        self.menu_Edit.addAction(self.action_ProjectPreferences)
         self.menu_File.addAction(self.action_New_Project)
         self.menu_File.addAction(self.action_Open)
         self.menu_File.addAction(self.action_Save)
@@ -262,7 +261,7 @@ class Ui_MainWindow(object):
         self.menu_View.addAction(self.action_ZoomFit)
         self.menu_View.addSeparator()
         self.menubar.addAction(self.menu_File.menuAction())
-        self.menubar.addAction(self.menuIOS.menuAction())
+        self.menubar.addAction(self.menu_Edit.menuAction())
         self.menubar.addAction(self.menu_View.menuAction())
         self.menubar.addAction(self.menu_About.menuAction())
         self.toolBar_General.addAction(self.action_Open)
@@ -282,7 +281,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "GNS3", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuIOS.setTitle(QtGui.QApplication.translate("MainWindow", "&Edit", None, QtGui.QApplication.UnicodeUTF8))
+        self.menu_Edit.setTitle(QtGui.QApplication.translate("MainWindow", "&Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_File.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_About.setTitle(QtGui.QApplication.translate("MainWindow", "&Help", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_View.setTitle(QtGui.QApplication.translate("MainWindow", "&View", None, QtGui.QApplication.UnicodeUTF8))
@@ -345,12 +344,12 @@ class Ui_MainWindow(object):
         self.action_SystemPreferences.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+O", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ProjectPreferences.setText(QtGui.QApplication.translate("MainWindow", "&Project Preferences...", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ProjectPreferences.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+P", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionCut.setText(QtGui.QApplication.translate("MainWindow", "Cut", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionCut.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+X", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionCopy.setText(QtGui.QApplication.translate("MainWindow", "Copy", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionCopy.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+C", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionPast.setText(QtGui.QApplication.translate("MainWindow", "&Paste", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionPast.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+V", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Cut.setText(QtGui.QApplication.translate("MainWindow", "Cut", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Cut.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+X", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Copy.setText(QtGui.QApplication.translate("MainWindow", "Copy", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Copy.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+C", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Paste.setText(QtGui.QApplication.translate("MainWindow", "&Paste", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Paste.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+V", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.Scene import Scene
 from GNS3.Ui.Widget_nodesDock import nodesDock
