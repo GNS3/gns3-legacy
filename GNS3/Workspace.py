@@ -25,6 +25,7 @@ import GNS3.Dynagen.dynamips_lib as lib
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtGui import QMainWindow, QAction, QActionGroup, QAction, QIcon
 from GNS3.Ui.Form_MainWindow import Ui_MainWindow
+#from GNS3.Ui.Form_About import Ui_About
 from GNS3.IOSDialog import IOSDialog
 from GNS3.Utils import translate
 from GNS3.HypervisorManager import HypervisorManager
@@ -178,6 +179,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__action_StartAll)
         self.connect(self.action_StopAll,  QtCore.SIGNAL('triggered()'),
             self.__action_StopAll)
+        self.connect(self.action_About,  QtCore.SIGNAL('triggered()'),
+            self.__action_About)
 
     def __createMenus(self):
         """ Add own menu actions, and create new sub-menu
@@ -201,7 +204,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
     def retranslateUi(self, MainWindow):
         Ui_MainWindow.retranslateUi(self, MainWindow)
-        ctx = 'MainWindow'
+        ctx = 'Workspace'
         self.submenu_Docks.setTitle(translate(ctx, 'Docks'))
         self.submenu_Toolbars.setTitle(translate(ctx, 'Toolbars'))
         self.action_swModeDesign.setText(translate(ctx, 'Design Mode'))
@@ -307,7 +310,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         print ">>> switchToMode: DESIGN"
         self.__switchToMode(globals.Enum.Mode.Design)
         self.action_swModeDesign.setChecked(True)
-        self.statusbar.showMessage(translate('MainWindow', 'Design Mode'))
+        self.statusbar.showMessage(translate('Workspace', 'Design Mode'))
 
         try:
             for node in globals.GApp.topology.getNodes():
@@ -329,7 +332,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         print ">>> switchToMode: EMULATION"
         self.__switchToMode(globals.Enum.Mode.Emulation)
         self.action_swModeEmulation.setChecked(True)
-        self.statusbar.showMessage(translate('MainWindow', 'Emulation Mode'))
+        self.statusbar.showMessage(translate('Workspace', 'Emulation Mode'))
 
         self.hypervisor_manager.startProcHypervisors()
         try:
@@ -347,7 +350,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
         print ">>> switchToMode: SIMULATION"
         self.__switchToMode(globals.Enum.Mode.Simulation)
-        self.statusbar.showMessage(translate('MainWindow', 'Emulation Mode'))
+        self.statusbar.showMessage(translate('Workspace', 'Emulation Mode'))
         pass
 
     #-----------------------------------------------------------------------
@@ -379,7 +382,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         - This function manage the creation of a connection between two nodes.
         """
         print ">>> Add Link"
-        ctx = 'MainWindow'
+        ctx = 'Workspace'
 
         if not self.action_Add_link.isChecked():
             self.action_Add_link.setText(translate(ctx, 'Add a link'))
@@ -511,3 +514,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 return
             current += 1
         progress.setValue(count)
+
+    def __action_About(self):
+    
+        dialog = QtGui.QDialog()
+        ui = Ui_AboutDialog()
+        ui.setupUi(dialog)
+        dialog.show()
+        dialog.exec_()

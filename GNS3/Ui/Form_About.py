@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_About.ui'
 #
-# Created: Sun Jul 15 18:38:57 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070710
+# Created: Fri Jul 20 17:49:08 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -28,6 +28,7 @@ class Ui_AboutDialog(object):
         self.gridlayout.addItem(spacerItem,4,0,1,1)
 
         self.label = QtGui.QLabel(AboutDialog)
+        self.label.setPixmap(QtGui.QPixmap(":/images/logo_gns3_transparency_small.png"))
         self.label.setObjectName("label")
         self.gridlayout.addWidget(self.label,1,0,3,1)
 
@@ -58,7 +59,7 @@ class Ui_AboutDialog(object):
         self.label_2.setText(QtGui.QApplication.translate("AboutDialog", "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
         "p, li { white-space: pre-wrap; }\n"
         "</style></head><body style=\" font-family:\'Sans Serif\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-        "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">GNS-3</span></p>\n"
+        "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">GNS-3 alpha 0.2</span></p>\n"
         "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;\">EPITECH end of studies </p>\n"
         "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;\">project (www.epitech.net)</p>\n"
         "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;\"></p>\n"
