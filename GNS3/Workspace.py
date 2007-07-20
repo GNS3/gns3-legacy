@@ -157,6 +157,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__action_IOSImages)
         self.connect(self.action_SwitchMode, QtCore.SIGNAL('triggered()'),
             self.__action_SwitchMode)
+        self.connect(self.action_ShowHostnames, QtCore.SIGNAL('triggered()'),
+            self.__action_ShowHostnames)
         self.connect(self.action_swModeDesign, QtCore.SIGNAL('triggered()'),
             self.switchToMode_Design)
         self.connect(self.action_swModeEmulation, QtCore.SIGNAL('triggered()'),
@@ -291,16 +293,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.action_swModeDesign.setChecked(True)
         self.statusbar.showMessage(translate('MainWindow', 'Design Mode'))
 
-#        try:
-#            for node in self.main.nodes.keys():
-#                self.main.nodes[node].resetIOSConfig()
-#        except lib.DynamipsError, msg:
-#            QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
-#            return
-#        except lib.DynamipsErrorHandled:
-#            QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
-#            return
-
         try:
             for node in globals.GApp.topology.getNodes():
                 node.resetIOS()
@@ -399,6 +391,17 @@ class Workspace(QMainWindow, Ui_MainWindow):
         painterpath = QtGui.QPainterPath()
         painterpath.addRect(-300, -300, 0, 0)
         globals.GApp.topology.setSelectionArea(painterpath)
+        
+    def __action_ShowHostnames(self):
+
+        if self.action_ShowHostnames.text() == translate('Workspace', 'Show hostnames'):
+            self.action_ShowHostnames.setText(translate('Workspace', 'Hide hostnames'))
+            for node in globals.GApp.topology.getNodes():
+                node.showHostname()
+        elif self.action_ShowHostnames.text() == translate('Workspace', 'Hide hostnames'):
+            self.action_ShowHostnames.setText(translate('Workspace', 'Show hostnames'))
+            for node in globals.GApp.topology.getNodes():
+                node.removeHostname()
         
     def __action_TelnetAll(self):
     

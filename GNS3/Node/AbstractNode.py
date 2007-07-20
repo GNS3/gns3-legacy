@@ -41,6 +41,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.__render_select = render_select
         self.__edgeList = set()
         self.__selectedInterface = None
+        self.__flag_hostname = False
         self.config = {}
         
         # create a unique ID
@@ -48,6 +49,9 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.id = baseId
         baseId += 1
 
+        # default hostname
+        self.hostname = 'R' + str(self.id)
+        
         # settings
         self.setFlags(self.ItemIsMovable | self.ItemIsSelectable | self.ItemIsFocusable)
         self.setAcceptsHoverEvents(True)
@@ -209,6 +213,32 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         # connect the menu
         menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.slotSelectedInterface)
         menu.exec_(QtGui.QCursor.pos())
+    
+    def showHostname(self):
+        """ Show the hostname on the scene
+        """
+
+        # don't try to show hostname twice
+        if self.__flag_hostname == True:
+            globals.GApp.topology.removeItem(self.textItem)
+            self.__flag_hostname = False
+            return
+
+        self.textItem = QtGui.QGraphicsTextItem(self.hostname, self)
+        self.textItem.setFont(QtGui.QFont("Times", 10, QtGui.QFont.Bold))
+        self.textItem.setFlag(self.textItem.ItemIsMovable)
+        self.textItem.setZValue(2)
+        self.textItem.setPos(20, -20)
+        globals.GApp.topology.addItem(self.textItem)
+        self.__flag_hostname = True
+        
+    def removeHostname(self):
+        """ Remove the hostname on the scene
+        """
+
+        if self.__flag_hostname == True:
+            globals.GApp.topology.removeItem(self.textItem)
+            self.__flag_hostname = False
     
     def deleteInterface(self, ifname):
         """ Delete an interface and the link that is connected to it

@@ -100,7 +100,7 @@ class Router(AbstractNode):
         hypervisor = self.getHypervisor()
         #image = '"' + self.iosConfig['iosimage'].split(':', 1)[1] + '"'
         platform = '3600'
-        self.dev = lib.C3600(hypervisor,  chassis = '3640', name = 'R' + str(self.id))
+        self.dev = lib.C3600(hypervisor,  chassis = '3640', name = self.hostname)
         self.dev.image = '/home/grossmj/IOS/c3640.bin'
         self.dev.idlepc = '0x60483ae4'
 
@@ -133,7 +133,7 @@ class Router(AbstractNode):
             slotnb += 1
         
         self.sparsemem = True
-        dynagen.devices['R ' + str(self.id)] = self.dev
+        dynagen.devices[self.hostname] = self.dev
         
     def configSlot(self, slotnb, module):
         """ Add an new module into a slot
@@ -254,7 +254,7 @@ class Router(AbstractNode):
 
         if self.dev != None:
             self.dev.delete()
-            del dynagen.devices['R ' + str(self.id)]
+            del dynagen.devices[self.hostname]
             self.shutdownInterfaces()
         
     def telnetToIOS(self):

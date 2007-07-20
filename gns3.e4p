@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.1.dtd">
 <!-- eric4 project file for project gns3 -->
-<!-- Saved: 2007-07-19, 10:43:56 -->
+<!-- Saved: 2007-07-20, 16:55:01 -->
 <!-- Copyright (C) 2007 ,  -->
 <Project version="4.1">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -303,6 +303,21 @@
     <Source>
       <Dir>GNS3</Dir>
       <Name>HypervisorManager.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Config</Dir>
+      <Name>Objects.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Config</Dir>
+      <Name>Defaults.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Config</Dir>
+      <Name>System.py</Name>
     </Source>
   </Sources>
   <Forms>
