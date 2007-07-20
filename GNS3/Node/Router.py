@@ -199,6 +199,11 @@ class Router(AbstractNode):
                 print ifname + " is connected to a non-existing port in the slot " + str(slotnb)
                 self.deleteInterface(ifname)
 
+    def shutdownInterfaces(self):
+            
+        for edge in self.getEdgeList():
+            edge.setLocalInterfaceStatus(self.id, False)
+
     def startIOS(self):
     
         if self.dev == None:
@@ -221,7 +226,10 @@ class Router(AbstractNode):
             dest_port = int(dest_port)
             if self.dev.slot[source_slot] != None and self.dev.slot[source_slot].connected(source_port) == False:
                 self.dev.slot[source_slot].connect(source_port, destnode.getHypervisor(), destnode.dev.slot[dest_slot], dest_port)
-        self.dev.start()
+        print self.dev.start()
+        
+        for edge in self.getEdgeList():
+                edge.setLocalInterfaceStatus(self.id, True)
         
     def stopIOS(self):
         """ Stop the IOS instance
@@ -229,8 +237,7 @@ class Router(AbstractNode):
 
         if self.dev != None:
             print self.dev.stop()
-#            for edge in self.edgeList:
-#                edge.setStatus(self.id, False)
+            self.shutdownInterfaces()
 
     def resetHypervisor(self):
         
@@ -248,8 +255,7 @@ class Router(AbstractNode):
         if self.dev != None:
             self.dev.delete()
             del dynagen.devices['R ' + str(self.id)]
-#            for edge in self.edgeList:
-#                edge.setStatus(self.id, False)
+            self.shutdownInterfaces()
         
     def telnetToIOS(self):
         """ Start a telnet console and connect it to an IOS

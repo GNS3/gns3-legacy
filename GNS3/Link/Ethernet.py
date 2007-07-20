@@ -76,13 +76,21 @@ class Ethernet(AbstractEdge):
         if self.length < 80:
            return
 
-        color = QtCore.Qt.green
+        if self.src_interface_status == True:
+            color = QtCore.Qt.green
+        else:
+            color = QtCore.Qt.red
+            
         painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
 
         point1 = QtCore.QPointF(self.src + self.edgeOffset)
         painter.drawPoint(point1) 
 
-        color = QtCore.Qt.green
+        if self.dest_interface_status == True:
+            color = QtCore.Qt.green
+        else:
+            color = QtCore.Qt.red
+            
         painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
         
         point2 = QtCore.QPointF(self.dst -  self.edgeOffset)

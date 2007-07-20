@@ -44,6 +44,8 @@ class AbstractEdge(QtGui.QGraphicsPathItem):
         self.dest = destNode
         self.srcIf = sourceIf
         self.destIf = destIf
+        self.src_interface_status = False
+        self.dest_interface_status = False
         
         # create a unique ID
         global baseId
@@ -119,3 +121,15 @@ class AbstractEdge(QtGui.QGraphicsPathItem):
         if action == 'delete':
            self.source.deleteEdge(self)
            self.dest.deleteEdge(self)
+
+    def setLocalInterfaceStatus(self, node_id, isup):
+        """ Set the status to up/down for the node
+            node_id: integer
+            isup: bolean
+        """
+
+        if self.source.id == node_id:
+            self.src_interface_status = isup
+        else:    
+            self.dest_interface_status = isup
+        self.update()

@@ -104,11 +104,19 @@ class Serial(AbstractEdge):
            return
 
         # source point
-        color = QtCore.Qt.green
+        if self.src_interface_status == True:
+            color = QtCore.Qt.green
+        else:
+            color = QtCore.Qt.red
+            
         painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
         painter.drawPoint(self.status_src) 
 
         # destination point
-        color = QtCore.Qt.green
+        if self.dest_interface_status == True:
+            color = QtCore.Qt.green
+        else:
+            color = QtCore.Qt.red
+            
         painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
         painter.drawPoint(self.status_dst)

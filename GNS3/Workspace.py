@@ -433,8 +433,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
             except lib.DynamipsErrorHandled:
                 QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
-#                for node in self.main.nodes.keys():
-#                    self.main.nodes[node].cleanInterfaceStatus()
+                for node in nodes:
+                    self.shutdownInterfaces()
                 return
             current += 1
         progress.setValue(count)
@@ -464,8 +464,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
             except lib.DynamipsErrorHandled:
                 QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
-#                for node in self.main.nodes.keys():
-#                    self.main.nodes[node].cleanInterfaceStatus()
+                for node in nodes:
+                    self.shutdownInterfaces()
                 return
             current += 1
         progress.setValue(count)
