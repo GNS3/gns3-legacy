@@ -220,8 +220,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 
         # don't try to show hostname twice
         if self.__flag_hostname == True:
-            globals.GApp.topology.removeItem(self.textItem)
-            self.__flag_hostname = False
             return
 
         self.textItem = QtGui.QGraphicsTextItem(self.hostname, self)
@@ -229,7 +227,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.textItem.setFlag(self.textItem.ItemIsMovable)
         self.textItem.setZValue(2)
         self.textItem.setPos(20, -20)
-        globals.GApp.topology.addItem(self.textItem)
         self.__flag_hostname = True
         
     def removeHostname(self):

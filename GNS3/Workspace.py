@@ -151,6 +151,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)
         """
+
+        self.connect(self.action_Export, QtCore.SIGNAL('triggered()'),
+            self.__action_Export)
         self.connect(self.action_Add_link, QtCore.SIGNAL('triggered()'),
             self.__action_addLink)
         self.connect(self.action_IOS_images, QtCore.SIGNAL('triggered()'),
@@ -261,6 +264,19 @@ class Workspace(QMainWindow, Ui_MainWindow):
         for v in self.__switchModeActions[id]['toolbars_disable'].itervalues():
             v.setEnabled(False)
 
+            
+    def __export(self, name, format):
+        """ Export the view to an image
+        """
+
+        rect = self.graphicsView.viewport().rect()
+        pixmap = QtGui.QPixmap(rect.width(), rect.height())
+        pixmap.fill(QtCore.Qt.white)
+        painter = QtGui.QPainter(pixmap)
+        painter.setRenderHint(QtGui.QPainter.Antialiasing)
+        self.graphicsView.render(painter)
+        painter.end()
+        pixmap.save(name, format)
 
     #-------------------------------------------------------------------------
 
@@ -335,6 +351,29 @@ class Workspace(QMainWindow, Ui_MainWindow):
         pass
 
     #-----------------------------------------------------------------------
+
+    def __action_Export(self):
+    
+        filedialog = QtGui.QFileDialog(self)
+        selected = QtCore.QString()
+        exports = 'PNG File (*.png);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm)'
+        path = QtGui.QFileDialog.getSaveFileName(filedialog, 'Export', '.', exports, selected)
+        if not path:
+            return
+        path = unicode(path)
+        if str(selected) == 'PNG File (*.png)' and path[-4:] != '.png':
+            path = path + '.png'
+        if str(selected) == 'JPG File (*.jpeg *.jpg)' and (path[-4:] != '.jpg' or  path[-5:] != '.jpeg'):
+            path = path + '.jpeg'
+        if str(selected) == 'BMP File (*.bmp)' and path[-4:] != '.bmp':
+            path = path + '.bmp'
+        if str(selected) == 'BMP File (*.bmp)' and (path[-4:] != '.xpm' or path[-4:] != '.xbm'):
+            path = path + '.xpm'
+        try:
+            self.__export(path, str(str(selected)[:3]))
+        except IOError, (errno, strerror):
+            QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
+    
     def __action_addLink(self):
         """ Implement the QAction `addLink'
         - This function manage the creation of a connection between two nodes.
