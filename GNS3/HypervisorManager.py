@@ -26,7 +26,7 @@ from PyQt4 import QtCore, QtGui
 from GNS3.Config.Config import ConfDB
 from GNS3.Utils import translate
 
-MEM_USAGE_LIMIT = 256
+MEM_USAGE_LIMIT = 512
 BASE_PORT_UDP = 10000
 HYPERVISOR_BASE_PORT = 7200
 
@@ -83,28 +83,30 @@ class HypervisorManager:
         progress.setWindowModality(QtCore.Qt.WindowModal)
 
         mem = 0
-        nb_node = 0
+        current_node = 0
         hypervisor = self.__startNewHypervisor()
-        for node in globals.GApp.topology.getNodes():
-            progress.setValue(nb_node)
+        nodes = globals.GApp.topology.getNodes()
+        nb_node = len(nodes)
+        for node in nodes:
+            progress.setValue(current_node)
             globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 2000)
             if progress.wasCanceled():
                 progress.reset()
                 break
             mem += node.config['RAM']
-            nb_node += 1
+            current_node += 1
             node.configHypervisor('localhost',  hypervisor['port'],  self.baseUDP)
-            if mem >= MEM_USAGE_LIMIT:
+            if mem >= MEM_USAGE_LIMIT and current_node != nb_node:
                 hypervisor = self.__startNewHypervisor()
                 time.sleep(2)
-                self.baseUDP += 100 #nb_node
+                self.baseUDP += 15
                 mem = 0
         progress.setValue(count)
                 
     def stopProcHypervisors(self):
     
-#        self.hypervisor_baseport = HYPERVISOR_BASE_PORT
-#        self.baseUDP = BASE_PORT_UDP
+        self.hypervisor_baseport = HYPERVISOR_BASE_PORT
+        self.baseUDP = BASE_PORT_UDP
         for hypervisor in self.hypervisors:
             hypervisor['proc_instance'].close()
         self.hypervisors = []

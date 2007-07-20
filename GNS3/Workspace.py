@@ -300,6 +300,18 @@ class Workspace(QMainWindow, Ui_MainWindow):
 #        except lib.DynamipsErrorHandled:
 #            QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
 #            return
+
+        try:
+            for node in globals.GApp.topology.getNodes():
+                node.resetIOS()
+            for node in globals.GApp.topology.getNodes():
+                node.resetHypervisor()
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
+            return
+        except lib.DynamipsErrorHandled:
+            QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
+            return
         
         self.hypervisor_manager.stopProcHypervisors()
 

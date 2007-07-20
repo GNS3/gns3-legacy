@@ -198,6 +198,24 @@ class Router(AbstractNode):
 
         self.dev.start()
 
+    def resetHypervisor(self):
+        
+        key = self.hypervisor_host + ':' + str(self.hypervisor_port)
+        if dynagen.dynamips.has_key(key):
+            del dynagen.dynamips[key]
+        self.hypervisor_host = None
+        self.hypervisor_port = None
+        self.baseUDP = None
+        
+    def resetIOS(self):
+        """ Delete the IOS instance
+        """
+
+        if self.dev != None:
+            self.dev.delete()
+#            for edge in self.edgeList:
+#                edge.setStatus(self.id, False)
+        
     def telnetToIOS(self):
         """ Start a telnet console and connect it to an IOS
         """
