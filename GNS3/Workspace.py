@@ -410,9 +410,62 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
     def __action_StartAll(self):
 
-        for node in globals.GApp.topology.getNodes():
-            print 'start node ' + str(node.id)
-            node.startIOS()
+        nodes = globals.GApp.topology.getNodes()
+        count = len(nodes)
+        progress = QtGui.QProgressDialog("Starting nodes ...", "Abort", 0, count, self)
+        progress.setMinimum(1)
+        progress.setWindowModality(QtCore.Qt.WindowModal)
+        globals.GApp.processEvents(QtCore.QEventLoop.AllEvents)
+        current = 0
+        for node in nodes:
+            assert (node.dev != None)
+            progress.setValue(current)
+            globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+            if progress.wasCanceled():
+                progress.reset()
+                break
+            try:
+                node.startIOS()
+            except lib.DynamipsError, msg:
+                if node.dev.state == 'running':
+                    pass
+                else:
+                    QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
+            except lib.DynamipsErrorHandled:
+                QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
+#                for node in self.main.nodes.keys():
+#                    self.main.nodes[node].cleanInterfaceStatus()
+                return
+            current += 1
+        progress.setValue(count)
         
     def __action_StopAll(self):
-        pass
+        
+        nodes = globals.GApp.topology.getNodes()
+        count = len(nodes)
+        progress = QtGui.QProgressDialog("Stopping nodes ...", "Abort", 0, count, self)
+        progress.setMinimum(1)
+        progress.setWindowModality(QtCore.Qt.WindowModal)
+        globals.GApp.processEvents()
+        current = 0
+        for node in nodes:
+            assert (node.dev != None)
+            progress.setValue(current)
+            globals.GApp.processEvents()
+            if progress.wasCanceled():
+                progress.reset()
+                break
+            try:
+                node.stopIOS()
+            except lib.DynamipsError, msg:
+                if node.dev.state == 'stopped':
+                    pass
+                else:
+                    QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
+            except lib.DynamipsErrorHandled:
+                QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
+#                for node in self.main.nodes.keys():
+#                    self.main.nodes[node].cleanInterfaceStatus()
+                return
+            current += 1
+        progress.setValue(count)

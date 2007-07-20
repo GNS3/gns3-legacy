@@ -201,6 +201,8 @@ class Router(AbstractNode):
 
     def startIOS(self):
     
+        if self.dev == None:
+            return
         for interface in self.getConnectedInterfaceList():
 
             match_obj = IF_REGEXP.search(interface)
@@ -217,13 +219,18 @@ class Router(AbstractNode):
             dest_slot = int(dest_slot)
             source_port = int(source_port)
             dest_port = int(dest_port)
-            try:
-                if self.dev.slot[source_slot] != None and self.dev.slot[source_slot].connected(source_port) == False:
-                    self.dev.slot[source_slot].connect(source_port, destnode.getHypervisor(), destnode.dev.slot[dest_slot], dest_port)
-            except lib.DynamipsError, msg:
-                print msg
-
+            if self.dev.slot[source_slot] != None and self.dev.slot[source_slot].connected(source_port) == False:
+                self.dev.slot[source_slot].connect(source_port, destnode.getHypervisor(), destnode.dev.slot[dest_slot], dest_port)
         self.dev.start()
+        
+    def stopIOS(self):
+        """ Stop the IOS instance
+        """
+
+        if self.dev != None:
+            print self.dev.stop()
+#            for edge in self.edgeList:
+#                edge.setStatus(self.id, False)
 
     def resetHypervisor(self):
         
