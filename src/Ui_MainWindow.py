@@ -44,7 +44,9 @@ class Ui_MainWindow(object):
         self.gridlayout.addWidget(self.graphicsView,0,1,1,1)
 
         interpreter = Interpreter()
-        #interpreter.runsource("from console import Console")
+        interpreter.runsource("from GNS3.Dynagen.console import Console")
+        interpreter.runsource("console = Console()")
+        #interpreter.runsource("console.cmdloop()")
         self.textEdit = PyCutExt(interpreter, parent = self.centralwidget)
         #self.textEdit = QtGui.QTextEdit(self.centralwidget)
 

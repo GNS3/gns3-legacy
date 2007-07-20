@@ -98,9 +98,10 @@ class HypervisorManager:
             node.configHypervisor('localhost',  hypervisor['port'],  self.baseUDP)
             if mem >= MEM_USAGE_LIMIT and current_node != nb_node:
                 hypervisor = self.__startNewHypervisor()
-                time.sleep(2)
+                time.sleep(1)
                 self.baseUDP += 15
                 mem = 0
+        time.sleep(2)
         progress.setValue(count)
                 
     def stopProcHypervisors(self):

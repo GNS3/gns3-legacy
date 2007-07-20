@@ -184,7 +184,8 @@ class PyCutExt(QTextEdit):
         self.__clearLine()
         self.moveCursor(QTextCursor.End)
         while self.reading:
-            qApp.processOneEvent()
+            QtGui.QApplication.processEvents(QtCore.QEventLoop.AllEvents, 1000)
+            #qApp.processOneEvent()
         if self.line.length() == 0:
             return '\n'
         else:

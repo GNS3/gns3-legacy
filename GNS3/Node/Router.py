@@ -75,6 +75,7 @@ class Router(AbstractNode):
         self.hypervisor_host = None
         self.hypervisor_port = None
         self.baseUDP = None
+        self.dev = None
 
     def getHypervisor(self):
 
@@ -97,15 +98,41 @@ class Router(AbstractNode):
     def configIOS(self):
     
         hypervisor = self.getHypervisor()
+        #image = '"' + self.iosConfig['iosimage'].split(':', 1)[1] + '"'
+        platform = '3600'
         self.dev = lib.C3600(hypervisor,  chassis = '3640', name = 'R' + str(self.id))
         self.dev.image = '/home/grossmj/IOS/c3640.bin'
         self.dev.idlepc = '0x60483ae4'
+
+        if self.config['consoleport']:
+            self.dev.console = int(self.config['consoleport'])
+        if self.config['startup-config'] != '':
+            self.dev.cnfg = '"' + self.config['startup-config'] + '"'
+        self.dev.ram = self.config['RAM']
+        self.dev.rom = self.config['ROM']
+        self.dev.nvram = self.config['NVRAM']
+        if self.config['pcmcia-disk0'] > 0:
+            self.dev.disk0 = self.config['pcmcia-disk0']
+        if self.config['pcmcia-disk1'] != 0:
+            self.dev.disk1 = self.config['pcmcia-disk1']
+        self.dev.mmap = self.config['mmap']
+        if self.config['confreg'] != '':
+            self.dev.conf = self.config['confreg']
+        self.dev.exec_area = self.config['execarea']
+        if platform == '3600':
+            pass
+            #Wait the bug with iomen to be correted in Dynamips 0.2.8
+            #self.ios.iomem = str(self.iosConfig['iomem'])
+        if platform == '7200':
+            self.dev.midplane = self.config['midplane']
+            self.dev.npe = self.config['npe']
 
         slotnb = 0
         for module in self.config['slots']:
             self.configSlot(slotnb, module)
             slotnb += 1
         
+        self.sparsemem = True
         dynagen.devices['R ' + str(self.id)] = self.dev
         
     def configSlot(self, slotnb, module):
@@ -213,6 +240,7 @@ class Router(AbstractNode):
 
         if self.dev != None:
             self.dev.delete()
+            del dynagen.devices['R ' + str(self.id)]
 #            for edge in self.edgeList:
 #                edge.setStatus(self.id, False)
         
