@@ -204,7 +204,7 @@ class Router(AbstractNode):
         for edge in self.getEdgeList():
             edge.setLocalInterfaceStatus(self.id, False)
 
-    def startIOS(self):
+    def start(self):
     
         if self.dev == None:
             return
@@ -231,7 +231,7 @@ class Router(AbstractNode):
         for edge in self.getEdgeList():
                 edge.setLocalInterfaceStatus(self.id, True)
         
-    def stopIOS(self):
+    def stop(self):
         """ Stop the IOS instance
         """
 
@@ -257,7 +257,7 @@ class Router(AbstractNode):
             del dynagen.devices[self.hostname]
             self.shutdownInterfaces()
         
-    def telnetToIOS(self):
+    def console(self):
         """ Start a telnet console and connect it to an IOS
         """
 

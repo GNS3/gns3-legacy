@@ -59,14 +59,29 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.setSharedRenderer(self.__render_normal)
           
         # Action: Delete (Delete the node)
-        self.deleteAct = QtGui.QAction(translate('AbstractNode', 'Delete'), self)
-        self.deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
-        self.connect(self.deleteAct, QtCore.SIGNAL('triggered()'), self.__deleteAction)
+        self.__deleteAct = QtGui.QAction(translate('AbstractNode', 'Delete'), self)
+        self.__deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
+        self.connect(self.__deleteAct, QtCore.SIGNAL('triggered()'), self.__deleteAction)
         
         # Action: Configure (Configure the node)
-        self.configAct = QtGui.QAction(translate('AbstractNode', 'Configure'), self)
-        self.configAct.setIcon(QtGui.QIcon(":/icons/configuration.svg"))
-        self.connect(self.configAct, QtCore.SIGNAL('triggered()'), self.__configAction)
+        self.__configAct = QtGui.QAction(translate('AbstractNode', 'Configure'), self)
+        self.__configAct.setIcon(QtGui.QIcon(":/icons/configuration.svg"))
+        self.connect(self.__configAct, QtCore.SIGNAL('triggered()'), self.__configAction)
+        
+        # Action: Console (Connect to the node console (IOS))
+        self.__consoleAct = QtGui.QAction(translate('AbstractNode', 'Console'), self)
+        self.__consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
+        self.connect(self.__consoleAct, QtCore.SIGNAL('activated()'), self.__consoleAction)
+
+        # Action: Start (Start IOS on hypervisor)
+        self.__startAct = QtGui.QAction(translate('AbstractNode', 'Start'), self)
+        self.__startAct.setIcon(QtGui.QIcon(':/icons/play.svg'))
+        self.connect(self.__startAct, QtCore.SIGNAL('activated()'), self.__startAction)
+
+        # Action: Stop (Stop IOS on hypervisor)
+        self.__stopAct = QtGui.QAction(translate('AbstractNode', 'Stop'), self)
+        self.__stopAct.setIcon(QtGui.QIcon(':/icons/stop.svg'))
+        self.connect(self.__stopAct, QtCore.SIGNAL('activated()'), self.__stopAction)
 
     def __deleteAction(self):
         """ Action called for node deletion
@@ -80,6 +95,24 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """
         
         self.emit(QtCore.SIGNAL("Config node"))
+        
+    def __consoleAction(self):
+        """ Action called for starting a console on the node
+        """
+    
+        self.console()
+        
+    def __startAction(self):
+        """ Action called for starting the node
+        """
+    
+        self.start()
+        
+    def __stopAction(self):
+        """ Action called for stopping the node
+        """
+    
+        self.stop()
 
     def paint(self, painter, option, widget=None):
         _local_option = option
@@ -167,8 +200,19 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         elif (event.button() == QtCore.Qt.RightButton):
             self.setSelected(True)
             self.menu = QtGui.QMenu()
-            self.menu.addAction(self.configAct)
-            self.menu.addAction(self.deleteAct)
+
+            
+            if globals.GApp.workspace.currentMode == globals.Enum.Mode.Design:
+                # actions for design mode
+                self.menu.addAction(self.__configAct)
+                self.menu.addAction(self.__deleteAct)
+            
+            if globals.GApp.workspace.currentMode == globals.Enum.Mode.Emulation:
+                # actions for emulation mode
+                self.menu.addAction(self.__consoleAct)
+                self.menu.addAction(self.__startAct)
+                self.menu.addAction(self.__stopAct)
+
             self.menu.exec_(QtGui.QCursor.pos())
         QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
         

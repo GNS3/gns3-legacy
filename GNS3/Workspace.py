@@ -451,7 +451,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     
         for node in globals.GApp.topology.getNodes():
             if node.dev.state == 'running':
-                node.telnetToIOS()
+                node.console()
 #                if self.main.nodes[node].telnetToIOS() == False:
 #                    return
 
@@ -472,7 +472,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 progress.reset()
                 break
             try:
-                node.startIOS()
+                node.start()
             except lib.DynamipsError, msg:
                 if node.dev.state == 'running':
                     pass
@@ -503,7 +503,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 progress.reset()
                 break
             try:
-                node.stopIOS()
+                node.stop()
             except lib.DynamipsError, msg:
                 if node.dev.state == 'stopped':
                     pass
