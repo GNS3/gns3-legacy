@@ -25,7 +25,7 @@ import GNS3.Dynagen.dynamips_lib as lib
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtGui import QMainWindow, QAction, QActionGroup, QAction, QIcon
 from GNS3.Ui.Form_MainWindow import Ui_MainWindow
-#from GNS3.Ui.Form_About import Ui_About
+from GNS3.Ui.Form_About import Ui_AboutDialog
 from GNS3.IOSDialog import IOSDialog
 from GNS3.Utils import translate
 from GNS3.HypervisorManager import HypervisorManager
@@ -181,6 +181,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__action_StopAll)
         self.connect(self.action_About,  QtCore.SIGNAL('triggered()'),
             self.__action_About)
+        self.connect(self.action_AboutQt,  QtCore.SIGNAL('triggered()'),
+            self.__action_AboutQt)
 
     def __createMenus(self):
         """ Add own menu actions, and create new sub-menu
@@ -506,7 +508,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 if node.dev.state == 'stopped':
                     pass
                 else:
-                    QtGui.QMessageBox.critical(self.main.win, 'Dynamips error',  str(msg))
+                    QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
             except lib.DynamipsErrorHandled:
                 QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
                 for node in nodes:
@@ -516,9 +518,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
         progress.setValue(count)
 
     def __action_About(self):
-    
+
         dialog = QtGui.QDialog()
         ui = Ui_AboutDialog()
         ui.setupUi(dialog)
         dialog.show()
         dialog.exec_()
+    
+    def __action_AboutQt(self):
+
+        QtGui.QMessageBox.aboutQt(self)

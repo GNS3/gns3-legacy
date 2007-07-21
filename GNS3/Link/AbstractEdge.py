@@ -103,24 +103,20 @@ class AbstractEdge(QtGui.QGraphicsPathItem):
             event: QtGui.QGraphicsSceneMouseEvent instance
         """
 
-#        if (event.button() == QtCore.Qt.RightButton):
-#            self.menu = QtGui.QMenu()
-#            self.menu.addAction(QtGui.QIcon(':/icons/delete.svg'), 'delete')
-#            self.menu.connect(self.menu, QtCore.SIGNAL("triggered(QAction *)"), self.slotAction)
-#            self.menu.exec_(QtGui.QCursor.pos())
-        
-        QtGui.QGraphicsItem.mousePressEvent(self, event)
+        if (event.button() == QtCore.Qt.RightButton):
+            menu = QtGui.QMenu()
+            menu.addAction(QtGui.QIcon(':/icons/delete.svg'), 'delete')
+            menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.__deleteAction)
+            menu.exec_(QtGui.QCursor.pos())
+        else:
+            QtGui.QGraphicsPathItem.mousePressEvent(self, event)
 
-    def slotAction(self, action):
-        """ Called when an option is selected from the contextual menu
-            in design mode
-            action: QtCore.QAction instance
-        """
-
+    def __deleteAction(self,  action):
+    
         action = action.text()
         if action == 'delete':
-           self.source.deleteEdge(self)
-           self.dest.deleteEdge(self)
+            # delete one of the interface mean the edge is deleted
+            self.source.deleteInterface(self.srcIf)
 
     def setLocalInterfaceStatus(self, node_id, isup):
         """ Set the status to up/down for the node

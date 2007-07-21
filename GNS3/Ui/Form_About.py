@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_About.ui'
 #
-# Created: Fri Jul 20 17:49:08 2007
+# Created: Sat Jul 21 09:38:06 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,42 +12,34 @@ from PyQt4 import QtCore, QtGui
 class Ui_AboutDialog(object):
     def setupUi(self, AboutDialog):
         AboutDialog.setObjectName("AboutDialog")
-        AboutDialog.resize(QtCore.QSize(QtCore.QRect(0,0,504,287).size()).expandedTo(AboutDialog.minimumSizeHint()))
+        AboutDialog.resize(QtCore.QSize(QtCore.QRect(0,0,503,285).size()).expandedTo(AboutDialog.minimumSizeHint()))
 
-        self.vboxlayout = QtGui.QVBoxLayout(AboutDialog)
-        self.vboxlayout.setSpacing(6)
-        self.vboxlayout.setMargin(9)
-        self.vboxlayout.setObjectName("vboxlayout")
-
-        self.gridlayout = QtGui.QGridLayout()
-        self.gridlayout.setMargin(0)
-        self.gridlayout.setSpacing(6)
+        self.gridlayout = QtGui.QGridLayout(AboutDialog)
         self.gridlayout.setObjectName("gridlayout")
 
-        spacerItem = QtGui.QSpacerItem(20,21,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
-        self.gridlayout.addItem(spacerItem,4,0,1,1)
+        spacerItem = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        self.gridlayout.addItem(spacerItem,0,0,1,1)
+
+        spacerItem1 = QtGui.QSpacerItem(21,211,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
+        self.gridlayout.addItem(spacerItem1,0,1,3,1)
+
+        self.label_2 = QtGui.QLabel(AboutDialog)
+        self.label_2.setObjectName("label_2")
+        self.gridlayout.addWidget(self.label_2,0,2,3,1)
 
         self.label = QtGui.QLabel(AboutDialog)
         self.label.setPixmap(QtGui.QPixmap(":/images/logo_gns3_transparency_small.png"))
         self.label.setObjectName("label")
-        self.gridlayout.addWidget(self.label,1,0,3,1)
+        self.gridlayout.addWidget(self.label,1,0,1,1)
 
-        spacerItem1 = QtGui.QSpacerItem(21,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
-        self.gridlayout.addItem(spacerItem1,2,1,1,1)
+        spacerItem2 = QtGui.QSpacerItem(20,21,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        self.gridlayout.addItem(spacerItem2,2,0,1,1)
 
         self.buttonBox = QtGui.QDialogButtonBox(AboutDialog)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
-        self.gridlayout.addWidget(self.buttonBox,5,0,1,3)
-
-        spacerItem2 = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
-        self.gridlayout.addItem(spacerItem2,0,0,1,1)
-
-        self.label_2 = QtGui.QLabel(AboutDialog)
-        self.label_2.setObjectName("label_2")
-        self.gridlayout.addWidget(self.label_2,0,2,5,1)
-        self.vboxlayout.addLayout(self.gridlayout)
+        self.gridlayout.addWidget(self.buttonBox,3,0,1,3)
 
         self.retranslateUi(AboutDialog)
         QtCore.QObject.connect(self.buttonBox,QtCore.SIGNAL("accepted()"),AboutDialog.accept)
@@ -69,6 +61,7 @@ class Ui_AboutDialog(object):
         "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Aurelien Levesque</p>\n"
         "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">David Ruiz</p>\n"
         "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p>\n"
-        "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">contact@gns3.net</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
+        "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">contact@gns3.net</p>\n"
+        "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">www.gns3.net</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
 
 import svg_resources_rc
