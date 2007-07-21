@@ -262,4 +262,4 @@ class Router(AbstractNode):
         """
 
         if self.dev.console != None:
-            telnet('localhost',  self.dev.console,  'R' + str(self.id))
+            telnet('localhost',  self.dev.console,  self.hostname)

@@ -48,6 +48,7 @@ def telnet(host,  port,  name):
         """ Start a telnet console and connect to it
         """
 
+        name = '"' + name + '"'
 #        try:
 #            console = ConfDB().get("Dynamips/console", '')
 #            if console:

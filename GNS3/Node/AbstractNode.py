@@ -305,7 +305,11 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.textItem.setFont(QtGui.QFont("TypeWriter", 10, QtGui.QFont.Bold))
         self.textItem.setFlag(self.textItem.ItemIsMovable)
         self.textItem.setZValue(2)
-        self.textItem.setPos(20, -20)
+        textrect = self.textItem.boundingRect()
+        textmiddle = textrect.topRight() / 2
+        noderect = self.boundingRect()
+        nodemiddle = noderect.topRight() / 2
+        self.textItem.setPos(nodemiddle.x() - textmiddle.x(), -25)
         self.__flag_hostname = True
         
     def removeHostname(self):
