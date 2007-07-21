@@ -68,7 +68,17 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.__configAct.setIcon(QtGui.QIcon(":/icons/configuration.svg"))
         self.connect(self.__configAct, QtCore.SIGNAL('triggered()'), self.__configAction)
         
-        # Action: Console (Connect to the node console (IOS))
+        # Action: ShowHostname (Display the hostname)
+        self.__showHostnameAct = QtGui.QAction(translate('AbstractNode', 'Show hostname'), self)
+        self.__showHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
+        self.connect(self.__showHostnameAct, QtCore.SIGNAL('triggered()'), self.__showHostnameAction)
+        
+        # Action: NewHostname (Change the hostname)
+        self.__newHostnameAct = QtGui.QAction(translate('AbstractNode', 'New hostname'), self)
+        self.__newHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
+        self.connect(self.__newHostnameAct, QtCore.SIGNAL('triggered()'), self.__newHostnameAction)
+        
+        # Action: Console (Connect to the node console)
         self.__consoleAct = QtGui.QAction(translate('AbstractNode', 'Console'), self)
         self.__consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
         self.connect(self.__consoleAct, QtCore.SIGNAL('activated()'), self.__consoleAction)
@@ -96,20 +106,43 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         
         self.emit(QtCore.SIGNAL("Config node"))
         
+    def __showHostnameAction(self):
+        """ Action called to show the hostname
+        """
+        
+        if self.__flag_hostname == False:
+            self.showHostname()
+        else:
+            self.removeHostname()
+        
+    def __newHostnameAction(self):
+        """ Action called to change the hostname
+        """
+        (text,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, "New hostname",
+                                          "Hostname:", QtGui.QLineEdit.Normal,
+                                          self.hostname)
+        print unicode(text)
+        if ok and text:
+            self.hostname = text
+            if self.__flag_hostname:
+                # force to redisplay the hostname
+                self.removeHostname()
+                self.showHostname()
+    
     def __consoleAction(self):
-        """ Action called for starting a console on the node
+        """ Action called to start a console on the node
         """
     
         self.console()
         
     def __startAction(self):
-        """ Action called for starting the node
+        """ Action called to start the node
         """
     
         self.start()
         
     def __stopAction(self):
-        """ Action called for stopping the node
+        """ Action called to stop the node
         """
     
         self.stop()
@@ -211,6 +244,10 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 self.menu.addAction(self.__consoleAct)
                 self.menu.addAction(self.__startAct)
                 self.menu.addAction(self.__stopAct)
+                
+            # actions for both modes
+            self.menu.addAction(self.__showHostnameAct)
+            self.menu.addAction(self.__newHostnameAct)
 
             self.menu.exec_(QtGui.QCursor.pos())
         QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
@@ -269,7 +306,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.textItem.setFont(QtGui.QFont("Times", 10, QtGui.QFont.Bold))
         self.textItem.setFlag(self.textItem.ItemIsMovable)
         self.textItem.setZValue(2)
-        self.textItem.setPos(20, -20)
+        self.textItem.setPos(20, -25)
         self.__flag_hostname = True
         
     def removeHostname(self):
