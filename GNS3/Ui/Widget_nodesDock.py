@@ -25,15 +25,10 @@ import GNS3.Ui.svg_resources_rc
 from GNS3.Utils import translate
 from GNS3.Globals.Symbols import SYMBOLS
 
-#import __main__
-
 class nodesDock(QtGui.QListWidget):
     """ Class for managing the node types list
         Custom QListWidget
     """
-    
-    # get access to globals
-    #main = __main__
 
     def __init__(self, parent):
     
@@ -55,34 +50,6 @@ class nodesDock(QtGui.QListWidget):
             #self.insertTopLevelItem(0, item)
             self.insertItem(rowNum, item)
             rowNum += 1
-
-    def emulationMode(self):
-        """ Create items for emulation mode
-        """
-        
-        self.clear()
-#        self.setRootIsDecorated(True)
-#        for node in self.main.nodes.keys():
-#            rootitem = QtGui.QTreeWidgetItem(self)
-#            rootitem.setText(0, translate("MainWindow", "R" + str(self.main.nodes[node].id)))
-#            #rootitem.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
-#            
-#            interfaces = self.main.nodes[node].getInterfaces()
-#            #TODO: finish to put the tree in simulation mode
-#            items = []
-#            for interface in interfaces:
-#                item = QtGui.QTreeWidgetItem()
-#                if self.main.nodes[node].interfaces.has_key(interface):
-#                    connection = self.main.nodes[node].interfaces[interface]
-#                    item.setText(0, interface + ' is connected to R' + str(connection[0]) + ' in ' + str(connection[1]))
-#                else:
-#                    item.setText(0, interface + ' is not connected')
-#                items.append(item)
-#            rootitem.addChildren(items)
-#            
-#            #rootitem.addChild(QtGui.QTreeWidgetItem(['test']))
-#            self.insertTopLevelItem(0, rootitem)
-#
 
     def mouseMoveEvent(self, event):
         """ Drag event

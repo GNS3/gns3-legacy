@@ -201,7 +201,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             self.setSelected(True)
             self.menu = QtGui.QMenu()
 
-            
             if globals.GApp.workspace.currentMode == globals.Enum.Mode.Design:
                 # actions for design mode
                 self.menu.addAction(self.__configAct)

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Thu Jul 19 10:51:49 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070710
+# Created: Sat Jul 21 12:17:31 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(QtCore.QSize(QtCore.QRect(0,0,800,600).size()).expandedTo(MainWindow.minimumSizeHint()))
+        MainWindow.resize(QtCore.QSize(QtCore.QRect(0,0,840,600).size()).expandedTo(MainWindow.minimumSizeHint()))
 
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -34,7 +34,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,800,29))
+        self.menubar.setGeometry(QtCore.QRect(0,0,840,25))
         self.menubar.setObjectName("menubar")
 
         self.menu_Edit = QtGui.QMenu(self.menubar)
@@ -68,6 +68,7 @@ class Ui_MainWindow(object):
 
         self.gridlayout1 = QtGui.QGridLayout(self.dockWidgetContents_NodeTypes)
         self.gridlayout1.setMargin(0)
+        self.gridlayout1.setSpacing(6)
         self.gridlayout1.setObjectName("gridlayout1")
 
         self.panel_nodesTypesList = nodesDock(self.dockWidgetContents_NodeTypes)
@@ -101,6 +102,13 @@ class Ui_MainWindow(object):
 
         self.dockWidgetContents_7 = QtGui.QWidget(self.dockWidget_TopoSum)
         self.dockWidgetContents_7.setObjectName("dockWidgetContents_7")
+
+        self.gridlayout2 = QtGui.QGridLayout(self.dockWidgetContents_7)
+        self.gridlayout2.setObjectName("gridlayout2")
+
+        self.treeWidget_TopologySummary = topologySummaryDock(self.dockWidgetContents_7)
+        self.treeWidget_TopologySummary.setObjectName("treeWidget_TopologySummary")
+        self.gridlayout2.addWidget(self.treeWidget_TopologySummary,0,0,1,1)
         self.dockWidget_TopoSum.setWidget(self.dockWidgetContents_7)
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(2),self.dockWidget_TopoSum)
 
@@ -353,4 +361,5 @@ class Ui_MainWindow(object):
 
 from GNS3.Scene import Scene
 from GNS3.Ui.Widget_nodesDock import nodesDock
+from Widget_topologySummaryDock import topologySummaryDock
 import svg_resources_rc

@@ -335,6 +335,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.__switchToMode(globals.Enum.Mode.Emulation)
         self.action_swModeEmulation.setChecked(True)
         self.statusbar.showMessage(translate('Workspace', 'Emulation Mode'))
+        self.action_Add_link.setChecked(False)
+        self.__action_addLink()
+        self.treeWidget_TopologySummary.emulationMode()
 
         self.hypervisor_manager.startProcHypervisors()
         try:
