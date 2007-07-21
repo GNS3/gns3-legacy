@@ -100,7 +100,7 @@ class Router(AbstractNode):
         hypervisor = self.getHypervisor()
         #image = '"' + self.iosConfig['iosimage'].split(':', 1)[1] + '"'
         platform = '3600'
-        self.dev = lib.C3600(hypervisor,  chassis = '3640', name = self.hostname)
+        self.dev = lib.C3600(hypervisor,  chassis = '3640', name = '"' + self.hostname + '"')
         self.dev.image = '/home/grossmj/IOS/c3640.bin'
         self.dev.idlepc = '0x60483ae4'
 

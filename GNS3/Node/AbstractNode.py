@@ -50,7 +50,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         baseId += 1
 
         # default hostname
-        self.hostname = 'R' + str(self.id)
+        self.hostname = 'R' + str(self.id) 
         
         # settings
         self.setFlags(self.ItemIsMovable | self.ItemIsSelectable | self.ItemIsFocusable)
@@ -120,15 +120,14 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """
         (text,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, "New hostname",
                                           "Hostname:", QtGui.QLineEdit.Normal,
-                                          self.hostname)
-        print unicode(text)
+                                          unicode(self.hostname))
         if ok and text:
-            self.hostname = text
+            self.hostname = str(text)
             if self.__flag_hostname:
                 # force to redisplay the hostname
                 self.removeHostname()
                 self.showHostname()
-    
+
     def __consoleAction(self):
         """ Action called to start a console on the node
         """
@@ -238,6 +237,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 # actions for design mode
                 self.menu.addAction(self.__configAct)
                 self.menu.addAction(self.__deleteAct)
+                self.menu.addAction(self.__newHostnameAct)
             
             if globals.GApp.workspace.currentMode == globals.Enum.Mode.Emulation:
                 # actions for emulation mode
@@ -247,7 +247,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 
             # actions for both modes
             self.menu.addAction(self.__showHostnameAct)
-            self.menu.addAction(self.__newHostnameAct)
 
             self.menu.exec_(QtGui.QCursor.pos())
         QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
@@ -302,11 +301,11 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         if self.__flag_hostname == True:
             return
 
-        self.textItem = QtGui.QGraphicsTextItem(self.hostname, self)
-        self.textItem.setFont(QtGui.QFont("Times", 10, QtGui.QFont.Bold))
+        self.textItem = QtGui.QGraphicsTextItem(unicode(self.hostname), self)
+        self.textItem.setFont(QtGui.QFont("TypeWriter", 10, QtGui.QFont.Bold))
         self.textItem.setFlag(self.textItem.ItemIsMovable)
         self.textItem.setZValue(2)
-        self.textItem.setPos(20, -25)
+        self.textItem.setPos(20, -20)
         self.__flag_hostname = True
         
     def removeHostname(self):
