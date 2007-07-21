@@ -97,7 +97,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         for node in nodeitems:
             parent = self.assocPage[type(node)]
             self.itmDict[parent].addID(node.id)
-            item = ConfigurationPageItem(self.itmDict[parent], 'node ' + str(node.id), parent,  None)
+            item = ConfigurationPageItem(self.itmDict[parent], node.hostname, parent,  None)
             item.addID(node.id)
 
         self.treeViewNodes.sortByColumn(0, QtCore.Qt.AscendingOrder)
@@ -107,7 +107,14 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             self.__showConfigurationPage)
         self.connect(self.treeViewNodes, QtCore.SIGNAL("itemClicked(QTreeWidgetItem *, int)"),
             self.__showConfigurationPage)
-
+#        self.connect(self.treeViewNodes, QtCore.SIGNAL("itemSelectionChanged()"),
+#            self.__slotSelectionChanged)
+#            
+#
+#    def __slotSelectionChanged(self):
+#    
+#        print 'selection changed'
+            
     def __importConfigurationPage(self, name):
         """ Private method to import a configuration page module.
             name: name of the configuration page module (string)

@@ -68,13 +68,9 @@ class Scene(QtGui.QGraphicsView):
     def slotConfigNode(self):
         """ Called to configure nodes
         """
-        
-        print 'configuration'
-        print self.__topology.selectedItems()
-        
+
         configurator = NodeConfigurator(self.__topology.selectedItems())
         configurator.setModal(True)
-        #configurator.loadItems(self.selectedItems())
         configurator.show()
         configurator.exec_()
 

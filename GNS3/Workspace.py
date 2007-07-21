@@ -386,7 +386,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Implement the QAction `addLink'
         - This function manage the creation of a connection between two nodes.
         """
-        print ">>> Add Link"
+        
         ctx = 'Workspace'
 
         if not self.action_Add_link.isChecked():

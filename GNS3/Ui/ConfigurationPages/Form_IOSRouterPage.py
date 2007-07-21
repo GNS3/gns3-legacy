@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './ConfigurationPages/Form_IOSRouterPage.ui'
+# Form implementation generated from reading ui file 'Form_IOSRouterPage.ui'
 #
-# Created: Fri Jul 13 10:06:59 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070710
+# Created: Sat Jul 21 16:57:57 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_IOSRouterPage(object):
     def setupUi(self, IOSRouterPage):
         IOSRouterPage.setObjectName("IOSRouterPage")
-        IOSRouterPage.resize(QtCore.QSize(QtCore.QRect(0,0,394,323).size()).expandedTo(IOSRouterPage.minimumSizeHint()))
+        IOSRouterPage.resize(QtCore.QSize(QtCore.QRect(0,0,397,309).size()).expandedTo(IOSRouterPage.minimumSizeHint()))
 
         self.vboxlayout = QtGui.QVBoxLayout(IOSRouterPage)
         self.vboxlayout.setObjectName("vboxlayout")
@@ -109,8 +109,8 @@ class Ui_IOSRouterPage(object):
         self.comboBoxNPE.setObjectName("comboBoxNPE")
         self.gridlayout.addWidget(self.comboBoxNPE,4,1,1,2)
 
-        spacerItem = QtGui.QSpacerItem(20,91,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
-        self.gridlayout.addItem(spacerItem,5,1,1,1)
+        spacerItem = QtGui.QSpacerItem(331,16,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        self.gridlayout.addItem(spacerItem,5,0,1,3)
         self.tabWidget.addTab(self.General,"")
 
         self.MemoriesDisks = QtGui.QWidget()

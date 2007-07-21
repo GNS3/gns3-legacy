@@ -20,6 +20,7 @@
 # Contact: contact@gns3.net
 #
 
+import math
 from PyQt4 import QtCore, QtGui
 from GNS3.Link.AbstractEdge import AbstractEdge
 

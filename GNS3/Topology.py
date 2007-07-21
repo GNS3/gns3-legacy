@@ -22,6 +22,7 @@
 
 from PyQt4 import QtGui
 from GNS3.Link.Ethernet import Ethernet
+from GNS3.Link.Serial import Serial
 
 class Topology(QtGui.QGraphicsScene):
     """ Topology class
@@ -51,9 +52,15 @@ class Topology(QtGui.QGraphicsScene):
         del self.__nodes[id]
    
     def addLink(self, srcid, srcif, dstid, dstif):
-       link = Ethernet(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif)
-       self.__links.add(link)
-       self.addItem(link)
+
+        if srcif[0] == 's' or srcif[0] == 'a':
+            # interface is serial or ATM
+            link = Serial(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif)
+        else:
+            # by default use an ethernet link
+            link = Ethernet(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif)
+        self.__links.add(link)
+        self.addItem(link)
    
     def deleteLink(self, link):
        link.source.deleteEdge(link)
