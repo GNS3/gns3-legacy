@@ -535,7 +535,7 @@
     <string>&amp;System Preferences...</string>
    </property>
    <property name="shortcut" >
-    <string>Ctrl+O</string>
+    <string>Ctrl+Shift+P</string>
    </property>
   </action>
   <action name="action_ProjectPreferences" >
