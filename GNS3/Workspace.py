@@ -29,6 +29,7 @@ from GNS3.Ui.Form_About import Ui_AboutDialog
 from GNS3.IOSDialog import IOSDialog
 from GNS3.Utils import translate
 from GNS3.HypervisorManager import HypervisorManager
+from GNS3.Config.Preferences import PreferencesDialog
 
 import GNS3.Globals as globals 
 
@@ -183,6 +184,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__action_About)
         self.connect(self.action_AboutQt,  QtCore.SIGNAL('triggered()'),
             self.__action_AboutQt)
+        self.connect(self.action_SystemPreferences,
+            QtCore.SIGNAL('triggered()'), self.__action_SystemPreferences)
+        self.connect(self.action_ProjectPreferences,
+            QtCore.SIGNAL('triggered()'), self.__action_ProjectPreferences)
+            
 
     def __createMenus(self):
         """ Add own menu actions, and create new sub-menu
@@ -531,3 +537,15 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_AboutQt(self):
 
         QtGui.QMessageBox.aboutQt(self)
+
+    def __action_SystemPreferences(self):
+        print ">>> ACTION CALLED: System Preferences"
+        dialog = PreferencesDialog('System')
+        dialog.show()
+        dialog.exec_()
+
+    def __action_ProjectPreferences(self):
+        print ">>> ACTION CALLED: Project Preferences"
+        dialog = PreferencesDialog('Project')
+        dialog.show()
+        dialog.exec_()
