@@ -160,6 +160,8 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         
         pageName = unicode(itm.getPageName())
         pageData = self.configItems[pageName]
+        pageTitle = "Node configuration"
+
         if pageData[-1] is None and pageData[2] is not None:
             # the page was not loaded yet, create it
             page = self.__initPage(pageData)
@@ -171,6 +173,15 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             #TODO: parent ?
             #if itm.parent():
             page.loadConfig(itm.getIDs()[0])
+
+        # Update page title
+        itmName = itm.text(0)
+        if itm.childCount() > 0:
+            pageTitle = "%s group" % (itmName)
+        else:
+            pageTitle = "%s node" % (itmName)
+        self.titleLabel.setText(pageTitle)
+
         self.configStack.setCurrentWidget(page)
         if page != self.emptyPage:
             self.buttonBox.button(QtGui.QDialogButtonBox.Apply).setEnabled(True)
