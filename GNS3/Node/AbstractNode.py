@@ -81,17 +81,17 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         # Action: Console (Connect to the node console)
         self.__consoleAct = QtGui.QAction(translate('AbstractNode', 'Console'), self)
         self.__consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
-        self.connect(self.__consoleAct, QtCore.SIGNAL('activated()'), self.__consoleAction)
+        self.connect(self.__consoleAct, QtCore.SIGNAL('triggered()'), self.__consoleAction)
 
         # Action: Start (Start IOS on hypervisor)
         self.__startAct = QtGui.QAction(translate('AbstractNode', 'Start'), self)
         self.__startAct.setIcon(QtGui.QIcon(':/icons/play.svg'))
-        self.connect(self.__startAct, QtCore.SIGNAL('activated()'), self.__startAction)
+        self.connect(self.__startAct, QtCore.SIGNAL('triggered()'), self.__startAction)
 
         # Action: Stop (Stop IOS on hypervisor)
         self.__stopAct = QtGui.QAction(translate('AbstractNode', 'Stop'), self)
         self.__stopAct.setIcon(QtGui.QIcon(':/icons/stop.svg'))
-        self.connect(self.__stopAct, QtCore.SIGNAL('activated()'), self.__stopAction)
+        self.connect(self.__stopAct, QtCore.SIGNAL('triggered()'), self.__stopAction)
 
     def __deleteAction(self):
         """ Action called for node deletion
