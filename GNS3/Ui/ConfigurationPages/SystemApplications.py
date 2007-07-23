@@ -44,6 +44,10 @@ class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
 
 
     def loadConf(self):
+        """ Load widget configuration from syst. config, or create an
+        empty config
+        """
+
         # Use conf from GApp.systconf['dynamips'] it it exist,
         # else get a default config
         if GApp.systconf.has_key('dynamips'):
@@ -64,13 +68,15 @@ class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
             else:
                 self.conf.term_cmd = "xterm -T %d -e 'telnet %h %p' >/dev/null 2>&1 &"
 
-        #
+        # Push default value to GUI
         self.dynamips_path.setText(self.conf.path)
         self.dynamips_workdir.setText(self.conf.workdir)
         self.dynamips_term_cmd.setText(self.conf.term_cmd)
         self.dynamips_port.setValue(self.conf.port)
 
     def saveConf(self):
+        """ Save widget settings to syst. config
+        """
         self.conf.path = str(self.dynamips_path.text())
         self.conf.workdir = str(self.dynamips_workdir.text())
         self.conf.term_cmd = str(self.dynamips_term_cmd.text())
@@ -79,6 +85,8 @@ class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
         GApp.systconf['dynamips'] = self.conf
 
     def __setDynamipsPath(self):
+        """ Open a file dialog for choosing the location of dynamips executable
+        """
         fb = fileBrowser(translate('Preferences', 'Dynamips Executable'))
         (path, selected) = fb.getFile()
 
@@ -86,6 +94,9 @@ class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
             self.dynamips_path.setText(path)
 
     def __setDynamipsWorkdir(self):
+        """ Open a file dialog for choosing the location of local hypervisor
+        working directory
+        """
         fb = fileBrowser(translate('Preferences', 'Local Hypervisor Workdir'))
         path = fb.getDir()
 
