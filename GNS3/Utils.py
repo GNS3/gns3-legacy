@@ -40,3 +40,27 @@ def translate(context, text):
     """
     
     return unicode(QtGui.QApplication.translate(context, text, None, QtGui.QApplication.UnicodeUTF8))
+
+class fileBrowser(object):
+    def __init__(self, caption, directory = '.', filter = 'All files (*.*)'):
+        self.filedialog = QtGui.QFileDialog()
+        self.selected = QtCore.QString()
+
+        self.caption = caption
+        self.directory = directory
+        self.filter = filter
+
+    def getFile(self):
+        path = QtGui.QFileDialog.getOpenFileName(self.filedialog,
+            self.caption, self.directory, self.filter, self.selected)
+
+        if path is not None:
+            path = unicode(path)
+        return ([path, self.selected])
+
+    def getDir(self):
+        path = QtGui.QFileDialog.getExistingDirectory(self.filedialog,
+            self.caption, self.directory, QtGui.QFileDialog.ShowDirsOnly)
+        if path is not None:
+            path = unicode(path)
+        return (path)

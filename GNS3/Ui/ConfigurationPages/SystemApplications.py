@@ -20,10 +20,13 @@
 # Contact: contact@gns3.net
 #
 
-from PyQt4 import QtGui
+import sys
+from PyQt4 import QtGui, QtCore
 from GNS3.Ui.ConfigurationPages.Widget_SystemApplications import Ui_SystemApplications
 from GNS3.Config.Objects import systemDynamipsConf
+from GNS3.Utils import fileBrowser, translate
 from GNS3.Globals import GApp
+
 
 
 class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
@@ -32,6 +35,15 @@ class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
         QtGui.QWidget.__init__(self)
         Ui_SystemApplications.setupUi(self, self)
 
+        self.connect(self.dynamips_path_browser, QtCore.SIGNAL('clicked()'),
+            self.__setDynamipsPath)
+        self.connect(self.dynamips_workdir_browser, QtCore.SIGNAL('clicked()'),
+            self.__setDynamipsWorkdir)
+
+        self.loadConf()
+
+
+    def loadConf(self):
         # Use conf from GApp.systconf['dynamips'] it it exist,
         # else get a default config
         if GApp.systconf.has_key('dynamips'):
@@ -39,20 +51,44 @@ class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
         else:
             self.conf = systemDynamipsConf()
 
-        # FIXME: Only for tests
-        self.conf.path = '/bin/dynamips.bin'
-        self.conf.workdir = '/tmp/'
-        self.conf.term_cmd = 'Terminal'
+        # Default path to dynamips executable
+        if self.conf.path == '':
+            if sys.platform.startswith('win32'):
+                self.conf.path = 'C:\Program Files\gns3\Dynamips\dynamips-wxp.exe'
+        # Defaults dynamips terminal command
+        if self.conf.term_cmd == '':
+            if sys.platform.startswith('darwin'):
+                self.conf.term_cmd = "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"' -e 'tell application \"terminal\" to tell window 1 to set custom title to \"%d\"'"
+            elif sys.platform.startswith('win32'):
+                self.conf.term_cmd = "telnet %h %p"
+            else:
+                self.conf.term_cmd = "xterm -T %d -e 'telnet %h %p' >/dev/null 2>&1 &"
 
         #
-        self.lineEdit_dynamips_path.setText(self.conf.path)
-        self.lineEdit_dynamips_workdir.setText(self.conf.workdir)
-        self.lineEdit_dynamips_term_cmd.setText(self.conf.term_cmd)
+        self.dynamips_path.setText(self.conf.path)
+        self.dynamips_workdir.setText(self.conf.workdir)
+        self.dynamips_term_cmd.setText(self.conf.term_cmd)
+        self.dynamips_port.setValue(self.conf.port)
 
     def saveConf(self):
-        self.conf.path = self.lineEdit_dynamips_path.text()
-        self.conf.workdir = self.lineEdit_dynamips_workdir.text()
-        self.conf.term_cmd = self.lineEdit_dynamips_term_cmd.text()
+        self.conf.path = str(self.dynamips_path.text())
+        self.conf.workdir = str(self.dynamips_workdir.text())
+        self.conf.term_cmd = str(self.dynamips_term_cmd.text())
+        self.conf.port = self.dynamips_port.value()
 
         GApp.systconf['dynamips'] = self.conf
+
+    def __setDynamipsPath(self):
+        fb = fileBrowser(translate('Preferences', 'Dynamips Executable'))
+        (path, selected) = fb.getFile()
+
+        if path is not None:
+            self.dynamips_path.setText(path)
+
+    def __setDynamipsWorkdir(self):
+        fb = fileBrowser(translate('Preferences', 'Local Hypervisor Workdir'))
+        path = fb.getDir()
+
+        if path is not None:
+            self.dynamips_workdir.setText(path)
 

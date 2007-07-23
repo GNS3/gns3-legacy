@@ -44,11 +44,26 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
         self.setupUi(self)
 
         self.connect(self.listWidget, QtCore.SIGNAL('currentItemChanged(QListWidgetItem *, QListWidgetItem *)'), self.configItemChanged)
+        self.connect(self.buttonBox.button(QtGui.QDialogButtonBox.Apply),
+            QtCore.SIGNAL('clicked()'), self.__applyChanges)
+        self.connect(self.buttonBox.button(QtGui.QDialogButtonBox.Ok),
+            QtCore.SIGNAL('clicked()'), self.__applyChanges)
 
         # Init dialog
         self.__initDialog(type)
         # Raise the first element in list
         self.__raiseWidgetByNum(0)
+
+    def __applyChanges(self):
+        """ Save change for all item present into the Dialog
+        All widget need to implement a method `saveConf' for this to work.
+        """
+        print ">>> applyChanges"
+        lnum = 0
+        for itemName in self.__prefsList:
+            widget = self.stackedWidget.widget(lnum)
+            widget.saveConf()
+            lnum += 1
 
 
     def __loadWidget(self, widgetPrefix, widgetName):

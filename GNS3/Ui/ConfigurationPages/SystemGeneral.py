@@ -29,6 +29,9 @@ class UiConfig_SystemGeneral(QtGui.QWidget, Ui_SystemGeneral):
         QtGui.QWidget.__init__(self)
         Ui_SystemGeneral.setupUi(self, self)
 
+    def loadConf(self):
+        pass
+
     def saveConf(self):
         pass
 

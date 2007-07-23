@@ -90,12 +90,14 @@ conf_IOSRouter_types = {
 
 conf_systemDynamips_defaults = {
     'path': '',
+    'port': 7200,
     'workdir': '',
     'term_cmd': '',
 }
 
 conf_systemDynamips_types = {
     'path': str,
+    'port': int,
     'workdir': str,
     'term_cmd': str,
 }
