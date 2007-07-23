@@ -20,42 +20,16 @@
 # Contact: contact@gns3.net
 #
 
-conf_iosImage_defaults = {
-    'filename': '',
-    'platform': '',
-    'chassis': '',
-    'idlepc': '',
-    'hypervisor': -1,
+from PyQt4 import QtGui
+from GNS3.Ui.ConfigurationPages.Widget_SystemGeneral import Ui_SystemGeneral
 
-}
-conf_iosImage_types = {
-    'filename': str,
-    'platform': str,
-    'chassis': str,
-    'idlepc': str,
-    'hypervisor': int,
-}
+class UiConfig_SystemGeneral(QtGui.QWidget, Ui_SystemGeneral):
+
+    def __init__(self):
+        QtGui.QWidget.__init__(self)
+        Ui_SystemGeneral.setupUi(self, self)
+
+    def saveConf(self):
+        pass
 
 
-conf_hypervisor_defaults = {
-    'host': '',
-    'port': 0,
-    'workdir': '',
-}
-conf_hypervisor_types = {
-    'host': str,
-    'port': int,
-    'workdir': str
-}
-
-conf_systemDynamips_defaults = {
-    'path': '',
-    'workdir': '',
-    'term_cmd': '',
-}
-
-conf_systemDynamips_types = {
-    'path': str,
-    'workdir': str,
-    'term_cmd': str,
-}

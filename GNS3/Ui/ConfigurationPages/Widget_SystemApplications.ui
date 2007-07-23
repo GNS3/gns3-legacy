@@ -1,0 +1,221 @@
+<ui version="4.0" >
+ <class>SystemApplications</class>
+ <widget class="QWidget" name="SystemApplications" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>402</width>
+    <height>264</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <widget class="QGroupBox" name="groupBox" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>401</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <property name="sizePolicy" >
+    <sizepolicy vsizetype="Maximum" hsizetype="MinimumExpanding" >
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="title" >
+    <string>Dynamips</string>
+   </property>
+   <widget class="QLabel" name="label" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>111</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Executable path:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_dynamips_path" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>321</width>
+      <height>23</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton" >
+    <property name="geometry" >
+     <rect>
+      <x>340</x>
+      <y>40</y>
+      <width>30</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>...</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>111</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Working directory:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_dynamips_workdir" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>321</width>
+      <height>23</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_2" >
+    <property name="geometry" >
+     <rect>
+      <x>340</x>
+      <y>90</y>
+      <width>30</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>...</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>120</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Terminal command:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_dynamips_term_cmd" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>321</width>
+      <height>23</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_3" >
+    <property name="geometry" >
+     <rect>
+      <x>340</x>
+      <y>140</y>
+      <width>30</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>...</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>180</y>
+     <width>401</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="sizePolicy" >
+    <sizepolicy vsizetype="Maximum" hsizetype="MinimumExpanding" >
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="title" >
+    <string>ns-3</string>
+   </property>
+   <widget class="QLabel" name="label_4" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>106</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Executable path:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_4" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>321</width>
+      <height>23</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_4" >
+    <property name="geometry" >
+     <rect>
+      <x>340</x>
+      <y>40</y>
+      <width>30</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>...</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <includes/>
+ <resources/>
+ <connections/>
+ <designerdata>
+  <property name="gridDeltaX" >
+   <number>10</number>
+  </property>
+  <property name="gridDeltaY" >
+   <number>10</number>
+  </property>
+  <property name="gridSnapX" >
+   <bool>true</bool>
+  </property>
+  <property name="gridSnapY" >
+   <bool>true</bool>
+  </property>
+  <property name="gridVisible" >
+   <bool>true</bool>
+  </property>
+ </designerdata>
+</ui>

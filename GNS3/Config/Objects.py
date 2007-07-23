@@ -86,3 +86,9 @@ class hypervisorConf(ConfigObject):
         ConfigObject.__init__(self)
         self.conf = Defaults.conf_hypervisor_defaults.copy()
         self.types = Defaults.conf_hypervisor_types
+
+class systemDynamipsConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_systemDynamips_defaults.copy()
+        self.types = Defaults.conf_systemDynamips_types
