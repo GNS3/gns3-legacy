@@ -46,6 +46,9 @@ class Application(QApplication, Singleton):
         self.__workspace = None
         self.__scene = None
         self.__topology = None
+        # Dict for storing config
+        self.__systconf = {}
+        self.__projconf = {}
     
         # set global app to ourself
         globals.GApp = self
@@ -107,6 +110,38 @@ class Application(QApplication, Singleton):
         return self.__topology
     topology = property(__getTopology, __setTopology,
                     doc = 'Workspace instance')
+
+
+    # property: `systconf'
+    def __setSystConf(self, systconf):
+        """ register the systconf instance
+        """
+        QMutexLocker(self.__clsmutex)
+        self.__systconf = sytsconf
+    
+    def __getSystConf(self):
+        """ return the systconf instance
+        """
+        QMutexLocker(self.__clsmutex)
+        return self.__systconf
+    systconf = property(__getSystConf, __setSystConf,
+                    doc = 'System config instance')
+
+
+    # property: `projconf'
+    def __setProjConf(self, projconf):
+        """ register the sysconf instance
+        """
+        QMutexLocker(self.__clsmutex)
+        self.__projconf = projconf 
+    
+    def __getProjConf(self):
+        """ return the sysconf instance
+        """
+        QMutexLocker(self.__clsmutex)
+        return self.__projconf
+    projconf = property(__getProjConf, __setProjConf,
+                    doc = 'Project config instance')
 
     def run(self):
         # INFO: Workspace create a ` Scene' object,
