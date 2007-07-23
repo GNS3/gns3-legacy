@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.1.dtd">
 <!-- eric4 project file for project gns3 -->
-<!-- Saved: 2007-07-21, 11:41:37 -->
+<!-- Saved: 2007-07-23, 11:08:22 -->
 <!-- Copyright (C) 2007 ,  -->
 <Project version="4.1">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -323,6 +323,15 @@
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
       <Name>Widget_nodesDock.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Name>Widget_topologySummaryDock.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Name>Console.py</Name>
     </Source>
   </Sources>
   <Forms>

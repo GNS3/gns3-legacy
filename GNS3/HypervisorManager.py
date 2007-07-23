@@ -61,7 +61,7 @@ class HypervisorManager:
         proc.start(self.hypervisor_path,  ['-H', str(port)])
         if proc.waitForStarted() == False:
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor',  translate("HypervisorManager", "Can't start the local hypervisor"))
-                return
+                return None
                 
         hypervisor = {
                             'port': port,
@@ -85,6 +85,8 @@ class HypervisorManager:
         mem = 0
         current_node = 0
         hypervisor = self.__startNewHypervisor()
+        if hypervisor == None:
+            return False
         nodes = globals.GApp.topology.getNodes()
         nb_node = len(nodes)
         for node in nodes:
@@ -103,6 +105,7 @@ class HypervisorManager:
                 mem = 0
         time.sleep(2)
         progress.setValue(count)
+        return True
                 
     def stopProcHypervisors(self):
     

@@ -338,6 +338,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Function called to switch to mode `Emulation'
         """
         print ">>> switchToMode: EMULATION"
+        
+        # hypervisor not started, so don't try to continue
+        if self.hypervisor_manager.startProcHypervisors() == False:
+            return
+        
         self.__switchToMode(globals.Enum.Mode.Emulation)
         self.action_swModeEmulation.setChecked(True)
         self.statusbar.showMessage(translate('Workspace', 'Emulation Mode'))
@@ -345,7 +350,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.__action_addLink()
         self.treeWidget_TopologySummary.emulationMode()
 
-        self.hypervisor_manager.startProcHypervisors()
         try:
             for node in globals.GApp.topology.getNodes():
                 node.configIOS()
@@ -490,7 +494,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             except lib.DynamipsErrorHandled:
                 QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
                 for node in nodes:
-                    self.shutdownInterfaces()
+                    node.shutdownInterfaces()
                 return
             current += 1
         progress.setValue(count)
@@ -521,7 +525,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             except lib.DynamipsErrorHandled:
                 QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
                 for node in nodes:
-                    self.shutdownInterfaces()
+                    node.shutdownInterfaces()
                 return
             current += 1
         progress.setValue(count)

@@ -24,7 +24,7 @@ import re
 import GNS3.NodeConfigs as config
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.Globals as dynagen
-from GNS3.Utils import telnet
+import GNS3.Console as console
 from GNS3.Node.AbstractNode import AbstractNode
 
 ROUTERS = {
@@ -262,4 +262,4 @@ class Router(AbstractNode):
         """
 
         if self.dev.console != None:
-            telnet('localhost',  self.dev.console,  self.hostname)
+            console.connect('localhost',  self.dev.console,  self.hostname)
