@@ -329,9 +329,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.statusbar.showMessage(translate('Workspace', 'Design Mode'))
 
         try:
-            for node in globals.GApp.topology.getNodes():
+            for node in globals.GApp.topology.nodes.itervalues():
                 node.resetIOS()
-            for node in globals.GApp.topology.getNodes():
+            for node in globals.GApp.topology.nodes.itervalues():
                 node.resetHypervisor()
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
@@ -359,7 +359,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.treeWidget_TopologySummary.emulationMode()
 
         try:
-            for node in globals.GApp.topology.getNodes():
+            for node in globals.GApp.topology.nodes.itervalues():
                 node.configIOS()
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
@@ -483,16 +483,16 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         if self.action_ShowHostnames.text() == translate('Workspace', 'Show hostnames'):
             self.action_ShowHostnames.setText(translate('Workspace', 'Hide hostnames'))
-            for node in globals.GApp.topology.getNodes():
+            for node in globals.GApp.topology.nodes.itervalues():
                 node.showHostname()
         elif self.action_ShowHostnames.text() == translate('Workspace', 'Hide hostnames'):
             self.action_ShowHostnames.setText(translate('Workspace', 'Show hostnames'))
-            for node in globals.GApp.topology.getNodes():
+            for node in globals.GApp.topology.nodes.itervalues():
                 node.removeHostname()
         
     def __action_TelnetAll(self):
     
-        for node in globals.GApp.topology.getNodes():
+        for node in globals.GApp.topology.nodes.itervalues():
             if node.dev.state == 'running':
                 node.console()
 #                if self.main.nodes[node].telnetToIOS() == False:
