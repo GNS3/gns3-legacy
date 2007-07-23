@@ -170,6 +170,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.switchToMode_Emulation)
         self.connect(self.action_swModeSimulation, QtCore.SIGNAL('triggered()'),
             self.switchToMode_Simulation)
+        self.connect(self.action_ZoomIn, QtCore.SIGNAL('triggered()'),
+            self.__action_ZoomIn)
+        self.connect(self.action_ZoomOut, QtCore.SIGNAL('triggered()'),
+            self.__action_ZoomOut)
+        self.connect(self.action_ZoomReset, QtCore.SIGNAL('triggered()'),
+            self.__action_ZoomReset)
+        self.connect(self.action_ZoomFit, QtCore.SIGNAL('triggered()'),
+            self.__action_ZoomFit)
         self.connect(self.action_SelectAll, QtCore.SIGNAL('triggered()'),
             self.__action_SelectAll)
         self.connect(self.action_SelectNone, QtCore.SIGNAL('triggered()'),
@@ -448,6 +456,28 @@ class Workspace(QMainWindow, Ui_MainWindow):
         painterpath = QtGui.QPainterPath()
         painterpath.addRect(-300, -300, 0, 0)
         globals.GApp.topology.setSelectionArea(painterpath)
+
+    def __action_ZoomIn(self):
+        """ Scale in the scene (QGraphicsView)
+        """
+        factor_in = pow(2.0, 120 / 240.0)
+        globals.GApp.scene.scaleView(factor_in)
+
+    def __action_ZoomOut(self):
+        """ Scale out the scene (QGraphicsView)
+        """
+        factor_out = pow(2.0, -120 / 240.0)
+        globals.GApp.scene.scaleView(factor_out)
+
+    def __action_ZoomReset(self):
+        """ Restore the default scale on the scene (QGraphicsView)
+        """
+        globals.GApp.scene.resetMatrix()
+
+    def __action_ZoomFit(self):
+        """ Scale the scene (QGraphicsView) to view all nodes
+        """
+        pass
         
     def __action_ShowHostnames(self):
 

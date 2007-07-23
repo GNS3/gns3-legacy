@@ -142,7 +142,6 @@ class Scene(QtGui.QGraphicsView):
     def wheelEvent(self, event):
         """ Zoom with the mouse wheel
         """
-        
         self.scaleView(pow(2.0, -event.delta() / 240.0))
 
     def keyPressEvent(self, event):
@@ -152,10 +151,12 @@ class Scene(QtGui.QGraphicsView):
         key = event.key()
         if key == QtCore.Qt.Key_Plus:
             # Zoom in
-            self.scaleView(1.2)
+            factor_in = pow(2.0, 120 / 240.0)
+            self.scaleView(factor_in)
         elif key == QtCore.Qt.Key_Minus:
             # Zoom out
-            self.scaleView(1 / 1.2)
+            factor_out = pow(2.0, -120 / 240.0)
+            self.scaleView(factor_out)
         elif key == QtCore.Qt.Key_Delete:
             self.slotDeleteNode()
         else:
