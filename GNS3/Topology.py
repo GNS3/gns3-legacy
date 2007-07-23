@@ -46,6 +46,18 @@ class Topology(QtGui.QGraphicsScene):
     
     def getNodes(self):
         return self.__nodes.values()
+
+    def __getNodes(self):
+        """ Return topology nodes
+        """
+        return self.__nodes
+
+    def __setNodes(self, value):
+        """ Set the topology nodes (disabled)
+        """
+        pass
+
+    nodes = property(__getNodes, __setNodes, doc='Property of nodes topology')
         
     def deleteNode(self, id):
         self.removeItem(self.__nodes[id])
@@ -68,3 +80,15 @@ class Topology(QtGui.QGraphicsScene):
        if link in self.__links:
            self.__links.remove(link)
            self.removeItem(link)
+
+    def __getLinks(self):
+        """ Return topology links
+        """
+        return self.__links
+
+    def __setLinks(self, value):
+        """ Set the topology links (disabled)
+        """
+        pass
+
+    links = property(__getLinks, __setLinks, doc='Property of links topology')
