@@ -107,14 +107,28 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             self.__showConfigurationPage)
         self.connect(self.treeViewNodes, QtCore.SIGNAL("itemClicked(QTreeWidgetItem *, int)"),
             self.__showConfigurationPage)
-#        self.connect(self.treeViewNodes, QtCore.SIGNAL("itemSelectionChanged()"),
-#            self.__slotSelectionChanged)
-#            
-#
-#    def __slotSelectionChanged(self):
-#    
-#        print 'selection changed'
+        self.connect(self.treeViewNodes, QtCore.SIGNAL("itemSelectionChanged()"),
+            self.__slotSelectionChanged)
             
+
+    def __slotSelectionChanged(self):
+    
+        items = self.treeViewNodes.selectedItems()
+        count = len(items)
+        assert(count > 0)
+        for item in items:
+            if not item.parent():
+                self.titleLabel.setText("%s group" % (item.text(0)))
+                return
+            
+        first_item = items[0]
+        if count > 1:
+            pageTitle = "Group of %d %s" % (count,  first_item.parent().text(0))
+        else:
+            pageTitle = "%s node" % (first_item.text(0))
+        self.titleLabel.setText(pageTitle)
+            
+
     def __importConfigurationPage(self, name):
         """ Private method to import a configuration page module.
             name: name of the configuration page module (string)
@@ -173,14 +187,6 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             #TODO: parent ?
             #if itm.parent():
             page.loadConfig(itm.getIDs()[0])
-
-        # Update page title
-        itmName = itm.text(0)
-        if itm.childCount() > 0:
-            pageTitle = "%s group" % (itmName)
-        else:
-            pageTitle = "%s node" % (itmName)
-        self.titleLabel.setText(pageTitle)
 
         self.configStack.setCurrentWidget(page)
         if page != self.emptyPage:
