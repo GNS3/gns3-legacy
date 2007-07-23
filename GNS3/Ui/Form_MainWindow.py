@@ -104,6 +104,8 @@ class Ui_MainWindow(object):
         self.dockWidgetContents_7.setObjectName("dockWidgetContents_7")
 
         self.gridlayout2 = QtGui.QGridLayout(self.dockWidgetContents_7)
+        self.gridlayout2.setMargin(0)
+        self.gridlayout2.setSpacing(0)
         self.gridlayout2.setObjectName("gridlayout2")
 
         self.treeWidget_TopologySummary = topologySummaryDock(self.dockWidgetContents_7)
@@ -298,6 +300,7 @@ class Ui_MainWindow(object):
         self.toolBar_Design.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Design", None, QtGui.QApplication.UnicodeUTF8))
         self.toolBar_Emulation.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Simulation", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidget_TopoSum.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Topology Summary", None, QtGui.QApplication.UnicodeUTF8))
+        self.treeWidget_TopologySummary.headerItem().setText(0,QtGui.QApplication.translate("MainWindow", "1", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidget_EventEditor.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Event Editor", None, QtGui.QApplication.UnicodeUTF8))
         self.action_About.setText(QtGui.QApplication.translate("MainWindow", "&About", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setText(QtGui.QApplication.translate("MainWindow", "&Quit", None, QtGui.QApplication.UnicodeUTF8))

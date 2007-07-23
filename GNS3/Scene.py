@@ -68,12 +68,23 @@ class Scene(QtGui.QGraphicsView):
     def slotConfigNode(self):
         """ Called to configure nodes
         """
-
-        configurator = NodeConfigurator(self.__topology.selectedItems())
+        items = self.__topology.selectedItems()
+        configurator = NodeConfigurator(items)
         configurator.setModal(True)
         configurator.show()
         configurator.exec_()
+        for item in items:
+            item.setSelected(False)
 
+    def slotShowHostname(self):
+    
+        for item in self.__topology.selectedItems():
+            item.setSelected(False)
+            if not item.hostnameDiplayed():
+                item.showHostname()
+            else:
+                item.removeHostname()
+        
     def slotDeleteNode(self):
         """ Called to delete nodes
         """
@@ -186,6 +197,7 @@ class Scene(QtGui.QGraphicsView):
             QtCore.QObject.connect(node, QtCore.SIGNAL("Delete link"), self.slotDeleteLink)
             QtCore.QObject.connect(node, QtCore.SIGNAL("Delete node"), self.slotDeleteNode)
             QtCore.QObject.connect(node, QtCore.SIGNAL("Config node"), self.slotConfigNode)
+            QtCore.QObject.connect(node, QtCore.SIGNAL("Show hostname"), self.slotShowHostname)
 
             self.__topology.addNode(node)
 

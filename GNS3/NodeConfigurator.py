@@ -97,7 +97,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         for node in nodeitems:
             parent = self.assocPage[type(node)]
             self.itmDict[parent].addID(node.id)
-            item = ConfigurationPageItem(self.itmDict[parent], node.hostname, parent,  None)
+            item = ConfigurationPageItem(self.itmDict[parent], unicode(node.hostname), parent,  None)
             item.addID(node.id)
 
         self.treeViewNodes.sortByColumn(0, QtCore.Qt.AscendingOrder)

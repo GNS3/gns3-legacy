@@ -110,10 +110,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """ Action called to show the hostname
         """
         
-        if self.__flag_hostname == False:
-            self.showHostname()
-        else:
-            self.removeHostname()
+        self.emit(QtCore.SIGNAL("Show hostname"))
         
     def __newHostnameAction(self):
         """ Action called to change the hostname
@@ -319,6 +316,10 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         if self.__flag_hostname == True:
             globals.GApp.topology.removeItem(self.textItem)
             self.__flag_hostname = False
+            
+    def hostnameDiplayed(self):
+    
+        return self.__flag_hostname
     
     def deleteInterface(self, ifname):
         """ Delete an interface and the link that is connected to it

@@ -238,8 +238,32 @@
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_7" >
     <layout class="QGridLayout" >
+     <property name="leftMargin" >
+      <number>0</number>
+     </property>
+     <property name="topMargin" >
+      <number>0</number>
+     </property>
+     <property name="rightMargin" >
+      <number>0</number>
+     </property>
+     <property name="bottomMargin" >
+      <number>0</number>
+     </property>
+     <property name="horizontalSpacing" >
+      <number>0</number>
+     </property>
+     <property name="verticalSpacing" >
+      <number>0</number>
+     </property>
      <item row="0" column="0" >
-      <widget class="topologySummaryDock" name="treeWidget_TopologySummary" />
+      <widget class="topologySummaryDock" name="treeWidget_TopologySummary" >
+       <column>
+        <property name="text" >
+         <string>1</string>
+        </property>
+       </column>
+      </widget>
      </item>
     </layout>
    </widget>
