@@ -444,18 +444,16 @@ class Workspace(QMainWindow, Ui_MainWindow):
         - Select all node on the topology
         """
         print ">>> ACTION: Select All"
-        painterpath = QtGui.QPainterPath()
-        painterpath.addRect(-250, -250, 750, 750)
-        globals.GApp.topology.setSelectionArea(painterpath)
+        for node in globals.GApp.topology.nodes.itervalues():
+            node.setSelected(True)
 
     def __action_SelectNone(self):
         """ Implement the QAction `SelectNone'
         - Unselect all node on the topology
         """
         print ">>> ACTION: Select None"
-        painterpath = QtGui.QPainterPath()
-        painterpath.addRect(-300, -300, 0, 0)
-        globals.GApp.topology.setSelectionArea(painterpath)
+        for node in globals.GApp.topology.nodes.itervalues():
+            node.setSelected(False)
 
     def __action_ZoomIn(self):
         """ Scale in the scene (QGraphicsView)
