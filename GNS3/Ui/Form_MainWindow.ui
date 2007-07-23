@@ -531,6 +531,9 @@
    </property>
   </action>
   <action name="action_ZoomFit" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
    <property name="text" >
     <string>Zoom &amp;Fit</string>
    </property>

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Mon Jul 23 22:11:01 2007
+# Created: Mon Jul 23 22:46:13 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -220,6 +220,7 @@ class Ui_MainWindow(object):
         self.action_ZoomReset.setObjectName("action_ZoomReset")
 
         self.action_ZoomFit = QtGui.QAction(MainWindow)
+        self.action_ZoomFit.setEnabled(False)
         self.action_ZoomFit.setObjectName("action_ZoomFit")
 
         self.action_SelectAll = QtGui.QAction(MainWindow)
