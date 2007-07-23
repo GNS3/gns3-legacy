@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Widget_SystemGeneral.ui'
 #
-# Created: Mon Jul 23 16:14:17 2007
+# Created: Mon Jul 23 22:12:01 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -15,10 +15,12 @@ class Ui_SystemGeneral(object):
         SystemGeneral.resize(QtCore.QSize(QtCore.QRect(0,0,402,163).size()).expandedTo(SystemGeneral.minimumSizeHint()))
 
         self.label = QtGui.QLabel(SystemGeneral)
+        self.label.setEnabled(False)
         self.label.setGeometry(QtCore.QRect(0,10,71,22))
         self.label.setObjectName("label")
 
         self.comboBox = QtGui.QComboBox(SystemGeneral)
+        self.comboBox.setEnabled(False)
         self.comboBox.setGeometry(QtCore.QRect(80,10,321,22))
         self.comboBox.setObjectName("comboBox")
 

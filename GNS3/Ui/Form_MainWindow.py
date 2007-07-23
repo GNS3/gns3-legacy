@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sun Jul 22 22:46:15 2007
+# Created: Mon Jul 23 22:11:01 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -34,7 +34,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,840,25))
+        self.menubar.setGeometry(QtCore.QRect(0,0,840,31))
         self.menubar.setObjectName("menubar")
 
         self.menu_Edit = QtGui.QMenu(self.menubar)
@@ -232,15 +232,19 @@ class Ui_MainWindow(object):
         self.action_SystemPreferences.setObjectName("action_SystemPreferences")
 
         self.action_ProjectPreferences = QtGui.QAction(MainWindow)
+        self.action_ProjectPreferences.setEnabled(False)
         self.action_ProjectPreferences.setObjectName("action_ProjectPreferences")
 
         self.action_Cut = QtGui.QAction(MainWindow)
+        self.action_Cut.setEnabled(False)
         self.action_Cut.setObjectName("action_Cut")
 
         self.action_Copy = QtGui.QAction(MainWindow)
+        self.action_Copy.setEnabled(False)
         self.action_Copy.setObjectName("action_Copy")
 
         self.action_Paste = QtGui.QAction(MainWindow)
+        self.action_Paste.setEnabled(False)
         self.action_Paste.setObjectName("action_Paste")
         self.menu_Edit.addAction(self.action_Cut)
         self.menu_Edit.addAction(self.action_Copy)

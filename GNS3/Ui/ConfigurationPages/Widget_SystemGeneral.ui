@@ -13,6 +13,9 @@
    <string>Form</string>
   </property>
   <widget class="QLabel" name="label" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
    <property name="geometry" >
     <rect>
      <x>0</x>
@@ -26,6 +29,9 @@
    </property>
   </widget>
   <widget class="QComboBox" name="comboBox" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
    <property name="geometry" >
     <rect>
      <x>80</x>
