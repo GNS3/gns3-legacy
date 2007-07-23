@@ -5,76 +5,97 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>419</width>
-    <height>304</height>
+    <width>576</width>
+    <height>419</height>
    </rect>
   </property>
+  <property name="sizePolicy" >
+   <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+    <horstretch>2</horstretch>
+    <verstretch>2</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle" >
-   <string>Dialog</string>
+   <string>Preferences</string>
+  </property>
+  <property name="modal" >
+   <bool>true</bool>
   </property>
   <layout class="QGridLayout" >
    <item row="0" column="0" >
-    <layout class="QHBoxLayout" >
+    <widget class="QListWidget" name="listWidget" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Expanding" hsizetype="Fixed" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="maximumSize" >
+      <size>
+       <width>160</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="font" >
+      <font>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1" >
+    <layout class="QVBoxLayout" >
+     <property name="spacing" >
+      <number>3</number>
+     </property>
      <item>
-      <widget class="QListWidget" name="listWidget" >
+      <widget class="QLabel" name="titleLabel" >
        <property name="sizePolicy" >
-        <sizepolicy vsizetype="Expanding" hsizetype="Maximum" >
-         <horstretch>0</horstretch>
+        <sizepolicy vsizetype="Maximum" hsizetype="Preferred" >
+         <horstretch>1</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="maximumSize" >
-        <size>
-         <width>160</width>
-         <height>16777215</height>
-        </size>
+       <property name="font" >
+        <font>
+         <pointsize>16</pointsize>
+         <underline>false</underline>
+        </font>
+       </property>
+       <property name="frameShape" >
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="frameShadow" >
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="text" >
+        <string>Prefs Label</string>
        </property>
       </widget>
      </item>
      <item>
-      <layout class="QVBoxLayout" >
-       <item>
-        <widget class="QLabel" name="label" >
-         <property name="font" >
-          <font>
-           <pointsize>16</pointsize>
-           <underline>false</underline>
-          </font>
-         </property>
-         <property name="frameShape" >
-          <enum>QFrame::Box</enum>
-         </property>
-         <property name="frameShadow" >
-          <enum>QFrame::Plain</enum>
-         </property>
-         <property name="text" >
-          <string>Prefs Label</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QStackedWidget" name="stackedWidget" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="MinimumExpanding" hsizetype="Expanding" >
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <widget class="QWidget" name="page" />
-        </widget>
-       </item>
-      </layout>
+      <widget class="QStackedWidget" name="stackedWidget" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="MinimumExpanding" hsizetype="Expanding" >
+         <horstretch>1</horstretch>
+         <verstretch>1</verstretch>
+        </sizepolicy>
+       </property>
+       <widget class="QWidget" name="page" />
+      </widget>
      </item>
     </layout>
    </item>
-   <item row="1" column="0" >
+   <item row="1" column="0" colspan="2" >
     <widget class="Line" name="line" >
      <property name="orientation" >
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
-   <item row="2" column="0" >
+   <item row="2" column="0" colspan="2" >
     <widget class="QDialogButtonBox" name="buttonBox" >
      <property name="orientation" >
       <enum>Qt::Horizontal</enum>
