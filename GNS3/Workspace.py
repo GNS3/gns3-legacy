@@ -27,7 +27,7 @@ from PyQt4.QtGui import QMainWindow, QAction, QActionGroup, QAction, QIcon
 from GNS3.Ui.Form_MainWindow import Ui_MainWindow
 from GNS3.Ui.Form_About import Ui_AboutDialog
 from GNS3.IOSDialog import IOSDialog
-from GNS3.Utils import translate
+from GNS3.Utils import translate, fileBrowser
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Preferences import PreferencesDialog
 
@@ -192,6 +192,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__action_About)
         self.connect(self.action_AboutQt,  QtCore.SIGNAL('triggered()'),
             self.__action_AboutQt)
+        self.connect(self.action_Open,  QtCore.SIGNAL('triggered()'),
+            self.__action_OpenFile)
+        self.connect(self.action_Save,  QtCore.SIGNAL('triggered()'),
+            self.__action_Save)
+        self.connect(self.action_SaveAs,  QtCore.SIGNAL('triggered()'),
+            self.__action_SaveAs)
         self.connect(self.action_SystemPreferences,
             QtCore.SIGNAL('triggered()'), self.__action_SystemPreferences)
         self.connect(self.action_ProjectPreferences,
@@ -581,3 +587,22 @@ class Workspace(QMainWindow, Ui_MainWindow):
         dialog = PreferencesDialog('Project')
         dialog.show()
         dialog.exec_()
+        
+    def __action_OpenFile(self):
+    
+        path = fileBrowser('Open a file',  filter = 'GNS-3 Scenario (*.gns3s)').getFile()
+        if path != None:
+            try:
+                if str(path[1]) == 'GNS-3 Scenario (*.gns3s)':
+                    # here the loading
+                    print path[0]
+            except IOError, (errno, strerror):
+                QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
+        
+    def __action_Save(self):
+    
+        print 'save file'
+        
+    def __action_SaveAs(self):
+    
+        print 'save as'
