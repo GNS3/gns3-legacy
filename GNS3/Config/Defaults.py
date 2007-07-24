@@ -25,21 +25,22 @@ conf_iosImage_defaults = {
     'platform': '',
     'chassis': '',
     'idlepc': '',
-    'hypervisor': -1,
-
+    'hypervisor_host': '',
+    'hypervisor_port': 7200,
 }
+
 conf_iosImage_types = {
     'filename': str,
     'platform': str,
     'chassis': str,
     'idlepc': str,
-    'hypervisor': int,
+    'hypervisor_host': str,
+    'hypervisor_port': int,
 }
-
 
 conf_hypervisor_defaults = {
     'host': '',
-    'port': 0,
+    'port': 7200,
     'workdir': '',
 }
 conf_hypervisor_types = {

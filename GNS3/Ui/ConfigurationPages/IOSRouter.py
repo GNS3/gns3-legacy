@@ -150,8 +150,8 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         IOSconfig = node.config
 
         self.comboBoxIOS.clear()
-        # TODO: load ios image
-        self.comboBoxIOS.addItems(['ios 1',  'ios 2',  'ios 3'])
+        images = globals.GApp.iosimages.keys()
+        self.comboBoxIOS.addItems(images)
         index = self.comboBoxIOS.findText(IOSconfig['image'])
         if index != -1:
             self.comboBoxIOS.setCurrentIndex(index)

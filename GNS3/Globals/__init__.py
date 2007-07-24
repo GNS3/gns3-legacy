@@ -21,6 +21,10 @@
 #
 
 addingLinkFlag = False
+useHypervisorManager = True
+
+# base UDP for external hypervisors
+baseUDP = 10000
 
 # A singleton instance of GNS3 Application
 #   used for storing / accessing highly used object.

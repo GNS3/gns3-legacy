@@ -21,6 +21,7 @@
 #
 
 import re
+import GNS3.Globals as globals
 import GNS3.NodeConfigs as config
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.Globals as dynagen
@@ -97,12 +98,43 @@ class Router(AbstractNode):
         
     def configIOS(self):
     
+        image = self.config['image']
+        if image == '':
+            # No IOS image configured, take the first one available ...
+            iosimages = globals.GApp.iosimages.keys()
+            if len(globals.GApp.iosimages.keys()):
+                image = iosimages[0]
+                print 'Use first available IOS image !'
+            else:
+                print 'No IOS image available !'
+                return
+
+        image = globals.GApp.iosimages[image]
+        filename = image.filename
+        platform = image.platform
+        chassis = image.chassis
+        idlepc =  image.idlepc
+        hypervisor_host = image.hypervisor_host
+        hypervisor_port = image.hypervisor_port
+
+        if globals.useHypervisorManager == False:
+            self.configHypervisor(hypervisor_host,  hypervisor_port,  globals.baseUDP)
+            globals.baseUDP = globals.baseUDP + 10
+
         hypervisor = self.getHypervisor()
-        #image = '"' + self.iosConfig['iosimage'].split(':', 1)[1] + '"'
-        platform = '3600'
-        self.dev = lib.C3600(hypervisor,  chassis = '3640', name = '"' + self.hostname + '"')
-        self.dev.image = '/home/grossmj/IOS/c3640.bin'
-        self.dev.idlepc = '0x60483ae4'
+        #ROUTERS
+        if platform == '7200':
+            self.dev = ROUTERS[platform](hypervisor, name = '"' + self.hostname + '"')
+        if chassis in ('2691', '3725', '3745'):
+            self.dev = ROUTERS[chassis](hypervisor, name = '"' + self.hostname + '"')
+        elif platform in ('3600', '2600'):
+            self.dev = ROUTERS[platform](hypervisor, chassis = chassis, name = '"' + self.hostname + '"')
+        
+        self.dev.image = '"' + filename + '"' #'/home/grossmj/IOS/c3640.bin'
+        if idlepc:
+            self.dev.idlepc = idlepc
+        else:
+            self.dev.idlepc = '0x60483ae4'
 
         if self.config['consoleport']:
             self.dev.console = int(self.config['consoleport'])

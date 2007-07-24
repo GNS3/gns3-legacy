@@ -346,16 +346,20 @@ class Workspace(QMainWindow, Ui_MainWindow):
             QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
             return
         
-        self.hypervisor_manager.stopProcHypervisors()
+        if globals.useHypervisorManager:
+            self.hypervisor_manager.stopProcHypervisors()
+        else:
+            globals.baseUDP = 10000
 
     def switchToMode_Emulation(self):
         """ Function called to switch to mode `Emulation'
         """
         print ">>> switchToMode: EMULATION"
         
-        # hypervisor not started, so don't try to continue
-        if self.hypervisor_manager.startProcHypervisors() == False:
-            return
+        if globals.useHypervisorManager:
+            # hypervisor not started, so don't try to continue
+            if self.hypervisor_manager.startProcHypervisors() == False:
+                return
         
         self.__switchToMode(globals.Enum.Mode.Emulation)
         self.action_swModeEmulation.setChecked(True)
@@ -430,6 +434,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
           - Add / Edit / Delete images
           - Add / Edit / Delete hypervisors
         """
+
         dialog = IOSDialog()
         dialog.setModal(True)
         dialog.show()
@@ -512,7 +517,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents)
         current = 0
         for node in nodes:
-            assert (node.dev != None)
+            #assert (node.dev != None)
             progress.setValue(current)
             globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
             if progress.wasCanceled():
@@ -543,7 +548,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         globals.GApp.processEvents()
         current = 0
         for node in nodes:
-            assert (node.dev != None)
+            #assert (node.dev != None)
             progress.setValue(current)
             globals.GApp.processEvents()
             if progress.wasCanceled():
