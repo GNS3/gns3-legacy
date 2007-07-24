@@ -24,6 +24,7 @@ import os,  re
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_IOSDialog import Ui_IOSDialog
 from GNS3.Config.Config import ConfDB
+from GNS3.Utils import fileBrowser
 
 PLATFORMS = {'2600': ['2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM', '2691'],
              '3600': ['3620', '3640', '3660'],
@@ -157,15 +158,10 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """ Get an IOS image file from the file system
             Insert platforms and models
         """
-        
-        filedialog = QtGui.QFileDialog(self)
-        selected = QtCore.QString()
-        path = QtGui.QFileDialog.getOpenFileName(filedialog, 'Select an IOS image', '.', \
-                    '(*.*)', selected)
-        if not path:
-            return
-        path = unicode(path)
-        try:
+
+        path = fileBrowser('Select an IOS image').getFile()
+        if path != None:
+            path = path[0]
             self.lineEditIOSImage.clear()
             self.lineEditIOSImage.setText(path)
             platform = self._getIOSplatform(os.path.basename(path))
@@ -182,8 +178,6 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                             if index != -1:
                                 self.comboBoxChassis.setCurrentIndex(index)
                             break
-        except IOError, (errno, strerror):
-            QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
     
     def slotAddIOS(self):
         """ Save an IOS image and all his settings 
@@ -301,17 +295,10 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """ Get a working directory from the file system
         """
         
-        filedialog = QtGui.QFileDialog(self)
-        path = QtGui.QFileDialog.getExistingDirectory(filedialog, 'Select a working directory', '.', QtGui.QFileDialog.ShowDirsOnly)
-
-        if not path:
-            return
-        path = unicode(path)
-        try:
+        path = fileBrowser('Select a working directory').getDir()
+        if path != None:
             self.lineEditWorkingDir.clear()
             self.lineEditWorkingDir.setText(path)
-        except IOError, (errno, strerror):
-            QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
 
     def slotAddHypervisor(self):
         """ Add a hypervisor to the hypervisors list
