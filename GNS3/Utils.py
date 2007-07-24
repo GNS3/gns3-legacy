@@ -56,7 +56,7 @@ class fileBrowser(object):
 
         if path is not None:
             path = unicode(path)
-        return ([path, self.selected])
+        return ([path, str(self.selected)])
 
     def getDir(self):
         path = QtGui.QFileDialog.getExistingDirectory(self.filedialog,
