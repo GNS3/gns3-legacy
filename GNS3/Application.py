@@ -26,6 +26,7 @@ from PyQt4.QtCore import QMutex, QMutexLocker
 from GNS3.Utils import Singleton
 from GNS3.Workspace import Workspace
 from GNS3.Topology import Topology
+from GNS3.Config.Objects import systemDynamipsConf
 import GNS3.Globals as globals
 
 class Application(QApplication, Singleton):
@@ -189,6 +190,9 @@ class Application(QApplication, Singleton):
         # are done (drawing Node, Animation), and in Qt, it's the QGraphicsView
         # which handle all this stuff.
         self.__scene = self.__mainWindow.graphicsView
+
+        # Creating default config
+        self.systconf['dynamips'] = systemDynamipsConf()
 
         self.mainWindow.show()
         sys.exit(QApplication.exec_())
