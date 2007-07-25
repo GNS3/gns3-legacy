@@ -21,6 +21,7 @@
 #
 
 conf_iosImage_defaults = {
+    'id': -1,
     'filename': '',
     'platform': '',
     'chassis': '',
@@ -30,6 +31,7 @@ conf_iosImage_defaults = {
 }
 
 conf_iosImage_types = {
+    'id': int,
     'filename': str,
     'platform': str,
     'chassis': str,
@@ -52,7 +54,6 @@ conf_hypervisor_types = {
 }
 
 conf_IOSRouter_defaults = {
-    'id': -1,
     'image': '', 
     'platform': '', 
     'chassis': '',
@@ -73,7 +74,6 @@ conf_IOSRouter_defaults = {
 }
 
 conf_IOSRouter_types = {
-    'id': int,
     'image': str, 
     'platform': str, 
     'chassis': str,
