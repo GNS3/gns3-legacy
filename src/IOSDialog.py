@@ -344,8 +344,8 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                                'port': hypervisor_port,
                                'working_directory': working_dir
             }
+            
             ConfDB().setGroupDict(newhypervisor_confkey, newhypconf_dict)
-
             self.listWidgetHypervisors.addItem(hypervisor_host + ':' + hypervisor_port)
 
     def slotDeleteHypervisor(self):

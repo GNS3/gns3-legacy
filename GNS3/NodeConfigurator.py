@@ -40,6 +40,7 @@ class ConfigurationPageItem(QtGui.QTreeWidgetItem):
 #            self.setIcon(0, iconFile)
         self.__pageName = unicode(pageName)
         self.__ids = []
+        self.tmpConfig = None
 
     def getPageName(self):
         """ Public method to get the name of the associated configuration page.
@@ -47,7 +48,7 @@ class ConfigurationPageItem(QtGui.QTreeWidgetItem):
         """
 
         return self.__pageName
-        
+
     def addID(self,  id):
     
         self.__ids.append(id)
@@ -64,6 +65,8 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
 
         QtGui.QDialog.__init__(self)
         self.setupUi(self)
+        
+        self.currentItm = None
         
         self.buttonBox.button(QtGui.QDialogButtonBox.Apply).setEnabled(False)
         self.buttonBox.button(QtGui.QDialogButtonBox.Reset).setEnabled(False)
@@ -109,8 +112,9 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             self.__showConfigurationPage)
         self.connect(self.treeViewNodes, QtCore.SIGNAL("itemSelectionChanged()"),
             self.__slotSelectionChanged)
+        self.connect(self.treeViewNodes, QtCore.SIGNAL("currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)"),
+            self.__slotCurrentItemChanged)
             
-
     def __slotSelectionChanged(self):
     
         items = self.treeViewNodes.selectedItems()
@@ -120,15 +124,22 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             if not item.parent():
                 self.titleLabel.setText("%s group" % (item.text(0)))
                 return
-            
+
         first_item = items[0]
         if count > 1:
             pageTitle = "Group of %d %s" % (count,  first_item.parent().text(0))
         else:
             pageTitle = "%s node" % (first_item.text(0))
         self.titleLabel.setText(pageTitle)
-            
 
+    def __slotCurrentItemChanged(self,  current,  previous):
+    
+        pass
+#        if current:
+#            print current.getIDs()
+#        if previous:
+#            print previous.getIDs()
+    
     def __importConfigurationPage(self, name):
         """ Private method to import a configuration page module.
             name: name of the configuration page module (string)
@@ -159,6 +170,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             pageData: data structure for the page to initialize
             returns reference to the initialized page
         """
+
         page = None
         mod = self.__importConfigurationPage(pageData[2])
         if mod:
@@ -171,7 +183,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         """ Public slot to show a named configuration page.
             itm: reference to the selected item (QTreeWidgetItem)
         """
-        
+
         pageName = unicode(itm.getPageName())
         pageData = self.configItems[pageName]
         pageTitle = "Node configuration"
@@ -184,8 +196,18 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         if page is None:
             page = self.emptyPage
         else:
-            #TODO: parent ?
-            #if itm.parent():
+
+#            if self.currentItm and self.currentItm != itm:
+#                print 'diff itm'
+#                self.currentItm.tmpConfig = page.getCurrentConfig()
+#                self.currentItm = itm
+#                #print itm.tmpConfig
+#                #page.setCurrentConfig(itm.tmpConfig)
+#
+#            if self.currentItm == None:
+#                self.currentItm = itm
+#                itm.tmpConfig = page.getCurrentConfig()
+
             page.loadConfig(itm.getIDs()[0])
 
         self.configStack.setCurrentWidget(page)
@@ -217,6 +239,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
     def on_applyButton_clicked(self):
         """ Private slot called to apply the settings of the current page.
         """
+
         if self.configStack.currentWidget() != self.emptyPage:
             page = self.configStack.currentWidget()
 

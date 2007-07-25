@@ -106,7 +106,8 @@ class HypervisorManager:
                 
     def stopProcHypervisors(self):
     
-        self.hypervisor_baseport = HYPERVISOR_BASE_PORT
+        dynamips = globals.GApp.systconf['dynamips']
+        self.hypervisor_baseport = dynamips.port
         self.baseUDP = BASE_PORT_UDP
         for hypervisor in self.hypervisors:
             hypervisor['proc_instance'].close()
