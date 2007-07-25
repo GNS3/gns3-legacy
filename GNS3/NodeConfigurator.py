@@ -20,6 +20,7 @@
 # Contact: contact@gns3.net
 #
 
+import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_NodeConfigurator import Ui_NodeConfigurator
 from GNS3.Node.Router import Router
@@ -102,6 +103,9 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             self.itmDict[parent].addID(node.id)
             item = ConfigurationPageItem(self.itmDict[parent], unicode(node.hostname), parent,  None)
             item.addID(node.id)
+            item.tmpConfig = node.config
+            if self.itmDict[parent].tmpConfig == None:
+                self.itmDict[parent].tmpConfig = node.config
 
         self.treeViewNodes.sortByColumn(0, QtCore.Qt.AscendingOrder)
         
@@ -112,9 +116,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             self.__showConfigurationPage)
         self.connect(self.treeViewNodes, QtCore.SIGNAL("itemSelectionChanged()"),
             self.__slotSelectionChanged)
-        self.connect(self.treeViewNodes, QtCore.SIGNAL("currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)"),
-            self.__slotCurrentItemChanged)
-            
+
     def __slotSelectionChanged(self):
     
         items = self.treeViewNodes.selectedItems()
@@ -132,14 +134,6 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             pageTitle = "%s node" % (first_item.text(0))
         self.titleLabel.setText(pageTitle)
 
-    def __slotCurrentItemChanged(self,  current,  previous):
-    
-        pass
-#        if current:
-#            print current.getIDs()
-#        if previous:
-#            print previous.getIDs()
-    
     def __importConfigurationPage(self, name):
         """ Private method to import a configuration page module.
             name: name of the configuration page module (string)
@@ -197,18 +191,15 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             page = self.emptyPage
         else:
 
-#            if self.currentItm and self.currentItm != itm:
-#                print 'diff itm'
-#                self.currentItm.tmpConfig = page.getCurrentConfig()
-#                self.currentItm = itm
-#                #print itm.tmpConfig
-#                #page.setCurrentConfig(itm.tmpConfig)
-#
-#            if self.currentItm == None:
-#                self.currentItm = itm
-#                itm.tmpConfig = page.getCurrentConfig()
+            if self.currentItm and self.currentItm != itm:
+                
+                page.saveConfig(self.currentItm.getIDs()[0],  self.currentItm.tmpConfig)
+                self.currentItm = itm
 
-            page.loadConfig(itm.getIDs()[0])
+            if self.currentItm == None:
+                self.currentItm = itm
+
+            page.loadConfig(itm.getIDs()[0],  itm.tmpConfig)
 
         self.configStack.setCurrentWidget(page)
         if page != self.emptyPage:
@@ -234,6 +225,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         elif button == self.buttonBox.button(QtGui.QDialogButtonBox.Reset):
             self.on_resetButton_clicked()
         else:
+            self.on_applyButton_clicked()
             QtGui.QDialog.accept(self)
 
     def on_applyButton_clicked(self):
