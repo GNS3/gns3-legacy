@@ -113,6 +113,11 @@ class systemDynamipsConf(ConfigObject):
 
         self.__loadFromConfigFile()
 
+
+        for (key, value) in self.__dict__['conf'].iteritems():
+            ConfDB().set(self.oldconf[key], value)
+        ConfDB().sync()
+
 #    def __del__(self):
 #        for (key, value) in self.__dict__['conf'].iteritems():
 #            print ">>> saving config %s,%s" % (key, value) 

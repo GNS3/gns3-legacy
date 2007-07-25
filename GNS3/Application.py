@@ -46,9 +46,12 @@ class Application(QApplication, Singleton):
         self.__workspace = None
         self.__scene = None
         self.__topology = None
+
         # Dict for storing config
         self.__systconf = {}
         self.__projconf = {}
+        self.__iosimages = {}
+        self.__hypervisors = {}
     
         # set global app to ourself
         globals.GApp = self
@@ -142,7 +145,37 @@ class Application(QApplication, Singleton):
         return self.__projconf
     projconf = property(__getProjConf, __setProjConf,
                     doc = 'Project config instance')
+                    
+    # property: `iosimages'
+    def __setIOSImages(self, iosimages):
+        """ register the sysconf instance
+        """
+        QMutexLocker(self.__clsmutex)
+        self.__iosimages = iosimages 
+    
+    def __getIOSImages(self):
+        """ return the sysconf instance
+        """
+        QMutexLocker(self.__clsmutex)
+        return self.__iosimages
+    iosimages = property(__getIOSImages, __setIOSImages,
+                    doc = 'IOS images dictionnary')
 
+    # property: `hypervisors'
+    def __setHypervisors(self, hypervisors):
+        """ register the sysconf instance
+        """
+        QMutexLocker(self.__clsmutex)
+        self.__hypervisors = hypervisors
+    
+    def __getHypervisors(self):
+        """ return the sysconf instance
+        """
+        QMutexLocker(self.__clsmutex)
+        return self.__hypervisors
+    hypervisors = property(__getHypervisors, __setHypervisors,
+                    doc = 'Hypervisors dictionnary')
+                    
     def run(self):
         # INFO: Workspace create a ` Scene' object,
         # so it also set self.__topology

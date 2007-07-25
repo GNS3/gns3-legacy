@@ -24,6 +24,7 @@ import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_IOSRouterPage import Ui_IOSRouterPage
 from GNS3.Dynagen.dynamips_lib import ADAPTER_MATRIX
+from GNS3.Utils import fileBrowser
 
 class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
     """
@@ -36,9 +37,10 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         self.setObjectName("IOSRouter")
         self.currentNodeID = None
 
+        self.connect(self.pushButtonStartupConfig, QtCore.SIGNAL('clicked()'), self.slotSelectStartupConfig)
         # connect IOS combobox to a slot
         self.connect(self.comboBoxIOS, QtCore.SIGNAL('currentIndexChanged(int)'), self.slotSelectedIOS)
-    
+        
         self.slots_list = [self.comboBoxSlot0,
                            self.comboBoxSlot1,
                            self.comboBoxSlot2,
@@ -132,6 +134,15 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                 self.spinBoxIomem.setEnabled(True)
                 self.spinBoxIomem.setValue(IOSconfig['iomem'])
 
+    def slotSelectStartupConfig(self):
+        """ Get startup-config from the file system
+        """
+        
+        path = fileBrowser('startup-config').getFile()
+        if path != None:
+            self.lineEditStartupConfig.clear()
+            self.lineEditStartupConfig.setText(path[0])
+
     def loadConfig(self,  id):
     
         self.currentNodeID = id
@@ -139,8 +150,8 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         IOSconfig = node.config
 
         self.comboBoxIOS.clear()
-        # TODO: load ios image
-        self.comboBoxIOS.addItems(['ios 1',  'ios 2',  'ios 3'])
+        images = globals.GApp.iosimages.keys()
+        self.comboBoxIOS.addItems(images)
         index = self.comboBoxIOS.findText(IOSconfig['image'])
         if index != -1:
             self.comboBoxIOS.setCurrentIndex(index)
@@ -169,9 +180,9 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         
         node = globals.GApp.topology.getNode(id)
         IOSconfig = node.config
-        IOSconfig['image'] = str(self.comboBoxIOS.currentText())
+        IOSconfig['image'] = unicode(self.comboBoxIOS.currentText())
         IOSconfig['consoleport'] = str(self.lineEditConsolePort.text())
-        IOSconfig['startup-config'] = str(self.lineEditStartupConfig.text())
+        IOSconfig['startup-config'] = unicode(self.lineEditStartupConfig.text())
         IOSconfig['RAM'] = self.spinBoxRamSize.value()
         IOSconfig['ROM'] = self.spinBoxRomSize.value()
         IOSconfig['NVRAM'] = self.spinBoxNvramSize.value()

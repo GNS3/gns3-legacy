@@ -24,6 +24,9 @@ import os,  re
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_IOSDialog import Ui_IOSDialog
 from GNS3.Config.Config import ConfDB
+from GNS3.Utils import fileBrowser
+from GNS3.Config.Objects import iosImageConf,  hypervisorConf
+import GNS3.Globals as globals
 
 PLATFORMS = {'2600': ['2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM', '2691'],
              '3600': ['3620', '3640', '3660'],
@@ -67,47 +70,37 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
     def _reloadInfos(self):
         """ Reload previously recorded IOS images
         """
-        
-        # FIXME: ios info reloading
-        pass
-        
+
         images_list = []
         hypervisors_list = []
-        
-#        for name in self.main.ios_images.keys():
-#            image = self.main.ios_images[name]
-#
-#            item = QtGui.QTreeWidgetItem(self.treeWidgetIOSimages)
-#            # image name column
-#            item.setText(0, name)
-#            # platform column
-#            item.setText(1, image['platform'])
-#            # chassis column
-#            item.setText(2, image['chassis'])
-#            # idle pc column
-#            item.setText(3, image['idlepc'])
-#            # hypervisor column
-#            if image['hypervisor_host'] == None:
-#                # local hypervisor
-#                item.setText(4, 'local')
-#            else:
-#                # external hypervisor
-#                if (image['working_directory'] == None):
-#                    working_dir = ''
-#                else:
-#                    working_dir = image['working_directory']
-#                item.setText(4,  image['hypervisor_host'] + ':' +  str(image['hypervisor_port']))
 
+        for name in globals.GApp.iosimages.keys():
+            image = globals.GApp.iosimages[name]
 
-        # FIXME: change global access
-#        for name in self.main.hypervisors.keys():
-#            hypervisor = self.main.hypervisors[name]
-#            item = QtGui.QTreeWidgetItem(self.treeWidgetHypervisor)
-#            item.setText(0, hypervisor['host'])
-#            item.setText(1, hypervisor['port'])
-#            item.setText(2, hypervisor['working_directory'])
-#            hypervisors_list.append(item)
-#            self.listWidgetHypervisors.addItem(hypervisor['host'] + ':' + hypervisor['port'])
+            item = QtGui.QTreeWidgetItem(self.treeWidgetIOSimages)
+            # image name column
+            item.setText(0, name)
+            # platform column
+            item.setText(1, image.platform)
+            # chassis column
+            item.setText(2, image.chassis)
+            # idle pc column
+            item.setText(3, image.idlepc)
+            # hypervisor column
+            if image.hypervisor_host == None:
+                # local hypervisor
+                item.setText(4, 'local')
+            else:
+                item.setText(4,  image.hypervisor_host + ':' +  str(image.hypervisor_port))
+
+        for name in globals.GApp.hypervisors.keys():
+            hypervisor = GApp.hypervisors[name]
+            item = QtGui.QTreeWidgetItem(self.treeWidgetHypervisor)
+            item.setText(0, hypervisor.host)
+            item.setText(1, hypervisor.port)
+            item.setText(2, hypervisor.workdir)
+            hypervisors_list.append(item)
+            self.listWidgetHypervisors.addItem(hypervisor.host + ':' + hypervisor.port)
                     
         # Add images to IOS.images treeview
         self.treeWidgetIOSimages.addTopLevelItems(images_list)
@@ -157,15 +150,10 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """ Get an IOS image file from the file system
             Insert platforms and models
         """
-        
-        filedialog = QtGui.QFileDialog(self)
-        selected = QtCore.QString()
-        path = QtGui.QFileDialog.getOpenFileName(filedialog, 'Select an IOS image', '.', \
-                    '(*.*)', selected)
-        if not path:
-            return
-        path = unicode(path)
-        try:
+
+        path = fileBrowser('Select an IOS image').getFile()
+        if path != None:
+            path = path[0]
             self.lineEditIOSImage.clear()
             self.lineEditIOSImage.setText(path)
             platform = self._getIOSplatform(os.path.basename(path))
@@ -182,8 +170,6 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                             if index != -1:
                                 self.comboBoxChassis.setCurrentIndex(index)
                             break
-        except IOError, (errno, strerror):
-            QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
     
     def slotAddIOS(self):
         """ Save an IOS image and all his settings 
@@ -215,6 +201,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 item.setText(4, hypervisor_host + ':' + str(hypervisor_port))
             else:
                 # external hypervisor
+                globals.useHypervisorManager = False
                 items = self.listWidgetHypervisors.selectedItems()
                 if len(items) == 0:
                     firstitem = self.listWidgetHypervisors.item(0)
@@ -233,34 +220,44 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                     hypervisor_port = splittab[1]
 
             # image name column
-            imagename = hypervisor_host + ':' + imagename
-            item.setText(0, imagename)
+            imagekey = hypervisor_host + ':' + imagename
+            item.setText(0, imagekey)
 
             # update an already existing IOS image
-            
-            # FIXME: change global access
-#            if self.main.ios_images.has_key(imagename):
-#                delitem = self.treeWidgetIOSimages.findItems(imagename, QtCore.Qt.MatchFixedString)[0]
-#                self.treeWidgetIOSimages.setCurrentItem(delitem)
-#                self.slotDeleteIOS()
 
-            newimage_confkey = str(ConfDB().getGroupNewNumChild("IOS.images"))
-            newimage_dict = {'filename': imagename,
-                            'platform': str(self.comboBoxPlatform.currentText()),
-                            'chassis': str(self.comboBoxChassis.currentText()),
-                            'idlepc': idlepc,
-                            'hypervisor_host': hypervisor_host,
-                            'hypervisor_port': int(hypervisor_port),
-                            'working_directory': working_directory
-            }
+            if globals.GApp.iosimages.has_key(imagekey):
+                delitem = self.treeWidgetIOSimages.findItems(imagename, QtCore.Qt.MatchFixedString)[0]
+                self.treeWidgetIOSimages.setCurrentItem(delitem)
+                self.slotDeleteIOS()
+
+#            newimage_confkey = str(ConfDB().getGroupNewNumChild("IOS.images"))
+#            newimage_dict = {'filename': imagename,
+#                            'platform': str(self.comboBoxPlatform.currentText()),
+#                            'chassis': str(self.comboBoxChassis.currentText()),
+#                            'idlepc': idlepc,
+#                            'hypervisor_host': hypervisor_host,
+#                            'hypervisor_port': int(hypervisor_port),
+#                            'working_directory': working_directory
+#            }
+            
+            if globals.GApp.iosimages.has_key(imagekey):
+                conf = globals.GApp.iosimages[imagekey]
+            else:
+                conf = iosImageConf()
+ 
+            conf.filename = imagename
+            conf.platform = str(self.comboBoxPlatform.currentText())
+            conf.chassis = str(self.comboBoxChassis.currentText())
+            conf.idlepc = idlepc
+            conf.hypervisor_host = hypervisor_host
+            conf.hypervisor_port = int(hypervisor_port)
+            globals.GApp.iosimages[imagekey] = conf
+
             # Save `IOS image' to user config
-            ConfDB().setGroupDict(newimage_confkey, newimage_dict)
+            #ConfDB().setGroupDict(newimage_confkey, newimage_dict)
             # Also, save a copy into the global dict.
-            newimage_dict['confkey'] = newimage_confkey
+            #newimage_dict['confkey'] = newimage_confkey
             
-            # FIXME: change global access
-#            self.main.ios_images[imagename] = newimage_dict
-
             self.treeWidgetIOSimages.addTopLevelItem(item)
             # switch to ios images tab
             self.tabWidget.setCurrentIndex(0)
@@ -291,27 +288,20 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         item = self.treeWidgetIOSimages.currentItem()
         if (item != None):
             self.treeWidgetIOSimages.takeTopLevelItem(self.treeWidgetIOSimages.indexOfTopLevelItem(item))
-            confkey = self.main.ios_images[str(item.text(0))]['confkey']
-            ConfDB().delete(confkey)
             
-             # FIXME: change global access
-#            del self.main.ios_images[str(item.text(0))]
+            #confkey = self.main.ios_images[str(item.text(0))]['confkey']
+            #ConfDB().delete(confkey)
+            
+            del globals.GApp.iosimages[str(item.text(0))]
 
     def slotWorkingDirectory(self):
         """ Get a working directory from the file system
         """
         
-        filedialog = QtGui.QFileDialog(self)
-        path = QtGui.QFileDialog.getExistingDirectory(filedialog, 'Select a working directory', '.', QtGui.QFileDialog.ShowDirsOnly)
-
-        if not path:
-            return
-        path = unicode(path)
-        try:
+        path = fileBrowser('Select a working directory').getDir()
+        if path != None:
             self.lineEditWorkingDir.clear()
             self.lineEditWorkingDir.setText(path)
-        except IOError, (errno, strerror):
-            QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
 
     def slotAddHypervisor(self):
         """ Add a hypervisor to the hypervisors list
@@ -336,23 +326,31 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             self.treeWidgetHypervisor.resizeColumnToContents(1)
             
             # Save config into the global dict.
-            newhypervisor_confkey = str(ConfDB().getGroupNewNumChild("IOS.hypervisors"))
-            newhypervisor_dict = {'host': hypervisor_host,
-                                  'port': hypervisor_port,
-                                  'working_directory': working_dir,
-                                  'dynamips_instance': None,
-                                  'confkey': newhypervisor_confkey
-            }
+#            newhypervisor_confkey = str(ConfDB().getGroupNewNumChild("IOS.hypervisors"))
+#            newhypervisor_dict = {'host': hypervisor_host,
+#                                  'port': hypervisor_port,
+#                                  'working_directory': working_dir,
+#                                  'dynamips_instance': None,
+#                                  'confkey': newhypervisor_confkey
+#            }
 
-             # FIXME: change global access
-#            self.main.hypervisors[hypervisor_host + ':' + hypervisor_port] = newhypervisor_dict
+            if globals.GApp.iosimages.has_key(hypervisor_host + ':' + hypervisor_port):
+                conf = globals.GApp.hypervisors[hypervisor_host + ':' + hypervisor_port]
+            else:
+                conf = hypervisorConf()
+ 
+            conf.host = hypervisor_host
+            conf.port = int(hypervisor_port)
+            conf.workdir = working_dir
+            globals.GApp.hypervisors[hypervisor_host + ':' + hypervisor_port] = conf
+
+#            # Save IOS hypervisors to user config
+#            newhypconf_dict = {'host': hypervisor_host,
+#                               'port': hypervisor_port,
+#                               'working_directory': working_dir
+#            }
             
-            # Save IOS hypervisors to user config
-            newhypconf_dict = {'host': hypervisor_host,
-                               'port': hypervisor_port,
-                               'working_directory': working_dir
-            }
-            ConfDB().setGroupDict(newhypervisor_confkey, newhypconf_dict)
+            #ConfDB().setGroupDict(newhypervisor_confkey, newhypconf_dict)
 
             self.listWidgetHypervisors.addItem(hypervisor_host + ':' + hypervisor_port)
 
@@ -369,7 +367,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
            
            # FIXME: change global access
 #           confkey = self.main.hypervisors[matchstring]['confkey']
-           ConfDB().delete(confkey)
+           #ConfDB().delete(confkey)
            
            items = self.listWidgetHypervisors.findItems(matchstring, QtCore.Qt.MatchFixedString)
            for i in items:

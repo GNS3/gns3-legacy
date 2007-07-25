@@ -19,6 +19,7 @@
 # Contact: developers@gns3.net
 #
 
+from GNS3.Globals import GApp
 from PyQt4 import QtCore
 from GNS3.Utils import Singleton
 
