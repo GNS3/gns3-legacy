@@ -94,13 +94,13 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 item.setText(4,  image.hypervisor_host + ':' +  str(image.hypervisor_port))
 
         for name in globals.GApp.hypervisors.keys():
-            hypervisor = GApp.hypervisors[name]
+            hypervisor = globals.GApp.hypervisors[name]
             item = QtGui.QTreeWidgetItem(self.treeWidgetHypervisor)
             item.setText(0, hypervisor.host)
-            item.setText(1, hypervisor.port)
+            item.setText(1, str(hypervisor.port))
             item.setText(2, hypervisor.workdir)
             hypervisors_list.append(item)
-            self.listWidgetHypervisors.addItem(hypervisor.host + ':' + hypervisor.port)
+            self.listWidgetHypervisors.addItem(hypervisor.host + ':' + str(hypervisor.port))
                     
         # Add images to IOS.images treeview
         self.treeWidgetIOSimages.addTopLevelItems(images_list)
@@ -244,7 +244,9 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 conf = globals.GApp.iosimages[imagekey]
             else:
                 conf = iosImageConf()
- 
+
+            conf.id = globals.GApp.iosimages_ids
+            globals.GApp.iosimages_ids += 1
             conf.filename = imagename
             conf.platform = str(self.comboBoxPlatform.currentText())
             conf.chassis = str(self.comboBoxChassis.currentText())
@@ -338,7 +340,9 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 conf = globals.GApp.hypervisors[hypervisor_host + ':' + hypervisor_port]
             else:
                 conf = hypervisorConf()
- 
+
+            conf.id = globals.GApp.hypervisors_ids
+            globals.GApp.hypervisors_ids +=1
             conf.host = hypervisor_host
             conf.port = int(hypervisor_port)
             conf.workdir = working_dir

@@ -27,6 +27,7 @@ from GNS3.Utils import Singleton
 from GNS3.Workspace import Workspace
 from GNS3.Topology import Topology
 from GNS3.Config.Objects import systemDynamipsConf
+from GNS3.Config.Config import ConfDB, GNS_Conf
 import GNS3.Globals as globals
 
 class Application(QApplication, Singleton):
@@ -53,6 +54,8 @@ class Application(QApplication, Singleton):
         self.__projconf = {}
         self.__iosimages = {}
         self.__hypervisors = {}
+        self.iosimages_ids = 0
+        self.hypervisors_ids = 0
     
         # set global app to ourself
         globals.GApp = self
@@ -192,7 +195,53 @@ class Application(QApplication, Singleton):
         self.__scene = self.__mainWindow.graphicsView
 
         # Creating default config
+        # and create old ConfDB() object
+        ConfDB()
+        GNS_Conf().IOS_images()
+        GNS_Conf().IOS_hypervisors()
+        
         self.systconf['dynamips'] = systemDynamipsConf()
+        confo = self.systconf['dynamips']
+        confo.path = str(ConfDB().get('Dynamips/hypervisor_path', ''))
+        confo.port = int(ConfDB().get('Dynamips/hypervisor_port', 7200))
+        confo.workdir = str(ConfDB().get('Dynamips/hypervisor_working_directory', ''))
+        confo.term_cmd = str(ConfDB().get('Dynamips/console', ''))
 
         self.mainWindow.show()
-        sys.exit(QApplication.exec_())
+
+        retcode = QApplication.exec_()
+        # ---
+        self.saveConfQaD()
+        # ---
+        sys.exit(retcode)
+
+    def saveConfQaD(self):
+        """ Quick and Dirty saving of IOSImages / Hypervisors into gns3.conf
+        """
+
+        confo = self.systconf['dynamips'] 
+        ConfDB().set('Dynamips/hypervisor_path', confo.path)
+        ConfDB().set('Dynamips/hypervisor_port', confo.port)
+        ConfDB().set('Dynamips/hypervisor_working_directory', confo.workdir)
+        ConfDB().set('Dynamips/console', confo.term_cmd)
+
+        c = ConfDB()
+        for (key, o) in self.__iosimages.iteritems():
+            basekey = "IOS.images/" + str(o.id)
+            c.set(basekey + "/filename", o.filename)
+            c.set(basekey + "/chassis", o.chassis)
+            c.set(basekey + "/platform", o.platform)
+            c.set(basekey + "/hypervisor_port", o.hypervisor_port)
+            c.set(basekey + "/hypervisor_host", o.hypervisor_host)
+            c.set(basekey + "/working_directory", o.working_directory)
+            c.set(basekey + "/idlepc", o.idlepc)
+
+        for (key, o) in self.__hypervisors.iteritems():
+            basekey = "IOS.hypervisors/" + str(o.id)
+            c.set(basekey + "/host", o.host)
+            c.set(basekey + "/port", o.port)
+            c.set(basekey + "/working_directory", o.workdir)
+        
+        ConfDB().sync()
+
+        pass

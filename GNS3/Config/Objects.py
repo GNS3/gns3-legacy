@@ -21,7 +21,7 @@
 #
 
 from GNS3.Config import Defaults
-from GNS3.Config.Config import ConfDB
+#from GNS3.Config.Config import ConfDB
 
 class ConfigObject(object):
     def __init__(self):
@@ -111,12 +111,12 @@ class systemDynamipsConf(ConfigObject):
         self.conf = Defaults.conf_systemDynamips_defaults.copy()
         self.types = Defaults.conf_systemDynamips_types
 
-        self.__loadFromConfigFile()
+#        self.__loadFromConfigFile()
 
 
-        for (key, value) in self.__dict__['conf'].iteritems():
-            ConfDB().set(self.oldconf[key], value)
-        ConfDB().sync()
+#        for (key, value) in self.__dict__['conf'].iteritems():
+#            ConfDB().set(self.oldconf[key], value)
+#        ConfDB().sync()
 
 #    def __del__(self):
 #        for (key, value) in self.__dict__['conf'].iteritems():
@@ -126,22 +126,22 @@ class systemDynamipsConf(ConfigObject):
 #        ConfDB().sync()
         
 
-    def __loadFromConfigFile(self):
-        a = ConfDB().get(self.oldconf['path'])
-        if a is not None:
-            self.path = a
+#    def __loadFromConfigFile(self):
+#        a = ConfDB().get(self.oldconf['path'])
+#        if a is not None:
+#            self.path = a
 
-        a = ConfDB().get(self.oldconf['port'])
-        if a is not None:
-            self.port = int(a)
+#        a = ConfDB().get(self.oldconf['port'])
+#        if a is not None:
+#            self.port = int(a)
 
-        a = ConfDB().get(self.oldconf['workdir'])
-        if a is not None:
-            self.workdir = a
+#        a = ConfDB().get(self.oldconf['workdir'])
+#        if a is not None:
+#            self.workdir = a
 
-        a = ConfDB().get(self.oldconf['term_cmd'])
-        if a is not None:
-            self.term_cmd = a
+#        a = ConfDB().get(self.oldconf['term_cmd'])
+#        if a is not None:
+#            self.term_cmd = a
 
-    def postset_all(self, name, value):
-        ConfDB().set(self.oldconf[name], value)
+#    def postset_all(self, name, value):
+#        ConfDB().set(self.oldconf[name], value)
