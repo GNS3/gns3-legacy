@@ -24,6 +24,7 @@ import sys
 from PyQt4 import QtGui, QtCore
 from GNS3.Ui.ConfigurationPages.Widget_SystemApplications import Ui_SystemApplications
 from GNS3.Config.Objects import systemDynamipsConf
+from GNS3.Config.Config import ConfDB
 from GNS3.Utils import fileBrowser, translate
 from GNS3.Globals import GApp
 
@@ -83,6 +84,7 @@ class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
         self.conf.port = self.dynamips_port.value()
 
         GApp.systconf['dynamips'] = self.conf
+        ConfDB().sync()
 
     def __setDynamipsPath(self):
         """ Open a file dialog for choosing the location of dynamips executable

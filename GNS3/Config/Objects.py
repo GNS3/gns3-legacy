@@ -21,6 +21,7 @@
 #
 
 from GNS3.Config import Defaults
+from GNS3.Config.Config import ConfDB
 
 class ConfigObject(object):
     def __init__(self):
@@ -50,7 +51,7 @@ class ConfigObject(object):
     def __setattr__(self, name, value):
         # We must bypass `conf' and `types' attributes, because we use
         # it in this function !
-        if name in ['conf']:
+        if name == 'conf' or not self.__dict__['conf'].has_key(name):
             return super(ConfigObject, self).__setattr__(name, value)
 
         if self.__dict__['conf'].has_key(name):
@@ -72,6 +73,16 @@ class ConfigObject(object):
             # behave like the normal __setattr__
             super(ConfigObject, self).__setattr__(name, value)
 
+        # Post `set' function
+        try:
+            method_name = "postset_all"
+            method = getattr(self, method_name)
+            if callable(method):
+                return method(name, value)
+        except:
+            # silently ignore errors
+            pass
+
 # ----------------------------------------------------------------------------
 
 
@@ -88,7 +99,44 @@ class hypervisorConf(ConfigObject):
         self.types = Defaults.conf_hypervisor_types
 
 class systemDynamipsConf(ConfigObject):
+    oldconf = {
+        'path': 'Dynamips/hypervisor_path',
+        'port': 'Dynamips/hypervisor_port',
+        'workdir': 'Dynamips/hypervisor_working_directory',
+        'term_cmd': 'Dynamips/console',
+    }
+
     def __init__(self):
         ConfigObject.__init__(self)
         self.conf = Defaults.conf_systemDynamips_defaults.copy()
         self.types = Defaults.conf_systemDynamips_types
+
+        self.__loadFromConfigFile()
+
+#    def __del__(self):
+#        for (key, value) in self.__dict__['conf'].iteritems():
+#            print ">>> saving config %s,%s" % (key, value) 
+#            print ">>> --- %s" % (self.oldconf[key])
+#            ConfDB().set(self.oldconf[key], value)
+#        ConfDB().sync()
+        
+
+    def __loadFromConfigFile(self):
+        a = ConfDB().get(self.oldconf['path'])
+        if a is not None:
+            self.path = a
+
+        a = ConfDB().get(self.oldconf['port'])
+        if a is not None:
+            self.port = int(a)
+
+        a = ConfDB().get(self.oldconf['workdir'])
+        if a is not None:
+            self.workdir = a
+
+        a = ConfDB().get(self.oldconf['term_cmd'])
+        if a is not None:
+            self.term_cmd = a
+
+    def postset_all(self, name, value):
+        ConfDB().set(self.oldconf[name], value)
