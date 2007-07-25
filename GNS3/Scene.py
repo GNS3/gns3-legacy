@@ -79,7 +79,7 @@ class Scene(QtGui.QGraphicsView):
     def slotShowHostname(self):
     
         for item in self.__topology.selectedItems():
-            item.setSelected(False)
+            #item.setSelected(False)
             if not item.hostnameDiplayed():
                 item.showHostname()
             else:

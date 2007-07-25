@@ -19,9 +19,10 @@
 # Contact: developers@gns3.net
 #
 
-from GNS3.Globals import GApp
+import GNS3.Globals as globals
 from PyQt4 import QtCore
 from GNS3.Utils import Singleton
+from GNS3.Config.Objects import hypervisorConf, iosImageConf
 
 _corpname = 'EPITECH'
 _appname = 'GNS-3'
@@ -172,6 +173,22 @@ class GNS_Conf(object):
                 continue
 
             img_ref = str(img_filename)
+
+            conf = iosImageConf()
+            conf.id = int(img_num)
+            conf.filename = str(img_filename)
+            conf.platform = str(c.get(cgroup + "/platform", ''))
+            conf.chassis = str(c.get(cgroup + "/chassis", ''))
+            conf.idlepc = str(c.get(cgroup + "/idlepc", ''))
+            conf.hypervisor_host = str(c.get(cgroup + "/hypervisor_host"))
+            conf.hypervisor_port = int(c.get(cgroup + "/hypervisor_port"))
+            conf.working_directory = str(c.get(cgroup + "/working_directory"))
+            
+            globals.GApp.iosimages[img_ref] = conf
+
+            if conf.id >= globals.GApp.iosimages_ids:
+                globals.GApp.iosimages_ids = conf.id + 1
+
             # FIXME: change global access
 #            self.main.ios_images[img_ref] = {
 #                    'confkey': str(cgroup),
@@ -211,6 +228,17 @@ class GNS_Conf(object):
                 continue
 
             img_ref = str(hyp_host + ':' + hyp_port)
+
+            conf = hypervisorConf()
+            conf.id = int(img_num)
+            conf.host = hyp_host
+            conf.port = int(hyp_port)
+            conf.workdir = hyp_wdir
+            globals.GApp.hypervisors[img_ref] = conf
+
+            if conf.id >= globals.GApp.hypervisors_ids:
+                globals.GApp.hypervisors_ids = conf.id + 1
+
             # FIXME: change global access
 #            self.main.hypervisors[img_ref] = {
 #                    'confkey' : str(cgroup),
