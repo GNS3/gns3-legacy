@@ -102,7 +102,7 @@ class Router(AbstractNode):
         if image == '':
             # No IOS image configured, take the first one available ...
             iosimages = globals.GApp.iosimages.keys()
-            if len(globals.GApp.iosimages.keys()):
+            if len(iosimages):
                 image = iosimages[0]
                 print 'Use first available IOS image !'
             else:
@@ -293,5 +293,5 @@ class Router(AbstractNode):
         """ Start a telnet console and connect it to an IOS
         """
 
-        if self.dev.console != None:
+        if self.dev and self.dev.console != None:
             console.connect('localhost',  self.dev.console,  self.hostname)

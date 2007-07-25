@@ -68,8 +68,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         swWidget = self.toolBar_General.widgetForAction(self.action_SwitchMode)
         swWidget.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
 
-        self.hypervisor_manager = HypervisorManager()
-        
+        self.hypervisor_manager = None
         # Switch to default mode
         self.switchToMode_Design()
 
@@ -346,7 +345,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
             return
         
-        if globals.useHypervisorManager:
+        if self.hypervisor_manager and globals.useHypervisorManager:
             self.hypervisor_manager.stopProcHypervisors()
         else:
             globals.baseUDP = 10000
@@ -356,7 +355,22 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
         print ">>> switchToMode: EMULATION"
         
+        if len(globals.GApp.iosimages.keys()) == 0:
+            # No IOS images configured, users have to register an IOS before going into emulation mode
+            QtGui.QMessageBox.warning(self, 'Emulation mode', 'Please register at least one IOS image')
+            self.__action_IOSImages()
+            return
+    
         if globals.useHypervisorManager:
+        
+            if not globals.GApp.systconf.has_key('dynamips'):
+                QtGui.QMessageBox.warning(self, 'Emulation mode', 'Please configure Dynamips')
+                self.__action_SystemPreferences()
+                return
+
+            if self.hypervisor_manager == None:
+                self.hypervisor_manager = HypervisorManager()
+            
             # hypervisor not started, so don't try to continue
             if self.hypervisor_manager.startProcHypervisors() == False:
                 return
