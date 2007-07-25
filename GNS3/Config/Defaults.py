@@ -39,17 +39,20 @@ conf_iosImage_types = {
 }
 
 conf_hypervisor_defaults = {
+    'id': -1,
     'host': '',
     'port': 7200,
     'workdir': '',
 }
 conf_hypervisor_types = {
+    'id': int,
     'host': str,
     'port': int,
     'workdir': str
 }
 
 conf_IOSRouter_defaults = {
+    'id': -1,
     'image': '', 
     'platform': '', 
     'chassis': '',
@@ -70,6 +73,7 @@ conf_IOSRouter_defaults = {
 }
 
 conf_IOSRouter_types = {
+    'id': int,
     'image': str, 
     'platform': str, 
     'chassis': str,
