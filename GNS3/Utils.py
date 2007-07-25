@@ -64,3 +64,12 @@ class fileBrowser(object):
         if path is not None:
             path = unicode(path)
         return (path)
+
+    def getSaveFile(self):
+        path = QtGui.QFileDialog.getSaveFileName(self.filedialog,
+            self.caption, self.directory, self.filter, self.selected)
+
+        if path is not None:
+            path = unicode(path)
+        return ([path, str(self.selected)])
+        

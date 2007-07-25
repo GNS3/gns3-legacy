@@ -30,7 +30,7 @@ from GNS3.IOSDialog import IOSDialog
 from GNS3.Utils import translate, fileBrowser
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Preferences import PreferencesDialog
-
+from GNS3.Config.Config import ConfDB
 import GNS3.Globals as globals 
 
 __statesDefaults = {
@@ -55,6 +55,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __init__(self, projType=None, projFile=None):
         # Initialize some variables
         self.currentMode = None
+        self.projectType = projType
+        self.projectFile = projFile
 
         # Initialize the windows 
         QMainWindow.__init__(self)
@@ -594,20 +596,39 @@ class Workspace(QMainWindow, Ui_MainWindow):
         dialog.exec_()
         
     def __action_OpenFile(self):
+        if self.currentMode != globals.Enum.Mode.Design:
+            QtGui.QMessageBox.warning(self, 'Scenario',  "You can't open a scenario when you are not in design mode")
+            return
+
     
-        path = fileBrowser('Open a file',  filter = 'GNS-3 Scenario (*.gns3s)').getFile()
+        (path, selected) = fileBrowser('Open a file',  filter = 'GNS-3 Scenario (*.gns3s);;All Files (*.*)').getFile()
         if path != None:
             try:
-                if str(path[1]) == 'GNS-3 Scenario (*.gns3s)':
-                    # here the loading
-                    print path[0]
+                # here the loading
+                print path[0]
+                ConfDB().loadFromXML(path)
             except IOError, (errno, strerror):
                 QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         
     def __action_Save(self):
-    
-        print 'save file'
+        if self.projectFile is None:
+            return self.__action_SaveAs()
+
+        try:
+            ConfDB().saveToXML(self.projectFile)
+        except IOError, (errno, strerror):
+            QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         
     def __action_SaveAs(self):
-    
-        print 'save as'
+        fb = fileBrowser('Save Project As', 
+                                filter='GNS-3 Scenario (*.gns3s)')
+        (path, selected) = fb.getSaveFile()
+
+        if path != None and path != '':
+            path = unicode(path)
+            print "extensions: " + path[-6:]
+            if str(selected) == 'GNS-3 Scenario (*.gns3s)' and path[-6:] != '.gns3s':
+                path = path + '.gns3s'
+            self.projectFile = path
+            self.__action_Save()
+

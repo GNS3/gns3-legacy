@@ -32,10 +32,22 @@ class Topology(QtGui.QGraphicsScene):
         self.__nodes = {}
         self.__links = set()
 
+        self.node_baseid = 0
+        self.link_baseid = 0
+
         QtGui.QGraphicsScene.__init__(self, parent)
 
         #TODO: A better management of the scene size
         self.setSceneRect(-250, -250, 500, 500)
+
+    def clear(self):
+        for n_key in self.__nodes.copy().iterkeys():
+            self.deleteNode(n_key)
+        self.__nodes = {}
+        while len(self.__links) > 0:
+            o = self.__links.pop()
+            self.removeItem(o)
+        self.__links = set()
 
     def addNode(self, node):
         self.__nodes[node.id] = node
@@ -55,7 +67,7 @@ class Topology(QtGui.QGraphicsScene):
     def __setNodes(self, value):
         """ Set the topology nodes (disabled)
         """
-        pass
+        self.__nodes = value 
 
     nodes = property(__getNodes, __setNodes, doc='Property of nodes topology')
         
@@ -69,6 +81,10 @@ class Topology(QtGui.QGraphicsScene):
             # interface is serial or ATM
             link = Serial(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif)
         else:
+            print "HEEEERRRE"
+            print self.__nodes
+            print "++++++++++++++"
+            print "%s, %s"
             # by default use an ethernet link
             link = Ethernet(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif)
         self.__links.add(link)

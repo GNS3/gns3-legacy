@@ -192,6 +192,7 @@ class Scene(QtGui.QGraphicsView):
                     break
 
             node = object(renderer_normal, renderer_select)
+            node.type = item['name']
             #node.setName(s[1])
             node.setPos(xPos, yPos)
             QtCore.QObject.connect(node, QtCore.SIGNAL("Add link"), self.slotAddLink)

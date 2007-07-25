@@ -23,8 +23,7 @@
 import math
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
-
-baseId = 0
+import GNS3.Globals as globals
 
 class AbstractEdge(QtGui.QGraphicsPathItem):
     """ AbstractEdge class
@@ -48,9 +47,9 @@ class AbstractEdge(QtGui.QGraphicsPathItem):
         self.dest_interface_status = False
         
         # create a unique ID
-        global baseId
-        self.id = baseId
-        baseId += 1
+        print "Link_UID: %d" % (globals.GApp.topology.link_baseid)
+        self.id = globals.GApp.topology.link_baseid
+        globals.GApp.topology.link_baseid += 1
 
         # record the edge into the nodes
         self.source.addEdge(self)

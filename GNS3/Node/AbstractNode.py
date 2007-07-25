@@ -24,8 +24,6 @@ import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Utils import translate
 
-baseId = 0
-
 class AbstractNode(QtSvg.QGraphicsSvgItem):
     """ AbstractNode class
         Base class to create nodes
@@ -42,12 +40,13 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.__edgeList = set()
         self.__selectedInterface = None
         self.__flag_hostname = False
+        self.type = 'Unknown'
         self.config = {}
         
         # create a unique ID
-        global baseId
-        self.id = baseId
-        baseId += 1
+        print "Node_UID: %d" % (globals.GApp.topology.node_baseid)
+        self.id = globals.GApp.topology.node_baseid
+        globals.GApp.topology.node_baseid += 1
 
         # default hostname
         self.hostname = 'R' + str(self.id) 

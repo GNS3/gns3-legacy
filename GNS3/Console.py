@@ -13,7 +13,8 @@
 
 import sys
 import subprocess as sub
-from GNS3.Config.Config import ConfDB
+import GNS3.Globals as globals
+##from GNS3.Config.Config import ConfDB
 
 def connect(host,  port,  name):
         """ Start a telnet console and connect to it
@@ -21,7 +22,8 @@ def connect(host,  port,  name):
 
         name = '"' + name + '"'
         try:
-            console = ConfDB().get("Dynamips/console", '')
+            #console = ConfDB().get("Dynamips/console", '')
+            console = globals.GApp.systconf['dynamips'].term_cmd
             if console:
                 console = console.replace('%h', host)
                 console = console.replace('%p', str(port))
