@@ -363,7 +363,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     
         if globals.useHypervisorManager:
         
-            if not globals.GApp.systconf.has_key('dynamips'):
+            if globals.GApp.systconf['dynamips'].path == '':
                 QtGui.QMessageBox.warning(self, 'Emulation mode', 'Please configure Dynamips')
                 self.__action_SystemPreferences()
                 return
