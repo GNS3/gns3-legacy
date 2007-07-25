@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Widget_SystemApplications.ui'
 #
-# Created: Mon Jul 23 21:29:03 2007
+# Created: Wed Jul 25 11:46:11 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,10 +12,10 @@ from PyQt4 import QtCore, QtGui
 class Ui_SystemApplications(object):
     def setupUi(self, SystemApplications):
         SystemApplications.setObjectName("SystemApplications")
-        SystemApplications.resize(QtCore.QSize(QtCore.QRect(0,0,405,300).size()).expandedTo(SystemApplications.minimumSizeHint()))
+        SystemApplications.resize(QtCore.QSize(QtCore.QRect(0,0,405,278).size()).expandedTo(SystemApplications.minimumSizeHint()))
 
         self.groupBox = QtGui.QGroupBox(SystemApplications)
-        self.groupBox.setGeometry(QtCore.QRect(0,0,401,211))
+        self.groupBox.setGeometry(QtCore.QRect(0,0,401,191))
 
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.MinimumExpanding,QtGui.QSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
@@ -38,42 +38,38 @@ class Ui_SystemApplications(object):
         self.dynamips_path_browser.setObjectName("dynamips_path_browser")
 
         self.label_3 = QtGui.QLabel(self.groupBox)
-        self.label_3.setGeometry(QtCore.QRect(10,70,126,20))
+        self.label_3.setGeometry(QtCore.QRect(10,130,126,20))
         self.label_3.setObjectName("label_3")
 
         self.dynamips_term_cmd = QtGui.QLineEdit(self.groupBox)
-        self.dynamips_term_cmd.setGeometry(QtCore.QRect(10,90,381,25))
+        self.dynamips_term_cmd.setGeometry(QtCore.QRect(10,150,381,25))
         self.dynamips_term_cmd.setObjectName("dynamips_term_cmd")
 
-        self.groupBox_3 = QtGui.QGroupBox(self.groupBox)
-        self.groupBox_3.setGeometry(QtCore.QRect(10,120,381,81))
-        self.groupBox_3.setObjectName("groupBox_3")
+        self.dynamips_workdir = QtGui.QLineEdit(self.groupBox)
+        self.dynamips_workdir.setGeometry(QtCore.QRect(10,90,261,25))
+        self.dynamips_workdir.setObjectName("dynamips_workdir")
 
-        self.dynamips_workdir_browser = QtGui.QToolButton(self.groupBox_3)
-        self.dynamips_workdir_browser.setGeometry(QtCore.QRect(270,40,30,25))
+        self.label_2 = QtGui.QLabel(self.groupBox)
+        self.label_2.setGeometry(QtCore.QRect(10,70,111,18))
+        self.label_2.setObjectName("label_2")
+
+        self.dynamips_workdir_browser = QtGui.QToolButton(self.groupBox)
+        self.dynamips_workdir_browser.setGeometry(QtCore.QRect(270,90,30,25))
         self.dynamips_workdir_browser.setObjectName("dynamips_workdir_browser")
 
-        self.dynamips_port = QtGui.QSpinBox(self.groupBox_3)
-        self.dynamips_port.setGeometry(QtCore.QRect(309,40,61,25))
+        self.dynamips_port = QtGui.QSpinBox(self.groupBox)
+        self.dynamips_port.setGeometry(QtCore.QRect(320,90,61,25))
         self.dynamips_port.setMaximum(65535)
         self.dynamips_port.setProperty("value",QtCore.QVariant(0))
         self.dynamips_port.setObjectName("dynamips_port")
 
-        self.label_5 = QtGui.QLabel(self.groupBox_3)
-        self.label_5.setGeometry(QtCore.QRect(310,20,41,25))
+        self.label_5 = QtGui.QLabel(self.groupBox)
+        self.label_5.setGeometry(QtCore.QRect(320,70,41,25))
         self.label_5.setObjectName("label_5")
-
-        self.label_2 = QtGui.QLabel(self.groupBox_3)
-        self.label_2.setGeometry(QtCore.QRect(10,20,111,18))
-        self.label_2.setObjectName("label_2")
-
-        self.dynamips_workdir = QtGui.QLineEdit(self.groupBox_3)
-        self.dynamips_workdir.setGeometry(QtCore.QRect(10,40,261,25))
-        self.dynamips_workdir.setObjectName("dynamips_workdir")
 
         self.groupBox_2 = QtGui.QGroupBox(SystemApplications)
         self.groupBox_2.setEnabled(False)
-        self.groupBox_2.setGeometry(QtCore.QRect(0,210,401,81))
+        self.groupBox_2.setGeometry(QtCore.QRect(0,190,401,81))
 
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.MinimumExpanding,QtGui.QSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
@@ -99,14 +95,13 @@ class Ui_SystemApplications(object):
 
     def retranslateUi(self, SystemApplications):
         SystemApplications.setWindowTitle(QtGui.QApplication.translate("SystemApplications", "Form", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox.setTitle(QtGui.QApplication.translate("SystemApplications", "Dynamips", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox.setTitle(QtGui.QApplication.translate("SystemApplications", "Dynamips Hypervisor", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("SystemApplications", "Executable path:", None, QtGui.QApplication.UnicodeUTF8))
         self.dynamips_path_browser.setText(QtGui.QApplication.translate("SystemApplications", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("SystemApplications", "Terminal command:", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox_3.setTitle(QtGui.QApplication.translate("SystemApplications", "Local Hypervisor", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_2.setText(QtGui.QApplication.translate("SystemApplications", "Working directory:", None, QtGui.QApplication.UnicodeUTF8))
         self.dynamips_workdir_browser.setText(QtGui.QApplication.translate("SystemApplications", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.label_5.setText(QtGui.QApplication.translate("SystemApplications", "Port:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_2.setText(QtGui.QApplication.translate("SystemApplications", "Working directory:", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setTitle(QtGui.QApplication.translate("SystemApplications", "ns-3", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("SystemApplications", "Executable path:", None, QtGui.QApplication.UnicodeUTF8))
         self.toolButton_4.setText(QtGui.QApplication.translate("SystemApplications", "...", None, QtGui.QApplication.UnicodeUTF8))
