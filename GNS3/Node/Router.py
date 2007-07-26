@@ -90,12 +90,16 @@ class Router(AbstractNode):
             chassis = image.chassis
             if image.chassis == '2691' or image.chassis == '3725' or  image.chassis == '3745':
                 self.config['slots'][0] = 'GT96100-FE'
+                return
             if image.chassis == '3660':
                 self.config['slots'][0] = 'Leopard-2FE'
+                return
             if image.platform == '2600':
                 self.config['slots'][0] = lib.MB2CHASSIS2600[chassis]
+                return
             if image.platform == '7200':
                 self.config['slots'][0] = 'C7200-IO-FE'
+                return
 
     def getDefaultConfig(self):
     
