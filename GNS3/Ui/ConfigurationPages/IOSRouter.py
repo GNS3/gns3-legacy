@@ -82,7 +82,7 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                 index += 1   
         except KeyError:
             return
-
+            
     def slotSelectedIOS(self, index):
         """ Add network modules / port adapters to combo boxes
             Specifics platform configuration
@@ -96,9 +96,10 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         if image == '':
             return
         
+        image = globals.GApp.iosimages[image]
         # create slots entries
-        platform = '3600'
-        chassis = '3640'
+        platform = image.platform
+        chassis =  image.chassis
         self.createIOSslotsEntries('c' + platform, chassis)
 
         # restore previous selected modules

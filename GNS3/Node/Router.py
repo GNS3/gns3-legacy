@@ -72,12 +72,16 @@ class Router(AbstractNode):
     def __init__(self, renderer_normal, renderer_select):
         
         AbstractNode.__init__(self, renderer_normal, renderer_select)
-        self.config = config.IOSConfig.copy()
         self.hypervisor_host = None
         self.hypervisor_port = None
         self.baseUDP = None
         self.dev = None
+        self.config = self.getDefaultConfig()
 
+    def getDefaultConfig(self):
+    
+        return config.IOSConfig.copy()
+        
     def getHypervisor(self):
 
         key = self.hypervisor_host + ':' + str(self.hypervisor_port)

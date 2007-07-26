@@ -68,6 +68,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         self.setupUi(self)
         
         self.currentItm = None
+        self.nodeitems = nodeitems
         
         self.buttonBox.button(QtGui.QDialogButtonBox.Apply).setEnabled(False)
         self.buttonBox.button(QtGui.QDialogButtonBox.Reset).setEnabled(False)
@@ -97,18 +98,8 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             self.itmDict[key] = item
 
         self.assocPage = { Router: "Routers" }
+        self.__loadNodeItems()
 
-        for node in nodeitems:
-            parent = self.assocPage[type(node)]
-            self.itmDict[parent].addID(node.id)
-            item = ConfigurationPageItem(self.itmDict[parent], unicode(node.hostname), parent,  None)
-            item.addID(node.id)
-            item.tmpConfig = node.config
-            if self.itmDict[parent].tmpConfig == None:
-                self.itmDict[parent].tmpConfig = node.config
-
-        self.treeViewNodes.sortByColumn(0, QtCore.Qt.AscendingOrder)
-        
         self.splitter.setSizes([200, 600])
         self.connect(self.treeViewNodes, QtCore.SIGNAL("itemActivated(QTreeWidgetItem *, int)"),
             self.__showConfigurationPage)
@@ -116,7 +107,19 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             self.__showConfigurationPage)
         self.connect(self.treeViewNodes, QtCore.SIGNAL("itemSelectionChanged()"),
             self.__slotSelectionChanged)
-
+            
+    def __loadNodeItems(self):
+    
+        for node in self.nodeitems:
+            parent = self.assocPage[type(node)]
+            self.itmDict[parent].addID(node.id)
+            item = ConfigurationPageItem(self.itmDict[parent], unicode(node.hostname), parent,  None)
+            item.addID(node.id)
+            item.tmpConfig = node.config
+            if self.itmDict[parent].tmpConfig == None:
+                self.itmDict[parent].tmpConfig = node.config
+        self.treeViewNodes.sortByColumn(0, QtCore.Qt.AscendingOrder)
+            
     def __slotSelectionChanged(self):
     
         items = self.treeViewNodes.selectedItems()
@@ -247,12 +250,11 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         """ Private slot called to reset the settings of the current page.
         """
 
-        pass
-        # TODO: reset
         if self.configStack.currentWidget() != self.emptyPage:
-            currentPage = self.configStack.currentWidget()
-            pageName =self.treeViewNodes.currentItem().getPageName()
-            self.configStack.removeWidget(currentPage)
-            pageData = self.configItems[unicode(pageName)]
-            pageData[-1] = None
-            self.showConfigurationPageByName(pageName)
+            page = self.configStack.currentWidget()
+        
+            for item in self.treeViewNodes.selectedItems():
+                node = globals.GApp.topology.getNode(item.getIDs()[0])
+                item.tmpConfig = node.getDefaultConfig()
+                page.loadConfig(item.getIDs()[0],  item.tmpConfig)
+
