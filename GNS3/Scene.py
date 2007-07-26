@@ -195,6 +195,11 @@ class Scene(QtGui.QGraphicsView):
             node.type = item['name']
             #node.setName(s[1])
             node.setPos(xPos, yPos)
+
+            if globals.GApp.workspace.flg_showHostname == True:
+                node.showHostname()
+
+
             self.__topology.addNode(node)
 
             # Center node

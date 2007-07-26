@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Mon Jul 23 22:46:13 2007
+# Created: Thu Jul 26 11:29:23 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -34,7 +34,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,840,31))
+        self.menubar.setGeometry(QtCore.QRect(0,0,840,29))
         self.menubar.setObjectName("menubar")
 
         self.menu_Edit = QtGui.QMenu(self.menubar)
@@ -181,6 +181,7 @@ class Ui_MainWindow(object):
         self.action_StopAll.setObjectName("action_StopAll")
 
         self.action_ShowHostnames = QtGui.QAction(MainWindow)
+        self.action_ShowHostnames.setCheckable(True)
         self.action_ShowHostnames.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
         self.action_ShowHostnames.setObjectName("action_ShowHostnames")
 

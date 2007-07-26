@@ -66,6 +66,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.__connectActions()
         self.__initModeSwitching()
 
+        # Workspace flags
+        self.flg_showHostname = False
+
         # Force text to be shown for switchMode action
         swWidget = self.toolBar_General.widgetForAction(self.action_SwitchMode)
         swWidget.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
@@ -485,11 +488,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
         
     def __action_ShowHostnames(self):
 
-        if self.action_ShowHostnames.text() == translate('Workspace', 'Show hostnames'):
+        if self.flg_showHostname == False:
+            self.flg_showHostname = True
             self.action_ShowHostnames.setText(translate('Workspace', 'Hide hostnames'))
             for node in globals.GApp.topology.nodes.itervalues():
                 node.showHostname()
-        elif self.action_ShowHostnames.text() == translate('Workspace', 'Hide hostnames'):
+        else:
+            self.flg_showHostname = False
             self.action_ShowHostnames.setText(translate('Workspace', 'Show hostnames'))
             for node in globals.GApp.topology.nodes.itervalues():
                 node.removeHostname()
