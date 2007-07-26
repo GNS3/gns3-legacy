@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.1.dtd">
 <!-- eric4 project file for project GNS-3 -->
-<!-- Saved: 2007-07-26, 15:50:32 -->
+<!-- Saved: 2007-07-26, 16:34:35 -->
 <!-- Copyright (C) 2007 GNS-3 Dev Team, contact@gns3.net -->
 <Project version="4.1">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -11,12 +11,6 @@
   <Author>GNS-3 Dev Team</Author>
   <Email>contact@gns3.net</Email>
   <Sources>
-    <Source>
-      <Name>start.py</Name>
-    </Source>
-    <Source>
-      <Name>gns3.pyw</Name>
-    </Source>
     <Source>
       <Dir>translations</Dir>
       <Name>translations.py</Name>
@@ -278,6 +272,9 @@
       <Dir>ConfigurationPages</Dir>
       <Name>__init__.py</Name>
     </Source>
+    <Source>
+      <Name>gns3.pyw</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -347,7 +344,7 @@
   <Others>
   </Others>
   <MainScript>
-    <Name>start.py</Name>
+    <Name>gns3.pyw</Name>
   </MainScript>
   <Vcs>
     <VcsType>None</VcsType>

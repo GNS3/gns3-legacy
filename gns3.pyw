@@ -19,40 +19,28 @@
 # Contact: developers@gns3.net
 #
 
-import sys
+import sys,  traceback
 
 try:
-    import PyQt4
+    from PyQt4 import QtCore,  QtGui
 except ImportError:
-    import tkMessageBox
-    tkMessageBox.showwarning("PyQt", "PyQt is not installed, please see the README\n")
-    sys.stderr.write('PyQt is not installed, please see the README')
+    sys.stderr.write("PyQt is not installed, please see the README\n")
     sys.exit(False)
 
-sys.path.append("./src")
-from Main import *
-import traceback
-
-print   '''Welcome to gns3 !
-  _____ _   _  _____      ____  
- / ____| \ | |/ ____|    |___ \ 
-| |  __|  \| | (___ ______ __) |
-| | |_ | . ` |\___ \______|__ < 
-| |__| | |\  |____) |     ___) |
- \_____|_| \_|_____/     |____/ 
-'''
-
+version = int(QtCore.QT_VERSION_STR.replace('.', ''))
+if (version < 430):
+    sys.stderr.write("GNS-3 needs QT library >= 4.3.0\n")
+    sys.exit(False) 
+    
 def exceptionHook(type, value, tb):
-        
-        if exceptionHook == None:
-            return
-        lines = traceback.format_exception(type, value, tb)
-        print "---------------------Traceback lines-----------------------"
-        print "\n" . join(lines)
-        print "-----------------------------------------------------------"
-        logfile = open('exception.log','a')
-        logfile.write("\n" . join(lines))
-        logfile.close()
 
-sys.excepthook=exceptionHook
-Main(sys.argv)
+    lines = traceback.format_exception(type, value, tb)
+    print "---------------------Traceback lines-----------------------"
+    print "\n" . join(lines)
+    print "-----------------------------------------------------------"
+    logfile = open('exception.log','a')
+    logfile.write("\n" . join(lines))
+    logfile.close()
+    sys.excepthook=exceptionHook
+
+import GNS3.Main
