@@ -419,7 +419,7 @@ class GNS_Conf(object):
             if img_filename == '' or img_hyp_host == '':
                 continue
 
-            img_ref = str(img_filename)
+            img_ref = str(img_hyp_host) + ":" + str(img_filename)
 
             conf = iosImageConf()
             conf.id = int(img_num)
