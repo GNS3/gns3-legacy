@@ -60,7 +60,7 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         try:
             if (chassis == '2691'):
                 self.comboBoxSlot0.addItem(ADAPTER_MATRIX['c' + chassis][''][0])
-                self.comboBoxSlot1.addItems([''] + list(lADAPTER_MATRIX['c' + chassis][''][1]))
+                self.comboBoxSlot1.addItems([''] + list(ADAPTER_MATRIX['c' + chassis][''][1]))
                 return
             elif platform == 'c3700':
                 self.comboBoxSlot0.addItem(ADAPTER_MATRIX['c' + chassis][''][0])

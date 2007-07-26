@@ -56,7 +56,7 @@ ADAPTERS = {
     "NM-4T": (lib.NM_4T, 4, 's'),
     "NM-16ESW": (lib.NM_16ESW, 16, 'f'),
     "Leopard-2FE": (lib.Leopard_2FE, 2, 'f'),
-    "GT96100-FE": (lib.GT96100_FE, 1, 'f'),
+    "GT96100-FE": (lib.GT96100_FE, 2, 'f'),
     "CISCO2600-MB-1E": (lib.CISCO2600_MB_1E, 1, 'e'),
     "CISCO2600-MB-2E": (lib.CISCO2600_MB_2E, 2, 'e'),
     "CISCO2600-MB-1FE": (lib.CISCO2600_MB_1FE, 1, 'f'),
@@ -242,7 +242,7 @@ class Router(AbstractNode):
 
     def start(self):
     
-        if self.dev == None:
+        if self.dev == None and self.dev.state == 'running':
             return
         for interface in self.getConnectedInterfaceList():
 
@@ -271,7 +271,7 @@ class Router(AbstractNode):
         """ Stop the IOS instance
         """
 
-        if self.dev != None:
+        if self.dev != None and self.dev.state == 'running':
             print self.dev.stop()
             self.shutdownInterfaces()
 
@@ -297,5 +297,5 @@ class Router(AbstractNode):
         """ Start a telnet console and connect it to an IOS
         """
 
-        if self.dev and self.dev.console != None:
+        if self.dev and self.dev.state == 'running' and self.dev.console != None:
             console.connect('localhost',  self.dev.console,  self.hostname)

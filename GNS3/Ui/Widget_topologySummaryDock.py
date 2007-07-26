@@ -51,7 +51,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
             for interface in node.getConnectedInterfaceList():
                 item = QtGui.QTreeWidgetItem()
                 neigbhor = node.getConnectedNeighbor(interface)
-                item.setText(0, interface + ' is connected to ' + neigbhor[0].hostname + ' in ' + neigbhor[1])
+                item.setText(0, interface + ' is connected to ' + unicode(neigbhor[0].hostname) + ' in ' + neigbhor[1])
                 items.append(item)
             rootitem.addChildren(items)
             

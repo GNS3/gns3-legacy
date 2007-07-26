@@ -543,9 +543,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 if node.dev.state == 'running':
                     pass
                 else:
-                    QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
+                    QtGui.QMessageBox.critical(self, unicode(node.hostname + ': Dynamips error'),  str(msg))
             except lib.DynamipsErrorHandled:
-                QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
+                QtGui.QMessageBox.critical(self, unicode(node.hostname + ': Dynamips error'), 'Connection lost')
                 for node in nodes:
                     node.shutdownInterfaces()
                 return
@@ -574,9 +574,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 if node.dev.state == 'stopped':
                     pass
                 else:
-                    QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
+                    QtGui.QMessageBox.critical(self,  unicode(node.hostname + ': Dynamips error'),  str(msg))
             except lib.DynamipsErrorHandled:
-                QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
+                QtGui.QMessageBox.critical(self, unicode(node.hostname + ': Dynamips error'), 'Connection lost')
                 for node in nodes:
                     node.shutdownInterfaces()
                 return

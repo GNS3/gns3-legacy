@@ -181,6 +181,9 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             itm: reference to the selected item (QTreeWidgetItem)
         """
 
+        if self.currentItm and self.currentItm == itm:
+            return
+        
         pageName = unicode(itm.getPageName())
         pageData = self.configItems[pageName]
         pageTitle = "Node configuration"
