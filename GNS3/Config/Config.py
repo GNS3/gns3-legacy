@@ -220,7 +220,12 @@ class ConfDB(Singleton, QtCore.QSettings):
             x = node.getAttribute("x")
             y = node.getAttribute("y")
 
-            if not id or not type or not x or not y:
+            # Set up hostname
+            hostname = node.getAttribute("hostname")
+            if hostname == "":
+                hostname = "R" + str(int(id))
+
+            if id == "" or type == "" or x == "" or y == "":
                 continue
             
             renders = globals.GApp.scene.renders[type]
@@ -254,6 +259,7 @@ class ConfDB(Singleton, QtCore.QSettings):
             __n.setPos(float(x), float(y))
             __n.type = type
             __n.config = iosConfig
+            __n.hostname = hostname
             _nodes[id] = __n
 
         #  ------ Links
@@ -356,6 +362,7 @@ class ConfDB(Singleton, QtCore.QSettings):
             __n.setAttribute("type", str(o.type))
             __n.setAttribute("x", str(o.pos().x()))
             __n.setAttribute("y", str(o.pos().y()))
+            __n.setAttribute("hostname", str(o.hostname))
 
             # <node>
             for (cfg_key, cfg_val) in o.config.iteritems():
