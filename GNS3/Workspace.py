@@ -597,6 +597,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             try:
                 # here the loading
                 ConfDB().loadFromXML(path)
+                self.projectFile = path
+                self.setWindowTitle("GNS3 - " + self.projectFile)
             except IOError, (errno, strerror):
                 QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         
@@ -621,4 +623,5 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 path = path + '.gns3s'
             self.projectFile = path
             self.__action_Save()
+            self.setWindowTitle("GNS3 - " + self.projectFile)
 
