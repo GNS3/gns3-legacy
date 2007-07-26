@@ -229,7 +229,7 @@ class ConfDB(Singleton, QtCore.QSettings):
                 continue
             
             renders = globals.GApp.scene.renders[type]
-            iosConfig = Defaults.conf_IOSRouter_defaults.copy()
+            iosConfig = Defaults.conf_iosRouter_defaults.copy()
 
             # reload confkey for each nodes
             for conf_key in node.childNodes:
