@@ -2,7 +2,7 @@ INSTALLATION
 
  * Here are the dependencies of GNS-3:
 
- 	- Qt >= 4.2
+ 	- Qt >= 4.3
  	- Python >= 2.4
  	- Sip >= 4.5
  	- PyQt >= 4.1
@@ -16,14 +16,12 @@ INSTALLATION
  		- WinPCAP 4.0
  		- Dynamips 0.2.7
  		- Python 2.5.1
- 		- PyQt 4.2
- 		- MinGW dll and Qt 4.2.3 dlls.
+ 		- PyQt 4.3
+ 		- MinGW dll and Qt 4.3 dlls.
 
 	2. Run it and follow the prompts. You will be asked to reboot your PC at the end.
 
-	3. Configure the integrated hypervisor by double-clicking on gns3-config.pyw (Optional if you want to start dynamips in hypervisor mode yourself).
-
-	4. Start GNS-3 by double-clicking on gns3.pyw.
+	3. Start GNS-3 by double-clicking on gns3.pyw.
 
  * Linux users:
 
@@ -50,34 +48,9 @@ CURRENT LIMITATIONS
 Those limitations will be corrected in future releases.
 
  * Currently the symbols are purely decorative, meaning there isn't any difference between them.
- * Ethernet links are drawn whether you choose a serial or Ethernet interface.
  * We don't use the ghost feature.
  * Sparsemem feature is set in hard in the source code.
  * IOmem is not use at the moment.
-
-TODO LIST
-
- * Provide a way to do get a IDLE PC directly from GNS-3 and include/reuse an IDLE PC database.
- * Use the ghost file and sparsemen features
- * Option to suspend and resume IOS.
- * Enable the use of iomem
- * Use virtual ATM, Frame-Relay, Ethernet switches and the NIO bridge module provided by Dynamips
- * Language support.
- * Configuration of network modules dynamically when linking to other nodes.
- * Users can change hostnames
- * NET files import and export
- * Connections to real NICs
- * Include a Close option and a New option on the File menu
- * Provide a way to select multiple devices to configure at the same time in Node Configuration. Right now, you have to configure each router separately.
- * Do a slow 'start all IOS'
- * Use the fast clock divisor of Dynamips.
- * Add more 'Cisco-like' SVG symbols.
- * An all-in-one installer for Mac OS X
- * Show interface names on the scene (as an option).
- * Correct minor drawing problems with the status points.
- * Warn users when configuration changes in the node affect links
- * Connect links and new modules for the 7200 platform directly in emulation mode (hotplug)
- * Integrated hypervisor load-balancing to address the per process limit problem (http://dynagen.org/tutorial.htm#_Toc165530762)
 
 OPEN ISSUES
 
@@ -86,12 +59,12 @@ OPEN ISSUES
 
 BUG REPORT
 
-Open a new ticket on the trac (development tab on www.gns3.net). Please be as explicit as you can. Try to remember what was you last action and join the exception.log file if it exits.
+ * Open a new ticket on the trac (development tab on www.gns3.net). Please be as explicit as you can. Try to 
+remember what was you last action and join the exception.log file if it exits.
 
 KNOW BUGS
 
- * Currently on Windows we have some performance problems when loading a lot IOS instances, this problems could crash Dynamips.
- * We have some warning from Qt 4.2.3 that will not longer appear with 4.3
+ * The interface GT96100_FE don't work with IOS c2691
  
 ADVICE
 

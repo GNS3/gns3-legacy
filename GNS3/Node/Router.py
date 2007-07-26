@@ -94,7 +94,7 @@ class Router(AbstractNode):
         
     def configHypervisor(self,  host,  port, baseudp = None):
     
-        print 'record hypervisor : ' + host + ' ' + str(port) + ' base UDP ' + str(baseudp)
+        #print 'record hypervisor : ' + host + ' ' + str(port) + ' base UDP ' + str(baseudp)
         self.hypervisor_host = host
         self.hypervisor_port = port
         if  baseudp:
@@ -134,7 +134,7 @@ class Router(AbstractNode):
         elif platform in ('3600', '2600'):
             self.dev = ROUTERS[platform](hypervisor, chassis = chassis, name = '"' + self.hostname + '"')
         
-        self.dev.image = '"' + filename + '"' #'/home/grossmj/IOS/c3640.bin'
+        self.dev.image = '"' + filename + '"'
         if idlepc:
             self.dev.idlepc = idlepc
         else:
@@ -254,7 +254,7 @@ class Router(AbstractNode):
             match_obj = IF_REGEXP.search(destinterface)
             assert(match_obj)
             (dest_slot, dest_port) = match_obj.group(2,3)
-            print 'connect node ' + str(self.id) + ' interface ' + source_slot + '/' + source_port + ' to node ' + str(destnode.id) + ' interface ' + dest_slot + '/' + dest_port
+            #print 'connect node ' + str(self.id) + ' interface ' + source_slot + '/' + source_port + ' to node ' + str(destnode.id) + ' interface ' + dest_slot + '/' + dest_port
 
             source_slot = int(source_slot)
             dest_slot = int(dest_slot)
