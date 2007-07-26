@@ -71,10 +71,10 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.__showHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
         self.connect(self.__showHostnameAct, QtCore.SIGNAL('triggered()'), self.__showHostnameAction)
         
-        # Action: NewHostname (Change the hostname)
-        self.__newHostnameAct = QtGui.QAction(translate('AbstractNode', 'New hostname'), self)
-        self.__newHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
-        self.connect(self.__newHostnameAct, QtCore.SIGNAL('triggered()'), self.__newHostnameAction)
+        # Action: ChangeHostname (Change the hostname)
+        self.__changeHostnameAct = QtGui.QAction(translate('AbstractNode', 'Change hostname'), self)
+        self.__changeHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
+        self.connect(self.__changeHostnameAct, QtCore.SIGNAL('triggered()'), self.__changeHostnameAction)
         
         # Action: Console (Connect to the node console)
         self.__consoleAct = QtGui.QAction(translate('AbstractNode', 'Console'), self)
@@ -110,10 +110,10 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         
         self.emit(QtCore.SIGNAL("Show hostname"))
         
-    def __newHostnameAction(self):
+    def __changeHostnameAction(self):
         """ Action called to change the hostname
         """
-        (text,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, "New hostname",
+        (text,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, "Change hostname",
                                           "Hostname:", QtGui.QLineEdit.Normal,
                                           unicode(self.hostname))
         if ok and text:
@@ -232,7 +232,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 # actions for design mode
                 self.menu.addAction(self.__configAct)
                 self.menu.addAction(self.__deleteAct)
-                self.menu.addAction(self.__newHostnameAct)
+                self.menu.addAction(self.__changeHostnameAct)
             
             if globals.GApp.workspace.currentMode == globals.Enum.Mode.Emulation:
                 # actions for emulation mode
