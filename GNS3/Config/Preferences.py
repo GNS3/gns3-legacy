@@ -58,7 +58,6 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
         """ Save change for all item present into the Dialog
         All widget need to implement a method `saveConf' for this to work.
         """
-        print ">>> applyChanges"
         lnum = 0
         for itemName in self.__prefsList:
             widget = self.stackedWidget.widget(lnum)
@@ -122,7 +121,6 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
         self.stackedWidget.setCurrentIndex(num)
 
     def configItemChanged(self, widget_curr, widget_prev):
-        print ">>> configItemChanged"
         if widget_curr is None:
             widget_curr = widget_prev
         self.__raiseWidgetByNum(self.listWidget.row(widget_curr))
