@@ -246,7 +246,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
         count = 3   # Force number of modes
         idx = globals.modesIds.index(self.currentMode)
-        print "CurrentModeId: %d" % (idx)
         idx_next = (idx + 1) % count
 
         while idx_next != idx:
@@ -331,7 +330,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def switchToMode_Design(self):
         """ Function called to switch to mode `Design'
         """
-        print ">>> switchToMode: DESIGN"
         self.__switchToMode(globals.Enum.Mode.Design)
         self.action_swModeDesign.setChecked(True)
         self.statusbar.showMessage(translate('Workspace', 'Design Mode'))
@@ -356,8 +354,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def switchToMode_Emulation(self):
         """ Function called to switch to mode `Emulation'
         """
-        print ">>> switchToMode: EMULATION"
-        
         if globals.useHypervisorManager:
             # hypervisor not started, so don't try to continue
             if self.hypervisor_manager.startProcHypervisors() == False:
@@ -383,7 +379,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def switchToMode_Simulation(self):
         """ Function called to switch to mode `Simulation'
         """
-        print ">>> switchToMode: SIMULATION"
         self.__switchToMode(globals.Enum.Mode.Simulation)
         self.statusbar.showMessage(translate('Workspace', 'Emulation Mode'))
         pass
@@ -456,7 +451,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Implement the QAction `SelectAll'
         - Select all node on the topology
         """
-        print ">>> ACTION: Select All"
         for node in globals.GApp.topology.nodes.itervalues():
             node.setSelected(True)
 
@@ -464,7 +458,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Implement the QAction `SelectNone'
         - Unselect all node on the topology
         """
-        print ">>> ACTION: Select None"
         for node in globals.GApp.topology.nodes.itervalues():
             node.setSelected(False)
 
@@ -584,13 +577,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
         QtGui.QMessageBox.aboutQt(self)
 
     def __action_SystemPreferences(self):
-        print ">>> ACTION CALLED: System Preferences"
         dialog = PreferencesDialog('System')
         dialog.show()
         dialog.exec_()
 
     def __action_ProjectPreferences(self):
-        print ">>> ACTION CALLED: Project Preferences"
         dialog = PreferencesDialog('Project')
         dialog.show()
         dialog.exec_()
