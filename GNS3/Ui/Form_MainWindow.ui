@@ -64,11 +64,11 @@
     <addaction name="action_Copy" />
     <addaction name="action_Paste" />
     <addaction name="separator" />
-    <addaction name="action_IOS_images" />
     <addaction name="separator" />
     <addaction name="action_SelectAll" />
     <addaction name="action_SelectNone" />
     <addaction name="separator" />
+    <addaction name="action_IOS_images" />
     <addaction name="action_SystemPreferences" />
     <addaction name="action_ProjectPreferences" />
    </widget>
@@ -370,6 +370,9 @@
   <action name="action_IOS_images" >
    <property name="text" >
     <string>IOS images</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Shift+I</string>
    </property>
   </action>
   <action name="action_OnlineHelp" >

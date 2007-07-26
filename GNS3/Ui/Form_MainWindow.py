@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Thu Jul 26 11:29:23 2007
+# Created: Thu Jul 26 14:19:47 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -252,11 +252,11 @@ class Ui_MainWindow(object):
         self.menu_Edit.addAction(self.action_Copy)
         self.menu_Edit.addAction(self.action_Paste)
         self.menu_Edit.addSeparator()
-        self.menu_Edit.addAction(self.action_IOS_images)
         self.menu_Edit.addSeparator()
         self.menu_Edit.addAction(self.action_SelectAll)
         self.menu_Edit.addAction(self.action_SelectNone)
         self.menu_Edit.addSeparator()
+        self.menu_Edit.addAction(self.action_IOS_images)
         self.menu_Edit.addAction(self.action_SystemPreferences)
         self.menu_Edit.addAction(self.action_ProjectPreferences)
         self.menu_File.addAction(self.action_New_Project)
@@ -323,6 +323,7 @@ class Ui_MainWindow(object):
         self.action_Add_link.setStatusTip(QtGui.QApplication.translate("MainWindow", "Add a link between two nodes", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SwitchMode.setText(QtGui.QApplication.translate("MainWindow", "Emulation Mode", None, QtGui.QApplication.UnicodeUTF8))
         self.action_IOS_images.setText(QtGui.QApplication.translate("MainWindow", "IOS images", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_IOS_images.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+I", None, QtGui.QApplication.UnicodeUTF8))
         self.action_OnlineHelp.setText(QtGui.QApplication.translate("MainWindow", "&Online Help", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Import.setText(QtGui.QApplication.translate("MainWindow", "&Import", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Export.setText(QtGui.QApplication.translate("MainWindow", "&Export", None, QtGui.QApplication.UnicodeUTF8))
