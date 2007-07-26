@@ -74,8 +74,15 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         images_list = []
         hypervisors_list = []
 
+        print ">>> Reload Infos -----"
+
+        print globals.GApp.iosimages
+
         for name in globals.GApp.iosimages.keys():
             image = globals.GApp.iosimages[name]
+
+            print "IOS Image: %s" % (name)
+            print image
 
             item = QtGui.QTreeWidgetItem(self.treeWidgetIOSimages)
             # image name column

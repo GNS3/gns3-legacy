@@ -195,12 +195,6 @@ class Scene(QtGui.QGraphicsView):
             node.type = item['name']
             #node.setName(s[1])
             node.setPos(xPos, yPos)
-            QtCore.QObject.connect(node, QtCore.SIGNAL("Add link"), self.slotAddLink)
-            QtCore.QObject.connect(node, QtCore.SIGNAL("Delete link"), self.slotDeleteLink)
-            QtCore.QObject.connect(node, QtCore.SIGNAL("Delete node"), self.slotDeleteNode)
-            QtCore.QObject.connect(node, QtCore.SIGNAL("Config node"), self.slotConfigNode)
-            QtCore.QObject.connect(node, QtCore.SIGNAL("Show hostname"), self.slotShowHostname)
-
             self.__topology.addNode(node)
 
             # Center node

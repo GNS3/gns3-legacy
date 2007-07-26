@@ -20,9 +20,10 @@
 # Contact: contact@gns3.net
 #
 
-from PyQt4 import QtGui
+from PyQt4 import QtGui, QtCore
 from GNS3.Link.Ethernet import Ethernet
 from GNS3.Link.Serial import Serial
+import GNS3.Globals as globals
 
 class Topology(QtGui.QGraphicsScene):
     """ Topology class
@@ -50,6 +51,17 @@ class Topology(QtGui.QGraphicsScene):
         self.__links = set()
 
     def addNode(self, node):
+        QtCore.QObject.connect(node,
+            QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
+        QtCore.QObject.connect(node,
+            QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
+        QtCore.QObject.connect(node,
+            QtCore.SIGNAL("Delete node"), globals.GApp.scene.slotDeleteNode)
+        QtCore.QObject.connect(node,
+            QtCore.SIGNAL("Config node"), globals.GApp.scene.slotConfigNode)
+        QtCore.QObject.connect(node,
+            QtCore.SIGNAL("Show hostname"), globals.GApp.scene.slotShowHostname)
+
         self.__nodes[node.id] = node
         self.addItem(node)
 
@@ -81,12 +93,9 @@ class Topology(QtGui.QGraphicsScene):
             # interface is serial or ATM
             link = Serial(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif)
         else:
-            print "HEEEERRRE"
-            print self.__nodes
-            print "++++++++++++++"
-            print "%s, %s"
             # by default use an ethernet link
             link = Ethernet(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif)
+
         self.__links.add(link)
         self.addItem(link)
    

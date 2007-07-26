@@ -44,7 +44,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.config = {}
         
         # create a unique ID
-        print "Node_UID: %d" % (globals.GApp.topology.node_baseid)
         self.id = globals.GApp.topology.node_baseid
         globals.GApp.topology.node_baseid += 1
 

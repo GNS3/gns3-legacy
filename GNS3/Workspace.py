@@ -605,7 +605,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if path != None:
             try:
                 # here the loading
-                print path[0]
                 ConfDB().loadFromXML(path)
             except IOError, (errno, strerror):
                 QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)

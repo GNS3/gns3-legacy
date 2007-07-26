@@ -109,8 +109,6 @@ class ConfDB(Singleton, QtCore.QSettings):
         __values = {}
         self.beginGroup(key)
 
-        print fields_dict
-
         childKeys = self.childKeys()
         for child in childKeys:
             # child key need to be a string
@@ -163,7 +161,7 @@ class ConfDB(Singleton, QtCore.QSettings):
         _links = {}
 
         # ------ IOS Images
-        images = dom.getElementsByTagName("images")
+        images = dom.getElementsByTagName("image")
         for image in images:
             id = str(image.getAttribute("id"))
             # if invalid image id, jump to the next on
@@ -223,7 +221,6 @@ class ConfDB(Singleton, QtCore.QSettings):
             y = node.getAttribute("y")
 
             if not id or not type or not x or not y:
-                print ">>> Invalid node"
                 continue
             
             renders = globals.GApp.scene.renders[type]
@@ -271,41 +268,27 @@ class ConfDB(Singleton, QtCore.QSettings):
             if _nodes.has_key(str(srcNode)) \
                 and _nodes.has_key(str(dstNode)):
                 __l = [srcNode, srcIf, dstNode, dstIf]
-                print "Add link: %d,%s -> %d,%s" % (srcNode, srcIf, dstNode, dstIf)
                 _links[id] = __l
 
         # first, delete all node present on scene
         globals.GApp.topology.clear()
 
         # Assign stuff        
-        print ">>> Assign stuffs"
         globals.GApp.iosimages = _iosimages
         globals.GApp.hypervisors = _hypervisors
 
         for (id, node) in _nodes.iteritems():
             #Node_BaseId = int(id)
-            print "NEW NODE: %d" % (int(id))
             globals.GApp.topology.node_baseid = int(id)
-
-            print "NEW NODE baseid is: %d" % (globals.GApp.topology.node_baseid)
-
             globals.GApp.topology.addNode(node)
 
-        print globals.GApp.topology.nodes
-
         for (id, link) in _links.iteritems():
+            __l = link
             globals.GApp.topology.link_baseid = int(id)
             globals.GApp.topology.addLink(__l[0], __l[1], __l[2], __l[3])
 
 
-
-
-
-
-        print globals.GApp.topology.links
-
     def saveToXML(self, file):
-        print ">>> Saving project to file: %s" % (file)
         # file: where to write the xml content
 
         fd = open(file, "w")

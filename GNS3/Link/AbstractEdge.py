@@ -25,7 +25,7 @@ from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
 import GNS3.Globals as globals
 
-class AbstractEdge(QtGui.QGraphicsPathItem):
+class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
     """ AbstractEdge class
         Base class to create edges between nodes
     """
@@ -47,7 +47,6 @@ class AbstractEdge(QtGui.QGraphicsPathItem):
         self.dest_interface_status = False
         
         # create a unique ID
-        print "Link_UID: %d" % (globals.GApp.topology.link_baseid)
         self.id = globals.GApp.topology.link_baseid
         globals.GApp.topology.link_baseid += 1
 
@@ -107,8 +106,6 @@ class AbstractEdge(QtGui.QGraphicsPathItem):
             menu.addAction(QtGui.QIcon(':/icons/delete.svg'), 'delete')
             menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.__deleteAction)
             menu.exec_(QtGui.QCursor.pos())
-        else:
-            QtGui.QGraphicsPathItem.mousePressEvent(self, event)
 
     def __deleteAction(self,  action):
     

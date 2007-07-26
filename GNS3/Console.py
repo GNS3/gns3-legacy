@@ -22,7 +22,6 @@ def connect(host,  port,  name):
 
         name = '"' + name + '"'
         try:
-            #console = ConfDB().get("Dynamips/console", '')
             console = globals.GApp.systconf['dynamips'].term_cmd
             if console:
                 console = console.replace('%h', host)
