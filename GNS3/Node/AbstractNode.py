@@ -48,8 +48,11 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         globals.GApp.topology.node_baseid += 1
 
         # default hostname
-        self.hostname = 'R' + str(self.id) 
-        
+        self.hostname = 'R' + str(self.id)
+
+        # set default tooltip
+        self.setCustomToolTip()
+
         # settings
         self.setFlags(self.ItemIsMovable | self.ItemIsSelectable | self.ItemIsFocusable)
         self.setAcceptsHoverEvents(True)
@@ -122,6 +125,10 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 # force to redisplay the hostname
                 self.removeHostname()
                 self.showHostname()
+                # Update node and child links tooltip
+                self.setCustomToolTip()
+                for edge in self.__edgeList:
+                    edge.setCustomToolTip()
 
     def __consoleAction(self):
         """ Action called to start a console on the node
@@ -198,6 +205,9 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
     def getEdgeList(self):
         
         return self.__edgeList
+
+    def setCustomToolTip(self):
+        self.setToolTip("Hostname: %s" % (self.hostname))
 
     def keyReleaseEvent(self, event):
         """ Key release handler

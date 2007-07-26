@@ -50,6 +50,9 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         self.id = globals.GApp.topology.link_baseid
         globals.GApp.topology.link_baseid += 1
 
+        # Set default tooltip
+        self.setCustomToolTip()
+
         # record the edge into the nodes
         self.source.addEdge(self)
         self.dest.addEdge(self)
@@ -95,6 +98,14 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         else:
             neighbor = (self.source,  self.srcIf)
         return neighbor
+
+    def setCustomToolTip(self):
+        if self.srcIf[0] == 's':
+            type = "Serial"
+        else:
+            type = "Ethernet"
+        self.setToolTip("%s link: %s (%s) -> %s (%s)" % (type,
+            self.source.hostname, self.srcIf, self.dest.hostname, self.destIf))
 
     def keyReleaseEvent(self, event):
         """ Key release handler
