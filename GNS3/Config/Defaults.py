@@ -55,7 +55,7 @@ conf_hypervisor_types = {
     'workdir': str
 }
 
-conf_IOSRouter_defaults = {
+conf_iosRouter_defaults = {
     'image': '', 
     'platform': '', 
     'chassis': '',
@@ -64,10 +64,10 @@ conf_IOSRouter_defaults = {
     'ROM': 4, 
     'NVRAM': 128,
     'mmap': True, 
-    'pcmcia-disk0': 0,
-    'pcmcia-disk1': 0,
+    'pcmcia_disk0': 0,
+    'pcmcia_disk1': 0,
     'confreg': '0x2102', 
-    'startup-config': '', 
+    'startup_config': '', 
     'execarea': 64, 
     'iomem': 5, 
     'npe': 'npe-200',
@@ -75,7 +75,7 @@ conf_IOSRouter_defaults = {
     'slots': ['',  '',  '',  '',  '',  '',  '']
 }
 
-conf_IOSRouter_types = {
+conf_iosRouter_types = {
     'image': str, 
     'platform': str, 
     'chassis': str,

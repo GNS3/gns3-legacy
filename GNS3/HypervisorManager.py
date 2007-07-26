@@ -23,12 +23,10 @@
 import time
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
-from GNS3.Config.Config import ConfDB
 from GNS3.Utils import translate
 
 MEM_USAGE_LIMIT = 512
 BASE_PORT_UDP = 10000
-HYPERVISOR_BASE_PORT = 7200
 
 class HypervisorManager:
     """ LocalHypervisor class
@@ -38,17 +36,16 @@ class HypervisorManager:
     def __init__(self):
     
         self.hypervisors = []
-
-        self.hypervisor_path = '/home/grossmj/Dynamips/dynamips-0.2.7-x86.bin' #ConfDB().get("Dynamips/hypervisor_path", '')
-        self.hypervisor_wd = ''#ConfDB().get("Dynamips/hypervisor_working_directory", '')
-        self.hypervisor_baseport = HYPERVISOR_BASE_PORT #ConfDB().get("Dynamips/hypervisor_port", 7200)
+        
+        dynamips = globals.GApp.systconf['dynamips']
+        self.hypervisor_path = dynamips.path
+        self.hypervisor_wd = dynamips.workdir
+        self.hypervisor_baseport = dynamips.port
         self.baseUDP = BASE_PORT_UDP
 
     def __del__(self):
     
         self.stopProcHypervisors()
-        
-#    When I try to run more than 4 router instances @ 256 MB each (or 6 instances @ 160 MB each) on Windows, or more than 7 instances @ 256 MB each (or 11 instances @ 160 MB each)  on 32-bit Linux Dynamips crashes.
         
     def __startNewHypervisor(self):
     
@@ -109,7 +106,9 @@ class HypervisorManager:
                 
     def stopProcHypervisors(self):
     
-        self.hypervisor_baseport = HYPERVISOR_BASE_PORT
+        if globals.GApp != None:
+            dynamips = globals.GApp.systconf['dynamips']
+            self.hypervisor_baseport = dynamips.port
         self.baseUDP = BASE_PORT_UDP
         for hypervisor in self.hypervisors:
             hypervisor['proc_instance'].close()

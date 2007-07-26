@@ -72,12 +72,16 @@ class Router(AbstractNode):
     def __init__(self, renderer_normal, renderer_select):
         
         AbstractNode.__init__(self, renderer_normal, renderer_select)
-        self.config = config.IOSConfig.copy()
         self.hypervisor_host = None
         self.hypervisor_port = None
         self.baseUDP = None
         self.dev = None
+        self.config = self.getDefaultConfig()
 
+    def getDefaultConfig(self):
+    
+        return config.IOSConfig.copy()
+        
     def getHypervisor(self):
 
         key = self.hypervisor_host + ':' + str(self.hypervisor_port)
@@ -102,7 +106,7 @@ class Router(AbstractNode):
         if image == '':
             # No IOS image configured, take the first one available ...
             iosimages = globals.GApp.iosimages.keys()
-            if len(globals.GApp.iosimages.keys()):
+            if len(iosimages):
                 image = iosimages[0]
                 print 'Use first available IOS image !'
             else:
@@ -293,5 +297,5 @@ class Router(AbstractNode):
         """ Start a telnet console and connect it to an IOS
         """
 
-        if self.dev.console != None:
+        if self.dev and self.dev.console != None:
             console.connect('localhost',  self.dev.console,  self.hostname)

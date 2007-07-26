@@ -20,6 +20,7 @@
 # Contact: contact@gns3.net
 #
 
+import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_NodeConfigurator import Ui_NodeConfigurator
 from GNS3.Node.Router import Router
@@ -40,6 +41,7 @@ class ConfigurationPageItem(QtGui.QTreeWidgetItem):
 #            self.setIcon(0, iconFile)
         self.__pageName = unicode(pageName)
         self.__ids = []
+        self.tmpConfig = None
 
     def getPageName(self):
         """ Public method to get the name of the associated configuration page.
@@ -47,7 +49,7 @@ class ConfigurationPageItem(QtGui.QTreeWidgetItem):
         """
 
         return self.__pageName
-        
+
     def addID(self,  id):
     
         self.__ids.append(id)
@@ -64,6 +66,9 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
 
         QtGui.QDialog.__init__(self)
         self.setupUi(self)
+        
+        self.currentItm = None
+        self.nodeitems = nodeitems
         
         self.buttonBox.button(QtGui.QDialogButtonBox.Apply).setEnabled(False)
         self.buttonBox.button(QtGui.QDialogButtonBox.Reset).setEnabled(False)
@@ -93,15 +98,8 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             self.itmDict[key] = item
 
         self.assocPage = { Router: "Routers" }
+        self.__loadNodeItems()
 
-        for node in nodeitems:
-            parent = self.assocPage[type(node)]
-            self.itmDict[parent].addID(node.id)
-            item = ConfigurationPageItem(self.itmDict[parent], unicode(node.hostname), parent,  None)
-            item.addID(node.id)
-
-        self.treeViewNodes.sortByColumn(0, QtCore.Qt.AscendingOrder)
-        
         self.splitter.setSizes([200, 600])
         self.connect(self.treeViewNodes, QtCore.SIGNAL("itemActivated(QTreeWidgetItem *, int)"),
             self.__showConfigurationPage)
@@ -110,7 +108,18 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         self.connect(self.treeViewNodes, QtCore.SIGNAL("itemSelectionChanged()"),
             self.__slotSelectionChanged)
             
-
+    def __loadNodeItems(self):
+    
+        for node in self.nodeitems:
+            parent = self.assocPage[type(node)]
+            self.itmDict[parent].addID(node.id)
+            item = ConfigurationPageItem(self.itmDict[parent], unicode(node.hostname), parent,  None)
+            item.addID(node.id)
+            item.tmpConfig = node.config
+            if self.itmDict[parent].tmpConfig == None:
+                self.itmDict[parent].tmpConfig = node.config
+        self.treeViewNodes.sortByColumn(0, QtCore.Qt.AscendingOrder)
+            
     def __slotSelectionChanged(self):
     
         items = self.treeViewNodes.selectedItems()
@@ -120,14 +129,13 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             if not item.parent():
                 self.titleLabel.setText("%s group" % (item.text(0)))
                 return
-            
+
         first_item = items[0]
         if count > 1:
             pageTitle = "Group of %d %s" % (count,  first_item.parent().text(0))
         else:
             pageTitle = "%s node" % (first_item.text(0))
         self.titleLabel.setText(pageTitle)
-            
 
     def __importConfigurationPage(self, name):
         """ Private method to import a configuration page module.
@@ -159,6 +167,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             pageData: data structure for the page to initialize
             returns reference to the initialized page
         """
+
         page = None
         mod = self.__importConfigurationPage(pageData[2])
         if mod:
@@ -171,7 +180,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         """ Public slot to show a named configuration page.
             itm: reference to the selected item (QTreeWidgetItem)
         """
-        
+
         pageName = unicode(itm.getPageName())
         pageData = self.configItems[pageName]
         pageTitle = "Node configuration"
@@ -184,9 +193,16 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         if page is None:
             page = self.emptyPage
         else:
-            #TODO: parent ?
-            #if itm.parent():
-            page.loadConfig(itm.getIDs()[0])
+
+            if self.currentItm and self.currentItm != itm:
+                
+                page.saveConfig(self.currentItm.getIDs()[0],  self.currentItm.tmpConfig)
+                self.currentItm = itm
+
+            if self.currentItm == None:
+                self.currentItm = itm
+
+            page.loadConfig(itm.getIDs()[0],  itm.tmpConfig)
 
         self.configStack.setCurrentWidget(page)
         if page != self.emptyPage:
@@ -212,11 +228,13 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         elif button == self.buttonBox.button(QtGui.QDialogButtonBox.Reset):
             self.on_resetButton_clicked()
         else:
+            self.on_applyButton_clicked()
             QtGui.QDialog.accept(self)
 
     def on_applyButton_clicked(self):
         """ Private slot called to apply the settings of the current page.
         """
+
         if self.configStack.currentWidget() != self.emptyPage:
             page = self.configStack.currentWidget()
 
@@ -232,12 +250,11 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         """ Private slot called to reset the settings of the current page.
         """
 
-        pass
-        # TODO: reset
         if self.configStack.currentWidget() != self.emptyPage:
-            currentPage = self.configStack.currentWidget()
-            pageName =self.treeViewNodes.currentItem().getPageName()
-            self.configStack.removeWidget(currentPage)
-            pageData = self.configItems[unicode(pageName)]
-            pageData[-1] = None
-            self.showConfigurationPageByName(pageName)
+            page = self.configStack.currentWidget()
+        
+            for item in self.treeViewNodes.selectedItems():
+                node = globals.GApp.topology.getNode(item.getIDs()[0])
+                item.tmpConfig = node.getDefaultConfig()
+                page.loadConfig(item.getIDs()[0],  item.tmpConfig)
+

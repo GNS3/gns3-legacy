@@ -28,8 +28,6 @@ from GNS3.Config.Config import ConfDB
 from GNS3.Utils import fileBrowser, translate
 from GNS3.Globals import GApp
 
-
-
 class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
 
     def __init__(self):

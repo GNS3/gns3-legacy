@@ -92,6 +92,12 @@ class iosImageConf(ConfigObject):
         self.conf = Defaults.conf_iosImage_defaults.copy() 
         self.types = Defaults.conf_iosImage_types
 
+class iosRouterConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_iosRouter_defaults.copy() 
+        self.types = Defaults.conf_iosRouter_types
+        
 class hypervisorConf(ConfigObject):
     def __init__(self):
         ConfigObject.__init__(self)

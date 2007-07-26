@@ -25,6 +25,7 @@ from PyQt4 import QtCore,  QtGui
 from Form_IOSRouterPage import Ui_IOSRouterPage
 from GNS3.Dynagen.dynamips_lib import ADAPTER_MATRIX
 from GNS3.Utils import fileBrowser
+import GNS3.NodeConfigs as config
 
 class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
     """
@@ -81,7 +82,7 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                 index += 1   
         except KeyError:
             return
-
+            
     def slotSelectedIOS(self, index):
         """ Add network modules / port adapters to combo boxes
             Specifics platform configuration
@@ -95,9 +96,10 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         if image == '':
             return
         
+        image = globals.GApp.iosimages[image]
         # create slots entries
-        platform = '3600'
-        chassis = '3640'
+        platform = image.platform
+        chassis =  image.chassis
         self.createIOSslotsEntries('c' + platform, chassis)
 
         # restore previous selected modules
@@ -143,12 +145,15 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             self.lineEditStartupConfig.clear()
             self.lineEditStartupConfig.setText(path[0])
 
-    def loadConfig(self,  id):
+    def loadConfig(self,  id,  config = None):
     
-        self.currentNodeID = id
         node = globals.GApp.topology.getNode(id)
-        IOSconfig = node.config
-
+        self.currentNodeID = id
+        if config:
+            IOSconfig = config
+        else:
+            IOSconfig = node.config
+        
         self.comboBoxIOS.clear()
         images = globals.GApp.iosimages.keys()
         self.comboBoxIOS.addItems(images)
@@ -176,10 +181,13 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         if index != -1:
             self.comboBoxNPE.setCurrentIndex(index)
 
-    def saveConfig(self,  id):
-        
+    def saveConfig(self, id, config = None):
+
         node = globals.GApp.topology.getNode(id)
-        IOSconfig = node.config
+        if config:
+            IOSconfig = config
+        else:
+            IOSconfig = node.config
         IOSconfig['image'] = unicode(self.comboBoxIOS.currentText())
         IOSconfig['consoleport'] = str(self.lineEditConsolePort.text())
         IOSconfig['startup-config'] = unicode(self.lineEditStartupConfig.text())
@@ -199,7 +207,7 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             IOSconfig['midplane'] = str(self.comboBoxMidplane.currentText())
         if str(self.comboBoxNPE.currentText()):
             IOSconfig['npe'] = str(self.comboBoxNPE.currentText())
-            
+
         IOSconfig['slots'] = []
         slotnb = 0
         for widget in self.slots_list:
