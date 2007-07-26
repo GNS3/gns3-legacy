@@ -76,7 +76,26 @@ class Router(AbstractNode):
         self.hypervisor_port = None
         self.baseUDP = None
         self.dev = None
+        
         self.config = self.getDefaultConfig()
+        
+        # FIXME: QND mode
+        # No IOS image configured yet, take the first one available ...
+        iosimages = globals.GApp.iosimages.keys()
+        if len(iosimages):
+            #self.config['image'] = globals.GApp.iosimages[iosimages[0]]
+            #image = iosimages[0]
+            image = globals.GApp.iosimages[iosimages[0]]
+            platform = image.platform
+            chassis = image.chassis
+            if image.chassis == '2691' or image.chassis == '3725' or  image.chassis == '3745':
+                self.config['slots'][0] = 'GT96100-FE'
+            if image.chassis == '3660':
+                self.config['slots'][0] = 'Leopard-2FE'
+            if image.platform == '2600':
+                self.config['slots'][0] = lib.MB2CHASSIS2600[chassis]
+            if image.platform == '7200':
+                self.config['slots'][0] = 'C7200-IO-FE'
 
     def getDefaultConfig(self):
     
@@ -108,7 +127,6 @@ class Router(AbstractNode):
             iosimages = globals.GApp.iosimages.keys()
             if len(iosimages):
                 image = iosimages[0]
-                print 'Use first available IOS image !'
             else:
                 print 'No IOS image available !'
                 return
@@ -290,7 +308,8 @@ class Router(AbstractNode):
 
         if self.dev != None:
             self.dev.delete()
-            del dynagen.devices[self.hostname]
+            if dynagen.devices.has_key(self.hostname):
+                del dynagen.devices[self.hostname]
             self.shutdownInterfaces()
         
     def console(self):
