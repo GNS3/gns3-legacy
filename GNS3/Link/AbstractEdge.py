@@ -96,6 +96,16 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             neighbor = (self.source,  self.srcIf)
         return neighbor
 
+    def keyReleaseEvent(self, event):
+        """ Key release handler
+        """
+
+        key = event.key()
+        if key == QtCore.Qt.Key_Delete:
+            self.__deleteAction()
+        else:
+            QtGui.QGraphicsPathItem.keyReleaseEvent(self, event)
+
     def mousePressEvent(self, event):
         """ Call when the edge is clicked
             event: QtGui.QGraphicsSceneMouseEvent instance
@@ -104,15 +114,17 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         if (event.button() == QtCore.Qt.RightButton):
             menu = QtGui.QMenu()
             menu.addAction(QtGui.QIcon(':/icons/delete.svg'), 'delete')
-            menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.__deleteAction)
+            menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.mousePressEvent_actions)
             menu.exec_(QtGui.QCursor.pos())
 
-    def __deleteAction(self,  action):
-    
+    def mousePressEvent_actions(self, action):
         action = action.text()
         if action == 'delete':
-            # delete one of the interface mean the edge is deleted
-            self.source.deleteInterface(self.srcIf)
+            self.__deleteAction()
+
+    def __deleteAction(self):
+        # delete one of the interface mean the edge is deleted
+        self.source.deleteInterface(self.srcIf)
 
     def setLocalInterfaceStatus(self, node_id, isup):
         """ Set the status to up/down for the node

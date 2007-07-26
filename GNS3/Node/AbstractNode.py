@@ -205,7 +205,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 
         key = event.key()
         if key == QtCore.Qt.Key_Delete:
-            self.delete()
+            self.__deleteAction()
         else:
             QtGui.QGraphicsItem.keyReleaseEvent(self, event)
 
