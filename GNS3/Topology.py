@@ -86,6 +86,9 @@ class Topology(QtGui.QGraphicsScene):
     def deleteNode(self, id):
         self.removeItem(self.__nodes[id])
         del self.__nodes[id]
+        # Work-around QGraphicsSvgItem caching bug:
+        #   Forcing to clear the QPixmapCache on node delete.
+        QtGui.QPixmapCache.clear()
    
     def addLink(self, srcid, srcif, dstid, dstif):
 
