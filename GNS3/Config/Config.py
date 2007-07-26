@@ -277,15 +277,24 @@ class ConfDB(Singleton, QtCore.QSettings):
         globals.GApp.iosimages = _iosimages
         globals.GApp.hypervisors = _hypervisors
 
+        node_id_max = 0
         for (id, node) in _nodes.iteritems():
-            #Node_BaseId = int(id)
-            globals.GApp.topology.node_baseid = int(id)
+            id = int(id)
+            globals.GApp.topology.node_baseid = id
+            if id > node_id_max:
+                node_id_max = id
             globals.GApp.topology.addNode(node)
+        globals.GApp.topology.node_baseid = node_id_max + 1
 
+        link_id_max = 0
         for (id, link) in _links.iteritems():
+            id = int(id)
             __l = link
-            globals.GApp.topology.link_baseid = int(id)
+            globals.GApp.topology.link_baseid = id
+            if id > node_id_max:
+                link_id_max = id
             globals.GApp.topology.addLink(__l[0], __l[1], __l[2], __l[3])
+        globals.GApp.topology.link_baseid = link_id_max + 1
 
 
     def saveToXML(self, file):
