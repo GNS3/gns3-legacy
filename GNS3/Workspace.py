@@ -55,6 +55,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __init__(self, projType=None, projFile=None):
         # Initialize some variables
         self.currentMode = None
+        self.previousMode = None
         self.projectType = projType
         self.projectFile = projFile
 
@@ -275,6 +276,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         - Show/Hide toolbar and docks depending of the mode to switch to.
         """
+        # Set previous mode, if None: force Design mode
+        self.previousMode = self.currentMode
+        if self.previousMode is None:
+            self.previousMode = globals.Enum.Mode.Design
         # Set current mode
         self.currentMode = id
         # Update switchMode button
@@ -356,42 +361,47 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def switchToMode_Emulation(self):
         """ Function called to switch to mode `Emulation'
         """
-        if len(globals.GApp.iosimages.keys()) == 0:
-            # No IOS images configured, users have to register an IOS before going into emulation mode
-            QtGui.QMessageBox.warning(self, 'Emulation mode', 'Please register at least one IOS image')
-            self.__action_IOSImages()
-            return
-    
-        if globals.useHypervisorManager:
-        
-            if globals.GApp.systconf['dynamips'].path == '':
-                QtGui.QMessageBox.warning(self, 'Emulation mode', 'Please configure Dynamips')
-                self.__action_SystemPreferences()
-                return
-
-            if self.hypervisor_manager == None:
-                self.hypervisor_manager = HypervisorManager()
-            
-            # hypervisor not started, so don't try to continue
-            if self.hypervisor_manager.startProcHypervisors() == False:
-                return
-        
-        self.__switchToMode(globals.Enum.Mode.Emulation)
-        self.action_swModeEmulation.setChecked(True)
-        self.statusbar.showMessage(translate('Workspace', 'Emulation Mode'))
-        self.action_Add_link.setChecked(False)
-        self.__action_addLink()
-        self.treeWidget_TopologySummary.emulationMode()
-
         try:
-            for node in globals.GApp.topology.nodes.itervalues():
-                node.configIOS()
-        except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
-            return
-        except lib.DynamipsErrorHandled:
-            QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
-            return
+            if len(globals.GApp.iosimages.keys()) == 0:
+                # No IOS images configured, users have to register an IOS before going into emulation mode
+                QtGui.QMessageBox.warning(self, 'Emulation mode', 'Please register at least one IOS image')
+                self.__action_IOSImages()
+                raise "switch_mode_error"
+    
+            if globals.useHypervisorManager:
+        
+                if globals.GApp.systconf['dynamips'].path == '':
+                    QtGui.QMessageBox.warning(self, 'Emulation mode', 'Please configure Dynamips')
+                    self.__action_SystemPreferences()
+                    raise "switch_mode_error"
+
+                if self.hypervisor_manager == None:
+                    self.hypervisor_manager = HypervisorManager()
+            
+                # hypervisor not started, so don't try to continue
+                if self.hypervisor_manager.startProcHypervisors() == False:
+                    raise "switch_mode_error"
+        
+            self.__switchToMode(globals.Enum.Mode.Emulation)
+            self.action_swModeEmulation.setChecked(True)
+            self.statusbar.showMessage(translate('Workspace', 'Emulation Mode'))
+            self.action_Add_link.setChecked(False)
+            self.__action_addLink()
+            self.treeWidget_TopologySummary.emulationMode()
+
+            try:
+                for node in globals.GApp.topology.nodes.itervalues():
+                    node.configIOS()
+            except lib.DynamipsError, msg:
+                QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
+                return
+            except lib.DynamipsErrorHandled:
+                QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
+        except "switch_mode_error":
+            if self.previousMode == globals.Enum.Mode.Design:
+                self.action_swModeDesign.setChecked(True)
+            elif self.previousMode == globals.Enum.Mode.Simulation:
+                self.action_swModeSimulation.setChecked(True)
 
     def switchToMode_Simulation(self):
         """ Function called to switch to mode `Simulation'
