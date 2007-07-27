@@ -13,7 +13,7 @@
    <string>GNS3</string>
   </property>
   <property name="windowIcon" >
-   <iconset/>
+   <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/images/logo_gns3_transparency_small.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QGridLayout" >
@@ -53,7 +53,7 @@
      <x>0</x>
      <y>0</y>
      <width>840</width>
-     <height>29</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit" >
