@@ -63,7 +63,7 @@ class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
             if sys.platform.startswith('darwin'):
                 self.conf.term_cmd = "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"' -e 'tell application \"terminal\" to tell window 1 to set custom title to \"%d\"'"
             elif sys.platform.startswith('win32'):
-                self.conf.term_cmd = "telnet %h %p"
+                self.conf.term_cmd = "start telnet %h %p"
             else:
                 self.conf.term_cmd = "xterm -T %d -e 'telnet %h %p' >/dev/null 2>&1 &"
 

@@ -32,7 +32,7 @@ def connect(host,  port,  name):
                 if sys.platform.startswith('darwin'):
                     sub.Popen("/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet " + host + " " + str(port) +"; exit\"' -e 'tell application \"Terminal\" to tell window 1  to set custom title to \"" + name + "\"'", shell=True)
                 elif sys.platform.startswith('win32'):
-                    sub.Popen("telnet " +  host + " " + str(port), shell=True)
+                    sub.Popen("start telnet " +  host + " " + str(port), shell=True)
                 else:
                     sub.Popen("xterm -T " + name + " -e 'telnet " + host + " " + str(port) + "' > /dev/null 2>&1 &", shell=True)
                     #sub.Popen("gnome-terminal -t " + name + " -e 'telnet "  + host + " " + str(port) + "' > /dev/null 2>&1 &",  shell=True)
