@@ -1,17 +1,15 @@
 TODO LIST
 
  * Provide a way to do get a IDLE PC directly from GNS-3 and include/reuse an IDLE PC database.
- * Use the ghost file and sparsemen features
- * Option to suspend and resume IOS.
+ * Use the ghost file
+ * Options to suspend and resume IOS.
  * Enable the use of iomem
  * Use virtual ATM, Frame-Relay, Ethernet switches and the NIO bridge module provided by Dynamips
  * Language support.
  * Configuration of network modules dynamically when linking to other nodes.
- * Users can change hostnames
  * NET files import and export
  * Connections to real NICs
  * Include a Close option and a New option on the File menu
- * Provide a way to select multiple devices to configure at the same time in Node Configuration. Right now, you have to configure each router separately.
  * Do a slow 'start all IOS'
  * Use the fast clock divisor of Dynamips.
  * Add more 'Cisco-like' SVG symbols.
@@ -20,4 +18,5 @@ TODO LIST
  * Correct minor drawing problems with the status points.
  * Warn users when configuration changes in the node affect links
  * Connect links and new modules for the 7200 platform directly in emulation mode (hotplug)
- * Integrated hypervisor load-balancing to address the per process limit problem (http://dynagen.org/tutorial.htm#_Toc165530762)
+ * New IOS Dialog
+

@@ -11,13 +11,10 @@ INSTALLATION
 
 	1. Download GNS3 all-in-one for Windows on http://www.gns3.net (~23 MB)
    
-	This program will install GNS-3, Dynamips and multiple programs that them depends on:
+	This program will install a binary version of GNS-3 and two dependencies:
 
  		- WinPCAP 4.0
  		- Dynamips 0.2.7
- 		- Python 2.5.1
- 		- PyQt 4.3
- 		- MinGW dll and Qt 4.3 dlls.
 
 	2. Run it and follow the prompts. You will be asked to reboot your PC at the end.
 
@@ -25,7 +22,7 @@ INSTALLATION
 
  * Linux users:
 
- 	- If you are on debian/ubuntu, use apt-get install python-qt4 to install the dependencies and start GNS-3 by double-clicking on gns3.pyw or launching it from a command line.
+ 	- You have to compile Qt 4.3, sip (development snapshot) and pyqt (development snapshot) to run GNS-3.
 
 
  * MacOS X users:
@@ -49,7 +46,6 @@ Those limitations will be corrected in future releases.
 
  * Currently the symbols are purely decorative, meaning there isn't any difference between them.
  * We don't use the ghost feature.
- * Sparsemem feature is set in hard in the source code.
  * IOmem is not use at the moment.
 
 OPEN ISSUES

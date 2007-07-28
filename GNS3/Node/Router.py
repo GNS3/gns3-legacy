@@ -264,7 +264,7 @@ class Router(AbstractNode):
 
     def start(self):
     
-        if self.dev == None and self.dev.state == 'running':
+        if self.dev == None or self.dev.state == 'running':
             return
         for interface in self.getConnectedInterfaceList():
 

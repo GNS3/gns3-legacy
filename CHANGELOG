@@ -1,0 +1,8 @@
+CHANGELOG
+
+GNS-3 alpha 0.2:
+
+ * Hypervisor load-balancing to address the per process limit problem (http://dynagen.org/tutorial.htm#_Toc165530762)
+ * Configuration of multiple node.
+ * Users can change hostnames.
+
