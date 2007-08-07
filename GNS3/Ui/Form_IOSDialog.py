@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Tue Aug  7 10:32:50 2007
+# Created: Tue Aug  7 21:09:43 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -28,7 +28,7 @@ class Ui_IOSDialog(object):
 
         self.groupBox = QtGui.QGroupBox(self.tab_1)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Preferred)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.groupBox.sizePolicy().hasHeightForWidth())
@@ -44,28 +44,40 @@ class Ui_IOSDialog(object):
 
         self.lineEditIOSImage = QtGui.QLineEdit(self.groupBox)
         self.lineEditIOSImage.setObjectName("lineEditIOSImage")
-        self.gridlayout1.addWidget(self.lineEditIOSImage,0,1,1,2)
+        self.gridlayout1.addWidget(self.lineEditIOSImage,0,1,1,1)
 
         self.pushButtonSelectIOSImage = QtGui.QPushButton(self.groupBox)
         self.pushButtonSelectIOSImage.setMaximumSize(QtCore.QSize(31,27))
         self.pushButtonSelectIOSImage.setObjectName("pushButtonSelectIOSImage")
-        self.gridlayout1.addWidget(self.pushButtonSelectIOSImage,0,3,1,1)
+        self.gridlayout1.addWidget(self.pushButtonSelectIOSImage,0,2,1,1)
 
         self.label_2 = QtGui.QLabel(self.groupBox)
         self.label_2.setObjectName("label_2")
         self.gridlayout1.addWidget(self.label_2,1,0,1,1)
 
         self.comboBoxPlatform = QtGui.QComboBox(self.groupBox)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.comboBoxPlatform.sizePolicy().hasHeightForWidth())
+        self.comboBoxPlatform.setSizePolicy(sizePolicy)
         self.comboBoxPlatform.setObjectName("comboBoxPlatform")
-        self.gridlayout1.addWidget(self.comboBoxPlatform,1,1,1,3)
+        self.gridlayout1.addWidget(self.comboBoxPlatform,1,1,1,2)
 
         self.label_6 = QtGui.QLabel(self.groupBox)
         self.label_6.setObjectName("label_6")
         self.gridlayout1.addWidget(self.label_6,2,0,1,1)
 
         self.comboBoxChassis = QtGui.QComboBox(self.groupBox)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.comboBoxChassis.sizePolicy().hasHeightForWidth())
+        self.comboBoxChassis.setSizePolicy(sizePolicy)
         self.comboBoxChassis.setObjectName("comboBoxChassis")
-        self.gridlayout1.addWidget(self.comboBoxChassis,2,1,1,3)
+        self.gridlayout1.addWidget(self.comboBoxChassis,2,1,1,2)
 
         self.label_12 = QtGui.QLabel(self.groupBox)
         self.label_12.setObjectName("label_12")
@@ -73,12 +85,7 @@ class Ui_IOSDialog(object):
 
         self.lineEditIdlePC = QtGui.QLineEdit(self.groupBox)
         self.lineEditIdlePC.setObjectName("lineEditIdlePC")
-        self.gridlayout1.addWidget(self.lineEditIdlePC,3,1,1,3)
-
-        self.checkBox = QtGui.QCheckBox(self.groupBox)
-        self.checkBox.setChecked(True)
-        self.checkBox.setObjectName("checkBox")
-        self.gridlayout1.addWidget(self.checkBox,4,0,1,3)
+        self.gridlayout1.addWidget(self.lineEditIdlePC,3,1,1,2)
         self.gridlayout.addWidget(self.groupBox,0,0,1,1)
 
         self.groupBox_3 = QtGui.QGroupBox(self.tab_1)
@@ -96,7 +103,7 @@ class Ui_IOSDialog(object):
 
         self.groupBox_2 = QtGui.QGroupBox(self.tab_1)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Preferred)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
@@ -114,7 +121,7 @@ class Ui_IOSDialog(object):
         self.listWidgetHypervisors = QtGui.QListWidget(self.groupBox_2)
         self.listWidgetHypervisors.setEnabled(False)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Expanding)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred,QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.listWidgetHypervisors.sizePolicy().hasHeightForWidth())
@@ -199,12 +206,12 @@ class Ui_IOSDialog(object):
         spacerItem3 = QtGui.QSpacerItem(41,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
         self.gridlayout4.addItem(spacerItem3,2,2,1,1)
 
-        self.spinBox = QtGui.QSpinBox(self.groupBox_4)
-        self.spinBox.setMinimum(1)
-        self.spinBox.setMaximum(65535)
-        self.spinBox.setProperty("value",QtCore.QVariant(10000))
-        self.spinBox.setObjectName("spinBox")
-        self.gridlayout4.addWidget(self.spinBox,2,3,1,2)
+        self.spinBoxBaseUDP = QtGui.QSpinBox(self.groupBox_4)
+        self.spinBoxBaseUDP.setMinimum(1)
+        self.spinBoxBaseUDP.setMaximum(65535)
+        self.spinBoxBaseUDP.setProperty("value",QtCore.QVariant(10000))
+        self.spinBoxBaseUDP.setObjectName("spinBoxBaseUDP")
+        self.gridlayout4.addWidget(self.spinBoxBaseUDP,2,3,1,2)
 
         self.label_5 = QtGui.QLabel(self.groupBox_4)
         self.label_5.setObjectName("label_5")
@@ -278,13 +285,11 @@ class Ui_IOSDialog(object):
         self.label_2.setText(QtGui.QApplication.translate("IOSDialog", "Platform:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_6.setText(QtGui.QApplication.translate("IOSDialog", "Chassis:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_12.setText(QtGui.QApplication.translate("IOSDialog", "IDLE PC:", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBox.setText(QtGui.QApplication.translate("IOSDialog", "Default image for this platform", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_3.setTitle(QtGui.QApplication.translate("IOSDialog", "Images", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetIOSimages.headerItem().setText(0,QtGui.QApplication.translate("IOSDialog", "IOS file name", None, QtGui.QApplication.UnicodeUTF8))
-        self.treeWidgetIOSimages.headerItem().setText(1,QtGui.QApplication.translate("IOSDialog", "Platform", None, QtGui.QApplication.UnicodeUTF8))
-        self.treeWidgetIOSimages.headerItem().setText(2,QtGui.QApplication.translate("IOSDialog", "Default", None, QtGui.QApplication.UnicodeUTF8))
+        self.treeWidgetIOSimages.headerItem().setText(1,QtGui.QApplication.translate("IOSDialog", "Chassis", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setTitle(QtGui.QApplication.translate("IOSDialog", "Hypervisors", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxIntegratedHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "Use the integrated hypervisor", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxIntegratedHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "Use the hypervisor manager", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonAddIOS.setText(QtGui.QApplication.translate("IOSDialog", "&Add", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonEditIOS.setText(QtGui.QApplication.translate("IOSDialog", "&Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonDeleteIOS.setText(QtGui.QApplication.translate("IOSDialog", "&Delete", None, QtGui.QApplication.UnicodeUTF8))

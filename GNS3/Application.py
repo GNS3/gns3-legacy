@@ -164,7 +164,7 @@ class Application(QApplication, Singleton):
         return self.__iosimages
     iosimages = property(__getIOSImages, __setIOSImages,
                     doc = 'IOS images dictionnary')
-
+                    
     # property: `hypervisors'
     def __setHypervisors(self, hypervisors):
         """ register the sysconf instance
@@ -233,7 +233,6 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/platform", o.platform)
             c.set(basekey + "/hypervisor_port", o.hypervisor_port)
             c.set(basekey + "/hypervisor_host", o.hypervisor_host)
-            c.set(basekey + "/working_directory", o.working_directory)
             c.set(basekey + "/idlepc", o.idlepc)
 
         for (key, o) in self.__hypervisors.iteritems():

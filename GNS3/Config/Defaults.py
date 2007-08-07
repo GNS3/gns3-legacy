@@ -28,7 +28,6 @@ conf_iosImage_defaults = {
     'idlepc': '',
     'hypervisor_host': '',
     'hypervisor_port': 7200,
-    'working_directory': '',
 }
 
 conf_iosImage_types = {
@@ -39,7 +38,6 @@ conf_iosImage_types = {
     'idlepc': str,
     'hypervisor_host': str,
     'hypervisor_port': int,
-    'working_directory': str,
 }
 
 conf_hypervisor_defaults = {
@@ -47,12 +45,15 @@ conf_hypervisor_defaults = {
     'host': '',
     'port': 7200,
     'workdir': '',
+    'baseUDP': 10000
 }
+
 conf_hypervisor_types = {
     'id': int,
     'host': str,
     'port': int,
-    'workdir': str
+    'workdir': str, 
+    'baseUDP': int
 }
 
 conf_iosRouter_defaults = {

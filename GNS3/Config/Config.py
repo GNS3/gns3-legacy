@@ -429,7 +429,9 @@ class GNS_Conf(object):
             conf.idlepc = str(c.get(cgroup + "/idlepc", ''))
             conf.hypervisor_host = str(c.get(cgroup + "/hypervisor_host"))
             conf.hypervisor_port = int(c.get(cgroup + "/hypervisor_port"))
-            conf.working_directory = str(c.get(cgroup + "/working_directory"))
+            
+            #TODO: save workingdir
+            #conf.working_directory = str(c.get(cgroup + "/working_directory"))
             
             globals.GApp.iosimages[img_ref] = conf
 
@@ -468,7 +470,7 @@ class GNS_Conf(object):
 
             hyp_port = c.get(cgroup + "/port", '')
             hyp_host = c.get(cgroup + "/host", '')
-            hyp_wdir = c.get(cgroup + "/working_directory", '')
+            #hyp_wdir = c.get(cgroup + "/working_directory", '')
 
             # We need at least `hyp_host' and `hyp_port' to be set
             if hyp_host == '' or hyp_port == '':
@@ -480,7 +482,7 @@ class GNS_Conf(object):
             conf.id = int(img_num)
             conf.host = hyp_host
             conf.port = int(hyp_port)
-            conf.workdir = hyp_wdir
+            #conf.workdir = hyp_wdir
             globals.GApp.hypervisors[img_ref] = conf
 
             if conf.id >= globals.GApp.hypervisors_ids:
