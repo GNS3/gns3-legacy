@@ -5,183 +5,24 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>623</width>
-    <height>338</height>
+    <width>656</width>
+    <height>461</height>
    </rect>
-  </property>
-  <property name="maximumSize" >
-   <size>
-    <width>700</width>
-    <height>400</height>
-   </size>
   </property>
   <property name="windowTitle" >
    <string>IOS images and hypervisors</string>
   </property>
-  <property name="windowIcon" >
-   <iconset/>
-  </property>
   <layout class="QVBoxLayout" >
-   <property name="spacing" >
-    <number>6</number>
-   </property>
-   <property name="leftMargin" >
-    <number>9</number>
-   </property>
-   <property name="topMargin" >
-    <number>9</number>
-   </property>
-   <property name="rightMargin" >
-    <number>9</number>
-   </property>
-   <property name="bottomMargin" >
-    <number>9</number>
-   </property>
    <item>
     <widget class="QTabWidget" name="tabWidget" >
      <property name="currentIndex" >
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tab" >
+     <widget class="QWidget" name="tab_1" >
       <attribute name="title" >
-       <string>IOS images</string>
-      </attribute>
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
-        <number>6</number>
-       </property>
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>9</number>
-       </property>
-       <item>
-        <widget class="QTreeWidget" name="treeWidgetIOSimages" >
-         <property name="indentation" >
-          <number>20</number>
-         </property>
-         <property name="rootIsDecorated" >
-          <bool>false</bool>
-         </property>
-         <column>
-          <property name="text" >
-           <string>IOS file name</string>
-          </property>
-         </column>
-         <column>
-          <property name="text" >
-           <string>Platform</string>
-          </property>
-         </column>
-         <column>
-          <property name="text" >
-           <string>Chassis</string>
-          </property>
-         </column>
-         <column>
-          <property name="text" >
-           <string>Idle PC</string>
-          </property>
-         </column>
-         <column>
-          <property name="text" >
-           <string>Hypervisor</string>
-          </property>
-         </column>
-        </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" >
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <property name="leftMargin" >
-          <number>0</number>
-         </property>
-         <property name="topMargin" >
-          <number>0</number>
-         </property>
-         <property name="rightMargin" >
-          <number>0</number>
-         </property>
-         <property name="bottomMargin" >
-          <number>0</number>
-         </property>
-         <item>
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>341</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButtonNewIOS" >
-           <property name="text" >
-            <string>&amp;New</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButtonEditIOS" >
-           <property name="text" >
-            <string>&amp;Edit</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButtonDeleteIOS" >
-           <property name="text" >
-            <string>&amp;Delete</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButtonClose" >
-           <property name="text" >
-            <string>&amp;Close</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tab_2" >
-      <attribute name="title" >
-       <string>New IOS image</string>
+       <string>IOS Images</string>
       </attribute>
       <layout class="QGridLayout" >
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>9</number>
-       </property>
-       <property name="horizontalSpacing" >
-        <number>6</number>
-       </property>
-       <property name="verticalSpacing" >
-        <number>6</number>
-       </property>
        <item row="0" column="0" >
         <widget class="QGroupBox" name="groupBox" >
          <property name="sizePolicy" >
@@ -191,46 +32,9 @@
           </sizepolicy>
          </property>
          <property name="title" >
-          <string>General settings</string>
+          <string>Settings</string>
          </property>
          <layout class="QGridLayout" >
-          <property name="leftMargin" >
-           <number>9</number>
-          </property>
-          <property name="topMargin" >
-           <number>9</number>
-          </property>
-          <property name="rightMargin" >
-           <number>9</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>9</number>
-          </property>
-          <property name="horizontalSpacing" >
-           <number>6</number>
-          </property>
-          <property name="verticalSpacing" >
-           <number>6</number>
-          </property>
-          <item row="3" column="4" >
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType" >
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>31</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="1" colspan="3" >
-           <widget class="QLineEdit" name="lineEditIOSImage" />
-          </item>
           <item row="0" column="0" >
            <widget class="QLabel" name="label" >
             <property name="text" >
@@ -238,7 +42,10 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="4" >
+          <item row="0" column="1" colspan="2" >
+           <widget class="QLineEdit" name="lineEditIOSImage" />
+          </item>
+          <item row="0" column="3" >
            <widget class="QPushButton" name="pushButtonSelectIOSImage" >
             <property name="maximumSize" >
              <size>
@@ -251,31 +58,15 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1" colspan="3" >
-           <widget class="QComboBox" name="comboBoxPlatform" />
-          </item>
-          <item row="1" column="4" >
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType" >
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>31</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
           <item row="1" column="0" >
            <widget class="QLabel" name="label_2" >
             <property name="text" >
              <string>Platform:</string>
             </property>
            </widget>
+          </item>
+          <item row="1" column="1" colspan="3" >
+           <widget class="QComboBox" name="comboBoxPlatform" />
           </item>
           <item row="2" column="0" >
            <widget class="QLabel" name="label_6" >
@@ -287,29 +78,6 @@
           <item row="2" column="1" colspan="3" >
            <widget class="QComboBox" name="comboBoxChassis" />
           </item>
-          <item row="2" column="4" >
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType" >
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>31</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="3" column="1" colspan="3" >
-           <widget class="QLineEdit" name="lineEditIdlePC" >
-            <property name="text" >
-             <string/>
-            </property>
-           </widget>
-          </item>
           <item row="3" column="0" >
            <widget class="QLabel" name="label_12" >
             <property name="text" >
@@ -317,92 +85,64 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="4" >
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
+          <item row="3" column="1" colspan="3" >
+           <widget class="QLineEdit" name="lineEditIdlePC" >
+            <property name="inputMask" >
+             <string/>
             </property>
-            <property name="sizeType" >
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>31</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="4" column="3" >
-           <widget class="QSpinBox" name="spinBoxGhostFileSize" >
-            <property name="enabled" >
-             <bool>false</bool>
-            </property>
-            <property name="singleStep" >
-             <number>8</number>
+            <property name="text" >
+             <string/>
             </property>
            </widget>
           </item>
-          <item row="4" column="2" >
-           <widget class="QLabel" name="label_15" >
+          <item row="4" column="0" colspan="3" >
+           <widget class="QCheckBox" name="checkBox" >
             <property name="text" >
-             <string>size:</string>
+             <string>Default image for this platform</string>
             </property>
-           </widget>
-          </item>
-          <item row="4" column="0" colspan="2" >
-           <widget class="QCheckBox" name="checkBoxGhostFeature" >
-            <property name="enabled" >
-             <bool>false</bool>
-            </property>
-            <property name="text" >
-             <string>Use ghost file</string>
+            <property name="checked" >
+             <bool>true</bool>
             </property>
            </widget>
           </item>
          </layout>
         </widget>
        </item>
-       <item row="1" column="0" colspan="2" >
-        <layout class="QHBoxLayout" >
-         <property name="spacing" >
-          <number>6</number>
+       <item rowspan="2" row="0" column="1" >
+        <widget class="QGroupBox" name="groupBox_3" >
+         <property name="title" >
+          <string>Images</string>
          </property>
-         <property name="leftMargin" >
-          <number>0</number>
-         </property>
-         <property name="topMargin" >
-          <number>0</number>
-         </property>
-         <property name="rightMargin" >
-          <number>0</number>
-         </property>
-         <property name="bottomMargin" >
-          <number>0</number>
-         </property>
-         <item>
-          <widget class="QPushButton" name="pushButtonAddIOSImage" >
-           <property name="text" >
-            <string>Save IOS image</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>501</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
+         <layout class="QVBoxLayout" >
+          <item>
+           <widget class="QTreeWidget" name="treeWidgetIOSimages" >
+            <property name="indentation" >
+             <number>20</number>
+            </property>
+            <property name="rootIsDecorated" >
+             <bool>false</bool>
+            </property>
+            <column>
+             <property name="text" >
+              <string>IOS file name</string>
+             </property>
+            </column>
+            <column>
+             <property name="text" >
+              <string>Platform</string>
+             </property>
+            </column>
+            <column>
+             <property name="text" >
+              <string>Default</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </item>
-       <item row="0" column="1" >
+       <item row="1" column="0" >
         <widget class="QGroupBox" name="groupBox_2" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
@@ -411,67 +151,20 @@
           </sizepolicy>
          </property>
          <property name="title" >
-          <string>Hypervisor</string>
+          <string>Hypervisors</string>
          </property>
-         <layout class="QVBoxLayout" >
-          <property name="spacing" >
-           <number>6</number>
-          </property>
-          <property name="leftMargin" >
-           <number>9</number>
-          </property>
-          <property name="topMargin" >
-           <number>9</number>
-          </property>
-          <property name="rightMargin" >
-           <number>9</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>9</number>
-          </property>
-          <item>
-           <layout class="QHBoxLayout" >
-            <property name="spacing" >
-             <number>6</number>
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="QCheckBox" name="checkBoxIntegratedHypervisor" >
+            <property name="text" >
+             <string>Use the integrated hypervisor</string>
             </property>
-            <property name="leftMargin" >
-             <number>0</number>
+            <property name="checked" >
+             <bool>true</bool>
             </property>
-            <property name="topMargin" >
-             <number>0</number>
-            </property>
-            <property name="rightMargin" >
-             <number>0</number>
-            </property>
-            <property name="bottomMargin" >
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QCheckBox" name="checkBoxIntegratedHypervisor" >
-              <property name="text" >
-               <string>Use the integrated hypervisor</string>
-              </property>
-              <property name="checked" >
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer>
-              <property name="orientation" >
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" >
-               <size>
-                <width>21</width>
-                <height>23</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
+           </widget>
           </item>
-          <item>
+          <item row="1" column="0" >
            <widget class="QListWidget" name="listWidgetHypervisors" >
             <property name="enabled" >
              <bool>false</bool>
@@ -487,87 +180,32 @@
          </layout>
         </widget>
        </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tab_3" >
-      <attribute name="title" >
-       <string>Hypervisors</string>
-      </attribute>
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
-        <number>6</number>
-       </property>
-       <property name="leftMargin" >
-        <number>9</number>
-       </property>
-       <property name="topMargin" >
-        <number>9</number>
-       </property>
-       <property name="rightMargin" >
-        <number>9</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>9</number>
-       </property>
-       <item>
-        <widget class="QTreeWidget" name="treeWidgetHypervisor" >
-         <property name="rootIsDecorated" >
-          <bool>false</bool>
-         </property>
-         <column>
-          <property name="text" >
-           <string>Host</string>
-          </property>
-         </column>
-         <column>
-          <property name="text" >
-           <string>Port</string>
-          </property>
-         </column>
-         <column>
-          <property name="text" >
-           <string>Working directory</string>
-          </property>
-         </column>
-        </widget>
-       </item>
-       <item>
+       <item row="2" column="0" colspan="2" >
         <layout class="QHBoxLayout" >
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <property name="leftMargin" >
-          <number>0</number>
-         </property>
-         <property name="topMargin" >
-          <number>0</number>
-         </property>
-         <property name="rightMargin" >
-          <number>0</number>
-         </property>
-         <property name="bottomMargin" >
-          <number>0</number>
-         </property>
          <item>
-          <widget class="QLabel" name="label_5" >
+          <widget class="QPushButton" name="pushButtonAddIOS" >
            <property name="text" >
-            <string>Working directory:</string>
+            <string>&amp;Add</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEditWorkingDir" />
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButtonSelectWorkingDir" >
-           <property name="maximumSize" >
-            <size>
-             <width>31</width>
-             <height>27</height>
-            </size>
+          <widget class="QPushButton" name="pushButtonEditIOS" >
+           <property name="enabled" >
+            <bool>false</bool>
            </property>
            <property name="text" >
-            <string>...</string>
+            <string>&amp;Edit</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonDeleteIOS" >
+           <property name="enabled" >
+            <bool>false</bool>
+           </property>
+           <property name="text" >
+            <string>&amp;Delete</string>
            </property>
           </widget>
          </item>
@@ -576,17 +214,211 @@
            <property name="orientation" >
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeType" >
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
            <property name="sizeHint" >
             <size>
-             <width>40</width>
-             <height>20</height>
+             <width>251</width>
+             <height>32</height>
             </size>
            </property>
           </spacer>
          </item>
+         <item>
+          <widget class="QDialogButtonBox" name="buttonBox" >
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="standardButtons" >
+            <set>QDialogButtonBox::Close</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2" >
+      <attribute name="title" >
+       <string>Hypervisors</string>
+      </attribute>
+      <layout class="QGridLayout" >
+       <item row="0" column="0" >
+        <widget class="QGroupBox" name="groupBox_4" >
+         <property name="enabled" >
+          <bool>true</bool>
+         </property>
+         <property name="title" >
+          <string>Settings</string>
+         </property>
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="QLabel" name="label_3" >
+            <property name="text" >
+             <string>Host:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="2" >
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType" >
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>71</width>
+              <height>27</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="3" colspan="2" >
+           <widget class="QLineEdit" name="lineEditHost" >
+            <property name="text" >
+             <string>localhost</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" >
+           <widget class="QLabel" name="label_4" >
+            <property name="text" >
+             <string>Port:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="2" >
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType" >
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>71</width>
+              <height>27</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="3" colspan="2" >
+           <widget class="QLineEdit" name="lineEditPort" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text" >
+             <string>7200</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="2" >
+           <widget class="QLabel" name="label_7" >
+            <property name="text" >
+             <string>Base UDP:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2" >
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType" >
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>41</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="2" column="3" colspan="2" >
+           <widget class="QSpinBox" name="spinBox" >
+            <property name="minimum" >
+             <number>1</number>
+            </property>
+            <property name="maximum" >
+             <number>65535</number>
+            </property>
+            <property name="value" >
+             <number>10000</number>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="3" >
+           <widget class="QLabel" name="label_5" >
+            <property name="text" >
+             <string>Working directory:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3" >
+           <widget class="QLineEdit" name="lineEditWorkingDir" />
+          </item>
+          <item row="3" column="4" >
+           <widget class="QPushButton" name="pushButtonSelectWorkingDir" >
+            <property name="maximumSize" >
+             <size>
+              <width>31</width>
+              <height>27</height>
+             </size>
+            </property>
+            <property name="text" >
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="3" >
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>20</width>
+              <height>151</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="1" >
+        <widget class="QGroupBox" name="groupBox_5" >
+         <property name="title" >
+          <string>Hypervisors</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <widget class="QTreeWidget" name="treeWidgetHypervisor" >
+            <property name="rootIsDecorated" >
+             <bool>false</bool>
+            </property>
+            <column>
+             <property name="text" >
+              <string>Host</string>
+             </property>
+            </column>
+            <column>
+             <property name="text" >
+              <string>Port</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2" >
+        <layout class="QHBoxLayout" >
          <item>
           <widget class="QPushButton" name="pushButtonAddHypervisor" >
            <property name="text" >
@@ -594,95 +426,46 @@
            </property>
           </widget>
          </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" >
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <property name="leftMargin" >
-          <number>0</number>
-         </property>
-         <property name="topMargin" >
-          <number>0</number>
-         </property>
-         <property name="rightMargin" >
-          <number>0</number>
-         </property>
-         <property name="bottomMargin" >
-          <number>0</number>
-         </property>
          <item>
-          <widget class="QLabel" name="label_3" >
-           <property name="text" >
-            <string>Host:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType" >
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>81</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEditHost" >
-           <property name="text" >
-            <string>localhost</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_4" >
-           <property name="text" >
-            <string>Port:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEditPort" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+          <widget class="QPushButton" name="pushButtonEditHypervisor" >
+           <property name="enabled" >
+            <bool>false</bool>
            </property>
            <property name="text" >
-            <string>7200</string>
+            <string>&amp;Edit</string>
            </property>
           </widget>
-         </item>
-         <item>
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType" >
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>81</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
          </item>
          <item>
           <widget class="QPushButton" name="pushButtonDeleteHypervisor" >
+           <property name="enabled" >
+            <bool>false</bool>
+           </property>
            <property name="text" >
             <string>&amp;Delete</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>251</width>
+             <height>32</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QDialogButtonBox" name="buttonBox_2" >
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="standardButtons" >
+            <set>QDialogButtonBox::Close</set>
            </property>
           </widget>
          </item>
@@ -694,23 +477,37 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../../../gns3-artwork/svg_resources.qrc" />
- </resources>
+ <resources/>
  <connections>
   <connection>
-   <sender>pushButtonClose</sender>
-   <signal>clicked()</signal>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
    <receiver>IOSDialog</receiver>
-   <slot>close()</slot>
+   <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>570</x>
-     <y>330</y>
+     <x>593</x>
+     <y>422</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>315</x>
-     <y>182</y>
+     <x>474</x>
+     <y>459</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox_2</sender>
+   <signal>rejected()</signal>
+   <receiver>IOSDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>578</x>
+     <y>423</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>417</x>
+     <y>457</y>
     </hint>
    </hints>
   </connection>

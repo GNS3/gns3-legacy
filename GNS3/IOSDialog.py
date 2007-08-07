@@ -45,24 +45,32 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         self.setupUi(self)
         
         # connect buttons to slots
-        self.connect(self.pushButtonNewIOS, QtCore.SIGNAL('clicked()'), self.slotNewIOS)
-        self.connect(self.pushButtonAddIOSImage, QtCore.SIGNAL('clicked()'), self.slotAddIOS)
-        self.connect(self.pushButtonSelectIOSImage, QtCore.SIGNAL('clicked()'), self.slotSelectIOS)
+        self.connect(self.pushButtonAddIOS, QtCore.SIGNAL('clicked()'), self.slotAddIOS)
+        self.connect(self.pushButtonEditIOS,  QtCore.SIGNAL('clicked()'),  self.slotEditIOS)
         self.connect(self.pushButtonDeleteIOS, QtCore.SIGNAL('clicked()'), self.slotDeleteIOS)
-        self.connect(self.pushButtonEditIOS, QtCore.SIGNAL('clicked()'), self.slotEditIOS)       
+        self.connect(self.pushButtonSelectIOSImage, QtCore.SIGNAL('clicked()'), self.slotSelectIOS)
         self.connect(self.pushButtonAddHypervisor, QtCore.SIGNAL('clicked()'), self.slotAddHypervisor)
+        self.connect(self.pushButtonEditHypervisor,  QtCore.SIGNAL('clicked()'),  self.slotEditHypervisor)
         self.connect(self.pushButtonDeleteHypervisor, QtCore.SIGNAL('clicked()'), self.slotDeleteHypervisor)
         self.connect(self.pushButtonSelectWorkingDir, QtCore.SIGNAL('clicked()'), self.slotWorkingDirectory)  
+        
         self.connect(self.checkBoxIntegratedHypervisor, QtCore.SIGNAL('stateChanged(int)'), self.slotCheckBoxIntegratedHypervisor)
-
         self.connect(self.comboBoxPlatform, QtCore.SIGNAL('currentIndexChanged(const QString &)'), self.slotSelectedPlatform)
+
+        self.connect(self.treeWidgetIOSimages,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotIOSSelectionChanged)
+        self.connect(self.treeWidgetIOSimages,  QtCore.SIGNAL('itemActivated(QTreeWidgetItem *, int)'),  self.slotIOSSelected)
+        
+        self.connect(self.treeWidgetHypervisor, QtCore.SIGNAL('itemSelectionChanged()'),  self.slotHypervisorSelectionChanged)
+        self.connect(self.treeWidgetHypervisor,  QtCore.SIGNAL('itemActivated(QTreeWidgetItem *, int)'),  self.slotHypervisorSelected)
+        
+        
         
         # insert existing platforms
         self.comboBoxPlatform.insertItems(0, PLATFORMS.keys())
 
         self._reloadInfos()
         self.error = QtGui.QErrorMessage(self)
-        
+
     def __del__(self):
         
         ConfDB().sync()
@@ -76,29 +84,17 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
         for name in globals.GApp.iosimages.keys():
             image = globals.GApp.iosimages[name]
-
             item = QtGui.QTreeWidgetItem(self.treeWidgetIOSimages)
             # image name column
             item.setText(0, name)
             # platform column
             item.setText(1, image.platform)
-            # chassis column
-            item.setText(2, image.chassis)
-            # idle pc column
-            item.setText(3, image.idlepc)
-            # hypervisor column
-            if image.hypervisor_host == None:
-                # local hypervisor
-                item.setText(4, 'local')
-            else:
-                item.setText(4,  image.hypervisor_host + ':' +  str(image.hypervisor_port))
 
         for name in globals.GApp.hypervisors.keys():
             hypervisor = globals.GApp.hypervisors[name]
             item = QtGui.QTreeWidgetItem(self.treeWidgetHypervisor)
             item.setText(0, hypervisor.host)
             item.setText(1, str(hypervisor.port))
-            item.setText(2, hypervisor.workdir)
             hypervisors_list.append(item)
             self.listWidgetHypervisors.addItem(hypervisor.host + ':' + str(hypervisor.port))
                     
@@ -110,31 +106,6 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         self.treeWidgetHypervisor.resizeColumnToContents(0)
         self.treeWidgetHypervisor.resizeColumnToContents(1)
         self.treeWidgetHypervisor.sortItems(0, QtCore.Qt.AscendingOrder)
-        
-
-    def _getIOSplatform(self, imagename):
-        """ Extract platform information from imagename
-            imagename: string
-        """
-
-        m = re.match("^c([0-9]*)\w*", imagename)
-        if (m != None):
-            return m.group(1)
-        return (None)
-
-    def slotNewIOS(self):
-        """ Switch to New IOS image tab
-        """
-        
-        self.tabWidget.setCurrentIndex(1)
-
-    def slotSelectedPlatform(self, platform):
-        """ Called when a platform is selected
-            platform: QtCore.QString instance
-        """
-        
-        self.comboBoxChassis.clear()
-        self.comboBoxChassis.insertItems(0, PLATFORMS[str(platform)])
 
     def slotCheckBoxIntegratedHypervisor(self, state):
         """ Enable or disable the hypervisors list
@@ -146,6 +117,128 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         else:
             self.listWidgetHypervisors.setEnabled(True)
 
+    def slotIOSSelectionChanged(self):
+    
+        item = self.treeWidgetIOSimages.currentItem()
+        if item != None:
+            self.pushButtonEditIOS.setEnabled(True)
+            self.pushButtonDeleteIOS.setEnabled(True)
+        else:
+            self.pushButtonEditIOS.setEnabled(False)
+            self.pushButtonDeleteIOS.setEnabled(False)
+
+    def slotIOSSelected(self,  item,  column):
+
+        if (item != None):
+            # restore image name
+            imagekey = str(item.text(0))
+            if globals.GApp.iosimages.has_key(imagekey):
+                conf = globals.GApp.iosimages[imagekey]
+                self.lineEditIOSImage.setText(conf.filename)
+                index = self.comboBoxPlatform.findText(conf.platform, QtCore.Qt.MatchFixedString)
+                self.comboBoxPlatform.setCurrentIndex(index)
+                index = self.comboBoxChassis.findText(conf.chassis, QtCore.Qt.MatchFixedString)
+                self.comboBoxChassis.setCurrentIndex(index)
+                self.lineEditIdlePC.setText(conf.idlepc)
+                
+                #TODO: hypervisor
+
+    def slotEditIOS(self):
+    
+        item = self.treeWidgetIOSimages.currentItem()
+        self.slotIOSSelected(item, 0)
+                
+    def slotAddIOS(self):
+        """ Save an IOS image and all his settings 
+        """
+        
+        imagename = str(self.lineEditIOSImage.text())
+        if not imagename:
+            return
+    
+        idlepc = str(self.lineEditIdlePC.text())
+        if idlepc == '':
+            # no idle PC, that's bad ...
+            self.error.showMessage("There is no IDLE PC")
+
+        item = QtGui.QTreeWidgetItem(self.treeWidgetIOSimages)
+        # platform column
+        item.setText(1, self.comboBoxPlatform.currentText())
+
+        hypervisor_host = 'localhost'
+        hypervisor_port = ConfDB().get("Dynamips/hypervisor_port", 7200)
+        working_directory = ConfDB().get("Dynamips/hypervisor_working_directory", '')
+        
+        if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Unchecked:
+            # external hypervisor
+            globals.useHypervisorManager = False
+            items = self.listWidgetHypervisors.selectedItems()
+            if len(items) == 0:
+                firstitem = self.listWidgetHypervisors.item(0)
+                if not firstitem:
+                    QtGui.QMessageBox.warning(self, 'IOS', 'No hypervisor selected, use local hypervisor')    
+            else:
+                # get the selected hypervisor
+                selected = str(items[0].text())
+                # split the line to get the host and port
+                splittab = selected.split(':')
+                hypervisor_host = splittab[0]
+                hypervisor_port = splittab[1]
+
+        # image name column
+        imagekey = hypervisor_host + ':' + imagename
+        item.setText(0, imagekey)
+
+        # update an already existing IOS image
+        if globals.GApp.iosimages.has_key(imagekey):
+            delitem = self.treeWidgetIOSimages.findItems(imagekey,  QtCore.Qt.MatchFixedString)[0]
+            self.treeWidgetIOSimages.setCurrentItem(delitem)
+            self.slotDeleteIOS()
+            
+        if globals.GApp.iosimages.has_key(imagekey):
+            conf = globals.GApp.iosimages[imagekey]
+        else:
+            conf = iosImageConf()
+
+        conf.id = globals.GApp.iosimages_ids
+        globals.GApp.iosimages_ids += 1
+        conf.filename = imagename
+        conf.platform = str(self.comboBoxPlatform.currentText())
+        print conf.platform
+        conf.chassis = str(self.comboBoxChassis.currentText())
+        conf.idlepc = idlepc
+        conf.hypervisor_host = hypervisor_host
+        conf.hypervisor_port = int(hypervisor_port)
+        globals.GApp.iosimages[imagekey] = conf
+        self.treeWidgetIOSimages.addTopLevelItem(item)
+
+    def slotDeleteIOS(self):
+        """ Delete the selected line from the list of IOS images
+        """
+
+        item = self.treeWidgetIOSimages.currentItem()
+        if (item != None):
+            self.treeWidgetIOSimages.takeTopLevelItem(self.treeWidgetIOSimages.indexOfTopLevelItem(item))
+            del globals.GApp.iosimages[str(item.text(0))]
+            
+    def _getIOSplatform(self, imagename):
+        """ Extract platform information from imagename
+            imagename: string
+        """
+
+        m = re.match("^c([0-9]*)\w*", imagename)
+        if (m != None):
+            return m.group(1)
+        return (None)
+
+    def slotSelectedPlatform(self, platform):
+        """ Called when a platform is selected
+            platform: QtCore.QString instance
+        """
+        
+        self.comboBoxChassis.clear()
+        self.comboBoxChassis.insertItems(0, PLATFORMS[str(platform)])
+        
     def slotSelectIOS(self):
         """ Get an IOS image file from the file system
             Insert platforms and models
@@ -170,131 +263,6 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                             if index != -1:
                                 self.comboBoxChassis.setCurrentIndex(index)
                             break
-    
-    def slotAddIOS(self):
-        """ Save an IOS image and all his settings 
-            (associated hypervisor included)
-        """
-        
-        imagename = str(self.lineEditIOSImage.text())
-        if imagename != '':
-            idlepc = str(self.lineEditIdlePC.text())
-            if idlepc == '':
-                # no idle PC, that's bad ...
-                self.error.showMessage("There is no IDLE PC")
-
-            item = QtGui.QTreeWidgetItem(self.treeWidgetIOSimages)
-            # platform column
-            item.setText(1, self.comboBoxPlatform.currentText())
-            # chassis column
-            item.setText(2, self.comboBoxChassis.currentText())
-            # idle pc column
-            item.setText(3, idlepc)
-            # hypervisor column
-
-            hypervisor_host = 'localhost'
-            hypervisor_port = ConfDB().get("Dynamips/hypervisor_port", 7200)
-            working_directory = ConfDB().get("Dynamips/hypervisor_working_directory", '')
-            
-            if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Checked:
-                # integrated hypervisor
-                item.setText(4, hypervisor_host + ':' + str(hypervisor_port))
-            else:
-                # external hypervisor
-                globals.useHypervisorManager = False
-                items = self.listWidgetHypervisors.selectedItems()
-                if len(items) == 0:
-                    firstitem = self.listWidgetHypervisors.item(0)
-                    if firstitem:
-                        item.setText(4, str(firstitem.text()))
-                    else:
-                        QtGui.QMessageBox.warning(self, 'IOS', 'No hypervisor selected, use local hypervisor')    
-                        item.setText(4, hypervisor_host + ':' + str(hypervisor_port))
-                else:
-                    # get the selected hypervisor
-                    selected = str(items[0].text())
-                    item.setText(4, selected)
-                    # split the line to get the host and port
-                    splittab = selected.split(':')
-                    hypervisor_host = splittab[0]
-                    hypervisor_port = splittab[1]
-
-            # image name column
-            imagekey = hypervisor_host + ':' + imagename
-            item.setText(0, imagekey)
-
-            # update an already existing IOS image
-
-            if globals.GApp.iosimages.has_key(imagekey):
-                delitem = self.treeWidgetIOSimages.findItems(imagename, QtCore.Qt.MatchFixedString)[0]
-                self.treeWidgetIOSimages.setCurrentItem(delitem)
-                self.slotDeleteIOS()
-
-#            newimage_confkey = str(ConfDB().getGroupNewNumChild("IOS.images"))
-#            newimage_dict = {'filename': imagename,
-#                            'platform': str(self.comboBoxPlatform.currentText()),
-#                            'chassis': str(self.comboBoxChassis.currentText()),
-#                            'idlepc': idlepc,
-#                            'hypervisor_host': hypervisor_host,
-#                            'hypervisor_port': int(hypervisor_port),
-#                            'working_directory': working_directory
-#            }
-            
-            if globals.GApp.iosimages.has_key(imagekey):
-                conf = globals.GApp.iosimages[imagekey]
-            else:
-                conf = iosImageConf()
-
-            conf.id = globals.GApp.iosimages_ids
-            globals.GApp.iosimages_ids += 1
-            conf.filename = imagename
-            conf.platform = str(self.comboBoxPlatform.currentText())
-            conf.chassis = str(self.comboBoxChassis.currentText())
-            conf.idlepc = idlepc
-            conf.hypervisor_host = hypervisor_host
-            conf.hypervisor_port = int(hypervisor_port)
-            globals.GApp.iosimages[imagekey] = conf
-
-            # Save `IOS image' to user config
-            #ConfDB().setGroupDict(newimage_confkey, newimage_dict)
-            # Also, save a copy into the global dict.
-            #newimage_dict['confkey'] = newimage_confkey
-            
-            self.treeWidgetIOSimages.addTopLevelItem(item)
-            # switch to ios images tab
-            self.tabWidget.setCurrentIndex(0)
-
-    def slotEditIOS(self):
-        """ Load the selected line from the list of IOS images to edit it
-        """
-        
-        item = self.treeWidgetIOSimages.currentItem()
-        if (item != None):
-            # restore image name
-            self.lineEditIOSImage.setText(str(item.text(0)).split(':', 1)[1])
-            # restore platform
-            index = self.comboBoxPlatform.findText(str(item.text(1)))
-            self.comboBoxPlatform.setCurrentIndex(index)
-            # restore chassis
-            index = self.comboBoxChassis.findText(str(item.text(2)))
-            self.comboBoxChassis.setCurrentIndex(index)
-            # restore idle pc
-            self.lineEditIdlePC.setText(str(item.text(3)))
-            # switch to image settings tab
-            self.tabWidget.setCurrentIndex(1)
-
-    def slotDeleteIOS(self):
-        """ Delete the selected line from the list of IOS images
-        """
-
-        item = self.treeWidgetIOSimages.currentItem()
-        if (item != None):
-            self.treeWidgetIOSimages.takeTopLevelItem(self.treeWidgetIOSimages.indexOfTopLevelItem(item))
-            
-            #confkey = self.main.ios_images[str(item.text(0))]['confkey']
-            #ConfDB().delete(confkey)
-            
-            del globals.GApp.iosimages[str(item.text(0))]
 
     def slotWorkingDirectory(self):
         """ Get a working directory from the file system
@@ -304,7 +272,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         if path != None:
             self.lineEditWorkingDir.clear()
             self.lineEditWorkingDir.setText(path)
-
+            
     def slotAddHypervisor(self):
         """ Add a hypervisor to the hypervisors list
         """
@@ -326,15 +294,6 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             self.treeWidgetHypervisor.addTopLevelItem(item)
             self.treeWidgetHypervisor.resizeColumnToContents(0)
             self.treeWidgetHypervisor.resizeColumnToContents(1)
-            
-            # Save config into the global dict.
-#            newhypervisor_confkey = str(ConfDB().getGroupNewNumChild("IOS.hypervisors"))
-#            newhypervisor_dict = {'host': hypervisor_host,
-#                                  'port': hypervisor_port,
-#                                  'working_directory': working_dir,
-#                                  'dynamips_instance': None,
-#                                  'confkey': newhypervisor_confkey
-#            }
 
             if globals.GApp.iosimages.has_key(hypervisor_host + ':' + hypervisor_port):
                 conf = globals.GApp.hypervisors[hypervisor_host + ':' + hypervisor_port]
@@ -346,16 +305,8 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             conf.host = hypervisor_host
             conf.port = int(hypervisor_port)
             conf.workdir = working_dir
+            print 'add = ' + hypervisor_host + ':' + hypervisor_port
             globals.GApp.hypervisors[hypervisor_host + ':' + hypervisor_port] = conf
-
-#            # Save IOS hypervisors to user config
-#            newhypconf_dict = {'host': hypervisor_host,
-#                               'port': hypervisor_port,
-#                               'working_directory': working_dir
-#            }
-            
-            #ConfDB().setGroupDict(newhypervisor_confkey, newhypconf_dict)
-
             self.listWidgetHypervisors.addItem(hypervisor_host + ':' + hypervisor_port)
 
     def slotDeleteHypervisor(self):
@@ -376,3 +327,30 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
            items = self.listWidgetHypervisors.findItems(matchstring, QtCore.Qt.MatchFixedString)
            for i in items:
                 self.listWidgetHypervisors.takeItem(self.listWidgetHypervisors.row(i))
+
+    def slotHypervisorSelectionChanged(self):
+    
+        item = self.treeWidgetHypervisor.currentItem()
+        if item != None:
+            self.pushButtonEditHypervisor.setEnabled(True)
+            self.pushButtonDeleteHypervisor.setEnabled(True)
+        else:
+            self.pushButtonEditHypervisor.setEnabled(False)
+            self.pushButtonDeleteHypervisor.setEnabled(False)
+            
+    def slotHypervisorSelected(self,  item,  column):
+
+        if (item != None):
+            hypervisor_host = str(item.text(0))
+            hypervisor_port = str(item.text(1))
+            hypervisor_key = hypervisor_host + ':' + hypervisor_port
+            if globals.GApp.hypervisors.has_key(hypervisor_key):
+                conf = globals.GApp.hypervisors[hypervisor_key]
+                self.lineEditHost.setText(conf.host)
+                self.lineEditPort.setText(str(conf.port))
+                self.lineEditWorkingDir.setText(conf.workdir)
+
+    def slotEditHypervisor(self):
+    
+        item = self.treeWidgetHypervisor.currentItem()
+        self.slotHypervisorSelected(item, 0)
