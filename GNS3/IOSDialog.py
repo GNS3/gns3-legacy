@@ -92,10 +92,10 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         for name in globals.GApp.hypervisors.keys():
             hypervisor = globals.GApp.hypervisors[name]
             item = QtGui.QTreeWidgetItem(self.treeWidgetHypervisor)
-            # hypervisor host column
-            item.setText(0, hypervisor.host)
-            # hypervisor port column
-            item.setText(1, str(hypervisor.port))
+            # hypervisor host:port column
+            item.setText(0, hypervisor.host + ':' + str(hypervisor.port))
+            # hypervisor base UDP column
+            item.setText(1, str(hypervisor.baseUDP))
             hypervisors_list.append(item)
             self.listWidgetHypervisors.addItem(hypervisor.host + ':' + str(hypervisor.port))
                     
@@ -150,7 +150,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                             index = self.comboBoxPlatform.findText(platformname)
                             if index != -1:
                                 self.comboBoxPlatform.setCurrentIndex(index)
-                            index = self.comboBoxChassis.findText(model)
+                            index = self.comboBoxChassis.findText(chassis)
                             if index != -1:
                                 self.comboBoxChassis.setCurrentIndex(index)
                             break
@@ -167,8 +167,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         idlepc = str(self.lineEditIdlePC.text())
 
         hypervisor_host = ''
-        hypervisor_port = ConfDB().get("Dynamips/hypervisor_port", 7200)
-        working_directory = ConfDB().get("Dynamips/hypervisor_working_directory", '')
+        hypervisor_port = 7200
         
         if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Unchecked:
             # external hypervisor, don't use the hypervisor manager
@@ -298,24 +297,25 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         hypervisor_host = str(self.lineEditHost.text())
         hypervisor_port = str(self.lineEditPort.text())
         working_dir = str(self.lineEditWorkingDir.text())
-        if len(self.treeWidgetHypervisor.findItems(hypervisor_host, QtCore.Qt.MatchFixedString, 0)) \
-        and len(self.treeWidgetHypervisor.findItems(hypervisor_port, QtCore.Qt.MatchFixedString, 1)) :
-            return
+        baseudp = self.spinBoxBaseUDP.value()
+
         if (hypervisor_host != '' and hypervisor_port != ''):
+            hypervisorkey = hypervisor_host + ':' + hypervisor_port
             item = QtGui.QTreeWidgetItem(self.treeWidgetHypervisor)
-            # host column
-            item.setText(0, hypervisor_host)
-            # port column
-            item.setText(1, hypervisor_port)
-            # working directory column
-            item.setText(2, working_dir)
-            self.treeWidgetHypervisor.addTopLevelItem(item)
-            self.treeWidgetHypervisor.resizeColumnToContents(0)
-            self.treeWidgetHypervisor.resizeColumnToContents(1)
+            # host:port column
+            item.setText(0,  hypervisorkey)
+            # base UDP column
+            item.setText(1, str(baseudp))
+
+            # update an already existing hypervisor
+            if globals.GApp.hypervisors.has_key(hypervisorkey):
+                delitem = self.treeWidgetHypervisor.findItems(hypervisorkey,  QtCore.Qt.MatchFixedString)[0]
+                self.treeWidgetHypervisor.setCurrentItem(delitem)
+                self.slotDeleteHypervisor()
 
             # save settings
-            if globals.GApp.iosimages.has_key(hypervisor_host + ':' + hypervisor_port):
-                conf = globals.GApp.hypervisors[hypervisor_host + ':' + hypervisor_port]
+            if globals.GApp.iosimages.has_key(hypervisorkey):
+                conf = globals.GApp.hypervisors[hypervisorkey]
             else:
                 conf = hypervisorConf()
 
@@ -325,10 +325,13 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             conf.port = int(hypervisor_port)
             self.lineEditPort.setText(str(conf.port + 1))
             conf.workdir = working_dir
-            conf.baseUDP = self.spinBoxBaseUDP.value()
+            conf.baseUDP = baseudp
             self.spinBoxBaseUDP.setValue(conf.baseUDP + 15)
-            globals.GApp.hypervisors[hypervisor_host + ':' + hypervisor_port] = conf
-            self.listWidgetHypervisors.addItem(hypervisor_host + ':' + hypervisor_port)
+            globals.GApp.hypervisors[hypervisorkey] = conf
+            self.treeWidgetHypervisor.addTopLevelItem(item)
+            self.treeWidgetHypervisor.resizeColumnToContents(0)
+            self.treeWidgetHypervisor.resizeColumnToContents(1)
+            self.listWidgetHypervisors.addItem(hypervisorkey)
 
     def slotDeleteHypervisor(self):
         """ Remove a hypervisor from the hypervisors list
@@ -337,7 +340,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         item = self.treeWidgetHypervisor.currentItem()
         if (item != None):
            self.treeWidgetHypervisor.takeTopLevelItem(self.treeWidgetHypervisor.indexOfTopLevelItem(item))
-           hypervisorkey = str(item.text(0)) + ':' + str(item.text(1))
+           hypervisorkey = str(item.text(0))
            items = self.listWidgetHypervisors.findItems(hypervisorkey, QtCore.Qt.MatchFixedString)
            self.listWidgetHypervisors.takeItem(self.listWidgetHypervisors.row(items[0]))
            del globals.GApp.hypervisors[hypervisorkey]
@@ -366,11 +369,11 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """
         
         if (item != None):
-            hypervisor_host = str(item.text(0))
-            hypervisor_port = str(item.text(1))
-            hypervisor_key = hypervisor_host + ':' + hypervisor_port
+            hypervisor_key = str(item.text(0))
             if globals.GApp.hypervisors.has_key(hypervisor_key):
                 conf = globals.GApp.hypervisors[hypervisor_key]
                 self.lineEditHost.setText(conf.host)
                 self.lineEditPort.setText(str(conf.port))
                 self.lineEditWorkingDir.setText(conf.workdir)
+                self.spinBoxBaseUDP.setValue(conf.baseUDP)
+    

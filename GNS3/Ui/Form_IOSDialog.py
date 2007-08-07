@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Tue Aug  7 21:09:43 2007
+# Created: Tue Aug  7 23:11:28 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -286,7 +286,7 @@ class Ui_IOSDialog(object):
         self.label_6.setText(QtGui.QApplication.translate("IOSDialog", "Chassis:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_12.setText(QtGui.QApplication.translate("IOSDialog", "IDLE PC:", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_3.setTitle(QtGui.QApplication.translate("IOSDialog", "Images", None, QtGui.QApplication.UnicodeUTF8))
-        self.treeWidgetIOSimages.headerItem().setText(0,QtGui.QApplication.translate("IOSDialog", "IOS file name", None, QtGui.QApplication.UnicodeUTF8))
+        self.treeWidgetIOSimages.headerItem().setText(0,QtGui.QApplication.translate("IOSDialog", "IOS image", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetIOSimages.headerItem().setText(1,QtGui.QApplication.translate("IOSDialog", "Chassis", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setTitle(QtGui.QApplication.translate("IOSDialog", "Hypervisors", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxIntegratedHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "Use the hypervisor manager", None, QtGui.QApplication.UnicodeUTF8))
@@ -303,8 +303,8 @@ class Ui_IOSDialog(object):
         self.label_5.setText(QtGui.QApplication.translate("IOSDialog", "Working directory:", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonSelectWorkingDir.setText(QtGui.QApplication.translate("IOSDialog", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_5.setTitle(QtGui.QApplication.translate("IOSDialog", "Hypervisors", None, QtGui.QApplication.UnicodeUTF8))
-        self.treeWidgetHypervisor.headerItem().setText(0,QtGui.QApplication.translate("IOSDialog", "Host", None, QtGui.QApplication.UnicodeUTF8))
-        self.treeWidgetHypervisor.headerItem().setText(1,QtGui.QApplication.translate("IOSDialog", "Port", None, QtGui.QApplication.UnicodeUTF8))
+        self.treeWidgetHypervisor.headerItem().setText(0,QtGui.QApplication.translate("IOSDialog", "Host:Port", None, QtGui.QApplication.UnicodeUTF8))
+        self.treeWidgetHypervisor.headerItem().setText(1,QtGui.QApplication.translate("IOSDialog", "Base UDP", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonAddHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "&Add", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonEditHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "&Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonDeleteHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "&Delete", None, QtGui.QApplication.UnicodeUTF8))

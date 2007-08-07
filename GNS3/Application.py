@@ -240,7 +240,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/host", o.host)
             c.set(basekey + "/port", o.port)
             c.set(basekey + "/working_directory", o.workdir)
+            c.set(basekey + "/base_udp", o.baseUDP)
         
         ConfDB().sync()
-
         pass

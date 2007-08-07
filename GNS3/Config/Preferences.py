@@ -81,8 +81,7 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
             mod = getattr(mod, 'UiConfig_' + widgetPrefix + widgetName)
             return mod
         except ImportError:
-            #FIXME: graphical error msg
-            print 'no page !'
+            print 'Module ' + modName + ' not found'
             return None
 
     def __initDialog(self, type):

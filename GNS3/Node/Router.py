@@ -171,7 +171,7 @@ class Router(AbstractNode):
         self.dev.nvram = self.config['NVRAM']
         if self.config['pcmcia-disk0'] > 0:
             self.dev.disk0 = self.config['pcmcia-disk0']
-        if self.config['pcmcia-disk1'] != 0:
+        if self.config['pcmcia-disk1'] > 0:
             self.dev.disk1 = self.config['pcmcia-disk1']
         self.dev.mmap = self.config['mmap']
         if self.config['confreg'] != '':

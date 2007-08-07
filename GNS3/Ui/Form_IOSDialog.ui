@@ -125,7 +125,7 @@
             </property>
             <column>
              <property name="text" >
-              <string>IOS file name</string>
+              <string>IOS image</string>
              </property>
             </column>
             <column>
@@ -400,12 +400,12 @@
             </property>
             <column>
              <property name="text" >
-              <string>Host</string>
+              <string>Host:Port</string>
              </property>
             </column>
             <column>
              <property name="text" >
-              <string>Port</string>
+              <string>Base UDP</string>
              </property>
             </column>
            </widget>

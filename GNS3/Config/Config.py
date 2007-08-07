@@ -430,29 +430,10 @@ class GNS_Conf(object):
             conf.hypervisor_host = str(c.get(cgroup + "/hypervisor_host"))
             conf.hypervisor_port = int(c.get(cgroup + "/hypervisor_port"))
             
-            #TODO: save workingdir
-            #conf.working_directory = str(c.get(cgroup + "/working_directory"))
-            
             globals.GApp.iosimages[img_ref] = conf
 
             if conf.id >= globals.GApp.iosimages_ids:
                 globals.GApp.iosimages_ids = conf.id + 1
-
-            # FIXME: change global access
-#            self.main.ios_images[img_ref] = {
-#                    'confkey': str(cgroup),
-#                    'filename' : img_filename,
-#                    'platform' : c.get(cgroup + "/platform", ''),
-#                    'chassis': c.get(cgroup + "/chassis", ''),
-#                    'idlepc' : c.get(cgroup + "/idlepc", ''),
-#                    'hypervisor_host' : img_hyp_host,
-#                    'hypervisor_port' : int(c.get(cgroup + "/hypervisor_port", 0)),
-#                    'working_directory' : c.get(cgroup + "/working_directory", '')
-#            }
-
-
-        # Loading IOS hypervisors conf
-        # TODO: LoadingConfIOSHypervisors
 
     def IOS_hypervisors(self):
         """ Load IOS hypervisors settings from config file
@@ -470,7 +451,8 @@ class GNS_Conf(object):
 
             hyp_port = c.get(cgroup + "/port", '')
             hyp_host = c.get(cgroup + "/host", '')
-            #hyp_wdir = c.get(cgroup + "/working_directory", '')
+            hyp_wdir = c.get(cgroup + "/working_directory", '')
+            hyp_baseUDP = c.get(cgroup + "/base_udp", '')
 
             # We need at least `hyp_host' and `hyp_port' to be set
             if hyp_host == '' or hyp_port == '':
@@ -482,20 +464,12 @@ class GNS_Conf(object):
             conf.id = int(img_num)
             conf.host = hyp_host
             conf.port = int(hyp_port)
-            #conf.workdir = hyp_wdir
+            conf.workdir = hyp_wdir
+            conf.baseUDP = int(hyp_baseUDP)
             globals.GApp.hypervisors[img_ref] = conf
 
             if conf.id >= globals.GApp.hypervisors_ids:
                 globals.GApp.hypervisors_ids = conf.id + 1
-
-            # FIXME: change global access
-#            self.main.hypervisors[img_ref] = {
-#                    'confkey' : str(cgroup),
-#                    'host'    : hyp_host,
-#                    'port'    : hyp_port,
-#                    'dynamips_instance': None,
-#                    'working_directory' : hyp_wdir
-#            }
 
     # Static Methods stuffs
     load_IOSimages = classmethod(IOS_images)
