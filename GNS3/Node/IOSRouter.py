@@ -65,8 +65,8 @@ ADAPTERS = {
 
 IF_REGEXP = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)\/([0-9]+)$""") 
 
-class Router(AbstractNode):
-    """ Router class
+class IOSRouter(AbstractNode):
+    """ IOSRouter class
     """
 
     def __init__(self, renderer_normal, renderer_select):

@@ -24,7 +24,7 @@ import sys, time
 import GNS3.Globals as globals
 import GNS3.Config.Defaults as Defaults
 from GNS3.Config.Objects import iosImageConf, hypervisorConf
-from GNS3.Node.Router import Router
+from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Link.Serial import Serial
 from GNS3.Link.Ethernet import Ethernet
 from PyQt4 import QtCore
@@ -255,7 +255,7 @@ class ConfDB(Singleton, QtCore.QSettings):
                         j += 1
            
             globals.GApp.topology.node_baseid = int(id)
-            __n = Router(renders['normal'], renders['selected'])
+            __n = IOSRouter(renders['normal'], renders['selected'])
             __n.setPos(float(x), float(y))
             __n.type = type
             __n.config = iosConfig

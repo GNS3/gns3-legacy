@@ -23,7 +23,7 @@
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_NodeConfigurator import Ui_NodeConfigurator
-from GNS3.Node.Router import Router
+from GNS3.Node.IOSRouter import IOSRouter
 
 class ConfigurationPageItem(QtGui.QTreeWidgetItem):
     """ Class implementing a QTreeWidgetItem holding the configuration page data.
@@ -88,7 +88,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             # the settings.
             "Routers" : \
                 [self.trUtf8("Routers"), "preferences-application.png",
-                 "IOSRouter", None, None]
+                 "Page_IOSRouter", None, None]
                  }
         
         for key in self.configItems.keys():
@@ -97,7 +97,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             item.setExpanded(True)
             self.itmDict[key] = item
 
-        self.assocPage = { Router: "Routers" }
+        self.assocPage = { IOSRouter: "Routers" }
         self.__loadNodeItems()
 
         self.splitter.setSizes([200, 600])

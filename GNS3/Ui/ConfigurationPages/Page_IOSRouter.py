@@ -27,7 +27,7 @@ from GNS3.Dynagen.dynamips_lib import ADAPTER_MATRIX
 from GNS3.Utils import fileBrowser
 import GNS3.NodeConfigs as config
 
-class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
+class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
     """
     Class implementing the IOS router configuration page.
     """
@@ -221,4 +221,4 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
 
 def create(dlg):
 
-    return  IOSRouter()
+    return  Page_IOSRouter()

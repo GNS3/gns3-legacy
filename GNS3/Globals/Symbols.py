@@ -20,35 +20,35 @@
 # Contact: contact@gns3.net
 #
 
-from GNS3.Node.Router import Router
+from GNS3.Node.IOSRouter import IOSRouter
 
 #FIXME: all symbols are a Router
 SYMBOLS = (
-    {'name': "Router", 'object': Router,
+    {'name': "Router", 'object': IOSRouter,
     'normal_svg_file': ":/symbols/rt_standard.normal.svg",
     'select_svg_file': ":/symbols/rt_standard.selected.svg"},
 
-    {'name': "Router with firewall", 'object': Router,
+    {'name': "Router with firewall", 'object': IOSRouter,
     'normal_svg_file': ":/symbols/rt_firewall.normal.svg",
     'select_svg_file': ":/symbols/rt_firewall.selected.svg"},
 
-    {'name': "Edge label switch router", 'object': Router,
+    {'name': "Edge label switch router", 'object': IOSRouter,
     'normal_svg_file': ":/symbols/edgelable_swproc.normal.svg",
     'select_svg_file': ":/symbols/edgelable_swproc.selected.svg"},
 
-    {'name': "Switch", 'object': Router,
+    {'name': "Switch", 'object': IOSRouter,
     'normal_svg_file': ":/symbols/sw_standard.normal.svg",
     'select_svg_file': ":/symbols/sw_standard.selected.svg"},
 
-    {'name': "Multilayer switch", 'object': Router,
+    {'name': "Multilayer switch", 'object': IOSRouter,
     'normal_svg_file': ":/symbols/sw_multilayer.normal.svg",
     'select_svg_file': ":/symbols/sw_multilayer.selected.svg"},
     
-    {'name': "Route switch processor", 'object': Router,
+    {'name': "Route switch processor", 'object': IOSRouter,
     'normal_svg_file': ":/symbols/route_swproc.normal.svg",
     'select_svg_file': ":/symbols/route_swproc.selected.svg"},
      
-    {'name': "ATM switch", 'object': Router,
+    {'name': "ATM switch", 'object': IOSRouter,
     'normal_svg_file': ":/symbols/sw_atm.normal.svg",
     'select_svg_file': ":/symbols/sw_atm.selected.svg"}
 )
