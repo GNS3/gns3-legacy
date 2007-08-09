@@ -69,9 +69,13 @@ class HypervisorManager:
     
     def startProcHypervisors(self):
 
+        node_list = []
         mem = 0
-        for node in globals.GApp.topology.getNodes():
-            mem += node.config['RAM']
+        for node in globals.GApp.topology.nodes.itervalues():
+            image = globals.GApp.iosimages[node.config['image'] ]
+            if not image.hypervisor_host:
+                node_list.append(node)
+                mem += node.config['RAM']
 
         count = mem / MEM_USAGE_LIMIT
         count += 1
@@ -84,9 +88,8 @@ class HypervisorManager:
         hypervisor = self.__startNewHypervisor()
         if hypervisor == None:
             return False
-        nodes = globals.GApp.topology.getNodes()
-        nb_node = len(nodes)
-        for node in nodes:
+        nb_node = len(node_list)
+        for node in node_list:
             progress.setValue(current_node)
             globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 2000)
             if progress.wasCanceled():
@@ -94,7 +97,7 @@ class HypervisorManager:
                 break
             mem += node.config['RAM']
             current_node += 1
-            node.configHypervisor('localhost',  hypervisor['port'],  self.baseUDP)
+            node.configHypervisor('localhost',  hypervisor['port'],  self.hypervisor_wd,  self.baseUDP)
             if mem >= MEM_USAGE_LIMIT and current_node != nb_node:
                 hypervisor = self.__startNewHypervisor()
                 time.sleep(1)

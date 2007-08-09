@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Tue Aug  7 23:11:28 2007
+# Created: Tue Aug  7 23:29:05 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -133,9 +133,9 @@ class Ui_IOSDialog(object):
         self.hboxlayout = QtGui.QHBoxLayout()
         self.hboxlayout.setObjectName("hboxlayout")
 
-        self.pushButtonAddIOS = QtGui.QPushButton(self.tab_1)
-        self.pushButtonAddIOS.setObjectName("pushButtonAddIOS")
-        self.hboxlayout.addWidget(self.pushButtonAddIOS)
+        self.pushButtonSaveIOS = QtGui.QPushButton(self.tab_1)
+        self.pushButtonSaveIOS.setObjectName("pushButtonSaveIOS")
+        self.hboxlayout.addWidget(self.pushButtonSaveIOS)
 
         self.pushButtonEditIOS = QtGui.QPushButton(self.tab_1)
         self.pushButtonEditIOS.setEnabled(False)
@@ -245,9 +245,9 @@ class Ui_IOSDialog(object):
         self.hboxlayout1 = QtGui.QHBoxLayout()
         self.hboxlayout1.setObjectName("hboxlayout1")
 
-        self.pushButtonAddHypervisor = QtGui.QPushButton(self.tab_2)
-        self.pushButtonAddHypervisor.setObjectName("pushButtonAddHypervisor")
-        self.hboxlayout1.addWidget(self.pushButtonAddHypervisor)
+        self.pushButtonSaveHypervisor = QtGui.QPushButton(self.tab_2)
+        self.pushButtonSaveHypervisor.setObjectName("pushButtonSaveHypervisor")
+        self.hboxlayout1.addWidget(self.pushButtonSaveHypervisor)
 
         self.pushButtonEditHypervisor = QtGui.QPushButton(self.tab_2)
         self.pushButtonEditHypervisor.setEnabled(False)
@@ -290,7 +290,7 @@ class Ui_IOSDialog(object):
         self.treeWidgetIOSimages.headerItem().setText(1,QtGui.QApplication.translate("IOSDialog", "Chassis", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setTitle(QtGui.QApplication.translate("IOSDialog", "Hypervisors", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxIntegratedHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "Use the hypervisor manager", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonAddIOS.setText(QtGui.QApplication.translate("IOSDialog", "&Add", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonSaveIOS.setText(QtGui.QApplication.translate("IOSDialog", "&Save", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonEditIOS.setText(QtGui.QApplication.translate("IOSDialog", "&Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonDeleteIOS.setText(QtGui.QApplication.translate("IOSDialog", "&Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_1), QtGui.QApplication.translate("IOSDialog", "IOS Images", None, QtGui.QApplication.UnicodeUTF8))
@@ -305,7 +305,7 @@ class Ui_IOSDialog(object):
         self.groupBox_5.setTitle(QtGui.QApplication.translate("IOSDialog", "Hypervisors", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetHypervisor.headerItem().setText(0,QtGui.QApplication.translate("IOSDialog", "Host:Port", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetHypervisor.headerItem().setText(1,QtGui.QApplication.translate("IOSDialog", "Base UDP", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonAddHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "&Add", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonSaveHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "&Save", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonEditHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "&Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonDeleteHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "&Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QtGui.QApplication.translate("IOSDialog", "Hypervisors", None, QtGui.QApplication.UnicodeUTF8))

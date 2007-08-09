@@ -46,11 +46,11 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         self.setupUi(self)
         
         # connections to slots
-        self.connect(self.pushButtonAddIOS, QtCore.SIGNAL('clicked()'), self.slotAddIOS)
+        self.connect(self.pushButtonSaveIOS, QtCore.SIGNAL('clicked()'), self.slotSaveIOS)
         self.connect(self.pushButtonEditIOS,  QtCore.SIGNAL('clicked()'),  self.slotEditIOS)
         self.connect(self.pushButtonDeleteIOS, QtCore.SIGNAL('clicked()'), self.slotDeleteIOS)
         self.connect(self.pushButtonSelectIOSImage, QtCore.SIGNAL('clicked()'), self.slotSelectIOS)
-        self.connect(self.pushButtonAddHypervisor, QtCore.SIGNAL('clicked()'), self.slotAddHypervisor)
+        self.connect(self.pushButtonSaveHypervisor, QtCore.SIGNAL('clicked()'), self.slotSaveHypervisor)
         self.connect(self.pushButtonEditHypervisor,  QtCore.SIGNAL('clicked()'),  self.slotEditHypervisor)
         self.connect(self.pushButtonDeleteHypervisor, QtCore.SIGNAL('clicked()'), self.slotDeleteHypervisor)
         self.connect(self.pushButtonSelectWorkingDir, QtCore.SIGNAL('clicked()'), self.slotWorkingDirectory)  
@@ -66,11 +66,6 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
         # reload saved infos
         self._reloadInfos()
-
-    def __del__(self):
-        
-        # save infos
-        ConfDB().sync()
 
     def _reloadInfos(self):
         """ Reload previously recorded IOS images and hypervisors
@@ -155,7 +150,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                                 self.comboBoxChassis.setCurrentIndex(index)
                             break
         
-    def slotAddIOS(self):
+    def slotSaveIOS(self):
         """ Save an IOS image and all his settings 
         """
         
@@ -167,7 +162,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         idlepc = str(self.lineEditIdlePC.text())
 
         hypervisor_host = ''
-        hypervisor_port = 7200
+        hypervisor_port = 0
         
         if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Unchecked:
             # external hypervisor, don't use the hypervisor manager
@@ -290,8 +285,8 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             self.lineEditWorkingDir.clear()
             self.lineEditWorkingDir.setText(path)
             
-    def slotAddHypervisor(self):
-        """ Add a hypervisor to the hypervisors list
+    def slotSaveHypervisor(self):
+        """ Save a hypervisor to the hypervisors list
         """
         
         hypervisor_host = str(self.lineEditHost.text())

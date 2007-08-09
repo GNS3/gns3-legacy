@@ -179,9 +179,9 @@
        <item row="2" column="0" colspan="2" >
         <layout class="QHBoxLayout" >
          <item>
-          <widget class="QPushButton" name="pushButtonAddIOS" >
+          <widget class="QPushButton" name="pushButtonSaveIOS" >
            <property name="text" >
-            <string>&amp;Add</string>
+            <string>&amp;Save</string>
            </property>
           </widget>
          </item>
@@ -416,9 +416,9 @@
        <item row="1" column="0" colspan="2" >
         <layout class="QHBoxLayout" >
          <item>
-          <widget class="QPushButton" name="pushButtonAddHypervisor" >
+          <widget class="QPushButton" name="pushButtonSaveHypervisor" >
            <property name="text" >
-            <string>&amp;Add</string>
+            <string>&amp;Save</string>
            </property>
           </widget>
          </item>

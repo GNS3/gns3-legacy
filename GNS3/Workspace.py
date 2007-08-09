@@ -337,10 +337,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def switchToMode_Design(self):
         """ Function called to switch to mode `Design'
         """
-        self.__switchToMode(globals.Enum.Mode.Design)
-        self.action_swModeDesign.setChecked(True)
-        self.statusbar.showMessage(translate('Workspace', 'Design Mode'))
-
+        
         try:
             for node in globals.GApp.topology.nodes.itervalues():
                 node.resetIOS()
@@ -352,11 +349,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
         except lib.DynamipsErrorHandled:
             QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
             return
-        
+            
         if self.hypervisor_manager and globals.useHypervisorManager:
             self.hypervisor_manager.stopProcHypervisors()
-        else:
-            globals.baseUDP = 10000
+
+        self.__switchToMode(globals.Enum.Mode.Design)
+        self.action_swModeDesign.setChecked(True)
+        self.statusbar.showMessage(translate('Workspace', 'Design Mode'))
 
     def __restoreButtonState(self):
     
@@ -377,6 +376,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__restoreButtonState()
             return
 
+        for node in globals.GApp.topology.nodes.itervalues():
+            if not node.config['image']:
+                node.setDefaultIOSImage()
+            
         if globals.useHypervisorManager:
     
             if globals.GApp.systconf['dynamips'].path == '':
@@ -392,13 +395,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
             if self.hypervisor_manager.startProcHypervisors() == False:
                 self.__restoreButtonState()
                 return
-    
-        self.__switchToMode(globals.Enum.Mode.Emulation)
-        self.action_swModeEmulation.setChecked(True)
-        self.statusbar.showMessage(translate('Workspace', 'Emulation Mode'))
-        self.action_Add_link.setChecked(False)
-        self.__action_addLink()
-        self.treeWidget_TopologySummary.emulationMode()
 
         try:
             for node in globals.GApp.topology.nodes.itervalues():
@@ -408,6 +404,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
             return
         except lib.DynamipsErrorHandled:
             QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
+            return
+    
+        self.__switchToMode(globals.Enum.Mode.Emulation)
+        self.action_swModeEmulation.setChecked(True)
+        self.statusbar.showMessage(translate('Workspace', 'Emulation Mode'))
+        self.action_Add_link.setChecked(False)
+        self.__action_addLink()
+        self.treeWidget_TopologySummary.emulationMode()
 
     def switchToMode_Simulation(self):
         """ Function called to switch to mode `Simulation'
@@ -539,7 +543,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
     def __action_StartAll(self):
 
-        nodes = globals.GApp.topology.getNodes()
+        nodes = globals.GApp.topology.nodes.values()
         count = len(nodes)
         progress = QtGui.QProgressDialog("Starting nodes ...", "Abort", 0, count, self)
         progress.setMinimum(1)
@@ -547,7 +551,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents)
         current = 0
         for node in nodes:
-            #assert (node.dev != None)
             progress.setValue(current)
             globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
             if progress.wasCanceled():
@@ -570,7 +573,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         
     def __action_StopAll(self):
         
-        nodes = globals.GApp.topology.getNodes()
+        nodes = globals.GApp.topology.nodes.values()
         count = len(nodes)
         progress = QtGui.QProgressDialog("Stopping nodes ...", "Abort", 0, count, self)
         progress.setMinimum(1)
@@ -578,7 +581,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         globals.GApp.processEvents()
         current = 0
         for node in nodes:
-            #assert (node.dev != None)
             progress.setValue(current)
             globals.GApp.processEvents()
             if progress.wasCanceled():

@@ -412,14 +412,14 @@ class GNS_Conf(object):
 
             img_filename = c.get(cgroup + "/filename", '')
             img_hyp_host = c.get(cgroup + "/hypervisor_host", '')
-            img_hyp_host_str = img_hyp_host
-#            if img_hyp_host_str == "localhost":
-#                img_hyp_host = None
-
-            if img_filename == '' or img_hyp_host == '':
+            
+            if img_filename == '':
                 continue
 
-            img_ref = str(img_hyp_host) + ":" + str(img_filename)
+            if img_hyp_host == '':
+                img_ref = "localhost:" + str(img_filename)
+            else:
+                img_ref = str(img_hyp_host) + ":" + str(img_filename)
 
             conf = iosImageConf()
             conf.id = int(img_num)
@@ -427,8 +427,8 @@ class GNS_Conf(object):
             conf.platform = str(c.get(cgroup + "/platform", ''))
             conf.chassis = str(c.get(cgroup + "/chassis", ''))
             conf.idlepc = str(c.get(cgroup + "/idlepc", ''))
-            conf.hypervisor_host = str(c.get(cgroup + "/hypervisor_host"))
-            conf.hypervisor_port = int(c.get(cgroup + "/hypervisor_port"))
+            conf.hypervisor_host = str(c.get(cgroup + "/hypervisor_host",  ''))
+            conf.hypervisor_port = int(c.get(cgroup + "/hypervisor_port",  0))
             
             globals.GApp.iosimages[img_ref] = conf
 

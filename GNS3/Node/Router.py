@@ -75,54 +75,82 @@ class Router(AbstractNode):
         self.hypervisor_host = None
         self.hypervisor_port = None
         self.baseUDP = None
+        self.hypervisor_wd = None
         self.dev = None
-        
         self.config = self.getDefaultConfig()
-        
-        # FIXME: QND mode
-        # No IOS image configured yet, take the first one available ...
-        iosimages = globals.GApp.iosimages.keys()
-        if len(iosimages):
-            #self.config['image'] = globals.GApp.iosimages[iosimages[0]]
-            #image = iosimages[0]
-            image = globals.GApp.iosimages[iosimages[0]]
-            platform = image.platform
-            chassis = image.chassis
-            if image.chassis == '2691' or image.chassis == '3725' or  image.chassis == '3745':
-                self.config['slots'][0] = 'GT96100-FE'
-                return
-            if image.chassis == '3660':
-                self.config['slots'][0] = 'Leopard-2FE'
-                return
-            if image.platform == '2600':
-                self.config['slots'][0] = lib.MB2CHASSIS2600[chassis]
-                return
-            if image.platform == '7200':
-                self.config['slots'][0] = 'C7200-IO-FE'
-                return
+        self.setDefaultIOSImage()
 
     def getDefaultConfig(self):
     
         return config.IOSConfig.copy()
-        
+    
+    def getAdapter(self, platform, chassis,  slotnb):
+    
+        #TODO: clean it
+        platform = 'c' + platform
+        try:
+            if (chassis == '2691'):
+                if slotnb == 0:
+                    return [lib.ADAPTER_MATRIX['c' + chassis][''][0]]
+                if slotnb == 1:
+                    return [''] + list(lib.ADAPTER_MATRIX['c' + chassis][''][1])
+            elif platform == 'c3700':
+                if slotnb == 0:
+                    return lib.ADAPTER_MATRIX['c' + chassis][''][0]
+                else:
+                    return [''] + list(lib.ADAPTER_MATRIX['c' + chassis][''][slotnb])
+                return
+            elif platform == 'c7200':
+                if slotnb == 0:
+                    return list(lib.ADAPTER_MATRIX[platform][''][0])
+                else:
+                    return [''] + list(lib.ADAPTER_MATRIX[platform][''][slotnb])
+    
+            # some platforms/chassis have adapters on their motherboard (not optional)
+            if slotnb == 0:
+                if platform == 'c2600' or chassis == '3660':
+                    return lib.ADAPTER_MATRIX[platform][chassis][0]
+            return [''] + list(lib.ADAPTER_MATRIX[platform][chassis][slotnb])
+        except KeyError:
+            return ['']
+            
+    def setDefaultIOSImage(self):
+    
+        iosimages = globals.GApp.iosimages.keys()
+        if len(iosimages):
+            image = globals.GApp.iosimages[iosimages[0]]
+            platform = image.platform
+            chassis = image.chassis
+            self.config['image'] = iosimages[0]
+            
+            for slotnb in range(7):
+                modules = self.getAdapter(platform,  chassis,  slotnb)
+                if modules and modules[0]:
+                    self.config['slots'][slotnb] = modules[0]
+
     def getHypervisor(self):
 
         key = self.hypervisor_host + ':' + str(self.hypervisor_port)
         if not dynagen.dynamips.has_key(key):
+            print 'connection to ' + self.hypervisor_host + ' ' + str(self.hypervisor_port)
             dynagen.dynamips[key] = lib.Dynamips(self.hypervisor_host, self.hypervisor_port)
             dynagen.dynamips[key].reset()
             if self.baseUDP:
                 dynagen.dynamips[key] .udp = self.baseUDP
+            if self.hypervisor_wd:
+                dynagen.dynamips[key] .workingdir = self.hypervisor_wd
         return dynagen.dynamips[key]
         
-    def configHypervisor(self,  host,  port, baseudp = None):
+    def configHypervisor(self,  host,  port, workingdir = None,  baseudp = None):
     
-        #print 'record hypervisor : ' + host + ' ' + str(port) + ' base UDP ' + str(baseudp)
+        print 'record hypervisor : ' + host + ' ' + str(port) + ' base UDP ' + str(baseudp)
         self.hypervisor_host = host
         self.hypervisor_port = port
         if  baseudp:
             self.baseUDP = baseudp
-        
+        if workingdir:
+            self.hypervisor_wd = workingdir
+            
     def configIOS(self):
     
         image = self.config['image']
@@ -143,9 +171,14 @@ class Router(AbstractNode):
         hypervisor_host = image.hypervisor_host
         hypervisor_port = image.hypervisor_port
 
-        if globals.useHypervisorManager == False:
-            self.configHypervisor(hypervisor_host,  hypervisor_port,  globals.baseUDP)
-            globals.baseUDP = globals.baseUDP + 10
+        if hypervisor_host:
+            hypervisorkey = hypervisor_host + ':' + str(hypervisor_port)
+            if globals.GApp.hypervisors.has_key(hypervisorkey):
+                hypervisor = globals.GApp.hypervisors[hypervisorkey ]
+                self.configHypervisor(hypervisor_host,  hypervisor_port,  hypervisor.workdir,  hypervisor.baseUDP)
+            else:
+                print 'Hypervisor ' + hypervisorkey + ' not registered !'
+                return
 
         hypervisor = self.getHypervisor()
         #ROUTERS

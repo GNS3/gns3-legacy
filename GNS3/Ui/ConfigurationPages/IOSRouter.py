@@ -49,40 +49,38 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                            self.comboBoxSlot4,
                            self.comboBoxSlot5,
                            self.comboBoxSlot6]
-                           
-    def createIOSslotsEntries(self, platform, chassis):
-        """ Create entries for IOS slots (modules and motherboard)
-            platform: string
-            chassis: string
-        """
 
-        # special case where the chassis is a platform in ADAPTER_MATRIX
+    def configSlot(self, platform, chassis,  slotnb):
+    
+        #TODO: clean it and use the same function in Router.py
+        platform = 'c' + platform
         try:
             if (chassis == '2691'):
-                self.comboBoxSlot0.addItem(ADAPTER_MATRIX['c' + chassis][''][0])
-                self.comboBoxSlot1.addItems([''] + list(ADAPTER_MATRIX['c' + chassis][''][1]))
-                return
+                if slotnb == 0:
+                    return [ADAPTER_MATRIX['c' + chassis][''][0]]
+                if slotnb == 1:
+                    return [''] + list(ADAPTER_MATRIX['c' + chassis][''][1])
             elif platform == 'c3700':
-                self.comboBoxSlot0.addItem(ADAPTER_MATRIX['c' + chassis][''][0])
-                index = 1
-                for widget in self.slots_list[1:]:
-                    widget.addItems([''] + list(ADAPTER_MATRIX['c' + chassis][''][index]))
-                    index += 1
+                if slotnb == 0:
+                    return ADAPTER_MATRIX['c' + chassis][''][0]
+                else:
+                    return [''] + list(ADAPTER_MATRIX['c' + chassis][''][slotnb])
                 return
-            # some platforms/chassis have adapters on their motherboard (not optional)
-            if platform == 'c2600' or chassis == '3660':
-                self.comboBoxSlot0.addItem(ADAPTER_MATRIX[platform][chassis][0])
             elif platform == 'c7200':
-                self.comboBoxSlot0.addItems(list(ADAPTER_MATRIX[platform][chassis][0]))
-            else:
-                self.comboBoxSlot0.addItems([''] + list(ADAPTER_MATRIX[platform][chassis][0]))    
-            index = 1
-            for widget in self.slots_list[1:]:
-                widget.addItems([''] + list(ADAPTER_MATRIX[platform][chassis][index]))
-                index += 1   
-        except KeyError:
-            return
+                if slotnb == 0:
+                    return list(ADAPTER_MATRIX[platform][''][0])
+                else:
+                    return [''] + list(ADAPTER_MATRIX[platform][''][slotnb])
+    
+            # some platforms/chassis have adapters on their motherboard (not optional)
+            if slotnb == 0:
+                if platform == 'c2600' or chassis == '3660':
+                    return ADAPTER_MATRIX[platform][chassis][0]
             
+            return [''] + list(ADAPTER_MATRIX[platform][chassis][slotnb])
+        except KeyError:
+            return ['']
+
     def slotSelectedIOS(self, index):
         """ Add network modules / port adapters to combo boxes
             Specifics platform configuration
@@ -100,8 +98,13 @@ class IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         # create slots entries
         platform = image.platform
         chassis =  image.chassis
-        self.createIOSslotsEntries('c' + platform, chassis)
-
+        
+        for slotnb in range(7):
+            modules = self.configSlot(platform, chassis,  slotnb)
+            if modules:
+                widget = self.slots_list[slotnb]
+                widget.addItems(modules)
+    
         # restore previous selected modules
         if self.currentNodeID != None:
             

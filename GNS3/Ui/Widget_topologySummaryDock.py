@@ -41,7 +41,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
         
         self.clear()
         self.setRootIsDecorated(True)
-        for node in globals.GApp.topology.getNodes():
+        for node in globals.GApp.topology.nodes.itervalues():
             rootitem = QtGui.QTreeWidgetItem(self)
             rootitem.setText(0, translate("MainWindow", node.hostname))
             #rootitem.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
