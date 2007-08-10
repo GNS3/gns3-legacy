@@ -29,19 +29,35 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
     """
     Class implementing the IOS router configuration page.
     """
+
     def __init__(self):
     
         QtGui.QWidget.__init__(self)
         self.setupUi(self)
         self.setObjectName("FRSW")
+        
+        self.connect(self.pushButtonAdd, QtCore.SIGNAL('clicked()'), self.slotAddVC)
+        self.connect(self.pushButtonDelete, QtCore.SIGNAL('clicked()'), self.slotDeleteVC)
 
+    def slotAddVC(self):
+    
+        port = self.spinBoxPort.value()
+        dlci = self.spinBoxDLCI.value()
+        
+        self.spinBoxPort.setValue(port + 1)
+        self.spinBoxDLCI.setValue(dlci + 1)
+        
+    def slotDeleteVC(self):
+    
+        pass
+        
     def loadConfig(self,  id,  config = None):
     
-        print 'FRSW load config'
+        pass
 
     def saveConfig(self, id, config = None):
 
-        print 'FRSW save config'
+        pass
 
 def create(dlg):
 

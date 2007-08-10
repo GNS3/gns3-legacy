@@ -131,17 +131,29 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
     
         items = self.treeViewNodes.selectedItems()
         count = len(items)
-        assert(count > 0)
+        if count == 0:
+            return
+            
+        last_item = items[count - 1]
+        lasttype =  type(globals.GApp.topology.getNode(last_item.getIDs()[0]))
+        
         for item in items:
+            itmtype = type(globals.GApp.topology.getNode(item.getIDs()[0]))
+            if itmtype != lasttype:
+                item.setSelected(False)
+                self.assocPage[itmtype][1] = None
+                count = count - 1
             if not item.parent():
-                self.titleLabel.setText("%s group" % (item.text(0)))
+                if last_item.parent():
+                    self.titleLabel.setText("%s node" % (last_item.text(0)))
+                    return
+                self.titleLabel.setText("%s group" % (last_item.text(0)))
                 return
 
-        first_item = items[0]
         if count > 1:
-            pageTitle = "Group of %d %s" % (count,  first_item.parent().text(0))
+            pageTitle = "Group of %d %s" % (count,  last_item.parent().text(0))
         else:
-            pageTitle = "%s node" % (first_item.text(0))
+            pageTitle = "%s node" % (last_item.text(0))
         self.titleLabel.setText(pageTitle)
 
     def __importConfigurationPage(self, name):

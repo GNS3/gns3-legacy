@@ -29,6 +29,7 @@ class FRSW(AbstractNode):
     def __init__(self, renderer_normal, renderer_select):
         
         AbstractNode.__init__(self, renderer_normal, renderer_select)
+        self.hostname = 'F' + str(self.id)
 
     def getDefaultConfig(self):
     

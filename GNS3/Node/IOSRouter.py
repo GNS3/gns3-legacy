@@ -22,7 +22,10 @@
 
 import re
 import GNS3.Globals as globals
+
 import GNS3.NodeConfigs as config
+from GNS3.Config.Objects import iosRouterConf
+
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.Globals as dynagen
 import GNS3.Console as console
@@ -72,6 +75,7 @@ class IOSRouter(AbstractNode):
     def __init__(self, renderer_normal, renderer_select):
         
         AbstractNode.__init__(self, renderer_normal, renderer_select)
+        self.hostname = 'R' + str(self.id)
         self.hypervisor_host = None
         self.hypervisor_port = None
         self.baseUDP = None
@@ -83,6 +87,7 @@ class IOSRouter(AbstractNode):
     def getDefaultConfig(self):
     
         return config.IOSConfig.copy()
+        #return iosRouterConf()
     
     def getAdapter(self, platform, chassis,  slotnb):
     

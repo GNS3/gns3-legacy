@@ -21,7 +21,6 @@
 #
 
 from GNS3.Config import Defaults
-#from GNS3.Config.Config import ConfDB
 
 class ConfigObject(object):
     def __init__(self):

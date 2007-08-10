@@ -48,7 +48,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         globals.GApp.topology.node_baseid += 1
 
         # default hostname
-        self.hostname = 'R' + str(self.id)
+        self.hostname = 'N' + str(self.id)
 
         # set default tooltip
         self.setCustomToolTip()
