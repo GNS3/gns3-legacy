@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.1.dtd">
 <!-- eric4 project file for project GNS-3 -->
-<!-- Saved: 2007-08-09, 15:36:09 -->
+<!-- Saved: 2007-08-10, 00:48:05 -->
 <!-- Copyright (C) 2007 GNS-3 Dev Team, contact@gns3.net -->
 <Project version="4.1">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -27,11 +27,6 @@
       <Dir>GNS3</Dir>
       <Dir>Node</Dir>
       <Name>__init__.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Node</Dir>
-      <Name>Router.py</Name>
     </Source>
     <Source>
       <Dir>GNS3</Dir>
@@ -264,16 +259,38 @@
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
       <Dir>ConfigurationPages</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Name>gns3.pyw</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Node</Dir>
       <Name>IOSRouter.py</Name>
     </Source>
     <Source>
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
       <Dir>ConfigurationPages</Dir>
-      <Name>__init__.py</Name>
+      <Name>Page_IOSRouter.py</Name>
     </Source>
     <Source>
-      <Name>gns3.pyw</Name>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Form_FRSWPage.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Page_FRSW.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Node</Dir>
+      <Name>FRSW.py</Name>
     </Source>
   </Sources>
   <Forms>

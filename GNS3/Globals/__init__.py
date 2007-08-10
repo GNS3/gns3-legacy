@@ -33,15 +33,37 @@ class Enum:
         Design = 0
         Emulation = 1
         Simulation = 2
+        
+    class LinkType:
+        Manual = 0
+        Ethernet = 1
+        FastEthernet = 2
+        GigaEthernet = 3
+        Serial = 4
+        ATM = 5
+        POS = 6
 
 modesIds = [
     Enum.Mode.Design,
     Enum.Mode.Emulation,
     Enum.Mode.Simulation,
 ]
+
 modesNames = {
     Enum.Mode.Design : 'Design Mode',
     Enum.Mode.Emulation : 'Emulation Mode',
     Enum.Mode.Simulation : 'Simulation Mode',
+}
+
+currentLinkType = Enum.LinkType.Manual
+
+linkTypes = {
+    'Manual': Enum.LinkType.Manual,
+    'Ethernet': Enum.LinkType.Ethernet,
+    'FastEthernet': Enum.LinkType.FastEthernet,
+    'GigaEthernet': Enum.LinkType.GigaEthernet,
+    'Serial': Enum.LinkType.Serial,
+    'ATM': Enum.LinkType.ATM,
+    'POS': Enum.LinkType.POS
 }
 

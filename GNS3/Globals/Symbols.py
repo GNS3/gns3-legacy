@@ -21,6 +21,7 @@
 #
 
 from GNS3.Node.IOSRouter import IOSRouter
+from GNS3.Node.FRSW import FRSW
 
 #FIXME: all symbols are a Router
 SYMBOLS = (
@@ -48,7 +49,7 @@ SYMBOLS = (
     'normal_svg_file': ":/symbols/route_swproc.normal.svg",
     'select_svg_file': ":/symbols/route_swproc.selected.svg"},
      
-    {'name': "ATM switch", 'object': IOSRouter,
+    {'name': "ATM switch", 'object': FRSW,
     'normal_svg_file': ":/symbols/sw_atm.normal.svg",
     'select_svg_file': ":/symbols/sw_atm.selected.svg"}
 )

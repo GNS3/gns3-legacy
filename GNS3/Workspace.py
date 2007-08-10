@@ -338,6 +338,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Function called to switch to mode `Design'
         """
         
+        #FIXME: check if lost the connection to the hypervisor
         try:
             for node in globals.GApp.topology.nodes.itervalues():
                 node.resetIOS()
@@ -443,7 +444,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__export(path, str(str(selected)[:3]))
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
-    
+
     def __action_addLink(self):
         """ Implement the QAction `addLink'
         - This function manage the creation of a connection between two nodes.
@@ -457,11 +458,23 @@ class Workspace(QMainWindow, Ui_MainWindow):
             globals.addingLinkFlag = False
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
         else:
+            #TODO: optionnal menu
+#            menu = QtGui.QMenu()
+#            for linktype in globals.linkTypes.keys():
+#                menu.addAction(linktype)
+#            menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.__setLinkType)
+#            menu.exec_(QtGui.QCursor.pos())
+            
             self.action_Add_link.setText(translate(ctx, 'Cancel'))
             self.action_Add_link.setIcon(QIcon(':/icons/cancel.svg'))
             globals.addingLinkFlag = True
             globals.GApp.scene.setCursor(QtCore.Qt.CrossCursor)
-            
+
+    def __setLinkType(self,  action):
+    
+        action = str(action.text())
+        globals.currentLinkType = globals.linkTypes[action]
+
     def __action_IOSImages(self):
         """ Implement the QAction `IOSImages'
         - Show a dialog to configure IOSImages

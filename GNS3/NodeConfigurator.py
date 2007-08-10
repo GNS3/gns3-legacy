@@ -24,6 +24,7 @@ import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_NodeConfigurator import Ui_NodeConfigurator
 from GNS3.Node.IOSRouter import IOSRouter
+from GNS3.Node.FRSW import FRSW
 
 class ConfigurationPageItem(QtGui.QTreeWidgetItem):
     """ Class implementing a QTreeWidgetItem holding the configuration page data.
@@ -66,8 +67,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
 
         QtGui.QDialog.__init__(self)
         self.setupUi(self)
-        
-        self.currentItm = None
+
         self.nodeitems = nodeitems
         
         self.buttonBox.button(QtGui.QDialogButtonBox.Apply).setEnabled(False)
@@ -88,16 +88,15 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             # the settings.
             "Routers" : \
                 [self.trUtf8("Routers"), "preferences-application.png",
-                 "Page_IOSRouter", None, None]
+                 "Page_IOSRouter", None, None], 
+            "FRSW":
+                [self.trUtf8("Frame Relay"), "preferences-application.png",
+                 "Page_FRSW", None, None]
                  }
-        
-        for key in self.configItems.keys():
-            pageData = self.configItems[key]
-            item = ConfigurationPageItem(self.treeViewNodes, pageData[0], key,  pageData[1])
-            item.setExpanded(True)
-            self.itmDict[key] = item
 
-        self.assocPage = { IOSRouter: "Routers" }
+        self.assocPage = { IOSRouter: ["Routers",  None], 
+                                     FRSW: ["FRSW",  None], 
+                                    }
         self.__loadNodeItems()
 
         self.splitter.setSizes([200, 600])
@@ -111,7 +110,15 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
     def __loadNodeItems(self):
     
         for node in self.nodeitems:
-            parent = self.assocPage[type(node)]
+            parent = self.assocPage[type(node)][0]
+            if not self.itmDict.has_key(parent):
+                pageData = self.configItems[parent]
+                item = ConfigurationPageItem(self.treeViewNodes, pageData[0], parent,  pageData[1])
+                item.setExpanded(True)
+                self.itmDict[parent] = item
+    
+        for node in self.nodeitems:
+            parent = self.assocPage[type(node)][0]
             self.itmDict[parent].addID(node.id)
             item = ConfigurationPageItem(self.itmDict[parent], unicode(node.hostname), parent,  None)
             item.addID(node.id)
@@ -179,8 +186,10 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         """ Public slot to show a named configuration page.
             itm: reference to the selected item (QTreeWidgetItem)
         """
-
-        if self.currentItm and self.currentItm == itm:
+        itemtype = type(globals.GApp.topology.getNode(itm.getIDs()[0]))
+        currentItm = self.assocPage[itemtype][1]
+        
+        if currentItm and currentItm == itm:
             return
         
         pageName = unicode(itm.getPageName())
@@ -196,13 +205,13 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             page = self.emptyPage
         else:
 
-            if self.currentItm and self.currentItm != itm:
+            if currentItm and currentItm != itm:
                 
-                page.saveConfig(self.currentItm.getIDs()[0],  self.currentItm.tmpConfig)
-                self.currentItm = itm
+                page.saveConfig(currentItm.getIDs()[0],  currentItm.tmpConfig)
+                self.assocPage[itemtype][1]  = itm
 
-            if self.currentItm == None:
-                self.currentItm = itm
+            if currentItm == None:
+                self.assocPage[itemtype][1] = itm
 
             page.loadConfig(itm.getIDs()[0],  itm.tmpConfig)
 

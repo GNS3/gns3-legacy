@@ -224,7 +224,7 @@ class Dynagen:
             slot: slot number
             port: port number
         """
-    
+
         try:
             if router.slot[slot] != None:
                 # Already a PA in this slot. No need to pick one.
