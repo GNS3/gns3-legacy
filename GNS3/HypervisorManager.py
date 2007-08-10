@@ -72,10 +72,10 @@ class HypervisorManager:
         node_list = []
         mem = 0
         for node in globals.GApp.topology.nodes.itervalues():
-            image = globals.GApp.iosimages[node.config['image'] ]
+            image = globals.GApp.iosimages[node.config.image]
             if not image.hypervisor_host:
                 node_list.append(node)
-                mem += node.config['RAM']
+                mem += node.config.RAM
 
         count = mem / MEM_USAGE_LIMIT
         count += 1
@@ -95,7 +95,7 @@ class HypervisorManager:
             if progress.wasCanceled():
                 progress.reset()
                 break
-            mem += node.config['RAM']
+            mem += node.config.RAM
             current_node += 1
             node.configHypervisor('localhost',  hypervisor['port'],  self.hypervisor_wd,  self.baseUDP)
             if mem >= MEM_USAGE_LIMIT and current_node != nb_node:

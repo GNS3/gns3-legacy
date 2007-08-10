@@ -23,7 +23,7 @@
 #import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_FRSWPage import Ui_FRSWPage
-#import GNS3.NodeConfigs as config
+#from GNS3.Config.Objects import iosRouterConf
 
 class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
     """

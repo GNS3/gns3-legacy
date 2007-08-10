@@ -378,7 +378,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             return
 
         for node in globals.GApp.topology.nodes.itervalues():
-            if not node.config['image']:
+            if not node.config.image:
                 node.setDefaultIOSImage()
             
         if globals.useHypervisorManager:

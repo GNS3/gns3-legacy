@@ -22,10 +22,7 @@
 
 import re
 import GNS3.Globals as globals
-
-import GNS3.NodeConfigs as config
 from GNS3.Config.Objects import iosRouterConf
-
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.Globals as dynagen
 import GNS3.Console as console
@@ -86,8 +83,8 @@ class IOSRouter(AbstractNode):
 
     def getDefaultConfig(self):
     
-        return config.IOSConfig.copy()
-        #return iosRouterConf()
+        #return config.IOSConfig.copy()
+        return iosRouterConf()
     
     def getAdapter(self, platform, chassis,  slotnb):
     
@@ -126,12 +123,12 @@ class IOSRouter(AbstractNode):
             image = globals.GApp.iosimages[iosimages[0]]
             platform = image.platform
             chassis = image.chassis
-            self.config['image'] = iosimages[0]
+            self.config.image = unicode(iosimages[0])
             
             for slotnb in range(7):
                 modules = self.getAdapter(platform,  chassis,  slotnb)
                 if modules and modules[0]:
-                    self.config['slots'][slotnb] = modules[0]
+                    self.config.slots[slotnb] = modules[0]
 
     def getHypervisor(self):
 
@@ -158,7 +155,7 @@ class IOSRouter(AbstractNode):
             
     def configIOS(self):
     
-        image = self.config['image']
+        image = self.config.image
         if image == '':
             # No IOS image configured, take the first one available ...
             iosimages = globals.GApp.iosimages.keys()
@@ -200,31 +197,31 @@ class IOSRouter(AbstractNode):
         else:
             self.dev.idlepc = '0x60483ae4'
 
-        if self.config['consoleport']:
-            self.dev.console = int(self.config['consoleport'])
-        if self.config['startup-config'] != '':
-            self.dev.cnfg = '"' + self.config['startup-config'] + '"'
-        self.dev.ram = self.config['RAM']
-        self.dev.rom = self.config['ROM']
-        self.dev.nvram = self.config['NVRAM']
-        if self.config['pcmcia-disk0'] > 0:
-            self.dev.disk0 = self.config['pcmcia-disk0']
-        if self.config['pcmcia-disk1'] > 0:
-            self.dev.disk1 = self.config['pcmcia-disk1']
-        self.dev.mmap = self.config['mmap']
-        if self.config['confreg'] != '':
-            self.dev.conf = self.config['confreg']
-        self.dev.exec_area = self.config['execarea']
+        if self.config.consoleport:
+            self.dev.console = int(self.config.consoleport)
+        if self.config.startup_config != '':
+            self.dev.cnfg = '"' + self.config.startup_config + '"'
+        self.dev.ram = self.config.RAM
+        self.dev.rom = self.config.ROM
+        self.dev.nvram = self.config.NVRAM
+        if self.config.pcmcia_disk0 > 0:
+            self.dev.disk0 = self.config.pcmcia_disk0
+        if self.config.pcmcia_disk1 > 0:
+            self.dev.disk1 = self.config.pcmcia_disk1
+        self.dev.mmap = self.config.mmap
+        if self.config.confreg != '':
+            self.dev.conf = self.config.confreg
+        self.dev.exec_area = self.config.execarea
         if platform == '3600':
             pass
             #Wait the bug with iomen to be correted in Dynamips 0.2.8
             #self.ios.iomem = str(self.iosConfig['iomem'])
         if platform == '7200':
-            self.dev.midplane = self.config['midplane']
-            self.dev.npe = self.config['npe']
+            self.dev.midplane = self.config.midplane
+            self.dev.npe = self.config.npe
 
         slotnb = 0
-        for module in self.config['slots']:
+        for module in self.config.slots:
             self.configSlot(slotnb, module)
             slotnb += 1
         
@@ -252,7 +249,7 @@ class IOSRouter(AbstractNode):
         
         interface_list = []
         slotnb = 0
-        for module in self.config['slots']:
+        for module in self.config.slots:
             # add interfaces corresponding to the given module
             if module != '' and module in ADAPTERS:
                 # get number of interfaces and the abbreviation letter

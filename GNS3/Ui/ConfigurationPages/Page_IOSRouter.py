@@ -25,7 +25,7 @@ from PyQt4 import QtCore,  QtGui
 from Form_IOSRouterPage import Ui_IOSRouterPage
 from GNS3.Dynagen.dynamips_lib import ADAPTER_MATRIX
 from GNS3.Utils import fileBrowser
-import GNS3.NodeConfigs as config
+from GNS3.Config.Objects import iosRouterConf
 
 class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
     """
@@ -113,7 +113,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             index = 0
         
             for widget in self.slots_list:
-                combobox_index = widget.findText(IOSconfig['slots'][index])
+                combobox_index = widget.findText(IOSconfig.slots[index])
                 if (combobox_index != -1):
                     widget.setCurrentIndex(combobox_index)
                 index += 1
@@ -127,17 +127,17 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             if platform == '7200':
                 self.comboBoxMidplane.addItems(['std', 'vxr'])
                 self.comboBoxMidplane.setEnabled(True)
-                index = self.comboBoxMidplane.findText(IOSconfig['midplane'])
+                index = self.comboBoxMidplane.findText(IOSconfig.midplane)
                 if index != -1:
                     self.comboBoxMidplane.setCurrentIndex(index)
                 self.comboBoxNPE.addItems(['npe-100', 'npe-150', 'npe-175', 'npe-200', 'npe-225', 'npe-300', 'npe-400', 'npe-g1', 'npe-g2'])
                 self.comboBoxNPE.setEnabled(True)
-                index = self.comboBoxNPE.findText(IOSconfig['npe'])
+                index = self.comboBoxNPE.findText(IOSconfig.npe)
                 if index != -1:
                     self.comboBoxNPE.setCurrentIndex(index)
             if platform == '3600':
                 self.spinBoxIomem.setEnabled(True)
-                self.spinBoxIomem.setValue(IOSconfig['iomem'])
+                self.spinBoxIomem.setValue(IOSconfig.iomem)
 
     def slotSelectStartupConfig(self):
         """ Get startup-config from the file system
@@ -160,27 +160,27 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         self.comboBoxIOS.clear()
         images = globals.GApp.iosimages.keys()
         self.comboBoxIOS.addItems(images)
-        index = self.comboBoxIOS.findText(IOSconfig['image'])
+        index = self.comboBoxIOS.findText(IOSconfig.image)
         if index != -1:
             self.comboBoxIOS.setCurrentIndex(index)
-        self.lineEditConsolePort.setText(IOSconfig['consoleport'])
-        self.lineEditStartupConfig.setText(IOSconfig['startup-config'])
-        self.spinBoxRamSize.setValue(IOSconfig['RAM'])
-        self.spinBoxRomSize.setValue(IOSconfig['ROM'])
-        self.spinBoxNvramSize.setValue(IOSconfig['NVRAM'])
-        self.spinBoxPcmciaDisk0Size.setValue(IOSconfig['pcmcia-disk0'])
-        self.spinBoxPcmciaDisk1Size.setValue(IOSconfig['pcmcia-disk1'])
-        if IOSconfig['mmap'] == True:
+        self.lineEditConsolePort.setText(IOSconfig.consoleport)
+        self.lineEditStartupConfig.setText(IOSconfig.startup_config)
+        self.spinBoxRamSize.setValue(IOSconfig.RAM)
+        self.spinBoxRomSize.setValue(IOSconfig.ROM)
+        self.spinBoxNvramSize.setValue(IOSconfig.NVRAM)
+        self.spinBoxPcmciaDisk0Size.setValue(IOSconfig.pcmcia_disk0)
+        self.spinBoxPcmciaDisk1Size.setValue(IOSconfig.pcmcia_disk1)
+        if IOSconfig.mmap == True:
             self.checkBoxMapped.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxMapped.setCheckState(QtCore.Qt.Unchecked)
-        self.lineEditConfreg.setText(IOSconfig['confreg'])
-        self.spinBoxExecArea.setValue(IOSconfig['execarea'])
-        self.spinBoxIomem.setValue(IOSconfig['iomem'])
-        index = self.comboBoxMidplane.findText(IOSconfig['midplane'])
+        self.lineEditConfreg.setText(IOSconfig.confreg)
+        self.spinBoxExecArea.setValue(IOSconfig.execarea)
+        self.spinBoxIomem.setValue(IOSconfig.iomem)
+        index = self.comboBoxMidplane.findText(IOSconfig.midplane)
         if index != -1:
             self.comboBoxMidplane.setCurrentIndex(index)
-        index = self.comboBoxNPE.findText(IOSconfig['npe'])
+        index = self.comboBoxNPE.findText(IOSconfig.npe)
         if index != -1:
             self.comboBoxNPE.setCurrentIndex(index)
 
@@ -191,32 +191,32 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             IOSconfig = config
         else:
             IOSconfig = node.config
-        IOSconfig['image'] = unicode(self.comboBoxIOS.currentText())
-        IOSconfig['consoleport'] = str(self.lineEditConsolePort.text())
-        IOSconfig['startup-config'] = unicode(self.lineEditStartupConfig.text())
-        IOSconfig['RAM'] = self.spinBoxRamSize.value()
-        IOSconfig['ROM'] = self.spinBoxRomSize.value()
-        IOSconfig['NVRAM'] = self.spinBoxNvramSize.value()
-        IOSconfig['pcmcia-disk0'] = self.spinBoxPcmciaDisk0Size.value()
-        IOSconfig['pcmcia-disk1'] = self.spinBoxPcmciaDisk1Size.value()
+        IOSconfig.image = unicode(self.comboBoxIOS.currentText())
+        IOSconfig.consoleport = str(self.lineEditConsolePort.text())
+        #IOSconfig.startup_config = unicode(self.lineEditStartupConfig.text())
+        IOSconfig.RAM = self.spinBoxRamSize.value()
+        IOSconfig.ROM = self.spinBoxRomSize.value()
+        IOSconfig.NVRAM = self.spinBoxNvramSize.value()
+#        IOSconfig.pcmcia_disk0 = self.spinBoxPcmciaDisk0Size.value()
+#        IOSconfig.pcmcia_disk1 = self.spinBoxPcmciaDisk1Size.value()
         if self.checkBoxMapped.checkState() == QtCore.Qt.Checked:
-            IOSconfig['mmap'] = True
+            IOSconfig.mmap = True
         else:
-            IOSconfig['mmap'] = False
-        IOSconfig['confreg'] = str(self.lineEditConfreg.text())
-        IOSconfig['execarea'] = self.spinBoxExecArea.value()
-        IOSconfig['iomem'] = self.spinBoxIomem.value()
+            IOSconfig.mmap = False
+        IOSconfig.confreg = str(self.lineEditConfreg.text())
+        IOSconfig.execarea = self.spinBoxExecArea.value()
+        IOSconfig.iomem = self.spinBoxIomem.value()
         if str(self.comboBoxMidplane.currentText()):
-            IOSconfig['midplane'] = str(self.comboBoxMidplane.currentText())
+            IOSconfig.midplane = str(self.comboBoxMidplane.currentText())
         if str(self.comboBoxNPE.currentText()):
-            IOSconfig['npe'] = str(self.comboBoxNPE.currentText())
+            IOSconfig.npe = str(self.comboBoxNPE.currentText())
 
-        IOSconfig['slots'] = []
+        IOSconfig.slots = []
         slotnb = 0
         for widget in self.slots_list:
             module = str(widget.currentText())
             node.updateLinks(slotnb, module)
-            IOSconfig['slots'].append(module)
+            IOSconfig.slots.append(module)
             slotnb += 1
 
 def create(dlg):

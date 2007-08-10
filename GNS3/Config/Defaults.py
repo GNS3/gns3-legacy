@@ -77,18 +77,18 @@ conf_iosRouter_defaults = {
 }
 
 conf_iosRouter_types = {
-    'image': str, 
+    'image': unicode, 
     'platform': str, 
     'chassis': str,
     'consoleport': str, 
     'RAM': int, 
     'ROM': int, 
     'NVRAM': int,
-    'mmap': True, 
-    'pcmcia-disk0': int,
-    'pcmcia-disk1': int,
+    'mmap': bool, 
+    'pcmcia_disk0': int,
+    'pcmcia_disk1': int,
     'confreg': str, 
-    'startup-config': str, 
+    'startup_config': unicode, 
     'execarea': int, 
     'iomem': int, 
     'npe': str,
