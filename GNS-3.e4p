@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.1.dtd">
 <!-- eric4 project file for project GNS-3 -->
-<!-- Saved: 2007-08-10, 19:39:19 -->
+<!-- Saved: 2007-08-12, 16:41:55 -->
 <!-- Copyright (C) 2007 GNS-3 Dev Team, contact@gns3.net -->
 <Project version="4.1">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -286,6 +286,23 @@
       <Dir>GNS3</Dir>
       <Dir>Node</Dir>
       <Name>FRSW.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Page_ETHSW.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Form_ETHSWPage.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Node</Dir>
+      <Name>ETHSW.py</Name>
     </Source>
   </Sources>
   <Forms>

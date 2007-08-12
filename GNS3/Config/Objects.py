@@ -84,7 +84,6 @@ class ConfigObject(object):
 
 # ----------------------------------------------------------------------------
 
-
 class iosImageConf(ConfigObject):
     def __init__(self):
         ConfigObject.__init__(self)
@@ -102,6 +101,12 @@ class FRSWConf(ConfigObject):
         ConfigObject.__init__(self)
         self.conf = Defaults.conf_FRSW_defaults.copy() 
         self.types = Defaults.conf_FRSW_types
+        
+class ETHSWConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_ETHSW_defaults.copy() 
+        self.types = Defaults.conf_ETHSW_types
         
 class hypervisorConf(ConfigObject):
     def __init__(self):

@@ -26,7 +26,7 @@ from Form_FRSWPage import Ui_FRSWPage
 
 class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
     """
-    Class implementing the IOS router configuration page.
+    Class implementing the Frame Relay configuration page.
     """
 
     def __init__(self):

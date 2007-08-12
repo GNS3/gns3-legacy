@@ -26,6 +26,7 @@ from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_NodeConfigurator import Ui_NodeConfigurator
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.FRSW import FRSW
+from GNS3.Node.ETHSW import ETHSW
 
 class ConfigurationPageItem(QtGui.QTreeWidgetItem):
     """ Class implementing a QTreeWidgetItem holding the configuration page data.
@@ -95,11 +96,15 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                  "Page_IOSRouter", None, None], 
             "FRSW":
                 [self.trUtf8("Frame Relay"), ":/symbols/sw_atm.normal.svg",
-                 "Page_FRSW", None, None]
+                 "Page_FRSW", None, None], 
+            "ETHSW":
+                [self.trUtf8("Ethernet Switch"), ":/symbols/sw_standard.normal.svg",
+                 "Page_ETHSW", None, None]
                  }
 
         self.assocPage = { IOSRouter: "Routers", 
-                                     FRSW: "FRSW", 
+                                     FRSW: "FRSW",
+                                     ETHSW: "ETHSW", 
                                     }
         self.__loadNodeItems()
 
