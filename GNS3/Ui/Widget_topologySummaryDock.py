@@ -20,7 +20,6 @@
 # Contact: contact@gns3.net
 #
 
-import GNS3.Ui.svg_resources_rc
 import GNS3.Globals as globals 
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate

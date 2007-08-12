@@ -24,6 +24,7 @@ import time
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
+from GNS3.Node.IOSRouter import IOSRouter
 
 MEM_USAGE_LIMIT = 512
 BASE_PORT_UDP = 10000
@@ -72,16 +73,18 @@ class HypervisorManager:
         node_list = []
         mem = 0
         for node in globals.GApp.topology.nodes.itervalues():
-            image = globals.GApp.iosimages[node.config.image]
-            if not image.hypervisor_host:
-                node_list.append(node)
-                mem += node.config.RAM
+            if type(node) == IOSRouter:
+                image = globals.GApp.iosimages[node.config.image]
+                if not image.hypervisor_host:
+                    node_list.append(node)
+                    mem += node.config.RAM
 
         count = mem / MEM_USAGE_LIMIT
         count += 1
-        progress = QtGui.QProgressDialog("Starting hypervisors ...", "Abort", 0, count, globals.GApp.mainWindow)
-        progress.setMinimum(1)
-        progress.setWindowModality(QtCore.Qt.WindowModal)
+        if count > 1:
+            progress = QtGui.QProgressDialog("Starting hypervisors ...", "Abort", 0, count, globals.GApp.mainWindow)
+            progress.setMinimum(1)
+            progress.setWindowModality(QtCore.Qt.WindowModal)
 
         mem = 0
         current_node = 0
@@ -90,9 +93,10 @@ class HypervisorManager:
             return False
         nb_node = len(node_list)
         for node in node_list:
-            progress.setValue(current_node)
-            globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 2000)
-            if progress.wasCanceled():
+            if count > 1:
+                progress.setValue(current_node)
+                globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 2000)
+            if  count > 1 and progress.wasCanceled():
                 progress.reset()
                 break
             mem += node.config.RAM
@@ -104,7 +108,8 @@ class HypervisorManager:
                 self.baseUDP += 15
                 mem = 0
         time.sleep(2)
-        progress.setValue(count)
+        if count > 1:
+            progress.setValue(count)
         return True
                 
     def stopProcHypervisors(self):

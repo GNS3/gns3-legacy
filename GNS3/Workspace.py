@@ -31,6 +31,7 @@ from GNS3.Utils import translate, fileBrowser
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Preferences import PreferencesDialog
 from GNS3.Config.Config import ConfDB
+from GNS3.Node.IOSRouter import IOSRouter
 import GNS3.Globals as globals 
 
 __statesDefaults = {
@@ -44,7 +45,6 @@ __statesDefaults = {
         'eventDock': True,
     }
 }
-
 
 class Workspace(QMainWindow, Ui_MainWindow):
     """ This class is for managing the whole GUI `Workspace'.
@@ -341,7 +341,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         #FIXME: check if lost the connection to the hypervisor
         try:
             for node in globals.GApp.topology.nodes.itervalues():
-                node.resetIOS()
+                node.resetNode()
             for node in globals.GApp.topology.nodes.itervalues():
                 node.resetHypervisor()
         except lib.DynamipsError, msg:
@@ -377,12 +377,19 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__restoreButtonState()
             return
 
+        globals.useHypervisorManager = False
         for node in globals.GApp.topology.nodes.itervalues():
-            if not node.config.image:
+            if type(node) == IOSRouter and not node.config.image:
                 node.setDefaultIOSImage()
+            if type(node) == IOSRouter:
+                image = globals.GApp.iosimages[node.config.image]
+                if image.hypervisor_host == '':
+                    globals.useHypervisorManager = True
+            elif node.config.hypervisor_host == '':
+                globals.useHypervisorManager = True
             
         if globals.useHypervisorManager:
-    
+
             if globals.GApp.systconf['dynamips'].path == '':
                 QtGui.QMessageBox.warning(self, 'Emulation mode', 'Please configure Dynamips')
                 self.__action_SystemPreferences()
@@ -399,7 +406,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         try:
             for node in globals.GApp.topology.nodes.itervalues():
-                node.configIOS()
+                node.configNode()
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
             return
@@ -554,61 +561,93 @@ class Workspace(QMainWindow, Ui_MainWindow):
 #                if self.main.nodes[node].telnetToIOS() == False:
 #                    return
 
-    def __action_StartAll(self):
+    def __startNonIOSNodes(self):
 
-        nodes = globals.GApp.topology.nodes.values()
-        count = len(nodes)
+        node_list = []
+        for node in globals.GApp.topology.nodes.values():
+            if type(node) != IOSRouter:
+                node_list.append(node)
+        for node in node_list:
+            try:
+                node.startNode()
+            except lib.DynamipsError, msg:
+                QtGui.QMessageBox.critical(self, unicode(node.hostname + ': Dynamips error'),  str(msg))
+            except lib.DynamipsWarning,  msg:
+                QtGui.QMessageBox.warning(self,  unicode(node.hostname + ': Dynamips warning'),  str(msg))
+                continue
+            except lib.DynamipsErrorHandled:
+                QtGui.QMessageBox.critical(self, unicode(node.hostname + ': Dynamips error'), 'Connection lost')
+                for node in node_list:
+                    node.shutdownInterfaces()
+                return
+    
+    def __action_StartAll(self):
+        
+        node_list = []
+        for node in globals.GApp.topology.nodes.values():
+            if type(node) == IOSRouter:
+                node_list.append(node)
+        count = len(node_list)
         progress = QtGui.QProgressDialog("Starting nodes ...", "Abort", 0, count, self)
         progress.setMinimum(1)
         progress.setWindowModality(QtCore.Qt.WindowModal)
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents)
         current = 0
-        for node in nodes:
+        for node in node_list:
             progress.setValue(current)
             globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
             if progress.wasCanceled():
                 progress.reset()
                 break
             try:
-                node.start()
+                node.startNode()
             except lib.DynamipsError, msg:
                 if node.dev.state == 'running':
                     pass
                 else:
                     QtGui.QMessageBox.critical(self, unicode(node.hostname + ': Dynamips error'),  str(msg))
+            except lib.DynamipsWarning,  msg:
+                QtGui.QMessageBox.warning(self,  unicode(node.hostname + ': Dynamips warning'),  str(msg))
+                continue
             except lib.DynamipsErrorHandled:
                 QtGui.QMessageBox.critical(self, unicode(node.hostname + ': Dynamips error'), 'Connection lost')
-                for node in nodes:
+                for node in node_list:
                     node.shutdownInterfaces()
                 return
             current += 1
         progress.setValue(count)
+        self.__startNonIOSNodes()
         
     def __action_StopAll(self):
         
-        nodes = globals.GApp.topology.nodes.values()
-        count = len(nodes)
+        node_list = []
+        for node in globals.GApp.topology.nodes.values():
+            node_list.append(node)
+        count = len(node_list)
         progress = QtGui.QProgressDialog("Stopping nodes ...", "Abort", 0, count, self)
         progress.setMinimum(1)
         progress.setWindowModality(QtCore.Qt.WindowModal)
         globals.GApp.processEvents()
         current = 0
-        for node in nodes:
+        for node in node_list:
             progress.setValue(current)
             globals.GApp.processEvents()
             if progress.wasCanceled():
                 progress.reset()
                 break
             try:
-                node.stop()
+                node.stopNode()
             except lib.DynamipsError, msg:
                 if node.dev.state == 'stopped':
                     pass
                 else:
                     QtGui.QMessageBox.critical(self,  unicode(node.hostname + ': Dynamips error'),  str(msg))
+            except lib.DynamipsWarning,  msg:
+                QtGui.QMessageBox.warning(self,  unicode(node.hostname + ': Dynamips warning'),  str(msg))
+                continue
             except lib.DynamipsErrorHandled:
                 QtGui.QMessageBox.critical(self, unicode(node.hostname + ': Dynamips error'), 'Connection lost')
-                for node in nodes:
+                for node in node_list:
                     node.shutdownInterfaces()
                 return
             current += 1

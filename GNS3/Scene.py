@@ -96,9 +96,10 @@ class Scene(QtGui.QGraphicsView):
 
     def __addLink(self):
         
-        if self.__sourceInterface[0] != self.__destInterface[0]:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Connection',  'Interfaces types mismatch !')
-            return
+    #TODO: check incompatible interfaces
+#        if self.__sourceInterface[0] != self.__destInterface[0]:
+#            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Connection',  'Interfaces types mismatch !')
+#            return
         if self.__sourceNodeID == self.__destNodeID:
             return
         link = self.__topology.addLink(self.__sourceNodeID,

@@ -97,6 +97,12 @@ class iosRouterConf(ConfigObject):
         self.conf = Defaults.conf_iosRouter_defaults.copy() 
         self.types = Defaults.conf_iosRouter_types
         
+class FRSWConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_FRSW_defaults.copy() 
+        self.types = Defaults.conf_FRSW_types
+        
 class hypervisorConf(ConfigObject):
     def __init__(self):
         ConfigObject.__init__(self)

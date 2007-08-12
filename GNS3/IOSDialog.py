@@ -166,7 +166,6 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         
         if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Unchecked:
             # external hypervisor, don't use the hypervisor manager
-            globals.useHypervisorManager = False
             items = self.listWidgetHypervisors.selectedItems()
             if len(items) == 0:
                 QtGui.QMessageBox.warning(self, 'IOS', 'No hypervisor selected, use local hypervisor')

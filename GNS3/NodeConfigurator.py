@@ -21,6 +21,7 @@
 #
 
 import GNS3.Globals as globals
+import GNS3.Ui.svg_resources_rc
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_NodeConfigurator import Ui_NodeConfigurator
 from GNS3.Node.IOSRouter import IOSRouter
@@ -38,11 +39,12 @@ class ConfigurationPageItem(QtGui.QTreeWidgetItem):
         """
         
         QtGui.QTreeWidgetItem.__init__(self, parent, QtCore.QStringList(text))
-#        if iconFile:
-#            self.setIcon(0, iconFile)
+        if iconFile:
+            self.setIcon(0, QtGui.QIcon(iconFile))
         self.__pageName = unicode(pageName)
         self.__ids = []
         self.tmpConfig = None
+        self.origConfig = None
 
     def getPageName(self):
         """ Public method to get the name of the associated configuration page.
@@ -76,6 +78,8 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         self.treeViewNodes.header().hide()
         self.treeViewNodes.header().setSortIndicator(0, QtCore.Qt.AscendingOrder)
         self.itmDict = {}
+        self.previousItem = None
+        self.previousPage = None
         
         self.emptyPage = self.configStack.findChildren(QtGui.QWidget, "emptyPage")[0]
         self.configStack.setCurrentWidget(self.emptyPage)
@@ -87,15 +91,15 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             # the configuration page. This must have the method save to save 
             # the settings.
             "Routers" : \
-                [self.trUtf8("Routers"), "preferences-application.png",
+                [self.trUtf8("Routers"), ":/symbols/rt_standard.normal.svg",
                  "Page_IOSRouter", None, None], 
             "FRSW":
-                [self.trUtf8("Frame Relay"), "preferences-application.png",
+                [self.trUtf8("Frame Relay"), ":/symbols/sw_atm.normal.svg",
                  "Page_FRSW", None, None]
                  }
 
-        self.assocPage = { IOSRouter: ["Routers",  None], 
-                                     FRSW: ["FRSW",  None], 
+        self.assocPage = { IOSRouter: "Routers", 
+                                     FRSW: "FRSW", 
                                     }
         self.__loadNodeItems()
 
@@ -110,7 +114,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
     def __loadNodeItems(self):
     
         for node in self.nodeitems:
-            parent = self.assocPage[type(node)][0]
+            parent = self.assocPage[type(node)]
             if not self.itmDict.has_key(parent):
                 pageData = self.configItems[parent]
                 item = ConfigurationPageItem(self.treeViewNodes, pageData[0], parent,  pageData[1])
@@ -118,7 +122,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                 self.itmDict[parent] = item
     
         for node in self.nodeitems:
-            parent = self.assocPage[type(node)][0]
+            parent = self.assocPage[type(node)]
             self.itmDict[parent].addID(node.id)
             item = ConfigurationPageItem(self.itmDict[parent], unicode(node.hostname), parent,  None)
             item.addID(node.id)
@@ -133,15 +137,15 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         count = len(items)
         if count == 0:
             return
-            
+        
         last_item = items[count - 1]
+        self.__showConfigurationPage(last_item,  0)
         lasttype =  type(globals.GApp.topology.getNode(last_item.getIDs()[0]))
         
         for item in items:
             itmtype = type(globals.GApp.topology.getNode(item.getIDs()[0]))
             if itmtype != lasttype:
                 item.setSelected(False)
-                self.assocPage[itmtype][1] = None
                 count = count - 1
             if not item.parent():
                 if last_item.parent():
@@ -198,10 +202,9 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         """ Public slot to show a named configuration page.
             itm: reference to the selected item (QTreeWidgetItem)
         """
-        itemtype = type(globals.GApp.topology.getNode(itm.getIDs()[0]))
-        currentItm = self.assocPage[itemtype][1]
-        
-        if currentItm and currentItm == itm:
+
+        # if the same item, don't continue
+        if self.previousItem and self.previousItem == itm:
             return
         
         pageName = unicode(itm.getPageName())
@@ -216,14 +219,19 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         if page is None:
             page = self.emptyPage
         else:
+        
+            if itm.origConfig == None and itm.parent():
+                node = globals.GApp.topology.getNode(itm.getIDs()[0])
+                itm.origConfig = node.config
 
-            if currentItm and currentItm != itm:
-                
-                page.saveConfig(currentItm.getIDs()[0],  currentItm.tmpConfig)
-                self.assocPage[itemtype][1]  = itm
-
-            if currentItm == None:
-                self.assocPage[itemtype][1] = itm
+            if self.previousItem:
+                self.previousPage.saveConfig(self.previousItem.getIDs()[0],  self.previousItem.tmpConfig)
+                self.previousItem = itm
+                self.previousPage = page
+                    
+            if self.previousItem == None:
+                self.previousItem = itm
+                self.previousPage = page
 
             page.loadConfig(itm.getIDs()[0],  itm.tmpConfig)
 
@@ -250,12 +258,15 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             self.on_applyButton_clicked()
         elif button == self.buttonBox.button(QtGui.QDialogButtonBox.Reset):
             self.on_resetButton_clicked()
+        elif button == self.buttonBox.button(QtGui.QDialogButtonBox.Cancel):
+            self.on_cancelButton_clicked()
+            QtGui.QDialog.reject(self)
         else:
             self.on_applyButton_clicked()
             QtGui.QDialog.accept(self)
 
     def on_applyButton_clicked(self):
-        """ Private slot called to apply the settings of the current page.
+        """ Private slot called to apply the settings
         """
 
         if self.configStack.currentWidget() != self.emptyPage:
@@ -269,13 +280,24 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                     for child in children:
                         page.saveConfig(child)
 
+    def on_cancelButton_clicked(self):
+        """ Private slot called to cancel the settings
+        """
+
+        for parent in self.itmDict.values():
+            children = parent.takeChildren()
+            for child in children:
+                if child.origConfig:
+                    node = globals.GApp.topology.getNode(child.getIDs()[0])
+                    node.config = child.origConfig
+
     def on_resetButton_clicked(self):
         """ Private slot called to reset the settings of the current page.
         """
 
         if self.configStack.currentWidget() != self.emptyPage:
             page = self.configStack.currentWidget()
-        
+
             for item in self.treeViewNodes.selectedItems():
                 node = globals.GApp.topology.getNode(item.getIDs()[0])
                 item.tmpConfig = node.getDefaultConfig()

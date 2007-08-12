@@ -96,6 +96,20 @@ conf_iosRouter_types = {
     'slots': list
 }
 
+conf_FRSW_defaults = {
+    'ports': [],
+    'mapping': {},
+    'hypervisor_host': '',
+    'hypervisor_port': 0,
+}
+
+conf_FRSW_types = {
+    'ports': list,
+    'mapping': dict,
+    'hypervisor_host': str,
+    'hypervisor_port': int,
+}
+
 conf_systemDynamips_defaults = {
     'path': '',
     'port': 7200,

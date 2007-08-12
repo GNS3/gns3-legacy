@@ -140,13 +140,13 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """ Action called to start the node
         """
     
-        self.start()
+        self.startNode()
         
     def __stopAction(self):
         """ Action called to stop the node
         """
     
-        self.stop()
+        self.stopNode()
 
 #    def paint(self, painter, option, widget=None):
 #        _local_option = option
@@ -206,6 +206,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         return self.__edgeList
 
     def setCustomToolTip(self):
+
         self.setToolTip("Hostname: %s" % (self.hostname))
 
     def keyReleaseEvent(self, event):
@@ -348,3 +349,8 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         interface = str(action.text())
         assert(interface)
         self.__selectedInterface = interface
+        
+    def shutdownInterfaces(self):
+            
+        for edge in self.getEdgeList():
+            edge.setLocalInterfaceStatus(self.id, False)

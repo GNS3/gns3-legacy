@@ -64,6 +64,8 @@ ADAPTERS = {
 }
 
 IF_REGEXP = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)\/([0-9]+)$""") 
+PORT_REGEXP = re.compile(r"""^[0-9]*$""")
+router_id = 0
 
 class IOSRouter(AbstractNode):
     """ IOSRouter class
@@ -72,7 +74,13 @@ class IOSRouter(AbstractNode):
     def __init__(self, renderer_normal, renderer_select):
         
         AbstractNode.__init__(self, renderer_normal, renderer_select)
-        self.hostname = 'R' + str(self.id)
+        
+        # assign a new hostname
+        global router_id
+        self.hostname = 'R' + str(router_id)
+        router_id = router_id + 1
+        self.setCustomToolTip()
+        
         self.hypervisor_host = None
         self.hypervisor_port = None
         self.baseUDP = None
@@ -83,7 +91,6 @@ class IOSRouter(AbstractNode):
 
     def getDefaultConfig(self):
     
-        #return config.IOSConfig.copy()
         return iosRouterConf()
     
     def getAdapter(self, platform, chassis,  slotnb):
@@ -153,7 +160,7 @@ class IOSRouter(AbstractNode):
         if workingdir:
             self.hypervisor_wd = workingdir
             
-    def configIOS(self):
+    def configNode(self):
     
         image = self.config.image
         if image == '':
@@ -292,12 +299,7 @@ class IOSRouter(AbstractNode):
                 print ifname + " is connected to a non-existing port in the slot " + str(slotnb)
                 self.deleteInterface(ifname)
 
-    def shutdownInterfaces(self):
-            
-        for edge in self.getEdgeList():
-            edge.setLocalInterfaceStatus(self.id, False)
-
-    def start(self):
+    def startNode(self):
     
         if self.dev == None or self.dev.state == 'running':
             return
@@ -306,25 +308,33 @@ class IOSRouter(AbstractNode):
             match_obj = IF_REGEXP.search(interface)
             assert(match_obj)
             (source_slot, source_port) = match_obj.group(2,3)
-        
+            source_slot = int(source_slot)
+            source_port = int(source_port)
+                
             (destnode, destinterface)  = self.getConnectedNeighbor(interface)
             match_obj = IF_REGEXP.search(destinterface)
-            assert(match_obj)
-            (dest_slot, dest_port) = match_obj.group(2,3)
+            if match_obj:
+                (dest_slot, dest_port) = match_obj.group(2,3)
+                dest_slot = int(dest_slot)
+                dest_port = int(dest_port)
+                destination = destnode.dev.slot[dest_slot]
+
+            match_obj = PORT_REGEXP.search(destinterface)
+            if match_obj:
+                dest_port = int(destinterface)
+                destination = destnode.dev
+                
             #print 'connect node ' + str(self.id) + ' interface ' + source_slot + '/' + source_port + ' to node ' + str(destnode.id) + ' interface ' + dest_slot + '/' + dest_port
 
-            source_slot = int(source_slot)
-            dest_slot = int(dest_slot)
-            source_port = int(source_port)
-            dest_port = int(dest_port)
             if self.dev.slot[source_slot] != None and self.dev.slot[source_slot].connected(source_port) == False:
-                self.dev.slot[source_slot].connect(source_port, destnode.getHypervisor(), destnode.dev.slot[dest_slot], dest_port)
+                self.dev.slot[source_slot].connect(source_port, destnode.getHypervisor(), destination, dest_port)
+        
         print self.dev.start()
         
         for edge in self.getEdgeList():
                 edge.setLocalInterfaceStatus(self.id, True)
         
-    def stop(self):
+    def stopNode(self):
         """ Stop the IOS instance
         """
 
@@ -341,7 +351,7 @@ class IOSRouter(AbstractNode):
         self.hypervisor_port = None
         self.baseUDP = None
         
-    def resetIOS(self):
+    def resetNode(self):
         """ Delete the IOS instance
         """
 

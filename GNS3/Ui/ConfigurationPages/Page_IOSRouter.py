@@ -193,12 +193,12 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             IOSconfig = node.config
         IOSconfig.image = unicode(self.comboBoxIOS.currentText())
         IOSconfig.consoleport = str(self.lineEditConsolePort.text())
-        #IOSconfig.startup_config = unicode(self.lineEditStartupConfig.text())
+        IOSconfig.startup_config = unicode(self.lineEditStartupConfig.text())
         IOSconfig.RAM = self.spinBoxRamSize.value()
         IOSconfig.ROM = self.spinBoxRomSize.value()
         IOSconfig.NVRAM = self.spinBoxNvramSize.value()
-#        IOSconfig.pcmcia_disk0 = self.spinBoxPcmciaDisk0Size.value()
-#        IOSconfig.pcmcia_disk1 = self.spinBoxPcmciaDisk1Size.value()
+        IOSconfig.pcmcia_disk0 = self.spinBoxPcmciaDisk0Size.value()
+        IOSconfig.pcmcia_disk1 = self.spinBoxPcmciaDisk1Size.value()
         if self.checkBoxMapped.checkState() == QtCore.Qt.Checked:
             IOSconfig.mmap = True
         else:
@@ -215,7 +215,8 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         slotnb = 0
         for widget in self.slots_list:
             module = str(widget.currentText())
-            node.updateLinks(slotnb, module)
+            if config == None:
+                node.updateLinks(slotnb, module)
             IOSconfig.slots.append(module)
             slotnb += 1
 
