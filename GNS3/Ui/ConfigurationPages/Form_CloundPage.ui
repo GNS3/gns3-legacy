@@ -1,0 +1,266 @@
+<ui version="4.0" >
+ <class>CloundPage</class>
+ <widget class="QWidget" name="CloundPage" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>394</width>
+    <height>417</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Clound</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <widget class="QTabWidget" name="tabWidget" >
+     <property name="currentIndex" >
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab" >
+      <attribute name="title" >
+       <string>NIO Ethernet</string>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <item>
+        <widget class="QGroupBox" name="groupBox" >
+         <property name="title" >
+          <string>Generic Ethernet NIO (require root access)</string>
+         </property>
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="QComboBox" name="comboBoxGenEth" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" >
+           <widget class="QPushButton" name="pushButtonAddGenericEth" >
+            <property name="text" >
+             <string>&amp;Add</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2" >
+           <widget class="QPushButton" name="pushButtonDeleteGenericEth" >
+            <property name="enabled" >
+             <bool>false</bool>
+            </property>
+            <property name="text" >
+             <string>&amp;Delete</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="3" >
+           <widget class="QListWidget" name="listWidgetGenericEth" />
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_2" >
+         <property name="title" >
+          <string>Linux Ethernet NIO (require root access)</string>
+         </property>
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="QComboBox" name="comboBoxLinuxEth" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" >
+           <widget class="QPushButton" name="pushButtonAddLinuxEth" >
+            <property name="text" >
+             <string>&amp;Add</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2" >
+           <widget class="QPushButton" name="pushButtonDeleteLinuxEth" >
+            <property name="enabled" >
+             <bool>false</bool>
+            </property>
+            <property name="text" >
+             <string>&amp;Delete</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="3" >
+           <widget class="QListWidget" name="listWidgetLinuxEth" />
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2" >
+      <attribute name="title" >
+       <string>NIO UDP</string>
+      </attribute>
+      <layout class="QGridLayout" >
+       <item row="0" column="0" colspan="2" >
+        <widget class="QGroupBox" name="groupBox_3" >
+         <property name="title" >
+          <string>Settings</string>
+         </property>
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="QLabel" name="label" >
+            <property name="text" >
+             <string>Local port:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" >
+           <widget class="QSpinBox" name="spinBoxLocalPort" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximum" >
+             <number>65535</number>
+            </property>
+            <property name="value" >
+             <number>5000</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" >
+           <widget class="QLabel" name="label_2" >
+            <property name="text" >
+             <string>Remote host:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" >
+           <widget class="QLineEdit" name="lineEditRemoteHost" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" >
+           <widget class="QLabel" name="label_3" >
+            <property name="text" >
+             <string>Remote port:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" >
+           <widget class="QSpinBox" name="spinBoxRemotePort" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximum" >
+             <number>65535</number>
+            </property>
+            <property name="value" >
+             <number>50001</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item rowspan="2" row="0" column="2" >
+        <widget class="QGroupBox" name="groupBox_4" >
+         <property name="title" >
+          <string>NIOs</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <widget class="QListWidget" name="listWidgetUDP" />
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0" >
+        <widget class="QPushButton" name="pushButtonAddUDP" >
+         <property name="text" >
+          <string>&amp;Add</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" >
+        <widget class="QPushButton" name="pushButtonDeleteUDP" >
+         <property name="enabled" >
+          <bool>false</bool>
+         </property>
+         <property name="text" >
+          <string>&amp;Delete</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1" >
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>20</width>
+           <height>211</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_3" >
+      <attribute name="title" >
+       <string>NIO TAP</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="tab_4" >
+      <attribute name="title" >
+       <string>NIO UNIX</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="tab_5" >
+      <attribute name="title" >
+       <string>NIO VDE</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="tab_6" >
+      <attribute name="title" >
+       <string>NIO Null</string>
+      </attribute>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

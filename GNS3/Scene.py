@@ -27,6 +27,12 @@ from GNS3.Utils import translate
 from GNS3.NodeConfigurator import NodeConfigurator
 from GNS3.Globals.Symbols import SYMBOLS
 
+import re
+from GNS3.Node.FRSW import FRSW
+from GNS3.Node.ETHSW import ETHSW
+IF_REGEXP = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)\/([0-9]+)$""") 
+PORT_REGEXP = re.compile(r"""^[0-9]*$""")
+
 class Scene(QtGui.QGraphicsView):
     """ Scene class
     """
@@ -100,8 +106,18 @@ class Scene(QtGui.QGraphicsView):
 #        if self.__sourceInterface[0] != self.__destInterface[0]:
 #            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Connection',  'Interfaces types mismatch !')
 #            return
+
         if self.__sourceNodeID == self.__destNodeID:
             return
+            
+        srcnode = globals.GApp.topology.getNode(self.__sourceNodeID)
+        destnode = globals.GApp.topology.getNode(self.__destNodeID)
+        
+        if not self.checkInterfaceCompatibility(srcnode, self.__sourceInterface,  destnode,  self.__destInterface) and \
+            not self.checkInterfaceCompatibility(destnode, self.__destInterface,  srcnode,  self.__sourceInterface):
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Connection',  'Interfaces types mismatch !')
+            return
+
         link = self.__topology.addLink(self.__sourceNodeID,
             self.__sourceInterface, self.__destNodeID, self.__destInterface)
 
@@ -209,3 +225,29 @@ class Scene(QtGui.QGraphicsView):
             event.accept()
         else:
             event.ignore()
+
+    def checkInterfaceCompatibility(self,  srcnode,  srcinterface,  destnode,  destinterface):
+    
+        match_obj = IF_REGEXP.search(srcinterface)
+        if match_obj:
+            if destinterface.lower()[:3] == 'nio':
+                return True
+            typesrc = match_obj.group(1)
+            match_obj = IF_REGEXP.search(destinterface)
+            if match_obj:
+                typedest = match_obj.group(1)
+                if typesrc == typedest:
+                    return True
+            else:
+                match_obj = PORT_REGEXP.search(destinterface)
+                if match_obj:
+                    if (typesrc == 'e' or typesrc == 'f' or typesrc == 'g') and type(destnode) == ETHSW:
+                        return True
+                    if typesrc == 's' and type(destnode) == FRSW:
+                        return True
+
+        match_obj = PORT_REGEXP.search(srcinterface)
+        if match_obj and type(srcnode) == ETHSW:
+            if destinterface.lower()[:3] == 'nio':
+                return True
+        return False

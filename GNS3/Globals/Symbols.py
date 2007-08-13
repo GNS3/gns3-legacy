@@ -21,6 +21,7 @@
 #
 
 from GNS3.Node.IOSRouter import IOSRouter
+from GNS3.Node.Clound import Clound
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 
@@ -46,7 +47,7 @@ SYMBOLS = (
     'normal_svg_file': ":/symbols/sw_multilayer.normal.svg",
     'select_svg_file': ":/symbols/sw_multilayer.selected.svg"},
     
-    {'name': "Route switch processor", 'object': IOSRouter,
+    {'name': "Route switch processor", 'object': Clound,
     'normal_svg_file': ":/symbols/route_swproc.normal.svg",
     'select_svg_file': ":/symbols/route_swproc.selected.svg"},
      

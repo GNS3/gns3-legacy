@@ -312,22 +312,22 @@ class IOSRouter(AbstractNode):
             source_port = int(source_port)
                 
             (destnode, destinterface)  = self.getConnectedNeighbor(interface)
-            match_obj = IF_REGEXP.search(destinterface)
-            if match_obj:
-                (dest_slot, dest_port) = match_obj.group(2,3)
+            match_if = IF_REGEXP.search(destinterface)
+            match_port = PORT_REGEXP.search(destinterface)
+            if match_if:
+                (dest_slot, dest_port) = match_if.group(2,3)
                 dest_slot = int(dest_slot)
                 dest_port = int(dest_port)
                 destination = destnode.dev.slot[dest_slot]
-
-            match_obj = PORT_REGEXP.search(destinterface)
-            if match_obj:
+            if match_port:
                 dest_port = int(destinterface)
                 destination = destnode.dev
-                
-            #print 'connect node ' + str(self.id) + ' interface ' + source_slot + '/' + source_port + ' to node ' + str(destnode.id) + ' interface ' + dest_slot + '/' + dest_port
 
-            if self.dev.slot[source_slot] != None and self.dev.slot[source_slot].connected(source_port) == False:
-                self.dev.slot[source_slot].connect(source_port, destnode.getHypervisor(), destination, dest_port)
+            if match_if or match_port:
+                if self.dev.slot[source_slot] != None and self.dev.slot[source_slot].connected(source_port) == False:
+                    self.dev.slot[source_slot].connect(source_port, destnode.getHypervisor(), destination, dest_port)
+            elif destinterface.lower()[:3] == 'nio':
+                self.dev.slot[source_slot].nio(source_port, nio=self.createNIO(self.getHypervisor(),  destinterface))
         
         print self.dev.start()
         

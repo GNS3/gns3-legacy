@@ -111,7 +111,7 @@ conf_FRSW_types = {
 }
 
 conf_ETHSW_defaults = {
-    'ports':{},
+    'ports': {},
     'vlans': {},
     'hypervisor_host': '',
     'hypervisor_port': 0,
@@ -122,6 +122,14 @@ conf_ETHSW_types = {
     'vlans': dict,
     'hypervisor_host': str,
     'hypervisor_port': int,
+}
+
+conf_Clound_defaults = {
+    'nios': []
+}
+
+conf_Clound_types = {
+    'nios': list,
 }
 
 conf_systemDynamips_defaults = {

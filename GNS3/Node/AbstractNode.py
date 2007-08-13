@@ -23,6 +23,7 @@
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Utils import translate
+import GNS3.Dynagen.dynamips_lib as lib
 
 class AbstractNode(QtSvg.QGraphicsSvgItem):
     """ AbstractNode class
@@ -354,3 +355,31 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             
         for edge in self.getEdgeList():
             edge.setLocalInterfaceStatus(self.id, False)
+
+    def createNIO(self,  dynamips,  nio):
+
+        (niotype, niostring) = nio.split(':', 1)
+        
+        if niotype.lower() == 'nio_linux_eth':
+            return lib.NIO_linux_eth(dynamips, interface = niostring)
+    
+        elif niotype.lower() == 'nio_gen_eth':
+            return lib.NIO_gen_eth(dynamips, interface = niostring)
+    
+        elif niotype.lower() == 'nio_udp':
+            (udplocal, remotehost, udpremote) = niostring.split(':',2)
+            return lib.NIO_udp(dynamips, int(udplocal), str(remotehost), int(udpremote))
+    
+        elif niotype.lower() == 'nio_null':
+            return lib.NIO_null(dynamips)
+    
+        elif niotype.lower() == 'nio_tap':
+            return lib.NIO_tap(dynamips, niostring)
+    
+        elif niotype.lower() == 'nio_unix':
+            (unixlocal, unixremote) = niostring.split(':',1)
+            return lib.NIO_unix(dynamips, unixlocal, unixremote)
+    
+        elif niotype.lower() == 'nio_vde':
+            (controlsock, localsock) = niostring.split(':',1)
+            return lib.NIO_vde(switch.dynamips, controlsock, localsock)

@@ -89,7 +89,7 @@ class Topology(QtGui.QGraphicsScene):
    
     def addLink(self, srcid, srcif, dstid, dstif):
 
-        if srcif[0] == 's' or srcif[0] == 'a':
+        if srcif[0] == 's' or srcif[0] == 'a' or dstif[0] == 's' or dstif[0] == 'a':
             # interface is serial or ATM
             link = Serial(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif)
         else:

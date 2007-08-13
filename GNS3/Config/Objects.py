@@ -107,6 +107,12 @@ class ETHSWConf(ConfigObject):
         ConfigObject.__init__(self)
         self.conf = Defaults.conf_ETHSW_defaults.copy() 
         self.types = Defaults.conf_ETHSW_types
+
+class CloundConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_Clound_defaults.copy() 
+        self.types = Defaults.conf_Clound_types
         
 class hypervisorConf(ConfigObject):
     def __init__(self):

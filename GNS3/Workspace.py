@@ -32,6 +32,7 @@ from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Preferences import PreferencesDialog
 from GNS3.Config.Config import ConfDB
 from GNS3.Node.IOSRouter import IOSRouter
+from GNS3.Node.Clound import Clound
 import GNS3.Globals as globals 
 
 __statesDefaults = {
@@ -385,7 +386,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 image = globals.GApp.iosimages[node.config.image]
                 if image.hypervisor_host == '':
                     globals.useHypervisorManager = True
-            elif node.config.hypervisor_host == '':
+            elif type(node) != Clound and node.config.hypervisor_host == '':
                 globals.useHypervisorManager = True
             
         if globals.useHypervisorManager:
@@ -556,10 +557,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_TelnetAll(self):
     
         for node in globals.GApp.topology.nodes.itervalues():
-            if node.dev.state == 'running':
+            if type(node) == IOSRouter and node.dev.state == 'running':
                 node.console()
-#                if self.main.nodes[node].telnetToIOS() == False:
-#                    return
 
     def __startNonIOSNodes(self):
 

@@ -106,9 +106,13 @@ class ETHSW(AbstractNode):
             return
 
         connected_interfaces = self.getConnectedInterfaceList()
-        print connected_interfaces
-        connected_interfaces = map(int,  connected_interfaces)
+        for interface in connected_interfaces:
+            destinterface = self.getConnectedNeighbor(interface)
+            print destinterface
         
+        #TODO: finish connetion to NIO
+        
+        connected_interfaces = map(int,  connected_interfaces)
         for (vlan,  portlist) in self.config.vlans.iteritems():
             for port in portlist:
                 if port in connected_interfaces:
