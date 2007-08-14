@@ -101,11 +101,6 @@ class Scene(QtGui.QGraphicsView):
             self.__topology.deleteNode(item.id)
 
     def __addLink(self):
-        
-    #TODO: check incompatible interfaces
-#        if self.__sourceInterface[0] != self.__destInterface[0]:
-#            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Connection',  'Interfaces types mismatch !')
-#            return
 
         if self.__sourceNodeID == self.__destNodeID:
             return

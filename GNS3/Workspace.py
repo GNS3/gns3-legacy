@@ -334,24 +334,25 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
     def saveProject(self, projectFile):
         pass
+     
+    def cleanNodeStates(self):
 
+        for node in globals.GApp.topology.nodes.itervalues():
+            node.shutdownInterfaces()
+            node.closeHypervisor()
+  
     def switchToMode_Design(self):
         """ Function called to switch to mode `Design'
         """
-        
-        #FIXME: check if lost the connection to the hypervisor
+
         try:
             for node in globals.GApp.topology.nodes.itervalues():
                 node.resetNode()
-            for node in globals.GApp.topology.nodes.itervalues():
-                node.resetHypervisor()
-        except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
-            return
-        except lib.DynamipsErrorHandled:
-            QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
-            return
-            
+        except:
+            pass
+        finally:
+            self.cleanNodeStates()
+
         if self.hypervisor_manager and globals.useHypervisorManager:
             self.hypervisor_manager.stopProcHypervisors()
 
@@ -576,8 +577,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 continue
             except lib.DynamipsErrorHandled:
                 QtGui.QMessageBox.critical(self, unicode(node.hostname + ': Dynamips error'), 'Connection lost')
-                for node in node_list:
-                    node.shutdownInterfaces()
+            except:
+                self.switchToMode_Design()
                 return
     
     def __action_StartAll(self):
@@ -610,8 +611,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 continue
             except lib.DynamipsErrorHandled:
                 QtGui.QMessageBox.critical(self, unicode(node.hostname + ': Dynamips error'), 'Connection lost')
-                for node in node_list:
-                    node.shutdownInterfaces()
+            except:
+                progress.reset()
+                self.switchToMode_Design()
                 return
             current += 1
         progress.setValue(count)
@@ -646,8 +648,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 continue
             except lib.DynamipsErrorHandled:
                 QtGui.QMessageBox.critical(self, unicode(node.hostname + ': Dynamips error'), 'Connection lost')
-                for node in node_list:
-                    node.shutdownInterfaces()
+            except:
+                progress.reset()
+                self.switchToMode_Design()
                 return
             current += 1
         progress.setValue(count)

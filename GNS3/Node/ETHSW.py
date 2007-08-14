@@ -41,47 +41,22 @@ class ETHSW(AbstractNode):
         self.hostname = 'S' + str(ethsw_id)
         ethsw_id = ethsw_id + 1
         self.setCustomToolTip()
-        
-        self.hypervisor_host = None
-        self.hypervisor_port = None
-        self.baseUDP = None
-        self.hypervisor_wd = None
+
         self.config = self.getDefaultConfig()
         self.dev = None
         
     def getDefaultConfig(self):
-    
+        """ Returns the default configuration
+        """
+
         return ETHSWConf()
 
     def getInterfaces(self):
-        """ Return all interfaces
+        """ Returns all interfaces
         """
 
         ports = map(str,  self.config.ports.keys())
         return (ports)
-
-    def getHypervisor(self):
-
-        key = self.hypervisor_host + ':' + str(self.hypervisor_port)
-        if not dynagen.dynamips.has_key(key):
-            print 'connection to ' + self.hypervisor_host + ' ' + str(self.hypervisor_port)
-            dynagen.dynamips[key] = lib.Dynamips(self.hypervisor_host, self.hypervisor_port)
-            dynagen.dynamips[key].reset()
-            if self.baseUDP:
-                dynagen.dynamips[key] .udp = self.baseUDP
-            if self.hypervisor_wd:
-                dynagen.dynamips[key] .workingdir = self.hypervisor_wd
-        return dynagen.dynamips[key]
-        
-    def configHypervisor(self,  host,  port, workingdir = None,  baseudp = None):
-
-        print 'record hypervisor : ' + host + ' ' + str(port) + ' base UDP ' + str(baseudp)
-        self.hypervisor_host = host
-        self.hypervisor_port = port
-        if  baseudp:
-            self.baseUDP = baseudp
-        if workingdir:
-            self.hypervisor_wd = workingdir
         
     def configNode(self):
     

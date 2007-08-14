@@ -24,6 +24,7 @@ import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Utils import translate
 import GNS3.Dynagen.dynamips_lib as lib
+import GNS3.Dynagen.Globals as dynagen
 
 class AbstractNode(QtSvg.QGraphicsSvgItem):
     """ AbstractNode class
@@ -43,6 +44,11 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.__flag_hostname = False
         self.type = 'Unknown'
         self.config = {}
+        
+        self.hypervisor_host = None
+        self.hypervisor_port = None
+        self.baseUDP = None
+        self.hypervisor_wd = None
         
         # create a unique ID
         self.id = globals.GApp.topology.node_baseid
@@ -121,7 +127,11 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                                           "Hostname:", QtGui.QLineEdit.Normal,
                                           unicode(self.hostname))
         if ok and text:
-            self.hostname = str(text)
+            for node in globals.GApp.topology.nodes.itervalues():
+                if self.hostname == node.hostname:
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hostname',  'Hostname already used')
+                    return
+            self.hostname = unicode(text)
             if self.__flag_hostname:
                 # force to redisplay the hostname
                 self.removeHostname()
@@ -215,7 +225,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """
 
         key = event.key()
-        if key == QtCore.Qt.Key_Delete:
+        if key == QtCore.Qt.Key_Delete and globals.GApp.workspace.currentMode == globals.Enum.Mode.Design:
             self.__deleteAction()
         else:
             QtGui.QGraphicsItem.keyReleaseEvent(self, event)
@@ -383,3 +393,40 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         elif niotype.lower() == 'nio_vde':
             (controlsock, localsock) = niostring.split(':',1)
             return lib.NIO_vde(switch.dynamips, controlsock, localsock)
+
+    def getHypervisor(self):
+
+        key = self.hypervisor_host + ':' + str(self.hypervisor_port)
+        if not dynagen.dynamips.has_key(key):
+            print 'connection to ' + self.hypervisor_host + ' ' + str(self.hypervisor_port)
+            dynagen.dynamips[key] = lib.Dynamips(self.hypervisor_host, self.hypervisor_port)
+            dynagen.dynamips[key].reset()
+            if self.baseUDP:
+                dynagen.dynamips[key] .udp = self.baseUDP
+            if self.hypervisor_wd:
+                dynagen.dynamips[key] .workingdir = self.hypervisor_wd
+        return dynagen.dynamips[key]
+        
+    def configHypervisor(self,  host,  port, workingdir = None,  baseudp = None):
+    
+        print 'record hypervisor : ' + host + ' ' + str(port) + ' base UDP ' + str(baseudp)
+        self.hypervisor_host = host
+        self.hypervisor_port = port
+        if  baseudp:
+            self.baseUDP = baseudp
+        if workingdir:
+            self.hypervisor_wd = workingdir
+          
+    def closeHypervisor(self):
+        
+        if self.hypervisor_host:
+            key = self.hypervisor_host + ':' + str(self.hypervisor_port)
+            if dynagen.dynamips.has_key(key):
+                try:
+                    dynagen.dynamips[key].close()
+                except:
+                    pass
+                del dynagen.dynamips[key]
+            self.hypervisor_host = None
+            self.hypervisor_port = None
+            self.baseUDP = None

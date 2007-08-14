@@ -41,6 +41,6 @@ def exceptionHook(type, value, tb):
     logfile = open('exception.log','a')
     logfile.write("\n" . join(lines))
     logfile.close()
-    sys.excepthook=exceptionHook
 
+sys.excepthook=exceptionHook
 import GNS3.Main

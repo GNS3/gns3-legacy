@@ -81,15 +81,13 @@ class IOSRouter(AbstractNode):
         router_id = router_id + 1
         self.setCustomToolTip()
         
-        self.hypervisor_host = None
-        self.hypervisor_port = None
-        self.baseUDP = None
-        self.hypervisor_wd = None
         self.dev = None
         self.config = self.getDefaultConfig()
         self.setDefaultIOSImage()
 
     def getDefaultConfig(self):
+        """ Returns the default configuration
+        """
     
         return iosRouterConf()
     
@@ -137,29 +135,6 @@ class IOSRouter(AbstractNode):
                 if modules and modules[0]:
                     self.config.slots[slotnb] = modules[0]
 
-    def getHypervisor(self):
-
-        key = self.hypervisor_host + ':' + str(self.hypervisor_port)
-        if not dynagen.dynamips.has_key(key):
-            print 'connection to ' + self.hypervisor_host + ' ' + str(self.hypervisor_port)
-            dynagen.dynamips[key] = lib.Dynamips(self.hypervisor_host, self.hypervisor_port)
-            dynagen.dynamips[key].reset()
-            if self.baseUDP:
-                dynagen.dynamips[key] .udp = self.baseUDP
-            if self.hypervisor_wd:
-                dynagen.dynamips[key] .workingdir = self.hypervisor_wd
-        return dynagen.dynamips[key]
-        
-    def configHypervisor(self,  host,  port, workingdir = None,  baseudp = None):
-    
-        print 'record hypervisor : ' + host + ' ' + str(port) + ' base UDP ' + str(baseudp)
-        self.hypervisor_host = host
-        self.hypervisor_port = port
-        if  baseudp:
-            self.baseUDP = baseudp
-        if workingdir:
-            self.hypervisor_wd = workingdir
-            
     def configNode(self):
     
         image = self.config.image
@@ -190,6 +165,7 @@ class IOSRouter(AbstractNode):
                 return
 
         hypervisor = self.getHypervisor()
+        print hypervisor
         #ROUTERS
         if platform == '7200':
             self.dev = ROUTERS[platform](hypervisor, name = '"' + self.hostname + '"')
@@ -251,7 +227,7 @@ class IOSRouter(AbstractNode):
             return
             
     def getInterfaces(self):
-        """ Return all interfaces
+        """ Returns all interfaces
         """
         
         interface_list = []
@@ -285,16 +261,23 @@ class IOSRouter(AbstractNode):
          # get number of interfaces and the abbreviation letter
         (interfaces, abrv) = ADAPTERS[module][1:3]
 
+        # for each interface of the node
         for ifname in node_interfaces:
+            # slot number
             ifslot = int(ifname[1])
+            # interface number
             ifnb = int(ifname[3])
             found = False
+            # for each interface number in the module
             for modifnb in range(interfaces):
+                # if the slot number and the interface number exists for this module
                 if ifslot == slotnb and ifnb == modifnb:
                     found = True
+                    # check if the interface type has changed
                     if ifname[0] != abrv:
-                        print ifname + " is connected to another non-compatible interface"
+                        print ifname + " use the wrong media"
                         self.deleteInterface(ifname)
+            # check if the interface number has chande
             if ifslot == slotnb and found == False:
                 print ifname + " is connected to a non-existing port in the slot " + str(slotnb)
                 self.deleteInterface(ifname)
@@ -342,15 +325,6 @@ class IOSRouter(AbstractNode):
             print self.dev.stop()
             self.shutdownInterfaces()
 
-    def resetHypervisor(self):
-        
-        key = self.hypervisor_host + ':' + str(self.hypervisor_port)
-        if dynagen.dynamips.has_key(key):
-            del dynagen.dynamips[key]
-        self.hypervisor_host = None
-        self.hypervisor_port = None
-        self.baseUDP = None
-        
     def resetNode(self):
         """ Delete the IOS instance
         """
