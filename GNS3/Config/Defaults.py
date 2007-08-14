@@ -132,6 +132,18 @@ conf_Clound_types = {
     'nios': list,
 }
 
+conf_Hub_defaults = {
+    'ports': 8,
+    'hypervisor_host': '',
+    'hypervisor_port': 0,
+}
+
+conf_Hub_types = {
+    'ports': int,
+    'hypervisor_host': str,
+    'hypervisor_port': int,
+}
+
 conf_systemDynamips_defaults = {
     'path': '',
     'port': 7200,

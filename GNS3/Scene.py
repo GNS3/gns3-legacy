@@ -20,16 +20,17 @@
 # Contact: contact@gns3.net
 #
 
+import re
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Topology import Topology
 from GNS3.Utils import translate
 from GNS3.NodeConfigurator import NodeConfigurator
 from GNS3.Globals.Symbols import SYMBOLS
-
-import re
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
+from GNS3.Node.Hub import Hub
+
 IF_REGEXP = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)\/([0-9]+)$""") 
 PORT_REGEXP = re.compile(r"""^[0-9]*$""")
 
@@ -254,14 +255,13 @@ class Scene(QtGui.QGraphicsView):
                 # destination interface is a port (ETHSW, FRSW, Bridge or ATMSW)
                 match_obj = PORT_REGEXP.search(destinterface)
                 if match_obj:
-                    if (typesrc == 'e' or typesrc == 'f' or typesrc == 'g') and type(destnode) == ETHSW:
-                        # ETHSW is connected to a Ethernet interface
+                    if (typesrc == 'e' or typesrc == 'f' or typesrc == 'g') and (type(destnode) == ETHSW or type(destnode) == Hub):
+                        # ETHSW or Hub is connected to a Ethernet interface
                         return True
                     if typesrc == 's' and type(destnode) == FRSW:
-                        # ETHSW is connected to a serial interface
+                        # FRSW is connected to a serial interface
                         return True
-                
-                #TODO: Bridge and ATMSW
+                #TODO: ATMSW
 
         match_obj = PORT_REGEXP.search(srcinterface)
         if match_obj and type(srcnode) == ETHSW:

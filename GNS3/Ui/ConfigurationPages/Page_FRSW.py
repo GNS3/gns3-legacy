@@ -125,12 +125,12 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
         self.treeWidgetVCmap.clear()
         self.mapping = {}
         
-        for (sourceVPI,  destinationVPI) in FRSWconfig.mapping.iteritems():
+        for (source,  destination) in FRSWconfig.mapping.iteritems():
             item = QtGui.QTreeWidgetItem(self.treeWidgetVCmap)
-            item.setText(0, sourceVPI)
-            item.setText(1, destinationVPI)
+            item.setText(0, source)
+            item.setText(1, destination)
             self.treeWidgetVCmap.addTopLevelItem(item)
-            self.mapping[sourceVPI] = destinationVPI
+            self.mapping[source] = destination
             
         if FRSWconfig.hypervisor_host == '':
             self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
@@ -152,9 +152,9 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
 
         FRSWconfig.mapping = self.mapping
         FRSWconfig.ports = []
-        for (sourceVPI,  destinationVPI) in self.mapping.iteritems():
-            (srcport,  srcdlci) = sourceVPI.split(':')
-            (destport,  destdlci) = destinationVPI.split(':')
+        for (source,  destination) in self.mapping.iteritems():
+            (srcport,  srcdlci) = source.split(':')
+            (destport,  destdlci) = destination.split(':')
             if not srcport in FRSWconfig.ports:
                 FRSWconfig.ports.append(srcport)
             if not destport in FRSWconfig.ports:

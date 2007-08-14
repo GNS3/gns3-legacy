@@ -28,6 +28,7 @@ from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.Clound import Clound
+from GNS3.Node.Hub import Hub
 
 class ConfigurationPageItem(QtGui.QTreeWidgetItem):
     """ Class implementing a QTreeWidgetItem holding the configuration page data.
@@ -103,13 +104,17 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                  "Page_ETHSW", None, None], 
             "Clound":
                 [self.trUtf8("Clound"), None,
-                 "Page_Clound", None, None]
+                 "Page_Clound", None, None], 
+            "Hub":
+                [self.trUtf8("Hub"), None,
+                 "Page_Hub", None, None]
                  }
 
         self.assocPage = { IOSRouter: "Routers", 
                                      FRSW: "FRSW",
                                      ETHSW: "ETHSW", 
-                                     Clound: "Clound"
+                                     Clound: "Clound", 
+                                     Hub: "Hub"
                                     }
         self.__loadNodeItems()
 

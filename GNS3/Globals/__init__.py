@@ -55,8 +55,6 @@ modesNames = {
     Enum.Mode.Simulation : 'Simulation Mode',
 }
 
-currentLinkType = Enum.LinkType.Manual
-
 linkTypes = {
     'Manual': Enum.LinkType.Manual,
     'Ethernet': Enum.LinkType.Ethernet,
@@ -67,3 +65,4 @@ linkTypes = {
     'POS': Enum.LinkType.POS
 }
 
+currentLinkType = Enum.LinkType.Manual

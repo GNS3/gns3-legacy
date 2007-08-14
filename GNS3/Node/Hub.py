@@ -21,15 +21,14 @@
 #
 
 from GNS3.Node.AbstractNode import AbstractNode
-from GNS3.Config.Objects import FRSWConf
+from GNS3.Config.Objects import HubConf
 import GNS3.Dynagen.dynamips_lib as lib
-import GNS3.Dynagen.Globals as dynagen
 import GNS3.Globals as globals 
 
-frsw_id = 0
+hub_id = 0
 
-class FRSW(AbstractNode):
-    """ FRSW class implementing the Frame Relay switch
+class Hub(AbstractNode):
+    """ Hub class implementing a ethernet hub
     """
 
     def __init__(self, renderer_normal, renderer_select):
@@ -37,24 +36,26 @@ class FRSW(AbstractNode):
         AbstractNode.__init__(self, renderer_normal, renderer_select)
         
         # assign a new hostname
-        global frsw_id
-        self.hostname = 'F' + str(frsw_id)
-        frsw_id = frsw_id + 1
+        global hub_id
+        self.hostname = 'H' + str(hub_id)
+        hub_id = hub_id + 1
         self.setCustomToolTip()
         self.config = self.getDefaultConfig()
-        self.dev = None
-        
+
     def getDefaultConfig(self):
         """ Returns the default configuration
         """
-
-        return FRSWConf()
+    
+        return HubConf()
 
     def getInterfaces(self):
-        """ Returns all interfaces
+        """ Return all interfaces
         """
-
-        return (self.config.ports)
+        
+        interfaces = []
+        for port in range(self.config.ports):
+            interfaces.append(str(port))
+        return (interfaces)
         
     def configNode(self):
         """ Node configuration
@@ -71,57 +72,31 @@ class FRSW(AbstractNode):
         else:
             dynamips = globals.GApp.systconf['dynamips']
             self.configHypervisor('localhost',  dynamips.port,  dynamips.workdir,  10000)
-
+            
         hypervisor = self.getHypervisor()
-        self.dev = lib.FRSW(hypervisor, name = '"' + self.hostname + '"')
+        self.dev = lib.Bridge(hypervisor, name = '"' + self.hostname + '"')
         
     def startNode(self):
         """ Start the node
         """
 
-        if self.dev == None:
-            return
-
-        connected_interfaces = self.getConnectedInterfaceList()
-        print connected_interfaces
-        connected_interfaces = map(int,  connected_interfaces)
-        
-        for (source,  destination) in self.config.mapping.iteritems():
-            (srcport,  srcdlci) = source.split(':')
-            (destport,  destdlci) = destination.split(':')
-            if int(srcport) in connected_interfaces and int(destport) in connected_interfaces:
-                if not self.dev.connected(int(srcport)):
-                    self.dev.map(int(srcport), int(srcdlci), int(destport), int(destdlci))
-                if not self.dev.connected(int(destport)):
-                    self.dev.map(int(destport), int(destdlci), int(srcport), int(srcdlci))
-        
         for edge in self.getEdgeList():
                 edge.setLocalInterfaceStatus(self.id, True)
 
     def stopNode(self):
         """ Stop the node
         """
-
-        if self.dev:
-            self.shutdownInterfaces()
+        
+        self.shutdownInterfaces()
 
     def resetHypervisor(self):
         """ Reset the connection to the hypervisor
         """
-
-        key = self.hypervisor_host + ':' + str(self.hypervisor_port)
-        if dynagen.dynamips.has_key(key):
-            del dynagen.dynamips[key]
-        self.hypervisor_host = None
-        self.hypervisor_port = None
-        self.baseUDP = None
+        
+        pass
         
     def resetNode(self):
         """ Reset the node configuration
         """
 
-        if self.dev != None:
-            self.dev.delete()
-#            if dynagen.devices.has_key(self.hostname):
-#                del dynagen.devices[self.hostname]
-#            self.shutdownInterfaces()
+        pass

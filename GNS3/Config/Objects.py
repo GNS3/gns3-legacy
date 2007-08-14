@@ -114,6 +114,12 @@ class CloundConf(ConfigObject):
         self.conf = Defaults.conf_Clound_defaults.copy() 
         self.types = Defaults.conf_Clound_types
         
+class HubConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_Hub_defaults.copy() 
+        self.types = Defaults.conf_Hub_types
+        
 class hypervisorConf(ConfigObject):
     def __init__(self):
         ConfigObject.__init__(self)
