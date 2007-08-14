@@ -25,8 +25,7 @@ from PyQt4 import QtCore,  QtGui
 from Form_FRSWPage import Ui_FRSWPage
 
 class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
-    """
-    Class implementing the Frame Relay configuration page.
+    """ Class implementing the Frame Relay configuration page.
     """
 
     def __init__(self):
@@ -35,6 +34,7 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
         self.setupUi(self)
         self.setObjectName("FRSW")
         
+        # connect slots
         self.connect(self.pushButtonAdd, QtCore.SIGNAL('clicked()'), self.slotAddVC)
         self.connect(self.pushButtonDelete, QtCore.SIGNAL('clicked()'), self.slotDeleteVC)
         self.connect(self.treeWidgetVCmap,  QtCore.SIGNAL('itemActivated(QTreeWidgetItem *, int)'),  self.slotVCselected)
@@ -43,14 +43,18 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
         self.mapping = {}
 
     def slotCheckBoxIntegratedHypervisor(self, state):
-    
+        """ Enable the comboBoxHypervisors if the check box is checked
+        """
+        
         if state == QtCore.Qt.Checked:
             self.comboBoxHypervisors.setEnabled(False)
         else:
             self.comboBoxHypervisors.setEnabled(True)
         
     def slotVCselected(self, item, column):
-
+        """ Load a selected virtual channel
+        """
+    
         (srcport,  srcdlci) = str(item.text(0)).split(':')
         (destport,  destdlci) = str(item.text(1)).split(':')
         self.spinBoxSrcPort.setValue(int(srcport))
@@ -59,6 +63,8 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
         self.spinBoxDestDLCI.setValue(int(destdlci))
         
     def slotVCSelectionChanged(self):
+        """ Enable the use of the delete button
+        """
 
         item = self.treeWidgetVCmap.currentItem()
         if item != None:
@@ -67,22 +73,23 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
             self.pushButtonDelete.setEnabled(False)
         
     def slotAddVC(self):
-    
+        """ Add a new virtual channel
+        """
+        
         srcport = self.spinBoxSrcPort.value()
         srcdlci = self.spinBoxSrcDLCI.value()
         destport = self.spinBoxDestPort.value()
         destdlci = self.spinBoxDestDLCI.value()
         
         if srcport == destport:
-            print 'not possible !'
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Add virtual channel',  'Same source and destination ports')
             return
-        
-        
+
         sourceVPI = str(srcport) + ':' + str(srcdlci)
         destinationVPI = str(destport) + ':' + str(destdlci)
         
         if self.mapping.has_key(sourceVPI) or self.mapping.has_key(destinationVPI):
-            print 'VPI already defined'
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Add virtual channel',  'Port:DLCI already defined')
             return
         
         item = QtGui.QTreeWidgetItem(self.treeWidgetVCmap)
@@ -96,7 +103,9 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
         self.mapping[sourceVPI] = destinationVPI
         
     def slotDeleteVC(self):
-    
+        """ Delete a virtual channel
+        """
+
         item = self.treeWidgetVCmap.currentItem()
         if (item != None):
             sourceVPI = str(item.text(0))
@@ -104,6 +113,8 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
             self.treeWidgetVCmap.takeTopLevelItem(self.treeWidgetVCmap.indexOfTopLevelItem(item))
         
     def loadConfig(self,  id,  config = None):
+        """ Load the config
+        """
 
         node = globals.GApp.topology.getNode(id)
         if config:
@@ -130,6 +141,8 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
             self.comboBoxHypervisors.addItem(hypervisor)
             
     def saveConfig(self, id, config = None):
+        """ Save the config
+        """
 
         node = globals.GApp.topology.getNode(id)
         if config:

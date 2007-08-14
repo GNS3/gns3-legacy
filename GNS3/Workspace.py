@@ -49,8 +49,7 @@ __statesDefaults = {
 
 class Workspace(QMainWindow, Ui_MainWindow):
     """ This class is for managing the whole GUI `Workspace'.
-    
-    Currently a Workspace is similar to a MainWindow
+        Currently a Workspace is similar to a MainWindow
     """
 
     def __init__(self, projType=None, projFile=None):
@@ -82,6 +81,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __initModeSwitching(self):
         """ Initialize the action dictionnary for GUI mode switching
         """
+
         self.__switchModeActions = {
             # Design Mode
             globals.Enum.Mode.Design: {
@@ -100,6 +100,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     '1': self.toolBar_Emulation
                 }
             },
+
             # Emulation Mode
             globals.Enum.Mode.Emulation: {
                 'docks_enable': {
@@ -117,6 +118,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     '1': self.toolBar_Design
                 }
             },
+
             # Simulation Mode
             globals.Enum.Mode.Simulation: {
                 'docks_enable': {
@@ -317,6 +319,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def newProject(self, type, file):
         """ Create a new project
         """
+
         self.projectType = type
         self.projectFile = file
         
@@ -329,6 +332,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         - If projectFile=None, the loadProject function act like newProject
         """
+
         if projectFile is None:
             self.mainWindow.setWindowTitle("GNS3 - New Project")
 
@@ -336,7 +340,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         pass
      
     def cleanNodeStates(self):
-
+        """ Shutdown the interfaces and hypervisors
+        """
         for node in globals.GApp.topology.nodes.itervalues():
             node.shutdownInterfaces()
             node.closeHypervisor()
@@ -361,6 +366,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.statusbar.showMessage(translate('Workspace', 'Design Mode'))
 
     def __restoreButtonState(self):
+        """ Restore button state if can't continue when switching to emulation mode
+        """
     
         if self.previousMode == globals.Enum.Mode.Design:
             self.action_swModeDesign.setChecked(True)
@@ -433,6 +440,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
     #-----------------------------------------------------------------------
 
     def __action_Export(self):
+        """ Export the scene to an image file
+        """
     
         filedialog = QtGui.QFileDialog(self)
         selected = QtCore.QString()
@@ -467,6 +476,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             globals.addingLinkFlag = False
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
         else:
+
             #TODO: optionnal menu
 #            menu = QtGui.QMenu()
 #            for linktype in globals.linkTypes.keys():
@@ -480,7 +490,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
             globals.GApp.scene.setCursor(QtCore.Qt.CrossCursor)
 
     def __setLinkType(self,  action):
-    
+        """ Set the link type to use
+        """
+
         action = str(action.text())
         globals.currentLinkType = globals.linkTypes[action]
 
@@ -500,6 +512,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Implement the QAction `SwitchMode'
         - Switch to the next GUI mode, and call the corresp. function
         """
+        
         switch = {
             globals.Enum.Mode.Design: self.switchToMode_Design,
             globals.Enum.Mode.Emulation: self.switchToMode_Emulation,
@@ -510,6 +523,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Implement the QAction `SelectAll'
         - Select all node on the topology
         """
+
         for node in globals.GApp.topology.nodes.itervalues():
             node.setSelected(True)
 
@@ -517,33 +531,40 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Implement the QAction `SelectNone'
         - Unselect all node on the topology
         """
+
         for node in globals.GApp.topology.nodes.itervalues():
             node.setSelected(False)
 
     def __action_ZoomIn(self):
         """ Scale in the scene (QGraphicsView)
         """
+
         factor_in = pow(2.0, 120 / 240.0)
         globals.GApp.scene.scaleView(factor_in)
 
     def __action_ZoomOut(self):
         """ Scale out the scene (QGraphicsView)
         """
+
         factor_out = pow(2.0, -120 / 240.0)
         globals.GApp.scene.scaleView(factor_out)
 
     def __action_ZoomReset(self):
         """ Restore the default scale on the scene (QGraphicsView)
         """
+
         globals.GApp.scene.resetMatrix()
 
     def __action_ZoomFit(self):
         """ Scale the scene (QGraphicsView) to view all nodes
         """
+
         pass
         
     def __action_ShowHostnames(self):
-
+        """ Display/Hide hostnames for all the nodes on the scene
+        """
+    
         if self.flg_showHostname == False:
             self.flg_showHostname = True
             self.action_ShowHostnames.setText(translate('Workspace', 'Hide hostnames'))
@@ -556,13 +577,17 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 node.removeHostname()
         
     def __action_TelnetAll(self):
+        """ Telnet to all started IOS routers
+        """
     
         for node in globals.GApp.topology.nodes.itervalues():
             if type(node) == IOSRouter and node.dev.state == 'running':
                 node.console()
 
     def __startNonIOSNodes(self):
-
+        """ Start non IOS nodes (ETHSW, ATMSW, FRSW, Bridge, Clound)
+        """
+    
         node_list = []
         for node in globals.GApp.topology.nodes.values():
             if type(node) != IOSRouter:
@@ -582,6 +607,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 return
     
     def __action_StartAll(self):
+        """ Start all nodes
+        """
         
         node_list = []
         for node in globals.GApp.topology.nodes.values():
@@ -620,6 +647,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.__startNonIOSNodes()
         
     def __action_StopAll(self):
+        """ Stop all nodes
+        """
         
         node_list = []
         for node in globals.GApp.topology.nodes.values():
@@ -656,6 +685,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         progress.setValue(count)
 
     def __action_About(self):
+        """ Show GNS3 about dialog
+        """
 
         dialog = QtGui.QDialog()
         ui = Ui_AboutDialog()
@@ -664,20 +695,31 @@ class Workspace(QMainWindow, Ui_MainWindow):
         dialog.exec_()
     
     def __action_AboutQt(self):
-
+        """ Show Qt about dialog
+        """
+        
         QtGui.QMessageBox.aboutQt(self)
 
     def __action_SystemPreferences(self):
+        """ Show System Preferences dialog
+        """
+        
         dialog = PreferencesDialog('System')
         dialog.show()
         dialog.exec_()
 
     def __action_ProjectPreferences(self):
+        """ Show Project Preferences dialog
+        """
+    
         dialog = PreferencesDialog('Project')
         dialog.show()
         dialog.exec_()
         
     def __action_OpenFile(self):
+        """ Open a file (scenario or dynagen .NET format)
+        """
+
         if self.currentMode != globals.Enum.Mode.Design:
             QtGui.QMessageBox.warning(self, 'Scenario',  "You can't open a scenario when you are not in design mode")
             return
@@ -695,6 +737,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         
     def __action_Save(self):
+        """ Save to a file (scenario or dynagen .NET format)
+        """
+        
         if self.projectFile is None:
             return self.__action_SaveAs()
 
@@ -705,6 +750,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         
     def __action_SaveAs(self):
+        """ Save as (scenario or dynagen .NET format)
+        """
+
         fb = fileBrowser('Save Project As', 
                                 filter='GNS-3 Scenario (*.gns3s)')
         (path, selected) = fb.getSaveFile()
@@ -716,4 +764,3 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.projectFile = path
             self.__action_Save()
             self.setWindowTitle("GNS3 - " + self.projectFile)
-

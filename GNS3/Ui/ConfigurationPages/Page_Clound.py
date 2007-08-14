@@ -25,8 +25,7 @@ from PyQt4 import QtCore,  QtGui
 from Form_CloundPage import Ui_CloundPage
 
 class Page_Clound(QtGui.QWidget, Ui_CloundPage):
-    """
-    Class implementing the Clound configuration page.
+    """ Class implementing the Clound configuration page.
     """
 
     def __init__(self):
@@ -35,6 +34,7 @@ class Page_Clound(QtGui.QWidget, Ui_CloundPage):
         self.setupUi(self)
         self.setObjectName("Clound")
         
+        # connect slots
         self.connect(self.pushButtonAddGenericEth, QtCore.SIGNAL('clicked()'), self.slotAddGenEth)
         self.connect(self.pushButtonDeleteGenericEth, QtCore.SIGNAL('clicked()'), self.slotDeleteGenEth)
         self.connect(self.listWidgetGenericEth,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotGenEthChanged)
@@ -43,11 +43,13 @@ class Page_Clound(QtGui.QWidget, Ui_CloundPage):
         self.connect(self.listWidgetLinuxEth,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotLinuxEthChanged)
         self.nios = []
         
-        # to test ...
+        #FIXME: to test ...
         self.comboBoxGenEth.addItems(['eth0',  'eth1',  'eth2'])
         self.comboBoxLinuxEth.addItems(['eth0',  'eth1',  'eth2'])
 
     def slotGenEthChanged(self):
+        """ Enable the use of the delete button
+        """
 
         item = self.listWidgetGenericEth.currentItem()
         if item != None:
@@ -56,6 +58,8 @@ class Page_Clound(QtGui.QWidget, Ui_CloundPage):
             self.pushButtonDeleteGenericEth.setEnabled(False)
         
     def slotAddGenEth(self):
+        """ Add a new generic Ethernet NIO
+        """
     
         interface = str(self.comboBoxGenEth.currentText())
         if interface:
@@ -65,6 +69,8 @@ class Page_Clound(QtGui.QWidget, Ui_CloundPage):
                 self.nios.append(nio)
         
     def slotDeleteGenEth(self):
+        """ Delete the selected generic Ethernet NIO
+        """
     
         item = self.listWidgetGenericEth.currentItem()
         if (item != None):
@@ -73,7 +79,9 @@ class Page_Clound(QtGui.QWidget, Ui_CloundPage):
             self.listWidgetGenericEth.takeItem(self.listWidgetGenericEth.currentRow())
             
     def slotLinuxEthChanged(self):
-
+        """ Enabled the use of the delete button
+        """
+        
         item = self.listWidgetLinuxEth.currentItem()
         if item != None:
             self.pushButtonDeleteLinuxEth.setEnabled(True)
@@ -81,6 +89,8 @@ class Page_Clound(QtGui.QWidget, Ui_CloundPage):
             self.pushButtonDeleteLinuxEth.setEnabled(False)
         
     def slotAddLinuxEth(self):
+        """ Add a new Linux Ethernet NIO
+        """
     
         interface = str(self.comboBoxLinuxEth.currentText())
         if interface:
@@ -90,7 +100,8 @@ class Page_Clound(QtGui.QWidget, Ui_CloundPage):
                 self.nios.append(nio)
         
     def slotDeleteLinuxEth(self):
-    
+        """ Enabled the use of the delete button
+        """    
         item = self.listWidgetLinuxEth.currentItem()
         if (item != None):
             nio = str(item.text())
@@ -98,6 +109,8 @@ class Page_Clound(QtGui.QWidget, Ui_CloundPage):
             self.listWidgetLinuxEth.takeItem (self.listWidgetLinuxEth.currentRow())
 
     def loadConfig(self,  id,  config = None):
+        """ Load the config
+        """
 
         node = globals.GApp.topology.getNode(id)
         if config:
@@ -118,6 +131,8 @@ class Page_Clound(QtGui.QWidget, Ui_CloundPage):
                 self.nios.append(nio)
             
     def saveConfig(self, id, config = None):
+        """ Save the config
+        """
 
         node = globals.GApp.topology.getNode(id)
         if config:

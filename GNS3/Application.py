@@ -38,7 +38,7 @@ class Application(QApplication, Singleton):
     
     def __init__(self):
         """ Initilize the application instance
-        and register GApp variable to ourself
+            and register GApp variable to ourself
         """
         # call parent contructor
         QApplication.__init__(self, sys.argv)

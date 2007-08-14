@@ -28,7 +28,7 @@ import GNS3.Globals as globals
 clound_id = 0
 
 class Clound(AbstractNode):
-    """ Clound class
+    """ Clound class implementing NIOs (to external communications)
     """
 
     def __init__(self, renderer_normal, renderer_select):
@@ -43,6 +43,8 @@ class Clound(AbstractNode):
         self.config = self.getDefaultConfig()
 
     def getDefaultConfig(self):
+        """ Returns the default configuration
+        """
     
         return CloundConf()
 
@@ -53,26 +55,32 @@ class Clound(AbstractNode):
         return (self.config.nios)
         
     def configNode(self):
+        """ Node configuration
+        """
     
         pass
         
     def startNode(self):
+        """ Start the node
+        """
 
         for edge in self.getEdgeList():
                 edge.setLocalInterfaceStatus(self.id, True)
 
     def stopNode(self):
-
+        """ Stop the node
+        """
+        
         self.shutdownInterfaces()
 
     def resetHypervisor(self):
+        """ Reset the connection to the hypervisor
+        """
         
         pass
         
     def resetNode(self):
+        """ Reset the node configuration
+        """
 
         pass
-        
-    def console(self):
-        
-        pass 

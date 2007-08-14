@@ -25,8 +25,7 @@ from PyQt4 import QtCore,  QtGui
 from Form_ETHSWPage import Ui_ETHSWPage
 
 class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
-    """
-    Class implementing the Ethernet switch configuration page.
+    """ Class implementing the Ethernet switch configuration page.
     """
 
     def __init__(self):
@@ -35,6 +34,7 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         self.setupUi(self)
         self.setObjectName("ETHSW")
         
+        # connect slots
         self.connect(self.pushButtonAdd, QtCore.SIGNAL('clicked()'), self.slotAddPort)
         self.connect(self.pushButtonDelete, QtCore.SIGNAL('clicked()'), self.slotDeletePort)
         self.connect(self.treeWidgetPorts,  QtCore.SIGNAL('itemActivated(QTreeWidgetItem *, int)'),  self.slotPortselected)
@@ -44,6 +44,8 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         self.vlans= {}
 
     def slotCheckBoxIntegratedHypervisor(self, state):
+        """ Enable the comboBoxHypervisors if the check box is checked
+        """
     
         if state == QtCore.Qt.Checked:
             self.comboBoxHypervisors.setEnabled(False)
@@ -51,6 +53,8 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
             self.comboBoxHypervisors.setEnabled(True)
         
     def slotPortselected(self, item, column):
+        """ Load a selected port
+        """
 
         port = int(item.text(0))
         vlan = int(item.text(1))
@@ -62,6 +66,8 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
             self.comboBoxPortType.setCurrentIndex(index)
         
     def slotPortSelectionChanged(self):
+        """ Enable the use of the delete button
+        """
 
         item = self.treeWidgetPorts.currentItem()
         if item != None:
@@ -70,13 +76,15 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
             self.pushButtonDelete.setEnabled(False)
         
     def slotAddPort(self):
+        """ Add a new port
+        """
     
         port = self.spinBoxPort.value()
         vlan = self.spinBoxVLAN.value()
         type = str(self.comboBoxPortType.currentText())
         
         if self.ports.has_key(port):
-            print 'Port already defined'
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Add port',  'Port already exists')
             return
 
         item = QtGui.QTreeWidgetItem(self.treeWidgetPorts)
@@ -95,7 +103,9 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         self.treeWidgetPorts.resizeColumnToContents(0)
         
     def slotDeletePort(self):
-    
+        """ Delete a port
+        """
+        
         item = self.treeWidgetPorts.currentItem()
         if (item != None):
             port = int(item.text(0))
@@ -107,6 +117,8 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
             self.treeWidgetPorts.takeTopLevelItem(self.treeWidgetPorts.indexOfTopLevelItem(item))
         
     def loadConfig(self,  id,  config = None):
+        """ Load the config
+        """
 
         node = globals.GApp.topology.getNode(id)
         if config:
@@ -140,7 +152,9 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
             self.comboBoxHypervisors.addItem(hypervisor)
             
     def saveConfig(self, id, config = None):
-
+        """ Save the config
+        """
+    
         node = globals.GApp.topology.getNode(id)
         if config:
             ETHSWconfig = config

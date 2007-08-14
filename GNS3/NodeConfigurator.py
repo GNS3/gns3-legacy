@@ -122,7 +122,10 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             self.__slotSelectionChanged)
             
     def __loadNodeItems(self):
+        """ Load the nodes in the NodeConfigurator
+        """
     
+        # create the parent (section) items
         for node in self.nodeitems:
             if not self.assocPage.has_key(type(node)):
                 continue
@@ -133,6 +136,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                 item.setExpanded(True)
                 self.itmDict[parent] = item
     
+        # create the children items 
         for node in self.nodeitems:
             if not self.assocPage.has_key(type(node)):
                 continue
@@ -146,7 +150,9 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         self.treeViewNodes.sortByColumn(0, QtCore.Qt.AscendingOrder)
             
     def __slotSelectionChanged(self):
-    
+        """ Check and display title in the treeViewNodes
+        """
+
         items = self.treeViewNodes.selectedItems()
         count = len(items)
         if count == 0:
@@ -262,6 +268,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             pageName: name of the configuration page (string)
             returns reference to the page or None, indicating page was not loaded yet
         """
+
         return self.configItems[pageName][-1]
 
     def on_buttonBox_clicked(self, button):

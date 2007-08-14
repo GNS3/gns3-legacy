@@ -42,7 +42,11 @@ def translate(context, text):
     return unicode(QtGui.QApplication.translate(context, text, None, QtGui.QApplication.UnicodeUTF8))
 
 class fileBrowser(object):
+    """ fileBrowser class
+    """
+    
     def __init__(self, caption, directory = '.', filter = 'All files (*.*)'):
+        
         self.filedialog = QtGui.QFileDialog()
         self.selected = QtCore.QString()
 
@@ -51,6 +55,9 @@ class fileBrowser(object):
         self.filter = filter
 
     def getFile(self):
+        """ Get a file from the file system
+        """
+        
         path = QtGui.QFileDialog.getOpenFileName(self.filedialog,
             self.caption, self.directory, self.filter, self.selected)
 
@@ -59,6 +66,9 @@ class fileBrowser(object):
         return ([path, str(self.selected)])
 
     def getDir(self):
+        """ Get a directory from the file system
+        """
+        
         path = QtGui.QFileDialog.getExistingDirectory(self.filedialog,
             self.caption, self.directory, QtGui.QFileDialog.ShowDirsOnly)
         if path is not None:
@@ -66,6 +76,9 @@ class fileBrowser(object):
         return (path)
 
     def getSaveFile(self):
+        """ Save a file in the file system
+        """
+        
         path = QtGui.QFileDialog.getSaveFileName(self.filedialog,
             self.caption, self.directory, self.filter, self.selected)
 

@@ -69,6 +69,9 @@ class Scene(QtGui.QGraphicsView):
             self.renders[name]['selected'] = QtSvg.QSvgRenderer(item['select_svg_file'])
 
     def addItem(self, node):
+        """ Overloaded function that add the node into the topology
+        """
+        
         self.__topology.addNode(node)
 
     def slotConfigNode(self):
@@ -83,9 +86,10 @@ class Scene(QtGui.QGraphicsView):
             item.setSelected(False)
 
     def slotShowHostname(self):
+        """ Slot called to show hostnames of selected items
+        """
     
         for item in self.__topology.selectedItems():
-            #item.setSelected(False)
             if not item.hostnameDiplayed():
                 item.showHostname()
             else:
@@ -101,6 +105,8 @@ class Scene(QtGui.QGraphicsView):
             self.__topology.deleteNode(item.id)
 
     def __addLink(self):
+        """ Add a new link between two nodes
+        """
 
         if self.__sourceNodeID == self.__destNodeID:
             return
@@ -108,11 +114,13 @@ class Scene(QtGui.QGraphicsView):
         srcnode = globals.GApp.topology.getNode(self.__sourceNodeID)
         destnode = globals.GApp.topology.getNode(self.__destNodeID)
         
+        # check interface compatibility, at least one-way compatibility must occur
         if not self.checkInterfaceCompatibility(srcnode, self.__sourceInterface,  destnode,  self.__destInterface) and \
             not self.checkInterfaceCompatibility(destnode, self.__destInterface,  srcnode,  self.__sourceInterface):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Connection',  'Interfaces types mismatch !')
             return
 
+        # add the link into the topology
         link = self.__topology.addLink(self.__sourceNodeID,
             self.__sourceInterface, self.__destNodeID, self.__destInterface)
 
@@ -137,6 +145,9 @@ class Scene(QtGui.QGraphicsView):
                 self.__isFirstClick = True
 
     def slotDeleteLink(self,  edge):
+        """ Delete an edge from the topology
+        """
+
         self.__topology.deleteLink(edge)
 
     def scaleView(self, scale_factor):
@@ -222,27 +233,40 @@ class Scene(QtGui.QGraphicsView):
             event.ignore()
 
     def checkInterfaceCompatibility(self,  srcnode,  srcinterface,  destnode,  destinterface):
+        """ Check if an interface can be connected to another
+        """
     
         match_obj = IF_REGEXP.search(srcinterface)
         if match_obj:
+            # source interface is from a slot
             if destinterface.lower()[:3] == 'nio':
+                # connected to a NIO
                 return True
             typesrc = match_obj.group(1)
             match_obj = IF_REGEXP.search(destinterface)
             if match_obj:
+                # connected to another slot interface
                 typedest = match_obj.group(1)
                 if typesrc == typedest:
+                    # same type, it's ok
                     return True
             else:
+                # destination interface is a port (ETHSW, FRSW, Bridge or ATMSW)
                 match_obj = PORT_REGEXP.search(destinterface)
                 if match_obj:
                     if (typesrc == 'e' or typesrc == 'f' or typesrc == 'g') and type(destnode) == ETHSW:
+                        # ETHSW is connected to a Ethernet interface
                         return True
                     if typesrc == 's' and type(destnode) == FRSW:
+                        # ETHSW is connected to a serial interface
                         return True
+                
+                #TODO: Bridge and ATMSW
 
         match_obj = PORT_REGEXP.search(srcinterface)
         if match_obj and type(srcnode) == ETHSW:
+            # source interface is from an ETHSW port
             if destinterface.lower()[:3] == 'nio':
+                # connected to a NIO
                 return True
         return False

@@ -29,7 +29,7 @@ import GNS3.Globals as globals
 ethsw_id = 0
 
 class ETHSW(AbstractNode):
-    """ ETHSW class
+    """ ETHSW class implementing the Ethernet switch
     """
 
     def __init__(self, renderer_normal, renderer_select):
@@ -59,6 +59,8 @@ class ETHSW(AbstractNode):
         return (ports)
         
     def configNode(self):
+        """ Node configuration
+        """
     
         if self.config.hypervisor_host:
             hypervisorkey = hypervisor_host + ':' + str(hypervisor_port)
@@ -76,6 +78,8 @@ class ETHSW(AbstractNode):
         self.dev = lib.ETHSW(hypervisor, name = '"' + self.hostname + '"')
         
     def startNode(self):
+        """ Start the node
+        """
     
         if self.dev == None:
             return
@@ -98,11 +102,15 @@ class ETHSW(AbstractNode):
                 edge.setLocalInterfaceStatus(self.id, True)
 
     def stopNode(self):
+        """ Stop the node
+        """
 
         if self.dev:
             self.shutdownInterfaces()
 
     def resetHypervisor(self):
+        """ Reset the connection to the hypervisor
+        """
         
         key = self.hypervisor_host + ':' + str(self.hypervisor_port)
         if dynagen.dynamips.has_key(key):
@@ -112,7 +120,7 @@ class ETHSW(AbstractNode):
         self.baseUDP = None
         
     def resetNode(self):
-        """ Delete the IOS instance
+        """ Reset the node configuration
         """
 
         if self.dev != None:
@@ -120,7 +128,3 @@ class ETHSW(AbstractNode):
 #            if dynagen.devices.has_key(self.hostname):
 #                del dynagen.devices[self.hostname]
 #            self.shutdownInterfaces()
-        
-    def console(self):
-        
-        pass 

@@ -29,7 +29,7 @@ except ImportError:
 
 version = int(QtCore.QT_VERSION_STR.replace('.', ''))
 if (version < 430):
-    sys.stderr.write("GNS-3 needs QT library >= 4.3.0\n")
+    sys.stderr.write("GNS3 needs QT library >= 4.3.0\n")
     sys.exit(False) 
     
 def exceptionHook(type, value, tb):
@@ -42,5 +42,6 @@ def exceptionHook(type, value, tb):
     logfile.write("\n" . join(lines))
     logfile.close()
 
+# catch exceptions to write them in a file
 sys.excepthook=exceptionHook
 import GNS3.Main

@@ -26,11 +26,12 @@ from Form_IOSRouterPage import Ui_IOSRouterPage
 from GNS3.Dynagen.dynamips_lib import ADAPTER_MATRIX
 from GNS3.Utils import fileBrowser
 from GNS3.Config.Objects import iosRouterConf
+from GNS3.Node.IOSRouter import IOSRouter 
 
 class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
+    """ Class implementing the IOS router configuration page.
     """
-    Class implementing the IOS router configuration page.
-    """
+
     def __init__(self):
     
         QtGui.QWidget.__init__(self)
@@ -38,8 +39,8 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         self.setObjectName("IOSRouter")
         self.currentNodeID = None
 
+        # connect slots
         self.connect(self.pushButtonStartupConfig, QtCore.SIGNAL('clicked()'), self.slotSelectStartupConfig)
-        # connect IOS combobox to a slot
         self.connect(self.comboBoxIOS, QtCore.SIGNAL('currentIndexChanged(int)'), self.slotSelectedIOS)
         
         self.slots_list = [self.comboBoxSlot0,
@@ -49,37 +50,6 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                            self.comboBoxSlot4,
                            self.comboBoxSlot5,
                            self.comboBoxSlot6]
-
-    def configSlot(self, platform, chassis,  slotnb):
-    
-        #TODO: clean it and use the same function in Router.py
-        platform = 'c' + platform
-        try:
-            if (chassis == '2691'):
-                if slotnb == 0:
-                    return [ADAPTER_MATRIX['c' + chassis][''][0]]
-                if slotnb == 1:
-                    return [''] + list(ADAPTER_MATRIX['c' + chassis][''][1])
-            elif platform == 'c3700':
-                if slotnb == 0:
-                    return ADAPTER_MATRIX['c' + chassis][''][0]
-                else:
-                    return [''] + list(ADAPTER_MATRIX['c' + chassis][''][slotnb])
-                return
-            elif platform == 'c7200':
-                if slotnb == 0:
-                    return list(ADAPTER_MATRIX[platform][''][0])
-                else:
-                    return [''] + list(ADAPTER_MATRIX[platform][''][slotnb])
-    
-            # some platforms/chassis have adapters on their motherboard (not optional)
-            if slotnb == 0:
-                if platform == 'c2600' or chassis == '3660':
-                    return ADAPTER_MATRIX[platform][chassis][0]
-            
-            return [''] + list(ADAPTER_MATRIX[platform][chassis][slotnb])
-        except KeyError:
-            return ['']
 
     def slotSelectedIOS(self, index):
         """ Add network modules / port adapters to combo boxes
@@ -100,10 +70,10 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         chassis =  image.chassis
         
         for slotnb in range(7):
-            modules = self.configSlot(platform, chassis,  slotnb)
-            if modules:
+            adapters = IOSRouter.getAdapters(platform, chassis,  slotnb)
+            if adapters:
                 widget = self.slots_list[slotnb]
-                widget.addItems(modules)
+                widget.addItems(adapters)
     
         # restore previous selected modules
         if self.currentNodeID != None:
@@ -149,7 +119,9 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             self.lineEditStartupConfig.setText(path[0])
 
     def loadConfig(self,  id,  config = None):
-    
+        """ Load the config
+        """
+        
         node = globals.GApp.topology.getNode(id)
         self.currentNodeID = id
         if config:
@@ -185,6 +157,8 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             self.comboBoxNPE.setCurrentIndex(index)
 
     def saveConfig(self, id, config = None):
+        """ Save the config
+        """
 
         node = globals.GApp.topology.getNode(id)
         if config:

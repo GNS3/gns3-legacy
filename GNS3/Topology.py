@@ -38,10 +38,12 @@ class Topology(QtGui.QGraphicsScene):
 
         QtGui.QGraphicsScene.__init__(self, parent)
 
-        #TODO: A better management of the scene size
+        #TODO: A better management of the scene size ?
         self.setSceneRect(-250, -250, 500, 500)
 
     def clear(self):
+        """ Clear the topology
+        """
         for n_key in self.__nodes.copy().iterkeys():
             self.deleteNode(n_key)
         self.__nodes = {}
@@ -51,6 +53,10 @@ class Topology(QtGui.QGraphicsScene):
         self.__links = set()
 
     def addNode(self, node):
+        """ Add node in the topology
+        """
+    
+        # connect signals (received by the Scene)
         QtCore.QObject.connect(node,
             QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
         QtCore.QObject.connect(node,
@@ -66,6 +72,8 @@ class Topology(QtGui.QGraphicsScene):
         self.addItem(node)
 
     def getNode(self, id):
+        """ Returns the node corresponding to id
+        """
         return self.__nodes[id]
 
     def __getNodes(self):
@@ -81,13 +89,18 @@ class Topology(QtGui.QGraphicsScene):
     nodes = property(__getNodes, __setNodes, doc='Property of nodes topology')
         
     def deleteNode(self, id):
+        """ Delete a node from the topology
+        """
         self.removeItem(self.__nodes[id])
         del self.__nodes[id]
         # Work-around QGraphicsSvgItem caching bug:
-        #   Forcing to clear the QPixmapCache on node delete.
+        # Forcing to clear the QPixmapCache on node delete.
+        # FIXME: in Qt 4.4
         QtGui.QPixmapCache.clear()
    
     def addLink(self, srcid, srcif, dstid, dstif):
+        """ Add a link to the topology
+        """
 
         if srcif[0] == 's' or srcif[0] == 'a' or dstif[0] == 's' or dstif[0] == 'a':
             # interface is serial or ATM
@@ -100,11 +113,14 @@ class Topology(QtGui.QGraphicsScene):
         self.addItem(link)
    
     def deleteLink(self, link):
-       link.source.deleteEdge(link)
-       link.dest.deleteEdge(link)
-       if link in self.__links:
-           self.__links.remove(link)
-           self.removeItem(link)
+        """ Delete a link from the topology
+        """
+    
+        link.source.deleteEdge(link)
+        link.dest.deleteEdge(link)
+        if link in self.__links:
+            self.__links.remove(link)
+            self.removeItem(link)
 
     def __getLinks(self):
         """ Return topology links

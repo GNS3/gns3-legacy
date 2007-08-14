@@ -22,6 +22,8 @@
 
 import re
 import GNS3.Globals as globals
+from PyQt4 import QtCore, QtGui,  QtSvg
+from GNS3.Utils import translate
 from GNS3.Config.Objects import iosRouterConf
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.Globals as dynagen
@@ -66,9 +68,10 @@ ADAPTERS = {
 IF_REGEXP = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)\/([0-9]+)$""") 
 PORT_REGEXP = re.compile(r"""^[0-9]*$""")
 router_id = 0
+error = None
 
 class IOSRouter(AbstractNode):
-    """ IOSRouter class
+    """ IOSRouter class implementing the IOS Router
     """
 
     def __init__(self, renderer_normal, renderer_select):
@@ -76,24 +79,63 @@ class IOSRouter(AbstractNode):
         AbstractNode.__init__(self, renderer_normal, renderer_select)
         
         # assign a new hostname
-        global router_id
+        global router_id,  error
         self.hostname = 'R' + str(router_id)
         router_id = router_id + 1
         self.setCustomToolTip()
         
+        if error == None:
+            error = QtGui.QErrorMessage(globals.GApp.mainWindow)
+        
         self.dev = None
         self.config = self.getDefaultConfig()
         self.setDefaultIOSImage()
+
+        # Action: Console (Connect to the node console)
+        self.consoleAct = QtGui.QAction(translate('AbstractNode', 'Console'), self)
+        self.consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
+        self.connect(self.consoleAct, QtCore.SIGNAL('triggered()'), self.__consoleAction)
+
+        # Action: Start (Start IOS on hypervisor)
+        self.startAct = QtGui.QAction(translate('AbstractNode', 'Start'), self)
+        self.startAct.setIcon(QtGui.QIcon(':/icons/play.svg'))
+        self.connect(self.startAct, QtCore.SIGNAL('triggered()'), self.__startAction)
+
+        # Action: Stop (Stop IOS on hypervisor)
+        self.stopAct = QtGui.QAction(translate('AbstractNode', 'Stop'), self)
+        self.stopAct.setIcon(QtGui.QIcon(':/icons/stop.svg'))
+        self.connect(self.stopAct, QtCore.SIGNAL('triggered()'), self.__stopAction)
 
     def getDefaultConfig(self):
         """ Returns the default configuration
         """
     
         return iosRouterConf()
+  
+    def __consoleAction(self):
+        """ Action called to start a console on the node
+        """
     
-    def getAdapter(self, platform, chassis,  slotnb):
+        self.console()
+        
+    def __startAction(self):
+        """ Action called to start the node
+        """
+    
+        self.startNode()
+        
+    def __stopAction(self):
+        """ Action called to stop the node
+        """
+    
+        self.stopNode()
+  
+    def getAdapters(platform, chassis,  slotnb):
+        """ Get all adapters from a slot (static method)
+        """
     
         #TODO: clean it
+        # some platforms/chassis have adapters on their motherboard (not optional)
         platform = 'c' + platform
         try:
             if (chassis == '2691'):
@@ -112,8 +154,6 @@ class IOSRouter(AbstractNode):
                     return list(lib.ADAPTER_MATRIX[platform][''][0])
                 else:
                     return [''] + list(lib.ADAPTER_MATRIX[platform][''][slotnb])
-    
-            # some platforms/chassis have adapters on their motherboard (not optional)
             if slotnb == 0:
                 if platform == 'c2600' or chassis == '3660':
                     return lib.ADAPTER_MATRIX[platform][chassis][0]
@@ -121,7 +161,11 @@ class IOSRouter(AbstractNode):
         except KeyError:
             return ['']
             
+    getAdapters = staticmethod(getAdapters)
+            
     def setDefaultIOSImage(self):
+        """ Set a default IOS image when no selected
+        """
     
         iosimages = globals.GApp.iosimages.keys()
         if len(iosimages):
@@ -131,11 +175,13 @@ class IOSRouter(AbstractNode):
             self.config.image = unicode(iosimages[0])
             
             for slotnb in range(7):
-                modules = self.getAdapter(platform,  chassis,  slotnb)
+                modules = IOSRouter.getAdapters(platform,  chassis,  slotnb)
                 if modules and modules[0]:
                     self.config.slots[slotnb] = modules[0]
 
     def configNode(self):
+        """ Node configuration
+        """
     
         image = self.config.image
         if image == '':
@@ -144,7 +190,7 @@ class IOSRouter(AbstractNode):
             if len(iosimages):
                 image = iosimages[0]
             else:
-                print 'No IOS image available !'
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Config Node',  'No IOS image available !')
                 return
 
         image = globals.GApp.iosimages[image]
@@ -248,12 +294,13 @@ class IOSRouter(AbstractNode):
         """ Update already connected links to react to a slot change
         """
 
+        global error
         node_interfaces = self.getConnectedInterfaceList()
 
         if module == '':
             for ifname in node_interfaces:
                 if int(ifname[1]) == slotnb:
-                    print ifname + " is still connected but no module into the slot " + str(slotnb)
+                    error.showMessage(ifname + " is still used with no module in the slot " + str(slotnb))
                     self.deleteInterface(ifname)
             return
 
@@ -261,6 +308,7 @@ class IOSRouter(AbstractNode):
          # get number of interfaces and the abbreviation letter
         (interfaces, abrv) = ADAPTERS[module][1:3]
 
+        errormsg = ""
         # for each interface of the node
         for ifname in node_interfaces:
             # slot number
@@ -275,15 +323,19 @@ class IOSRouter(AbstractNode):
                     found = True
                     # check if the interface type has changed
                     if ifname[0] != abrv:
-                        print ifname + " use the wrong media"
+                        errormsg += ifname + " is no longer compatible with module " + module + " in the slot " + str(slotnb) + ", deleting interface ...\n"
                         self.deleteInterface(ifname)
-            # check if the interface number has chande
+            # check if the interface number has changed
             if ifslot == slotnb and found == False:
-                print ifname + " is connected to a non-existing port in the slot " + str(slotnb)
+                errormsg +=  ifname + " is no longer compatible with module " + module + " in the slot " + str(slotnb) + ", deleting interface ...\n"
                 self.deleteInterface(ifname)
+        if errormsg:
+            error.showMessage(errormsg)
 
     def startNode(self):
-    
+        """ Start the node
+        """
+
         if self.dev == None or self.dev.state == 'running':
             return
         for interface in self.getConnectedInterfaceList():
@@ -318,7 +370,7 @@ class IOSRouter(AbstractNode):
                 edge.setLocalInterfaceStatus(self.id, True)
         
     def stopNode(self):
-        """ Stop the IOS instance
+        """ Stop the node
         """
 
         if self.dev != None and self.dev.state == 'running':
@@ -326,7 +378,7 @@ class IOSRouter(AbstractNode):
             self.shutdownInterfaces()
 
     def resetNode(self):
-        """ Delete the IOS instance
+        """ Reset the node configuration
         """
 
         if self.dev != None:
@@ -341,3 +393,23 @@ class IOSRouter(AbstractNode):
 
         if self.dev and self.dev.state == 'running' and self.dev.console != None:
             console.connect('localhost',  self.dev.console,  self.hostname)
+
+    def mousePressEvent(self, event):
+        """ Call when the node is clicked
+            event: QtGui.QGraphicsSceneMouseEvent instance
+        """
+
+        if (event.button() == QtCore.Qt.RightButton) and globals.GApp.workspace.currentMode == globals.Enum.Mode.Emulation:
+            self.setSelected(True)
+            self.menu = QtGui.QMenu()
+
+            # actions for emulation mode
+            self.menu.addAction(self.consoleAct)
+            self.menu.addAction(self.startAct)
+            self.menu.addAction(self.stopAct)
+            self.menu.addAction(self.showHostnameAct)
+            self.menu.exec_(QtGui.QCursor.pos())
+        else:
+            AbstractNode.mousePressEvent(self, event)
+
+        QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)

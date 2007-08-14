@@ -30,14 +30,13 @@ MEM_USAGE_LIMIT = 512
 BASE_PORT_UDP = 10000
 
 class HypervisorManager:
-    """ LocalHypervisor class
-        Start the local hypervisor program
+    """ HypervisorManager class
+        Start one or more dynamips in hypervisor mode
     """
 
     def __init__(self):
     
         self.hypervisors = []
-        
         dynamips = globals.GApp.systconf['dynamips']
         self.hypervisor_path = dynamips.path
         self.hypervisor_wd = dynamips.workdir
@@ -45,30 +44,38 @@ class HypervisorManager:
         self.baseUDP = BASE_PORT_UDP
 
     def __del__(self):
-    
+        """ Shutdown all started hypervisors 
+        """
+        
         self.stopProcHypervisors()
         
     def __startNewHypervisor(self):
+        """ Create a new dynamips process and start it
+        """
     
         proc = QtCore.QProcess(globals.GApp.mainWindow)
         port = self.hypervisor_baseport
         self.hypervisor_baseport += 1
         #QtCore.QObject.connect(self.proc, QtCore.SIGNAL('readyReadStandardOutput()'), self.slotStandardOutput)
+        
         if self.hypervisor_wd:
+            # set the working directory
             proc.setWorkingDirectory(self.hypervisor_wd)
+        # start dynamips in hypervisor mode (-H)
         proc.start(self.hypervisor_path,  ['-H', str(port)])
         if proc.waitForStarted() == False:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor',  translate("HypervisorManager", "Can't start the local hypervisor"))
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor',  translate("HypervisorManager", "Can't start Dynamips"))
                 return None
                 
-        hypervisor = {
-                            'port': port,
+        hypervisor = {'port': port,
                             'proc_instance': proc}
 
         self.hypervisors.append(hypervisor)
         return hypervisor
     
     def startProcHypervisors(self):
+        """ Load-balance IOS instances on multiple hypervisors
+        """
 
         node_list = []
         mem = 0
@@ -76,11 +83,14 @@ class HypervisorManager:
             if type(node) == IOSRouter:
                 image = globals.GApp.iosimages[node.config.image]
                 if not image.hypervisor_host:
+                    # needs a local hypervisor
                     node_list.append(node)
                     mem += node.config.RAM
 
+        # compute the number of hypervisors to start
         count = mem / MEM_USAGE_LIMIT
         count += 1
+        # show a progress dialog if multiple hypervisors to start
         if count > 1:
             progress = QtGui.QProgressDialog("Starting hypervisors ...", "Abort", 0, count, globals.GApp.mainWindow)
             progress.setMinimum(1)
@@ -103,8 +113,11 @@ class HypervisorManager:
             current_node += 1
             node.configHypervisor('localhost',  hypervisor['port'],  self.hypervisor_wd,  self.baseUDP)
             if mem >= MEM_USAGE_LIMIT and current_node != nb_node:
+                # start a new hypervisor
                 hypervisor = self.__startNewHypervisor()
+                # wait for starting
                 time.sleep(1)
+                # change the base UDP
                 self.baseUDP += 15
                 mem = 0
         time.sleep(2)
@@ -113,6 +126,8 @@ class HypervisorManager:
         return True
                 
     def stopProcHypervisors(self):
+        """ Shutdown all started hypervisors 
+        """
     
         if globals.GApp != None:
             dynamips = globals.GApp.systconf['dynamips']

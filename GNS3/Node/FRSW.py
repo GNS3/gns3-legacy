@@ -29,7 +29,7 @@ import GNS3.Globals as globals
 frsw_id = 0
 
 class FRSW(AbstractNode):
-    """ FRSW class
+    """ FRSW class implementing the Frame Relay switch
     """
 
     def __init__(self, renderer_normal, renderer_select):
@@ -57,6 +57,8 @@ class FRSW(AbstractNode):
         return (self.config.ports)
         
     def configNode(self):
+        """ Node configuration
+        """
     
         if self.config.hypervisor_host:
             hypervisorkey = hypervisor_host + ':' + str(hypervisor_port)
@@ -74,7 +76,9 @@ class FRSW(AbstractNode):
         self.dev = lib.FRSW(hypervisor, name = '"' + self.hostname + '"')
         
     def startNode(self):
-    
+        """ Start the node
+        """
+
         if self.dev == None:
             return
 
@@ -95,12 +99,16 @@ class FRSW(AbstractNode):
                 edge.setLocalInterfaceStatus(self.id, True)
 
     def stopNode(self):
+        """ Stop the node
+        """
 
         if self.dev:
             self.shutdownInterfaces()
 
     def resetHypervisor(self):
-        
+        """ Reset the connection to the hypervisor
+        """
+
         key = self.hypervisor_host + ':' + str(self.hypervisor_port)
         if dynagen.dynamips.has_key(key):
             del dynagen.dynamips[key]
@@ -109,7 +117,7 @@ class FRSW(AbstractNode):
         self.baseUDP = None
         
     def resetNode(self):
-        """ Delete the IOS instance
+        """ Reset the node configuration
         """
 
         if self.dev != None:
@@ -117,7 +125,3 @@ class FRSW(AbstractNode):
 #            if dynagen.devices.has_key(self.hostname):
 #                del dynagen.devices[self.hostname]
 #            self.shutdownInterfaces()
-        
-    def console(self):
-        
-        pass 

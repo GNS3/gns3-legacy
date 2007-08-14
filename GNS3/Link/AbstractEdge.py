@@ -100,6 +100,9 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         return neighbor
 
     def setCustomToolTip(self):
+        """ Set a custom tool tip
+        """
+        
         if self.srcIf[0] == 's':
             type = "Serial"
         else:
@@ -129,11 +132,17 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             menu.exec_(QtGui.QCursor.pos())
 
     def mousePressEvent_actions(self, action):
+        """ Handle Menu actions
+        """
+
         action = action.text()
         if action == 'delete':
             self.__deleteAction()
 
     def __deleteAction(self):
+        """ Delete the link
+        """
+
         # delete one of the interface mean the edge is deleted
         self.source.deleteInterface(self.srcIf)
 

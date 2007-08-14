@@ -28,7 +28,7 @@ import GNS3.Dynagen.Globals as dynagen
 
 class AbstractNode(QtSvg.QGraphicsSvgItem):
     """ AbstractNode class
-        Base class to create nodes
+        Base class to create Dynamips nodes
     """
 
     def __init__(self, render_normal, render_select):
@@ -45,6 +45,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.type = 'Unknown'
         self.config = {}
         
+        # hypervisor settings
         self.hypervisor_host = None
         self.hypervisor_port = None
         self.baseUDP = None
@@ -55,51 +56,36 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         globals.GApp.topology.node_baseid += 1
 
         # default hostname
-        self.hostname = 'N' + str(self.id)
+        self.hostname = 'Node' + str(self.id)
 
         # set default tooltip
         self.setCustomToolTip()
 
-        # settings
+        # scene settings
         self.setFlags(self.ItemIsMovable | self.ItemIsSelectable | self.ItemIsFocusable)
         self.setAcceptsHoverEvents(True)
         self.setZValue(1)
         self.setSharedRenderer(self.__render_normal)
           
         # Action: Delete (Delete the node)
-        self.__deleteAct = QtGui.QAction(translate('AbstractNode', 'Delete'), self)
-        self.__deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
-        self.connect(self.__deleteAct, QtCore.SIGNAL('triggered()'), self.__deleteAction)
+        self.deleteAct = QtGui.QAction(translate('AbstractNode', 'Delete'), self)
+        self.deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
+        self.connect(self.deleteAct, QtCore.SIGNAL('triggered()'), self.__deleteAction)
         
         # Action: Configure (Configure the node)
-        self.__configAct = QtGui.QAction(translate('AbstractNode', 'Configure'), self)
-        self.__configAct.setIcon(QtGui.QIcon(":/icons/configuration.svg"))
-        self.connect(self.__configAct, QtCore.SIGNAL('triggered()'), self.__configAction)
+        self.configAct = QtGui.QAction(translate('AbstractNode', 'Configure'), self)
+        self.configAct.setIcon(QtGui.QIcon(":/icons/configuration.svg"))
+        self.connect(self.configAct, QtCore.SIGNAL('triggered()'), self.__configAction)
         
         # Action: ShowHostname (Display the hostname)
-        self.__showHostnameAct = QtGui.QAction(translate('AbstractNode', 'Show hostname'), self)
-        self.__showHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
-        self.connect(self.__showHostnameAct, QtCore.SIGNAL('triggered()'), self.__showHostnameAction)
+        self.showHostnameAct = QtGui.QAction(translate('AbstractNode', 'Show hostname'), self)
+        self.showHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
+        self.connect(self.showHostnameAct, QtCore.SIGNAL('triggered()'), self.__showHostnameAction)
         
         # Action: ChangeHostname (Change the hostname)
-        self.__changeHostnameAct = QtGui.QAction(translate('AbstractNode', 'Change hostname'), self)
-        self.__changeHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
-        self.connect(self.__changeHostnameAct, QtCore.SIGNAL('triggered()'), self.__changeHostnameAction)
-        
-        # Action: Console (Connect to the node console)
-        self.__consoleAct = QtGui.QAction(translate('AbstractNode', 'Console'), self)
-        self.__consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
-        self.connect(self.__consoleAct, QtCore.SIGNAL('triggered()'), self.__consoleAction)
-
-        # Action: Start (Start IOS on hypervisor)
-        self.__startAct = QtGui.QAction(translate('AbstractNode', 'Start'), self)
-        self.__startAct.setIcon(QtGui.QIcon(':/icons/play.svg'))
-        self.connect(self.__startAct, QtCore.SIGNAL('triggered()'), self.__startAction)
-
-        # Action: Stop (Stop IOS on hypervisor)
-        self.__stopAct = QtGui.QAction(translate('AbstractNode', 'Stop'), self)
-        self.__stopAct.setIcon(QtGui.QIcon(':/icons/stop.svg'))
-        self.connect(self.__stopAct, QtCore.SIGNAL('triggered()'), self.__stopAction)
+        self.changeHostnameAct = QtGui.QAction(translate('AbstractNode', 'Change hostname'), self)
+        self.changeHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
+        self.connect(self.changeHostnameAct, QtCore.SIGNAL('triggered()'), self.__changeHostnameAction)
 
     def __deleteAction(self):
         """ Action called for node deletion
@@ -141,24 +127,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 for edge in self.__edgeList:
                     edge.setCustomToolTip()
 
-    def __consoleAction(self):
-        """ Action called to start a console on the node
-        """
-    
-        self.console()
-        
-    def __startAction(self):
-        """ Action called to start the node
-        """
-    
-        self.startNode()
-        
-    def __stopAction(self):
-        """ Action called to stop the node
-        """
-    
-        self.stopNode()
-
 #    def paint(self, painter, option, widget=None):
 #        _local_option = option
 #        _local_option.state = QtGui.QStyle.State_None
@@ -183,14 +151,14 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         return QtGui.QGraphicsItem.itemChange(self, change, value)
     
     def hoverEnterEvent(self, event):
-        """
+        """ Called when the mouse is hover the node
         """
         
         if not self.isSelected() and self.__render_select:
             self.setSharedRenderer(self.__render_select)
         
     def hoverLeaveEvent(self, event):
-        """
+        """ Called when the mouse leaves the node
         """
         
         if not self.isSelected() and self.__render_select:
@@ -213,10 +181,14 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             self.__edgeList.remove(edge)
 
     def getEdgeList(self):
+        """ Returns the edge list
+        """
         
         return self.__edgeList
 
     def setCustomToolTip(self):
+        """ Set a custom tool tip
+        """
 
         self.setToolTip("Hostname: %s" % (self.hostname))
 
@@ -248,23 +220,16 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         elif (event.button() == QtCore.Qt.RightButton):
             self.setSelected(True)
             self.menu = QtGui.QMenu()
-
+            
             if globals.GApp.workspace.currentMode == globals.Enum.Mode.Design:
                 # actions for design mode
-                self.menu.addAction(self.__configAct)
-                self.menu.addAction(self.__deleteAct)
-                self.menu.addAction(self.__changeHostnameAct)
-            
-            if globals.GApp.workspace.currentMode == globals.Enum.Mode.Emulation:
-                # actions for emulation mode
-                self.menu.addAction(self.__consoleAct)
-                self.menu.addAction(self.__startAct)
-                self.menu.addAction(self.__stopAct)
-                
-            # actions for both modes
-            self.menu.addAction(self.__showHostnameAct)
+                self.menu.addAction(self.configAct)
+                self.menu.addAction(self.deleteAct)
+                self.menu.addAction(self.changeHostnameAct)
 
+            self.menu.addAction(self.showHostnameAct)
             self.menu.exec_(QtGui.QCursor.pos())
+            
         QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
         
     def getConnectedInterfaceList(self):
@@ -337,6 +302,8 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             self.__flag_hostname = False
             
     def hostnameDiplayed(self):
+        """ Check if the hostname is displayed
+        """
     
         return self.__flag_hostname
     
@@ -362,11 +329,15 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.__selectedInterface = interface
         
     def shutdownInterfaces(self):
+        """ Shutdown all interfaces
+        """
             
         for edge in self.getEdgeList():
             edge.setLocalInterfaceStatus(self.id, False)
 
     def createNIO(self,  dynamips,  nio):
+        """ Create a new NIO (Network Input Output)
+        """
 
         (niotype, niostring) = nio.split(':', 1)
         
@@ -395,10 +366,12 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             return lib.NIO_vde(switch.dynamips, controlsock, localsock)
 
     def getHypervisor(self):
+        """ Returns the configured hypervisor
+        """
 
         key = self.hypervisor_host + ':' + str(self.hypervisor_port)
         if not dynagen.dynamips.has_key(key):
-            print 'connection to ' + self.hypervisor_host + ' ' + str(self.hypervisor_port)
+            #print 'connection to ' + self.hypervisor_host + ' ' + str(self.hypervisor_port)
             dynagen.dynamips[key] = lib.Dynamips(self.hypervisor_host, self.hypervisor_port)
             dynagen.dynamips[key].reset()
             if self.baseUDP:
@@ -408,8 +381,10 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         return dynagen.dynamips[key]
         
     def configHypervisor(self,  host,  port, workingdir = None,  baseudp = None):
+        """ Setup an hypervisor
+        """
     
-        print 'record hypervisor : ' + host + ' ' + str(port) + ' base UDP ' + str(baseudp)
+        #print 'record hypervisor : ' + host + ' ' + str(port) + ' base UDP ' + str(baseudp)
         self.hypervisor_host = host
         self.hypervisor_port = port
         if  baseudp:
@@ -418,6 +393,8 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             self.hypervisor_wd = workingdir
           
     def closeHypervisor(self):
+        """ Close the connection to the hypervisor
+        """
         
         if self.hypervisor_host:
             key = self.hypervisor_host + ':' + str(self.hypervisor_port)
