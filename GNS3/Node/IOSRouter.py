@@ -92,17 +92,17 @@ class IOSRouter(AbstractNode):
         self.setDefaultIOSImage()
 
         # Action: Console (Connect to the node console)
-        self.consoleAct = QtGui.QAction(translate('AbstractNode', 'Console'), self)
+        self.consoleAct = QtGui.QAction(translate('IOSRouter', 'Console'), self)
         self.consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
         self.connect(self.consoleAct, QtCore.SIGNAL('triggered()'), self.__consoleAction)
 
         # Action: Start (Start IOS on hypervisor)
-        self.startAct = QtGui.QAction(translate('AbstractNode', 'Start'), self)
+        self.startAct = QtGui.QAction(translate('IOSRouter', 'Start'), self)
         self.startAct.setIcon(QtGui.QIcon(':/icons/play.svg'))
         self.connect(self.startAct, QtCore.SIGNAL('triggered()'), self.__startAction)
 
         # Action: Stop (Stop IOS on hypervisor)
-        self.stopAct = QtGui.QAction(translate('AbstractNode', 'Stop'), self)
+        self.stopAct = QtGui.QAction(translate('IOSRouter', 'Stop'), self)
         self.stopAct.setIcon(QtGui.QIcon(':/icons/stop.svg'))
         self.connect(self.stopAct, QtCore.SIGNAL('triggered()'), self.__stopAction)
 
@@ -172,7 +172,7 @@ class IOSRouter(AbstractNode):
             image = globals.GApp.iosimages[iosimages[0]]
             platform = image.platform
             chassis = image.chassis
-            self.config.image = unicode(iosimages[0])
+            self.config.image = str(iosimages[0])
             
             for slotnb in range(7):
                 modules = IOSRouter.getAdapters(platform,  chassis,  slotnb)
@@ -190,7 +190,7 @@ class IOSRouter(AbstractNode):
             if len(iosimages):
                 image = iosimages[0]
             else:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Config Node',  'No IOS image available !')
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate('IOSRouter', 'Node configuration'),  translate('IOSRouter', 'No IOS image available !'))
                 return
 
         image = globals.GApp.iosimages[image]
@@ -201,6 +201,7 @@ class IOSRouter(AbstractNode):
         hypervisor_host = image.hypervisor_host
         hypervisor_port = image.hypervisor_port
 
+        
         if hypervisor_host:
             hypervisorkey = hypervisor_host + ':' + str(hypervisor_port)
             if globals.GApp.hypervisors.has_key(hypervisorkey):
@@ -209,7 +210,6 @@ class IOSRouter(AbstractNode):
             else:
                 print 'Hypervisor ' + hypervisorkey + ' not registered !'
                 return
-
         hypervisor = self.getHypervisor()
         print hypervisor
         #ROUTERS
@@ -268,7 +268,6 @@ class IOSRouter(AbstractNode):
         if module in ADAPTERS:
             self.dev.slot[slotnb] = ADAPTERS[module][0](self.dev, slotnb)
         else:
-            #FIXME : graphical error msg
             print module + " module not found !\n"
             return
             
@@ -300,7 +299,7 @@ class IOSRouter(AbstractNode):
         if module == '':
             for ifname in node_interfaces:
                 if int(ifname[1]) == slotnb:
-                    error.showMessage(ifname + " is still used with no module in the slot " + str(slotnb))
+                    error.showMessage(translate('IOSRouter', ifname + ' is still used with no module in the slot ' +  str(slotnb)))
                     self.deleteInterface(ifname)
             return
 
@@ -323,11 +322,11 @@ class IOSRouter(AbstractNode):
                     found = True
                     # check if the interface type has changed
                     if ifname[0] != abrv:
-                        errormsg += ifname + " is no longer compatible with module " + module + " in the slot " + str(slotnb) + ", deleting interface ...\n"
+                        errormsg += translate('IOSRouter', ifname + " is no longer compatible with module " + module + " in the slot " + str(slotnb) + ", deleting interface ...\n")
                         self.deleteInterface(ifname)
             # check if the interface number has changed
             if ifslot == slotnb and found == False:
-                errormsg +=  ifname + " is no longer compatible with module " + module + " in the slot " + str(slotnb) + ", deleting interface ...\n"
+                errormsg +=  translate('IOSRouter', ifname + " is no longer compatible with module " + module + " in the slot " + str(slotnb) + ", deleting interface ...\n")
                 self.deleteInterface(ifname)
         if errormsg:
             error.showMessage(errormsg)

@@ -77,7 +77,7 @@ conf_iosRouter_defaults = {
 }
 
 conf_iosRouter_types = {
-    'image': unicode, 
+    'image': str, 
     'platform': str, 
     'chassis': str,
     'consoleport': str, 
@@ -88,7 +88,7 @@ conf_iosRouter_types = {
     'pcmcia_disk0': int,
     'pcmcia_disk1': int,
     'confreg': str, 
-    'startup_config': unicode, 
+    'startup_config': str, 
     'execarea': int, 
     'iomem': int, 
     'npe': str,

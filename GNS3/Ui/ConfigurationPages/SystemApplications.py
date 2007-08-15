@@ -87,7 +87,7 @@ class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
     def __setDynamipsPath(self):
         """ Open a file dialog for choosing the location of dynamips executable
         """
-        fb = fileBrowser(translate('Preferences', 'Dynamips Executable'))
+        fb = fileBrowser(translate('UiConfig_SystemApplications', 'Dynamips binary'))
         (path, selected) = fb.getFile()
 
         if path is not None:
@@ -97,7 +97,7 @@ class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
         """ Open a file dialog for choosing the location of local hypervisor
         working directory
         """
-        fb = fileBrowser(translate('Preferences', 'Local Hypervisor Workdir'))
+        fb = fileBrowser(translate('UiConfig_SystemApplications', 'Local Hypervisor Workdir'))
         path = fb.getDir()
 
         if path is not None:

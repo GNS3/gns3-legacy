@@ -22,6 +22,7 @@
 
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
+from GNS3.Utils import translate
 from Form_ETHSWPage import Ui_ETHSWPage
 
 class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
@@ -84,7 +85,7 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         type = str(self.comboBoxPortType.currentText())
         
         if self.ports.has_key(port):
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Add port',  'Port already exists')
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_ETHSW",  "Add port"),  translate("Page_ETHSW",  "Port already exists"))
             return
 
         item = QtGui.QTreeWidgetItem(self.treeWidgetPorts)
@@ -143,7 +144,7 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
                 if not port in self.vlans[vlan]:
                     self.vlans[vlan].append(port)
 
-        if ETHSWconfig.hypervisor_host == '':
+        if not ETHSWconfig.hypervisor_host:
             self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Unchecked)

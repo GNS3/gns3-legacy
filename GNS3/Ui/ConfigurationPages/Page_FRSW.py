@@ -22,6 +22,7 @@
 
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
+from GNS3.Utils import translate
 from Form_FRSWPage import Ui_FRSWPage
 
 class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
@@ -82,14 +83,14 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
         destdlci = self.spinBoxDestDLCI.value()
         
         if srcport == destport:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Add virtual channel',  'Same source and destination ports')
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_FRSW",  "Add virtual channel"),  translate("Page_FRSW",  "Same source and destination ports"))
             return
 
         sourceVPI = str(srcport) + ':' + str(srcdlci)
         destinationVPI = str(destport) + ':' + str(destdlci)
         
         if self.mapping.has_key(sourceVPI) or self.mapping.has_key(destinationVPI):
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Add virtual channel',  'Port:DLCI already defined')
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_FRSW",  "Add virtual channel"),  translate("Page_FRSW",  "Port:DLCI already defined"))
             return
         
         item = QtGui.QTreeWidgetItem(self.treeWidgetVCmap)
@@ -132,7 +133,7 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
             self.treeWidgetVCmap.addTopLevelItem(item)
             self.mapping[source] = destination
             
-        if FRSWconfig.hypervisor_host == '':
+        if not FRSWconfig.hypervisor_host:
             self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Unchecked)

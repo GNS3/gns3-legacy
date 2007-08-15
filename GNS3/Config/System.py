@@ -25,3 +25,4 @@ from GNS3.Config.Object import ConfigObject
 
 class SystemConfig(ConfigObject):
     
+    pass

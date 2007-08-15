@@ -24,7 +24,7 @@ import os,  re
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_IOSDialog import Ui_IOSDialog
 from GNS3.Config.Config import ConfDB
-from GNS3.Utils import fileBrowser
+from GNS3.Utils import fileBrowser,  translate
 from GNS3.Config.Objects import iosImageConf,  hypervisorConf
 import GNS3.Globals as globals
 
@@ -130,7 +130,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """
 
         # get the path to the ios image
-        path = fileBrowser('Select an IOS image').getFile()
+        path = fileBrowser(translate("IOSDialog", "Select an IOS image")).getFile()
         if path != None:
             path = path[0]
             self.lineEditIOSImage.clear()
@@ -168,7 +168,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             # external hypervisor, don't use the hypervisor manager
             items = self.listWidgetHypervisors.selectedItems()
             if len(items) == 0:
-                QtGui.QMessageBox.warning(self, 'IOS', 'No hypervisor selected, use local hypervisor')
+                QtGui.QMessageBox.warning(self, 'IOS Configuration', translate("IOSDialog", "No hypervisor selected, use the local hypervisor"))
                 self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
                 imagekey = 'localhost' + ':' + imagename
             else:
@@ -278,8 +278,8 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
     def slotWorkingDirectory(self):
         """ Get a working directory from the file system
         """
-        
-        path = fileBrowser('Select a working directory').getDir()
+
+        path = fileBrowser(translate("IOSDialog", "Select a working directory")).getDir()
         if path != None:
             self.lineEditWorkingDir.clear()
             self.lineEditWorkingDir.setText(path)

@@ -103,12 +103,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         """ Set a custom tool tip
         """
         
-        if self.srcIf[0] == 's':
-            type = "Serial"
-        else:
-            type = "Ethernet"
-        self.setToolTip("%s link: %s (%s) -> %s (%s)" % (type,
-            self.source.hostname, self.srcIf, self.dest.hostname, self.destIf))
+        self.setToolTip(translate("AbstractEdge", "Link: %s (%s) -> %s (%s)") % (self.source.hostname, self.srcIf, self.dest.hostname, self.destIf))
 
     def keyReleaseEvent(self, event):
         """ Key release handler
@@ -127,7 +122,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
 
         if (event.button() == QtCore.Qt.RightButton) and globals.GApp.workspace.currentMode == globals.Enum.Mode.Design:
             menu = QtGui.QMenu()
-            menu.addAction(QtGui.QIcon(':/icons/delete.svg'), 'delete')
+            menu.addAction(QtGui.QIcon(':/icons/delete.svg'), translate("AbstractEdge", "delete"))
             menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.mousePressEvent_actions)
             menu.exec_(QtGui.QCursor.pos())
 
@@ -136,7 +131,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         """
 
         action = action.text()
-        if action == 'delete':
+        if action == translate("AbstractEdge", "delete"):
             self.__deleteAction()
 
     def __deleteAction(self):

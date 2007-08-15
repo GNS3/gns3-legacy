@@ -64,8 +64,8 @@ class HypervisorManager:
         # start dynamips in hypervisor mode (-H)
         proc.start(self.hypervisor_path,  ['-H', str(port)])
         if proc.waitForStarted() == False:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor',  translate("HypervisorManager", "Can't start Dynamips"))
-                return None
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Can't start Dynamips"))
+            return None
                 
         hypervisor = {'port': port,
                             'proc_instance': proc}
@@ -92,7 +92,8 @@ class HypervisorManager:
         count += 1
         # show a progress dialog if multiple hypervisors to start
         if count > 1:
-            progress = QtGui.QProgressDialog("Starting hypervisors ...", "Abort", 0, count, globals.GApp.mainWindow)
+            
+            progress = QtGui.QProgressDialog(translate("HypervisorManager", "Starting hypervisors ..."), translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
             progress.setMinimum(1)
             progress.setWindowModality(QtCore.Qt.WindowModal)
 

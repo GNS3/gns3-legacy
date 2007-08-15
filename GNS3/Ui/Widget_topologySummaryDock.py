@@ -42,7 +42,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
         self.setRootIsDecorated(True)
         for node in globals.GApp.topology.nodes.itervalues():
             rootitem = QtGui.QTreeWidgetItem(self)
-            rootitem.setText(0, translate("MainWindow", node.hostname))
+            rootitem.setText(0, node.hostname)
             #rootitem.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
     
             #TODO: finish to put the tree in emulation mode
@@ -50,7 +50,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
             for interface in node.getConnectedInterfaceList():
                 item = QtGui.QTreeWidgetItem()
                 neigbhor = node.getConnectedNeighbor(interface)
-                item.setText(0, interface + ' is connected to ' + unicode(neigbhor[0].hostname) + ' in ' + neigbhor[1])
+                item.setText(0,  translate("topologySummaryDock", interface + ' is connected to ' + neigbhor[0].hostname + ' in ' + neigbhor[1]))
                 items.append(item)
             rootitem.addChildren(items)
             

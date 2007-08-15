@@ -23,6 +23,7 @@
 import GNS3.Globals as globals
 import GNS3.Ui.svg_resources_rc
 from PyQt4 import QtCore, QtGui
+from GNS3.Utils import translate
 from GNS3.Ui.Form_NodeConfigurator import Ui_NodeConfigurator
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.FRSW import FRSW
@@ -94,31 +95,31 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             # the configuration page. This must have the method save to save 
             # the settings.
             "Routers" : \
-                [self.trUtf8("Routers"), ":/symbols/rt_standard.normal.svg",
+                [translate("NodeConfigurator", "Routers"), ":/symbols/rt_standard.normal.svg",
                  "Page_IOSRouter", None, None], 
             "FRSW":
-                [self.trUtf8("Frame Relay"), ":/symbols/sw_atm.normal.svg",
+                [translate("NodeConfigurator", "Frame Relay switches"), ":/symbols/sw_atm.normal.svg",
                  "Page_FRSW", None, None], 
             "ETHSW":
-                [self.trUtf8("Ethernet Switch"), ":/symbols/sw_standard.normal.svg",
+                [translate("NodeConfigurator", "Ethernet switches"), ":/symbols/sw_standard.normal.svg",
                  "Page_ETHSW", None, None], 
-            "Clound":
-                [self.trUtf8("Clound"), None,
+            "Clounds":
+                [translate("NodeConfigurator", "Clounds"), None,
                  "Page_Clound", None, None], 
-            "Hub":
-                [self.trUtf8("Hub"), None,
+            "Hubs":
+                [translate("NodeConfigurator", "Hubs"), None,
                  "Page_Hub", None, None]
                  }
 
         self.assocPage = { IOSRouter: "Routers", 
                                      FRSW: "FRSW",
                                      ETHSW: "ETHSW", 
-                                     Clound: "Clound", 
-                                     Hub: "Hub"
+                                     Clound: "Clounds", 
+                                     Hub: "Hubs"
                                     }
         self.__loadNodeItems()
 
-        self.splitter.setSizes([200, 600])
+        self.splitter.setSizes([250, 600])
         self.connect(self.treeViewNodes, QtCore.SIGNAL("itemActivated(QTreeWidgetItem *, int)"),
             self.__showConfigurationPage)
         self.connect(self.treeViewNodes, QtCore.SIGNAL("itemClicked(QTreeWidgetItem *, int)"),
@@ -147,7 +148,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                 continue
             parent = self.assocPage[type(node)]
             self.itmDict[parent].addID(node.id)
-            item = ConfigurationPageItem(self.itmDict[parent], unicode(node.hostname), parent,  None)
+            item = ConfigurationPageItem(self.itmDict[parent], node.hostname, parent,  None)
             item.addID(node.id)
             item.tmpConfig = node.config
             if self.itmDict[parent].tmpConfig == None:
@@ -174,15 +175,15 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                 count = count - 1
             if not item.parent():
                 if last_item.parent():
-                    self.titleLabel.setText("%s node" % (last_item.text(0)))
+                    self.titleLabel.setText(translate("NodeConfigurator", "%s node") % (last_item.text(0)))
                     return
-                self.titleLabel.setText("%s group" % (last_item.text(0)))
+                self.titleLabel.setText(translate("NodeConfigurator", "%s group") % (last_item.text(0)))
                 return
 
         if count > 1:
-            pageTitle = "Group of %d %s" % (count,  last_item.parent().text(0))
+            pageTitle = translate("NodeConfigurator", "Group of %d %s") % (count,  last_item.parent().text(0))
         else:
-            pageTitle = "%s node" % (last_item.text(0))
+            pageTitle = translate("NodeConfigurator", "%s node") % (last_item.text(0))
         self.titleLabel.setText(pageTitle)
 
     def __importConfigurationPage(self, name):
@@ -234,7 +235,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         
         pageName = unicode(itm.getPageName())
         pageData = self.configItems[pageName]
-        pageTitle = "Node configuration"
+        pageTitle = translate("NodeConfigurator", "Node configuration")
 
         if pageData[-1] is None and pageData[2] is not None:
             # the page was not loaded yet, create it

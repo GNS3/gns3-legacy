@@ -56,7 +56,7 @@ class Page_Hub(QtGui.QWidget, Ui_HubPage):
             
         self.spinBoxNbPorts.setValue(Hubconfig.ports)
         
-        if Hubconfig.hypervisor_host == '':
+        if not Hubconfig.hypervisor_host:
             self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Unchecked)

@@ -165,9 +165,9 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             IOSconfig = config
         else:
             IOSconfig = node.config
-        IOSconfig.image = unicode(self.comboBoxIOS.currentText())
+        IOSconfig.image = str(self.comboBoxIOS.currentText())
         IOSconfig.consoleport = str(self.lineEditConsolePort.text())
-        IOSconfig.startup_config = unicode(self.lineEditStartupConfig.text())
+        IOSconfig.startup_config = str(self.lineEditStartupConfig.text())
         IOSconfig.RAM = self.spinBoxRamSize.value()
         IOSconfig.ROM = self.spinBoxRomSize.value()
         IOSconfig.NVRAM = self.spinBoxNvramSize.value()

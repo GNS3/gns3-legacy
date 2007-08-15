@@ -86,10 +86,10 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
 
     def __initDialog(self, type):
         if type == 'System':
-            dialogTitle = translate('Preferences', 'System preferences')
+            dialogTitle = translate('PreferencesDialog', 'System preferences')
             self.__prefsList = _systemPrefs
         elif type == 'Project':
-            dialogTitle = translate('Preferences', 'Project preferences')
+            dialogTitle = translate('PreferencesDialog', 'Project preferences')
             self.__prefsList = _projectPrefs
         else:
             raise 'Unknown dialog type'
@@ -101,7 +101,7 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
         for itemName in self.__prefsList:
             cls = self.__loadWidget(type, itemName)
             widget = cls()
-            item = QtGui.QListWidgetItem(translate('Preferences', itemName),
+            item = QtGui.QListWidgetItem(translate('PreferencesDialog', itemName), #FIXME: Does it work ?
                     self.listWidget)
             # Insert widget / item into the dialog
             self.listWidget.insertItem(lnum, item)
@@ -111,7 +111,7 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
 
     def __raiseWidgetByNum(self, num):
         self.titleLabel.setText(
-            translate('Preferences', self.__prefsList[num]))
+            translate('PreferencesDialog', self.__prefsList[num])) #FIXME: Does it work ?
         # Set stackedWidget minimum size
         widget = self.stackedWidget.widget(num)
         self.stackedWidget.setMinimumSize(widget.size())

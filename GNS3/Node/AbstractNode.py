@@ -109,15 +109,17 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
     def __changeHostnameAction(self):
         """ Action called to change the hostname
         """
-        (text,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, "Change hostname",
-                                          "Hostname:", QtGui.QLineEdit.Normal,
-                                          unicode(self.hostname))
+        
+        
+        (text,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, translate("AbstractNode", "Change hostname"),
+                                          translate("AbstractNode", "Hostname:"), QtGui.QLineEdit.Normal,
+                                          self.hostname)
         if ok and text:
-            for node in globals.GApp.topology.nodes.itervalues():
-                if self.hostname == node.hostname:
-                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hostname',  'Hostname already used')
-                    return
-            self.hostname = unicode(text)
+#            for node in globals.GApp.topology.nodes.itervalues():
+#                if self.hostname == node.hostname:
+#                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hostname:"),  translate("AbstractNode", "Hostname already used"))
+#                    return
+            self.hostname = text
             if self.__flag_hostname:
                 # force to redisplay the hostname
                 self.removeHostname()
@@ -190,7 +192,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """ Set a custom tool tip
         """
 
-        self.setToolTip("Hostname: %s" % (self.hostname))
+        self.setToolTip(translate("AbstractNode", "Hostname: %s") % (self.hostname))
 
     def keyReleaseEvent(self, event):
         """ Key release handler
@@ -213,7 +215,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             self.showMenuInterface()
             if self.__selectedInterface:
                 if self.__selectedInterface in self.getConnectedInterfaceList():
-                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Connection',  'Already connected interface')
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Connection"),  translate("AbstractNode", "Already connected interface") )
                     return
                 self.emit(QtCore.SIGNAL("Add link"), self.id,  self.__selectedInterface)
 
@@ -259,7 +261,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         menu = QtGui.QMenu()
         interfaces_list = self.getInterfaces()
         if len(interfaces_list) == 0:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Connection',  'Please, configure the slots')
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Connection"),  translate("AbstractNode", "Please, configure the slots"))
             return
         connected_list = self.getConnectedInterfaceList()
         for interface in interfaces_list:
@@ -282,7 +284,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         if self.__flag_hostname == True:
             return
 
-        self.textItem = QtGui.QGraphicsTextItem(unicode(self.hostname), self)
+        self.textItem = QtGui.QGraphicsTextItem(self.hostname, self)
         self.textItem.setFont(QtGui.QFont("TypeWriter", 10, QtGui.QFont.Bold))
         self.textItem.setFlag(self.textItem.ItemIsMovable)
         self.textItem.setZValue(2)

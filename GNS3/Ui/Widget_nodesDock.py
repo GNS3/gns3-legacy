@@ -45,7 +45,7 @@ class nodesDock(QtGui.QListWidget):
         for symbol in SYMBOLS:
             # Use custom type to known the symbol type
             item = QtGui.QListWidgetItem(self, 1000 + rowNum)
-            item.setText(translate("SYMBOLS", symbol['name']))
+            item.setText(translate("nodesDock", symbol['name']))
             item.setIcon(QtGui.QIcon(symbol['normal_svg_file']))
             #self.insertTopLevelItem(0, item)
             self.insertItem(rowNum, item)

@@ -208,7 +208,8 @@ class Dynamips(object):
         """ Set the working directory for this network
             directory: (string) the directory
         """
-        if type(directory) != str:
+        
+        if type(directory) != str and type(directory) != unicode:
             raise DynamipsError, 'invalid directory'
         self.__workingdir = directory
         send(self, 'hypervisor working_dir %s' % self.__workingdir)

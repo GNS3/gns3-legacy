@@ -202,10 +202,10 @@ class Application(QApplication, Singleton):
         
         self.systconf['dynamips'] = systemDynamipsConf()
         confo = self.systconf['dynamips']
-        confo.path = str(ConfDB().get('Dynamips/hypervisor_path', ''))
+        confo.path = ConfDB().get('Dynamips/hypervisor_path', '')
         confo.port = int(ConfDB().get('Dynamips/hypervisor_port', 7200))
-        confo.workdir = str(ConfDB().get('Dynamips/hypervisor_working_directory', ''))
-        confo.term_cmd = str(ConfDB().get('Dynamips/console', ''))
+        confo.workdir = ConfDB().get('Dynamips/hypervisor_working_directory', '')
+        confo.term_cmd = ConfDB().get('Dynamips/console', '')
 
         self.mainWindow.show()
 

@@ -14,7 +14,6 @@
 import sys
 import subprocess as sub
 import GNS3.Globals as globals
-##from GNS3.Config.Config import ConfDB
 
 def connect(host,  port,  name):
         """ Start a telnet console and connect to it

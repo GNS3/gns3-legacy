@@ -114,11 +114,11 @@ class Scene(QtGui.QGraphicsView):
             
         srcnode = globals.GApp.topology.getNode(self.__sourceNodeID)
         destnode = globals.GApp.topology.getNode(self.__destNodeID)
-        
+
         # check interface compatibility, at least one-way compatibility must occur
         if not self.checkInterfaceCompatibility(srcnode, self.__sourceInterface,  destnode,  self.__destInterface) and \
             not self.checkInterfaceCompatibility(destnode, self.__destInterface,  srcnode,  self.__sourceInterface):
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Connection',  'Interfaces types mismatch !')
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Connection',  translate("Scene", "Interfaces are not compatible !"))
             return
 
         # add the link into the topology

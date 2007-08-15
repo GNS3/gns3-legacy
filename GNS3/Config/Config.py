@@ -458,7 +458,7 @@ class GNS_Conf(object):
             if hyp_host == '' or hyp_port == '':
                 continue
 
-            img_ref = str(hyp_host + ':' + hyp_port)
+            img_ref = hyp_host + ':' + hyp_port
 
             conf = hypervisorConf()
             conf.id = int(img_num)

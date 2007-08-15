@@ -228,7 +228,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.menu_View.insertActions(self.action_ZoomIn,
             self.actgrp_swMode.actions())
         self.menu_View.insertSeparator(self.action_ZoomIn)
-        self.menu_View.addSeparator().setText("Docks")
+        self.menu_View.addSeparator().setText(translate("Workspace", "Docks"))
         self.menu_View.addMenu(self.submenu_Docks)
         self.menu_View.addMenu(self.submenu_Toolbars)
 
@@ -287,7 +287,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.currentMode = id
         # Update switchMode button
         nextMode_name = self.__getNextModeName()
-        self.action_SwitchMode.setText(translate('MainWindow', nextMode_name))
+        self.action_SwitchMode.setText(translate('Workspace', nextMode_name)) #FIXME: does it work ?
         # Update workspace (docks, toolbars...)
         for v in self.__switchModeActions[id]['docks_enable'].itervalues():
             v.setVisible(True)
@@ -334,7 +334,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         if projectFile is None:
-            self.mainWindow.setWindowTitle("GNS3 - New Project")
+            self.mainWindow.setWindowTitle(translate("Workspace", "GNS3 - New Project"))
 
     def saveProject(self, projectFile):
         pass
@@ -363,7 +363,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         self.__switchToMode(globals.Enum.Mode.Design)
         self.action_swModeDesign.setChecked(True)
-        self.statusbar.showMessage(translate('Workspace', 'Design Mode'))
+        self.statusbar.showMessage(translate("Workspace", "Design Mode"))
 
     def __restoreButtonState(self):
         """ Restore button state if can't continue when switching to emulation mode
@@ -381,7 +381,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         if len(globals.GApp.iosimages.keys()) == 0:
             # No IOS images configured, users have to register an IOS before going into emulation mode
-            QtGui.QMessageBox.warning(self, 'Emulation mode', 'Please register at least one IOS image')
+            QtGui.QMessageBox.warning(self, translate("Workspace", "Emulation Mode"), translate("Workspace", "Please register at least one IOS image"))
             self.__action_IOSImages()
             self.__restoreButtonState()
             return
@@ -400,7 +400,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if globals.useHypervisorManager:
 
             if globals.GApp.systconf['dynamips'].path == '':
-                QtGui.QMessageBox.warning(self, 'Emulation mode', 'Please configure Dynamips')
+                QtGui.QMessageBox.warning(self, translate("Workspace", "Emulation Mode"), translate("Workspace", "Please configure the path to Dynamips"))
                 self.__action_SystemPreferences()
                 self.__restoreButtonState()
                 return
@@ -412,20 +412,20 @@ class Workspace(QMainWindow, Ui_MainWindow):
             if self.hypervisor_manager.startProcHypervisors() == False:
                 self.__restoreButtonState()
                 return
-
         try:
             for node in globals.GApp.topology.nodes.itervalues():
                 node.configNode()
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, 'Dynamips error',  str(msg))
+
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"),  str(msg))
             return
         except lib.DynamipsErrorHandled:
-            QtGui.QMessageBox.critical(self, 'Dynamips error', 'Connection lost')
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
             return
     
         self.__switchToMode(globals.Enum.Mode.Emulation)
         self.action_swModeEmulation.setChecked(True)
-        self.statusbar.showMessage(translate('Workspace', 'Emulation Mode'))
+        self.statusbar.showMessage(translate("Workspace", "Emulation Mode"))
         self.action_Add_link.setChecked(False)
         self.__action_addLink()
         self.treeWidget_TopologySummary.emulationMode()
@@ -434,7 +434,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Function called to switch to mode `Simulation'
         """
         self.__switchToMode(globals.Enum.Mode.Simulation)
-        self.statusbar.showMessage(translate('Workspace', 'Emulation Mode'))
+        self.statusbar.showMessage(translate("Workspace", "Emulation Mode"))
         pass
 
     #-----------------------------------------------------------------------
@@ -596,12 +596,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
             try:
                 node.startNode()
             except lib.DynamipsError, msg:
-                QtGui.QMessageBox.critical(self, unicode(node.hostname + ': Dynamips error'),  str(msg))
+                QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Workspace", "Dynamips error"),  str(msg))
             except lib.DynamipsWarning,  msg:
-                QtGui.QMessageBox.warning(self,  unicode(node.hostname + ': Dynamips warning'),  str(msg))
+                QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Workspace", "Dynamips warning"),  str(msg))
                 continue
             except lib.DynamipsErrorHandled:
-                QtGui.QMessageBox.critical(self, unicode(node.hostname + ': Dynamips error'), 'Connection lost')
+                QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
             except:
                 self.switchToMode_Design()
                 return
@@ -615,7 +615,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             if type(node) == IOSRouter:
                 node_list.append(node)
         count = len(node_list)
-        progress = QtGui.QProgressDialog("Starting nodes ...", "Abort", 0, count, self)
+        
+        progress = QtGui.QProgressDialog(translate("Workspace", "Starting nodes ..."), translate("Workspace", "Abort"), 0, count, self)
         progress.setMinimum(1)
         progress.setWindowModality(QtCore.Qt.WindowModal)
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents)
@@ -632,12 +633,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 if node.dev.state == 'running':
                     pass
                 else:
-                    QtGui.QMessageBox.critical(self, unicode(node.hostname + ': Dynamips error'),  str(msg))
+                    QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Workspace", "Dynamips error"),  str(msg))
             except lib.DynamipsWarning,  msg:
-                QtGui.QMessageBox.warning(self,  unicode(node.hostname + ': Dynamips warning'),  str(msg))
+                QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Workspace", "Dynamips warning"),  str(msg))
                 continue
             except lib.DynamipsErrorHandled:
-                QtGui.QMessageBox.critical(self, unicode(node.hostname + ': Dynamips error'), 'Connection lost')
+                QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
             except:
                 progress.reset()
                 self.switchToMode_Design()
@@ -654,7 +655,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         for node in globals.GApp.topology.nodes.values():
             node_list.append(node)
         count = len(node_list)
-        progress = QtGui.QProgressDialog("Stopping nodes ...", "Abort", 0, count, self)
+        progress = QtGui.QProgressDialog(translate("Workspace", "Stopping nodes ..."), translate("Workspace", "Abort"), 0, count, self)
         progress.setMinimum(1)
         progress.setWindowModality(QtCore.Qt.WindowModal)
         globals.GApp.processEvents()
@@ -671,12 +672,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 if node.dev.state == 'stopped':
                     pass
                 else:
-                    QtGui.QMessageBox.critical(self,  unicode(node.hostname + ': Dynamips error'),  str(msg))
+                    QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Workspace", "Dynamips error"),  str(msg))
             except lib.DynamipsWarning,  msg:
-                QtGui.QMessageBox.warning(self,  unicode(node.hostname + ': Dynamips warning'),  str(msg))
+                QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Workspace", "Dynamips warning"),  str(msg))
                 continue
             except lib.DynamipsErrorHandled:
-                QtGui.QMessageBox.critical(self, unicode(node.hostname + ': Dynamips error'), 'Connection lost')
+                QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
             except:
                 progress.reset()
                 self.switchToMode_Design()
@@ -720,19 +721,19 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Open a file (scenario or dynagen .NET format)
         """
 
+        
         if self.currentMode != globals.Enum.Mode.Design:
-            QtGui.QMessageBox.warning(self, 'Scenario',  "You can't open a scenario when you are not in design mode")
+            QtGui.QMessageBox.warning(self, translate("Workspace", "Scenario"),  translate("Workspace", "You can't open a scenario when you are not in design mode"))
             return
 
-    
-        (path, selected) = fileBrowser('Open a file',  filter = 'GNS-3 Scenario (*.gns3s);;All Files (*.*)').getFile()
+        (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter = 'GNS-3 Scenario (*.gns3s);;All Files (*.*)').getFile()
         if path != None:
             try:
                 # here the loading
                 ConfDB().loadFromXML(path)
                 self.projectFile = path
                 self.setWindowTitle("GNS3 - " + self.projectFile)
-                self.statusbar.showMessage("Project Loaded...")
+                self.statusbar.showMessage(translate("Workspace", "Project Loaded..."))
             except IOError, (errno, strerror):
                 QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         
@@ -745,7 +746,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         try:
             ConfDB().saveToXML(self.projectFile)
-            self.statusbar.showMessage("Project saved...")
+            self.statusbar.showMessage(translate("Workspace", "Project saved..."))
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         
@@ -753,7 +754,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Save as (scenario or dynagen .NET format)
         """
 
-        fb = fileBrowser('Save Project As', 
+        fb = fileBrowser(translate("Workspace", "Save Project As"), 
                                 filter='GNS-3 Scenario (*.gns3s)')
         (path, selected) = fb.getSaveFile()
 
