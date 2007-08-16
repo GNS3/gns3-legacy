@@ -115,10 +115,10 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                                           translate("AbstractNode", "Hostname:"), QtGui.QLineEdit.Normal,
                                           self.hostname)
         if ok and text:
-#            for node in globals.GApp.topology.nodes.itervalues():
-#                if self.hostname == node.hostname:
-#                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hostname:"),  translate("AbstractNode", "Hostname already used"))
-#                    return
+            for node in globals.GApp.topology.nodes.itervalues():
+                if text == node.hostname:
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hostname:"),  translate("AbstractNode", "Hostname already used"))
+                    return
             self.hostname = text
             if self.__flag_hostname:
                 # force to redisplay the hostname
@@ -209,7 +209,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             event: QtGui.QGraphicsSceneMouseEvent instance
         """
 
-        if globals.addingLinkFlag and globals.currentLinkType == globals.Enum.LinkType.Manual and event.button() == QtCore.Qt.LeftButton:
+        if globals.addingLinkFlag and event.button() == QtCore.Qt.LeftButton:
         
             self.__selectedInterface = None
             self.showMenuInterface()

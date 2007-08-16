@@ -39,6 +39,76 @@ ROUTERS = {
     "3600": lib.C3600
 }
 
+SLOTMATRIX = {
+                        '2610' : { 0 : ('CISCO2600-MB-1E'), 
+                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                    },
+                        '2611' : { 0 : ('CISCO2600-MB-2E'), 
+                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                    },
+                        '2620' : { 0 : ('CISCO2600-MB-1FE'), 
+                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                    }, 
+                        '2621' : { 0 : ('CISCO2600-MB-2FE'), 
+                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                    }, 
+                        '2610XM' : { 0 : ('CISCO2600-MB-1FE'), 
+                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                    },
+                        '2611XM' : { 0 : ('CISCO2600-MB-2FE'), 
+                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                    },
+                        '2620XM' : { 0 : ('CISCO2600-MB-1FE'), 
+                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                    }, 
+                        '2621XM' : { 0 : ('CISCO2600-MB-2FE'), 
+                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                    },
+                        '2650XM' : { 0 : ('CISCO2600-MB-1FE'), 
+                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                    }, 
+                        '2651XM' : { 0 : ('CISCO2600-MB-2FE'), 
+                                        1 :('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                    },
+                        '2691' : { 0 : ('GT96100-FE'), 
+                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4T')
+                                    }, 
+                        '3620' : { 0 :  ('NM-16ESW','NM-1FE-TX', 'NM-4E', 'NM-1E', 'NM-4T'), 
+                                        1 : ('NM-16ESW','NM-1FE-TX', 'NM-4E', 'NM-1E', 'NM-4T'), 
+                                    }, 
+                        '3640' : {0 : ('NM-16ESW','NM-1FE-TX', 'NM-4E', 'NM-1E', 'NM-4T'),
+                                        1 : ('NM-16ESW','NM-1FE-TX', 'NM-4E', 'NM-1E', 'NM-4T'),
+                                        2 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'),
+                                        3 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'),
+                                    }, 
+                        '3660' : { 0 : ('Leopard-2FE'),
+                                        1 : ('NM-16ESW','NM-1FE-TX', 'NM-4E', 'NM-1E', 'NM-4T'), 
+                                        2 : ('NM-16ESW','NM-1FE-TX', 'NM-4E', 'NM-1E', 'NM-4T'), 
+                                        3 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
+                                        4 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
+                                        5 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'),
+                                        6 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
+                                    },
+                        '3725' : { 0 : ('GT96100-FE'),
+                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4T'), 
+                                        2 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4T'),
+                                    },
+                        '3745' : { 0 : ('GT96100-FE'),
+                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4T'), 
+                                        2 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4T'),
+                                        3 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'),
+                                        4 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'),
+                                    },
+                        '7200' : { 0 : ('C7200-IO-FE'), 
+                                        1 : ('PA-A1', 'PA-FE-TX', 'PA-8T', 'PA-4T+', 'PA-8E', 'PA-4E', 'PA-POS-OC3'), 
+                                        2 : ('PA-A1', 'PA-FE-TX', 'PA-8T', 'PA-4T+', 'PA-8E', 'PA-4E', 'PA-POS-OC3'), 
+                                        3 : ('PA-A1', 'PA-FE-TX', 'PA-8T', 'PA-4T+', 'PA-8E', 'PA-4E', 'PA-POS-OC3'),
+                                        4 : ('PA-A1', 'PA-FE-TX', 'PA-8T', 'PA-4T+', 'PA-8E', 'PA-4E', 'PA-POS-OC3'),
+                                        5 : ('PA-A1', 'PA-FE-TX', 'PA-8T', 'PA-4T+', 'PA-8E', 'PA-4E', 'PA-POS-OC3'),
+                                        6 : ('PA-A1', 'PA-FE-TX', 'PA-8T', 'PA-4T+', 'PA-8E', 'PA-4E', 'PA-POS-OC3'), 
+                                    },
+}
+
 ADAPTERS = {
     "C7200-IO-FE": (lib.PA_C7200_IO_FE, 1, 'f'),
     "C7200-IO-2FE": (lib.PA_C7200_IO_2FE, 2, 'f'),
@@ -65,6 +135,8 @@ ADAPTERS = {
     "CISCO2600-MB-2FE": (lib.CISCO2600_MB_2FE, 2, 'f')
 }
 
+# some chassis have adapters on their motherboard (not optional)
+MBCHASSIS = ('2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM',  '2691',  '3660',  '3725',  '3745',  '7200')
 IF_REGEXP = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)\/([0-9]+)$""") 
 PORT_REGEXP = re.compile(r"""^[0-9]*$""")
 router_id = 0
@@ -130,34 +202,47 @@ class IOSRouter(AbstractNode):
     
         self.stopNode()
   
+    def smartInterface(self,  link_type,  chassis):
+        """ Pick automatically (if possible) the right interface for the desired link type
+            link_type: a one character string 'g', 'f', 'e', 's', 'a', or 'p'
+            chassis: string corresponding to the chassis model
+        """
+    
+        interfaces = self.getConnectedInterfaceList()
+        for slot in range(7):
+            try:
+                # get the modules for the specified chassis and slot number
+                modules = SLOTMATRIX[chassis][slot]
+                for module_name in modules:
+                    # number of interfaces for this module
+                    nbif= ADAPTERS[module_name][1]
+                    # type of interfaces (ethernet, serial etc ...)
+                    type = ADAPTERS[module_name][2]
+                    if type == link_type:
+                        # if the right type
+                        for interface in range(nbif):
+                            # for each possible interface number
+                            interface_name = type + str(slot) + '/' + str(interface)
+                            if not interface_name in interfaces:
+                                # this interface is not connected
+                                if not self.config.slots[slot]:
+                                    # need to add the module for this slot
+                                    self.config.slots[slot] = module_name
+                                if ADAPTERS[self.config.slots[slot]][2] == link_type:
+                                    # the configured slot has the right type
+                                    return interface_name
+            except KeyError:
+                break
+        return ''
+  
     def getAdapters(platform, chassis,  slotnb):
         """ Get all adapters from a slot (static method)
         """
     
-        #TODO: clean it
-        # some platforms/chassis have adapters on their motherboard (not optional)
-        platform = 'c' + platform
         try:
-            if (chassis == '2691'):
-                if slotnb == 0:
-                    return [lib.ADAPTER_MATRIX['c' + chassis][''][0]]
-                if slotnb == 1:
-                    return [''] + list(lib.ADAPTER_MATRIX['c' + chassis][''][1])
-            elif platform == 'c3700':
-                if slotnb == 0:
-                    return lib.ADAPTER_MATRIX['c' + chassis][''][0]
-                else:
-                    return [''] + list(lib.ADAPTER_MATRIX['c' + chassis][''][slotnb])
-                return
-            elif platform == 'c7200':
-                if slotnb == 0:
-                    return list(lib.ADAPTER_MATRIX[platform][''][0])
-                else:
-                    return [''] + list(lib.ADAPTER_MATRIX[platform][''][slotnb])
-            if slotnb == 0:
-                if platform == 'c2600' or chassis == '3660':
-                    return lib.ADAPTER_MATRIX[platform][chassis][0]
-            return [''] + list(lib.ADAPTER_MATRIX[platform][chassis][slotnb])
+            if slotnb == 0 and chassis in MBCHASSIS:
+                return list(SLOTMATRIX[chassis][slotnb])
+            return  [''] + list(SLOTMATRIX[chassis][slotnb])
         except KeyError:
             return ['']
             
@@ -182,7 +267,7 @@ class IOSRouter(AbstractNode):
     def configNode(self):
         """ Node configuration
         """
-    
+
         image = self.config.image
         if image == '':
             # No IOS image configured, take the first one available ...
@@ -201,7 +286,6 @@ class IOSRouter(AbstractNode):
         hypervisor_host = image.hypervisor_host
         hypervisor_port = image.hypervisor_port
 
-        
         if hypervisor_host:
             hypervisorkey = hypervisor_host + ':' + str(hypervisor_port)
             if globals.GApp.hypervisors.has_key(hypervisorkey):
@@ -211,7 +295,6 @@ class IOSRouter(AbstractNode):
                 print 'Hypervisor ' + hypervisorkey + ' not registered !'
                 return
         hypervisor = self.getHypervisor()
-        print hypervisor
         #ROUTERS
         if platform == '7200':
             self.dev = ROUTERS[platform](hypervisor, name = '"' + self.hostname + '"')
@@ -398,7 +481,23 @@ class IOSRouter(AbstractNode):
             event: QtGui.QGraphicsSceneMouseEvent instance
         """
 
-        if (event.button() == QtCore.Qt.RightButton) and globals.GApp.workspace.currentMode == globals.Enum.Mode.Emulation:
+        if globals.addingLinkFlag and globals.currentLinkType != globals.Enum.LinkType.Manual and event.button() == QtCore.Qt.LeftButton:
+            iosimages = globals.GApp.iosimages.keys()
+            if len(iosimages) == 0:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSRouter", "Connection"),  translate("IOSRouter", "No IOS configured"))
+                return
+            if not globals.GApp.iosimages.has_key(self.config.image):
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSRouter", "Connection"),  translate("IOSRouter", "Can't find the IOS image"))
+                return
+            image = globals.GApp.iosimages[self.config.image]
+            interface = self. smartInterface(globals.linkAbrv[globals.currentLinkType],  image.chassis)
+            if interface:
+                self.emit(QtCore.SIGNAL("Add link"), self.id, interface)
+            else:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSRouter", "Connection"),  translate("IOSRouter", "No interface available") )
+                return
+                
+        elif (event.button() == QtCore.Qt.RightButton) and globals.GApp.workspace.currentMode == globals.Enum.Mode.Emulation:
             self.setSelected(True)
             self.menu = QtGui.QMenu()
 

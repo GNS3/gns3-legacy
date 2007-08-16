@@ -22,6 +22,8 @@
 
 from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Config.Objects import ETHSWConf
+from PyQt4 import QtCore, QtGui
+from GNS3.Utils import translate
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.Globals as dynagen
 import GNS3.Globals as globals 
@@ -128,3 +130,18 @@ class ETHSW(AbstractNode):
 #            if dynagen.devices.has_key(self.hostname):
 #                del dynagen.devices[self.hostname]
 #            self.shutdownInterfaces()
+
+    def mousePressEvent(self, event):
+        """ Call when the node is clicked
+            event: QtGui.QGraphicsSceneMouseEvent instance
+        """
+
+        if globals.addingLinkFlag and globals.currentLinkType != globals.Enum.LinkType.Manual and event.button() == QtCore.Qt.LeftButton:
+            connected_ports = self.getConnectedInterfaceList()
+            for port in self.config.ports.keys():
+                if not str(port) in connected_ports:
+                    self.emit(QtCore.SIGNAL("Add link"), self.id, str(port))
+                    return
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("ETHSW", "Connection"),  translate("ETHSW", "No port available") )
+        else:
+            AbstractNode.mousePressEvent(self, event)

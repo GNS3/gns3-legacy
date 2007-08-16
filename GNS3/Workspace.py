@@ -478,11 +478,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
         else:
 
             #TODO: optionnal menu
-#            menu = QtGui.QMenu()
-#            for linktype in globals.linkTypes.keys():
-#                menu.addAction(linktype)
-#            menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.__setLinkType)
-#            menu.exec_(QtGui.QCursor.pos())
+            menu = QtGui.QMenu()
+            for linktype in globals.linkTypes.keys():
+                menu.addAction(linktype)
+            menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.__setLinkType)
+            menu.exec_(QtGui.QCursor.pos())
             
             self.action_Add_link.setText(translate(ctx, 'Cancel'))
             self.action_Add_link.setIcon(QIcon(':/icons/cancel.svg'))

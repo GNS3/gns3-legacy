@@ -100,7 +100,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                 index = self.comboBoxMidplane.findText(IOSconfig.midplane)
                 if index != -1:
                     self.comboBoxMidplane.setCurrentIndex(index)
-                self.comboBoxNPE.addItems(['npe-100', 'npe-150', 'npe-175', 'npe-200', 'npe-225', 'npe-300', 'npe-400', 'npe-g1', 'npe-g2'])
+                self.comboBoxNPE.addItems(['npe-100', 'npe-150', 'npe-175', 'npe-200', 'npe-225', 'npe-300', 'npe-400'])
                 self.comboBoxNPE.setEnabled(True)
                 index = self.comboBoxNPE.findText(IOSconfig.npe)
                 if index != -1:

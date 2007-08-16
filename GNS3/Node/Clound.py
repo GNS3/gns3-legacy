@@ -21,6 +21,8 @@
 #
 
 from GNS3.Node.AbstractNode import AbstractNode
+from PyQt4 import QtCore, QtGui
+from GNS3.Utils import translate
 from GNS3.Config.Objects import CloundConf
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Globals as globals 
@@ -84,3 +86,18 @@ class Clound(AbstractNode):
         """
 
         pass
+
+    def mousePressEvent(self, event):
+        """ Call when the node is clicked
+            event: QtGui.QGraphicsSceneMouseEvent instance
+        """
+
+        if globals.addingLinkFlag and globals.currentLinkType != globals.Enum.LinkType.Manual and event.button() == QtCore.Qt.LeftButton:
+            connected_nios = self.getConnectedInterfaceList()
+            for nio in self.config.nios:
+                if not nio in connected_nios:
+                    self.emit(QtCore.SIGNAL("Add link"), self.id, nio)
+                    return
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Clound", "Connection"),  translate("Clound", "No NIO available") )
+        else:
+            AbstractNode.mousePressEvent(self, event)

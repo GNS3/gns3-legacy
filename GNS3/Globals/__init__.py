@@ -65,4 +65,13 @@ linkTypes = {
     'POS': Enum.LinkType.POS
 }
 
+linkAbrv = {
+    Enum.LinkType.Ethernet: 'e',
+    Enum.LinkType.FastEthernet: 'f',
+    Enum.LinkType.GigaEthernet: 'g',
+    Enum.LinkType.Serial: 's',
+    Enum.LinkType.ATM: 'a',
+    Enum.LinkType.POS: 'p'
+}
+
 currentLinkType = Enum.LinkType.Manual

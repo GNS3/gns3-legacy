@@ -21,6 +21,8 @@
 #
 
 from GNS3.Node.AbstractNode import AbstractNode
+from PyQt4 import QtCore, QtGui
+from GNS3.Utils import translate
 from GNS3.Config.Objects import HubConf
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Globals as globals 
@@ -100,3 +102,18 @@ class Hub(AbstractNode):
         """
 
         pass
+
+    def mousePressEvent(self, event):
+        """ Call when the node is clicked
+            event: QtGui.QGraphicsSceneMouseEvent instance
+        """
+
+        if globals.addingLinkFlag and globals.currentLinkType != globals.Enum.LinkType.Manual and event.button() == QtCore.Qt.LeftButton:
+            connected_ports = self.getConnectedInterfaceList()
+            for port in range(self.config.ports):
+                if not str(port) in connected_ports:
+                    self.emit(QtCore.SIGNAL("Add link"), self.id, str(port))
+                    return
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Hub", "Connection"),  translate("Hub", "No port available") )
+        else:
+            AbstractNode.mousePressEvent(self, event)
