@@ -82,6 +82,9 @@ class Page_Hub(QtGui.QWidget, Ui_HubPage):
             (host,  port) = str(self.comboBoxHypervisors.currentText()).split(':')
             Hubconfig.hypervisor_host = host
             Hubconfig.hypervisor_port = int(port)
+            
+        if config == None:
+            node.updatePorts()
 
 def create(dlg):
 

@@ -26,6 +26,8 @@ from GNS3.Utils import translate
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.Globals as dynagen
 
+error = None
+
 class AbstractNode(QtSvg.QGraphicsSvgItem):
     """ AbstractNode class
         Base class to create Dynamips nodes
@@ -37,6 +39,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """
 
         QtSvg.QGraphicsSvgItem.__init__(self)
+        global error
         self.__render_normal = render_normal
         self.__render_select = render_select
         self.__edgeList = set()
@@ -45,6 +48,10 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.type = 'Unknown'
         self.config = {}
         
+        if error == None:
+            error = QtGui.QErrorMessage(globals.GApp.mainWindow)
+        self.error = error
+
         # hypervisor settings
         self.hypervisor_host = None
         self.hypervisor_port = None

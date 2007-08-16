@@ -167,6 +167,9 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
             (host,  port) = str(self.comboBoxHypervisors.currentText()).split(':')
             FRSWconfig.hypervisor_host = host
             FRSWconfig.hypervisor_port = int(port)
+            
+        if config == None:
+            node.updatePorts()
 
 def create(dlg):
 

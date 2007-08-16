@@ -171,6 +171,9 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
             (host,  port) = str(self.comboBoxHypervisors.currentText()).split(':')
             ETHSWconfig.hypervisor_host = host
             ETHSWconfig.hypervisor_port = int(port)
+            
+        if config == None:
+            node.updatePorts()
 
 def create(dlg):
 

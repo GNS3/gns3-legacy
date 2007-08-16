@@ -140,7 +140,6 @@ MBCHASSIS = ('2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621
 IF_REGEXP = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)\/([0-9]+)$""") 
 PORT_REGEXP = re.compile(r"""^[0-9]*$""")
 router_id = 0
-error = None
 
 class IOSRouter(AbstractNode):
     """ IOSRouter class implementing the IOS Router
@@ -151,13 +150,10 @@ class IOSRouter(AbstractNode):
         AbstractNode.__init__(self, renderer_normal, renderer_select)
         
         # assign a new hostname
-        global router_id,  error
+        global router_id
         self.hostname = 'R' + str(router_id)
         router_id = router_id + 1
         self.setCustomToolTip()
-        
-        if error == None:
-            error = QtGui.QErrorMessage(globals.GApp.mainWindow)
         
         self.dev = None
         self.config = self.getDefaultConfig()
@@ -382,7 +378,7 @@ class IOSRouter(AbstractNode):
         if module == '':
             for ifname in node_interfaces:
                 if int(ifname[1]) == slotnb:
-                    error.showMessage(translate('IOSRouter', ifname + ' is still used with no module in the slot ' +  str(slotnb)))
+                    self.error.showMessage(translate('IOSRouter', 'Router ' + self.hostname + ': ' + ifname + ' is still used with no module in the slot ' +  str(slotnb)))
                     self.deleteInterface(ifname)
             return
 
@@ -405,14 +401,14 @@ class IOSRouter(AbstractNode):
                     found = True
                     # check if the interface type has changed
                     if ifname[0] != abrv:
-                        errormsg += translate('IOSRouter', ifname + " is no longer compatible with module " + module + " in the slot " + str(slotnb) + ", deleting interface ...\n")
+                        errormsg += translate('IOSRouter', 'Router ' + self.hostname + ': ' + ifname + " is no longer compatible with module " + module + " in the slot " + str(slotnb) + ", deleting interface ...\n")
                         self.deleteInterface(ifname)
             # check if the interface number has changed
             if ifslot == slotnb and found == False:
-                errormsg +=  translate('IOSRouter', ifname + " is no longer compatible with module " + module + " in the slot " + str(slotnb) + ", deleting interface ...\n")
+                errormsg +=  translate('IOSRouter', 'Router ' + self.hostname + ': ' + ifname + " is no longer compatible with module " + module + " in the slot " + str(slotnb) + ", deleting interface ...\n")
                 self.deleteInterface(ifname)
         if errormsg:
-            error.showMessage(errormsg)
+            self.error.showMessage(errormsg)
 
     def startNode(self):
         """ Start the node

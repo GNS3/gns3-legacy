@@ -131,6 +131,20 @@ class ETHSW(AbstractNode):
 #                del dynagen.devices[self.hostname]
 #            self.shutdownInterfaces()
 
+    def updatePorts(self):
+        """ Check if the connections are still ok
+        """
+        
+        misconfigured_port = []
+        connected_ports = self.getConnectedInterfaceList()
+        for port in connected_ports:
+            if not port in self.getInterfaces():
+                misconfigured_port.append(port)
+                self.deleteInterface(port)
+        
+        if len(misconfigured_port):
+            self.error.showMessage(translate('ETHSW', 'Switch ' + self.hostname + ': ports ' + str(misconfigured_port) + ' no longer available, deleting connected links ...'))
+
     def mousePressEvent(self, event):
         """ Call when the node is clicked
             event: QtGui.QGraphicsSceneMouseEvent instance

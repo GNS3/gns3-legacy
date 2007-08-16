@@ -141,6 +141,9 @@ class Page_Clound(QtGui.QWidget, Ui_CloundPage):
             Cloundconfig  = node.config
 
         Cloundconfig.nios = self.nios
+        
+        if config == None:
+            node.updateNIOs()
             
 def create(dlg):
 
