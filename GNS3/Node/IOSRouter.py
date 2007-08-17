@@ -41,61 +41,61 @@ ROUTERS = {
 
 SLOTMATRIX = {
                         '2610' : { 0 : ('CISCO2600-MB-1E'), 
-                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     },
                         '2611' : { 0 : ('CISCO2600-MB-2E'), 
-                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     },
                         '2620' : { 0 : ('CISCO2600-MB-1FE'), 
-                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     }, 
                         '2621' : { 0 : ('CISCO2600-MB-2FE'), 
-                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     }, 
                         '2610XM' : { 0 : ('CISCO2600-MB-1FE'), 
-                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     },
                         '2611XM' : { 0 : ('CISCO2600-MB-2FE'), 
-                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     },
                         '2620XM' : { 0 : ('CISCO2600-MB-1FE'), 
-                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     }, 
                         '2621XM' : { 0 : ('CISCO2600-MB-2FE'), 
-                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     },
                         '2650XM' : { 0 : ('CISCO2600-MB-1FE'), 
-                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     }, 
                         '2651XM' : { 0 : ('CISCO2600-MB-2FE'), 
-                                        1 :('NM-16ESW', 'NM-1FE-TX', 'NM-4E',  'NM-1E')
+                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     },
                         '2691' : { 0 : ('GT96100-FE'), 
-                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4T')
+                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T')
                                     }, 
-                        '3620' : { 0 :  ('NM-16ESW','NM-1FE-TX', 'NM-4E', 'NM-1E', 'NM-4T'), 
-                                        1 : ('NM-16ESW','NM-1FE-TX', 'NM-4E', 'NM-1E', 'NM-4T'), 
+                        '3620' : { 0 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
+                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
                                     }, 
-                        '3640' : {0 : ('NM-16ESW','NM-1FE-TX', 'NM-4E', 'NM-1E', 'NM-4T'),
-                                        1 : ('NM-16ESW','NM-1FE-TX', 'NM-4E', 'NM-1E', 'NM-4T'),
+                        '3640' : {0 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'),
+                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'),
                                         2 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'),
                                         3 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'),
                                     }, 
                         '3660' : { 0 : ('Leopard-2FE'),
-                                        1 : ('NM-16ESW','NM-1FE-TX', 'NM-4E', 'NM-1E', 'NM-4T'), 
-                                        2 : ('NM-16ESW','NM-1FE-TX', 'NM-4E', 'NM-1E', 'NM-4T'), 
+                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
+                                        2 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
                                         3 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
                                         4 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
                                         5 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'),
                                         6 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
                                     },
                         '3725' : { 0 : ('GT96100-FE'),
-                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4T'), 
-                                        2 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4T'),
+                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'), 
+                                        2 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'),
                                     },
                         '3745' : { 0 : ('GT96100-FE'),
-                                        1 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4T'), 
-                                        2 : ('NM-16ESW', 'NM-1FE-TX', 'NM-4T'),
+                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'), 
+                                        2 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'),
                                         3 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'),
                                         4 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'),
                                     },
@@ -174,6 +174,9 @@ class IOSRouter(AbstractNode):
         self.stopAct.setIcon(QtGui.QIcon(':/icons/stop.svg'))
         self.connect(self.stopAct, QtCore.SIGNAL('triggered()'), self.__stopAction)
 
+        #FIXME: temporary hack
+        self.config.slots = ['',  '',  '',  '',  '',  '',  '']
+        
     def getDefaultConfig(self):
         """ Returns the default configuration
         """
@@ -205,15 +208,33 @@ class IOSRouter(AbstractNode):
         """
     
         interfaces = self.getConnectedInterfaceList()
+        # clean unused slots
         for slot in range(7):
             try:
-                # get the modules for the specified chassis and slot number
+                module = self.config.slots[slot]
+                # number of interfaces for this module and type of interfaces (ethernet, serial etc ...)
+                (nbif, type) = ADAPTERS[module][1:3]
+                flag = False
+                for interface in range(nbif):
+                    name = type + str(slot) + '/' + str(interface)
+                    if name in interfaces:
+                        flag = True
+                        break
+                if flag == False:
+                    # no interface connected for this slot, clean it
+                    self.config.slots[slot] = ''
+            except KeyError:
+                continue
+        for slot in range(7):
+            try:
+                # get the possible modules for the specified chassis and slot number
                 modules = SLOTMATRIX[chassis][slot]
                 for module_name in modules:
-                    # number of interfaces for this module
-                    nbif= ADAPTERS[module_name][1]
-                    # type of interfaces (ethernet, serial etc ...)
-                    type = ADAPTERS[module_name][2]
+                    if module_name == 'NM-16ESW':
+                        # don't use the switch module
+                        continue
+                    # number of interfaces for this module and type of interfaces (ethernet, serial etc ...)
+                    (nbif, type) = ADAPTERS[module_name][1:3]
                     if type == link_type:
                         # if the right type
                         for interface in range(nbif):
@@ -228,6 +249,7 @@ class IOSRouter(AbstractNode):
                                     # the configured slot has the right type
                                     return interface_name
             except KeyError:
+                print slot
                 break
         return ''
   
@@ -410,12 +432,13 @@ class IOSRouter(AbstractNode):
         if errormsg:
             self.error.showMessage(errormsg)
 
-    def startNode(self):
-        """ Start the node
+    def configConnections(self):
+        """ Connections configuration
         """
-
-        if self.dev == None or self.dev.state == 'running':
+        
+        if self.dev == None:
             return
+        
         for interface in self.getConnectedInterfaceList():
 
             match_obj = IF_REGEXP.search(interface)
@@ -441,7 +464,13 @@ class IOSRouter(AbstractNode):
                     self.dev.slot[source_slot].connect(source_port, destnode.getHypervisor(), destination, dest_port)
             elif destinterface.lower()[:3] == 'nio':
                 self.dev.slot[source_slot].nio(source_port, nio=self.createNIO(self.getHypervisor(),  destinterface))
-        
+            
+    def startNode(self):
+        """ Start the node
+        """
+
+        if self.dev == None or self.dev.state == 'running':
+            return
         print self.dev.start()
         
         for edge in self.getEdgeList():
@@ -486,7 +515,7 @@ class IOSRouter(AbstractNode):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSRouter", "Connection"),  translate("IOSRouter", "Can't find the IOS image"))
                 return
             image = globals.GApp.iosimages[self.config.image]
-            interface = self. smartInterface(globals.linkAbrv[globals.currentLinkType],  image.chassis)
+            interface = self.smartInterface(globals.linkAbrv[globals.currentLinkType],  image.chassis)
             if interface:
                 self.emit(QtCore.SIGNAL("Add link"), self.id, interface)
             else:

@@ -91,7 +91,7 @@ class ETHSW(AbstractNode):
             destinterface = self.getConnectedNeighbor(interface)
             print destinterface
         
-        #TODO: finish connetion to NIO
+        #TODO: finish connection to NIO
         
         connected_interfaces = map(int,  connected_interfaces)
         for (vlan,  portlist) in self.config.vlans.iteritems():
@@ -107,8 +107,7 @@ class ETHSW(AbstractNode):
         """ Stop the node
         """
 
-        if self.dev:
-            self.shutdownInterfaces()
+        pass
 
     def resetHypervisor(self):
         """ Reset the connection to the hypervisor

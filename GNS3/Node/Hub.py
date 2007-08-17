@@ -89,7 +89,7 @@ class Hub(AbstractNode):
         """ Stop the node
         """
         
-        self.shutdownInterfaces()
+        pass
 
     def resetHypervisor(self):
         """ Reset the connection to the hypervisor

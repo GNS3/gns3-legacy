@@ -104,8 +104,7 @@ class FRSW(AbstractNode):
         """ Stop the node
         """
 
-        if self.dev:
-            self.shutdownInterfaces()
+        pass
 
     def resetHypervisor(self):
         """ Reset the connection to the hypervisor

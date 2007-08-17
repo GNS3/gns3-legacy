@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
@@ -46,7 +47,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.__selectedInterface = None
         self.__flag_hostname = False
         self.type = 'Unknown'
-        self.config = {}
         
         if error == None:
             error = QtGui.QErrorMessage(globals.GApp.mainWindow)

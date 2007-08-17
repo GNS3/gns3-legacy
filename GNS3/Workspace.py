@@ -415,14 +415,17 @@ class Workspace(QMainWindow, Ui_MainWindow):
         try:
             for node in globals.GApp.topology.nodes.itervalues():
                 node.configNode()
+            for node in globals.GApp.topology.nodes.itervalues():
+                if type(node) == IOSRouter:
+                    node.configConnections()
         except lib.DynamipsError, msg:
-
             QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"),  str(msg))
             return
         except lib.DynamipsErrorHandled:
             QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
             return
     
+        self.__startNonIOSNodes()
         self.__switchToMode(globals.Enum.Mode.Emulation)
         self.action_swModeEmulation.setChecked(True)
         self.statusbar.showMessage(translate("Workspace", "Emulation Mode"))
@@ -645,7 +648,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 return
             current += 1
         progress.setValue(count)
-        self.__startNonIOSNodes()
+         #self.__startNonIOSNodes()
         
     def __action_StopAll(self):
         """ Stop all nodes
