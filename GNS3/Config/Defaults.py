@@ -124,11 +124,11 @@ conf_ETHSW_types = {
     'hypervisor_port': int,
 }
 
-conf_Clound_defaults = {
+conf_Cloud_defaults = {
     'nios': []
 }
 
-conf_Clound_types = {
+conf_Cloud_types = {
     'nios': list,
 }
 

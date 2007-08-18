@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.1.dtd">
 <!-- eric4 project file for project GNS-3 -->
-<!-- Saved: 2007-08-14, 20:14:19 -->
+<!-- Saved: 2007-08-18, 15:18:22 -->
 <!-- Copyright (C) 2007 GNS-3 Dev Team, contact@gns3.net -->
 <Project version="4.1">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -307,23 +307,6 @@
     <Source>
       <Dir>GNS3</Dir>
       <Dir>Node</Dir>
-      <Name>Clound.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>Page_Clound.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>Form_CloundPage.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Node</Dir>
       <Name>ATMSW.py</Name>
     </Source>
     <Source>
@@ -342,6 +325,17 @@
       <Dir>Ui</Dir>
       <Dir>ConfigurationPages</Dir>
       <Name>Form_HubPage.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Node</Dir>
+      <Name>Cloud.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Page_Cloud.py</Name>
     </Source>
   </Sources>
   <Forms>

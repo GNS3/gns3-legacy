@@ -32,7 +32,7 @@ from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Preferences import PreferencesDialog
 from GNS3.Config.Config import ConfDB
 from GNS3.Node.IOSRouter import IOSRouter
-from GNS3.Node.Clound import Clound
+from GNS3.Node.Cloud import Cloud
 import GNS3.Globals as globals 
 
 __statesDefaults = {
@@ -394,7 +394,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 image = globals.GApp.iosimages[node.config.image]
                 if image.hypervisor_host == '':
                     globals.useHypervisorManager = True
-            elif type(node) != Clound and node.config.hypervisor_host == '':
+            elif type(node) != Cloud and node.config.hypervisor_host == '':
                 globals.useHypervisorManager = True
             
         if globals.useHypervisorManager:
@@ -588,7 +588,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 node.console()
 
     def __startNonIOSNodes(self):
-        """ Start non IOS nodes (ETHSW, ATMSW, FRSW, Bridge, Clound)
+        """ Start non IOS nodes (ETHSW, ATMSW, FRSW, Bridge, Cloud)
         """
     
         node_list = []
@@ -648,7 +648,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 return
             current += 1
         progress.setValue(count)
-         #self.__startNonIOSNodes()
         
     def __action_StopAll(self):
         """ Stop all nodes

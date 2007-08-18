@@ -30,7 +30,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         Base class to create edges between nodes
     """
   
-    def __init__(self, sourceNode, sourceIf, destNode, destIf):
+    def __init__(self, sourceNode, sourceIf, destNode, destIf, Fake = False):
 
         QtGui.QGraphicsItem.__init__(self)
 
@@ -71,7 +71,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                     src_rect.width() / 2.0, src_rect.height() / 2.0)
         dst_rect = self.dest.boundingRect()
         self.dst = self.mapFromItem(self.dest,
-                    dst_rect.width() / 2.0, dst_rect.height() / 2.0)
+                        dst_rect.width() / 2.0, dst_rect.height() / 2.0)
         
         # compute vectors
         self.dx = self.dst.x() - self.src.x()

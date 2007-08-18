@@ -28,7 +28,7 @@ from GNS3.Ui.Form_NodeConfigurator import Ui_NodeConfigurator
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
-from GNS3.Node.Clound import Clound
+from GNS3.Node.Cloud import Cloud
 from GNS3.Node.Hub import Hub
 
 class ConfigurationPageItem(QtGui.QTreeWidgetItem):
@@ -103,9 +103,9 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             "ETHSW":
                 [translate("NodeConfigurator", "Ethernet switches"), ":/symbols/sw_standard.normal.svg",
                  "Page_ETHSW", None, None], 
-            "Clounds":
-                [translate("NodeConfigurator", "Clounds"), None,
-                 "Page_Clound", None, None], 
+            "Clouds":
+                [translate("NodeConfigurator", "Clouds"), None,
+                 "Page_Cloud", None, None], 
             "Hubs":
                 [translate("NodeConfigurator", "Hubs"), None,
                  "Page_Hub", None, None]
@@ -114,7 +114,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         self.assocPage = { IOSRouter: "Routers", 
                                      FRSW: "FRSW",
                                      ETHSW: "ETHSW", 
-                                     Clound: "Clounds", 
+                                     Cloud: "Clouds", 
                                      Hub: "Hubs"
                                     }
         self.__loadNodeItems()

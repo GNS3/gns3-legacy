@@ -372,7 +372,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
     
         elif niotype.lower() == 'nio_vde':
             (controlsock, localsock) = niostring.split(':',1)
-            return lib.NIO_vde(switch.dynamips, controlsock, localsock)
+            return lib.NIO_vde(dynamips, controlsock, localsock)
 
     def getHypervisor(self):
         """ Returns the configured hypervisor

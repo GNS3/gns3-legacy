@@ -111,7 +111,18 @@ class Topology(QtGui.QGraphicsScene):
 
         self.__links.add(link)
         self.addItem(link)
-   
+ 
+    def fakeAddLink(self, srcid, srcif):
+        """ Add a link to the topology
+        """
+
+#        if srcif[0] == 's' or srcif[0] == 'a' or dstif[0] == 's' or dstif[0] == 'a':
+#            # interface is serial or ATM
+#            link = Serial(self.__nodes[srcid], srcif, self.__nodes[srcid], srcif,  False)
+#        else:
+#            # by default use an ethernet link
+        Ethernet(self.__nodes[srcid], srcif, self.__nodes[srcid], srcif,  False)
+ 
     def deleteLink(self, link):
         """ Delete a link from the topology
         """
@@ -133,3 +144,22 @@ class Topology(QtGui.QGraphicsScene):
         pass
 
     links = property(__getLinks, __setLinks, doc='Property of links topology')
+
+    #TODO: menu on scene
+#    def mousePressEvent(self, event):
+#        """ Call when the node is clicked
+#            event: QtGui.QGraphicsSceneMouseEvent instance
+#        """
+#        
+#        print 'scene event'
+##        for item in self.selectedItems():
+##            print item.hostname
+#        if event.button() == QtCore.Qt.RightButton:
+#            menu = QtGui.QMenu()
+#            menu.addAction('test1')
+#            menu.addAction('test2')
+#            menu.addAction('test3')
+#            menu.exec_(QtGui.QCursor.pos())
+#            event.accept()
+#        else:
+#            QtGui.QGraphicsScene.mousePressEvent(self, event)

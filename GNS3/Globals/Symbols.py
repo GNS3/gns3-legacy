@@ -21,7 +21,7 @@
 #
 
 from GNS3.Node.IOSRouter import IOSRouter
-from GNS3.Node.Clound import Clound
+from GNS3.Node.Cloud import Cloud
 from GNS3.Node.Hub import Hub
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
@@ -37,8 +37,8 @@ SYMBOLS = (
     'select_svg_file': ":/symbols/rt_firewall.selected.svg"},
 
     {'name': "Edge label switch router", 'object': IOSRouter,
-    'normal_svg_file': ":/symbols/edgelable_swproc.normal.svg",
-    'select_svg_file': ":/symbols/edgelable_swproc.selected.svg"},
+    'normal_svg_file': ":/symbols/edgelabel_swproc.normal.svg",
+    'select_svg_file': ":/symbols/edgelabel_swproc.selected.svg"},
 
     {'name': "Switch", 'object': ETHSW,
     'normal_svg_file': ":/symbols/sw_standard.normal.svg",
@@ -48,12 +48,20 @@ SYMBOLS = (
     'normal_svg_file': ":/symbols/sw_multilayer.normal.svg",
     'select_svg_file': ":/symbols/sw_multilayer.selected.svg"},
     
-    {'name': "Route switch processor", 'object': Clound,
+    {'name': "Route switch processor", 'object': Cloud,
     'normal_svg_file': ":/symbols/route_swproc.normal.svg",
     'select_svg_file': ":/symbols/route_swproc.selected.svg"},
      
-    {'name': "ATM switch", 'object': FRSW,
+    {'name': "ATM switch", 'object': IOSRouter,
     'normal_svg_file': ":/symbols/sw_atm.normal.svg",
-    'select_svg_file': ":/symbols/sw_atm.selected.svg"}
+    'select_svg_file': ":/symbols/sw_atm.selected.svg"}, 
+    
+    {'name': "Frame Relay switch", 'object': FRSW,
+    'normal_svg_file': ":/symbols/sw_atm.normal.svg",
+    'select_svg_file': ":/symbols/sw_atm.selected.svg"} , 
+ 
+    {'name': "Cloud", 'object': Cloud,
+    'normal_svg_file': ":/symbols/cloud.normal.svg",
+    'select_svg_file': ":/symbols/cloud.selected.svg"}
 )
 

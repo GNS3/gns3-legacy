@@ -22,17 +22,17 @@
 
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
-from Form_CloundPage import Ui_CloundPage
+from Form_CloudPage import Ui_CloudPage
 
-class Page_Clound(QtGui.QWidget, Ui_CloundPage):
-    """ Class implementing the Clound configuration page.
+class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
+    """ Class implementing the Cloud configuration page.
     """
 
     def __init__(self):
     
         QtGui.QWidget.__init__(self)
         self.setupUi(self)
-        self.setObjectName("Clound")
+        self.setObjectName("Cloud")
         
         # connect slots
         self.connect(self.pushButtonAddGenericEth, QtCore.SIGNAL('clicked()'), self.slotAddGenEth)
@@ -114,14 +114,14 @@ class Page_Clound(QtGui.QWidget, Ui_CloundPage):
 
         node = globals.GApp.topology.getNode(id)
         if config:
-            Cloundconfig = config
+            Cloudconfig = config
         else:
-            Cloundconfig  = node.config
+            Cloudconfig  = node.config
             
         self.nios = []
         self.listWidgetGenericEth.clear()
         self.listWidgetLinuxEth.clear()
-        for nio in Cloundconfig.nios:
+        for nio in Cloudconfig.nios:
             (niotype,  niostring) = nio.split(':')
             if niotype == 'NIO_gen_eth':
                 self.listWidgetGenericEth.addItem(nio)
@@ -136,15 +136,15 @@ class Page_Clound(QtGui.QWidget, Ui_CloundPage):
 
         node = globals.GApp.topology.getNode(id)
         if config:
-            Cloundconfig = config
+            Cloudconfig = config
         else:
-            Cloundconfig  = node.config
+            Cloudconfig  = node.config
 
-        Cloundconfig.nios = self.nios
+        Cloudconfig.nios = self.nios
         
         if config == None:
             node.updateNIOs()
             
 def create(dlg):
 
-    return  Page_Clound()
+    return  Page_Cloud()

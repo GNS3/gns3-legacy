@@ -106,17 +106,6 @@ class FRSW(AbstractNode):
 
         pass
 
-    def resetHypervisor(self):
-        """ Reset the connection to the hypervisor
-        """
-
-        key = self.hypervisor_host + ':' + str(self.hypervisor_port)
-        if dynagen.dynamips.has_key(key):
-            del dynagen.dynamips[key]
-        self.hypervisor_host = None
-        self.hypervisor_port = None
-        self.baseUDP = None
-        
     def resetNode(self):
         """ Reset the node configuration
         """

@@ -75,12 +75,6 @@ class ATMSW(AbstractNode):
         
         self.shutdownInterfaces()
 
-    def resetHypervisor(self):
-        """ Reset the connection to the hypervisor
-        """
-        
-        pass
-        
     def resetNode(self):
         """ Reset the node configuration
         """

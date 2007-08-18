@@ -23,14 +23,14 @@
 from GNS3.Node.AbstractNode import AbstractNode
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
-from GNS3.Config.Objects import CloundConf
+from GNS3.Config.Objects import CloudConf
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Globals as globals 
 
-clound_id = 0
+cloud_id = 0
 
-class Clound(AbstractNode):
-    """ Clound class implementing NIOs (to external communications)
+class Cloud(AbstractNode):
+    """ Cloud class implementing NIOs (to external communications)
     """
 
     def __init__(self, renderer_normal, renderer_select):
@@ -38,9 +38,9 @@ class Clound(AbstractNode):
         AbstractNode.__init__(self, renderer_normal, renderer_select)
         
         # assign a new hostname
-        global clound_id
-        self.hostname = 'C' + str(clound_id)
-        clound_id = clound_id + 1
+        global cloud_id
+        self.hostname = 'C' + str(cloud_id)
+        cloud_id = cloud_id + 1
         self.setCustomToolTip()
         self.config = self.getDefaultConfig()
 
@@ -48,7 +48,7 @@ class Clound(AbstractNode):
         """ Returns the default configuration
         """
     
-        return CloundConf()
+        return CloudConf()
 
     def getInterfaces(self):
         """ Return all interfaces
@@ -74,12 +74,6 @@ class Clound(AbstractNode):
         """
         
         pass
-
-    def resetHypervisor(self):
-        """ Reset the connection to the hypervisor
-        """
-        
-        pass
         
     def resetNode(self):
         """ Reset the node configuration
@@ -97,7 +91,7 @@ class Clound(AbstractNode):
                 self.deleteInterface(nio)
         
         if len(misconfigured_nio):
-            self.error.showMessage(translate('Clound', 'Clound ' + self.hostname + ': NIOs ' + str(misconfigured_nio) + ' no longer available, deleting connected links ...'))
+            self.error.showMessage(translate('Cloud', 'Cloud ' + self.hostname + ': NIOs ' + str(misconfigured_nio) + ' no longer available, deleting connected links ...'))
         
     def mousePressEvent(self, event):
         """ Call when the node is clicked
@@ -110,6 +104,6 @@ class Clound(AbstractNode):
                 if not nio in connected_nios:
                     self.emit(QtCore.SIGNAL("Add link"), self.id, nio)
                     return
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Clound", "Connection"),  translate("Clound", "No NIO available") )
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Cloud", "Connection"),  translate("Cloud", "No NIO available") )
         else:
             AbstractNode.mousePressEvent(self, event)

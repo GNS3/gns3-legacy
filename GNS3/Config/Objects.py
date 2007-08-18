@@ -108,11 +108,11 @@ class ETHSWConf(ConfigObject):
         self.conf = Defaults.conf_ETHSW_defaults.copy() 
         self.types = Defaults.conf_ETHSW_types
 
-class CloundConf(ConfigObject):
+class CloudConf(ConfigObject):
     def __init__(self):
         ConfigObject.__init__(self)
-        self.conf = Defaults.conf_Clound_defaults.copy() 
-        self.types = Defaults.conf_Clound_types
+        self.conf = Defaults.conf_Cloud_defaults.copy() 
+        self.types = Defaults.conf_Cloud_types
         
 class HubConf(ConfigObject):
     def __init__(self):

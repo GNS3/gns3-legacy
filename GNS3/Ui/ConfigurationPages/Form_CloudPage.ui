@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>CloundPage</class>
- <widget class="QWidget" name="CloundPage" >
+ <class>CloudPage</class>
+ <widget class="QWidget" name="CloudPage" >
   <property name="geometry" >
    <rect>
     <x>0</x>
@@ -10,7 +10,7 @@
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>Clound</string>
+   <string>Cloud</string>
   </property>
   <layout class="QVBoxLayout" >
    <item>
@@ -315,7 +315,7 @@
            </widget>
           </item>
           <item row="0" column="1" >
-           <widget class="QLineEdit" name="lineEditLocalFile" >
+           <widget class="QLineEdit" name="lineEditUNIXLocalFile" >
             <property name="sizePolicy" >
              <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
               <horstretch>0</horstretch>
@@ -332,7 +332,7 @@
            </widget>
           </item>
           <item row="1" column="1" >
-           <widget class="QLineEdit" name="lineEditRemoteFile" >
+           <widget class="QLineEdit" name="lineEditUNIXRemoteFile" >
             <property name="sizePolicy" >
              <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
               <horstretch>0</horstretch>
@@ -344,7 +344,7 @@
          </layout>
         </widget>
        </item>
-       <item rowspan="2" row="0" column="2" >
+       <item rowspan="3" row="0" column="2" >
         <widget class="QGroupBox" name="groupBox_6" >
          <property name="title" >
           <string>NIOs</string>
@@ -380,20 +380,20 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="0" >
+       <item rowspan="2" row="2" column="0" colspan="2" >
         <spacer>
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
          <property name="sizeHint" >
           <size>
-           <width>20</width>
-           <height>181</height>
+           <width>161</width>
+           <height>201</height>
           </size>
          </property>
         </spacer>
        </item>
-       <item row="2" column="2" >
+       <item row="3" column="2" >
         <spacer>
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
@@ -412,6 +412,113 @@
       <attribute name="title" >
        <string>NIO VDE</string>
       </attribute>
+      <layout class="QGridLayout" >
+       <item row="0" column="0" colspan="2" >
+        <widget class="QGroupBox" name="groupBox_8" >
+         <property name="title" >
+          <string>Settings</string>
+         </property>
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="QLabel" name="label_7" >
+            <property name="text" >
+             <string>Control file:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" >
+           <widget class="QLineEdit" name="lineEditVDELocalFile" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" >
+           <widget class="QLabel" name="label_8" >
+            <property name="text" >
+             <string>Local file:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" >
+           <widget class="QLineEdit" name="lineEditVDERemoteFile" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item rowspan="3" row="0" column="2" >
+        <widget class="QGroupBox" name="groupBox_9" >
+         <property name="title" >
+          <string>NIOs</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <widget class="QListWidget" name="listWidgetVDE" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0" >
+        <widget class="QPushButton" name="pushButtonAddVDE" >
+         <property name="text" >
+          <string>&amp;Add</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" >
+        <widget class="QPushButton" name="pushButtonDeleteVDE" >
+         <property name="enabled" >
+          <bool>false</bool>
+         </property>
+         <property name="text" >
+          <string>&amp;Delete</string>
+         </property>
+        </widget>
+       </item>
+       <item rowspan="2" row="2" column="0" colspan="2" >
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>161</width>
+           <height>201</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="3" column="2" >
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>20</width>
+           <height>111</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>
