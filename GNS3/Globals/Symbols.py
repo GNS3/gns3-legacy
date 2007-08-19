@@ -30,14 +30,30 @@ SYMBOLS = (
     {'name': "Router", 'object': IOSRouter,
     'normal_svg_file': ":/symbols/rt_standard.normal.svg",
     'select_svg_file': ":/symbols/rt_standard.selected.svg"},
+    
+    {'name': "Netflow router", 'object': IOSRouter,
+    'normal_svg_file': ":/symbols/rt_netflow.normal.svg",
+    'select_svg_file': ":/symbols/rt_standard.selected.svg"},
 
     {'name': "Router with firewall", 'object': IOSRouter,
     'normal_svg_file': ":/symbols/rt_firewall.normal.svg",
     'select_svg_file': ":/symbols/rt_firewall.selected.svg"},
+    
+    {'name': "Gateway", 'object': IOSRouter,
+    'normal_svg_file': ":/symbols/gateway.normal.svg",
+    'select_svg_file': ":/symbols/gateway.selected.svg"},
 
     {'name': "Edge label switch router", 'object': IOSRouter,
     'normal_svg_file': ":/symbols/edgelabel_swproc.normal.svg",
     'select_svg_file': ":/symbols/edgelabel_swproc.selected.svg"},
+    
+    {'name': "Label switch router", 'object': IOSRouter,
+    'normal_svg_file': ":/symbols/label_switch_router.normal.svg",
+    'select_svg_file': ":/symbols/label_switch_router.selected.svg"}, 
+    
+    {'name': "Optical router", 'object': IOSRouter,
+    'normal_svg_file': ":/symbols/optical_router.normal.svg",
+    'select_svg_file': ":/symbols/optical_router.selected.svg"}, 
 
     {'name': "Switch", 'object': ETHSW,
     'normal_svg_file': ":/symbols/sw_standard.normal.svg",
@@ -65,7 +81,28 @@ SYMBOLS = (
  
     {'name': "Cloud", 'object': Cloud,
     'normal_svg_file': ":/symbols/cloud.normal.svg",
-    'select_svg_file': ":/symbols/cloud.selected.svg"}
+    'select_svg_file': ":/symbols/cloud.selected.svg"}, 
+    
+    {'name': "Access Point", 'object': ETHSW,
+    'normal_svg_file': ":/symbols/access_point.normal.svg",
+    'select_svg_file': ":/symbols/access_point.selected.svg"}, 
+    
+    {'name': "Lightweight Access Point", 'object': ETHSW,
+    'normal_svg_file': ":/symbols/lightweight_ap.normal.svg",
+    'select_svg_file': ":/symbols/lightweight_ap.selected.svg"}, 
+    
+    {'name': "WLAN controller", 'object': ETHSW,
+    'normal_svg_file': ":/symbols/wlan_controller.normal.svg",
+    'select_svg_file': ":/symbols/wlan_controller.selected.svg"}, 
+    
+    {'name': "PIX firewall", 'object': IOSRouter,
+    'normal_svg_file': ":/symbols/PIX_firewall.normal.svg",
+    'select_svg_file': ":/symbols/PIX_firewall.selected.svg"},
 )
 
-DECORATIVE_SYMBOLS = ("Multilayer switch", "Route switch processor")
+DECORATIVE_SYMBOLS = ("Multilayer switch", 
+                                        "Route switch processor",  
+                                        "Access Point", 
+                                        "Lightweight Access Point", 
+                                        "WLAN controller", 
+                                        "PIX firewall")
