@@ -23,33 +23,47 @@
 from PyQt4 import QtCore, QtGui
 import GNS3.Ui.svg_resources_rc
 from GNS3.Utils import translate
-from GNS3.Globals.Symbols import SYMBOLS
+from GNS3.Globals.Symbols import SYMBOLS,  DECORATIVE_SYMBOLS
 
-class nodesDock(QtGui.QListWidget):
+class nodesDock(QtGui.QTreeWidget):
     """ Class for managing the node types list
-        Custom QListWidget
+        Custom QTreeWidget
     """
 
     def __init__(self, parent):
     
-        QtGui.QListWidget.__init__(self, parent)
+        QtGui.QTreeWidget.__init__(self, parent)
         self.designMode()
+        self.header().hide()
 
     def designMode(self):
         """ Create items for design mode
         """
         
         self.clear()
-        #self.setRootIsDecorated(False)
-        rowNum = 0
+        count = 0
+        emulated_devices = QtGui.QTreeWidgetItem(self, 0)
+        emulated_devices.setText(0, translate("nodesDock", 'Emulated devices'))
+        emulated_devices.setExpanded(True)
+        self.insertTopLevelItem(0, emulated_devices)
+        decorative_devices = QtGui.QTreeWidgetItem(self, 0)
+        decorative_devices.setText(0, translate("nodesDock", 'Decorative devices'))
+        decorative_devices.setExpanded(True)
+        self.insertTopLevelItem(0, decorative_devices)
         for symbol in SYMBOLS:
-            # Use custom type to known the symbol type
-            item = QtGui.QListWidgetItem(self, 1000 + rowNum)
-            item.setText(translate("nodesDock", symbol['name']))
-            item.setIcon(QtGui.QIcon(symbol['normal_svg_file']))
-            #self.insertTopLevelItem(0, item)
-            self.insertItem(rowNum, item)
-            rowNum += 1
+            if symbol['name'] in DECORATIVE_SYMBOLS:
+                # Use custom type to known the symbol type
+                item = QtGui.QTreeWidgetItem(decorative_devices, 1000 + count)
+                item.setText(0, translate("nodesDock", symbol['name']))
+                item.setIcon(0,  QtGui.QIcon(symbol['normal_svg_file']))
+                decorative_devices.addChild(item)
+            else:
+                # Use custom type to known the symbol type
+                item = QtGui.QTreeWidgetItem(emulated_devices, 1000 + count)
+                item.setText(0, translate("nodesDock", symbol['name']))
+                item.setIcon(0,  QtGui.QIcon(symbol['normal_svg_file']))
+                emulated_devices.addChild(item)
+            count += 1
 
     def mouseMoveEvent(self, event):
         """ Drag event
@@ -59,15 +73,18 @@ class nodesDock(QtGui.QListWidget):
             or self.currentItem() == None):
             return
         
-        drag = QtGui.QDrag(self)
         item = self.currentItem()
+        if not item.type():
+            return
+
+        drag = QtGui.QDrag(self)
         mimedata = QtCore.QMimeData()
         
         # Deduce item name from his CustomType
         mimedata.setText(SYMBOLS[item.type()-1000]['name'])
 
         iconeSize = self.iconSize()
-        icone = item.icon()
+        icone = item.icon(0)
         drag.setMimeData(mimedata)
         drag.setHotSpot(QtCore.QPoint(iconeSize.width(), iconeSize.height()))
         drag.setPixmap(icone.pixmap(iconeSize))

@@ -47,6 +47,12 @@ class ETHSW(AbstractNode):
         self.config = self.getDefaultConfig()
         self.dev = None
         
+        # by default create 8 ports in vlan 1
+        self.config.vlans[1] = []
+        for port in range(1, 9):
+            self.config.ports[port] = 'access'
+            self.config.vlans[1].append(port)
+        
     def getDefaultConfig(self):
         """ Returns the default configuration
         """

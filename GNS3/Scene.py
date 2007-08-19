@@ -55,7 +55,7 @@ class Scene(QtGui.QGraphicsView):
         self.setResizeAnchor(self.AnchorViewCenter)
         
         #FIXME: tests
-        self.setMouseTracking(True)
+        #self.setMouseTracking(True)
 
         # Flags for GUI state matching
         self.__isFirstClick = True

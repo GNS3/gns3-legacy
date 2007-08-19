@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Fri Jul 27 17:58:27 2007
+# Created: Sat Aug 18 23:30:57 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -67,17 +67,16 @@ class Ui_MainWindow(object):
         self.dockWidgetContents_NodeTypes = QtGui.QWidget(self.dockWidget_NodeTypes)
         self.dockWidgetContents_NodeTypes.setObjectName("dockWidgetContents_NodeTypes")
 
-        self.gridlayout1 = QtGui.QGridLayout(self.dockWidgetContents_NodeTypes)
-        self.gridlayout1.setMargin(0)
-        self.gridlayout1.setSpacing(6)
-        self.gridlayout1.setObjectName("gridlayout1")
+        self.vboxlayout = QtGui.QVBoxLayout(self.dockWidgetContents_NodeTypes)
+        self.vboxlayout.setSpacing(0)
+        self.vboxlayout.setMargin(0)
+        self.vboxlayout.setObjectName("vboxlayout")
 
-        self.panel_nodesTypesList = nodesDock(self.dockWidgetContents_NodeTypes)
-        self.panel_nodesTypesList.setDragEnabled(True)
-        self.panel_nodesTypesList.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
-        self.panel_nodesTypesList.setIconSize(QtCore.QSize(24,24))
-        self.panel_nodesTypesList.setObjectName("panel_nodesTypesList")
-        self.gridlayout1.addWidget(self.panel_nodesTypesList,0,0,1,1)
+        self.nodesDock = nodesDock(self.dockWidgetContents_NodeTypes)
+        self.nodesDock.setIconSize(QtCore.QSize(24,24))
+        self.nodesDock.setRootIsDecorated(True)
+        self.nodesDock.setObjectName("nodesDock")
+        self.vboxlayout.addWidget(self.nodesDock)
         self.dockWidget_NodeTypes.setWidget(self.dockWidgetContents_NodeTypes)
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(1),self.dockWidget_NodeTypes)
 
@@ -104,14 +103,14 @@ class Ui_MainWindow(object):
         self.dockWidgetContents_7 = QtGui.QWidget(self.dockWidget_TopoSum)
         self.dockWidgetContents_7.setObjectName("dockWidgetContents_7")
 
-        self.gridlayout2 = QtGui.QGridLayout(self.dockWidgetContents_7)
-        self.gridlayout2.setMargin(0)
-        self.gridlayout2.setSpacing(0)
-        self.gridlayout2.setObjectName("gridlayout2")
+        self.gridlayout1 = QtGui.QGridLayout(self.dockWidgetContents_7)
+        self.gridlayout1.setMargin(0)
+        self.gridlayout1.setSpacing(0)
+        self.gridlayout1.setObjectName("gridlayout1")
 
         self.treeWidget_TopologySummary = topologySummaryDock(self.dockWidgetContents_7)
         self.treeWidget_TopologySummary.setObjectName("treeWidget_TopologySummary")
-        self.gridlayout2.addWidget(self.treeWidget_TopologySummary,0,0,1,1)
+        self.gridlayout1.addWidget(self.treeWidget_TopologySummary,0,0,1,1)
         self.dockWidget_TopoSum.setWidget(self.dockWidgetContents_7)
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(2),self.dockWidget_TopoSum)
 
@@ -164,11 +163,9 @@ class Ui_MainWindow(object):
 
         self.action_Import = QtGui.QAction(MainWindow)
         self.action_Import.setEnabled(False)
-        self.action_Import.setIcon(QtGui.QIcon(":/icons/edit-redo.svg"))
         self.action_Import.setObjectName("action_Import")
 
         self.action_Export = QtGui.QAction(MainWindow)
-        self.action_Export.setIcon(QtGui.QIcon(":/icons/export.svg"))
         self.action_Export.setObjectName("action_Export")
 
         self.action_StartAll = QtGui.QAction(MainWindow)
@@ -304,6 +301,7 @@ class Ui_MainWindow(object):
         self.menu_View.setTitle(QtGui.QApplication.translate("MainWindow", "&View", None, QtGui.QApplication.UnicodeUTF8))
         self.toolBar_General.setWindowTitle(QtGui.QApplication.translate("MainWindow", "General", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidget_NodeTypes.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Nodes Types", None, QtGui.QApplication.UnicodeUTF8))
+        self.nodesDock.headerItem().setText(0,QtGui.QApplication.translate("MainWindow", "1", None, QtGui.QApplication.UnicodeUTF8))
         self.toolBar_Design.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Design", None, QtGui.QApplication.UnicodeUTF8))
         self.toolBar_Emulation.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Simulation", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidget_TopoSum.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Topology Summary", None, QtGui.QApplication.UnicodeUTF8))
@@ -371,6 +369,6 @@ class Ui_MainWindow(object):
         self.action_Paste.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+V", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.Scene import Scene
+from GNS3.Ui.Widget_topologySummaryDock import topologySummaryDock
 from GNS3.Ui.Widget_nodesDock import nodesDock
-from Widget_topologySummaryDock import topologySummaryDock
 import svg_resources_rc

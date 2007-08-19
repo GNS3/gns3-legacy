@@ -26,7 +26,7 @@ from GNS3.Utils import translate
 
 class topologySummaryDock(QtGui.QTreeWidget):
     """ Class for displaying the topology
-        Custom QListWidget
+        Custom QTreeWidget
     """
 
     def __init__(self, parent):

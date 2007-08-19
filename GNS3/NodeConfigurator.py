@@ -98,16 +98,16 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                 [translate("NodeConfigurator", "Routers"), ":/symbols/rt_standard.normal.svg",
                  "Page_IOSRouter", None, None], 
             "FRSW":
-                [translate("NodeConfigurator", "Frame Relay switches"), ":/symbols/sw_atm.normal.svg",
+                [translate("NodeConfigurator", "Frame Relay switches"), ":/symbols/sw_frame_relay.normal.svg",
                  "Page_FRSW", None, None], 
             "ETHSW":
                 [translate("NodeConfigurator", "Ethernet switches"), ":/symbols/sw_standard.normal.svg",
                  "Page_ETHSW", None, None], 
             "Clouds":
-                [translate("NodeConfigurator", "Clouds"), None,
+                [translate("NodeConfigurator", "Clouds"), ":/symbols/cloud.normal.svg",
                  "Page_Cloud", None, None], 
             "Hubs":
-                [translate("NodeConfigurator", "Hubs"), None,
+                [translate("NodeConfigurator", "Hubs"), ":/symbols/hub.normal.svg",
                  "Page_Hub", None, None]
                  }
 

@@ -136,10 +136,13 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 for edge in self.__edgeList:
                     edge.setCustomToolTip()
 
-#    def paint(self, painter, option, widget=None):
-#        _local_option = option
-#        _local_option.state = QtGui.QStyle.State_None
-#        QtSvg.QGraphicsSvgItem.paint(self, painter, _local_option, widget)
+    def paint(self, painter, option, widget=None):
+        """ Don't show the selection rectangle
+        """
+        
+        _local_option = option
+        _local_option.state = QtGui.QStyle.State_None
+        QtSvg.QGraphicsSvgItem.paint(self, painter, _local_option, widget)
 
     def itemChange(self, change, value):
         """ do some action when item is changed...

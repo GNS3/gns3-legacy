@@ -26,7 +26,6 @@ from GNS3.Node.Hub import Hub
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 
-#FIXME: all symbols are a Router
 SYMBOLS = (
     {'name': "Router", 'object': IOSRouter,
     'normal_svg_file': ":/symbols/rt_standard.normal.svg",
@@ -43,12 +42,16 @@ SYMBOLS = (
     {'name': "Switch", 'object': ETHSW,
     'normal_svg_file': ":/symbols/sw_standard.normal.svg",
     'select_svg_file': ":/symbols/sw_standard.selected.svg"},
+    
+    {'name': "Hub", 'object': Hub,
+    'normal_svg_file': ":/symbols/hub.normal.svg",
+    'select_svg_file': ":/symbols/hub.selected.svg"},
 
-    {'name': "Multilayer switch", 'object': Hub,
+    {'name': "Multilayer switch", 'object': IOSRouter,
     'normal_svg_file': ":/symbols/sw_multilayer.normal.svg",
     'select_svg_file': ":/symbols/sw_multilayer.selected.svg"},
     
-    {'name': "Route switch processor", 'object': Cloud,
+    {'name': "Route switch processor", 'object': IOSRouter,
     'normal_svg_file': ":/symbols/route_swproc.normal.svg",
     'select_svg_file': ":/symbols/route_swproc.selected.svg"},
      
@@ -57,11 +60,12 @@ SYMBOLS = (
     'select_svg_file': ":/symbols/sw_atm.selected.svg"}, 
     
     {'name': "Frame Relay switch", 'object': FRSW,
-    'normal_svg_file': ":/symbols/sw_atm.normal.svg",
-    'select_svg_file': ":/symbols/sw_atm.selected.svg"} , 
+    'normal_svg_file': ":/symbols/sw_frame_relay.normal.svg",
+    'select_svg_file': ":/symbols/sw_frame_relay.selected.svg"} , 
  
     {'name': "Cloud", 'object': Cloud,
     'normal_svg_file': ":/symbols/cloud.normal.svg",
     'select_svg_file': ":/symbols/cloud.selected.svg"}
 )
 
+DECORATIVE_SYMBOLS = ("Multilayer switch", "Route switch processor")
