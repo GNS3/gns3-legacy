@@ -24,7 +24,7 @@ import os,  re
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_IOSDialog import Ui_IOSDialog
 from GNS3.Config.Config import ConfDB
-from GNS3.Utils import fileBrowser,  translate
+from GNS3.Utils import fileBrowser,  translate,  checkAscii
 from GNS3.Config.Objects import iosImageConf,  hypervisorConf
 import GNS3.Globals as globals
 
@@ -156,6 +156,9 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         
         imagename = str(self.lineEditIOSImage.text())
         if not imagename:
+            return
+        if checkAscii(imagename) == False:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSDialog", "Filename"),  translate("IOSDialog", "Invalid ascii character"))
             return
     
         # TODO: check IDLE PC value
@@ -294,6 +297,14 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         baseudp = self.spinBoxBaseUDP.value()
 
         if (hypervisor_host != '' and hypervisor_port != ''):
+        
+            if checkAscii(hypervisor_host) == False:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSDialog", "Host"),  translate("IOSDialog", "Invalid ascii character"))
+                return
+            if checkAscii(working_dir) == False:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSDialog", "Working directory"),  translate("IOSDialog", "Invalid ascii character"))
+                return
+        
             hypervisorkey = hypervisor_host + ':' + hypervisor_port
             item = QtGui.QTreeWidgetItem(self.treeWidgetHypervisor)
             # host:port column

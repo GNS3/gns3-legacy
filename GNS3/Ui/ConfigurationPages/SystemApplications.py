@@ -25,7 +25,7 @@ from PyQt4 import QtGui, QtCore
 from GNS3.Ui.ConfigurationPages.Widget_SystemApplications import Ui_SystemApplications
 from GNS3.Config.Objects import systemDynamipsConf
 from GNS3.Config.Config import ConfDB
-from GNS3.Utils import fileBrowser, translate
+from GNS3.Utils import fileBrowser, translate, checkAscii
 from GNS3.Globals import GApp
 
 class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
@@ -76,8 +76,17 @@ class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
     def saveConf(self):
         """ Save widget settings to syst. config
         """
-        self.conf.path = str(self.dynamips_path.text())
-        self.conf.workdir = str(self.dynamips_workdir.text())
+        
+        working_dir = str(self.dynamips_workdir.text())
+        exec_path = str(self.dynamips_path.text())
+        if checkAscii(working_dir) == False:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("UiConfig_SystemApplications", "Working directory"),  translate("UiConfig_SystemApplications", "Invalid ascii character"))
+            return
+        if checkAscii(exec_path) == False:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("UiConfig_SystemApplications", "Executable path"),  translate("UiConfig_SystemApplications", "Invalid ascii character"))
+            return
+        self.conf.path = exec_path
+        self.conf.workdir = working_dir
         self.conf.term_cmd = str(self.dynamips_term_cmd.text())
         self.conf.port = self.dynamips_port.value()
 

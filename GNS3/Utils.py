@@ -41,6 +41,17 @@ def translate(context, text):
     
     return unicode(QtGui.QApplication.translate(context, text, None, QtGui.QApplication.UnicodeUTF8))
 
+def checkAscii(text):
+    """ Check if text contains valid ASCII characters
+        text: string
+    """
+    
+    try:
+        unicode(text, "ascii")
+    except UnicodeError:
+        return False
+    return True
+    
 class fileBrowser(object):
     """ fileBrowser class
     """
