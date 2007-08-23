@@ -135,7 +135,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         index = self.comboBoxIOS.findText(IOSconfig.image)
         if index != -1:
             self.comboBoxIOS.setCurrentIndex(index)
-        self.lineEditConsolePort.setText(IOSconfig.consoleport)
+        self.spinBoxConsolePort.setValue(IOSconfig.consoleport)
         self.lineEditStartupConfig.setText(IOSconfig.startup_config)
         self.spinBoxRamSize.setValue(IOSconfig.RAM)
         self.spinBoxRomSize.setValue(IOSconfig.ROM)
@@ -166,7 +166,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         else:
             IOSconfig = node.config
         IOSconfig.image = str(self.comboBoxIOS.currentText())
-        IOSconfig.consoleport = str(self.lineEditConsolePort.text())
+        IOSconfig.consoleport = self.spinBoxConsolePort.value()
        
         startup_config = str(self.lineEditStartupConfig.text())
         if checkAscii(startup_config) == False:

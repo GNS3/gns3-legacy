@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_IOSRouterPage.ui'
 #
-# Created: Sat Jul 21 16:57:57 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070701
+# Created: Thu Aug 23 22:31:12 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -69,15 +69,18 @@ class Ui_IOSRouterPage(object):
         self.label_13.setObjectName("label_13")
         self.gridlayout.addWidget(self.label_13,2,0,1,1)
 
-        self.lineEditConsolePort = QtGui.QLineEdit(self.General)
+        self.spinBoxConsolePort = QtGui.QSpinBox(self.General)
 
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lineEditConsolePort.sizePolicy().hasHeightForWidth())
-        self.lineEditConsolePort.setSizePolicy(sizePolicy)
-        self.lineEditConsolePort.setObjectName("lineEditConsolePort")
-        self.gridlayout.addWidget(self.lineEditConsolePort,2,1,1,2)
+        sizePolicy.setHeightForWidth(self.spinBoxConsolePort.sizePolicy().hasHeightForWidth())
+        self.spinBoxConsolePort.setSizePolicy(sizePolicy)
+        self.spinBoxConsolePort.setMinimum(0)
+        self.spinBoxConsolePort.setMaximum(65535)
+        self.spinBoxConsolePort.setProperty("value",QtCore.QVariant(0))
+        self.spinBoxConsolePort.setObjectName("spinBoxConsolePort")
+        self.gridlayout.addWidget(self.spinBoxConsolePort,2,1,1,2)
 
         self.label = QtGui.QLabel(self.General)
         self.label.setObjectName("label")

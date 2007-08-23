@@ -80,10 +80,10 @@ class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
         working_dir = str(self.dynamips_workdir.text())
         exec_path = str(self.dynamips_path.text())
         if checkAscii(working_dir) == False:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("UiConfig_SystemApplications", "Working directory"),  translate("UiConfig_SystemApplications", "Invalid ascii character"))
+            QtGui.QMessageBox.critical(self, translate("UiConfig_SystemApplications", "Working directory"),  translate("UiConfig_SystemApplications", "Invalid ascii character"))
             return
         if checkAscii(exec_path) == False:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("UiConfig_SystemApplications", "Executable path"),  translate("UiConfig_SystemApplications", "Invalid ascii character"))
+            QtGui.QMessageBox.critical(self, translate("UiConfig_SystemApplications", "Executable path"),  translate("UiConfig_SystemApplications", "Invalid ascii character"))
             return
         self.conf.path = exec_path
         self.conf.workdir = working_dir

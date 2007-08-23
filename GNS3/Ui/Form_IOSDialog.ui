@@ -300,15 +300,15 @@
            </spacer>
           </item>
           <item row="1" column="3" colspan="2" >
-           <widget class="QLineEdit" name="lineEditPort" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
+           <widget class="QSpinBox" name="spinBoxHypervisorPort" >
+            <property name="minimum" >
+             <number>1</number>
             </property>
-            <property name="text" >
-             <string>7200</string>
+            <property name="maximum" >
+             <number>65535</number>
+            </property>
+            <property name="value" >
+             <number>7200</number>
             </property>
            </widget>
           </item>
@@ -330,7 +330,7 @@
             <property name="sizeHint" >
              <size>
               <width>41</width>
-              <height>20</height>
+              <height>27</height>
              </size>
             </property>
            </spacer>

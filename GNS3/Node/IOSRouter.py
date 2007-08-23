@@ -99,7 +99,7 @@ SLOTMATRIX = {
                                         3 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'),
                                         4 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'),
                                     },
-                        '7200' : { 0 : ('C7200-IO-FE'), 
+                        '7200' : { 0 :  ('C7200-IO-FE'), 
                                         1 : ('PA-A1', 'PA-FE-TX', 'PA-8T', 'PA-4T+', 'PA-8E', 'PA-4E', 'PA-POS-OC3'), 
                                         2 : ('PA-A1', 'PA-FE-TX', 'PA-8T', 'PA-4T+', 'PA-8E', 'PA-4E', 'PA-POS-OC3'), 
                                         3 : ('PA-A1', 'PA-FE-TX', 'PA-8T', 'PA-4T+', 'PA-8E', 'PA-4E', 'PA-POS-OC3'),
@@ -259,7 +259,7 @@ class IOSRouter(AbstractNode):
     
         try:
             if slotnb == 0 and chassis in MBCHASSIS:
-                return list(SLOTMATRIX[chassis][slotnb])
+                return [SLOTMATRIX[chassis][slotnb]]
             return  [''] + list(SLOTMATRIX[chassis][slotnb])
         except KeyError:
             return ['']
@@ -328,7 +328,7 @@ class IOSRouter(AbstractNode):
             self.dev.idlepc = '0x60483ae4'
 
         if self.config.consoleport:
-            self.dev.console = int(self.config.consoleport)
+            self.dev.console = self.config.consoleport
         if self.config.startup_config != '':
             self.dev.cnfg = '"' + self.config.startup_config + '"'
         self.dev.ram = self.config.RAM
@@ -438,9 +438,8 @@ class IOSRouter(AbstractNode):
         
         if self.dev == None:
             return
-        
-        for interface in self.getConnectedInterfaceList():
 
+        for interface in self.getConnectedInterfaceList():
             match_obj = IF_REGEXP.search(interface)
             assert(match_obj)
             (source_slot, source_port) = match_obj.group(2,3)

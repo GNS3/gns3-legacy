@@ -292,7 +292,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """
         
         hypervisor_host = str(self.lineEditHost.text())
-        hypervisor_port = str(self.lineEditPort.text())
+        hypervisor_port = str(self.spinBoxHypervisorPort.value())
         working_dir = str(self.lineEditWorkingDir.text())
         baseudp = self.spinBoxBaseUDP.value()
 
@@ -328,7 +328,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             globals.GApp.hypervisors_ids +=1
             conf.host = hypervisor_host
             conf.port = int(hypervisor_port)
-            self.lineEditPort.setText(str(conf.port + 1))
+            self.spinBoxHypervisorPort.setValue(conf.port + 1)
             conf.workdir = working_dir
             conf.baseUDP = baseudp
             self.spinBoxBaseUDP.setValue(conf.baseUDP + 15)
@@ -378,7 +378,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             if globals.GApp.hypervisors.has_key(hypervisor_key):
                 conf = globals.GApp.hypervisors[hypervisor_key]
                 self.lineEditHost.setText(conf.host)
-                self.lineEditPort.setText(str(conf.port))
+                self.spinBoxHypervisorPort.setValue(conf.port)
                 self.lineEditWorkingDir.setText(conf.workdir)
                 self.spinBoxBaseUDP.setValue(conf.baseUDP)
     

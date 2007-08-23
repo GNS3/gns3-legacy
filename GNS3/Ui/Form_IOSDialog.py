@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Tue Aug  7 23:29:05 2007
+# Created: Thu Aug 23 22:55:39 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -189,21 +189,18 @@ class Ui_IOSDialog(object):
         spacerItem2 = QtGui.QSpacerItem(71,27,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
         self.gridlayout4.addItem(spacerItem2,1,1,1,2)
 
-        self.lineEditPort = QtGui.QLineEdit(self.groupBox_4)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lineEditPort.sizePolicy().hasHeightForWidth())
-        self.lineEditPort.setSizePolicy(sizePolicy)
-        self.lineEditPort.setObjectName("lineEditPort")
-        self.gridlayout4.addWidget(self.lineEditPort,1,3,1,2)
+        self.spinBoxHypervisorPort = QtGui.QSpinBox(self.groupBox_4)
+        self.spinBoxHypervisorPort.setMinimum(1)
+        self.spinBoxHypervisorPort.setMaximum(65535)
+        self.spinBoxHypervisorPort.setProperty("value",QtCore.QVariant(7200))
+        self.spinBoxHypervisorPort.setObjectName("spinBoxHypervisorPort")
+        self.gridlayout4.addWidget(self.spinBoxHypervisorPort,1,3,1,2)
 
         self.label_7 = QtGui.QLabel(self.groupBox_4)
         self.label_7.setObjectName("label_7")
         self.gridlayout4.addWidget(self.label_7,2,0,1,2)
 
-        spacerItem3 = QtGui.QSpacerItem(41,20,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
+        spacerItem3 = QtGui.QSpacerItem(41,27,QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Minimum)
         self.gridlayout4.addItem(spacerItem3,2,2,1,1)
 
         self.spinBoxBaseUDP = QtGui.QSpinBox(self.groupBox_4)
@@ -298,7 +295,6 @@ class Ui_IOSDialog(object):
         self.label_3.setText(QtGui.QApplication.translate("IOSDialog", "Host:", None, QtGui.QApplication.UnicodeUTF8))
         self.lineEditHost.setText(QtGui.QApplication.translate("IOSDialog", "localhost", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("IOSDialog", "Port:", None, QtGui.QApplication.UnicodeUTF8))
-        self.lineEditPort.setText(QtGui.QApplication.translate("IOSDialog", "7200", None, QtGui.QApplication.UnicodeUTF8))
         self.label_7.setText(QtGui.QApplication.translate("IOSDialog", "Base UDP:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_5.setText(QtGui.QApplication.translate("IOSDialog", "Working directory:", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonSelectWorkingDir.setText(QtGui.QApplication.translate("IOSDialog", "...", None, QtGui.QApplication.UnicodeUTF8))
