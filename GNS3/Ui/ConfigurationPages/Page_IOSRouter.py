@@ -24,7 +24,7 @@ import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_IOSRouterPage import Ui_IOSRouterPage
 from GNS3.Dynagen.dynamips_lib import ADAPTER_MATRIX
-from GNS3.Utils import fileBrowser, translate, checkAscii
+from GNS3.Utils import fileBrowser, translate
 from GNS3.Config.Objects import iosRouterConf
 from GNS3.Node.IOSRouter import IOSRouter 
 
@@ -60,7 +60,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         for widget in self.slots_list:
             widget.clear()
         
-        image = str(self.comboBoxIOS.currentText())
+        image = unicode(self.comboBoxIOS.currentText())
         if image == '':
             return
         
@@ -165,15 +165,9 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             IOSconfig = config
         else:
             IOSconfig = node.config
-        IOSconfig.image = str(self.comboBoxIOS.currentText())
+        IOSconfig.image = unicode(self.comboBoxIOS.currentText())
         IOSconfig.consoleport = self.spinBoxConsolePort.value()
-       
-        startup_config = str(self.lineEditStartupConfig.text())
-        if checkAscii(startup_config) == False:
-            QtGui.QMessageBox.critical(self, translate("Page_IOSRouter", "Startup-config"),  translate("Page_IOSRouter", "Invalid ascii character"))
-        else:
-            IOSconfig.startup_config = startup_config
-
+        IOSconfig.startup_config = unicode(self.lineEditStartupConfig.text())
         IOSconfig.RAM = self.spinBoxRamSize.value()
         IOSconfig.ROM = self.spinBoxRomSize.value()
         IOSconfig.NVRAM = self.spinBoxNvramSize.value()

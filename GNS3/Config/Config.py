@@ -75,7 +75,7 @@ class ConfDB(Singleton, QtCore.QSettings):
             # or finally, return None
             return None
         # if conf exist, return it.
-        return str(value)
+        return unicode(value)
 
     def set(self, key, value):
         """ Set a value from a specific key
@@ -410,24 +410,24 @@ class GNS_Conf(object):
         for img_num in childGroups:
             cgroup = basegroup + '/' + img_num
 
-            img_filename = c.get(cgroup + "/filename", '')
-            img_hyp_host = c.get(cgroup + "/hypervisor_host", '')
+            img_filename = c.get(cgroup + "/filename", u'')
+            img_hyp_host = c.get(cgroup + "/hypervisor_host", u'')
             
             if img_filename == '':
                 continue
 
             if img_hyp_host == '':
-                img_ref = "localhost:" + str(img_filename)
+                img_ref = "localhost:" + img_filename
             else:
-                img_ref = str(img_hyp_host) + ":" + str(img_filename)
+                img_ref = img_hyp_host + ":" + img_filename
 
             conf = iosImageConf()
             conf.id = int(img_num)
-            conf.filename = str(img_filename)
+            conf.filename = img_filename
             conf.platform = str(c.get(cgroup + "/platform", ''))
             conf.chassis = str(c.get(cgroup + "/chassis", ''))
             conf.idlepc = str(c.get(cgroup + "/idlepc", ''))
-            conf.hypervisor_host = str(c.get(cgroup + "/hypervisor_host",  ''))
+            conf.hypervisor_host = c.get(cgroup + "/hypervisor_host",  u'')
             conf.hypervisor_port = int(c.get(cgroup + "/hypervisor_port",  0))
             
             globals.GApp.iosimages[img_ref] = conf
@@ -450,8 +450,8 @@ class GNS_Conf(object):
             cgroup = basegroup + '/' + img_num
 
             hyp_port = c.get(cgroup + "/port", '')
-            hyp_host = c.get(cgroup + "/host", '')
-            hyp_wdir = c.get(cgroup + "/working_directory", '')
+            hyp_host = c.get(cgroup + "/host", u'')
+            hyp_wdir = c.get(cgroup + "/working_directory", u'')
             hyp_baseUDP = c.get(cgroup + "/base_udp", '')
 
             # We need at least `hyp_host' and `hyp_port' to be set

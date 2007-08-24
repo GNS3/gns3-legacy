@@ -32,11 +32,11 @@ conf_iosImage_defaults = {
 
 conf_iosImage_types = {
     'id': int,
-    'filename': str,
+    'filename': unicode,
     'platform': str,
     'chassis': str,
     'idlepc': str,
-    'hypervisor_host': str,
+    'hypervisor_host': unicode,
     'hypervisor_port': int,
 }
 
@@ -50,9 +50,9 @@ conf_hypervisor_defaults = {
 
 conf_hypervisor_types = {
     'id': int,
-    'host': str,
+    'host': unicode,
     'port': int,
-    'workdir': str, 
+    'workdir': unicode, 
     'baseUDP': int
 }
 
@@ -77,7 +77,7 @@ conf_iosRouter_defaults = {
 }
 
 conf_iosRouter_types = {
-    'image': str, 
+    'image': unicode, 
     'platform': str, 
     'chassis': str,
     'consoleport': int, 
@@ -88,7 +88,7 @@ conf_iosRouter_types = {
     'pcmcia_disk0': int,
     'pcmcia_disk1': int,
     'confreg': str, 
-    'startup_config': str, 
+    'startup_config': unicode, 
     'execarea': int, 
     'iomem': int, 
     'npe': str,
@@ -106,7 +106,7 @@ conf_FRSW_defaults = {
 conf_FRSW_types = {
     'ports': list,
     'mapping': dict,
-    'hypervisor_host': str,
+    'hypervisor_host': unicode,
     'hypervisor_port': int,
 }
 
@@ -120,7 +120,7 @@ conf_ETHSW_defaults = {
 conf_ETHSW_types = {
     'ports': dict,
     'vlans': dict,
-    'hypervisor_host': str,
+    'hypervisor_host': unicode,
     'hypervisor_port': int,
 }
 
@@ -140,7 +140,7 @@ conf_Hub_defaults = {
 
 conf_Hub_types = {
     'ports': int,
-    'hypervisor_host': str,
+    'hypervisor_host': unicode,
     'hypervisor_port': int,
 }
 
@@ -152,8 +152,8 @@ conf_systemDynamips_defaults = {
 }
 
 conf_systemDynamips_types = {
-    'path': str,
+    'path': unicode,
     'port': int,
-    'workdir': str,
-    'term_cmd': str,
+    'workdir': unicode,
+    'term_cmd': unicode,
 }

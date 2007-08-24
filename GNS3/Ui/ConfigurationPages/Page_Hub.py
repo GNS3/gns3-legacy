@@ -79,7 +79,7 @@ class Page_Hub(QtGui.QWidget, Ui_HubPage):
         if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Checked:
             Hubconfig.hypervisor_host = ''
         elif str(self.comboBoxHypervisors.currentText()):
-            (host,  port) = str(self.comboBoxHypervisors.currentText()).split(':')
+            (host,  port) = unicode(self.comboBoxHypervisors.currentText()).split(':')
             Hubconfig.hypervisor_host = host
             Hubconfig.hypervisor_port = int(port)
             

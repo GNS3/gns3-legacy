@@ -23,7 +23,7 @@
 
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui, QtSvg
-from GNS3.Utils import translate,  checkAscii
+from GNS3.Utils import translate
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.Globals as dynagen
 
@@ -121,10 +121,8 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         (text,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, translate("AbstractNode", "Change hostname"),
                                           translate("AbstractNode", "Hostname:"), QtGui.QLineEdit.Normal,
                                           self.hostname)
-        if checkAscii(text) == False:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hostname"),  translate("AbstractNode", "Invalid ascii character"))
-            return
         if ok and text:
+            text = unicode(text)
             for node in globals.GApp.topology.nodes.itervalues():
                 if text == node.hostname:
                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hostname"),  translate("AbstractNode", "Hostname already used"))

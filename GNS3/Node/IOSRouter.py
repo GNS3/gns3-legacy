@@ -275,7 +275,7 @@ class IOSRouter(AbstractNode):
             image = globals.GApp.iosimages[iosimages[0]]
             platform = image.platform
             chassis = image.chassis
-            self.config.image = str(iosimages[0])
+            self.config.image = unicode(iosimages[0])
             
             for slotnb in range(7):
                 modules = IOSRouter.getAdapters(platform,  chassis,  slotnb)

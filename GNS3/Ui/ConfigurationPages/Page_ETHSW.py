@@ -168,7 +168,7 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Checked:
             ETHSWconfig.hypervisor_host = ''
         elif str(self.comboBoxHypervisors.currentText()):
-            (host,  port) = str(self.comboBoxHypervisors.currentText()).split(':')
+            (host,  port) = unicode(self.comboBoxHypervisors.currentText()).split(':')
             ETHSWconfig.hypervisor_host = host
             ETHSWconfig.hypervisor_port = int(port)
             

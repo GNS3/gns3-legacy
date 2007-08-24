@@ -164,7 +164,7 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
         if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Checked:
             FRSWconfig.hypervisor_host = ''
         elif str(self.comboBoxHypervisors.currentText()):
-            (host,  port) = str(self.comboBoxHypervisors.currentText()).split(':')
+            (host,  port) = unicode(self.comboBoxHypervisors.currentText()).split(':')
             FRSWconfig.hypervisor_host = host
             FRSWconfig.hypervisor_port = int(port)
             

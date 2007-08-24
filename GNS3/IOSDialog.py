@@ -24,7 +24,7 @@ import os,  re
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_IOSDialog import Ui_IOSDialog
 from GNS3.Config.Config import ConfDB
-from GNS3.Utils import fileBrowser,  translate,  checkAscii
+from GNS3.Utils import fileBrowser,  translate
 from GNS3.Config.Objects import iosImageConf,  hypervisorConf
 import GNS3.Globals as globals
 
@@ -153,18 +153,15 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
     def slotSaveIOS(self):
         """ Save an IOS image and all his settings 
         """
-        
-        imagename = str(self.lineEditIOSImage.text())
+
+        imagename = unicode(self.lineEditIOSImage.text())
         if not imagename:
             return
-        if checkAscii(imagename) == False:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSDialog", "Filename"),  translate("IOSDialog", "Invalid ascii character"))
-            return
-    
+
         # TODO: check IDLE PC value
         idlepc = str(self.lineEditIdlePC.text())
 
-        hypervisor_host = ''
+        hypervisor_host = u''
         hypervisor_port = 0
         
         if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Unchecked:
@@ -176,7 +173,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 imagekey = 'localhost' + ':' + imagename
             else:
                 # get the selected hypervisor
-                selected = str(items[0].text())
+                selected = unicode(items[0].text())
                 # split the line to get the host and port
                 splittab = selected.split(':')
                 hypervisor_host = splittab[0]
@@ -248,7 +245,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
         if (item != None):
             # restore image name
-            imagekey = str(item.text(0))
+            imagekey = unicode(item.text(0))
             if globals.GApp.iosimages.has_key(imagekey):
                 conf = globals.GApp.iosimages[imagekey]
                 self.lineEditIOSImage.setText(conf.filename)
@@ -291,20 +288,13 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """ Save a hypervisor to the hypervisors list
         """
         
-        hypervisor_host = str(self.lineEditHost.text())
+        hypervisor_host = unicode(self.lineEditHost.text())
         hypervisor_port = str(self.spinBoxHypervisorPort.value())
-        working_dir = str(self.lineEditWorkingDir.text())
+        working_dir = unicode(self.lineEditWorkingDir.text())
         baseudp = self.spinBoxBaseUDP.value()
 
         if (hypervisor_host != '' and hypervisor_port != ''):
-        
-            if checkAscii(hypervisor_host) == False:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSDialog", "Host"),  translate("IOSDialog", "Invalid ascii character"))
-                return
-            if checkAscii(working_dir) == False:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSDialog", "Working directory"),  translate("IOSDialog", "Invalid ascii character"))
-                return
-        
+
             hypervisorkey = hypervisor_host + ':' + hypervisor_port
             item = QtGui.QTreeWidgetItem(self.treeWidgetHypervisor)
             # host:port column
@@ -374,7 +364,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """
         
         if (item != None):
-            hypervisor_key = str(item.text(0))
+            hypervisor_key = unicode(item.text(0))
             if globals.GApp.hypervisors.has_key(hypervisor_key):
                 conf = globals.GApp.hypervisors[hypervisor_key]
                 self.lineEditHost.setText(conf.host)
