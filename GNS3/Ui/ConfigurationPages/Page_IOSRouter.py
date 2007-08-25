@@ -60,7 +60,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         for widget in self.slots_list:
             widget.clear()
         
-        image = unicode(self.comboBoxIOS.currentText())
+        image = unicode(self.comboBoxIOS.currentText(),  'utf-8')
         if image == '':
             return
         
@@ -165,9 +165,9 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             IOSconfig = config
         else:
             IOSconfig = node.config
-        IOSconfig.image = unicode(self.comboBoxIOS.currentText())
+        IOSconfig.image = unicode(self.comboBoxIOS.currentText(),  'utf-8')
         IOSconfig.consoleport = self.spinBoxConsolePort.value()
-        IOSconfig.startup_config = unicode(self.lineEditStartupConfig.text())
+        IOSconfig.startup_config = unicode(self.lineEditStartupConfig.text(),  'utf-8')
         IOSconfig.RAM = self.spinBoxRamSize.value()
         IOSconfig.ROM = self.spinBoxRomSize.value()
         IOSconfig.NVRAM = self.spinBoxNvramSize.value()

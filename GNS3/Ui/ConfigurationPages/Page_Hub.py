@@ -77,11 +77,13 @@ class Page_Hub(QtGui.QWidget, Ui_HubPage):
         Hubconfig.ports = self.spinBoxNbPorts.value()
             
         if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Checked:
-            Hubconfig.hypervisor_host = ''
+            Hubconfig.hypervisor_host = unicode('',  'utf-8')
         elif str(self.comboBoxHypervisors.currentText()):
-            (host,  port) = unicode(self.comboBoxHypervisors.currentText()).split(':')
-            Hubconfig.hypervisor_host = host
-            Hubconfig.hypervisor_port = int(port)
+            selected_hypervisor = unicode(self.comboBoxHypervisors.currentText(),  'utf-8')
+            assert(globals.GApp.hypervisors.has_key(selected_hypervisor) != None)
+            hypervisor = globals.GApp.hypervisors[selected_hypervisor]
+            ETHSWconfig.hypervisor_host = hypervisor.host
+            ETHSWconfig.hypervisor_port = hypervisor.port
             
         if config == None:
             node.updatePorts()

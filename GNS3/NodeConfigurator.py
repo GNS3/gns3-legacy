@@ -45,7 +45,7 @@ class ConfigurationPageItem(QtGui.QTreeWidgetItem):
         QtGui.QTreeWidgetItem.__init__(self, parent, QtCore.QStringList(text))
         if iconFile:
             self.setIcon(0, QtGui.QIcon(iconFile))
-        self.__pageName = unicode(pageName)
+        self.__pageName = unicode(pageName,  'utf-8')
         self.__ids = []
         self.tmpConfig = None
         self.origConfig = None
@@ -233,7 +233,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         if self.previousItem and self.previousItem == itm:
             return
         
-        pageName = unicode(itm.getPageName())
+        pageName = itm.getPageName()
         pageData = self.configItems[pageName]
         pageTitle = translate("NodeConfigurator", "Node configuration")
 

@@ -452,7 +452,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         path = QtGui.QFileDialog.getSaveFileName(filedialog, 'Export', '.', exports, selected)
         if not path:
             return
-        path = unicode(path)
+        path = unicode(path,  'utf-8')
         if str(selected) == 'PNG File (*.png)' and path[-4:] != '.png':
             path = path + '.png'
         if str(selected) == 'JPG File (*.jpeg *.jpg)' and (path[-4:] != '.jpg' or  path[-5:] != '.jpeg'):
@@ -761,7 +761,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         (path, selected) = fb.getSaveFile()
 
         if path != None and path != '':
-            path = unicode(path)
+            path = unicode(path,  'utf-8')
             if str(selected) == 'GNS-3 Scenario (*.gns3s)' and path[-6:] != '.gns3s':
                 path = path + '.gns3s'
             self.projectFile = path

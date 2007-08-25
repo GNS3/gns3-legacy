@@ -64,16 +64,16 @@ class Hub(AbstractNode):
         """
     
         if self.config.hypervisor_host:
-            hypervisorkey = hypervisor_host + ':' + str(hypervisor_port)
+            hypervisorkey = self.config.hypervisor_host + ':' + str(self.config.hypervisor_port)
             if globals.GApp.hypervisors.has_key(hypervisorkey):
-                hypervisor = globals.GApp.hypervisors[hypervisorkey ]
-                self.configHypervisor(hypervisor_host,  hypervisor_port,  hypervisor.workdir,  hypervisor.baseUDP)
+                hypervisor = globals.GApp.hypervisors[hypervisorkey]
+                self.configHypervisor(hypervisor.host,  hypervisor.port,  hypervisor.workdir,  hypervisor.baseUDP)
             else:
                 print 'Hypervisor ' + hypervisorkey + ' not registered !'
                 return
         else:
             dynamips = globals.GApp.systconf['dynamips']
-            self.configHypervisor('localhost',  dynamips.port,  dynamips.workdir,  10000)
+            self.configHypervisor('localhost',  dynamips.port,  dynamips.workdir,  None)
             
         hypervisor = self.getHypervisor()
         self.dev = lib.Bridge(hypervisor, name = '"' + self.hostname + '"')

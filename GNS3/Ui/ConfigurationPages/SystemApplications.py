@@ -57,15 +57,15 @@ class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
         # Default path to dynamips executable
         if self.conf.path == '':
             if sys.platform.startswith('win32'):
-                self.conf.path = 'C:\Program Files\gns3\Dynamips\dynamips-wxp.exe'
+                self.conf.path = unicode('C:\Program Files\gns3\Dynamips\dynamips-wxp.exe',  'utf-8')
         # Defaults dynamips terminal command
         if self.conf.term_cmd == '':
             if sys.platform.startswith('darwin'):
-                self.conf.term_cmd = "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"' -e 'tell application \"terminal\" to tell window 1 to set custom title to \"%d\"'"
+                self.conf.term_cmd = unicode("/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"' -e 'tell application \"terminal\" to tell window 1 to set custom title to \"%d\"'",  'utf-8')
             elif sys.platform.startswith('win32'):
-                self.conf.term_cmd = "start telnet %h %p"
+                self.conf.term_cmd = unicode("start telnet %h %p",  'utf-8')
             else:
-                self.conf.term_cmd = "xterm -T %d -e 'telnet %h %p' >/dev/null 2>&1 &"
+                self.conf.term_cmd = unicode("xterm -T %d -e 'telnet %h %p' >/dev/null 2>&1 &",  'utf-8')
 
         # Push default value to GUI
         self.dynamips_path.setText(self.conf.path)
@@ -77,11 +77,11 @@ class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
         """ Save widget settings to syst. config
         """
         
-        working_dir = unicode(self.dynamips_workdir.text())
-        exec_path = unicode(self.dynamips_path.text())
+        working_dir = unicode(self.dynamips_workdir.text(),  'utf-8')
+        exec_path = unicode(self.dynamips_path.text(),  'utf-8')
         self.conf.path = exec_path
         self.conf.workdir = working_dir
-        self.conf.term_cmd = unicode(self.dynamips_term_cmd.text())
+        self.conf.term_cmd = unicode(self.dynamips_term_cmd.text(),  'utf-8')
         self.conf.port = self.dynamips_port.value()
 
         GApp.systconf['dynamips'] = self.conf

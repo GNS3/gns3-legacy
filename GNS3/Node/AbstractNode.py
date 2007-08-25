@@ -122,7 +122,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                                           translate("AbstractNode", "Hostname:"), QtGui.QLineEdit.Normal,
                                           self.hostname)
         if ok and text:
-            text = unicode(text)
+            text = unicode(text,  'utf-8')
             for node in globals.GApp.topology.nodes.itervalues():
                 if text == node.hostname:
                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hostname"),  translate("AbstractNode", "Hostname already used"))

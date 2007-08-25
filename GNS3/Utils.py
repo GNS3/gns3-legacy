@@ -39,7 +39,7 @@ def translate(context, text):
         text: string (original text)
     """
     
-    return unicode(QtGui.QApplication.translate(context, text, None, QtGui.QApplication.UnicodeUTF8))
+    return unicode(QtGui.QApplication.translate(context, text, None, QtGui.QApplication.UnicodeUTF8),  'utf-8')
     
 class fileBrowser(object):
     """ fileBrowser class
@@ -62,7 +62,7 @@ class fileBrowser(object):
             self.caption, self.directory, self.filter, self.selected)
 
         if path is not None:
-            path = unicode(path)
+            path = unicode(path,  'utf-8')
         return ([path, str(self.selected)])
 
     def getDir(self):
@@ -72,7 +72,7 @@ class fileBrowser(object):
         path = QtGui.QFileDialog.getExistingDirectory(self.filedialog,
             self.caption, self.directory, QtGui.QFileDialog.ShowDirsOnly)
         if path is not None:
-            path = unicode(path)
+            path = unicode(path,  'utf-8')
         return (path)
 
     def getSaveFile(self):
@@ -83,6 +83,6 @@ class fileBrowser(object):
             self.caption, self.directory, self.filter, self.selected)
 
         if path is not None:
-            path = unicode(path)
+            path = unicode(path,  'utf-8')
         return ([path, str(self.selected)])
         

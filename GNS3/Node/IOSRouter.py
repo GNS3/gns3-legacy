@@ -275,7 +275,7 @@ class IOSRouter(AbstractNode):
             image = globals.GApp.iosimages[iosimages[0]]
             platform = image.platform
             chassis = image.chassis
-            self.config.image = unicode(iosimages[0])
+            self.config.image = iosimages[0]
             
             for slotnb in range(7):
                 modules = IOSRouter.getAdapters(platform,  chassis,  slotnb)
@@ -307,8 +307,8 @@ class IOSRouter(AbstractNode):
         if hypervisor_host:
             hypervisorkey = hypervisor_host + ':' + str(hypervisor_port)
             if globals.GApp.hypervisors.has_key(hypervisorkey):
-                hypervisor = globals.GApp.hypervisors[hypervisorkey ]
-                self.configHypervisor(hypervisor_host,  hypervisor_port,  hypervisor.workdir,  hypervisor.baseUDP)
+                hypervisor = globals.GApp.hypervisors[hypervisorkey]
+                self.configHypervisor(hypervisor.host,  hypervisor.port,  hypervisor.workdir,  hypervisor.baseUDP)
             else:
                 print 'Hypervisor ' + hypervisorkey + ' not registered !'
                 return
@@ -320,7 +320,7 @@ class IOSRouter(AbstractNode):
             self.dev = ROUTERS[chassis](hypervisor, name = '"' + self.hostname + '"')
         elif platform in ('3600', '2600'):
             self.dev = ROUTERS[platform](hypervisor, chassis = chassis, name = '"' + self.hostname + '"')
-        
+
         self.dev.image = '"' + filename + '"'
         if idlepc:
             self.dev.idlepc = idlepc

@@ -75,7 +75,7 @@ class ConfDB(Singleton, QtCore.QSettings):
             # or finally, return None
             return None
         # if conf exist, return it.
-        return unicode(value)
+        return unicode(value,  'utf-8')
 
     def set(self, key, value):
         """ Set a value from a specific key
@@ -410,8 +410,8 @@ class GNS_Conf(object):
         for img_num in childGroups:
             cgroup = basegroup + '/' + img_num
 
-            img_filename = c.get(cgroup + "/filename", u'')
-            img_hyp_host = c.get(cgroup + "/hypervisor_host", u'')
+            img_filename = c.get(cgroup + "/filename", unicode('',  'utf-8'))
+            img_hyp_host = c.get(cgroup + "/hypervisor_host", unicode('',  'utf-8'))
             
             if img_filename == '':
                 continue
@@ -427,7 +427,7 @@ class GNS_Conf(object):
             conf.platform = str(c.get(cgroup + "/platform", ''))
             conf.chassis = str(c.get(cgroup + "/chassis", ''))
             conf.idlepc = str(c.get(cgroup + "/idlepc", ''))
-            conf.hypervisor_host = c.get(cgroup + "/hypervisor_host",  u'')
+            conf.hypervisor_host = c.get(cgroup + "/hypervisor_host",  unicode('',  'utf-8'))
             conf.hypervisor_port = int(c.get(cgroup + "/hypervisor_port",  0))
             
             globals.GApp.iosimages[img_ref] = conf
@@ -450,8 +450,8 @@ class GNS_Conf(object):
             cgroup = basegroup + '/' + img_num
 
             hyp_port = c.get(cgroup + "/port", '')
-            hyp_host = c.get(cgroup + "/host", u'')
-            hyp_wdir = c.get(cgroup + "/working_directory", u'')
+            hyp_host = c.get(cgroup + "/host", unicode('',  'utf-8'))
+            hyp_wdir = c.get(cgroup + "/working_directory", unicode('',  'utf-8'))
             hyp_baseUDP = c.get(cgroup + "/base_udp", '')
 
             # We need at least `hyp_host' and `hyp_port' to be set

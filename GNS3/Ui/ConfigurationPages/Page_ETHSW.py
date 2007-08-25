@@ -166,11 +166,13 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         ETHSWconfig.vlans = self.vlans
                 
         if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Checked:
-            ETHSWconfig.hypervisor_host = ''
+            ETHSWconfig.hypervisor_host = unicode('',  'utf-8')
         elif str(self.comboBoxHypervisors.currentText()):
-            (host,  port) = unicode(self.comboBoxHypervisors.currentText()).split(':')
-            ETHSWconfig.hypervisor_host = host
-            ETHSWconfig.hypervisor_port = int(port)
+            selected_hypervisor = unicode(self.comboBoxHypervisors.currentText(),  'utf-8')
+            assert(globals.GApp.hypervisors.has_key(selected_hypervisor) != None)
+            hypervisor = globals.GApp.hypervisors[selected_hypervisor]
+            ETHSWconfig.hypervisor_host = hypervisor.host
+            ETHSWconfig.hypervisor_port = hypervisor.port
             
         if config == None:
             node.updatePorts()

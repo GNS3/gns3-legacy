@@ -2320,7 +2320,7 @@ def send(dynamips, command):
     debug('sending to ' + dynamips.host + ':' + str(dynamips.port) + ' -> ' + command)
     if not NOSEND:
         try:
-            dynamips.s.sendall(command.strip() + '\n')
+            dynamips.s.sendall(command.strip().encode('utf-8') + '\n')
         except timeout:
             print "Error: lost communication with dynamips server %s" % dynamips.host
             print "Dynamips may have crashed. Check the Dynamips server output."
