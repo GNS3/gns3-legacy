@@ -133,22 +133,3 @@ class Topology(QtGui.QGraphicsScene):
         pass
 
     links = property(__getLinks, __setLinks, doc='Property of links topology')
-
-    #TODO: menu on scene
-#    def mousePressEvent(self, event):
-#        """ Call when the node is clicked
-#            event: QtGui.QGraphicsSceneMouseEvent instance
-#        """
-#        
-#        print 'scene event'
-##        for item in self.selectedItems():
-##            print item.hostname
-#        if event.button() == QtCore.Qt.RightButton:
-#            menu = QtGui.QMenu()
-#            menu.addAction('test1')
-#            menu.addAction('test2')
-#            menu.addAction('test3')
-#            menu.exec_(QtGui.QCursor.pos())
-#            event.accept()
-#        else:
-#            QtGui.QGraphicsScene.mousePressEvent(self, event)

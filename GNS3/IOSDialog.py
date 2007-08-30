@@ -159,8 +159,8 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             return
 
         idlepc = str(self.lineEditIdlePC.text()).strip()
-        if idlepc and not re.search(r"""^0x[0-9a-fA-F]{6}$""", idlepc):
-            QtGui.QMessageBox.critical(self, 'IOS Configuration', translate("IOSDialog", "IDLE PC not valid (format required: 0xhhhhhh)"))
+        if idlepc and not re.search(r"""^0x[0-9a-fA-F]{8}$""", idlepc):
+            QtGui.QMessageBox.critical(self, 'IOS Configuration', translate("IOSDialog", "IDLE PC not valid (format required: 0xhhhhhhhh)"))
             return
         hypervisor_host = unicode('',  'utf-8')
         hypervisor_port = 0

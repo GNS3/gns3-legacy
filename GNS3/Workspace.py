@@ -373,7 +373,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.action_swModeDesign.setChecked(True)
         elif self.previousMode == globals.Enum.Mode.Simulation:
             self.action_swModeSimulation.setChecked(True)
-        
+        if self.hypervisor_manager and globals.useHypervisorManager:
+            self.hypervisor_manager.stopProcHypervisors()
             
     def switchToMode_Emulation(self):
         """ Function called to switch to mode `Emulation'
@@ -420,9 +421,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     node.configConnections()
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"),  str(msg))
+            self.__restoreButtonState()
             return
         except lib.DynamipsErrorHandled:
             QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
+            self.__restoreButtonState()
             return
     
         self.__startNonIOSNodes()

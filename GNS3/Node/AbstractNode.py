@@ -136,7 +136,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 self.setCustomToolTip()
                 for edge in self.__edgeList:
                     edge.setCustomToolTip()
-
+                    
     def paint(self, painter, option, widget=None):
         """ Don't show the selection rectangle
         """
