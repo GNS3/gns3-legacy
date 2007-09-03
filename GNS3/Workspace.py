@@ -421,10 +421,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     node.configConnections()
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"),  str(msg))
+            self.cleanNodeStates()
             self.__restoreButtonState()
             return
-        except lib.DynamipsErrorHandled:
+        except:
             QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
+            self.cleanNodeStates()
             self.__restoreButtonState()
             return
     
@@ -651,6 +653,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 return
             current += 1
         progress.setValue(count)
+        progress = None
         
     def __action_StopAll(self):
         """ Stop all nodes
@@ -689,6 +692,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 return
             current += 1
         progress.setValue(count)
+        progress = None
 
     def __action_About(self):
         """ Show GNS3 about dialog

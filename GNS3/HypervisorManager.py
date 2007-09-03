@@ -26,7 +26,7 @@ from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
 from GNS3.Node.IOSRouter import IOSRouter
 
-MEM_USAGE_LIMIT = 512
+MEM_USAGE_LIMIT = 128
 BASE_PORT_UDP = 10000
 
 class HypervisorManager:
@@ -119,11 +119,13 @@ class HypervisorManager:
                 # wait for starting
                 time.sleep(1)
                 # change the base UDP
-                self.baseUDP += 15
+                #TODO: give users a way to configure this
+                self.baseUDP += 100
                 mem = 0
         time.sleep(2)
         if count > 1:
             progress.setValue(count)
+            progress = None
         return True
                 
     def stopProcHypervisors(self):
