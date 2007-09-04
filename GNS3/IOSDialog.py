@@ -26,6 +26,7 @@ from GNS3.Ui.Form_IOSDialog import Ui_IOSDialog
 from GNS3.Config.Config import ConfDB
 from GNS3.Utils import fileBrowser, translate,  testOpenFile
 from GNS3.Config.Objects import iosImageConf,  hypervisorConf
+from GNS3.Node.IOSRouter import IOSRouter
 import GNS3.Globals as globals
 
 # known platforms and corresponding chassis

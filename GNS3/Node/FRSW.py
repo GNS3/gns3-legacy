@@ -141,6 +141,8 @@ class FRSW(AbstractNode):
                 if not str(port) in connected_ports:
                     self.emit(QtCore.SIGNAL("Add link"), self.id, str(port))
                     return
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("FRSW", "Connection"),  translate("FRSW", "No port available") )
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("FRSW", "Connection"),  translate("FRSW", "No port available"))
+            # tell the scene to cancel the link addition by sending a None id and None interface
+            self.emit(QtCore.SIGNAL("Add link"), None, None)
         else:
             AbstractNode.mousePressEvent(self, event)

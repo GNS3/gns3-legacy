@@ -113,6 +113,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         if self.__sourceNodeID == self.__destNodeID:
+            self.__isFirstClick = True
             return
             
         srcnode = globals.GApp.topology.getNode(self.__sourceNodeID)
@@ -122,6 +123,7 @@ class Scene(QtGui.QGraphicsView):
         if not self.checkInterfaceCompatibility(srcnode, self.__sourceInterface,  destnode,  self.__destInterface) and \
             not self.checkInterfaceCompatibility(destnode, self.__destInterface,  srcnode,  self.__sourceInterface):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Connection',  translate("Scene", "Interfaces are not compatible !"))
+            self.__isFirstClick = True
             return
 
         # add the link into the topology
@@ -134,6 +136,10 @@ class Scene(QtGui.QGraphicsView):
             interface: string
         """
 
+        if id == None and interface == None:
+            self.__isFirstClick = True
+            return
+            
         if globals.addingLinkFlag:
             # user is adding a link
             if self.__isFirstClick:
