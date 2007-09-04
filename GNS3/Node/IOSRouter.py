@@ -460,11 +460,10 @@ class IOSRouter(AbstractNode):
 
             if match_if or match_port:
                 if self.dev.slot[source_slot] != None and self.dev.slot[source_slot].connected(source_port) == False:
-                    print 'source = ' + str(source_port) + '/' + str(source_slot)
-                    print  'hypervisor ' + str(destnode.getHypervisor().port) + ' with UDP ' + str(destnode.getHypervisor().udp)
-                    print destnode.hostname + ' port ' + str(dest_port)
+#                    print 'source = ' + str(source_port) + '/' + str(source_slot)
+#                    print  'hypervisor ' + str(destnode.getHypervisor().port) + ' with UDP ' + str(destnode.getHypervisor().udp)
+#                    print destnode.hostname + ' port ' + str(dest_port)
                     self.dev.slot[source_slot].connect(source_port, destnode.getHypervisor(), destination, dest_port)
-                    print '----ok----'
             elif destinterface.lower()[:3] == 'nio':
                 self.dev.slot[source_slot].nio(source_port, nio=self.createNIO(self.getHypervisor(),  destinterface))
             

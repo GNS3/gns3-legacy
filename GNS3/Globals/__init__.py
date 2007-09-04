@@ -22,6 +22,7 @@
 
 addingLinkFlag = False
 useHypervisorManager = False
+debugLevel = 0
 
 # A singleton instance of GNS3 Application
 #   used for storing / accessing highly used object.

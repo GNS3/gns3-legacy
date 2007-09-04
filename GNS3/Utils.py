@@ -52,7 +52,15 @@ def testOpenFile(path,  flags='r'):
     except IOError:
         return False
     return True
-    
+ 
+def debug(self, string):
+        """ Print string if debugging is true
+        """
+
+        # Level 4, GNS3 debugs
+        if globals.debugLevel >= 4:
+            print '* DEBUG: ' + str(string)
+
 class fileBrowser(object):
     """ fileBrowser class
     """

@@ -20,6 +20,7 @@
 # Contact: contact@gns3.net
 #
 
+import os
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_IOSRouterPage import Ui_IOSRouterPage
@@ -27,6 +28,9 @@ from GNS3.Dynagen.dynamips_lib import ADAPTER_MATRIX
 from GNS3.Utils import fileBrowser, translate,  testOpenFile
 from GNS3.Config.Objects import iosRouterConf
 from GNS3.Node.IOSRouter import IOSRouter 
+
+# where the configs are stored
+configDirectory = '.'
 
 class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
     """ Class implementing the IOS router configuration page.
@@ -113,13 +117,15 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         """ Get startup-config from the file system
         """
         
-        path = fileBrowser('startup-config').getFile()
-        if path != None:
+        global configDirectory
+        path = fileBrowser('startup-config',  directory=configDirectory).getFile()
+        if path != None and path[0] != '':
             if not testOpenFile(path[0]):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Startup-config', translate("Page_IOSRouter", "Can't open file: ") + path[0])
                 return
             self.lineEditStartupConfig.clear()
             self.lineEditStartupConfig.setText(path[0])
+            configDirectory = os.path.dirname(path[0])
 
     def loadConfig(self,  id,  config = None):
         """ Load the config
