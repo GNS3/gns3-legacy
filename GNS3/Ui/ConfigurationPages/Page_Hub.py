@@ -56,13 +56,16 @@ class Page_Hub(QtGui.QWidget, Ui_HubPage):
             
         self.spinBoxNbPorts.setValue(Hubconfig.ports)
         
+        self.comboBoxHypervisors.clear()
+        for hypervisor in globals.GApp.hypervisors:
+            self.comboBoxHypervisors.addItem(hypervisor)
         if not Hubconfig.hypervisor_host:
             self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Unchecked)
-        self.comboBoxHypervisors.clear()
-        for hypervisor in globals.GApp.hypervisors:
-            self.comboBoxHypervisors.addItem(hypervisor)
+            index = self.comboBoxHypervisors.findText(Hubconfig.hypervisor_host + ':' + str(Hubconfig.hypervisor_port))
+            if index != -1:
+                self.comboBoxHypervisors.setCurrentIndex(index)
 
     def saveConfig(self, id, config = None):
         """ Save the config
@@ -82,8 +85,8 @@ class Page_Hub(QtGui.QWidget, Ui_HubPage):
             selected_hypervisor = unicode(self.comboBoxHypervisors.currentText(),  'utf-8')
             assert(globals.GApp.hypervisors.has_key(selected_hypervisor) != None)
             hypervisor = globals.GApp.hypervisors[selected_hypervisor]
-            ETHSWconfig.hypervisor_host = hypervisor.host
-            ETHSWconfig.hypervisor_port = hypervisor.port
+            Hubconfig.hypervisor_host = hypervisor.host
+            Hubconfig.hypervisor_port = hypervisor.port
             
         if config == None:
             node.updatePorts()

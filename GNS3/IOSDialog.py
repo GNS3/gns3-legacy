@@ -24,7 +24,7 @@ import os,  re
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_IOSDialog import Ui_IOSDialog
 from GNS3.Config.Config import ConfDB
-from GNS3.Utils import fileBrowser,  translate
+from GNS3.Utils import fileBrowser, translate,  testOpenFile
 from GNS3.Config.Objects import iosImageConf,  hypervisorConf
 import GNS3.Globals as globals
 
@@ -67,6 +67,13 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         # reload saved infos
         self._reloadInfos()
 
+    def __del__(self):
+    
+        # Add a default image for node that don't have one
+        for node in globals.GApp.topology.nodes.values():
+            if type(node) == IOSRouter and node.config.image == '':
+                node.setDefaultIOSImage()
+        
     def _reloadInfos(self):
         """ Reload previously recorded IOS images and hypervisors
         """
@@ -131,7 +138,12 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
         # get the path to the ios image
         path = fileBrowser(translate("IOSDialog", "Select an IOS image")).getFile()
+        
         if path != None:
+            # test if we can open it
+            if not testOpenFile(path[0]):
+                QtGui.QMessageBox.critical(self, 'IOS Configuration', translate("IOSDialog", "Can't open file: ") + path[0])
+                return
             path = path[0]
             self.lineEditIOSImage.clear()
             self.lineEditIOSImage.setText(path)
@@ -322,7 +334,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             self.spinBoxHypervisorPort.setValue(conf.port + 1)
             conf.workdir = working_dir
             conf.baseUDP = baseudp
-            self.spinBoxBaseUDP.setValue(conf.baseUDP + 15)
+            self.spinBoxBaseUDP.setValue(conf.baseUDP + 100)
             globals.GApp.hypervisors[hypervisorkey] = conf
             self.treeWidgetHypervisor.addTopLevelItem(item)
             self.treeWidgetHypervisor.resizeColumnToContents(0)

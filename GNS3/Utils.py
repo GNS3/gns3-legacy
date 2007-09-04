@@ -34,12 +34,24 @@ class  Singleton(object):
 
 
 def translate(context, text):
-    """ return the translated text
+    """ returns the translated text
         context: string (classname)
         text: string (original text)
     """
     
     return unicode(QtGui.QApplication.translate(context, text, None, QtGui.QApplication.UnicodeUTF8),  'utf-8')
+
+def testOpenFile(path,  flags='r'):
+    """ returns True if the file can be openned
+        path: string
+    """
+
+    try:
+        fd = open(path, flags)
+        fd.close()
+    except IOError:
+        return False
+    return True
     
 class fileBrowser(object):
     """ fileBrowser class

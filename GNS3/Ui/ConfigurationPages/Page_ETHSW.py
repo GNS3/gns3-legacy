@@ -144,13 +144,16 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
                 if not port in self.vlans[vlan]:
                     self.vlans[vlan].append(port)
 
+        self.comboBoxHypervisors.clear()
+        for hypervisor in globals.GApp.hypervisors:
+            self.comboBoxHypervisors.addItem(hypervisor)
         if not ETHSWconfig.hypervisor_host:
             self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Unchecked)
-        self.comboBoxHypervisors.clear()
-        for hypervisor in globals.GApp.hypervisors:
-            self.comboBoxHypervisors.addItem(hypervisor)
+            index = self.comboBoxHypervisors.findText(ETHSWconfig.hypervisor_host + ':' + str(ETHSWconfig.hypervisor_port))
+            if index != -1:
+                self.comboBoxHypervisors.setCurrentIndex(index)
             
     def saveConfig(self, id, config = None):
         """ Save the config

@@ -20,7 +20,7 @@
 # Contact: contact@gns3.net
 #
 
-import sys
+import sys,  socket
 import GNS3.Dynagen.dynamips_lib as lib
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtGui import QMainWindow, QAction, QActionGroup, QAction, QIcon
@@ -353,7 +353,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         try:
             for node in globals.GApp.topology.nodes.itervalues():
                 node.resetNode()
-        except:
+        except (lib.DynamipsErrorHandled,  socket.error):
             pass
         finally:
             self.cleanNodeStates()
@@ -424,7 +424,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.cleanNodeStates()
             self.__restoreButtonState()
             return
-        except:
+        except (lib.DynamipsErrorHandled,  socket.error):
             QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
             self.cleanNodeStates()
             self.__restoreButtonState()
@@ -608,16 +608,15 @@ class Workspace(QMainWindow, Ui_MainWindow):
             except lib.DynamipsWarning,  msg:
                 QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Workspace", "Dynamips warning"),  str(msg))
                 continue
-            except lib.DynamipsErrorHandled:
+            except (lib.DynamipsErrorHandled,  socket.error):
                 QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
-            except:
                 self.switchToMode_Design()
                 return
     
     def __action_StartAll(self):
         """ Start all nodes
         """
-        
+
         node_list = []
         for node in globals.GApp.topology.nodes.values():
             if type(node) == IOSRouter:
@@ -645,9 +644,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             except lib.DynamipsWarning,  msg:
                 QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Workspace", "Dynamips warning"),  str(msg))
                 continue
-            except lib.DynamipsErrorHandled:
+            except (lib.DynamipsErrorHandled,  socket.error):
                 QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
-            except:
                 progress.reset()
                 self.switchToMode_Design()
                 return
@@ -684,9 +682,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             except lib.DynamipsWarning,  msg:
                 QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Workspace", "Dynamips warning"),  str(msg))
                 continue
-            except lib.DynamipsErrorHandled:
+            except (lib.DynamipsErrorHandled,  socket.error):
                 QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
-            except:
                 progress.reset()
                 self.switchToMode_Design()
                 return
@@ -729,7 +726,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_OpenFile(self):
         """ Open a file (scenario or dynagen .NET format)
         """
-
         
         if self.currentMode != globals.Enum.Mode.Design:
             QtGui.QMessageBox.warning(self, translate("Workspace", "Scenario"),  translate("Workspace", "You can't open a scenario when you are not in design mode"))

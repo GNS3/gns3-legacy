@@ -24,7 +24,7 @@ import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_IOSRouterPage import Ui_IOSRouterPage
 from GNS3.Dynagen.dynamips_lib import ADAPTER_MATRIX
-from GNS3.Utils import fileBrowser, translate
+from GNS3.Utils import fileBrowser, translate,  testOpenFile
 from GNS3.Config.Objects import iosRouterConf
 from GNS3.Node.IOSRouter import IOSRouter 
 
@@ -115,6 +115,9 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         
         path = fileBrowser('startup-config').getFile()
         if path != None:
+            if not testOpenFile(path[0]):
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Startup-config', translate("Page_IOSRouter", "Can't open file: ") + path[0])
+                return
             self.lineEditStartupConfig.clear()
             self.lineEditStartupConfig.setText(path[0])
 

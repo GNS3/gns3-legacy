@@ -94,6 +94,10 @@ class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
         (path, selected) = fb.getFile()
 
         if path is not None:
+            # test if we can open it
+            if not testOpenFile(path):
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Dynamips path', translate("UiConfig_SystemApplications", "Can't open file: ") + path)
+                return
             self.dynamips_path.setText(path)
 
     def __setDynamipsWorkdir(self):
