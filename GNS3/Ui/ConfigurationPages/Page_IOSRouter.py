@@ -20,7 +20,7 @@
 # Contact: contact@gns3.net
 #
 
-import os
+import os,  re
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_IOSRouterPage import Ui_IOSRouterPage
@@ -146,6 +146,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             self.comboBoxIOS.setCurrentIndex(index)
         self.spinBoxConsolePort.setValue(IOSconfig.consoleport)
         self.lineEditStartupConfig.setText(IOSconfig.startup_config)
+        self.lineEditMAC.setText(IOSconfig.MAC)
         self.spinBoxRamSize.setValue(IOSconfig.RAM)
         self.spinBoxRomSize.setValue(IOSconfig.ROM)
         self.spinBoxNvramSize.setValue(IOSconfig.NVRAM)
@@ -164,6 +165,10 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         index = self.comboBoxNPE.findText(IOSconfig.npe)
         if index != -1:
             self.comboBoxNPE.setCurrentIndex(index)
+        if IOSconfig.delete_files == True:
+            self.checkBoxDeleteFiles.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxDeleteFiles.setCheckState(QtCore.Qt.Unchecked)
 
     def saveConfig(self, id, config = None):
         """ Save the config
@@ -177,6 +182,11 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         IOSconfig.image = unicode(self.comboBoxIOS.currentText(),  'utf-8')
         IOSconfig.consoleport = self.spinBoxConsolePort.value()
         IOSconfig.startup_config = unicode(self.lineEditStartupConfig.text(),  'utf-8')
+        mac = str(self.lineEditMAC.text())
+        if mac and not re.search(r"""^([0-9a-fA-F]{2}[:-]){5}[0-9a-fA-F]{2}$""", mac):
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'MAC', translate("Page_IOSRouter", "Invalid MAC address (format required: hh:hh:hh:hh:hh:hh)"))
+        else:
+            IOSconfig.MAC = mac
         IOSconfig.RAM = self.spinBoxRamSize.value()
         IOSconfig.ROM = self.spinBoxRomSize.value()
         IOSconfig.NVRAM = self.spinBoxNvramSize.value()
@@ -193,6 +203,10 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             IOSconfig.midplane = str(self.comboBoxMidplane.currentText())
         if str(self.comboBoxNPE.currentText()):
             IOSconfig.npe = str(self.comboBoxNPE.currentText())
+        if self.checkBoxDeleteFiles.checkState() == QtCore.Qt.Checked:
+            IOSconfig.delete_files = True
+        else:
+            IOSconfig.delete_files = False
 
         IOSconfig.slots = []
         slotnb = 0

@@ -342,6 +342,8 @@ class IOSRouter(AbstractNode):
             self.dev.console = self.config.consoleport
         if self.config.startup_config != '':
             self.dev.cnfg = '"' + self.config.startup_config + '"'
+        if self.config.RAM != '':
+            self.dev.mac = self.config.MAC
         self.dev.ram = self.config.RAM
         self.dev.rom = self.config.ROM
         self.dev.nvram = self.config.NVRAM

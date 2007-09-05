@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_IOSRouterPage.ui'
 #
-# Created: Wed Sep  5 16:25:59 2007
+# Created: Wed Sep  5 19:27:35 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
@@ -335,17 +335,21 @@ class Ui_IOSRouterPage(object):
         self.gridlayout4 = QtGui.QGridLayout(self.Advanced)
         self.gridlayout4.setObjectName("gridlayout4")
 
+        self.checkBoxDeleteFiles = QtGui.QCheckBox(self.Advanced)
+        self.checkBoxDeleteFiles.setObjectName("checkBoxDeleteFiles")
+        self.gridlayout4.addWidget(self.checkBoxDeleteFiles,0,0,1,2)
+
         self.checkBoxMapped = QtGui.QCheckBox(self.Advanced)
         self.checkBoxMapped.setChecked(True)
         self.checkBoxMapped.setObjectName("checkBoxMapped")
-        self.gridlayout4.addWidget(self.checkBoxMapped,0,0,1,1)
+        self.gridlayout4.addWidget(self.checkBoxMapped,1,0,1,1)
 
         spacerItem3 = QtGui.QSpacerItem(121,23,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
-        self.gridlayout4.addItem(spacerItem3,0,1,1,1)
+        self.gridlayout4.addItem(spacerItem3,1,1,1,1)
 
         self.label_25 = QtGui.QLabel(self.Advanced)
         self.label_25.setObjectName("label_25")
-        self.gridlayout4.addWidget(self.label_25,1,0,1,1)
+        self.gridlayout4.addWidget(self.label_25,2,0,1,1)
 
         self.lineEditConfreg = QtGui.QLineEdit(self.Advanced)
 
@@ -355,11 +359,25 @@ class Ui_IOSRouterPage(object):
         sizePolicy.setHeightForWidth(self.lineEditConfreg.sizePolicy().hasHeightForWidth())
         self.lineEditConfreg.setSizePolicy(sizePolicy)
         self.lineEditConfreg.setObjectName("lineEditConfreg")
-        self.gridlayout4.addWidget(self.lineEditConfreg,1,1,1,1)
+        self.gridlayout4.addWidget(self.lineEditConfreg,2,1,1,1)
+
+        self.label_3 = QtGui.QLabel(self.Advanced)
+        self.label_3.setObjectName("label_3")
+        self.gridlayout4.addWidget(self.label_3,3,0,1,1)
+
+        self.lineEditMAC = QtGui.QLineEdit(self.Advanced)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lineEditMAC.sizePolicy().hasHeightForWidth())
+        self.lineEditMAC.setSizePolicy(sizePolicy)
+        self.lineEditMAC.setObjectName("lineEditMAC")
+        self.gridlayout4.addWidget(self.lineEditMAC,3,1,1,1)
 
         self.label_31 = QtGui.QLabel(self.Advanced)
         self.label_31.setObjectName("label_31")
-        self.gridlayout4.addWidget(self.label_31,2,0,1,1)
+        self.gridlayout4.addWidget(self.label_31,4,0,1,1)
 
         self.spinBoxExecArea = QtGui.QSpinBox(self.Advanced)
 
@@ -372,11 +390,11 @@ class Ui_IOSRouterPage(object):
         self.spinBoxExecArea.setSingleStep(4)
         self.spinBoxExecArea.setProperty("value",QtCore.QVariant(64))
         self.spinBoxExecArea.setObjectName("spinBoxExecArea")
-        self.gridlayout4.addWidget(self.spinBoxExecArea,2,1,1,1)
+        self.gridlayout4.addWidget(self.spinBoxExecArea,4,1,1,1)
 
         self.label_22 = QtGui.QLabel(self.Advanced)
         self.label_22.setObjectName("label_22")
-        self.gridlayout4.addWidget(self.label_22,3,0,1,1)
+        self.gridlayout4.addWidget(self.label_22,5,0,1,1)
 
         self.spinBoxIomem = QtGui.QSpinBox(self.Advanced)
         self.spinBoxIomem.setEnabled(False)
@@ -389,10 +407,10 @@ class Ui_IOSRouterPage(object):
         self.spinBoxIomem.setMaximum(100)
         self.spinBoxIomem.setProperty("value",QtCore.QVariant(5))
         self.spinBoxIomem.setObjectName("spinBoxIomem")
-        self.gridlayout4.addWidget(self.spinBoxIomem,3,1,1,1)
+        self.gridlayout4.addWidget(self.spinBoxIomem,5,1,1,1)
 
-        spacerItem4 = QtGui.QSpacerItem(20,121,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
-        self.gridlayout4.addItem(spacerItem4,4,1,1,1)
+        spacerItem4 = QtGui.QSpacerItem(262,41,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        self.gridlayout4.addItem(spacerItem4,6,1,1,1)
         self.tabWidget.addTab(self.Advanced,"")
         self.vboxlayout.addWidget(self.tabWidget)
 
@@ -430,9 +448,11 @@ class Ui_IOSRouterPage(object):
         self.label_26.setText(QtGui.QApplication.translate("IOSRouterPage", "slot5:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_28.setText(QtGui.QApplication.translate("IOSRouterPage", "slot6:", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.Slots), QtGui.QApplication.translate("IOSRouterPage", "Slots", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxDeleteFiles.setText(QtGui.QApplication.translate("IOSRouterPage", "Delete nvram/flash/log files when stopping emulation", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxMapped.setText(QtGui.QApplication.translate("IOSRouterPage", "Use mmap", None, QtGui.QApplication.UnicodeUTF8))
         self.label_25.setText(QtGui.QApplication.translate("IOSRouterPage", "confreg:", None, QtGui.QApplication.UnicodeUTF8))
         self.lineEditConfreg.setText(QtGui.QApplication.translate("IOSRouterPage", "0x2102", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_3.setText(QtGui.QApplication.translate("IOSRouterPage", "Base MAC :", None, QtGui.QApplication.UnicodeUTF8))
         self.label_31.setText(QtGui.QApplication.translate("IOSRouterPage", "exec area:", None, QtGui.QApplication.UnicodeUTF8))
         self.spinBoxExecArea.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MB", None, QtGui.QApplication.UnicodeUTF8))
         self.label_22.setText(QtGui.QApplication.translate("IOSRouterPage", "iomem :", None, QtGui.QApplication.UnicodeUTF8))
