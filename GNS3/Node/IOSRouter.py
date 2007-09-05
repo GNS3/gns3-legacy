@@ -173,6 +173,11 @@ class IOSRouter(AbstractNode):
         self.stopAct = QtGui.QAction(translate('IOSRouter', 'Stop'), self)
         self.stopAct.setIcon(QtGui.QIcon(':/icons/stop.svg'))
         self.connect(self.stopAct, QtCore.SIGNAL('triggered()'), self.__stopAction)
+        
+        # Action: Suspend (Suspend IOS on hypervisor)
+        self.suspendAct = QtGui.QAction(translate('IOSRouter', 'Suspend'), self)
+        self.suspendAct.setIcon(QtGui.QIcon(':/icons/pause.svg'))
+        self.connect(self.suspendAct, QtCore.SIGNAL('triggered()'), self.__suspendAction)
 
         #FIXME: temporary hack
         self.config.slots = ['',  '',  '',  '',  '',  '',  '']
@@ -200,6 +205,12 @@ class IOSRouter(AbstractNode):
         """
     
         self.stopNode()
+  
+    def __suspendAction(self):
+        """ Action called to suspend the node
+        """
+    
+        self.suspendNode()
   
     def smartInterface(self,  link_type,  chassis):
         """ Pick automatically (if possible) the right interface for the desired link type
@@ -468,22 +479,33 @@ class IOSRouter(AbstractNode):
                 self.dev.slot[source_slot].nio(source_port, nio=self.createNIO(self.getHypervisor(),  destinterface))
             
     def startNode(self):
-        """ Start the node
+        """ Start/Resume the node
         """
 
-        if self.dev == None or self.dev.state == 'running':
+        if self.dev == None:
             return
-        print self.dev.start()
+        if self.dev.state == 'stopped':
+            print self.dev.start()
+        if self.dev.state == 'suspended':
+            print self.dev.resume()
         
         for edge in self.getEdgeList():
-                edge.setLocalInterfaceStatus(self.id, True)
+            edge.setLocalInterfaceStatus(self.id, True)
         
     def stopNode(self):
         """ Stop the node
         """
 
-        if self.dev != None and self.dev.state == 'running':
+        if self.dev != None and self.dev.state != 'stopped':
             print self.dev.stop()
+            self.shutdownInterfaces()
+            
+    def suspendNode(self):
+        """ Suspend the node
+        """
+
+        if self.dev != None and self.dev.state == 'running':
+            print self.dev.suspend()
             self.shutdownInterfaces()
 
     def resetNode(self):
@@ -531,6 +553,7 @@ class IOSRouter(AbstractNode):
             # actions for emulation mode
             self.menu.addAction(self.consoleAct)
             self.menu.addAction(self.startAct)
+            self.menu.addAction(self.suspendAct)
             self.menu.addAction(self.stopAct)
             self.menu.addAction(self.showHostnameAct)
             self.menu.exec_(QtGui.QCursor.pos())

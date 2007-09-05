@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Wed Sep  5 10:11:46 2007
+# Created: Wed Sep  5 12:01:51 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
@@ -246,6 +246,10 @@ class Ui_MainWindow(object):
         self.action_Paste = QtGui.QAction(MainWindow)
         self.action_Paste.setEnabled(False)
         self.action_Paste.setObjectName("action_Paste")
+
+        self.action_SuspendAll = QtGui.QAction(MainWindow)
+        self.action_SuspendAll.setIcon(QtGui.QIcon(":/icons/pause_metal.svg"))
+        self.action_SuspendAll.setObjectName("action_SuspendAll")
         self.menu_Edit.addAction(self.action_Cut)
         self.menu_Edit.addAction(self.action_Copy)
         self.menu_Edit.addAction(self.action_Paste)
@@ -287,6 +291,7 @@ class Ui_MainWindow(object):
         self.toolBar_Design.addAction(self.action_Add_link)
         self.toolBar_Emulation.addAction(self.action_TelnetAll)
         self.toolBar_Emulation.addAction(self.action_StartAll)
+        self.toolBar_Emulation.addAction(self.action_SuspendAll)
         self.toolBar_Emulation.addAction(self.action_StopAll)
 
         self.retranslateUi(MainWindow)
@@ -319,15 +324,15 @@ class Ui_MainWindow(object):
         self.action_Add_link.setText(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Add_link.setIconText(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Add_link.setToolTip(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_Add_link.setStatusTip(QtGui.QApplication.translate("MainWindow", "Add a link between two nodes", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Add_link.setStatusTip(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SwitchMode.setText(QtGui.QApplication.translate("MainWindow", "Emulation Mode", None, QtGui.QApplication.UnicodeUTF8))
         self.action_IOS_images.setText(QtGui.QApplication.translate("MainWindow", "IOS images", None, QtGui.QApplication.UnicodeUTF8))
         self.action_IOS_images.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+I", None, QtGui.QApplication.UnicodeUTF8))
         self.action_OnlineHelp.setText(QtGui.QApplication.translate("MainWindow", "&Online Help", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Import.setText(QtGui.QApplication.translate("MainWindow", "&Import", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Export.setText(QtGui.QApplication.translate("MainWindow", "&Export", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_StartAll.setText(QtGui.QApplication.translate("MainWindow", "Start all IOS", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_StartAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Start all IOS instances", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_StartAll.setText(QtGui.QApplication.translate("MainWindow", "Start/Resume all IOS", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_StartAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Start or resume all IOS instances", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StopAll.setText(QtGui.QApplication.translate("MainWindow", "Stop all IOS", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StopAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Stop all IOS instances", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ShowHostnames.setText(QtGui.QApplication.translate("MainWindow", "Show hostnames", None, QtGui.QApplication.UnicodeUTF8))
@@ -367,6 +372,8 @@ class Ui_MainWindow(object):
         self.action_Copy.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+C", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Paste.setText(QtGui.QApplication.translate("MainWindow", "&Paste", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Paste.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+V", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_SuspendAll.setText(QtGui.QApplication.translate("MainWindow", "Suspend all IOS", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_SuspendAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Suspend all IOS instances", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.Scene import Scene
 from GNS3.Ui.Widget_topologySummaryDock import topologySummaryDock

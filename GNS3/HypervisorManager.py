@@ -26,7 +26,8 @@ from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
 from GNS3.Node.IOSRouter import IOSRouter
 
-MEM_USAGE_LIMIT = 128
+#TODO: give users a way to configure this
+MEM_USAGE_LIMIT = 512
 BASE_PORT_UDP = 10000
 
 class HypervisorManager:

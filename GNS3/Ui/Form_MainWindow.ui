@@ -211,6 +211,7 @@
    </attribute>
    <addaction name="action_TelnetAll" />
    <addaction name="action_StartAll" />
+   <addaction name="action_SuspendAll" />
    <addaction name="action_StopAll" />
   </widget>
   <widget class="QDockWidget" name="dockWidget_TopoSum" >
@@ -355,7 +356,7 @@
     <string>Add a link</string>
    </property>
    <property name="statusTip" >
-    <string>Add a link between two nodes</string>
+    <string>Add a link</string>
    </property>
   </action>
   <action name="action_SwitchMode" >
@@ -409,10 +410,10 @@
     <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/icons/start_metal.svg</iconset>
    </property>
    <property name="text" >
-    <string>Start all IOS</string>
+    <string>Start/Resume all IOS</string>
    </property>
    <property name="statusTip" >
-    <string>Start all IOS instances</string>
+    <string>Start or resume all IOS instances</string>
    </property>
   </action>
   <action name="action_StopAll" >
@@ -612,6 +613,17 @@
    </property>
    <property name="shortcut" >
     <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="action_SuspendAll" >
+   <property name="icon" >
+    <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/icons/pause_metal.svg</iconset>
+   </property>
+   <property name="text" >
+    <string>Suspend all IOS</string>
+   </property>
+   <property name="statusTip" >
+    <string>Suspend all IOS instances</string>
    </property>
   </action>
  </widget>

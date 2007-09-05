@@ -196,6 +196,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__action_StartAll)
         self.connect(self.action_StopAll,  QtCore.SIGNAL('triggered()'),
             self.__action_StopAll)
+        self.connect(self.action_SuspendAll,  QtCore.SIGNAL('triggered()'),
+            self.__action_SuspendAll)
         self.connect(self.action_About,  QtCore.SIGNAL('triggered()'),
             self.__action_About)
         self.connect(self.action_AboutQt,  QtCore.SIGNAL('triggered()'),
@@ -613,17 +615,19 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 self.switchToMode_Design()
                 return
     
-    def __action_StartAll(self):
-        """ Start all nodes
+    def __launchProgressDialog(self,  action,  text):
+        """ Launch a progress dialog and do a action
+            action: string
+            text: string
         """
-
+    
         node_list = []
         for node in globals.GApp.topology.nodes.values():
             if type(node) == IOSRouter:
                 node_list.append(node)
+                
         count = len(node_list)
-        
-        progress = QtGui.QProgressDialog(translate("Workspace", "Starting nodes ..."), translate("Workspace", "Abort"), 0, count, self)
+        progress = QtGui.QProgressDialog(text, translate("Workspace", "Abort"), 0, count, self)
         progress.setMinimum(1)
         progress.setWindowModality(QtCore.Qt.WindowModal)
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents)
@@ -635,12 +639,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 progress.reset()
                 break
             try:
-                node.startNode()
+                if action == 'start':
+                    node.startNode()
+                if action == 'stop':
+                    node.stopNode()
+                if action == 'suspend':
+                    node.suspendNode()
             except lib.DynamipsError, msg:
-                if node.dev.state == 'running':
-                    pass
-                else:
-                    QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Workspace", "Dynamips error"),  str(msg))
+                QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Workspace", "Dynamips error"),  str(msg))
             except lib.DynamipsWarning,  msg:
                 QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Workspace", "Dynamips warning"),  str(msg))
                 continue
@@ -652,45 +658,25 @@ class Workspace(QMainWindow, Ui_MainWindow):
             current += 1
         progress.setValue(count)
         progress = None
+    
+    def __action_StartAll(self):
+        """ Start all nodes
+        """
+
+        self.__launchProgressDialog('start', translate("Workspace", "Starting nodes ..."))
         
     def __action_StopAll(self):
         """ Stop all nodes
         """
         
-        node_list = []
-        for node in globals.GApp.topology.nodes.values():
-            node_list.append(node)
-        count = len(node_list)
-        progress = QtGui.QProgressDialog(translate("Workspace", "Stopping nodes ..."), translate("Workspace", "Abort"), 0, count, self)
-        progress.setMinimum(1)
-        progress.setWindowModality(QtCore.Qt.WindowModal)
-        globals.GApp.processEvents()
-        current = 0
-        for node in node_list:
-            progress.setValue(current)
-            globals.GApp.processEvents()
-            if progress.wasCanceled():
-                progress.reset()
-                break
-            try:
-                node.stopNode()
-            except lib.DynamipsError, msg:
-                if node.dev.state == 'stopped':
-                    pass
-                else:
-                    QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Workspace", "Dynamips error"),  str(msg))
-            except lib.DynamipsWarning,  msg:
-                QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Workspace", "Dynamips warning"),  str(msg))
-                continue
-            except (lib.DynamipsErrorHandled,  socket.error):
-                QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
-                progress.reset()
-                self.switchToMode_Design()
-                return
-            current += 1
-        progress.setValue(count)
-        progress = None
+        self.__launchProgressDialog('stop', translate("Workspace", "Stopping nodes ..."))
 
+    def __action_SuspendAll(self):
+        """ Suspend all nodes
+        """
+        
+        self.__launchProgressDialog('suspend', translate("Workspace", "Suspending nodes ..."))
+        
     def __action_About(self):
         """ Show GNS3 about dialog
         """

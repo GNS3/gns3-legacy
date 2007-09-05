@@ -68,7 +68,7 @@ class Cloud(AbstractNode):
 
         for edge in self.getEdgeList():
                 edge.setLocalInterfaceStatus(self.id, True)
-
+        
     def stopNode(self):
         """ Stop the node
         """
