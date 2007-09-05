@@ -12,6 +12,9 @@
   <property name="windowTitle" >
    <string>Node configurator</string>
   </property>
+  <property name="windowIcon" >
+   <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/images/logo_icon.png</iconset>
+  </property>
   <layout class="QGridLayout" >
    <item row="0" column="0" >
     <widget class="QSplitter" name="splitter" >
@@ -179,6 +182,8 @@ to display the configuration page.</string>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../../gns3-artwork/svg_resources.qrc" />
+ </resources>
  <connections/>
 </ui>

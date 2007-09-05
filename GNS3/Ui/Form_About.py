@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_About.ui'
 #
-# Created: Sat Jul 21 09:38:06 2007
+# Created: Wed Sep  5 10:11:47 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,6 +13,7 @@ class Ui_AboutDialog(object):
     def setupUi(self, AboutDialog):
         AboutDialog.setObjectName("AboutDialog")
         AboutDialog.resize(QtCore.QSize(QtCore.QRect(0,0,503,285).size()).expandedTo(AboutDialog.minimumSizeHint()))
+        AboutDialog.setWindowIcon(QtGui.QIcon(":/images/logo_icon.png"))
 
         self.gridlayout = QtGui.QGridLayout(AboutDialog)
         self.gridlayout.setObjectName("gridlayout")

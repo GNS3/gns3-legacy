@@ -2,12 +2,15 @@
 
 # Set files without extension !
 FILES=" Form_MainWindow
-        Form_Inspector
         Form_About
         Form_IOSDialog
-        Form_Configurator
         Form_NodeConfigurator
         ./ConfigurationPages/Form_IOSRouterPage
+        ./ConfigurationPages/Form_CloudPage
+        ./ConfigurationPages/Form_ETHSWPage
+        ./ConfigurationPages/Form_FRSWPage
+        ./ConfigurationPages/Form_HubPage
+
 "
 
 # Update files...

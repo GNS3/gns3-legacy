@@ -13,7 +13,7 @@
    <string>About</string>
   </property>
   <property name="windowIcon" >
-   <iconset/>
+   <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/images/logo_icon.png</iconset>
   </property>
   <layout class="QGridLayout" >
    <item row="0" column="0" >

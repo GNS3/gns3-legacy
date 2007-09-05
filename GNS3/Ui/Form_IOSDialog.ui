@@ -12,6 +12,9 @@
   <property name="windowTitle" >
    <string>IOS images and hypervisors</string>
   </property>
+  <property name="windowIcon" >
+   <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/images/logo_icon.png</iconset>
+  </property>
   <layout class="QVBoxLayout" >
    <item>
     <widget class="QTabWidget" name="tabWidget" >
@@ -473,7 +476,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../../gns3-artwork/svg_resources.qrc" />
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

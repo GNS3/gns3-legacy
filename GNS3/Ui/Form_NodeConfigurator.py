@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_NodeConfigurator.ui'
 #
-# Created: Mon Jul 23 09:48:49 2007
+# Created: Wed Sep  5 10:11:47 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,6 +13,7 @@ class Ui_NodeConfigurator(object):
     def setupUi(self, NodeConfigurator):
         NodeConfigurator.setObjectName("NodeConfigurator")
         NodeConfigurator.resize(QtCore.QSize(QtCore.QRect(0,0,665,492).size()).expandedTo(NodeConfigurator.minimumSizeHint()))
+        NodeConfigurator.setWindowIcon(QtGui.QIcon(":/images/logo_icon.png"))
 
         self.gridlayout = QtGui.QGridLayout(NodeConfigurator)
         self.gridlayout.setObjectName("gridlayout")
@@ -105,3 +106,4 @@ class Ui_NodeConfigurator(object):
         self.textLabel1.setText(QtGui.QApplication.translate("NodeConfigurator", "Please select a node in the list \n"
         "to display the configuration page.", None, QtGui.QApplication.UnicodeUTF8))
 
+import svg_resources_rc

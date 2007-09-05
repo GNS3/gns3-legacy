@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Form_HubPage.ui'
+# Form implementation generated from reading ui file './ConfigurationPages/Form_HubPage.ui'
 #
-# Created: Tue Aug 14 20:24:50 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070710
+# Created: Wed Sep  5 10:11:48 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
 
