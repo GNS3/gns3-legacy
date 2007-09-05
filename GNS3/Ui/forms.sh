@@ -10,7 +10,7 @@ FILES=" Form_MainWindow
         ./ConfigurationPages/Form_ETHSWPage
         ./ConfigurationPages/Form_FRSWPage
         ./ConfigurationPages/Form_HubPage
-
+        ./ConfigurationPages/Form_ATMSWPage
 "
 
 # Update files...

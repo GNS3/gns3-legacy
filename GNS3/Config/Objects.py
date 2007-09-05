@@ -101,6 +101,12 @@ class FRSWConf(ConfigObject):
         ConfigObject.__init__(self)
         self.conf = Defaults.conf_FRSW_defaults.copy() 
         self.types = Defaults.conf_FRSW_types
+
+class ATMSWConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_ATMSW_defaults.copy() 
+        self.types = Defaults.conf_ATMSW_types
         
 class ETHSWConf(ConfigObject):
     def __init__(self):

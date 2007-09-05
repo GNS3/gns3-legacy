@@ -110,6 +110,20 @@ conf_FRSW_types = {
     'hypervisor_port': int,
 }
 
+conf_ATMSW_defaults = {
+    'ports': [],
+    'mapping': {},
+    'hypervisor_host': '',
+    'hypervisor_port': 0,
+}
+
+conf_ATMSW_types = {
+    'ports': list,
+    'mapping': dict,
+    'hypervisor_host': unicode,
+    'hypervisor_port': int,
+}
+
 conf_ETHSW_defaults = {
     'ports': {},
     'vlans': {},

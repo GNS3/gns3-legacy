@@ -29,6 +29,7 @@ from GNS3.NodeConfigurator import NodeConfigurator
 from GNS3.Globals.Symbols import SYMBOLS
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
+from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.Hub import Hub
 
 IF_REGEXP = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)\/([0-9]+)$""") 
@@ -270,7 +271,9 @@ class Scene(QtGui.QGraphicsView):
                     if typesrc == 's' and type(destnode) == FRSW:
                         # FRSW is connected to a serial interface
                         return True
-                #TODO: ATMSW
+                    if typesrc == 'a' and type(destnode) == ATMSW:
+                        # ATMSW is connected to an ATM interface
+                        return True
 
         match_obj = PORT_REGEXP.search(srcinterface)
         if match_obj and type(srcnode) == ETHSW:

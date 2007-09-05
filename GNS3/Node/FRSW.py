@@ -85,7 +85,6 @@ class FRSW(AbstractNode):
             return
 
         connected_interfaces = self.getConnectedInterfaceList()
-        print connected_interfaces
         connected_interfaces = map(int,  connected_interfaces)
         
         for (source,  destination) in self.config.mapping.iteritems():

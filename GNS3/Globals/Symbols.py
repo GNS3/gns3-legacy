@@ -25,6 +25,7 @@ from GNS3.Node.Cloud import Cloud
 from GNS3.Node.Hub import Hub
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
+from GNS3.Node.ATMSW import ATMSW
 
 SYMBOLS = (
     {'name': "Router", 'object': IOSRouter,
@@ -71,7 +72,7 @@ SYMBOLS = (
     'normal_svg_file': ":/symbols/route_swproc.normal.svg",
     'select_svg_file': ":/symbols/route_swproc.selected.svg"},
      
-    {'name': "ATM switch", 'object': IOSRouter,
+    {'name': "ATM switch", 'object': ATMSW,
     'normal_svg_file': ":/symbols/sw_atm.normal.svg",
     'select_svg_file': ":/symbols/sw_atm.selected.svg"}, 
     

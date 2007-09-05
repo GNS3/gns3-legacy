@@ -28,6 +28,7 @@ from GNS3.Ui.Form_NodeConfigurator import Ui_NodeConfigurator
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
+from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.Cloud import Cloud
 from GNS3.Node.Hub import Hub
 
@@ -102,7 +103,10 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                  "Page_FRSW", None, None], 
             "ETHSW":
                 [translate("NodeConfigurator", "Ethernet switches"), ":/symbols/sw_standard.normal.svg",
-                 "Page_ETHSW", None, None], 
+                 "Page_ETHSW", None, None],
+            "ATMSW":
+                [translate("NodeConfigurator", "ATM switches"), ":/symbols/sw_atm.normal.svg",
+                 "Page_ATMSW", None, None], 
             "Clouds":
                 [translate("NodeConfigurator", "Clouds"), ":/symbols/cloud.normal.svg",
                  "Page_Cloud", None, None], 
@@ -113,7 +117,8 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
 
         self.assocPage = { IOSRouter: "Routers", 
                                      FRSW: "FRSW",
-                                     ETHSW: "ETHSW", 
+                                     ETHSW: "ETHSW",
+                                     ATMSW: "ATMSW",
                                      Cloud: "Clouds", 
                                      Hub: "Hubs"
                                     }

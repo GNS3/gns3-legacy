@@ -40,37 +40,37 @@ ROUTERS = {
 }
 
 SLOTMATRIX = {
-                        '2610' : { 0 : ('CISCO2600-MB-1E'), 
+                        '2610' : { 0 : ('CISCO2600-MB-1E',  ), 
                                         1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     },
-                        '2611' : { 0 : ('CISCO2600-MB-2E'), 
+                        '2611' : { 0 : ('CISCO2600-MB-2E',  ), 
                                         1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     },
-                        '2620' : { 0 : ('CISCO2600-MB-1FE'), 
+                        '2620' : { 0 : ('CISCO2600-MB-1FE',  ), 
                                         1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     }, 
-                        '2621' : { 0 : ('CISCO2600-MB-2FE'), 
+                        '2621' : { 0 : ('CISCO2600-MB-2FE',  ), 
                                         1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     }, 
-                        '2610XM' : { 0 : ('CISCO2600-MB-1FE'), 
+                        '2610XM' : { 0 : ('CISCO2600-MB-1FE',  ), 
                                         1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     },
-                        '2611XM' : { 0 : ('CISCO2600-MB-2FE'), 
+                        '2611XM' : { 0 : ('CISCO2600-MB-2FE',  ), 
                                         1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     },
-                        '2620XM' : { 0 : ('CISCO2600-MB-1FE'), 
+                        '2620XM' : { 0 : ('CISCO2600-MB-1FE',  ), 
                                         1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     }, 
-                        '2621XM' : { 0 : ('CISCO2600-MB-2FE'), 
+                        '2621XM' : { 0 : ('CISCO2600-MB-2FE',  ), 
                                         1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     },
-                        '2650XM' : { 0 : ('CISCO2600-MB-1FE'), 
+                        '2650XM' : { 0 : ('CISCO2600-MB-1FE',  ), 
                                         1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     }, 
-                        '2651XM' : { 0 : ('CISCO2600-MB-2FE'), 
+                        '2651XM' : { 0 : ('CISCO2600-MB-2FE',  ), 
                                         1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
                                     },
-                        '2691' : { 0 : ('GT96100-FE'), 
+                        '2691' : { 0 : ('GT96100-FE',  ), 
                                         1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T')
                                     }, 
                         '3620' : { 0 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
@@ -81,7 +81,7 @@ SLOTMATRIX = {
                                         2 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'),
                                         3 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'),
                                     }, 
-                        '3660' : { 0 : ('Leopard-2FE'),
+                        '3660' : { 0 : ('Leopard-2FE',  ),
                                         1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
                                         2 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
                                         3 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
@@ -89,17 +89,17 @@ SLOTMATRIX = {
                                         5 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'),
                                         6 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
                                     },
-                        '3725' : { 0 : ('GT96100-FE'),
+                        '3725' : { 0 : ('GT96100-FE',  ),
                                         1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'), 
                                         2 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'),
                                     },
-                        '3745' : { 0 : ('GT96100-FE'),
+                        '3745' : { 0 : ('GT96100-FE',  ),
                                         1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'), 
                                         2 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'),
                                         3 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'),
                                         4 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'),
                                     },
-                        '7200' : { 0 :  ('C7200-IO-FE'), 
+                        '7200' : { 0 :  ('C7200-IO-FE',  ), 
                                         1 : ('PA-A1', 'PA-FE-TX', 'PA-8T', 'PA-4T+', 'PA-8E', 'PA-4E', 'PA-POS-OC3'), 
                                         2 : ('PA-A1', 'PA-FE-TX', 'PA-8T', 'PA-4T+', 'PA-8E', 'PA-4E', 'PA-POS-OC3'), 
                                         3 : ('PA-A1', 'PA-FE-TX', 'PA-8T', 'PA-4T+', 'PA-8E', 'PA-4E', 'PA-POS-OC3'),
@@ -217,7 +217,7 @@ class IOSRouter(AbstractNode):
             link_type: a one character string 'g', 'f', 'e', 's', 'a', or 'p'
             chassis: string corresponding to the chassis model
         """
-    
+
         interfaces = self.getConnectedInterfaceList()
         # clean unused slots
         for slot in range(7):
@@ -260,7 +260,6 @@ class IOSRouter(AbstractNode):
                                     # the configured slot has the right type
                                     return interface_name
             except KeyError:
-                print slot
                 break
         return ''
   
@@ -270,7 +269,7 @@ class IOSRouter(AbstractNode):
     
         try:
             if slotnb == 0 and chassis in MBCHASSIS:
-                return [SLOTMATRIX[chassis][slotnb]]
+                return list(SLOTMATRIX[chassis][slotnb])
             return  [''] + list(SLOTMATRIX[chassis][slotnb])
         except KeyError:
             return ['']
@@ -306,7 +305,7 @@ class IOSRouter(AbstractNode):
             else:
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate('IOSRouter', 'Node configuration'),  translate('IOSRouter', 'No IOS image available !'))
                 return
-
+    
         image = globals.GApp.iosimages[image]
         filename = image.filename
         platform = image.platform
@@ -323,6 +322,7 @@ class IOSRouter(AbstractNode):
             else:
                 print 'Hypervisor ' + hypervisorkey + ' not registered !'
                 return
+        
         hypervisor = self.getHypervisor()
         #ROUTERS
         if platform == '7200':
@@ -353,6 +353,7 @@ class IOSRouter(AbstractNode):
         if self.config.confreg != '':
             self.dev.conf = self.config.confreg
         self.dev.exec_area = self.config.execarea
+        
         if platform == '3600':
             pass
             #Wait the bug with iomen to be correted in Dynamips 0.2.8
