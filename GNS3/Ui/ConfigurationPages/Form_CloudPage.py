@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_CloudPage.ui'
 #
-# Created: Wed Sep  5 19:27:35 2007
+# Created: Thu Sep  6 16:03:04 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_CloudPage(object):
     def setupUi(self, CloudPage):
         CloudPage.setObjectName("CloudPage")
-        CloudPage.resize(QtCore.QSize(QtCore.QRect(0,0,394,417).size()).expandedTo(CloudPage.minimumSizeHint()))
+        CloudPage.resize(QtCore.QSize(QtCore.QRect(0,0,423,467).size()).expandedTo(CloudPage.minimumSizeHint()))
 
         self.vboxlayout = QtGui.QVBoxLayout(CloudPage)
         self.vboxlayout.setObjectName("vboxlayout")
@@ -40,23 +40,33 @@ class Ui_CloudPage(object):
         sizePolicy.setHeightForWidth(self.comboBoxGenEth.sizePolicy().hasHeightForWidth())
         self.comboBoxGenEth.setSizePolicy(sizePolicy)
         self.comboBoxGenEth.setObjectName("comboBoxGenEth")
-        self.gridlayout.addWidget(self.comboBoxGenEth,0,0,1,1)
+        self.gridlayout.addWidget(self.comboBoxGenEth,0,0,1,3)
+
+        self.lineEditGenEth = QtGui.QLineEdit(self.groupBox)
+        self.lineEditGenEth.setObjectName("lineEditGenEth")
+        self.gridlayout.addWidget(self.lineEditGenEth,1,0,1,1)
 
         self.pushButtonAddGenericEth = QtGui.QPushButton(self.groupBox)
         self.pushButtonAddGenericEth.setObjectName("pushButtonAddGenericEth")
-        self.gridlayout.addWidget(self.pushButtonAddGenericEth,0,1,1,1)
+        self.gridlayout.addWidget(self.pushButtonAddGenericEth,1,1,1,1)
 
         self.pushButtonDeleteGenericEth = QtGui.QPushButton(self.groupBox)
         self.pushButtonDeleteGenericEth.setEnabled(False)
         self.pushButtonDeleteGenericEth.setObjectName("pushButtonDeleteGenericEth")
-        self.gridlayout.addWidget(self.pushButtonDeleteGenericEth,0,2,1,1)
+        self.gridlayout.addWidget(self.pushButtonDeleteGenericEth,1,2,1,1)
 
         self.listWidgetGenericEth = QtGui.QListWidget(self.groupBox)
         self.listWidgetGenericEth.setObjectName("listWidgetGenericEth")
-        self.gridlayout.addWidget(self.listWidgetGenericEth,1,0,1,3)
+        self.gridlayout.addWidget(self.listWidgetGenericEth,2,0,1,3)
         self.vboxlayout1.addWidget(self.groupBox)
 
         self.groupBox_2 = QtGui.QGroupBox(self.tab)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred,QtGui.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
+        self.groupBox_2.setSizePolicy(sizePolicy)
         self.groupBox_2.setObjectName("groupBox_2")
 
         self.gridlayout1 = QtGui.QGridLayout(self.groupBox_2)
@@ -70,23 +80,27 @@ class Ui_CloudPage(object):
         sizePolicy.setHeightForWidth(self.comboBoxLinuxEth.sizePolicy().hasHeightForWidth())
         self.comboBoxLinuxEth.setSizePolicy(sizePolicy)
         self.comboBoxLinuxEth.setObjectName("comboBoxLinuxEth")
-        self.gridlayout1.addWidget(self.comboBoxLinuxEth,0,0,1,1)
+        self.gridlayout1.addWidget(self.comboBoxLinuxEth,0,0,1,3)
+
+        self.lineEditLinuxEth = QtGui.QLineEdit(self.groupBox_2)
+        self.lineEditLinuxEth.setObjectName("lineEditLinuxEth")
+        self.gridlayout1.addWidget(self.lineEditLinuxEth,1,0,1,1)
 
         self.pushButtonAddLinuxEth = QtGui.QPushButton(self.groupBox_2)
         self.pushButtonAddLinuxEth.setObjectName("pushButtonAddLinuxEth")
-        self.gridlayout1.addWidget(self.pushButtonAddLinuxEth,0,1,1,1)
+        self.gridlayout1.addWidget(self.pushButtonAddLinuxEth,1,1,1,1)
 
         self.pushButtonDeleteLinuxEth = QtGui.QPushButton(self.groupBox_2)
         self.pushButtonDeleteLinuxEth.setEnabled(False)
         self.pushButtonDeleteLinuxEth.setObjectName("pushButtonDeleteLinuxEth")
-        self.gridlayout1.addWidget(self.pushButtonDeleteLinuxEth,0,2,1,1)
+        self.gridlayout1.addWidget(self.pushButtonDeleteLinuxEth,1,2,1,1)
 
         self.listWidgetLinuxEth = QtGui.QListWidget(self.groupBox_2)
         self.listWidgetLinuxEth.setObjectName("listWidgetLinuxEth")
-        self.gridlayout1.addWidget(self.listWidgetLinuxEth,1,0,1,3)
+        self.gridlayout1.addWidget(self.listWidgetLinuxEth,2,0,1,3)
         self.vboxlayout1.addWidget(self.groupBox_2)
 
-        spacerItem = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        spacerItem = QtGui.QSpacerItem(21,16,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Fixed)
         self.vboxlayout1.addItem(spacerItem)
         self.tabWidget.addTab(self.tab,"")
 
@@ -185,15 +199,9 @@ class Ui_CloudPage(object):
         self.gridlayout4 = QtGui.QGridLayout(self.groupBox_5)
         self.gridlayout4.setObjectName("gridlayout4")
 
-        self.comboBoxTAP = QtGui.QComboBox(self.groupBox_5)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.comboBoxTAP.sizePolicy().hasHeightForWidth())
-        self.comboBoxTAP.setSizePolicy(sizePolicy)
-        self.comboBoxTAP.setObjectName("comboBoxTAP")
-        self.gridlayout4.addWidget(self.comboBoxTAP,0,0,1,1)
+        self.lineEditTAP = QtGui.QLineEdit(self.groupBox_5)
+        self.lineEditTAP.setObjectName("lineEditTAP")
+        self.gridlayout4.addWidget(self.lineEditTAP,0,0,1,1)
 
         self.pushButtonAddTAP = QtGui.QPushButton(self.groupBox_5)
         self.pushButtonAddTAP.setObjectName("pushButtonAddTAP")
