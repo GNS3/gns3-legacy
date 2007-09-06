@@ -2,21 +2,12 @@ TODO LIST
 
  * Provide a way to do get a IDLE PC directly from GNS-3 and include/reuse an IDLE PC database.
  * Use the ghost file
- * Options to suspend and resume IOS.
  * Enable the use of iomem
- * Use virtual ATM, Frame-Relay, Ethernet switches and the NIO bridge module provided by Dynamips
  * Language support.
- * Configuration of network modules dynamically when linking to other nodes.
  * NET files import and export
- * Connections to real NICs
  * Include a Close option and a New option on the File menu
- * Do a slow 'start all IOS'
- * Use the fast clock divisor of Dynamips.
- * Add more 'Cisco-like' SVG symbols.
  * An all-in-one installer for Mac OS X
  * Show interface names on the scene (as an option).
  * Correct minor drawing problems with the status points.
- * Warn users when configuration changes in the node affect links
  * Connect links and new modules for the 7200 platform directly in emulation mode (hotplug)
- * New IOS Dialog
 

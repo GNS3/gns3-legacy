@@ -355,6 +355,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         try:
             for node in globals.GApp.topology.nodes.itervalues():
                 node.resetNode()
+                if type(node) == IOSRouter:
+                    node.cleanNodeFiles()
         except (lib.DynamipsErrorHandled,  socket.error):
             pass
         finally:

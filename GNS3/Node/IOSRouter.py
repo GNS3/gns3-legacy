@@ -20,7 +20,7 @@
 # Contact: contact@gns3.net
 #
 
-import re
+import os,  re
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui,  QtSvg
 from GNS3.Utils import translate
@@ -181,6 +181,7 @@ class IOSRouter(AbstractNode):
 
         #FIXME: temporary hack
         self.config.slots = ['',  '',  '',  '',  '',  '',  '']
+        self.platform = ''
         
     def getDefaultConfig(self):
         """ Returns the default configuration
@@ -324,13 +325,17 @@ class IOSRouter(AbstractNode):
                 return
         
         hypervisor = self.getHypervisor()
+
         #ROUTERS
         if platform == '7200':
             self.dev = ROUTERS[platform](hypervisor, name = '"' + self.hostname + '"')
+            self.platform = platform
         if chassis in ('2691', '3725', '3745'):
             self.dev = ROUTERS[chassis](hypervisor, name = '"' + self.hostname + '"')
+            self.platform = chassis
         elif platform in ('3600', '2600'):
             self.dev = ROUTERS[platform](hypervisor, chassis = chassis, name = '"' + self.hostname + '"')
+            self.platform = platform
 
         self.dev.image = '"' + filename + '"'
         if idlepc:
@@ -342,7 +347,7 @@ class IOSRouter(AbstractNode):
             self.dev.console = self.config.consoleport
         if self.config.startup_config != '':
             self.dev.cnfg = '"' + self.config.startup_config + '"'
-        if self.config.RAM != '':
+        if self.config.MAC != '':
             self.dev.mac = self.config.MAC
         self.dev.ram = self.config.RAM
         self.dev.rom = self.config.ROM
@@ -520,7 +525,22 @@ class IOSRouter(AbstractNode):
             if dynagen.devices.has_key(self.hostname):
                 del dynagen.devices[self.hostname]
             self.shutdownInterfaces()
-        
+            
+    def cleanNodeFiles(self):
+        """ Delete nvram/flash/log files created by Dynamips
+        """
+
+        if self.config.delete_files == True:
+            files = []
+            workingdir = self.getHypervisor().workingdir
+            files.append(workingdir + 'c' + self.platform + '_' + self.hostname + '_bootflash')
+            files.append(workingdir + 'c' + self.platform + '_' + self.hostname + '_log.txt')
+            files.append(workingdir + 'c' + self.platform + '_' + self.hostname + '_nvram')
+            files.append(workingdir + 'c' + self.platform + '_' + self.hostname + '_lock')
+            for filename in files:
+                if os.path.isfile(filename): 
+                    os.remove(filename)
+
     def console(self):
         """ Start a telnet console and connect it to an IOS
         """
