@@ -66,6 +66,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.__createMenus()
         self.__connectActions()
         self.__initModeSwitching()
+        self.setCorner(QtCore.Qt.TopLeftCorner, QtCore.Qt.LeftDockWidgetArea)
+        self.setCorner(QtCore.Qt.BottomLeftCorner, QtCore.Qt.LeftDockWidgetArea)
+        self.setCorner(QtCore.Qt.TopRightCorner, QtCore.Qt.RightDockWidgetArea)
+        self.setCorner(QtCore.Qt.BottomRightCorner, QtCore.Qt.RightDockWidgetArea)
 
         # Workspace flags
         self.flg_showHostname = False
@@ -86,7 +90,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             # Design Mode
             globals.Enum.Mode.Design: {
                 'docks_enable': {
-                    '1': self.dockWidget_NodeTypes
+                    '1': self.dockWidget_NodeTypes,
+                    '2': self.dockWidget_Console
                 },
                 'docks_disable': {
                     '1': self.dockWidget_TopoSum,
@@ -104,7 +109,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             # Emulation Mode
             globals.Enum.Mode.Emulation: {
                 'docks_enable': {
-                    '1': self.dockWidget_TopoSum
+                    '1': self.dockWidget_TopoSum,
+                    '2': self.dockWidget_Console
                 },
                 'docks_disable': {
                     '1': self.dockWidget_NodeTypes,
@@ -221,6 +227,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.subm.addAction(self.dockWidget_NodeTypes.toggleViewAction())
         self.subm.addAction(self.dockWidget_TopoSum.toggleViewAction())
         self.subm.addAction(self.dockWidget_EventEditor.toggleViewAction())
+        self.subm.addAction(self.dockWidget_Console.toggleViewAction())
 
         self.subm = self.submenu_Toolbars
         self.subm.addAction(self.toolBar_General.toggleViewAction())

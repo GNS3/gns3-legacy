@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Wed Sep  5 19:27:34 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070701
+# Created: Thu Sep  6 18:39:07 2007
+#      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -35,7 +35,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,840,25))
+        self.menubar.setGeometry(QtCore.QRect(0,0,840,28))
         self.menubar.setObjectName("menubar")
 
         self.menu_Edit = QtGui.QMenu(self.menubar)
@@ -129,6 +129,31 @@ class Ui_MainWindow(object):
         self.dockWidgetContents_8.setObjectName("dockWidgetContents_8")
         self.dockWidget_EventEditor.setWidget(self.dockWidgetContents_8)
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(2),self.dockWidget_EventEditor)
+
+        self.dockWidget_Console = QtGui.QDockWidget(MainWindow)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred,QtGui.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.dockWidget_Console.sizePolicy().hasHeightForWidth())
+        self.dockWidget_Console.setSizePolicy(sizePolicy)
+        self.dockWidget_Console.setMaximumSize(QtCore.QSize(16777215,16777215))
+        self.dockWidget_Console.setAllowedAreas(QtCore.Qt.BottomDockWidgetArea|QtCore.Qt.NoDockWidgetArea|QtCore.Qt.TopDockWidgetArea)
+        self.dockWidget_Console.setObjectName("dockWidget_Console")
+
+        self.dockWidgetContents_5 = QtGui.QWidget(self.dockWidget_Console)
+        self.dockWidgetContents_5.setObjectName("dockWidgetContents_5")
+
+        self.gridlayout2 = QtGui.QGridLayout(self.dockWidgetContents_5)
+        self.gridlayout2.setMargin(0)
+        self.gridlayout2.setSpacing(0)
+        self.gridlayout2.setObjectName("gridlayout2")
+
+        self.textEdit = Console(self.dockWidgetContents_5)
+        self.textEdit.setObjectName("textEdit")
+        self.gridlayout2.addWidget(self.textEdit,0,0,1,1)
+        self.dockWidget_Console.setWidget(self.dockWidgetContents_5)
+        MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(8),self.dockWidget_Console)
 
         self.action_About = QtGui.QAction(MainWindow)
         self.action_About.setMenuRole(QtGui.QAction.AboutRole)
@@ -312,6 +337,7 @@ class Ui_MainWindow(object):
         self.dockWidget_TopoSum.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Topology Summary", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidget_TopologySummary.headerItem().setText(0,QtGui.QApplication.translate("MainWindow", "1", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidget_EventEditor.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Event Editor", None, QtGui.QApplication.UnicodeUTF8))
+        self.dockWidget_Console.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Console", None, QtGui.QApplication.UnicodeUTF8))
         self.action_About.setText(QtGui.QApplication.translate("MainWindow", "&About", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setText(QtGui.QApplication.translate("MainWindow", "&Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))
@@ -375,7 +401,8 @@ class Ui_MainWindow(object):
         self.action_SuspendAll.setText(QtGui.QApplication.translate("MainWindow", "Suspend all IOS", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SuspendAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Suspend all IOS instances", None, QtGui.QApplication.UnicodeUTF8))
 
-from GNS3.Scene import Scene
+from GNS3.Console import Console
 from GNS3.Ui.Widget_topologySummaryDock import topologySummaryDock
 from GNS3.Ui.Widget_nodesDock import nodesDock
+from GNS3.Scene import Scene
 import svg_resources_rc
