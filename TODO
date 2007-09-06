@@ -10,4 +10,6 @@ TODO LIST
  * Show interface names on the scene (as an option).
  * Correct minor drawing problems with the status points.
  * Connect links and new modules for the 7200 platform directly in emulation mode (hotplug)
+ * Give users a way to write text on the scene
+
 

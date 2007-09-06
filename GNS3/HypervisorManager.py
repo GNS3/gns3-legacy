@@ -57,7 +57,6 @@ class HypervisorManager:
         proc = QtCore.QProcess(globals.GApp.mainWindow)
         port = self.hypervisor_baseport
         self.hypervisor_baseport += 1
-        #QtCore.QObject.connect(self.proc, QtCore.SIGNAL('readyReadStandardOutput()'), self.slotStandardOutput)
         
         if self.hypervisor_wd:
             # set the working directory
@@ -67,7 +66,6 @@ class HypervisorManager:
         if proc.waitForStarted() == False:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Can't start Dynamips"))
             return None
-                
         hypervisor = {'port': port,
                             'proc_instance': proc}
 
@@ -123,7 +121,7 @@ class HypervisorManager:
                 #TODO: give users a way to configure this
                 self.baseUDP += 100
                 mem = 0
-        time.sleep(2)
+        time.sleep(1)
         if count > 1:
             progress.setValue(count)
             progress = None
@@ -144,5 +142,34 @@ class HypervisorManager:
     def slotStandardOutput(self):
         """ Display the standard output of the process
         """
+        
+        print 'received data stdout'
+        for hypervisor in self.hypervisors:
+            print hypervisor['proc_instance'].readAllStandardOutput()
+        
+        #print str(self.proc.readAllStandardOutput())
+        
+    def slotStandardErrorOutput(self):
+        """ Display the error output of the process
+        """
 
-        print str(self.proc.readAllStandardOutput())
+        print 'received data stderr'
+        print str(self.proc.readAllStandardError)
+        
+    def preloadDynamips(self):
+        """ Preload Dynamips
+        """
+
+        self.proc = QtCore.QProcess(globals.GApp.mainWindow)
+#        QtCore.QObject.connect(self.proc, QtCore.SIGNAL('readyReadStandardOutput()'), self.slotStandardOutput)
+#        QtCore.QObject.connect(self.proc, QtCore.SIGNAL('readyReadStandardError()'), self.slotStandardErrorOutput)
+
+        if self.hypervisor_wd:
+            # set the working directory
+            self.proc.setWorkingDirectory(self.hypervisor_wd)
+                    
+        # start dynamips in hypervisor mode (-H)
+        self.proc.start(self.hypervisor_path,  ['-H', str(self.hypervisor_baseport)])
+        if self.proc.waitForStarted() == False:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Can't start Dynamips"))
+        self.proc.close()

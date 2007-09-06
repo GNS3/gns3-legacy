@@ -20,6 +20,8 @@
 # Contact: contact@gns3.net
 #
 
+import string
+import subprocess as sub
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_CloudPage import Ui_CloudPage
@@ -41,12 +43,50 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         self.connect(self.pushButtonAddLinuxEth, QtCore.SIGNAL('clicked()'), self.slotAddLinuxEth)
         self.connect(self.pushButtonDeleteLinuxEth, QtCore.SIGNAL('clicked()'), self.slotDeleteLinuxEth)
         self.connect(self.listWidgetLinuxEth,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotLinuxEthChanged)
+        self.connect(self.comboBoxGenEth, QtCore.SIGNAL('currentIndexChanged(int)'), self.slotSelectedGenEth)
+        self.connect(self.comboBoxLinuxEth, QtCore.SIGNAL('currentIndexChanged(int)'), self.slotSelectedLinuxEth)
+        
         self.nios = []
         
         #FIXME: to test ...
-        self.comboBoxGenEth.addItems(['eth0',  'eth1',  'eth2'])
-        self.comboBoxLinuxEth.addItems(['eth0',  'eth1',  'eth2'])
+        self.comboBoxGenEth.addItems(self.getLinuxInterfaces())
+        self.comboBoxLinuxEth.addItems(self.getLinuxInterfaces())
 
+    def getLinuxInterfaces(self):
+        """ Try to detect all available interfaces on Linux
+        """
+    
+        interfaces = []
+        try:
+            p = sub.Popen('netstat -i', stdout=sub.PIPE, stderr=sub.STDOUT, shell=True)
+            outputlines = p.stdout.readlines()
+            p.wait()
+            for line in outputlines[2:]:
+                fields = string.split(line)
+                if fields[0] not in interfaces:
+                    interfaces.append(fields[0])
+        except:
+            return []
+        return interfaces
+        
+    def getWindowsInterfaces(self):
+        """ Try to detect all available interfaces on Windows
+        """
+        
+        pass
+        
+    def slotSelectedGenEth(self,  index):
+        """ Load the selected generic interface in lineEdit
+        """
+
+        self.lineEditGenEth.setText(self.comboBoxGenEth.currentText())
+        
+    def slotSelectedLinuxEth(self,  index):
+        """ Load the selected linux interface in lineEdit
+        """
+
+        self.lineEditLinuxEth.setText(self.comboBoxLinuxEth.currentText())
+        
     def slotGenEthChanged(self):
         """ Enable the use of the delete button
         """
@@ -61,7 +101,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         """ Add a new generic Ethernet NIO
         """
     
-        interface = str(self.comboBoxGenEth.currentText())
+        interface = str(self.lineEditGenEth.text())
         if interface:
             nio = 'NIO_gen_eth:' + interface
             if not nio in self.nios:
@@ -92,7 +132,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         """ Add a new Linux Ethernet NIO
         """
     
-        interface = str(self.comboBoxLinuxEth.currentText())
+        interface = str(self.lineEditLinuxEth.text())
         if interface:
             nio = 'NIO_linux_eth:' + interface
             if not nio in self.nios:
@@ -106,7 +146,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         if (item != None):
             nio = str(item.text())
             self.nios.remove(nio)
-            self.listWidgetLinuxEth.takeItem (self.listWidgetLinuxEth.currentRow())
+            self.listWidgetLinuxEth.takeItem(self.listWidgetLinuxEth.currentRow())
 
     def loadConfig(self,  id,  config = None):
         """ Load the config

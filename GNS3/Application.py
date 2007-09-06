@@ -28,6 +28,7 @@ from GNS3.Workspace import Workspace
 from GNS3.Topology import Topology
 from GNS3.Config.Objects import systemDynamipsConf
 from GNS3.Config.Config import ConfDB, GNS_Conf
+from GNS3.HypervisorManager import HypervisorManager
 import GNS3.Globals as globals
 
 class Application(QApplication, Singleton):
@@ -206,6 +207,10 @@ class Application(QApplication, Singleton):
         confo.port = int(ConfDB().get('Dynamips/hypervisor_port', 7200))
         confo.workdir = ConfDB().get('Dynamips/hypervisor_working_directory', unicode('',  'utf-8'))
         confo.term_cmd = ConfDB().get('Dynamips/console', unicode('',  'utf-8'))
+
+        # preload dynamips, so it will start faster when use it
+        if globals.GApp.systconf['dynamips'].path:
+            HypervisorManager().preloadDynamips()
 
         self.mainWindow.show()
 
