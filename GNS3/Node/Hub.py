@@ -55,7 +55,7 @@ class Hub(AbstractNode):
         """
         
         interfaces = []
-        for port in range(self.config.ports):
+        for port in range(1,  self.config.ports + 1):
             interfaces.append(str(port))
         return (interfaces)
         

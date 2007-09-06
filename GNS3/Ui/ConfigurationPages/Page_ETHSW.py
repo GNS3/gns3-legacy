@@ -41,6 +41,11 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         self.connect(self.treeWidgetPorts,  QtCore.SIGNAL('itemActivated(QTreeWidgetItem *, int)'),  self.slotPortselected)
         self.connect(self.treeWidgetPorts,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotPortSelectionChanged)
         self.connect(self.checkBoxIntegratedHypervisor, QtCore.SIGNAL('stateChanged(int)'), self.slotCheckBoxIntegratedHypervisor)
+       
+        # enable sorting
+        self.treeWidgetPorts.sortByColumn(0, QtCore.Qt.AscendingOrder)
+        self.treeWidgetPorts.setSortingEnabled(True)
+        
         self.ports = {}
         self.vlans= {}
 
@@ -143,6 +148,8 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
                     self.vlans[vlan] = []
                 if not port in self.vlans[vlan]:
                     self.vlans[vlan].append(port)
+        self.treeWidgetPorts.resizeColumnToContents(0)
+        self.treeWidgetPorts.resizeColumnToContents(1)
 
         self.comboBoxHypervisors.clear()
         for hypervisor in globals.GApp.hypervisors:

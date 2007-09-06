@@ -58,7 +58,9 @@ class ATMSW(AbstractNode):
         """ Return all interfaces
         """
 
-        return (self.config.ports)
+        ports = map(int, self.config.ports)
+        ports.sort()
+        return (map(str, ports))
         
     def configNode(self):
         """ Node configuration

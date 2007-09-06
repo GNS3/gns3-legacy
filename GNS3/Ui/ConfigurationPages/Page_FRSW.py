@@ -41,6 +41,11 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
         self.connect(self.treeWidgetVCmap,  QtCore.SIGNAL('itemActivated(QTreeWidgetItem *, int)'),  self.slotVCselected)
         self.connect(self.treeWidgetVCmap,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotVCSelectionChanged)
         self.connect(self.checkBoxIntegratedHypervisor, QtCore.SIGNAL('stateChanged(int)'), self.slotCheckBoxIntegratedHypervisor)
+        
+        # enable sorting
+        self.treeWidgetVCmap.sortByColumn(0, QtCore.Qt.AscendingOrder)
+        self.treeWidgetVCmap.setSortingEnabled(True)
+        
         self.mapping = {}
 
     def slotCheckBoxIntegratedHypervisor(self, state):
@@ -132,7 +137,9 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
             item.setText(1, destination)
             self.treeWidgetVCmap.addTopLevelItem(item)
             self.mapping[source] = destination
-           
+        self.treeWidgetVCmap.resizeColumnToContents(0)
+        self.treeWidgetVCmap.resizeColumnToContents(1)
+        
         self.comboBoxHypervisors.clear()
         for hypervisor in globals.GApp.hypervisors:
             self.comboBoxHypervisors.addItem(hypervisor)

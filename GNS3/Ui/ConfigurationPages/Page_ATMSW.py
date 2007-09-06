@@ -45,6 +45,11 @@ class Page_ATMSW(QtGui.QWidget, Ui_ATMSWPage):
         self.connect(self.treeWidgetVCmap,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotVCSelectionChanged)
         self.connect(self.checkBoxIntegratedHypervisor, QtCore.SIGNAL('stateChanged(int)'), self.slotCheckBoxIntegratedHypervisor)
         self.connect(self.checkBoxVCI, QtCore.SIGNAL('stateChanged(int)'), self.slotCheckBoxVCI)
+        
+        # enable sorting
+        self.treeWidgetVCmap.sortByColumn(0, QtCore.Qt.AscendingOrder)
+        self.treeWidgetVCmap.setSortingEnabled(True)
+        
         self.mapping = {}
 
     def slotCheckBoxVCI(self,  state):
@@ -177,7 +182,9 @@ class Page_ATMSW(QtGui.QWidget, Ui_ATMSWPage):
             item.setText(1, destination)
             self.treeWidgetVCmap.addTopLevelItem(item)
             self.mapping[source] = destination
-           
+        self.treeWidgetVCmap.resizeColumnToContents(0)
+        self.treeWidgetVCmap.resizeColumnToContents(1)
+
         self.comboBoxHypervisors.clear()
         for hypervisor in globals.GApp.hypervisors:
             self.comboBoxHypervisors.addItem(hypervisor)
