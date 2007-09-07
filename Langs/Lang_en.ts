@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="fr">
+<!DOCTYPE TS><TS version="1.1">
 <context>
     <name>ATMSW</name>
     <message>
@@ -23,7 +23,7 @@
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_ATMSWPage.ui" line="19"/>
         <source>Hypervisor</source>
-        <translation type="unfinished">Hyperviseur</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_ATMSWPage.ui" line="25"/>
@@ -73,7 +73,7 @@
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_ATMSWPage.ui" line="277"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">&amp;Ajouter</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_ATMSWPage.ui" line="287"/>
@@ -86,25 +86,7 @@
     <message>
         <location filename="../GNS3/Ui/Form_About.ui" line="13"/>
         <source>About</source>
-        <translation type="unfinished">À propos</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;GNS-3&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;EPITECH end of studies &lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;project (www.epitech.net)&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;Jeremy Grossmann&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Xavier Alt&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Romain Lamaison&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aurelien Levesque&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;David Ruiz&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;developers@gns3.net&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;GNS-3&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;Projet de fin d&apos;etudes &lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;EPITECH (www.epitech.net)&lt;/p&gt;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;Jeremy Grossmann&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Xavier Alt&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Romain Lamaison&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aurelien Levesque&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;David Ruiz&lt;/p&gt;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;developers@gns3.net&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/Form_About.ui" line="51"/>
@@ -144,12 +126,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Node/AbstractNode.py" line="78"/>
         <source>Delete</source>
-        <translation type="unfinished">Supprimer</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Node/AbstractNode.py" line="83"/>
         <source>Configure</source>
-        <translation type="unfinished">Configurer</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Node/AbstractNode.py" line="88"/>
@@ -230,7 +212,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="489"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">&amp;Ajouter</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="499"/>
@@ -331,7 +313,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="19"/>
         <source>Hypervisor</source>
-        <translation type="unfinished">Hyperviseur</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="25"/>
@@ -391,7 +373,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="183"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">&amp;Ajouter</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="193"/>
@@ -422,7 +404,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_FRSWPage.ui" line="19"/>
         <source>Hypervisor</source>
-        <translation type="unfinished">Hyperviseur</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_FRSWPage.ui" line="25"/>
@@ -462,60 +444,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_FRSWPage.ui" line="218"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">&amp;Ajouter</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_FRSWPage.ui" line="228"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>FormInspector</name>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Node configuration</source>
-        <translation type="obsolete">Configuration du noeud</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>General and advanced settings</source>
-        <translation type="obsolete">Réglages généraux et avancés</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>General settings</source>
-        <translation type="obsolete">Réglages généraux</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>IOS image:</source>
-        <translation type="obsolete">Image IOS:</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Console port:</source>
-        <translation type="obsolete">Port de la console:</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>...</source>
-        <translation type="obsolete">...</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Advanced settings</source>
-        <translation type="obsolete">Réglages avancés</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Use mmap</source>
-        <translation type="obsolete">Utiliser mmap</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source> MB</source>
-        <translation type="obsolete"> MO</translation>
     </message>
 </context>
 <context>
@@ -541,7 +475,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_HubPage.ui" line="19"/>
         <source>Hypervisor</source>
-        <translation type="unfinished">Hyperviseur</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_HubPage.ui" line="25"/>
@@ -582,132 +516,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="13"/>
         <source>IOS images and hypervisors</source>
-        <translation type="unfinished">Images IOS et hyperviseurs</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>IOS images</source>
-        <translation type="obsolete">Images IOS</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>IOS file name</source>
-        <translation type="obsolete">Nom de l&apos;image IOS</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Platform</source>
-        <translation type="obsolete">Platforme</translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="136"/>
-        <source>Chassis</source>
-        <translation type="unfinished">Chassis</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Hypervisor</source>
-        <translation type="obsolete">Hyperviseur</translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="434"/>
-        <source>&amp;Edit</source>
-        <translation type="unfinished">&amp;Editer</translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="444"/>
-        <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;Supprimer</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>&amp;Close</source>
-        <translation type="obsolete">&amp;Fermer</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>New IOS image</source>
-        <translation type="obsolete">Nouvelle image IOS</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Use the integrated hypervisor</source>
-        <translation type="obsolete">Utiliser l&apos;hyperviseur intégré</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Save IOS image</source>
-        <translation type="obsolete">Sauver l&apos;image IOS</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>General settings</source>
-        <translation type="obsolete">Réglages généraux</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Use ghost file</source>
-        <translation type="obsolete">Utiliser un fichier ghost</translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="101"/>
-        <source>IDLE PC:</source>
-        <translation type="unfinished">IDLE PC:</translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="373"/>
-        <source>...</source>
-        <translation type="unfinished">...</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>size:</source>
-        <translation type="obsolete">taille:</translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="44"/>
-        <source>Image file :</source>
-        <translation type="unfinished">Fichier image:</translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="67"/>
-        <source>Platform:</source>
-        <translation type="unfinished">Platforme:</translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="84"/>
-        <source>Chassis:</source>
-        <translation type="unfinished">Chassis:</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Host</source>
-        <translation type="obsolete">Hôte</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Working directory</source>
-        <translation type="obsolete">Répertoire de travail</translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="357"/>
-        <source>Working directory:</source>
-        <translation type="unfinished">Répertoire de travail:</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>&amp;Add</source>
-        <translation type="obsolete">&amp;Ajouter</translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="255"/>
-        <source>Host:</source>
-        <translation type="unfinished">Hôte:</translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="285"/>
-        <source>Port:</source>
-        <translation type="unfinished">Port:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="26"/>
@@ -720,6 +529,31 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="44"/>
+        <source>Image file :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="373"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="67"/>
+        <source>Platform:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="84"/>
+        <source>Chassis:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="101"/>
+        <source>IDLE PC:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="118"/>
         <source>Images</source>
         <translation type="unfinished"></translation>
@@ -727,6 +561,11 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="131"/>
         <source>IOS image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="136"/>
+        <source>Chassis</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -742,7 +581,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="424"/>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Sauver</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="434"/>
+        <source>&amp;Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="444"/>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="255"/>
+        <source>Host:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="278"/>
@@ -750,8 +604,18 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="285"/>
+        <source>Port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="321"/>
         <source>Base UDP:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="357"/>
+        <source>Working directory:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -795,17 +659,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Node/IOSRouter.py" line="163"/>
         <source>Console</source>
-        <translation type="unfinished">Console</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Node/IOSRouter.py" line="168"/>
         <source>Start</source>
-        <translation type="unfinished">Démarrer</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Node/IOSRouter.py" line="173"/>
         <source>Stop</source>
-        <translation type="unfinished">Arrêter</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Node/IOSRouter.py" line="178"/>
@@ -815,7 +679,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Node/IOSRouter.py" line="307"/>
         <source>Node configuration</source>
-        <translation type="unfinished">Configuration du noeud</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Node/IOSRouter.py" line="307"/>
@@ -858,7 +722,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="29"/>
         <source>IOS image:</source>
-        <translation type="unfinished">Image IOS:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="46"/>
@@ -868,12 +732,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="75"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="82"/>
         <source>Console port:</source>
-        <translation type="unfinished">Port de la console:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="108"/>
@@ -903,7 +767,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="554"/>
         <source> MB</source>
-        <translation type="unfinished"> MO</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="203"/>
@@ -983,7 +847,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="478"/>
         <source>Use mmap</source>
-        <translation type="unfinished">Utiliser mmap</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="501"/>
@@ -1017,100 +881,7 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>MNode</name>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Delete</source>
-        <translation type="obsolete">Supprimer</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Console</source>
-        <translation type="obsolete">Console</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Start</source>
-        <translation type="obsolete">Démarrer</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Stop</source>
-        <translation type="obsolete">Arrêter</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Configure</source>
-        <translation type="obsolete">Configurer</translation>
-    </message>
-</context>
-<context>
     <name>MainWindow</name>
-    <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="333"/>
-        <source>&amp;About</source>
-        <translation>&amp;A propos</translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="91"/>
-        <source>&amp;Help</source>
-        <translation>&amp;Aide</translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="77"/>
-        <source>&amp;File</source>
-        <translation>&amp;Fichier</translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="341"/>
-        <source>&amp;Quit</source>
-        <translation>&amp;Quitter</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Elements</source>
-        <translation type="obsolete">Noeuds</translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="355"/>
-        <source>&amp;Open</source>
-        <translation>&amp;Ouvrir</translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="369"/>
-        <source>&amp;Save</source>
-        <translation>&amp;Sauver</translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="395"/>
-        <source>Add a link</source>
-        <translation>Ajouter un lien</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Simulation Mode</source>
-        <translation type="obsolete">Mode Simulation</translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="408"/>
-        <source>IOS images</source>
-        <translation>Images IOS</translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="419"/>
-        <source>&amp;Online Help</source>
-        <translation>Aide en &amp;ligne</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>Conception Mode</source>
-        <translation type="obsolete">Mode Conception</translation>
-    </message>
-    <message>
-        <location filename="" line="7471221"/>
-        <source>&amp;Save As</source>
-        <translation type="obsolete">&amp;Sauver sous</translation>
-    </message>
     <message>
         <location filename="../GNS3/Ui/Form_MainWindow.ui" line="13"/>
         <source>GNS3</source>
@@ -1119,6 +890,16 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/Form_MainWindow.ui" line="61"/>
         <source>&amp;Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="77"/>
+        <source>&amp;File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="91"/>
+        <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1164,11 +945,26 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/Form_MainWindow.ui" line="300"/>
         <source>Console</source>
-        <translation type="unfinished">Console</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="333"/>
+        <source>&amp;About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="341"/>
+        <source>&amp;Quit</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/Form_MainWindow.ui" line="347"/>
         <source>Ctrl+Q</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="355"/>
+        <source>&amp;Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1182,6 +978,11 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="369"/>
+        <source>&amp;Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../GNS3/Ui/Form_MainWindow.ui" line="372"/>
         <source>Save project</source>
         <translation type="unfinished"></translation>
@@ -1192,13 +993,28 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="395"/>
+        <source>Add a link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../GNS3/Ui/Form_MainWindow.ui" line="403"/>
         <source>Emulation Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="408"/>
+        <source>IOS images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../GNS3/Ui/Form_MainWindow.ui" line="411"/>
         <source>Ctrl+Shift+I</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="419"/>
+        <source>&amp;Online Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1424,7 +1240,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="DynamicStrings.py" line="27"/>
         <source>English</source>
-        <translation>Français</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1498,7 +1314,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../GNS3/NodeConfigurator.py" line="245"/>
         <source>Node configuration</source>
-        <translation type="unfinished">Configuration du noeud</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1529,27 +1345,12 @@ to display the configuration page.</source>
     <message>
         <location filename="DynamicStrings.py" line="28"/>
         <source>Router</source>
-        <translation type="unfinished">Routeur</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="29"/>
         <source>Router with firewall</source>
-        <translation type="unfinished">Routeur avec pare-feu</translation>
-    </message>
-    <message>
-        <location filename="DynamicStrings.py" line="31"/>
-        <source>Switch</source>
-        <translation type="unfinished">Commutateur</translation>
-    </message>
-    <message>
-        <location filename="DynamicStrings.py" line="32"/>
-        <source>Multilayer switch</source>
-        <translation type="unfinished">Commutateur multi-niveau</translation>
-    </message>
-    <message>
-        <location filename="DynamicStrings.py" line="34"/>
-        <source>ATM switch</source>
-        <translation type="unfinished">Commutateur ATM</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="30"/>
@@ -1557,8 +1358,23 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="DynamicStrings.py" line="31"/>
+        <source>Switch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="32"/>
+        <source>Multilayer switch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="DynamicStrings.py" line="33"/>
         <source>Route switch processor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="34"/>
+        <source>ATM switch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1600,7 +1416,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Widget_SystemApplications.ui" line="215"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Widget_SystemApplications.ui" line="82"/>

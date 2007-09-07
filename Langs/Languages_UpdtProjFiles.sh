@@ -1,11 +1,12 @@
 #!/bin/bash
 
-LANGUAGES="fr"
+LANGUAGES="en fr"
 
 PROJ_FILE="Languages.pro"
 QRC_FILE="Languages.qrc"
 
-PY_SRC="../GNS3/*.py		\
+PY_SRC="DynamicStrings.py	\
+	../GNS3/*.py		\
         ../GNS3/Config/*.py	\
         ../GNS3/Globals/*.py	\
         ../GNS3/Link/*.py	\
@@ -23,7 +24,8 @@ EXPAND_QRC_RES=""
 
 for lang in $LANGUAGES; do
 	EXPAND_LANGUAGES="$EXPAND_LANGUAGES Lang_$lang.ts"
-	EXPAND_QRC_RES="$EXPAND_QRC_RES      <file alias=\"$lang\">Lang_$lang.qm</file>\n"
+	EXPAND_QRC_RES="$EXPAND_QRC_RES      <file alias=\"$lang\">Lang_$lang.qm</file>
+"
 done
 
 #----------------------------------------------------------------------
@@ -42,7 +44,5 @@ echo \
 "<!DOCTYPE RCC>
 <RCC version=\"1.0\">
    <qresource>
-$EXPAND_QRC_RES
-   </qresource>
-</RCC>
-" > $QRC_FILE
+$EXPAND_QRC_RES   </qresource>
+</RCC>" > $QRC_FILE
