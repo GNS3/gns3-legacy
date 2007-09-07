@@ -20,7 +20,7 @@
 # Contact: contact@gns3.net
 #
 
-import string
+import re, sys, string
 import subprocess as sub
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
@@ -47,34 +47,54 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         self.connect(self.comboBoxLinuxEth, QtCore.SIGNAL('currentIndexChanged(int)'), self.slotSelectedLinuxEth)
         
         self.nios = []
-        
-        #FIXME: to test ...
-        self.comboBoxGenEth.addItems(self.getLinuxInterfaces())
-        self.comboBoxLinuxEth.addItems(self.getLinuxInterfaces())
+        if sys.platform.startswith('win32'):
+            interfaces = self.getWindowsInterfaces()
+            # hide linux ethernet
+            self.comboBoxLinuxEth.setEnabled(False)
+            self.lineEditLinuxEth.setEnabled(False)
+            self.pushButtonAddLinuxEth.setEnabled(False)
+        else:
+            interfaces = self.getUnixInterfaces()
+            self.comboBoxLinuxEth.addItems(self.getUnixInterfaces())
+        self.comboBoxGenEth.addItems(interfaces)
 
-    def getLinuxInterfaces(self):
-        """ Try to detect all available interfaces on Linux
+    def getUnixInterfaces(self):
+        """ Try to detect all available interfaces on Linux/Unix
         """
     
         interfaces = []
         try:
-            p = sub.Popen('netstat -i', stdout=sub.PIPE, stderr=sub.STDOUT, shell=True)
-            outputlines = p.stdout.readlines()
-            p.wait()
-            for line in outputlines[2:]:
-                fields = string.split(line)
-                if fields[0] not in interfaces:
-                    interfaces.append(fields[0])
+            fd = open('/proc/net/dev', 'r')
+            fd.readline()
+            for line in fd:
+                match = re.search(r"""(\w+):.*""",  line)
+                if match:
+                    interfaces.append(match.group(1))
         except:
             return []
+        finally:
+            fd.close()
         return interfaces
         
     def getWindowsInterfaces(self):
         """ Try to detect all available interfaces on Windows
         """
-        
-        pass
-        
+        interfaces = []
+        dynamips = globals.GApp.systconf['dynamips']
+        if dynamips == '':
+            return []
+        try:
+            p = sub.Popen(dynamips.path + ' -e', stdout=sub.PIPE, stderr=sub.STDOUT)
+            outputlines = p.stdout.readlines()
+            p.wait()
+            for line in outputlines:
+                match = re.search(r"""^rpcap://(\\Device\\NPF_{.*}).*""",  line)
+                if match:
+                    interfaces.append(match.group(1))
+        except:
+            return []
+        return interfaces
+
     def slotSelectedGenEth(self,  index):
         """ Load the selected generic interface in lineEdit
         """
