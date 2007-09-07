@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_CloudPage.ui'
 #
-# Created: Thu Sep  6 16:03:04 2007
+# Created: Fri Sep  7 16:42:14 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
@@ -158,7 +158,7 @@ class Ui_CloudPage(object):
         sizePolicy.setHeightForWidth(self.spinBoxRemotePort.sizePolicy().hasHeightForWidth())
         self.spinBoxRemotePort.setSizePolicy(sizePolicy)
         self.spinBoxRemotePort.setMaximum(65535)
-        self.spinBoxRemotePort.setProperty("value",QtCore.QVariant(50001))
+        self.spinBoxRemotePort.setProperty("value",QtCore.QVariant(5001))
         self.spinBoxRemotePort.setObjectName("spinBoxRemotePort")
         self.gridlayout3.addWidget(self.spinBoxRemotePort,2,1,1,1)
         self.gridlayout2.addWidget(self.groupBox_3,0,0,1,2)
@@ -311,6 +311,20 @@ class Ui_CloudPage(object):
         self.label_7.setObjectName("label_7")
         self.gridlayout8.addWidget(self.label_7,0,0,1,1)
 
+        self.lineEditVDEControlFile = QtGui.QLineEdit(self.groupBox_8)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lineEditVDEControlFile.sizePolicy().hasHeightForWidth())
+        self.lineEditVDEControlFile.setSizePolicy(sizePolicy)
+        self.lineEditVDEControlFile.setObjectName("lineEditVDEControlFile")
+        self.gridlayout8.addWidget(self.lineEditVDEControlFile,0,1,1,1)
+
+        self.label_8 = QtGui.QLabel(self.groupBox_8)
+        self.label_8.setObjectName("label_8")
+        self.gridlayout8.addWidget(self.label_8,1,0,1,1)
+
         self.lineEditVDELocalFile = QtGui.QLineEdit(self.groupBox_8)
 
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
@@ -319,21 +333,7 @@ class Ui_CloudPage(object):
         sizePolicy.setHeightForWidth(self.lineEditVDELocalFile.sizePolicy().hasHeightForWidth())
         self.lineEditVDELocalFile.setSizePolicy(sizePolicy)
         self.lineEditVDELocalFile.setObjectName("lineEditVDELocalFile")
-        self.gridlayout8.addWidget(self.lineEditVDELocalFile,0,1,1,1)
-
-        self.label_8 = QtGui.QLabel(self.groupBox_8)
-        self.label_8.setObjectName("label_8")
-        self.gridlayout8.addWidget(self.label_8,1,0,1,1)
-
-        self.lineEditVDERemoteFile = QtGui.QLineEdit(self.groupBox_8)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lineEditVDERemoteFile.sizePolicy().hasHeightForWidth())
-        self.lineEditVDERemoteFile.setSizePolicy(sizePolicy)
-        self.lineEditVDERemoteFile.setObjectName("lineEditVDERemoteFile")
-        self.gridlayout8.addWidget(self.lineEditVDERemoteFile,1,1,1,1)
+        self.gridlayout8.addWidget(self.lineEditVDELocalFile,1,1,1,1)
         self.gridlayout7.addWidget(self.groupBox_8,0,0,1,2)
 
         self.groupBox_9 = QtGui.QGroupBox(self.tab_5)

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Thu Sep  6 18:39:07 2007
-#      by: PyQt4 UI code generator 4.3
+# Created: Fri Sep  7 16:42:14 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -131,13 +131,6 @@ class Ui_MainWindow(object):
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(2),self.dockWidget_EventEditor)
 
         self.dockWidget_Console = QtGui.QDockWidget(MainWindow)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred,QtGui.QSizePolicy.Maximum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.dockWidget_Console.sizePolicy().hasHeightForWidth())
-        self.dockWidget_Console.setSizePolicy(sizePolicy)
-        self.dockWidget_Console.setMaximumSize(QtCore.QSize(16777215,16777215))
         self.dockWidget_Console.setAllowedAreas(QtCore.Qt.BottomDockWidgetArea|QtCore.Qt.NoDockWidgetArea|QtCore.Qt.TopDockWidgetArea)
         self.dockWidget_Console.setObjectName("dockWidget_Console")
 

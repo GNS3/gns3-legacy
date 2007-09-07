@@ -201,7 +201,7 @@
              <number>65535</number>
             </property>
             <property name="value" >
-             <number>50001</number>
+             <number>5001</number>
             </property>
            </widget>
           </item>
@@ -435,7 +435,7 @@
            </widget>
           </item>
           <item row="0" column="1" >
-           <widget class="QLineEdit" name="lineEditVDELocalFile" >
+           <widget class="QLineEdit" name="lineEditVDEControlFile" >
             <property name="sizePolicy" >
              <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
               <horstretch>0</horstretch>
@@ -452,7 +452,7 @@
            </widget>
           </item>
           <item row="1" column="1" >
-           <widget class="QLineEdit" name="lineEditVDERemoteFile" >
+           <widget class="QLineEdit" name="lineEditVDELocalFile" >
             <property name="sizePolicy" >
              <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
               <horstretch>0</horstretch>
