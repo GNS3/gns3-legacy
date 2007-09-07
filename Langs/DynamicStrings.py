@@ -21,6 +21,9 @@
 # This is for pylupdate4, to allow us to translate strings that we use dynamically in gns-3 with Qtlinguist
 #
 
+# Translation on current language name
+translate("MainWindow", "English")
+
 translate("SYMBOLS", "Router")
 translate("SYMBOLS", "Router with firewall")
 translate("SYMBOLS", "Edge label switch router")
