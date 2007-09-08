@@ -121,7 +121,7 @@ class HypervisorManager:
                 #TODO: give users a way to configure this
                 self.baseUDP += 100
                 mem = 0
-        time.sleep(1)
+        time.sleep(2)
         if count > 1:
             progress.setValue(count)
             progress = None

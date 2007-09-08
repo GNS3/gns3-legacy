@@ -386,6 +386,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.action_swModeSimulation.setChecked(True)
         if self.hypervisor_manager and globals.useHypervisorManager:
             self.hypervisor_manager.stopProcHypervisors()
+            self.hypervisor_manager = None
             
     def switchToMode_Emulation(self):
         """ Function called to switch to mode `Emulation'
@@ -430,7 +431,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             for node in globals.GApp.topology.nodes.itervalues():
                 if type(node) == IOSRouter:
                     node.configConnections()
-        except lib.DynamipsError, msg:
+        except (lib.DynamipsVerError, lib.DynamipsError), msg:
             QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"),  str(msg))
             self.cleanNodeStates()
             self.__restoreButtonState()
