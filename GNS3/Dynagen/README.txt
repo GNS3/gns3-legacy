@@ -1,10 +1,10 @@
 Dynagen README
-Version 0.9.3
+Version 0.10.0
 
 
 For documentation, refer to the tutorial in the docs directory, and the sample network files in the sample_labs directory. To see usage examples for all options, refer to the "all_config_options.txt" file in the sample_labs directory. Also be sure to visit the Dynamips web site at http://www.ipflow.utc.fr/index.php/Cisco_7200_Simulator.
 
-This version of Dynagen requires at least version 0.2.7-RC2 of Dynamips. The Windows installer package requires at least Windows XP SP2. For earlier versions of Windows, replace the Dynamips binary with the Windows 2000 version as described in the Dynagen FAQ section of the tutorial.
+This version of Dynagen requires at least version 0.2.8-RC1 of Dynamips. The Windows installer package requires at least Windows XP SP2. For earlier versions of Windows, replace the Dynamips binary with the Windows 2000 version as described in the Dynagen FAQ section of the tutorial.
 
 Known Issues
 ============
@@ -13,6 +13,18 @@ Known Issues
 
 Changelog
 =========
+Version 0.10.0
+* Support for the 1700 platform new to Dynamips 0.8.0-RC1. See the tutorial for supported platforms and modules.
+* Support for WIC-1T, WIC-2T, and WIC-1ENET. See the tutorial for supported router platforms and usage.
+* Support for NM-CIDS and NM-NAM. Note these are just "stubs" (at least as of this version of Dynamips). You can connect to them using "IDS-Sensorx/0 = ..." or "Analysis-Modulex/0 = ..." but they don't actually do anything. See the tutorial for platform support.
+* FS#154 - added "confreg" command to set the configuration register of router(s) from Dynagen. e.g. "confreg r1 0x2142" followed by "reload r1". Note changes to the config register will not be displayed in a "show ver" until the router is reloaded.
+* FS#182 - Second port of PA-C7200-IO-2FE was not usable
+* FS#177 - crash on malformed interface entry in net file
+* Dynagen now automatically picks a PA-2FE-TX rather than a PA-FE-TX when referencing a FastEthernet on ports 1-6 on a 7200. You can override this to mimic the old behavior with "slotx = PA-FE-TX".
+* the vbs file that launches SecureCRT sessions was missing from the Windows installer package
+* Changed the state shown with the "list" command for virtual switches from "n/a" to "always on" to avoid confusion.
+* Added an up-to-date list of hardware emulated by Dynamips to the tutorial. Thanks to ggee for performing the initial documentation in this post: http://7200emu.hacki.at/viewtopic.php?t=1831
+
 Version 0.9.3
 * No longer prints a warning for unused switchports
 * Added "MAC" option to set base MAC address of a router. See all_config_options.txt for usage.

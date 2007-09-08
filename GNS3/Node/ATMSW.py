@@ -26,7 +26,7 @@ from GNS3.Config.Objects import ATMSWConf
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
 import GNS3.Dynagen.dynamips_lib as lib
-import GNS3.Dynagen.Globals as dynagen
+#import GNS3.Dynagen.Globals as dynagen
 import GNS3.Globals as globals
 
 atm_id = 0
@@ -80,6 +80,7 @@ class ATMSW(AbstractNode):
 
         hypervisor = self.getHypervisor()
         self.dev = lib.ATMSW(hypervisor, name = '"' + self.hostname + '"')
+        dynagen.devices[self.hostname] = self.dev
         
     def startNode(self):
         """ Start the node

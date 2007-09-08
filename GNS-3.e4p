@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.1.dtd">
 <!-- eric4 project file for project GNS-3 -->
-<!-- Saved: 2007-08-18, 15:18:22 -->
+<!-- Saved: 2007-09-08, 11:31:18 -->
 <!-- Copyright (C) 2007 GNS-3 Dev Team, contact@gns3.net -->
 <Project version="4.1">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -36,42 +36,6 @@
     <Source>
       <Dir>GNS3</Dir>
       <Name>Scene.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Dynagen</Dir>
-      <Name>configobj.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Dynagen</Dir>
-      <Dir>Globals</Dir>
-      <Name>__init__.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Dynagen</Dir>
-      <Name>validate.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Dynagen</Dir>
-      <Name>dynamips_lib.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Dynagen</Dir>
-      <Name>console.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Dynagen</Dir>
-      <Name>dynagen.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Dynagen</Dir>
-      <Name>__init__.py</Name>
     </Source>
     <Source>
       <Dir>GNS3</Dir>
@@ -168,11 +132,6 @@
     <Source>
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
-      <Name>Form_Inspector.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
       <Name>Form_About.py</Name>
     </Source>
     <Source>
@@ -189,11 +148,6 @@
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
       <Name>Form_IOSDialog.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Name>Form_Configurator.py</Name>
     </Source>
     <Source>
       <Dir>GNS3</Dir>
@@ -337,6 +291,41 @@
       <Dir>ConfigurationPages</Dir>
       <Name>Page_Cloud.py</Name>
     </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>External</Dir>
+      <Name>PyCutExt.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>External</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Dynagen</Dir>
+      <Name>configobj.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Dynagen</Dir>
+      <Name>validate.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Dynagen</Dir>
+      <Name>dynamips_lib.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Dynagen</Dir>
+      <Name>console.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Dynagen</Dir>
+      <Name>dynagen.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -347,22 +336,12 @@
     <Form>
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
-      <Name>Form_Configurator.ui</Name>
-    </Form>
-    <Form>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
       <Name>Form_MainWindow.ui</Name>
     </Form>
     <Form>
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
       <Name>Form_PreferencesDialog.ui</Name>
-    </Form>
-    <Form>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Name>Form_Inspector.ui</Name>
     </Form>
     <Form>
       <Dir>GNS3</Dir>

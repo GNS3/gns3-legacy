@@ -22,12 +22,12 @@
 
 import os,  re
 import GNS3.Globals as globals
+import GNS3.Dynagen.dynamips_lib as lib
+import GNS3.Dynagen.dynagen as dynagen
+import GNS3.Console as console
 from PyQt4 import QtCore, QtGui,  QtSvg
 from GNS3.Utils import translate
 from GNS3.Config.Objects import iosRouterConf
-import GNS3.Dynagen.dynamips_lib as lib
-import GNS3.Dynagen.Globals as dynagen
-import GNS3.Console as console
 from GNS3.Node.AbstractNode import AbstractNode
 
 ROUTERS = {
@@ -373,7 +373,7 @@ class IOSRouter(AbstractNode):
         for module in self.config.slots:
             self.configSlot(slotnb, module)
             slotnb += 1
-        
+
         self.sparsemem = True
         dynagen.devices[self.hostname] = self.dev
         
@@ -461,7 +461,7 @@ class IOSRouter(AbstractNode):
         for interface in self.getConnectedInterfaceList():
             match_obj = IF_REGEXP.search(interface)
             assert(match_obj)
-            (source_slot, source_port) = match_obj.group(2,3)
+            (source_type, source_slot, source_port) = match_obj.group(1,2,3)
             source_slot = int(source_slot)
             source_port = int(source_port)
                 
@@ -469,21 +469,31 @@ class IOSRouter(AbstractNode):
             match_if = IF_REGEXP.search(destinterface)
             match_port = PORT_REGEXP.search(destinterface)
             if match_if:
-                (dest_slot, dest_port) = match_if.group(2,3)
+                (dest_type, dest_slot, dest_port) = match_if.group(1,2,3)
                 dest_slot = int(dest_slot)
                 dest_port = int(dest_port)
                 destination = destnode.dev.slot[dest_slot]
             if match_port:
                 dest_port = int(destinterface)
                 destination = destnode.dev
+                if destnode.dev.adapter ==  'ETHSW' or destnode.dev.adapter ==  'Bridge':
+                    dest_type = 'f'       # Ethernet switches and hubs are FastEthernets (for our purposes anyway)
+                elif destnode.dev.adapter ==  'FRSW':
+                    dest_type = 's'       # Frame Relays switches are Serials
+                elif destnode.dev.adapter ==  'ATMSW':
+                    dest_type = 'a'       # And ATM switches are, well, ATM interfaces
+                else:
+                    #TODO: assert ?
+                    print 'Not type for destination port'
 
             if match_if or match_port:
                 if self.dev.slot[source_slot] != None and self.dev.slot[source_slot].connected(source_port) == False:
 #                    print 'source = ' + str(source_port) + '/' + str(source_slot)
 #                    print  'hypervisor ' + str(destnode.getHypervisor().port) + ' with UDP ' + str(destnode.getHypervisor().udp)
 #                    print destnode.hostname + ' port ' + str(dest_port)
-                    self.dev.slot[source_slot].connect(source_port, destnode.getHypervisor(), destination, dest_port)
+                    self.dev.slot[source_slot].connect(source_type,  source_port, destnode.getHypervisor(), destination, dest_type,  dest_port)
             elif destinterface.lower()[:3] == 'nio':
+                print 'not here'
                 self.dev.slot[source_slot].nio(source_port, nio=self.createNIO(self.getHypervisor(),  destinterface))
             
     def startNode(self):
@@ -493,7 +503,7 @@ class IOSRouter(AbstractNode):
         if self.dev == None:
             return
         if self.dev.state == 'stopped':
-            print self.dev.start()
+            print unicode("\n" + self.dev.start()[0],  'utf-8') #TODO: complete for others
         if self.dev.state == 'suspended':
             print self.dev.resume()
         

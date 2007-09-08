@@ -25,7 +25,7 @@ from GNS3.Config.Objects import ETHSWConf
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
 import GNS3.Dynagen.dynamips_lib as lib
-import GNS3.Dynagen.Globals as dynagen
+import GNS3.Dynagen.dynagen as dynagen
 import GNS3.Globals as globals 
 
 ethsw_id = 0
@@ -84,6 +84,7 @@ class ETHSW(AbstractNode):
 
         hypervisor = self.getHypervisor()
         self.dev = lib.ETHSW(hypervisor, name = '"' + self.hostname + '"')
+        dynagen.devices[self.hostname] = self.dev
         
     def startNode(self):
         """ Start the node

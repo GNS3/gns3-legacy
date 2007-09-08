@@ -25,7 +25,7 @@ import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Utils import translate
 import GNS3.Dynagen.dynamips_lib as lib
-import GNS3.Dynagen.Globals as dynagen
+import GNS3.Dynagen.dynagen as dynagen
 
 error = None
 

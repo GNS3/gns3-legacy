@@ -22,12 +22,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 import sys, os, re, base64
 from socket import socket, timeout, AF_INET, SOCK_STREAM
 
-version = "0.9.3.061007"
-# Minimum version of dynamips required. Currently 0.2.7-RC2 (addition of oldidle)
+version = "0.10.0.090507"
+# Minimum version of dynamips required. Currently 0.2.8-RC1 (due to change to
+# hypervisor commands related to slot/port handling, and the pluggable archtecture
+# that changed model specific commands to "vm")
 # Specify an rc version of .999 for released versions.
-(MAJOR, MINOR, SUB, RCVER) = (0,2,7,.2)
+(MAJOR, MINOR, SUB, RCVER) = (0,2,8,.1)
 INTVER = MAJOR * 10000 + MINOR * 100 + SUB + RCVER
-STRVER = "0.2.7-RC2"
+STRVER = "0.2.8-RC1"
 NOSEND = False       # Disable sending any commands to the back end for debugging
 DEBUG = False
 
@@ -47,10 +49,21 @@ except NameError:
 else:
     DEBUGGER = True
 
-ROUTERMODELS = ('c2600', 'c2691', 'c3725', 'c3745', 'c3600', 'c7200')
-DEVICETUPLE = ('2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM', '2691', '3725', '3745', '3620', '3640', '3660', '7200')  # A tuple of known device names
+ROUTERMODELS = ('c1700', 'c2600', 'c2691', 'c3725', 'c3745', 'c3600', 'c7200')
+DEVICETUPLE = ('1710', '1720', '1721', '1750', '1751', '1760', '2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM', '2691', '3725', '3745', '3620', '3640', '3660', '7200')  # A tuple of known device names
+CHASSIS1700 = ('1710', '1720', '1721', '1750', '1751', '1760')
 CHASSIS2600 = ('2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM')
 CHASSIS3600 = ('3620', '3640', '3660')
+
+MB2CHASSIS1700 = {
+    '1710'  : 'CISCO1710-MB-1FE-1E',
+    '1720'  : 'C1700-MB-1ETH',
+    '1721'  : 'C1700-MB-1ETH',
+    '1750'  : 'C1700-MB-1ETH',
+    '1751'  : 'C1700-MB-1ETH',
+    '1760'  : 'C1700-MB-1ETH'
+}
+
 MB2CHASSIS2600 = {
         '2610'  : 'CISCO2600-MB-1E',
         '2611'  : 'CISCO2600-MB-2E',
@@ -63,11 +76,17 @@ MB2CHASSIS2600 = {
         '2650XM': 'CISCO2600-MB-1FE',
         '2651XM': 'CISCO2600-MB-2FE'
     }
-GENERIC_2600_NMS = ('NM-1FE-TX', 'NM-1E', 'NM-4E', 'NM-16ESW')
+GENERIC_1700_NMS = ()
+GENERIC_2600_NMS = ('NM-1FE-TX', 'NM-1E', 'NM-4E', 'NM-16ESW', 'NM-CIDS', 'NM-NAM')
 GENERIC_3600_NMS = ('NM-1FE-TX', 'NM-1E', 'NM-4E', 'NM-16ESW', 'NM-4T')
-GENERIC_3700_NMS = ('NM-1FE-TX', 'NM-4T', 'NM-16ESW')
+GENERIC_3700_NMS = ('NM-1FE-TX', 'NM-4T', 'NM-16ESW', 'NM-CIDS', 'NM-NAM')
 GENERIC_7200_PAS = ('PA-A1', 'PA-FE-TX', 'PA-2FE-TX', 'PA-GE', 'PA-4T+', 'PA-8T', 'PA-4E', 'PA-8E', 'PA-POS-OC3')
 IO_7200 = ('C7200-IO-FE', 'C7200-IO-2FE', 'C7200-IO-GE-E')
+WICS = {
+    'WIC-1T' : 1 * ['s'],
+    'WIC-2T' : 2 * ['s'],
+    'WIC-1ENET': 1* ['e']
+    }
 
 """ Build the adapter compatibility matrix:
 ADAPTER_MATRIX = {
@@ -82,10 +101,18 @@ ADAPTER_MATRIX = {}
 for model in ROUTERMODELS:
     ADAPTER_MATRIX[model] = {}
 
-# 2600s have one or more interfaces on the MB and an available NM slot 1
+# 1700s have one or more interfaces on the MB, 2 subslots for WICs, an no NM slots
+for chassis in CHASSIS1700:
+    ADAPTER_MATRIX['c1700'][chassis] = { 0 : MB2CHASSIS1700[chassis]}
+
+# Add a fake NM in slot 1 on 1751s and 1760s to provide two WIC slots
+for chassis in ['1751', '1760']:
+    ADAPTER_MATRIX['c1700'][chassis][1] = 'C1700-WIC1'
+
+# 2600s have one or more interfaces on the MB , 2 subslots for WICs, and an available NM slot 1
 for chassis in CHASSIS2600:
     ADAPTER_MATRIX['c2600'][chassis] = { 0 : MB2CHASSIS2600[chassis],
-                                    1 : GENERIC_2600_NMS }
+                                    1 : GENERIC_2600_NMS}
 
 # 2691s have two FEs on the motherboard and one NM slot
 ADAPTER_MATRIX['c2691'][''] = { 0 : 'GT96100-FE',
@@ -208,7 +235,6 @@ class Dynamips(object):
         """ Set the working directory for this network
             directory: (string) the directory
         """
-        
         if type(directory) != str and type(directory) != unicode:
             raise DynamipsError, 'invalid directory'
         self.__workingdir = directory
@@ -521,8 +547,11 @@ class BaseAdapter(object):
         slot: An int specifying the slot
         adapter: the adapter or network module model
         ports: the number of ports
+        bindingcommand: either "slot_add_binding" or None
+        intlist: a list of interface descriptors this adapter provides (interface, port, dynamipsport)
+        wics: number of WIC slots on this adapter
     """
-    def __init__(self, router, slot, adapter, ports, bindingcommand):
+    def __init__(self, router, slot, adapter, ports, bindingcommand, intlist, wics=0):
 
         # Can this adapter be used in this slot on this router & chassis?
         try:
@@ -536,22 +565,24 @@ class BaseAdapter(object):
         except KeyError:
             raise DynamipsError, 'Invalid slot %i on router: %s' % (slot, router.name)
 
-        # Does this adapter already exist in this slot? If so skip inserting it again
-        try:
-            if router.slot[slot].adapter == adapter:
-                return
-        except AttributeError:
-            # Must not be any adapter in this slot
-            pass
-
         self.__adapter = adapter
         self.__router = router
         self.__slot = slot
-        self.ports = [None] * ports                 # This never gets populated, but other spots in the code check the length of this. Try to weed this out at some point.
         self.__nios = [None] * ports
+        self.__interfaces = {}
+        self.__wics = wics * [None]
+
+        # Populate the list of interfaces and ports this adapter provides
+        if intlist != None:
+            for (interface, port, dynamipsport) in intlist:
+                try:
+                    self.__interfaces[interface]
+                except KeyError:
+                    self.__interfaces[interface] = {}
+                self.__interfaces[interface][port] = dynamipsport
 
         if bindingcommand != None:
-            send(router.dynamips, '%s %s %s %i %s' % (router.model, bindingcommand, router.name, slot, adapter))
+            send(router.dynamips, 'vm %s %s %i %i %s' % (bindingcommand, router.name, slot, 0, adapter))
 
 
     def __getrouter(self):
@@ -569,6 +600,22 @@ class BaseAdapter(object):
     adapter = property(__getadapter, doc = 'The port adapter')
 
 
+    def __getinterfaces(self):
+        """ Returns the interfaces property
+        """
+        return self.__interfaces
+
+    interfaces = property(__getinterfaces, doc = 'The port interfaces')
+
+
+    def __getwics(self):
+        """ Returns the wics property
+        """
+        return self.__wics
+
+    wics = property(__getwics, doc = 'The port wics')
+
+
     def __getslot(self):
         """ Returns the slot property
         """
@@ -577,25 +624,38 @@ class BaseAdapter(object):
     slot = property(__getslot, doc = 'The slot in which this adapter is inserted')
 
 
-    def connect(self, localport, remoteserver, remoteadapter, remoteport = None):
+    def connect(self, localint, localport, remoteserver, remoteadapter, remoteint, remoteport = None):
         """ Connect this port to a port on another device
+            localint: The interface type for the local device (e.g. 'f', 's', 'an' for "FastEthernet", "Serial", "Analysis-Module", and so forth")
             localport: A port on this adapter
             remoteserver: the dynamips object that hosts the remote adapter
             remoteadapter: An adapter or module object on another device (router, bridge, or switch)
+            localint: The interface type for the remote device
             remoteport: A port on the remote adapter (only for routers or switches)
         """
 
-        # Call the generalized connect function
-        #d = self.__router
+        # Figure out the real ports
+        src_port = self.interfaces[localint][localport]
+        if remoteadapter.adapter in ['ETHSW', 'ATMSW', 'FRSW', 'Bridge']:
+            # This is a virtual switch that doesn't provide interface descriptors
+            dst_port = remoteport
+        else:
+            # Look at the interfaces dict to find out what the real port is as
+            # as far as dynamips is concerned
+            dst_port = remoteadapter.interfaces[remoteint][remoteport]
+
+        # Call the generalized connect function, validating first
+        validate_connect(localint, remoteint)
         gen_connect(src_dynamips = self.__router.dynamips,
                     src_adapter = self,
-                    src_port = localport,
+                    src_port = src_port,
                     dst_dynamips = remoteserver,
                     dst_adapter = remoteadapter,
-                    dst_port = remoteport)
+                    dst_port = dst_port)
 
-    def filter(self, port, filterName, direction = 'both', options = None):
+    def filter(self, interface, port, filterName, direction = 'both', options = None):
         """ Apply a connection filter to this interface
+            interface: the interface type (e.g. "e", "f", "s")
             port: a port on this adapter or module
             filterName: The name of the filter
             direction: 'in' for rx, 'out' for tx, or 'both'
@@ -619,8 +679,13 @@ class BaseAdapter(object):
 
         # Determine the nio
         try:
-            nioName = self.nio(port).name
+            # Determine the real port
+            port = int(port)
+            dynaport = self.interfaces[interface][port]
+            nioName = self.nio(dynaport).name
         except AttributeError:
+            raise DynamipsError, 'Invalid interface'
+        except KeyError:
             raise DynamipsError, 'Invalid interface'
 
         if direction == 'in':
@@ -653,8 +718,8 @@ class BaseAdapter(object):
             port: a port on this adapter or module
             nio: optional NETIO object to assign
         """
-        if port < 0 or port > len(self.ports) - 1:
-            raise DynamipsError, 'invalid port'
+        #if port < 0 or port > len(self.ports) - 1:
+        #    raise DynamipsError, 'invalid port'
 
         if nio == None:
             # Return the NETIO string
@@ -664,7 +729,13 @@ class BaseAdapter(object):
                 raise DynamipsError, 'port does not exist on this PA or module'
         nio_t = type(nio)
         if nio_t == NIO_udp or nio_t == NIO_linux_eth or nio_t == NIO_gen_eth or nio_t == NIO_tap or nio_t == NIO_unix or nio_t == NIO_vde:
-            send(self.__router.dynamips, '%s add_nio_binding %s %i %i %s' % (self.__router.model, self.__router.name, self.slot, port, nio.name))
+            # Ginormously Ugly hack alert
+            # Fix the slot for WICs in slot 1 on a 1751 or 1760
+            slot = self.slot
+            if self.adapter == 'C1700-WIC1':
+                slot = 0
+
+            send(self.__router.dynamips, 'vm slot_add_nio_binding %s %i %i %s' % (self.__router.name, slot, port, nio.name))
         else:
             raise DynamipsError, 'invalid NETIO'
 
@@ -684,9 +755,10 @@ class PA(BaseAdapter):
         slot: An int specifying the slot (0-6)
         adapter: the adapter model
         ports: the number of ports
+        intlist: a list of interface descriptors this adapter provides
     """
-    def __init__(self, router, slot, adapter, ports):
-        BaseAdapter.__init__(self, router, slot, adapter, ports, 'add_pa_binding')
+    def __init__(self, router, slot, adapter, ports, intlist, wics=0):
+        BaseAdapter.__init__(self, router, slot, adapter, ports, 'slot_add_binding', intlist, wics)
 
 
 class PA_C7200_IO_FE(PA):
@@ -695,9 +767,13 @@ class PA_C7200_IO_FE(PA):
     def __init__(self, router, slot):
         if router.npe == 'npe-g2':
             ports = 4
+            #test
+            intlist = (['g', 0, 0], ['f', 0, 16], ['f', 1, 17], ['f', 2, 18])
         else:
             ports = 1
-        PA.__init__(self, router, slot, 'C7200-IO-FE', ports)
+            intlist = (['f', 0, 0],)
+
+        PA.__init__(self, router, slot, 'C7200-IO-FE', ports, intlist)
 
 
 class PA_C7200_IO_2FE(PA):
@@ -706,9 +782,12 @@ class PA_C7200_IO_2FE(PA):
     def __init__(self, router, slot):
         if router.npe == 'npe-g2':
             ports = 4
+            #test
+            intlist = (['g', 0, 0], ['f', 0, 16], ['f', 1, 17], ['f', 2, 18])
         else:
-            ports = 1
-        PA.__init__(self, router, slot, 'C7200-IO-2FE', ports)
+            ports = 2
+            intlist = (['f', 0, 0], ['f', 1, 1])
+        PA.__init__(self, router, slot, 'C7200-IO-2FE', ports, intlist)
 
 
 class PA_C7200_IO_GE_E(PA):
@@ -717,160 +796,228 @@ class PA_C7200_IO_GE_E(PA):
     def __init__(self, router, slot):
         if router.npe == 'npe-g2':
             ports = 4
+            #test
+            intlist = (['g', 0, 0], ['f', 0, 16], ['f', 1, 17], ['f', 2, 18])
         else:
             ports = 1
-        PA.__init__(self, router, slot, 'C7200-IO-GE-E', ports)
+            intlist = (['g', 0, 0],)
+        PA.__init__(self, router, slot, 'C7200-IO-GE-E', ports, intlist)
 
 
 class PA_A1(PA):
     """ A PA-A1 FastEthernet adapter
     """
     def __init__(self, router, slot):
-        PA.__init__(self, router, slot, 'PA-A1', 1)
+        intlist = (['a', 0, 0],)
+        PA.__init__(self, router, slot, 'PA-A1', 1, intlist)
 
 
 class PA_FE_TX(PA):
     """ A PA-FE-TX FastEthernet adapter
     """
     def __init__(self, router, slot):
-        PA.__init__(self, router, slot, 'PA-FE-TX', 1)
+        intlist = (['f', 0, 0],)
+        PA.__init__(self, router, slot, 'PA-FE-TX', 1, intlist)
 
 class PA_2FE_TX(PA):
     """ A PA-2FE-TX FastEthernet adapter
     """
     def __init__(self, router, slot):
-        PA.__init__(self, router, slot, 'PA-2FE-TX', 2)
+        intlist = (['f', 0, 0], ['f', 1, 1])
+        PA.__init__(self, router, slot, 'PA-2FE-TX', 2, intlist)
 
 
 class PA_GE(PA):
     """ A PA-GE FastEthernet adapter
     """
     def __init__(self, router, slot):
-        PA.__init__(self, router, slot, 'PA-GE', 1)
+        intlist = (['g', 0, 0],)
+        PA.__init__(self, router, slot, 'PA-GE', 1, intlist)
 
 
 class PA_4T(PA):
     """ A PA_4T+ 4-port serial adapter
     """
     def __init__(self, router, slot):
-        PA.__init__(self, router, slot, 'PA-4T+', 4)
+        intlist = (['s', 0, 0], ['s', 1, 1], ['s', 2, 2], ['s', 3, 3])
+        PA.__init__(self, router, slot, 'PA-4T+', 4, intlist)
 
 
 class PA_8T(PA):
     """ A PA_8T 8-port serial adapter
     """
     def __init__(self, router, slot):
-        PA.__init__(self, router, slot, 'PA-8T', 8)
+        intlist = (['s', 0, 0], ['s', 1, 1], ['s', 2, 2], ['s', 3, 3], ['s', 4, 4], ['s', 5, 5], ['s', 6, 6], ['s', 7, 7])
+        PA.__init__(self, router, slot, 'PA-8T', 8, intlist)
 
 
 class PA_4E(PA):
     """ A PA_4E 4-port ethernet adapter
     """
     def __init__(self, router, slot):
-        PA.__init__(self, router, slot, 'PA-4E', 4)
+        intlist = (['e', 0, 0], ['e', 1, 1], ['e', 2, 2], ['e', 3, 3])
+        PA.__init__(self, router, slot, 'PA-4E', 4, intlist)
 
 
 class PA_8E(PA):
     """ A PA_8E 4-port ethernet adapter
     """
     def __init__(self, router, slot):
-        PA.__init__(self, router, slot, 'PA-8E', 8)
+        intlist = (['e', 0, 0], ['e', 1, 1], ['e', 2, 2], ['e', 3, 3], ['e', 4, 4], ['e', 5, 5], ['e', 6, 6], ['e', 7, 7])
+        PA.__init__(self, router, slot, 'PA-8E', 8, intlist)
 
 
 class PA_POS_OC3(PA):
     """ A PA-POS-OC3 adapter
     """
     def __init__(self, router, slot):
-        PA.__init__(self, router, slot, 'PA-POS-OC3', 1)
+        intlist = (['p', 0, 0],)
+
+        PA.__init__(self, router, slot, 'PA-POS-OC3', 1, intlist)
 
 
 #***********************************************************************************************
 class NM(BaseAdapter):
-    """ A C2691/C3725/C3745/C3600 Network Module base object.
+    """ A C2691/C3725/C3745/C3600/C2600/C1700 Network Module base object.
         Derived from the C7200 port adapter, with methods overridden where necessary
         router: A Router object
         slot: An int specifying the slot
         module: the network module model
         ports: the number of ports
+        intlist: a list of interface descriptors this adapter provides
     """
-    def __init__(self, router, slot, module, ports):
-        if module in ['GT96100-FE', 'Leopard-2FE']:
+    def __init__(self, router, slot, module, ports, intlist, wics=0):
+        if module in ['GT96100-FE', 'Leopard-2FE', 'CISCO2600-MB-1E', 'CISCO2600-MB-2E', 'CISCO2600-MB-1FE', 'CISCO2600-MB-2FE', 'CISCO1710-MB-1FE-1E', 'C1700-MB-1ETH', 'C1700-WIC1']:
             bindingcommand = None       # these modules are already configured on the MB
         else:
-            bindingcommand = 'add_nm_binding'
-        BaseAdapter.__init__(self, router, slot, module, ports, bindingcommand)
+            bindingcommand = 'slot_add_binding'
+        BaseAdapter.__init__(self, router, slot, module, ports, bindingcommand, intlist, wics)
 
 class Leopard_2FE(NM):
     """ Integrated 3660 2 Port FastEthernet adapter
     """
     def __init__(self, router, slot):
-        NM.__init__(self, router, slot, 'Leopard-2FE', 2)
+        intlist = (['f', 0, 0], ['f', 1, 1])
+        NM.__init__(self, router, slot, 'Leopard-2FE', 2, intlist)
 
 
 class NM_1FE_TX(NM):
     """ A NM-1FE-TX FastEthernet adapter
     """
     def __init__(self, router, slot):
-        NM.__init__(self, router, slot, 'NM-1FE-TX', 1)
+        intlist = (['f', 0, 0],)
+        NM.__init__(self, router, slot, 'NM-1FE-TX', 1, intlist)
 
 
 class NM_1E(NM):
     """ A NM-1E Ethernet adapter
     """
     def __init__(self, router, slot):
-        NM.__init__(self, router, slot, 'NM-1E', 1)
+        intlist = (['e', 0, 0],)
+        NM.__init__(self, router, slot, 'NM-1E', 1, intlist)
 
 
 class NM_4E(NM):
     """ A NM-4E Ethernet adapter
     """
     def __init__(self, router, slot):
-         NM.__init__(self, router, slot, 'NM-4E', 4)
+        intlist = (['e', 0, 0], ['e', 1, 1], ['e', 2, 2], ['e', 3, 3])
+        NM.__init__(self, router, slot, 'NM-4E', 4, intlist)
 
 
 class NM_4T(NM):
-    """ A NM-4T Ethernet adapter
+    """ A NM-4T Serial adapter
     """
     def __init__(self, router, slot):
-        NM.__init__(self, router, slot, 'NM-4T', 4)
+        intlist = (['s', 0, 0], ['s', 1, 1], ['s', 2, 2], ['s', 3, 3])
+        NM.__init__(self, router, slot, 'NM-4T', 4, intlist)
 
 
 class NM_16ESW(NM):
     """ A NM-16ESW Ethernet adapter
     """
     def __init__(self, router, slot):
-        NM.__init__(self, router, slot, 'NM-16ESW', 16)
+        intlist = []
+        for i in range(0,15):
+            intlist.append(['f', i, i])
+
+        NM.__init__(self, router, slot, 'NM-16ESW', 16, intlist)
+
+class NM_CIDS(NM):
+    """ IDS Network Module
+        Note, not currently functional in Dynamips just a stub
+    """
+    def __init__(self, router, slot):
+        intlist = (['i', 0, 0],)
+        NM.__init__(self, router, slot, 'NM-CIDS', 1, intlist)
+
+
+class NM_NAM(NM):
+    """ NAM Module
+        Note, not currently functional in Dynamips just a stub
+    """
+    def __init__(self, router, slot):
+        intlist = (['an', 0, 0],)
+        NM.__init__(self, router, slot, 'NM-NAM', 1, intlist)
 
 
 class GT96100_FE(NM):
     """ Integrated GT96100-FE 2691/3725/3745 2 Port FastEthernet adapter
     """
     def __init__(self, router, slot):
-        NM.__init__(self, router, slot, 'GT96100-FE', 2)
+        intlist = (['f', 0, 0], ['f', 1, 1])
+        NM.__init__(self, router, slot, 'GT96100-FE', 2, intlist, wics=3)
 
 class CISCO2600_MB_1E(NM):
     """ Integrated CISCO2600-MB-1E 2600 1 Port Ethernet adapter
     """
     def __init__(self, router, slot):
-        NM.__init__(self, router, slot, 'CISCO2600-MB-1E', 1)
+        intlist = (['e', 0, 0],)
+        NM.__init__(self, router, slot, 'CISCO2600-MB-1E', 1, intlist, wics=2)
 
 class CISCO2600_MB_2E(NM):
     """ Integrated CISCO2600-MB-2E 2600 1 Port Ethernet adapter
     """
     def __init__(self, router, slot):
-        NM.__init__(self, router, slot, 'CISCO2600-MB-2E', 2)
+        intlist = (['e', 0, 0], ['e', 1, 1])
+        NM.__init__(self, router, slot, 'CISCO2600-MB-2E', 2, intlist, wics=2)
 
 class CISCO2600_MB_1FE(NM):
     """ Integrated CISCO2600-MB-1FE 2600 1 Port FastEthernet adapter
     """
     def __init__(self, router, slot):
-        NM.__init__(self, router, slot, 'CISCO2600-MB-1FE', 1)
+        intlist = (['f', 0, 0],)
+        NM.__init__(self, router, slot, 'CISCO2600-MB-1FE', 1, intlist, wics=2)
 
 class CISCO2600_MB_2FE(NM):
     """ Integrated CISCO2600-MB-2FE 2600 2 Port FastEthernet adapter
     """
     def __init__(self, router, slot):
-        NM.__init__(self, router, slot, 'CISCO2600-MB-2FE', 2)
+        intlist = (['f', 0, 0], ['f', 1, 1])
+        NM.__init__(self, router, slot, 'CISCO2600-MB-2FE', 2, intlist, wics=2)
+
+class CISCO1710_MB_1FE_1E(NM):
+    """ Integrated CISCO1710-MB-1FE-1E 1710 1 FE 1 E adapter
+    """
+    def __init__(self, router, slot):
+        # Dynamips uses port 1 to reference e0 on a 1710
+        intlist = (['f', 0, 0], ['e', 0, 1])
+        NM.__init__(self, router, slot, 'CISCO1710-MB-1FE-1E', 2, intlist, wics=0)
+
+class C1700_MB_1ETH(NM):
+    """ Integrated C1700-MB-1ETH 1700 1 Port FastEthernet adapter
+    """
+    def __init__(self, router, slot):
+        intlist = (['f', 0, 0],)
+        NM.__init__(self, router, slot, 'C1700-MB-1ETH', 2, intlist, 2)
+
+class C1700_WIC1(NM):
+    """ Fake module to provide a placeholder for slot 1 interfaces when WICs
+        are inserted into WIC slot 1
+    """
+    def __init__(self, router, slot):
+        intlist = (None)
+        NM.__init__(self, router, slot, 'C1700-WIC1', 1, intlist, wics=2)
 
 
 class Router(object):
@@ -915,8 +1062,9 @@ class Router(object):
         self.__sparsemem = 0
         self.__idlemax = 1500
         self.__idlesleep = 30
+        self.__confreg = "unknown"
 
-        send(self.__d, '%s create %s %i' % (model, name, self.__instance))
+        send(self.__d, 'vm create %s %i %s' % (name, self.__instance, model))
         # Ghosts don't get console ports
         if consoleFlag:
             # Set the default console port. We'll try to use the base console port
@@ -930,9 +1078,10 @@ class Router(object):
                     break
                 else:
                     console += 1
-        
+
         # Append this router to the list of devices managed by this dynamips instance
         self.__d.devices.append(self)
+
 
     def setdefaults(self, ram, nvram, disk0, disk1, npe = None, midplane = None):
         """ Set the default values for this router
@@ -946,15 +1095,107 @@ class Router(object):
 
 
     def createslots(self, numslots):
-        """ Create the appropriate number of sots for this router
+        """ Create the appropriate number of slots for this router
         """
-        self.slot = [None] * numslots
+        self.slot = numslots * [None]
+
+    def installwic(self, wic, slot, wicslot=None):
+        """ Installs a WIC in a WIC slot
+            If wicslot not specified, install the wic in the next open spot
+        """
+        if wic not in WICS:
+            raise DynamipsError, 'Invalid WIC: ' + wic
+
+        # Peform validity checking based on router model
+        # With only 3 WICs right now, this is sufficient. As the number grows
+        # I'll move to the same model as regular adapters (e.g. build a
+        # compatibility matrix).
+        if wic in ['WIC-1T', 'WIC-2T']:
+            if self.model not in ['c1700', 'c2600', 'c2691', 'c3725', 'c3745']:
+                raise DynamipsError, '%s is not supported on router: %s' % (wic, self.name)
+        elif wic in ['WIC-1ENET']:
+            if self.model not in ['c1700']:
+                raise DynamipsError, '%s is not supported on router: %s' % (wic, self.name)
+
+        if wicslot == None:
+            wicslot = self.availablewicslot(slot)
+            if wicslot == -1:
+                raise DynamipsError, "On router %n no available wicslots on slot %i for adapter %n" % (self.name, slot, wic)
+
+        ports = len(WICS[wic])
+        base = 16 * (wicslot+1)
+        if slot != 0:
+            base = 16 * (slot+1)
+        port = base
+
+        # The first WIC inserted of a given type (serial / ethernet, etc)
+        # always presents itself as starting with port 0.
+        # So regenerate the interfaces, slots & ports based on whatever is
+        # listed in the wic slots each time this method is called
+        # (e.g. router.slot[0].interfaces['s'][0] = 32
+        # if router.slot[0].wics[1] = WIC-2T and wics[0] is empty
+
+        try:
+            self.slot[slot].wics[wicslot] = wic
+        except IndexError:
+            raise DynamipsError, "On router %s, invalid wic subslot %i for WIC specification: wic%i/%i" % (self.name, wicslot, slot, wicslot)
+        except AttributeError:
+            raise DynamipsError, "On router %s, invalid wic slot %i for WIC specification: wic%i/%i" % (self.name, slot, slot, wicslot)
+
+        send(self.dynamips, 'vm slot_add_binding %s %i %i %s' % (self.name, slot, base, wic))
+
+        # Hack around the 1751 / 1760 WIC issue
+        # if the WIC is in the 2nd WIC slot (slot 1) the interface shows up as s1/x
+        if self.model == 'c1700' and self.chassis in ['1751', '1760']:
+            # On these routers interfaces don't "move" so we can just create the interfaces
+            # on the right presentation slot
+            interfaces = WICS[wic]            # A list of the interface types provided by this WIC
+            ports = len(interfaces)
+            currentport = 0
+            for interface in interfaces:
+                if interface not in self.slot[wicslot].interfaces:   # No interfaces of this type in this slot yet
+                    self.slot[wicslot].interfaces[interface] = {}
+                self.slot[wicslot].interfaces[interface][currentport] = port
+                currentport += 1
+                port += 1
+        else:
+            # Otherwise we need to rebuild all the WIC interfaces for this slot
+            currentport_e = 0           # The starting WIC port for ethernets (e.g. Ex/0 or E0)
+            currentport_s = 0           # The starting WIC port for serials  (e.g. Sx0/0 or S0)
+            for i in range(0,len(self.slot[slot].wics)):
+                if self.slot[slot].wics[i] != None:
+                    interfaces = WICS[self.slot[slot].wics[i]]            # A list of the interface types provided by this WIC
+                    ports = len(interfaces)
+                    dynaport = 16 * (i+1)
+                    for interface in interfaces:
+                        if interface not in self.slot[slot].interfaces:   # No interfaces of this type in this slot yet
+                            self.slot[slot].interfaces[interface] = {}
+                        if interface == 'e':
+                            self.slot[slot].interfaces[interface][currentport_e] = dynaport
+                            currentport_e += 1
+                        elif interface == 's':
+                            self.slot[slot].interfaces[interface][currentport_s] = dynaport
+                            currentport_s += 1
+                        dynaport += 1
+
+    def availablewicslot(self, slot):
+        """ Returns the next open WIC slot
+            or -1 if no open slots exist
+        """
+        i = 0
+        available = -1
+        for wic in self.slot[slot].wics:
+            if wic == None:
+                available = i
+                break
+            i += 1
+        return available
 
 
     def delete(self):
         """ Delete this router instance from the back-end
         """
-        send(self.__d, "%s delete %s" % (self.__model, self.__name))
+        send(self.__d, "vm delete %s" % self.__name)
 
 
     def start(self):
@@ -965,7 +1206,7 @@ class Router(object):
         if self.__state == 'suspended':
             raise DynamipsError, 'router "%s" is suspended and cannot be started. Use Resume.' % self.name
 
-        r = send(self.__d, "%s start %s" % (self.__model, self.__name))
+        r = send(self.__d, "vm start %s" % self.__name)
         self.__state = 'running'
         return r
 
@@ -976,7 +1217,7 @@ class Router(object):
         if self.__state == 'stopped':
             raise DynamipsError, 'router "%s" is already stopped' % self.name
 
-        r = send(self.__d, "%s stop %s" % (self.__model, self.__name))
+        r = send(self.__d, "vm stop %s" % self.__name)
         self.__state = 'stopped'
         return r
 
@@ -1319,6 +1560,16 @@ class Router(object):
 
     idlepcdrift = property(__getidlepcdrift, doc = 'The idle-pc drift valueof instance')
 
+    def __getcpuinfo(self):
+        """ Returns the current cpuinfo
+        """
+        if not DEBUGGER:
+            result = send(self.__d, 'vm cpu_info %s 0' % (self.__name))
+            if result[-1] == '100-OK': result.pop()
+            return result
+
+    cpuinfo = property(__getcpuinfo, doc = 'The cpu info for this instance')
+
     def __setidlemax(self, val):
         """ Set the idlemax value for this instance
             val: (integer) idlemax counter
@@ -1545,6 +1796,7 @@ class C2600(Router):
 
         self.chassis = chassis
         Router.createslots(self, 2)
+
         # Insert the MB controller
         chassis2600transform = {
             "2610"  : CISCO2600_MB_1E,
@@ -1600,6 +1852,7 @@ class C3725(Router):
 
         # generate the slots for network modules
         Router.createslots(self, 3)
+        self.slot[0] = GT96100_FE(self, 0)
 
 class C3745(Router):
     """ Creates a new 3745 Router instance
@@ -1620,7 +1873,7 @@ class C3745(Router):
 
         # generate the slots for network modules
         Router.createslots(self, 5)
-
+        self.slot[0] = GT96100_FE(self, 0)
 
 class C3600(Router):
     """ Creates a new 3620 Router instance
@@ -1696,8 +1949,96 @@ class C3600(Router):
 
     iomem = property(__getiomem, __setiomem, doc = 'The iomem size of this router')
 
+
+class C1700(Router):
+    """ Creates a new 1700 Router instance
+        dynamips: a Dynamips object
+        console (optional): TCP port that attaches to this router's console.
+                            Defaults to TCP 2000 + the instance number
+        name (optional): An optional name. Defaults to the instance number
+    """
+
+    def __init__(self, dynamips, chassis, name = None):
+        self.__d = dynamips
+        self.__chassis = chassis
+        self.__name = name
+
+        Router.__init__(self, dynamips, model = 'c1700', name = name)
+        # Set defaults for properties
+        Router.setdefaults(self,
+        ram = 64,
+        nvram = 32,
+        disk0 = 0,
+        disk1 = 0)
+
+        self.chassis = chassis
+        if chassis in ['1751', '1760']:
+            Router.createslots(self,2)
+        else:
+            Router.createslots(self,1)
+
+        # Insert the MB controller
+        chassis1700transform = {
+            "1710"  : CISCO1710_MB_1FE_1E,
+            "1720"  : C1700_MB_1ETH,
+            "1721"  : C1700_MB_1ETH,
+            "1750"  : C1700_MB_1ETH,
+            "1751"  : C1700_MB_1ETH,
+            "1760"  : C1700_MB_1ETH
+        }
+        self.slot[0] = chassis1700transform[chassis](self, 0)
+
+        # Hack for 1751 and 1760
+        # On these platforms, WICs in WIC slot 1 show up as in slot 1, not 0
+        # E.g. s1/0 not s0/2 like other platforms. I'm sure there's a good reason
+        # why is works that way. Whatever. Hack around it.
+        if chassis in ['1751', '1760']:
+            self.slot[1] = C1700_WIC1(self, 1)
+
+
+    def __setchassis(self, chassis):
+        """ Set the chassis property
+            chassis: (string) Set the chassis type
+        """
+        if type(chassis) not in [str, unicode] or chassis not in CHASSIS1700:
+            debug("Invalid chassis passed to __setchassis")
+            debug("chassis -> '" + str(chassis) +"'")
+            debug("chassis type -> " + str(type(chassis)))
+            raise DynamipsError, 'invalid chassis type'
+        self.__chassis = chassis
+        send(self.__d, 'c1700 set_chassis %s %s' % (self.__name, self.__chassis))
+
+    def __getchassis(self):
+        """ Returns chassis property
+        """
+        return self.__chassis
+
+    chassis = property(__getchassis, __setchassis, doc = 'The chassis property of this router')
+
+    def __setiomem(self, iomem):
+        """ Set the iomem property
+            iomem: (string) Set the iomem value
+        """
+        try:
+            iomem = int(iomem)
+        except ValueError:
+            raise DynamipsError, 'invalid iomem type, must be an integer'
+        if iomem % 5 != 0:
+            raise DynamipsError, 'iomem must be a multiple of 5'
+        self.__iomem = iomem
+        send(self.__d, 'c1700 set_iomem %s %s' % (self.__name, self.__iomem))
+
+    def __getiomem(self):
+        """ Returns iomem property
+        """
+        return self.__iomem
+
+    iomem = property(__getiomem, __setiomem, doc = 'The iomem size of this router')
+
+
 class DynamipsError(Exception):
     pass
+
 class DynamipsErrorHandled(Exception):
     pass
 
@@ -1859,7 +2200,8 @@ class FRSW(object):
             remoteadapter: An adapter object on a router
             remoteport: A port on the remote adapter
         """
-        # Call the generalized connect function
+        # Call the generalized connect function, validating first
+        validate_connect(localint, remoteint)
         gen_connect(src_dynamips = self.__d,
                     src_adapter = self,
                     src_port = localport,
@@ -2062,7 +2404,8 @@ class ATMSW(object):
             remoteadapter: An adapter object on a router
             remoteport: A port on the remote adapter
         """
-        # Call the generalized connect function
+        # Call the generalized connect function, validating first
+        validate_connect(localint, remoteint)
         gen_connect(src_dynamips = self.__d,
                     src_adapter = self,
                     src_port = localport,
@@ -2162,7 +2505,6 @@ class ETHSW(object):
         else:
             self.__name = name
 
-        #self.__dlcis = {}   # A dict of DLCIs (tuple) indexed by switch port
         self.__nios = {}    # A dict of NETIO objects indexed by switch port
 
         if create:
@@ -2214,7 +2556,8 @@ class ETHSW(object):
             remoteadapter: An adapter object on a router
             remoteport: A port on the remote adapter
         """
-        # Call the generalized connect function
+        # Call the generalized connect function, validating first
+        validate_connect(localint, remoteint)
         gen_connect(src_dynamips = self.__d,
                     src_adapter = self,
                     src_port = localport,
@@ -2391,9 +2734,6 @@ def gen_connect(src_dynamips, src_adapter, src_port, dst_dynamips, dst_adapter, 
         dst_port: the destination port (set to none if the destination is a bridge)
     """
 
-    # Can the source adapter be connected to the destination adapter?
-    validate_connect(src_adapter, dst_adapter)
-
     if src_dynamips.host == dst_dynamips.host:
         # source and dest adapters are on the same dynamips server, perform loopback binding optimization
         src_ip = '127.0.0.1'
@@ -2427,46 +2767,53 @@ def gen_connect(src_dynamips, src_adapter, src_port, dst_dynamips, dst_adapter, 
         dst_adapter.nio(port=dst_port, nio=dst_nio)
 
 
-def validate_connect(int1, int2):
+def validate_connect(i1, i2):
     """ Check to see if a given adapter can be connected to another adapter
-        int1: Interface 1
-        int2: Interface 2
+        i1: interface type 1
+        i2: interface type 2
+    """
     """
     try:
         a1 = int1.adapter
         a2 = int2.adapter
     except AttributeError:
         raise DynamipsError, 'invalid adapter or no adapter present'
-
+    """
     # Question: can we daisy-chain switches? Validate this.
-    ethernets = ('C7200-IO-FE', 'PA-2FE-TX', 'PA-GE', 'C7200-IO-2FE', 'C7200-IO-GE-E', 'PA-FE-TX', 'PA-4E', 'PA-8E', 'NM-1FE-TX', 'NM-1E', 'NM-4E', 'NM-16ESW', 'Leopard-2FE', 'GT96100-FE', 'CISCO2600-MB-1E', 'CISCO2600-MB-2E', 'CISCO2600-MB-1FE', 'CISCO2600-MB-2FE', 'Bridge', 'ETHSW')
-    serials = ('PA-4T+', 'PA-8T', 'NM-4T', 'FRSW')
-    atms = ('PA-A1', 'ATMSW')
-    poss = ('PA-POS-OC3')
+    #ethernets = ('C7200-IO-FE', 'PA-2FE-TX', 'PA-GE', 'C7200-IO-2FE', 'C7200-IO-GE-E', 'PA-FE-TX', 'PA-4E', 'PA-8E', 'NM-1FE-TX', 'NM-1E', 'NM-4E', 'NM-16ESW', 'Leopard-2FE', 'GT96100-FE', 'CISCO2600-MB-1E', 'CISCO2600-MB-2E', 'CISCO2600-MB-1FE', 'CISCO2600-MB-2FE', 'Bridge', 'ETHSW')
+    #serials = ('PA-4T+', 'PA-8T', 'NM-4T', 'FRSW')
+    #atms = ('PA-A1', 'ATMSW')
+    #poss = ('PA-POS-OC3')
+    ethernets = ('e', 'f', 'g', 'n', 'i')
+    serials = ('s')
+    atms = ('a')
+    poss = ('p')
 
-    if a1 == 'Bridge' and a2 == 'Bridge':
-        raise DynamipsError, 'attempt to connect two bridges'
+    #if a1 == 'Bridge' and a2 == 'Bridge':
+    #    raise DynamipsError, 'attempt to connect two bridges'
 
-    if a1 in ethernets and a2 in ethernets:
+    if i1 in ethernets and i2 in ethernets:
         return
 
-    elif a1 in serials and a2 in serials:
+    elif i1 in serials and i2 in serials:
         return
 
-    elif a1 in atms and a2 in atms:
+    elif i1 in atms and i2 in atms:
         return
 
-    elif a1 in poss and a2 in poss:
+    elif i1 in poss and i2 in poss:
         return
 
-    # Corner case: POS to FRSW is ok
-    elif a1 in poss and a2 == 'FRSW':
-        return
-    elif a2 in poss and a1 == 'FRSW':
-        return
+        """
+        # Corner case: POS to FRSW is ok
+        elif a1 in poss and a2 == 'FRSW':
+            return
+        elif a2 in poss and a1 == 'FRSW':
+            return
+        """
 
     else:
-        raise DynamipsError, 'attempt to connect %s to %s' % (a1, a2)
+        raise DynamipsError, 'attempt to connect %s to %s' % (i1, i2)
 
 
 def connected_general(obj, port):
@@ -2525,25 +2872,38 @@ if __name__ == "__main__":
     # Testing
     DEBUG = True
 
-    IMAGE = '/usr2/ios-images/3660-images/c3660-ik9o3s-mz.124-10.image'
-    d = Dynamips('bender', 7200)
+    IMAGE = '/opt/ios-images/c1710-k9o3sy-mz.124-16.image'
+    d = Dynamips('localhost', 7200)
     d.reset()
-    """
-    d.workingdir = '/home/greg/labs/tests/NM-16ESW'
 
-    r1 = C3600(d, chassis = '3660', name='r1')
-    esw = C3600(d, chassis = '3660', name='esw')
+    #d.workingdir = '"/Users/greg/Documents/Mac Dynagen labs/dev tests/0.2.8"'
+    d.workingdir = '/tmp'
+
+    r1 = C1700(d, chassis = '1750', name='r1')
     r1.image = IMAGE
-    esw.image = IMAGE
-    r1.slot[0] = Leopard_2FE(r1,0)
-    esw.slot[1] = NM_16ESW(esw, 1)
-    r1.idlepc = '0x605b83f4'
-    esw.idlepc = '0x605b83f4'
-    r1.slot[0].connect(0, d, esw.slot[1], 0)
+    r1.ram = 128
+    #r1.slot[0] = CISCO2600_MB_1E(r1,0)
+    #r1.slot[16] = WIC_1T(r1,16)
+
+    #r1.slot[0] = CISCO2600_MB_1E(r1,0)
+    r1.installwic('WIC-1T', 0, 0)
+    #r1.installwic('WIC-2T', 0, 1)
+    #r1.installwic('WIC-2T', 0, 2)
+    #r1.idlepc = ' 0x8046b940'
+    #r1.slot[0].connect(0, d, esw.slot[1], 0)
+
+    #r2 = C2600(d, chassis = '2610', name='r2')
+    #r2.image = IMAGE
+    #r2.slot[0].install(CISCO2600_MB_1E(r2,0))
+    #r2.installwic('WIC-2T', 0, 0)
+    #r2.idlepc = ' 0x8046b940'
+
+
+    #r1.slot[0].connect('s', 0, d, r2.slot[0], 's', 0)   # r1 s0/0 = r2 s0/0
 
     r1.start()
-    esw.start()
+    #r2.start()
 
     d.reset()
-    """
+
 

@@ -16,7 +16,7 @@
 import sys, cmd
 import subprocess as sub
 import GNS3.Globals as globals
-import GNS3.Dynagen.Globals as Dynagen_Namespace
+import GNS3.Dynagen.dynagen as Dynagen_Namespace
 from PyQt4 import QtCore, QtGui
 from GNS3.Dynagen.console import Console as Dynagen_Console
 from GNS3.External.PyCutExt import PyCutExt
