@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Widget_SystemGeneral.ui'
 #
-# Created: Mon Sep 10 14:45:58 2007
+# Created: Mon Sep 10 21:15:17 2007
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -16,7 +16,7 @@ class Ui_SystemGeneral(object):
 
         self.label = QtGui.QLabel(SystemGeneral)
         self.label.setEnabled(True)
-        self.label.setGeometry(QtCore.QRect(0,10,71,22))
+        self.label.setGeometry(QtCore.QRect(0,10,75,22))
         self.label.setObjectName("label")
 
         self.langsBox = QtGui.QComboBox(SystemGeneral)

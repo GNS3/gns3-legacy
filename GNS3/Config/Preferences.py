@@ -40,6 +40,9 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
         You can also choose the preferences type (used later for widget prefix)
         """
 
+        self.__prefsList = []
+        self.type = type
+
         QtGui.QDialog.__init__(self)
         self.setupUi(self)
 
@@ -53,6 +56,36 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
         self.__initDialog(type)
         # Raise the first element in list
         self.__raiseWidgetByNum(0)
+
+    def retranslateUi(self, MainWindow):
+        # Call parent retranslateUi
+        Ui_PreferencesDialog.retranslateUi(self, self)
+
+        if self.type == 'System':
+            dialogTitle = translate('PreferencesDialog', 'System preferences')
+        elif self.type == 'Project':
+            dialogTitle = translate('PreferencesDialog', 'Project preferences')
+        else:
+            dialogTitle = translate('PreferencesDialog', 'Preferences')
+        self.setWindowTitle(dialogTitle)
+
+        # Update titleLabel
+        currIdx = self.stackedWidget.currentIndex()
+        if currIdx > -1 and len(self.__prefsList) > currIdx:
+            self.titleLabel.setText(translate('PreferencesDialog', self.__prefsList[currIdx]))
+
+        # For each widget retranslate too
+        lnum = 0
+        for itemName in self.__prefsList:
+            try:
+                widget = self.stackedWidget.widget(lnum)
+                widget.retranslateUi(widget)
+                self.listWidget.item(lnum).setText(translate('PreferencesDialog', self.__prefsList[lnum]))
+            except Exception,e:
+                # In case widgets don't have restranslateUi method
+                pass
+            lnum += 1
+
 
     def __applyChanges(self):
         """ Save change for all item present into the Dialog
@@ -85,23 +118,20 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
             return None
 
     def __initDialog(self, type):
+        # Choose preferences dialog types
         if type == 'System':
-            dialogTitle = translate('PreferencesDialog', 'System preferences')
             self.__prefsList = _systemPrefs
         elif type == 'Project':
-            dialogTitle = translate('PreferencesDialog', 'Project preferences')
             self.__prefsList = _projectPrefs
         else:
             raise 'Unknown dialog type'
 
-        # Set dialog title
-        self.setWindowTitle(dialogTitle)
-
+        # Insert config pages...
         lnum = 0
         for itemName in self.__prefsList:
             cls = self.__loadWidget(type, itemName)
             widget = cls()
-            item = QtGui.QListWidgetItem(translate('PreferencesDialog', itemName), #FIXME: Does it work ?
+            item = QtGui.QListWidgetItem(translate('PreferencesDialog', itemName), 
                     self.listWidget)
             # Insert widget / item into the dialog
             self.listWidget.insertItem(lnum, item)
@@ -111,7 +141,7 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
 
     def __raiseWidgetByNum(self, num):
         self.titleLabel.setText(
-            translate('PreferencesDialog', self.__prefsList[num])) #FIXME: Does it work ?
+            translate('PreferencesDialog', self.__prefsList[num])) 
         # Set stackedWidget minimum size
         widget = self.stackedWidget.widget(num)
         self.stackedWidget.setMinimumSize(widget.size())

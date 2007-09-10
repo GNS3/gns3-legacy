@@ -73,9 +73,6 @@
        <property name="frameShadow" >
         <enum>QFrame::Plain</enum>
        </property>
-       <property name="text" >
-        <string>Prefs Label</string>
-       </property>
       </widget>
      </item>
      <item>

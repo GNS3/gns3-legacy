@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Widget_SystemApplications.ui'
 #
-# Created: Wed Jul 25 11:46:11 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070710
+# Created: Mon Sep 10 21:14:46 2007
+#      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -25,7 +25,7 @@ class Ui_SystemApplications(object):
         self.groupBox.setObjectName("groupBox")
 
         self.label = QtGui.QLabel(self.groupBox)
-        self.label.setGeometry(QtCore.QRect(10,20,111,18))
+        self.label.setGeometry(QtCore.QRect(10,20,351,18))
         self.label.setObjectName("label")
 
         self.dynamips_path = QtGui.QLineEdit(self.groupBox)
@@ -38,7 +38,7 @@ class Ui_SystemApplications(object):
         self.dynamips_path_browser.setObjectName("dynamips_path_browser")
 
         self.label_3 = QtGui.QLabel(self.groupBox)
-        self.label_3.setGeometry(QtCore.QRect(10,130,126,20))
+        self.label_3.setGeometry(QtCore.QRect(10,130,381,20))
         self.label_3.setObjectName("label_3")
 
         self.dynamips_term_cmd = QtGui.QLineEdit(self.groupBox)
@@ -50,7 +50,7 @@ class Ui_SystemApplications(object):
         self.dynamips_workdir.setObjectName("dynamips_workdir")
 
         self.label_2 = QtGui.QLabel(self.groupBox)
-        self.label_2.setGeometry(QtCore.QRect(10,70,111,18))
+        self.label_2.setGeometry(QtCore.QRect(10,70,291,18))
         self.label_2.setObjectName("label_2")
 
         self.dynamips_workdir_browser = QtGui.QToolButton(self.groupBox)
@@ -64,7 +64,7 @@ class Ui_SystemApplications(object):
         self.dynamips_port.setObjectName("dynamips_port")
 
         self.label_5 = QtGui.QLabel(self.groupBox)
-        self.label_5.setGeometry(QtCore.QRect(320,70,41,25))
+        self.label_5.setGeometry(QtCore.QRect(320,70,61,25))
         self.label_5.setObjectName("label_5")
 
         self.groupBox_2 = QtGui.QGroupBox(SystemApplications)
@@ -79,7 +79,7 @@ class Ui_SystemApplications(object):
         self.groupBox_2.setObjectName("groupBox_2")
 
         self.label_4 = QtGui.QLabel(self.groupBox_2)
-        self.label_4.setGeometry(QtCore.QRect(10,20,106,18))
+        self.label_4.setGeometry(QtCore.QRect(10,20,361,18))
         self.label_4.setObjectName("label_4")
 
         self.lineEdit_4 = QtGui.QLineEdit(self.groupBox_2)

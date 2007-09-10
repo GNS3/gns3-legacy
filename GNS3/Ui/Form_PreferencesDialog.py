@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_PreferencesDialog.ui'
 #
-# Created: Mon Jul 23 16:02:29 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070710
+# Created: Mon Sep 10 18:50:11 2007
+#      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -19,6 +19,7 @@ class Ui_PreferencesDialog(object):
         sizePolicy.setVerticalStretch(2)
         sizePolicy.setHeightForWidth(PreferencesDialog.sizePolicy().hasHeightForWidth())
         PreferencesDialog.setSizePolicy(sizePolicy)
+        PreferencesDialog.setWindowIcon(QtGui.QIcon(":/images/logo_icon.png"))
         PreferencesDialog.setModal(True)
 
         self.gridlayout = QtGui.QGridLayout(PreferencesDialog)
@@ -97,5 +98,5 @@ class Ui_PreferencesDialog(object):
 
     def retranslateUi(self, PreferencesDialog):
         PreferencesDialog.setWindowTitle(QtGui.QApplication.translate("PreferencesDialog", "Preferences", None, QtGui.QApplication.UnicodeUTF8))
-        self.titleLabel.setText(QtGui.QApplication.translate("PreferencesDialog", "Prefs Label", None, QtGui.QApplication.UnicodeUTF8))
 
+import svg_resources_rc

@@ -1119,7 +1119,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/Form_MainWindow.ui" line="61"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Editer</translation>
+        <translation>&amp;Edition</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/Form_MainWindow.ui" line="99"/>
@@ -1422,7 +1422,7 @@ p, li { white-space: pre-wrap; }
         <translation>Suspend toutes les instances d&apos;IOS actuellements en cours d&apos;execution</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="27"/>
+        <location filename="DynamicStrings.py" line="28"/>
         <source>English</source>
         <translation>Français</translation>
     </message>
@@ -1504,70 +1504,80 @@ to display the configuration page.</source>
 <context>
     <name>PreferencesDialog</name>
     <message>
-        <location filename="../GNS3/Ui/Form_PreferencesDialog.ui" line="19"/>
+        <location filename="../GNS3/Config/Preferences.py" line="71"/>
         <source>Preferences</source>
         <translation>Préférences</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/Form_PreferencesDialog.ui" line="77"/>
         <source>Prefs Label</source>
-        <translation>Titre des préférences</translation>
+        <translation type="obsolete">Titre des préférences</translation>
     </message>
     <message>
-        <location filename="../GNS3/Config/Preferences.py" line="90"/>
+        <location filename="../GNS3/Config/Preferences.py" line="67"/>
         <source>System preferences</source>
         <translation>Préférences globales</translation>
     </message>
     <message>
-        <location filename="../GNS3/Config/Preferences.py" line="93"/>
+        <location filename="../GNS3/Config/Preferences.py" line="69"/>
         <source>Project preferences</source>
         <translation>Préférences du projet</translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="29"/>
+        <source>General</source>
+        <translation>Général</translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="31"/>
+        <source>Applications</source>
+        <translation>Applications</translation>
     </message>
 </context>
 <context>
     <name>SYMBOLS</name>
     <message>
-        <location filename="DynamicStrings.py" line="28"/>
+        <location filename="DynamicStrings.py" line="32"/>
         <source>Router</source>
         <translation>Routeur</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="29"/>
+        <location filename="DynamicStrings.py" line="33"/>
         <source>Router with firewall</source>
         <translation>Routeur avec pare-feu</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="31"/>
+        <location filename="DynamicStrings.py" line="35"/>
         <source>Switch</source>
         <translation>Commutateur</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="32"/>
+        <location filename="DynamicStrings.py" line="36"/>
         <source>Multilayer switch</source>
         <translation>Commutateur multi-niveau</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="34"/>
+        <location filename="DynamicStrings.py" line="38"/>
         <source>ATM switch</source>
         <translation>Commutateur ATM</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="30"/>
+        <location filename="DynamicStrings.py" line="34"/>
         <source>Edge label switch router</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="33"/>
+        <location filename="DynamicStrings.py" line="37"/>
         <source>Route switch processor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="35"/>
+        <location filename="DynamicStrings.py" line="39"/>
         <source>Frame Relay switch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="36"/>
+        <location filename="DynamicStrings.py" line="40"/>
         <source>Hub</source>
         <translation>Concentrateur</translation>
     </message>

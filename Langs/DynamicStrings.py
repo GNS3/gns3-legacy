@@ -24,6 +24,10 @@
 # Translation on current language name
 translate("MainWindow", "English")
 
+# Preferences Dialog / Configurations Pages
+translate('PreferencesDialog', 'General')
+translate('PreferencesDialog', 'Applications')
+
 translate("SYMBOLS", "Router")
 translate("SYMBOLS", "Router with firewall")
 translate("SYMBOLS", "Edge label switch router")

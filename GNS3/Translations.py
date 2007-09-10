@@ -66,7 +66,6 @@ class Translator():
 
         globals.GApp.installTranslator(translator)
         if self.__lastTranslator is not None:
-            print "::> Removing previous translator"
             globals.GApp.removeTranslator(self.__lastTranslator)
 
         self.__lastTranslator = translator

@@ -1238,7 +1238,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="27"/>
+        <location filename="DynamicStrings.py" line="28"/>
         <source>English</source>
         <translation>English</translation>
     </message>
@@ -1320,70 +1320,75 @@ to display the configuration page.</source>
 <context>
     <name>PreferencesDialog</name>
     <message>
-        <location filename="../GNS3/Ui/Form_PreferencesDialog.ui" line="19"/>
+        <location filename="../GNS3/Config/Preferences.py" line="71"/>
         <source>Preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_PreferencesDialog.ui" line="77"/>
-        <source>Prefs Label</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Config/Preferences.py" line="90"/>
+        <location filename="../GNS3/Config/Preferences.py" line="67"/>
         <source>System preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Config/Preferences.py" line="93"/>
+        <location filename="../GNS3/Config/Preferences.py" line="69"/>
         <source>Project preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="29"/>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="31"/>
+        <source>Applications</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SYMBOLS</name>
     <message>
-        <location filename="DynamicStrings.py" line="28"/>
+        <location filename="DynamicStrings.py" line="32"/>
         <source>Router</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="29"/>
+        <location filename="DynamicStrings.py" line="33"/>
         <source>Router with firewall</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="30"/>
+        <location filename="DynamicStrings.py" line="34"/>
         <source>Edge label switch router</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="31"/>
+        <location filename="DynamicStrings.py" line="35"/>
         <source>Switch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="32"/>
+        <location filename="DynamicStrings.py" line="36"/>
         <source>Multilayer switch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="33"/>
+        <location filename="DynamicStrings.py" line="37"/>
         <source>Route switch processor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="34"/>
+        <location filename="DynamicStrings.py" line="38"/>
         <source>ATM switch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="35"/>
+        <location filename="DynamicStrings.py" line="39"/>
         <source>Frame Relay switch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="36"/>
+        <location filename="DynamicStrings.py" line="40"/>
         <source>Hub</source>
         <translation type="unfinished"></translation>
     </message>

@@ -52,10 +52,8 @@ class UiConfig_SystemGeneral(QtGui.QWidget, Ui_SystemGeneral):
     def saveConf(self):
 
         new_idx = self.langsBox.currentIndex()
-        print type(new_idx)
         new_lang_code = self.langs[new_idx][0]
 
-        print "new language: %s" % (self.langs[new_idx][1])
         globals.GApp.systconf['general'].lang = unicode(new_lang_code, 'utf-8')
         globals.GApp.translator.switchLangTo(new_lang_code)
         pass
