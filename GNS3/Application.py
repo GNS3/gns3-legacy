@@ -26,9 +26,10 @@ from PyQt4.QtCore import QMutex, QMutexLocker
 from GNS3.Utils import Singleton
 from GNS3.Workspace import Workspace
 from GNS3.Topology import Topology
-from GNS3.Config.Objects import systemDynamipsConf
+from GNS3.Config.Objects import systemDynamipsConf, systemGeneralConf
 from GNS3.Config.Config import ConfDB, GNS_Conf
 from GNS3.HypervisorManager import HypervisorManager
+from GNS3.Translations import Translator
 import GNS3.Globals as globals
 
 class Application(QApplication, Singleton):
@@ -208,6 +209,15 @@ class Application(QApplication, Singleton):
         confo.workdir = ConfDB().get('Dynamips/hypervisor_working_directory', unicode('',  'utf-8'))
         confo.term_cmd = ConfDB().get('Dynamips/console', unicode('',  'utf-8'))
 
+        # System general config
+        self.systconf['general'] = systemGeneralConf()
+        confo = self.systconf['general']
+        confo.lang = ConfDB().get('GNS3/lang', unicode('en', 'utf-8'))
+
+        # Now systGeneral settings are loaded, load the translator
+        self._translator = Translator()
+        self._translator.switchLangTo(self.systconf['general'].lang)
+
         # preload dynamips, so it will start faster when use it
         if globals.GApp.systconf['dynamips'].path:
             HypervisorManager().preloadDynamips()
@@ -221,9 +231,13 @@ class Application(QApplication, Singleton):
         sys.exit(retcode)
 
     def saveConfQaD(self):
-        """ Quick and Dirty saving of IOSImages / Hypervisors into gns3.conf
+        """ Quick and Dirty config saving into gns3.conf
         """
 
+        # App Lang.
+        ConfDB().set('GNS3/lang', self.systconf['general'].lang)
+
+        # Dynamips IOSImages / Hypervisors
         confo = self.systconf['dynamips'] 
         ConfDB().set('Dynamips/hypervisor_path', confo.path)
         ConfDB().set('Dynamips/hypervisor_port', confo.port)

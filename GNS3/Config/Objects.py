@@ -145,3 +145,8 @@ class systemDynamipsConf(ConfigObject):
         self.conf = Defaults.conf_systemDynamips_defaults.copy()
         self.types = Defaults.conf_systemDynamips_types
 
+class systemGeneralConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_systemGeneral_defaults.copy()
+        self.types = Defaults.conf_systemGeneral_types

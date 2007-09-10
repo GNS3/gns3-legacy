@@ -175,3 +175,11 @@ conf_systemDynamips_types = {
     'workdir': unicode,
     'term_cmd': unicode,
 }
+
+conf_systemGeneral_defaults = {
+    'lang': 'en',
+}
+
+conf_systemGeneral_types = {
+    'lang': unicode,
+}
