@@ -118,13 +118,6 @@ class ATMSW(AbstractNode):
         for edge in self.getEdgeList():
                 edge.setLocalInterfaceStatus(self.id, True)
 
-    def resetNode(self):
-        """ Reset the node configuration
-        """
-
-        if self.dev != None:
-            self.dev.delete()
-
     def updatePorts(self):
         """ Check if the connections are still ok
         """

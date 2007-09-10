@@ -75,12 +75,6 @@ class Cloud(AbstractNode):
         
         pass
         
-    def resetNode(self):
-        """ Reset the node configuration
-        """
-
-        pass
-        
     def updateNIOs(self):
     
         misconfigured_nio = []

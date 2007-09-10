@@ -24,7 +24,7 @@ import os,  re
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.dynagen as dynagen
-import GNS3.Console as console
+import GNS3.Telnet as console
 from PyQt4 import QtCore, QtGui,  QtSvg
 from GNS3.Utils import translate
 from GNS3.Config.Objects import iosRouterConf
@@ -506,7 +506,6 @@ class IOSRouter(AbstractNode):
             print unicode("\n" + self.dev.start()[0],  'utf-8') #TODO: complete for others
         if self.dev.state == 'suspended':
             print self.dev.resume()
-        
         for edge in self.getEdgeList():
             edge.setLocalInterfaceStatus(self.id, True)
         
@@ -526,16 +525,6 @@ class IOSRouter(AbstractNode):
             print self.dev.suspend()
             self.shutdownInterfaces()
 
-    def resetNode(self):
-        """ Reset the node configuration
-        """
-
-        if self.dev != None:
-            self.dev.delete()
-            if dynagen.devices.has_key(self.hostname):
-                del dynagen.devices[self.hostname]
-            self.shutdownInterfaces()
-            
     def cleanNodeFiles(self):
         """ Delete nvram/flash/log files created by Dynamips
         """

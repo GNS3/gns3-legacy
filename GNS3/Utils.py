@@ -39,8 +39,8 @@ def translate(context, text):
         text: string (original text)
     """
     
-    #return unicode(QtGui.QApplication.translate(context, text, None, QtGui.QApplication.UnicodeUTF8),  'utf-8')
-    return QtGui.QApplication.translate(context, text, None, QtGui.QApplication.UnicodeUTF8)
+    return unicode(QtGui.QApplication.translate(context, text, None, QtGui.QApplication.UnicodeUTF8),  'utf-8')
+    #return QtGui.QApplication.translate(context, text, None, QtGui.QApplication.UnicodeUTF8)
 
 def testOpenFile(path,  flags='r'):
     """ returns True if the file can be openned

@@ -88,12 +88,6 @@ class Hub(AbstractNode):
 
         for edge in self.getEdgeList():
                 edge.setLocalInterfaceStatus(self.id, True)
-        
-    def resetNode(self):
-        """ Reset the node configuration
-        """
-
-        pass
 
     def updatePorts(self):
         """ Check if the connections are still ok

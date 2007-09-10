@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
@@ -420,3 +419,13 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             self.hypervisor_host = None
             self.hypervisor_port = None
             self.baseUDP = None
+            
+    def resetNode(self):
+        """ Reset the node configuration
+        """
+
+        if self.dev != None:
+            self.dev.delete()
+            if dynagen.devices.has_key(self.hostname):
+                del dynagen.devices[self.hostname]
+            self.shutdownInterfaces()
