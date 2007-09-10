@@ -503,18 +503,17 @@ class IOSRouter(AbstractNode):
         if self.dev == None:
             return
         if self.dev.state == 'stopped':
-            print unicode("\n" + self.dev.start()[0],  'utf-8') #TODO: complete for others
+            self.dev.start()
         if self.dev.state == 'suspended':
-            print self.dev.resume()
-        for edge in self.getEdgeList():
-            edge.setLocalInterfaceStatus(self.id, True)
+            self.dev.resume()
+        self.startupInterfaces()
         
     def stopNode(self):
         """ Stop the node
         """
 
         if self.dev != None and self.dev.state != 'stopped':
-            print self.dev.stop()
+            self.dev.stop()
             self.shutdownInterfaces()
             
     def suspendNode(self):
@@ -522,7 +521,7 @@ class IOSRouter(AbstractNode):
         """
 
         if self.dev != None and self.dev.state == 'running':
-            print self.dev.suspend()
+            self.dev.suspend()
             self.shutdownInterfaces()
 
     def cleanNodeFiles(self):

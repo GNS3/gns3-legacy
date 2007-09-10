@@ -115,8 +115,7 @@ class ATMSW(AbstractNode):
                     else:
                         self.dev.mapvp(int(destport), int(destvpi), int(srcport), int(srcvpi))
         
-        for edge in self.getEdgeList():
-                edge.setLocalInterfaceStatus(self.id, True)
+        self.startupInterfaces()
 
     def updatePorts(self):
         """ Check if the connections are still ok

@@ -135,10 +135,11 @@ class Console(PyCutExt, Dynagen_Console):
         """
 
         try:
+            Dynagen_Console.do_start(self, args)
             devices = args.split(' ')
             for node in globals.GApp.topology.nodes.values():
                 if type(node) == IOSRouter and (node.hostname in devices or '/all' in devices):
-                    node.startNode()
+                    node.startupInterfaces()
         except:
             globals.GApp.workspace.switchToMode_Design()
             
@@ -147,10 +148,11 @@ class Console(PyCutExt, Dynagen_Console):
         """
 
         try:
+            Dynagen_Console.do_stop(self, args)
             devices = args.split(' ')
             for node in globals.GApp.topology.nodes.values():
                 if type(node) == IOSRouter and (node.hostname in devices or '/all' in devices):
-                    node.stopNode()
+                    node.shutdownInterfaces()
         except:
             globals.GApp.workspace.switchToMode_Design()
 
@@ -158,14 +160,8 @@ class Console(PyCutExt, Dynagen_Console):
         """ Overloaded reload command
         """
 
-        try:
-            devices = args.split(' ')
-            for node in globals.GApp.topology.nodes.values():
-                if type(node) == IOSRouter and (node.hostname in devices or '/all' in devices):
-                    node.stopNode()
-                    node.startNode()
-        except:
-            globals.GApp.workspace.switchToMode_Design()
+        self.do_stop()
+        self.do_start()
             
     def do_exit(self,  args):
         """ Overloaded exit command
@@ -182,7 +178,7 @@ class Console(PyCutExt, Dynagen_Console):
     def do_hist(self, args):
         """ Overloaded hist command
         """
-        
-        #TODO: show history
-        pass
+
+        for entry in self.history:
+            print unicode(entry)
         

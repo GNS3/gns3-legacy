@@ -86,8 +86,7 @@ class Hub(AbstractNode):
         """ Start the node
         """
 
-        for edge in self.getEdgeList():
-                edge.setLocalInterfaceStatus(self.id, True)
+        self.startupInterfaces()
 
     def updatePorts(self):
         """ Check if the connections are still ok

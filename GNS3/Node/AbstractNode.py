@@ -202,7 +202,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """ Set a custom tool tip
         """
 
-        self.setToolTip(translate("AbstractNode", "Hostname: %s") % (self.hostname))
+        self.setToolTip(translate("AbstractNode", "Hostname: ") + self.hostname)
 
     def keyReleaseEvent(self, event):
         """ Key release handler
@@ -339,6 +339,13 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         interface = str(action.text())
         assert(interface)
         self.__selectedInterface = interface
+
+    def startupInterfaces(self):
+        """ Startup all interfaces
+        """
+            
+        for edge in self.getEdgeList():
+            edge.setLocalInterfaceStatus(self.id, True)
         
     def shutdownInterfaces(self):
         """ Shutdown all interfaces

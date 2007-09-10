@@ -97,7 +97,6 @@ class ETHSW(AbstractNode):
         connected_interfaces = self.getConnectedInterfaceList()
         for interface in connected_interfaces:
             destinterface = self.getConnectedNeighbor(interface)
-            print destinterface
         
         #TODO: finish connection to NIO
         
@@ -108,8 +107,7 @@ class ETHSW(AbstractNode):
                     porttype = self.config.ports[port]
                     self.dev.set_port(port, porttype, vlan)
 
-        for edge in self.getEdgeList():
-                edge.setLocalInterfaceStatus(self.id, True)
+        self.startupInterfaces()
 
     def updatePorts(self):
         """ Check if the connections are still ok
