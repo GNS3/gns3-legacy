@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1">
+<!DOCTYPE TS><TS version="1.1" language="en">
 <context>
     <name>ATMSW</name>
     <message>
@@ -1240,7 +1240,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="DynamicStrings.py" line="27"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation>English</translation>
     </message>
 </context>
 <context>

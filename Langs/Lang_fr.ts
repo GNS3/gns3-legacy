@@ -1506,7 +1506,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../GNS3/Ui/Form_PreferencesDialog.ui" line="19"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Préférences</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/Form_PreferencesDialog.ui" line="77"/>
@@ -1516,12 +1516,12 @@ to display the configuration page.</source>
     <message>
         <location filename="../GNS3/Config/Preferences.py" line="90"/>
         <source>System preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Préférences globales</translation>
     </message>
     <message>
         <location filename="../GNS3/Config/Preferences.py" line="93"/>
         <source>Project preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Préférences du projet</translation>
     </message>
 </context>
 <context>
