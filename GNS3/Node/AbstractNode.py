@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
@@ -203,7 +202,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """ Set a custom tool tip
         """
 
-        self.setToolTip(translate("AbstractNode", "Hostname: %s") % (self.hostname))
+        self.setToolTip(translate("AbstractNode", "Hostname: ") + self.hostname)
 
     def keyReleaseEvent(self, event):
         """ Key release handler
@@ -340,6 +339,13 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         interface = str(action.text())
         assert(interface)
         self.__selectedInterface = interface
+
+    def startupInterfaces(self):
+        """ Startup all interfaces
+        """
+            
+        for edge in self.getEdgeList():
+            edge.setLocalInterfaceStatus(self.id, True)
         
     def shutdownInterfaces(self):
         """ Shutdown all interfaces
@@ -420,3 +426,13 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             self.hypervisor_host = None
             self.hypervisor_port = None
             self.baseUDP = None
+            
+    def resetNode(self):
+        """ Reset the node configuration
+        """
+
+        if self.dev != None:
+            self.dev.delete()
+            if dynagen.devices.has_key(self.hostname):
+                del dynagen.devices[self.hostname]
+            self.shutdownInterfaces()

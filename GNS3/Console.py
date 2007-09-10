@@ -14,37 +14,12 @@
 #
 
 import sys, cmd
-import subprocess as sub
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as Dynagen_Namespace
 from PyQt4 import QtCore, QtGui
 from GNS3.Dynagen.console import Console as Dynagen_Console
 from GNS3.External.PyCutExt import PyCutExt
-
-def connect(host,  port,  name):
-        """ Start a telnet console and connect to it
-        """
-
-        name = '"' + name + '"'
-        try:
-            console = globals.GApp.systconf['dynamips'].term_cmd
-            if console:
-                console = console.replace('%h', host)
-                console = console.replace('%p', str(port))
-                console = console.replace('%d', name)
-                sub.Popen(console, shell=True)
-            else:
-                if sys.platform.startswith('darwin'):
-                    sub.Popen("/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet " + host + " " + str(port) +"; exit\"' -e 'tell application \"Terminal\" to tell window 1  to set custom title to \"" + name + "\"'", shell=True)
-                elif sys.platform.startswith('win32'):
-                    sub.Popen("start telnet " +  host + " " + str(port), shell=True)
-                else:
-                    sub.Popen("xterm -T " + name + " -e 'telnet " + host + " " + str(port) + "' > /dev/null 2>&1 &", shell=True)
-                    #sub.Popen("gnome-terminal -t " + name + " -e 'telnet "  + host + " " + str(port) + "' > /dev/null 2>&1 &",  shell=True)
-        except OSError, (errno, strerror):
-            return (False)
-        return (True)
-
+from GNS3.Node.IOSRouter import IOSRouter
 
 class Console(PyCutExt, Dynagen_Console):
 
@@ -53,7 +28,7 @@ class Console(PyCutExt, Dynagen_Console):
                 "reload", "send", "start", "telnet", "clear",
                 "exit", "help", "import", "push", "resume",
                 "shell", "stop", "ver", "confreg",
-                "export", "hist", "list", "py",              
+                "export", "hist", "list", "py",
                 "save", "show", "suspend"])
 
     def __init__(self, parent):
@@ -146,6 +121,7 @@ class Console(PyCutExt, Dynagen_Console):
             self.more = self.onecmd(source)
         except Exception,e:
             print e
+            globals.GApp.workspace.switchToMode_Design()
 
         if self.more:
             self.write(sys.ps2)
@@ -153,3 +129,56 @@ class Console(PyCutExt, Dynagen_Console):
             self.write(sys.ps1)
             self.lines = []
             self._clearLine()
+            
+    def do_start(self, args):
+        """ Overloaded start command
+        """
+
+        try:
+            Dynagen_Console.do_start(self, args)
+            devices = args.split(' ')
+            for node in globals.GApp.topology.nodes.values():
+                if type(node) == IOSRouter and (node.hostname in devices or '/all' in devices):
+                    node.startupInterfaces()
+        except:
+            globals.GApp.workspace.switchToMode_Design()
+            
+    def do_stop(self, args):
+        """ Overloaded stop command
+        """
+
+        try:
+            Dynagen_Console.do_stop(self, args)
+            devices = args.split(' ')
+            for node in globals.GApp.topology.nodes.values():
+                if type(node) == IOSRouter and (node.hostname in devices or '/all' in devices):
+                    node.shutdownInterfaces()
+        except:
+            globals.GApp.workspace.switchToMode_Design()
+
+    def do_reload(self, args):
+        """ Overloaded reload command
+        """
+
+        self.do_stop()
+        self.do_start()
+            
+    def do_exit(self,  args):
+        """ Overloaded exit command
+        """
+        
+        print 'Are you kidding ?'
+        
+    def do_disconnect(self,  args):
+        """ Overloaded disconnect command
+        """
+        
+        print 'Are you kidding ?'
+    
+    def do_hist(self, args):
+        """ Overloaded hist command
+        """
+
+        for entry in self.history:
+            print unicode(entry)
+        

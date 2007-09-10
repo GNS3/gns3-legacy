@@ -66,19 +66,12 @@ class Cloud(AbstractNode):
         """ Start the node
         """
 
-        for edge in self.getEdgeList():
-                edge.setLocalInterfaceStatus(self.id, True)
+        self.startupInterfaces()
         
     def stopNode(self):
         """ Stop the node
         """
         
-        pass
-        
-    def resetNode(self):
-        """ Reset the node configuration
-        """
-
         pass
         
     def updateNIOs(self):

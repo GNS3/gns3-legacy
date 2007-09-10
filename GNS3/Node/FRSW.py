@@ -100,18 +100,7 @@ class FRSW(AbstractNode):
                 if not self.dev.connected(int(destport)):
                     self.dev.map(int(destport), int(destdlci), int(srcport), int(srcdlci))
         
-        for edge in self.getEdgeList():
-                edge.setLocalInterfaceStatus(self.id, True)
-
-    def resetNode(self):
-        """ Reset the node configuration
-        """
-
-        if self.dev != None:
-            self.dev.delete()
-#            if dynagen.devices.has_key(self.hostname):
-#                del dynagen.devices[self.hostname]
-#            self.shutdownInterfaces()
+        self.startupInterfaces()
 
     def updatePorts(self):
         """ Check if the connections are still ok

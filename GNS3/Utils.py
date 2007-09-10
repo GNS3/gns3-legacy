@@ -38,7 +38,6 @@ def translate(context, text):
         context: string (classname)
         text: string (original text)
     """
-    
     return QtGui.QApplication.translate(context, text, None, QtGui.QApplication.UnicodeUTF8)
 
 def testOpenFile(path,  flags='r'):

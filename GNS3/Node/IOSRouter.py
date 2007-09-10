@@ -24,7 +24,7 @@ import os,  re
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.dynagen as dynagen
-import GNS3.Console as console
+import GNS3.Telnet as console
 from PyQt4 import QtCore, QtGui,  QtSvg
 from GNS3.Utils import translate
 from GNS3.Config.Objects import iosRouterConf
@@ -503,19 +503,17 @@ class IOSRouter(AbstractNode):
         if self.dev == None:
             return
         if self.dev.state == 'stopped':
-            print unicode("\n" + self.dev.start()[0],  'utf-8') #TODO: complete for others
+            self.dev.start()
         if self.dev.state == 'suspended':
-            print self.dev.resume()
-        
-        for edge in self.getEdgeList():
-            edge.setLocalInterfaceStatus(self.id, True)
+            self.dev.resume()
+        self.startupInterfaces()
         
     def stopNode(self):
         """ Stop the node
         """
 
         if self.dev != None and self.dev.state != 'stopped':
-            print self.dev.stop()
+            self.dev.stop()
             self.shutdownInterfaces()
             
     def suspendNode(self):
@@ -523,19 +521,9 @@ class IOSRouter(AbstractNode):
         """
 
         if self.dev != None and self.dev.state == 'running':
-            print self.dev.suspend()
+            self.dev.suspend()
             self.shutdownInterfaces()
 
-    def resetNode(self):
-        """ Reset the node configuration
-        """
-
-        if self.dev != None:
-            self.dev.delete()
-            if dynagen.devices.has_key(self.hostname):
-                del dynagen.devices[self.hostname]
-            self.shutdownInterfaces()
-            
     def cleanNodeFiles(self):
         """ Delete nvram/flash/log files created by Dynamips
         """

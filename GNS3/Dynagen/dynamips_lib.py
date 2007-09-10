@@ -579,7 +579,7 @@ class BaseAdapter(object):
         self.__adapter = adapter
         self.__router = router
         self.__slot = slot
-        self.__nios = {}
+        self.__nios = [None] * ports
         self.__interfaces = {}
         self.__wics = wics * [None]
 
