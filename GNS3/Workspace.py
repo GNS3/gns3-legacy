@@ -90,7 +90,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             # Design Mode
             globals.Enum.Mode.Design: {
                 'docks_enable': {
-                    '1': self.dockWidget_NodeTypes,
+                    '1': self.dockWidget_NodeTypes, 
                     '2': self.dockWidget_Console
                 },
                 'docks_disable': {

@@ -363,8 +363,7 @@ class IOSRouter(AbstractNode):
         
         if platform == '3600':
             pass
-            #Wait the bug with iomen to be correted in Dynamips 0.2.8
-            #self.ios.iomem = str(self.iosConfig['iomem'])
+            self.dev.iomem = str(self.config.iomem)
         if platform == '7200':
             self.dev.midplane = self.config.midplane
             self.dev.npe = self.config.npe
@@ -375,6 +374,7 @@ class IOSRouter(AbstractNode):
             slotnb += 1
 
         self.sparsemem = True
+        # register into Dynagen
         dynagen.devices[self.hostname] = self.dev
         
     def configSlot(self, slotnb, module):

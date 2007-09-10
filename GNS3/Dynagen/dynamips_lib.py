@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 import sys, os, re, base64
 from socket import socket, timeout, AF_INET, SOCK_STREAM
 
-version = "0.10.0.090507"
+version = "0.11.0.090807"
 # Minimum version of dynamips required. Currently 0.2.8-RC1 (due to change to
 # hypervisor commands related to slot/port handling, and the pluggable archtecture
 # that changed model specific commands to "vm")
@@ -198,6 +198,17 @@ class Dynamips(object):
 
         self.__version = version
 
+    def __getstate__(self):
+        """remove the socket object so this class can be pickled"""
+        nosocket = {}
+        # Set nosocket to include all the dictionary objects from this class
+        # except the socket
+        for key in self.__dict__:
+            if key != 's':
+                nosocket[key] = self.__dict__[key]
+
+        return nosocket
+
     def close(self):
         """ Close the connection to the Hypervisor (but leave it running)
         """
@@ -235,7 +246,7 @@ class Dynamips(object):
         """ Set the working directory for this network
             directory: (string) the directory
         """
-        if type(directory) != str and type(directory) != unicode:
+        if type(directory) not in [str, unicode]:
             raise DynamipsError, 'invalid directory'
         self.__workingdir = directory
         send(self, 'hypervisor working_dir %s' % self.__workingdir)
@@ -568,7 +579,7 @@ class BaseAdapter(object):
         self.__adapter = adapter
         self.__router = router
         self.__slot = slot
-        self.__nios = [None] * ports
+        self.__nios = {}
         self.__interfaces = {}
         self.__wics = wics * [None]
 
@@ -938,7 +949,7 @@ class NM_16ESW(NM):
     """
     def __init__(self, router, slot):
         intlist = []
-        for i in range(0,15):
+        for i in range(0,16):
             intlist.append(['f', i, i])
 
         NM.__init__(self, router, slot, 'NM-16ESW', 16, intlist)

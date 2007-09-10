@@ -84,6 +84,7 @@ class ETHSW(AbstractNode):
 
         hypervisor = self.getHypervisor()
         self.dev = lib.ETHSW(hypervisor, name = '"' + self.hostname + '"')
+        # register into Dynagen
         dynagen.devices[self.hostname] = self.dev
         
     def startNode(self):

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Fri Sep  7 16:42:14 2007
+# Created: Mon Sep 10 11:45:20 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
@@ -35,7 +35,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,840,28))
+        self.menubar.setGeometry(QtCore.QRect(0,0,840,25))
         self.menubar.setObjectName("menubar")
 
         self.menu_Edit = QtGui.QMenu(self.menubar)
@@ -114,6 +114,30 @@ class Ui_MainWindow(object):
         self.dockWidget_TopoSum.setWidget(self.dockWidgetContents_7)
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(2),self.dockWidget_TopoSum)
 
+        self.dockWidget_Console = QtGui.QDockWidget(MainWindow)
+        self.dockWidget_Console.setAllowedAreas(QtCore.Qt.AllDockWidgetAreas)
+        self.dockWidget_Console.setObjectName("dockWidget_Console")
+
+        self.dockWidgetContents_5 = QtGui.QWidget(self.dockWidget_Console)
+        self.dockWidgetContents_5.setObjectName("dockWidgetContents_5")
+
+        self.vboxlayout1 = QtGui.QVBoxLayout(self.dockWidgetContents_5)
+        self.vboxlayout1.setSpacing(0)
+        self.vboxlayout1.setMargin(0)
+        self.vboxlayout1.setObjectName("vboxlayout1")
+
+        self.textEdit = Console(self.dockWidgetContents_5)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.textEdit.sizePolicy().hasHeightForWidth())
+        self.textEdit.setSizePolicy(sizePolicy)
+        self.textEdit.setObjectName("textEdit")
+        self.vboxlayout1.addWidget(self.textEdit)
+        self.dockWidget_Console.setWidget(self.dockWidgetContents_5)
+        MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(8),self.dockWidget_Console)
+
         self.dockWidget_EventEditor = QtGui.QDockWidget(MainWindow)
 
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred,QtGui.QSizePolicy.Expanding)
@@ -128,25 +152,7 @@ class Ui_MainWindow(object):
         self.dockWidgetContents_8 = QtGui.QWidget(self.dockWidget_EventEditor)
         self.dockWidgetContents_8.setObjectName("dockWidgetContents_8")
         self.dockWidget_EventEditor.setWidget(self.dockWidgetContents_8)
-        MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(2),self.dockWidget_EventEditor)
-
-        self.dockWidget_Console = QtGui.QDockWidget(MainWindow)
-        self.dockWidget_Console.setAllowedAreas(QtCore.Qt.BottomDockWidgetArea|QtCore.Qt.NoDockWidgetArea|QtCore.Qt.TopDockWidgetArea)
-        self.dockWidget_Console.setObjectName("dockWidget_Console")
-
-        self.dockWidgetContents_5 = QtGui.QWidget(self.dockWidget_Console)
-        self.dockWidgetContents_5.setObjectName("dockWidgetContents_5")
-
-        self.gridlayout2 = QtGui.QGridLayout(self.dockWidgetContents_5)
-        self.gridlayout2.setMargin(0)
-        self.gridlayout2.setSpacing(0)
-        self.gridlayout2.setObjectName("gridlayout2")
-
-        self.textEdit = Console(self.dockWidgetContents_5)
-        self.textEdit.setObjectName("textEdit")
-        self.gridlayout2.addWidget(self.textEdit,0,0,1,1)
-        self.dockWidget_Console.setWidget(self.dockWidgetContents_5)
-        MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(8),self.dockWidget_Console)
+        MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(1),self.dockWidget_EventEditor)
 
         self.action_About = QtGui.QAction(MainWindow)
         self.action_About.setMenuRole(QtGui.QAction.AboutRole)
@@ -329,8 +335,8 @@ class Ui_MainWindow(object):
         self.toolBar_Emulation.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Simulation", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidget_TopoSum.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Topology Summary", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidget_TopologySummary.headerItem().setText(0,QtGui.QApplication.translate("MainWindow", "1", None, QtGui.QApplication.UnicodeUTF8))
-        self.dockWidget_EventEditor.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Event Editor", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidget_Console.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Console", None, QtGui.QApplication.UnicodeUTF8))
+        self.dockWidget_EventEditor.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Event Editor", None, QtGui.QApplication.UnicodeUTF8))
         self.action_About.setText(QtGui.QApplication.translate("MainWindow", "&About", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setText(QtGui.QApplication.translate("MainWindow", "&Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))

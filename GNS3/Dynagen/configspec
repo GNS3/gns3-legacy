@@ -15,7 +15,7 @@ console = integer(min=1, max=65535, default=None)
 udp = integer(min=1, max=65535, default=None)
 
     [[__many__]]
-    model = option('1710', '1720', '1721', '1750', '1751, '1760', '2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM', '2691', '3725', '3745', '3620', '3640', '3660', '7200', default=None)
+    model = option('1710', '1720', '1721', '1750', '1751', '1760', '2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM', '2691', '3725', '3745', '3620', '3640', '3660', '7200', default=None)
     console = integer(min=1, max=65535, default=None)
     aux = integer(min=1, max=65535, default=None)
     mac = string(default=None)

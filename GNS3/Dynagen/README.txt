@@ -1,5 +1,5 @@
 Dynagen README
-Version 0.10.0
+Version 0.10.2
 
 
 For documentation, refer to the tutorial in the docs directory, and the sample network files in the sample_labs directory. To see usage examples for all options, refer to the "all_config_options.txt" file in the sample_labs directory. Also be sure to visit the Dynamips web site at http://www.ipflow.utc.fr/index.php/Cisco_7200_Simulator.
@@ -13,6 +13,13 @@ Known Issues
 
 Changelog
 =========
+Version 0.10.2
+* Could not specify a model of 1751 or 1760 in a router definition
+* WIC interfaces on 1751s and 1760s could not be used
+
+Version 0.10.1
+* Accidentally only gave the NM-16ESW 15 interfaces.
+
 Version 0.10.0
 * Support for the 1700 platform new to Dynamips 0.8.0-RC1. See the tutorial for supported platforms and modules.
 * Support for WIC-1T, WIC-2T, and WIC-1ENET. See the tutorial for supported router platforms and usage.

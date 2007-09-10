@@ -34,7 +34,7 @@ from configobj import ConfigObj, flatten_errors
 from optparse import OptionParser
 
 # Constants
-VERSION = '0.10.0.090507'
+VERSION = '0.11.0.090907'
 CONFIGSPECPATH = [ "/usr/share/dynagen", "/usr/local/share" ]
 CONFIGSPEC = 'configspec'
 INIPATH = [ "/etc", "/usr/local/etc" ]
@@ -109,13 +109,13 @@ class Dynagen:
         """
         for option in defaults:
             self.setproperty(router, option, defaults[option])
-    
+
     def setproperty(self, device, option, value):
         """ If it is valid, set the option and return True. Otherwise return False
         """
-    
+
         global configurations, ghosteddevices, globalconfig
-    
+
         if type(device) in MODELTUPLE:
             # Is it a "simple" property? If so set it and forget it.
             if option in ('rom', 'clock', 'npe', 'ram', 'nvram', 'confreg', 'midplane', 'console', 'aux', 'mac', 'mmap', 'idlepc', 'exec_area', 'disk0', 'disk1', 'iomem', 'idlemax', 'idlesleep', 'oldidle', 'sparsemem'):
@@ -126,17 +126,17 @@ class Dynagen:
                 value = '"' + value + '"'
                 setattr(device, option, value)
                 return True
-    
+
             # Is it a config? If so save it for later
             if option == 'configuration':
                 configurations[device.name] = value
-    
+
             if option == 'ghostios':
                 ghosteddevices[device.name] = value
-    
+
             if option == 'ghostsize':
                 ghostsizes[device.name] = value
-    
+
             # is it a slot designation?
             if option[:4].lower() == 'slot':
                 try:
@@ -144,7 +144,7 @@ class Dynagen:
                 except ValueError:
                     print "warning: ignoring unknown config item: " + option
                     return False
-    
+
                 # Attempt to insert the requested adapter in the requested slot
                 # BaseAdapter will throw a DynamipsError if the adapter is not
                 # supported in this slot, or if it is an invalid slot for this
@@ -154,7 +154,7 @@ class Dynagen:
                 else:
                     self.doerror('Unknown adapter %s specified for slot %i on router: %s' % (value, slot, device.name))
                 return True
-    
+
             # is it a wic designation?
             if option[:3].lower() == 'wic':
                 try:
@@ -168,15 +168,15 @@ class Dynagen:
                 device.installwic(value, slot, subslot)
                 return True
         return False
-    
-    
+
+
     def connect(self, router, source, dest):
         """ Connect a router to something
             router: a router object
             source: a string specifying the local interface
             dest: a string specifying a device and a remote interface, LAN, a raw NIO
         """
-    
+
         match_obj = interface_re.search(source)
         if not match_obj:
             # is this an interface without a port designation (e.g. "f0")?
@@ -188,7 +188,7 @@ class Dynagen:
                 slot1 = 0
         else:
             (pa1, slot1, port1) = match_obj.group(1,2,3)
-    
+
         if pa1[:2].lower() == 'an':
             # need to use two chars for Analysis-Module
             pa1 = pa1[:2].lower()
@@ -214,45 +214,45 @@ class Dynagen:
                 self.debug('NIO_linux_eth ' + str(dest))
                 self.smartslot(router, pa1, slot1, port1)
                 router.slot[slot1].nio(port1, nio=NIO_linux_eth(router.dynamips, interface=niostring))
-    
+
             elif niotype.lower() == 'nio_gen_eth':
                 self.debug('gen_eth ' + str(dest))
                 self.smartslot(router, pa1, slot1, port1)
                 router.slot[slot1].nio(port1, nio=NIO_gen_eth(router.dynamips, interface=niostring))
-    
+
             elif niotype.lower() == 'nio_udp':
                 self.debug('udp ' + str(dest))
                 (udplocal, remotehost, udpremote) = niostring.split(':',2)
                 self.smartslot(router, pa1, slot1, port1)
                 router.slot[slot1].nio(port1, nio=NIO_udp(router.dynamips, int(udplocal), str(remotehost), int(udpremote)))
-    
+
             elif niotype.lower() == 'nio_null':
                 self.debug('nio null')
                 self.smartslot(router, pa1, slot1, port1)
                 router.slot[slot1].nio(port1, nio=NIO_null(router.dynamips))
-    
+
             elif niotype.lower() == 'nio_tap':
                 self.debug('nio tap ' + str(dest))
                 self.smartslot(router, pa1, slot1, port1)
                 router.slot[slot1].nio(port1, nio=NIO_tap(router.dynamips, niostring))
-    
+
             elif niotype.lower() == 'nio_unix':
                 self.debug('unix ' + str(dest))
                 (unixlocal, unixremote) = niostring.split(':',1)
                 self.smartslot(router, pa1, slot1, port1)
                 router.slot[slot1].nio(port1, nio=NIO_unix(router.dynamips, unixlocal, unixremote))
-    
+
             elif niotype.lower() == 'nio_vde':
                 self.debug('vde ' + str(dest))
                 (controlsock, localsock) = niostring.split(':',1)
                 self.smartslot(router, pa1, slot1, port1)
                 router.slot[slot1].nio(port1, nio=NIO_vde(router.dynamips, controlsock, localsock))
-    
+
             else:
                 # Bad NIO
                 return False
             return True
-    
+
         match_obj = interface_re.search(interface)
         if match_obj:
             # Connecting to another interface
@@ -263,7 +263,7 @@ class Dynagen:
                 # Connecting to another "portless" interface e.g. "f0"
                 (pa2, port2) = match_obj.group(1,2)
                 slot2 = 0
-    
+
         # If either of the interface formats matched...
         if match_obj:
             if pa2[:2].lower() == 'an':
@@ -271,21 +271,21 @@ class Dynagen:
                 pa2 = pa2[:2].lower()
             else:
                 pa2 = pa2.lower()[0]        # Only care about first character
-    
+
             slot2 = int(slot2)
             port2 = int(port2)
             # Does the device we are trying to connect to actually exist?
             if not devices.has_key(devname):
                 line = router.name + ' ' + source + ' = ' + dest
                 self.doerror('Nonexistent device "' + devname + '" in line: \n ' + line)
-    
+
             # If interfaces don't exist, create them
             self.smartslot(router, pa1, slot1, port1)
             self.smartslot(devices[devname], pa2, slot2, port2)
-    
+
             router.slot[slot1].connect(pa1, port1, devices[devname].dynamips, devices[devname].slot[slot2], pa2, port2)
             return True
-    
+
         if devname.lower() == 'lan':
             self.debug('a LAN interface ' + str(dest))
             # If interface doesn't exist, create it
@@ -295,7 +295,7 @@ class Dynagen:
                 bridges[interface] = Bridge(router.dynamips, name=interface)
             router.slot[slot1].connect(pa1, port1, bridges[interface].dynamips, bridges[interface], 'f')
             return True
-    
+
         match_obj = number_re.search(interface)
         if match_obj:
             port2 = int(interface)
@@ -303,7 +303,7 @@ class Dynagen:
             if devname not in devices:
                 self.debug('Unknown device ' + str(devname))
                 return False
-    
+
             self.debug('a switch port: ' + str(dest))
             # If interface doesn't exist, create it
             self.smartslot(router, pa1, slot1, port1)
@@ -315,16 +315,16 @@ class Dynagen:
                 pa2 = 'a'       # And ATM switches are, well, ATM interfaces
             else:
                 return False
-    
+
             router.slot[slot1].connect(pa1, port1, devices[devname].dynamips, devices[devname], pa2 , port2)
             return True
-    
+
         else:
             # Malformed
             self.debug('Malformed destination interface: ' + str(dest))
             return False
-    
-    
+
+
     def smartslot(self, router, pa, slot, port):
         """ Pick the right adapter for the desired interface type, and insert it
             router: a router object
@@ -332,13 +332,13 @@ class Dynagen:
             slot: slot number
             port: port number
         """
-    
+
         if pa[:2].lower() == 'an':
             # Need to handle the Analysis-Module with two chars, because 'a' is an
             pa = pa[:2].lower()
         else:
             pa = pa[0].lower()
-    
+
         try:
             if router.slot[slot] != None:
                 # Already a PA in this slot. Does this adapter already provide the
@@ -360,13 +360,14 @@ class Dynagen:
                             if pa == 'e' and (router.model != 'c1700' or router.chassis not in ['1720', '1721', '1750', '1751', '1760']):
                                 # Ethernet WIC only supported in these 1700 models
                                 self.doerror("Ethernet adapter not supported on port %i for device %s" % (port, router.name))
-    
+
                             if pa == 'e': chosenwic = 'WIC-1ENET'
                             elif pa == 's': chosenwic = 'WIC-2T'
-    
+
                             if router.model == 'c1700' and router.chassis in ['1751', '1760']:
                                 # WIC selection is pretty straight-forward here
-                                pass
+                                router.installwic(chosenwic, slot)
+                            	return True
                             else:
                                 # Less obvious here.
                                 # If you want an interface of a given type on port n,
@@ -377,13 +378,13 @@ class Dynagen:
                                 # Since the number of cases is simple for now, I'll use a bunch of
                                 # if ... then stuff. But ss the number of WICs supported increases
                                 # I'll need to come up with some loftier logic.
-    
+
                                 if pa == 'e':
                                     for i in range(0, port+1):
                                         # install WIC-1ENETs until we've added enough to get he port we need
                                         router.installwic(chosenwic, slot)
                                     return True
-    
+
                                 if pa == 's':
                                     # just fill it up with WIC-2Ts until I come up a
                                     # better solution
@@ -394,7 +395,7 @@ class Dynagen:
                     return True
         except KeyError:
             self.doerror("Invalid slot %i specified for device %s" % (slot, router.name))
-    
+
         """ Note to self: One of these days you should do this section right. Programatically build a matrix of
             default adapters for a given Adapter, model, slot, and chassis using this structure:
         smartslotmatrix = {
@@ -409,7 +410,7 @@ class Dynagen:
         }
         This would be a good idiom to use elsewhere within the app as well
         """
-    
+
         if pa == 'g':
             if slot == 0:
                 if port == 0:
@@ -418,10 +419,10 @@ class Dynagen:
                     pass
                 else:
                     self.doerror('Use of Gi0/1-3 requires use of an NPE-G2 on router: ' + router.name)
-    
+
             else:
                 router.slot[slot] = PA_GE(router, slot)
-    
+
         if pa == 'f':
             if router.model == 'c3600':
                 if router.chassis == '3660' and slot == 0:
@@ -457,7 +458,7 @@ class Dynagen:
                 else:
                     router.slot[slot] = PA_2FE_TX(router, slot)
             return True
-    
+
         if pa == 'e':
             if router.model == 'c2600':
                 if slot == 0:
@@ -478,7 +479,7 @@ class Dynagen:
             elif router.model == 'c7200':
                 router.slot[slot] = PA_8E(router, slot)
             elif router.model == 'c1700' and slot == 0:
-                self.doerror("Unsuppported interface %s%i/%i specified for device: %s\nIf you are trying to use an Ethernet WIC, it must be manually specified in your NET file (e.g. 'WIC0/0 = WIC-1ENET')." % (pa, slot, port, router.name))
+                self.doerror("Unsuppported interface %s%i/%i specified for device: %s" % (pa, slot, port, router.name))
             else:
                 self.doerror("Unsuppported interface %s%i/%i specified for device: %s" % (pa, slot, port, router.name))
             return True
@@ -490,7 +491,7 @@ class Dynagen:
             elif router.model == 'c7200':
                 router.slot[slot] = PA_8T(router, slot)
             elif router.model in ['c2691', 'c3725', 'c3745', 'c1700', 'c2600'] and slot == 0:
-                self.doerror("Unsuppported interface %s%i/%i specified for device: %s\nIf you are trying to use a Serial WIC, it must be manually specified in your NET file (e.g. 'WIC0/0 = WIC-2T')." % (pa, slot, port, router.name))
+                self.doerror("Unsuppported interface %s%i/%i specified for device: %s" % (pa, slot, port, router.name))
             else:
                 self.doerror("Unsuppported interface %s%i/%i specified for device: %s" % (pa, slot, port, router.name))
             return True
@@ -508,11 +509,11 @@ class Dynagen:
             router.slot[slot] = NM_CIDS(router, slot)
         if pa == 'an':
             router.slot[slot] = NM_NAM(router, slot)
-    
+
         # Bad pa passed
         return False
-    
-    
+
+
     def switch_map(self, switch, source, dest):
         """ Apply a Frame Relay or ATM switch mapping
             switch: a FRSW or ATMSW instance
@@ -559,11 +560,11 @@ class Dynagen:
             switch.mapvc(port1, vp1, vc1, port2, vp2, vc2)
             switch.mapvc(port2, vp2, vc2, port1, vp1, vc1)
             return True
-    
+
         print('*** Warning: ignoring invalid switch mapping entry %s = %s' % (source, dest))
         return False
-    
-    
+
+
     def import_config(self, FILENAME):
         """ Read in the config file and set up the network
         """
@@ -571,7 +572,7 @@ class Dynagen:
         connectionlist = []     # A list of router connections
         maplist = []            # A list of Frame Relay and ATM switch mappings
         ethswintlist = []           # A list of Ethernet Switch vlan mappings
-    
+
         # look for configspec in CONFIGSPECPATH and the same directory as dynagen
         realpath = os.path.realpath(sys.argv[0])
         self.debug('realpath ' + realpath)
@@ -581,7 +582,7 @@ class Dynagen:
         for dir in CONFIGSPECPATH:
             configspec = dir +'/' + CONFIGSPEC
             self.debug('configspec -> ' + configspec)
-    
+
             # Check to see if configuration file exists
             try:
                 h=open(FILENAME)
@@ -595,11 +596,11 @@ class Dynagen:
                     raw_input("Press ENTER to continue")
                     handled = True
                     sys.exit(1)
-    
+
             except IOError:
                #doerror("Can't open configuration file")
                continue
-    
+
         vtor = Validator()
         res = config.validate(vtor, preserve_errors=True)
         if res == True:
@@ -619,17 +620,17 @@ class Dynagen:
             raw_input("Press ENTER to continue")
             handled = True
             sys.exit(1)
-    
+
         debuglevel = config['debug']
         if debuglevel > 0: setdebug(True)
-    
+
         globalconfig = config           # Store the config in a global for access by console.py
-    
+
         if debuglevel >= 3:
             self.debug("Top-level items:")
             for item in config.scalars:
                 debug(item + ' = ' + str(config[item]))
-    
+
         self.debug("Dynamips Servers:")
         for section in config.sections:
             server = config[section]
@@ -650,14 +651,14 @@ class Dynagen:
                 dynamips[server.name] = Dynamips(server.host, int(controlPort))
                 # Reset each server
                 dynamips[server.name].reset()
-    
+
             except DynamipsVerError:
                 exctype, value, trace = sys.exc_info()
                 self.doerror(value[0])
-    
+
             except DynamipsError:
                 self.doerror('Could not connect to server: %s' % server.name)
-    
+
             if server['udp'] != None:
                 udp = server['udp']
             else:
@@ -667,33 +668,33 @@ class Dynagen:
                 dynamips[server.name].udp = udp
             except DynamipsError:
                 self.doerror('Could not set base UDP NIO port to: "%s" on server: %s' % (server['udp'], server.name))
-    
-    
+
+
             if server['workingdir'] == None:
                 # If workingdir is not specified, set it to the same directory
                 # as the network file
-    
+
                 realpath = os.path.realpath(FILENAME)
                 workingdir = os.path.dirname(realpath)
             else:
                 workingdir = server['workingdir']
-    
+
             try:
                 # Encase workingdir in quotes to protect spaces
                 workingdir = '"' + workingdir + '"'
                 dynamips[server.name].workingdir = workingdir
             except DynamipsError:
                 self.doerror('Could not set working directory to: "%s" on server: %s' % (server['workingdir'], server.name))
-    
+
             # Has the base console port been overridden?
             if server['console'] != None:
                 dynamips[server.name].baseconsole = server['console']
-    
+
             # Initialize device default dictionaries for every router type supported
             devdefaults = {}
             for key in DEVICETUPLE:
                 devdefaults[key] = {}
-    
+
             # Apply lab global defaults to device defaults
             for model in devdefaults:
                 devdefaults[model]['ghostios'] = config['ghostios']
@@ -704,11 +705,11 @@ class Dynagen:
                     devdefaults[model]['idlemax'] = config['idlemax']
                 if config['idlesleep'] != None:
                     devdefaults[model]['idlesleep'] = config['idlesleep']
-    
+
             for subsection in server.sections:
                 device = server[subsection]
                 # Create the device
-    
+
                 if device.name in DEVICETUPLE:
                     self.debug('Router defaults:')
                     # Populate the appropriate dictionary
@@ -716,19 +717,19 @@ class Dynagen:
                         if device[scalar] != None:
                             devdefaults[device.name][scalar] = device[scalar]
                     continue
-    
+
                 self.debug(device.name)
                 # Create the device
                 try:
                     (devtype, name) = device.name.split(' ')
                 except ValueError:
                     self.doerror('Unable to interpret line: "[[' + device.name + ']]"')
-    
+
                 if devtype.lower() == 'router':
                     # if model not specifically defined for this router, set it to the default defined in the top level config
                     if device['model'] == None:
                         device['model'] = config['model']
-    
+
                     if device['model'] == '7200':
                         dev = C7200(dynamips[server.name], name=name)
                     elif device['model'] in ['3620', '3640', '3660']:
@@ -745,7 +746,7 @@ class Dynagen:
                         dev = C1700(dynamips[server.name], chassis = device['model'], name=name)
                     # Apply the router defaults to this router
                     self.setdefaults(dev, devdefaults[device['model']])
-    
+
                     if device['autostart'] == None:
                         autostart[name] = config['autostart']
                     else:
@@ -762,7 +763,7 @@ class Dynagen:
                     handled = True
                     sys.exit(1)
                 devices[name] = dev
-    
+
                 for subitem in device.scalars:
                     if device[subitem] != None:
                         self.debug('  ' + subitem + ' = ' + str(device[subitem]))
@@ -785,14 +786,14 @@ class Dynagen:
                             # is it an Ethernet switch port configuration?
                             elif ethswint_re.search(subitem):
                                 ethswintlist.append((dev, subitem, device[subitem]))
-    
+
                             elif subitem in ['model', 'configuration', 'autostart']:
                                 # These options are already handled elsewhere
                                 continue
                             else:
                                 print('Warning: ignoring unknown config item: %s = %s' % (str(subitem), str(device[subitem])))
-    
-    
+
+
         # Establish the connections we collected earlier
         for connection in connectionlist:
             self.debug('connection: ' + str(connection))
@@ -804,17 +805,17 @@ class Dynagen:
                 self.doerror('Connecting %s %s to %s resulted in \n    %s' % (router.name, source, dest, err))
             if result == False:
                 self.doerror('Attempt to connect %s %s to unknown device: "%s"' % (router.name, source, dest))
-    
+
         # Apply the switch configuration we collected earlier
         for mapping in maplist:
             self.debug('mapping: ' + str(mapping))
             (switch, source, dest) = mapping
-            switch_map(switch, source, dest)
-    
+            self.switch_map(switch, source, dest)
+
         for ethswint in ethswintlist:
             self.debug('ethernet switchport configing: ' + str(ethswint))
             (switch, source, dest) = ethswint
-    
+
             parameters = len(dest.split(' '))
             if parameters == 2:
                 # should be a porttype and a vlan
@@ -831,7 +832,7 @@ class Dynagen:
                     #dowarning(e)
                     # Now silently ignoring unused switchports
                     pass
-    
+
             elif parameters == 3:
                 # Should be a porttype, vlan, and an nio
                 (porttype, vlan, nio) = dest.split(' ')
@@ -846,50 +847,50 @@ class Dynagen:
                     if niotype.lower() == 'nio_linux_eth':
                         self.debug('NIO_linux_eth ' + str(dest))
                         switch.nio(int(source), nio=NIO_linux_eth(switch.dynamips, interface=niostring), porttype=porttype, vlan=vlan)
-    
+
                     elif niotype.lower() == 'nio_gen_eth':
                         self.debug('gen_eth ' + str(dest))
                         switch.nio(int(source), nio=NIO_gen_eth(switch.dynamips, interface=niostring), porttype=porttype, vlan=vlan)
-    
+
                     elif niotype.lower() == 'nio_udp':
                         self.debug('udp ' + str(dest))
                         (udplocal, remotehost, udpremote) = niostring.split(':',2)
                         switch.nio(int(source), nio=NIO_udp(switch.dynamips, int(udplocal), str(remotehost), int(udpremote)), porttype=porttype, vlan=vlan)
-    
+
                     elif niotype.lower() == 'nio_null':
                         self.debug('nio null')
                         switch.nio(int(source), nio=NIO_null(switch.dynamips), porttype=porttype, vlan=vlan)
-    
+
                     elif niotype.lower() == 'nio_tap':
                         self.debug('nio tap ' + str(dest))
                         switch.nio(int(source), nio=NIO_tap(switch.dynamips, niostring), porttype=porttype, vlan=vlan)
-    
+
                     elif niotype.lower() == 'nio_unix':
                         self.debug('unix ' + str(dest))
                         (unixlocal, unixremote) = niostring.split(':',1)
                         switch.nio(int(source), nio=NIO_unix(switch.dynamips, unixlocal, unixremote), porttype=porttype, vlan=vlan)
-    
+
                     elif niotype.lower() == 'nio_vde':
                         self.debug('vde ' + str(dest))
                         (controlsock, localsock) = niostring.split(':',1)
                         switch.nio(int(source), nio=NIO_vde(switch.dynamips, controlsock, localsock), porttype=porttype, vlan=vlan)
-    
+
                     else:
                         # Bad NIO
                         self.doerror('Invalid NIO in Ethernet switchport config: %s = %s' % (source, dest))
-    
+
                 except DynamipsError, e:
                     self.doerror(e)
-    
+
             else:
                 self.doerror('Invalid Ethernet switchport config: %s = %s' % (source, dest))
-    
-    
+
+
     def import_ini(self, FILENAME):
         """ Read in the INI file
         """
         global telnetstring, globaludp, useridledbfile, handled
-    
+
         # look for the INI file in the same directory as dynagen
         realpath = os.path.realpath(sys.argv[0])
         pathname = os.path.dirname(realpath)
@@ -897,7 +898,7 @@ class Dynagen:
         INIPATH.append(pathname)
         for dir in INIPATH:
             inifile = dir +'/' + FILENAME
-    
+
             # Check to see if configuration file exists
             try:
                 self.debug('INI -> ' + inifile)
@@ -908,7 +909,7 @@ class Dynagen:
                 continue
         else:
            self.doerror("Can't open INI file")
-    
+
         try:
             config = ConfigObj(inifile, raise_errors=True)
         except SyntaxError, e:
@@ -918,27 +919,27 @@ class Dynagen:
             raw_input("Press ENTER to continue")
             handled = True
             sys.exit(1)
-    
+
         try:
             telnetstring = config['telnet']
         except KeyError:
             telnetstring = None
             self.dowarning("No telnet option found in INI file.")
-    
+
         try:
             globaludp = int(config['udp'])
         except KeyError:
             pass
         except ValueError:
             self.dowarning("Ignoring invalid udp value in dynagen.ini")
-    
+
         try:
             useridledbfile = config['idledb']
         except KeyError:
             # Set default to the home directory
             useridledbfile = os.path.expanduser('~' + os.path.sep + 'dynagenidledb.ini')
-    
-    
+
+
     def import_generic_ini(self, inifile):
         """ Import a generic ini file and return it as a dictionary, if it exists
             Returns None if the file doesn't exit, or raises an error that can be handled
@@ -949,7 +950,7 @@ class Dynagen:
         except IOError:
             # File does not exist, or is not readable
             return None
-    
+
         try:
             config = ConfigObj(inifile, raise_errors=True)
         except SyntaxError, e:
@@ -959,7 +960,7 @@ class Dynagen:
             raw_input("Press ENTER to continue")
             handled = True
             sys.exit(1)
-    
+
         return config
 
     def push_embedded_configurations(self):
@@ -1044,7 +1045,7 @@ class Dynagen:
 
         # Read in the user idlepc database, if it exists
         useridledb = dynagen.import_generic_ini(useridledbfile)
-        
+
         # Apply idlepc values, and if necessary start the instances
         for device in devices.values():
             try:
@@ -1074,21 +1075,21 @@ class Dynagen:
         global debuglevel
         # Level 3, dynagen debugs.
         if debuglevel >= 3: print '  DEBUG: ' + str(string)
-    
+
     def doerror(self, msg):
         global handled
-    
+
         """Print out an error message"""
         print '\n*** Error:', str(msg)
         handled = True
         self.doreset()
         raw_input("Press ENTER to continue")
         sys.exit(1)
-    
+
     def dowarning(self, msg):
         """Print out minor warning messages"""
         print 'Warning:', str(msg)
-    
+
     def doreset(self):
         """reset all hypervisors"""
         for d in dynamips.values():
@@ -1151,7 +1152,7 @@ if __name__ == "__main__":
                         e = e[4:] + "\nSee dynamips output for more info.\n"
                 except ValueError:
                     pass
-                
+
             dynagen.doerror(e)
         except DynamipsWarning, e:
             dynagen.dowarning(e)
@@ -1161,6 +1162,15 @@ if __name__ == "__main__":
         dynagen.apply_idlepc()
 
         print "Network successfully loaded\n"
+
+        print "Pickle test..."
+        import pickle
+
+        output = open('pickletest.pkl', 'wb')
+        pickle.dump(devices, output)
+        output.close()
+        #doclose()
+
 
         console = Console()
         try:

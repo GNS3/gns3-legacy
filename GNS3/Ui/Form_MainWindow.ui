@@ -53,7 +53,7 @@
      <x>0</x>
      <y>0</y>
      <width>840</width>
-     <height>28</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit" >
@@ -268,6 +268,46 @@
     </layout>
    </widget>
   </widget>
+  <widget class="QDockWidget" name="dockWidget_Console" >
+   <property name="allowedAreas" >
+    <set>Qt::AllDockWidgetAreas</set>
+   </property>
+   <property name="windowTitle" >
+    <string>Console</string>
+   </property>
+   <attribute name="dockWidgetArea" >
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_5" >
+    <layout class="QVBoxLayout" >
+     <property name="spacing" >
+      <number>0</number>
+     </property>
+     <property name="leftMargin" >
+      <number>0</number>
+     </property>
+     <property name="topMargin" >
+      <number>0</number>
+     </property>
+     <property name="rightMargin" >
+      <number>0</number>
+     </property>
+     <property name="bottomMargin" >
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="Console" name="textEdit" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
   <widget class="QDockWidget" name="dockWidget_EventEditor" >
    <property name="sizePolicy" >
     <sizepolicy vsizetype="Expanding" hsizetype="Preferred" >
@@ -288,45 +328,9 @@
     <string>Event Editor</string>
    </property>
    <attribute name="dockWidgetArea" >
-    <number>2</number>
+    <number>1</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_8" />
-  </widget>
-  <widget class="QDockWidget" name="dockWidget_Console" >
-   <property name="allowedAreas" >
-    <set>Qt::BottomDockWidgetArea|Qt::NoDockWidgetArea|Qt::TopDockWidgetArea</set>
-   </property>
-   <property name="windowTitle" >
-    <string>Console</string>
-   </property>
-   <attribute name="dockWidgetArea" >
-    <number>8</number>
-   </attribute>
-   <widget class="QWidget" name="dockWidgetContents_5" >
-    <layout class="QGridLayout" >
-     <property name="leftMargin" >
-      <number>0</number>
-     </property>
-     <property name="topMargin" >
-      <number>0</number>
-     </property>
-     <property name="rightMargin" >
-      <number>0</number>
-     </property>
-     <property name="bottomMargin" >
-      <number>0</number>
-     </property>
-     <property name="horizontalSpacing" >
-      <number>0</number>
-     </property>
-     <property name="verticalSpacing" >
-      <number>0</number>
-     </property>
-     <item row="0" column="0" >
-      <widget class="Console" name="textEdit" />
-     </item>
-    </layout>
-   </widget>
   </widget>
   <action name="action_About" >
    <property name="text" >

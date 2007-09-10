@@ -273,6 +273,10 @@ class Console(cmd.Cmd):
         """Exits from the console"""
         return -1
 
+    def do_disconnect(self, args):
+        """Exits from the console, but does not shut down the lab on Dynagen"""
+        return -2
+
     def do_shell(self, args):
         """Pass command to a system shell when line begins with '!'"""
         os.system(args)
@@ -1140,6 +1144,9 @@ Examples:
         try:
             if tokens[0].lower() == 'con':
                 tokens[0] = 'console'
+                line = ' '.join(tokens)
+            elif tokens[0].lower() == 'dis':
+                tokens[0] = 'disconnect'
                 line = ' '.join(tokens)
         except IndexError:
             pass

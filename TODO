@@ -2,7 +2,6 @@ TODO LIST
 
  * Provide a way to do get a IDLE PC directly from GNS-3 and include/reuse an IDLE PC database.
  * Use the ghost file feature
- * Enable the use of iomem
  * Language support.
  * NET files import and export
  * Include a Close option and a New option on the File menu

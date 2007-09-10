@@ -47,6 +47,15 @@ def connect(host,  port,  name):
 
 
 class Console(PyCutExt, Dynagen_Console):
+
+    # list of keywords to color
+    keywords = set(["capture", "console", "filter", "idlepc", "no",
+                "reload", "send", "start", "telnet", "clear",
+                "exit", "help", "import", "push", "resume",
+                "shell", "stop", "ver", "confreg",
+                "export", "hist", "list", "py",              
+                "save", "show", "suspend"])
+
     def __init__(self, parent):
         """ Initialise the Console widget
         """
@@ -61,15 +70,17 @@ class Console(PyCutExt, Dynagen_Console):
         # Parent class initialisation
         try:
             PyCutExt.__init__(self, None, self.intro, parent=parent)
+            # put our own keywords list
+            self.colorizer.keywords = self.keywords
             self._Dynagen_Console_init()
         except Exception,e:
             sys.stderr.write(e.message) 
 
     def _Dynagen_Console_init(self):
         """ Dynagen Console class initialisation
-         
-         (i) Copy-Pasted from original Dynagen's console init function, as we need to re-order / modify some code
+            (i) Copy-Pasted from original Dynagen's console init function, as we need to re-order / modify some code
         """
+
         cmd.Cmd.__init__(self)
         self.namespace = Dynagen_Namespace 
         debuglevel = self.namespace.debuglevel
@@ -122,9 +133,8 @@ class Console(PyCutExt, Dynagen_Console):
 
     def _run(self):
         """ Run as command as the cmd.Cmd class would do.
-
-        PyCutExt was originaly using as Interpreter to exec user's commands.
-        Here we use directly the cmd.Cmd class.
+            PyCutExt was originaly using as Interpreter to exec user's commands.
+            Here we use directly the cmd.Cmd class.
         """
 
         self.pointer = 0

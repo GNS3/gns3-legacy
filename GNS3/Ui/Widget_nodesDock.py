@@ -56,6 +56,7 @@ class nodesDock(QtGui.QTreeWidget):
                 item = QtGui.QTreeWidgetItem(decorative_devices, 1000 + count)
                 item.setText(0, translate("nodesDock", symbol['name']))
                 item.setIcon(0,  QtGui.QIcon(symbol['normal_svg_file']))
+                
                 decorative_devices.addChild(item)
             else:
                 # Use custom type to known the symbol type

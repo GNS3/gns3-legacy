@@ -78,6 +78,7 @@ class Hub(AbstractNode):
             
         hypervisor = self.getHypervisor()
         self.dev = lib.Bridge(hypervisor, name = '"' + self.hostname + '"')
+        # register into Dynagen
         #dynagen.devices[self.hostname] = self.dev
         dynagen.bridges[self.hostname] = self.dev
         
