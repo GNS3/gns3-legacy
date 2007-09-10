@@ -3,12 +3,12 @@
 <context>
     <name>ATMSW</name>
     <message>
-        <location filename="../GNS3/Node/ATMSW.py" line="151"/>
+        <location filename="../GNS3/Node/ATMSW.py" line="153"/>
         <source>Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/ATMSW.py" line="151"/>
+        <location filename="../GNS3/Node/ATMSW.py" line="153"/>
         <source>No port available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -53,7 +53,7 @@
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_ATMSWPage.ui" line="199"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Port:</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_ATMSWPage.ui" line="225"/>
@@ -311,12 +311,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../GNS3/Node/ETHSW.py" line="147"/>
+        <location filename="../GNS3/Node/ETHSW.py" line="149"/>
         <source>Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/ETHSW.py" line="147"/>
+        <location filename="../GNS3/Node/ETHSW.py" line="149"/>
         <source>No port available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -346,7 +346,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="70"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Port:</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="96"/>
@@ -402,12 +402,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>FRSW</name>
     <message>
-        <location filename="../GNS3/Node/FRSW.py" line="139"/>
+        <location filename="../GNS3/Node/FRSW.py" line="141"/>
         <source>Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/FRSW.py" line="139"/>
+        <location filename="../GNS3/Node/FRSW.py" line="141"/>
         <source>No port available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -437,7 +437,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_FRSWPage.ui" line="166"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Port:</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_FRSWPage.ui" line="192"/>
@@ -521,12 +521,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Hub</name>
     <message>
-        <location filename="../GNS3/Node/Hub.py" line="119"/>
+        <location filename="../GNS3/Node/Hub.py" line="123"/>
         <source>Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/Hub.py" line="119"/>
+        <location filename="../GNS3/Node/Hub.py" line="123"/>
         <source>No port available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -574,7 +574,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/HypervisorManager.py" line="95"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Annuler</translation>
     </message>
 </context>
 <context>
@@ -823,22 +823,22 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/IOSRouter.py" line="569"/>
+        <location filename="../GNS3/Node/IOSRouter.py" line="579"/>
         <source>Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/IOSRouter.py" line="559"/>
+        <location filename="../GNS3/Node/IOSRouter.py" line="569"/>
         <source>No IOS configured</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/IOSRouter.py" line="562"/>
+        <location filename="../GNS3/Node/IOSRouter.py" line="572"/>
         <source>Can&apos;t find the IOS image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/IOSRouter.py" line="569"/>
+        <location filename="../GNS3/Node/IOSRouter.py" line="579"/>
         <source>No interface available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -853,7 +853,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="23"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Général</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="29"/>
@@ -1047,7 +1047,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="333"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="337"/>
         <source>&amp;About</source>
         <translation>&amp;A propos</translation>
     </message>
@@ -1062,7 +1062,7 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Fichier</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="341"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="345"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
@@ -1072,17 +1072,17 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Noeuds</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="355"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="359"/>
         <source>&amp;Open</source>
         <translation>&amp;Ouvrir</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="369"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="373"/>
         <source>&amp;Save</source>
         <translation>&amp;Sauver</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="395"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="399"/>
         <source>Add a link</source>
         <translation>Ajouter un lien</translation>
     </message>
@@ -1092,12 +1092,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Mode Simulation</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="408"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="412"/>
         <source>IOS images</source>
         <translation>Images IOS</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="419"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="423"/>
         <source>&amp;Online Help</source>
         <translation>Aide en &amp;ligne</translation>
     </message>
@@ -1114,312 +1114,312 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../GNS3/Ui/Form_MainWindow.ui" line="13"/>
         <source>GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>GNS3</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/Form_MainWindow.ui" line="61"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Editer</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/Form_MainWindow.ui" line="99"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Voir</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/Form_MainWindow.ui" line="115"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Général</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/Form_MainWindow.ui" line="144"/>
         <source>Nodes Types</source>
-        <translation type="unfinished"></translation>
+        <translation>Types de noeuds</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/Form_MainWindow.ui" line="263"/>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/Form_MainWindow.ui" line="189"/>
         <source>Design</source>
-        <translation type="unfinished"></translation>
+        <translation>Conception</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/Form_MainWindow.ui" line="201"/>
         <source>Simulation</source>
-        <translation type="unfinished"></translation>
+        <translation>Simulation</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/Form_MainWindow.ui" line="234"/>
         <source>Topology Summary</source>
-        <translation type="unfinished"></translation>
+        <translation>Topologie (Résumé)</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="288"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="328"/>
         <source>Event Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Éditeur d&apos;événements</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="300"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="276"/>
         <source>Console</source>
-        <translation type="unfinished">Console</translation>
+        <translation>Console</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="347"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="351"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="358"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="362"/>
         <source>Open project</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir un projet</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="361"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="365"/>
         <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="372"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="376"/>
         <source>Save project</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarder un projet</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="375"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="379"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="403"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="407"/>
         <source>Emulation Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode Émulation</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="411"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="415"/>
         <source>Ctrl+Shift+I</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+I</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="430"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="434"/>
         <source>&amp;Import</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Importer</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="438"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="442"/>
         <source>&amp;Export</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Exporter</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="449"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="453"/>
         <source>Start/Resume all IOS</source>
-        <translation type="unfinished"></translation>
+        <translation>Démarrer/Reprendre tous les IOS</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="452"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="456"/>
         <source>Start or resume all IOS instances</source>
-        <translation type="unfinished"></translation>
+        <translation>Démarrer ou Reprendre toutes les intances d&apos;IOS</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="463"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="467"/>
         <source>Stop all IOS</source>
-        <translation type="unfinished"></translation>
+        <translation>Arrêter tous les IOS</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="466"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="470"/>
         <source>Stop all IOS instances</source>
-        <translation type="unfinished"></translation>
+        <translation>Arrêter toutes les instances d&apos;IOS</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="480"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="484"/>
         <source>Show hostnames</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer le nom d&apos;hôte</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="491"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="495"/>
         <source>Telnet all IOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="494"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="498"/>
         <source>Start a console on all running IOS instances</source>
-        <translation type="unfinished"></translation>
+        <translation>Démarrer une console sur toutes les instances d&apos;IOS en cour d&apos;éxécution</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="499"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="503"/>
         <source>&amp;Design Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode &amp;Conception</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="504"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="508"/>
         <source>&amp;Emulation Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode &amp;Emulation</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="509"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="513"/>
         <source>&amp;Simulation Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode &amp;Simulation</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="517"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="521"/>
         <source>Save &amp;As</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;auvegarder sous</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="520"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="524"/>
         <source>Save As</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarder sous</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="523"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="527"/>
         <source>Save project as</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarder le projet sous</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="531"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="535"/>
         <source>&amp;New</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nouveau projet</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="534"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="538"/>
         <source>New project</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouveau projet</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="537"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="541"/>
         <source>Create a new project</source>
-        <translation type="unfinished"></translation>
+        <translation>Créer un nouveau projet</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="540"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="544"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="545"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="549"/>
         <source>About &amp;Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>À propos de &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="553"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="557"/>
         <source>Zoom &amp;In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="556"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="560"/>
         <source>Ctrl++</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl++</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="561"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="565"/>
         <source>Zoom &amp;Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="564"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="568"/>
         <source>Ctrl+-</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+-</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="569"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="573"/>
         <source>Zoom &amp;Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="572"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="576"/>
         <source>Ctrl+/</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+/</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="580"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="584"/>
         <source>Zoom &amp;Fit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="583"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="587"/>
         <source>Ctrl+=</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+=</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="588"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="592"/>
         <source>Select &amp;All</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Selectionner tout</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="591"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="595"/>
         <source>Ctrl+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="596"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="600"/>
         <source>Select &amp;None</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Déselectionner tout</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="599"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="603"/>
         <source>Ctrl+Shift+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Maj+A</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="604"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="608"/>
         <source>&amp;System Preferences...</source>
-        <translation type="unfinished"></translation>
+        <translation>Préférences &amp;Système...</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="607"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="611"/>
         <source>Ctrl+Shift+P</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Maj+P</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="615"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="619"/>
         <source>&amp;Project Preferences...</source>
-        <translation type="unfinished"></translation>
+        <translation>Préférences du &amp;projet...</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="618"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="622"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="626"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="630"/>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Couper</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="629"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="633"/>
         <source>Ctrl+X</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="637"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="641"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="640"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="644"/>
         <source>Ctrl+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="648"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="652"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>C&amp;oller</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="651"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="655"/>
         <source>Ctrl+V</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="659"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="663"/>
         <source>Suspend all IOS</source>
-        <translation type="unfinished"></translation>
+        <translation>Suspendre tous les IOS</translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="662"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="666"/>
         <source>Suspend all IOS instances</source>
-        <translation type="unfinished"></translation>
+        <translation>Suspend toutes les instances d&apos;IOS actuellements en cours d&apos;execution</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="27"/>
@@ -1511,7 +1511,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../GNS3/Ui/Form_PreferencesDialog.ui" line="77"/>
         <source>Prefs Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Titre des préférences</translation>
     </message>
     <message>
         <location filename="../GNS3/Config/Preferences.py" line="90"/>
@@ -1529,27 +1529,27 @@ to display the configuration page.</source>
     <message>
         <location filename="DynamicStrings.py" line="28"/>
         <source>Router</source>
-        <translation type="unfinished">Routeur</translation>
+        <translation>Routeur</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="29"/>
         <source>Router with firewall</source>
-        <translation type="unfinished">Routeur avec pare-feu</translation>
+        <translation>Routeur avec pare-feu</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="31"/>
         <source>Switch</source>
-        <translation type="unfinished">Commutateur</translation>
+        <translation>Commutateur</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="32"/>
         <source>Multilayer switch</source>
-        <translation type="unfinished">Commutateur multi-niveau</translation>
+        <translation>Commutateur multi-niveau</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="34"/>
         <source>ATM switch</source>
-        <translation type="unfinished">Commutateur ATM</translation>
+        <translation>Commutateur ATM</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="30"/>
@@ -1569,7 +1569,7 @@ to display the configuration page.</source>
     <message>
         <location filename="DynamicStrings.py" line="36"/>
         <source>Hub</source>
-        <translation type="unfinished"></translation>
+        <translation>Concentrateur</translation>
     </message>
 </context>
 <context>
@@ -1577,7 +1577,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../GNS3/Scene.py" line="126"/>
         <source>Interfaces are not compatible !</source>
-        <translation type="unfinished"></translation>
+        <translation>Les interfaces sont incompatibles !</translation>
     </message>
 </context>
 <context>
@@ -1585,42 +1585,42 @@ to display the configuration page.</source>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Widget_SystemApplications.ui" line="13"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulaire</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Widget_SystemApplications.ui" line="31"/>
         <source>Dynamips Hypervisor</source>
-        <translation type="unfinished"></translation>
+        <translation>Hyperviseur Dynamips</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Widget_SystemApplications.ui" line="192"/>
         <source>Executable path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Chemin de l&apos;excutable:</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Widget_SystemApplications.ui" line="215"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Widget_SystemApplications.ui" line="82"/>
         <source>Terminal command:</source>
-        <translation type="unfinished"></translation>
+        <translation>Commande de terminal:</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Widget_SystemApplications.ui" line="115"/>
         <source>Working directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire de travail:</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Widget_SystemApplications.ui" line="157"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Port:</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Widget_SystemApplications.ui" line="180"/>
         <source>ns-3</source>
-        <translation type="unfinished"></translation>
+        <translation>ns-3</translation>
     </message>
 </context>
 <context>
@@ -1628,12 +1628,12 @@ to display the configuration page.</source>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Widget_SystemGeneral.ui" line="13"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulaire</translation>
     </message>
     <message>
         <location filename="../GNS3/Ui/ConfigurationPages/Widget_SystemGeneral.ui" line="28"/>
-        <source>Langage:</source>
-        <translation type="unfinished"></translation>
+        <source>Language:</source>
+        <translation>Langage:</translation>
     </message>
 </context>
 <context>
@@ -1646,102 +1646,102 @@ to display the configuration page.</source>
     <message>
         <location filename="../GNS3/Workspace.py" line="346"/>
         <source>GNS3 - New Project</source>
-        <translation type="unfinished"></translation>
+        <translation>GNS3 - Nouveau Projet</translation>
     </message>
     <message>
         <location filename="../GNS3/Workspace.py" line="377"/>
         <source>Design Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode Conception</translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="456"/>
+        <location filename="../GNS3/Workspace.py" line="457"/>
         <source>Emulation Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode Emulation</translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="396"/>
+        <location filename="../GNS3/Workspace.py" line="397"/>
         <source>Please register at least one IOS image</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez enregistrer au moins une image IOS</translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="415"/>
+        <location filename="../GNS3/Workspace.py" line="416"/>
         <source>Please configure the path to Dynamips</source>
-        <translation type="unfinished"></translation>
+        <translation>Veuillez configurer le chemin vers Dynamips</translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="663"/>
+        <location filename="../GNS3/Workspace.py" line="664"/>
         <source>Dynamips error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur Dynamips</translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="663"/>
+        <location filename="../GNS3/Workspace.py" line="664"/>
         <source>Connection lost</source>
-        <translation type="unfinished"></translation>
+        <translation>Connection perdue</translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="589"/>
+        <location filename="../GNS3/Workspace.py" line="590"/>
         <source>Hide hostnames</source>
-        <translation type="unfinished"></translation>
+        <translation>Cacher les noms d&apos;hôte</translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="594"/>
+        <location filename="../GNS3/Workspace.py" line="595"/>
         <source>Show hostnames</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer les noms d&apos;hôte</translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="660"/>
+        <location filename="../GNS3/Workspace.py" line="661"/>
         <source>Dynamips warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Avertissement Dynamips</translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="639"/>
+        <location filename="../GNS3/Workspace.py" line="640"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="675"/>
+        <location filename="../GNS3/Workspace.py" line="676"/>
         <source>Starting nodes ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Démarrage des noeuds en cours...</translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="681"/>
+        <location filename="../GNS3/Workspace.py" line="682"/>
         <source>Stopping nodes ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Arrêt des noeuds en cours...</translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="687"/>
+        <location filename="../GNS3/Workspace.py" line="688"/>
         <source>Suspending nodes ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="726"/>
+        <location filename="../GNS3/Workspace.py" line="727"/>
         <source>Scenario</source>
-        <translation type="unfinished"></translation>
+        <translation>Scenario</translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="726"/>
+        <location filename="../GNS3/Workspace.py" line="727"/>
         <source>You can&apos;t open a scenario when you are not in design mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous ne pouvez pas ouvrir de scenario lorsque vous être dans le mode Conception</translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="729"/>
+        <location filename="../GNS3/Workspace.py" line="730"/>
         <source>Open a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir un fichier</translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="736"/>
+        <location filename="../GNS3/Workspace.py" line="737"/>
         <source>Project Loaded...</source>
-        <translation type="unfinished"></translation>
+        <translation>Projet chargé...</translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="749"/>
+        <location filename="../GNS3/Workspace.py" line="750"/>
         <source>Project saved...</source>
-        <translation type="unfinished"></translation>
+        <translation>Projet sauvegardé...</translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="757"/>
+        <location filename="../GNS3/Workspace.py" line="758"/>
         <source>Save Project As</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarde le projet sous</translation>
     </message>
 </context>
 </TS>

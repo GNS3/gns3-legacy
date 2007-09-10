@@ -22,6 +22,7 @@
 
 from PyQt4 import QtGui
 from GNS3.Ui.ConfigurationPages.Widget_SystemGeneral import Ui_SystemGeneral
+import GNS3.Globals as globals
 
 class UiConfig_SystemGeneral(QtGui.QWidget, Ui_SystemGeneral):
 
@@ -29,10 +30,34 @@ class UiConfig_SystemGeneral(QtGui.QWidget, Ui_SystemGeneral):
         QtGui.QWidget.__init__(self)
         Ui_SystemGeneral.setupUi(self, self)
 
+        self.langs = globals.GApp.translator.getAvailables()
+        for lang in self.langs:
+            lang_code = lang[0]
+            lang_name = lang[1]
+            lang_displayText = "%s (%s)" % (lang_name, lang_code)
+            self.langsBox.addItem(lang_displayText)
+
+        self.loadConf()
+
     def loadConf(self):
-        pass
+        curr_lang_code = globals.GApp.systconf['general'].lang
+
+        # Set the languages comboBox the the right value.
+        idx = 0
+        for i in self.langs:
+            if i[0] == curr_lang_code:
+                self.langsBox.setCurrentIndex(idx)
+            idx += 1
 
     def saveConf(self):
+
+        new_idx = self.langsBox.currentIndex()
+        print type(new_idx)
+        new_lang_code = self.langs[new_idx][0]
+
+        print "new language: %s" % (self.langs[new_idx][1])
+        globals.GApp.systconf['general'].lang = unicode(new_lang_code, 'utf-8')
+        globals.GApp.translator.switchLangTo(new_lang_code)
         pass
 
 

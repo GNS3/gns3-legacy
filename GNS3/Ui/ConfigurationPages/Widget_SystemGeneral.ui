@@ -14,7 +14,7 @@
   </property>
   <widget class="QLabel" name="label" >
    <property name="enabled" >
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="geometry" >
     <rect>
@@ -25,12 +25,12 @@
     </rect>
    </property>
    <property name="text" >
-    <string>Langage:</string>
+    <string>Language:</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox" >
+  <widget class="QComboBox" name="langsBox" >
    <property name="enabled" >
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="geometry" >
     <rect>

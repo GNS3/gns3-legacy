@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Widget_SystemGeneral.ui'
 #
-# Created: Mon Jul 23 22:12:01 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070710
+# Created: Mon Sep 10 14:45:58 2007
+#      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -15,19 +15,19 @@ class Ui_SystemGeneral(object):
         SystemGeneral.resize(QtCore.QSize(QtCore.QRect(0,0,402,163).size()).expandedTo(SystemGeneral.minimumSizeHint()))
 
         self.label = QtGui.QLabel(SystemGeneral)
-        self.label.setEnabled(False)
+        self.label.setEnabled(True)
         self.label.setGeometry(QtCore.QRect(0,10,71,22))
         self.label.setObjectName("label")
 
-        self.comboBox = QtGui.QComboBox(SystemGeneral)
-        self.comboBox.setEnabled(False)
-        self.comboBox.setGeometry(QtCore.QRect(80,10,321,22))
-        self.comboBox.setObjectName("comboBox")
+        self.langsBox = QtGui.QComboBox(SystemGeneral)
+        self.langsBox.setEnabled(True)
+        self.langsBox.setGeometry(QtCore.QRect(80,10,321,22))
+        self.langsBox.setObjectName("langsBox")
 
         self.retranslateUi(SystemGeneral)
         QtCore.QMetaObject.connectSlotsByName(SystemGeneral)
 
     def retranslateUi(self, SystemGeneral):
         SystemGeneral.setWindowTitle(QtGui.QApplication.translate("SystemGeneral", "Form", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("SystemGeneral", "Langage:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("SystemGeneral", "Language:", None, QtGui.QApplication.UnicodeUTF8))
 

@@ -215,8 +215,8 @@ class Application(QApplication, Singleton):
         confo.lang = ConfDB().get('GNS3/lang', unicode('en', 'utf-8'))
 
         # Now systGeneral settings are loaded, load the translator
-        self._translator = Translator()
-        self._translator.switchLangTo(self.systconf['general'].lang)
+        self.translator = Translator()
+        self.translator.switchLangTo(self.systconf['general'].lang)
 
         # preload dynamips, so it will start faster when use it
         if globals.GApp.systconf['dynamips'].path:

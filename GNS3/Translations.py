@@ -29,14 +29,13 @@ class Translator():
         self.__i18n_dir = "./Langs"
         self.__lastTranslator = None
 
-    def listAvailables(self):
+    def getAvailables(self):
         local_translator = QtCore.QTranslator()
         lang_availables = []
 
         trans_dir = QtCore.QDir(self.__i18n_dir)
         fileNames = trans_dir.entryList(QtCore.QStringList("*.qm"), QtCore.QDir.Files, QtCore.QDir.Name)
 
-        print str(trans_dir)
         for i in fileNames:
             # Remove file prefix (Lang_)
             lang = i[5:]
@@ -71,5 +70,12 @@ class Translator():
             globals.GApp.removeTranslator(self.__lastTranslator)
 
         self.__lastTranslator = translator
-        globals.GApp.mainWindow.retranslateUi(globals.GApp.mainWindow)
+
+        for widget in globals.GApp.topLevelWidgets():
+            try:
+                widget.retranslateUi(widget)
+            except Exception,e:
+                # simply ignore topLevelWidgets which don't
+                # have a retranslateUi method
+                pass
 
