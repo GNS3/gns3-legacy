@@ -243,12 +243,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
     def retranslateUi(self, MainWindow):
         Ui_MainWindow.retranslateUi(self, MainWindow)
-        ctx = 'Workspace'
-        self.submenu_Docks.setTitle(translate(ctx, 'Docks'))
-        self.submenu_Toolbars.setTitle(translate(ctx, 'Toolbars'))
-        self.action_swModeDesign.setText(translate(ctx, 'Design Mode'))
-        self.action_swModeEmulation.setText(translate(ctx, 'Emulation Mode'))
-        self.action_swModeSimulation.setText(translate(ctx, 'Simulation Mode'))
+        self.submenu_Docks.setTitle(translate('Workspace', 'Docks'))
+        self.submenu_Toolbars.setTitle(translate('Workspace', 'Toolbars'))
+        self.action_swModeDesign.setText(translate('Workspace', '&Design Mode'))
+        self.action_swModeEmulation.setText(translate('Workspace', '&Emulation Mode'))
+        self.action_swModeSimulation.setText(translate('Workspace', '&Simulation Mode'))
 
         # Retranslate dock contents...
         try:
