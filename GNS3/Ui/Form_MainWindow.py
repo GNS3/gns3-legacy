@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Mon Sep 10 11:45:20 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070701
+# Created: Tue Sep 11 14:27:28 2007
+#      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -35,7 +35,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,840,25))
+        self.menubar.setGeometry(QtCore.QRect(0,0,840,28))
         self.menubar.setObjectName("menubar")
 
         self.menu_Edit = QtGui.QMenu(self.menubar)
@@ -283,8 +283,8 @@ class Ui_MainWindow(object):
         self.menu_Edit.addAction(self.action_SelectNone)
         self.menu_Edit.addSeparator()
         self.menu_Edit.addAction(self.action_IOS_images)
-        self.menu_Edit.addAction(self.action_SystemPreferences)
         self.menu_Edit.addAction(self.action_ProjectPreferences)
+        self.menu_Edit.addAction(self.action_SystemPreferences)
         self.menu_File.addAction(self.action_New_Project)
         self.menu_File.addAction(self.action_Open)
         self.menu_File.addAction(self.action_Save)
@@ -379,7 +379,7 @@ class Ui_MainWindow(object):
         self.action_ZoomIn.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl++", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ZoomOut.setText(QtGui.QApplication.translate("MainWindow", "Zoom &Out", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ZoomOut.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+-", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_ZoomReset.setText(QtGui.QApplication.translate("MainWindow", "Zoom &Reset", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ZoomReset.setText(QtGui.QApplication.translate("MainWindow", "Zoom &1:1", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ZoomReset.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+/", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ZoomFit.setText(QtGui.QApplication.translate("MainWindow", "Zoom &Fit", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ZoomFit.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+=", None, QtGui.QApplication.UnicodeUTF8))
@@ -387,8 +387,8 @@ class Ui_MainWindow(object):
         self.action_SelectAll.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+A", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SelectNone.setText(QtGui.QApplication.translate("MainWindow", "Select &None", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SelectNone.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+A", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_SystemPreferences.setText(QtGui.QApplication.translate("MainWindow", "&System Preferences...", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_SystemPreferences.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+P", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_SystemPreferences.setText(QtGui.QApplication.translate("MainWindow", "&Options...", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_SystemPreferences.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+O", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ProjectPreferences.setText(QtGui.QApplication.translate("MainWindow", "&Project Preferences...", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ProjectPreferences.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+P", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Cut.setText(QtGui.QApplication.translate("MainWindow", "Cut", None, QtGui.QApplication.UnicodeUTF8))
