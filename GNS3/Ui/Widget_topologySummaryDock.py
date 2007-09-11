@@ -49,10 +49,44 @@ class topologySummaryDock(QtGui.QTreeWidget):
             items = []
             for interface in node.getConnectedInterfaceList():
                 item = QtGui.QTreeWidgetItem()
-                neigbhor = node.getConnectedNeighbor(interface)
-                item.setText(0,  interface + ' ' + translate("topologySummaryDock", 'is connected to') + ' ' + neigbhor[0].hostname + ' ' + neigbhor[1])
+                neighbor = node.getConnectedNeighbor(interface)
+                
+                list = QtCore.QStringList()
+                list.append(interface)
+                list.append(neighbor[0].hostname)
+                list.append(neighbor[1])
+                item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(list))
+
+                newText = unicode(translate('topologySummaryDock', '%s is connected to %s %s')) \
+                            % (interface, neighbor[0].hostname, neighbor[1])
+                item.setText(0, newText)
                 items.append(item)
             rootitem.addChildren(items)
             
             #rootitem.addChild(QtGui.QTreeWidgetItem(['test']))
             self.insertTopLevelItem(0, rootitem)
+
+    def retranslateItem(self, item):
+        # Translate current item
+        data = item.data(0, QtCore.Qt.UserRole).toStringList()
+
+        if data.count() == 3:
+            newText = unicode(translate('topologySummaryDock', '%s is connected to %s %s')) \
+                        % (unicode(data[0]), unicode(data[1]), unicode(data[2]))
+            item.setText(0, newText)
+
+        # Recurse for child-items translation
+        childNum = 0
+        childCount = item.childCount()
+        while childNum < childCount:
+            child_item = item.child(childNum)
+            self.retranslateItem(child_item)
+            childNum += 1
+
+    def retranslateUi(self, MainWindow):
+        topItemNum = 0
+        topItemsCount = self.topLevelItemCount()
+        while topItemNum < topItemsCount:
+            topItem = self.topLevelItem(topItemNum)
+            self.retranslateItem(topItem)
+            topItemNum += 1
