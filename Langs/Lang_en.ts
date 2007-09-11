@@ -111,11 +111,6 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractEdge</name>
     <message>
-        <location filename="../GNS3/Link/AbstractEdge.py" line="106"/>
-        <source>Link: %s (%s) -&gt; %s (%s)</source>
-        <translation type="obsolete">Link: %s (%s) -&gt; %s (%s)</translation>
-    </message>
-    <message>
         <location filename="../GNS3/Link/AbstractEdge.py" line="135"/>
         <source>delete</source>
         <translation>delete</translation>
@@ -1648,11 +1643,6 @@ to display the configuration page.</translation>
 </context>
 <context>
     <name>topologySummaryDock</name>
-    <message>
-        <location filename="../GNS3/Ui/Widget_topologySummaryDock.py" line="56"/>
-        <source>is connected to</source>
-        <translation type="obsolete">is connected to</translation>
-    </message>
     <message>
         <location filename="../GNS3/Ui/Widget_topologySummaryDock.py" line="74"/>
         <source>%s is connected to %s %s</source>
