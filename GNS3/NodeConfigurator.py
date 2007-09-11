@@ -180,15 +180,17 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                 count = count - 1
             if not item.parent():
                 if last_item.parent():
-                    self.titleLabel.setText(last_item.text(0) + translate("NodeConfigurator", " node"))
-                    return
-                self.titleLabel.setText(last_item.text(0) + translate("NodeConfigurator", " group"))
+                    newLabel = unicode(translate("NodeConfigurator", "%s node")) % ( str(last_item.text(0)) )
+                    self.titleLabel.setText(newLabel)
+                newLabel = unicode(translate("NodeConfigurator", "%s group")) % ( str(last_item.text(0)) )
+                self.titleLabel.setText(newLabel)
                 return
 
         if count > 1:
-            pageTitle = translate("NodeConfigurator", "Group of ") + str(count) + ' ' + last_item.parent().text(0)
+            pageTitle = unicode(translate("NodeConfigurator", "Group of %d %s")) \
+                % ( count, str(last_item.parent().text(0)) )
         else:
-            pageTitle = last_item.text(0) + translate("NodeConfigurator", " node")
+            pageTitle = unicode(translate("NodeConfigurator", "%s node")) % ( str(last_item.text(0)) )
         self.titleLabel.setText(pageTitle)
 
     def __importConfigurationPage(self, name):
