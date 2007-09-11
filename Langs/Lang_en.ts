@@ -3,12 +3,12 @@
 <context>
     <name>ATMSW</name>
     <message>
-        <location filename="../GNS3/Node/ATMSW.py" line="153"/>
+        <location filename="../GNS3/Node/ATMSW.py" line="145"/>
         <source>Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/ATMSW.py" line="153"/>
+        <location filename="../GNS3/Node/ATMSW.py" line="145"/>
         <source>No port available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -84,12 +84,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../GNS3/Ui/Form_About.ui" line="13"/>
+        <location filename="../GNS3/Ui/Form_About.py" line="51"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_About.ui" line="51"/>
+        <location filename="../GNS3/Ui/Form_About.py" line="66"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -124,70 +124,70 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractNode</name>
     <message>
-        <location filename="../GNS3/Node/AbstractNode.py" line="78"/>
+        <location filename="../GNS3/Node/AbstractNode.py" line="77"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/AbstractNode.py" line="83"/>
+        <location filename="../GNS3/Node/AbstractNode.py" line="82"/>
         <source>Configure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/AbstractNode.py" line="88"/>
+        <location filename="../GNS3/Node/AbstractNode.py" line="87"/>
         <source>Show hostname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/AbstractNode.py" line="121"/>
+        <location filename="../GNS3/Node/AbstractNode.py" line="120"/>
         <source>Change hostname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/AbstractNode.py" line="122"/>
+        <location filename="../GNS3/Node/AbstractNode.py" line="121"/>
         <source>Hostname:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/AbstractNode.py" line="128"/>
+        <location filename="../GNS3/Node/AbstractNode.py" line="127"/>
         <source>Hostname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/AbstractNode.py" line="128"/>
+        <location filename="../GNS3/Node/AbstractNode.py" line="127"/>
         <source>Hostname already used</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/AbstractNode.py" line="206"/>
-        <source>Hostname: %s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../GNS3/Node/AbstractNode.py" line="275"/>
+        <location filename="../GNS3/Node/AbstractNode.py" line="274"/>
         <source>Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/AbstractNode.py" line="229"/>
+        <location filename="../GNS3/Node/AbstractNode.py" line="228"/>
         <source>Already connected interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/AbstractNode.py" line="275"/>
+        <location filename="../GNS3/Node/AbstractNode.py" line="274"/>
         <source>Please, configure the slots</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GNS3/Node/AbstractNode.py" line="205"/>
+        <source>Hostname: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Cloud</name>
     <message>
-        <location filename="../GNS3/Node/Cloud.py" line="107"/>
+        <location filename="../GNS3/Node/Cloud.py" line="100"/>
         <source>Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/Cloud.py" line="107"/>
+        <location filename="../GNS3/Node/Cloud.py" line="100"/>
         <source>No NIO available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -293,12 +293,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../GNS3/Node/ETHSW.py" line="149"/>
+        <location filename="../GNS3/Node/ETHSW.py" line="137"/>
         <source>Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/ETHSW.py" line="149"/>
+        <location filename="../GNS3/Node/ETHSW.py" line="137"/>
         <source>No port available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -384,12 +384,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>FRSW</name>
     <message>
-        <location filename="../GNS3/Node/FRSW.py" line="141"/>
+        <location filename="../GNS3/Node/FRSW.py" line="130"/>
         <source>Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/FRSW.py" line="141"/>
+        <location filename="../GNS3/Node/FRSW.py" line="130"/>
         <source>No port available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -455,12 +455,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Hub</name>
     <message>
-        <location filename="../GNS3/Node/Hub.py" line="123"/>
+        <location filename="../GNS3/Node/Hub.py" line="116"/>
         <source>Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/Hub.py" line="123"/>
+        <location filename="../GNS3/Node/Hub.py" line="116"/>
         <source>No port available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -514,117 +514,117 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>IOSDialog</name>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="13"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="279"/>
         <source>IOS images and hypervisors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="26"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="294"/>
         <source>IOS Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="249"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="295"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="44"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="281"/>
         <source>Image file :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="373"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="301"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="67"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="283"/>
         <source>Platform:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="84"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="284"/>
         <source>Chassis:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="101"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="285"/>
         <source>IDLE PC:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="118"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="286"/>
         <source>Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="131"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="287"/>
         <source>IOS image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="136"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="288"/>
         <source>Chassis</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="396"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="308"/>
         <source>Hypervisors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="159"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="290"/>
         <source>Use the hypervisor manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="424"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="305"/>
         <source>&amp;Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="434"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="306"/>
         <source>&amp;Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="444"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="307"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="255"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="296"/>
         <source>Host:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="278"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="297"/>
         <source>localhost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="285"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="298"/>
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="321"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="299"/>
         <source>Base UDP:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="357"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="300"/>
         <source>Working directory:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="406"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="303"/>
         <source>Host:Port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_IOSDialog.ui" line="411"/>
+        <location filename="../GNS3/Ui/Form_IOSDialog.py" line="304"/>
         <source>Base UDP</source>
         <translation type="unfinished"></translation>
     </message>
@@ -687,22 +687,22 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/IOSRouter.py" line="579"/>
+        <location filename="../GNS3/Node/IOSRouter.py" line="567"/>
         <source>Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/IOSRouter.py" line="569"/>
+        <location filename="../GNS3/Node/IOSRouter.py" line="557"/>
         <source>No IOS configured</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/IOSRouter.py" line="572"/>
+        <location filename="../GNS3/Node/IOSRouter.py" line="560"/>
         <source>Can&apos;t find the IOS image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Node/IOSRouter.py" line="579"/>
+        <location filename="../GNS3/Node/IOSRouter.py" line="567"/>
         <source>No interface available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -883,362 +883,362 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="13"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="326"/>
         <source>GNS3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="61"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="327"/>
         <source>&amp;Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="77"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="328"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="91"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="329"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="99"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="330"/>
         <source>&amp;View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="115"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="331"/>
         <source>General</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="144"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="332"/>
         <source>Nodes Types</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="263"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="337"/>
         <source>1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="189"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="334"/>
         <source>Design</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="201"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="335"/>
         <source>Simulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="234"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="336"/>
         <source>Topology Summary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="328"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="339"/>
         <source>Event Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="276"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="338"/>
         <source>Console</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="337"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="340"/>
         <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="345"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="341"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="351"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="342"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="359"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="343"/>
         <source>&amp;Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="362"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="344"/>
         <source>Open project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="365"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="345"/>
         <source>Ctrl+O</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="373"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="346"/>
         <source>&amp;Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="376"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="347"/>
         <source>Save project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="379"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="348"/>
         <source>Ctrl+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="399"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="352"/>
         <source>Add a link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="407"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="353"/>
         <source>Emulation Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="412"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="354"/>
         <source>IOS images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="415"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="355"/>
         <source>Ctrl+Shift+I</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="423"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="356"/>
         <source>&amp;Online Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="434"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="357"/>
         <source>&amp;Import</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="442"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="358"/>
         <source>&amp;Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="453"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="359"/>
         <source>Start/Resume all IOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="456"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="360"/>
         <source>Start or resume all IOS instances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="467"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="361"/>
         <source>Stop all IOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="470"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="362"/>
         <source>Stop all IOS instances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="484"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="364"/>
         <source>Show hostnames</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="495"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="365"/>
         <source>Telnet all IOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="498"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="366"/>
         <source>Start a console on all running IOS instances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="503"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="367"/>
         <source>&amp;Design Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="508"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="368"/>
         <source>&amp;Emulation Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="513"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="369"/>
         <source>&amp;Simulation Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="521"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="370"/>
         <source>Save &amp;As</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="524"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="371"/>
         <source>Save As</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="527"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="372"/>
         <source>Save project as</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="535"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="373"/>
         <source>&amp;New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="538"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="374"/>
         <source>New project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="541"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="375"/>
         <source>Create a new project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="544"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="376"/>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="549"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="377"/>
         <source>About &amp;Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="557"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="378"/>
         <source>Zoom &amp;In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="560"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="379"/>
         <source>Ctrl++</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="565"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="380"/>
         <source>Zoom &amp;Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="568"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="381"/>
         <source>Ctrl+-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="573"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="382"/>
         <source>Zoom &amp;Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="576"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="383"/>
         <source>Ctrl+/</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="584"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="384"/>
         <source>Zoom &amp;Fit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="587"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="385"/>
         <source>Ctrl+=</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="592"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="386"/>
         <source>Select &amp;All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="595"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="387"/>
         <source>Ctrl+A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="600"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="388"/>
         <source>Select &amp;None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="603"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="389"/>
         <source>Ctrl+Shift+A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="608"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="390"/>
         <source>&amp;System Preferences...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="611"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="391"/>
         <source>Ctrl+Shift+P</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="619"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="392"/>
         <source>&amp;Project Preferences...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="622"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="393"/>
         <source>Ctrl+P</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="630"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="394"/>
         <source>Cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="633"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="395"/>
         <source>Ctrl+X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="641"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="396"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="644"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="397"/>
         <source>Ctrl+C</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="652"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="398"/>
         <source>&amp;Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="655"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="399"/>
         <source>Ctrl+V</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="663"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="400"/>
         <source>Suspend all IOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_MainWindow.ui" line="666"/>
+        <location filename="../GNS3/Ui/Form_MainWindow.py" line="401"/>
         <source>Suspend all IOS instances</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="28"/>
+        <location filename="DynamicStrings.py" line="29"/>
         <source>English</source>
         <translation>English</translation>
     </message>
@@ -1246,22 +1246,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>NodeConfigurator</name>
     <message>
-        <location filename="../GNS3/Ui/Form_NodeConfigurator.ui" line="13"/>
+        <location filename="../GNS3/Ui/Form_NodeConfigurator.py" line="103"/>
         <source>Node configurator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_NodeConfigurator.ui" line="36"/>
+        <location filename="../GNS3/Ui/Form_NodeConfigurator.py" line="104"/>
         <source>Nodes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_NodeConfigurator.ui" line="71"/>
+        <location filename="../GNS3/Ui/Form_NodeConfigurator.py" line="105"/>
         <source>Node Configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Ui/Form_NodeConfigurator.ui" line="141"/>
+        <location filename="../GNS3/Ui/Form_NodeConfigurator.py" line="107"/>
         <source>Please select a node in the list 
 to display the configuration page.</source>
         <translation type="unfinished"></translation>
@@ -1297,99 +1297,51 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/NodeConfigurator.py" line="191"/>
-        <source>%s node</source>
+        <location filename="../GNS3/NodeConfigurator.py" line="245"/>
+        <source>Node configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GNS3/NodeConfigurator.py" line="192"/>
+        <source> node</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/NodeConfigurator.py" line="185"/>
-        <source>%s group</source>
+        <source> group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../GNS3/NodeConfigurator.py" line="189"/>
-        <source>Group of %d %s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../GNS3/NodeConfigurator.py" line="245"/>
-        <source>Node configuration</source>
+        <source>Group of </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PreferencesDialog</name>
     <message>
-        <location filename="../GNS3/Config/Preferences.py" line="71"/>
+        <location filename="../GNS3/Ui/Form_PreferencesDialog.py" line="100"/>
         <source>Preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Config/Preferences.py" line="67"/>
+        <location filename="../GNS3/Config/Preferences.py" line="66"/>
         <source>System preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Config/Preferences.py" line="69"/>
+        <location filename="../GNS3/Config/Preferences.py" line="68"/>
         <source>Project preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="29"/>
+        <location filename="DynamicStrings.py" line="30"/>
         <source>General</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="31"/>
-        <source>Applications</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SYMBOLS</name>
-    <message>
-        <location filename="DynamicStrings.py" line="32"/>
-        <source>Router</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="DynamicStrings.py" line="33"/>
-        <source>Router with firewall</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="DynamicStrings.py" line="34"/>
-        <source>Edge label switch router</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="DynamicStrings.py" line="35"/>
-        <source>Switch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="DynamicStrings.py" line="36"/>
-        <source>Multilayer switch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="DynamicStrings.py" line="37"/>
-        <source>Route switch processor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="DynamicStrings.py" line="38"/>
-        <source>ATM switch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="DynamicStrings.py" line="39"/>
-        <source>Frame Relay switch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="DynamicStrings.py" line="40"/>
-        <source>Hub</source>
+        <source>Applications</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1465,103 +1417,214 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="346"/>
+        <location filename="../GNS3/Workspace.py" line="354"/>
         <source>GNS3 - New Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="377"/>
+        <location filename="../GNS3/Workspace.py" line="385"/>
         <source>Design Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="457"/>
+        <location filename="../GNS3/Workspace.py" line="465"/>
         <source>Emulation Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="397"/>
+        <location filename="../GNS3/Workspace.py" line="405"/>
         <source>Please register at least one IOS image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="416"/>
+        <location filename="../GNS3/Workspace.py" line="424"/>
         <source>Please configure the path to Dynamips</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="664"/>
+        <location filename="../GNS3/Workspace.py" line="672"/>
         <source>Dynamips error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="664"/>
+        <location filename="../GNS3/Workspace.py" line="672"/>
         <source>Connection lost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="590"/>
+        <location filename="../GNS3/Workspace.py" line="598"/>
         <source>Hide hostnames</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="595"/>
+        <location filename="../GNS3/Workspace.py" line="603"/>
         <source>Show hostnames</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="661"/>
+        <location filename="../GNS3/Workspace.py" line="669"/>
         <source>Dynamips warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="640"/>
+        <location filename="../GNS3/Workspace.py" line="648"/>
         <source>Abort</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="676"/>
+        <location filename="../GNS3/Workspace.py" line="684"/>
         <source>Starting nodes ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="682"/>
+        <location filename="../GNS3/Workspace.py" line="690"/>
         <source>Stopping nodes ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="688"/>
+        <location filename="../GNS3/Workspace.py" line="696"/>
         <source>Suspending nodes ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="727"/>
+        <location filename="../GNS3/Workspace.py" line="735"/>
         <source>Scenario</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="727"/>
+        <location filename="../GNS3/Workspace.py" line="735"/>
         <source>You can&apos;t open a scenario when you are not in design mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="730"/>
+        <location filename="../GNS3/Workspace.py" line="738"/>
         <source>Open a file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="737"/>
+        <location filename="../GNS3/Workspace.py" line="745"/>
         <source>Project Loaded...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="750"/>
+        <location filename="../GNS3/Workspace.py" line="758"/>
         <source>Project saved...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../GNS3/Workspace.py" line="758"/>
+        <location filename="../GNS3/Workspace.py" line="766"/>
         <source>Save Project As</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>nodesDock</name>
+    <message>
+        <location filename="DynamicStrings.py" line="34"/>
+        <source>Router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="35"/>
+        <source>Netflow router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="36"/>
+        <source>Router with firewall</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="37"/>
+        <source>Gateway</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="38"/>
+        <source>Edge label switch router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="39"/>
+        <source>Label switch router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="40"/>
+        <source>Optical router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="41"/>
+        <source>Switch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="42"/>
+        <source>Hub</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="43"/>
+        <source>Multilayer switch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="44"/>
+        <source>Route switch processor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="45"/>
+        <source>ATM switch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="46"/>
+        <source>Frame Relay switch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="47"/>
+        <source>Cloud</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="48"/>
+        <source>Access Point</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="49"/>
+        <source>Lightweight Access Point</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="50"/>
+        <source>WLAN controller</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="51"/>
+        <source>PIX firewall</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GNS3/Ui/Widget_nodesDock.py" line="46"/>
+        <source>Emulated devices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GNS3/Ui/Widget_nodesDock.py" line="51"/>
+        <source>Decorative devices</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>topologySummaryDock</name>
+    <message>
+        <location filename="../GNS3/Ui/Widget_topologySummaryDock.py" line="53"/>
+        <source>is connected to</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -64,10 +64,12 @@ SYMBOLS = (
     'normal_svg_file': ":/symbols/hub.normal.svg",
     'select_svg_file': ":/symbols/hub.selected.svg"},
 
+    # Decorated Symbol
     {'name': "Multilayer switch", 'object': IOSRouter,
     'normal_svg_file': ":/symbols/sw_multilayer.normal.svg",
     'select_svg_file': ":/symbols/sw_multilayer.selected.svg"},
     
+    # Decorated Symbol
     {'name': "Route switch processor", 'object': IOSRouter,
     'normal_svg_file': ":/symbols/route_swproc.normal.svg",
     'select_svg_file': ":/symbols/route_swproc.selected.svg"},
@@ -84,26 +86,30 @@ SYMBOLS = (
     'normal_svg_file': ":/symbols/cloud.normal.svg",
     'select_svg_file': ":/symbols/cloud.selected.svg"}, 
     
+    # Decorative Symbol
     {'name': "Access Point", 'object': ETHSW,
     'normal_svg_file': ":/symbols/access_point.normal.svg",
     'select_svg_file': ":/symbols/access_point.selected.svg"}, 
     
+    # Decoratives Symbol
     {'name': "Lightweight Access Point", 'object': ETHSW,
     'normal_svg_file': ":/symbols/lightweight_ap.normal.svg",
     'select_svg_file': ":/symbols/lightweight_ap.selected.svg"}, 
     
+    # Decoratives Symbol
     {'name': "WLAN controller", 'object': ETHSW,
     'normal_svg_file': ":/symbols/wlan_controller.normal.svg",
     'select_svg_file': ":/symbols/wlan_controller.selected.svg"}, 
-    
+
+    # Decorative Symbol
     {'name': "PIX firewall", 'object': IOSRouter,
     'normal_svg_file': ":/symbols/PIX_firewall.normal.svg",
     'select_svg_file': ":/symbols/PIX_firewall.selected.svg"},
 )
 
 DECORATIVE_SYMBOLS = ("Multilayer switch", 
-                                        "Route switch processor",  
-                                        "Access Point", 
-                                        "Lightweight Access Point", 
-                                        "WLAN controller", 
-                                        "PIX firewall")
+                      "Route switch processor",  
+                      "Access Point", 
+                      "Lightweight Access Point", 
+                      "WLAN controller", 
+                      "PIX firewall")

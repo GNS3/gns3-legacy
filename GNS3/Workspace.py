@@ -250,6 +250,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.action_swModeEmulation.setText(translate(ctx, 'Emulation Mode'))
         self.action_swModeSimulation.setText(translate(ctx, 'Simulation Mode'))
 
+        # Retranslate dock contents...
+        try:
+            self.nodesDock.retranslateUi(self.nodesDock)
+            self.treeWidget_TopologySummary.retranslateUi(self.treeWidget_TopologySummary)
+        except Exception,e:
+            # Ignore if not implemented
+            pass
+
     #-------------------------------------------------------------------------
 
     def __getNextModeId(self):

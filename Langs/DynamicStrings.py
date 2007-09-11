@@ -18,7 +18,8 @@
 #
 
 #
-# This is for pylupdate4, to allow us to translate strings that we use dynamically in gns-3 with Qtlinguist
+# This is for pylupdate4, to allow us to translate strings that we 
+# use dynamically in GNS3 with Qtlinguist
 #
 
 # Translation on current language name
@@ -28,12 +29,22 @@ translate("MainWindow", "English")
 translate('PreferencesDialog', 'General')
 translate('PreferencesDialog', 'Applications')
 
-translate("SYMBOLS", "Router")
-translate("SYMBOLS", "Router with firewall")
-translate("SYMBOLS", "Edge label switch router")
-translate("SYMBOLS", "Switch")
-translate("SYMBOLS", "Multilayer switch")
-translate("SYMBOLS", "Route switch processor")
-translate("SYMBOLS", "ATM switch")
-translate("SYMBOLS", "Frame Relay switch")
-translate("SYMBOLS", "Hub")
+# Nodes `symbols' name
+translate('nodesDock', 'Router')
+translate('nodesDock', 'Netflow router')
+translate('nodesDock', 'Router with firewall')
+translate('nodesDock', 'Gateway')
+translate('nodesDock', 'Edge label switch router')
+translate('nodesDock', 'Label switch router')
+translate('nodesDock', 'Optical router')
+translate('nodesDock', 'Switch')
+translate('nodesDock', 'Hub')
+translate('nodesDock', 'Multilayer switch')
+translate('nodesDock', 'Route switch processor')
+translate('nodesDock', 'ATM switch')
+translate('nodesDock', 'Frame Relay switch')
+translate('nodesDock', 'Cloud')
+translate('nodesDock', 'Access Point')
+translate('nodesDock', 'Lightweight Access Point')
+translate('nodesDock', 'WLAN controller')
+translate('nodesDock', 'PIX firewall')

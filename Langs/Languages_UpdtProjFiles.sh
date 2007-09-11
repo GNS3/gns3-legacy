@@ -7,6 +7,7 @@ QRC_FILE="Languages.qrc"
 
 PY_SRC="DynamicStrings.py	\
 	../GNS3/*.py		\
+	../GNS3/Ui/*.py		\
         ../GNS3/Config/*.py	\
         ../GNS3/Globals/*.py	\
         ../GNS3/Link/*.py	\

@@ -44,18 +44,22 @@ class nodesDock(QtGui.QTreeWidget):
         count = 0
         emulated_devices = QtGui.QTreeWidgetItem(self, 0)
         emulated_devices.setText(0, translate("nodesDock", 'Emulated devices'))
+        emulated_devices.setData(0, QtCore.Qt.UserRole, QtCore.QVariant('Emulated devices'))
         emulated_devices.setExpanded(True)
         self.insertTopLevelItem(0, emulated_devices)
         decorative_devices = QtGui.QTreeWidgetItem(self, 0)
         decorative_devices.setText(0, translate("nodesDock", 'Decorative devices'))
+        decorative_devices.setData(0, QtCore.Qt.UserRole, QtCore.QVariant('Decorative devices'))
         decorative_devices.setExpanded(True)
         self.insertTopLevelItem(0, decorative_devices)
+
         for symbol in SYMBOLS:
             if symbol['name'] in DECORATIVE_SYMBOLS:
                 # Use custom type to known the symbol type
                 item = QtGui.QTreeWidgetItem(decorative_devices, 1000 + count)
                 item.setText(0, translate("nodesDock", symbol['name']))
                 item.setIcon(0,  QtGui.QIcon(symbol['normal_svg_file']))
+                item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(symbol['name']))
                 
                 decorative_devices.addChild(item)
             else:
@@ -63,6 +67,8 @@ class nodesDock(QtGui.QTreeWidget):
                 item = QtGui.QTreeWidgetItem(emulated_devices, 1000 + count)
                 item.setText(0, translate("nodesDock", symbol['name']))
                 item.setIcon(0,  QtGui.QIcon(symbol['normal_svg_file']))
+                item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(symbol['name']))
+
                 emulated_devices.addChild(item)
             count += 1
 
@@ -90,3 +96,24 @@ class nodesDock(QtGui.QTreeWidget):
         drag.setHotSpot(QtCore.QPoint(iconeSize.width(), iconeSize.height()))
         drag.setPixmap(icone.pixmap(iconeSize))
         drag.start(QtCore.Qt.MoveAction)
+
+    def retranslateItem(self, item):
+        # Translate current item
+        data = str(item.data(0, QtCore.Qt.UserRole).toString())
+        item.setText(0, translate('nodesDock', data))
+
+        # Recurse for child-items translation
+        childNum = 0
+        childCount = item.childCount()
+        while childNum < childCount:
+            child_item = item.child(childNum)
+            self.retranslateItem(child_item)
+            childNum += 1
+
+    def retranslateUi(self, MainWindow):
+        topItemNum = 0
+        topItemsCount = self.topLevelItemCount()
+        while topItemNum < topItemsCount:
+            topItem = self.topLevelItem(topItemNum)
+            self.retranslateItem(topItem)
+            topItemNum += 1
