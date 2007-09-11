@@ -92,7 +92,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.changeHostnameAct = QtGui.QAction(translate('AbstractNode', 'Change hostname'), self)
         self.changeHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
         self.connect(self.changeHostnameAct, QtCore.SIGNAL('triggered()'), self.__changeHostnameAction)
-
+        
     def __deleteAction(self):
         """ Action called for node deletion
         """

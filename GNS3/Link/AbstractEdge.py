@@ -103,7 +103,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         """ Set a custom tool tip
         """
         
-        self.setToolTip(translate("AbstractEdge", "Link: %s (%s) -> %s (%s)") % (self.source.hostname, self.srcIf, self.dest.hostname, self.destIf))
+        self.setToolTip(translate("AbstractEdge", "Link: ") + self.source.hostname + ' (' + self.srcIf + ') ' +'-> ' + self.dest.hostname + ' (' + self.destIf + ')')
 
     def keyReleaseEvent(self, event):
         """ Key release handler

@@ -314,7 +314,7 @@ class Console(cmd.Cmd):
                 if device.state != 'running':
                     print "Skipping %s device: %s" % (device.state, device.name)
                     continue
-                telnet(device.name)
+                telnet(device.name, self.namespace)
             except IndexError:
                 pass
             except (KeyError, AttributeError):
@@ -1181,14 +1181,16 @@ Examples:
         error('unknown command')
 
 
-def telnet(device):
+def telnet(device, namespace):
     """telnet to the console port of device"""
-    import __main__
-    telnetstring = __main__.telnetstring
-    port = str(__main__.devices[device].console)
-    host = str(__main__.devices[device].dynamips.host)
 
-    if telnetstring and not __main__.notelnet:
+    print namespace
+    telnetstring = namespace.telnetstring
+    print telnetstring
+    port = str(namespace.devices[device].console)
+    host = str(namespace.devices[device].dynamips.host)
+    print 'here'
+    if telnetstring and not namespace.notelnet:
         telnetstring = telnetstring.replace('%h', host)
         telnetstring = telnetstring.replace('%p', port)
         telnetstring = telnetstring.replace('%d', device)
