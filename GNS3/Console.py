@@ -181,5 +181,10 @@ class Console(PyCutExt, Dynagen_Console):
 
         for entry in self.history:
             print unicode(entry)
-        
-    #TODO: telnet and console
+
+    def do_py(self,  args):
+    
+        print 'Not implemented in GNS3'
+
+    #TODO: do_telnet, do_console, do_save, do_push, do_export, do_import, do_idlepc
+    

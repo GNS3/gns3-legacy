@@ -30,6 +30,7 @@ from GNS3.Config.Objects import systemDynamipsConf, systemGeneralConf
 from GNS3.Config.Config import ConfDB, GNS_Conf
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Translations import Translator
+from GNS3.Dynagen.dynagen import Dynagen
 import GNS3.Globals as globals
 
 class Application(QApplication, Singleton):
@@ -50,6 +51,7 @@ class Application(QApplication, Singleton):
         self.__workspace = None
         self.__scene = None
         self.__topology = None
+        self.__dynagen = None
 
         # Dict for storing config
         self.__systconf = {}
@@ -58,7 +60,7 @@ class Application(QApplication, Singleton):
         self.__hypervisors = {}
         self.iosimages_ids = 0
         self.hypervisors_ids = 0
-    
+
         # set global app to ourself
         globals.GApp = self
 
@@ -120,7 +122,6 @@ class Application(QApplication, Singleton):
     topology = property(__getTopology, __setTopology,
                     doc = 'Workspace instance')
 
-
     # property: `systconf'
     def __setSystConf(self, systconf):
         """ register the systconf instance
@@ -135,7 +136,6 @@ class Application(QApplication, Singleton):
         return self.__systconf
     systconf = property(__getSystConf, __setSystConf,
                     doc = 'System config instance')
-
 
     # property: `projconf'
     def __setProjConf(self, projconf):
@@ -181,8 +181,27 @@ class Application(QApplication, Singleton):
         return self.__hypervisors
     hypervisors = property(__getHypervisors, __setHypervisors,
                     doc = 'Hypervisors dictionnary')
+
+    # property: `dynagen'
+    def __setDynagen(self, dynagen):
+        """ register the dynagen instance
+        """
+        QMutexLocker(self.__clsmutex)
+        self.__dynagen = dynagen
+    
+    def __getDynagen(self):
+        """ return the systconf instance
+        """
+        QMutexLocker(self.__clsmutex)
+        return self.__dynagen
+    dynagen = property(__getDynagen, __setDynagen,
+                    doc = 'System config instance')
                     
     def run(self):
+    
+        # instantiation of Dynagen
+        self.__dynagen = Dynagen()
+    
         # INFO: Workspace create a ` Scene' object,
         # so it also set self.__topology
         self.__workspace = Workspace()

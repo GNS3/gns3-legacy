@@ -328,7 +328,9 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 self.slotDeleteHypervisor()
 
             # save settings
-            if globals.GApp.iosimages.has_key(hypervisorkey):
+            #TODO: check it
+            #if globals.GApp.iosimages.has_key(hypervisorkey):
+            if globals.GApp.hypervisors.has_key(hypervisorkey):
                 conf = globals.GApp.hypervisors[hypervisorkey]
             else:
                 conf = hypervisorConf()

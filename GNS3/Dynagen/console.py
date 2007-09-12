@@ -1184,12 +1184,10 @@ Examples:
 def telnet(device, namespace):
     """telnet to the console port of device"""
 
-    print namespace
     telnetstring = namespace.telnetstring
-    print telnetstring
     port = str(namespace.devices[device].console)
     host = str(namespace.devices[device].dynamips.host)
-    print 'here'
+
     if telnetstring and not namespace.notelnet:
         telnetstring = telnetstring.replace('%h', host)
         telnetstring = telnetstring.replace('%p', port)

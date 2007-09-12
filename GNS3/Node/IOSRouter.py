@@ -347,11 +347,11 @@ class IOSRouter(AbstractNode):
             self.dev.console = self.config.consoleport
         if self.config.startup_config != '':
             self.dev.cnfg = '"' + self.config.startup_config + '"'
-        if self.config.MAC != '':
-            self.dev.mac = self.config.MAC
-        self.dev.ram = self.config.RAM
-        self.dev.rom = self.config.ROM
-        self.dev.nvram = self.config.NVRAM
+        if self.config.mac != '':
+            self.dev.mac = self.config.mac
+        self.dev.ram = self.config.ram
+        self.dev.rom = self.config.rom
+        self.dev.nvram = self.config.nvram
         if self.config.pcmcia_disk0 > 0:
             self.dev.disk0 = self.config.pcmcia_disk0
         if self.config.pcmcia_disk1 > 0:
@@ -493,7 +493,6 @@ class IOSRouter(AbstractNode):
 #                    print destnode.hostname + ' port ' + str(dest_port)
                     self.dev.slot[source_slot].connect(source_type,  source_port, destnode.getHypervisor(), destination, dest_type,  dest_port)
             elif destinterface.lower()[:3] == 'nio':
-                print 'not here'
                 self.dev.slot[source_slot].nio(source_port, nio=self.createNIO(self.getHypervisor(),  destinterface))
             
     def startNode(self):

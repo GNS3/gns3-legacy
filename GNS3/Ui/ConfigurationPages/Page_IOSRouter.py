@@ -146,10 +146,10 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             self.comboBoxIOS.setCurrentIndex(index)
         self.spinBoxConsolePort.setValue(IOSconfig.consoleport)
         self.lineEditStartupConfig.setText(IOSconfig.startup_config)
-        self.lineEditMAC.setText(IOSconfig.MAC)
-        self.spinBoxRamSize.setValue(IOSconfig.RAM)
-        self.spinBoxRomSize.setValue(IOSconfig.ROM)
-        self.spinBoxNvramSize.setValue(IOSconfig.NVRAM)
+        self.lineEditMAC.setText(IOSconfig.mac)
+        self.spinBoxRamSize.setValue(IOSconfig.ram)
+        self.spinBoxRomSize.setValue(IOSconfig.rom)
+        self.spinBoxNvramSize.setValue(IOSconfig.nvram)
         self.spinBoxPcmciaDisk0Size.setValue(IOSconfig.pcmcia_disk0)
         self.spinBoxPcmciaDisk1Size.setValue(IOSconfig.pcmcia_disk1)
         if IOSconfig.mmap == True:
@@ -186,10 +186,10 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         if mac and not re.search(r"""^([0-9a-fA-F]{2}[:-]){5}[0-9a-fA-F]{2}$""", mac):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'MAC', translate("Page_IOSRouter", "Invalid MAC address (format required: hh:hh:hh:hh:hh:hh)"))
         else:
-            IOSconfig.MAC = mac
-        IOSconfig.RAM = self.spinBoxRamSize.value()
-        IOSconfig.ROM = self.spinBoxRomSize.value()
-        IOSconfig.NVRAM = self.spinBoxNvramSize.value()
+            IOSconfig.mac = mac
+        IOSconfig.ram = self.spinBoxRamSize.value()
+        IOSconfig.rom = self.spinBoxRomSize.value()
+        IOSconfig.nvram = self.spinBoxNvramSize.value()
         IOSconfig.pcmcia_disk0 = self.spinBoxPcmciaDisk0Size.value()
         IOSconfig.pcmcia_disk1 = self.spinBoxPcmciaDisk1Size.value()
         if self.checkBoxMapped.checkState() == QtCore.Qt.Checked:

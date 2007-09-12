@@ -20,7 +20,8 @@
 # Contact: contact@gns3.net
 #
 
-import sys,  socket
+import sys, socket
+import GNS3.NETFile as netfile
 import GNS3.Dynagen.dynamips_lib as lib
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtGui import QMainWindow, QAction, QActionGroup, QAction, QIcon
@@ -734,14 +735,18 @@ class Workspace(QMainWindow, Ui_MainWindow):
             QtGui.QMessageBox.warning(self, translate("Workspace", "Scenario"),  translate("Workspace", "You can't open a scenario when you are not in design mode"))
             return
 
-        (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter = 'GNS-3 Scenario (*.gns3s);;All Files (*.*)').getFile()
+        (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter = 'NET file (*.net);;GNS-3 Scenario (*.gns3s);;All Files (*.*)').getFile()
         if path != None:
             try:
                 # here the loading
-                ConfDB().loadFromXML(path)
-                self.projectFile = path
-                self.setWindowTitle("GNS3 - " + self.projectFile)
-                self.statusbar.showMessage(translate("Workspace", "Project Loaded..."))
+                if str(selected) == 'GNS-3 Scenario (*.gns3s)':
+                    ConfDB().loadFromXML(path)
+                    self.projectFile = path
+                    self.setWindowTitle("GNS3 - " + self.projectFile)
+                    self.statusbar.showMessage(translate("Workspace", "Project Loaded..."))
+                if str(selected) == 'NET file (*.net)':
+                    net = netfile.NETFile()
+                    net.cold_import(path)
             except IOError, (errno, strerror):
                 QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         
@@ -767,8 +772,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
         (path, selected) = fb.getSaveFile()
 
         if path != None and path != '':
-            if str(selected) == 'GNS-3 Scenario (*.gns3s)' and path[-6:] != '.gns3s':
-                path = path + '.gns3s'
-            self.projectFile = path
-            self.__action_Save()
-            self.setWindowTitle("GNS3 - " + self.projectFile)
+#            if str(selected) == 'GNS-3 Scenario (*.gns3s)' and path[-6:] != '.gns3s':
+#                path = path + '.gns3s'
+#            self.projectFile = path
+#            self.__action_Save()
+#            self.setWindowTitle("GNS3 - " + self.projectFile)
+            net = netfile.NETFile()
+            net.hot_export(path)

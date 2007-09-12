@@ -84,7 +84,7 @@ class HypervisorManager:
                 if not image.hypervisor_host:
                     # needs a local hypervisor
                     node_list.append(node)
-                    mem += node.config.RAM
+                    mem += node.config.ram
 
         # compute the number of hypervisors to start
         count = mem / MEM_USAGE_LIMIT
@@ -109,7 +109,7 @@ class HypervisorManager:
             if  count > 1 and progress.wasCanceled():
                 progress.reset()
                 break
-            mem += node.config.RAM
+            mem += node.config.ram
             current_node += 1
             node.configHypervisor('localhost',  hypervisor['port'],  self.hypervisor_wd,  self.baseUDP)
             if mem >= MEM_USAGE_LIMIT and current_node != nb_node:
