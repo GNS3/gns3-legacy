@@ -767,7 +767,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         (path, selected) = fb.getSaveFile()
 
         if path != None and path != '':
-            path = unicode(path,  'utf-8')
             if str(selected) == 'GNS-3 Scenario (*.gns3s)' and path[-6:] != '.gns3s':
                 path = path + '.gns3s'
             self.projectFile = path
