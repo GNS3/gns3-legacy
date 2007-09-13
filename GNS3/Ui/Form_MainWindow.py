@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Tue Sep 11 14:27:28 2007
-#      by: PyQt4 UI code generator 4.3
+# Created: Thu Sep 13 12:18:49 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -35,7 +35,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,840,28))
+        self.menubar.setGeometry(QtCore.QRect(0,0,840,25))
         self.menubar.setObjectName("menubar")
 
         self.menu_Edit = QtGui.QMenu(self.menubar)
@@ -74,7 +74,7 @@ class Ui_MainWindow(object):
 
         self.nodesDock = nodesDock(self.dockWidgetContents_NodeTypes)
         self.nodesDock.setIconSize(QtCore.QSize(24,24))
-        self.nodesDock.setRootIsDecorated(True)
+        self.nodesDock.setRootIsDecorated(False)
         self.nodesDock.setObjectName("nodesDock")
         self.vboxlayout.addWidget(self.nodesDock)
         self.dockWidget_NodeTypes.setWidget(self.dockWidgetContents_NodeTypes)

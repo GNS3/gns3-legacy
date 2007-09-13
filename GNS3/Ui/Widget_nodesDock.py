@@ -39,37 +39,37 @@ class nodesDock(QtGui.QTreeWidget):
     def designMode(self):
         """ Create items for design mode
         """
-        
+
         self.clear()
         count = 0
-        emulated_devices = QtGui.QTreeWidgetItem(self, 0)
-        emulated_devices.setText(0, translate("nodesDock", 'Emulated devices'))
-        emulated_devices.setData(0, QtCore.Qt.UserRole, QtCore.QVariant('Emulated devices'))
-        emulated_devices.setExpanded(True)
-        self.insertTopLevelItem(0, emulated_devices)
-        decorative_devices = QtGui.QTreeWidgetItem(self, 0)
-        decorative_devices.setText(0, translate("nodesDock", 'Decorative devices'))
-        decorative_devices.setData(0, QtCore.Qt.UserRole, QtCore.QVariant('Decorative devices'))
-        decorative_devices.setExpanded(True)
-        self.insertTopLevelItem(0, decorative_devices)
+#        emulated_devices = QtGui.QTreeWidgetItem(self, 0)
+#        emulated_devices.setText(0, translate("nodesDock", 'Emulated devices'))
+#        emulated_devices.setData(0, QtCore.Qt.UserRole, QtCore.QVariant('Emulated devices'))
+#        emulated_devices.setExpanded(True)
+#        self.insertTopLevelItem(0, emulated_devices)
+#        decorative_devices = QtGui.QTreeWidgetItem(self, 0)
+#        decorative_devices.setText(0, translate("nodesDock", 'Decorative devices'))
+#        decorative_devices.setData(0, QtCore.Qt.UserRole, QtCore.QVariant('Decorative devices'))
+#        decorative_devices.setExpanded(True)
+#        self.insertTopLevelItem(0, decorative_devices)
 
         for symbol in SYMBOLS:
-            if symbol['name'] in DECORATIVE_SYMBOLS:
-                # Use custom type to known the symbol type
-                item = QtGui.QTreeWidgetItem(decorative_devices, 1000 + count)
-                item.setText(0, translate("nodesDock", symbol['name']))
-                item.setIcon(0,  QtGui.QIcon(symbol['normal_svg_file']))
-                item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(symbol['name']))
-                
-                decorative_devices.addChild(item)
-            else:
-                # Use custom type to known the symbol type
-                item = QtGui.QTreeWidgetItem(emulated_devices, 1000 + count)
-                item.setText(0, translate("nodesDock", symbol['name']))
-                item.setIcon(0,  QtGui.QIcon(symbol['normal_svg_file']))
-                item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(symbol['name']))
+#            if symbol['name'] in DECORATIVE_SYMBOLS:
+#                # Use custom type to known the symbol type
+#                item = QtGui.QTreeWidgetItem(decorative_devices, 1000 + count)
+#                item.setText(0, translate("nodesDock", symbol['name']))
+#                item.setIcon(0,  QtGui.QIcon(symbol['normal_svg_file']))
+#                item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(symbol['name']))
+#                
+#                decorative_devices.addChild(item)
+#            else:
+#                # Use custom type to known the symbol type
+            item = QtGui.QTreeWidgetItem(self, 1000 + count)
+            item.setText(0, translate("nodesDock", symbol['name']))
+            item.setIcon(0,  QtGui.QIcon(symbol['normal_svg_file']))
+            item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(symbol['name']))
 
-                emulated_devices.addChild(item)
+                #emulated_devices.addChild(item)
             count += 1
 
     def mouseMoveEvent(self, event):
