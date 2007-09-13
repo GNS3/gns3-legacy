@@ -778,4 +778,4 @@ class Workspace(QMainWindow, Ui_MainWindow):
 #            self.__action_Save()
 #            self.setWindowTitle("GNS3 - " + self.projectFile)
             net = netfile.NETFile()
-            net.hot_export(path)
+            net.live_export(path)

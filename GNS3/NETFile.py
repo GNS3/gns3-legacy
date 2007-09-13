@@ -23,12 +23,17 @@
 import os
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as dynagen
+import GNS3.Dynagen.dynamips_lib as lib
 from GNS3.Dynagen.configobj import ConfigObj
 from GNS3.Dynagen.validate import Validator
 from GNS3.Config.Objects import iosImageConf,  hypervisorConf
 from GNS3.Node.IOSRouter import IOSRouter
+from GNS3.Node.ATMSW import ATMSW
+from GNS3.Node.ETHSW import ETHSW
+from GNS3.Node.FRSW import FRSW
+from GNS3.Node.Hub import Hub
 
-class NETFile:
+class NETFile(object):
     """ NETFile implementing the .net file import/export
     """
 
@@ -209,75 +214,106 @@ class NETFile:
 #    'hypervisor_host': '',
 #    'hypervisor_port': 7200,
 
-    def hot_export(self, path):
+    def live_import(self, path):
+    
+        pass
+
+    def live_export(self, path):
     
         netfile = ConfigObj()
         netfile.filename = 'test.net'
         
         for (dynamipskey, dynamips) in dynagen.dynamips.iteritems():
+            # dynamips section
             netfile[dynamipskey] = {}
 
             for (devicekey,  device) in dynagen.devices.iteritems():
-                model = device.model[1:]
-                if not netfile.has_key(model):
-                    netfile[dynamipskey][model]= {}
-                    netfile[dynamipskey][model]['image'] = device.image
-                    netfile[dynamipskey][model]['ram'] = device.ram
-                    netfile[dynamipskey][model]['nvram'] = device.nvram
-                    netfile[dynamipskey][model]['rom'] = device.rom
-                    netfile[dynamipskey][model]['disk0'] = device.disk0
-                    netfile[dynamipskey][model]['disk1'] = device.disk1
-                    netfile[dynamipskey][model]['iomem'] = device.iomem
-                    netfile[dynamipskey][model]['cnfg'] = device.cnfg
-                    netfile[dynamipskey][model]['confreg'] = device.confreg
-                    netfile[dynamipskey][model]['mmap'] = device.mmap
-                    netfile[dynamipskey][model]['idlepc'] = device.idlepc
-                    netfile[dynamipskey][model]['exec_area'] = device.exec_area
+                if device.isrouter:
+                    # export a router
+                    model = device.model[1:]
+                    if not netfile.has_key(model):
+                        # export model subsection
+                        netfile[dynamipskey][model]= {}
+                        netfile[dynamipskey][model]['image'] = device.image[1:-1]
+                        netfile[dynamipskey][model]['ram'] = device.ram
+                        netfile[dynamipskey][model]['nvram'] = device.nvram
+                        netfile[dynamipskey][model]['rom'] = device.rom
+                        if device.disk0:
+                            netfile[dynamipskey][model]['disk0'] = device.disk0
+                        if device.disk1:
+                            netfile[dynamipskey][model]['disk1'] = device.disk1
+                        if model[:2] == '36' and device.iomem:
+                            netfile[dynamipskey][model]['iomem'] = device.iomem
+                        if device.cnfg:
+                            netfile[dynamipskey][model]['cnfg'] = device.cnfg
+                        netfile[dynamipskey][model]['mmap'] = device.mmap
+                        if device.idlepc:
+                            netfile[dynamipskey][model]['idlepc'] = device.idlepc
+                        netfile[dynamipskey][model]['exec_area'] = device.exec_area
+    
+                    hostname = devicekey
+                    devicekey = 'ROUTER ' + devicekey
+                    netfile[dynamipskey][devicekey] = {}
+                    netfile[dynamipskey][devicekey]['model'] = model
+                    netfile[dynamipskey][devicekey]['console'] = device.console
+                    if device.mac:
+                        netfile[dynamipskey][devicekey]['mac'] = device.mac
                     
-                    #netfile[dynamipskey][model]['ghostios'] = device.ghostios
+                    for node in globals.GApp.topology.nodes.values():
+                        if type(node) == IOSRouter and node.hostname == hostname:
+                            for interface in node.getConnectedInterfaceList():
+                                (destnode, destinterface)  = node.getConnectedNeighbor(interface)
+                                if destinterface.lower()[:3] == 'nio':
+                                    destination = destinterface
+                                elif type(destnode) == Hub:
+                                    destination = 'LAN' + ' ' + destinterface
+                                else:
+                                    destination = destnode.hostname + ' ' + destinterface
+                                netfile[dynamipskey][devicekey][interface] = destination
+                            # export the node position
+                            netfile[dynamipskey][devicekey]['x'] = node.x()
+                            netfile[dynamipskey][devicekey]['y'] = node.y()
 
-#    configuration = .... # Base 64 encoded IOS configuration.
+                if type(device) == lib.ETHSW:
+                    # export a Ethernet switch
+                    hostname = devicekey
+                    devicekey = 'ETHSW ' + devicekey
+                    netfile[dynamipskey][devicekey] = {}
+                    for node in globals.GApp.topology.nodes.values():
+                        if type(node) == ETHSW and node.hostname == hostname:
+                            connected_interfaces = node.getConnectedInterfaceList()
+                            for interface in connected_interfaces:
+                                destinterface = node.getConnectedNeighbor(interface)
+                                #TODO: finish connection to NIO
+                                connected_interfaces = map(int,  connected_interfaces)
+                                for (vlan,  portlist) in node.config.vlans.iteritems():
+                                    for port in portlist:
+                                        if port in connected_interfaces:
+                                            porttype = node.config.ports[port]
+                                            netfile[dynamipskey][devicekey][str(port)] = porttype + ' ' + str(vlan)
 
-#    ghostios = false  # Enable or disable IOS ghosting for all 3620s on this server
-#    ghostsize = 128  # Manually tweak the amount of virtual ram allocated by the ghost image(s) for all 3620s on this server. Use of this option should never be necessary, because the ghost size is now automatically calculated.
-#    sparsemem = false # Enable or disable sparse memory support for all 7200s on this server
-#    idlemax = 1500   # Advanced manipulation of idlepc. Applies to all 7200s on this server.
-#    idlesleep = 30   # Advanced manipulation of idlepc. Applies to all 7200s on this server.
-                    
-                    
-#                print device.dynamips.host
-#                print device.dynamips.port
-                netfile[dynamipskey][devicekey] = {}
-                netfile[dynamipskey][devicekey]['model'] = model
-                netfile[dynamipskey][devicekey]['console'] = device.console
-                netfile[dynamipskey][devicekey]['mac'] = device.mac
-                
-#    aux = 3000      # Aux port, defaults to none
-#    slot0 = PA-C7200-IO-FE  # Ethernet in slot 0. Use "Leopard-2FE" for slot 0 on 3660s. 2961/3725/3745 already have an integrated 2FE in slot 0 automatically. slot0 assignments on these routers are ignored.
-#    #slot0 = PA-C7200-IO-2FE    # PA-C7200-IO-2FE in slot0
-#    #slot0 = PA-C7200-IO-GE-E   # PA-C7200-IO-GE-E
-#    slot1 = PA-FE-TX        # Ethernet in slot 1
-#    slot3 = PA-4T           # PA-4T+ in slot 3
-#    slot6 = PA-4E	    # PA-4E in slot 6
-#    #slotx = PA-POS-OC3	    # PA-POS-OC3 in slot x
-#    #slotx = PA-2FE-TX      # PA-2FE-TX in slot x
-#    #slotx = PA-GE          # PA-GE in slot x
-#
-#    # For adapters that provide WIC slots (like the 2600 MBs) manual WIC specification
-#    wic0/1 = WIC-1T         # Insert a WIC-1T in slot 0 wic slot 1
-#
-#    # Interface specification. Can take the following forms:
-#    f1/0 = R2 f1/0      # Connect to f1/0 on device R2
-#    f2/0 = LAN 1        # Connect to bridged LAN 1
-#    s3/0 = R2 s3/0      # Connect to s3/0 on device R2
-#    s3/1 = F1 1         # Connect to port 1 on device "F1" (a frame relay switch)
-#    s3/2 = F2 1
-#    a4/0 = A1 1         # Connect to port 1 on device "A1" (an ATM switch)
-#    f5/0 = NIO_linux_eth:eth0   # manually specify an NIO
-        
-        #netfile[self.namespace.devices[device].imagename] = idlepc
+                if type(device) == lib.FRSW:
+                    # export a frame relay switch
+                    hostname = devicekey
+                    devicekey = 'FRSW ' + devicekey
+                    netfile[dynamipskey][devicekey] = {}
+                    for node in globals.GApp.topology.nodes.values():
+                        if type(node) == FRSW and node.hostname == hostname:
+                            for (source,  destination) in node.config.mapping.iteritems():
+                                netfile[dynamipskey][devicekey][source] = destination
+                                
+                if type(device) == lib.ATMSW:
+                    # export a ATM switch
+                    hostname = devicekey
+                    devicekey = 'ATMSW ' + devicekey
+                    netfile[dynamipskey][devicekey] = {}
+                    for node in globals.GApp.topology.nodes.values():
+                        if type(node) == ATMSW and node.hostname == hostname:
+                            for (source,  destination) in node.config.mapping.iteritems():
+                                netfile[dynamipskey][devicekey][source] = destination
+
         try:
             netfile.write()
-        except IOError,e:
+        except IOError, e:
             print '***Error: ' + str(e)
             return

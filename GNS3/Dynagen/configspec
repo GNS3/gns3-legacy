@@ -40,5 +40,7 @@ udp = integer(min=1, max=65535, default=None)
     idlemax = integer(min=1, default=None)
     idlesleep = integer(min=1, default=None)
     oldidle = boolean(default=None)
+    x = float(default=None)
+    y = float(default=None)
 
 
