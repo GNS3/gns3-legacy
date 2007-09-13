@@ -61,7 +61,7 @@ class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
         # Defaults dynamips terminal command
         if self.conf.term_cmd == '':
             if sys.platform.startswith('darwin'):
-                self.conf.term_cmd = unicode("/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"' -e 'tell application \"terminal\" to tell window 1 to set custom title to \"%d\"'",  'utf-8')
+                self.conf.term_cmd = unicode("/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'",  'utf-8')
             elif sys.platform.startswith('win32'):
                 self.conf.term_cmd = unicode("start telnet %h %p",  'utf-8')
             else:
