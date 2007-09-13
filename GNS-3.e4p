@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.1.dtd">
 <!-- eric4 project file for project GNS-3 -->
-<!-- Saved: 2007-09-08, 11:31:18 -->
+<!-- Saved: 2007-09-12, 19:50:37 -->
 <!-- Copyright (C) 2007 GNS-3 Dev Team, contact@gns3.net -->
 <Project version="4.1">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -11,10 +11,6 @@
   <Author>GNS-3 Dev Team</Author>
   <Email>contact@gns3.net</Email>
   <Sources>
-    <Source>
-      <Dir>translations</Dir>
-      <Name>translations.py</Name>
-    </Source>
     <Source>
       <Dir>GNS3</Dir>
       <Name>Application.py</Name>
@@ -326,6 +322,10 @@
       <Dir>Dynagen</Dir>
       <Name>dynagen.py</Name>
     </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Name>NETFile.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -375,10 +375,6 @@
   <Translations>
   </Translations>
   <Resources>
-    <Resource>
-      <Dir>translations</Dir>
-      <Name>translations.qrc</Name>
-    </Resource>
   </Resources>
   <Interfaces>
   </Interfaces>
