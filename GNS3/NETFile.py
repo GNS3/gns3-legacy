@@ -52,7 +52,7 @@ class NETFile(object):
         """
 
         # Is it a "simple" property? If so set it and forget it.
-        if option in ('rom', 'clock', 'npe', 'ram', 'nvram', 'confreg', 'midplane', 'console', 'aux', 'mac', 'mmap', 'idlepc', 'exec_area', 'disk0', 'disk1', 'iomem', 'idlemax', 'idlesleep', 'oldidle', 'sparsemem'):
+        if option in ('rom', 'clock', 'npe', 'ram', 'nvram', 'confreg', 'midplane', 'console', 'aux', 'mac', 'mmap', 'idlepc', 'exec_area', 'disk0', 'disk1', 'iomem', 'idlemax', 'idlesleep', 'oldidle', 'sparsemem',  'x',  'y'):
             print option
             setattr(device, option, value)
             return True
@@ -186,7 +186,18 @@ class NETFile(object):
                     node.setPos(0, 0)
                     globals.GApp.topology.addNode(node)
                     #setattr(node.config, 'ram', 96)
-                    self.setdefaults(node.config, devdefaults[device['model']])
+                    settings['ghostios'] = config['ghostios']
+                    for option in settings:
+                        self.setproperty(node.config, option, defaults[option])
+#
+#    def setproperty(self, device, option, value):
+#        """ If it is valid, set the option and return True. Otherwise return False
+#        """
+#
+#        # Is it a "simple" property? If so set it and forget it.
+#        if option in ('rom', 'clock', 'npe', 'ram', 'nvram', 'confreg', 'midplane', 'console', 'aux', 'mac', 'mmap', 'idlepc', 'exec_area', 'disk0', 'disk1', 'iomem', 'idlemax', 'idlesleep', 'oldidle', 'sparsemem',  'x',  'y'):
+#            print option
+#            setattr(device, option, value)
                     
 #                    for option in devdefaults[device['model']]:
 #                        print option
@@ -216,13 +227,46 @@ class NETFile(object):
 
     def live_import(self, path):
     
-        pass
+        hypervisors = []
+        dir = os.path.dirname(dynagen.__file__)
+        #dynagen.CONFIGSPECPATH.append(dir)
+        #globals.GApp.dynagen.import_config(path)
+    
+        configspec = dir + '/' + dynagen.CONFIGSPEC
+        config = ConfigObj(path, configspec=configspec, raise_errors=True)
+        vtor = Validator()
+        res = config.validate(vtor, preserve_errors=True)
+        for section in config.sections:
+            server = config[section]
+            server.host = server.name
+            controlPort = None
+            if ':' in server.host:
+                (server.host, controlPort) = server.host.split(':')
+            if server['port'] != None:
+                controlPort = server['port']
+            if controlPort == None:
+                controlPort = 7200
+        hypervisors.append(server.host + ':' + controlPort)
+        
+        dir = os.path.dirname(dynagen.__file__)
+        dynagen.CONFIGSPECPATH.append(dir)
+        globals.GApp.dynagen.import_config(path)
+
+        for (devicekey,  device) in dynagen.devices.iteritems():
+            if device.isrouter:
+                renders = globals.GApp.scene.renders['Router']
+                node = IOSRouter(renders['normal'], renders['selected'])
+                node.setPos(0, 0)
+                globals.GApp.topology.addNode(node)
+#        #setattr(node.config, 'ram', 96)
+#        self.setdefaults(node.config, devdefaults[device['model']])
 
     def live_export(self, path):
     
         netfile = ConfigObj()
         netfile.filename = 'test.net'
-        
+        destination_list = []
+
         for (dynamipskey, dynamips) in dynagen.dynamips.iteritems():
             # dynamips section
             netfile[dynamipskey] = {}
@@ -230,7 +274,7 @@ class NETFile(object):
             for (devicekey,  device) in dynagen.devices.iteritems():
                 if device.isrouter:
                     # export a router
-                    model = device.model[1:]
+                    model = device.chassis
                     if not netfile.has_key(model):
                         # export model subsection
                         netfile[dynamipskey][model]= {}
@@ -254,12 +298,13 @@ class NETFile(object):
                     hostname = devicekey
                     devicekey = 'ROUTER ' + devicekey
                     netfile[dynamipskey][devicekey] = {}
-                    netfile[dynamipskey][devicekey]['model'] = model
+                    netfile[dynamipskey][devicekey]['model'] = device.chassis
                     netfile[dynamipskey][devicekey]['console'] = device.console
                     if device.mac:
                         netfile[dynamipskey][devicekey]['mac'] = device.mac
-                    
+
                     for node in globals.GApp.topology.nodes.values():
+                        # export connection settings
                         if type(node) == IOSRouter and node.hostname == hostname:
                             for interface in node.getConnectedInterfaceList():
                                 (destnode, destinterface)  = node.getConnectedNeighbor(interface)
@@ -268,8 +313,13 @@ class NETFile(object):
                                 elif type(destnode) == Hub:
                                     destination = 'LAN' + ' ' + destinterface
                                 else:
+                                    if hostname + ' ' + interface in destination_list:
+                                        continue
                                     destination = destnode.hostname + ' ' + destinterface
+                                    if destination not in destination_list:
+                                        destination_list.append(destination)
                                 netfile[dynamipskey][devicekey][interface] = destination
+                                    
                             # export the node position
                             netfile[dynamipskey][devicekey]['x'] = node.x()
                             netfile[dynamipskey][devicekey]['y'] = node.y()

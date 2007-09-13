@@ -745,8 +745,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     self.setWindowTitle("GNS3 - " + self.projectFile)
                     self.statusbar.showMessage(translate("Workspace", "Project Loaded..."))
                 if str(selected) == 'NET file (*.net)':
+#                    net = netfile.NETFile()
+#                    net.cold_import(path)
+                    
                     net = netfile.NETFile()
-                    net.cold_import(path)
+                    net.live_import(path)
             except IOError, (errno, strerror):
                 QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         

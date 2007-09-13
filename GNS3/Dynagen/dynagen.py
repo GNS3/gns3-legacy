@@ -798,6 +798,14 @@ class Dynagen:
         for connection in connectionlist:
             self.debug('connection: ' + str(connection))
             (router, source, dest) = connection
+#            match_obj = interface_re.search(source)
+#            if match_obj:
+#                (source_type, source_slot, source_port) = match_obj.group(1,2,3)
+#                if source_slot in router.slot and router.slot[int(source_slot)].connected(source_port):
+#                    print 'ignoring value'
+#                    continue
+#            else:
+#                print 'Warning, no matching'
             try:
                 result = self.connect(router, source, dest)
             except DynamipsError, e:

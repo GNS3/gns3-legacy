@@ -45,7 +45,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.__edgeList = set()
         self.__selectedInterface = None
         self.__flag_hostname = False
-        self.type = 'Unknown'
+        #self.type = 'Unknown'
         
         if error == None:
             error = QtGui.QErrorMessage(globals.GApp.mainWindow)
