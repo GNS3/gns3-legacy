@@ -1,20 +1,20 @@
 INSTALLATION
 
- * Here are the dependencies of GNS-3:
+ * GNS3 depends on:
 
- 	- Qt >= 4.3
- 	- Python >= 2.4
- 	- Sip >= 4.5
- 	- PyQt >= 4.1
+ 	- Qt 4.3 (or higher)
+ 	- Python 2.4 (or higher)
+  	- Sip 4.5 (or higher)
+ 	- PyQt 4.1 (or higher)
 
  * WINDOWS users:
 
-	1. Download GNS3 all-in-one for Windows on http://www.gns3.net (~23 MB)
+	1. Download the GNS3 all-in-one for Windows on http://www.gns3.net (~23 MB)
    
 	This program will install a binary version of GNS-3 and two dependencies:
 
  		- WinPCAP 4.0
- 		- Dynamips 0.2.7
+ 		- Dynamips
 
 	2. Run it and follow the prompts. You will be asked to reboot your PC at the end.
 
@@ -22,14 +22,14 @@ INSTALLATION
 
  * Linux users:
 
- 	- You have to compile Qt 4.3, sip (development snapshot) and pyqt (development snapshot) to run GNS-3.
+ 	- You have to compile Qt 4.3 (or higher), sip (development snapshot) and pyqt (development snapshot) to run GNS-3.
 
 
  * MacOS X users:
 
 	1. Install the Apple Devs Tools (on your Mac OS X DvD or download it on ADC account)
 
-	2. Download python 2.5.1 for Macintosh OS X on http://www.python.org/download/ and install it.
+	2. Download python 2.5.1 (or higher) for MacOS X on http://www.python.org/download/ and install it.
 
 	3. Download qt-mac-opensource-4.3.0.dmg on http://trolltech.com/developer/downloads/qt/mac and install it
 
@@ -42,11 +42,7 @@ INSTALLATION
 
 CURRENT LIMITATIONS
 
-Those limitations will be corrected in future releases.
-
- * Currently the symbols are purely decorative, meaning there isn't any difference between them.
- * We don't use the ghost feature.
- * IOmem is not use at the moment.
+None :) .
 
 OPEN ISSUES
 
@@ -56,13 +52,13 @@ OPEN ISSUES
 BUG REPORT
 
  * Open a new ticket on the trac (development tab on www.gns3.net). Please be as explicit as you can. Try to 
-remember what was you last action and join the exception.log file if it exits.
+remember what was your last actions and join the exception.log file if it exists.
 
-KNOW BUGS
+KNOWN BUGS
 
- * The interface GT96100_FE don't work with IOS c2691
+ * The interface GT96100_FE doesn't work with IOS c2691.
  
 ADVICE
 
- * We noticed that on Linux performances are far better than on Windows when loading many IOS.
+ * On Linux, the performances are far better than on Windows when loading many IOS.
  
