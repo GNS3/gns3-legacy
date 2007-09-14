@@ -731,9 +731,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Open a file (scenario or dynagen .NET format)
         """
         
-        if self.currentMode != globals.Enum.Mode.Design:
-            QtGui.QMessageBox.warning(self, translate("Workspace", "Scenario"),  translate("Workspace", "You can't open a scenario when you are not in design mode"))
-            return
+#        if self.currentMode != globals.Enum.Mode.Design:
+#            QtGui.QMessageBox.warning(self, translate("Workspace", "Scenario"),  translate("Workspace", "You can't open a scenario when you are not in design mode"))
+#            return
 
         (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter = 'NET file (*.net);;GNS-3 Scenario (*.gns3s);;All Files (*.*)').getFile()
         if path != None:

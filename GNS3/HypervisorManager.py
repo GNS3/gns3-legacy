@@ -50,7 +50,7 @@ class HypervisorManager:
         
         self.stopProcHypervisors()
         
-    def __startNewHypervisor(self):
+    def startNewHypervisor(self):
         """ Create a new dynamips process and start it
         """
     
@@ -98,7 +98,7 @@ class HypervisorManager:
 
         mem = 0
         current_node = 0
-        hypervisor = self.__startNewHypervisor()
+        hypervisor = self.startNewHypervisor()
         if hypervisor == None:
             return False
         nb_node = len(node_list)
@@ -114,7 +114,7 @@ class HypervisorManager:
             node.configHypervisor('localhost',  hypervisor['port'],  self.hypervisor_wd,  self.baseUDP)
             if mem >= MEM_USAGE_LIMIT and current_node != nb_node:
                 # start a new hypervisor
-                hypervisor = self.__startNewHypervisor()
+                hypervisor = self.startNewHypervisor()
                 # wait for starting
                 time.sleep(1)
                 # change the base UDP
