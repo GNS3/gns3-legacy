@@ -20,13 +20,15 @@
 # Contact: contact@gns3.net
 #
 
-from PyQt4 import QtCore, QtGui
+import os
 import GNS3.Globals as globals
+from PyQt4 import QtCore, QtGui
+from GNS3 import pkgdir
 
 class Translator(object):
     def __init__(self):
         self.__loadedLangs = {}
-        self.__i18n_dir = "./Langs"
+        self.__i18n_dir = os.path.join(pkgdir, "Langs")
         self.__lastTranslator = None
 
     def getAvailables(self):
