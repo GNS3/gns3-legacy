@@ -367,13 +367,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Function called to switch to mode `Design'
         """
 
-        try:
-            for node in globals.GApp.topology.nodes.itervalues():
-                node.resetNode()
-                if type(node) == IOSRouter:
-                    node.cleanNodeFiles()
-        except (lib.DynamipsErrorHandled,  socket.error):
-            pass
+	try:
+	        try:
+        	    for node in globals.GApp.topology.nodes.itervalues():
+                	node.resetNode()
+	                if type(node) == IOSRouter:
+        	            node.cleanNodeFiles()
+	        except (lib.DynamipsErrorHandled,  socket.error):
+        	    pass
         finally:
             self.cleanNodeStates()
 

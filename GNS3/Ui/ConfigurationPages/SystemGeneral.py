@@ -34,7 +34,7 @@ class UiConfig_SystemGeneral(QtGui.QWidget, Ui_SystemGeneral):
         for lang in self.langs:
             lang_code = lang[0]
             lang_name = lang[1]
-            lang_displayText = "%s (%s)" % (lang_name, lang_code)
+            lang_displayText = u"%s (%s)" % (lang_name, lang_code)
             self.langsBox.addItem(lang_displayText)
 
         self.loadConf()

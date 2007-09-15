@@ -23,7 +23,7 @@
 from PyQt4 import QtCore, QtGui
 import GNS3.Globals as globals
 
-class Translator():
+class Translator(object):
     def __init__(self):
         self.__loadedLangs = {}
         self.__i18n_dir = "./Langs"
