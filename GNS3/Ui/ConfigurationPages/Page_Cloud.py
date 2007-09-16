@@ -79,14 +79,15 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
     
         interfaces = []
         try:
-            fd = open('/proc/net/dev', 'r')
-            fd.readline()
-            for line in fd:
-                match = re.search(r"""(\w+):.*""",  line)
-                if match:
-                    interfaces.append(match.group(1))
-        except:
-            return []
+            try:
+                fd = open('/proc/net/dev', 'r')
+                fd.readline()
+                for line in fd:
+                    match = re.search(r"""(\w+):.*""",  line)
+                    if match:
+                        interfaces.append(match.group(1))
+            except:
+                return []
         finally:
             fd.close()
         return interfaces
