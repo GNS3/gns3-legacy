@@ -6,15 +6,15 @@ PROJ_FILE="Languages.pro"
 QRC_FILE="Languages.qrc"
 
 PY_SRC="DynamicStrings.py	\
-	../GNS3/*.py		\
-	../GNS3/Ui/*.py		\
-        ../GNS3/Config/*.py	\
-        ../GNS3/Globals/*.py	\
-        ../GNS3/Link/*.py	\
-        ../GNS3/Node/*.py"
+	../*.py		\
+	../Ui/*.py		\
+        ../Config/*.py	\
+        ../Globals/*.py	\
+        ../Link/*.py	\
+        ../Node/*.py"
 
-UI_SRC="../GNS3/Ui/*.ui	\
-	../GNS3/Ui/ConfigurationPages/*.ui"
+UI_SRC="../Ui/*.ui	\
+	../Ui/ConfigurationPages/*.ui"
 
 #----------------------------------------------------------------------
 

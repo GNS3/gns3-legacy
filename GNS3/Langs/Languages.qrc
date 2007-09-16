@@ -3,5 +3,6 @@
    <qresource>
       <file alias="en">Lang_en.qm</file>
       <file alias="fr">Lang_fr.qm</file>
+      <file alias="de">Lang_de.qm</file>
    </qresource>
 </RCC>
