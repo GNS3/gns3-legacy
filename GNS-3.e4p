@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.1.dtd">
 <!-- eric4 project file for project GNS-3 -->
-<!-- Saved: 2007-09-12, 19:50:37 -->
+<!-- Saved: 2007-09-15, 18:13:59 -->
 <!-- Copyright (C) 2007 GNS-3 Dev Team, contact@gns3.net -->
 <Project version="4.1">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -207,9 +207,6 @@
       <Name>__init__.py</Name>
     </Source>
     <Source>
-      <Name>gns3.pyw</Name>
-    </Source>
-    <Source>
       <Dir>GNS3</Dir>
       <Dir>Node</Dir>
       <Name>IOSRouter.py</Name>
@@ -325,6 +322,9 @@
     <Source>
       <Dir>GNS3</Dir>
       <Name>NETFile.py</Name>
+    </Source>
+    <Source>
+      <Name>gns3</Name>
     </Source>
   </Sources>
   <Forms>

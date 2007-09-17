@@ -564,15 +564,10 @@ class Dynagen:
         print('*** Warning: ignoring invalid switch mapping entry %s = %s' % (source, dest))
         return False
 
-
-    def import_config(self, FILENAME):
-        """ Read in the config file and set up the network
+    def open_config(self,  FILENAME):
+        """ Open the config file
         """
-        global globalconfig, globaludp, handled, debuglevel
-        connectionlist = []     # A list of router connections
-        maplist = []            # A list of Frame Relay and ATM switch mappings
-        ethswintlist = []           # A list of Ethernet Switch vlan mappings
-
+        
         # look for configspec in CONFIGSPECPATH and the same directory as dynagen
         realpath = os.path.realpath(sys.argv[0])
         self.debug('realpath ' + realpath)
@@ -600,7 +595,7 @@ class Dynagen:
             except IOError:
                #doerror("Can't open configuration file")
                continue
-
+        
         vtor = Validator()
         res = config.validate(vtor, preserve_errors=True)
         if res == True:
@@ -620,7 +615,19 @@ class Dynagen:
             raw_input("Press ENTER to continue")
             handled = True
             sys.exit(1)
+            
+        return config
+        
+    def import_config(self, FILENAME):
+        """ Read in the config file and set up the network
+        """
+        global globalconfig, globaludp, handled, debuglevel
+        connectionlist = []     # A list of router connections
+        maplist = []            # A list of Frame Relay and ATM switch mappings
+        ethswintlist = []           # A list of Ethernet Switch vlan mappings
 
+        config = self.open_config(FILENAME)
+        
         debuglevel = config['debug']
         if debuglevel > 0: setdebug(True)
 
@@ -893,7 +900,8 @@ class Dynagen:
             else:
                 self.doerror('Invalid Ethernet switchport config: %s = %s' % (source, dest))
 
-
+        return (connectionlist, maplist, ethswintlist)
+                
     def import_ini(self, FILENAME):
         """ Read in the INI file
         """

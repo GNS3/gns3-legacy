@@ -367,14 +367,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Function called to switch to mode `Design'
         """
 
-	try:
-	        try:
-        	    for node in globals.GApp.topology.nodes.itervalues():
-                	node.resetNode()
-	                if type(node) == IOSRouter:
-        	            node.cleanNodeFiles()
-	        except (lib.DynamipsErrorHandled,  socket.error):
-        	    pass
+        try:
+                try:
+                    for node in globals.GApp.topology.nodes.itervalues():
+                        node.resetNode()
+                        if type(node) == IOSRouter:
+                            node.cleanNodeFiles()
+                except (lib.DynamipsErrorHandled,  socket.error):
+                    pass
         finally:
             self.cleanNodeStates()
 
@@ -772,7 +772,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         fb = fileBrowser(translate("Workspace", "Save Project As"), 
-                                filter='GNS-3 Scenario (*.gns3s)')
+                                filter='NET file (*.net)')
         (path, selected) = fb.getSaveFile()
 
         if path != None and path != '':

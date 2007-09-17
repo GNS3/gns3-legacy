@@ -38,132 +38,23 @@ class NETFile(object):
     """ NETFile implementing the .net file import/export
     """
 
-    def cold_import(self, path):
-        """ Do an import without any loaded hypervisor
-            path: string
-        """
-        
-        connectionlist = []     # A list of router connections
-        maplist = []            # A list of Frame Relay and ATM switch mappings
-        ethswintlist = []           # A list of Ethernet Switch vlan mappings
-
-        dir = os.path.dirname(dynagen.__file__)
-        configspec = dir + '/' + dynagen.CONFIGSPEC
-        config = ConfigObj(path, configspec=configspec, raise_errors=True)
-        vtor = Validator()
-        res = config.validate(vtor, preserve_errors=True)
-        for section in config.sections:
-            server = config[section]
-            server.host = server.name
-            controlPort = None
-            if ':' in server.host:
-                (server.host, controlPort) = server.host.split(':')
-            if server['port'] != None:
-                controlPort = server['port']
-            if controlPort == None:
-                controlPort = 7200
-            
-            # setup hypervisors in GNS3
-            hypervisorkey = server.host + ':' + controlPort
-            if not globals.GApp.hypervisors.has_key(hypervisorkey):
-                conf = hypervisorConf()
-                conf.id = globals.GApp.hypervisors_ids
-                globals.GApp.hypervisors_ids +=1
-                conf.host = unicode(server.host, 'utf-8')
-                conf.port = int(controlPort)
-                if server['workingdir'] != None:
-                    conf.workdir = server['workingdir']
-                if server['udp'] != None:
-                    conf.baseUDP = server['udp']
-                globals.GApp.hypervisors[hypervisorkey] = conf
-                
-            # Initialize device default dictionaries for every router type supported
-            devdefaults = {}
-            for key in dynagen.DEVICETUPLE:
-                devdefaults[key] = {}
-
-            # setup devices in GNS3
-            for subsection in server.sections:
-                device = server[subsection]
-                if device.name in dynagen.DEVICETUPLE:
-                    for scalar in device.scalars:
-                        if device[scalar] != None:
-                            devdefaults[device.name][scalar] = device[scalar]
-                    continue
-    
-                try:
-                    (devtype, name) = device.name.split(' ')
-                except ValueError:
-                    print 'Unable to interpret line: "[[' + device.name + ']]"'
-                    continue
-
-                #globals.GApp.topology.clear()
-                if devtype.lower() == 'router':
-                    # if model not specifically defined for this router, set it to the default defined in the top level config
-                    if device['model'] == None:
-                        device['model'] = config['model']
-    
-                    renders = globals.GApp.scene.renders['Router']
-                    node = IOSRouter(renders['normal'], renders['selected'])
-                    x = random.uniform(-200, 200)
-                    y = random.uniform(-200, 200)
-                    node.setPos(x, y)
-                    globals.GApp.topology.addNode(node)
-
-#                    #setattr(node.config, 'ram', 96)
-#                    settings['ghostios'] = config['ghostios']
-#                    for option in settings:
-#                        self.setproperty(node.config, option, defaults[option])
-
     def live_import(self, path):
     
+        #TODO: Should start the hypervisor at startup & check if hypervisor settings are configured
         hypervisors = []
         manager = HypervisorManager()
         manager.startNewHypervisor()
         time.sleep(3)
 
+        globals.GApp.topology.clear()
         dir = os.path.dirname(dynagen.__file__)
-        configspec = dir + '/' + dynagen.CONFIGSPEC
-        config = ConfigObj(path, configspec=configspec, raise_errors=True)
-        vtor = Validator()
-        res = config.validate(vtor, preserve_errors=True)
-        for section in config.sections:
-            server = config[section]
-            server.host = server.name
-            controlPort = None
-            if ':' in server.host:
-                (server.host, controlPort) = server.host.split(':')
-            if server['port'] != None:
-                controlPort = server['port']
-            if controlPort == None:
-                controlPort = 7200
-            hypervisorkey = server.host + ':' + controlPort
-            
-            
-#            if server.host == 'localhost' or server.host == '127.0.0.1':
-#                if hypervisorkey not in hypervisors:
-#                    manager.startNewHypervisor()
-#                    hypervisors.append(hypervisorkey)
-#            elif not globals.GApp.hypervisors.has_key(hypervisorkey):
-#                conf = hypervisorConf()
-#                conf.id = globals.GApp.hypervisors_ids
-#                globals.GApp.hypervisors_ids +=1
-#                conf.host = unicode(server.host, 'utf-8')
-#                conf.port = int(controlPort)
-#                if server['workingdir'] != None:
-#                    conf.workdir = server['workingdir']
-#                if server['udp'] != None:
-#                    conf.baseUDP = server['udp']
-#                globals.GApp.hypervisors[hypervisorkey] = conf
-        
-        
         dynagen.CONFIGSPECPATH.append(dir)
-        globals.GApp.dynagen.import_config(path)
-        print dynagen.globalconfig
-        for (devicekey,  device) in dynagen.devices.iteritems():
+        (connectionlist, maplist, ethswintlist) = globals.GApp.dynagen.import_config(path)
+        print dynagen.devices
+        for (devicename, device) in dynagen.devices.iteritems():
             if device.isrouter:
-                
-#                imagename = unicode(device.image[1:-1], 'utf-8')
+
+                imagename = unicode(device.image[1:-1], 'utf-8')
 #                imagekey = device.dynamips.host + ':' + imagename
 #                if not globals.GApp.iosimages.has_key(imagekey):
 #                    conf = iosImageConf()
@@ -173,21 +64,120 @@ class NETFile(object):
 #                    conf = globals.GApp.iosimages[imagekey]
 #                conf.filename = imagename
 #                conf.platform = device.model[1:]
-#                conf.chassis = device.chassis
+#                if conf.platform == '7200':
+#                    conf.chassis = conf.platform
+#                else:
+#                    conf.chassis = device.chassis
 #                conf.idlepc = device.idlepc
-#                print 'add ' + imagekey
 #                globals.GApp.iosimages[imagekey] = conf
             
                 renders = globals.GApp.scene.renders['Router']
                 node = IOSRouter(renders['normal'], renders['selected'])
-                x = random.uniform(-200, 200)
-                y = random.uniform(-200, 200)
-                node.setPos(x, y)
-                globals.GApp.topology.addNode(node)
-                #node.config.image = imagename
-                node.configHypervisor(device.dynamips.host,  device.dynamips.port,  device.dynamips.workingdir,  device.dynamips.udp)
+                node.config.image = imagename
                 properties = ('rom', 'ram', 'nvram', 'mmap', 'iomem', 'exec_area',  'console',  'npe',  'midplane')
                 self.setproperties(node.config,  device,  properties)
+            
+                slot_nb = 0
+                for slot in device.slot:
+                    if slot:
+                        node.config.slots[slot_nb] = slot.adapter
+                    slot_nb += 1
+               
+            if type(device) == lib.ETHSW:
+                renders = globals.GApp.scene.renders['Switch']
+                node = ETHSW(renders['normal'], renders['selected'])
+                node.config.ports = {}
+                node.config.vlans = {}
+                
+            if type(device) == lib.FRSW:
+                renders = globals.GApp.scene.renders['Frame Relay switch']
+                node = FRSW(renders['normal'], renders['selected'])
+                
+            if type(device) == lib.ATMSW:
+                renders = globals.GApp.scene.renders['ATM switch']
+                node = ATMSW(renders['normal'], renders['selected'])
+            
+            x = random.uniform(-200, 200)
+            y = random.uniform(-200, 200)
+            node.setPos(x, y)
+            node.hostname = devicename
+            globals.GApp.topology.addNode(node)
+
+        for (bridgename,  bridge) in dynagen.bridges.iteritems():
+            renders = globals.GApp.scene.renders['Hub']
+            node = Hub(renders['normal'], renders['selected'])
+            #node.config.ports = 8
+            x = random.uniform(-200, 200)
+            y = random.uniform(-200, 200)
+            node.setPos(x, y)
+            node.hostname = bridgename
+            globals.GApp.topology.addNode(node)
+            
+        for connection in connectionlist:
+            (router, source_interface, dest) = connection
+            (dest_name, interface) = dest.split(' ')
+            source_id = None
+            dest_id = None
+            
+            if dest_name == 'LAN':
+                dest_name = interface
+                #FIXME: quick mode, all connections in port 1 for a hub
+                interface = '1'
+
+            for node in globals.GApp.topology.nodes.values():
+                if node.hostname == router.name:
+                    source_id = node.id
+                if node.hostname == dest_name:
+                    dest_id = node.id
+            if source_id != None and dest_id != None:
+                globals.GApp.topology.addLink(source_id, source_interface, dest_id, interface)
+    
+        for mapping in maplist:
+            (switch, source, dest) = mapping
+            for node in globals.GApp.topology.nodes.values():
+                if (type(node) == FRSW or type(node) == ATMSW) and node.hostname == switch.name:
+                    (srcport,  srcdlci) = source.split(':')
+                    (destport,  destdlci) = dest.split(':')
+                    node.config.mapping[source] = dest
+                    if not srcport in node.config.ports:
+                        node.config.ports.append(srcport)
+                    if not destport in node.config.ports:
+                        node.config.ports.append(destport)
+
+                        
+        for ethswint in ethswintlist:
+            (switch, source, dest) = ethswint
+            for node in globals.GApp.topology.nodes.values():
+                if type(node) == ETHSW and node.hostname == switch.name:
+                    parameters = len(dest.split(' '))
+                    if parameters == 2:
+                        (porttype, vlan) = dest.split(' ')
+                        port = int(source)
+                        vlan = int(vlan)
+                        node.config.ports[port] = porttype
+                        if not node.config.vlans.has_key(vlan):
+                            node.config.vlans[vlan] = []
+                        if not port in node.config.vlans[vlan]:
+                            node.config.vlans[vlan].append(port)
+                    elif parameters == 3:
+                        print 'NIO import not implemented yet'
+                        #TODO: finish connection to NIO
+    
+        dynamips = globals.GApp.systconf['dynamips']
+        dynamipskey = 'localhost' + ':' + str(dynamips.port)
+        dynagen.dynamips[dynamipskey].close()
+        del dynagen.dynamips[dynamipskey]
+        dynagen.devices = {}
+        dynagen.bridges = {}
+        
+        for (hostname, hypervisor) in globals.GApp.dynagen.original_config.iteritems():
+            for node in globals.GApp.topology.nodes.values():
+                if type(node) == IOSRouter and node.hostname == hostname:
+                    node.config.image = hypervisor['host'] + ':' + node.config.image
+                    #print node.config.image
+                    #node.configHypervisor(hypervisor['host'],  hypervisor['port'],  hypervisor['workingdir'],  hypervisor['udp'])
+    
+        #TODO: see first lines of the method
         manager.stopProcHypervisors()
     
     def setproperties(self, config, device, properties):
@@ -204,7 +194,7 @@ class NETFile(object):
     def live_export(self, path):
     
         netfile = ConfigObj()
-        netfile.filename = 'test.net'
+        netfile.filename = path
         destination_list = []
 
         for (dynamipskey, dynamips) in dynagen.dynamips.iteritems():
@@ -214,7 +204,10 @@ class NETFile(object):
             for (devicekey,  device) in dynagen.devices.iteritems():
                 if device.isrouter:
                     # export a router
-                    model = device.chassis
+                    if device.model == 'c7200':
+                        model = '7200'
+                    else:
+                        model = device.chassis
                     if not netfile.has_key(model):
                         # export model subsection
                         netfile[dynamipskey][model]= {}
@@ -226,7 +219,7 @@ class NETFile(object):
                             netfile[dynamipskey][model]['disk0'] = device.disk0
                         if device.disk1:
                             netfile[dynamipskey][model]['disk1'] = device.disk1
-                        if model[:2] == '36' and device.iomem:
+                        if device.model == 'c3600' and device.iomem:
                             netfile[dynamipskey][model]['iomem'] = device.iomem
                         if device.cnfg:
                             netfile[dynamipskey][model]['cnfg'] = device.cnfg
@@ -238,7 +231,8 @@ class NETFile(object):
                     hostname = devicekey
                     devicekey = 'ROUTER ' + devicekey
                     netfile[dynamipskey][devicekey] = {}
-                    netfile[dynamipskey][devicekey]['model'] = device.chassis
+                    if device.model != 'c7200':
+                        netfile[dynamipskey][devicekey]['model'] = device.chassis
                     netfile[dynamipskey][devicekey]['console'] = device.console
                     if device.mac:
                         netfile[dynamipskey][devicekey]['mac'] = device.mac
@@ -251,7 +245,7 @@ class NETFile(object):
                                 if destinterface.lower()[:3] == 'nio':
                                     destination = destinterface
                                 elif type(destnode) == Hub:
-                                    destination = 'LAN' + ' ' + destinterface
+                                    destination = 'LAN' + ' ' + destnode.hostname
                                 else:
                                     if hostname + ' ' + interface in destination_list:
                                         continue

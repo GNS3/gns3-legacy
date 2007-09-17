@@ -128,8 +128,7 @@ class Scene(QtGui.QGraphicsView):
             return
 
         # add the link into the topology
-        link = self.__topology.addLink(self.__sourceNodeID,
-            self.__sourceInterface, self.__destNodeID, self.__destInterface)
+        self.__topology.addLink(self.__sourceNodeID, self.__sourceInterface, self.__destNodeID, self.__destInterface)
 
     def slotAddLink(self, id,  interface):
         """ Called when a node wants to add a link

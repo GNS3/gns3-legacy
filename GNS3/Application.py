@@ -30,7 +30,7 @@ from GNS3.Config.Objects import systemDynamipsConf, systemGeneralConf
 from GNS3.Config.Config import ConfDB, GNS_Conf
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Translations import Translator
-from GNS3.Dynagen.dynagen import Dynagen
+from GNS3.DynagenSub import DynagenSub
 import GNS3.Globals as globals
 
 class Application(QApplication, Singleton):
@@ -200,7 +200,7 @@ class Application(QApplication, Singleton):
     def run(self):
     
         # instantiation of Dynagen
-        self.__dynagen = Dynagen()
+        self.__dynagen = DynagenSub()
     
         # INFO: Workspace create a ` Scene' object,
         # so it also set self.__topology
