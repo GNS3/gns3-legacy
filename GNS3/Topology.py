@@ -51,6 +51,8 @@ class Topology(QtGui.QGraphicsScene):
             o = self.__links.pop()
             self.removeItem(o)
         self.__links = set()
+        self.node_baseid = 0
+        self.link_baseid = 0
 
     def addNode(self, node):
         """ Add node in the topology

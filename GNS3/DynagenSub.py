@@ -23,6 +23,7 @@
 import sys, os
 from GNS3.Dynagen.validate import Validator
 from GNS3.Dynagen.configobj import ConfigObj, flatten_errors
+from GNS3.Config.Objects import hypervisorConf
 import GNS3.Dynagen.dynagen as dynagen
 import GNS3.Globals as globals
 
@@ -97,34 +98,31 @@ class DynagenSub(dynagen.Dynagen):
                 controlPort = server['port']
             if controlPort == None:
                 controlPort = 7200
-            #hypervisorkey = server.host + ':' + controlPort
-            
-            #            if server.host == 'localhost' or server.host == '127.0.0.1':
-#                if hypervisorkey not in hypervisors:
-#                    manager.startNewHypervisor()
-#                    hypervisors.append(hypervisorkey)
-#            elif not globals.GApp.hypervisors.has_key(hypervisorkey):
-#                conf = hypervisorConf()
-#                conf.id = globals.GApp.hypervisors_ids
-#                globals.GApp.hypervisors_ids +=1
-#                conf.host = unicode(server.host, 'utf-8')
-#                conf.port = int(controlPort)
-#                if server['workingdir'] != None:
-#                    conf.workdir = server['workingdir']
-#                if server['udp'] != None:
-#                    conf.baseUDP = server['udp']
-#                globals.GApp.hypervisors[hypervisorkey] = conf
-            
+            hypervisorkey = server.host + ':' + controlPort
+
+            print hypervisorkey
+
+            if not globals.GApp.hypervisors.has_key(hypervisorkey):
+                conf = hypervisorConf()
+                conf.id = globals.GApp.hypervisors_ids
+                globals.GApp.hypervisors_ids +=1
+            else:
+                conf = globals.GApp.hypervisors[hypervisorkey]
+            conf.host = unicode(server.host, 'utf-8')
+            conf.port = int(controlPort)
+            if server['workingdir'] != None:
+                conf.workdir = unicode(server['workingdir'], 'utf-8')
+            if server['udp'] != None:
+                conf.baseUDP = server['udp']
+            globals.GApp.hypervisors[hypervisorkey] = conf
+ 
             for subsection in server.sections:
                 subsections[subsection] = config[section][subsection]
                 device = server[subsection]
                 if device.name not in dynagen.DEVICETUPLE:
                     (devtype, devname) = device.name.split(' ')
                     self.original_config[devname] = {'host': server.host, 
-                                                                        'port': controlPort, 
-                                                                        'workingdir': server['workingdir'], 
-                                                                        'udp': server['udp']
-                                                                        }
+                                                                        'port': controlPort}
         
         dynamips = globals.GApp.systconf['dynamips']
         dynamipskey = 'localhost' + ':' + str(dynamips.port)

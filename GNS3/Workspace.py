@@ -224,6 +224,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __createMenus(self):
         """ Add own menu actions, and create new sub-menu
         """
+
         self.subm = self.submenu_Docks
         self.subm.addAction(self.dockWidget_NodeTypes.toggleViewAction())
         self.subm.addAction(self.dockWidget_TopoSum.toggleViewAction())
@@ -243,6 +244,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.menu_View.addMenu(self.submenu_Toolbars)
 
     def retranslateUi(self, MainWindow):
+    
         Ui_MainWindow.retranslateUi(self, MainWindow)
         self.submenu_Docks.setTitle(translate('Workspace', 'Docks'))
         self.submenu_Toolbars.setTitle(translate('Workspace', 'Toolbars'))
@@ -353,9 +355,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if projectFile is None:
             self.mainWindow.setWindowTitle(translate("Workspace", "GNS3 - New Project"))
 
-    def saveProject(self, projectFile):
-        pass
-     
     def cleanNodeStates(self):
         """ Shutdown the interfaces and hypervisors
         """
@@ -732,23 +731,23 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Open a file (scenario or dynagen .NET format)
         """
         
-#        if self.currentMode != globals.Enum.Mode.Design:
-#            QtGui.QMessageBox.warning(self, translate("Workspace", "Scenario"),  translate("Workspace", "You can't open a scenario when you are not in design mode"))
-#            return
+        if self.currentMode != globals.Enum.Mode.Design:
+            QtGui.QMessageBox.warning(self, translate("Workspace", "Open a file"),  translate("Workspace", "You must be in design mode"))
+            return
+            
+        if globals.GApp.systconf['dynamips'].path == '':
+            QtGui.QMessageBox.warning(self, translate("Workspace", "Open a file"), translate("Workspace", "The path to Dynamips must be configured"))
+            self.__action_SystemPreferences()
+            return
 
-        (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter = 'NET file (*.net);;GNS-3 Scenario (*.gns3s);;All Files (*.*)').getFile()
+        (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter = 'NET file (*.net);;All files (*.*)').getFile()
         if path != None:
             try:
-                # here the loading
-                if str(selected) == 'GNS-3 Scenario (*.gns3s)':
-                    ConfDB().loadFromXML(path)
+                if str(selected) == 'NET file (*.net)':
+                    # here the loading
                     self.projectFile = path
                     self.setWindowTitle("GNS3 - " + self.projectFile)
                     self.statusbar.showMessage(translate("Workspace", "Project Loaded..."))
-                if str(selected) == 'NET file (*.net)':
-#                    net = netfile.NETFile()
-#                    net.cold_import(path)
-                    
                     net = netfile.NETFile()
                     net.live_import(path)
             except IOError, (errno, strerror):
@@ -758,11 +757,16 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Save to a file (scenario or dynagen .NET format)
         """
         
+        if self.currentMode != globals.Enum.Mode.Emulation:
+            QtGui.QMessageBox.warning(self, translate("Workspace", "Save"),  translate("Workspace", "You must be in emulation mode"))
+            return
+        
         if self.projectFile is None:
             return self.__action_SaveAs()
 
         try:
-            ConfDB().saveToXML(self.projectFile)
+            net = netfile.NETFile()
+            net.live_export(self.projectFile)
             self.statusbar.showMessage(translate("Workspace", "Project saved..."))
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
@@ -771,15 +775,19 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Save as (scenario or dynagen .NET format)
         """
 
+        if self.currentMode != globals.Enum.Mode.Emulation:
+            QtGui.QMessageBox.warning(self, translate("Workspace", "Save as"),  translate("Workspace", "You must be in emulation mode"))
+            return
+        
         fb = fileBrowser(translate("Workspace", "Save Project As"), 
-                                filter='NET file (*.net)')
+                                filter='NET file (*.net);;All files (*.*)')
         (path, selected) = fb.getSaveFile()
 
         if path != None and path != '':
-#            if str(selected) == 'GNS-3 Scenario (*.gns3s)' and path[-6:] != '.gns3s':
-#                path = path + '.gns3s'
-#            self.projectFile = path
-#            self.__action_Save()
-#            self.setWindowTitle("GNS3 - " + self.projectFile)
-            net = netfile.NETFile()
-            net.live_export(path)
+            if str(selected) == 'NET file (*.net)':
+                if path[-4:] != '.net':
+                    path = path + '.net'
+                self.projectFile = path
+                self.setWindowTitle("GNS3 - " + self.projectFile)
+                net = netfile.NETFile()
+                net.live_export(path)

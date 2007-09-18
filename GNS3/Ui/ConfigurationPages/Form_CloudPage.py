@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Form_CloudPage.ui'
+# Form implementation generated from reading ui file './ConfigurationPages/Form_CloudPage.ui'
 #
-# Created: Tue Sep 11 14:02:29 2007
-#      by: PyQt4 UI code generator 4.3
+# Created: Tue Sep 18 10:20:32 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -387,7 +387,7 @@ class Ui_CloudPage(object):
         self.vboxlayout.addWidget(self.tabWidget)
 
         self.retranslateUi(CloudPage)
-        self.tabWidget.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(CloudPage)
 
     def retranslateUi(self, CloudPage):

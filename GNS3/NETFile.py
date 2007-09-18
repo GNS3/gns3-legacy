@@ -26,7 +26,7 @@ import GNS3.Dynagen.dynagen as dynagen
 import GNS3.Dynagen.dynamips_lib as lib
 from GNS3.Dynagen.configobj import ConfigObj
 from GNS3.Dynagen.validate import Validator
-from GNS3.Config.Objects import iosImageConf,  hypervisorConf
+from GNS3.Config.Objects import iosImageConf
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.ATMSW import ATMSW
@@ -45,36 +45,40 @@ class NETFile(object):
         manager = HypervisorManager()
         manager.startNewHypervisor()
         time.sleep(3)
-
         globals.GApp.topology.clear()
+
         dir = os.path.dirname(dynagen.__file__)
         dynagen.CONFIGSPECPATH.append(dir)
         (connectionlist, maplist, ethswintlist) = globals.GApp.dynagen.import_config(path)
-        print dynagen.devices
         for (devicename, device) in dynagen.devices.iteritems():
             if device.isrouter:
 
                 imagename = unicode(device.image[1:-1], 'utf-8')
-#                imagekey = device.dynamips.host + ':' + imagename
-#                if not globals.GApp.iosimages.has_key(imagekey):
-#                    conf = iosImageConf()
-#                    conf.id = globals.GApp.iosimages_ids
-#                    globals.GApp.iosimages_ids += 1
-#                else:
-#                    conf = globals.GApp.iosimages[imagekey]
-#                conf.filename = imagename
-#                conf.platform = device.model[1:]
-#                if conf.platform == '7200':
-#                    conf.chassis = conf.platform
-#                else:
-#                    conf.chassis = device.chassis
-#                conf.idlepc = device.idlepc
-#                globals.GApp.iosimages[imagekey] = conf
+                imagekey = device.dynamips.host + ':' + imagename
+                if not globals.GApp.iosimages.has_key(imagekey):
+                    conf = iosImageConf()
+                    conf.id = globals.GApp.iosimages_ids
+                    globals.GApp.iosimages_ids += 1
+                else:
+                    conf = globals.GApp.iosimages[imagekey]
+                conf.filename = imagename
+                conf.platform = device.model[1:]
+                if conf.platform == '7200':
+                    conf.chassis = conf.platform
+                else:
+                    conf.chassis = device.chassis
+                if device.idlepc:
+                    conf.idlepc = device.idlepc
+                globals.GApp.iosimages[imagekey] = conf
             
                 renders = globals.GApp.scene.renders['Router']
                 node = IOSRouter(renders['normal'], renders['selected'])
                 node.config.image = imagename
-                properties = ('rom', 'ram', 'nvram', 'mmap', 'iomem', 'exec_area',  'console',  'npe',  'midplane')
+                if device.confreg != None and device.confreg != "unknown":
+                    node.config.confreg = device.confreg
+                if device.cnfg:
+                    node.config.cnfg = unicode(device.cnfg[1:-1], 'utf-8')
+                properties = ('rom', 'ram', 'nvram', 'disk0', 'disk1', 'mmap', 'iomem', 'exec_area', 'console', 'npe', 'midplane', 'mac')
                 self.setproperties(node.config,  device,  properties)
             
                 slot_nb = 0
@@ -106,7 +110,7 @@ class NETFile(object):
         for (bridgename,  bridge) in dynagen.bridges.iteritems():
             renders = globals.GApp.scene.renders['Hub']
             node = Hub(renders['normal'], renders['selected'])
-            #node.config.ports = 8
+            node.config.ports = 8
             x = random.uniform(-200, 200)
             y = random.uniform(-200, 200)
             node.setPos(x, y)
@@ -123,7 +127,7 @@ class NETFile(object):
                 dest_name = interface
                 #FIXME: quick mode, all connections in port 1 for a hub
                 interface = '1'
-
+            #TODO: finish connection to NIO
             for node in globals.GApp.topology.nodes.values():
                 if node.hostname == router.name:
                     source_id = node.id
@@ -144,7 +148,6 @@ class NETFile(object):
                     if not destport in node.config.ports:
                         node.config.ports.append(destport)
 
-                        
         for ethswint in ethswintlist:
             (switch, source, dest) = ethswint
             for node in globals.GApp.topology.nodes.values():
@@ -174,6 +177,10 @@ class NETFile(object):
             for node in globals.GApp.topology.nodes.values():
                 if type(node) == IOSRouter and node.hostname == hostname:
                     node.config.image = hypervisor['host'] + ':' + node.config.image
+                    #TODO: option to use or not the hypervisor manager
+                    if hypervisor['host'] != 'localhost':
+                        globals.GApp.iosimages[node.config.image].hypervisor_host = hypervisor['host']
+                        globals.GApp.iosimages[node.config.image].hypervisor_port = hypervisor['port']
                     #print node.config.image
                     #node.configHypervisor(hypervisor['host'],  hypervisor['port'],  hypervisor['workingdir'],  hypervisor['udp'])
     
@@ -193,13 +200,17 @@ class NETFile(object):
 
     def live_export(self, path):
     
-        netfile = ConfigObj()
+        netfile = ConfigObj(indent_type="\t")
         netfile.filename = path
         destination_list = []
 
         for (dynamipskey, dynamips) in dynagen.dynamips.iteritems():
             # dynamips section
             netfile[dynamipskey] = {}
+            netfile[dynamipskey]['udp'] = dynamips.udp
+            netfile[dynamipskey]['console'] = dynamips.baseconsole
+            if dynamips.workingdir:
+                netfile[dynamipskey]['workingdir'] = dynamips.workingdir[1:-1]
 
             for (devicekey,  device) in dynagen.devices.iteritems():
                 if device.isrouter:
@@ -221,13 +232,16 @@ class NETFile(object):
                             netfile[dynamipskey][model]['disk1'] = device.disk1
                         if device.model == 'c3600' and device.iomem:
                             netfile[dynamipskey][model]['iomem'] = device.iomem
+                        if device.model == 'c7200':
+                            netfile[dynamipskey][model]['npe'] = device.npe
+                            netfile[dynamipskey][model]['midplane'] = device.midplane
                         if device.cnfg:
-                            netfile[dynamipskey][model]['cnfg'] = device.cnfg
+                            netfile[dynamipskey][model]['cnfg'] = device.cnfg[1:-1]
                         netfile[dynamipskey][model]['mmap'] = device.mmap
                         if device.idlepc:
                             netfile[dynamipskey][model]['idlepc'] = device.idlepc
                         netfile[dynamipskey][model]['exec_area'] = device.exec_area
-    
+
                     hostname = devicekey
                     devicekey = 'ROUTER ' + devicekey
                     netfile[dynamipskey][devicekey] = {}
@@ -236,6 +250,7 @@ class NETFile(object):
                     netfile[dynamipskey][devicekey]['console'] = device.console
                     if device.mac:
                         netfile[dynamipskey][devicekey]['mac'] = device.mac
+                    #FIXME: aux missing
 
                     for node in globals.GApp.topology.nodes.values():
                         # export connection settings

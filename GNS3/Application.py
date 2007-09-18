@@ -237,7 +237,7 @@ class Application(QApplication, Singleton):
         self.translator = Translator()
         self.translator.switchLangTo(self.systconf['general'].lang)
 
-        # preload dynamips, so it will start faster when use it
+        # preload dynamips, so it will start faster when using it
         if globals.GApp.systconf['dynamips'].path:
             HypervisorManager().preloadDynamips()
 

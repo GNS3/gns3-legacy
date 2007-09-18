@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_IOSRouterPage.ui'
 #
-# Created: Mon Sep 10 11:45:21 2007
+# Created: Tue Sep 18 10:20:32 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
@@ -405,6 +405,7 @@ class Ui_IOSRouterPage(object):
         sizePolicy.setHeightForWidth(self.spinBoxIomem.sizePolicy().hasHeightForWidth())
         self.spinBoxIomem.setSizePolicy(sizePolicy)
         self.spinBoxIomem.setMaximum(100)
+        self.spinBoxIomem.setSingleStep(5)
         self.spinBoxIomem.setProperty("value",QtCore.QVariant(5))
         self.spinBoxIomem.setObjectName("spinBoxIomem")
         self.gridlayout4.addWidget(self.spinBoxIomem,5,1,1,1)

@@ -32,7 +32,7 @@ from GNS3.Utils import Singleton
 from GNS3.Config.Objects import hypervisorConf, iosImageConf
 
 _corpname = 'EPITECH'
-_appname = 'GNS-3'
+_appname = 'GNS3'
 _ConfigDefaults = {
 }
 

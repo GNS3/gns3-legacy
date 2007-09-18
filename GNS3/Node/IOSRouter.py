@@ -343,19 +343,19 @@ class IOSRouter(AbstractNode):
         else:
             self.dev.idlepc = '0x60483ae4'
 
-        if self.config.consoleport:
-            self.dev.console = self.config.consoleport
-        if self.config.startup_config != '':
-            self.dev.cnfg = '"' + self.config.startup_config + '"'
+        if self.config.console:
+            self.dev.console = self.config.console
+        if self.config.cnfg != '':
+            self.dev.cnfg = '"' + self.config.cnfg + '"'
         if self.config.mac != '':
             self.dev.mac = self.config.mac
         self.dev.ram = self.config.ram
         self.dev.rom = self.config.rom
         self.dev.nvram = self.config.nvram
-        if self.config.pcmcia_disk0 > 0:
-            self.dev.disk0 = self.config.pcmcia_disk0
-        if self.config.pcmcia_disk1 > 0:
-            self.dev.disk1 = self.config.pcmcia_disk1
+        if self.config.disk0 > 0:
+            self.dev.disk0 = self.config.disk0
+        if self.config.disk1 > 0:
+            self.dev.disk1 = self.config.disk1
         self.dev.mmap = self.config.mmap
         if self.config.confreg != '':
             self.dev.conf = self.config.confreg

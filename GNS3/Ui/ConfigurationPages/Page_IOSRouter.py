@@ -144,14 +144,14 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         index = self.comboBoxIOS.findText(IOSconfig.image)
         if index != -1:
             self.comboBoxIOS.setCurrentIndex(index)
-        self.spinBoxConsolePort.setValue(IOSconfig.consoleport)
-        self.lineEditStartupConfig.setText(IOSconfig.startup_config)
+        self.spinBoxConsolePort.setValue(IOSconfig.console)
+        self.lineEditStartupConfig.setText(IOSconfig.cnfg)
         self.lineEditMAC.setText(IOSconfig.mac)
         self.spinBoxRamSize.setValue(IOSconfig.ram)
         self.spinBoxRomSize.setValue(IOSconfig.rom)
         self.spinBoxNvramSize.setValue(IOSconfig.nvram)
-        self.spinBoxPcmciaDisk0Size.setValue(IOSconfig.pcmcia_disk0)
-        self.spinBoxPcmciaDisk1Size.setValue(IOSconfig.pcmcia_disk1)
+        self.spinBoxPcmciaDisk0Size.setValue(IOSconfig.disk0)
+        self.spinBoxPcmciaDisk1Size.setValue(IOSconfig.disk1)
         if IOSconfig.mmap == True:
             self.checkBoxMapped.setCheckState(QtCore.Qt.Checked)
         else:
@@ -180,8 +180,8 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         else:
             IOSconfig = node.config
         IOSconfig.image = unicode(self.comboBoxIOS.currentText(),  'utf-8')
-        IOSconfig.consoleport = self.spinBoxConsolePort.value()
-        IOSconfig.startup_config = unicode(self.lineEditStartupConfig.text(),  'utf-8')
+        IOSconfig.console = self.spinBoxConsolePort.value()
+        IOSconfig.cnfg = unicode(self.lineEditStartupConfig.text(),  'utf-8')
         mac = str(self.lineEditMAC.text())
         if mac and not re.search(r"""^([0-9a-fA-F]{2}[:-]){5}[0-9a-fA-F]{2}$""", mac):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'MAC', translate("Page_IOSRouter", "Invalid MAC address (format required: hh:hh:hh:hh:hh:hh)"))
@@ -190,8 +190,8 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         IOSconfig.ram = self.spinBoxRamSize.value()
         IOSconfig.rom = self.spinBoxRomSize.value()
         IOSconfig.nvram = self.spinBoxNvramSize.value()
-        IOSconfig.pcmcia_disk0 = self.spinBoxPcmciaDisk0Size.value()
-        IOSconfig.pcmcia_disk1 = self.spinBoxPcmciaDisk1Size.value()
+        IOSconfig.disk0 = self.spinBoxPcmciaDisk0Size.value()
+        IOSconfig.disk1 = self.spinBoxPcmciaDisk1Size.value()
         if self.checkBoxMapped.checkState() == QtCore.Qt.Checked:
             IOSconfig.mmap = True
         else:
