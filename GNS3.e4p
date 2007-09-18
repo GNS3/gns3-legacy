@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.1.dtd">
-<!-- eric4 project file for project GNS-3 -->
-<!-- Saved: 2007-09-18, 17:29:03 -->
-<!-- Copyright (C) 2007 GNS-3 Dev Team, contact@gns3.net -->
+<!-- eric4 project file for project GNS3 -->
+<!-- Saved: 2007-09-18, 19:42:39 -->
+<!-- Copyright (C) 2007 GNS3 Dev Team, contact@gns3.net -->
 <Project version="4.1">
   <ProgLanguage mixed="0">Python</ProgLanguage>
   <UIType>Qt4</UIType>
   <Description></Description>
-  <Version>0.2</Version>
-  <Author>GNS-3 Dev Team</Author>
+  <Version>0.3</Version>
+  <Author>GNS3 Dev Team</Author>
   <Email>contact@gns3.net</Email>
   <Sources>
     <Source>
@@ -180,18 +180,6 @@
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
       <Dir>ConfigurationPages</Dir>
-      <Name>Widget_SystemApplications.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>Widget_SystemGeneral.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
       <Name>__init__.py</Name>
     </Source>
     <Source>
@@ -320,15 +308,63 @@
     </Source>
     <Source>
       <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>PreferencesGeneral.py</Name>
+      <Name>Telnet.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Name>Translations.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Dynagen</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Langs</Dir>
+      <Name>DynamicStrings.py</Name>
     </Source>
     <Source>
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
       <Dir>ConfigurationPages</Dir>
-      <Name>PreferencesDynamips.py</Name>
+      <Name>Form_ATMSWPage.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Form_CloudPage.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Form_PreferencesDynamips.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Form_PreferencesGeneral.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Page_ATMSW.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Page_PreferencesDynamips.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Page_PreferencesGeneral.py</Name>
     </Source>
   </Sources>
   <Forms>
@@ -361,19 +397,7 @@
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
       <Dir>ConfigurationPages</Dir>
-      <Name>Widget_SystemGeneral.ui</Name>
-    </Form>
-    <Form>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
       <Name>Form_IOSRouterPage.ui</Name>
-    </Form>
-    <Form>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>Widget_SystemApplications.ui</Name>
     </Form>
   </Forms>
   <Translations>
@@ -383,9 +407,12 @@
   <Interfaces>
   </Interfaces>
   <Others>
+    <Other>
+      <Name>gns3</Name>
+    </Other>
   </Others>
   <MainScript>
-    <Name>gns3.pyw</Name>
+    <Name>gns3</Name>
   </MainScript>
   <Vcs>
     <VcsType>None</VcsType>
