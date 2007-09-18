@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>SystemGeneral</class>
- <widget class="QWidget" name="SystemGeneral" >
+ <class>PreferencesGeneral</class>
+ <widget class="QWidget" name="PreferencesGeneral" >
   <property name="geometry" >
    <rect>
     <x>0</x>

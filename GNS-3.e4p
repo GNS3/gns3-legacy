@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.1.dtd">
 <!-- eric4 project file for project GNS-3 -->
-<!-- Saved: 2007-09-15, 18:13:59 -->
+<!-- Saved: 2007-09-18, 17:29:03 -->
 <!-- Copyright (C) 2007 GNS-3 Dev Team, contact@gns3.net -->
 <Project version="4.1">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -180,12 +180,6 @@
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
       <Dir>ConfigurationPages</Dir>
-      <Name>SystemGeneral.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
       <Name>Widget_SystemApplications.py</Name>
     </Source>
     <Source>
@@ -193,12 +187,6 @@
       <Dir>Ui</Dir>
       <Dir>ConfigurationPages</Dir>
       <Name>Widget_SystemGeneral.py</Name>
-    </Source>
-    <Source>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>SystemApplications.py</Name>
     </Source>
     <Source>
       <Dir>GNS3</Dir>
@@ -325,6 +313,22 @@
     </Source>
     <Source>
       <Name>gns3</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Name>DynagenSub.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>PreferencesGeneral.py</Name>
+    </Source>
+    <Source>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>PreferencesDynamips.py</Name>
     </Source>
   </Sources>
   <Forms>

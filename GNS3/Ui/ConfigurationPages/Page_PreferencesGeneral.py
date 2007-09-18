@@ -21,14 +21,14 @@
 #
 
 from PyQt4 import QtGui
-from GNS3.Ui.ConfigurationPages.Widget_SystemGeneral import Ui_SystemGeneral
+from GNS3.Ui.ConfigurationPages.Form_PreferencesGeneral import Ui_PreferencesGeneral
 import GNS3.Globals as globals
 
-class UiConfig_SystemGeneral(QtGui.QWidget, Ui_SystemGeneral):
+class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
 
     def __init__(self):
         QtGui.QWidget.__init__(self)
-        Ui_SystemGeneral.setupUi(self, self)
+        Ui_PreferencesGeneral.setupUi(self, self)
 
         self.langs = globals.GApp.translator.getAvailables()
         for lang in self.langs:

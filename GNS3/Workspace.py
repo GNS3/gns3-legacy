@@ -215,8 +215,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__action_Save)
         self.connect(self.action_SaveAs,  QtCore.SIGNAL('triggered()'),
             self.__action_SaveAs)
-        self.connect(self.action_SystemPreferences,
-            QtCore.SIGNAL('triggered()'), self.__action_SystemPreferences)
+        self.connect(self.action_Preferences,
+            QtCore.SIGNAL('triggered()'), self.__action_Preferences)
         self.connect(self.action_ProjectPreferences,
             QtCore.SIGNAL('triggered()'), self.__action_ProjectPreferences)
             
@@ -422,7 +422,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
             if globals.GApp.systconf['dynamips'].path == '':
                 QtGui.QMessageBox.warning(self, translate("Workspace", "Emulation Mode"), translate("Workspace", "Please configure the path to Dynamips"))
-                self.__action_SystemPreferences()
+                self.__action_Preferences()
                 self.__restoreButtonState()
                 return
 
@@ -711,11 +711,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
         
         QtGui.QMessageBox.aboutQt(self)
 
-    def __action_SystemPreferences(self):
-        """ Show System Preferences dialog
+    def __action_Preferences(self):
+        """ Show the preferences dialog
         """
         
-        dialog = PreferencesDialog('System')
+        dialog = PreferencesDialog()
         dialog.show()
         dialog.exec_()
 
@@ -737,7 +737,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             
         if globals.GApp.systconf['dynamips'].path == '':
             QtGui.QMessageBox.warning(self, translate("Workspace", "Open a file"), translate("Workspace", "The path to Dynamips must be configured"))
-            self.__action_SystemPreferences()
+            self.__action_Preferences()
             return
 
         (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter = 'NET file (*.net);;All files (*.*)').getFile()

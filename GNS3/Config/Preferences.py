@@ -24,24 +24,16 @@ from PyQt4 import QtGui, QtCore
 from GNS3.Ui.Form_PreferencesDialog import Ui_PreferencesDialog
 from GNS3.Utils import translate
 
-_systemPrefs = [
-	'General',
-	'Applications',
-]
-
-_projectPrefs = [
-	'General',
-]
-
 class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
 
-    def __init__(self, type = 'System'):
+    def __init__(self):
         """ Initilize a preferences dialog
-        You can also choose the preferences type (used later for widget prefix)
         """
 
-        self.__prefsList = []
-        self.type = type
+        self.__prefsList = [
+                        'General',
+                        'Dynamips',
+                        ]
 
         QtGui.QDialog.__init__(self)
         self.setupUi(self)
@@ -53,21 +45,13 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
             QtCore.SIGNAL('clicked()'), self.__applyChanges)
 
         # Init dialog
-        self.__initDialog(type)
+        self.__initDialog()
         # Raise the first element in list
         self.__raiseWidgetByNum(0)
 
     def retranslateUi(self, MainWindow):
         # Call parent retranslateUi
         Ui_PreferencesDialog.retranslateUi(self, self)
-
-        if self.type == 'System':
-            dialogTitle = translate('PreferencesDialog', 'System preferences')
-        elif self.type == 'Project':
-            dialogTitle = translate('PreferencesDialog', 'Project preferences')
-        else:
-            dialogTitle = translate('PreferencesDialog', 'Preferences')
-        self.setWindowTitle(dialogTitle)
 
         # Update titleLabel
         currIdx = self.stackedWidget.currentIndex()
@@ -102,7 +86,7 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
         """ Load a config widget from GNS3.Ui.ConfigurationPages
         """
         widgetCompleteName = widgetPrefix + widgetName
-        modName = "GNS3.Ui.ConfigurationPages.%s" % (widgetCompleteName)
+        modName = "GNS3.Ui.ConfigurationPages.Page_%s" % (widgetCompleteName)
         try:
             # Import module
             mod = __import__(modName)
@@ -117,19 +101,12 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
             print 'Module ' + modName + ' not found'
             return None
 
-    def __initDialog(self, type):
-        # Choose preferences dialog types
-        if type == 'System':
-            self.__prefsList = _systemPrefs
-        elif type == 'Project':
-            self.__prefsList = _projectPrefs
-        else:
-            raise 'Unknown dialog type'
+    def __initDialog(self):
 
         # Insert config pages...
         lnum = 0
         for itemName in self.__prefsList:
-            cls = self.__loadWidget(type, itemName)
+            cls = self.__loadWidget('Preferences', itemName)
             widget = cls()
             item = QtGui.QListWidgetItem(translate('PreferencesDialog', itemName), 
                     self.listWidget)

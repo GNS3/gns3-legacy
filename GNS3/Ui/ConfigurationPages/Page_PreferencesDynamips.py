@@ -22,17 +22,17 @@
 
 import sys
 from PyQt4 import QtGui, QtCore
-from GNS3.Ui.ConfigurationPages.Widget_SystemApplications import Ui_SystemApplications
+from GNS3.Ui.ConfigurationPages.Form_PreferencesDynamips import Ui_PreferencesDynamips
 from GNS3.Config.Objects import systemDynamipsConf
 from GNS3.Config.Config import ConfDB
 from GNS3.Utils import fileBrowser, translate,  testOpenFile
 from GNS3.Globals import GApp
 
-class UiConfig_SystemApplications(QtGui.QWidget, Ui_SystemApplications):
+class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
 
     def __init__(self):
         QtGui.QWidget.__init__(self)
-        Ui_SystemApplications.setupUi(self, self)
+        Ui_PreferencesDynamips.setupUi(self, self)
 
         self.connect(self.dynamips_path_browser, QtCore.SIGNAL('clicked()'),
             self.__setDynamipsPath)
