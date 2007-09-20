@@ -159,26 +159,6 @@ class IOSRouter(AbstractNode):
         self.config = self.getDefaultConfig()
         self.setDefaultIOSImage()
 
-        # Action: Console (Connect to the node console)
-        self.consoleAct = QtGui.QAction(translate('IOSRouter', 'Console'), self)
-        self.consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
-        self.connect(self.consoleAct, QtCore.SIGNAL('triggered()'), self.__consoleAction)
-
-        # Action: Start (Start IOS on hypervisor)
-        self.startAct = QtGui.QAction(translate('IOSRouter', 'Start'), self)
-        self.startAct.setIcon(QtGui.QIcon(':/icons/play.svg'))
-        self.connect(self.startAct, QtCore.SIGNAL('triggered()'), self.__startAction)
-
-        # Action: Stop (Stop IOS on hypervisor)
-        self.stopAct = QtGui.QAction(translate('IOSRouter', 'Stop'), self)
-        self.stopAct.setIcon(QtGui.QIcon(':/icons/stop.svg'))
-        self.connect(self.stopAct, QtCore.SIGNAL('triggered()'), self.__stopAction)
-        
-        # Action: Suspend (Suspend IOS on hypervisor)
-        self.suspendAct = QtGui.QAction(translate('IOSRouter', 'Suspend'), self)
-        self.suspendAct.setIcon(QtGui.QIcon(':/icons/pause.svg'))
-        self.connect(self.suspendAct, QtCore.SIGNAL('triggered()'), self.__suspendAction)
-
         #FIXME: temporary hack
         self.config.slots = ['',  '',  '',  '',  '',  '',  '']
         self.platform = ''
@@ -188,30 +168,6 @@ class IOSRouter(AbstractNode):
         """
     
         return iosRouterConf()
-  
-    def __consoleAction(self):
-        """ Action called to start a console on the node
-        """
-    
-        self.console()
-        
-    def __startAction(self):
-        """ Action called to start the node
-        """
-    
-        self.startNode()
-        
-    def __stopAction(self):
-        """ Action called to stop the node
-        """
-    
-        self.stopNode()
-  
-    def __suspendAction(self):
-        """ Action called to suspend the node
-        """
-    
-        self.suspendNode()
   
     def smartInterface(self,  link_type,  chassis):
         """ Pick automatically (if possible) the right interface for the desired link type
@@ -521,7 +477,7 @@ class IOSRouter(AbstractNode):
 
         if self.dev != None and self.dev.state == 'running':
             self.dev.suspend()
-            self.shutdownInterfaces()
+            self.suspendInterfaces()
 
     def cleanNodeFiles(self):
         """ Delete nvram/flash/log files created by Dynamips
@@ -565,18 +521,6 @@ class IOSRouter(AbstractNode):
             else:
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSRouter", "Connection"),  translate("IOSRouter", "No interface available") )
                 return
-                
-        elif (event.button() == QtCore.Qt.RightButton) and globals.GApp.workspace.currentMode == globals.Enum.Mode.Emulation:
-            self.setSelected(True)
-            self.menu = QtGui.QMenu()
-
-            # actions for emulation mode
-            self.menu.addAction(self.consoleAct)
-            self.menu.addAction(self.startAct)
-            self.menu.addAction(self.suspendAct)
-            self.menu.addAction(self.stopAct)
-            self.menu.addAction(self.showHostnameAct)
-            self.menu.exec_(QtGui.QCursor.pos())
         else:
             AbstractNode.mousePressEvent(self, event)
 

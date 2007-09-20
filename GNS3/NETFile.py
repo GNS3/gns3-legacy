@@ -273,6 +273,8 @@ class NETFile(object):
                             netfile[dynamipskey][devicekey]['x'] = node.x()
                             netfile[dynamipskey][devicekey]['y'] = node.y()
 
+                #TODO: export slots
+                            
                 if type(device) == lib.ETHSW:
                     # export a Ethernet switch
                     hostname = devicekey

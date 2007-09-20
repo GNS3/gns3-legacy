@@ -72,48 +72,9 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.setAcceptsHoverEvents(True)
         self.setZValue(1)
         self.setSharedRenderer(self.__render_normal)
-          
-        # Action: Delete (Delete the node)
-        self.deleteAct = QtGui.QAction(translate('AbstractNode', 'Delete'), self)
-        self.deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
-        self.connect(self.deleteAct, QtCore.SIGNAL('triggered()'), self.__deleteAction)
         
-        # Action: Configure (Configure the node)
-        self.configAct = QtGui.QAction(translate('AbstractNode', 'Configure'), self)
-        self.configAct.setIcon(QtGui.QIcon(":/icons/configuration.svg"))
-        self.connect(self.configAct, QtCore.SIGNAL('triggered()'), self.__configAction)
-        
-        # Action: ShowHostname (Display the hostname)
-        self.showHostnameAct = QtGui.QAction(translate('AbstractNode', 'Show hostname'), self)
-        self.showHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
-        self.connect(self.showHostnameAct, QtCore.SIGNAL('triggered()'), self.__showHostnameAction)
-        
-        # Action: ChangeHostname (Change the hostname)
-        self.changeHostnameAct = QtGui.QAction(translate('AbstractNode', 'Change hostname'), self)
-        self.changeHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
-        self.connect(self.changeHostnameAct, QtCore.SIGNAL('triggered()'), self.__changeHostnameAction)
-        
-    def __deleteAction(self):
-        """ Action called for node deletion
-        """
-
-        self.emit(QtCore.SIGNAL("Delete node"))
-        
-        
-    def __configAction(self):
-        """ Action called for node configuration
-        """
-        
-        self.emit(QtCore.SIGNAL("Config node"))
-        
-    def __showHostnameAction(self):
-        """ Action called to show the hostname
-        """
-        
-        self.emit(QtCore.SIGNAL("Show hostname"))
-        
-    def __changeHostnameAction(self):
-        """ Action called to change the hostname
+    def changeHostname(self):
+        """ Called to change the hostname
         """
         
         
@@ -229,19 +190,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                     return
                 self.emit(QtCore.SIGNAL("Add link"), self.id,  self.__selectedInterface)
 
-        elif (event.button() == QtCore.Qt.RightButton):
-            self.setSelected(True)
-            self.menu = QtGui.QMenu()
-            
-            if globals.GApp.workspace.currentMode == globals.Enum.Mode.Design:
-                # actions for design mode
-                self.menu.addAction(self.configAct)
-                self.menu.addAction(self.deleteAct)
-                self.menu.addAction(self.changeHostnameAct)
-
-            self.menu.addAction(self.showHostnameAct)
-            self.menu.exec_(QtGui.QCursor.pos())
-            
         QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
         
     def getConnectedInterfaceList(self):
@@ -345,14 +293,21 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """
             
         for edge in self.getEdgeList():
-            edge.setLocalInterfaceStatus(self.id, True)
+            edge.setLocalInterfaceStatus(self.id, 'up')
         
     def shutdownInterfaces(self):
         """ Shutdown all interfaces
         """
             
         for edge in self.getEdgeList():
-            edge.setLocalInterfaceStatus(self.id, False)
+            edge.setLocalInterfaceStatus(self.id, 'down')
+            
+    def suspendInterfaces(self):
+        """ Suspend all interfaces
+        """
+            
+        for edge in self.getEdgeList():
+            edge.setLocalInterfaceStatus(self.id, 'suspended')
 
     def createNIO(self,  dynamips,  nio):
         """ Create a new NIO (Network Input Output)

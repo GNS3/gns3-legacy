@@ -141,14 +141,14 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         # delete one of the interface mean the edge is deleted
         self.source.deleteInterface(self.srcIf)
 
-    def setLocalInterfaceStatus(self, node_id, isup):
+    def setLocalInterfaceStatus(self, node_id, status):
         """ Set the status to up/down for the node
             node_id: integer
-            isup: bolean
+            status: string 'up', 'down' or 'suspended'
         """
 
         if self.source.id == node_id:
-            self.src_interface_status = isup
+            self.src_interface_status = status
         else:    
-            self.dest_interface_status = isup
+            self.dest_interface_status = status
         self.update()

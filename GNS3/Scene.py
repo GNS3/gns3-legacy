@@ -27,10 +27,13 @@ from GNS3.Topology import Topology
 from GNS3.Utils import translate
 from GNS3.NodeConfigurator import NodeConfigurator
 from GNS3.Globals.Symbols import SYMBOLS
+from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.Hub import Hub
+from GNS3.Link.Ethernet import Ethernet
+from GNS3.Link.Serial import Serial
 
 IF_REGEXP = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)\/([0-9]+)$""") 
 PORT_REGEXP = re.compile(r"""^[0-9]*$""")
@@ -73,6 +76,78 @@ class Scene(QtGui.QGraphicsView):
             self.renders[name]['normal'] = QtSvg.QSvgRenderer(item['normal_svg_file'])
             self.renders[name]['selected'] = QtSvg.QSvgRenderer(item['select_svg_file'])
 
+    def showContextualMenu(self):
+        """  Create and display a contextual menu when clicking on the view
+        """
+
+        items = self.__topology.selectedItems()
+        if len(items) == 0:
+            return
+
+        menu = QtGui.QMenu()
+        if globals.GApp.workspace.currentMode == globals.Enum.Mode.Design:
+        
+            # Action: Delete (Delete the node)
+            deleteAct = QtGui.QAction(translate('Scene', 'Delete'), menu)
+            deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
+            self.connect(deleteAct, QtCore.SIGNAL('triggered()'), self.slotDeleteNode)
+            
+            # Action: Configure (Configure the node)
+            configAct = QtGui.QAction(translate('Scene', 'Configure'), menu)
+            configAct.setIcon(QtGui.QIcon(":/icons/configuration.svg"))
+            self.connect(configAct, QtCore.SIGNAL('triggered()'), self.slotConfigNode)
+            
+            # Action: ChangeHostname (Change the hostname)
+            changeHostnameAct = QtGui.QAction(translate('Scene', 'Change hostname'), menu)
+            changeHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
+            self.connect(changeHostnameAct, QtCore.SIGNAL('triggered()'), self.slotChangeHostname)
+
+            # actions for design mode
+            menu.addAction(configAct)
+            menu.addAction(deleteAct)
+            menu.addAction(changeHostnameAct)
+        else:
+
+            types = map(type,  items)
+            if IOSRouter in types:
+
+                # Action: Console (Connect to the node console)
+                consoleAct = QtGui.QAction(translate('Scene', 'Console'), menu)
+                consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
+                self.connect(consoleAct, QtCore.SIGNAL('triggered()'), self.slotConsole)
+        
+                # Action: Start (Start IOS on hypervisor)
+                startAct = QtGui.QAction(translate('Scene', 'Start'), menu)
+                startAct.setIcon(QtGui.QIcon(':/icons/play.svg'))
+                self.connect(startAct, QtCore.SIGNAL('triggered()'), self.slotStartNode)
+        
+                # Action: Stop (Stop IOS on hypervisor)
+                stopAct = QtGui.QAction(translate('Scene', 'Stop'), menu)
+                stopAct.setIcon(QtGui.QIcon(':/icons/stop.svg'))
+                self.connect(stopAct, QtCore.SIGNAL('triggered()'), self.slotStopNode)
+                
+                # Action: Suspend (Suspend IOS on hypervisor)
+                suspendAct = QtGui.QAction(translate('Scene', 'Suspend'), menu)
+                suspendAct.setIcon(QtGui.QIcon(':/icons/pause.svg'))
+                self.connect(suspendAct, QtCore.SIGNAL('triggered()'), self.slotSuspendNode)
+            
+                menu.addAction(consoleAct)
+                menu.addAction(startAct)
+                menu.addAction(suspendAct)
+                menu.addAction(stopAct)
+
+        # Action: ShowHostname (Display the hostname)
+        showHostnameAct = QtGui.QAction(translate('Scene', 'Show hostname'), menu)
+        showHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
+        self.connect(showHostnameAct, QtCore.SIGNAL('triggered()'), self.slotShowHostname)
+
+        menu.addAction(showHostnameAct)
+        menu.exec_(QtGui.QCursor.pos())
+        
+        # force the deletion of the children
+        for child in menu.children():
+            child.deleteLater()
+        
     def addItem(self, node):
         """ Overloaded function that add the node into the topology
         """
@@ -82,6 +157,7 @@ class Scene(QtGui.QGraphicsView):
     def slotConfigNode(self):
         """ Called to configure nodes
         """
+
         items = self.__topology.selectedItems()
         configurator = NodeConfigurator(items)
         configurator.setModal(True)
@@ -90,6 +166,13 @@ class Scene(QtGui.QGraphicsView):
         for item in items:
             item.setSelected(False)
 
+    def slotChangeHostname(self):
+        """ Slot called to change hostnames of selected items
+        """
+    
+        for item in self.__topology.selectedItems():
+            item.changeHostname()
+            
     def slotShowHostname(self):
         """ Slot called to show hostnames of selected items
         """
@@ -108,6 +191,38 @@ class Scene(QtGui.QGraphicsView):
             for link in item.getEdgeList().copy():
                 self.__topology.deleteLink(link)
             self.__topology.deleteNode(item.id)
+            
+    def slotConsole(self):
+        """ Slot called to launch a console on the selected items
+        """
+
+        for item in self.__topology.selectedItems():
+            if type(item) == IOSRouter:
+                item.console()
+                
+    def slotStartNode(self):
+        """ Slot called to start the selected items
+        """
+
+        for item in self.__topology.selectedItems():
+            if type(item) == IOSRouter:
+                item.startNode()
+
+    def slotStopNode(self):
+        """ Slot called to stop the selected items
+        """
+
+        for item in self.__topology.selectedItems():
+            if type(item) == IOSRouter:
+                item.stopNode()
+    
+    def slotSuspendNode(self):
+        """ Slot called to suspend the selected items
+        """
+
+        for item in self.__topology.selectedItems():
+            if type(item) == IOSRouter:
+                item.suspendNode()
 
     def __addLink(self):
         """ Add a new link between two nodes
@@ -229,9 +344,7 @@ class Scene(QtGui.QGraphicsView):
             if globals.GApp.workspace.flg_showHostname == True:
                 node.showHostname()
 
-
             self.__topology.addNode(node)
-
             # Center node
             pos_x = node.pos().x() - (node.boundingRect().width() / 2)
             pos_y = node.pos().y() - (node.boundingRect().height() / 2)
@@ -281,3 +394,29 @@ class Scene(QtGui.QGraphicsView):
                 # connected to a NIO
                 return True
         return False
+
+    def mousePressEvent(self, event):
+        """ Call when the node is clicked
+            event: QtGui.QGraphicsSceneMouseEvent instance
+        """
+
+        show = True
+        item = self.itemAt(event.pos())
+        if item:
+            item_type = type(item)
+            if item_type == Ethernet or item_type == Serial:
+                show = False
+        if show and event.button() == QtCore.Qt.RightButton and not globals.addingLinkFlag:
+            if item:
+                item.setSelected(True)
+            self.showContextualMenu()
+        else:
+            QtGui.QGraphicsView.mousePressEvent(self, event)
+
+    def mouseDoubleClickEvent(self, event):
+    
+        if  not globals.addingLinkFlag:
+            item = self.itemAt(event.pos())
+            if item:
+                item.setSelected(True)
+                self.slotConfigNode()

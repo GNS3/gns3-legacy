@@ -63,12 +63,6 @@ class Topology(QtGui.QGraphicsScene):
             QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
         QtCore.QObject.connect(node,
             QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
-        QtCore.QObject.connect(node,
-            QtCore.SIGNAL("Delete node"), globals.GApp.scene.slotDeleteNode)
-        QtCore.QObject.connect(node,
-            QtCore.SIGNAL("Config node"), globals.GApp.scene.slotConfigNode)
-        QtCore.QObject.connect(node,
-            QtCore.SIGNAL("Show hostname"), globals.GApp.scene.slotShowHostname)
 
         self.__nodes[node.id] = node
         self.addItem(node)

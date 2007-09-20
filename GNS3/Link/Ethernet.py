@@ -76,8 +76,10 @@ class Ethernet(AbstractEdge):
         if self.length < 80:
            return
 
-        if self.src_interface_status == True:
+        if self.dest_interface_status == 'up':
             color = QtCore.Qt.green
+        elif self.dest_interface_status == 'suspended':
+            color = QtCore.Qt.yellow
         else:
             color = QtCore.Qt.red
             
@@ -86,8 +88,10 @@ class Ethernet(AbstractEdge):
         point1 = QtCore.QPointF(self.src + self.edgeOffset)
         painter.drawPoint(point1) 
 
-        if self.dest_interface_status == True:
+        if self.dest_interface_status == 'up':
             color = QtCore.Qt.green
+        elif self.dest_interface_status == 'suspended':
+            color = QtCore.Qt.yellow
         else:
             color = QtCore.Qt.red
             
