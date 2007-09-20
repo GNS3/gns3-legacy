@@ -116,6 +116,7 @@ class ATMSW(AbstractNode):
                         self.dev.mapvp(int(destport), int(destvpi), int(srcport), int(srcvpi))
         
         self.startupInterfaces()
+        globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
 
     def updatePorts(self):
         """ Check if the connections are still ok

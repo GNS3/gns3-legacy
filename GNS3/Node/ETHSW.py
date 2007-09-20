@@ -108,6 +108,7 @@ class ETHSW(AbstractNode):
                     self.dev.set_port(port, porttype, vlan)
 
         self.startupInterfaces()
+        globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
 
     def updatePorts(self):
         """ Check if the connections are still ok

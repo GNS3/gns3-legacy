@@ -449,14 +449,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.cleanNodeStates()
             self.__restoreButtonState()
             return
-    
-        self.__startNonIOSNodes()
+
         self.__switchToMode(globals.Enum.Mode.Emulation)
         self.action_swModeEmulation.setChecked(True)
         self.statusbar.showMessage(translate("Workspace", "Emulation Mode"))
         self.action_Add_link.setChecked(False)
         self.__action_addLink()
         self.treeWidget_TopologySummary.emulationMode()
+        self.__startNonIOSNodes()
 
     def switchToMode_Simulation(self):
         """ Function called to switch to mode `Simulation'

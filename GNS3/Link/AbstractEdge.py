@@ -43,8 +43,8 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         self.dest = destNode
         self.srcIf = sourceIf
         self.destIf = destIf
-        self.src_interface_status = False
-        self.dest_interface_status = False
+        self.src_interface_status = 'down'
+        self.dest_interface_status = 'down'
         
         # create a unique ID
         self.id = globals.GApp.topology.link_baseid

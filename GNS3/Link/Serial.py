@@ -105,9 +105,9 @@ class Serial(AbstractEdge):
            return
 
         # source point
-        if self.dest_interface_status == 'up':
+        if self.src_interface_status == 'up':
             color = QtCore.Qt.green
-        elif self.dest_interface_status == 'suspended':
+        elif self.src_interface_status == 'suspended':
             color = QtCore.Qt.yellow
         else:
             color = QtCore.Qt.red

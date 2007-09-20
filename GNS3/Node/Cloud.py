@@ -67,6 +67,7 @@ class Cloud(AbstractNode):
         """
 
         self.startupInterfaces()
+        globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
         
     def stopNode(self):
         """ Stop the node

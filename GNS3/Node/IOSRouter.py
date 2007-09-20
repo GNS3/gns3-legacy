@@ -462,6 +462,7 @@ class IOSRouter(AbstractNode):
         if self.dev.state == 'suspended':
             self.dev.resume()
         self.startupInterfaces()
+        globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.dev.state)
         
     def stopNode(self):
         """ Stop the node
@@ -470,6 +471,7 @@ class IOSRouter(AbstractNode):
         if self.dev != None and self.dev.state != 'stopped':
             self.dev.stop()
             self.shutdownInterfaces()
+            globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.dev.state)
             
     def suspendNode(self):
         """ Suspend the node
@@ -478,6 +480,7 @@ class IOSRouter(AbstractNode):
         if self.dev != None and self.dev.state == 'running':
             self.dev.suspend()
             self.suspendInterfaces()
+            globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.dev.state)
 
     def cleanNodeFiles(self):
         """ Delete nvram/flash/log files created by Dynamips

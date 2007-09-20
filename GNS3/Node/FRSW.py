@@ -101,6 +101,7 @@ class FRSW(AbstractNode):
                     self.dev.map(int(destport), int(destdlci), int(srcport), int(srcdlci))
         
         self.startupInterfaces()
+        globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
 
     def updatePorts(self):
         """ Check if the connections are still ok

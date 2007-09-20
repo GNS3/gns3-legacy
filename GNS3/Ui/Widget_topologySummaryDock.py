@@ -33,17 +33,17 @@ class topologySummaryDock(QtGui.QTreeWidget):
     
         QtGui.QTreeWidget.__init__(self, parent)
         self.header().hide()
+        self.setRootIsDecorated(True)
 
     def emulationMode(self):
         """ Create items for emulation mode
         """
         
         self.clear()
-        self.setRootIsDecorated(True)
         for node in globals.GApp.topology.nodes.itervalues():
             rootitem = QtGui.QTreeWidgetItem(self)
             rootitem.setText(0, node.hostname)
-            #rootitem.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
+            rootitem.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
     
             #TODO: finish to put the tree in emulation mode
             items = []
@@ -62,10 +62,23 @@ class topologySummaryDock(QtGui.QTreeWidget):
                 item.setText(0, newText)
                 items.append(item)
             rootitem.addChildren(items)
-            
-            #rootitem.addChild(QtGui.QTreeWidgetItem(['test']))
             self.insertTopLevelItem(0, rootitem)
 
+    def changeNodeStatus(self, hostname, status):
+        """ Change the status of a node
+            status: string 'running', 'stopped' or 'suspended'
+        """    
+
+        items = self.findItems (hostname, QtCore.Qt.MatchFixedString)
+        if len(items):
+            item = items[0]
+            if status == 'running':
+                item.setIcon(0, QtGui.QIcon(':/icons/led_green.svg'))
+            elif status == 'suspended':
+                item.setIcon(0, QtGui.QIcon(':/icons/led_yellow.svg'))
+            else:
+                item.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
+            
     def retranslateItem(self, item):
         # Translate current item
         data = item.data(0, QtCore.Qt.UserRole).toStringList()
