@@ -21,8 +21,9 @@
 #
 
 addingLinkFlag = False
-useHypervisorManager = False
+HypervisorManager = None
 HypervisorMemoryUsageLimit = 512
+HypervisorUDPIncrementation = 100
 debugLevel = 0
 
 # A singleton instance of GNS3 Application

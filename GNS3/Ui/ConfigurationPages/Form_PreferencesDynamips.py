@@ -3,7 +3,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesDynamips.ui'
 #
-# Created: Fri Sep 21 16:01:26 2007
+# Created: Sat Sep 22 01:26:28 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,7 +13,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_PreferencesDynamips(object):
     def setupUi(self, PreferencesDynamips):
         PreferencesDynamips.setObjectName("PreferencesDynamips")
-        PreferencesDynamips.resize(QtCore.QSize(QtCore.QRect(0,0,405,384).size()).expandedTo(PreferencesDynamips.minimumSizeHint()))
+        PreferencesDynamips.resize(QtCore.QSize(QtCore.QRect(0,0,405,352).size()).expandedTo(PreferencesDynamips.minimumSizeHint()))
 
         self.gridlayout = QtGui.QGridLayout(PreferencesDynamips)
         self.gridlayout.setObjectName("gridlayout")
@@ -89,13 +89,9 @@ class Ui_PreferencesDynamips(object):
         self.label_3.setObjectName("label_3")
         self.gridlayout1.addWidget(self.label_3,6,0,1,4)
 
-        self.comboBox = QtGui.QComboBox(self.groupBox)
-        self.comboBox.setObjectName("comboBox")
-        self.gridlayout1.addWidget(self.comboBox,7,0,1,4)
-
         self.dynamips_term_cmd = QtGui.QLineEdit(self.groupBox)
         self.dynamips_term_cmd.setObjectName("dynamips_term_cmd")
-        self.gridlayout1.addWidget(self.dynamips_term_cmd,8,0,1,4)
+        self.gridlayout1.addWidget(self.dynamips_term_cmd,7,0,1,4)
         self.gridlayout.addWidget(self.groupBox,0,0,1,2)
 
         self.pushButtonTestDynamips = QtGui.QPushButton(PreferencesDynamips)
@@ -130,5 +126,4 @@ class Ui_PreferencesDynamips(object):
         self.label_7.setText(QtGui.QApplication.translate("PreferencesDynamips", "Base console:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("PreferencesDynamips", "Terminal command:", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonTestDynamips.setText(QtGui.QApplication.translate("PreferencesDynamips", "&Test", None, QtGui.QApplication.UnicodeUTF8))
-        self.labelDynamipsStatus.setText(QtGui.QApplication.translate("PreferencesDynamips", "Status: unknown", None, QtGui.QApplication.UnicodeUTF8))
 

@@ -1104,7 +1104,6 @@ class Router(object):
         self.__npe = npe
         self.__midplane = midplane
 
-
     def createslots(self, numslots):
         """ Create the appropriate number of slots for this router
         """
@@ -1147,7 +1146,7 @@ class Router(object):
         # if router.slot[0].wics[1] = WIC-2T and wics[0] is empty
 
         try:
-            self.slot[slot].wics[wicslot] = wic
+            self.slot[slot].wics[wicslot] = wicinstance_count
         except IndexError:
             raise DynamipsError, "On router %s, invalid wic subslot %i for WIC specification: wic%i/%i" % (self.name, wicslot, slot, wicslot)
         except AttributeError:
@@ -2163,8 +2162,7 @@ class FRSW(object):
         """ Delete this Frame Relay switch instance from the back end
         """
         pass
-
-
+        
     def map(self, port1, dlci1, port2, dlci2):
         """ Tell the switch to switch between port1 / dlci1 and port 2 / dlci2
             NOTE: both ports must be connected to something before map can be applied
@@ -2324,7 +2322,6 @@ class ATMSW(object):
         """ Delete this ATM switch instance from the back end
         """
         pass
-
 
     def mapvp(self, port1, vpi1, port2, vpi2):
         """ Tell the switch to switch between port1 / vpi1 and port 2 / vpi2
@@ -2525,7 +2522,6 @@ class ETHSW(object):
         """ Delete this Frame Relay switch instance from the back end
         """
         pass
-
 
     def set_port(self, port, porttype, vlan):
         """ Define a port as an access port or trunk port, and it's vlan

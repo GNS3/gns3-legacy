@@ -22,7 +22,9 @@
 
 from PyQt4 import QtGui, QtCore
 from GNS3.Ui.Form_PreferencesDialog import Ui_PreferencesDialog
+from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Utils import translate
+import GNS3.Globals as globals
 
 class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
 
@@ -48,6 +50,12 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
         self.__initDialog()
         # Raise the first element in list
         self.__raiseWidgetByNum(0)
+        
+    def __del__(self):
+    
+        if globals.GApp.systconf['dynamips'].path:
+            globals.HypervisorManager = HypervisorManager()
+            globals.HypervisorManager.preloadDynamips()
 
     def retranslateUi(self, MainWindow):
         # Call parent retranslateUi

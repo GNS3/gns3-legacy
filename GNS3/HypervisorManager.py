@@ -26,9 +26,6 @@ from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
 from GNS3.Node.IOSRouter import IOSRouter
 
-#TODO: give users a way to configure this
-MEM_USAGE_LIMIT = 512
-
 class HypervisorManager:
     """ HypervisorManager class
         Start one or more dynamips in hypervisor mode
@@ -38,28 +35,38 @@ class HypervisorManager:
     
         self.hypervisors = []
         self.preloaded_hypervisors = []
-        dynamips = globals.GApp.systconf['dynamips']
-        self.hypervisor_path = dynamips.path
-        self.hypervisor_wd = dynamips.workdir
-        self.hypervisor_baseport = dynamips.port
-        self.baseUDP = dynamips.baseUDP
-        self.baseConsole = dynamips.baseConsole
+        self.used_preloaded_hypervisors = []
+        self.setDefaults()
         
     def __del__(self):
         """ Shutdown all started hypervisors 
         """
 
         self.stopProcHypervisors()
-#        for hypervisor in self.preloaded_hypervisors:
-#            hypervisor['proc_instance'].close()
-#        self.preloaded_hypervisors = []
+        for hypervisor in self.preloaded_hypervisors:
+            hypervisor['proc_instance'].close()
+        self.preloaded_hypervisors = []
+       
+    def setDefaults(self):
+        """ Set the default values for the hypervisor manager
+        """
         
+        dynamips = globals.GApp.systconf['dynamips']
+        self.hypervisor_path = dynamips.path
+        self.hypervisor_wd = dynamips.workdir
+        self.hypervisor_baseport = dynamips.port
+        self.baseUDP = dynamips.baseUDP
+        self.baseConsole = dynamips.baseConsole
+      
     def startNewHypervisor(self):
         """ Create a new dynamips process and start it
         """
 
         if len(self.preloaded_hypervisors):
-            return self.preloaded_hypervisors.pop()
+            for hypervisor in self.preloaded_hypervisors:
+                if hypervisor not in self.used_preloaded_hypervisors:
+                    self.used_preloaded_hypervisors.append(hypervisor)
+                    return hypervisor
 
         proc = QtCore.QProcess(globals.GApp.mainWindow)
         port = self.hypervisor_baseport
@@ -94,7 +101,7 @@ class HypervisorManager:
                     mem += node.config.ram
 
         # compute the number of hypervisors to start
-        count = mem / MEM_USAGE_LIMIT
+        count = mem / globals.HypervisorMemoryUsageLimit
         count += 1
         # show a progress dialog if multiple hypervisors to start
         if count > 1:
@@ -119,14 +126,14 @@ class HypervisorManager:
             mem += node.config.ram
             current_node += 1
             node.configHypervisor('localhost',  hypervisor['port'],  self.hypervisor_wd,  self.baseUDP, self.baseConsole)
-            if mem >= MEM_USAGE_LIMIT and current_node != nb_node:
+            if mem >= globals.HypervisorMemoryUsageLimit and current_node != nb_node:
                 # start a new hypervisor
                 hypervisor = self.startNewHypervisor()
                 # wait for starting
                 time.sleep(1)
                 # change the base UDP
                 #TODO: give users a way to configure this
-                self.baseUDP += 100
+                self.baseUDP += globals.HypervisorUDPIncrementation
                 mem = 0
         time.sleep(2)
         if count > 1:
@@ -165,7 +172,7 @@ class HypervisorManager:
         print 'received data stderr'
         print str(self.proc.readAllStandardError)
         
-    def preloadDynamips(self):
+    def preloadDynamips(self, showErrMessage=True):
         """ Preload Dynamips
         """
 
@@ -179,9 +186,12 @@ class HypervisorManager:
         # start dynamips in hypervisor mode (-H)
         proc.start(self.hypervisor_path,  ['-H', str(port)])
         if proc.waitForStarted() == False:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Can't start Dynamips"))
-            return
+            if showErrMessage:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Can't start Dynamips"))
+            return False
 
         hypervisor = {'port': port,
                             'proc_instance': proc}
+
         self.preloaded_hypervisors.append(hypervisor)
+        return True

@@ -42,11 +42,16 @@ class NETFile(object):
     
         #TODO: Should start the hypervisor at startup & check if hypervisor settings are configured
         hypervisors = []
-        manager = HypervisorManager()
-        manager.startNewHypervisor()
-        time.sleep(3)
-        globals.GApp.topology.clear()
+        
+        if globals.GApp.systconf['dynamips'].path == '':
+            QtGui.QMessageBox.warning(self, translate("NETFile", "Save"), translate("NETFile", "Please configure the path to Dynamips"))
+            return
+        
+        if len(globals.HypervisorManager.preloaded_hypervisors) == 0:
+            globals.HypervisorManager.preloadDynamips()
+            time.sleep(3)
 
+        globals.GApp.topology.clear()
         dir = os.path.dirname(dynagen.__file__)
         dynagen.CONFIGSPECPATH.append(dir)
         (connectionlist, maplist, ethswintlist) = globals.GApp.dynagen.import_config(path)
@@ -183,9 +188,6 @@ class NETFile(object):
                         globals.GApp.iosimages[node.config.image].hypervisor_port = hypervisor['port']
                     #print node.config.image
                     #node.configHypervisor(hypervisor['host'],  hypervisor['port'],  hypervisor['workingdir'],  hypervisor['udp'])
-    
-        #TODO: see first lines of the method
-        manager.stopProcHypervisors()
     
     def setproperties(self, config, device, properties):
 

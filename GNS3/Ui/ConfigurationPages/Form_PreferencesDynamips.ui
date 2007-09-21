@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>405</width>
-    <height>384</height>
+    <height>352</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -121,9 +121,6 @@
        </widget>
       </item>
       <item row="7" column="0" colspan="4" >
-       <widget class="QComboBox" name="comboBox" />
-      </item>
-      <item row="8" column="0" colspan="4" >
        <widget class="QLineEdit" name="dynamips_term_cmd" />
       </item>
      </layout>
@@ -145,7 +142,7 @@
       </sizepolicy>
      </property>
      <property name="text" >
-      <string>Status: unknown</string>
+      <string/>
      </property>
     </widget>
    </item>

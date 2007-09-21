@@ -79,10 +79,21 @@ class Workspace(QMainWindow, Ui_MainWindow):
         swWidget = self.toolBar_General.widgetForAction(self.action_SwitchMode)
         swWidget.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
 
-        self.hypervisor_manager = None
+        self.useHypervisorManager = False
+
         # Switch to default mode
         self.switchToMode_Design()
 
+        
+#        # preload dynamips, so it will start faster when using it
+#        if globals.GApp.systconf['dynamips'].path:
+#            globals.HypervisorManager = HypervisorManager()
+#            globals.HypervisorManager.preloadDynamips()
+#
+#    def __del__(self):
+#    
+#        globals.HypervisorManager = None
+        
     def __initModeSwitching(self):
         """ Initialize the action dictionnary for GUI mode switching
         """
@@ -377,8 +388,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         finally:
             self.cleanNodeStates()
 
-        if self.hypervisor_manager and globals.useHypervisorManager:
-            self.hypervisor_manager.stopProcHypervisors()
+        if globals.HypervisorManager != None and self.useHypervisorManager:
+            globals.HypervisorManager.stopProcHypervisors()
 
         self.__switchToMode(globals.Enum.Mode.Design)
         self.action_swModeDesign.setChecked(True)
@@ -392,9 +403,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.action_swModeDesign.setChecked(True)
         elif self.previousMode == globals.Enum.Mode.Simulation:
             self.action_swModeSimulation.setChecked(True)
-        if self.hypervisor_manager and globals.useHypervisorManager:
-            self.hypervisor_manager.stopProcHypervisors()
-            self.hypervisor_manager = None
+        if globals.HypervisorManager != None and self.useHypervisorManager:
+            globals.HypervisorManager.stopProcHypervisors()
             
     def switchToMode_Emulation(self):
         """ Function called to switch to mode `Emulation'
@@ -407,18 +417,18 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__restoreButtonState()
             return
 
-        globals.useHypervisorManager = False
+        self.useHypervisorManager = False
         for node in globals.GApp.topology.nodes.itervalues():
             if type(node) == IOSRouter and not node.config.image:
                 node.setDefaultIOSImage()
             if type(node) == IOSRouter:
                 image = globals.GApp.iosimages[node.config.image]
                 if image.hypervisor_host == '':
-                    globals.useHypervisorManager = True
+                    self.useHypervisorManager = True
             elif type(node) != Cloud and node.config.hypervisor_host == '':
-                globals.useHypervisorManager = True
+                self.useHypervisorManager = True
             
-        if globals.useHypervisorManager:
+        if self.useHypervisorManager:
 
             if globals.GApp.systconf['dynamips'].path == '':
                 QtGui.QMessageBox.warning(self, translate("Workspace", "Emulation Mode"), translate("Workspace", "Please configure the path to Dynamips"))
@@ -426,11 +436,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 self.__restoreButtonState()
                 return
 
-            if self.hypervisor_manager == None:
-                self.hypervisor_manager = HypervisorManager()
-        
             # hypervisor not started, so don't try to continue
-            if self.hypervisor_manager.startProcHypervisors() == False:
+            if globals.HypervisorManager != None and globals.HypervisorManager.startProcHypervisors() == False:
                 self.__restoreButtonState()
                 return
         try:

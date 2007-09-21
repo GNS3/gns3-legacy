@@ -24,9 +24,10 @@ import sys
 from PyQt4 import QtGui, QtCore
 from GNS3.Ui.ConfigurationPages.Form_PreferencesDynamips import Ui_PreferencesDynamips
 from GNS3.Config.Objects import systemDynamipsConf
+from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Config import ConfDB
 from GNS3.Utils import fileBrowser, translate,  testOpenFile
-from GNS3.Globals import GApp
+import GNS3.Globals as globals
 
 class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
 
@@ -38,9 +39,10 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.__setDynamipsPath)
         self.connect(self.dynamips_workdir_browser, QtCore.SIGNAL('clicked()'),
             self.__setDynamipsWorkdir)
-
+        self.connect(self.pushButtonTestDynamips, QtCore.SIGNAL('clicked()'),
+            self.__testDynamips)
+            
         self.loadConf()
-
 
     def loadConf(self):
         """ Load widget configuration from syst. config, or create an
@@ -49,8 +51,8 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
 
         # Use conf from GApp.systconf['dynamips'] it it exist,
         # else get a default config
-        if GApp.systconf.has_key('dynamips'):
-            self.conf = GApp.systconf['dynamips']
+        if globals.GApp.systconf.has_key('dynamips'):
+            self.conf = globals.GApp.systconf['dynamips']
         else:
             self.conf = systemDynamipsConf()
 
@@ -88,7 +90,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         self.conf.baseUDP = self.dynamips_baseUDP.value()
         self.conf.baseConsole = self.dynamips_baseConsole.value()
 
-        GApp.systconf['dynamips'] = self.conf
+        globals.GApp.systconf['dynamips'] = self.conf
         ConfDB().sync()
 
     def __setDynamipsPath(self):
@@ -114,3 +116,12 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         if path is not None:
             self.dynamips_workdir.setText(path)
 
+    def __testDynamips(self):
+    
+        if globals.GApp.systconf['dynamips'].path:
+            self.saveConf()
+            globals.HypervisorManager = HypervisorManager()
+            if globals.HypervisorManager.preloadDynamips(showErrMessage=False):
+                self.labelDynamipsStatus.setText('<font color="green">' + translate("UiConfig_PreferencesDynamips", "Dynamips successfully loaded")  + '</font>')
+            else:
+                self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Failed to load Dynamips")  + '</font>')

@@ -64,6 +64,10 @@ class Application(QApplication, Singleton):
         # set global app to ourself
         globals.GApp = self
 
+    def __del__(self):
+    
+        globals.HypervisorManager = None
+        
     # property: `mainWindow'
     def __setMainWindow(self, mw):
         """ register the MainWindow instance
@@ -224,7 +228,8 @@ class Application(QApplication, Singleton):
 
         # preload dynamips, so it will start faster when using it
         if globals.GApp.systconf['dynamips'].path:
-            HypervisorManager().preloadDynamips()
+            globals.HypervisorManager = HypervisorManager()
+            globals.HypervisorManager.preloadDynamips()
 
         self.mainWindow.show()
 
