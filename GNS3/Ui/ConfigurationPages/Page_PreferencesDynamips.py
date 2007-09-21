@@ -72,6 +72,8 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         self.dynamips_workdir.setText(self.conf.workdir)
         self.dynamips_term_cmd.setText(self.conf.term_cmd)
         self.dynamips_port.setValue(self.conf.port)
+        self.dynamips_baseUDP.setValue(self.conf.baseUDP)
+        self.dynamips_baseConsole.setValue(self.conf.baseConsole)
 
     def saveConf(self):
         """ Save widget settings to syst. config
@@ -83,6 +85,8 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         self.conf.workdir = working_dir
         self.conf.term_cmd = unicode(self.dynamips_term_cmd.text(),  'utf-8')
         self.conf.port = self.dynamips_port.value()
+        self.conf.baseUDP = self.dynamips_baseUDP.value()
+        self.conf.baseConsole = self.dynamips_baseConsole.value()
 
         GApp.systconf['dynamips'] = self.conf
         ConfDB().sync()
@@ -90,13 +94,13 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
     def __setDynamipsPath(self):
         """ Open a file dialog for choosing the location of dynamips executable
         """
-        fb = fileBrowser(translate('UiConfig_SystemApplications', 'Dynamips binary'))
+        fb = fileBrowser(translate('UiConfig_PreferencesDynamips', 'Dynamips binary'))
         (path, selected) = fb.getFile()
 
         if path is not None and path != '':
             # test if we can open it
             if not testOpenFile(path):
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Dynamips path', translate("UiConfig_SystemApplications", "Can't open file: ") + path)
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Dynamips path', translate("UiConfig_PreferencesDynamips", "Can't open file: ") + path)
                 return
             self.dynamips_path.setText(path)
 
@@ -104,7 +108,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         """ Open a file dialog for choosing the location of local hypervisor
         working directory
         """
-        fb = fileBrowser(translate('UiConfig_SystemApplications', 'Local Hypervisor Workdir'))
+        fb = fileBrowser(translate('UiConfig_PreferencesDynamips', 'Local Hypervisor Workdir'))
         path = fb.getDir()
 
         if path is not None:

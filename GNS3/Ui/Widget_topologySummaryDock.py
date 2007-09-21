@@ -45,18 +45,15 @@ class topologySummaryDock(QtGui.QTreeWidget):
             rootitem.setText(0, node.hostname)
             rootitem.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
     
-            #TODO: finish to put the tree in emulation mode
             items = []
             for interface in node.getConnectedInterfaceList():
                 item = QtGui.QTreeWidgetItem()
                 neighbor = node.getConnectedNeighbor(interface)
-                
                 list = QtCore.QStringList()
                 list.append(interface)
                 list.append(neighbor[0].hostname)
                 list.append(neighbor[1])
                 item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(list))
-
                 newText = unicode(translate('topologySummaryDock', '%s is connected to %s %s')) \
                             % (interface, neighbor[0].hostname, neighbor[1])
                 item.setText(0, newText)

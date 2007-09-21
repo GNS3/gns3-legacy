@@ -352,16 +352,36 @@
            </widget>
           </item>
           <item row="3" column="0" colspan="3" >
+           <widget class="QLabel" name="label_8" >
+            <property name="text" >
+             <string>Base console:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3" colspan="2" >
+           <widget class="QSpinBox" name="spinBoxBaseConsole" >
+            <property name="minimum" >
+             <number>1</number>
+            </property>
+            <property name="maximum" >
+             <number>65535</number>
+            </property>
+            <property name="value" >
+             <number>2000</number>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" colspan="3" >
            <widget class="QLabel" name="label_5" >
             <property name="text" >
              <string>Working directory:</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="3" >
+          <item row="4" column="3" >
            <widget class="QLineEdit" name="lineEditWorkingDir" />
           </item>
-          <item row="3" column="4" >
+          <item row="4" column="4" >
            <widget class="QPushButton" name="pushButtonSelectWorkingDir" >
             <property name="maximumSize" >
              <size>
@@ -374,15 +394,15 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="3" >
+          <item row="5" column="3" >
            <spacer>
             <property name="orientation" >
              <enum>Qt::Vertical</enum>
             </property>
             <property name="sizeHint" >
              <size>
-              <width>20</width>
-              <height>151</height>
+              <width>128</width>
+              <height>121</height>
              </size>
             </property>
            </spacer>

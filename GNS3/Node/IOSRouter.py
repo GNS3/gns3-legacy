@@ -275,7 +275,7 @@ class IOSRouter(AbstractNode):
             hypervisorkey = hypervisor_host + ':' + str(hypervisor_port)
             if globals.GApp.hypervisors.has_key(hypervisorkey):
                 hypervisor = globals.GApp.hypervisors[hypervisorkey]
-                self.configHypervisor(hypervisor.host,  hypervisor.port,  hypervisor.workdir,  hypervisor.baseUDP)
+                self.configHypervisor(hypervisor.host,  hypervisor.port,  hypervisor.workdir,  hypervisor.baseUDP, hypervisor.baseConsole)
             else:
                 print 'Hypervisor ' + hypervisorkey + ' not registered !'
                 return

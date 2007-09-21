@@ -28,7 +28,6 @@ from GNS3.Node.IOSRouter import IOSRouter
 
 #TODO: give users a way to configure this
 MEM_USAGE_LIMIT = 512
-BASE_PORT_UDP = 10000
 
 class HypervisorManager:
     """ HypervisorManager class
@@ -43,8 +42,9 @@ class HypervisorManager:
         self.hypervisor_path = dynamips.path
         self.hypervisor_wd = dynamips.workdir
         self.hypervisor_baseport = dynamips.port
-        self.baseUDP = BASE_PORT_UDP
-
+        self.baseUDP = dynamips.baseUDP
+        self.baseConsole = dynamips.baseConsole
+        
     def __del__(self):
         """ Shutdown all started hypervisors 
         """
@@ -118,7 +118,7 @@ class HypervisorManager:
                 break
             mem += node.config.ram
             current_node += 1
-            node.configHypervisor('localhost',  hypervisor['port'],  self.hypervisor_wd,  self.baseUDP)
+            node.configHypervisor('localhost',  hypervisor['port'],  self.hypervisor_wd,  self.baseUDP, self.baseConsole)
             if mem >= MEM_USAGE_LIMIT and current_node != nb_node:
                 # start a new hypervisor
                 hypervisor = self.startNewHypervisor()
@@ -131,6 +131,7 @@ class HypervisorManager:
         time.sleep(2)
         if count > 1:
             progress.setValue(count)
+            progress.deleteLater()
             progress = None
         return True
                 
@@ -141,7 +142,8 @@ class HypervisorManager:
         if globals.GApp != None and globals.GApp.systconf['dynamips']:
             dynamips = globals.GApp.systconf['dynamips']
             self.hypervisor_baseport = dynamips.port
-        self.baseUDP = BASE_PORT_UDP
+            self.baseUDP = dynamips.baseUDP
+            self.baseConsole = dynamips.baseConsole
         for hypervisor in self.hypervisors:
             hypervisor['proc_instance'].close()
         self.hypervisors = []

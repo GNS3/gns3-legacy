@@ -55,6 +55,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.hypervisor_host = None
         self.hypervisor_port = None
         self.baseUDP = None
+        self.baseConsole = None
         self.hypervisor_wd = None
         
         # create a unique ID
@@ -349,12 +350,14 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             dynagen.dynamips[key] = lib.Dynamips(self.hypervisor_host, self.hypervisor_port)
             dynagen.dynamips[key].reset()
             if self.baseUDP:
-                dynagen.dynamips[key] .udp = self.baseUDP
+                dynagen.dynamips[key].udp = self.baseUDP
+            if self.baseConsole:
+                dynagen.dynamips[key].baseconsole = self.baseConsole
             if self.hypervisor_wd:
-                dynagen.dynamips[key] .workingdir = self.hypervisor_wd
+                dynagen.dynamips[key].workingdir = self.hypervisor_wd
         return dynagen.dynamips[key]
         
-    def configHypervisor(self,  host,  port, workingdir = None,  baseudp = None):
+    def configHypervisor(self,  host,  port, workingdir = None,  baseudp = None,  baseconsole = None):
         """ Setup an hypervisor
         """
     
@@ -363,6 +366,8 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.hypervisor_port = port
         if  baseudp:
             self.baseUDP = baseudp
+        if  baseconsole:
+            self.baseConsole = baseconsole
         if workingdir:
             self.hypervisor_wd = workingdir
           
@@ -381,6 +386,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             self.hypervisor_host = None
             self.hypervisor_port = None
             self.baseUDP = None
+            self.baseConsole = None
             
     def resetNode(self):
         """ Reset the node configuration

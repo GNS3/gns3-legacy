@@ -251,7 +251,13 @@ class NETFile(object):
                     if device.mac:
                         netfile[dynamipskey][devicekey]['mac'] = device.mac
                     #FIXME: aux missing
-
+                    
+                    slot_nb = 0
+                    for slot in device.slot:
+                        if slot:
+                            netfile[dynamipskey][devicekey]['slot' + str(slot_nb)] = slot.adapter
+                        slot_nb += 1
+                    
                     for node in globals.GApp.topology.nodes.values():
                         # export connection settings
                         if type(node) == IOSRouter and node.hostname == hostname:
@@ -272,8 +278,6 @@ class NETFile(object):
                             # export the node position
                             netfile[dynamipskey][devicekey]['x'] = node.x()
                             netfile[dynamipskey][devicekey]['y'] = node.y()
-
-                #TODO: export slots
                             
                 if type(device) == lib.ETHSW:
                     # export a Ethernet switch

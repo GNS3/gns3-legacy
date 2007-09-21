@@ -1,10 +1,9 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Tue Sep 18 17:57:54 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070701
+# Created: Fri Sep 21 17:38:01 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -212,21 +211,32 @@ class Ui_IOSDialog(object):
         self.spinBoxBaseUDP.setObjectName("spinBoxBaseUDP")
         self.gridlayout4.addWidget(self.spinBoxBaseUDP,2,3,1,2)
 
+        self.label_8 = QtGui.QLabel(self.groupBox_4)
+        self.label_8.setObjectName("label_8")
+        self.gridlayout4.addWidget(self.label_8,3,0,1,3)
+
+        self.spinBoxBaseConsole = QtGui.QSpinBox(self.groupBox_4)
+        self.spinBoxBaseConsole.setMinimum(1)
+        self.spinBoxBaseConsole.setMaximum(65535)
+        self.spinBoxBaseConsole.setProperty("value",QtCore.QVariant(2000))
+        self.spinBoxBaseConsole.setObjectName("spinBoxBaseConsole")
+        self.gridlayout4.addWidget(self.spinBoxBaseConsole,3,3,1,2)
+
         self.label_5 = QtGui.QLabel(self.groupBox_4)
         self.label_5.setObjectName("label_5")
-        self.gridlayout4.addWidget(self.label_5,3,0,1,3)
+        self.gridlayout4.addWidget(self.label_5,4,0,1,3)
 
         self.lineEditWorkingDir = QtGui.QLineEdit(self.groupBox_4)
         self.lineEditWorkingDir.setObjectName("lineEditWorkingDir")
-        self.gridlayout4.addWidget(self.lineEditWorkingDir,3,3,1,1)
+        self.gridlayout4.addWidget(self.lineEditWorkingDir,4,3,1,1)
 
         self.pushButtonSelectWorkingDir = QtGui.QPushButton(self.groupBox_4)
         self.pushButtonSelectWorkingDir.setMaximumSize(QtCore.QSize(31,27))
         self.pushButtonSelectWorkingDir.setObjectName("pushButtonSelectWorkingDir")
-        self.gridlayout4.addWidget(self.pushButtonSelectWorkingDir,3,4,1,1)
+        self.gridlayout4.addWidget(self.pushButtonSelectWorkingDir,4,4,1,1)
 
-        spacerItem4 = QtGui.QSpacerItem(20,151,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
-        self.gridlayout4.addItem(spacerItem4,4,3,1,1)
+        spacerItem4 = QtGui.QSpacerItem(128,121,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        self.gridlayout4.addItem(spacerItem4,5,3,1,1)
         self.gridlayout3.addWidget(self.groupBox_4,0,0,1,1)
 
         self.groupBox_5 = QtGui.QGroupBox(self.tab_2)
@@ -298,6 +308,7 @@ class Ui_IOSDialog(object):
         self.lineEditHost.setText(QtGui.QApplication.translate("IOSDialog", "localhost", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("IOSDialog", "Port:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_7.setText(QtGui.QApplication.translate("IOSDialog", "Base UDP:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_8.setText(QtGui.QApplication.translate("IOSDialog", "Base console:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_5.setText(QtGui.QApplication.translate("IOSDialog", "Working directory:", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonSelectWorkingDir.setText(QtGui.QApplication.translate("IOSDialog", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_5.setTitle(QtGui.QApplication.translate("IOSDialog", "Hypervisors", None, QtGui.QApplication.UnicodeUTF8))

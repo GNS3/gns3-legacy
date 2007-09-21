@@ -342,7 +342,9 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             self.spinBoxHypervisorPort.setValue(conf.port + 1)
             conf.workdir = working_dir
             conf.baseUDP = baseudp
+            conf.baseConsole = self.spinBoxBaseConsole.value()
             self.spinBoxBaseUDP.setValue(conf.baseUDP + 100)
+            self.spinBoxBaseConsole.setValue(conf.baseConsole + 10)
             globals.GApp.hypervisors[hypervisorkey] = conf
             self.treeWidgetHypervisor.addTopLevelItem(item)
             self.treeWidgetHypervisor.resizeColumnToContents(0)
@@ -392,4 +394,4 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 self.spinBoxHypervisorPort.setValue(conf.port)
                 self.lineEditWorkingDir.setText(conf.workdir)
                 self.spinBoxBaseUDP.setValue(conf.baseUDP)
-    
+                self.spinBoxBaseConsole.setValue(conf.baseConsole)

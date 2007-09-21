@@ -675,6 +675,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 return
             current += 1
         progress.setValue(count)
+        progress.deleteLater()
         progress = None
     
     def __action_StartAll(self):

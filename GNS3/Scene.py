@@ -420,3 +420,5 @@ class Scene(QtGui.QGraphicsView):
             if item:
                 item.setSelected(True)
                 self.slotConfigNode()
+        else:
+            QtGui.QGraphicsView.mouseDoubleClickEvent(self, event)

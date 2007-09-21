@@ -45,7 +45,8 @@ conf_hypervisor_defaults = {
     'host': '',
     'port': 7200,
     'workdir': '',
-    'baseUDP': 10000
+    'baseUDP': 10000, 
+    'baseConsole': 2000
 }
 
 conf_hypervisor_types = {
@@ -53,7 +54,8 @@ conf_hypervisor_types = {
     'host': unicode,
     'port': int,
     'workdir': unicode, 
-    'baseUDP': int
+    'baseUDP': int,
+    'baseConsole': int
 }
 
 conf_iosRouter_defaults = {
@@ -167,6 +169,8 @@ conf_systemDynamips_defaults = {
     'port': 7200,
     'workdir': '',
     'term_cmd': '',
+    'baseUDP': 10000, 
+    'baseConsole': 2000
 }
 
 conf_systemDynamips_types = {
@@ -174,6 +178,8 @@ conf_systemDynamips_types = {
     'port': int,
     'workdir': unicode,
     'term_cmd': unicode,
+    'baseUDP': int,
+    'baseConsole': int
 }
 
 conf_systemGeneral_defaults = {
