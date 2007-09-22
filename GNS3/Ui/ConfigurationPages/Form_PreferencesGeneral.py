@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ConfigurationPages/Form_PreferencesGeneral.ui'
+# Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
 #
-# Created: Sat Sep 22 15:34:15 2007
+# Created: Sat Sep 22 18:28:51 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -62,5 +62,5 @@ class Ui_PreferencesGeneral(object):
         self.label.setText(QtGui.QApplication.translate("PreferencesGeneral", "Language:", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox.setTitle(QtGui.QApplication.translate("PreferencesGeneral", "GUI settings", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxShowStatusPoints.setText(QtGui.QApplication.translate("PreferencesGeneral", "Show link status points on the scene", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxManualConnections.setText(QtGui.QApplication.translate("PreferencesGeneral", "Always use manual connection when adding links", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxManualConnections.setText(QtGui.QApplication.translate("PreferencesGeneral", "Always use the manual mode when adding links", None, QtGui.QApplication.UnicodeUTF8))
 

@@ -3,7 +3,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sat Sep 22 04:17:39 2007
+# Created: Sat Sep 22 18:28:48 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -133,7 +133,6 @@ class Ui_MainWindow(object):
         self.dockWidget_Console.setObjectName("dockWidget_Console")
 
         self.dockWidgetContents_5 = QtGui.QWidget(self.dockWidget_Console)
-        self.dockWidgetContents_5.setMaximumSize(QtCore.QSize(16777215,150))
         self.dockWidgetContents_5.setObjectName("dockWidgetContents_5")
 
         self.vboxlayout1 = QtGui.QVBoxLayout(self.dockWidgetContents_5)

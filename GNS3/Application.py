@@ -227,6 +227,9 @@ class Application(QApplication, Singleton):
             globals.HypervisorManager = HypervisorManager()
             globals.HypervisorManager.preloadDynamips()#showErrMessage=False)
 
+        # full screen
+        geometry = QApplication.desktop().availableGeometry(self.mainWindow)
+        self.mainWindow.setGeometry(geometry)
         self.mainWindow.show()
 
         retcode = QApplication.exec_()
