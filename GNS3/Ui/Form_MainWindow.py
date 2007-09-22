@@ -3,8 +3,8 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Tue Sep 18 17:57:54 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070701
+# Created: Sat Sep 22 04:17:39 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -74,6 +74,12 @@ class Ui_MainWindow(object):
         self.vboxlayout.setObjectName("vboxlayout")
 
         self.nodesDock = nodesDock(self.dockWidgetContents_NodeTypes)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.nodesDock.sizePolicy().hasHeightForWidth())
+        self.nodesDock.setSizePolicy(sizePolicy)
         self.nodesDock.setIconSize(QtCore.QSize(24,24))
         self.nodesDock.setRootIsDecorated(False)
         self.nodesDock.setObjectName("nodesDock")
@@ -110,16 +116,24 @@ class Ui_MainWindow(object):
         self.gridlayout1.setObjectName("gridlayout1")
 
         self.treeWidget_TopologySummary = topologySummaryDock(self.dockWidgetContents_7)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.treeWidget_TopologySummary.sizePolicy().hasHeightForWidth())
+        self.treeWidget_TopologySummary.setSizePolicy(sizePolicy)
         self.treeWidget_TopologySummary.setObjectName("treeWidget_TopologySummary")
         self.gridlayout1.addWidget(self.treeWidget_TopologySummary,0,0,1,1)
         self.dockWidget_TopoSum.setWidget(self.dockWidgetContents_7)
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(2),self.dockWidget_TopoSum)
 
         self.dockWidget_Console = QtGui.QDockWidget(MainWindow)
+        self.dockWidget_Console.setMaximumSize(QtCore.QSize(16777215,16777215))
         self.dockWidget_Console.setAllowedAreas(QtCore.Qt.AllDockWidgetAreas)
         self.dockWidget_Console.setObjectName("dockWidget_Console")
 
         self.dockWidgetContents_5 = QtGui.QWidget(self.dockWidget_Console)
+        self.dockWidgetContents_5.setMaximumSize(QtCore.QSize(16777215,150))
         self.dockWidgetContents_5.setObjectName("dockWidgetContents_5")
 
         self.vboxlayout1 = QtGui.QVBoxLayout(self.dockWidgetContents_5)
@@ -138,22 +152,6 @@ class Ui_MainWindow(object):
         self.vboxlayout1.addWidget(self.textEdit)
         self.dockWidget_Console.setWidget(self.dockWidgetContents_5)
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(8),self.dockWidget_Console)
-
-        self.dockWidget_EventEditor = QtGui.QDockWidget(MainWindow)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred,QtGui.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.dockWidget_EventEditor.sizePolicy().hasHeightForWidth())
-        self.dockWidget_EventEditor.setSizePolicy(sizePolicy)
-        self.dockWidget_EventEditor.setMinimumSize(QtCore.QSize(50,0))
-        self.dockWidget_EventEditor.setAllowedAreas(QtCore.Qt.LeftDockWidgetArea|QtCore.Qt.NoDockWidgetArea|QtCore.Qt.RightDockWidgetArea)
-        self.dockWidget_EventEditor.setObjectName("dockWidget_EventEditor")
-
-        self.dockWidgetContents_8 = QtGui.QWidget(self.dockWidget_EventEditor)
-        self.dockWidgetContents_8.setObjectName("dockWidgetContents_8")
-        self.dockWidget_EventEditor.setWidget(self.dockWidgetContents_8)
-        MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(1),self.dockWidget_EventEditor)
 
         self.action_About = QtGui.QAction(MainWindow)
         self.action_About.setMenuRole(QtGui.QAction.AboutRole)
@@ -302,6 +300,7 @@ class Ui_MainWindow(object):
         self.menu_View.addAction(self.action_ZoomReset)
         self.menu_View.addAction(self.action_ZoomFit)
         self.menu_View.addSeparator()
+        self.menu_View.addSeparator()
         self.menubar.addAction(self.menu_File.menuAction())
         self.menubar.addAction(self.menu_Edit.menuAction())
         self.menubar.addAction(self.menu_View.menuAction())
@@ -336,7 +335,6 @@ class Ui_MainWindow(object):
         self.dockWidget_TopoSum.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Topology Summary", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidget_TopologySummary.headerItem().setText(0,QtGui.QApplication.translate("MainWindow", "1", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidget_Console.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Console", None, QtGui.QApplication.UnicodeUTF8))
-        self.dockWidget_EventEditor.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Event Editor", None, QtGui.QApplication.UnicodeUTF8))
         self.action_About.setText(QtGui.QApplication.translate("MainWindow", "&About", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setText(QtGui.QApplication.translate("MainWindow", "&Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))

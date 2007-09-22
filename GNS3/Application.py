@@ -63,10 +63,6 @@ class Application(QApplication, Singleton):
 
         # set global app to ourself
         globals.GApp = self
-
-    def __del__(self):
-    
-        globals.HypervisorManager = None
         
     # property: `mainWindow'
     def __setMainWindow(self, mw):
@@ -226,14 +222,16 @@ class Application(QApplication, Singleton):
         self.translator = Translator()
         self.translator.switchLangTo(self.systconf['general'].lang)
 
-        # preload dynamips, so it will start faster when using it
+        # preload dynamips
         if globals.GApp.systconf['dynamips'].path:
             globals.HypervisorManager = HypervisorManager()
-            globals.HypervisorManager.preloadDynamips()
+            globals.HypervisorManager.preloadDynamips()#showErrMessage=False)
 
         self.mainWindow.show()
 
         retcode = QApplication.exec_()
+        
+        globals.HypervisorManager = None
         # ---
         self.saveConfQaD()
         # ---

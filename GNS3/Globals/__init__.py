@@ -24,6 +24,9 @@ addingLinkFlag = False
 HypervisorManager = None
 HypervisorMemoryUsageLimit = 512
 HypervisorUDPIncrementation = 100
+ImportuseHypervisorManager = True
+ShowStatusPoints = True
+useManualConnection = True
 debugLevel = 0
 
 # A singleton instance of GNS3 Application
@@ -35,7 +38,6 @@ class Enum:
     class Mode:
         Design = 0
         Emulation = 1
-        Simulation = 2
         
     class LinkType:
         Manual = 0
@@ -49,13 +51,11 @@ class Enum:
 modesIds = [
     Enum.Mode.Design,
     Enum.Mode.Emulation,
-    Enum.Mode.Simulation,
 ]
 
 modesNames = {
     Enum.Mode.Design : 'Design Mode',
     Enum.Mode.Emulation : 'Emulation Mode',
-    Enum.Mode.Simulation : 'Simulation Mode',
 }
 
 linkTypes = {

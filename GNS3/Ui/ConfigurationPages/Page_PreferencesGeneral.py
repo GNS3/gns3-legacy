@@ -20,7 +20,7 @@
 # Contact: contact@gns3.net
 #
 
-from PyQt4 import QtGui
+from PyQt4 import QtGui, QtCore
 from GNS3.Ui.ConfigurationPages.Form_PreferencesGeneral import Ui_PreferencesGeneral
 import GNS3.Globals as globals
 
@@ -48,6 +48,16 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             if i[0] == curr_lang_code:
                 self.langsBox.setCurrentIndex(idx)
             idx += 1
+            
+        # GUI settings
+        if globals.ShowStatusPoints == True:
+            self.checkBoxShowStatusPoints.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxShowStatusPoints.setCheckState(QtCore.Qt.Unchecked)
+        if globals.useManualConnection == True:
+            self.checkBoxManualConnections.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxManualConnections.setCheckState(QtCore.Qt.Unchecked)
 
     def saveConf(self):
 
@@ -56,6 +66,13 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
 
         globals.GApp.systconf['general'].lang = unicode(new_lang_code, 'utf-8')
         globals.GApp.translator.switchLangTo(new_lang_code)
-        pass
-
-
+        
+        # GUI settings
+        if self.checkBoxShowStatusPoints.checkState() == QtCore.Qt.Checked:
+            globals.ShowStatusPoints = True
+        else:
+            globals.ShowStatusPoints = False
+        if self.checkBoxManualConnections.checkState() == QtCore.Qt.Checked:
+            globals.useManualConnection = True
+        else:
+            globals.useManualConnection = False

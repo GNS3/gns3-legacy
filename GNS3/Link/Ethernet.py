@@ -22,6 +22,7 @@
 
 from PyQt4 import QtCore, QtGui
 from GNS3.Link.AbstractEdge import AbstractEdge
+import GNS3.Globals as globals
 
 class Ethernet(AbstractEdge):
     """ Ethernet class
@@ -72,30 +73,32 @@ class Ethernet(AbstractEdge):
 
         QtGui.QGraphicsPathItem.paint(self, painter, option, widget)
         
-        # if nodes are too close, points disappears
-        if self.length < 80:
-           return
+        if globals.ShowStatusPoints:
 
-        if self.src_interface_status == 'up':
-            color = QtCore.Qt.green
-        elif self.src_interface_status == 'suspended':
-            color = QtCore.Qt.yellow
-        else:
-            color = QtCore.Qt.red
+            # if nodes are too close, points disappears
+            if self.length < 80:
+               return
+    
+            if self.src_interface_status == 'up':
+                color = QtCore.Qt.green
+            elif self.src_interface_status == 'suspended':
+                color = QtCore.Qt.yellow
+            else:
+                color = QtCore.Qt.red
+                
+            painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
+    
+            point1 = QtCore.QPointF(self.src + self.edgeOffset)
+            painter.drawPoint(point1) 
+    
+            if self.dest_interface_status == 'up':
+                color = QtCore.Qt.green
+            elif self.dest_interface_status == 'suspended':
+                color = QtCore.Qt.yellow
+            else:
+                color = QtCore.Qt.red
+                
+            painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
             
-        painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
-
-        point1 = QtCore.QPointF(self.src + self.edgeOffset)
-        painter.drawPoint(point1) 
-
-        if self.dest_interface_status == 'up':
-            color = QtCore.Qt.green
-        elif self.dest_interface_status == 'suspended':
-            color = QtCore.Qt.yellow
-        else:
-            color = QtCore.Qt.red
-            
-        painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
-        
-        point2 = QtCore.QPointF(self.dst -  self.edgeOffset)
-        painter.drawPoint(point2)
+            point2 = QtCore.QPointF(self.dst -  self.edgeOffset)
+            painter.drawPoint(point2)

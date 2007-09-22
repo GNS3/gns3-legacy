@@ -89,7 +89,6 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
             widget.saveConf()
             lnum += 1
 
-
     def __loadWidget(self, widgetPrefix, widgetName):
         """ Load a config widget from GNS3.Ui.ConfigurationPages
         """

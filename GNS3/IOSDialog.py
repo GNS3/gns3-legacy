@@ -77,6 +77,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         for node in globals.GApp.topology.nodes.values():
             if type(node) == IOSRouter and node.config.image == '':
                 node.setDefaultIOSImage()
+        ConfDB().sync()
         
     def _reloadInfos(self):
         """ Reload previously recorded IOS images and hypervisors

@@ -76,6 +76,14 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         self.dynamips_port.setValue(self.conf.port)
         self.dynamips_baseUDP.setValue(self.conf.baseUDP)
         self.dynamips_baseConsole.setValue(self.conf.baseConsole)
+        
+        # Hypervisor manager settings
+        self.spinBoxMemoryLimit.setValue(globals.HypervisorMemoryUsageLimit)
+        self.spinBoxUDPIncrementation.setValue(globals.HypervisorUDPIncrementation)
+        if globals.ImportuseHypervisorManager == True:
+            self.checkBoxHypervisorManagerImport.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxHypervisorManagerImport.setCheckState(QtCore.Qt.Unchecked)
 
     def saveConf(self):
         """ Save widget settings to syst. config
@@ -89,8 +97,15 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         self.conf.port = self.dynamips_port.value()
         self.conf.baseUDP = self.dynamips_baseUDP.value()
         self.conf.baseConsole = self.dynamips_baseConsole.value()
-
         globals.GApp.systconf['dynamips'] = self.conf
+        
+        # Hypervisor manager settings
+        globals.HypervisorMemoryUsageLimit = self.spinBoxMemoryLimit.value()
+        globals.HypervisorUDPIncrementation =  self.spinBoxUDPIncrementation.value()
+        if self.checkBoxHypervisorManagerImport.checkState() == QtCore.Qt.Checked:
+            globals.ImportuseHypervisorManager = True
+        else:
+            globals.ImportuseHypervisorManager = False
         ConfDB().sync()
 
     def __setDynamipsPath(self):
@@ -122,6 +137,6 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.saveConf()
             globals.HypervisorManager = HypervisorManager()
             if globals.HypervisorManager.preloadDynamips(showErrMessage=False):
-                self.labelDynamipsStatus.setText('<font color="green">' + translate("UiConfig_PreferencesDynamips", "Dynamips successfully loaded")  + '</font>')
+                self.labelDynamipsStatus.setText('<font color="green">' + translate("UiConfig_PreferencesDynamips", "Dynamips successfully started")  + '</font>')
             else:
-                self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Failed to load Dynamips")  + '</font>')
+                self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Failed to start Dynamips")  + '</font>')

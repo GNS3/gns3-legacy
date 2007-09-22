@@ -42,9 +42,6 @@ __statesDefaults = {
     },
     'emulation_mode': {
         'summaryDock': True,
-    },
-    'simulation_mode': {
-        'eventDock': True,
     }
 }
 
@@ -83,16 +80,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # Switch to default mode
         self.switchToMode_Design()
-
-        
-#        # preload dynamips, so it will start faster when using it
-#        if globals.GApp.systconf['dynamips'].path:
-#            globals.HypervisorManager = HypervisorManager()
-#            globals.HypervisorManager.preloadDynamips()
-#
-#    def __del__(self):
-#    
-#        globals.HypervisorManager = None
         
     def __initModeSwitching(self):
         """ Initialize the action dictionnary for GUI mode switching
@@ -107,7 +94,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 },
                 'docks_disable': {
                     '1': self.dockWidget_TopoSum,
-                    '2': self.dockWidget_EventEditor
                 },
                 'toolbars_enable': {
                     '1': self.toolBar_General,
@@ -126,7 +112,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 },
                 'docks_disable': {
                     '1': self.dockWidget_NodeTypes,
-                    '2': self.dockWidget_EventEditor,
                 },
                 'toolbars_enable': {
                     '1': self.toolBar_General,
@@ -135,20 +120,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 'toolbars_disable': {
                     '1': self.toolBar_Design
                 }
-            },
-
-            # Simulation Mode
-            globals.Enum.Mode.Simulation: {
-                'docks_enable': {
-                },
-                'docks_disable': {
-                },
-                'toolbars_enable': {
-                },
-                'toolbars_disable': {
-                }
             }
-        }
+            }
 
     def __createActions(self):
         """ Add own custom action not providen by Ui_MainWindow
@@ -160,15 +133,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.action_swModeEmulation = QAction(self)
         self.action_swModeEmulation.setObjectName("action_swModeEmulation")
         self.action_swModeEmulation.setCheckable(True)
-        self.action_swModeSimulation = QAction(self)
-        self.action_swModeSimulation.setObjectName("action_swModeSimulation")
-        self.action_swModeSimulation.setCheckable(True)
-        # FIXME: Re-enable swModeSimulation action when simulation mode is available
-        self.action_swModeSimulation.setEnabled(False)
         self.actgrp_swMode = QActionGroup(self)
         self.actgrp_swMode.addAction(self.action_swModeDesign)
         self.actgrp_swMode.addAction(self.action_swModeEmulation)
-        self.actgrp_swMode.addAction(self.action_swModeSimulation)
         self.action_swModeDesign.setChecked(True) # check default mode
 
         # Docks sub-menu
@@ -194,8 +161,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.switchToMode_Design)
         self.connect(self.action_swModeEmulation, QtCore.SIGNAL('triggered()'),
             self.switchToMode_Emulation)
-        self.connect(self.action_swModeSimulation, QtCore.SIGNAL('triggered()'),
-            self.switchToMode_Simulation)
         self.connect(self.action_ZoomIn, QtCore.SIGNAL('triggered()'),
             self.__action_ZoomIn)
         self.connect(self.action_ZoomOut, QtCore.SIGNAL('triggered()'),
@@ -239,7 +204,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.subm = self.submenu_Docks
         self.subm.addAction(self.dockWidget_NodeTypes.toggleViewAction())
         self.subm.addAction(self.dockWidget_TopoSum.toggleViewAction())
-        self.subm.addAction(self.dockWidget_EventEditor.toggleViewAction())
         self.subm.addAction(self.dockWidget_Console.toggleViewAction())
 
         self.subm = self.submenu_Toolbars
@@ -261,7 +225,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.submenu_Toolbars.setTitle(translate('Workspace', 'Toolbars'))
         self.action_swModeDesign.setText(translate('Workspace', '&Design Mode'))
         self.action_swModeEmulation.setText(translate('Workspace', '&Emulation Mode'))
-        self.action_swModeSimulation.setText(translate('Workspace', '&Simulation Mode'))
 
         # Retranslate dock contents...
         try:
@@ -291,9 +254,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
             if idx_next == globals.Enum.Mode.Emulation:
                 if self.action_swModeEmulation.isEnabled():
                     return idx_next
-            if idx_next == globals.Enum.Mode.Simulation:
-                if self.action_swModeSimulation.isEnabled():
-                    return idx_next
             idx_next = (idx_next + 1) % 3
         # if they no more avaible mode (`enabled'), return the currentMode
         return self.currentMode
@@ -317,7 +277,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.currentMode = id
         # Update switchMode button
         nextMode_name = self.__getNextModeName()
-        self.action_SwitchMode.setText(translate('Workspace', nextMode_name)) #FIXME: does it work ?
+        self.action_SwitchMode.setText(translate('Workspace', nextMode_name))
         # Update workspace (docks, toolbars...)
         for v in self.__switchModeActions[id]['docks_enable'].itervalues():
             v.setVisible(True)
@@ -401,8 +361,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
     
         if self.previousMode == globals.Enum.Mode.Design:
             self.action_swModeDesign.setChecked(True)
-        elif self.previousMode == globals.Enum.Mode.Simulation:
-            self.action_swModeSimulation.setChecked(True)
         if globals.HypervisorManager != None and self.useHypervisorManager:
             globals.HypervisorManager.stopProcHypervisors()
             
@@ -465,13 +423,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.treeWidget_TopologySummary.emulationMode()
         self.__startNonIOSNodes()
 
-    def switchToMode_Simulation(self):
-        """ Function called to switch to mode `Simulation'
-        """
-        self.__switchToMode(globals.Enum.Mode.Simulation)
-        self.statusbar.showMessage(translate("Workspace", "Emulation Mode"))
-        pass
-
     #-----------------------------------------------------------------------
 
     def __action_Export(self):
@@ -512,12 +463,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
         else:
 
-            #TODO: optionnal menu
-            menu = QtGui.QMenu()
-            for linktype in globals.linkTypes.keys():
-                menu.addAction(linktype)
-            menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.__setLinkType)
-            menu.exec_(QtGui.QCursor.pos())
+            if globals.useManualConnection:
+                menu = QtGui.QMenu()
+                for linktype in globals.linkTypes.keys():
+                    menu.addAction(linktype)
+                menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.__setLinkType)
+                menu.exec_(QtGui.QCursor.pos())
             
             self.action_Add_link.setText(translate(ctx, 'Cancel'))
             self.action_Add_link.setIcon(QIcon(':/icons/cancel.svg'))
@@ -551,7 +502,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         switch = {
             globals.Enum.Mode.Design: self.switchToMode_Design,
             globals.Enum.Mode.Emulation: self.switchToMode_Emulation,
-            globals.Enum.Mode.Simulation: self.switchToMode_Simulation
         }[self.__getNextModeId()]()
 
     def __action_SelectAll(self):

@@ -40,15 +40,14 @@ class NETFile(object):
 
     def live_import(self, path):
     
-        #TODO: Should start the hypervisor at startup & check if hypervisor settings are configured
         hypervisors = []
-        
         if globals.GApp.systconf['dynamips'].path == '':
             QtGui.QMessageBox.warning(self, translate("NETFile", "Save"), translate("NETFile", "Please configure the path to Dynamips"))
             return
         
         if len(globals.HypervisorManager.preloaded_hypervisors) == 0:
-            globals.HypervisorManager.preloadDynamips()
+            if globals.HypervisorManager.preloadDynamips() == None:
+                return
             time.sleep(3)
 
         globals.GApp.topology.clear()
@@ -182,12 +181,9 @@ class NETFile(object):
             for node in globals.GApp.topology.nodes.values():
                 if type(node) == IOSRouter and node.hostname == hostname:
                     node.config.image = hypervisor['host'] + ':' + node.config.image
-                    #TODO: option to use or not the hypervisor manager
-                    if hypervisor['host'] != 'localhost':
+                    if hypervisor['host'] != 'localhost' or not globals.ImportuseHypervisorManager:
                         globals.GApp.iosimages[node.config.image].hypervisor_host = hypervisor['host']
                         globals.GApp.iosimages[node.config.image].hypervisor_port = hypervisor['port']
-                    #print node.config.image
-                    #node.configHypervisor(hypervisor['host'],  hypervisor['port'],  hypervisor['workingdir'],  hypervisor['udp'])
     
     def setproperties(self, config, device, properties):
 

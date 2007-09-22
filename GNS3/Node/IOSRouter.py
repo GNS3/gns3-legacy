@@ -439,8 +439,7 @@ class IOSRouter(AbstractNode):
                 elif destnode.dev.adapter ==  'ATMSW':
                     dest_type = 'a'       # And ATM switches are, well, ATM interfaces
                 else:
-                    #TODO: assert ?
-                    print 'Not type for destination port'
+                    assert('Not type for destination port')
 
             if match_if or match_port:
                 if self.dev.slot[source_slot] != None and self.dev.slot[source_slot].connected(source_port) == False:

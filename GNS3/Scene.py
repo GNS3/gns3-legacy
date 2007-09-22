@@ -415,7 +415,7 @@ class Scene(QtGui.QGraphicsView):
 
     def mouseDoubleClickEvent(self, event):
     
-        if  not globals.addingLinkFlag:
+        if  not globals.addingLinkFlag and globals.GApp.workspace.currentMode == globals.Enum.Mode.Design:
             item = self.itemAt(event.pos())
             if item:
                 item.setSelected(True)
