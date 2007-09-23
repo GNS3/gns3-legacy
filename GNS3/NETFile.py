@@ -53,7 +53,11 @@ class NETFile(object):
         globals.GApp.topology.clear()
         dir = os.path.dirname(dynagen.__file__)
         dynagen.CONFIGSPECPATH.append(dir)
-        (connectionlist, maplist, ethswintlist) = globals.GApp.dynagen.import_config(path)
+        try:
+            (connectionlist, maplist, ethswintlist) = globals.GApp.dynagen.import_config(path)
+        except:
+            print 'Exception detected, stopping importation...'
+            return
         for (devicename, device) in dynagen.devices.iteritems():
             if device.isrouter:
 
@@ -108,7 +112,7 @@ class NETFile(object):
             x = random.uniform(-200, 200)
             y = random.uniform(-200, 200)
             node.setPos(x, y)
-            node.hostname = devicename
+            node.hostname = unicode(devicename, 'utf-8')
             globals.GApp.topology.addNode(node)
 
         for (bridgename,  bridge) in dynagen.bridges.iteritems():
@@ -205,12 +209,23 @@ class NETFile(object):
         for (dynamipskey, dynamips) in dynagen.dynamips.iteritems():
             # dynamips section
             netfile[dynamipskey] = {}
-            netfile[dynamipskey]['udp'] = dynamips.udp
-            netfile[dynamipskey]['console'] = dynamips.baseconsole
+            
+            # retrieve the base UDP and base Console
+            if globals.GApp.hypervisors.has_key(dynamipskey):
+                baseUDP = globals.GApp.hypervisors[dynamipskey].baseUDP
+                baseConsole = globals.GApp.hypervisors[dynamipskey].baseConsole
+            else:
+                baseUDP = globals.GApp.systconf['dynamips'].baseUDP + (dynamips.port - globals.GApp.systconf['dynamips'].port) * globals.HypervisorUDPIncrementation
+                baseConsole = globals.GApp.systconf['dynamips'].baseConsole
+
+            netfile[dynamipskey]['udp'] = baseUDP
+            netfile[dynamipskey]['console'] = baseConsole
             if dynamips.workingdir:
                 netfile[dynamipskey]['workingdir'] = dynamips.workingdir[1:-1]
 
             for (devicekey,  device) in dynagen.devices.iteritems():
+                if device.dynamips != dynamips:
+                    continue
                 if device.isrouter:
                     # export a router
                     if device.model == 'c7200':
@@ -317,6 +332,7 @@ class NETFile(object):
 
         try:
             netfile.write()
+            dynagen.globalconfig = netfile
         except IOError, e:
             print '***Error: ' + str(e)
             return

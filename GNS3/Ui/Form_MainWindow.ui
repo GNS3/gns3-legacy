@@ -75,12 +75,10 @@
     <property name="title" >
      <string>&amp;File</string>
     </property>
-    <addaction name="action_New_Project" />
     <addaction name="action_Open" />
     <addaction name="action_Save" />
     <addaction name="action_SaveAs" />
     <addaction name="separator" />
-    <addaction name="action_Import" />
     <addaction name="action_Export" />
     <addaction name="separator" />
     <addaction name="action_Quit" />
@@ -599,10 +597,10 @@
   </action>
   <action name="action_Preferences" >
    <property name="text" >
-    <string>&amp;Options...</string>
+    <string>&amp;Preferences...</string>
    </property>
    <property name="shortcut" >
-    <string>Ctrl+Shift+O</string>
+    <string>Ctrl+Shift+P</string>
    </property>
   </action>
   <action name="action_ProjectPreferences" >

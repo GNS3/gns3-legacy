@@ -14,9 +14,10 @@
 # Contact: contact@gns3.net
 #
 
-import sys, cmd
+import sys, cmd, time
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as Dynagen_Namespace
+import GNS3.Dynagen.dynamips_lib as lib
 from PyQt4 import QtCore, QtGui
 from GNS3.Dynagen.console import Console as Dynagen_Console
 from GNS3.External.PyCutExt import PyCutExt
@@ -141,9 +142,10 @@ class Console(PyCutExt, Dynagen_Console):
             for node in globals.GApp.topology.nodes.values():
                 if type(node) == IOSRouter and (node.hostname in devices or '/all' in devices):
                     node.startupInterfaces()
+                    globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'running')
         except:
             globals.GApp.workspace.switchToMode_Design()
-            
+        
     def do_stop(self, args):
         """ Overloaded stop command
         """
@@ -154,15 +156,30 @@ class Console(PyCutExt, Dynagen_Console):
             for node in globals.GApp.topology.nodes.values():
                 if type(node) == IOSRouter and (node.hostname in devices or '/all' in devices):
                     node.shutdownInterfaces()
+                    globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'stopped')
         except:
             globals.GApp.workspace.switchToMode_Design()
 
+    def do_suspend(self, args):
+        """ Overloaded suspend command
+        """
+
+        try:
+            Dynagen_Console.do_suspend(self, args)
+            devices = args.split(' ')
+            for node in globals.GApp.topology.nodes.values():
+                if type(node) == IOSRouter and (node.hostname in devices or '/all' in devices):
+                    node.suspendInterfaces()
+                    globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'suspended')
+        except:
+            globals.GApp.workspace.switchToMode_Design()
+            
     def do_reload(self, args):
         """ Overloaded reload command
         """
 
-        self.do_stop()
-        self.do_start()
+        self.do_stop(args)
+        self.do_start(args)
             
     def do_exit(self,  args):
         """ Overloaded exit command
@@ -184,8 +201,140 @@ class Console(PyCutExt, Dynagen_Console):
             print unicode(entry)
 
     def do_py(self,  args):
+        """ Overloaded py command
+        """
     
         print 'Not implemented in GNS3'
+        
+    def do_idlepc(self, args):
+        """ Overloaded idlepc command
+        """
 
-    #TODO: do_telnet, do_console, do_save, do_push, do_export, do_import, do_idlepc
+        if '?' in args or args.strip() == '':
+            print Dynagen_Console.do_idlepc.__doc__
+            return
+        try:
+            command = args.split()[0]
+            command = command.lower()
+            params = args.split()[1:]
+            if len(params) < 1:
+                print Dynagen_Console.do_idlepc.__doc__
+                return
+            
+            if command == 'get' or command == 'show':
+                device = params[0]
+                if command == 'get':
+                    if self.namespace.devices[device].idlepc != None:
+                        print '%s already has an idlepc value applied.' % device
+                        return
+                    print 'Please wait while gathering statistics...'
+                    globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+                    result = self.namespace.devices[device].idleprop(lib.IDLEPROPGET)
+                    
+#                    progress = QtGui.QProgressDialog('IDLEPC', 'Abort', 0, 20, self)
+#                    progress.setMinimum(1)
+#                    progress.setWindowModality(QtCore.Qt.WindowModal)
+#                    self.processEvents(QtCore.QEventLoop.AllEvents)
+#                    for nb in range(1, 21):
+#                        print nb
+#                        progress.setValue(nb)
+#                        time.sleep(1)
+#                        self.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+#                        if progress.wasCanceled():
+#                            progress.reset()
+#                            break
+#                    progress.setValue(20)
+#                    progress.deleteLater()
+#                    progress = None
+
+
+                elif command == 'show':
+                    result = self.namespace.devices[device].idleprop(lib.IDLEPROPSHOW)
+                result.pop()        # Remove the '100-OK' line
+                idles = {}
+                i = 1
+                output = ''
+                for line in result:
+                    (value, count) = line.split()[1:]
+
+                    # Flag potentially "best" idlepc values (between 50 and 60)
+                    iCount = int(count[1:-1])
+                    if 50 < iCount < 60:
+                        flag = '*'
+                    else:
+                        flag = ' '
+
+                    output += "%s %2i: %s %s\n" % (flag, i, value, count)
+                    idles[i] = value
+                    i += 1
+
+                # Allow user to choose a value by number
+                if len(idles) == 0:
+                    print 'No idlepc values found\n'
+                else:
+                    output = "Potentially better idlepc values marked with '*'\nEnter the number of the idlepc value to apply [1-%i] or ENTER for no change:\n" % len(idles) + output
+                    globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+                    
+                    (selection,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, 'idlepc',
+                                          output, QtGui.QLineEdit.Normal)
+                    
+                    if not ok:
+                        return
+                    selection = str(selection)
+                    print selection
+                    print idles[int(selection)]
+                    globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+                    self.namespace.devices[device].idleprop(lib.IDLEPROPSET, idles[int(selection)])
+                    if selection == "":
+                        print 'No changes made'
+                    return
+
+                    try:
+                        selection = int(selection)
+                    except ValueError:
+                        print "Invalid selection"
+                        globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+                        return
+                    if selection < 1 or selection > len(idles):
+                        print "Invalid selection"
+                        globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+                        return
+
+                    print 'set idlepc'
+                    globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+                    # Apply the selected idle
+                    self.namespace.devices[device].idleprop(lib.IDLEPROPSET, idles[selection])
+                    print "Applied idlepc value %s to %s\n" % (idles[selection], device)
+
+            else:
+                Dynagen_Console.do_idlepc(self, args)
+            
+        except ValueError:
+            print '***Error: Incorrect number of paramaters or invalid parameters'
+            return
+        except KeyError:
+            print '***Error: Unknown device: ' + device
+            return
+        except lib.DynamipsError, e:
+            print e
+            return
+
+    def do_save(self, args):
+        """ Overloaded save command
+        """
     
+        if not globals.GApp.workspace.projectFile:
+            print 'You have to save your topology'
+        else:
+            Dynagen_Console.do_save(self, args)
+    
+    def do_push(self, args):
+        """ Overloaded push command
+        """
+    
+        if not globals.GApp.workspace.projectFile:
+            print 'You have to save your topology'
+        else:
+            Dynagen_Console.do_push(self, args)
+
+    #TODO: do_telnet, do_console, do_export, do_import, do_idlepc

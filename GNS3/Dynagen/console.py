@@ -303,6 +303,8 @@ class Console(cmd.Cmd):
             for device in args.split(' '):
                 # Create a list of all the device objects
                 try:
+                    print device
+                    print self.namespace.devices
                     devices.append(self.namespace.devices[device])
                 except KeyError:
                     error('unknown device: ' + device)
@@ -418,6 +420,7 @@ class Console(cmd.Cmd):
                     # And populate the configurations dictionary
                     self.namespace.configurations[device.name] = config
                     print 'saved configuration from: ' + device.name
+
         netfile.write()
 
     def do_push(self,args):

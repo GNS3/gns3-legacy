@@ -77,7 +77,7 @@ class FRSW(AbstractNode):
             self.configHypervisor('localhost',  dynamips.port,  dynamips.workdir,  None)
 
         hypervisor = self.getHypervisor()
-        self.dev = lib.FRSW(hypervisor, name = '"' + self.hostname + '"')
+        self.dev = lib.FRSW(hypervisor, name = self.hostname)
         # register into Dynagen
         dynagen.devices[self.hostname] = self.dev
         

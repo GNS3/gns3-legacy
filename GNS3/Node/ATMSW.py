@@ -79,7 +79,7 @@ class ATMSW(AbstractNode):
             self.configHypervisor('localhost',  dynamips.port,  dynamips.workdir,  None)
 
         hypervisor = self.getHypervisor()
-        self.dev = lib.ATMSW(hypervisor, name = '"' + self.hostname + '"')
+        self.dev = lib.ATMSW(hypervisor, name = self.hostname)
         # register into Dynagen
         dynagen.devices[self.hostname] = self.dev
         

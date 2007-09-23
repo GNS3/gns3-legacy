@@ -284,20 +284,20 @@ class IOSRouter(AbstractNode):
 
         #ROUTERS
         if platform == '7200':
-            self.dev = ROUTERS[platform](hypervisor, name = '"' + self.hostname + '"')
+            self.dev = ROUTERS[platform](hypervisor, name = self.hostname)
             self.platform = platform
         if chassis in ('2691', '3725', '3745'):
-            self.dev = ROUTERS[chassis](hypervisor, name = '"' + self.hostname + '"')
+            self.dev = ROUTERS[chassis](hypervisor, name = self.hostname)
             self.platform = chassis
         elif platform in ('3600', '2600'):
-            self.dev = ROUTERS[platform](hypervisor, chassis = chassis, name = '"' + self.hostname + '"')
+            self.dev = ROUTERS[platform](hypervisor, chassis = chassis, name = self.hostname)
             self.platform = platform
 
         self.dev.image = '"' + filename + '"'
         if idlepc:
             self.dev.idlepc = idlepc
-        else:
-            self.dev.idlepc = '0x60483ae4'
+#        else:
+#            self.dev.idlepc = '0x60483ae4'
 
         if self.config.console:
             self.dev.console = self.config.console

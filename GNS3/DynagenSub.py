@@ -59,9 +59,7 @@ class DynagenSub(dynagen.Dynagen):
                     print "\nError:"
                     print e
                     print e.line, '\n'
-                    raw_input("Press ENTER to continue")
-                    handled = True
-                    sys.exit(1)
+                    raise SyntaxError, e
 
             except IOError:
                #doerror("Can't open configuration file")
@@ -83,9 +81,7 @@ class DynagenSub(dynagen.Dynagen):
                 if error == False:
                     error = 'Missing value or section.'
                 print section_string, ' = ', error
-            raw_input("Press ENTER to continue")
-            handled = True
-            sys.exit(1)
+            raise SyntaxError, e
         
         subsections = {}
         for section in config.sections:
@@ -99,8 +95,6 @@ class DynagenSub(dynagen.Dynagen):
             if controlPort == None:
                 controlPort = 7200
             hypervisorkey = server.host + ':' + controlPort
-
-            print hypervisorkey
 
             if not globals.GApp.hypervisors.has_key(hypervisorkey):
                 conf = hypervisorConf()
@@ -149,8 +143,8 @@ class DynagenSub(dynagen.Dynagen):
         return config
 
     def doerror(self, msg):
-
         """Print out an error message"""
+
         print '\n*** Error:', str(msg)
         dynagen.handled = True
         self.doreset()

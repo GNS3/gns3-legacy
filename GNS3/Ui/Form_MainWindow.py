@@ -3,7 +3,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sat Sep 22 18:28:48 2007
+# Created: Sat Sep 22 18:33:30 2007
 #      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
@@ -384,8 +384,8 @@ class Ui_MainWindow(object):
         self.action_SelectAll.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+A", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SelectNone.setText(QtGui.QApplication.translate("MainWindow", "Select &None", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SelectNone.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+A", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_Preferences.setText(QtGui.QApplication.translate("MainWindow", "&Options...", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_Preferences.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+O", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Preferences.setText(QtGui.QApplication.translate("MainWindow", "&Preferences...", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Preferences.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+P", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ProjectPreferences.setText(QtGui.QApplication.translate("MainWindow", "&Project Preferences...", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ProjectPreferences.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+P", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Cut.setText(QtGui.QApplication.translate("MainWindow", "Cut", None, QtGui.QApplication.UnicodeUTF8))

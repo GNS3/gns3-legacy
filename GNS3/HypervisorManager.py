@@ -132,7 +132,6 @@ class HypervisorManager:
                 # wait for starting
                 time.sleep(1)
                 # change the base UDP
-                #TODO: give users a way to configure this
                 self.baseUDP += globals.HypervisorUDPIncrementation
                 mem = 0
         time.sleep(2)
