@@ -26,7 +26,7 @@ HypervisorMemoryUsageLimit = 512
 HypervisorUDPIncrementation = 100
 ImportuseHypervisorManager = True
 ShowStatusPoints = True
-useManualConnection = True
+useManualConnection = False
 debugLevel = 0
 
 # A singleton instance of GNS3 Application

@@ -14,7 +14,7 @@
 # Contact: contact@gns3.net
 #
 
-import sys, cmd, time
+import os, sys, cmd, time
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as Dynagen_Namespace
 import GNS3.Dynagen.dynamips_lib as lib
@@ -173,6 +173,20 @@ class Console(PyCutExt, Dynagen_Console):
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'suspended')
         except:
             globals.GApp.workspace.switchToMode_Design()
+
+    def do_resume(self, args):
+        """ Overloaded resume command
+        """
+
+        try:
+            Dynagen_Console.do_resume(self, args)
+            devices = args.split(' ')
+            for node in globals.GApp.topology.nodes.values():
+                if type(node) == IOSRouter and (node.hostname in devices or '/all' in devices):
+                    node.startupInterfaces()
+                    globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'running')
+        except:
+            globals.GApp.workspace.switchToMode_Design()
             
     def do_reload(self, args):
         """ Overloaded reload command
@@ -324,7 +338,7 @@ class Console(PyCutExt, Dynagen_Console):
         """
     
         if not globals.GApp.workspace.projectFile:
-            print 'You have to save your topology'
+            print 'You have to save your topology before using save'
         else:
             Dynagen_Console.do_save(self, args)
     
@@ -333,8 +347,72 @@ class Console(PyCutExt, Dynagen_Console):
         """
     
         if not globals.GApp.workspace.projectFile:
-            print 'You have to save your topology'
+            print 'You have to save your topology before using push'
         else:
             Dynagen_Console.do_push(self, args)
 
-    #TODO: do_telnet, do_console, do_export, do_import, do_idlepc
+    def do_telnet(self, args):
+        """ Overloaded telnet command
+        """
+        
+        self.do_console(args)
+        
+    def do_console(self, args):
+        """ Overloaded console command
+        """
+        
+        devices = args.split(' ')
+        for node in globals.GApp.topology.nodes.values():
+            if type(node) == IOSRouter and (node.hostname in devices or '/all' in devices):
+                node.console()
+
+    def do_export(self, args):
+        """ Overloaded export command
+        """
+        
+        if not globals.GApp.workspace.projectFile:
+            print 'You have to save your topology before using export'
+            return
+        if '?' in args or args.strip() == '':
+            print Dynagen_Console.do_export.__doc__
+            return
+        try:
+            items = getItems(args)
+        except DynamipsError, e:
+            error(e)
+            return
+
+        if len(items) < 2:
+            print Dynagen_Console.do_export.__doc__
+            return
+
+         # The last item is the directory (or should be anyway)
+        directory = items.pop()
+        
+        try:
+            netdir = os.getcwd()
+            subdir = os.path.dirname(self.namespace.FILENAME)
+            if subdir != '':
+                os.chdir(subdir)
+            os.makedirs(directory)
+        except OSError:
+            # Directory exists
+            (result,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, 'Destination directory',
+              'The directory \"%s\" already exists. Ok to overwrite (Y/N)?', QtGui.QLineEdit.Normal) % directory
+            if not ok:
+                return
+            if str(result).lower() != 'y':
+                os.chdir(netdir)        # Reset the current working directory
+                return
+
+        Dynagen_Console.do_export(self, args)
+
+    def do_import(self, args):
+        """ Overloaded import command
+        """
+        
+        if not globals.GApp.workspace.projectFile:
+            print 'You have to save your topology before using import'
+        else:
+            Dynagen_Console.do_import(self, args)
+    

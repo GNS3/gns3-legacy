@@ -54,6 +54,7 @@ class NETFile(object):
         dir = os.path.dirname(dynagen.__file__)
         dynagen.CONFIGSPECPATH.append(dir)
         try:
+            dynagen.FILENAME = path
             (connectionlist, maplist, ethswintlist) = globals.GApp.dynagen.import_config(path)
         except:
             print 'Exception detected, stopping importation...'
@@ -204,6 +205,7 @@ class NETFile(object):
     
         netfile = ConfigObj(indent_type="\t")
         netfile.filename = path
+        dynagen.FILENAME = path
         destination_list = []
 
         for (dynamipskey, dynamips) in dynagen.dynamips.iteritems():
@@ -228,32 +230,16 @@ class NETFile(object):
                     continue
                 if device.isrouter:
                     # export a router
-                    if device.model == 'c7200':
-                        model = '7200'
-                    else:
-                        model = device.chassis
-                    if not netfile.has_key(model):
-                        # export model subsection
-                        netfile[dynamipskey][model]= {}
-                        netfile[dynamipskey][model]['image'] = device.image[1:-1]
-                        netfile[dynamipskey][model]['ram'] = device.ram
-                        netfile[dynamipskey][model]['nvram'] = device.nvram
-                        netfile[dynamipskey][model]['rom'] = device.rom
-                        if device.disk0:
-                            netfile[dynamipskey][model]['disk0'] = device.disk0
-                        if device.disk1:
-                            netfile[dynamipskey][model]['disk1'] = device.disk1
-                        if device.model == 'c3600' and device.iomem:
-                            netfile[dynamipskey][model]['iomem'] = device.iomem
-                        if device.model == 'c7200':
-                            netfile[dynamipskey][model]['npe'] = device.npe
-                            netfile[dynamipskey][model]['midplane'] = device.midplane
-                        if device.cnfg:
-                            netfile[dynamipskey][model]['cnfg'] = device.cnfg[1:-1]
-                        netfile[dynamipskey][model]['mmap'] = device.mmap
-                        if device.idlepc:
-                            netfile[dynamipskey][model]['idlepc'] = device.idlepc
-                        netfile[dynamipskey][model]['exec_area'] = device.exec_area
+#                    if device.model == 'c7200':
+#                        model = '7200'
+#                    else:
+#                        model = device.chassis
+#                    if not netfile.has_key(model):
+#                        # export model subsection
+#                        netfile[dynamipskey][model]= {}
+#                        netfile[dynamipskey][model]['image'] = device.image[1:-1]
+#                        if device.idlepc:
+#                            netfile[dynamipskey][model]['idlepc'] = device.idlepc
 
                     hostname = devicekey
                     devicekey = 'ROUTER ' + devicekey
@@ -261,8 +247,27 @@ class NETFile(object):
                     if device.model != 'c7200':
                         netfile[dynamipskey][devicekey]['model'] = device.chassis
                     netfile[dynamipskey][devicekey]['console'] = device.console
+                    netfile[dynamipskey][devicekey]['image'] = device.image[1:-1]
+                    if device.idlepc:
+                        netfile[dynamipskey][devicekey]['idlepc'] = device.idlepc
                     if device.mac:
                         netfile[dynamipskey][devicekey]['mac'] = device.mac
+                    netfile[dynamipskey][devicekey]['ram'] = device.ram
+                    netfile[dynamipskey][devicekey]['nvram'] = device.nvram
+                    netfile[dynamipskey][devicekey]['rom'] = device.rom
+                    if device.disk0:
+                        netfile[dynamipskey][devicekey]['disk0'] = device.disk0
+                    if device.disk1:
+                        netfile[dynamipskey][devicekey]['disk1'] = device.disk1
+                    if device.model == 'c3600' and device.iomem:
+                        netfile[dynamipskey][devicekey]['iomem'] = device.iomem
+                    if device.model == 'c7200':
+                        netfile[dynamipskey][devicekey]['npe'] = device.npe
+                        netfile[dynamipskey][devicekey]['midplane'] = device.midplane
+                    if device.cnfg:
+                        netfile[dynamipskey][devicekey]['cnfg'] = device.cnfg[1:-1]
+                    netfile[dynamipskey][devicekey]['mmap'] = device.mmap
+                    netfile[dynamipskey][devicekey]['exec_area'] = device.exec_area
                     #FIXME: aux missing
                     
                     slot_nb = 0

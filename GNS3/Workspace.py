@@ -462,13 +462,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
             globals.addingLinkFlag = False
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
         else:
-
-            if globals.useManualConnection:
+            if not globals.useManualConnection:
                 menu = QtGui.QMenu()
                 for linktype in globals.linkTypes.keys():
                     menu.addAction(linktype)
                 menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.__setLinkType)
                 menu.exec_(QtGui.QCursor.pos())
+            else:
+                globals.currentLinkType =  globals.Enum.LinkType.Manual
             
             self.action_Add_link.setText(translate(ctx, 'Cancel'))
             self.action_Add_link.setIcon(QIcon(':/icons/cancel.svg'))
