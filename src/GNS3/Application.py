@@ -217,6 +217,15 @@ class Application(QApplication, Singleton):
         self.systconf['general'] = systemGeneralConf()
         confo = self.systconf['general']
         confo.lang = ConfDB().get('GNS3/lang', unicode('en', 'utf-8'))
+        
+        # Globals config
+        globals.HypervisorMemoryUsageLimit = ConfDB().get("GNS3/hypervisor_memory_usage_limit", 512)
+        globals.HypervisorUDPIncrementation = ConfDB().get("GNS3/hypervisor_udp_incrementation", 100)
+        globals.ImportuseHypervisorManager = ConfDB().get("GNS3/hypervisor_manager_import", True)
+        globals.ClearOldDynamipsFiles = ConfDB().get("GNS3/dynamips_clear_old_files", False)
+        globals.useIOSghosting = ConfDB().get("GNS3/dynamips_ghosting", True)
+        globals.ShowStatusPoints = ConfDB().get("GNS3/gui_show_status_points", True)
+        globals.useManualConnection = ConfDB().get("GNS3/gui_use_manual_connection", False)
 
         # Now systGeneral settings are loaded, load the translator
         self.translator = Translator()
@@ -247,7 +256,16 @@ class Application(QApplication, Singleton):
 
         # App Lang.
         ConfDB().set('GNS3/lang', self.systconf['general'].lang)
-
+            
+        # Globals settings
+        c.set("GNS3/hypervisor_memory_usage_limit", globals.HypervisorMemoryUsageLimit)
+        c.set("GNS3/hypervisor_udp_incrementation", globals.HypervisorUDPIncrementation)
+        c.set("GNS3/hypervisor_manager_import", globals.ImportuseHypervisorManager)
+        c.set("GNS3/dynamips_clear_old_files", globals.ClearOldDynamipsFiles)
+        c.set("GNS3/dynamips_ghosting", globals.useIOSghosting)
+        c.set("GNS3/gui_show_status_points", globals.ShowStatusPoints)
+        c.set("GNS3/gui_use_manual_connection", globals.useManualConnection)
+        
         # Dynamips IOSImages / Hypervisors
         confo = self.systconf['dynamips'] 
         ConfDB().set('Dynamips/hypervisor_path', confo.path)
@@ -271,6 +289,5 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/port", o.port)
             c.set(basekey + "/working_directory", o.workdir)
             c.set(basekey + "/base_udp", o.baseUDP)
-        
+
         ConfDB().sync()
-        pass
