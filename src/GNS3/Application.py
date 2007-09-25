@@ -258,13 +258,13 @@ class Application(QApplication, Singleton):
         ConfDB().set('GNS3/lang', self.systconf['general'].lang)
             
         # Globals settings
-        c.set("GNS3/hypervisor_memory_usage_limit", globals.HypervisorMemoryUsageLimit)
-        c.set("GNS3/hypervisor_udp_incrementation", globals.HypervisorUDPIncrementation)
-        c.set("GNS3/hypervisor_manager_import", globals.ImportuseHypervisorManager)
-        c.set("GNS3/dynamips_clear_old_files", globals.ClearOldDynamipsFiles)
-        c.set("GNS3/dynamips_ghosting", globals.useIOSghosting)
-        c.set("GNS3/gui_show_status_points", globals.ShowStatusPoints)
-        c.set("GNS3/gui_use_manual_connection", globals.useManualConnection)
+        ConfDB().set("GNS3/hypervisor_memory_usage_limit", globals.HypervisorMemoryUsageLimit)
+        ConfDB().set("GNS3/hypervisor_udp_incrementation", globals.HypervisorUDPIncrementation)
+        ConfDB().set("GNS3/hypervisor_manager_import", globals.ImportuseHypervisorManager)
+        ConfDB().set("GNS3/dynamips_clear_old_files", globals.ClearOldDynamipsFiles)
+        ConfDB().set("GNS3/dynamips_ghosting", globals.useIOSghosting)
+        ConfDB().set("GNS3/gui_show_status_points", globals.ShowStatusPoints)
+        ConfDB().set("GNS3/gui_use_manual_connection", globals.useManualConnection)
         
         # Dynamips IOSImages / Hypervisors
         confo = self.systconf['dynamips'] 
