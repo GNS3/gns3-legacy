@@ -28,6 +28,7 @@ conf_iosImage_defaults = {
     'idlepc': '',
     'hypervisor_host': '',
     'hypervisor_port': 7200,
+    'default': False
 }
 
 conf_iosImage_types = {
@@ -38,6 +39,7 @@ conf_iosImage_types = {
     'idlepc': str,
     'hypervisor_host': unicode,
     'hypervisor_port': int,
+    'default': bool
 }
 
 conf_hypervisor_defaults = {

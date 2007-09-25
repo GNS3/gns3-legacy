@@ -3,8 +3,8 @@
 
 # Form implementation generated from reading ui file 'Form_NodeConfigurator.ui'
 #
-# Created: Sat Sep 22 18:28:49 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070710
+# Created: Tue Sep 25 17:40:54 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -73,11 +73,6 @@ class Ui_NodeConfigurator(object):
 
         spacerItem = QtGui.QSpacerItem(20,20,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
         self.vboxlayout1.addItem(spacerItem)
-
-        self.emptyPagePixmap = QtGui.QLabel(self.emptyPage)
-        self.emptyPagePixmap.setAlignment(QtCore.Qt.AlignCenter)
-        self.emptyPagePixmap.setObjectName("emptyPagePixmap")
-        self.vboxlayout1.addWidget(self.emptyPagePixmap)
 
         self.textLabel1 = QtGui.QLabel(self.emptyPage)
         self.textLabel1.setAlignment(QtCore.Qt.AlignCenter)

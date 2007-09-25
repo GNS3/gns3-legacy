@@ -228,8 +228,17 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         conf.idlepc = idlepc
         conf.hypervisor_host = hypervisor_host
         conf.hypervisor_port = int(hypervisor_port)
+
+        default_chassis = True
+        if self.checkBoxDefaultImage.checkState() == QtCore.Qt.Checked:
+            for image in globals.GApp.iosimages:
+                image_conf = globals.GApp.iosimages[image]
+                if image_conf != conf and image_conf.chassis == conf.chassis and image_conf.default:
+                    QtGui.QMessageBox.warning(self, 'IOS Configuration', translate("IOSDialog", "There is already a default image for this chassis"))
+                    default_chassis = False
+        if default_chassis:
+            conf.default = True
         globals.GApp.iosimages[imagekey] = conf
-        self.treeWidgetIOSimages.addTopLevelItem(item)
 
     def slotDeleteIOS(self):
         """ Delete the selected line from the list of IOS images
@@ -274,7 +283,11 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 index = self.comboBoxChassis.findText(conf.chassis, QtCore.Qt.MatchFixedString)
                 self.comboBoxChassis.setCurrentIndex(index)
                 self.lineEditIdlePC.setText(conf.idlepc)
-                
+                if conf.default:
+                    self.checkBoxDefaultImage.setCheckState(QtCore.Qt.Checked)
+                else:
+                    self.checkBoxDefaultImage.setCheckState(QtCore.Qt.Unchecked)
+
                 if conf.hypervisor_host:
                     self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Unchecked)
                     items = self.listWidgetHypervisors.findItems(conf.hypervisor_host + ':' + str(conf.hypervisor_port), QtCore.Qt.MatchFixedString)
@@ -329,8 +342,6 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 self.slotDeleteHypervisor()
 
             # save settings
-            #TODO: check it
-            #if globals.GApp.iosimages.has_key(hypervisorkey):
             if globals.GApp.hypervisors.has_key(hypervisorkey):
                 conf = globals.GApp.hypervisors[hypervisorkey]
             else:

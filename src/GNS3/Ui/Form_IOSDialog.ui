@@ -13,7 +13,7 @@
    <string>IOS images and hypervisors</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/images/logo_icon.png</iconset>
+   <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/images/logo_icon.png</iconset>
   </property>
   <layout class="QVBoxLayout" >
    <item>
@@ -106,6 +106,16 @@
            <widget class="QLineEdit" name="lineEditIdlePC" >
             <property name="text" >
              <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" colspan="2" >
+           <widget class="QCheckBox" name="checkBoxDefaultImage" >
+            <property name="text" >
+             <string>Default image for this chassis</string>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -497,7 +507,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../../../gns3-artwork/svg_resources.qrc" />
+  <include location="../../../../gns3-artwork/svg_resources.qrc" />
  </resources>
  <connections>
   <connection>

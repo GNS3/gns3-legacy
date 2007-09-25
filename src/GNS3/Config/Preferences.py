@@ -78,7 +78,6 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
                 pass
             lnum += 1
 
-
     def __applyChanges(self):
         """ Save change for all item present into the Dialog
         All widget need to implement a method `saveConf' for this to work.

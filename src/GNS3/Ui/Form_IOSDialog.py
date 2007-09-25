@@ -3,8 +3,8 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Sat Sep 22 18:28:49 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070710
+# Created: Tue Sep 25 17:40:54 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -88,6 +88,11 @@ class Ui_IOSDialog(object):
         self.lineEditIdlePC = QtGui.QLineEdit(self.groupBox)
         self.lineEditIdlePC.setObjectName("lineEditIdlePC")
         self.gridlayout1.addWidget(self.lineEditIdlePC,3,1,1,2)
+
+        self.checkBoxDefaultImage = QtGui.QCheckBox(self.groupBox)
+        self.checkBoxDefaultImage.setChecked(True)
+        self.checkBoxDefaultImage.setObjectName("checkBoxDefaultImage")
+        self.gridlayout1.addWidget(self.checkBoxDefaultImage,4,0,1,2)
         self.gridlayout.addWidget(self.groupBox,0,0,1,1)
 
         self.groupBox_3 = QtGui.QGroupBox(self.tab_1)
@@ -295,6 +300,7 @@ class Ui_IOSDialog(object):
         self.label_2.setText(QtGui.QApplication.translate("IOSDialog", "Platform:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_6.setText(QtGui.QApplication.translate("IOSDialog", "Chassis:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_12.setText(QtGui.QApplication.translate("IOSDialog", "IDLE PC:", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxDefaultImage.setText(QtGui.QApplication.translate("IOSDialog", "Default image for this chassis", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_3.setTitle(QtGui.QApplication.translate("IOSDialog", "Images", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetIOSimages.headerItem().setText(0,QtGui.QApplication.translate("IOSDialog", "IOS image", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetIOSimages.headerItem().setText(1,QtGui.QApplication.translate("IOSDialog", "Chassis", None, QtGui.QApplication.UnicodeUTF8))

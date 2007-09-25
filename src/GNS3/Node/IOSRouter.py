@@ -484,7 +484,7 @@ class IOSRouter(AbstractNode):
         """ Delete nvram/flash/log files created by Dynamips
         """
 
-        if self.config.delete_files == True:
+        if self.config.delete_files == True or globals.ClearOldDynamipsFiles:
             files = []
             workingdir = self.getHypervisor().workingdir
             files.append(workingdir + 'c' + self.platform + '_' + self.hostname + '_bootflash')

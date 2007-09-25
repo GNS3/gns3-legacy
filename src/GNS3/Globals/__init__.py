@@ -25,6 +25,7 @@ HypervisorManager = None
 HypervisorMemoryUsageLimit = 512
 HypervisorUDPIncrementation = 100
 ImportuseHypervisorManager = True
+ClearOldDynamipsFiles = False
 ShowStatusPoints = True
 useManualConnection = False
 debugLevel = 0

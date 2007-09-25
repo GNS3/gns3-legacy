@@ -3,8 +3,8 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sat Sep 22 18:33:30 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070710
+# Created: Tue Sep 25 17:40:54 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -183,10 +183,6 @@ class Ui_MainWindow(object):
         self.action_OnlineHelp.setEnabled(False)
         self.action_OnlineHelp.setObjectName("action_OnlineHelp")
 
-        self.action_Import = QtGui.QAction(MainWindow)
-        self.action_Import.setEnabled(False)
-        self.action_Import.setObjectName("action_Import")
-
         self.action_Export = QtGui.QAction(MainWindow)
         self.action_Export.setObjectName("action_Export")
 
@@ -253,10 +249,6 @@ class Ui_MainWindow(object):
         self.action_Preferences = QtGui.QAction(MainWindow)
         self.action_Preferences.setObjectName("action_Preferences")
 
-        self.action_ProjectPreferences = QtGui.QAction(MainWindow)
-        self.action_ProjectPreferences.setEnabled(False)
-        self.action_ProjectPreferences.setObjectName("action_ProjectPreferences")
-
         self.action_Cut = QtGui.QAction(MainWindow)
         self.action_Cut.setEnabled(False)
         self.action_Cut.setObjectName("action_Cut")
@@ -282,12 +274,10 @@ class Ui_MainWindow(object):
         self.menu_Edit.addSeparator()
         self.menu_Edit.addAction(self.action_IOS_images)
         self.menu_Edit.addAction(self.action_Preferences)
-        self.menu_File.addAction(self.action_New_Project)
         self.menu_File.addAction(self.action_Open)
         self.menu_File.addAction(self.action_Save)
         self.menu_File.addAction(self.action_SaveAs)
         self.menu_File.addSeparator()
-        self.menu_File.addAction(self.action_Import)
         self.menu_File.addAction(self.action_Export)
         self.menu_File.addSeparator()
         self.menu_File.addAction(self.action_Quit)
@@ -351,7 +341,6 @@ class Ui_MainWindow(object):
         self.action_IOS_images.setText(QtGui.QApplication.translate("MainWindow", "IOS images", None, QtGui.QApplication.UnicodeUTF8))
         self.action_IOS_images.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+I", None, QtGui.QApplication.UnicodeUTF8))
         self.action_OnlineHelp.setText(QtGui.QApplication.translate("MainWindow", "&Online Help", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_Import.setText(QtGui.QApplication.translate("MainWindow", "&Import", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Export.setText(QtGui.QApplication.translate("MainWindow", "&Export", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StartAll.setText(QtGui.QApplication.translate("MainWindow", "Start/Resume all IOS", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StartAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Start or resume all IOS instances", None, QtGui.QApplication.UnicodeUTF8))
@@ -386,8 +375,6 @@ class Ui_MainWindow(object):
         self.action_SelectNone.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+A", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Preferences.setText(QtGui.QApplication.translate("MainWindow", "&Preferences...", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Preferences.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+P", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_ProjectPreferences.setText(QtGui.QApplication.translate("MainWindow", "&Project Preferences...", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_ProjectPreferences.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+P", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Cut.setText(QtGui.QApplication.translate("MainWindow", "Cut", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Cut.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+X", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Copy.setText(QtGui.QApplication.translate("MainWindow", "Copy", None, QtGui.QApplication.UnicodeUTF8))

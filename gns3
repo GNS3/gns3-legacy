@@ -35,7 +35,7 @@ if (version < 430):
 def exceptionHook(type, value, tb):
 
     lines = traceback.format_exception(type, value, tb)
-    print "---------------------Traceback lines-----------------------"
+    print "---------Traceback lines (saved in exception.log)----------"
     print "\n" . join(lines)
     print "-----------------------------------------------------------"
     logfile = open('exception.log','a')

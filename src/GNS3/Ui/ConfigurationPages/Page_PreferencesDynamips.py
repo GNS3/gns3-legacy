@@ -84,6 +84,10 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.checkBoxHypervisorManagerImport.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxHypervisorManagerImport.setCheckState(QtCore.Qt.Unchecked)
+        if globals.ClearOldDynamipsFiles == True:
+            self.checkBoxClearOldFiles.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxClearOldFiles.setCheckState(QtCore.Qt.Unchecked)
 
     def saveConf(self):
         """ Save widget settings to syst. config
@@ -106,6 +110,11 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             globals.ImportuseHypervisorManager = True
         else:
             globals.ImportuseHypervisorManager = False
+        if self.checkBoxClearOldFiles.checkState() == QtCore.Qt.Checked:
+            globals.ClearOldDynamipsFiles = True
+        else:
+            globals.ClearOldDynamipsFiles= False
+
         ConfDB().sync()
 
     def __setDynamipsPath(self):

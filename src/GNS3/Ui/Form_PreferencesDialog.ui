@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>597</width>
-    <height>476</height>
+    <width>614</width>
+    <height>529</height>
    </rect>
   </property>
   <property name="sizePolicy" >
@@ -19,7 +19,7 @@
    <string>Preferences</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/images/logo_icon.png</iconset>
+   <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/images/logo_icon.png</iconset>
   </property>
   <property name="modal" >
    <bool>true</bool>
@@ -101,7 +101,7 @@
       <enum>Qt::Horizontal</enum>
      </property>
      <property name="standardButtons" >
-      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok|QDialogButtonBox::Reset</set>
+      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok</set>
      </property>
     </widget>
    </item>
@@ -112,7 +112,7 @@
   <tabstop>buttonBox</tabstop>
  </tabstops>
  <resources>
-  <include location="../../../gns3-artwork/svg_resources.qrc" />
+  <include location="../../../../gns3-artwork/svg_resources.qrc" />
  </resources>
  <connections>
   <connection>

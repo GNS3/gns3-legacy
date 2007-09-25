@@ -33,6 +33,7 @@ from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.Hub import Hub
+from GNS3.Node.Cloud import Cloud
 
 class NETFile(object):
     """ NETFile implementing the .net file import/export
@@ -128,15 +129,27 @@ class NETFile(object):
             
         for connection in connectionlist:
             (router, source_interface, dest) = connection
-            (dest_name, interface) = dest.split(' ')
+            
+            try:
+                (dest_name, interface) = dest.split(' ')
+            except ValueError:
+                if dest.lower()[:3] == 'nio':
+                    renders = globals.GApp.scene.renders['Cloud']
+                    cloud = Cloud(renders['normal'], renders['selected'])
+                    cloud.config.nios.append(dest)
+                    x = random.uniform(-200, 200)
+                    y = random.uniform(-200, 200)
+                    cloud.setPos(x, y)
+                    globals.GApp.topology.addNode(cloud)
+                    dest_name = cloud.hostname
+                    interface = dest
+
             source_id = None
             dest_id = None
-            
             if dest_name == 'LAN':
                 dest_name = interface
                 #FIXME: quick mode, all connections in port 1 for a hub
                 interface = '1'
-            #TODO: finish connection to NIO
             for node in globals.GApp.topology.nodes.values():
                 if node.hostname == router.name:
                     source_id = node.id
@@ -164,17 +177,24 @@ class NETFile(object):
                     parameters = len(dest.split(' '))
                     if parameters == 2:
                         (porttype, vlan) = dest.split(' ')
-                        port = int(source)
-                        vlan = int(vlan)
-                        node.config.ports[port] = porttype
-                        if not node.config.vlans.has_key(vlan):
-                            node.config.vlans[vlan] = []
-                        if not port in node.config.vlans[vlan]:
-                            node.config.vlans[vlan].append(port)
                     elif parameters == 3:
-                        print 'NIO import not implemented yet'
-                        #TODO: finish connection to NIO
-    
+                        (porttype, vlan, nio) = dest.split(' ')
+                        renders = globals.GApp.scene.renders['Cloud']
+                        cloud = Cloud(renders['normal'], renders['selected'])
+                        cloud.config.nios.append(nio)
+                        x = random.uniform(-200, 200)
+                        y = random.uniform(-200, 200)
+                        cloud.setPos(x, y)
+                        globals.GApp.topology.addNode(cloud)
+                        globals.GApp.topology.addLink(node.id, source, cloud.id, nio)
+                    port = int(source)
+                    vlan = int(vlan)
+                    node.config.ports[port] = porttype
+                    if not node.config.vlans.has_key(vlan):
+                        node.config.vlans[vlan] = []
+                    if not port in node.config.vlans[vlan]:
+                        node.config.vlans[vlan].append(port)
+
         dynamips = globals.GApp.systconf['dynamips']
         dynamipskey = 'localhost' + ':' + str(dynamips.port)
         dynagen.dynamips[dynamipskey].close()
@@ -208,6 +228,10 @@ class NETFile(object):
         dynagen.FILENAME = path
         destination_list = []
 
+        # we always use sparsemem and ghost features
+        netfile['sparsemem'] = True
+        netfile['ghostios'] = True
+
         for (dynamipskey, dynamips) in dynagen.dynamips.iteritems():
             # dynamips section
             netfile[dynamipskey] = {}
@@ -223,7 +247,7 @@ class NETFile(object):
             netfile[dynamipskey]['udp'] = baseUDP
             netfile[dynamipskey]['console'] = baseConsole
             if dynamips.workingdir:
-                netfile[dynamipskey]['workingdir'] = dynamips.workingdir[1:-1]
+                netfile[dynamipskey]['workingdir'] = dynamips.workingdir #[1:-1]
 
             for (devicekey,  device) in dynagen.devices.iteritems():
                 if device.dynamips != dynamips:

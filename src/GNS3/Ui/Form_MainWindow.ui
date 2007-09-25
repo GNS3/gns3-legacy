@@ -13,7 +13,7 @@
    <string>GNS3</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/images/logo_icon.png</iconset>
+   <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/images/logo_icon.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QGridLayout" >
@@ -345,7 +345,7 @@
   </action>
   <action name="action_Open" >
    <property name="icon" >
-    <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/icons/open.svg</iconset>
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/open.svg</iconset>
    </property>
    <property name="text" >
     <string>&amp;Open</string>
@@ -359,7 +359,7 @@
   </action>
   <action name="action_Save" >
    <property name="icon" >
-    <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/icons/save.svg</iconset>
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/save.svg</iconset>
    </property>
    <property name="text" >
     <string>&amp;Save</string>
@@ -376,7 +376,7 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/icons/connection.svg</iconset>
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/connection.svg</iconset>
    </property>
    <property name="text" >
     <string>Add a link</string>
@@ -393,7 +393,7 @@
   </action>
   <action name="action_SwitchMode" >
    <property name="icon" >
-    <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/icons/view-refresh.svg</iconset>
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/view-refresh.svg</iconset>
    </property>
    <property name="text" >
     <string>Emulation Mode</string>
@@ -415,17 +415,6 @@
     <string>&amp;Online Help</string>
    </property>
   </action>
-  <action name="action_Import" >
-   <property name="enabled" >
-    <bool>false</bool>
-   </property>
-   <property name="icon" >
-    <iconset/>
-   </property>
-   <property name="text" >
-    <string>&amp;Import</string>
-   </property>
-  </action>
   <action name="action_Export" >
    <property name="icon" >
     <iconset/>
@@ -439,7 +428,7 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/icons/start_metal.svg</iconset>
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/start_metal.svg</iconset>
    </property>
    <property name="text" >
     <string>Start/Resume all IOS</string>
@@ -453,7 +442,7 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/icons/stop_metal.svg</iconset>
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/stop_metal.svg</iconset>
    </property>
    <property name="text" >
     <string>Stop all IOS</string>
@@ -467,7 +456,7 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/icons/show-hostname.svg</iconset>
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/show-hostname.svg</iconset>
    </property>
    <property name="text" >
     <string>Show hostnames</string>
@@ -481,7 +470,7 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/icons/console.svg</iconset>
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/console.svg</iconset>
    </property>
    <property name="text" >
     <string>Telnet all IOS</string>
@@ -507,7 +496,7 @@
   </action>
   <action name="action_SaveAs" >
    <property name="icon" >
-    <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/icons/save-as.svg</iconset>
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/save-as.svg</iconset>
    </property>
    <property name="text" >
     <string>Save &amp;As</string>
@@ -603,17 +592,6 @@
     <string>Ctrl+Shift+P</string>
    </property>
   </action>
-  <action name="action_ProjectPreferences" >
-   <property name="enabled" >
-    <bool>false</bool>
-   </property>
-   <property name="text" >
-    <string>&amp;Project Preferences...</string>
-   </property>
-   <property name="shortcut" >
-    <string>Ctrl+P</string>
-   </property>
-  </action>
   <action name="action_Cut" >
    <property name="enabled" >
     <bool>false</bool>
@@ -649,7 +627,7 @@
   </action>
   <action name="action_SuspendAll" >
    <property name="icon" >
-    <iconset resource="../../../gns3-artwork/svg_resources.qrc" >:/icons/pause_metal.svg</iconset>
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/pause_metal.svg</iconset>
    </property>
    <property name="text" >
     <string>Suspend all IOS</string>
@@ -682,7 +660,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../../gns3-artwork/svg_resources.qrc" />
+  <include location="../../../../gns3-artwork/svg_resources.qrc" />
  </resources>
  <connections>
   <connection>

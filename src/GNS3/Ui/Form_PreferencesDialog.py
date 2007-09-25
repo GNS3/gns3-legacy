@@ -3,8 +3,8 @@
 
 # Form implementation generated from reading ui file 'Form_PreferencesDialog.ui'
 #
-# Created: Sat Sep 22 18:28:49 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070710
+# Created: Tue Sep 25 17:40:54 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -13,7 +13,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_PreferencesDialog(object):
     def setupUi(self, PreferencesDialog):
         PreferencesDialog.setObjectName("PreferencesDialog")
-        PreferencesDialog.resize(QtCore.QSize(QtCore.QRect(0,0,597,476).size()).expandedTo(PreferencesDialog.minimumSizeHint()))
+        PreferencesDialog.resize(QtCore.QSize(QtCore.QRect(0,0,614,529).size()).expandedTo(PreferencesDialog.minimumSizeHint()))
 
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(2)
@@ -87,7 +87,7 @@ class Ui_PreferencesDialog(object):
 
         self.buttonBox = QtGui.QDialogButtonBox(PreferencesDialog)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Apply|QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.NoButton|QtGui.QDialogButtonBox.Ok|QtGui.QDialogButtonBox.Reset)
+        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Apply|QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.NoButton|QtGui.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
         self.gridlayout.addWidget(self.buttonBox,2,0,1,2)
 

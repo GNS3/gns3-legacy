@@ -193,9 +193,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__action_SaveAs)
         self.connect(self.action_Preferences,
             QtCore.SIGNAL('triggered()'), self.__action_Preferences)
-        self.connect(self.action_ProjectPreferences,
-            QtCore.SIGNAL('triggered()'), self.__action_ProjectPreferences)
-            
 
     def __createMenus(self):
         """ Add own menu actions, and create new sub-menu
@@ -408,6 +405,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"),  str(msg))
             self.cleanNodeStates()
             self.__restoreButtonState()
+            print 'here'
             return
         except (lib.DynamipsErrorHandled,  socket.error):
             QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
