@@ -237,14 +237,19 @@ class Application(QApplication, Singleton):
             globals.HypervisorManager.preloadDynamips()#showErrMessage=False)
 
         # full screen
-        geometry = QApplication.desktop().availableGeometry(self.mainWindow)
+        #geometry = QApplication.desktop().availableGeometry(self.mainWindow)
         #geometry = QApplication.desktop().screenGeometry(self.mainWindow)
-        self.mainWindow.setGeometry(geometry)
+        #self.mainWindow.setGeometry(geometry)
+        # Restore the geometry
+        self.mainWindow.restoreGeometry(ConfDB().value("GNS3/geometry").toByteArray())
         self.mainWindow.show()
 
         retcode = QApplication.exec_()
         
         globals.HypervisorManager = None
+        
+        # Save the geometry
+        ConfDB().set("GNS3/geometry", self.mainWindow.saveGeometry())
         # ---
         self.saveConfQaD()
         # ---
