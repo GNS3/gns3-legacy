@@ -3,8 +3,8 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Tue Sep 25 17:40:54 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070701
+# Created: Tue Sep 25 22:51:43 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070710
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -140,15 +140,15 @@ class Ui_MainWindow(object):
         self.vboxlayout1.setMargin(0)
         self.vboxlayout1.setObjectName("vboxlayout1")
 
-        self.textEdit = Console(self.dockWidgetContents_5)
+        self.textEditConsole = Console(self.dockWidgetContents_5)
 
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.textEdit.sizePolicy().hasHeightForWidth())
-        self.textEdit.setSizePolicy(sizePolicy)
-        self.textEdit.setObjectName("textEdit")
-        self.vboxlayout1.addWidget(self.textEdit)
+        sizePolicy.setHeightForWidth(self.textEditConsole.sizePolicy().hasHeightForWidth())
+        self.textEditConsole.setSizePolicy(sizePolicy)
+        self.textEditConsole.setObjectName("textEditConsole")
+        self.vboxlayout1.addWidget(self.textEditConsole)
         self.dockWidget_Console.setWidget(self.dockWidgetContents_5)
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(8),self.dockWidget_Console)
 

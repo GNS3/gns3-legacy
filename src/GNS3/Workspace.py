@@ -36,6 +36,9 @@ from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.Cloud import Cloud
 import GNS3.Globals as globals 
 
+# where the topology files are stored
+topologiesDirectory = '.'
+
 __statesDefaults = {
     'design_mode': {
         'nodesDock': True,
@@ -77,7 +80,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         swWidget.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
 
         self.useHypervisorManager = False
-
         # Switch to default mode
         self.switchToMode_Design()
         
@@ -334,6 +336,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Function called to switch to mode `Design'
         """
 
+        # disabled the console
+        self.textEditConsole.setEnabled(False)
         try:
                 try:
                     for node in globals.GApp.topology.nodes.itervalues():
@@ -405,7 +409,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
             QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"),  str(msg))
             self.cleanNodeStates()
             self.__restoreButtonState()
-            print 'here'
             return
         except (lib.DynamipsErrorHandled,  socket.error):
             QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
@@ -420,6 +423,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.__action_addLink()
         self.treeWidget_TopologySummary.emulationMode()
         self.__startNonIOSNodes()
+        globals.GApp.dynagen.apply_idlepc()
+        if globals.useIOSghosting:
+            globals.GApp.dynagen.ghosting()
+        # enable the console
+        self.textEditConsole.setEnabled(True)
 
     #-----------------------------------------------------------------------
 
@@ -688,6 +696,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Open a file (scenario or dynagen .NET format)
         """
         
+        global topologiesDirectory 
+
         if self.currentMode != globals.Enum.Mode.Design:
             QtGui.QMessageBox.warning(self, translate("Workspace", "Open a file"),  translate("Workspace", "You must be in design mode"))
             return
@@ -697,7 +707,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__action_Preferences()
             return
 
-        (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter = 'NET file (*.net);;All files (*.*)').getFile()
+        (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter = 'NET file (*.net);;All files (*.*)', 
+                                       directory=topologiesDirectory).getFile()
         if path != None:
             try:
                 if str(selected) == 'NET file (*.net)':
@@ -732,12 +743,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Save as (scenario or dynagen .NET format)
         """
 
+        global topologiesDirectory 
+
         if self.currentMode != globals.Enum.Mode.Emulation:
             QtGui.QMessageBox.warning(self, translate("Workspace", "Save as"),  translate("Workspace", "You must be in emulation mode"))
             return
         
         fb = fileBrowser(translate("Workspace", "Save Project As"), 
-                                filter='NET file (*.net);;All files (*.*)')
+                                filter='NET file (*.net);;All files (*.*)', directory=topologiesDirectory )
         (path, selected) = fb.getSaveFile()
 
         if path != None and path != '':

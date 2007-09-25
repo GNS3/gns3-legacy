@@ -331,6 +331,8 @@ class IOSRouter(AbstractNode):
         self.sparsemem = True
         # register into Dynagen
         dynagen.devices[self.hostname] = self.dev
+        dynagen.ghosteddevices[self.hostname] = True
+        dynagen.ghostsizes[self.hostname] = None
         
     def configSlot(self, slotnb, module):
         """ Add an new module into a slot

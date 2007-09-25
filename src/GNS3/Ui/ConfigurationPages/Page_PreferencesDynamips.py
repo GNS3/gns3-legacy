@@ -88,6 +88,11 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.checkBoxClearOldFiles.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxClearOldFiles.setCheckState(QtCore.Qt.Unchecked)
+        if globals.useIOSghosting == True:
+            self.checkBoxGhosting.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxGhosting.setCheckState(QtCore.Qt.Unchecked)
+
 
     def saveConf(self):
         """ Save widget settings to syst. config
@@ -114,6 +119,11 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             globals.ClearOldDynamipsFiles = True
         else:
             globals.ClearOldDynamipsFiles= False
+        if self.checkBoxGhosting.checkState() == QtCore.Qt.Checked:
+            globals.useIOSghosting = True
+        else:
+            globals.useIOSghosting = False
+
 
         ConfDB().sync()
 

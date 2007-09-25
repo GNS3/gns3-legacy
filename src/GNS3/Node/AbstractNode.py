@@ -398,4 +398,8 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 del dynagen.devices[self.hostname]
             if dynagen.bridges.has_key(self.hostname):
                 del dynagen.bridges[self.hostname]
+            if dynagen.ghosteddevices.has_key(self.hostname):
+                del dynagen.ghosteddevices[self.hostname]
+            if dynagen.ghostsizes.has_key(self.hostname):
+                del dynagen.ghostsizes[self.hostname]
             self.shutdownInterfaces()

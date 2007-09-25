@@ -67,7 +67,12 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
         # insert known platforms
         self.comboBoxPlatform.insertItems(0, PLATFORMS.keys())
-
+        
+        # enable sorting
+        self.treeWidgetIOSimages.sortByColumn(0, QtCore.Qt.AscendingOrder)
+        self.treeWidgetIOSimages.setSortingEnabled(True)
+        self.treeWidgetHypervisor.sortByColumn(0, QtCore.Qt.AscendingOrder)
+        self.treeWidgetHypervisor.setSortingEnabled(True)
         # reload saved infos
         self._reloadInfos()
 
@@ -233,9 +238,11 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         if self.checkBoxDefaultImage.checkState() == QtCore.Qt.Checked:
             for image in globals.GApp.iosimages:
                 image_conf = globals.GApp.iosimages[image]
-                if image_conf != conf and image_conf.chassis == conf.chassis and image_conf.default:
+                if imagekey !=  image and image_conf.chassis == conf.chassis and image_conf.default:
                     QtGui.QMessageBox.warning(self, 'IOS Configuration', translate("IOSDialog", "There is already a default image for this chassis"))
                     default_chassis = False
+        else:
+            default_chassis = False
         if default_chassis:
             conf.default = True
         globals.GApp.iosimages[imagekey] = conf
@@ -247,7 +254,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         item = self.treeWidgetIOSimages.currentItem()
         if (item != None):
             self.treeWidgetIOSimages.takeTopLevelItem(self.treeWidgetIOSimages.indexOfTopLevelItem(item))
-            del globals.GApp.iosimages[str(item.text(0))]
+            del globals.GApp.iosimages[unicode(item.text(0))]
 
     def slotEditIOS(self):
         """ Edit the selected line from the list of IOS images
@@ -283,7 +290,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 index = self.comboBoxChassis.findText(conf.chassis, QtCore.Qt.MatchFixedString)
                 self.comboBoxChassis.setCurrentIndex(index)
                 self.lineEditIdlePC.setText(conf.idlepc)
-                if conf.default:
+                if conf.default == True:
                     self.checkBoxDefaultImage.setCheckState(QtCore.Qt.Checked)
                 else:
                     self.checkBoxDefaultImage.setCheckState(QtCore.Qt.Unchecked)

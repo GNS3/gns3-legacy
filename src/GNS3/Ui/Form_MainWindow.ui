@@ -312,7 +312,7 @@
       <number>0</number>
      </property>
      <item>
-      <widget class="Console" name="textEdit" >
+      <widget class="Console" name="textEditConsole" >
        <property name="sizePolicy" >
         <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
          <horstretch>0</horstretch>

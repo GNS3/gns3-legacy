@@ -26,6 +26,7 @@ HypervisorMemoryUsageLimit = 512
 HypervisorUDPIncrementation = 100
 ImportuseHypervisorManager = True
 ClearOldDynamipsFiles = False
+useIOSghosting = True
 ShowStatusPoints = True
 useManualConnection = False
 debugLevel = 0

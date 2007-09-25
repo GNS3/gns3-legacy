@@ -228,9 +228,10 @@ class NETFile(object):
         dynagen.FILENAME = path
         destination_list = []
 
-        # we always use sparsemem and ghost features
+        # we always use sparsemem
         netfile['sparsemem'] = True
-        netfile['ghostios'] = True
+        if globals.useIOSghosting:
+            netfile['ghostios'] = True
 
         for (dynamipskey, dynamips) in dynagen.dynamips.iteritems():
             # dynamips section
@@ -254,16 +255,19 @@ class NETFile(object):
                     continue
                 if device.isrouter:
                     # export a router
-#                    if device.model == 'c7200':
-#                        model = '7200'
-#                    else:
-#                        model = device.chassis
-#                    if not netfile.has_key(model):
-#                        # export model subsection
-#                        netfile[dynamipskey][model]= {}
-#                        netfile[dynamipskey][model]['image'] = device.image[1:-1]
-#                        if device.idlepc:
-#                            netfile[dynamipskey][model]['idlepc'] = device.idlepc
+                    if device.model == 'c7200':
+                        model = '7200'
+                    else:
+                        model = device.chassis
+
+                    if not netfile[dynamipskey].has_key(model):
+                        # export model subsection if a default image exists for this chassis
+                        for (imagekey, config) in globals.GApp.iosimages.iteritems():
+                            if config.chassis == model and config.default:
+                                netfile[dynamipskey][model]= {}
+                                netfile[dynamipskey][model]['image'] = device.image[1:-1]
+                                if device.idlepc:
+                                    netfile[dynamipskey][devicekey]['idlepc'] = device.idlepc
 
                     hostname = devicekey
                     devicekey = 'ROUTER ' + devicekey
@@ -271,9 +275,10 @@ class NETFile(object):
                     if device.model != 'c7200':
                         netfile[dynamipskey][devicekey]['model'] = device.chassis
                     netfile[dynamipskey][devicekey]['console'] = device.console
-                    netfile[dynamipskey][devicekey]['image'] = device.image[1:-1]
-                    if device.idlepc:
-                        netfile[dynamipskey][devicekey]['idlepc'] = device.idlepc
+                    if not netfile[dynamipskey].has_key(model):
+                        netfile[dynamipskey][devicekey]['image'] = device.image[1:-1]
+                        if device.idlepc:
+                            netfile[dynamipskey][devicekey]['idlepc'] = device.idlepc
                     if device.mac:
                         netfile[dynamipskey][devicekey]['mac'] = device.mac
                     netfile[dynamipskey][devicekey]['ram'] = device.ram

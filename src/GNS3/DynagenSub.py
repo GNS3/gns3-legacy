@@ -96,7 +96,7 @@ class DynagenSub(dynagen.Dynagen):
                 controlPort = 7200
             hypervisorkey = server.host + ':' + controlPort
 
-            if not globals.GApp.hypervisors.has_key(hypervisorkey):
+            if not globals.GApp.hypervisors.has_key(hypervisorkey) and not globals.ImportuseHypervisorManager:
                 conf = hypervisorConf()
                 conf.id = globals.GApp.hypervisors_ids
                 globals.GApp.hypervisors_ids +=1

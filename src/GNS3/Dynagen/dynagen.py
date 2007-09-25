@@ -1060,7 +1060,7 @@ class Dynagen:
         """
 
         # Read in the user idlepc database, if it exists
-        useridledb = dynagen.import_generic_ini(useridledbfile)
+        useridledb = self.import_generic_ini(useridledbfile)
 
         # Apply idlepc values, and if necessary start the instances
         for device in devices.values():
