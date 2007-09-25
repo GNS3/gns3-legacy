@@ -44,7 +44,6 @@ class FRSW(AbstractNode):
         frsw_id = frsw_id + 1
         self.setCustomToolTip()
         self.config = self.getDefaultConfig()
-        self.dev = None
         
     def getDefaultConfig(self):
         """ Returns the default configuration

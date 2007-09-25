@@ -229,6 +229,7 @@ class Application(QApplication, Singleton):
 
         # full screen
         geometry = QApplication.desktop().availableGeometry(self.mainWindow)
+        #geometry = QApplication.desktop().screenGeometry(self.mainWindow)
         self.mainWindow.setGeometry(geometry)
         self.mainWindow.show()
 

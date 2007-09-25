@@ -154,8 +154,7 @@ class IOSRouter(AbstractNode):
         self.hostname = 'R' + str(router_id)
         router_id = router_id + 1
         self.setCustomToolTip()
-        
-        self.dev = None
+    
         self.config = self.getDefaultConfig()
         self.setDefaultIOSImage()
 

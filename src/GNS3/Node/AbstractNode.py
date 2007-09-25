@@ -45,7 +45,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.__edgeList = set()
         self.__selectedInterface = None
         self.__flag_hostname = False
-        #self.type = 'Unknown'
+        self.dev = None
         
         if error == None:
             error = QtGui.QErrorMessage(globals.GApp.mainWindow)
@@ -396,4 +396,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             self.dev.delete()
             if dynagen.devices.has_key(self.hostname):
                 del dynagen.devices[self.hostname]
+            if dynagen.bridges.has_key(self.hostname):
+                del dynagen.bridges[self.hostname]
             self.shutdownInterfaces()

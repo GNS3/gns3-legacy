@@ -307,13 +307,15 @@ class NETFile(object):
                             connected_interfaces = node.getConnectedInterfaceList()
                             for interface in connected_interfaces:
                                 destinterface = node.getConnectedNeighbor(interface)
-                                #TODO: finish connection to NIO
                                 connected_interfaces = map(int,  connected_interfaces)
                                 for (vlan,  portlist) in node.config.vlans.iteritems():
                                     for port in portlist:
                                         if port in connected_interfaces:
                                             porttype = node.config.ports[port]
                                             netfile[dynamipskey][devicekey][str(port)] = porttype + ' ' + str(vlan)
+                                            (destnode, destinterface) = node.getConnectedNeighbor(str(port))
+                                            if destinterface.lower()[:3] == 'nio':
+                                                netfile[dynamipskey][devicekey][str(port)] += ' ' + destinterface
 
                 if type(device) == lib.FRSW:
                     # export a frame relay switch

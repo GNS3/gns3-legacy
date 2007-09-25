@@ -46,7 +46,6 @@ class ATMSW(AbstractNode):
         atm_id = atm_id + 1
         self.setCustomToolTip()
         self.config = self.getDefaultConfig()
-        self.dev = None
 
     def getDefaultConfig(self):
         """ Returns the default configuration

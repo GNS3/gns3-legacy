@@ -43,9 +43,7 @@ class ETHSW(AbstractNode):
         self.hostname = 'S' + str(ethsw_id)
         ethsw_id = ethsw_id + 1
         self.setCustomToolTip()
-
         self.config = self.getDefaultConfig()
-        self.dev = None
         
         # by default create 8 ports in vlan 1
         self.config.vlans[1] = []
@@ -95,17 +93,16 @@ class ETHSW(AbstractNode):
             return
 
         connected_interfaces = self.getConnectedInterfaceList()
-        for interface in connected_interfaces:
-            destinterface = self.getConnectedNeighbor(interface)
-        
-        #TODO: finish connection to NIO
-        
         connected_interfaces = map(int,  connected_interfaces)
         for (vlan,  portlist) in self.config.vlans.iteritems():
             for port in portlist:
                 if port in connected_interfaces:
+                    (destnode, destinterface)= self.getConnectedNeighbor(str(port))
                     porttype = self.config.ports[port]
-                    self.dev.set_port(port, porttype, vlan)
+                    if destinterface.lower()[:3] == 'nio':
+                        self.dev.nio(port, nio=self.createNIO(self.getHypervisor(), destinterface), porttype=porttype, vlan=vlan)
+                    else:
+                        self.dev.set_port(port, porttype, vlan)
 
         self.startupInterfaces()
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
