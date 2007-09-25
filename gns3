@@ -19,7 +19,7 @@
 # Contact: developers@gns3.net
 #
 
-import sys,  traceback
+import sys, os, traceback
 
 try:
     from PyQt4 import QtCore,  QtGui
@@ -44,4 +44,6 @@ def exceptionHook(type, value, tb):
 
 # catch exceptions to write them in a file
 sys.excepthook=exceptionHook
+if os.access('./src', os.F_OK):
+    sys.path.append('./src')
 import GNS3.Main
