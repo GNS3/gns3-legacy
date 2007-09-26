@@ -251,34 +251,44 @@ class Application(QApplication, Singleton):
         # Save the geometry
         ConfDB().set("GNS3/geometry", self.mainWindow.saveGeometry())
         # ---
-        self.saveConfQaD()
+        self.syncConf()
         # ---
         sys.exit(retcode)
 
-    def saveConfQaD(self):
-        """ Quick and Dirty config saving into gns3.conf
+    def syncConf(self):
+        """ Sync current application config with config file (gns3.{ini,conf})
         """
+        
+        c = ConfDB()
 
         # App Lang.
-        ConfDB().set('GNS3/lang', self.systconf['general'].lang)
+        c.set('GNS3/lang', self.systconf['general'].lang)
             
         # Globals settings
-        ConfDB().set("GNS3/hypervisor_memory_usage_limit", globals.HypervisorMemoryUsageLimit)
-        ConfDB().set("GNS3/hypervisor_udp_incrementation", globals.HypervisorUDPIncrementation)
-        ConfDB().set("GNS3/hypervisor_manager_import", globals.ImportuseHypervisorManager)
-        ConfDB().set("GNS3/dynamips_clear_old_files", globals.ClearOldDynamipsFiles)
-        ConfDB().set("GNS3/dynamips_ghosting", globals.useIOSghosting)
-        ConfDB().set("GNS3/gui_show_status_points", globals.ShowStatusPoints)
-        ConfDB().set("GNS3/gui_use_manual_connection", globals.useManualConnection)
+        c.set("GNS3/hypervisor_memory_usage_limit", globals.HypervisorMemoryUsageLimit)
+        c.set("GNS3/hypervisor_udp_incrementation", globals.HypervisorUDPIncrementation)
+        c.set("GNS3/hypervisor_manager_import", globals.ImportuseHypervisorManager)
+        c.set("GNS3/dynamips_clear_old_files", globals.ClearOldDynamipsFiles)
+        c.set("GNS3/dynamips_ghosting", globals.useIOSghosting)
+        c.set("GNS3/gui_show_status_points", globals.ShowStatusPoints)
+        c.set("GNS3/gui_use_manual_connection", globals.useManualConnection)
         
-        # Dynamips IOSImages / Hypervisors
+        # Dynamips settings
         confo = self.systconf['dynamips'] 
-        ConfDB().set('Dynamips/hypervisor_path', confo.path)
-        ConfDB().set('Dynamips/hypervisor_port', confo.port)
-        ConfDB().set('Dynamips/hypervisor_working_directory', confo.workdir)
-        ConfDB().set('Dynamips/console', confo.term_cmd)
+        c.set('Dynamips/hypervisor_path', confo.path)
+        c.set('Dynamips/hypervisor_port', confo.port)
+        c.set('Dynamips/hypervisor_working_directory', confo.workdir)
+        c.set('Dynamips/console', confo.term_cmd)
 
-        c = ConfDB()
+        # Clear IOS.hypervisors and IOS.images group
+        c.beginGroup("IOs.images")
+        c.remove("")
+        c.endGroup()
+        c.beginGroup("IOS.hypervisors")
+        c.remove("")
+        c.endGroup()
+
+        # IOS Images 
         for (key, o) in self.__iosimages.iteritems():
             basekey = "IOS.images/" + str(o.id)
             c.set(basekey + "/filename", o.filename)
@@ -288,6 +298,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/hypervisor_host", o.hypervisor_host)
             c.set(basekey + "/idlepc", o.idlepc)
 
+        # IOS Hypervisors
         for (key, o) in self.__hypervisors.iteritems():
             basekey = "IOS.hypervisors/" + str(o.id)
             c.set(basekey + "/host", o.host)
@@ -295,4 +306,4 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/working_directory", o.workdir)
             c.set(basekey + "/base_udp", o.baseUDP)
 
-        ConfDB().sync()
+        c.sync()
