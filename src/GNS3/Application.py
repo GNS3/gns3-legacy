@@ -219,13 +219,13 @@ class Application(QApplication, Singleton):
         confo.lang = ConfDB().get('GNS3/lang', unicode('en', 'utf-8'))
         
         # Globals config
-        globals.HypervisorMemoryUsageLimit = ConfDB().get("GNS3/hypervisor_memory_usage_limit", 512)
-        globals.HypervisorUDPIncrementation = ConfDB().get("GNS3/hypervisor_udp_incrementation", 100)
-        globals.ImportuseHypervisorManager = ConfDB().get("GNS3/hypervisor_manager_import", True)
-        globals.ClearOldDynamipsFiles = ConfDB().get("GNS3/dynamips_clear_old_files", False)
-        globals.useIOSghosting = ConfDB().get("GNS3/dynamips_ghosting", True)
-        globals.ShowStatusPoints = ConfDB().get("GNS3/gui_show_status_points", True)
-        globals.useManualConnection = ConfDB().get("GNS3/gui_use_manual_connection", False)
+        globals.HypervisorMemoryUsageLimit = int(ConfDB().get("GNS3/hypervisor_memory_usage_limit", 512))
+        globals.HypervisorUDPIncrementation = int(ConfDB().get("GNS3/hypervisor_udp_incrementation", 100))
+        globals.ImportuseHypervisorManager = bool(ConfDB().get("GNS3/hypervisor_manager_import", True))
+        globals.ClearOldDynamipsFiles = bool(ConfDB().get("GNS3/dynamips_clear_old_files", False))
+        globals.useIOSghosting = bool(ConfDB().get("GNS3/dynamips_ghosting", True))
+        globals.ShowStatusPoints = bool(ConfDB().get("GNS3/gui_show_status_points", True))
+        globals.useManualConnection = bool(ConfDB().get("GNS3/gui_use_manual_connection", False))
 
         # Now systGeneral settings are loaded, load the translator
         self.translator = Translator()

@@ -19,7 +19,6 @@
 # Contact: developers@gns3.net
 #
 
-from xml.dom.minidom import Document, parse
 import sys, time
 import GNS3.Globals as globals
 import GNS3.Config.Defaults as Defaults
