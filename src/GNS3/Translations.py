@@ -23,15 +23,20 @@
 import os
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
-from GNS3 import pkgdir
+#from GNS3 import pkgdir
+import GNS3.Langs
 
 class Translator(object):
+
     def __init__(self):
+
         self.__loadedLangs = {}
-        self.__i18n_dir = os.path.join(pkgdir, "Langs")
+        #self.__i18n_dir = os.path.join(pkgdir, "Langs")
+        self.__i18n_dir = os.path.dirname(os.path.abspath(GNS3.Langs.__file__))
         self.__lastTranslator = None
 
     def getAvailables(self):
+
         local_translator = QtCore.QTranslator()
         lang_availables = []
 
