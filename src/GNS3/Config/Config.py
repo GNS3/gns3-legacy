@@ -30,17 +30,13 @@ from PyQt4 import QtCore
 from GNS3.Utils import Singleton
 from GNS3.Config.Objects import hypervisorConf, iosImageConf
 
-_corpname = 'EPITECH'
-_appname = 'GNS3'
-_ConfigDefaults = {
-}
-
 class ConfDB(Singleton, QtCore.QSettings):
 
     def __init__(self):
         global _corpname, _appname
-        #QtCore.QSettings.__init__(self, _corpname, _appname)
-        QtCore.QSettings.__init__(self, "./gns3.conf", QtCore.QSettings.IniFormat)
+        #QtCore.QSettings.__init__(self, "./gns3.conf", QtCore.QSettings.IniFormat)
+	QtCore.QSettings.__init__(self, QtCore.QSettings.IniFormat,
+					QtCore.QSettings.UserScope, "gns3")
 
     def __del__(self):
         self.sync()
