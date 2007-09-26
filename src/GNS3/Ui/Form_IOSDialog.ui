@@ -114,9 +114,6 @@
             <property name="text" >
              <string>Default image for this chassis</string>
             </property>
-            <property name="checked" >
-             <bool>true</bool>
-            </property>
            </widget>
           </item>
          </layout>

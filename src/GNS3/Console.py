@@ -288,38 +288,27 @@ class Console(PyCutExt, Dynagen_Console):
                 else:
                     output = "Potentially better idlepc values marked with '*'\nEnter the number of the idlepc value to apply [1-%i] or ENTER for no change:\n" % len(idles) + output
                     globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-                    
                     (selection,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, 'idlepc',
                                           output, QtGui.QLineEdit.Normal)
                     
                     if not ok:
+                        print 'No changes made'
                         return
                     selection = str(selection)
-                    print selection
-                    print idles[int(selection)]
-                    globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-                    self.namespace.devices[device].idleprop(lib.IDLEPROPSET, idles[int(selection)])
                     if selection == "":
                         print 'No changes made'
-                    return
-
+                        return
+                        
                     try:
-                        selection = int(selection)
-                    except ValueError:
-                        print "Invalid selection"
-                        globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-                        return
-                    if selection < 1 or selection > len(idles):
-                        print "Invalid selection"
-                        globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-                        return
-
-                    print 'set idlepc'
-                    globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-                    # Apply the selected idle
-                    self.namespace.devices[device].idleprop(lib.IDLEPROPSET, idles[selection])
-                    print "Applied idlepc value %s to %s\n" % (idles[selection], device)
-
+                        self.namespace.devices[device].idleprop(lib.IDLEPROPSET, idles[int(selection)])
+                        print "Applied idlepc value %s to %s\n" % (idles[int(selection)], device)
+                        for node in globals.GApp.topology.nodes.values():
+                            if type(node) == IOSRouter and node.hostname == device:
+                                if node.config.image and globals.GApp.iosimages.has_key(node.config.image):
+                                    image = globals.GApp.iosimages[node.config.image]
+                                    image.idlepc =  idles[int(selection)]
+                    except:
+                        print "Can't apply idlepc value"
             else:
                 Dynagen_Console.do_idlepc(self, args)
             

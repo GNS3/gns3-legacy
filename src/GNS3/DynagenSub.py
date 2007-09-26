@@ -82,7 +82,7 @@ class DynagenSub(dynagen.Dynagen):
                     error = 'Missing value or section.'
                 print section_string, ' = ', error
             raise SyntaxError, e
-        
+
         subsections = {}
         for section in config.sections:
             server = config[section]
@@ -95,13 +95,15 @@ class DynagenSub(dynagen.Dynagen):
             if controlPort == None:
                 controlPort = 7200
             hypervisorkey = server.host + ':' + controlPort
-
-            if not globals.GApp.hypervisors.has_key(hypervisorkey) and not globals.ImportuseHypervisorManager:
+            
+            if not globals.GApp.hypervisors.has_key(hypervisorkey):# and not globals.ImportuseHypervisorManager:
                 conf = hypervisorConf()
                 conf.id = globals.GApp.hypervisors_ids
                 globals.GApp.hypervisors_ids +=1
             else:
+                print hypervisorkey
                 conf = globals.GApp.hypervisors[hypervisorkey]
+
             conf.host = unicode(server.host, 'utf-8')
             conf.port = int(controlPort)
             if server['workingdir'] != None:
@@ -109,7 +111,7 @@ class DynagenSub(dynagen.Dynagen):
             if server['udp'] != None:
                 conf.baseUDP = server['udp']
             globals.GApp.hypervisors[hypervisorkey] = conf
- 
+            
             for subsection in server.sections:
                 subsections[subsection] = config[section][subsection]
                 device = server[subsection]
@@ -117,6 +119,7 @@ class DynagenSub(dynagen.Dynagen):
                     (devtype, devname) = device.name.split(' ')
                     self.original_config[devname] = {'host': server.host, 
                                                                         'port': controlPort}
+        
         
         dynamips = globals.GApp.systconf['dynamips']
         dynamipskey = 'localhost' + ':' + str(dynamips.port)

@@ -22,7 +22,7 @@
 
 import sys
 from PyQt4.QtGui import QApplication
-from PyQt4.QtCore import QMutex, QMutexLocker
+from PyQt4.QtCore import QMutex, QMutexLocker, QVariant
 from GNS3.Utils import Singleton
 from GNS3.Workspace import Workspace
 from GNS3.Topology import Topology
@@ -221,11 +221,11 @@ class Application(QApplication, Singleton):
         # Globals config
         globals.HypervisorMemoryUsageLimit = int(ConfDB().get("GNS3/hypervisor_memory_usage_limit", 512))
         globals.HypervisorUDPIncrementation = int(ConfDB().get("GNS3/hypervisor_udp_incrementation", 100))
-        globals.ImportuseHypervisorManager = bool(ConfDB().get("GNS3/hypervisor_manager_import", True))
-        globals.ClearOldDynamipsFiles = bool(ConfDB().get("GNS3/dynamips_clear_old_files", False))
-        globals.useIOSghosting = bool(ConfDB().get("GNS3/dynamips_ghosting", True))
-        globals.ShowStatusPoints = bool(ConfDB().get("GNS3/gui_show_status_points", True))
-        globals.useManualConnection = bool(ConfDB().get("GNS3/gui_use_manual_connection", False))
+        globals.ImportuseHypervisorManager = ConfDB().value("GNS3/hypervisor_manager_import", QVariant(True)).toBool()
+        globals.ClearOldDynamipsFiles = ConfDB().value("GNS3/dynamips_clear_old_files", QVariant(False)).toBool()
+        globals.useIOSghosting = ConfDB().value("GNS3/dynamips_ghosting", QVariant(True)).toBool()
+        globals.ShowStatusPoints = ConfDB().value("GNS3/gui_show_status_points", QVariant(True)).toBool()
+        globals.useManualConnection = ConfDB().value("GNS3/gui_use_manual_connection", QVariant(False)).toBool()
 
         # Now systGeneral settings are loaded, load the translator
         self.translator = Translator()

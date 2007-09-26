@@ -3,8 +3,8 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Tue Sep 25 22:51:43 2007
-#      by: PyQt4 UI code generator 4-snapshot-20070710
+# Created: Wed Sep 26 18:58:44 2007
+#      by: PyQt4 UI code generator 4-snapshot-20070701
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -90,7 +90,6 @@ class Ui_IOSDialog(object):
         self.gridlayout1.addWidget(self.lineEditIdlePC,3,1,1,2)
 
         self.checkBoxDefaultImage = QtGui.QCheckBox(self.groupBox)
-        self.checkBoxDefaultImage.setChecked(True)
         self.checkBoxDefaultImage.setObjectName("checkBoxDefaultImage")
         self.gridlayout1.addWidget(self.checkBoxDefaultImage,4,0,1,2)
         self.gridlayout.addWidget(self.groupBox,0,0,1,1)
