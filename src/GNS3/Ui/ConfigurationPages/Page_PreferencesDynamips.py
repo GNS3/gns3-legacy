@@ -56,10 +56,10 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         else:
             self.conf = systemDynamipsConf()
 
-        # Default path to dynamips executable
-        if self.conf.path == '':
-            if sys.platform.startswith('win32'):
-                self.conf.path = unicode('C:\Program Files\gns3\Dynamips\dynamips-wxp.exe',  'utf-8')
+#        # Default path to dynamips executable
+#        if self.conf.path == '':
+#            if sys.platform.startswith('win32'):
+#                self.conf.path = unicode('C:\Program Files\gns3\Dynamips\dynamips-wxp.exe',  'utf-8')
         # Defaults dynamips terminal command
         if self.conf.term_cmd == '':
             if sys.platform.startswith('darwin'):
