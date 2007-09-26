@@ -62,10 +62,10 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
     def saveConf(self):
 
         new_idx = self.langsBox.currentIndex()
-        new_lang_code = self.langs[new_idx][0]
-
-        globals.GApp.systconf['general'].lang = unicode(new_lang_code, 'utf-8')
-        globals.GApp.translator.switchLangTo(new_lang_code)
+        if new_idx != -1:
+            new_lang_code = self.langs[new_idx][0]
+            globals.GApp.systconf['general'].lang = unicode(new_lang_code, 'utf-8')
+            globals.GApp.translator.switchLangTo(new_lang_code)
         
         # GUI settings
         if self.checkBoxShowStatusPoints.checkState() == QtCore.Qt.Checked:
