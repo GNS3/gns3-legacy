@@ -54,7 +54,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.checkBoxShowStatusPoints.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxShowStatusPoints.setCheckState(QtCore.Qt.Unchecked)
-        if globals.useManualConnection == True:
+        if globals.useManualConnection == False:
             self.checkBoxManualConnections.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxManualConnections.setCheckState(QtCore.Qt.Unchecked)
@@ -73,6 +73,6 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         else:
             globals.ShowStatusPoints = False
         if self.checkBoxManualConnections.checkState() == QtCore.Qt.Checked:
-            globals.useManualConnection = True
-        else:
             globals.useManualConnection = False
+        else:
+            globals.useManualConnection = True
