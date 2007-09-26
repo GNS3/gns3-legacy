@@ -367,7 +367,7 @@ class Dynagen:
                             if router.model == 'c1700' and router.chassis in ['1751', '1760']:
                                 # WIC selection is pretty straight-forward here
                                 router.installwic(chosenwic, slot)
-                            	return True
+                                return True
                             else:
                                 # Less obvious here.
                                 # If you want an interface of a given type on port n,
@@ -564,10 +564,10 @@ class Dynagen:
         print('*** Warning: ignoring invalid switch mapping entry %s = %s' % (source, dest))
         return False
 
-    def open_config(self,  FILENAME):
+    def open_config(self, FILENAME):
         """ Open the config file
         """
-        
+
         # look for configspec in CONFIGSPECPATH and the same directory as dynagen
         realpath = os.path.realpath(sys.argv[0])
         self.debug('realpath ' + realpath)
@@ -595,7 +595,7 @@ class Dynagen:
             except IOError:
                #doerror("Can't open configuration file")
                continue
-        
+
         vtor = Validator()
         res = config.validate(vtor, preserve_errors=True)
         if res == True:
@@ -615,9 +615,9 @@ class Dynagen:
             raw_input("Press ENTER to continue")
             handled = True
             sys.exit(1)
-            
+
         return config
-        
+
     def import_config(self, FILENAME):
         """ Read in the config file and set up the network
         """
@@ -627,7 +627,7 @@ class Dynagen:
         ethswintlist = []           # A list of Ethernet Switch vlan mappings
 
         config = self.open_config(FILENAME)
-        
+
         debuglevel = config['debug']
         if debuglevel > 0: setdebug(True)
 
@@ -805,14 +805,6 @@ class Dynagen:
         for connection in connectionlist:
             self.debug('connection: ' + str(connection))
             (router, source, dest) = connection
-#            match_obj = interface_re.search(source)
-#            if match_obj:
-#                (source_type, source_slot, source_port) = match_obj.group(1,2,3)
-#                if source_slot in router.slot and router.slot[int(source_slot)].connected(source_port):
-#                    print 'ignoring value'
-#                    continue
-#            else:
-#                print 'Warning, no matching'
             try:
                 result = self.connect(router, source, dest)
             except DynamipsError, e:
@@ -899,9 +891,9 @@ class Dynagen:
 
             else:
                 self.doerror('Invalid Ethernet switchport config: %s = %s' % (source, dest))
-
+        
         return (connectionlist, maplist, ethswintlist)
-                
+
     def import_ini(self, FILENAME):
         """ Read in the INI file
         """
@@ -983,6 +975,8 @@ class Dynagen:
         """ Push configurations stored in the network file
         """
 
+        global configurations
+
         if configurations != {}:
             result = raw_input("There are saved configurations in your network file. \nDo you wish to import them (Y/N)? ")
             if result.lower() == 'y':
@@ -994,6 +988,8 @@ class Dynagen:
     def ghosting(self):
         """ Implement IOS Ghosting
         """
+
+        global ghosteddevices, ghostsizes
 
         ghosts = {}         # a dictionary of ghost instances which will match the image name+hostname+port
         try:
@@ -1010,7 +1006,7 @@ class Dynagen:
                     continue
 
                 if device.imagename == None:
-                    dynagen.doerror("No IOS image specified for device: " + device.name)
+                    self.doerror("No IOS image specified for device: " + device.name)
 
                 ghostinstance = device.imagename + '-' + device.dynamips.host
                 ghost_file = device.imagename + '.ghost'
@@ -1052,17 +1048,19 @@ class Dynagen:
                     device.ghost_status = 2
                     device.ghost_file = ghost_file
         except DynamipsError, e:
-            dynagen.doerror(e)
+            self.doerror(e)
 
 
     def apply_idlepc(self):
         """  Apply idlepc values from the database
         """
 
+        global useridledbfile
+
         # Read in the user idlepc database, if it exists
         useridledb = self.import_generic_ini(useridledbfile)
 
-        # Apply idlepc values, and if necessary start the instances
+        # Apply idlepc values
         for device in devices.values():
             try:
                 if device.idlepc == None:
@@ -1071,19 +1069,26 @@ class Dynagen:
             except AttributeError:
                 pass
 
+    def autostart(self):
+        """  Autostart the instances
+        """
+    
+        global autostart
+
+        for device in devices.values():
+            # if necessary start the instances
             if autostart.has_key(device.name):
                 if autostart[device.name]:
                     try:
                         if device.idlepc == None:
-                            dynagen.dowarning("Starting %s with no idle-pc value" % device.name)
+                            self.dowarning("Starting %s with no idle-pc value" % device.name)
                         device.start()
                     except DynamipsError, e:
                         # Strip leading error code if present
                         e = str(e)
                         if e[3] == '-':
                             e = e[4:] + "\nSee dynamips output for more info.\n"
-                        dynagen.doerror(e)
-
+                        self.doerror(e)
 
     def debug(self, string):
         """ Print string if debugging is true
@@ -1176,6 +1181,7 @@ if __name__ == "__main__":
         dynagen.push_embedded_configurations()
         dynagen.ghosting()
         dynagen.apply_idlepc()
+        dynagen.autostart()
 
         print "Network successfully loaded\n"
 
