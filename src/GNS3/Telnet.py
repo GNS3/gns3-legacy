@@ -38,7 +38,6 @@ def connect(host,  port,  name):
                     sub.Popen("start telnet " +  host + " " + str(port), shell=True)
                 else:
                     sub.Popen("xterm -T " + name + " -e 'telnet " + host + " " + str(port) + "' > /dev/null 2>&1 &", shell=True)
-                    #sub.Popen("gnome-terminal -t " + name + " -e 'telnet "  + host + " " + str(port) + "' > /dev/null 2>&1 &",  shell=True)
         except OSError, (errno, strerror):
             return (False)
         return (True)

@@ -34,7 +34,7 @@ setup( # Distribution meta-data
 #TODO: merge the previous setup with the py2exe setup ?
 
 # Settings for py2exe, packages values are to tell to py2exe about hidden imports
-#setup(windows=[{"script":"gns3.pyw",
+#setup(windows=[{"script":"gns3",
 #                             "icon_resources": [(1, "C:\gns3.ico")]}],
 #            options={"py2exe": 
 #                                {

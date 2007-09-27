@@ -485,14 +485,17 @@ class IOSRouter(AbstractNode):
     def cleanNodeFiles(self):
         """ Delete nvram/flash/log files created by Dynamips
         """
-
+        
+        # always clean the lock
+        workingdir = self.getHypervisor().workingdir
+        lock = workingdir + 'c' + self.platform + '_' + self.hostname + '_lock'
+        if os.path.isfile(lock): 
+            os.remove(lock)
         if self.config.delete_files == True or globals.ClearOldDynamipsFiles:
             files = []
-            workingdir = self.getHypervisor().workingdir
             files.append(workingdir + 'c' + self.platform + '_' + self.hostname + '_bootflash')
             files.append(workingdir + 'c' + self.platform + '_' + self.hostname + '_log.txt')
             files.append(workingdir + 'c' + self.platform + '_' + self.hostname + '_nvram')
-            files.append(workingdir + 'c' + self.platform + '_' + self.hostname + '_lock')
             for filename in files:
                 if os.path.isfile(filename): 
                     os.remove(filename)
