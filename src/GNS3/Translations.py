@@ -45,6 +45,7 @@ class Translator(object):
             (value, typevalue) = _winreg.QueryValueEx(key, '')
             
             self.__i18n_dirs = [
+                os.path.dirname(os.path.abspath(GNS3.Langs.__file__)),
                 os.path.dirname(value) + "\\Langs", 
                 os.environ["APPDATA"] + "\\gns3\\Langs"
             ]
