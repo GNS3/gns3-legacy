@@ -23,10 +23,11 @@
 import os, sys
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
-#from GNS3 import pkgdir
 import GNS3.Langs
 
 class Translator(object):
+
+    gns3_regkey = "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\gns3.exe"
 
     def __init__(self):
 
@@ -35,18 +36,26 @@ class Translator(object):
         self.__lang_current = "" 
         self.__lastTranslator = None
 
-        # Set default i18n dir
-        self.__i18n_dir =  os.path.dirname(os.path.abspath(GNS3.Langs.__file__))
-
-        self.__i18n_dirs = [
-            os.path.dirname(os.path.abspath(GNS3.Langs.__file__))
-        ]
-        # Add user own i18n dir depending on platform.
+        # Add i18n dirs depending on platform.
         if sys.platform[:3] == "win":
-            self.__i18n_dirs.append( os.environ["APPDATA"] + "\\gns3\\Langs\\" )
+            # Get gns3.exe installation path
+            import _winreg
+            key = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, 
+                                  Translator.gns3_regkey,  _winreg.KEY_READ)
+            (value, typevalue) = _winreg.QueryValueEx(key, '')
+            
+            self.__i18n_dirs = [
+                os.path.dirname(value) + "\\Langs", 
+                os.environ["APPDATA"] + "\\gns3\\Langs"
+            ]
+            
         elif sys.platform.startswith('darwin') \
             or sys.platform.startswith('linux'):
-            self.__i18n_dirs.append( os.environ["HOME"] + "/.gns3/Langs" )
+            
+            self.__i18n_dirs = [
+                os.path.dirname(os.path.abspath(GNS3.Langs.__file__)), 
+                os.environ["HOME"] + "/.gns3/Langs"
+            ]
         
         # Now find all available languages...
         self.findAvailableLangs()
