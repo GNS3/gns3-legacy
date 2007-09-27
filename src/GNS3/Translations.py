@@ -91,7 +91,7 @@ class Translator(object):
                         'name': lang_name,
                         'dirs': [ i18n_dir ],
                     }
-        
+
         # Do some cleanup, and sort langs code
         for (k,v) in self.__langs.iteritems():
             # reverse directory order,
@@ -100,7 +100,6 @@ class Translator(object):
             self.__langs_code.append(k)
         self.__langs_code.sort()
 
-
     def getAvailables(self):
         lang_availables = []
 
@@ -108,6 +107,37 @@ class Translator(object):
             d = self.__langs[l]
             lang_availables.append([d['code'], d['name']])
         return (lang_availables)
+
+    def loadByLangEnv(self, lang_fallback):
+        if not os.environ.has_key('LANG'):
+            return self.switchLangTo(lang_fallback)
+
+        # get user env['LANG'], truncate to 5 chars,
+        # as we don't need lang charset
+        lang = os.environ['LANG'][:5]
+        lang_code = None
+        lang_country = None
+
+        # Setup lang code & country
+        if lang == "":
+            return self.switchLangTo(lang_fallback)
+        if len(lang) == 5 and lang[2] == "_":
+            lang_country = lang[-2:].upper()
+        if len(lang) >= 2:
+            lang_code = lang[:2]
+
+        # If we have a full langcode (i.e `en_US'), try it first
+        if lang_country is not None and lang_code is not None:
+            r_code = self.switchLangTo(lang_code + "_" + lang_country)
+            if r_code == True:
+                return
+        # Or just the language (i.e `en')
+        if lang_code is not None:
+            r_code = self.switchLangTo(lang_code)
+            if r_code == True:
+                return
+        # In last resort, try lang_fallback
+        return self.switchLangTo(lang_fallback)
 
     def switchLangTo(self, lang):
     
@@ -126,8 +156,10 @@ class Translator(object):
             if r_code == True:
                 break 
         if r_code == False:
-            # TODO: Show a ERROR MsgBox
-            pass
+            # TODO: Show a ERROR MsgBox (Warning: switchLangTo
+            #       are called more than once, so find a mechanism
+            #       which are not to intrusive for the user
+            return False
 
         globals.GApp.installTranslator(translator)
         if self.__lastTranslator is not None:
@@ -143,4 +175,6 @@ class Translator(object):
                 # simply ignore topLevelWidgets which don't
                 # have a retranslateUi method
                 pass
+
+        return True
 

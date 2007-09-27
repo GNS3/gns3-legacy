@@ -229,7 +229,7 @@ class Application(QApplication, Singleton):
 
         # Now systGeneral settings are loaded, load the translator
         self.translator = Translator()
-        self.translator.switchLangTo(self.systconf['general'].lang)
+        self.translator.loadByLangEnv(self.systconf['general'].lang)
 
         # preload dynamips
         if globals.GApp.systconf['dynamips'].path:
