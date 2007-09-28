@@ -182,7 +182,7 @@ class Application(QApplication, Singleton):
     dynagen = property(__getDynagen, __setDynagen,
                     doc = 'System config instance')
                     
-    def run(self):
+    def run(self, file):
     
         # instantiation of Dynagen
         self.__dynagen = DynagenSub()
@@ -244,6 +244,7 @@ class Application(QApplication, Singleton):
         self.mainWindow.restoreGeometry(ConfDB().value("GNS3/geometry").toByteArray())
         self.mainWindow.show()
 
+        self.mainWindow.load_saved_config(file)
         retcode = QApplication.exec_()
         
         globals.HypervisorManager = None
@@ -297,6 +298,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/hypervisor_port", o.hypervisor_port)
             c.set(basekey + "/hypervisor_host", o.hypervisor_host)
             c.set(basekey + "/idlepc", o.idlepc)
+            c.set(basekey + "/default",  o.default)
 
         # IOS Hypervisors
         for (key, o) in self.__hypervisors.iteritems():

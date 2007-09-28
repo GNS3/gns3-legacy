@@ -20,7 +20,20 @@
 # Contact: contact@gns3.net
 #
 
+import sys
+from optparse import OptionParser
 from GNS3.Application import Application
+VERSION = '0.3-beta'
 
+usage = "usage: %prog <config file>"
+parser = OptionParser(usage=usage, version="%prog " + VERSION)
+try:
+    (options, args) = parser.parse_args()
+except SystemExit:
+    sys.exit(1)
+
+file = None
+if len(args) >= 1:
+    file = args.pop()
 app = Application()
-app.run()
+app.run(file)

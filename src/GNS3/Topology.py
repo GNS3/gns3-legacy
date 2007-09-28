@@ -30,6 +30,7 @@ class Topology(QtGui.QGraphicsScene):
     """
 
     def __init__(self, parent=None):
+        
         self.__nodes = {}
         self.__links = set()
 
@@ -70,7 +71,10 @@ class Topology(QtGui.QGraphicsScene):
     def getNode(self, id):
         """ Returns the node corresponding to id
         """
-        return self.__nodes[id]
+        if self.__nodes.has_key(id):
+            return self.__nodes[id]
+        else:
+            return None
 
     def __getNodes(self):
         """ Return topology nodes

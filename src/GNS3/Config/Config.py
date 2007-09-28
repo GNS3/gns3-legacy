@@ -180,7 +180,8 @@ class GNS_Conf(object):
             conf.idlepc = str(c.get(cgroup + "/idlepc", ''))
             conf.hypervisor_host = c.get(cgroup + "/hypervisor_host",  unicode('',  'utf-8'))
             conf.hypervisor_port = int(c.get(cgroup + "/hypervisor_port",  0))
-            
+            conf.default =  c.value(cgroup + "/default", QtCore.QVariant(False)).toBool()
+
             globals.GApp.iosimages[img_ref] = conf
 
             if conf.id >= globals.GApp.iosimages_ids:

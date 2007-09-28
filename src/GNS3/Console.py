@@ -133,8 +133,7 @@ class Console(PyCutExt, Dynagen_Console):
             self._clearLine()
             
     def do_start(self, args):
-        """ Overloaded start command
-        """
+        """start  {/all | router1 [router2] ...}\nstart all or a specific router(s)"""
 
         try:
             Dynagen_Console.do_start(self, args)
@@ -147,8 +146,7 @@ class Console(PyCutExt, Dynagen_Console):
             globals.GApp.workspace.switchToMode_Design()
         
     def do_stop(self, args):
-        """ Overloaded stop command
-        """
+        """stop  {/all | router1 [router2] ...}\nstop all or a specific router(s)"""
 
         try:
             Dynagen_Console.do_stop(self, args)
@@ -161,8 +159,7 @@ class Console(PyCutExt, Dynagen_Console):
             globals.GApp.workspace.switchToMode_Design()
 
     def do_suspend(self, args):
-        """ Overloaded suspend command
-        """
+        """suspend  {/all | router1 [router2] ...}\nsuspend all or a specific router(s)"""
 
         try:
             Dynagen_Console.do_suspend(self, args)
@@ -175,8 +172,7 @@ class Console(PyCutExt, Dynagen_Console):
             globals.GApp.workspace.switchToMode_Design()
 
     def do_resume(self, args):
-        """ Overloaded resume command
-        """
+        """resume  {/all | router1 [router2] ...}\nresume all or a specific router(s)"""
 
         try:
             Dynagen_Console.do_resume(self, args)
@@ -189,40 +185,49 @@ class Console(PyCutExt, Dynagen_Console):
             globals.GApp.workspace.switchToMode_Design()
             
     def do_reload(self, args):
-        """ Overloaded reload command
-        """
+        """reload  {/all | router1 [router2] ...}\nreload all or a specific router(s)"""
 
         self.do_stop(args)
         self.do_start(args)
             
     def do_exit(self,  args):
-        """ Overloaded exit command
-        """
+        """ Returns to design mode """
         
-        print 'Are you kidding ?'
+        globals.GApp.workspace.switchToMode_Design()
         
     def do_disconnect(self,  args):
-        """ Overloaded disconnect command
-        """
+        """ Returns to design mode """
         
-        print 'Are you kidding ?'
+        globals.GApp.workspace.switchToMode_Design()
     
     def do_hist(self, args):
-        """ Overloaded hist command
-        """
+        """Print a list of commands that have been entered"""
 
         for entry in self.history:
             print unicode(entry)
-
-    def do_py(self,  args):
-        """ Overloaded py command
-        """
-    
-        print 'Not implemented in GNS3'
         
     def do_idlepc(self, args):
-        """ Overloaded idlepc command
-        """
+        """idlepc {get|set|show|save|idlemax|idlesleep|showdrift} device [value]
+idlepc save device [default]
+
+get, set, or show the online idlepc value(s)
+Examples:
+  idlepc get r1             -- Get a list of the possible idlepc value(s) for
+                                router r1
+  idlepc show r1            -- Show the previously determined idlepc values for
+                               router r1
+  idlepc set r1 0x12345     -- Manually set r1's idlepc to 0x12345
+  idlepc save r1            -- Save r1's current idlepc value to the "router r1"
+                               section of your network file
+  idlepc save r1 default    -- Save r1's current idlepc value to the device
+                               defaults section of your network file
+                               (i.e. [[7200]])
+  idlepc save r1 db         -- Save r1's current idlepc value to the idlepc
+                               database
+  idlepc idlemax r1 1500    -- Commands for advanced manipulation of idlepc
+  idlepc idlesleep r1 30       settings
+  idlepc showdrift r1
+                               """
 
         if '?' in args or args.strip() == '':
             print Dynagen_Console.do_idlepc.__doc__
@@ -233,6 +238,10 @@ class Console(PyCutExt, Dynagen_Console):
             params = args.split()[1:]
             if len(params) < 1:
                 print Dynagen_Console.do_idlepc.__doc__
+                return
+                
+            if command == 'save':
+                print 'save has not been implemented in GNS3 yet'
                 return
             
             if command == 'get' or command == 'show':
@@ -323,8 +332,7 @@ class Console(PyCutExt, Dynagen_Console):
             return
 
     def do_save(self, args):
-        """ Overloaded save command
-        """
+        """save {/all | router1 [router2] ...}\nstores router configs in the network file"""
     
         if not globals.GApp.workspace.projectFile:
             print 'You have to save your topology before using save'
@@ -332,8 +340,7 @@ class Console(PyCutExt, Dynagen_Console):
             Dynagen_Console.do_save(self, args)
     
     def do_push(self, args):
-        """ Overloaded push command
-        """
+        """push {/all | router1 [router2] ...}\npushes router configs from the network file to the router's nvram"""
     
         if not globals.GApp.workspace.projectFile:
             print 'You have to save your topology before using push'
@@ -341,14 +348,12 @@ class Console(PyCutExt, Dynagen_Console):
             Dynagen_Console.do_push(self, args)
 
     def do_telnet(self, args):
-        """ Overloaded telnet command
-        """
+        """telnet  {/all | router1 [router2] ...}\nconnect to the console(s) of all or a specific router(s)\nThis is identical to the console command."""
         
         self.do_console(args)
         
     def do_console(self, args):
-        """ Overloaded console command
-        """
+        """console  {/all | router1 [router2] ...}\nconnect to the console(s) of all or a specific router(s)\n"""
         
         devices = args.split(' ')
         for node in globals.GApp.topology.nodes.values():
@@ -356,8 +361,7 @@ class Console(PyCutExt, Dynagen_Console):
                 node.console()
 
     def do_export(self, args):
-        """ Overloaded export command
-        """
+        """export {/all | router1 [router2] ...} \"directory\"\nsaves router configs individual files in \"directory\"\nEnclose the directory in quotes if there are spaces in the filespec."""
         
         if not globals.GApp.workspace.projectFile:
             print 'You have to save your topology before using export'
@@ -397,8 +401,7 @@ class Console(PyCutExt, Dynagen_Console):
         Dynagen_Console.do_export(self, args)
 
     def do_import(self, args):
-        """ Overloaded import command
-        """
+        """import {/all | router1 [router2] \"directory\"\nimport all or individual configuration files \nEnclose the directory or filename in quotes if there are spaces in the filespec."""
         
         if not globals.GApp.workspace.projectFile:
             print 'You have to save your topology before using import'

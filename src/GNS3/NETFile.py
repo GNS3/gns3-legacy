@@ -267,7 +267,7 @@ class NETFile(object):
                                 netfile[dynamipskey][model]= {}
                                 netfile[dynamipskey][model]['image'] = device.image[1:-1]
                                 if device.idlepc:
-                                    netfile[dynamipskey][devicekey]['idlepc'] = device.idlepc
+                                    netfile[dynamipskey][model]['idlepc'] = device.idlepc
 
                     hostname = devicekey
                     devicekey = 'ROUTER ' + devicekey

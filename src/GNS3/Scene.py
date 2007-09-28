@@ -234,6 +234,10 @@ class Scene(QtGui.QGraphicsView):
             
         srcnode = globals.GApp.topology.getNode(self.__sourceNodeID)
         destnode = globals.GApp.topology.getNode(self.__destNodeID)
+        
+        if srcnode == None or destnode == None:
+            self.__isFirstClick = True
+            return
 
         # check interface compatibility, at least one-way compatibility must occur
         if not self.checkInterfaceCompatibility(srcnode, self.__sourceInterface,  destnode,  self.__destInterface) and \

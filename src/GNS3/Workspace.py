@@ -20,7 +20,7 @@
 # Contact: contact@gns3.net
 #
 
-import sys, socket
+import os, sys, socket
 import GNS3.NETFile as netfile
 import GNS3.Dynagen.dynamips_lib as lib
 from PyQt4 import QtGui, QtCore
@@ -687,11 +687,24 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_ProjectPreferences(self):
         """ Show Project Preferences dialog
         """
-    
         dialog = PreferencesDialog('Project')
+    
         dialog.show()
         dialog.exec_()
+       
+    def load_saved_config(self, file):
+        """ Load a .net file"""
+
+        if file == None:
+            return
         
+        path = os.path.abspath(file)
+        if not os.path.isfile(path):
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Loading"),  translate("Workspace", "Invalid file") + ' ' + file)
+            return
+        net = netfile.NETFile()
+        net.live_import(path)
+            
     def __action_OpenFile(self):
         """ Open a file (scenario or dynagen .NET format)
         """
@@ -716,8 +729,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     self.projectFile = path
                     self.setWindowTitle("GNS3 - " + self.projectFile)
                     self.statusbar.showMessage(translate("Workspace", "Project Loaded..."))
-                    net = netfile.NETFile()
-                    net.live_import(path)
+                    self.load_saved_config(path)
             except IOError, (errno, strerror):
                 QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         

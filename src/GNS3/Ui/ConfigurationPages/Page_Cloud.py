@@ -68,9 +68,12 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
             self.comboBoxLinuxEth.setEnabled(False)
             self.lineEditLinuxEth.setEnabled(False)
             self.pushButtonAddLinuxEth.setEnabled(False)
+        elif sys.platform.startswith('darwin'):
+            interfaces = self.getMACOSXInterfaces()
+            self.comboBoxLinuxEth.addItems(interfaces)
         else:
             interfaces = self.getUnixInterfaces()
-            self.comboBoxLinuxEth.addItems(self.getUnixInterfaces())
+            self.comboBoxLinuxEth.addItems(interfaces)
         self.comboBoxGenEth.addItems(interfaces)
 
     def getUnixInterfaces(self):
@@ -78,6 +81,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         """
     
         interfaces = []
+        fd = 0
         try:
             try:
                 fd = open('/proc/net/dev', 'r')
@@ -89,7 +93,8 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
             except:
                 return []
         finally:
-            fd.close()
+            if fd > 0:
+                fd.close()
         return interfaces
         
     def getWindowsInterfaces(self):
@@ -104,9 +109,24 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
             outputlines = p.stdout.readlines()
             p.wait()
             for line in outputlines:
-                match = re.search(r"""^rpcap://(\\Device\\NPF_{.*}).*""",  line)
+                match = re.search(r"""^rpcap://(\\Device\\NPF_{.*}).*""",  line.strip())
                 if match:
                     interfaces.append(match.group(1))
+        except:
+            return []
+        return interfaces
+        
+    def getMACOSXInterfaces(self):
+        """ Try to detect all available interfaces on Mac OS X
+        """
+
+        interfaces = []
+        try:
+            p = sub.Popen("ifconfig | egrep -v \"^   \" | cut -d':' -f1", stdout=sub.PIPE, stderr=sub.STDOUT)
+            outputlines = p.stdout.readlines()
+            p.wait()
+            for line in outputlines:
+                interfaces.append(line.strip())
         except:
             return []
         return interfaces
