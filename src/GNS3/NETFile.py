@@ -122,9 +122,15 @@ class NETFile(object):
             if type(device) == lib.ATMSW:
                 renders = globals.GApp.scene.renders['ATM switch']
                 node = ATMSW(renders['normal'], renders['selected'])
-            
-            x = random.uniform(-200, 200)
-            y = random.uniform(-200, 200)
+
+            x = y = None
+            if globals.GApp.dynagen.original_config.has_key(node.hostname):
+                x = globals.GApp.dynagen.original_config[node.hostname]['x']
+                y = globals.GApp.dynagen.original_config[node.hostname]['y']
+            if x == None:
+                x = random.uniform(-200, 200)
+            if y == None:
+                y = random.uniform(-200, 200)
             node.setPos(x, y)
             node.hostname = unicode(devicename, 'utf-8')
             globals.GApp.topology.addNode(node)

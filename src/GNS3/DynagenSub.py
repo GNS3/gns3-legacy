@@ -115,8 +115,14 @@ class DynagenSub(dynagen.Dynagen):
                 device = server[subsection]
                 if device.name not in dynagen.DEVICETUPLE:
                     (devtype, devname) = device.name.split(' ')
+                    x  = y = None
+                    if device.has_key('x'):
+                        x = device['x']
+                    if device.has_key('y'):
+                        y = device['y']
                     self.original_config[devname] = {'host': server.host, 
-                                                                        'port': controlPort}
+                                                                        'port': controlPort, 
+                                                                        'x': x, 'y': y}
 
         dynamips = globals.GApp.systconf['dynamips']
         dynamipskey = 'localhost' + ':' + str(dynamips.port)

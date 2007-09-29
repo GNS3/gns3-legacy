@@ -794,7 +794,7 @@ class Dynagen:
                             elif ethswint_re.search(subitem):
                                 ethswintlist.append((dev, subitem, device[subitem]))
 
-                            elif subitem in ['model', 'configuration', 'autostart']:
+                            elif subitem in ['model', 'configuration', 'autostart',  'x', 'y']:
                                 # These options are already handled elsewhere
                                 continue
                             else:
