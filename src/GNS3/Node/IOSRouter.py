@@ -486,19 +486,26 @@ class IOSRouter(AbstractNode):
         """ Delete nvram/flash/log files created by Dynamips
         """
         
-        # always clean the lock
-        workingdir = self.getHypervisor().workingdir
-        lock = workingdir + 'c' + self.platform + '_' + self.hostname + '_lock'
-        if os.path.isfile(lock): 
-            os.remove(lock)
+        # always clean the lock, ram and rommon_vars if there
+        workingdir = self.getHypervisor().workingdir[1:-1]
+        files = []
+        files.append(workingdir + '/c' + self.platform + '_' + self.hostname + '_lock')
+        files.append(workingdir + '/c' + self.platform + '_' + self.hostname + '_ram')
+        files.append(workingdir + '/c' + self.platform + '_' + self.hostname + '_rommon_vars')
+        for filename in files:
+            path = os.path.abspath(filename)
+            if os.path.isfile(path): 
+                os.remove(path)
+
         if self.config.delete_files == True or globals.ClearOldDynamipsFiles:
+            names = ['bootflash', 'log.txt', 'nvram',  'flash0',  'flash1',  'disk0',  'disk1',  'sram0',  'sram1',  'ssa',  'slot0',  'slot1',  'rom']
             files = []
-            files.append(workingdir + 'c' + self.platform + '_' + self.hostname + '_bootflash')
-            files.append(workingdir + 'c' + self.platform + '_' + self.hostname + '_log.txt')
-            files.append(workingdir + 'c' + self.platform + '_' + self.hostname + '_nvram')
+            for name in names:
+                files.append(workingdir + '/c' + self.platform + '_' + self.hostname + '_' + name)
             for filename in files:
-                if os.path.isfile(filename): 
-                    os.remove(filename)
+                path = os.path.abspath(filename)
+                if os.path.isfile(path): 
+                    os.remove(path)
 
     def console(self):
         """ Start a telnet console and connect it to an IOS

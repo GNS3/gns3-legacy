@@ -19,7 +19,7 @@ import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as Dynagen_Namespace
 import GNS3.Dynagen.dynamips_lib as lib
 from PyQt4 import QtCore, QtGui
-from GNS3.Dynagen.console import Console as Dynagen_Console
+from GNS3.Dynagen.console import Console as Dynagen_Console, getItems
 from GNS3.External.PyCutExt import PyCutExt
 from GNS3.Node.IOSRouter import IOSRouter
 
@@ -199,6 +199,11 @@ class Console(PyCutExt, Dynagen_Console):
         """ Returns to design mode """
         
         globals.GApp.workspace.switchToMode_Design()
+        
+    def do_py(self,  args):
+        """ Not implemented in GNS3 """
+        
+        print 'Sorry, not implemented in GNS3'
     
     def do_hist(self, args):
         """Print a list of commands that have been entered"""
@@ -241,7 +246,7 @@ Examples:
                 return
                 
             if command == 'save':
-                print 'save has not been implemented in GNS3 yet'
+                print 'Sorry, save has not been implemented in GNS3 yet'
                 return
             
             if command == 'get' or command == 'show':
@@ -371,7 +376,7 @@ Examples:
             return
         try:
             items = getItems(args)
-        except DynamipsError, e:
+        except lib.DynamipsError, e:
             error(e)
             return
 
@@ -381,22 +386,24 @@ Examples:
 
          # The last item is the directory (or should be anyway)
         directory = items.pop()
-        
         try:
             netdir = os.getcwd()
             subdir = os.path.dirname(self.namespace.FILENAME)
             if subdir != '':
                 os.chdir(subdir)
-            os.makedirs(directory)
+            if os.path.isdir(directory):
+                # Directory exists
+                print directory
+                (result,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, 'Destination directory',
+                  'The directory already exists. Ok to overwrite (Y/N)?', QtGui.QLineEdit.Normal)
+                if not ok:
+                    return
+                if str(result).lower() != 'y':
+                    os.chdir(netdir)        # Reset the current working directory
+                else:
+                    os.rmdir(directory)
         except OSError:
-            # Directory exists
-            (result,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, 'Destination directory',
-              'The directory \"%s\" already exists. Ok to overwrite (Y/N)?', QtGui.QLineEdit.Normal) % directory
-            if not ok:
-                return
-            if str(result).lower() != 'y':
-                os.chdir(netdir)        # Reset the current working directory
-                return
+            return
 
         Dynagen_Console.do_export(self, args)
 

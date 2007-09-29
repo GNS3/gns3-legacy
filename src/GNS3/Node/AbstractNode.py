@@ -354,7 +354,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             if self.baseConsole:
                 dynagen.dynamips[key].baseconsole = self.baseConsole
             if self.hypervisor_wd:
-                dynagen.dynamips[key].workingdir = self.hypervisor_wd
+                dynagen.dynamips[key].workingdir = '"' + self.hypervisor_wd + '"'
         return dynagen.dynamips[key]
         
     def configHypervisor(self,  host,  port, workingdir = None,  baseudp = None,  baseconsole = None):
