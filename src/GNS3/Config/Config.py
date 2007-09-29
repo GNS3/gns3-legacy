@@ -33,7 +33,7 @@ from GNS3.Config.Objects import hypervisorConf, iosImageConf
 class ConfDB(Singleton, QtCore.QSettings):
 
     def __init__(self):
-        #QtCore.QSettings.__init__(self, "./gns3.conf", QtCore.QSettings.IniFormat)
+
         QtCore.QSettings.__init__(self, QtCore.QSettings.IniFormat, QtCore.QSettings.UserScope, "gns3")
 
     def __del__(self):

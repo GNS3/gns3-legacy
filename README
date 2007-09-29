@@ -40,10 +40,6 @@ INSTALLATION
 	6. Start GNS-3 by double-clicking on gns3.pyw.
 
 
-CURRENT LIMITATIONS
-
-None :) .
-
 OPEN ISSUES
 
  * On Windows, all telnet windows have the same window title bar "Telnet localhost", alternate solution: using putty
@@ -53,10 +49,6 @@ BUG REPORT
 
  * Open a new ticket on the trac (development tab on www.gns3.net). Please be as explicit as you can. Try to 
 remember what was your last actions and join the exception.log file if it exists.
-
-KNOWN BUGS
-
- * The interface GT96100_FE doesn't work with IOS c2691.
  
 ADVICE
 

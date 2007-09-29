@@ -218,7 +218,7 @@ class NETFile(object):
                     value = getattr(device,  property)
                     setattr(config, property, value)
                 except:
-                    print "Can't import property: " + property
+                    #print "Can't import property: " + property
                     continue
 
     def live_export(self, path):
@@ -248,7 +248,7 @@ class NETFile(object):
             netfile[dynamipskey]['udp'] = baseUDP
             netfile[dynamipskey]['console'] = baseConsole
             if dynamips.workingdir:
-                netfile[dynamipskey]['workingdir'] = dynamips.workingdir #[1:-1]
+                netfile[dynamipskey]['workingdir'] = dynamips.workingdir[1:-1]
 
             for (devicekey,  device) in dynagen.devices.iteritems():
                 if device.dynamips != dynamips:
