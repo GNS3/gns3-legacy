@@ -131,10 +131,13 @@ class Scene(QtGui.QGraphicsView):
                 suspendAct.setIcon(QtGui.QIcon(':/icons/pause.svg'))
                 self.connect(suspendAct, QtCore.SIGNAL('triggered()'), self.slotSuspendNode)
             
-                menu.addAction(consoleAct)
-                menu.addAction(startAct)
-                menu.addAction(suspendAct)
-                menu.addAction(stopAct)
+                try:
+                    menu.addAction(consoleAct)
+                    menu.addAction(startAct)
+                    menu.addAction(suspendAct)
+                    menu.addAction(stopAct)
+                except:
+                    print 'YOUPI'
 
         # Action: ShowHostname (Display the hostname)
         showHostnameAct = QtGui.QAction(translate('Scene', 'Show hostname'), menu)

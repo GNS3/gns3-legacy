@@ -62,7 +62,6 @@ class DynagenSub(dynagen.Dynagen):
                     raise SyntaxError, e
 
             except IOError:
-               #doerror("Can't open configuration file")
                continue
         
         vtor = Validator()
@@ -101,7 +100,6 @@ class DynagenSub(dynagen.Dynagen):
                 conf.id = globals.GApp.hypervisors_ids
                 globals.GApp.hypervisors_ids +=1
             else:
-                print hypervisorkey
                 conf = globals.GApp.hypervisors[hypervisorkey]
 
             conf.host = unicode(server.host, 'utf-8')
@@ -119,8 +117,7 @@ class DynagenSub(dynagen.Dynagen):
                     (devtype, devname) = device.name.split(' ')
                     self.original_config[devname] = {'host': server.host, 
                                                                         'port': controlPort}
-        
-        
+
         dynamips = globals.GApp.systconf['dynamips']
         dynamipskey = 'localhost' + ':' + str(dynamips.port)
         if not config.has_key(dynamipskey):

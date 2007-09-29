@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.1.dtd">
 <!-- eric4 project file for project GNS3 -->
-<!-- Saved: 2007-09-26, 10:47:08 -->
+<!-- Saved: 2007-09-27, 00:24:31 -->
 <!-- Copyright (C) 2007 GNS3 Dev Team, contact@gns3.net -->
 <Project version="4.1">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -435,6 +435,9 @@
       <Dir>GNS3</Dir>
       <Dir>Langs</Dir>
       <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Name>setup.py</Name>
     </Source>
   </Sources>
   <Forms>

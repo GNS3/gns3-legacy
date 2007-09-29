@@ -56,10 +56,12 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         else:
             self.conf = systemDynamipsConf()
 
-#        # Default path to dynamips executable
-#        if self.conf.path == '':
-#            if sys.platform.startswith('win32'):
-#                self.conf.path = unicode('C:\Program Files\gns3\Dynamips\dynamips-wxp.exe',  'utf-8')
+        # Default path to dynamips executable
+        if self.conf.path == '':
+            if sys.platform.startswith('win32'):
+                self.conf.path = unicode('C:\Program Files\GNS3\Dynamips\dynamips-wxp.exe',  'utf-8')
+                self.conf.workdir = unicode("%USERPROFILE%\Local Settings\Temp",  'utf-8')
+                
         # Defaults dynamips terminal command
         if self.conf.term_cmd == '':
             if sys.platform.startswith('darwin'):
@@ -152,8 +154,8 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
 
     def __testDynamips(self):
     
+        self.saveConf()
         if globals.GApp.systconf['dynamips'].path:
-            self.saveConf()
             globals.HypervisorManager = HypervisorManager()
             if globals.HypervisorManager.preloadDynamips(showErrMessage=False):
                 self.labelDynamipsStatus.setText('<font color="green">' + translate("UiConfig_PreferencesDynamips", "Dynamips successfully started")  + '</font>')

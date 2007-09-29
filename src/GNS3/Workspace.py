@@ -496,6 +496,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
           - Add / Edit / Delete hypervisors
         """
 
+        if self.currentMode != globals.Enum.Mode.Design:
+            QtGui.QMessageBox.warning(self, translate("Workspace", "IOS images"),  translate("Workspace", "You must be in design mode"))
+            return
         dialog = IOSDialog()
         dialog.setModal(True)
         dialog.show()
@@ -622,11 +625,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 break
             try:
                 if action == 'start':
-                    node.startNode()
+                    node.startNode(progress=True)
                 if action == 'stop':
-                    node.stopNode()
+                    node.stopNode(progress=True)
                 if action == 'suspend':
-                    node.suspendNode()
+                    node.suspendNode(progress=True)
             except lib.DynamipsError, msg:
                 QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Workspace", "Dynamips error"),  str(msg))
             except lib.DynamipsWarning,  msg:
@@ -680,6 +683,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Show the preferences dialog
         """
         
+        if self.currentMode != globals.Enum.Mode.Design:
+            QtGui.QMessageBox.warning(self, translate("Workspace", "Preferences"),  translate("Workspace", "You must be in design mode"))
+            return
         dialog = PreferencesDialog()
         dialog.show()
         dialog.exec_()

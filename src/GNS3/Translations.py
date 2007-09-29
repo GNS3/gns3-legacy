@@ -38,20 +38,23 @@ class Translator(object):
 
         # Add i18n dirs depending on platform.
         if sys.platform[:3] == "win":
-            # Get gns3.exe installation path
-            import _winreg
-            key = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, 
-                                  Translator.gns3_regkey,  _winreg.KEY_READ)
-            (value, typevalue) = _winreg.QueryValueEx(key, '')
-            
+        
             self.__i18n_dirs = [
                 os.path.dirname(os.path.abspath(GNS3.Langs.__file__)),
-                os.path.dirname(value) + "\\Langs", 
                 os.environ["APPDATA"] + "\\gns3\\Langs"
             ]
-            
-        elif sys.platform.startswith('darwin') \
-            or sys.platform.startswith('linux'):
+            # Get gns3.exe installation path
+            try:
+                import _winreg
+    
+                key = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, 
+                                      Translator.gns3_regkey,  _winreg.KEY_READ)
+                (value, typevalue) = _winreg.QueryValueEx(key, '')
+                self.__i18n_dirs.append(os.path.dirname(value) + "\\Langs")
+            except:
+                pass
+
+        else:
             
             self.__i18n_dirs = [
                 os.path.dirname(os.path.abspath(GNS3.Langs.__file__)), 

@@ -59,6 +59,18 @@ class NETFile(object):
             (connectionlist, maplist, ethswintlist) = globals.GApp.dynagen.import_config(path)
         except:
             print 'Exception detected, stopping importation...'
+            # clean dynagen information
+            dynagen.handled = False
+            dynagen.devices.clear()
+            dynagen.globalconfig.clear()
+            dynagen.configurations.clear()
+            dynagen.ghosteddevices.clear()
+            dynagen.ghostsizes.clear()
+            dynagen.dynamips.clear()
+            dynagen.bridges.clear()
+            dynagen.autostart.clear()
+            globals.GApp.workspace.projectFile = None
+            globals.GApp.workspace.setWindowTitle("GNS3")
             return
         for (devicename, device) in dynagen.devices.iteritems():
             if device.isrouter:
@@ -206,10 +218,13 @@ class NETFile(object):
             for node in globals.GApp.topology.nodes.values():
                 if type(node) == IOSRouter and node.hostname == hostname:
                     node.config.image = hypervisor['host'] + ':' + node.config.image
-                    if hypervisor['host'] != 'localhost' or not globals.ImportuseHypervisorManager:
-                        globals.GApp.iosimages[node.config.image].hypervisor_host = hypervisor['host']
-                        globals.GApp.iosimages[node.config.image].hypervisor_port = hypervisor['port']
-    
+                    if hypervisor['host'] == 'localhost' and globals.ImportuseHypervisorManager:
+                        globals.GApp.iosimages[node.config.image].hypervisor_host = unicode('',  'utf-8')
+                        globals.GApp.iosimages[node.config.image].hypervisor_port = 7200
+                    else:
+                        globals.GApp.iosimages[node.config.image].hypervisor_host = unicode(hypervisor['host'],  'utf-8')
+                        globals.GApp.iosimages[node.config.image].hypervisor_port = int(hypervisor['port'])
+
     def setproperties(self, config, device, properties):
 
         for property in properties:
@@ -371,4 +386,6 @@ class NETFile(object):
             dynagen.globalconfig = netfile
         except IOError, e:
             print '***Error: ' + str(e)
+            globals.GApp.workspace.projectFile = None
+            globals.GApp.workspace.setWindowTitle("GNS3")
             return

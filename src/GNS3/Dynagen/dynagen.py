@@ -41,9 +41,9 @@ INIPATH = [ "/etc", "/usr/local/etc" ]
 INIFILE = 'dynagen.ini'
 MODELTUPLE = (C1700, C2600, C2691, C3725, C3745, C3600, C7200)             # A tuple of known model objects
 ADAPTER_TRANSFORM = {
-    "PA-C7200-IO-FE" : PA_C7200_IO_FE,
-    "PA-C7200-IO-2FE" : PA_C7200_IO_2FE,
-    "PA-C7200-IO-GE-E" : PA_C7200_IO_GE_E,
+    "C7200-IO-FE" : PA_C7200_IO_FE,
+    "C7200-IO-2FE" : PA_C7200_IO_2FE,
+    "C7200-IO-GE-E" : PA_C7200_IO_GE_E,
     "PA-A1" : PA_A1,
     "PA-FE-TX" : PA_FE_TX,
     "PA-2FE-TX" : PA_2FE_TX,

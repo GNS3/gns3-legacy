@@ -24,7 +24,6 @@ import os,  re
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_IOSRouterPage import Ui_IOSRouterPage
-from GNS3.Dynagen.dynamips_lib import ADAPTER_MATRIX
 from GNS3.Utils import fileBrowser, translate,  testOpenFile
 from GNS3.Config.Objects import iosRouterConf
 from GNS3.Node.IOSRouter import IOSRouter 

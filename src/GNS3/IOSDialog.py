@@ -78,6 +78,14 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
     def __del__(self):
     
+        # Delete nodes that use deleted IOS
+        node_list = globals.GApp.topology.nodes.values()
+        for node in node_list:
+            if type(node) == IOSRouter and node.config.image != '' and not globals.GApp.iosimages.has_key(node.config.image):
+                for link in node.getEdgeList().copy():
+                    globals.GApp.topology.deleteLink(link)
+                globals.GApp.topology.deleteNode(node.id)
+
         # Add a default image for node that don't have one
         for node in globals.GApp.topology.nodes.values():
             if type(node) == IOSRouter and node.config.image == '':
@@ -128,7 +136,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             imagename: string
         """
 
-        m = re.match("^c([0-9]*)\w*", imagename)
+        m = re.match("^c([0-9]*)\w*", imagename.lower())
         if (m != None):
             return m.group(1)
         return (None)
@@ -254,7 +262,8 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         item = self.treeWidgetIOSimages.currentItem()
         if (item != None):
             self.treeWidgetIOSimages.takeTopLevelItem(self.treeWidgetIOSimages.indexOfTopLevelItem(item))
-            del globals.GApp.iosimages[unicode(item.text(0))]
+            image = unicode(item.text(0))
+            del globals.GApp.iosimages[image]
 
     def slotEditIOS(self):
         """ Edit the selected line from the list of IOS images

@@ -157,16 +157,16 @@ class IOSRouter(AbstractNode):
     
         self.config = self.getDefaultConfig()
         self.setDefaultIOSImage()
-
-        #FIXME: temporary hack
-        self.config.slots = ['',  '',  '',  '',  '',  '',  '']
         self.platform = ''
         
     def getDefaultConfig(self):
         """ Returns the default configuration
         """
     
-        return iosRouterConf()
+        conf = iosRouterConf()
+        #FIXME: temporary hack
+        conf.slots = ['',  '',  '',  '',  '',  '',  '']
+        return conf
   
     def smartInterface(self,  link_type,  chassis):
         """ Pick automatically (if possible) the right interface for the desired link type
@@ -281,6 +281,13 @@ class IOSRouter(AbstractNode):
         
         hypervisor = self.getHypervisor()
 
+        # delete lock file to prevent an error from Dynamips
+        workingdir = hypervisor.workingdir[1:-1]
+        lock = workingdir + '/c' + self.platform + '_' + self.hostname + '_lock'
+        path = os.path.abspath(lock)
+        if os.path.isfile(path): 
+            os.remove(path)
+        
         #ROUTERS
         if platform == '7200':
             self.dev = ROUTERS[platform](hypervisor, name = self.hostname)
@@ -451,34 +458,48 @@ class IOSRouter(AbstractNode):
             elif destinterface.lower()[:3] == 'nio':
                 self.dev.slot[source_slot].nio(source_port, nio=self.createNIO(self.getHypervisor(),  destinterface))
             
-    def startNode(self):
+    def startNode(self, progress=False):
         """ Start/Resume the node
         """
 
         if self.dev == None:
             return
-        if self.dev.state == 'stopped':
-            self.dev.start()
-        if self.dev.state == 'suspended':
-            self.dev.resume()
+        try:
+            if self.dev.state == 'stopped':
+                self.dev.start()
+            if self.dev.state == 'suspended':
+                self.dev.resume()
+        except:
+            if progress:
+                raise
+            else:
+                return
         self.startupInterfaces()
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.dev.state)
         
-    def stopNode(self):
+    def stopNode(self, progress=False):
         """ Stop the node
         """
 
         if self.dev != None and self.dev.state != 'stopped':
-            self.dev.stop()
+            try:
+                self.dev.stop()
+            except:
+                if progress:
+                    raise
             self.shutdownInterfaces()
             globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.dev.state)
             
-    def suspendNode(self):
+    def suspendNode(self, progress=False):
         """ Suspend the node
         """
 
         if self.dev != None and self.dev.state == 'running':
-            self.dev.suspend()
+            try:
+                self.dev.suspend()
+            except:
+                if progress:
+                    raise
             self.suspendInterfaces()
             globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.dev.state)
 
@@ -496,7 +517,6 @@ class IOSRouter(AbstractNode):
             path = os.path.abspath(filename)
             if os.path.isfile(path): 
                 os.remove(path)
-
         if self.config.delete_files == True or globals.ClearOldDynamipsFiles:
             names = ['bootflash', 'log.txt', 'nvram',  'flash0',  'flash1',  'disk0',  'disk1',  'sram0',  'sram1',  'ssa',  'slot0',  'slot1',  'rom']
             files = []
