@@ -315,7 +315,7 @@ class NETFile(object):
                     hostname = devicekey
                     devicekey = 'ROUTER ' + devicekey
                     netfile[dynamipskey][devicekey] = {}
-                    if device.model != 'c7200':
+                    if device.model != 'c7200' and device.model != 'c3725' and device.model != 'c3745':
                         netfile[dynamipskey][devicekey]['model'] = device.chassis
                     netfile[dynamipskey][devicekey]['console'] = device.console
                     if not netfile[dynamipskey].has_key(model):
