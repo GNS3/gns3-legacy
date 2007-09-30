@@ -105,6 +105,12 @@ class NETFile(object):
                 conf.platform = device.model[1:]
                 if conf.platform == '7200':
                     conf.chassis = conf.platform
+                elif conf.platform == '3725' or conf.platform == '3745':
+                    conf.chassis = conf.platform
+                    conf.platform = '3700'
+                elif conf.platform == '2691':
+                    conf.chassis = conf.platform
+                    conf.platform = '2600'
                 else:
                     conf.chassis = device.chassis
                 if device.idlepc:
@@ -300,6 +306,8 @@ class NETFile(object):
                         model = '3725'
                     elif device.model == 'c3745':
                         model = '3745'
+                    elif device.model == 'c2691':
+                        model = '2691'
                     else:
                         model = device.chassis
 
@@ -315,8 +323,10 @@ class NETFile(object):
                     hostname = devicekey
                     devicekey = 'ROUTER ' + devicekey
                     netfile[dynamipskey][devicekey] = {}
-                    if device.model != 'c7200' and device.model != 'c3725' and device.model != 'c3745':
+                    if device.model != 'c7200' and device.model != 'c3725' and device.model != 'c3745' and device.model != 'c2691':
                         netfile[dynamipskey][devicekey]['model'] = device.chassis
+                    else:
+                        netfile[dynamipskey][devicekey]['model'] = model
                     netfile[dynamipskey][devicekey]['console'] = device.console
                     if not netfile[dynamipskey].has_key(model):
                         netfile[dynamipskey][devicekey]['image'] = device.image[1:-1]
