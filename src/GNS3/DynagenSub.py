@@ -39,6 +39,7 @@ class DynagenSub(dynagen.Dynagen):
         """ Open the config file
         """
         
+        self.original_config.clear()
         # look for configspec in CONFIGSPECPATH and the same directory as dynagen
         realpath = os.path.realpath(sys.argv[0])
         self.debug('realpath ' + realpath)
@@ -60,10 +61,9 @@ class DynagenSub(dynagen.Dynagen):
                     print e
                     print e.line, '\n'
                     raise SyntaxError, e
-
             except IOError:
                continue
-        
+
         vtor = Validator()
         res = config.validate(vtor, preserve_errors=True)
         if res == True:

@@ -38,7 +38,19 @@ from GNS3.Node.Cloud import Cloud
 class NETFile(object):
     """ NETFile implementing the .net file import/export
     """
-
+    
+    def clean_Dynagen(self):
+    
+        dynagen.handled = False
+        dynagen.devices.clear()
+        dynagen.globalconfig.clear()
+        dynagen.configurations.clear()
+        dynagen.ghosteddevices.clear()
+        dynagen.ghostsizes.clear()
+        dynagen.dynamips.clear()
+        dynagen.bridges.clear()
+        dynagen.autostart.clear()
+    
     def live_import(self, path):
     
         hypervisors = []
@@ -52,6 +64,7 @@ class NETFile(object):
             time.sleep(3)
 
         globals.GApp.topology.clear()
+        self.clean_Dynagen()
         dir = os.path.dirname(dynagen.__file__)
         dynagen.CONFIGSPECPATH.append(dir)
         try:
@@ -59,16 +72,7 @@ class NETFile(object):
             (connectionlist, maplist, ethswintlist) = globals.GApp.dynagen.import_config(path)
         except:
             print 'Exception detected, stopping importation...'
-            # clean dynagen information
-            dynagen.handled = False
-            dynagen.devices.clear()
-            dynagen.globalconfig.clear()
-            dynagen.configurations.clear()
-            dynagen.ghosteddevices.clear()
-            dynagen.ghostsizes.clear()
-            dynagen.dynamips.clear()
-            dynagen.bridges.clear()
-            dynagen.autostart.clear()
+            self.clean_Dynagen()
             globals.GApp.workspace.projectFile = None
             globals.GApp.workspace.setWindowTitle("GNS3")
             return
@@ -352,6 +356,7 @@ class NETFile(object):
                     hostname = devicekey
                     devicekey = 'ETHSW ' + devicekey
                     netfile[dynamipskey][devicekey] = {}
+
                     for node in globals.GApp.topology.nodes.values():
                         if type(node) == ETHSW and node.hostname == hostname:
                             connected_interfaces = node.getConnectedInterfaceList()
@@ -366,6 +371,8 @@ class NETFile(object):
                                             (destnode, destinterface) = node.getConnectedNeighbor(str(port))
                                             if destinterface.lower()[:3] == 'nio':
                                                 netfile[dynamipskey][devicekey][str(port)] += ' ' + destinterface
+                            netfile[dynamipskey][devicekey]['x'] = node.x()
+                            netfile[dynamipskey][devicekey]['y'] = node.y()
 
                 if type(device) == lib.FRSW:
                     # export a frame relay switch
@@ -376,6 +383,8 @@ class NETFile(object):
                         if type(node) == FRSW and node.hostname == hostname:
                             for (source,  destination) in node.config.mapping.iteritems():
                                 netfile[dynamipskey][devicekey][source] = destination
+                            netfile[dynamipskey][devicekey]['x'] = node.x()
+                            netfile[dynamipskey][devicekey]['y'] = node.y()
                                 
                 if type(device) == lib.ATMSW:
                     # export a ATM switch
@@ -386,6 +395,8 @@ class NETFile(object):
                         if type(node) == ATMSW and node.hostname == hostname:
                             for (source,  destination) in node.config.mapping.iteritems():
                                 netfile[dynamipskey][devicekey][source] = destination
+                            netfile[dynamipskey][devicekey]['x'] = node.x()
+                            netfile[dynamipskey][devicekey]['y'] = node.y()
 
         try:
             netfile.write()

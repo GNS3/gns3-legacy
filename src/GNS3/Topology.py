@@ -24,6 +24,12 @@ from PyQt4 import QtGui, QtCore
 from GNS3.Link.Ethernet import Ethernet
 from GNS3.Link.Serial import Serial
 import GNS3.Globals as globals
+import GNS3.Node.IOSRouter
+import GNS3.Node.ATMSW
+import GNS3.Node.ETHSW
+import GNS3.Node.FRSW
+import GNS3.Node.Hub
+import GNS3.Node.Cloud
 
 class Topology(QtGui.QGraphicsScene):
     """ Topology class
@@ -54,6 +60,12 @@ class Topology(QtGui.QGraphicsScene):
         self.__links = set()
         self.node_baseid = 0
         self.link_baseid = 0
+        GNS3.Node.IOSRouter.router_id = 0
+        GNS3.Node.ATMSW.atm_id = 0
+        GNS3.Node.ETHSW.ethsw_id = 0
+        GNS3.Node.FRSW.frsw_id = 0
+        GNS3.Node.Hub.hub_id = 0
+        GNS3.Node.Cloud.cloud_id = 0
 
     def addNode(self, node):
         """ Add node in the topology
