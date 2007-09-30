@@ -18,11 +18,11 @@ INSTALLATION
 
 	2. Run it and follow the prompts. You will be asked to reboot your PC at the end.
 
-	3. Start GNS-3 by double-clicking on gns3.pyw.
+	3. Start GNS3 by double-clicking on gns3.pyw.
 
  * Linux users:
 
- 	- You have to compile Qt 4.3 (or higher), sip (development snapshot) and pyqt (development snapshot) to run GNS-3.
+ 	- You have to compile Qt 4.3 (or higher), sip (development snapshot) and pyqt (development snapshot) to run GNS3.
 
 
  * MacOS X users:
@@ -35,7 +35,7 @@ INSTALLATION
 
 	4. Download SIP http://www.riverbankcomputing.com/Downloads/sip4/sip-4.6.tar.gz, compile and install it
 
-	5. Download PyQt hhttp://www.riverbankcomputing.com/Downloads/PyQt4/GPL/PyQt-mac-gpl-4.2.tar.gz, compile and install it
+	5. Download PyQt hhttp://www.riverbankcomputing.com/Downloads/PyQt4/GPL/PyQt-mac-gpl-4.3.tar.gz, compile and install it
 
 	6. Start GNS-3 by double-clicking on gns3.pyw.
 
@@ -44,11 +44,6 @@ OPEN ISSUES
 
  * On Windows, all telnet windows have the same window title bar "Telnet localhost", alternate solution: using putty
  * How can we get the status of an interface from the IOS?
-
-BUG REPORT
-
- * Open a new ticket on the trac (development tab on www.gns3.net). Please be as explicit as you can. Try to 
-remember what was your last actions and join the exception.log file if it exists.
  
 ADVICE
 

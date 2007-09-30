@@ -1,6 +1,17 @@
 CHANGELOG
 
-GNS-3 alpha 0.2:
+GNS3 0.3 beta:
+
+ * Support of Ethernet, ATM and Frame-Relay switches
+ * Included hub (Bridge of Dynamips) and cloud (external connections) devices
+ * Added the Dynagen console (nearly all commands supported)
+ * New GUI settings
+ * Improved node configurator
+ * Support of the Dynagen INI-like configuration file
+ * Multi-language support (howto for translators soon)
+ 
+
+GNS3 0.2 alpha:
 
  * Hypervisor load-balancing to address the per process limit problem (http://dynagen.org/tutorial.htm#_Toc165530762)
  * Configuration of multiple node.

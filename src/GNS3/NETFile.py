@@ -24,6 +24,8 @@ import os, random, time
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as dynagen
 import GNS3.Dynagen.dynamips_lib as lib
+from GNS3.Utils import translate
+from PyQt4 import QtGui
 from GNS3.Dynagen.configobj import ConfigObj
 from GNS3.Dynagen.validate import Validator
 from GNS3.Config.Objects import iosImageConf
@@ -55,7 +57,7 @@ class NETFile(object):
     
         hypervisors = []
         if globals.GApp.systconf['dynamips'].path == '':
-            QtGui.QMessageBox.warning(self, translate("NETFile", "Save"), translate("NETFile", "Please configure the path to Dynamips"))
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("NETFile", "Save"), translate("NETFile", "Please configure the path to Dynamips"))
             return
         
         if len(globals.HypervisorManager.preloaded_hypervisors) == 0:
@@ -70,6 +72,18 @@ class NETFile(object):
         try:
             dynagen.FILENAME = path
             (connectionlist, maplist, ethswintlist) = globals.GApp.dynagen.import_config(path)
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "Dynamips error"),  str(msg))
+            self.clean_Dynagen()
+            globals.GApp.workspace.projectFile = None
+            globals.GApp.workspace.setWindowTitle("GNS3")
+            return
+        except lib.DynamipsWarning,  msg:
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("NETFile", "Dynamips warning"),  str(msg))
+            self.clean_Dynagen()
+            globals.GApp.workspace.projectFile = None
+            globals.GApp.workspace.setWindowTitle("GNS3")
+            return
         except:
             print 'Exception detected, stopping importation...'
             self.clean_Dynagen()
@@ -135,7 +149,7 @@ class NETFile(object):
                 x = random.uniform(-200, 200)
             if y == None:
                 y = random.uniform(-200, 200)
-            node.setPos(x, y)
+            node.setPos(float(x), float(y))
             node.hostname = unicode(devicename, 'utf-8')
             globals.GApp.topology.addNode(node)
 
@@ -282,6 +296,10 @@ class NETFile(object):
                     # export a router
                     if device.model == 'c7200':
                         model = '7200'
+                    elif device.model == 'c3725':
+                        model = '3725'
+                    elif device.model == 'c3745':
+                        model = '3745'
                     else:
                         model = device.chassis
 
