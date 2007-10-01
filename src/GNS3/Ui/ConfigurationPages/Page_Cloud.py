@@ -121,11 +121,13 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
 
         interfaces = []
         try:
-            p = sub.Popen("ifconfig | egrep -v \"^   \" | cut -d':' -f1", stdout=sub.PIPE, stderr=sub.STDOUT)
+            p = sub.Popen("ifconfig", stdout=sub.PIPE, stderr=sub.STDOUT)
             outputlines = p.stdout.readlines()
             p.wait()
             for line in outputlines:
-                interfaces.append(line.strip())
+                match = re.search("(^\w+[0-9]+:)", line.strip())
+                if match:
+                    interfaces.append(match.group(0)[:-1])
         except:
             return []
         return interfaces
