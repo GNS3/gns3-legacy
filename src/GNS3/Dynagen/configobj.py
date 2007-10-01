@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # configobj.py
 # A config file reader/writer that supports nested sections in config files.
 # Copyright (C) 2005-2006 Michael Foord, Nicola Larosa

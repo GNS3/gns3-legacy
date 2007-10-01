@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # validate.py
 # A Validator object
 # Copyright (C) 2005 Michael Foord, Mark Andrews, Nicola Larosa

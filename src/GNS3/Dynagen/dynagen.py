@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 dynagen
 Copyright (C) 2006  Greg Anuzelli

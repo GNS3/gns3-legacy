@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- python -*-
 #
 #       OpenAlea.Visualea: OpenAlea graphical user interface
 #
