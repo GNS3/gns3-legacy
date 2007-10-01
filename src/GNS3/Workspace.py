@@ -422,9 +422,15 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.__action_addLink()
         self.treeWidget_TopologySummary.emulationMode()
         self.__startNonIOSNodes()
-        globals.GApp.dynagen.apply_idlepc()
-        if globals.useIOSghosting:
-            globals.GApp.dynagen.ghosting()
+        try:
+            globals.GApp.dynagen.apply_idlepc()
+            if globals.useIOSghosting:
+                globals.GApp.dynagen.ghosting()
+        except:
+            self.cleanNodeStates()
+            self.__restoreButtonState()
+            self.switchToMode_Design()
+            return
         # enable the console
         self.textEditConsole.setEnabled(True)
 

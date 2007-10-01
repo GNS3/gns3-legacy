@@ -20,6 +20,5 @@ FILES=" Form_MainWindow
 for file in $FILES;
 do
     echo "Generating $file"
-    echo '#!/usr/bin/env python' > "$file.py"
     pyuic4 "$file.ui" >> "$file.py"
 done

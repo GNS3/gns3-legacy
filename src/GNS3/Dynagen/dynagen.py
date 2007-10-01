@@ -950,6 +950,9 @@ class Dynagen:
         """ Import a generic ini file and return it as a dictionary, if it exists
             Returns None if the file doesn't exit, or raises an error that can be handled
         """
+
+        global handled
+        
         try:
             h=open(inifile, 'r')
             h.close()
@@ -1096,6 +1099,7 @@ class Dynagen:
         if debuglevel >= 3: print '  DEBUG: ' + str(string)
 
     def doerror(self, msg):
+        
         global handled
 
         """Print out an error message"""

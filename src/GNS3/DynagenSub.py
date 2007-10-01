@@ -153,3 +153,4 @@ class DynagenSub(dynagen.Dynagen):
         print '\n*** Error:', str(msg)
         dynagen.handled = True
         self.doreset()
+        raise
