@@ -146,6 +146,7 @@ class NETFile(object):
                 renders = globals.GApp.scene.renders['ATM switch']
                 node = ATMSW(renders['normal'], renders['selected'])
 
+            node.hostname = unicode(devicename, 'utf-8')
             x = y = None
             if globals.GApp.dynagen.original_config.has_key(node.hostname):
                 x = globals.GApp.dynagen.original_config[node.hostname]['x']
@@ -155,7 +156,6 @@ class NETFile(object):
             if y == None:
                 y = random.uniform(-200, 200)
             node.setPos(float(x), float(y))
-            node.hostname = unicode(devicename, 'utf-8')
             globals.GApp.topology.addNode(node)
 
         for (bridgename,  bridge) in dynagen.bridges.iteritems():
@@ -165,7 +165,7 @@ class NETFile(object):
             x = random.uniform(-200, 200)
             y = random.uniform(-200, 200)
             node.setPos(x, y)
-            node.hostname = bridgename
+            node.hostname = unicode(bridgename,  'utf-8')
             globals.GApp.topology.addNode(node)
             
         for connection in connectionlist:
