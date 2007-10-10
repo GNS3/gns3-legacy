@@ -247,6 +247,9 @@ class NETFile(object):
             for node in globals.GApp.topology.nodes.values():
                 if type(node) == IOSRouter and node.hostname == hostname:
                     node.config.image = hypervisor['host'] + ':' + node.config.image
+                    if not globals.GApp.iosimages.has_key(node.config.image):
+                        print 'No IOS image'
+                        return
                     if hypervisor['host'] == 'localhost' and globals.ImportuseHypervisorManager:
                         globals.GApp.iosimages[node.config.image].hypervisor_host = unicode('',  'utf-8')
                         globals.GApp.iosimages[node.config.image].hypervisor_port = 7200

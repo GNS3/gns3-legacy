@@ -531,7 +531,8 @@ class IOSRouter(AbstractNode):
         """
 
         if self.dev and self.dev.state == 'running' and self.dev.console != None:
-            console.connect('localhost',  self.dev.console,  self.hostname)
+            hypervisor = self.getHypervisor()
+            console.connect(hypervisor.host,  self.dev.console,  self.hostname)
 
     def mousePressEvent(self, event):
         """ Call when the node is clicked
