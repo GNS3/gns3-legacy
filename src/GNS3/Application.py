@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import sys
+import sys, time
 from PyQt4.QtGui import QApplication
 from PyQt4.QtCore import QMutex, QMutexLocker, QVariant
 from GNS3.Utils import Singleton
@@ -243,7 +243,9 @@ class Application(QApplication, Singleton):
         self.mainWindow.restoreGeometry(ConfDB().value("GNS3/geometry").toByteArray())
         self.mainWindow.show()
 
-        self.mainWindow.load_saved_config(file)
+        if file:
+            time.sleep(2)
+            self.mainWindow.load_saved_config(file)
         retcode = QApplication.exec_()
         
         globals.HypervisorManager = None

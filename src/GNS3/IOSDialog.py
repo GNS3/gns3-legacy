@@ -254,6 +254,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         if default_chassis:
             conf.default = True
         globals.GApp.iosimages[imagekey] = conf
+        self.treeWidgetIOSimages.resizeColumnToContents(0)
 
     def slotDeleteIOS(self):
         """ Delete the selected line from the list of IOS images

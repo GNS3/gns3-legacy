@@ -61,11 +61,11 @@ class HypervisorManager:
         """ Create a new dynamips process and start it
         """
 
-        if len(self.preloaded_hypervisors):
-            for hypervisor in self.preloaded_hypervisors:
-                if hypervisor not in self.used_preloaded_hypervisors:
-                    self.used_preloaded_hypervisors.append(hypervisor)
-                    return hypervisor
+#        if len(self.preloaded_hypervisors):
+#            for hypervisor in self.preloaded_hypervisors:
+#                if hypervisor not in self.used_preloaded_hypervisors:
+#                    self.used_preloaded_hypervisors.append(hypervisor)
+#                    return hypervisor
 
         proc = QtCore.QProcess(globals.GApp.mainWindow)
         port = self.hypervisor_baseport
