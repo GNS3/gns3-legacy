@@ -94,11 +94,11 @@ class FRSW(AbstractNode):
             (destport,  destdlci) = destination.split(':')
             if int(srcport) in connected_interfaces and int(destport) in connected_interfaces:
                 #if not self.dev.connected(int(srcport)):
-                print 'map ' + source
                 self.dev.map(int(srcport), int(srcdlci), int(destport), int(destdlci))
                 #if not self.dev.connected(int(destport)):
-                print 'map ' + destination
                 self.dev.map(int(destport), int(destdlci), int(srcport), int(srcdlci))
+            else:
+                print self.hostname + ': unable to map ' + srcport + ':' + srcdlci + ' to ' + destport + ':' + destdlci
         
         self.startupInterfaces()
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')

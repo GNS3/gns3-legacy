@@ -121,6 +121,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         # add images to IOS.images treeview
         self.treeWidgetIOSimages.addTopLevelItems(images_list)
         self.treeWidgetIOSimages.sortItems(0, QtCore.Qt.AscendingOrder)
+        self.treeWidgetIOSimages.resizeColumnToContents(0)
 
         # add hypervisors to IOS.hypervisors treeview
         self.treeWidgetHypervisor.addTopLevelItems(hypervisors_list)

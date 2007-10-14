@@ -102,16 +102,18 @@ class ATMSW(AbstractNode):
                 srcvci = destvci = None
 
             if int(srcport) in connected_interfaces and int(destport) in connected_interfaces:
-                if not self.dev.connected(int(srcport)):
-                    if srcvci and destvci:
-                        self.dev.mapvc(int(srcport), int(srcvpi), int(srcvci), int(destport), int(destvpi),  int(destvci))
-                    else:
-                        self.dev.mapvp(int(srcport), int(srcvpi), int(destport), int(destvpi))
-                if not self.dev.connected(int(destport)):
-                    if srcvci and destvci:
-                        self.dev.mapvc(int(destport), int(destvpi), int(destvci), int(srcport), int(srcvpi),  int(srcvci))
-                    else:
-                        self.dev.mapvp(int(destport), int(destvpi), int(srcport), int(srcvpi))
+                #if not self.dev.connected(int(srcport)):
+                if srcvci and destvci:
+                    self.dev.mapvc(int(srcport), int(srcvpi), int(srcvci), int(destport), int(destvpi),  int(destvci))
+                else:
+                    self.dev.mapvp(int(srcport), int(srcvpi), int(destport), int(destvpi))
+                #if not self.dev.connected(int(destport)):
+                if srcvci and destvci:
+                    self.dev.mapvc(int(destport), int(destvpi), int(destvci), int(srcport), int(srcvpi),  int(srcvci))
+                else:
+                    self.dev.mapvp(int(destport), int(destvpi), int(srcport), int(srcvpi))
+            else:
+                print self.hostname + ': unable to map ports ' + srcport + ' to ' + destport 
         
         self.startupInterfaces()
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')

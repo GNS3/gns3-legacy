@@ -714,6 +714,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             QtGui.QMessageBox.critical(self, translate("Workspace", "Loading"),  translate("Workspace", "Invalid file") + ' ' + file)
             return
         net = netfile.NETFile()
+        globals.GApp.scene.resetMatrix()
         net.live_import(path)
             
     def __action_OpenFile(self):
@@ -757,6 +758,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         try:
             net = netfile.NETFile()
+            globals.GApp.scene.resetMatrix()
             net.live_export(self.projectFile)
             self.statusbar.showMessage(translate("Workspace", "Project saved..."))
         except IOError, (errno, strerror):
@@ -783,4 +785,5 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 self.projectFile = path
                 self.setWindowTitle("GNS3 - " + self.projectFile)
                 net = netfile.NETFile()
+                globals.GApp.scene.resetMatrix()
                 net.live_export(path)

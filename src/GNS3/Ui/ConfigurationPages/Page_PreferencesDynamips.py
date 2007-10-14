@@ -59,7 +59,6 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         if self.conf.path == '':
             if sys.platform.startswith('win32'):
                 self.conf.path = unicode('C:\Program Files\GNS3\Dynamips\dynamips-wxp.exe',  'utf-8')
-                self.conf.workdir = unicode("%USERPROFILE%\Local Settings\Temp",  'utf-8')
                 
         # Defaults dynamips terminal command
         if self.conf.term_cmd == '':

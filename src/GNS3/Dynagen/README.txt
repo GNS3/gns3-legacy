@@ -1,5 +1,5 @@
 Dynagen README
-Version 0.10.2
+Version 0.11.0
 
 
 For documentation, refer to the tutorial in the docs directory, and the sample network files in the sample_labs directory. To see usage examples for all options, refer to the "all_config_options.txt" file in the sample_labs directory. Also be sure to visit the Dynamips web site at http://www.ipflow.utc.fr/index.php/Cisco_7200_Simulator.
@@ -13,9 +13,15 @@ Known Issues
 
 Changelog
 =========
-Version 0.10.2
+Version 0.11.0
 * Could not specify a model of 1751 or 1760 in a router definition
 * WIC interfaces on 1751s and 1760s could not be used
+* On Windows platforms, Network Device list changes to the temp dir before executing Dynamips (helps Vista users).
+* Added a delay option to start /all. This introduces a pause between starting devices.
+* Filter command was broken in 0.10.x
+* FS#217 - fixed the connect method for switches. Only effected 3rd party developers using the library, Dynagen does not use these methods.
+* FS#211 - Dynagen crash when specifying invalid port
+* 7200 instances now default to using a C7200-IO-2FE in slot 0 rather than a C7200-IO-FE. You can override this behaviour by specifying "slot0=PA-C7200-IO-FE".
 
 Version 0.10.1
 * Accidentally only gave the NM-16ESW 15 interfaces.

@@ -69,7 +69,6 @@ conf_iosRouter_defaults = {
     'rom': 4, 
     'nvram': 128,
     'mmap': True,
-    'delete_files':False, 
     'disk0': 0,
     'disk1': 0,
     'confreg': '0x2102',

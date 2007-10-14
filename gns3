@@ -27,16 +27,12 @@ except ImportError:
     sys.stderr.write("PyQt is not installed, please see the README\n")
     sys.exit(False)
 
-#if QtCore.QT_VERSION < 0x040200:
-#    raise RuntimeError, "Need Qt v4.3 or higher, but got v%s" % QtCore.QT_VERSION_STR
-#
-#if QtCore.PYQT_VERSION < 0x040100:
-#    raise RuntimeError, "Need PyQt v4.3 or higher, but got v%s" % QtCore.PYQT_VERSION_STR
-    
-version = int(QtCore.QT_VERSION_STR.replace('.', ''))
-if (version < 430):
-    sys.stderr.write("GNS3 needs QT library >= 4.3.0\n")
-    sys.exit(False) 
+if QtCore.QT_VERSION < 0x040300:
+    raise RuntimeError, "Need Qt v4.3 or higher, but got v%s" % QtCore.QT_VERSION_STR
+
+if QtCore.PYQT_VERSION < 0x040300:
+    sys.stderr.write("Warning: need PyQt v4.3 or higher, but got v%s\n" % QtCore.PYQT_VERSION_STR)
+    #raise RuntimeError, "Need PyQt v4.3 or higher, but got v%s" % QtCore.PYQT_VERSION_STR
     
 def exceptionHook(type, value, tb):
 

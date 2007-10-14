@@ -163,10 +163,6 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         index = self.comboBoxNPE.findText(IOSconfig.npe)
         if index != -1:
             self.comboBoxNPE.setCurrentIndex(index)
-        if IOSconfig.delete_files == True:
-            self.checkBoxDeleteFiles.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.checkBoxDeleteFiles.setCheckState(QtCore.Qt.Unchecked)
 
     def saveConfig(self, id, config = None):
         """ Save the config
@@ -201,10 +197,6 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             IOSconfig.midplane = str(self.comboBoxMidplane.currentText())
         if str(self.comboBoxNPE.currentText()):
             IOSconfig.npe = str(self.comboBoxNPE.currentText())
-        if self.checkBoxDeleteFiles.checkState() == QtCore.Qt.Checked:
-            IOSconfig.delete_files = True
-        else:
-            IOSconfig.delete_files = False
 
         IOSconfig.slots = []
         slotnb = 0

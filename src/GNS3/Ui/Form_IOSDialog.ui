@@ -26,7 +26,36 @@
        <string>IOS Images</string>
       </attribute>
       <layout class="QGridLayout" >
-       <item row="0" column="0" >
+       <item row="0" column="0" colspan="2" >
+        <widget class="QGroupBox" name="groupBox_3" >
+         <property name="title" >
+          <string>Images</string>
+         </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <widget class="QTreeWidget" name="treeWidgetIOSimages" >
+            <property name="indentation" >
+             <number>20</number>
+            </property>
+            <property name="rootIsDecorated" >
+             <bool>false</bool>
+            </property>
+            <column>
+             <property name="text" >
+              <string>IOS image</string>
+             </property>
+            </column>
+            <column>
+             <property name="text" >
+              <string>Chassis</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0" >
         <widget class="QGroupBox" name="groupBox" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
@@ -114,41 +143,15 @@
             <property name="text" >
              <string>Default image for this chassis</string>
             </property>
+            <property name="checked" >
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
          </layout>
         </widget>
        </item>
-       <item rowspan="2" row="0" column="1" >
-        <widget class="QGroupBox" name="groupBox_3" >
-         <property name="title" >
-          <string>Images</string>
-         </property>
-         <layout class="QVBoxLayout" >
-          <item>
-           <widget class="QTreeWidget" name="treeWidgetIOSimages" >
-            <property name="indentation" >
-             <number>20</number>
-            </property>
-            <property name="rootIsDecorated" >
-             <bool>false</bool>
-            </property>
-            <column>
-             <property name="text" >
-              <string>IOS image</string>
-             </property>
-            </column>
-            <column>
-             <property name="text" >
-              <string>Chassis</string>
-             </property>
-            </column>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="1" column="0" >
+       <item row="1" column="1" >
         <widget class="QGroupBox" name="groupBox_2" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
@@ -244,7 +247,7 @@
      </widget>
      <widget class="QWidget" name="tab_2" >
       <attribute name="title" >
-       <string>Hypervisors</string>
+       <string>External hypervisors</string>
       </attribute>
       <layout class="QGridLayout" >
        <item row="0" column="0" >

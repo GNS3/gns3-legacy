@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 dynamips_lib.py
 Copyright (C) 2006  Greg Anuzelli
@@ -110,6 +112,8 @@ class Console(cmd.Cmd):
                     pass
                 except DynamipsError, e:
                     error(e)
+                except DynamipsWarning, e:
+                    print "Note: " + str(e)
             return
 
         for device in devices:
@@ -121,15 +125,32 @@ class Console(cmd.Cmd):
                 error('invalid device: ' + device)
             except DynamipsError, e:
                 error(e)
+            except DynamipsWarning, e:
+                    print "Note: " + str(e)
 
     def do_start(self, args):
-        """start  {/all | router1 [router2] ...}\nstart all or a specific router(s)"""
+        """start  {/all [delay] | router1 [router2] ...}
+start all or a specific router(s)
+For start /all only, a delay can be specified. Dynagen will pause this many
+seconds between starting devices.
+"""
         if '?' in args or args.strip() == '':
             print self.do_start.__doc__
             return
 
         devices = args.split(' ')
         if '/all' in devices:
+            try:
+                delay = devices[1]
+            except IndexError:
+                # No delay specified
+                delay = 0
+            try:
+                delay = int(delay)
+            except ValueError:
+                print self.do_start.__doc__
+                return
+
             for device in self.namespace.devices.values():
                 try:
                     if device.idlepc == None:
@@ -138,6 +159,10 @@ class Console(cmd.Cmd):
                         else:
                             print("Warining: Starting %s with no idle-pc value" % device.name)
                     for line in device.start(): print line.strip()
+                    if (delay != 0) and (device != self.namespace.devices.values()[-1]):
+                        # don't delay if there is none or if this is the last device
+                        print "Delaying start of next device for %i seconds..." % delay
+                        time.sleep(delay)
                 except IndexError:
                     pass
                 except AttributeError:
@@ -145,6 +170,8 @@ class Console(cmd.Cmd):
                     pass
                 except DynamipsError, e:
                     error(e)
+                except DynamipsWarning, e:
+                    print "Note: " + str(e)
             return
 
         for devname in devices:
@@ -162,6 +189,8 @@ class Console(cmd.Cmd):
                 error('invalid device: ' + devname)
             except DynamipsError, e:
                 error(e)
+            except DynamipsWarning, e:
+                    print "Note: " + str(e)
 
     def do_stop(self, args):
         """stop  {/all | router1 [router2] ...}\nstop all or a specific router(s)"""
@@ -181,6 +210,8 @@ class Console(cmd.Cmd):
                     pass
                 except DynamipsError, e:
                     error(e)
+                except DynamipsWarning, e:
+                    print "Note: " + str(e)
             return
 
         for device in devices:
@@ -192,6 +223,8 @@ class Console(cmd.Cmd):
                 error('invalid device: ' + device)
             except DynamipsError, e:
                 error(e)
+            except DynamipsWarning, e:
+                print "Note: " + str(e)
 
     def do_resume(self, args):
         """resume  {/all | router1 [router2] ...}\nresume all or a specific router(s)"""
@@ -211,6 +244,8 @@ class Console(cmd.Cmd):
                     pass
                 except DynamipsError, e:
                     error(e)
+                except DynamipsWarning, e:
+                    print "Note: " + str(e)
             return
 
         for device in devices:
@@ -222,6 +257,8 @@ class Console(cmd.Cmd):
                 error('invalid device: ' + device)
             except DynamipsError, e:
                 error(e)
+            except DynamipsWarning, e:
+                    print "Note: " + str(e)
 
     def do_reload(self, args):
         """reload  {/all | router1 [router2] ...}\nreload all or a specific router(s)"""
@@ -242,6 +279,8 @@ class Console(cmd.Cmd):
                     pass
                 except DynamipsError, e:
                     error(e)
+                except DynamipsWarning, e:
+                    print "Note: " + str(e)
             return
 
         for device in devices:
@@ -254,6 +293,8 @@ class Console(cmd.Cmd):
                 error('invalid device: ' + device)
             except DynamipsError, e:
                 error(e)
+            except DynamipsWarning, e:
+                    print "Note: " + str(e)
 
 
     def do_ver(self, args):
@@ -301,8 +342,6 @@ class Console(cmd.Cmd):
             for device in args.split(' '):
                 # Create a list of all the device objects
                 try:
-                    print device
-                    print self.namespace.devices
                     devices.append(self.namespace.devices[device])
                 except KeyError:
                     error('unknown device: ' + device)
@@ -314,7 +353,7 @@ class Console(cmd.Cmd):
                 if device.state != 'running':
                     print "Skipping %s device: %s" % (device.state, device.name)
                     continue
-                telnet(device.name, self.namespace)
+                telnet(device.name)
             except IndexError:
                 pass
             except (KeyError, AttributeError):
@@ -418,7 +457,6 @@ class Console(cmd.Cmd):
                     # And populate the configurations dictionary
                     self.namespace.configurations[device.name] = config
                     print 'saved configuration from: ' + device.name
-
         netfile.write()
 
     def do_push(self,args):
@@ -633,25 +671,36 @@ Examples:
 
         # Parse out the slot and port
         match_obj = interface_re.search(interface)
-        if not match_obj:
-            print 'Error parsing interface descriptor: ' + interface
-            return
-        try:
-            (slot, port) = match_obj.group(2,3)
-            slot = int(slot)
-            port = int(port)
-        except ValueError:
-            print 'Error parsing interface descriptor: ' + interface
-            return
+        if match_obj:
+            try:
+                (inttype, slot, port) = match_obj.group(1,2,3)
+                slot = int(slot)
+                port = int(port)
+            except ValueError:
+                print 'Error parsing interface descriptor: ' + interface
+                return
+        else:
+            # Try checking for WIC interface specification (e.g. S1)
+            match_obj = interface_noport_re.search(interface)
+            if not match_obj:
+                print 'Error parsing interface descriptor: ' + interface
+                return
+            (inttype, port) = match_obj.group(1,2)
+            slot = 0
+
+        interface = inttype[0].lower()
 
         # Apply the filter
         try:
-            self.namespace.devices[device].slot[slot].filter(port, filterName, direction, options)
+            self.namespace.devices[device].slot[slot].filter(interface, port, filterName, direction, options)
         except DynamipsError, e:
             print e
             return
         except IndexError:
             print "No such interface %s on device %s" % (interface, device)
+            return
+        except AttributeError:
+            print "Error: Interface %s on device %s is not connected" % (interface, device)
             return
 
     def do_capture(self, args):
@@ -1182,14 +1231,14 @@ Examples:
         error('unknown command')
 
 
-def telnet(device, namespace):
+def telnet(device):
     """telnet to the console port of device"""
+    import __main__
+    telnetstring = __main__.telnetstring
+    port = str(__main__.devices[device].console)
+    host = str(__main__.devices[device].dynamips.host)
 
-    telnetstring = namespace.telnetstring
-    port = str(namespace.devices[device].console)
-    host = str(namespace.devices[device].dynamips.host)
-
-    if telnetstring and not namespace.notelnet:
+    if telnetstring and not __main__.notelnet:
         telnetstring = telnetstring.replace('%h', host)
         telnetstring = telnetstring.replace('%p', port)
         telnetstring = telnetstring.replace('%d', device)

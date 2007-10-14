@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 """
 dynamips_lib.py
@@ -21,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 import sys, os, re, base64
 from socket import socket, timeout, AF_INET, SOCK_STREAM
 
-version = "0.11.0.090807"
+version = "0.11.0.100107"
 # Minimum version of dynamips required. Currently 0.2.8-RC1 (due to change to
 # hypervisor commands related to slot/port handling, and the pluggable archtecture
 # that changed model specific commands to "vm")
@@ -159,6 +160,7 @@ class Dynamips(object):
         self.s = socket(AF_INET, SOCK_STREAM)
         self.s.setblocking(0)
         self.s.settimeout(timeout)
+        self.__type = 'dynamips'
         if not NOSEND:
             try:
                 self.s.connect((host,port))
@@ -325,6 +327,13 @@ class Dynamips(object):
         return self.__version
 
     version = property(__getversion, doc = 'The dynamips version')
+
+    def __gettype(self):
+        """ Returns the type of hypervisor
+        """
+        return self.__type
+
+    type = property(__gettype, doc = 'The type of hypervisor')
 
 
 class NIO_udp(object):
@@ -1103,6 +1112,7 @@ class Router(object):
         self.__npe = npe
         self.__midplane = midplane
 
+
     def createslots(self, numslots):
         """ Create the appropriate number of slots for this router
         """
@@ -1145,7 +1155,7 @@ class Router(object):
         # if router.slot[0].wics[1] = WIC-2T and wics[0] is empty
 
         try:
-            self.slot[slot].wics[wicslot] = wicinstance_count
+            self.slot[slot].wics[wicslot] = wic
         except IndexError:
             raise DynamipsError, "On router %s, invalid wic subslot %i for WIC specification: wic%i/%i" % (self.name, wicslot, slot, wicslot)
         except AttributeError:
@@ -1211,7 +1221,7 @@ class Router(object):
         """ Start this instance
         """
         if self.__state == 'running':
-            raise DynamipsError, 'router "%s" is already running' % self.name
+            raise DynamipsWarning, 'router "%s" is already running' % self.name
         if self.__state == 'suspended':
             raise DynamipsError, 'router "%s" is suspended and cannot be started. Use Resume.' % self.name
 
@@ -1224,7 +1234,7 @@ class Router(object):
         """ Stop this instance
         """
         if self.__state == 'stopped':
-            raise DynamipsError, 'router "%s" is already stopped' % self.name
+            raise DynamipsWarning, 'router "%s" is already stopped' % self.name
 
         r = send(self.__d, "vm stop %s" % self.__name)
         self.__state = 'stopped'
@@ -1234,9 +1244,9 @@ class Router(object):
         """ Suspend this instance
         """
         if self.__state == 'suspended':
-            raise DynamipsError, 'router "%s" is already suspended' % self.name
+            raise DynamipsWarning, 'router "%s" is already suspended' % self.name
         if self.__state == 'stopped':
-            raise DynamipsError, 'router "%s" is stopped and cannot be suspended' % self.name
+            raise DynamipsWarning, 'router "%s" is stopped and cannot be suspended' % self.name
 
         r = send(self.__d, "vm suspend %s" % self.__name)
         self.__state = 'suspended'
@@ -1247,9 +1257,9 @@ class Router(object):
         """ Resume this instance
         """
         if self.__state == 'running':
-            raise DynamipsError, 'router "%s" is already running' % self.name
+            raise DynamipsWarning, 'router "%s" is already running' % self.name
         if self.__state == 'stopped':
-            raise DynamipsError, 'router "%s" is stopped and cannot be resumed' % self.name
+            raise DynamipsWarning, 'router "%s" is stopped and cannot be resumed' % self.name
 
         r = send(self.__d, "vm resume %s" %self.__name)
         self.__state = 'running'
@@ -2161,7 +2171,8 @@ class FRSW(object):
         """ Delete this Frame Relay switch instance from the back end
         """
         pass
-        
+
+
     def map(self, port1, dlci1, port2, dlci2):
         """ Tell the switch to switch between port1 / dlci1 and port 2 / dlci2
             NOTE: both ports must be connected to something before map can be applied
@@ -2202,21 +2213,32 @@ class FRSW(object):
             self.__dlcis[port2] = [dlci2]
 
 
-    def connect(self, localport, remoteserver, remoteadapter, remoteport):
-        """ Connect this switch to a port on another device
+    def connect(self, localport, remoteserver, remoteadapter, remoteint, remoteport = None):
+        """ Connect this port to a port on another device
+            localport: A port on this adapter
             remoteserver: the dynamips object that hosts the remote adapter
-            remoteadapter: An adapter object on a router
-            remoteport: A port on the remote adapter
+            remoteadapter: An adapter or module object on another device (router, bridge, or switch)
+            localint: The interface type for the remote device
+            remoteport: A port on the remote adapter (only for routers or switches)
         """
+
+        # Figure out the real ports
+        if remoteadapter.adapter in ['ETHSW', 'ATMSW', 'FRSW', 'Bridge']:
+            # This is a virtual switch that doesn't provide interface descriptors
+            dst_port = remoteport
+        else:
+            # Look at the interfaces dict to find out what the real port is as
+            # as far as dynamips is concerned
+            dst_port = remoteadapter.interfaces[remoteint][remoteport]
+
         # Call the generalized connect function, validating first
-        validate_connect(localint, remoteint)
+        validate_connect('s', remoteint)
         gen_connect(src_dynamips = self.__d,
                     src_adapter = self,
                     src_port = localport,
                     dst_dynamips = remoteserver,
                     dst_adapter = remoteadapter,
-                    dst_port = remoteport)
-
+                    dst_port = dst_port)
 
     def connected(self, port):
         """ Returns a boolean indicating if this port is connected or not
@@ -2322,6 +2344,7 @@ class ATMSW(object):
         """
         pass
 
+
     def mapvp(self, port1, vpi1, port2, vpi2):
         """ Tell the switch to switch between port1 / vpi1 and port 2 / vpi2
             NOTE: both ports must be connected to something before map can be applied
@@ -2405,20 +2428,33 @@ class ATMSW(object):
         else:
             self.__vpis[port2] = [vpi2]
 
-    def connect(self, localport, remoteserver, remoteadapter, remoteport):
-        """ Connect this switch to a port on another device
+    def connect(self, localport, remoteserver, remoteadapter, remoteint, remoteport = None):
+        """ Connect this port to a port on another device
+            localport: A port on this adapter
             remoteserver: the dynamips object that hosts the remote adapter
-            remoteadapter: An adapter object on a router
-            remoteport: A port on the remote adapter
+            remoteadapter: An adapter or module object on another device (router, bridge, or switch)
+            localint: The interface type for the remote device
+            remoteport: A port on the remote adapter (only for routers or switches)
         """
+
+        # Figure out the real ports
+        if remoteadapter.adapter in ['ETHSW', 'ATMSW', 'FRSW', 'Bridge']:
+            # This is a virtual switch that doesn't provide interface descriptors
+            dst_port = remoteport
+        else:
+            # Look at the interfaces dict to find out what the real port is as
+            # as far as dynamips is concerned
+            dst_port = remoteadapter.interfaces[remoteint][remoteport]
+
         # Call the generalized connect function, validating first
-        validate_connect(localint, remoteint)
+        validate_connect('s', remoteint)
         gen_connect(src_dynamips = self.__d,
                     src_adapter = self,
                     src_port = localport,
                     dst_dynamips = remoteserver,
                     dst_adapter = remoteadapter,
-                    dst_port = remoteport)
+                    dst_port = dst_port)
+
 
 
     def connected(self, port):
@@ -2522,6 +2558,7 @@ class ETHSW(object):
         """
         pass
 
+
     def set_port(self, port, porttype, vlan):
         """ Define a port as an access port or trunk port, and it's vlan
             port: the switchport
@@ -2556,20 +2593,32 @@ class ETHSW(object):
         """
         return send(self.__d, "ethsw clear_mac_addr_table " + self.__name)
 
-    def connect(self, localport, remoteserver, remoteadapter, remoteport):
-        """ Connect this switch to a port on another device
+    def connect(self, localport, remoteserver, remoteadapter, remoteint, remoteport = None):
+        """ Connect this port to a port on another device
+            localport: A port on this adapter
             remoteserver: the dynamips object that hosts the remote adapter
-            remoteadapter: An adapter object on a router
-            remoteport: A port on the remote adapter
+            remoteadapter: An adapter or module object on another device (router, bridge, or switch)
+            localint: The interface type for the remote device
+            remoteport: A port on the remote adapter (only for routers or switches)
         """
+
+        # Figure out the real ports
+        if remoteadapter.adapter in ['ETHSW', 'ATMSW', 'FRSW', 'Bridge']:
+            # This is a virtual switch that doesn't provide interface descriptors
+            dst_port = remoteport
+        else:
+            # Look at the interfaces dict to find out what the real port is as
+            # as far as dynamips is concerned
+            dst_port = remoteadapter.interfaces[remoteint][remoteport]
+
         # Call the generalized connect function, validating first
-        validate_connect(localint, remoteint)
+        validate_connect('s', remoteint)
         gen_connect(src_dynamips = self.__d,
                     src_adapter = self,
                     src_port = localport,
                     dst_dynamips = remoteserver,
                     dst_adapter = remoteadapter,
-                    dst_port = remoteport)
+                    dst_port = dst_port)
 
 
     def connected(self, port):
@@ -2650,7 +2699,7 @@ def send(dynamips, command):
         returns results as a list
     """
 
-    # Dynamips responses are of the form:
+    # Dynamips/PemuWrapper responses are of the form:
     #   1xx yyyyyy\r\n
     #   1xx yyyyyy\r\n
     #   ...
@@ -2685,12 +2734,12 @@ def send(dynamips, command):
                 #debug('Chunk: ' + chunk)
                 buf += chunk
             except timeout, message:
-                print "Error: timed out communicating with dynamips server %s" % dynamips.host
+                print "Error: timed out communicating with %s server %s" % (dynamips.type, dynamips.host)
                 print message
                 print "Exiting..."
                 raise DynamipsErrorHandled
             except:
-                print "Error: could not communicate with dynamips server %s" % dynamips.host
+                print "Error: timed out communicating with %s server %s" % (dynamips.type, dynamips.host)
                 print "Dynamips may have crashed. Check the Dynamips server output."
                 print "Exiting..."
                 raise DynamipsErrorHandled
@@ -2700,8 +2749,8 @@ def send(dynamips, command):
                 if buf[-1] != '\n':
                     continue
             except IndexError:
-                print "Error: could not communicate with dynamips server %s" % dynamips.host
-                print "Dynamips may have crashed. Check the Dynamips server output."
+                print "Error: could not communicate with %s server %s" % (dynamips.type, dynamips.host)
+                print "It may have crashed. Check the %s server output." % dynamips.type
                 print "Exiting..."
                 raise DynamipsErrorHandled
 
@@ -2773,53 +2822,78 @@ def gen_connect(src_dynamips, src_adapter, src_port, dst_dynamips, dst_adapter, 
         dst_adapter.nio(port=dst_port, nio=dst_nio)
 
 
-def validate_connect(i1, i2):
+def validate_connect(i1, i2, src_dynamips=None, src_adapter=None, src_port=None, dst_dynamips=None, dst_adapter=None, dst_port=None):
     """ Check to see if a given adapter can be connected to another adapter
         i1: interface type 1
         i2: interface type 2
     """
-    """
-    try:
-        a1 = int1.adapter
-        a2 = int2.adapter
-    except AttributeError:
-        raise DynamipsError, 'invalid adapter or no adapter present'
-    """
-    # Question: can we daisy-chain switches? Validate this.
-    #ethernets = ('C7200-IO-FE', 'PA-2FE-TX', 'PA-GE', 'C7200-IO-2FE', 'C7200-IO-GE-E', 'PA-FE-TX', 'PA-4E', 'PA-8E', 'NM-1FE-TX', 'NM-1E', 'NM-4E', 'NM-16ESW', 'Leopard-2FE', 'GT96100-FE', 'CISCO2600-MB-1E', 'CISCO2600-MB-2E', 'CISCO2600-MB-1FE', 'CISCO2600-MB-2FE', 'Bridge', 'ETHSW')
-    #serials = ('PA-4T+', 'PA-8T', 'NM-4T', 'FRSW')
-    #atms = ('PA-A1', 'ATMSW')
-    #poss = ('PA-POS-OC3')
+
     ethernets = ('e', 'f', 'g', 'n', 'i')
     serials = ('s')
     atms = ('a')
     poss = ('p')
 
-    #if a1 == 'Bridge' and a2 == 'Bridge':
-    #    raise DynamipsError, 'attempt to connect two bridges'
-
     if i1 in ethernets and i2 in ethernets:
-        return
-
+        pass
     elif i1 in serials and i2 in serials:
-        return
-
+        pass
     elif i1 in atms and i2 in atms:
-        return
-
+        pass
     elif i1 in poss and i2 in poss:
-        return
-
-        """
-        # Corner case: POS to FRSW is ok
-        elif a1 in poss and a2 == 'FRSW':
-            return
-        elif a2 in poss and a1 == 'FRSW':
-            return
-        """
+        pass
 
     else:
         raise DynamipsError, 'attempt to connect %s to %s' % (i1, i2)
+
+    if src_dynamips == None:
+        # Skip existing connection check (used for confDynagen)
+        return True
+
+    #check whether there is not already an existing connection on local int
+    if isinstance(src_adapter, BaseAdapter) and isinstance(dst_adapter, BaseAdapter):
+        local_nio = src_adapter.nio(src_port)
+        remote_nio = dst_adapter.nio(dst_port)
+        if local_nio != None or remote_nio != None:
+            if local_nio == None: # only remote_nio must be occupied
+                raise DynamipsError, 'destination port is already occupied by a different connection'
+            elif remote_nio == None: # only local_nio must be occupied
+                raise DynamipsError, 'source port is already occupied by a different connection'
+            elif local_nio != None and remote_nio != None: #both are occupied
+                #check whether this is not a reverse UDP connection
+                if type(local_nio) == NIO_udp and type(remote_nio) == NIO_udp:
+                    #and the UDP ports do match, ...
+                    if local_nio.udplocal == remote_nio.udpremote and local_nio.udpremote == remote_nio.udplocal:
+                        #this is good state, it means we should not make this UDP connection again as it was done previously
+                        return False
+                    else:#UDP ports do NOT match
+                        raise DynamipsError, 'source and destination ports are already occupied by a different connection'
+                else:#both occupied and NOT a UDP connection
+                    raise DynamipsError, 'source and destination ports are already occupied by a different connection'
+
+    elif isinstance(dst_adapter, BaseAdapter): #src_adapter is pemu, so this is fw -> router connection
+        remote_nio = dst_adapter.nio(dst_port)
+        if src_adapter.nios.has_key(src_port):
+            local_nio = src_adapter.nios[src_port]
+        else:
+            local_nio = None
+        if local_nio != None or remote_nio != None:
+            if local_nio == None: # only remote_nio must be occupied
+                raise DynamipsError, 'destination port is already occupied by a different connection'
+            elif remote_nio == None: # only local_nio must be occupied
+                raise DynamipsError, 'source port is already occupied by a different connection'
+            elif local_nio != None and remote_nio != None: #both are occupied
+                #check whether this is not a reverse UDP connection
+                #from pemu_lib import UDPConnection
+                if type(remote_nio) == NIO_udp:
+                    #and the UDP ports do match, ...
+                    if local_nio.sport == remote_nio.udpremote and local_nio.dport == remote_nio.udplocal:
+                        #this is good state, it means we should not make this UDP connection again as it was done previously
+                        return False
+                    else:#UDP ports do NOT match
+                        raise DynamipsError, 'source and destination ports are already occupied by a different connection'
+                else:#both occupied and NOT a UDP connection
+                    raise DynamipsError, 'source and destination ports are already occupied by a different connection'
+    return True
 
 
 def connected_general(obj, port):
@@ -2906,6 +2980,10 @@ if __name__ == "__main__":
 
 
     #r1.slot[0].connect('s', 0, d, r2.slot[0], 's', 0)   # r1 s0/0 = r2 s0/0
+
+    sw = FRSW(d, name='sw')
+    #r1.slot[0].connect('s', 0, d, sw, 's', 1)
+    sw.connect(1, d, r1.slot[0], 's', 0)
 
     r1.start()
     #r2.start()

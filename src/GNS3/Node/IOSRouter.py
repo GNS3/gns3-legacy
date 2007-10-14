@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import os,  re
+import os, re, glob
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.dynagen as dynagen
@@ -505,26 +505,29 @@ class IOSRouter(AbstractNode):
     def cleanNodeFiles(self):
         """ Delete nvram/flash/log files created by Dynamips
         """
-        
-        # always clean the lock, ram and rommon_vars if there
+
+        # always clean the lock, ram and rommon_vars if present
         workingdir = self.getHypervisor().workingdir[1:-1]
         files = []
         files.append(workingdir + '/c' + self.platform + '_' + self.hostname + '_lock')
         files.append(workingdir + '/c' + self.platform + '_' + self.hostname + '_ram')
         files.append(workingdir + '/c' + self.platform + '_' + self.hostname + '_rommon_vars')
         for filename in files:
-            path = os.path.abspath(filename)
-            if os.path.isfile(path): 
-                os.remove(path)
-        if self.config.delete_files == True or globals.ClearOldDynamipsFiles:
-            names = ['bootflash', 'log.txt', 'nvram',  'flash0',  'flash1',  'disk0',  'disk1',  'sram0',  'sram1',  'ssa',  'slot0',  'slot1',  'rom']
-            files = []
-            for name in names:
-                files.append(workingdir + '/c' + self.platform + '_' + self.hostname + '_' + name)
-            for filename in files:
+            try:
                 path = os.path.abspath(filename)
                 if os.path.isfile(path): 
                     os.remove(path)
+            except:
+                continue
+        if globals.ClearOldDynamipsFiles:
+            files = glob.glob(workingdir + '/c' + self.platform + '_' + self.hostname + '_*')
+            for filename in files:
+                try:
+                    path = os.path.abspath(filename)
+                    if os.path.isfile(path): 
+                        os.remove(path)
+                except:
+                    continue
 
     def console(self):
         """ Start a telnet console and connect it to an IOS

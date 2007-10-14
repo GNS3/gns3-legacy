@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 dynagen
 Copyright (C) 2006  Greg Anuzelli
@@ -26,18 +28,20 @@ from dynamips_lib import Dynamips, PA_C7200_IO_FE, PA_A1, PA_FE_TX, PA_4T, PA_8T
     IDLEPROPGET, IDLEPROPSHOW, IDLEPROPSET, C2691, C3725, C3745, GT96100_FE, C2600, \
     CISCO2600_MB_1E, CISCO2600_MB_2E, CISCO2600_MB_1FE, CISCO2600_MB_2FE, PA_2FE_TX, \
     PA_GE, PA_C7200_IO_2FE, PA_C7200_IO_GE_E, C1700, CISCO1710_MB_1FE_1E, C1700_MB_1ETH, \
-    DEVICETUPLE, DynamipsVerError, DynamipsErrorHandled, WICS, NM_CIDS, NM_NAM
+    DynamipsVerError, DynamipsErrorHandled, WICS, NM_CIDS, NM_NAM
+from pemu_lib import Pemu, FW
 from validate import Validator
 from configobj import ConfigObj, flatten_errors
 from optparse import OptionParser
 
 # Constants
-VERSION = '0.11.0.090907'
+VERSION = '0.11.0.100107'
 CONFIGSPECPATH = [ "/usr/share/dynagen", "/usr/local/share" ]
 CONFIGSPEC = 'configspec'
 INIPATH = [ "/etc", "/usr/local/etc" ]
 INIFILE = 'dynagen.ini'
 MODELTUPLE = (C1700, C2600, C2691, C3725, C3745, C3600, C7200)             # A tuple of known model objects
+DEVICETUPLE = ('525', '1710', '1720', '1721', '1750', '1751', '1760', '2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM', '2691', '3725', '3745', '3620', '3640', '3660', '7200')  # A tuple of known device names
 ADAPTER_TRANSFORM = {
     "C7200-IO-FE" : PA_C7200_IO_FE,
     "C7200-IO-2FE" : PA_C7200_IO_2FE,
@@ -281,7 +285,17 @@ class Dynagen:
             self.smartslot(router, pa1, slot1, port1)
             self.smartslot(devices[devname], pa2, slot2, port2)
 
-            router.slot[slot1].connect(pa1, port1, devices[devname].dynamips, devices[devname].slot[slot2], pa2, port2)
+            # Perform the connection, taking into account connections to pemu firewalls
+            if isinstance(router, FW) and isinstance(devices[devname], Router):
+                router.connect_to_dynamips(port1, devices[devname].dynamips, devices[devname].slot[slot2], pa2, port2)
+            elif isinstance(router, FW) and isinstance(devices[devname], FW):
+                router.connect_to_fw(port1, devices[devname] , port2)
+            elif isinstance(router, Router) and isinstance(devices[devname], FW):
+                devices[devname].connect_to_dynamips(port2, router.dynamips, router.slot[slot1], pa1, port1)
+            else:
+                # Must be router to router
+                router.slot[slot1].connect(pa1, port1, devices[devname].dynamips, devices[devname].slot[slot2], pa2, port2)
+
             return True
 
         if devname.lower() == 'lan':
@@ -291,7 +305,10 @@ class Dynagen:
             if not bridges.has_key(interface):
                 # If this LAN doesn't already exist, create it
                 bridges[interface] = Bridge(router.dynamips, name=interface)
-            router.slot[slot1].connect(pa1, port1, bridges[interface].dynamips, bridges[interface], 'f')
+                if isinstance(router, FW):
+                    router.connect_to_dynamips(port1, bridges[interface].dynamips, bridges[interface], 'f', 0)
+                else:
+                    router.slot[slot1].connect(pa1, port1, bridges[interface].dynamips, bridges[interface], 'f')
             return True
 
         match_obj = number_re.search(interface)
@@ -314,7 +331,10 @@ class Dynagen:
             else:
                 return False
 
-            router.slot[slot1].connect(pa1, port1, devices[devname].dynamips, devices[devname], pa2 , port2)
+            if isinstance(router, FW):
+                router.connect_to_dynamips(port1, devices[devname].dynamips, devices[devname], pa2, port2)
+            else:
+                router.slot[slot1].connect(pa1, port1, devices[devname].dynamips, devices[devname], pa2 , port2)
             return True
 
         else:
@@ -336,6 +356,13 @@ class Dynagen:
             pa = pa[:2].lower()
         else:
             pa = pa[0].lower()
+
+        if isinstance(router, FW):
+            if pa == 'e' and port >= 0 and port < 6:
+                router.add_interface(pa,port)
+                return
+            else:
+                self.doerror("Invalid adapter '%s' specified for FW %s. FW only supports e0-6." % (pa, router.name))
 
         try:
             if router.slot[slot] != None:
@@ -392,7 +419,9 @@ class Dynagen:
                 else:
                     return True
         except KeyError:
-            self.doerror("Invalid slot %i specified for device %s" % (slot, router.name))
+            self.doerror("Invalid slot %i specified on device %s" % (slot, router.name))
+        except IndexError:
+            self.doerror("Invalid slot %i specified on device %s" % (slot, router.name))
 
         """ Note to self: One of these days you should do this section right. Programatically build a matrix of
             default adapters for a given Adapter, model, slot, and chassis using this structure:
@@ -452,7 +481,7 @@ class Dynagen:
                     router.slot[slot] = NM_1FE_TX(router, slot)
             else:
                 if slot == 0:
-                    router.slot[slot] = PA_C7200_IO_FE(router, slot)
+                    router.slot[slot] = PA_C7200_IO_2FE(router, slot)
                 else:
                     router.slot[slot] = PA_2FE_TX(router, slot)
             return True
@@ -622,7 +651,7 @@ class Dynagen:
         global globalconfig, globaludp, handled, debuglevel
         connectionlist = []     # A list of router connections
         maplist = []            # A list of Frame Relay and ATM switch mappings
-        ethswintlist = []           # A list of Ethernet Switch vlan mappings
+        ethswintlist = []       # A list of Ethernet Switch vlan mappings
 
         config = self.open_config(FILENAME)
 
@@ -634,169 +663,248 @@ class Dynagen:
         if debuglevel >= 3:
             self.debug("Top-level items:")
             for item in config.scalars:
-                debug(item + ' = ' + str(config[item]))
+                self.debug(item + ' = ' + str(config[item]))
 
-        self.debug("Dynamips Servers:")
+        self.debug("Dynamips/PemuWrapper Servers:")
         for section in config.sections:
             server = config[section]
-            server.host = server.name
-            controlPort = None
-            if ':' in server.host:
-                # unpack the server and port
-                (server.host, controlPort) = server.host.split(':')
-            if debuglevel >= 3:
-                self.debug("Server = " + server.name)
-                for item in server.scalars:
-                    self.debug('  ' + str(item) + ' = ' + str(server[item]))
-            try:
-                if server['port'] != None:
-                    controlPort = server['port']
-                if controlPort == None:
-                    controlPort = 7200
-                dynamips[server.name] = Dynamips(server.host, int(controlPort))
-                # Reset each server
-                dynamips[server.name].reset()
+            if ' ' in server.name:
+                # Must be a pemu server specification
+                (emulator, host) = server.name.split(' ')
+                if emulator == 'pemu':
+                        #connect to the PEMU Wrapper
+                        try:
+                            #add ':10525' string to the name so that it does not conflict with name of dynamips server
+                            pemu_name = host + ':10525'
+                            #create the Pemu instance and add it to global dictionary
+                            dynamips[pemu_name] = Pemu(host)
+                            dynamips[pemu_name].reset()
+                        except DynamipsError:
+                            self.doerror('Could not connect to server: %s' % server.name)
 
-            except DynamipsVerError:
-                exctype, value, trace = sys.exc_info()
-                self.doerror(value[0])
-
-            except DynamipsError:
-                self.doerror('Could not connect to server: %s' % server.name)
-
-            if server['udp'] != None:
-                udp = server['udp']
-            else:
-                udp = globaludp
-            # Modify the default base UDP NIO port for this server
-            try:
-                dynamips[server.name].udp = udp
-            except DynamipsError:
-                self.doerror('Could not set base UDP NIO port to: "%s" on server: %s' % (server['udp'], server.name))
-
-
-            if server['workingdir'] == None:
-                # If workingdir is not specified, set it to the same directory
-                # as the network file
-
-                realpath = os.path.realpath(FILENAME)
-                workingdir = os.path.dirname(realpath)
-            else:
-                workingdir = server['workingdir']
-
-            try:
-                # Encase workingdir in quotes to protect spaces
-                workingdir = '"' + workingdir + '"'
-                dynamips[server.name].workingdir = workingdir
-            except DynamipsError:
-                self.doerror('Could not set working directory to: "%s" on server: %s' % (server['workingdir'], server.name))
-
-            # Has the base console port been overridden?
-            if server['console'] != None:
-                dynamips[server.name].baseconsole = server['console']
-
-            # Initialize device default dictionaries for every router type supported
-            devdefaults = {}
-            for key in DEVICETUPLE:
-                devdefaults[key] = {}
-
-            # Apply lab global defaults to device defaults
-            for model in devdefaults:
-                devdefaults[model]['ghostios'] = config['ghostios']
-                devdefaults[model]['ghostsize'] = config['ghostsize']
-                devdefaults[model]['sparsemem'] = config['sparsemem']
-                devdefaults[model]['oldidle'] = config['oldidle']
-                if config['idlemax'] != None:
-                    devdefaults[model]['idlemax'] = config['idlemax']
-                if config['idlesleep'] != None:
-                    devdefaults[model]['idlesleep'] = config['idlesleep']
-
-            for subsection in server.sections:
-                device = server[subsection]
-                # Create the device
-
-                if device.name in DEVICETUPLE:
-                    self.debug('Router defaults:')
-                    # Populate the appropriate dictionary
-                    for scalar in device.scalars:
-                        if device[scalar] != None:
-                            devdefaults[device.name][scalar] = device[scalar]
-                    continue
-
-                self.debug(device.name)
-                # Create the device
-                try:
-                    (devtype, name) = device.name.split(' ')
-                except ValueError:
-                    self.doerror('Unable to interpret line: "[[' + device.name + ']]"')
-
-                if devtype.lower() == 'router':
-                    # if model not specifically defined for this router, set it to the default defined in the top level config
-                    if device['model'] == None:
-                        device['model'] = config['model']
-
-                    if device['model'] == '7200':
-                        dev = C7200(dynamips[server.name], name=name)
-                    elif device['model'] in ['3620', '3640', '3660']:
-                        dev = C3600(dynamips[server.name], chassis = device['model'], name=name)
-                    elif device['model'] == '2691':
-                        dev = C2691(dynamips[server.name], name=name)
-                    elif device['model'] in ['2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM']:
-                        dev = C2600(dynamips[server.name], chassis = device['model'], name=name)
-                    elif device['model'] == '3725':
-                        dev = C3725(dynamips[server.name], name=name)
-                    elif device['model'] == '3745':
-                        dev = C3745(dynamips[server.name], name=name)
-                    elif device['model'] in ['1710', '1720', '1721', '1750', '1751', '1760']:
-                        dev = C1700(dynamips[server.name], chassis = device['model'], name=name)
-                    # Apply the router defaults to this router
-                    self.setdefaults(dev, devdefaults[device['model']])
-
-                    if device['autostart'] == None:
-                        autostart[name] = config['autostart']
-                    else:
-                        autostart[name] = device['autostart']
-                elif devtype.lower() == 'frsw':
-                    dev = FRSW(dynamips[server.name], name=name)
-                elif devtype.lower() == 'atmsw':
-                    dev = ATMSW(dynamips[server.name], name=name)
-                elif devtype.lower() == 'ethsw':
-                    dev = ETHSW(dynamips[server.name], name=name)
-                else:
-                    print '\n***Error: unknown device type:', devtype, '\n'
-                    raw_input("Press ENTER to continue")
-                    handled = True
-                    sys.exit(1)
-                devices[name] = dev
-
-                for subitem in device.scalars:
-                    if device[subitem] != None:
-                        self.debug('  ' + subitem + ' = ' + str(device[subitem]))
-                        if self.setproperty(dev, subitem, device[subitem]):
-                            # This was a property that was set.
-                            continue
+                        if server['workingdir'] == None:
+                            # If workingdir is not specified, set it to the same directory
+                            # as the network file
+                            realpath = os.path.realpath(FILENAME)
+                            workingdir = os.path.dirname(realpath)
                         else:
-                            # Should be either an interface connection or a switch mapping
-                            # is it an interface?
-                            if interface_re.search(subitem):
-                                # Add the tuple to the list of connections to deal with later
-                                connectionlist.append((dev, subitem, device[subitem]))
-                            # is it an interface with no port? (e.g. "f0")
-                            elif interface_noport_re.search(subitem):
-                                connectionlist.append((dev, subitem, device[subitem]))
-                            # is it a frame relay or ATM vpi mapping?
-                            elif mapint_re.search(subitem) or mapvci_re.search(subitem):
-                                # Add the tupple to the list of mappings to deal with later
-                                maplist.append((dev, subitem, device[subitem]))
-                            # is it an Ethernet switch port configuration?
-                            elif ethswint_re.search(subitem):
-                                ethswintlist.append((dev, subitem, device[subitem]))
+                            workingdir = server['workingdir']
+                        try:
+                            # Encase workingdir in quotes to protect spaces
+                            workingdir = '"' + workingdir + '"'
+                            dynamips[pemu_name].workingdir = workingdir
+                        except DynamipsError:
+                            self.doerror('Could not set working directory to: %s on server: %s' % (workingdir, server.name))
 
-                            elif subitem in ['model', 'configuration', 'autostart',  'x', 'y']:
-                                # These options are already handled elsewhere
+                        devdefaults = {}
+                        for key in DEVICETUPLE:
+                            devdefaults[key] = {}
+
+                        #handle the FW
+                        for subsection in server.sections:
+                            device = server[subsection]
+
+                            if device.name in ['525']:
+                                # Populate the appropriate dictionary
+                                for scalar in device.scalars:
+                                    if device[scalar] != None:
+                                        devdefaults['525'][scalar] = device[scalar]
+                                continue
+
+                            # Create the device
+                            try:
+                                (devtype, name) = device.name.split(' ')
+                            except ValueError:
+                                self.doerror('Unable to interpret line: "[[' + device.name + ']]"')
+
+                            if devtype.lower() == 'fw':
+                                dev = FW(dynamips[pemu_name], name=name)
+                            else:
+                                self.doerror('Unable to identify the type of device ' + device.name )
+
+                            #set the defaults
+                            for option in devdefaults['525']:
+                                if option in ('console', 'key', 'serial', 'ram', 'image'):
+                                    setattr(dev, option, devdefaults['525'][option])
+
+                            #add the whole FW into global dictionary
+                            devices[name] = dev
+
+                            #set the special device options
+                            for subitem in device.scalars:
+                                if device[subitem] != None:
+                                    self.debug('  ' + subitem + ' = ' + str(device[subitem]))
+                                    if subitem in ('console', 'key', 'serial', 'ram', 'image'):
+                                        setattr(dev, subitem, device[subitem])
+                                        continue
+                                    elif pemu_int_re.search(subitem):
+                                        # Add the tuple to the list of connections to deal with later
+                                        connectionlist.append((dev, subitem, device[subitem]))
+                                    else:
+                                        print('***Warning: ignoring unknown config item: %s = %s' % (str(subitem), str(device[subitem])))
+
+                else:
+                    self.doerror('Bad emulator definition format: %s' % server.name)
+            else:
+                # Dynamips hypervisor
+                server.host = server.name
+                controlPort = None
+                if ':' in server.host:
+                    # unpack the server and port
+                    (server.host, controlPort) = server.host.split(':')
+                if debuglevel >= 3:
+                    self.debug("Server = " + server.name)
+                    for item in server.scalars:
+                        self.debug('  ' + str(item) + ' = ' + str(server[item]))
+                try:
+                    if server['port'] != None:
+                        controlPort = server['port']
+                    if controlPort == None:
+                        controlPort = 7200
+                    dynamips[server.name] = Dynamips(server.host, int(controlPort))
+                    # Reset each server
+                    dynamips[server.name].reset()
+
+                except DynamipsVerError:
+                    exctype, value, trace = sys.exc_info()
+                    self.doerror(value[0])
+
+                except DynamipsError:
+                    self.doerror('Could not connect to server: %s' % server.name)
+
+                if server['udp'] != None:
+                    udp = server['udp']
+                else:
+                    udp = globaludp
+                # Modify the default base UDP NIO port for this server
+                try:
+                    dynamips[server.name].udp = udp
+                except DynamipsError:
+                    self.doerror('Could not set base UDP NIO port to: "%s" on server: %s' % (server['udp'], server.name))
+
+
+                if server['workingdir'] == None:
+                    # If workingdir is not specified, set it to the same directory
+                    # as the network file
+
+                    realpath = os.path.realpath(FILENAME)
+                    workingdir = os.path.dirname(realpath)
+                else:
+                    workingdir = server['workingdir']
+
+                try:
+                    # Encase workingdir in quotes to protect spaces
+                    workingdir = '"' + workingdir + '"'
+                    dynamips[server.name].workingdir = workingdir
+                except DynamipsError:
+                    self.doerror('Could not set working directory to: "%s" on server: %s' % (server['workingdir'], server.name))
+
+                # Has the base console port been overridden?
+                if server['console'] != None:
+                    dynamips[server.name].baseconsole = server['console']
+
+                # Initialize device default dictionaries for every router type supported
+                devdefaults = {}
+                for key in DEVICETUPLE:
+                    devdefaults[key] = {}
+
+                # Apply lab global defaults to device defaults
+                for model in devdefaults:
+                    devdefaults[model]['ghostios'] = config['ghostios']
+                    devdefaults[model]['ghostsize'] = config['ghostsize']
+                    devdefaults[model]['sparsemem'] = config['sparsemem']
+                    devdefaults[model]['oldidle'] = config['oldidle']
+                    if config['idlemax'] != None:
+                        devdefaults[model]['idlemax'] = config['idlemax']
+                    if config['idlesleep'] != None:
+                        devdefaults[model]['idlesleep'] = config['idlesleep']
+
+                for subsection in server.sections:
+                    device = server[subsection]
+                    # Create the device
+
+                    if device.name in DEVICETUPLE:
+                        self.debug('Router defaults:')
+                        # Populate the appropriate dictionary
+                        for scalar in device.scalars:
+                            if device[scalar] != None:
+                                devdefaults[device.name][scalar] = device[scalar]
+                        continue
+
+                    self.debug(device.name)
+                    # Create the device
+                    try:
+                        (devtype, name) = device.name.split(' ')
+                    except ValueError:
+                        self.doerror('Unable to interpret line: "[[' + device.name + ']]"')
+
+                    if devtype.lower() == 'router':
+                        # if model not specifically defined for this router, set it to the default defined in the top level config
+                        if device['model'] == None:
+                            device['model'] = config['model']
+
+                        if device['model'] == '7200':
+                            dev = C7200(dynamips[server.name], name=name)
+                        elif device['model'] in ['3620', '3640', '3660']:
+                            dev = C3600(dynamips[server.name], chassis = device['model'], name=name)
+                        elif device['model'] == '2691':
+                            dev = C2691(dynamips[server.name], name=name)
+                        elif device['model'] in ['2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM']:
+                            dev = C2600(dynamips[server.name], chassis = device['model'], name=name)
+                        elif device['model'] == '3725':
+                            dev = C3725(dynamips[server.name], name=name)
+                        elif device['model'] == '3745':
+                            dev = C3745(dynamips[server.name], name=name)
+                        elif device['model'] in ['1710', '1720', '1721', '1750', '1751', '1760']:
+                            dev = C1700(dynamips[server.name], chassis = device['model'], name=name)
+                        # Apply the router defaults to this router
+                        self.setdefaults(dev, devdefaults[device['model']])
+
+                        if device['autostart'] == None:
+                            autostart[name] = config['autostart']
+                        else:
+                            autostart[name] = device['autostart']
+                    elif devtype.lower() == 'frsw':
+                        dev = FRSW(dynamips[server.name], name=name)
+                    elif devtype.lower() == 'atmsw':
+                        dev = ATMSW(dynamips[server.name], name=name)
+                    elif devtype.lower() == 'ethsw':
+                        dev = ETHSW(dynamips[server.name], name=name)
+                    else:
+                        print '\n***Error: unknown device type:', devtype, '\n'
+                        raw_input("Press ENTER to continue")
+                        handled = True
+                        sys.exit(1)
+                    devices[name] = dev
+
+                    for subitem in device.scalars:
+                        if device[subitem] != None:
+                            self.debug('  ' + subitem + ' = ' + str(device[subitem]))
+                            if self.setproperty(dev, subitem, device[subitem]):
+                                # This was a property that was set.
                                 continue
                             else:
-                                print('Warning: ignoring unknown config item: %s = %s' % (str(subitem), str(device[subitem])))
+                                # Should be either an interface connection or a switch mapping
+                                # is it an interface?
+                                if interface_re.search(subitem):
+                                    # Add the tuple to the list of connections to deal with later
+                                    connectionlist.append((dev, subitem, device[subitem]))
+                                # is it an interface with no port? (e.g. "f0")
+                                elif interface_noport_re.search(subitem):
+                                    connectionlist.append((dev, subitem, device[subitem]))
+                                # is it a frame relay or ATM vpi mapping?
+                                elif mapint_re.search(subitem) or mapvci_re.search(subitem):
+                                    # Add the tupple to the list of mappings to deal with later
+                                    maplist.append((dev, subitem, device[subitem]))
+                                # is it an Ethernet switch port configuration?
+                                elif ethswint_re.search(subitem):
+                                    ethswintlist.append((dev, subitem, device[subitem]))
+
+                                elif subitem in ['model', 'configuration', 'autostart', 'x', 'y']:
+                                    # These options are already handled elsewhere
+                                    continue
+                                else:
+                                    print('Warning: ignoring unknown config item: %s = %s' % (str(subitem), str(device[subitem])))
 
 
         # Establish the connections we collected earlier
@@ -889,7 +997,7 @@ class Dynagen:
 
             else:
                 self.doerror('Invalid Ethernet switchport config: %s = %s' % (source, dest))
-        
+
         return (connectionlist, maplist, ethswintlist)
 
     def import_ini(self, FILENAME):
@@ -952,7 +1060,7 @@ class Dynagen:
         """
 
         global handled
-        
+
         try:
             h=open(inifile, 'r')
             h.close()
@@ -1073,7 +1181,7 @@ class Dynagen:
     def autostart(self):
         """  Autostart the instances
         """
-    
+
         global autostart
 
         for device in devices.values():
@@ -1099,7 +1207,6 @@ class Dynagen:
         if debuglevel >= 3: print '  DEBUG: ' + str(string)
 
     def doerror(self, msg):
-        
         global handled
 
         """Print out an error message"""
@@ -1145,7 +1252,9 @@ if __name__ == "__main__":
         if options.debug:
             setdebug(True)
             print "\nPython version: %s" % sys.version
-        if options.nosend: nosend(True)
+        if options.nosend:
+            nosend(True)
+            #pemunosend(True)
         if options.notelnet: notelnet = True
 
         dynagen = Dynagen()
@@ -1187,6 +1296,7 @@ if __name__ == "__main__":
 
         print "Network successfully loaded\n"
 
+        """"
         print "Pickle test..."
         import pickle
 
@@ -1194,7 +1304,7 @@ if __name__ == "__main__":
         pickle.dump(devices, output)
         output.close()
         #doclose()
-
+        """
 
         console = Console()
         try:
