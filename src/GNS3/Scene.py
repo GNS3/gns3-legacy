@@ -374,7 +374,7 @@ class Scene(QtGui.QGraphicsView):
             if match_obj:
                 # connected to another slot interface
                 typedest = match_obj.group(1)
-                if typesrc == typedest:
+                if (typesrc == 'e' or typesrc == 'f' or typesrc == 'g') or (typesrc == typedest):
                     # same type, it's ok
                     return True
             else:

@@ -233,7 +233,7 @@ class Application(QApplication, Singleton):
         # preload dynamips
         if globals.GApp.systconf['dynamips'].path:
             globals.HypervisorManager = HypervisorManager()
-            globals.HypervisorManager.preloadDynamips()#showErrMessage=False)
+            #globals.HypervisorManager.preloadDynamips()#showErrMessage=False)
 
         # full screen
         #geometry = QApplication.desktop().availableGeometry(self.mainWindow)
