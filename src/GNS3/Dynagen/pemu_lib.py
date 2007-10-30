@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 pemu_lib.py
 Copyright (C) 2007  Pavel Skovajsa

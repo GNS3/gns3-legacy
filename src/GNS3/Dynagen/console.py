@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 dynamips_lib.py
 Copyright (C) 2006  Greg Anuzelli
