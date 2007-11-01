@@ -80,10 +80,50 @@ class HypervisorManager:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Can't start Dynamips"))
             return None
         hypervisor = {'port': port,
-                            'proc_instance': proc}
+                            'proc_instance': proc, 
+                            'load': 0}
 
         self.hypervisors.append(hypervisor)
         return hypervisor
+    
+    def allocateHypervisor(self, node):
+        """ Allocate an hypervisor for a given node
+        """
+
+        for hypervisor in self.hypervisors:
+            if hypervisor['load'] + node.config.ram <= globals.HypervisorMemoryUsageLimit:
+                hypervisor['load'] += node.config.ram
+                node.configHypervisor('localhost',  hypervisor['port'],  self.hypervisor_wd,  self.baseUDP, self.baseConsole)
+                return
+
+        hypervisor = self.startNewHypervisor()
+        count = 2
+        progress = QtGui.QProgressDialog(translate("HypervisorManager", "Starting a new hypervisor"), translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
+        progress.setMinimum(1)
+        progress.setWindowModality(QtCore.Qt.WindowModal)
+        
+        for nb in range(count):
+            progress.setValue(nb)
+            globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 2000)
+            if  progress.wasCanceled():
+                progress.reset()
+                break
+            time.sleep(1)
+
+        progress.setValue(count)
+        progress.deleteLater()
+        progress = None
+        hypervisor['load'] = node.config.ram
+        node.configHypervisor('localhost',  hypervisor['port'],  self.hypervisor_wd,  self.baseUDP, self.baseConsole)
+
+    def unallocateHypervisor(self, node):
+        """ Unallocate an hypervisor for a given node
+        """
+        
+        for hypervisor in self.hypervisors:
+            if hypervisor['port'] == node.hypervisor_port:
+                hypervisor['load'] -= node.config.ram
+                break
     
     def startProcHypervisors(self):
         """ Load-balance IOS instances on multiple hypervisors

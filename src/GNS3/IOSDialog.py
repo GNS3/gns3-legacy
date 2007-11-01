@@ -29,7 +29,9 @@ from GNS3.Node.IOSRouter import IOSRouter
 import GNS3.Globals as globals
 
 # known platforms and corresponding chassis
-PLATFORMS = {'2600': ['2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM', '2691'],
+PLATFORMS = {
+             '1700': ['1710', '1720', '1721', '1750', '1751', '1760'], 
+             '2600': ['2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM', '2691'],
              '3600': ['3620', '3640', '3660'],
              '3700': ['3725', '3745'],
              '7200': ['7200']

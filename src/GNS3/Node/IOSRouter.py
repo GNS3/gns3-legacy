@@ -162,6 +162,9 @@ class IOSRouter(AbstractNode):
     
         if self.dev != None:
             self.dev.delete()
+            image = globals.GApp.iosimages[self.config.image]
+            if image.hypervisor_host == '':
+                globals.HypervisorManager.unallocateHypervisor(self)
         
     def getDefaultConfig(self):
         """ Returns the default configuration
@@ -332,7 +335,18 @@ class IOSRouter(AbstractNode):
         globals.GApp.dynagen.devices[self.hostname] = self.dev
 #        dynagen.ghosteddevices[self.hostname] = True
 #        dynagen.ghostsizes[self.hostname] = None
-        
+
+    def reconfigNode(self):
+        """ Node reconfiguration
+        """
+
+        #FIXME: confreg
+        properties = ('console', 'cnfg', 'mac', 'ram', 'nvram', 'disk0', 'disk1', 'mmap', 'exec_area')
+        for property in properties:
+            value = getattr(self.config, property)
+            if value != None:
+                setattr(self.dev, property, value)
+  
     def configSlot(self, slotnb, module):
         """ Add an new module into a slot
             slotnb: integer
@@ -407,48 +421,48 @@ class IOSRouter(AbstractNode):
         if errormsg:
             self.error.showMessage(errormsg)
 
-    def configConnections(self):
-        """ Connections configuration
-        """
-        
-        if self.dev == None:
-            return
-
-        for interface in self.getConnectedInterfaceList():
-            match_obj = IF_REGEXP.search(interface)
-            assert(match_obj)
-            (source_type, source_slot, source_port) = match_obj.group(1,2,3)
-            source_slot = int(source_slot)
-            source_port = int(source_port)
-                
-            (destnode, destinterface)  = self.getConnectedNeighbor(interface)
-            match_if = IF_REGEXP.search(destinterface)
-            match_port = PORT_REGEXP.search(destinterface)
-            if match_if:
-                (dest_type, dest_slot, dest_port) = match_if.group(1,2,3)
-                dest_slot = int(dest_slot)
-                dest_port = int(dest_port)
-                destination = destnode.dev.slot[dest_slot]
-            if match_port:
-                dest_port = int(destinterface)
-                destination = destnode.dev
-                if destnode.dev.adapter ==  'ETHSW' or destnode.dev.adapter ==  'Bridge':
-                    dest_type = 'f'       # Ethernet switches and hubs are FastEthernets (for our purposes anyway)
-                elif destnode.dev.adapter ==  'FRSW':
-                    dest_type = 's'       # Frame Relays switches are Serials
-                elif destnode.dev.adapter ==  'ATMSW':
-                    dest_type = 'a'       # And ATM switches are, well, ATM interfaces
-                else:
-                    assert('Not type for destination port')
-
-            if match_if or match_port:
-                if self.dev.slot[source_slot] != None and self.dev.slot[source_slot].connected(source_port) == False:
-#                    print 'source = ' + str(source_port) + '/' + str(source_slot)
-#                    print  'hypervisor ' + str(destnode.getHypervisor().port) + ' with UDP ' + str(destnode.getHypervisor().udp)
-#                    print destnode.hostname + ' port ' + str(dest_port)
-                    self.dev.slot[source_slot].connect(source_type,  source_port, destnode.getHypervisor(), destination, dest_type,  dest_port)
-            elif destinterface.lower()[:3] == 'nio':
-                self.dev.slot[source_slot].nio(source_port, nio=self.createNIO(self.getHypervisor(),  destinterface))
+#    def configConnections(self):
+#        """ Connections configuration
+#        """
+#        
+#        if self.dev == None:
+#            return
+#
+#        for interface in self.getConnectedInterfaceList():
+#            match_obj = IF_REGEXP.search(interface)
+#            assert(match_obj)
+#            (source_type, source_slot, source_port) = match_obj.group(1,2,3)
+#            source_slot = int(source_slot)
+#            source_port = int(source_port)
+#                
+#            (destnode, destinterface)  = self.getConnectedNeighbor(interface)
+#            match_if = IF_REGEXP.search(destinterface)
+#            match_port = PORT_REGEXP.search(destinterface)
+#            if match_if:
+#                (dest_type, dest_slot, dest_port) = match_if.group(1,2,3)
+#                dest_slot = int(dest_slot)
+#                dest_port = int(dest_port)
+#                destination = destnode.dev.slot[dest_slot]
+#            if match_port:
+#                dest_port = int(destinterface)
+#                destination = destnode.dev
+#                if destnode.dev.adapter ==  'ETHSW' or destnode.dev.adapter ==  'Bridge':
+#                    dest_type = 'f'       # Ethernet switches and hubs are FastEthernets (for our purposes anyway)
+#                elif destnode.dev.adapter ==  'FRSW':
+#                    dest_type = 's'       # Frame Relays switches are Serials
+#                elif destnode.dev.adapter ==  'ATMSW':
+#                    dest_type = 'a'       # And ATM switches are, well, ATM interfaces
+#                else:
+#                    assert('Not type for destination port')
+#
+#            if match_if or match_port:
+#                if self.dev.slot[source_slot] != None and self.dev.slot[source_slot].connected(source_port) == False:
+##                    print 'source = ' + str(source_port) + '/' + str(source_slot)
+##                    print  'hypervisor ' + str(destnode.getHypervisor().port) + ' with UDP ' + str(destnode.getHypervisor().udp)
+##                    print destnode.hostname + ' port ' + str(dest_port)
+#                    self.dev.slot[source_slot].connect(source_type,  source_port, destnode.getHypervisor(), destination, dest_type,  dest_port)
+#            elif destinterface.lower()[:3] == 'nio':
+#                self.dev.slot[source_slot].nio(source_port, nio=self.createNIO(self.getHypervisor(),  destinterface))
             
     def startNode(self, progress=False):
         """ Start/Resume the node

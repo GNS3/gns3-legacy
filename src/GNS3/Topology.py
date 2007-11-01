@@ -26,12 +26,13 @@ import GNS3.Dynagen.dynamips_lib as lib
 from GNS3.Link.Ethernet import Ethernet
 from GNS3.Link.Serial import Serial
 import GNS3.Globals as globals
-import GNS3.Node.IOSRouter as IOSRouter
-import GNS3.Node.ATMSW as ATMSW
-import GNS3.Node.ETHSW as ETHSW
-import GNS3.Node.FRSW as FRSW
-import GNS3.Node.Hub as Hub
-import GNS3.Node.Cloud as Cloud
+from GNS3.Node.IOSRouter import IOSRouter
+from GNS3.Node.ATMSW import ATMSW
+from GNS3.Node.ETHSW import ETHSW
+from GNS3.Node.FRSW import FRSW
+from GNS3.Node.Hub import Hub
+from GNS3.Node.Cloud import Cloud
+
 
 class Topology(QtGui.QGraphicsScene):
     """ Topology class
@@ -75,7 +76,7 @@ class Topology(QtGui.QGraphicsScene):
 
         if len(globals.GApp.iosimages.keys()) == 0:
             # No IOS images configured, users have to register an IOS
-            QtGui.QMessageBox.warning(self, translate("Topology", "IOS image"), translate("Topology", "Please register at least one IOS image"))
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), translate("Topology", "Please register at least one IOS image"))
             #self.__action_IOSImages()
             return
 
@@ -87,15 +88,18 @@ class Topology(QtGui.QGraphicsScene):
             image = globals.GApp.iosimages[node.config.image]
             if image.hypervisor_host == '':
                 useHypervisorManager = True
-#        elif type(node) != Cloud and node.config.hypervisor_host == '':
-#            self.useHypervisorManager = True
+        elif type(node) != Cloud and node.config.hypervisor_host == '':
+            self.useHypervisorManager = True
             
         if useHypervisorManager:
 
             if globals.GApp.systconf['dynamips'].path == '':
-                QtGui.QMessageBox.warning(self, translate("Topology", "Hypervisor"), translate("Topology", "Please configure the path to Dynamips"))
+                QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Hypervisor"), translate("Topology", "Please configure the path to Dynamips"))
                 #self.__action_Preferences()
                 return
+            globals.HypervisorManager.allocateHypervisor(node)
+        else:
+            node.configHypervisor('localhost',  7200, '/tmp')
 
         # connect signals (received by the Scene)
         QtCore.QObject.connect(node,
@@ -104,8 +108,6 @@ class Topology(QtGui.QGraphicsScene):
             QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
 
         self.__nodes[node.id] = node
-        #FIXME: temp
-        node.configHypervisor('localhost',  7200, '/tmp')
         self.addItem(node)
         
         try:
@@ -160,12 +162,11 @@ class Topology(QtGui.QGraphicsScene):
             # by default use an ethernet link
             link = Ethernet(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif)
 
-        #TODO: move this in AbstractEdge ?
         srcdev = self.__nodes[srcid].dev
         dstdev = self.__nodes[dstid].dev
         if srcdev == IOSRouter:
             globals.GApp.dynagen.connect(srcdev, srcif, dstdev.name + ' ' + dstif)
-        else:
+        elif dstdev == IOSRouter:
             globals.GApp.dynagen.connect(dstdev, dstif, srcdev.name + ' ' + srcif)
 
         self.__links.add(link)
@@ -177,6 +178,14 @@ class Topology(QtGui.QGraphicsScene):
     
         link.source.deleteEdge(link)
         link.dest.deleteEdge(link)
+        
+        srcdev = link.source.dev
+        dstdev = link.dest.dev
+        if srcdev == IOSRouter:
+            globals.GApp.dynagen.disconnect(srcdev, srcif, dstdev.name + ' ' + dstif)
+        elif dstdev == IOSRouter:
+            globals.GApp.dynagen.disconnect(dstdev, dstif, srcdev.name + ' ' + srcif)
+
         if link in self.__links:
             self.__links.remove(link)
             self.removeItem(link)
