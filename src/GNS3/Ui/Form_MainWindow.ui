@@ -132,7 +132,6 @@
    <addaction name="action_SaveAs" />
    <addaction name="separator" />
    <addaction name="action_ShowHostnames" />
-   <addaction name="action_SwitchMode" />
   </widget>
   <widget class="QDockWidget" name="dockWidget_NodeTypes" >
    <property name="allowedAreas" >
@@ -389,14 +388,6 @@
    </property>
    <property name="statusTip" >
     <string>Add a link</string>
-   </property>
-  </action>
-  <action name="action_SwitchMode" >
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/view-refresh.svg</iconset>
-   </property>
-   <property name="text" >
-    <string>Emulation Mode</string>
    </property>
   </action>
   <action name="action_IOS_images" >

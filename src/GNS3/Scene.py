@@ -84,56 +84,54 @@ class Scene(QtGui.QGraphicsView):
             return
 
         menu = QtGui.QMenu()
-        if globals.GApp.workspace.currentMode == globals.Enum.Mode.Design:
         
-            # Action: Delete (Delete the node)
-            deleteAct = QtGui.QAction(translate('Scene', 'Delete'), menu)
-            deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
-            self.connect(deleteAct, QtCore.SIGNAL('triggered()'), self.slotDeleteNode)
-            
-            # Action: Configure (Configure the node)
-            configAct = QtGui.QAction(translate('Scene', 'Configure'), menu)
-            configAct.setIcon(QtGui.QIcon(":/icons/configuration.svg"))
-            self.connect(configAct, QtCore.SIGNAL('triggered()'), self.slotConfigNode)
-            
-            # Action: ChangeHostname (Change the hostname)
-            changeHostnameAct = QtGui.QAction(translate('Scene', 'Change hostname'), menu)
-            changeHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
-            self.connect(changeHostnameAct, QtCore.SIGNAL('triggered()'), self.slotChangeHostname)
-
-            # actions for design mode
-            menu.addAction(configAct)
-            menu.addAction(deleteAct)
-            menu.addAction(changeHostnameAct)
-        else:
-
-            types = map(type,  items)
-            if IOSRouter in types:
-
-                # Action: Console (Connect to the node console)
-                consoleAct = QtGui.QAction(translate('Scene', 'Console'), menu)
-                consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
-                self.connect(consoleAct, QtCore.SIGNAL('triggered()'), self.slotConsole)
+        # Action: Delete (Delete the node)
+        deleteAct = QtGui.QAction(translate('Scene', 'Delete'), menu)
+        deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
+        self.connect(deleteAct, QtCore.SIGNAL('triggered()'), self.slotDeleteNode)
         
-                # Action: Start (Start IOS on hypervisor)
-                startAct = QtGui.QAction(translate('Scene', 'Start'), menu)
-                startAct.setIcon(QtGui.QIcon(':/icons/play.svg'))
-                self.connect(startAct, QtCore.SIGNAL('triggered()'), self.slotStartNode)
+        # Action: Configure (Configure the node)
+        configAct = QtGui.QAction(translate('Scene', 'Configure'), menu)
+        configAct.setIcon(QtGui.QIcon(":/icons/configuration.svg"))
+        self.connect(configAct, QtCore.SIGNAL('triggered()'), self.slotConfigNode)
         
-                # Action: Stop (Stop IOS on hypervisor)
-                stopAct = QtGui.QAction(translate('Scene', 'Stop'), menu)
-                stopAct.setIcon(QtGui.QIcon(':/icons/stop.svg'))
-                self.connect(stopAct, QtCore.SIGNAL('triggered()'), self.slotStopNode)
-                
-                # Action: Suspend (Suspend IOS on hypervisor)
-                suspendAct = QtGui.QAction(translate('Scene', 'Suspend'), menu)
-                suspendAct.setIcon(QtGui.QIcon(':/icons/pause.svg'))
-                self.connect(suspendAct, QtCore.SIGNAL('triggered()'), self.slotSuspendNode)
+        # Action: ChangeHostname (Change the hostname)
+        changeHostnameAct = QtGui.QAction(translate('Scene', 'Change hostname'), menu)
+        changeHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
+        self.connect(changeHostnameAct, QtCore.SIGNAL('triggered()'), self.slotChangeHostname)
+
+        # actions for design mode
+        menu.addAction(configAct)
+        menu.addAction(deleteAct)
+        menu.addAction(changeHostnameAct)
+
+        types = map(type,  items)
+        if IOSRouter in types:
+
+            # Action: Console (Connect to the node console)
+            consoleAct = QtGui.QAction(translate('Scene', 'Console'), menu)
+            consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
+            self.connect(consoleAct, QtCore.SIGNAL('triggered()'), self.slotConsole)
+    
+            # Action: Start (Start IOS on hypervisor)
+            startAct = QtGui.QAction(translate('Scene', 'Start'), menu)
+            startAct.setIcon(QtGui.QIcon(':/icons/play.svg'))
+            self.connect(startAct, QtCore.SIGNAL('triggered()'), self.slotStartNode)
+    
+            # Action: Stop (Stop IOS on hypervisor)
+            stopAct = QtGui.QAction(translate('Scene', 'Stop'), menu)
+            stopAct.setIcon(QtGui.QIcon(':/icons/stop.svg'))
+            self.connect(stopAct, QtCore.SIGNAL('triggered()'), self.slotStopNode)
             
-                menu.addAction(consoleAct)
-                menu.addAction(startAct)
-                menu.addAction(suspendAct)
-                menu.addAction(stopAct)
+            # Action: Suspend (Suspend IOS on hypervisor)
+            suspendAct = QtGui.QAction(translate('Scene', 'Suspend'), menu)
+            suspendAct.setIcon(QtGui.QIcon(':/icons/pause.svg'))
+            self.connect(suspendAct, QtCore.SIGNAL('triggered()'), self.slotSuspendNode)
+        
+            menu.addAction(consoleAct)
+            menu.addAction(startAct)
+            menu.addAction(suspendAct)
+            menu.addAction(stopAct)
    
 
         # Action: ShowHostname (Display the hostname)
@@ -419,7 +417,7 @@ class Scene(QtGui.QGraphicsView):
 
     def mouseDoubleClickEvent(self, event):
     
-        if  not globals.addingLinkFlag and globals.GApp.workspace.currentMode == globals.Enum.Mode.Design:
+        if  not globals.addingLinkFlag:
             item = self.itemAt(event.pos())
             if item:
                 item.setSelected(True)

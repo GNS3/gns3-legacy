@@ -158,6 +158,11 @@ class IOSRouter(AbstractNode):
         self.setDefaultIOSImage()
         self.platform = ''
         
+    def __del__(self):
+    
+        if self.dev != None:
+            self.dev.delete()
+        
     def getDefaultConfig(self):
         """ Returns the default configuration
         """
@@ -277,16 +282,15 @@ class IOSRouter(AbstractNode):
             else:
                 print 'Hypervisor ' + hypervisorkey + ' not registered !'
                 return
-        
-        hypervisor = self.getHypervisor()
 
-        # delete lock file to prevent an error from Dynamips
-        workingdir = hypervisor.workingdir[1:-1]
-        lock = workingdir + '/c' + self.platform + '_' + self.hostname + '_lock'
-        path = os.path.abspath(lock)
-        if os.path.isfile(path): 
-            os.remove(path)
-        
+        hypervisor = self.getHypervisor()
+#        # delete lock file to prevent an error from Dynamips
+#        workingdir = hypervisor.workingdir[1:-1]
+#        lock = workingdir + '/c' + self.platform + '_' + self.hostname + '_lock'
+#        path = os.path.abspath(lock)
+#        if os.path.isfile(path): 
+#            os.remove(path)
+#        
         #ROUTERS
         if platform == '7200':
             self.dev = ROUTERS[platform](hypervisor, name = self.hostname)
@@ -298,29 +302,18 @@ class IOSRouter(AbstractNode):
             self.dev = ROUTERS[platform](hypervisor, chassis = chassis, name = self.hostname)
             self.platform = platform
 
-        self.dev.image = '"' + filename + '"'
+        self.dev.image = filename
         if idlepc:
             self.dev.idlepc = idlepc
 #        else:
 #            self.dev.idlepc = '0x60483ae4'
 
-        if self.config.console:
-            self.dev.console = self.config.console
-        if self.config.cnfg != '':
-            self.dev.cnfg = '"' + self.config.cnfg + '"'
-        if self.config.mac != '':
-            self.dev.mac = self.config.mac
-        self.dev.ram = self.config.ram
-        self.dev.rom = self.config.rom
-        self.dev.nvram = self.config.nvram
-        if self.config.disk0 > 0:
-            self.dev.disk0 = self.config.disk0
-        if self.config.disk1 > 0:
-            self.dev.disk1 = self.config.disk1
-        self.dev.mmap = self.config.mmap
-        if self.config.confreg != '':
-            self.dev.conf = self.config.confreg
-        self.dev.exec_area = self.config.execarea
+        #FIXME: confreg
+        properties = ('console', 'cnfg', 'mac', 'ram', 'nvram', 'disk0', 'disk1', 'mmap', 'exec_area')
+        for property in properties:
+            value = getattr(self.dev, property)
+            if value != None:
+                setattr(self.config, property, value)
         
         if platform == '3600':
             pass
@@ -334,11 +327,11 @@ class IOSRouter(AbstractNode):
             self.configSlot(slotnb, module)
             slotnb += 1
 
-        self.sparsemem = True
+        #self.sparsemem = True
         # register into Dynagen
-        dynagen.devices[self.hostname] = self.dev
-        dynagen.ghosteddevices[self.hostname] = True
-        dynagen.ghostsizes[self.hostname] = None
+        globals.GApp.dynagen.devices[self.hostname] = self.dev
+#        dynagen.ghosteddevices[self.hostname] = True
+#        dynagen.ghostsizes[self.hostname] = None
         
     def configSlot(self, slotnb, module):
         """ Add an new module into a slot

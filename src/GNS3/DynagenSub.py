@@ -33,6 +33,7 @@ class DynagenSub(dynagen.Dynagen):
     def __init__(self):
 
         self.original_config = {}
+        dynagen.Dynagen.__init__(self)
     
     def open_config(self,  FILENAME):
         """ Open the config file

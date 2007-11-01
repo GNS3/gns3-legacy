@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.1.dtd">
 <!-- eric4 project file for project GNS3 -->
-<!-- Saved: 2007-10-14, 20:07:17 -->
+<!-- Saved: 2007-11-01, 16:16:29 -->
 <!-- Copyright (C) 2007 GNS3 Dev Team, contact@gns3.net -->
 <Project version="4.1">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -444,6 +444,12 @@
       <Dir>GNS3</Dir>
       <Dir>Dynagen</Dir>
       <Name>pemu_lib.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Dynagen</Dir>
+      <Name>confConsole.py</Name>
     </Source>
   </Sources>
   <Forms>

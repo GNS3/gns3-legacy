@@ -38,34 +38,23 @@ import GNS3.Globals as globals
 # where the topology files are stored
 topologiesDirectory = '.'
 
-__statesDefaults = {
-    'design_mode': {
-        'nodesDock': True,
-    },
-    'emulation_mode': {
-        'summaryDock': True,
-    }
-}
-
 class Workspace(QMainWindow, Ui_MainWindow):
     """ This class is for managing the whole GUI `Workspace'.
         Currently a Workspace is similar to a MainWindow
     """
 
     def __init__(self, projType=None, projFile=None):
+        
         # Initialize some variables
-        self.currentMode = None
-        self.previousMode = None
         self.projectType = projType
         self.projectFile = projFile
 
         # Initialize the windows 
         QMainWindow.__init__(self)
-        self.__createActions()
+        self.submenu_Docks = QtGui.QMenu()
         Ui_MainWindow.setupUi(self, self)
         self.__createMenus()
         self.__connectActions()
-        self.__initModeSwitching()
         self.setCorner(QtCore.Qt.TopLeftCorner, QtCore.Qt.LeftDockWidgetArea)
         self.setCorner(QtCore.Qt.BottomLeftCorner, QtCore.Qt.LeftDockWidgetArea)
         self.setCorner(QtCore.Qt.TopRightCorner, QtCore.Qt.RightDockWidgetArea)
@@ -73,76 +62,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # Workspace flags
         self.flg_showHostname = False
-
-        # Force text to be shown for switchMode action
-        swWidget = self.toolBar_General.widgetForAction(self.action_SwitchMode)
-        swWidget.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
-
         self.useHypervisorManager = False
-        # Switch to default mode
-        self.switchToMode_Design()
-        
-    def __initModeSwitching(self):
-        """ Initialize the action dictionnary for GUI mode switching
-        """
-
-        self.__switchModeActions = {
-            # Design Mode
-            globals.Enum.Mode.Design: {
-                'docks_enable': {
-                    '1': self.dockWidget_NodeTypes, 
-                    '2': self.dockWidget_Console
-                },
-                'docks_disable': {
-                    '1': self.dockWidget_TopoSum,
-                },
-                'toolbars_enable': {
-                    '1': self.toolBar_General,
-                    '2': self.toolBar_Design
-                },
-                'toolbars_disable' : {
-                    '1': self.toolBar_Emulation
-                }
-            },
-
-            # Emulation Mode
-            globals.Enum.Mode.Emulation: {
-                'docks_enable': {
-                    '1': self.dockWidget_TopoSum,
-                    '2': self.dockWidget_Console
-                },
-                'docks_disable': {
-                    '1': self.dockWidget_NodeTypes,
-                },
-                'toolbars_enable': {
-                    '1': self.toolBar_General,
-                    '2': self.toolBar_Emulation
-                },
-                'toolbars_disable': {
-                    '1': self.toolBar_Design
-                }
-            }
-            }
-
-    def __createActions(self):
-        """ Add own custom action not providen by Ui_MainWindow
-        """
-        # action for switch between `GUI Modes'
-        self.action_swModeDesign = QAction(self)
-        self.action_swModeDesign.setObjectName("action_swModeDesign")
-        self.action_swModeDesign.setCheckable(True)
-        self.action_swModeEmulation = QAction(self)
-        self.action_swModeEmulation.setObjectName("action_swModeEmulation")
-        self.action_swModeEmulation.setCheckable(True)
-        self.actgrp_swMode = QActionGroup(self)
-        self.actgrp_swMode.addAction(self.action_swModeDesign)
-        self.actgrp_swMode.addAction(self.action_swModeEmulation)
-        self.action_swModeDesign.setChecked(True) # check default mode
-
-        # Docks sub-menu
-        self.submenu_Docks = QtGui.QMenu()
-        # Toolbars sub-menu
-        self.submenu_Toolbars = QtGui.QMenu()
 
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)
@@ -154,14 +74,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__action_addLink)
         self.connect(self.action_IOS_images, QtCore.SIGNAL('triggered()'),
             self.__action_IOSImages)
-        self.connect(self.action_SwitchMode, QtCore.SIGNAL('triggered()'),
-            self.__action_SwitchMode)
         self.connect(self.action_ShowHostnames, QtCore.SIGNAL('triggered()'),
             self.__action_ShowHostnames)
-        self.connect(self.action_swModeDesign, QtCore.SIGNAL('triggered()'),
-            self.switchToMode_Design)
-        self.connect(self.action_swModeEmulation, QtCore.SIGNAL('triggered()'),
-            self.switchToMode_Emulation)
         self.connect(self.action_ZoomIn, QtCore.SIGNAL('triggered()'),
             self.__action_ZoomIn)
         self.connect(self.action_ZoomOut, QtCore.SIGNAL('triggered()'),
@@ -203,26 +117,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.subm.addAction(self.dockWidget_NodeTypes.toggleViewAction())
         self.subm.addAction(self.dockWidget_TopoSum.toggleViewAction())
         self.subm.addAction(self.dockWidget_Console.toggleViewAction())
-
-        self.subm = self.submenu_Toolbars
-        self.subm.addAction(self.toolBar_General.toggleViewAction())
-        self.subm.addAction(self.toolBar_Design.toggleViewAction())
-        self.subm.addAction(self.toolBar_Emulation.toggleViewAction())
-
-        self.menu_View.insertActions(self.action_ZoomIn,
-            self.actgrp_swMode.actions())
-        self.menu_View.insertSeparator(self.action_ZoomIn)
         self.menu_View.addSeparator().setText(translate("Workspace", "Docks"))
-        self.menu_View.addMenu(self.submenu_Docks)
-        self.menu_View.addMenu(self.submenu_Toolbars)
+        self.menu_View.addMenu(self.subm)
 
     def retranslateUi(self, MainWindow):
     
         Ui_MainWindow.retranslateUi(self, MainWindow)
         self.submenu_Docks.setTitle(translate('Workspace', 'Docks'))
-        self.submenu_Toolbars.setTitle(translate('Workspace', 'Toolbars'))
-        self.action_swModeDesign.setText(translate('Workspace', '&Design Mode'))
-        self.action_swModeEmulation.setText(translate('Workspace', '&Emulation Mode'))
 
         # Retranslate dock contents...
         try:
@@ -232,63 +133,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
             # Ignore if not implemented
             pass
 
-    #-------------------------------------------------------------------------
-
-    def __getNextModeId(self):
-        """ Return the next GUI mode.
-
-        - The function won't return mode which switch action `action_swMode*'
-        are disabled
-        - If none mode available, return current mode
-        """
-        count = 3   # Force number of modes
-        idx = globals.modesIds.index(self.currentMode)
-        idx_next = (idx + 1) % count
-
-        while idx_next != idx:
-            if idx_next == globals.Enum.Mode.Design:
-                if self.action_swModeDesign.isEnabled():
-                    return idx_next
-            if idx_next == globals.Enum.Mode.Emulation:
-                if self.action_swModeEmulation.isEnabled():
-                    return idx_next
-            idx_next = (idx_next + 1) % 3
-        # if they no more avaible mode (`enabled'), return the currentMode
-        return self.currentMode
-
-    def __getNextModeName(self):
-        """ Return the name of the next GUI mode.
-        """
-        idx = self.__getNextModeId()
-        return globals.modesNames[idx]
-
-    def __switchToMode(self, id):
-        """ Update the workspace for the given mode.
-
-        - Show/Hide toolbar and docks depending of the mode to switch to.
-        """
-        # Set previous mode, if None: force Design mode
-        self.previousMode = self.currentMode
-        if self.previousMode is None:
-            self.previousMode = globals.Enum.Mode.Design
-        # Set current mode
-        self.currentMode = id
-        # Update switchMode button
-        nextMode_name = self.__getNextModeName()
-        self.action_SwitchMode.setText(translate('Workspace', nextMode_name))
-        # Update workspace (docks, toolbars...)
-        for v in self.__switchModeActions[id]['docks_enable'].itervalues():
-            v.setVisible(True)
-            v.toggleViewAction().setEnabled(True)
-        for v in self.__switchModeActions[id]['docks_disable'].itervalues():
-            v.setVisible(False)
-            v.toggleViewAction().setEnabled(False)
-        for v in self.__switchModeActions[id]['toolbars_enable'].itervalues():
-            v.setEnabled(True)
-        for v in self.__switchModeActions[id]['toolbars_disable'].itervalues():
-            v.setEnabled(False)
-
-            
     def __export(self, name, format):
         """ Export the view to an image
         """
@@ -324,115 +168,115 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if projectFile is None:
             self.mainWindow.setWindowTitle(translate("Workspace", "GNS3 - New Project"))
 
-    def cleanNodeStates(self):
-        """ Shutdown the interfaces and hypervisors
-        """
-        for node in globals.GApp.topology.nodes.itervalues():
-            node.shutdownInterfaces()
-            node.closeHypervisor()
-  
-    def switchToMode_Design(self):
-        """ Function called to switch to mode `Design'
-        """
+#    def cleanNodeStates(self):
+#        """ Shutdown the interfaces and hypervisors
+#        """
+#        for node in globals.GApp.topology.nodes.itervalues():
+#            node.shutdownInterfaces()
+#            node.closeHypervisor()
+#  
+#    def switchToMode_Design(self):
+#        """ Function called to switch to mode `Design'
+#        """
+#
+#        # disabled the console
+#        self.textEditConsole.setEnabled(False)
+#        try:
+#                try:
+#                    for node in globals.GApp.topology.nodes.itervalues():
+#                        node.resetNode()
+#                        if type(node) == IOSRouter:
+#                            node.cleanNodeFiles()
+#                except (lib.DynamipsErrorHandled,  socket.error):
+#                    pass
+#        finally:
+#            self.cleanNodeStates()
+#
+#        if globals.HypervisorManager != None and self.useHypervisorManager:
+#            globals.HypervisorManager.stopProcHypervisors()
+#
+#        self.__switchToMode(globals.Enum.Mode.Design)
+#        self.action_swModeDesign.setChecked(True)
+#        self.statusbar.showMessage(translate("Workspace", "Design Mode"))
 
-        # disabled the console
-        self.textEditConsole.setEnabled(False)
-        try:
-                try:
-                    for node in globals.GApp.topology.nodes.itervalues():
-                        node.resetNode()
-                        if type(node) == IOSRouter:
-                            node.cleanNodeFiles()
-                except (lib.DynamipsErrorHandled,  socket.error):
-                    pass
-        finally:
-            self.cleanNodeStates()
-
-        if globals.HypervisorManager != None and self.useHypervisorManager:
-            globals.HypervisorManager.stopProcHypervisors()
-
-        self.__switchToMode(globals.Enum.Mode.Design)
-        self.action_swModeDesign.setChecked(True)
-        self.statusbar.showMessage(translate("Workspace", "Design Mode"))
-
-    def __restoreButtonState(self):
-        """ Restore button state if can't continue when switching to emulation mode
-        """
-    
-        if self.previousMode == globals.Enum.Mode.Design:
-            self.action_swModeDesign.setChecked(True)
-        if globals.HypervisorManager != None and self.useHypervisorManager:
-            globals.HypervisorManager.stopProcHypervisors()
+#    def __restoreButtonState(self):
+#        """ Restore button state if can't continue when switching to emulation mode
+#        """
+#    
+#        if self.previousMode == globals.Enum.Mode.Design:
+#            self.action_swModeDesign.setChecked(True)
+#        if globals.HypervisorManager != None and self.useHypervisorManager:
+#            globals.HypervisorManager.stopProcHypervisors()
             
-    def switchToMode_Emulation(self):
-        """ Function called to switch to mode `Emulation'
-        """
-
-        if len(globals.GApp.iosimages.keys()) == 0:
-            # No IOS images configured, users have to register an IOS before going into emulation mode
-            QtGui.QMessageBox.warning(self, translate("Workspace", "Emulation Mode"), translate("Workspace", "Please register at least one IOS image"))
-            self.__action_IOSImages()
-            self.__restoreButtonState()
-            return
-
-        self.useHypervisorManager = False
-        for node in globals.GApp.topology.nodes.itervalues():
-            if type(node) == IOSRouter and not node.config.image:
-                node.setDefaultIOSImage()
-            if type(node) == IOSRouter:
-                image = globals.GApp.iosimages[node.config.image]
-                if image.hypervisor_host == '':
-                    self.useHypervisorManager = True
-            elif type(node) != Cloud and node.config.hypervisor_host == '':
-                self.useHypervisorManager = True
-            
-        if self.useHypervisorManager:
-
-            if globals.GApp.systconf['dynamips'].path == '':
-                QtGui.QMessageBox.warning(self, translate("Workspace", "Emulation Mode"), translate("Workspace", "Please configure the path to Dynamips"))
-                self.__action_Preferences()
-                self.__restoreButtonState()
-                return
-
-            # hypervisor not started, so don't try to continue
-            if globals.HypervisorManager != None and globals.HypervisorManager.startProcHypervisors() == False:
-                self.__restoreButtonState()
-                return
-        try:
-            for node in globals.GApp.topology.nodes.itervalues():
-                node.configNode()
-            for node in globals.GApp.topology.nodes.itervalues():
-                if type(node) == IOSRouter:
-                    node.configConnections()
-        except (lib.DynamipsVerError, lib.DynamipsError), msg:
-            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"),  str(msg))
-            self.cleanNodeStates()
-            self.__restoreButtonState()
-            return
-        except (lib.DynamipsErrorHandled,  socket.error):
-            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
-            self.cleanNodeStates()
-            self.__restoreButtonState()
-            return
-
-        self.__switchToMode(globals.Enum.Mode.Emulation)
-        self.action_swModeEmulation.setChecked(True)
-        self.statusbar.showMessage(translate("Workspace", "Emulation Mode"))
-        self.action_Add_link.setChecked(False)
-        self.__action_addLink()
-        self.treeWidget_TopologySummary.emulationMode()
-        self.__startNonIOSNodes()
-        try:
-            globals.GApp.dynagen.apply_idlepc()
-            if globals.useIOSghosting:
-                globals.GApp.dynagen.ghosting()
-        except:
-            self.cleanNodeStates()
-            self.__restoreButtonState()
-            self.switchToMode_Design()
-            return
-        # enable the console
-        self.textEditConsole.setEnabled(True)
+#    def switchToMode_Emulation(self):
+#        """ Function called to switch to mode `Emulation'
+#        """
+#
+#        if len(globals.GApp.iosimages.keys()) == 0:
+#            # No IOS images configured, users have to register an IOS before going into emulation mode
+#            QtGui.QMessageBox.warning(self, translate("Workspace", "Emulation Mode"), translate("Workspace", "Please register at least one IOS image"))
+#            self.__action_IOSImages()
+#            self.__restoreButtonState()
+#            return
+#
+#        self.useHypervisorManager = False
+#        for node in globals.GApp.topology.nodes.itervalues():
+#            if type(node) == IOSRouter and not node.config.image:
+#                node.setDefaultIOSImage()
+#            if type(node) == IOSRouter:
+#                image = globals.GApp.iosimages[node.config.image]
+#                if image.hypervisor_host == '':
+#                    self.useHypervisorManager = True
+#            elif type(node) != Cloud and node.config.hypervisor_host == '':
+#                self.useHypervisorManager = True
+#            
+#        if self.useHypervisorManager:
+#
+#            if globals.GApp.systconf['dynamips'].path == '':
+#                QtGui.QMessageBox.warning(self, translate("Workspace", "Emulation Mode"), translate("Workspace", "Please configure the path to Dynamips"))
+#                self.__action_Preferences()
+#                self.__restoreButtonState()
+#                return
+#
+#            # hypervisor not started, so don't try to continue
+#            if globals.HypervisorManager != None and globals.HypervisorManager.startProcHypervisors() == False:
+#                self.__restoreButtonState()
+#                return
+#        try:
+#            for node in globals.GApp.topology.nodes.itervalues():
+#                node.configNode()
+#            for node in globals.GApp.topology.nodes.itervalues():
+#                if type(node) == IOSRouter:
+#                    node.configConnections()
+#        except (lib.DynamipsVerError, lib.DynamipsError), msg:
+#            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"),  str(msg))
+#            self.cleanNodeStates()
+#            self.__restoreButtonState()
+#            return
+#        except (lib.DynamipsErrorHandled,  socket.error):
+#            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
+#            self.cleanNodeStates()
+#            self.__restoreButtonState()
+#            return
+#
+#        self.__switchToMode(globals.Enum.Mode.Emulation)
+#        self.action_swModeEmulation.setChecked(True)
+#        self.statusbar.showMessage(translate("Workspace", "Emulation Mode"))
+#        self.action_Add_link.setChecked(False)
+#        self.__action_addLink()
+#        self.treeWidget_TopologySummary.emulationMode()
+#        self.__startNonIOSNodes()
+#        try:
+#            globals.GApp.dynagen.apply_idlepc()
+#            if globals.useIOSghosting:
+#                globals.GApp.dynagen.ghosting()
+#        except:
+#            self.cleanNodeStates()
+#            self.__restoreButtonState()
+#            self.switchToMode_Design()
+#            return
+#        # enable the console
+#        self.textEditConsole.setEnabled(True)
 
     #-----------------------------------------------------------------------
 
@@ -466,7 +310,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
         
         ctx = 'Workspace'
-
         if not self.action_Add_link.isChecked():
             self.action_Add_link.setText(translate(ctx, 'Add a link'))
             self.action_Add_link.setIcon(QIcon(':/icons/connection.svg'))
@@ -501,23 +344,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
           - Add / Edit / Delete hypervisors
         """
 
-        if self.currentMode != globals.Enum.Mode.Design:
-            QtGui.QMessageBox.warning(self, translate("Workspace", "IOS images"),  translate("Workspace", "You must be in design mode"))
-            return
         dialog = IOSDialog()
         dialog.setModal(True)
         dialog.show()
         dialog.exec_()
-        
-    def __action_SwitchMode(self):
-        """ Implement the QAction `SwitchMode'
-        - Switch to the next GUI mode, and call the corresp. function
-        """
-        
-        switch = {
-            globals.Enum.Mode.Design: self.switchToMode_Design,
-            globals.Enum.Mode.Emulation: self.switchToMode_Emulation,
-        }[self.__getNextModeId()]()
 
     def __action_SelectAll(self):
         """ Implement the QAction `SelectAll'
@@ -687,10 +517,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_Preferences(self):
         """ Show the preferences dialog
         """
-        
-        if self.currentMode != globals.Enum.Mode.Design:
-            QtGui.QMessageBox.warning(self, translate("Workspace", "Preferences"),  translate("Workspace", "You must be in design mode"))
-            return
+
         dialog = PreferencesDialog()
         dialog.show()
         dialog.exec_()
@@ -723,10 +550,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         
         global topologiesDirectory 
 
-        if self.currentMode != globals.Enum.Mode.Design:
-            QtGui.QMessageBox.warning(self, translate("Workspace", "Open a file"),  translate("Workspace", "You must be in design mode"))
-            return
-            
         if globals.GApp.systconf['dynamips'].path == '':
             QtGui.QMessageBox.warning(self, translate("Workspace", "Open a file"), translate("Workspace", "The path to Dynamips must be configured"))
             self.__action_Preferences()
@@ -748,11 +571,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_Save(self):
         """ Save to a file (scenario or dynagen .NET format)
         """
-        
-        if self.currentMode != globals.Enum.Mode.Emulation:
-            QtGui.QMessageBox.warning(self, translate("Workspace", "Save"),  translate("Workspace", "You must be in emulation mode"))
-            return
-        
+
         if self.projectFile is None:
             return self.__action_SaveAs()
 
@@ -770,10 +589,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         global topologiesDirectory 
 
-        if self.currentMode != globals.Enum.Mode.Emulation:
-            QtGui.QMessageBox.warning(self, translate("Workspace", "Save as"),  translate("Workspace", "You must be in emulation mode"))
-            return
-        
         fb = fileBrowser(translate("Workspace", "Save Project As"), 
                                 filter='NET file (*.net);;All files (*.*)', directory=topologiesDirectory )
         (path, selected) = fb.getSaveFile()
