@@ -119,7 +119,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             event: QtGui.QGraphicsSceneMouseEvent instance
         """
 
-        if (event.button() == QtCore.Qt.RightButton) and globals.GApp.workspace.currentMode == globals.Enum.Mode.Design:
+        if (event.button() == QtCore.Qt.RightButton):
             menu = QtGui.QMenu()
             menu.addAction(QtGui.QIcon(':/icons/delete.svg'), translate("AbstractEdge", "delete"))
             menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.mousePressEvent_actions)

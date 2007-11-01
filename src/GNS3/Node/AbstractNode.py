@@ -23,7 +23,6 @@ import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Utils import translate
 import GNS3.Dynagen.dynamips_lib as lib
-import GNS3.Dynagen.dynagen as dynagen
 
 error = None
 
@@ -170,7 +169,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """
 
         key = event.key()
-        if key == QtCore.Qt.Key_Delete and globals.GApp.workspace.currentMode == globals.Enum.Mode.Design:
+        if key == QtCore.Qt.Key_Delete:
             self.__deleteAction()
         else:
             QtGui.QGraphicsItem.keyReleaseEvent(self, event)
@@ -344,17 +343,18 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """
 
         key = self.hypervisor_host + ':' + str(self.hypervisor_port)
-        if not dynagen.dynamips.has_key(key):
+        if not globals.GApp.dynagen.dynamips.has_key(key):
             #print 'connection to ' + self.hypervisor_host + ' ' + str(self.hypervisor_port)
-            dynagen.dynamips[key] = lib.Dynamips(self.hypervisor_host, self.hypervisor_port)
-            dynagen.dynamips[key].reset()
+            globals.GApp.dynagen.dynamips[key] = lib.Dynamips(self.hypervisor_host, self.hypervisor_port)
+            globals.GApp.dynagen.dynamips[key].reset()
             if self.baseUDP:
-                dynagen.dynamips[key].udp = self.baseUDP
+                globals.GApp.dynagen.dynamips[key].udp = self.baseUDP
             if self.baseConsole:
-                dynagen.dynamips[key].baseconsole = self.baseConsole
+                globals.GApp.dynagen.dynamips[key].baseconsole = self.baseConsole
             if self.hypervisor_wd:
-                dynagen.dynamips[key].workingdir = '"' + self.hypervisor_wd + '"'
-        return dynagen.dynamips[key]
+                globals.GApp.dynagen.dynamips[key].workingdir =  self.hypervisor_wd
+                #globals.GApp.dynagen.dynamips[key].workingdir = '"' + self.hypervisor_wd + '"'
+        return globals.GApp.dynagen.dynamips[key]
         
     def configHypervisor(self,  host,  port, workingdir = None,  baseudp = None,  baseconsole = None):
         """ Setup an hypervisor
@@ -376,29 +376,29 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         
         if self.hypervisor_host:
             key = self.hypervisor_host + ':' + str(self.hypervisor_port)
-            if dynagen.dynamips.has_key(key):
+            if globals.GApp.dynagen.dynamips.has_key(key):
                 try:
-                    dynagen.dynamips[key].close()
+                    globals.GApp.dynagen.dynamips[key].close()
                 except:
                     pass
-                del dynagen.dynamips[key]
+                del globals.GApp.dynagen.dynamips[key]
             self.hypervisor_host = None
             self.hypervisor_port = None
             self.baseUDP = None
             self.baseConsole = None
             
-    def resetNode(self):
-        """ Reset the node configuration
-        """
-
-        if self.dev != None:
-            self.dev.delete()
-            if dynagen.devices.has_key(self.hostname):
-                del dynagen.devices[self.hostname]
-            if dynagen.bridges.has_key(self.hostname):
-                del dynagen.bridges[self.hostname]
-            if dynagen.ghosteddevices.has_key(self.hostname):
-                del dynagen.ghosteddevices[self.hostname]
-            if dynagen.ghostsizes.has_key(self.hostname):
-                del dynagen.ghostsizes[self.hostname]
-            self.shutdownInterfaces()
+#    def resetNode(self):
+#        """ Reset the node configuration
+#        """
+#
+#        if self.dev != None:
+#            self.dev.delete()
+#            if dynagen.devices.has_key(self.hostname):
+#                del dynagen.devices[self.hostname]
+#            if dynagen.bridges.has_key(self.hostname):
+#                del dynagen.bridges[self.hostname]
+#            if dynagen.ghosteddevices.has_key(self.hostname):
+#                del dynagen.ghosteddevices[self.hostname]
+#            if dynagen.ghostsizes.has_key(self.hostname):
+#                del dynagen.ghostsizes[self.hostname]
+#            self.shutdownInterfaces()

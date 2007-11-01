@@ -22,6 +22,11 @@ Version 0.11.0
 * FS#217 - fixed the connect method for switches. Only effected 3rd party developers using the library, Dynagen does not use these methods.
 * FS#211 - Dynagen crash when specifying invalid port
 * 7200 instances now default to using a C7200-IO-2FE in slot 0 rather than a C7200-IO-FE. You can override this behaviour by specifying "slot0=PA-C7200-IO-FE".
+* pemuwrapper support, big thanks to Thomas Pani
+* confDynagen merge, done by Pavel Skovajsa
+* ATM bridge support
+* idlemax issue fixed
+
 
 Version 0.10.1
 * Accidentally only gave the NM-16ESW 15 interfaces.

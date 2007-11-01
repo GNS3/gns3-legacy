@@ -135,7 +135,6 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             IOSconfig = config
         else:
             IOSconfig = node.config
-        
         self.comboBoxIOS.clear()
         images = globals.GApp.iosimages.keys()
         self.comboBoxIOS.addItems(images)
@@ -146,7 +145,6 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         self.lineEditStartupConfig.setText(IOSconfig.cnfg)
         self.lineEditMAC.setText(IOSconfig.mac)
         self.spinBoxRamSize.setValue(IOSconfig.ram)
-        self.spinBoxRomSize.setValue(IOSconfig.rom)
         self.spinBoxNvramSize.setValue(IOSconfig.nvram)
         self.spinBoxPcmciaDisk0Size.setValue(IOSconfig.disk0)
         self.spinBoxPcmciaDisk1Size.setValue(IOSconfig.disk1)
@@ -155,7 +153,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         else:
             self.checkBoxMapped.setCheckState(QtCore.Qt.Unchecked)
         self.lineEditConfreg.setText(IOSconfig.confreg)
-        self.spinBoxExecArea.setValue(IOSconfig.execarea)
+        self.spinBoxExecArea.setValue(IOSconfig.exec_area)
         self.spinBoxIomem.setValue(IOSconfig.iomem)
         index = self.comboBoxMidplane.findText(IOSconfig.midplane)
         if index != -1:
@@ -182,7 +180,6 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         else:
             IOSconfig.mac = mac
         IOSconfig.ram = self.spinBoxRamSize.value()
-        IOSconfig.rom = self.spinBoxRomSize.value()
         IOSconfig.nvram = self.spinBoxNvramSize.value()
         IOSconfig.disk0 = self.spinBoxPcmciaDisk0Size.value()
         IOSconfig.disk1 = self.spinBoxPcmciaDisk1Size.value()
@@ -191,7 +188,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         else:
             IOSconfig.mmap = False
         IOSconfig.confreg = str(self.lineEditConfreg.text())
-        IOSconfig.execarea = self.spinBoxExecArea.value()
+        IOSconfig.exec_area = self.spinBoxExecArea.value()
         IOSconfig.iomem = self.spinBoxIomem.value()
         if str(self.comboBoxMidplane.currentText()):
             IOSconfig.midplane = str(self.comboBoxMidplane.currentText())

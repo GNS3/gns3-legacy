@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
 """
-dynamips_lib.py
+console.py
 Copyright (C) 2006  Greg Anuzelli
+contributions: Pavel Skovajsa
+
 Derived from recipe on ASPN Cookbook
 Recipe Author:   James Thiele, http://www.eskimo.com/~jet/python/examples/cmd/
 
@@ -19,13 +22,14 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 
-import os, cmd, time, re, StringIO, csv, base64
+import os
+import time
+import StringIO
+import csv
+import base64
 from dynamips_lib import DynamipsError, DynamipsWarning, IDLEPROPGET, IDLEPROPSHOW, IDLEPROPSET
 from configobj import ConfigObj
-
-interface_re = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)\/([0-9]+)$""",  re.IGNORECASE)     # Regex matching intefaces
-interface_noport_re = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)$""",  re.IGNORECASE)     # Regex matching intefaces with out a port (e.g. "f0")
-globaldebug = 0
+from confConsole import AbstractConsole, confHypervisorConsole, confConsole
 
 # determine if we are in the debugger
 try:
@@ -42,67 +46,122 @@ except ImportError:
     pass
 
 
-class Console(cmd.Cmd):
+class Console(AbstractConsole):
 
-    def __init__(self):
-        cmd.Cmd.__init__(self)
-        # Import the main namespace for use in this module
-        # Yes, normally this is bad mojo, but I'm doing this to provide the console
-        # access to the entire namespace in case the user wants to futz with stuff
-        import __main__
-        self.namespace = __main__
-        debuglevel = self.namespace.debuglevel
+    """Interactive console for users to manage dynamips"""
+
+    def __init__(self, dynagen):
+        AbstractConsole.__init__(self)
         self.prompt = '=> '
-        self.intro  = 'Dynagen management console for Dynamips\nCopyright (c) 2005-2007 Greg Anuzelli\n'
-
+        self.intro  = 'Dynagen management console for Dynamips and Pemuwrapper\nCopyright (c) 2005-2007 Greg Anuzelli, contributions Pavel Skovajsa\n'
+        self.dynagen = dynagen
     ## Command definitions ##
+
     def do_list(self, args):
-        """list\nList all devices"""
+        """list
+\tList all devices"""
+
         table = []
-        print "%-10s %-10s %-10s %-15s %-10s" % ('Name','Type','State','Server','Console')
-        for device in self.namespace.devices.values():
+        print '%-10s %-10s %-10s %-15s %-10s' % (
+            'Name',
+            'Type',
+            'State',
+            'Server',
+            'Console',
+            )
+        for device in self.dynagen.devices.values():
             row = []
-            row.append("%-10s" % device.name)
+            row.append('%-10s' % device.name)
             try:
-                model = device.model
-                if model == 'c3600':
-                    model = device.chassis
-                if model == 'c7200':
-                    model = '7200'
-                row.append("%-10s" % model)
+                model = device.model_string
+                row.append('%-10s' % model)
             except AttributeError:
-                row.append("%-10s" % device.adapter)
+                row.append('%-10s' % device.adapter)
             try:
-                row.append("%-10s" % device.state)
+                row.append('%-10s' % device.state)
             except AttributeError:
-                row.append("%-10s" % 'always on')
+                row.append('%-10s' % 'always on')
             try:
-                server = device.dynamips.host + ':' + str(device.dynamips.port)
-                row.append("%-15s" % server)
+                server = device.dynamips.host + ":" + str(device.dynamips.port)
+                row.append('%-15s' % server)
             except AttributeError:
-                row.append("%-15s" % 'n/a')
+                row.append('%-15s' % 'n/a')
             try:
-                row.append("%-10s" % device.console)
+                row.append('%-10s' % device.console)
             except AttributeError:
-                row.append("%-10s" % 'n/a')
+                row.append('%-10s' % 'n/a')
             table.append(row)
-        table.sort(con_cmp)             # Sort the table by the console port #
+        table.sort(con_cmp)  # Sort the table by the console port #
         for line in table:
             for item in line:
                 print item,
             print
 
+    def do_conf(self, args):
+        """conf <hypervisor address>:<hypervisor port>
+\tswitch into configuration mode of the specific hypervisor eg. 'conf localhost'. If the hypervisor does not exist it will be created.
+conf
+\tswitch into global config mode"""
+
+        if '?' in args:
+            print self.do_conf.__doc__
+            return
+
+        #if this is a conf <nothing> command go into global config mode
+        if args.strip() == "":
+            nested_cmd = confConsole(self.dynagen, self)
+            nested_cmd.cmdloop()
+            return
+
+        #if this is a conf <hypervisor_name> go into hypervisor config mode
+        #check if this hypervisor already exists
+        found = False
+        params = args.split(":")
+        if len(params) == 1:
+            hyp_name = params[0]
+            hyp_port = 7200
+        elif len(params) == 2:
+            try:
+                hyp_name = params[0]
+                hyp_port = int(params[1])
+            except AttributeError:
+                error('Syntax error in ' + params + ' . Use <hypervisor address>:<hypervisor port> syntax')
+                return
+        else:
+            error('Syntax error in ' + params + ' . Use <hypervisor address>:<hypervisor port> syntax')
+            return
+
+        for server in self.dynagen.dynamips.values():
+            if hyp_name == server.host and hyp_port == server.port:
+                found = True
+                break
+        if not found:
+            #if not found create the hypervisor instance...
+            dynamips = self.dynagen.create_dynamips_hypervisor(hyp_name, hyp_port)
+
+            #call hypervisor config mode
+            nested_cmd = confHypervisorConsole(dynamips, self.dynagen)
+            nested_cmd.cmdloop()
+        else:
+
+            #looks like we found an already existing hypervisor instance, so let's jump into nested conf Cmd to configure it
+            nested_cmd = confHypervisorConsole(server, self.dynagen)
+            nested_cmd.cmdloop()
+
     def do_suspend(self, args):
-        """suspend  {/all | router1 [router2] ...}\nsuspend all or a specific router(s)"""
-        if '?' in args or args.strip() == '':
+        """suspend  {/all | router1 [router2] ...}
+\tsuspend all or a specific router(s)"""
+
+        if '?' in args or args.strip() == "":
             print self.do_suspend.__doc__
             return
 
-        devices = args.split(' ')
+        devices = args.split(" ")
         if '/all' in devices:
-            for device in self.namespace.devices.values():
+            for device in self.dynagen.devices.values():
                 try:
-                    for line in device.suspend(): print line.strip()
+                    for line in device.suspend():
+                        print line.strip()
                 except IndexError:
                     pass
                 except AttributeError:
@@ -116,7 +175,7 @@ class Console(cmd.Cmd):
 
         for device in devices:
             try:
-                print self.namespace.devices[device].suspend()[0].strip()
+                print self.dynagen.devices[device].suspend()[0].strip()
             except IndexError:
                 pass
             except (KeyError, AttributeError):
@@ -124,19 +183,21 @@ class Console(cmd.Cmd):
             except DynamipsError, e:
                 error(e)
             except DynamipsWarning, e:
-                    print "Note: " + str(e)
+                print "Note: " + str(e)
+
+    
 
     def do_start(self, args):
         """start  {/all [delay] | router1 [router2] ...}
-start all or a specific router(s)
-For start /all only, a delay can be specified. Dynagen will pause this many
-seconds between starting devices.
-"""
-        if '?' in args or args.strip() == '':
+\tstart all or a specific router(s)
+\tFor start /all only, a delay can be specified. Dynagen will pause this many seconds between starting devices.
+        """
+
+        if '?' in args or args.strip() == "":
             print self.do_start.__doc__
             return
 
-        devices = args.split(' ')
+        devices = args.split(" ")
         if '/all' in devices:
             try:
                 delay = devices[1]
@@ -149,17 +210,19 @@ seconds between starting devices.
                 print self.do_start.__doc__
                 return
 
-            for device in self.namespace.devices.values():
+            for device in self.dynagen.devices.values():
                 try:
                     if device.idlepc == None:
-                        if self.namespace.useridledb and device.imagename in self.namespace.useridledb:
-                            device.idlepc = self.namespace.useridledb[device.imagename]
+                        if self.dynagen.useridledb and device.imagename in self.dynagen.useridledb:
+                            device.idlepc = self.dynagen.useridledb[device.imagename]
                         else:
-                            print("Warining: Starting %s with no idle-pc value" % device.name)
-                    for line in device.start(): print line.strip()
-                    if (delay != 0) and (device != self.namespace.devices.values()[-1]):
+                            print 'Warning: Starting %s with no idle-pc value' % device.name
+                    self.dynagen.check_ghost_file(device)
+                    for line in device.start():
+                        print line.strip()
+                    if delay != 0 and device != self.dynagen.devices.values()[-1]:
                         # don't delay if there is none or if this is the last device
-                        print "Delaying start of next device for %i seconds..." % delay
+                        print 'Delaying start of next device for %i seconds...' % delay
                         time.sleep(delay)
                 except IndexError:
                     pass
@@ -174,13 +237,15 @@ seconds between starting devices.
 
         for devname in devices:
             try:
-                device = self.namespace.devices[devname]
+                device = self.dynagen.devices[devname]
                 if device.idlepc == None:
-                    if self.namespace.useridledb and device.imagename in self.namespace.useridledb:
-                        device.idlepc = self.namespace.useridledb[device.imagename]
+                    if self.dynagen.useridledb and device.imagename in self.dynagen.useridledb:
+                        device.idlepc = self.dynagen.useridledb[device.imagename]
                     else:
-                        print("Warining: Starting %s with no idle-pc value" % device.name)
-                for line in device.start(): print line.strip()
+                        print 'Warning: Starting %s with no idle-pc value' % device.name
+                    self.dynagen.check_ghost_file(device)
+                for line in device.start():
+                    print line.strip()
             except IndexError:
                 pass
             except (KeyError, AttributeError):
@@ -188,19 +253,22 @@ seconds between starting devices.
             except DynamipsError, e:
                 error(e)
             except DynamipsWarning, e:
-                    print "Note: " + str(e)
+                print "Note: " + str(e)
 
     def do_stop(self, args):
-        """stop  {/all | router1 [router2] ...}\nstop all or a specific router(s)"""
-        if '?' in args or args.strip() == '':
+        """stop  {/all | router1 [router2] ...}
+\tstop all or a specific router(s)"""
+
+        if '?' in args or args.strip() == "":
             print self.do_stop.__doc__
             return
 
-        devices = args.split(' ')
+        devices = args.split(" ")
         if '/all' in devices:
-            for device in self.namespace.devices.values():
+            for device in self.dynagen.devices.values():
                 try:
-                    for line in device.stop(): print line.strip()
+                    for line in device.stop():
+                        print line.strip()
                 except IndexError:
                     pass
                 except AttributeError:
@@ -214,7 +282,7 @@ seconds between starting devices.
 
         for device in devices:
             try:
-                print self.namespace.devices[device].stop()[0].strip()
+                print self.dynagen.devices[device].stop()[0].strip()
             except IndexError:
                 pass
             except (KeyError, AttributeError):
@@ -225,16 +293,19 @@ seconds between starting devices.
                 print "Note: " + str(e)
 
     def do_resume(self, args):
-        """resume  {/all | router1 [router2] ...}\nresume all or a specific router(s)"""
-        if '?' in args or args.strip() == '':
+        """resume  {/all | router1 [router2] ...}
+\tresume all or a specific router(s)"""
+
+        if '?' in args or args.strip() == "":
             print self.do_resume.__doc__
             return
 
-        devices = args.split(' ')
+        devices = args.split(" ")
         if '/all' in devices:
-            for device in self.namespace.devices.values():
+            for device in self.dynagen.devices.values():
                 try:
-                    for line in device.resume(): print line.strip()
+                    for line in device.resume():
+                        print line.strip()
                 except IndexError:
                     pass
                 except AttributeError:
@@ -248,7 +319,7 @@ seconds between starting devices.
 
         for device in devices:
             try:
-                print self.namespace.devices[device].resume()[0].strip()
+                print self.dynagen.devices[device].resume()[0].strip()
             except IndexError:
                 pass
             except (KeyError, AttributeError):
@@ -256,20 +327,24 @@ seconds between starting devices.
             except DynamipsError, e:
                 error(e)
             except DynamipsWarning, e:
-                    print "Note: " + str(e)
+                print "Note: " + str(e)
 
     def do_reload(self, args):
-        """reload  {/all | router1 [router2] ...}\nreload all or a specific router(s)"""
-        if '?' in args or args.strip() == '':
+        """reload  {/all | router1 [router2] ...}
+\treload all or a specific router(s)"""
+
+        if '?' in args or args.strip() == "":
             print self.do_reload.__doc__
             return
 
-        devices = args.split(' ')
+        devices = args.split(" ")
         if '/all' in devices:
-            for device in self.namespace.devices.values():
+            for device in self.dynagen.devices.values():
                 try:
-                    for line in device.stop(): print line.strip()
-                    for line in device.start(): print line.strip()
+                    for line in device.stop():
+                        print line.strip()
+                    for line in device.start():
+                        print line.strip()
                 except IndexError:
                     pass
                 except AttributeError:
@@ -283,8 +358,8 @@ seconds between starting devices.
 
         for device in devices:
             try:
-                print self.namespace.devices[device].stop()[0].strip()
-                print self.namespace.devices[device].start()[0].strip()
+                print self.dynagen.devices[device].stop()[0].strip()
+                print self.dynagen.devices[device].start()[0].strip()
             except IndexError:
                 pass
             except (KeyError, AttributeError):
@@ -292,64 +367,60 @@ seconds between starting devices.
             except DynamipsError, e:
                 error(e)
             except DynamipsWarning, e:
-                    print "Note: " + str(e)
-
+                print "Note: " + str(e)
 
     def do_ver(self, args):
         """Print the dynagen version"""
-        print 'dynagen ' + self.namespace.VERSION
-        print 'dynamips version(s):'
-        for d in self.namespace.dynamips.values():
-            print '  %s: %s'  % (d.host, d.version)
 
-    def do_hist(self, args):
-        """Print a list of commands that have been entered"""
-        print self._hist
-
-    def do_exit(self, args):
-        """Exits from the console"""
-        return -1
-
-    def do_disconnect(self, args):
-        """Exits from the console, but does not shut down the lab on Dynagen"""
-        return -2
+        print 'dynagen has version ' + self.namespace.VERSION
+        print 'hypervisor version(s):'
+        for d in self.dynagen.dynamips.values():
+            print ' %s at %s:%i has version %s' % (d.type, d.host, d.port, d.version)
 
     def do_shell(self, args):
         """Pass command to a system shell when line begins with '!'"""
+
         os.system(args)
 
     def do_telnet(self, args):
-        """telnet  {/all | router1 [router2] ...}\nconnect to the console(s) of all or a specific router(s)\nThis is identical to the console command."""
-        if '?' in args or args.strip() == '':
+        """telnet  {/all | router1 [router2] ...}
+\ttelnet to the console(s) of all or a specific router(s)
+\tThis is identical to the console command."""
+
+        if '?' in args or args.strip() == "":
             print self.do_telnet.__doc__
             return
-        Console.do_console(self,args)
+        Console.do_console(self, args)
 
     def do_console(self, args):
-        """console  {/all | router1 [router2] ...}\nconnect to the console(s) of all or a specific router(s)\n"""
-        if '?' in args or args.strip() == '':
+        """console  {/all | router1 [router2] ...}
+\tconnect to the console(s) of all or a specific router(s)
+        """
+
+        if '?' in args or args.strip() == "":
             print self.do_telnet.__doc__
             return
 
-        devices = args.split(' ')
-        if '/all' in args.split(' '):
+        devices = args.split(" ")
+        if '/all' in args.split(" "):
             # Set devices to all the devices
-            devices = self.namespace.devices.values()
+            devices = self.dynagen.devices.values()
         else:
             devices = []
-            for device in args.split(' '):
+            for device in args.split(" "):
                 # Create a list of all the device objects
                 try:
-                    devices.append(self.namespace.devices[device])
+                    devices.append(self.dynagen.devices[device])
                 except KeyError:
                     error('unknown device: ' + device)
 
         for device in devices:
             try:
-                if not device.isrouter: continue
+                if not device.isrouter:
+                    continue
 
                 if device.state != 'running':
-                    print "Skipping %s device: %s" % (device.state, device.name)
+                    print 'Skipping %s device: %s' % (device.state, device.name)
                     continue
                 telnet(device.name)
             except IndexError:
@@ -358,65 +429,161 @@ seconds between starting devices.
                 error('invalid device: ' + device.name)
             except DynamipsError, e:
                 error(e)
+            except DynamipsWarning, e:
+                print "Note: " + str(e)
+
+    def show_device(self, params):
+        """show device {something} command prints the output by calling get_device_info function"""
+
+        if len(params) == 1:  #if this is only 'show device' command print info about all devices
+            output = []
+            for device in self.dynagen.devices.values():
+                #if it is a router or FW
+                if isinstance(device, self.namespace.Router) or isinstance(device, self.namespace.FW) or isinstance(device, self.namespace.FRSW) or isinstance(device, self.namespace.ATMBR) or isinstance(device, self.namespace.ATMSW):
+                    output.append(device.info())
+                #TODO .... work on FRSW, ATMSW etc.
+
+            output.sort()
+            for devinfo in output:
+                print devinfo
+        elif len(params) == 2:
+            #if this is 'show device {something}' command print info about specific device
+            try:
+                device = self.dynagen.devices[params[1]]
+                if isinstance(device, self.namespace.Router) or isinstance(device, self.namespace.FW) or isinstance(device, self.namespace.FRSW) or isinstance(device, self.namespace.ATMBR) or isinstance(device, self.namespace.ATMSW):
+                    print device.info()
+            except KeyError:
+                error('unknown device: ' + params[1])
+        else:
+            error('invalid show device command')
+
+    def show_start(self):
+        """show start command reads the config file on disk and prints it out"""
+
+        startup_config_tuple = self.dynagen.get_starting_config()
+        #print out the start_config
+        for line in startup_config_tuple:
+            print line
+    
+    def show_run(self, params):
+        #if this is a 'show run' command update the running config and print it out
+        running_config_tuple = self.dynagen.get_running_config(params)
+        for line in running_config_tuple:
+            #we do not want to see that BIG configuration blob on the screen
+            if line.find('configuration') == -1:
+                print line
+    
+    def show_mac(self, params):
+        try:
+            result = self.dynagen.devices[params[1]].show_mac()
+            for chunks in result:
+                lines = chunks.strip().split('\r\n')
+                for line in lines:
+                    if line != '100-OK':
+                        print line[4:]
+        except IndexError:
+            error('missing device')
+        except (KeyError, AttributeError):
+            error('invalid device: ' + params[1])
+        except DynamipsError, e:
+            error(e)
+        except DynamipsWarning, e:
+            print "Note: " + str(e)
 
     def do_show(self, args):
-        """show mac ethernet_switch_name\nshow the mac address table of an ethernet switch"""
-        if '?' in args or args.strip() == '':
+        """show mac <ethernet_switch_name>
+\tshow the mac address table of an ethernet switch
+show device
+\tshow detail information about every device in current lab
+show device <device_name>
+\tshow detail information about a device
+show start
+\tshow startup lab configuration - the configuration that
+show run
+\tshow running configuration of current lab
+show run <device_name>
+\tshow running configuration of a router
+        """
+
+        if '?' in args or args.strip() == "":
             print self.do_show.__doc__
             return
-        params = args.split(' ')
-        if params[0].lower() == 'mac':
-            try:
-                result = self.namespace.devices[params[1]].show_mac()
-                for chunks in result:
-                    lines = chunks.strip().split('\r\n')
-                    for line in lines:
-                        if line != '100-OK':
-                            print line[4:]
-            except IndexError:
-                error('missing device')
-            except (KeyError, AttributeError):
-                error('invalid device: ' + params[1])
-            except DynamipsError, e:
-                error(e)
+
+        params = args.split(" ")
+        #if this is 'show router {something}' command print the output by calling router_Info function
+        if params[0] == 'device':
+            self.show_device(params)
+        elif params[0] == 'start':
+
+        #if this is 'show start' command read the config file on disk and print it out
+            self.show_start()
+        elif params[0] == 'run':
+
+        #if this is a 'show run' command update the running config and print it out
+            self.show_run(params)
+        elif params[0] == 'mac':
+
+        #if this is a 'show mac <ethernet_switch_name>' command print out the mac table of the switch
+            self.show_mac(params)
         else:
             error('invalid show command')
 
+    def do_copy(self, args):
+        """copy run start
+\tcopy running topology into startup topology"""
+
+        if '?' in args or args.strip() == "":
+            print self.do_copy.__doc__
+            return
+        self.dynagen.update_running_config(need_active_config=True)
+        params = args.split(" ")
+        if len(params) == 2 and params[0] == 'run' and params[1] == 'start':
+            filename = self.namespace.global_filename
+            self.dynagen.running_config.filename = filename
+            self.dynagen.running_config.write()
+            self.dynagen.running_config.filename = None
+        else:
+            error('invalid copy command')
+
     def do_clear(self, args):
-        """clear mac ethernet_switch_name\nclear the mac address table of an ethernet switch"""
-        if '?' in args or args.strip() == '':
+        """clear mac <ethernet_switch_name>
+\tclear the mac address table of an ethernet switch"""
+
+        if '?' in args or args.strip() == "":
             print self.do_clear.__doc__
             return
-        params = args.split(' ')
+        params = args.split(" ")
         if params[0].lower() == 'mac':
             try:
-                print self.namespace.devices[params[1]].clear_mac()[0].strip()
+                print self.dynagen.devices[params[1]].clear_mac()[0].strip()
             except IndexError:
                 error('missing device')
             except (KeyError, AttributeError):
                 error('invalid device: ' + params[1])
             except DynamipsError, e:
                 error(e)
+            except DynamipsWarning, e:
+                print "Note: " + str(e)
         else:
             error('invalid clear command')
 
-
     def do_save(self, args):
-        """save {/all | router1 [router2] ...}\nstores router configs in the network file"""
+        """save {/all | router1 [router2] ...}
+\tstores router configs in the network file"""
 
-        if '?' in args or args.strip() == '':
+        if '?' in args or args.strip() == "":
             print self.do_save.__doc__
             return
-        netfile = self.namespace.globalconfig
-        if '/all' in args.split(' '):
+        netfile = self.dynagen.globalconfig
+        if '/all' in args.split(" "):
             # Set devices to all the devices
-            devices = self.namespace.devices.values()
+            devices = self.dynagen.devices.values()
         else:
             devices = []
-            for device in args.split(' '):
+            for device in args.split(" "):
                 # Create a list of all the device objects
                 try:
-                    devices.append(self.namespace.devices[device])
+                    devices.append(self.dynagen.devices[device])
                 except KeyError:
                     error('unknown device: ' + device)
 
@@ -431,16 +598,20 @@ seconds between starting devices.
                 print e
                 # Try saving the other devices though
                 continue
+            except DynamipsWarning, e:
+                print "Note: " + str(e)
 
             # What server and port is this device on?
             host = device.dynamips.host
             port = device.dynamips.port
 
             # Find the config section for this device
-            if netfile.has_key(host + ':' + str(port)): serverSection = host + ':' + str(port)
-            elif netfile.has_key(host): serverSection = host
+            if netfile.has_key(host + ":" + str(port)):
+                serverSection = host + ":" + str(port)
+            elif netfile.has_key(host):
+                serverSection = host
             else:
-                error("can't find server section for device: " + device.name)
+                error('cannot find server section for device: ' + device.name)
 
             for section in netfile[serverSection].sections:
                 # Check to see if 1) this device is a router, and
@@ -453,28 +624,30 @@ seconds between starting devices.
                 if devtype.lower() == 'router' and devname == device.name:
                     netfile[serverSection][section]['configuration'] = config
                     # And populate the configurations dictionary
-                    self.namespace.configurations[device.name] = config
+                    self.dynagen.configurations[device.name] = config
                     print 'saved configuration from: ' + device.name
         netfile.write()
 
-    def do_push(self,args):
-        """push {/all | router1 [router2] ...}\npushes router configs from the network file to the router's nvram"""
+    def do_push(self, args):
+        """push {/all | router1 [router2] ...}
+\tpushes router configs from the network file to the router's nvram
+        """
 
-        if '?' in args or args.strip() == '':
+        if '?' in args or args.strip() == "":
             print self.do_push.__doc__
             return
 
-        configurations = self.namespace.configurations
+        configurations = self.dynagen.configurations
 
-        if '/all' in args.split(' '):
+        if '/all' in args.split(" "):
             # Set devices to all the devices
-            devices = self.namespace.devices.values()
+            devices = self.dynagen.devices.values()
         else:
             devices = []
-            for device in args.split(' '):
+            for device in args.split(" "):
                 # Create a list of all the device objects
                 try:
-                    devices.append(self.namespace.devices[device])
+                    devices.append(self.dynagen.devices[device])
                 except KeyError:
                     error('unknown device: ' + device)
 
@@ -492,12 +665,17 @@ seconds between starting devices.
                 print e
                 # Try saving the other devices though
                 continue
+            except DynamipsWarning, e:
+                print "Note: " + str(e)
             print 'Pushed config to: ' + device.name
 
     def do_export(self, args):
-        """export {/all | router1 [router2] ...} \"directory\"\nsaves router configs individual files in \"directory\"\nEnclose the directory in quotes if there are spaces in the filespec."""
+        '''export {/all | router1 [router2] ...} "directory"
+\tsaves router configs individual files in "directory"
+\tEnclose the directory in quotes if there are spaces in the filespec.
+        '''
 
-        if '?' in args or args.strip() == '':
+        if '?' in args or args.strip() == "":
             print self.do_export.__doc__
             return
         try:
@@ -505,22 +683,24 @@ seconds between starting devices.
         except DynamipsError, e:
             error(e)
             return
+        except DynamipsWarning, e:
+            print "Note: " + str(e)
 
         if len(items) < 2:
             print self.do_export.__doc__
             return
-         # The last item is the directory (or should be anyway)
+            # The last item is the directory (or should be anyway)
         directory = items.pop()
 
         if '/all' in items:
             # Set devices to all the devices
-            devices = self.namespace.devices.values()
+            devices = self.dynagen.devices.values()
         else:
             devices = []
             for device in items:
                 # Create a list of all the device objects
                 try:
-                    devices.append(self.namespace.devices[device])
+                    devices.append(self.dynagen.devices[device])
                 except KeyError:
                     error('unknown device: ' + device)
                     return
@@ -528,79 +708,79 @@ seconds between starting devices.
         # Set the current directory to the one that contains our network file
         try:
             netdir = os.getcwd()
-            subdir = os.path.dirname(self.namespace.FILENAME)
-            debug("current dir is -> " + os.getcwd())
-            if subdir != '':
+            subdir = os.path.dirname(self.namespace.global_filename)
+            debug('current dir is -> ' + os.getcwd())
+            if subdir != "":
                 debug("changing dir to -> " + subdir)
                 os.chdir(subdir)
-        except OSError,e:
+        except OSError, e:
             error(e)
-            os.chdir(netdir)        # Reset the current working directory
+            os.chdir(netdir)  # Reset the current working directory
             return
 
         try:
-            debug("making -> " + str(directory))
+            debug('making -> ' + str(directory))
             os.makedirs(directory)
         except OSError:
             # Directory exists
-            result = raw_input("The directory \"%s\" already exists. Ok to overwrite (Y/N)? " % directory)
+            result = raw_input('The directory %s already exists. Ok to overwrite (Y/N)? ' % directory)
             if result.lower() != 'y':
-                os.chdir(netdir)        # Reset the current working directory
+                os.chdir(netdir)  # Reset the current working directory
                 return
 
         # Get the config for each router and store it in the config dict
         for device in devices:
             try:
                 config = base64.decodestring(device.config_b64)
-                config = config.replace('\r', '')
-
+                config = config.replace('\r', "")
             except AttributeError:
+
                 # This device doesn't support export
                 continue
             except DynamipsError, e:
                 print e
                 # Try saving the other devices though
                 continue
+            except DynamipsWarning, e:
+                print "Note: " + str(e)
             except TypeError:
-                error("Unknown error exporting config for " + device.name)
+                error('Unknown error exporting config for ' + device.name)
                 continue
             # Write out the config to a file
-            print "Exporting %s to \"%s\"" % (device.name, directory + os.sep + device.name + '.cfg')
+            print 'Exporting %s to %s' % (device.name, directory + os.sep + device.name + '.cfg')
             try:
                 f = open(directory + os.sep + device.name + '.cfg', 'w')
                 f.write(config)
                 f.close()
             except IOError, e:
                 error(e)
-                os.chdir(netdir)        # Reset the current working directory
+                os.chdir(netdir)  # Reset the current working directory
                 return
 
         # Change directory back to net dir for subsequent execution
         os.chdir(netdir)
 
     def do_import(self, args):
-        """import {/all | router1 [router2] \"directory\"\nimport all or individual configuration files \nEnclose the directory or filename in quotes if there are spaces in the filespec."""
+        '''import {/all | router1 [router2] "directory"
+\timport all or individual configuration files 
+\tEnclose the directory or filename in quotes if there are spaces in the filespec.'''
 
-        if '?' in args or args.strip() == '':
+        if '?' in args or args.strip() == "":
             print self.do_import.__doc__
             return
-
         items = getItems(args)
-        if len(items) < 2:
-            print self.do_export.__doc__
-            return
-         # The last item is the directory (or should be anyway)
+            # The last item is the directory (or should be anyway)
         directory = items.pop()
 
         # Set the current directory to the one that contains our network file
         try:
             netdir = os.getcwd()
-            subdir = os.path.dirname(self.namespace.FILENAME)
-            debug("current dir is -> " + os.getcwd())
-            if subdir != '':
+            subdir = os.path.dirname(self.namespace.global_filename)
+            debug('current dir is -> ' + os.getcwd())
+            if subdir != "":
                 debug("changing dir to -> " + subdir)
                 os.chdir(subdir)
-        except OSError,e:
+        except OSError, e:
             error(e)
             return
 
@@ -614,53 +794,60 @@ seconds between starting devices.
             if file[-4:].lower() == '.cfg':
                 device = file[:-4]
                 if '/all' in items or device in items:
-                    print "Importing %s from \"%s\"" % (device, file)
+                    print 'Importing %s from %s' % (device, file)
                     try:
                         f = open(directory + os.sep + file, 'r')
                         config = f.read()
-                        config = "\n!\n" + config
+                        config = '\n!\n' + config
                         f.close()
                         # Encodestring puts in a bunch of newlines. Split them out then join them back together
-                        encoded = ''.join(base64.encodestring(config).split())
-                        self.namespace.devices[device].config_b64 = encoded
+                        encoded = ("").join(base64.encodestring(config).split())
+                        self.dynagen.devices[device].config_b64 = encoded
                     except IOError, e:
                         error(e)
-                        os.chdir(netdir)        # Reset the current working directory
+                        os.chdir(netdir)  # Reset the current working directory
                         return
                     except KeyError:
-                        error("Ignoring unknown device: " + device)
-                        # Don't return, continue trying to import the other devices
+                        error('Ignoring unknown device: ' + device)
                     except DynamipsError, e:
-                        error(e)
                         # Don't return, continue trying to import the other devices
+                        error(e)
+                    except DynamipsWarning, e:
+                        # Don't return, continue trying to import the other devices
+                        print "Note: " + str(e)
 
         os.chdir(netdir)
 
-
     def do_filter(self, args):
         """filter device interface filter_name direction [options]
-applies a connection filter
-Examples:
-  filter R1 s1/0 freq_drop in 50   -- Drops 1 out of every 50 packets inbound to R1 s1/0
-  filter R1 s1/0 none in           -- Removes all inbound filters from R1 s1/0"""
+\tapplies a connection filter
+\tExamples:
+\tfilter R1 s1/0 freq_drop in 50   -- Drops 1 out of every 50 packets inbound to R1 s1/0
+\tfilter R1 s1/0 none in           -- Removes all inbound filters from R1 s1/0"""
 
-        filters = ['freq_drop', 'capture', 'none']     # The known list of filters
+        filters = ['freq_drop', 'capture', 'none']  # The known list of filters
 
-        if '?' in args or args.strip() == '':
+        if '?' in args or args.strip() == "":
             print self.do_filter.__doc__
             return
 
         try:
-            if len(args.split(' ')) > 4:
-                (device, interface, filterName, direction, options) = args.split(' ', 4)
+            if len(args.split(" ")) > 4:
+                (
+                    device,
+                    interface,
+                    filterName,
+                    direction,
+                    options,
+                    ) = args.split(" ", 4)
             else:
-                (device, interface, filterName, direction) = args.split(' ', 3)
+                (device, interface, filterName, direction) = args.split(" ", 3)
                 options = None
         except ValueError:
             print self.do_filter.__doc__
             return
 
-        if device not in self.namespace.devices:
+        if device not in self.dynagen.devices:
             print 'Unknown device: ' + device
             return
         if filterName not in filters:
@@ -668,97 +855,106 @@ Examples:
             return
 
         # Parse out the slot and port
-        match_obj = interface_re.search(interface)
-        if match_obj:
-            try:
-                (inttype, slot, port) = match_obj.group(1,2,3)
-                slot = int(slot)
-                port = int(port)
-            except ValueError:
-                print 'Error parsing interface descriptor: ' + interface
-                return
+        match_obj = self.namespace.interface_re.search(interface)
+        if not match_obj:
+            print 'Error parsing interface descriptor: ' + interface
+            return
+        try:
+            (inttype, slot, port) = match_obj.group(1, 2, 3)
+            slot = int(slot)
+            port = int(port)
+        except ValueError:
+            print 'Error parsing interface descriptor: ' + interface
+            return
         else:
             # Try checking for WIC interface specification (e.g. S1)
-            match_obj = interface_noport_re.search(interface)
+            match_obj = self.namespace.interface_noport_re.search(interface)
             if not match_obj:
                 print 'Error parsing interface descriptor: ' + interface
                 return
-            (inttype, port) = match_obj.group(1,2)
+            (inttype, port) = match_obj.group(1, 2)
             slot = 0
 
         interface = inttype[0].lower()
 
         # Apply the filter
         try:
-            self.namespace.devices[device].slot[slot].filter(interface, port, filterName, direction, options)
+            self.dynagen.devices[device].slot[slot].filter(
+                interface,
+                port,
+                filterName,
+                direction,
+                options,
+                )
         except DynamipsError, e:
             print e
             return
+        except DynamipsWarning, e:
+            print "Note: " + str(e)
         except IndexError:
-            print "No such interface %s on device %s" % (interface, device)
+            print 'No such interface %s on device %s' % (interface, device)
             return
         except AttributeError:
-            print "Error: Interface %s on device %s is not connected" % (interface, device)
+            print 'Interface %s on device %s is not connected' % (interface, device)
+            return
+        except AttributeError:
+            print 'Error: Interface %s on device %s is not connected' % (interface, device)
             return
 
     def do_capture(self, args):
-        """[no] capture device interface filename [link-type]
-Begins a capture of all packets in and out of "interface" on "device".
-Enclose the filename in quotes if there are spaces in the filespec. The capture
-file is written to the dynamips host. Link type is one of:
- ETH (Ethernet 10/100/1000)
- FR (Frame-Relay)
- HDLC (Cisco HDLC)
- PPP (PPP on serial)
+        '''[no] capture device interface filename [link-type]
+\tBegins a capture of all packets in and out of "interface" on "device".
+\tEnclose the filename in quotes if there are spaces in the filespec. The capture
+\tfile is written to the dynamips host. Link type is one of:
+\t\tETH (Ethernet 10/100/1000)
+\t\tFR (Frame-Relay)
+\t\tHDLC (Cisco HDLC)
+\t\tPPP (PPP on serial)
 
-Captures of ethernet interfaces default to EN10MB, but for serial interfaces
-the link type must be specified.
-Examples:
+\tCaptures of ethernet interfaces default to EN10MB, but for serial interfaces
+\tthe link type must be specified.
+\tExamples:
   capture R1 f0/0 example.cap           -- Capture packets in and out of f0/0
                                            on R1 and write the output to
                                            example.cap
   capture R1 s0/0 example2.cap HDLC   -- Capture and specify HDLC
                                            encapsulation
-  no capture R1 s0/0                    -- End the packet capture"""
+  no capture R1 s0/0                    -- End the packet capture
+        '''
 
         # link type transformation
-        linkTransform = {
-            'ETH':'EN10MB',
-            'FR':'FRELAY',
-            'HDLC':'C_HDLC',
-            'PPP':'PPP_SERIAL'
-        }
+        linkTransform = {'ETH': 'EN10MB', 'FR': 'FRELAY', 'HDLC': 'C_HDLC', 'PPP': 'PPP_SERIAL'}
 
-        if '?' in args or args.strip() == '':
+        if '?' in args or args.strip() == "":
             print self.do_capture.__doc__
             return
 
         try:
-            if len(args.split(' ')) > 3:
-                (device, interface, filename, linktype) = args.split(' ', 3)
+            if len(args.split(" ")) > 3:
+                (device, interface, filename, linktype) = args.split(" ", 3)
                 try:
                     linktype = linktype.upper()
                     linktype = linkTransform[linktype]
                 except KeyError:
                     print 'Invalid linktype: ' + linktype
                     return
-
             else:
-                (device, interface, filename) = args.split(' ', 2)
+
+                (device, interface, filename) = args.split(" ", 2)
                 linktype = None
         except ValueError:
             print self.do_capture.__doc__
             return
 
-        if device not in self.namespace.devices:
+        if device not in self.dynagen.devices:
             print 'Unknown device: ' + device
             return
 
         # Parse out the slot and port
-        match_obj = interface_re.search(interface)
+        match_obj = self.namespace.interface_re.search(interface)
         if match_obj:
             try:
-                (inttype, slot, port) = match_obj.group(1,2,3)
+                (inttype, slot, port) = match_obj.group(1, 2, 3)
                 slot = int(slot)
                 port = int(port)
             except ValueError:
@@ -766,15 +962,22 @@ Examples:
                 return
         else:
             # Try checking for WIC interface specification (e.g. S1)
-            match_obj = interface_noport_re.search(interface)
+            match_obj = self.namespace.interface_noport_re.search(interface)
             if not match_obj:
                 print 'Error parsing interface descriptor: ' + interface
                 return
-            (inttype, port) = match_obj.group(1,2)
+            (inttype, port) = match_obj.group(1, 2)
             slot = 0
 
         if linktype == None:
-            if inttype.lower() in ['e', 'et', 'f', 'fa', 'g', 'gi']:
+            if inttype.lower() in [
+                'e',
+                'et',
+                'f',
+                'fa',
+                'g',
+                'gi',
+                ]:
                 linktype = 'EN10MB'
             elif inttype.lower() in ['s', 'se']:
                 print 'Error: Link type must be specified for serial interfaces'
@@ -787,29 +990,38 @@ Examples:
 
         # Apply the filter
         try:
-            self.namespace.devices[device].slot[slot].filter(interface, port, 'capture', 'both', linktype + " " + filename)
+            self.dynagen.devices[device].slot[slot].filter(
+                interface,
+                port,
+                'capture',
+                'both',
+                linktype + " " + filename,
+                )
         except DynamipsError, e:
             print e
             return
+        except DynamipsWarning, e:
+            print "Note: " + str(e)
         except IndexError:
-            print "Error: No such interface %s on device %s" % (interface, device)
+            print 'Error: No such interface %s on device %s' % (interface, device)
             return
         except AttributeError:
-            print "Error: Interface %s on device %s is not connected" % (interface, device)
+            print 'Error: Interface %s on device %s is not connected' % (interface, device)
             return
 
     def do_no(self, args):
         """negates a command
         """
-        if '?' in args or args.strip() == '':
+
+        if '?' in args or args.strip() == "":
             print self.do_no.__doc__
             return
 
         try:
-            (command, options) = args.split(' ', 1)
+            (command, options) = args.split(" ", 1)
             if command.lower() == 'capture':
-                if len(options.split(' ')) == 2:
-                    (device, interface) = options.split(' ', 1)
+                if len(options.split(" ")) == 2:
+                    (device, interface) = options.split(" ", 1)
                 else:
                     print 'Error parsing command'
                     return
@@ -817,15 +1029,15 @@ Examples:
             print 'Error parsing command'
             return
 
-        if device not in self.namespace.devices:
+        if device not in self.dynagen.devices:
             print 'Unknown device: ' + device
             return
 
         # Parse out the slot and port
-        match_obj = interface_re.search(interface)
+        match_obj = self.namespace.interface_re.search(interface)
         if match_obj:
             try:
-                (inttype, slot, port) = match_obj.group(1,2,3)
+                (inttype, slot, port) = match_obj.group(1, 2, 3)
                 slot = int(slot)
                 port = int(port)
             except ValueError:
@@ -833,43 +1045,45 @@ Examples:
                 return
         else:
             # Try checking for WIC interface specification (e.g. S1)
-            match_obj = interface_noport_re.search(interface)
+            match_obj = self.namespace.interface_noport_re.search(interface)
             if not match_obj:
                 print 'Error parsing interface descriptor: ' + interface
                 return
-            (inttype, port) = match_obj.group(1,2)
+            (inttype, port) = match_obj.group(1, 2)
             slot = 0
 
         interface = inttype[0].lower()
         # Remove the filter
         try:
-            self.namespace.devices[device].slot[slot].filter(interface, port, 'none', 'both')
+            self.dynagen.devices[device].slot[slot].filter(interface, port, 'none', 'both')
         except DynamipsError, e:
             print e
             return
+        except DynamipsWarning, e:
+            print "Note: " + str(e)
         except IndexError:
-            print "No such interface %s on device %s" % (interface, device)
+            print 'No such interface %s on device %s' % (interface, device)
             return
 
     def do_send(self, args):
         """send [host] commandstring
-send a raw hypervisor command to a dynamips server
-Examples:
-  send bender hypervisor version   -- Send the 'hypervisor version' command to the host named bender"""
+\tsend a raw hypervisor command to a dynamips server
+\tExamples:
+\tsend bender hypervisor version   -- Send the 'hypervisor version' command to the host named bender"""
 
-        if '?' in args or args.strip() == '':
+        if '?' in args or args.strip() == "":
             print self.do_send.__doc__
             return
 
         try:
-            (host, command) = args.split(' ', 1)
+            (host, command) = args.split(" ", 1)
         except ValueError:
             print 'Error parsing command'
             return
 
         #if host not in self.namespace.dynamips:
         found = False
-        for server in self.namespace.dynamips.values():
+        for server in self.dynagen.dynamips.values():
             if host.lower() == server.host.lower():
                 found = True
                 break
@@ -882,34 +1096,36 @@ Examples:
         except DynamipsError, e:
             print e
             return
+        except DynamipsWarning, e:
+            print "Note: " + str(e)
 
-        for line in result: print line
-
+        for line in result:
+            print line
 
     def do_idlepc(self, args):
-        """idlepc {get|set|show|save|idlemax|idlesleep|showdrift} device [value]
-idlepc save device [default]
+        '''idlepc {get|set|show|save|idlemax|idlesleep|showdrift} device [value]
+\tidlepc save device [default]
 
-get, set, or show the online idlepc value(s)
-Examples:
+\tget, set, or show the online idlepc value(s)
+\tExamples:
   idlepc get r1             -- Get a list of the possible idlepc value(s) for
                                 router r1
   idlepc show r1            -- Show the previously determined idlepc values for
                                router r1
-  idlepc set r1 0x12345     -- Manually set r1's idlepc to 0x12345
-  idlepc save r1            -- Save r1's current idlepc value to the "router r1"
+  idlepc set r1 0x12345     -- Manually set r1\'s idlepc to 0x12345
+  idlepc save r1            -- Save r1\'s current idlepc value to the "router r1"
                                section of your network file
-  idlepc save r1 default    -- Save r1's current idlepc value to the device
+  idlepc save r1 default    -- Save r1\'s current idlepc value to the device
                                defaults section of your network file
                                (i.e. [[7200]])
-  idlepc save r1 db         -- Save r1's current idlepc value to the idlepc
+  idlepc save r1 db         -- Save r1\'s current idlepc value to the idlepc
                                database
   idlepc idlemax r1 1500    -- Commands for advanced manipulation of idlepc
   idlepc idlesleep r1 30       settings
   idlepc showdrift r1
-                               """
+        '''
 
-        if '?' in args or args.strip() == '':
+        if '?' in args or args.strip() == "":
             print self.do_idlepc.__doc__
             return
         try:
@@ -923,14 +1139,14 @@ Examples:
             if command == 'get' or command == 'show':
                 device = params[0]
                 if command == 'get':
-                    if self.namespace.devices[device].idlepc != None:
+                    if self.dynagen.devices[device].idlepc != None:
                         print '%s already has an idlepc value applied.' % device
                         return
                     print 'Please wait while gathering statistics...'
-                    result = self.namespace.devices[device].idleprop(IDLEPROPGET)
+                    result = self.dynagen.devices[device].idleprop(IDLEPROPGET)
                 elif command == 'show':
-                    result = self.namespace.devices[device].idleprop(IDLEPROPSHOW)
-                result.pop()        # Remove the '100-OK' line
+                    result = self.dynagen.devices[device].idleprop(IDLEPROPSHOW)
+                result.pop()  # Remove the '100-OK' line
                 idles = {}
                 i = 1
                 for line in result:
@@ -941,7 +1157,7 @@ Examples:
                     if 50 < iCount < 60:
                         flag = '*'
                     else:
-                        flag = ' '
+                        flag = " "
 
                     print "%s %2i: %s %s" % (flag, i, value, count)
                     idles[i] = value
@@ -952,7 +1168,7 @@ Examples:
                     print 'No idlepc values found\n'
                 else:
                     print 'Potentially better idlepc values marked with "*"'
-                    selection = raw_input("Enter the number of the idlepc value to apply [1-%i] or ENTER for no change: " % len(idles))
+                    selection = raw_input('Enter the number of the idlepc value to apply [1-%i] or ENTER for no change: ' % len(idles))
                     if selection == "":
                         print 'No changes made'
                         return
@@ -960,22 +1176,22 @@ Examples:
                     try:
                         selection = int(selection)
                     except ValueError:
-                        print "Invalid selection"
+                        print 'Invalid selection'
                         return
                     if selection < 1 or selection > len(idles):
-                        print "Invalid selection"
+                        print 'Invalid selection'
                         return
 
                     # Apply the selected idle
-                    self.namespace.devices[device].idleprop(IDLEPROPSET, idles[selection])
-                    print "Applied idlepc value %s to %s\n" % (idles[selection], device)
-
+                    self.dynagen.devices[device].idleprop(IDLEPROPSET, idles[selection])
+                    print 'Applied idlepc value %s to %s\n' % (idles[selection], device)
             elif command == 'set':
-                (device, value) = params
-                self.namespace.devices[device].idleprop(IDLEPROPSET, value)
-                print "Applied idlepc value %s to %s\n" % (value, device)
 
+                (device, value) = params
+                self.dynagen.devices[device].idleprop(IDLEPROPSET, value)
+                print 'Applied idlepc value %s to %s\n' % (value, device)
             elif command == 'save':
+
                 if len(params) == 1:
                     device = params[0]
                     location = ""
@@ -987,50 +1203,46 @@ Examples:
                 else:
                     raise ValueError
 
-                idlepc = self.namespace.devices[device].idlepc
+                idlepc = self.dynagen.devices[device].idlepc
                 if idlepc == None:
-                    print "****Error: device %s has no idlepc value to save" % device
+                    print '****Error: device %s has no idlepc value to save' % device
                     return
-
-                netfile = self.namespace.globalconfig
-                host = self.namespace.devices[device].dynamips.host
-                port = self.namespace.devices[device].dynamips.port
+                self.dynagen.globalconfig = self.running_config
+                netfile = self.dynagen.globalconfig
+                host = self.dynagen.devices[device].dynamips.host
+                port = self.dynagen.devices[device].dynamips.port
                 # Find the dynamips config section for this device
-                if netfile.has_key(host): serverSection = host
-                elif netfile.has_key(host + ':' + str(port)): serverSection = host + ':' + str(port)
+                if netfile.has_key(host):
+                    serverSection = host
+                elif netfile.has_key(host + ":" + str(port)):
+                    serverSection = host + ":" + str(port)
                 else:
-                    error("can't find server section for device: " + device)
+                    error('cannot find server section for device: ' + device)
+                    return
 
                 if location.lower() == 'default':
                     # Find the default section for this device
-                    model = self.namespace.devices[device].model
-                    if model == 'c3600' or model == 'c2600':
-                        # The section default is actually the chassis
-                        section = self.namespace.devices[device].chassis
-                    else:
-                        try:
-                            section = model[1:]
-                        except:
-                            print "***Error: could not determine default section for device " + device
-                            return
-
+                    section = self.dynagen.devices[device].model_string
+                    if self.defaults_config_ran:
+                        self.defaults_config[serverSection][section]['idlepc'] = idlepc
                 elif location.lower() == 'db':
-                    # Store the idlepc value for this image in the idlepc user database
-                    if not self.namespace.useridledb:
-                        # We need to create a new file
-                        self.namespace.useridledb = ConfigObj()
-                        self.namespace.useridledb.filename = self.namespace.useridledbfile
 
-                    self.namespace.useridledb[self.namespace.devices[device].imagename] = idlepc
+                    # Store the idlepc value for this image in the idlepc user database
+                    if not self.dynagen.useridledb:
+                        # We need to create a new file
+                        self.dynagen.useridledb = ConfigObj()
+                        self.dynagen.useridledb.filename = self.dynagen.useridledbfile
+
+                    self.dynagen.useridledb[self.dynagen.devices[device].imagename] = idlepc
                     try:
-                        self.namespace.useridledb.write()
-                    except IOError,e:
+                        self.dynagen.useridledb.write()
+                    except IOError, e:
                         print '***Error: ' + str(e)
                         return
-                    print "idlepc value for image \"%s\" written to the database" % self.namespace.devices[device].imagename
+                    print 'idlepc value for image \"%s\" written to the database' % self.dynagen.devices[device].imagename
                     return
-
                 else:
+
                     for section in netfile[serverSection].sections:
                         # Check to see if 1) this device is a router, and
                         # 2) if it is the section for the device we need to save
@@ -1039,36 +1251,38 @@ Examples:
                         except ValueError:
                             continue
 
-                        if devtype.lower() == 'router' and devname == device: break
+                        if devtype.lower() == 'router' and devname == device:
+                            break
 
                 # Perform a sanity check. I'd hate to trash a network file...
                 if section not in netfile[serverSection].sections:
-                    print "***Error: section %s not found in network configuration file for host %s" % (section, host)
+                    print '***Error: section %s not found in network configuration file for host %s' % (section, host)
                     return
 
                 netfile[serverSection][section]['idlepc'] = idlepc
                 netfile.write()
                 print 'idlepc value saved to section: ' + section
-
             elif command == 'showdrift':
-                device = params[0]
-                print 'Current idlemax value: %i' % self.namespace.devices[device].idlemax
-                print 'Current idlesleep value: %i' % self.namespace.devices[device].idlesleep
-                result = self.namespace.devices[device].idlepcdrift
-                for line in result: print line[4:]
-                return
 
+                device = params[0]
+                print 'Current idlemax value: %i' % self.dynagen.devices[device].idlemax
+                print 'Current idlesleep value: %i' % self.dynagen.devices[device].idlesleep
+                result = self.dynagen.devices[device].idlepcdrift
+                for line in result:
+                    print line[4:]
+                return
             elif command in ['idlemax', 'idlesleep']:
+
                 (device, value) = params
                 value = int(value)
                 if command == 'idlemax':
-                    self.namespace.devices[device].idlemax = value
+                    self.dynagen.devices[device].idlemax = value
                 elif command == 'idlesleep':
-                    self.namespace.devices[device].idlesleep = value
+                    self.dynagen.devices[device].idlesleep = value
                 print 'OK'
                 return
-
             else:
+
                 print '***Error: Unknown command ' + command
                 return
         except ValueError:
@@ -1080,14 +1294,18 @@ Examples:
         except DynamipsError, e:
             print e
             return
+        except DynamipsWarning, e:
+            print "Note: " + str(e)
 
     def do_confreg(self, args):
-        """confreg  {/all | router1 [router2] <0x0-0xFFFF>}\n set the config register(s)"""
-        if '?' in args or args.strip() == '':
+        """confreg  {/all | router1 [router2] <0x0-0xFFFF>}
+\tset the config register(s)"""
+
+        if '?' in args or args.strip() == "":
             print self.do_confreg.__doc__
             return
 
-        devices = args.split(' ')
+        devices = args.split(" ")
         if devices[-1][:2] == '0x':
             confreg = devices.pop()
             flag = 'set'
@@ -1096,145 +1314,79 @@ Examples:
             return
 
         if '/all' in devices:
-            for device in self.namespace.devices.values():
+            for device in self.dynagen.devices.values():
                 try:
                     if flag == 'set':
                         device.confreg = confreg
+                except IndexError:
                     #else:
                     #    confreg = device.confreg
                     #    print device.name + ": " + confreg
-                except IndexError:
                     pass
                 except AttributeError:
                     # If this device doesn't support stop just ignore it
                     pass
                 except DynamipsError, e:
                     error(e)
+                except DynamipsWarning, e:
+                    print "Note: " + str(e)
             return
 
         for device in devices:
             try:
-                self.namespace.devices[device].confreg = confreg
+                self.dynagen.devices[device].confreg = confreg
             except IndexError:
                 pass
             except (KeyError, AttributeError):
                 error('invalid device: ' + device)
             except DynamipsError, e:
                 error(e)
-    """
+            except DynamipsWarning, e:
+                print "Note: " + str(e)
+
+   
     def do_cpuinfo(self, args):
-        #cpuinfo  {/all | router1 [router2] ...}\nshow cpu info for a specific router(s)
-                if '?' in args or args.strip() == '':
+        """cpuinfo  {/all | router1 [router2] ...}\nshow cpu info for a specific router(s)"""
+        if '?' in args or args.strip() == '':
             print self.do_cpuinfo.__doc__
             return
 
         devices = args.split(' ')
         if '/all' in devices:
-            for device in self.namespace.devices.values():
+            for device in self.dynagen.devices.values():
                 try:
-                    for line in device.cpuinfo(): print line.strip()
+                    for line in device.cpuinfo: print line.strip()
                 except IndexError:
                     pass
                 except AttributeError:
-                    # If this device doesn't support stop just ignore it
+                    # If this device doesn't support cpuinfo just ignore it
                     pass
                 except DynamipsError, e:
                     error(e)
+                except DynamipsWarning, e:
+                    print "Note: " + str(e)
+                    return
             return
 
         for device in devices:
             try:
-                print self.namespace.devices[device].cpuinfo()[0].strip()
+                print self.dynagen.devices[device].cpuinfo[0].strip()
             except IndexError:
                 pass
             except (KeyError, AttributeError):
                 error('invalid device: ' + device)
             except DynamipsError, e:
                 error(e)
-    """
-
-
-    def do_help(self, args):
-        """Get help on commands
-           'help' or '?' with no arguments prints a list of commands for which help is available
-           'help <command>' or '? <command>' gives help on <command>
-        """
-        ## The only reason to define this method is for the help text in the doc string
-        cmd.Cmd.do_help(self, args)
-
-    ## Override methods in Cmd object ##
-    def preloop(self):
-        """Initialization before prompting user for commands.
-           Despite the claims in the Cmd documentaion, Cmd.preloop() is not a stub.
-        """
-        cmd.Cmd.preloop(self)   ## sets up command completion
-        self._hist    = []      ## No history yet
-        self._locals  = {}      ## Initialize execution namespace for user
-        self._globals = {}
-        # Give the console access to the namespace
-        self._globals['namespace'] = self.namespace
-
-    def postloop(self):
-        """Take care of any unfinished business.
-           Despite the claims in the Cmd documentaion, Cmd.postloop() is not a stub.
-        """
-        cmd.Cmd.postloop(self)   ## Clean up command completion
-        print "Exiting..."
-
-    def precmd(self, line):
-        """ This method is called after the line has been input but before
-            it has been interpreted. If you want to modifdy the input line
-            before execution (for example, variable substitution) do it here.
-        """
-        self._hist += [ line.strip() ]
-        # Add "con" as a shortcut for "console"
-        tokens = line.split()
-        try:
-            if tokens[0].lower() == 'con':
-                tokens[0] = 'console'
-                line = ' '.join(tokens)
-            elif tokens[0].lower() == 'dis':
-                tokens[0] = 'disconnect'
-                line = ' '.join(tokens)
-        except IndexError:
-            pass
-
-        return line
-
-    def postcmd(self, stop, line):
-        """If you want to stop the console, return something that evaluates to true.
-           If you want to do some post command processing, do it here.
-        """
-        return stop
-
-    def emptyline(self):
-        """Do nothing on empty input line"""
-        pass
-
-    def do_py(self, line):
-        """py <python statement(s)>\nExecute python statements"""
-        if line == '?':
-            print self.do_py.__doc__
-            return
-
-        try:
-            exec(line) in self._locals, self._globals
-        except Exception, e:
-            print e.__class__, ":", e
-
-    def default(self, line):
-        """Called on an input line when the command prefix is not recognized.
-           In that case we execute the line as Python code.
-        """
-        error('unknown command')
-
-
+            except DynamipsWarning, e:
+                print "Note: " + str(e)
+  
 def telnet(device):
-    """telnet to the console port of device"""
+    """Telnet to the console port of device"""
+
     import __main__
     telnetstring = __main__.telnetstring
-    port = str(__main__.devices[device].console)
-    host = str(__main__.devices[device].dynamips.host)
+    port = str(__main__.dynagen.devices[device].console)
+    host = str(__main__.dynagen.devices[device].dynamips.host)
 
     if telnetstring and not __main__.notelnet:
         telnetstring = telnetstring.replace('%h', host)
@@ -1242,45 +1394,41 @@ def telnet(device):
         telnetstring = telnetstring.replace('%d', device)
 
         os.system(telnetstring)
-        time.sleep(0.5)         # Give the telnet client a chance to start
+        time.sleep(0.5)  # Give the telnet client a chance to start
 
 
 def con_cmp(row1, row2):
     return cmp(row1[4], row2[4])
+
 
 def getItems(s):
     """Uses the CSV module to split a string by whitespace, but respecting quotes"""
 
     input = StringIO.StringIO(s)
     try:
-        items = csv.reader(input, delimiter=' ').next()
+        items = csv.reader(input, delimiter=" ").next()
     except csv.Error, e:
         raise DynamipsError, e
 
-    # csv.reader removes the quotes though. So we need to put them back in for items with spaces in them
-    """
-    i = 0
-    while i < len(items):
-        if ' ' in items[i]:
-            items[i] = '"' + items[i] + '"'
-        i += 1
-    """
     return items
+
 
 def error(msg):
     """Print out an error message"""
+
     print '*** Error:', str(msg)
 
+
 def debug(string):
-    """ Print string if debugging is true
-    """
+    """ Print string if debugging is true"""
+
+    import __main__
     # Debug level 2, console debugs
-    if globaldebug >= 2: print '  DEBUG: ' + str(string)
+    if __main__.dynagen.debuglevel >= 2:
+        print '  DEBUG: ' + str(string)
+
 
 if __name__ == '__main__':
     #console = Console()
     #console . cmdloop()
     pass
-
-
-

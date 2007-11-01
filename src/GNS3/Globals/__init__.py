@@ -36,10 +36,7 @@ GApp = None
 
 # Enum
 class Enum:
-    class Mode:
-        Design = 0
-        Emulation = 1
-        
+
     class LinkType:
         Manual = 0
         Ethernet = 1
@@ -48,16 +45,6 @@ class Enum:
         Serial = 4
         ATM = 5
         POS = 6
-
-modesIds = [
-    Enum.Mode.Design,
-    Enum.Mode.Emulation,
-]
-
-modesNames = {
-    Enum.Mode.Design : 'Design Mode',
-    Enum.Mode.Emulation : 'Emulation Mode',
-}
 
 linkTypes = {
     'Manual': Enum.LinkType.Manual,
