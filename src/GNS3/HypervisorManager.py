@@ -21,6 +21,7 @@
 
 import time
 import GNS3.Globals as globals
+from socket import socket, timeout, AF_INET, SOCK_STREAM
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
 from GNS3.Node.IOSRouter import IOSRouter
@@ -94,27 +95,44 @@ class HypervisorManager:
             if hypervisor['load'] + node.config.ram <= globals.HypervisorMemoryUsageLimit:
                 hypervisor['load'] += node.config.ram
                 node.configHypervisor('localhost',  hypervisor['port'],  self.hypervisor_wd,  self.baseUDP, self.baseConsole)
-                return
+                return True
 
+        s = socket(AF_INET, SOCK_STREAM)
+        s.setblocking(0)
+        s.settimeout(300)
         hypervisor = self.startNewHypervisor()
-        count = 2
-        progress = QtGui.QProgressDialog(translate("HypervisorManager", "Starting a new hypervisor"), translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
+        count = 10
+        progress = QtGui.QProgressDialog(translate("HypervisorManager", "Starting a new hypervisor ..."), translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
         progress.setMinimum(1)
         progress.setWindowModality(QtCore.Qt.WindowModal)
-        
+
+        connection_success = False
         for nb in range(count):
-            progress.setValue(nb)
+            if nb > 2:
+                progress.setValue(nb)
             globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 2000)
             if  progress.wasCanceled():
                 progress.reset()
                 break
-            time.sleep(1)
+            try:
+                s.connect(('localhost', hypervisor['port']))
+            except:
+                time.sleep(1)
+                continue
+            connection_success = True
+            break
 
+        if connection_success:
+            s.close()
+        else:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Can't connect to the hypervisor"))
+            return False
         progress.setValue(count)
         progress.deleteLater()
         progress = None
         hypervisor['load'] = node.config.ram
         node.configHypervisor('localhost',  hypervisor['port'],  self.hypervisor_wd,  self.baseUDP, self.baseConsole)
+        return True
 
     def unallocateHypervisor(self, node):
         """ Unallocate an hypervisor for a given node
@@ -123,6 +141,8 @@ class HypervisorManager:
         for hypervisor in self.hypervisors:
             if hypervisor['port'] == node.hypervisor_port:
                 hypervisor['load'] -= node.config.ram
+                if hypervisor['load'] <= 0:
+                    hypervisor['load'] = 0
                 break
     
     def startProcHypervisors(self):
