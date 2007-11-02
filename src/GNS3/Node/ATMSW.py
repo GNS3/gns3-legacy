@@ -79,7 +79,7 @@ class ATMSW(AbstractNode):
         hypervisor = self.getHypervisor()
         self.dev = lib.ATMSW(hypervisor, name = self.hostname)
         # register into Dynagen
-        dynagen.devices[self.hostname] = self.dev
+        globals.GApp.dynagen.devices[self.hostname] = self.dev
         
     def startNode(self):
         """ Start the node

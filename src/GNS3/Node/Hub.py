@@ -79,7 +79,7 @@ class Hub(AbstractNode):
         self.dev = lib.Bridge(hypervisor, name = self.hostname)
         # register into Dynagen
         #dynagen.devices[self.hostname] = self.dev
-        dynagen.bridges[self.hostname] = self.dev
+        globals.GApp.dynagen.bridges[self.hostname] = self.dev
         
     def startNode(self):
         """ Start the node

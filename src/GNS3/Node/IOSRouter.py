@@ -249,7 +249,11 @@ class IOSRouter(AbstractNode):
             platform = image.platform
             chassis = image.chassis
             self.config.image = iosimages[0]
-            
+            if platform =='7200':
+                self.config.ram = 256
+            if (platform =='2600' or platform == '1700') and chassis != '2691':
+                self.config.ram = 64
+
             for slotnb in range(7):
                 modules = IOSRouter.getAdapters(platform,  chassis,  slotnb)
                 if modules and modules[0]:
@@ -308,10 +312,8 @@ class IOSRouter(AbstractNode):
         self.dev.image = filename
         if idlepc:
             self.dev.idlepc = idlepc
-#        else:
-#            self.dev.idlepc = '0x60483ae4'
 
-        #FIXME: confreg
+        #FIXME: confreg ?
         properties = ('console', 'cnfg', 'mac', 'ram', 'nvram', 'disk0', 'disk1', 'mmap', 'exec_area')
         for property in properties:
             value = getattr(self.dev, property)

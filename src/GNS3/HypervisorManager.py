@@ -43,9 +43,9 @@ class HypervisorManager:
         """
 
         self.stopProcHypervisors()
-        for hypervisor in self.preloaded_hypervisors:
-            hypervisor['proc_instance'].close()
-        self.preloaded_hypervisors = []
+#        for hypervisor in self.preloaded_hypervisors:
+#            hypervisor['proc_instance'].close()
+#        self.preloaded_hypervisors = []
        
     def setDefaults(self):
         """ Set the default values for the hypervisor manager
@@ -101,19 +101,22 @@ class HypervisorManager:
         s.setblocking(0)
         s.settimeout(300)
         hypervisor = self.startNewHypervisor()
-        count = 10
-        progress = QtGui.QProgressDialog(translate("HypervisorManager", "Starting a new hypervisor ..."), translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
-        progress.setMinimum(1)
-        progress.setWindowModality(QtCore.Qt.WindowModal)
-
+        # give 15 seconds to the hypervisor to accept connections
+        count = 15
+        progress = None
         connection_success = False
-        for nb in range(count):
+        for nb in range(count + 1):
+            if nb == 3:
+                progress = QtGui.QProgressDialog(translate("HypervisorManager", "Starting a new hypervisor ..."), translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
+                progress.setMinimum(1)
+                progress.setWindowModality(QtCore.Qt.WindowModal)
+                globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 2000)
             if nb > 2:
                 progress.setValue(nb)
-            globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 2000)
-            if  progress.wasCanceled():
-                progress.reset()
-                break
+                globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 2000)
+                if  progress.wasCanceled():
+                    progress.reset()
+                    break
             try:
                 s.connect(('localhost', hypervisor['port']))
             except:
@@ -126,12 +129,16 @@ class HypervisorManager:
             s.close()
         else:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Can't connect to the hypervisor"))
+            hypervisor['proc_instance'].close()
+            self.hypervisors.remove(hypervisor)
             return False
-        progress.setValue(count)
-        progress.deleteLater()
-        progress = None
+        if progress:
+            progress.setValue(count)
+            progress.deleteLater()
+            progress = None
         hypervisor['load'] = node.config.ram
         node.configHypervisor('localhost',  hypervisor['port'],  self.hypervisor_wd,  self.baseUDP, self.baseConsole)
+        self.baseUDP += globals.HypervisorUDPIncrementation
         return True
 
     def unallocateHypervisor(self, node):
@@ -145,91 +152,17 @@ class HypervisorManager:
                     hypervisor['load'] = 0
                 break
     
-    def startProcHypervisors(self):
-        """ Load-balance IOS instances on multiple hypervisors
-        """
 
-        node_list = []
-        mem = 0
-        for node in globals.GApp.topology.nodes.itervalues():
-            if type(node) == IOSRouter:
-                image = globals.GApp.iosimages[node.config.image]
-                if not image.hypervisor_host:
-                    # needs a local hypervisor
-                    node_list.append(node)
-                    mem += node.config.ram
-
-        # compute the number of hypervisors to start
-        count = mem / globals.HypervisorMemoryUsageLimit
-        count += 1
-        # show a progress dialog if multiple hypervisors to start
-        if count > 1:
-            
-            progress = QtGui.QProgressDialog(translate("HypervisorManager", "Starting hypervisors ..."), translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
-            progress.setMinimum(1)
-            progress.setWindowModality(QtCore.Qt.WindowModal)
-
-        mem = 0
-        current_node = 0
-        hypervisor = self.startNewHypervisor()
-        if hypervisor == None:
-            return False
-        nb_node = len(node_list)
-        for node in node_list:
-            if count > 1:
-                progress.setValue(current_node)
-                globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 2000)
-            if  count > 1 and progress.wasCanceled():
-                progress.reset()
-                break
-            mem += node.config.ram
-            current_node += 1
-            node.configHypervisor('localhost',  hypervisor['port'],  self.hypervisor_wd,  self.baseUDP, self.baseConsole)
-            if mem >= globals.HypervisorMemoryUsageLimit and current_node != nb_node:
-                # start a new hypervisor
-                hypervisor = self.startNewHypervisor()
-                # wait for starting
-                time.sleep(1)
-                # change the base UDP
-                self.baseUDP += globals.HypervisorUDPIncrementation
-                mem = 0
-        time.sleep(2)
-        if count > 1:
-            progress.setValue(count)
-            progress.deleteLater()
-            progress = None
-        return True
-                
     def stopProcHypervisors(self):
         """ Shutdown all started hypervisors 
         """
     
         if globals.GApp != None and globals.GApp.systconf['dynamips']:
-            dynamips = globals.GApp.systconf['dynamips']
-            self.hypervisor_baseport = dynamips.port
-            self.baseUDP = dynamips.baseUDP
-            self.baseConsole = dynamips.baseConsole
+            self.setDefaults()
         for hypervisor in self.hypervisors:
             hypervisor['proc_instance'].close()
         self.hypervisors = []
 
-    def slotStandardOutput(self):
-        """ Display the standard output of the process
-        """
-        
-        print 'received data stdout'
-        for hypervisor in self.hypervisors:
-            print hypervisor['proc_instance'].readAllStandardOutput()
-        
-        #print str(self.proc.readAllStandardOutput())
-        
-    def slotStandardErrorOutput(self):
-        """ Display the error output of the process
-        """
-
-        print 'received data stderr'
-        print str(self.proc.readAllStandardError)
-        
     def preloadDynamips(self, showErrMessage=True):
         """ Preload Dynamips
         """
@@ -251,5 +184,5 @@ class HypervisorManager:
         hypervisor = {'port': port,
                             'proc_instance': proc}
 
-        self.preloaded_hypervisors.append(hypervisor)
+        #self.preloaded_hypervisors.append(hypervisor)
         return True
