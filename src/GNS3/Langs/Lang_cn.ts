@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="en">
-<defaultcodec></defaultcodec>
 <context>
     <name>ATMSW</name>
     <message>
-        <location filename="GNS3/src/GNS3/Node/ATMSW.py" line="145"/>
+        <location filename="../Node/ATMSW.py" line="146"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Node/ATMSW.py" line="145"/>
+        <location filename="../Node/ATMSW.py" line="146"/>
         <source>No port available</source>
         <translation>无可利用的端口</translation>
     </message>
@@ -17,67 +16,67 @@
 <context>
     <name>ATMSWPage</name>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ATMSWPage.ui" line="13"/>
+        <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="13"/>
         <source>ATM Switch</source>
         <translation>ATM 交换</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ATMSWPage.ui" line="19"/>
+        <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="19"/>
         <source>Hypervisor</source>
         <translation>Hypervisor</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ATMSWPage.ui" line="25"/>
+        <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="25"/>
         <source>Use the hypervisor manager</source>
         <translation>使用Hypervisor管理</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ATMSWPage.ui" line="58"/>
+        <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="58"/>
         <source>Use VCI</source>
         <translation>使用 VCI</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ATMSWPage.ui" line="65"/>
+        <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="65"/>
         <source>Mapping</source>
         <translation>映射关系</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ATMSWPage.ui" line="86"/>
+        <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="86"/>
         <source>Port:VCI:VPI</source>
         <translation>端口:VCI:VPI</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ATMSWPage.ui" line="103"/>
+        <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="103"/>
         <source>Source</source>
         <translation>源点</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ATMSWPage.ui" line="199"/>
+        <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="199"/>
         <source>Port:</source>
         <translation>端口:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ATMSWPage.ui" line="225"/>
+        <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="225"/>
         <source>VCI:</source>
         <translation>VCI:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ATMSWPage.ui" line="251"/>
+        <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="251"/>
         <source>VPI:</source>
         <translation>VPI:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ATMSWPage.ui" line="193"/>
+        <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="193"/>
         <source>Destination</source>
         <translation>目的</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ATMSWPage.ui" line="277"/>
+        <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="277"/>
         <source>&amp;Add</source>
         <translation>添加(&amp;A)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ATMSWPage.ui" line="287"/>
+        <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="287"/>
         <source>&amp;Delete</source>
         <translation>删除(&amp;D)</translation>
     </message>
@@ -85,42 +84,22 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_About.py" line="86"/>
+        <location filename="../Ui/Form_About.ui" line="13"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_About.py" line="103"/>
+        <location filename="../Ui/Form_About.ui" line="26"/>
         <source>&amp;About</source>
         <translation>关于(&amp;A)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_About.py" line="102"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;GNS3 0.3 beta&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;EPITECH end of studies &lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;project (www.epitech.net)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;Under GPL v2 license&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;Jeremy Grossmann&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Xavier Alt&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Romain Lamaison&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aurelien Levesque&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;David Ruiz&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;contact@gns3.net&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;www.gns3.net&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_About.py" line="112"/>
+        <location filename="../Ui/Form_About.ui" line="107"/>
         <source>&amp;Thanks to</source>
         <translation>致谢(&amp;T)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_About.py" line="111"/>
+        <location filename="../Ui/Form_About.ui" line="113"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -132,12 +111,12 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_About.py" line="399"/>
+        <location filename="../Ui/Form_About.ui" line="128"/>
         <source>&amp;License Agreement</source>
         <translation>授权协议书(&amp;L)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_About.py" line="398"/>
+        <location filename="../Ui/Form_About.ui" line="134"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -426,16 +405,36 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;END OF TERMS AND CONDITIONS&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Ui/Form_About.ui" line="45"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;GNS3 0.3.2 beta&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;EPITECH end of studies &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;project (www.epitech.net)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;Under GPL v2 license&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;Jeremy Grossmann&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Xavier Alt&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Romain Lamaison&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aurelien Levesque&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;David Ruiz&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;contact@gns3.net&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;www.gns3.net&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AbstractEdge</name>
     <message>
-        <location filename="GNS3/src/GNS3/Link/AbstractEdge.py" line="135"/>
+        <location filename="../Link/AbstractEdge.py" line="133"/>
         <source>delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Link/AbstractEdge.py" line="106"/>
+        <location filename="../Link/AbstractEdge.py" line="105"/>
         <source>Link: </source>
         <translation>链接: </translation>
     </message>
@@ -443,42 +442,32 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractNode</name>
     <message>
-        <location filename="GNS3/src/GNS3/Node/AbstractNode.py" line="82"/>
+        <location filename="../Node/AbstractNode.py" line="80"/>
         <source>Change hostname</source>
         <translation>修改设备名</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Node/AbstractNode.py" line="83"/>
+        <location filename="../Node/AbstractNode.py" line="81"/>
         <source>Hostname:</source>
         <translation>设备名:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Node/AbstractNode.py" line="89"/>
-        <source>Hostname</source>
-        <translation>设备名</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Node/AbstractNode.py" line="89"/>
-        <source>Hostname already used</source>
-        <translation>设备名已被使用</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Node/AbstractNode.py" line="223"/>
+        <location filename="../Node/AbstractNode.py" line="221"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Node/AbstractNode.py" line="190"/>
+        <location filename="../Node/AbstractNode.py" line="188"/>
         <source>Already connected interface</source>
         <translation>端口已被连接</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Node/AbstractNode.py" line="223"/>
+        <location filename="../Node/AbstractNode.py" line="221"/>
         <source>Please, configure the slots</source>
         <translation>请配置插槽</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Node/AbstractNode.py" line="167"/>
+        <location filename="../Node/AbstractNode.py" line="165"/>
         <source>Hostname: </source>
         <translation>主机名: </translation>
     </message>
@@ -486,12 +475,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Cloud</name>
     <message>
-        <location filename="GNS3/src/GNS3/Node/Cloud.py" line="101"/>
+        <location filename="../Node/Cloud.py" line="100"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Node/Cloud.py" line="101"/>
+        <location filename="../Node/Cloud.py" line="100"/>
         <source>No NIO available</source>
         <translation>无可用NIO端口</translation>
     </message>
@@ -499,97 +488,97 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>CloudPage</name>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="13"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="13"/>
         <source>Cloud</source>
         <translation>网云</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="23"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="23"/>
         <source>NIO Ethernet</source>
         <translation>以太网 NIO</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="29"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="29"/>
         <source>Generic Ethernet NIO (require root access)</source>
         <translation>普通以太网 NIO (linux需要根用户)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="508"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="508"/>
         <source>&amp;Add</source>
         <translation>添加(&amp;A)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="518"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="518"/>
         <source>&amp;Delete</source>
         <translation>删除(&amp;D)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="77"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="77"/>
         <source>Linux Ethernet NIO (require root access)</source>
         <translation>Linux以太网 NIO (linux需要根用户)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="136"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="136"/>
         <source>NIO UDP</source>
         <translation>NIO UDP</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="438"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="438"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="148"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="148"/>
         <source>Local port:</source>
         <translation>本地端口:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="171"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="171"/>
         <source>Remote host:</source>
         <translation>远程主机:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="188"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="188"/>
         <source>Remote port:</source>
         <translation>远程端口:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="489"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="489"/>
         <source>NIOs</source>
         <translation>NIOs</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="257"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="257"/>
         <source>NIO TAP</source>
         <translation>NIO TAP</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="263"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="263"/>
         <source>TAP interface (require root access)</source>
         <translation>TAP 接口 (linux需要根用户)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="309"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="309"/>
         <source>NIO UNIX</source>
         <translation>NIO UNIX</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="467"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="467"/>
         <source>Local file:</source>
         <translation>本地文件:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="344"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="344"/>
         <source>Remote file:</source>
         <translation>远程:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="432"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="432"/>
         <source>NIO VDE</source>
         <translation>NIO VDE</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_CloudPage.ui" line="446"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="446"/>
         <source>Control file:</source>
         <translation>控制文件:</translation>
     </message>
@@ -597,12 +586,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="GNS3/src/GNS3/Node/ETHSW.py" line="135"/>
+        <location filename="../Node/ETHSW.py" line="134"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Node/ETHSW.py" line="135"/>
+        <location filename="../Node/ETHSW.py" line="134"/>
         <source>No port available</source>
         <translation>无可利用的端口</translation>
     </message>
@@ -610,77 +599,77 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ETHSWPage</name>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="13"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="13"/>
         <source>Ethernet Switch</source>
         <translation>以太网交换</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="19"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="19"/>
         <source>Hypervisor</source>
         <translation>Hypervisor</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="25"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="25"/>
         <source>Use the hypervisor manager</source>
         <translation>使用Hypervisor管理</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="64"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="64"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="70"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="70"/>
         <source>Port:</source>
         <translation>端口:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="96"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="96"/>
         <source>VLAN:</source>
         <translation>VLAN:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="122"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="122"/>
         <source>Type:</source>
         <translation>类型:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="130"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="130"/>
         <source>access</source>
         <translation>access</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="135"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="135"/>
         <source>dot1q</source>
         <translation>dot1q</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="146"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="146"/>
         <source>Ports</source>
         <translation>端口</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="162"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="162"/>
         <source>Port</source>
         <translation>端口</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="167"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="167"/>
         <source>VLAN</source>
         <translation>VLAN</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="172"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="172"/>
         <source>Type</source>
         <translation>类型</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="183"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="183"/>
         <source>&amp;Add</source>
         <translation>添加(&amp;A)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_ETHSWPage.ui" line="193"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="193"/>
         <source>&amp;Delete</source>
         <translation>删除(&amp;D)</translation>
     </message>
@@ -688,12 +677,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>FRSW</name>
     <message>
-        <location filename="GNS3/src/GNS3/Node/FRSW.py" line="130"/>
+        <location filename="../Node/FRSW.py" line="131"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Node/FRSW.py" line="130"/>
+        <location filename="../Node/FRSW.py" line="131"/>
         <source>No port available</source>
         <translation>无可利用的端口</translation>
     </message>
@@ -701,57 +690,57 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>FRSWPage</name>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_FRSWPage.ui" line="13"/>
+        <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="13"/>
         <source>Frame Relay Switch</source>
         <translation>帧中继交换</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_FRSWPage.ui" line="19"/>
+        <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="19"/>
         <source>Hypervisor</source>
         <translation>Hypervisor</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_FRSWPage.ui" line="25"/>
+        <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="25"/>
         <source>Use the hypervisor manager</source>
         <translation>使用Hypervisor管理</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_FRSWPage.ui" line="64"/>
+        <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="64"/>
         <source>Source</source>
         <translation>源点</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_FRSWPage.ui" line="166"/>
+        <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="166"/>
         <source>Port:</source>
         <translation>端口:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_FRSWPage.ui" line="192"/>
+        <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="192"/>
         <source>DLCI:</source>
         <translation>DLCI:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_FRSWPage.ui" line="122"/>
+        <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="122"/>
         <source>Mapping</source>
         <translation>映射关系</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_FRSWPage.ui" line="143"/>
+        <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="143"/>
         <source>Port:DLCI</source>
         <translation>端口:DLCI</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_FRSWPage.ui" line="160"/>
+        <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="160"/>
         <source>Destination</source>
         <translation>目的</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_FRSWPage.ui" line="218"/>
+        <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="218"/>
         <source>&amp;Add</source>
         <translation>添加(&amp;A)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_FRSWPage.ui" line="228"/>
+        <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="228"/>
         <source>&amp;Delete</source>
         <translation>删除(&amp;D)</translation>
     </message>
@@ -759,12 +748,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Hub</name>
     <message>
-        <location filename="GNS3/src/GNS3/Node/Hub.py" line="117"/>
+        <location filename="../Node/Hub.py" line="116"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Node/Hub.py" line="117"/>
+        <location filename="../Node/Hub.py" line="116"/>
         <source>No port available</source>
         <translation>无可利用的端口</translation>
     </message>
@@ -772,27 +761,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>HubPage</name>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_HubPage.ui" line="13"/>
+        <location filename="../Ui/ConfigurationPages/Form_HubPage.ui" line="13"/>
         <source>Ethernet Hub</source>
         <translation>以太网集线器</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_HubPage.ui" line="19"/>
+        <location filename="../Ui/ConfigurationPages/Form_HubPage.ui" line="19"/>
         <source>Hypervisor</source>
         <translation>Hypervisor</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_HubPage.ui" line="25"/>
+        <location filename="../Ui/ConfigurationPages/Form_HubPage.ui" line="25"/>
         <source>Use the hypervisor manager</source>
         <translation>使用Hypervisor管理</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_HubPage.ui" line="64"/>
+        <location filename="../Ui/ConfigurationPages/Form_HubPage.ui" line="64"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_HubPage.ui" line="70"/>
+        <location filename="../Ui/ConfigurationPages/Form_HubPage.ui" line="70"/>
         <source>Ports:</source>
         <translation>端口:</translation>
     </message>
@@ -800,208 +789,188 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="GNS3/src/GNS3/HypervisorManager.py" line="189"/>
+        <location filename="../HypervisorManager.py" line="181"/>
         <source>Can&apos;t start Dynamips</source>
         <translation>Dynamips进程没有启动</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/HypervisorManager.py" line="109"/>
-        <source>Starting hypervisors ...</source>
-        <translation>初始化 hypervisors ...</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/HypervisorManager.py" line="109"/>
+        <location filename="../HypervisorManager.py" line="110"/>
         <source>Abort</source>
         <translation>结束</translation>
+    </message>
+    <message>
+        <location filename="../HypervisorManager.py" line="110"/>
+        <source>Starting a new hypervisor ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../HypervisorManager.py" line="131"/>
+        <source>Can&apos;t connect to the hypervisor</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>IOSDialog</name>
     <message>
-        <location filename="GNS3/src/GNS3/IOSDialog.py" line="159"/>
-        <source>Select an IOS image</source>
-        <translation>选择IOS镜像</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/IOSDialog.py" line="165"/>
-        <source>Can&apos;t open file: </source>
-        <translation>无法打开文件: </translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/IOSDialog.py" line="195"/>
+        <location filename="../IOSDialog.py" line="197"/>
         <source>IDLE PC not valid (format required: 0xhhhhhhhh)</source>
         <translation type="unfinished">IDLE PC 格式错误 (格式要求: 0xhhhhhhhh)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/IOSDialog.py" line="204"/>
+        <location filename="../IOSDialog.py" line="206"/>
         <source>No hypervisor selected, use the local hypervisor</source>
         <translation>没有自定义hypervisor,使用本地hypervisor</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/IOSDialog.py" line="331"/>
+        <location filename="../IOSDialog.py" line="334"/>
         <source>Select a working directory</source>
         <translation>选择工作目录</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="295"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="13"/>
         <source>IOS images and hypervisors</source>
         <translation>IOS镜像 和 hypervisors</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="311"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="26"/>
         <source>IOS Images</source>
         <translation>IOS镜像</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="312"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="259"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="297"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="73"/>
         <source>Image file :</source>
         <translation>镜像文件 :</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="319"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="403"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="299"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="96"/>
         <source>Platform:</source>
         <translation>平台:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="300"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="113"/>
         <source>Chassis:</source>
         <translation>型号:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="301"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="130"/>
         <source>IDLE PC:</source>
         <translation>IDLE PC:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="303"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="32"/>
         <source>Images</source>
         <translation>镜像</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="304"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="45"/>
         <source>IOS image</source>
         <translation>IOS镜像</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="305"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="50"/>
         <source>Chassis</source>
         <translation>型号</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="326"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="426"/>
         <source>Hypervisors</source>
         <translation>Hypervisors</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="307"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="169"/>
         <source>Use the hypervisor manager</source>
         <translation>使用Hypervisor管理</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="323"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="454"/>
         <source>&amp;Save</source>
         <translation>保存(&amp;S)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="324"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="464"/>
         <source>&amp;Edit</source>
         <translation>编辑(&amp;E)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="325"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="474"/>
         <source>&amp;Delete</source>
         <translation>删除(&amp;D)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="313"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="265"/>
         <source>Host:</source>
         <translation>主机:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="314"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="288"/>
         <source>localhost</source>
         <translation>localhost</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="315"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="295"/>
         <source>Port:</source>
         <translation>端口:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="316"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="331"/>
         <source>Base UDP:</source>
         <translation>UDP:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="318"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="387"/>
         <source>Working directory:</source>
         <translation>工作目录:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="321"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="436"/>
         <source>Host:Port</source>
         <translation>主机:端口</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="322"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="441"/>
         <source>Base UDP</source>
         <translation>UDP</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="302"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="144"/>
         <source>Default image for this chassis</source>
         <translation>将此镜像作为该型号的默认设置</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_IOSDialog.py" line="317"/>
+        <location filename="../Ui/Form_IOSDialog.ui" line="367"/>
         <source>Base console:</source>
         <translation type="unfinished">控制台</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/IOSDialog.py" line="250"/>
+        <location filename="../IOSDialog.py" line="252"/>
         <source>There is already a default image for this chassis</source>
         <translation>此型号已存在一个默认镜像</translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_IOSDialog.ui" line="250"/>
+        <source>External hypervisors</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="GNS3/src/GNS3/Node/IOSRouter.py" line="262"/>
-        <source>Node configuration</source>
-        <translation>节点配置</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Node/IOSRouter.py" line="262"/>
-        <source>No IOS image available !</source>
-        <translation>无可利用的IOS镜像!</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Node/IOSRouter.py" line="555"/>
+        <location filename="../Node/IOSRouter.py" line="567"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Node/IOSRouter.py" line="545"/>
-        <source>No IOS configured</source>
-        <translation>无IOS被配置</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Node/IOSRouter.py" line="548"/>
-        <source>Can&apos;t find the IOS image</source>
-        <translation>无法找到IOS镜像</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Node/IOSRouter.py" line="555"/>
+        <location filename="../Node/IOSRouter.py" line="567"/>
         <source>No interface available</source>
         <translation>无可利用的端口</translation>
     </message>
@@ -1009,172 +978,162 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>IOSRouterPage</name>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="13"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="13"/>
         <source>Router configuration</source>
         <translation>路由器配置</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="23"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="23"/>
         <source>General</source>
         <translation>全局</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="29"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="29"/>
         <source>IOS image:</source>
         <translation>IOS镜像:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="46"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="46"/>
         <source>Startup-config:</source>
         <translation>启动配置文件:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="75"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="75"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="82"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="82"/>
         <source>Console port:</source>
         <translation>控制台端口:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="108"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="108"/>
         <source>Midplane:</source>
         <translation>面板:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="128"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="128"/>
         <source>NPE:</source>
         <translation>NPE:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="162"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="162"/>
         <source>Memories and disks</source>
         <translation>内存磁盘</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="168"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="168"/>
         <source>Memories</source>
         <translation>内存</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="174"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="174"/>
         <source>RAM size:</source>
         <translation>RAM 大小:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="554"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="518"/>
         <source> MB</source>
         <translation> MB</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="203"/>
-        <source>ROM size:</source>
-        <translation>ROM 大小:</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="232"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="203"/>
         <source>NVRAM size:</source>
         <translation>NVRAM 大小:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="264"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="235"/>
         <source>Disks</source>
         <translation>磁盘</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="270"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="241"/>
         <source>PCMCIA disk0 size:</source>
         <translation>PCMCIA disk0 大小:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="293"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="264"/>
         <source>PCMCIA disk1 size:</source>
         <translation>PCMCIA disk1 大小:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="333"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="304"/>
         <source>Slots</source>
         <translation>插槽</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="345"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="316"/>
         <source>slot0:</source>
         <translation>插槽0:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="361"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="332"/>
         <source>slot1:</source>
         <translation>插槽1:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="377"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="348"/>
         <source>slot2:</source>
         <translation>插槽2:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="393"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="364"/>
         <source>slot3:</source>
         <translation>插槽3:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="409"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="380"/>
         <source>slot4:</source>
         <translation>插槽4:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="425"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="396"/>
         <source>slot5:</source>
         <translation>插槽5:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="441"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="412"/>
         <source>slot6:</source>
         <translation>插槽6:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="465"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="436"/>
         <source>Advanced</source>
         <translation>高级</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="471"/>
-        <source>Delete nvram/flash/log files when stopping emulation</source>
-        <translation>当仿真停止时候,请删除nvram/flash/log文件 </translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="478"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="442"/>
         <source>Use mmap</source>
         <translation>使用 mmap</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="501"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="465"/>
         <source>confreg:</source>
         <translation>寄存器:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="514"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="478"/>
         <source>0x2102</source>
         <translation>0x2102</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="521"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="485"/>
         <source>Base MAC :</source>
         <translation>MAC :</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="541"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="505"/>
         <source>exec area:</source>
         <translation>执行区域:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="570"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="534"/>
         <source>iomem :</source>
         <translation>iomem :</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="586"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="550"/>
         <source> %</source>
         <translation> %</translation>
     </message>
@@ -1182,428 +1141,405 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="GNS3/src/GNS3/Translations.py" line="96"/>
+        <location filename="DynamicStrings.py" line="27"/>
         <source>English</source>
         <translation>简体中文</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="314"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="13"/>
         <source>GNS3</source>
         <translation>GNS3</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="315"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="61"/>
         <source>&amp;Edit</source>
         <translation>编辑(&amp;E)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="316"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="76"/>
         <source>&amp;File</source>
         <translation>文件(&amp;F)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="317"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="88"/>
         <source>&amp;Help</source>
         <translation>帮助(&amp;H)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="318"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="96"/>
         <source>&amp;View</source>
         <translation>查看(&amp;V)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="319"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="113"/>
         <source>General</source>
         <translation>全局</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="320"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="141"/>
         <source>Nodes Types</source>
         <translation>节点类型</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="325"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="272"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="322"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="192"/>
         <source>Design</source>
         <translation>设计</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="323"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="204"/>
         <source>Simulation</source>
         <translation>仿真</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="324"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="237"/>
         <source>Topology Summary</source>
         <translation>拓扑汇总</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="326"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="291"/>
         <source>Console</source>
         <translation>控制台</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="327"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="328"/>
         <source>&amp;About</source>
         <translation>关于(&amp;A)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="328"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="336"/>
         <source>&amp;Quit</source>
         <translation>退出(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="329"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="342"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="330"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="350"/>
         <source>&amp;Open</source>
         <translation>打开(&amp;O)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="331"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="353"/>
         <source>Open project</source>
         <translation>打开项目</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="332"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="356"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="333"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="364"/>
         <source>&amp;Save</source>
         <translation>保存(&amp;S)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="334"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="367"/>
         <source>Save project</source>
         <translation>保存项目</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="335"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="370"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="339"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="390"/>
         <source>Add a link</source>
         <translation>添加一个链接</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="340"/>
-        <source>Emulation Mode</source>
-        <translation>仿真模式</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="341"/>
-        <source>IOS images</source>
-        <translation>IOS镜像</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="342"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="398"/>
         <source>Ctrl+Shift+I</source>
         <translation>Ctrl+Shift+I</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="343"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="406"/>
         <source>&amp;Online Help</source>
         <translation>在线帮助(&amp;O)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="344"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="414"/>
         <source>&amp;Export</source>
         <translation>输出(&amp;E)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="345"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="425"/>
         <source>Start/Resume all IOS</source>
         <translation>开始/继续 所有IOS</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="346"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="428"/>
         <source>Start or resume all IOS instances</source>
         <translation>开始或继续执行所有IOS事件</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="347"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="439"/>
         <source>Stop all IOS</source>
         <translation>停止所有IOS</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="348"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="442"/>
         <source>Stop all IOS instances</source>
         <translation>停止所有IOS事件</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="350"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="456"/>
         <source>Show hostnames</source>
         <translation>显示设备名</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="351"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="467"/>
         <source>Telnet all IOS</source>
         <translation>Telnet所有IOS</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="352"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="470"/>
         <source>Start a console on all running IOS instances</source>
         <translation>为所有已运行的IOS事件启动控制台</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="353"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="475"/>
         <source>&amp;Design Mode</source>
         <translation>设计模式(&amp;D)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="354"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="480"/>
         <source>&amp;Emulation Mode</source>
         <translation>仿真模式(&amp;E)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="355"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="485"/>
         <source>&amp;Simulation Mode</source>
         <translation>仿真模式(&amp;S)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="356"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="493"/>
         <source>Save &amp;As</source>
         <translation>另存为(&amp;A)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="357"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="496"/>
         <source>Save As</source>
         <translation>另存为</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="358"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="499"/>
         <source>Save project as</source>
         <translation>项目另存为</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="359"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="507"/>
         <source>&amp;New</source>
         <translation>新建(&amp;N)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="360"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="510"/>
         <source>New project</source>
         <translation>新建项目</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="361"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="513"/>
         <source>Create a new project</source>
         <translation>创建新项目</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="362"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="516"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="363"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="521"/>
         <source>About &amp;Qt</source>
         <translation>关于QT(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="364"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="529"/>
         <source>Zoom &amp;In</source>
         <translation>放大(&amp;I)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="365"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="532"/>
         <source>Ctrl++</source>
         <translation>Ctrl++</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="366"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="537"/>
         <source>Zoom &amp;Out</source>
         <translation>缩小(&amp;O)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="367"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="540"/>
         <source>Ctrl+-</source>
         <translation>Ctrl+-</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="368"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="545"/>
         <source>Zoom &amp;1:1</source>
         <translation>等比例(&amp;1)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="369"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="548"/>
         <source>Ctrl+/</source>
         <translation>Ctrl+/</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="370"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="556"/>
         <source>Zoom &amp;Fit</source>
         <translation>最佳大小(&amp;F)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="371"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="559"/>
         <source>Ctrl+=</source>
         <translation>Ctrl+=</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="372"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="564"/>
         <source>Select &amp;All</source>
         <translation>选择所有(&amp;A)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="373"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="567"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="374"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="572"/>
         <source>Select &amp;None</source>
         <translation>取消选择(&amp;N)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="375"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="575"/>
         <source>Ctrl+Shift+A</source>
         <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="378"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="591"/>
         <source>Cut</source>
         <translation>剪切</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="379"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="594"/>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="380"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="602"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="381"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="605"/>
         <source>Ctrl+C</source>
         <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="382"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="613"/>
         <source>&amp;Paste</source>
         <translation>粘贴(&amp;P)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="383"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="616"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="384"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="624"/>
         <source>Suspend all IOS</source>
         <translation>暂停所有IOS</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="385"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="627"/>
         <source>Suspend all IOS instances</source>
         <translation>暂停所有IOS事件</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="376"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="580"/>
         <source>&amp;Preferences...</source>
         <translation>首选项(&amp;P)...</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_MainWindow.py" line="377"/>
+        <location filename="../Ui/Form_MainWindow.ui" line="583"/>
         <source>Ctrl+Shift+P</source>
         <translation></translation>
     </message>
-</context>
-<context>
-    <name>NETFile</name>
     <message>
-        <location filename="GNS3/src/GNS3/NETFile.py" line="58"/>
-        <source>Save</source>
-        <translation>保存</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/NETFile.py" line="58"/>
-        <source>Please configure the path to Dynamips</source>
-        <translation>请配置Dynamips路径</translation>
+        <location filename="../Ui/Form_MainWindow.ui" line="395"/>
+        <source>IOS images and hypervisors</source>
+        <translation type="unfinished">IOS镜像 和 hypervisors</translation>
     </message>
 </context>
 <context>
     <name>NodeConfigurator</name>
     <message>
-        <location filename="GNS3/src/GNS3/NodeConfigurator.py" line="247"/>
-        <source>Node configuration</source>
-        <translation>节点配置</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/NodeConfigurator.py" line="99"/>
+        <location filename="../NodeConfigurator.py" line="98"/>
         <source>Routers</source>
         <translation>Routers</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/NodeConfigurator.py" line="102"/>
+        <location filename="../NodeConfigurator.py" line="101"/>
         <source>Frame Relay switches</source>
         <translation>Frame Relay switches</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/NodeConfigurator.py" line="105"/>
+        <location filename="../NodeConfigurator.py" line="104"/>
         <source>Ethernet switches</source>
         <translation>Ethernet switches</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/NodeConfigurator.py" line="108"/>
+        <location filename="../NodeConfigurator.py" line="107"/>
         <source>ATM switches</source>
         <translation>ATM switches</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/NodeConfigurator.py" line="111"/>
+        <location filename="../NodeConfigurator.py" line="110"/>
         <source>Clouds</source>
         <translation>Clouds</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/NodeConfigurator.py" line="114"/>
+        <location filename="../NodeConfigurator.py" line="113"/>
         <source>Hubs</source>
         <translation>Hubs</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/NodeConfigurator.py" line="193"/>
+        <location filename="../NodeConfigurator.py" line="192"/>
         <source>%s node</source>
         <translation>%s 节点</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/NodeConfigurator.py" line="185"/>
+        <location filename="../NodeConfigurator.py" line="184"/>
         <source>%s group</source>
         <translation>%s 群组</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/NodeConfigurator.py" line="190"/>
+        <location filename="../NodeConfigurator.py" line="189"/>
         <source>Group of %d %s</source>
         <translation>Group of %s %s</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_NodeConfigurator.py" line="99"/>
+        <location filename="../Ui/Form_NodeConfigurator.ui" line="13"/>
         <source>Node configurator</source>
         <translation>节点配置</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_NodeConfigurator.py" line="100"/>
+        <location filename="../Ui/Form_NodeConfigurator.ui" line="36"/>
         <source>Nodes</source>
         <translation>节点</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_NodeConfigurator.py" line="101"/>
+        <location filename="../Ui/Form_NodeConfigurator.ui" line="71"/>
         <source>Node Configuration</source>
         <translation>节点配置</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_NodeConfigurator.py" line="103"/>
+        <location filename="../Ui/Form_NodeConfigurator.ui" line="131"/>
         <source>Please select a node in the list 
 to display the configuration page.</source>
         <translation type="unfinished">请从列表中选择一个节点名以显示配置界面</translation>
@@ -1612,105 +1548,95 @@ to display the configuration page.</source>
 <context>
     <name>PreferencesDialog</name>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/Form_PreferencesDialog.py" line="101"/>
+        <location filename="../Ui/Form_PreferencesDialog.ui" line="19"/>
         <source>Preferences</source>
         <translation>首选项</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="30"/>
-        <source>General</source>
-        <translation>全局</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="33"/>
-        <source>Applications</source>
-        <translation>应用</translation>
     </message>
 </context>
 <context>
     <name>PreferencesDynamips</name>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="13"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="13"/>
         <source>Form</source>
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="23"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="23"/>
         <source>Dynamips</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="205"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="205"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="41"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="41"/>
         <source>Executable path:</source>
         <translation>运行路径:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="71"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="71"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="61"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="61"/>
         <source>Working directory:</source>
         <translation>工作目录:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="78"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="78"/>
         <source>Base port:</source>
         <translation type="unfinished">端口</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="85"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="85"/>
         <source> Base UDP:</source>
         <translation type="unfinished">UDP</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="92"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="92"/>
         <source>Base console:</source>
         <translation type="unfinished">控制台</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="129"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="129"/>
         <source>Terminal command:</source>
         <translation>终端命令:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="139"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="139"/>
         <source>Automatically delete old files generated by Dynamips</source>
         <translation>自动删除dynamips生成的旧文件</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="146"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="146"/>
         <source>Enable IOS ghost feature</source>
         <translation>开启IOS ghost特性</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="159"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="159"/>
         <source>&amp;Test</source>
         <translation>测试(&amp;T)</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="193"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="193"/>
         <source>Hypervisor Manager</source>
         <translation>Hypervisor管理</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="211"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="211"/>
         <source>Memory usage limit per hypervisor:</source>
         <translation type="unfinished">限制每个hypervisor内存使用</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="231"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="231"/>
         <source>UDP incrementation:</source>
         <translation type="unfinished">UDP 增量</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="251"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="251"/>
         <source>Use the hypervisor manager when importing</source>
         <translation>当输入时候使用hypervisor管理</translation>
     </message>
@@ -1718,27 +1644,27 @@ to display the configuration page.</source>
 <context>
     <name>PreferencesGeneral</name>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="13"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="13"/>
         <source>Form</source>
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="22"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="22"/>
         <source>Language:</source>
         <translation>语言:</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
         <source>GUI settings</source>
         <translation>GUI 设置</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="48"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="48"/>
         <source>Show link status points on the scene</source>
         <translation>在场景中显示设备链接状态</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="58"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="58"/>
         <source>Always use the manual mode when adding links</source>
         <translation>在添加链接时候允许使用手工模式</translation>
     </message>
@@ -1746,308 +1672,95 @@ to display the configuration page.</source>
 <context>
     <name>Scene</name>
     <message>
-        <location filename="GNS3/src/GNS3/Scene.py" line="246"/>
+        <location filename="../Scene.py" line="243"/>
         <source>Interfaces are not compatible !</source>
         <translation>接口类型不匹配 !</translation>
     </message>
+</context>
+<context>
+    <name>Topology</name>
     <message>
-        <location filename="GNS3/src/GNS3/Scene.py" line="91"/>
-        <source>Delete</source>
-        <translation>删除</translation>
+        <location filename="../Topology.py" line="79"/>
+        <source>IOS image</source>
+        <translation type="unfinished">IOS镜像</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Scene.py" line="96"/>
-        <source>Configure</source>
-        <translation>配置</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Scene.py" line="101"/>
-        <source>Change hostname</source>
-        <translation>修改设备名</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Scene.py" line="115"/>
-        <source>Console</source>
-        <translation>控制台</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Scene.py" line="120"/>
-        <source>Start</source>
-        <translation>开始</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Scene.py" line="125"/>
-        <source>Stop</source>
-        <translation>停止</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Scene.py" line="130"/>
-        <source>Suspend</source>
-        <translation>暂停</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Scene.py" line="141"/>
-        <source>Show hostname</source>
-        <translation>显示设备名</translation>
+        <location filename="../Topology.py" line="79"/>
+        <source>Please register at least one IOS image</source>
+        <translation type="unfinished">请至少配置一个IOS镜像</translation>
     </message>
 </context>
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="223"/>
+        <location filename="../Workspace.py" line="120"/>
         <source>Docks</source>
         <translation>浮动窗口</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="326"/>
+        <location filename="../Workspace.py" line="169"/>
         <source>GNS3 - New Project</source>
         <translation>GNS3 - New Project</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="357"/>
+        <location filename="../Workspace.py" line="200"/>
         <source>Design Mode</source>
         <translation>设计模式</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="421"/>
+        <location filename="../Workspace.py" line="264"/>
         <source>Emulation Mode</source>
         <translation>仿真模式</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="374"/>
+        <location filename="../Workspace.py" line="217"/>
         <source>Please register at least one IOS image</source>
         <translation>请至少配置一个IOS镜像</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="393"/>
-        <source>Please configure the path to Dynamips</source>
-        <translation>请设置Dynamips运行路径</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="639"/>
+        <location filename="../Workspace.py" line="474"/>
         <source>Dynamips error</source>
         <translation>Dynamips 错误</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="639"/>
+        <location filename="../Workspace.py" line="474"/>
         <source>Connection lost</source>
         <translation>丢失连接</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="565"/>
-        <source>Hide hostnames</source>
-        <translation>隐藏设备名</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="570"/>
-        <source>Show hostnames</source>
-        <translation>显示设备名</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="636"/>
+        <location filename="../Workspace.py" line="471"/>
         <source>Dynamips warning</source>
         <translation>Dynamips 警告</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="615"/>
+        <location filename="../Workspace.py" line="450"/>
         <source>Abort</source>
         <translation>结束</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="652"/>
+        <location filename="../Workspace.py" line="487"/>
         <source>Starting nodes ...</source>
         <translation>开始节点 ...</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="658"/>
+        <location filename="../Workspace.py" line="493"/>
         <source>Stopping nodes ...</source>
         <translation>停止节点 ...</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="664"/>
+        <location filename="../Workspace.py" line="499"/>
         <source>Suspending nodes ...</source>
         <translation>暂停节点 ...</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="729"/>
-        <source>Open a file</source>
-        <translation>打开文件</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="737"/>
-        <source>Project Loaded...</source>
-        <translation>载入项目...</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="756"/>
-        <source>Project saved...</source>
-        <translation>保存项目...</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="770"/>
-        <source>Save Project As</source>
-        <translation>项目另存为</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="224"/>
-        <source>Toolbars</source>
-        <translation>工具条</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="225"/>
-        <source>&amp;Design Mode</source>
-        <translation>设计模式(&amp;D)</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="226"/>
-        <source>&amp;Emulation Mode</source>
-        <translation>仿真模式(&amp;E)</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="500"/>
-        <source>IOS images</source>
-        <translation>IOS 镜像</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="721"/>
-        <source>You must be in design mode</source>
-        <translation>必须处于设计模式</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="687"/>
-        <source>Preferences</source>
-        <translation>首选项</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="709"/>
+        <location filename="../Workspace.py" line="541"/>
         <source>Loading</source>
         <translation>载入</translation>
     </message>
     <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="709"/>
+        <location filename="../Workspace.py" line="541"/>
         <source>Invalid file</source>
         <translation>无效文件</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="725"/>
-        <source>The path to Dynamips must be configured</source>
-        <translation>必须配置Dynamips运行路径</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="747"/>
-        <source>Save</source>
-        <translation>保存</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="767"/>
-        <source>You must be in emulation mode</source>
-        <translation>必须处于仿真模式</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Workspace.py" line="767"/>
-        <source>Save as</source>
-        <translation>另存为</translation>
-    </message>
-</context>
-<context>
-    <name>nodesDock</name>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="34"/>
-        <source>Router</source>
-        <translation>Router</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="35"/>
-        <source>Netflow router</source>
-        <translation>Netflow router</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="36"/>
-        <source>Router with firewall</source>
-        <translation>Router with firewall</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="37"/>
-        <source>Gateway</source>
-        <translation>Gateway</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="38"/>
-        <source>Edge label switch router</source>
-        <translation>Edge label switch router</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="39"/>
-        <source>Label switch router</source>
-        <translation>Label switch router</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="40"/>
-        <source>Optical router</source>
-        <translation>Optical router</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="41"/>
-        <source>Switch</source>
-        <translation>Switch</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="42"/>
-        <source>Hub</source>
-        <translation>Hub</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="43"/>
-        <source>Multilayer switch</source>
-        <translation>Multilayer switch</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="44"/>
-        <source>Route switch processor</source>
-        <translation>Route switch processor</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="45"/>
-        <source>ATM switch</source>
-        <translation>ATM switch</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="46"/>
-        <source>Frame Relay switch</source>
-        <translation>Frame Relay switch</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="47"/>
-        <source>Cloud</source>
-        <translation>Cloud</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="48"/>
-        <source>Access Point</source>
-        <translation>Access Point</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="49"/>
-        <source>Lightweight Access Point</source>
-        <translation>Lightweight Access Point</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="50"/>
-        <source>WLAN controller</source>
-        <translation>WLAN controller</translation>
-    </message>
-    <message>
-        <location filename="GNS3/src/GNS3/Langs/DynamicStrings.py" line="51"/>
-        <source>PIX firewall</source>
-        <translation>PIX firewall</translation>
-    </message>
-</context>
-<context>
-    <name>topologySummaryDock</name>
-    <message>
-        <location filename="GNS3/src/GNS3/Ui/Widget_topologySummaryDock.py" line="84"/>
-        <source>%s is connected to %s %s</source>
-        <translation>%s 连接到 %s %s</translation>
     </message>
 </context>
 </TS>

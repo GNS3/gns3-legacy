@@ -3,5 +3,5 @@ SOURCES = ../Application.py ../Config/Config.py ../Config/Defaults.py ../Config/
 
 FORMS = ../Ui/ConfigurationPages/Form_ATMSWPage.ui ../Ui/ConfigurationPages/Form_CloudPage.ui ../Ui/ConfigurationPages/Form_ETHSWPage.ui ../Ui/ConfigurationPages/Form_FRSWPage.ui ../Ui/ConfigurationPages/Form_HubPage.ui ../Ui/ConfigurationPages/Form_IOSRouterPage.ui ../Ui/ConfigurationPages/Form_PreferencesDynamips.ui ../Ui/ConfigurationPages/Form_PreferencesGeneral.ui ../Ui/Form_About.ui ../Ui/Form_IOSDialog.ui ../Ui/Form_MainWindow.ui ../Ui/Form_NodeConfigurator.ui ../Ui/Form_PreferencesDialog.ui 
 
-TRANSLATIONS =  Lang_en.ts Lang_fr.ts Lang_de.ts
+TRANSLATIONS =  Lang_en.ts Lang_fr.ts Lang_de.ts Lang_cn.ts
 
