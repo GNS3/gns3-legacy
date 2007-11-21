@@ -20,17 +20,21 @@
 #
 
 import sys
+import GNS3.Globals as globals
 from optparse import OptionParser
 from GNS3.Application import Application
-VERSION = '0.3-beta'
+VERSION = '0.3.2-beta'
 
 usage = "usage: %prog <config file>"
 parser = OptionParser(usage=usage, version="%prog " + VERSION)
+parser.add_option("-d", "--debug", action="store_true", help="display debug messages")
 try:
     (options, args) = parser.parse_args()
 except SystemExit:
     sys.exit(1)
 
+if options.debug == True:
+    globals.debugLevel = 4
 file = None
 if len(args) >= 1:
     file = args.pop()
