@@ -49,12 +49,6 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
         self.__initDialog()
         # Raise the first element in list
         self.__raiseWidgetByNum(0)
-        
-    def __del__(self):
-    
-        if globals.GApp.systconf['dynamips'].path:
-            globals.HypervisorManager = HypervisorManager()
-            globals.HypervisorManager.preloadDynamips()
 
     def retranslateUi(self, MainWindow):
         # Call parent retranslateUi

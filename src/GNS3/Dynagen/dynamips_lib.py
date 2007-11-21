@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+
 """
 dynamips_lib.py
-Copyright (C) 2006  Greg Anuzelli
+Copyright (C) 2006, 2007  Greg Anuzelli
+contributions: Pavel Skovajsa
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -16,7 +18,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
 """
 
 from socket import socket, timeout, AF_INET, SOCK_STREAM
@@ -24,7 +25,7 @@ import os
 import re
 import copy
 
-#version = "0.11.0.102007"
+#version = "0.11.0.110207"
 # Minimum version of dynamips required. Currently 0.2.8-RC1 (due to change to
 # hypervisor commands related to slot/port handling, and the pluggable archtecture
 # that changed model specific commands to "vm")
@@ -493,6 +494,24 @@ class NIO_udp(object):
 
         send(self.__d, 'nio create_udp %s %i %s %i' % (self.__name, self.__udplocal, self.__remotehost, self.__udpremote))
 
+    def config_info(self):
+        """return an info string for .net file config"""
+        (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self)
+        from pemu_lib import FW
+        if isinstance(remote_device, Router):
+            (rem_int_name, rem_dynagen_port) = remote_adapter.interfaces_mips2dyn[remote_port]
+            if remote_device.model_string in ['1710', '1720', '1721', '1750']:
+                return remote_device.name + ' ' + rem_int_name + str(rem_dynagen_port)
+            else:
+                return remote_device.name + ' ' + rem_int_name + str(remote_adapter.slot) + "/" +str(rem_dynagen_port)
+        #if this is only UDP NIO without the other side
+        elif remote_device == 'nothing':
+            return 'NIO_udp:' + str(self.udplocal) + ":" + self.remotehost + ":" + str(self.udpremote)
+        elif isinstance(remote_device, FRSW) or isinstance(remote_device, ATMSW) or isinstance(remote_device, ETHSW) or isinstance(remote_device, ATMBR):
+            return remote_device.name + " " + str(remote_port)
+        elif isinstance(remote_device, FW):
+            return remote_device.name + ' ' + remote_adapter + str(remote_port)
+
     def info(self):
         """return info string about this NIO"""
 
@@ -505,6 +524,8 @@ class NIO_udp(object):
                     rem_int_full_name = 'Ethernet'
                 elif rem_int_name == 'f':
                     rem_int_full_name = 'FastEthernet'
+                elif rem_int_name == 's':
+                    rem_int_full_name = 'Serial'
 
                 return ' is connected to router ' + remote_device.name + " " + rem_int_full_name + str(rem_dynagen_port)
             return ' is connected to router ' + remote_device.name + " " + remote_adapter.interface_name + str(remote_adapter.slot) + \
@@ -577,6 +598,7 @@ class NIO_linux_eth(object):
 
     def __init__(self, dynamips, interface, name=None):
 
+        self.__d = dynamips
         self.__interface = interface
         self.__instance = NIO_linux_eth.__instance
         NIO_linux_eth.__instance += 1
@@ -586,6 +608,11 @@ class NIO_linux_eth(object):
             self.__name = name
 
         send(self.__d, 'nio create_linux_eth %s %s' % (self.__name, self.__interface))
+
+    def config_info(self):
+        """return an info string for .net file config"""
+
+        return 'nio_linux_eth:'+ self.__interface
 
     def info(self):
         """return info string about this NIO"""
@@ -629,10 +656,15 @@ class NIO_gen_eth(object):
             self.__name = name
         send(self.__d, 'nio create_gen_eth %s %s' % (self.__name, self.__interface))
 
+    def config_info(self):
+        """return an info string for .net file config"""
+
+        return 'nio_gen_eth:'+ self.__interface
+
     def info(self):
         """return info string about this NIO"""
 
-        return ' is connected to real ' + self.__interface + ' interface'
+        return ' is connected to real PCAP ' + self.__interface + ' interface'
 
     def delete(self):
         send(self.__d, 'nio delete %s' % self.__name)
@@ -670,10 +702,15 @@ class NIO_tap(object):
 
         send(self.__d, 'nio create_tap %s %s' % (self.__name, self.__interface))
 
+    def config_info(self):
+        """return an info string for .net file config"""
+
+        return 'nio_tap:'+ self.__interface
+
     def info(self):
         """return info string about this NIO"""
 
-        return ' is connected to real ' + self.__interface + ' interface'
+        return ' is connected to real TAP ' + self.__interface + ' interface'
 
     def delete(self):
         send(self.__d, 'nio delete %s' % self.__name)
@@ -721,6 +758,11 @@ class NIO_unix(object):
 
     def delete(self):
         send(self.__d, 'nio delete %s' % self.__name)
+
+    def config_info(self):
+        """return an info string for .net file config"""
+
+        return 'nio_unix:'+ self.unixlocal + ":" + self.unixremote
 
     def info(self):
         """return info string about this NIO"""
@@ -773,6 +815,11 @@ class NIO_vde(object):
 
         send(self.__d, 'nio create_vde %s %s %s' % (self.__name, self.__controlsock, self.__localsock))
 
+    def config_info(self):
+        """return an info string for .net file config"""
+
+        return 'nio_vde:'+ self.controlsock + ":" + self.localsock
+
     def info(self):
         """return info string about this NIO"""
 
@@ -816,6 +863,11 @@ class NIO_null(object):
             self.__name = name
 
         send(self.__d, 'nio create_null %s' % self.__name)
+
+    def config_info(self):
+        """return an info string for .net file config"""
+
+        return 'nio_null'
 
     def delete(self):
         send(self.__d, 'nio delete %s' % self.__name)
@@ -1004,7 +1056,7 @@ class BaseAdapter(object):
         remoteport=None,
         ):
         ''' Connect this port to a port on another device
-            localint: The interface type for the local device (e.g. \'f\', \'s\', \'an\' for "FastEthernet", "Serial", "Analysis-Module", and so forth")
+            localint: The interface type for the local device (e.g. 'f', 's', 'an' for "FastEthernet", "Serial", "Analysis-Module", and so forth")
             localport: A port on this adapter
             remoteserver: the dynamips object that hosts the remote adapter
             remoteadapter: An adapter or module object on another device (router, bridge, or switch)
@@ -1061,7 +1113,7 @@ class BaseAdapter(object):
             interface: the interface type (e.g. "e", "f", "s")
             port: a port on this adapter or module
             filterName: The name of the filter
-            direction: \'in\' for rx, \'out\' for tx, or \'both\'
+            direction: 'in' for rx, 'out' for tx, or 'both'
             options: a list of options to pass to this filter
         '''
 
@@ -1148,11 +1200,13 @@ class BaseAdapter(object):
         # Set the NETIO for this port
         self.__nios[port] = nio
 
-    def connected(self, port):
-        """ Returns a boolean indicating a port on this adapter is connected or not
+    def connected(self, interface, port):
+        """ Returns a boolean indicating if a port on this adapter is connected or not
+            interface: The interface type for the local device (e.g. 'f', 's', 'an' for "FastEthernet", "Serial", "Analysis-Module", and so forth")
+            port: A port on this adapter
         """
 
-        return connected_general(self, port)
+        return connected_general(self, interface, port)
 
     def get_interface_count(self):
         """ Returns a number indicating the number of interfaces in an adapter
@@ -2064,11 +2118,11 @@ class Router(object):
                             self.slot[slot].interfaces[interface] = {}
                         if interface == 'e':
                             self.slot[slot].interfaces[interface][currentport_e] = dynaport
-                            self.slot[wicslot].interfaces_mips2dyn[dynaport] = (interface, currentport_e)
+                            self.slot[slot].interfaces_mips2dyn[dynaport] = (interface, currentport_e)
                             currentport_e += 1
                         elif interface == 's':
                             self.slot[slot].interfaces[interface][currentport_s] = dynaport
-                            self.slot[wicslot].interfaces_mips2dyn[dynaport] = (interface, currentport_s)
+                            self.slot[slot].interfaces_mips2dyn[dynaport] = (interface, currentport_s)
                             currentport_s += 1
                         dynaport += 1
 
@@ -2176,6 +2230,8 @@ class Router(object):
                                 interface_name = 'Ethernet'
                             elif interface == 'f':
                                 interface_name = 'FastEthernet'
+                            elif interface == 's':
+                                interface_name = 'Serial'
                             slot_info += '      ' + interface_name + str(dynagenport)
                         #this is router with slot/port notation
                         else:
@@ -3509,11 +3565,13 @@ class FRSW(object):
                 dst_port=dst_port,
                 )
 
-    def connected(self, port):
-        """ Returns a boolean indicating if this port is connected or not
+    def connected(self, interface, port):
+        """ Returns a boolean indicating if a port on this adapter is connected or not
+            interface: The interface type for the local device (e.g. 'f', 's', 'an' for "FastEthernet", "Serial", "Analysis-Module", and so forth")
+            port: A port on this adapter
         """
 
-        return connected_general(self, port)
+        return connected_general(self, interface, port)
 
     def nio(self, port, nio=None):
         """ Returns the NETIO object for this port
@@ -3774,11 +3832,13 @@ class ATMBR(object):
         #delete from frontend
         del self.__nios[port]
 
-    def connected(self, port):
-        """ Returns a boolean indicating if this port is connected or not
+    def connected(self, interface, port):
+        """ Returns a boolean indicating if a port on this adapter is connected or not
+            interface: The interface type for the local device (e.g. 'f', 's', 'an' for "FastEthernet", "Serial", "Analysis-Module", and so forth")
+            port: A port on this adapter
         """
 
-        return connected_general(self, port)
+        return connected_general(self, interface, port)
 
     def nio(self, port, nio=None):
         """ Returns the NETIO object for this port
@@ -4164,11 +4224,13 @@ class ATMSW(object):
         #delete from frontend
         del self.__nios[port]
 
-    def connected(self, port):
-        """ Returns a boolean indicating if this port is connected or not
+    def connected(self, interface, port):
+        """ Returns a boolean indicating if a port on this adapter is connected or not
+            interface: The interface type for the local device (e.g. 'f', 's', 'an' for "FastEthernet", "Serial", "Analysis-Module", and so forth")
+            port: A port on this adapter
         """
 
-        return connected_general(self, port)
+        return connected_general(self, interface, port)
 
     def nio(self, port, nio=None):
         """ Returns the NETIO object for this port
@@ -4248,6 +4310,7 @@ class ETHSW(object):
             self.__name = name
 
         self.nios = {}  # A dict of NETIO objects indexed by switch port
+        self.mapping = {} # A dict of port -> (porttype, vlan) mapping the state of ports
 
         if create:
             send(self.__d, 'ethsw create ' + self.__name)
@@ -4256,7 +4319,37 @@ class ETHSW(object):
         """ Delete this ETH switch instance from the back end
         """
 
-        pass
+        send(self.__d, 'ethsw delete ' + self.__name)
+
+    def info(self):
+        """return the string with info about this device"""
+
+        info = "Ethernet switch " + self.__name + " is always-on\n  Hardware is dynamips emulated simple ethernet switch\n  Switch's hypervisor runs on " + self.__d.host + ':' + str(self.__d.port) + '\n'
+        map_info = ''
+
+        keys = self.mapping.keys()
+        keys.sort()
+        map_info = ''
+        for port1 in keys:
+            map = self.mapping[port1]
+            (porttype, vlan, nio,twosided) = map
+            map_info += '   Port '+str(port1) + ' is in ' + porttype + ' mode, with native VLAN ' + str(vlan) + ',\n    ' + nio.info() + '\n'
+
+        return info + map_info
+
+    def unset_port (self, port):
+        """ unset the port from access or dot1q """
+        """ TODO talk to Chris about adding a IPC for this"""
+        if type(port) != int:
+            raise DynamipsError, 'invalid port. Must be an int >= 0'
+        try:
+            nio = self.nio(port).name
+        except KeyError:
+            raise DynamipsError, 'port1 does not exist on this switch'
+
+        #not implemented yet in dynamips
+        #send(self.__d, 'ethsw unset_port ' + self.__name + ' ' + nio + ' ' + str(vlan))
+        del self.mapping[port]
 
     def set_port(self, port, porttype, vlan):
         ''' Define a port as an access port or trunk port, and it\'s vlan
@@ -4279,6 +4372,7 @@ class ETHSW(object):
             raise DynamipsError, 'invalid porttype'
 
         send(self.__d, 'ethsw set_' + porttype + '_port ' + self.__name + ' ' + nio + ' ' + str(vlan))
+        self.mapping[port] = (porttype, vlan, self.nio(port), True)
 
     def show_mac(self):
         """ Show this switch's mac address table
@@ -4337,11 +4431,22 @@ class ETHSW(object):
                 dst_port=dst_port,
                 )
 
-    def connected(self, port):
-        """ Returns a boolean indicating if this port is connected or not
+    def disconnect(self, port):
+        try:
+            nio = self.nio(port).name
+        except KeyError:
+            raise DynamipsError, 'port1 does not exist on this switch'
+
+        send(self.__d, 'ethsw remove_nio %s %s' % (self.__name, nio))
+        del self.mapping[port]
+
+    def connected(self, interface, port):
+        """ Returns a boolean indicating if a port on this adapter is connected or not
+            interface: The interface type for the local device (e.g. 'f', 's', 'an' for "FastEthernet", "Serial", "Analysis-Module", and so forth")
+            port: A port on this adapter
         """
 
-        return connected_general(self, port)
+        return connected_general(self, interface, port)
 
     def nio(
         self,
@@ -4378,6 +4483,7 @@ class ETHSW(object):
                 raise DynamipsError, 'invalid porttype'
 
             send(self.__d, 'ethsw set_' + porttype + '_port ' + self.__name + ' ' + nio.name + ' ' + str(vlan))
+            self.mapping[port] = (porttype, vlan, nio, False)
 
     def __getadapter(self):
         """ Returns the adapter property
@@ -4424,7 +4530,6 @@ def send(dynamips, command):
 
         returns results as a list
     """
-    global CONFIGCHANGE
 
     # Dynamips/PemuWrapper responses are of the form:
     #   1xx yyyyyy\r\n
@@ -4461,7 +4566,6 @@ def send(dynamips, command):
                 buf += chunk
             except:
                 print 'Error: timed out communicating with %s server %s' % (dynamips.type, dynamips.host)
-                print message
                 print 'Exiting...'
                 raise DynamipsErrorHandled
 
@@ -4678,13 +4782,21 @@ def get_reverse_udp_nio(remote_nio):
     else:
         return [local_nio.adapter.router, local_nio.adapter, local_nio.port]
 
-def connected_general(obj, port):
+def connected_general(obj, interface, port):
     """ Returns a boolean indicating if this port is connected or not
+        interface: The interface type for the local device (e.g. 'f', 's', 'an' for "FastEthernet", "Serial", "Analysis-Module", and so forth")
+        port: A port on this adapter
     """
 
-    # If it's got an nio, I guess it's connected
+    # Determine the real port
     try:
-        nio1 = obj.nio(port).name
+        dynport = obj.interfaces[interface][port]
+    except AttributeError:
+        return False
+
+    # If it's got an nio, it's connected
+    try:
+        nio1 = obj.nio(dynport).name
     except AttributeError:
         return False
     return True
@@ -4758,15 +4870,16 @@ if __name__ == '__main__':
     #r1.idlepc = ' 0x8046b940'
     #r1.slot[0].connect(0, d, esw.slot[1], 0)
 
-    #r2 = C2600(d, chassis = '2610', name='r2')
-    #r2.image = IMAGE
-    #r2.slot[0].install(CISCO2600_MB_1E(r2,0))
-    #r2.installwic('WIC-2T', 0, 0)
+    r2 = C2600(d, chassis = '2610', name='r2')
+    r2.image = IMAGE
+    r2.installwic('WIC-2T', 0, 0)
     #r2.idlepc = ' 0x8046b940'
 
-    #r1.slot[0].connect('s', 0, d, r2.slot[0], 's', 0)   # r1 s0/0 = r2 s0/0
+    r1.slot[0].connect('s', 0, d, r2.slot[0], 's', 0)   # r1 s0/0 = r2 s0/0
 
-    r1.start()
+    print r1.slot[0].connected('s', 0)
+
+    #r1.start()
     #r2.start()
 
     d.reset()

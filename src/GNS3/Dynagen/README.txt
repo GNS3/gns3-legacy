@@ -1,5 +1,5 @@
 Dynagen README
-Version 0.11.0
+Version 0.11.0-111807
 
 
 For documentation, refer to the tutorial in the docs directory, and the sample network files in the sample_labs directory. To see usage examples for all options, refer to the "all_config_options.txt" file in the sample_labs directory. Also be sure to visit the Dynamips web site at http://www.ipflow.utc.fr/index.php/Cisco_7200_Simulator.
@@ -14,6 +14,8 @@ Known Issues
 Changelog
 =========
 Version 0.11.0
+* Merge of the features of confDynagen (dynamic reconfiguration, pemu support, and many other features). Big thanks to Pavel Skovajsa for performing the merge work and other significant contributions. 
+* Addition of a pemu server for Cisco PIX emulation. Thanks to Thomas Pani for writting the wrapper, and to mmm123 for writing pemu. 
 * Could not specify a model of 1751 or 1760 in a router definition
 * WIC interfaces on 1751s and 1760s could not be used
 * On Windows platforms, Network Device list changes to the temp dir before executing Dynamips (helps Vista users).
@@ -22,10 +24,8 @@ Version 0.11.0
 * FS#217 - fixed the connect method for switches. Only effected 3rd party developers using the library, Dynagen does not use these methods.
 * FS#211 - Dynagen crash when specifying invalid port
 * 7200 instances now default to using a C7200-IO-2FE in slot 0 rather than a C7200-IO-FE. You can override this behaviour by specifying "slot0=PA-C7200-IO-FE".
-* pemuwrapper support, big thanks to Thomas Pani
-* confDynagen merge, done by Pavel Skovajsa
-* ATM bridge support
-* idlemax issue fixed
+* Support for ATM to Ethernet bridge introduced in Dynamips 0.2.8-RC2. Provision using ATMBR.
+* idlemax issue fixed (see http://7200emu.hacki.at/viewtopic.php?p=13676)
 
 
 Version 0.10.1

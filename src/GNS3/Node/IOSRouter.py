@@ -25,7 +25,7 @@ import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.dynagen as dynagen
 import GNS3.Telnet as console
 from PyQt4 import QtCore, QtGui,  QtSvg
-from GNS3.Utils import translate
+from GNS3.Utils import translate, debug
 from GNS3.Config.Objects import iosRouterConf
 from GNS3.Node.AbstractNode import AbstractNode
 
@@ -287,17 +287,18 @@ class IOSRouter(AbstractNode):
                 hypervisor = globals.GApp.hypervisors[hypervisorkey]
                 self.configHypervisor(hypervisor.host,  hypervisor.port,  hypervisor.workdir,  hypervisor.baseUDP, hypervisor.baseConsole)
             else:
-                print 'Hypervisor ' + hypervisorkey + ' not registered !'
+                debug("Node " + self.hostname + ": hypervisor " + hypervisorkey  + " not registed (fatal)") 
                 return
 
         hypervisor = self.getHypervisor()
-#        # delete lock file to prevent an error from Dynamips
-#        workingdir = hypervisor.workingdir[1:-1]
-#        lock = workingdir + '/c' + self.platform + '_' + self.hostname + '_lock'
-#        path = os.path.abspath(lock)
-#        if os.path.isfile(path): 
-#            os.remove(path)
-#        
+        # delete lock file to prevent an error from Dynamips
+        workingdir = hypervisor.workingdir[1:-1]
+        lock = workingdir + '/c' + self.platform + '_' + self.hostname + '_lock'
+        path = os.path.abspath(lock)
+        if os.path.isfile(path):
+            debug("Node " + self.hostname + ": deleting " + path) 
+            os.remove(path)
+        
         #ROUTERS
         if platform == '7200':
             self.dev = ROUTERS[platform](hypervisor, name = self.hostname)

@@ -51,7 +51,7 @@ def testOpenFile(path,  flags='r'):
         return False
     return True
  
-def debug(self, string):
+def debug(string):
         """ Print string if debugging is true
         """
 

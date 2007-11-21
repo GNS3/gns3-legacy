@@ -59,7 +59,9 @@ class Console(PyCutExt, Dynagen_Console):
 
         cmd.Cmd.__init__(self)
         self.namespace = Dynagen_Namespace 
-        debuglevel = self.namespace.debuglevel
+        
+        #FIXME: debuglevel is in the Dynagen class now
+        #debuglevel = self.namespace.debuglevel
 
     def onKeyPress_Tab(self):
         """ Imitate cmd.Cmd.complete(self, text, state) function

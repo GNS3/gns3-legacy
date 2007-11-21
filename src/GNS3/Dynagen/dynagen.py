@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+
 """
 dynagen
-Copyright (C) 2006  Greg Anuzelli
+Copyright (C) 2006, 2007  Greg Anuzelli
+contributions: Pavel Skovajsa
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -31,13 +33,13 @@ from dynamips_lib import Dynamips, PA_C7200_IO_FE, PA_A1, PA_FE_TX, PA_4T, PA_8T
      CISCO2600_MB_1E, CISCO2600_MB_2E, CISCO2600_MB_1FE, CISCO2600_MB_2FE, PA_2FE_TX, \
      PA_GE, PA_C7200_IO_2FE, PA_C7200_IO_GE_E, C1700, CISCO1710_MB_1FE_1E, C1700_MB_1ETH, \
      DEVICETUPLE, DynamipsVerError, DynamipsErrorHandled, NM_CIDS, NM_NAM, get_reverse_udp_nio
-from pemu_lib import Pemu, FW
+from pemu_lib import Pemu, FW, nosend_pemu
 from validate import Validator
 from configobj import ConfigObj, flatten_errors
 from optparse import OptionParser
 
 # Constants
-VERSION = '0.11.0.102007'
+VERSION = '0.11.0.111807'
 CONFIGSPECPATH = ['/usr/share/dynagen', '/usr/local/share']
 CONFIGSPEC = 'configspec'
 INIPATH = ['/etc', '/usr/local/etc']
@@ -146,11 +148,13 @@ class Dynagen:
         self.globaludp = 10000  # The default base UDP port for NIO
         self.useridledbfile = ''  # The filespec of the idle database
         self.useridledb = None  # Dictionary of idle-pc values from the user database, indexed by image name
-        self.handled = False  # An exception has been handled already
         self.debuglevel = 0  # The debug level
+        self.handled = True   # indicates whether and error was handled
+
+        self.import_error = False  #True if errors during import
 
         #confdynagen stuff
-        self.running_config = ConfigObj()
+        self.running_config = ConfigObj(list_values=False)
         self.running_config.indent_type = '    '
         self.defaults_config = ConfigObj()
         self.defaults_config.indent_type = '    '
@@ -243,7 +247,7 @@ class Dynagen:
                 if value in ADAPTER_TRANSFORM:
                     device.slot[slot] = ADAPTER_TRANSFORM[value](device, slot)
                 else:
-                    self.doerror('Unknown adapter %s specified for slot %i on router: %s' % (value, slot, device.name))
+                    raise DynamipsError ('Unknown adapter %s specified for slot %i' % (value, slot))
                 return True
 
             # is it a wic designation?
@@ -473,9 +477,8 @@ class Dynagen:
                 (controlsock, localsock) = niostring.split(':', 1)
                 local_device.slot[slot1].nio(realPort, nio=NIO_vde(local_device.dynamips, controlsock, localsock))
             else:
-
                 # Bad NIO
-                return False
+                raise DynamipsError, 'bad NIO specified'
             return True
 
         match_obj = interface_re.search(interface)
@@ -608,7 +611,6 @@ class Dynagen:
                     )
             return True
         else:
-
             # Malformed
             raise DynamipsError, 'malformed destination interface: ' + str(dest)
 
@@ -652,15 +654,15 @@ class Dynagen:
                         router.slot[slot].wics[0]
                     except KeyError:
                         # No wic slots. Must be an error
-                        raise DynamipsError('Invalid slot %i specified for device %s' % (slot, router.name))
+                        raise DynamipsError('invalid slot %i specified for device %s' % (slot, router.name))
                     except IndexError:
-                        raise DynamipsError('Attempt to connect to non-existent interface in slot %i on device %s' % (slot, router.name))
+                        raise DynamipsError('attempt to connect to non-existent interface in slot %i on device %s' % (slot, router.name))
                     else:
                         # Can the requested interface be provided by a WIC?
                         if (router.model == 'c2600' or router.model in ['c3725', 'c3745', 'c2691'] or (router.model == 'c1700' and router.chassis in ['1720', '1721', '1750', '1751', '1760'])) and (pa == 's' or pa == 'e'):
                             if pa == 'e' and (router.model != 'c1700' or router.chassis not in ['1720', '1721', '1750', '1751', '1760']):
                                 # Ethernet WIC only supported in these 1700 models
-                                raise DynamipsError('Ethernet adapter not supported on port %i for device %s' % (port, router.name))
+                                raise DynamipsError('ethernet adapter not supported on port %i for device %s' % (port, router.name))
 
                             if pa == 'e':
                                 chosenwic = 'WIC-1ENET'
@@ -697,9 +699,9 @@ class Dynagen:
                 else:
                     return True
         except KeyError:
-            raise DynamipsError('Invalid slot %i specified for device %s' % (slot, router.name))
+            raise DynamipsError('invalid slot %i specified for device %s' % (slot, router.name))
         except IndexError:
-            raise DynamipsError('Invalid slot %i specified on device %s' % (slot, router.name))
+            raise DynamipsError('invalid slot %i specified on device %s' % (slot, router.name))
 
         """ Note to self: One of these days you should do this section right. Programatically build a matrix of
             default adapters for a given Adapter, model, slot, and chassis using this structure:
@@ -722,7 +724,7 @@ class Dynagen:
                 elif port >= 1 and port <= 3 and router.npe == 'npe-g2':
                     pass
                 else:
-                    raise DynamipsError('Use of Gi0/1-3 requires use of an NPE-G2 on router: ' + router.name)
+                    raise DynamipsError('use of Gi0/1-3 requires use of an NPE-G2 on router: ' + router.name)
             else:
 
                 router.slot[slot] = PA_GE(router, slot)
@@ -753,7 +755,7 @@ class Dynagen:
                     try:
                         router.slot[slot] = chassis2600transform[router.chassis](router, slot)
                     except KeyError:
-                        raise DynamipsError('Chassis %s does not support FastEthernet adapter in slot 0 for device %s.' % (router.chassis, router.name))
+                        raise DynamipsError('chassis %s does not support FastEthernet adapter in slot 0 for device %s.' % (router.chassis, router.name))
                 else:
                     router.slot[slot] = NM_1FE_TX(router, slot)
             else:
@@ -770,23 +772,23 @@ class Dynagen:
                     try:
                         router.slot[slot] = chassis2600transform[router.chassis](router, slot)
                     except KeyError:
-                        raise DynamipsError('Chassis %s does not support Ethernet adapter in slot 0 for device %s.' % (router.chassis, router.name))
+                        raise DynamipsError('chassis %s does not support Ethernet adapter in slot 0 for device %s.' % (router.chassis, router.name))
                 else:
                     router.slot[slot] = NM_4E(router, slot)
             elif router.model == 'c3600':
                 router.slot[slot] = NM_4E(router, slot)
             elif router.model in ['c2691', 'c3725', 'c3745']:
-                raise DynamipsError('Unsuppported interface %s%i/%i specified for device: %s' % (pa, slot, port, router.name))
+                raise DynamipsError('unsuppported interface %s%i/%i specified for device: %s' % (pa, slot, port, router.name))
             elif router.model == 'c7200':
                 router.slot[slot] = PA_8E(router, slot)
             elif router.model == 'c1700' and slot == 0:
-                raise DynamipsError('Unsuppported interface %s%i/%i specified for device: %s' % (pa, slot, port, router.name))
+                raise DynamipsError('unsuppported interface %s%i/%i specified for device: %s' % (pa, slot, port, router.name))
             else:
-                raise DynamipsError('Unsuppported interface %s%i/%i specified for device: %s' % (pa, slot, port, router.name))
+                raise DynamipsError('unsuppported interface %s%i/%i specified for device: %s' % (pa, slot, port, router.name))
             return True
         if pa == 's':
             if router.model in ['c2600']:
-                raise DynamipsError('Unsuppported interface %s%i/%i specified for device: %s' % (pa, slot, port, router.name))
+                raise DynamipsError('unsuppported interface %s%i/%i specified for device: %s' % (pa, slot, port, router.name))
             elif router.model in ['c2691', 'c3725', 'c3745', 'c3600']:
                 router.slot[slot] = NM_4T(router, slot)
             elif router.model == 'c7200':
@@ -798,9 +800,9 @@ class Dynagen:
                 'c1700',
                 'c2600',
                 ] and slot == 0:
-                raise DynamipsError('Unsuppported interface %s%i/%i specified for device: %s' % (pa, slot, port, router.name))
+                raise DynamipsError('unsuppported interface %s%i/%i specified for device: %s' % (pa, slot, port, router.name))
             else:
-                raise DynamipsError('Unsuppported interface %s%i/%i specified for device: %s' % (pa, slot, port, router.name))
+                raise DynamipsError('unsuppported interface %s%i/%i specified for device: %s' % (pa, slot, port, router.name))
             return True
         if pa == 'a':
             if router.model in [
@@ -810,7 +812,7 @@ class Dynagen:
                 'c3745',
                 'c3600',
                 ]:
-                raise DynamipsError('Unsuppported interface %s%i/%i specified for device: %s' % (pa, slot, port, router.name))
+                raise DynamipsError('unsuppported interface %s%i/%i specified for device: %s' % (pa, slot, port, router.name))
             router.slot[slot] = PA_A1(router, slot)
             return True
         if pa == 'p':
@@ -821,7 +823,7 @@ class Dynagen:
                 'c3745',
                 'c3600',
                 ]:
-                raise DynamipsError('Unsuppported interface %s%i/%i specified for device: %s' % (pa, slot, port, router.name))
+                raise DynamipsError('unsuppported interface %s%i/%i specified for device: %s' % (pa, slot, port, router.name))
             router.slot[slot] = PA_POS_OC3(router, slot)
             return True
         if pa == 'i':
@@ -935,11 +937,10 @@ class Dynagen:
                 try:
                     config = ConfigObj(FILENAME, configspec=configspec, raise_errors=True, list_values=False)
                 except SyntaxError, e:
-                    print '\nError:'
+                    print '\nError in loading .net file:'
                     print e
                     print e.line, '\n'
                     raw_input('Press ENTER to continue')
-                    self.handled = True
                     sys.exit(1)
             except IOError:
 
@@ -963,7 +964,6 @@ class Dynagen:
                     error = 'Missing value or section.'
                 print section_string, ' = ', error
             raw_input('Press ENTER to continue')
-            self.handled = True
             sys.exit(1)
 
         return config
@@ -974,7 +974,7 @@ class Dynagen:
         connectionlist = []  # A list of router connections
         maplist = []  # A list of Frame Relay and ATM switch mappings
         ethswintlist = []  # A list of Ethernet Switch vlan mappings
-
+        self.import_error = False
         config = self.open_config(FILENAME)
 
         self.debuglevel = config['debug']
@@ -1003,7 +1003,9 @@ class Dynagen:
                         self.dynamips[pemu_name] = Pemu(host)
                         self.dynamips[pemu_name].reset()
                     except DynamipsError:
-                        self.doerror('Could not connect to server: %s' % server.name)
+                        self.dowarning('Could not connect to server %s' % server.name)
+                        self.import_error = True
+                        continue
 
                     if server['workingdir'] == None:
                         # If workingdir is not specified, set it to the same directory
@@ -1015,7 +1017,8 @@ class Dynagen:
                     try:
                         self.dynamips[pemu_name].workingdir = workingdir
                     except DynamipsError:
-                        self.doerror('Could not set working directory to: %s on server: %s' % (workingdir, server.name))
+                        self.dowarning('Could not set working directory to %s on server %s' % (workingdir, server.name))
+                        self.import_error = True
 
                     devdefaults = {}
                     for key in DEVICETUPLE:
@@ -1036,12 +1039,16 @@ class Dynagen:
                         try:
                             (devtype, name) = device.name.split(' ')
                         except ValueError:
-                            self.doerror('Unable to interpret line: "[[' + device.name + ']]"')
+                            self.dowarning ('Unable to interpret line: "[[' + device.name + ']]"')
+                            self.import_error = True
+                            continue
 
                         if devtype.lower() == 'fw':
                             dev = FW(self.dynamips[pemu_name], name=name)
                         else:
-                            self.doerror('Unable to identify the type of device ' + device.name)
+                            self.dowarning('Unable to identify the type of device ' + device.name)
+                            self.import_error = True
+                            continue
 
                         #set the defaults
                         for option in devdefaults['525']:
@@ -1074,10 +1081,11 @@ class Dynagen:
                                     # Add the tuple to the list of connections to deal with later
                                     connectionlist.append((dev, subitem, device[subitem]))
                                 else:
-                                    print '***Warning: ignoring unknown config item: %s = %s' % (str(subitem), str(device[subitem]))
+                                    self.dowarning( 'ignoring unknown config item: %s = %s' % (str(subitem), str(device[subitem])))
+                                    self.import_error = True
                 else:
-
-                    self.doerror('Bad emulator definition format: %s' % server.name)
+                    self.dowarning('Bad emulator definition format: %s' % server.name)
+                    self.import_error = True
             else:
                 #this is dynamips hypervisor
                 server.host = server.name
@@ -1098,12 +1106,14 @@ class Dynagen:
                     # Reset each server
                     self.dynamips[server.name].reset()
                 except DynamipsVerError:
-
                     (exctype, value, trace) = sys.exc_info()
-                    self.doerror(value[0])
-                except DynamipsError:
+                    self.dowarning(value[0])
+                    self.import_error = True
 
-                    self.doerror('Could not connect to server: %s' % server.name)
+                except DynamipsError:
+                    self.dowarning('Could not connect to server %s' % server.name)
+                    self.import_error = True
+                    continue
 
                 if server['udp'] != None:
                     udp = server['udp']
@@ -1114,7 +1124,8 @@ class Dynagen:
                     self.dynamips[server.name].udp = udp
                     self.dynamips[server.name].starting_udp = udp
                 except DynamipsError:
-                    self.doerror('Could not set base UDP NIO port to: "%s" on server: %s' % (server['udp'], server.name))
+                    self.dowarning('Could not set base UDP NIO port to %s on server %s' % (server['udp'], server.name))
+                    self.import_error = True
 
                 if server['workingdir'] == None:
                     # If workingdir is not specified, set it to the same directory
@@ -1128,7 +1139,8 @@ class Dynagen:
                 try:
                     self.dynamips[server.name].workingdir = workingdir
                 except DynamipsError:
-                    self.doerror('Could not set working directory to: "%s" on server: %s' % (server['workingdir'], server.name))
+                    self.dowarning('Could not set working directory to %s on server %s' % (server['workingdir'], server.name))
+                    self.import_error = True
 
                 # Has the base console port been overridden?
                 if server['console'] != None:
@@ -1167,95 +1179,107 @@ class Dynagen:
                     try:
                         (devtype, name) = device.name.split(' ')
                     except ValueError:
-                        self.doerror('Unable to interpret line: "[[' + device.name + ']]"')
+                        self.dowarning('Unable to interpret line:    "[[' + device.name + ']]"')
+                        self.import_error = True
+                        continue
+                    try:
+                        if devtype.lower() == 'router':
+                            # if model not specifically defined for this router, set it to the default defined in the top level config
+                            if device['model'] == None:
+                                device['model'] = config['model']
 
-                    if devtype.lower() == 'router':
-                        # if model not specifically defined for this router, set it to the default defined in the top level config
-                        if device['model'] == None:
-                            device['model'] = config['model']
+                            if device['model'] == '7200':
+                                dev = C7200(self.dynamips[server.name], name=name)
+                            elif device['model'] in ['3620', '3640', '3660']:
+                                dev = C3600(self.dynamips[server.name], chassis=device['model'], name=name)
+                            elif device['model'] == '2691':
+                                dev = C2691(self.dynamips[server.name], name=name)
+                            elif device['model'] in [
+                                '2610',
+                                '2611',
+                                '2620',
+                                '2621',
+                                '2610XM',
+                                '2611XM',
+                                '2620XM',
+                                '2621XM',
+                                '2650XM',
+                                '2651XM',
+                                ]:
+                                dev = C2600(self.dynamips[server.name], chassis=device['model'], name=name)
+                            elif device['model'] == '3725':
+                                dev = C3725(self.dynamips[server.name], name=name)
+                            elif device['model'] == '3745':
+                                dev = C3745(self.dynamips[server.name], name=name)
+                            elif device['model'] in [
+                                '1710',
+                                '1720',
+                                '1721',
+                                '1750',
+                                '1751',
+                                '1760',
+                                ]:
+                                dev = C1700(self.dynamips[server.name], chassis=device['model'], name=name)
+                            # Apply the router defaults to this router
+                            self.setdefaults(dev, devdefaults[device['model']])
 
-                        if device['model'] == '7200':
-                            dev = C7200(self.dynamips[server.name], name=name)
-                        elif device['model'] in ['3620', '3640', '3660']:
-                            dev = C3600(self.dynamips[server.name], chassis=device['model'], name=name)
-                        elif device['model'] == '2691':
-                            dev = C2691(self.dynamips[server.name], name=name)
-                        elif device['model'] in [
-                            '2610',
-                            '2611',
-                            '2620',
-                            '2621',
-                            '2610XM',
-                            '2611XM',
-                            '2620XM',
-                            '2621XM',
-                            '2650XM',
-                            '2651XM',
-                            ]:
-                            dev = C2600(self.dynamips[server.name], chassis=device['model'], name=name)
-                        elif device['model'] == '3725':
-                            dev = C3725(self.dynamips[server.name], name=name)
-                        elif device['model'] == '3745':
-                            dev = C3745(self.dynamips[server.name], name=name)
-                        elif device['model'] in [
-                            '1710',
-                            '1720',
-                            '1721',
-                            '1750',
-                            '1751',
-                            '1760',
-                            ]:
-                            dev = C1700(self.dynamips[server.name], chassis=device['model'], name=name)
-                        # Apply the router defaults to this router
-                        self.setdefaults(dev, devdefaults[device['model']])
-
-                        self.autostart_value = config['autostart']
-                        if device['autostart'] == None:
-                            self.autostart[name] = config['autostart']
-                        else:
-                            self.autostart[name] = device['autostart']
-                    elif devtype.lower() == 'frsw':
-                        dev = FRSW(self.dynamips[server.name], name=name)
-                    elif devtype.lower() == 'atmsw':
-                        dev = ATMSW(self.dynamips[server.name], name=name)
-                    elif devtype.lower() == 'ethsw':
-                        dev = ETHSW(self.dynamips[server.name], name=name)
-                    elif devtype.lower() == 'atmbr':
-                        dev = ATMBR(self.dynamips[server.name], name=name)
-                    else:
-                        print '\n***Error: unknown device type:', devtype, '\n'
-                        raw_input('Press ENTER to continue')
-                        self.handled = True
-                        sys.exit(1)
-                    self.devices[name] = dev
-
-                    for subitem in device.scalars:
-                        if device[subitem] != None:
-                            self.debug('  ' + subitem + ' = ' + str(device[subitem]))
-                            if self.setproperty(dev, subitem, device[subitem]):
-                                # This was a property that was set.
-                                continue
+                            self.autostart_value = config['autostart']
+                            if device['autostart'] == None:
+                                self.autostart[name] = config['autostart']
                             else:
-                                # Should be either an interface connection or a switch mapping
-                                # is it an interface?
-                                if interface_re.search(subitem):
-                                    # Add the tuple to the list of connections to deal with later
-                                    connectionlist.append((dev, subitem, device[subitem]))
-                                elif interface_noport_re.search(subitem):
-                                # is it an interface with no port? (e.g. "f0")
-                                    connectionlist.append((dev, subitem, device[subitem]))
-                                elif mapint_re.search(subitem) or mapvci_re.search(subitem) or mapvci_re.search(device[subitem]):
-                                # is it a frame relay or ATM vpi mapping?
-                                    # Add the tupple to the list of mappings to deal with later
-                                    maplist.append((dev, subitem, device[subitem]))
-                                elif ethswint_re.search(subitem):
-                                # is it an Ethernet switch portcontinue configuration?
-                                    ethswintlist.append((dev, subitem, device[subitem]))
-                                elif subitem in ['model', 'configuration', 'autostart']:
-                                    # These options are already handled elsewhere
+                                self.autostart[name] = device['autostart']
+                        elif devtype.lower() == 'frsw':
+                            dev = FRSW(self.dynamips[server.name], name=name)
+                        elif devtype.lower() == 'atmsw':
+                            dev = ATMSW(self.dynamips[server.name], name=name)
+                        elif devtype.lower() == 'ethsw':
+                            dev = ETHSW(self.dynamips[server.name], name=name)
+                        elif devtype.lower() == 'atmbr':
+                            dev = ATMBR(self.dynamips[server.name], name=name)
+                        else:
+                            self.dowarning('unknown device type: ' + devtype)
+                            self.import_error = True
+                        self.devices[name] = dev
+
+                        for subitem in device.scalars:
+                            if device[subitem] != None:
+                                self.debug('  ' + subitem + ' = ' + str(device[subitem]))
+                                if self.setproperty(dev, subitem, device[subitem]):
+                                    # This was a property that was set.
                                     continue
                                 else:
-                                    print '***Warning: ignoring unknown config item: %s = %s' % (str(subitem), str(device[subitem]))
+                                    # Should be either an interface connection or a switch mapping
+                                    # is it an interface?
+                                    if subitem in ['model', 'configuration', 'autostart']:
+                                        # These options are already handled elsewhere
+                                        continue
+                                    elif interface_re.search(subitem):
+                                        # Add the tuple to the list of connections to deal with later
+                                        connectionlist.append((dev, subitem, device[subitem]))
+                                    elif interface_noport_re.search(subitem):
+                                    # is it an interface with no port? (e.g. "f0")
+                                        connectionlist.append((dev, subitem, device[subitem]))
+                                    elif mapint_re.search(subitem) or mapvci_re.search(subitem) or mapvci_re.search(str(device[subitem])):
+                                    # is it a frame relay or ATM vpi mapping?
+                                        # Add the tupple to the list of mappings to deal with later
+                                        maplist.append((dev, subitem, device[subitem]))
+                                    elif ethswint_re.search(subitem):
+                                    # is it an Ethernet switch portcontinue configuration?
+                                        ethswintlist.append((dev, subitem, device[subitem]))
+
+                                    else:
+                                        self.dowarning('ignoring unknown config item: %s = %s' % (str(subitem), str(device[subitem])))
+                                        self.import_error = True
+                        #check whether we have at least router image set up
+                        if isinstance(dev, Router):
+                            if dev.image == None:
+                                self.dowarning('router ' + dev.name + ' does not have IOS image name set' )
+                                self.import_error = True
+                    except DynamipsError,e :
+                        err = e[0]
+                        self.dowarning('received dynamips error:\n\t%s' % err)
+                        self.import_error = True
+                        continue
 
         # Establish the connections we collected earlier
         for connection in connectionlist:
@@ -1265,10 +1289,13 @@ class Dynagen:
                 result = self.connect(router, source, dest)
             except DynamipsError, e:
                 err = e[0]
-                self.dowarning('Connecting %s %s to %s resulted in:    %s' % (router.name, source, dest, err))
+                self.dowarning('Connecting %s %s to %s resulted in:\n\t%s' % (router.name, source, dest, err))
+                self.import_error = True
                 continue
             if result == False:
-                self.doerror('Attempt to connect %s %s to unknown device: "%s"' % (router.name, source, dest))
+                self.dowarning('Attempt to connect %s %s to unknown device %s' % (router.name, source, dest))
+                self.import_error = True
+                continue
 
         # Apply the switch configuration we collected earlier
         for mapping in maplist:
@@ -1278,82 +1305,95 @@ class Dynagen:
                 self.switch_map(switch, source, dest)
             except DynamipsError, e:
                 err = e[0]
-                self.dowarning('Connecting %s %s to %s resulted in:    %s' % (switch.name, source, dest, err))
+                self.dowarning('Connecting %s %s to %s resulted in:\n\t%s' % (switch.name, source, dest, err))
+                self.import_error = True
                 continue
 
         for ethswint in ethswintlist:
             self.debug('ethernet switchport configuring: ' + str(ethswint))
             (switch, source, dest) = ethswint
+            self.ethsw_map(switch, source, dest)
 
-            parameters = len(dest.split(' '))
-            if parameters == 2:
-                # should be a porttype and a vlan
-                (porttype, vlan) = dest.split(' ')
-                try:
-                    switch.set_port(int(source), porttype, int(vlan))
-                except DynamipsError, e:
-                    self.doerror(e)
-                except AttributeError, e:
-                    print '\n[[%s]]' % switch.name
-                    print source + ' = ' + dest + '\t <==== *Error*'
-                    self.doerror(e)
-                except DynamipsWarning, e:
-                    #dowarning(e)
-                    # Now silently ignoring unused switchports
-                    pass
-            elif parameters == 3:
 
-                # Should be a porttype, vlan, and an nio
-                (porttype, vlan, nio) = dest.split(' ')
-                try:
-                    (niotype, niostring) = nio.split(':', 1)
-                except ValueError:
-                    self.doerror('Malformed NETIO in line: ' + str(source) + ' = ' + str(dest))
-                    return False
-                self.debug('A NETIO: ' + str(nio))
-                try:
-                    #Process the netio
-                    if niotype.lower() == 'nio_linux_eth':
-                        self.debug('NIO_linux_eth ' + str(dest))
-                        switch.nio(int(source), nio=NIO_linux_eth(switch.dynamips, interface=niostring), porttype=porttype, vlan=vlan)
-                    elif niotype.lower() == 'nio_gen_eth':
-
-                        self.debug('gen_eth ' + str(dest))
-                        switch.nio(int(source), nio=NIO_gen_eth(switch.dynamips, interface=niostring), porttype=porttype, vlan=vlan)
-                    elif niotype.lower() == 'nio_udp':
-
-                        self.debug('udp ' + str(dest))
-                        (udplocal, remotehost, udpremote) = niostring.split(':', 2)
-                        switch.nio(int(source), nio=NIO_udp(switch.dynamips, int(udplocal), str(remotehost), int(udpremote)), porttype=porttype, vlan=vlan)
-                    elif niotype.lower() == 'nio_null':
-
-                        self.debug('nio null')
-                        switch.nio(int(source), nio=NIO_null(switch.dynamips), porttype=porttype, vlan=vlan)
-                    elif niotype.lower() == 'nio_tap':
-
-                        self.debug('nio tap ' + str(dest))
-                        switch.nio(int(source), nio=NIO_tap(switch.dynamips, niostring), porttype=porttype, vlan=vlan)
-                    elif niotype.lower() == 'nio_unix':
-
-                        self.debug('unix ' + str(dest))
-                        (unixlocal, unixremote) = niostring.split(':', 1)
-                        switch.nio(int(source), nio=NIO_unix(switch.dynamips, unixlocal, unixremote), porttype=porttype, vlan=vlan)
-                    elif niotype.lower() == 'nio_vde':
-
-                        self.debug('vde ' + str(dest))
-                        (controlsock, localsock) = niostring.split(':', 1)
-                        switch.nio(int(source), nio=NIO_vde(switch.dynamips, controlsock, localsock), porttype=porttype, vlan=vlan)
-                    else:
-
-                        # Bad NIO
-                        self.doerror('Invalid NIO in Ethernet switchport config: %s = %s' % (source, dest))
-                except DynamipsError, e:
-
-                    self.doerror(e)
-            else:
-
-                self.doerror('Invalid Ethernet switchport config: %s = %s' % (source, dest))
+        if self.import_error:
+            self.doerror('errors during loading of the topology file, please correct them')
         return (connectionlist, maplist, ethswintlist)
+
+
+    def ethsw_map(self, switch, source, dest):
+        """ handle the connecton on ethsw switch with .net file syntax source = dest"""
+
+        parameters = len(dest.split(' '))
+        if parameters == 2:
+            # should be a porttype and a vlan
+            (porttype, vlan) = dest.split(' ')
+            try:
+                switch.set_port(int(source), porttype, int(vlan))
+            except DynamipsError, e:
+                self.dowarning('Connecting %s port %s to %s resulted in:\n\t%s' % (switch.name, source, dest, e))
+                self.import_error = True
+                return
+            except AttributeError, e:
+                self.dowarning('Connecting %s port %s to %s resulted in:\n\t%s' % (switch.name, source, dest, e))
+                self.import_error = True
+                return
+            except DynamipsWarning, e:
+                self.dowarning('Connecting %s port %s to %s resulted in:\n\t%s' % (switch.name, source, dest, e))
+                # Now silently ignoring unused switchports
+                # self.import_error = True
+                return
+        elif parameters == 3:
+            # Should be a porttype, vlan, and an nio
+            (porttype, vlan, nio) = dest.split(' ')
+            try:
+                (niotype, niostring) = nio.split(':', 1)
+            except ValueError:
+                e = 'Malformed NETIO'
+                self.dowarning('Connecting %s port %s to %s resulted in:\n\t%s' % (switch.name, source, dest, e))
+                self.import_error = True
+                return
+            self.debug('A NETIO: ' + str(nio))
+            try:
+                #Process the netio
+                if niotype.lower() == 'nio_linux_eth':
+                    self.debug('NIO_linux_eth ' + str(dest))
+                    switch.nio(int(source), nio=NIO_linux_eth(switch.dynamips, interface=niostring), porttype=porttype, vlan=vlan)
+                elif niotype.lower() == 'nio_gen_eth':
+                    self.debug('gen_eth ' + str(dest))
+                    switch.nio(int(source), nio=NIO_gen_eth(switch.dynamips, interface=niostring), porttype=porttype, vlan=vlan)
+                elif niotype.lower() == 'nio_udp':
+                    self.debug('udp ' + str(dest))
+                    (udplocal, remotehost, udpremote) = niostring.split(':', 2)
+                    switch.nio(int(source), nio=NIO_udp(switch.dynamips, int(udplocal), str(remotehost), int(udpremote)), porttype=porttype, vlan=vlan)
+                elif niotype.lower() == 'nio_null':
+                    self.debug('nio null')
+                    switch.nio(int(source), nio=NIO_null(switch.dynamips), porttype=porttype, vlan=vlan)
+                elif niotype.lower() == 'nio_tap':
+                    self.debug('nio tap ' + str(dest))
+                    switch.nio(int(source), nio=NIO_tap(switch.dynamips, niostring), porttype=porttype, vlan=vlan)
+                elif niotype.lower() == 'nio_unix':
+                    self.debug('unix ' + str(dest))
+                    (unixlocal, unixremote) = niostring.split(':', 1)
+                    switch.nio(int(source), nio=NIO_unix(switch.dynamips, unixlocal, unixremote), porttype=porttype, vlan=vlan)
+                elif niotype.lower() == 'nio_vde':
+                    self.debug('vde ' + str(dest))
+                    (controlsock, localsock) = niostring.split(':', 1)
+                    switch.nio(int(source), nio=NIO_vde(switch.dynamips, controlsock, localsock), porttype=porttype, vlan=vlan)
+                else:
+                    # Bad NIO
+                    e = 'invalid NIO in Ethernet switchport config'
+                    self.dowarning('Connecting %s %s to %s resulted in:\n\t%s' % (switch.name, source, dest, e))
+                    self.import_error = True
+                    return
+            except DynamipsError, e:
+                self.dowarning('Connecting %s port %s to %s resulted in:\n\t%s' % (switch.name, source, dest, e))
+                self.import_error = True
+                return
+        else:
+            e = 'invalid Ethernet switchport config'
+            self.dowarning('Connecting %s port %s to %s resulted in:\n\t%s' % (switch.name, source, dest, e))
+            self.import_error = True
+            return
 
     def import_ini(self, FILENAME):
         """ Read in the INI file"""
@@ -1385,7 +1425,6 @@ class Dynagen:
             print e
             print e.line, '\n'
             raw_input('Press ENTER to continue')
-            self.handled = True
             sys.exit(1)
 
         try:
@@ -1461,7 +1500,7 @@ class Dynagen:
                     continue
 
                 if device.imagename == None:
-                    self.doerror('No IOS image specified for device: ' + device.name)
+                    raise DynamipsError ('No IOS image specified for device: ' + device.name)
 
                 ghostinstance = device.imagename + '-' + device.dynamips.host
                 ghost_file = device.imagename + '.ghost'
@@ -1547,7 +1586,7 @@ class Dynagen:
             # Reset server
             self.dynamips[hypervisor_name].reset()
         except DynamipsError:
-            self.error('Could not connect to server: %s' % hypervisor_name)
+            self.doerror('Could not connect to server: %s' % hypervisor_name)
             return
 
         # if workingdir is not specified try the default_config or set it to the same directory
@@ -1561,7 +1600,7 @@ class Dynagen:
         try:
             self.dynamips[hypervisor_name].workingdir = workingdir
         except DynamipsError:
-            self.error('Could not set working directory to: "%s" on server: %s' % (workingdir, hypervisor_name))
+            self.doerror('Could not set working directory to: "%s" on server: %s' % (workingdir, hypervisor_name))
             return
 
         #change the defaults config so that we have defaults for the new hypervisor
@@ -1681,26 +1720,7 @@ class Dynagen:
                     con = interface.lower() + str(adapter.slot) + "/" + str(dynagenport)
                 if nio != None:
                     #if it is a UDP NIO, find the reverse NIO and create output based on what type of device is on the other end
-                    if isinstance(nio, NIO_udp):
-                        (remote_router, remote_adapter, remote_port) = get_reverse_udp_nio(nio)
-                        if isinstance(remote_router, FW):
-                            self.running_config[h][r][con] = remote_router.name + ' ' + remote_adapter + str(remote_port)
-                        if remote_router == 'nothing':
-                            #if this is only UDP NIO without the other side...used in dynamips <-> PIX
-                            self.running_config[h][r][con] = 'NIO_udp:' + str(nio.udplocal) + ":" + nio.remotehost + ":" + str(nio.udpremote)
-                        elif isinstance(remote_router, Router):
-                            self.running_config[h][r][con] = self._translate_interface_connection(remote_adapter, remote_router, remote_port)
-                        elif isinstance(remote_router, FRSW) or isinstance(remote_router, ATMSW) or isinstance(remote_router, ETHSW) or isinstance(remote_router, ATMBR):
-                            self.running_config[h][r][con] = remote_router.name + " " + str(remote_port)
-                    elif isinstance(nio, NIO_gen_eth) or isinstance(nio, NIO_linux_eth) or isinstance(nio, NIO_tap):
-                        #if it is an GEN ETH NIO, LINUX ETH NIO, or TAP just print out the interface
-                        self.running_config[h][r][con] = 'NIO_gen_eth:' + nio.interface
-                    elif type(nio) == NIO_unix:
-                        #if it is an UNIX NIO, print out the local:remote
-                        self.running_config[h][r][con] = nio.unixlocal + ":" + nio.unixremote
-                    elif type(nio) == NIO_vde:
-                        #if it is an UNIX NIO, print out the controlsock:localsock
-                        self.running_config[h][r][con] = nio.controlsock + ":" + nio.localsock
+                    self.running_config[h][r][con] = nio.config_info()
 
     def _update_running_config_for_router(self, hypervisor, router, need_active_config=False):
         """parse the all data structures associated with this router and update the running_config properly"""
@@ -1810,14 +1830,24 @@ class Dynagen:
         keys = frsw.pvcs.keys()
         keys.sort()
         for (port1,dlci1) in keys:
-            """
-            if self.running_config[h][f].has_key(frsw.pvcs[pvc]) and self.running_config[h][f][frsw.pvcs[pvc]] == pvc:
-                pass
-            else:
-                self.running_config[h][f][pvc] = frsw.pvcs[pvc]
-            """
             (port2, dlci2) = frsw.pvcs[(port1, dlci1)]
             self.running_config[h][f][str(port1) + ':' + str(dlci1)] = str(port2) + ':' + str(dlci2)
+
+    def _update_running_config_for_ethsw(self, hypervisor, ethsw):
+        """parse the all data structures associated with this ethsw and update the running_config properly"""
+
+        h = hypervisor.host + ":" + str(hypervisor.port)
+        e = 'ETHSW ' + ethsw.name
+        self.running_config[h][e] = {}
+
+        keys = ethsw.mapping.keys()
+        keys.sort()
+        for port1 in keys:
+            (porttype, vlan, nio, twosided)= ethsw.mapping[port1]
+            if twosided:
+                self.running_config[h][e][str(port1)] = porttype + ' ' + str(vlan)
+            else:
+                self.running_config[h][e][str(port1)] = porttype + ' ' + str(vlan) + ' ' + nio.config_info()
 
     def _update_running_config_for_fw(self, hypervisor, device, need_active_config):
         """parse the all data structures associated with this fw and update the running_config properly"""
@@ -1916,8 +1946,7 @@ class Dynagen:
                     elif isinstance(device, ATMBR):
                         self._update_running_config_for_atmbr(hypervisor, device)
                     elif isinstance(device, ETHSW):
-                        #TODO ETHSW support
-                        continue
+                        self._update_running_config_for_ethsw(hypervisor, device)
                     elif isinstance(device, Router):
                         #for routers - create the router running config by going throught all variables in dynamips_lib
                         self._update_running_config_for_router(hypervisor, device, need_active_config)
@@ -1958,6 +1987,9 @@ class Dynagen:
                 elif isinstance(device, FRSW):
                     device_section = self.running_config[hypervisor_name]['FRSW ' + device.name]
                     print '\t' + '[[FRSW ' + device.name + ']]'
+                elif isinstance(device, ETHSW):
+                    device_section = self.running_config[hypervisor_name]['ETHSW ' + device.name]
+                    print '\t' + '[[ETHSW ' + device.name + ']]'
                 elif isinstance(device, ATMSW):
                     device_section = self.running_config[hypervisor_name]['ATMSW ' + device.name]
                     print '\t' + '[[ATMSW ' + device.name + ']]'
@@ -1968,9 +2000,9 @@ class Dynagen:
                 device_section_tuple = self.running_config.write(section=device_section)
                 return device_section_tuple
             except KeyError:
-                return 'unknown device: ' + params[1]
+                return ('unknown device: ' + params[1], )
         else:
-            return 'invalid show run command'
+            return ('invalid show run command', )
 
     def check_ghost_file(self, device):
         """check whether the ghostfile for this instance exists, if not create it"""
@@ -1982,7 +2014,7 @@ class Dynagen:
             except IOError:
                 #the ghost file does not exist, let's create it
                 ghostinstance = device.imagename + '-' + device.dynamips.host
-                ghost = self.namespace.Router(device.dynamips, device.model, 'ghost-' + ghostinstance, consoleFlag=False)
+                ghost = Router(device.dynamips, device.model, 'ghost-' + ghostinstance, consoleFlag=False)
                 ghost.image = device.image
                 if device.model == 'c7200':
                     ghost.npe = device.npe
@@ -2004,16 +2036,16 @@ class Dynagen:
     def doerror(self, msg):
         """Print out an error message"""
 
-        print '\n*** Error:', str(msg)
-        self.handled = True
+        print '\n*** Error: ', str(msg)
         self.doreset()
-        raw_input('Press ENTER to continue')
+        if not options.qa:
+            raw_input('Press ENTER to continue')
         sys.exit(1)
 
     def dowarning(self, msg):
         """Print out minor warning messages"""
 
-        print 'Warning:', str(msg)
+        print '*** Warning: ', str(msg)
 
     def doreset(self):
         """reset all hypervisors"""
@@ -2064,6 +2096,7 @@ if __name__ == '__main__':
             print '\nPython version: %s' % sys.version
         if options.nosend:
             nosend(True)
+            nosend_pemu(True)
         if options.notelnet:
             notelnet = True
 
@@ -2086,6 +2119,7 @@ if __name__ == '__main__':
                 h.close()
             except IOError:
                 dynagen.doerror('Could not open file: ' + FILENAME)
+
             if options.qa:
                 print 80*"*"
                 print "Checking NET file " + FILENAME
@@ -2107,6 +2141,11 @@ if __name__ == '__main__':
                 dynagen.doerror(e)
             except DynamipsWarning, e:
                 dynagen.dowarning(e)
+                dynagen.doreset()
+                if not options.qa:
+                    raw_input('Press ENTER to continue')
+                sys.exit(1)
+
 
             dynagen.push_embedded_configurations()
             dynagen.ghosting()
@@ -2134,29 +2173,19 @@ if __name__ == '__main__':
         if not options.qa:
             raw_input('Press ENTER to exit')
         sys.exit(1)
+    except SystemExit:
+        sys.exit(1)
     except:
         (exctype, value, trace) = sys.exc_info()
 
         # Display the unhandled exception, and pause so it can be observed
-        if not dynagen.handled:
-            print """*** Dynagen has crashed ****
+        print """*** Dynagen has crashed ****
 Please open a bug report against Dynagen at http://7200emu.hacki.at
 Include a description of what you were doing when the error occured, your
 network file, also any errors output by dynamips hypervisor, and the following traceback data:
                   """
-            if options.qa:
-                traceback.print_exc(file=sys.stdout)
-            else:
-                traceback.print_exc()
-            if not options.qa:
-                raw_input('Press ENTER to exit')
 
-            if dynagen.debuglevel >= 2:
-                print '\nDumping namespace...'
-                print 'Globals:'
-                print trace.tb_frame.f_globals
-                print 'Locals:'
-                print trace.tb_frame.f_locals
-
-            sys.exit(1)
-
+        traceback.print_exc()
+        if not options.qa:
+            raw_input('Press ENTER to exit')
+        sys.exit(1)

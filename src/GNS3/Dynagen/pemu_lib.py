@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 """
@@ -21,13 +20,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 
 from socket import socket, AF_INET, SOCK_STREAM
-from dynamips_lib import NIO_udp, NOSEND, send, debug, DynamipsError, validate_connect, Bridge, DynamipsVerError, get_reverse_udp_nio, Router, FRSW, ATMSW, ETHSW
+from dynamips_lib import NIO_udp, send, debug, DynamipsError, validate_connect, Bridge, DynamipsVerError, get_reverse_udp_nio, Router, FRSW, ATMSW, ETHSW
 import random
 
+#version = "0.11.0.110207"
 (MAJOR, MINOR, SUB, RCVER) = (0, 2, 1, .1)
 INTVER = MAJOR * 10000 + MINOR * 100 + SUB + RCVER
 STRVER = '0.2.1-RC1'
-
+NOSEND = False  # Disable sending any commands to the back end for debugging
 
 class UDPConnection:
 
@@ -83,7 +83,11 @@ class Pemu(object):
             except:
                 raise DynamipsError, 'Could not connect to pemuwrapper at %s:%i' % (self.host, self.port)
         #version checking
-        version = send(self, 'pemuwrapper version')[0][4:]
+        try:
+            version = send(self, 'pemuwrapper version')[0][4:]
+        except IndexError:
+            # Probably because NOSEND is set
+            version = 'N/A'
         try:
             # version formats are a.b.c-RCd
             (major, minor, sub) = version.split('-')[0].split('.')
@@ -95,7 +99,7 @@ class Pemu(object):
                 rcver = .999
             intver = int(major) * 10000 + int(minor) * 100 + int(sub) + rcver
         except:
-            print 'Warning: problem determing pemuwrapper server version on host: %s. Skipping version check' % self.host
+            #print 'Warning: problem determing pemuwrapper server version on host: %s. Skipping version check' % self.host
             intver = 999999
 
         if intver < INTVER:
@@ -181,6 +185,8 @@ class FW(object):
         self.state = 'stopped'
         self.first_mac_number = random.choice('abcdef123456789')
         self.second_mac_number = random.choice('abcdef123456789')
+        self.third_mac_number = random.choice('abcdef123456789')
+        self.fourth_mac_number = random.choice('abcdef123456789')
         self.defaults = {
             'serial': '0x12345678',
             'key': '0x00000000,0x00000000,0x00000000,0x00000000',
@@ -330,7 +336,7 @@ class FW(object):
     key = property(_getkey, _setkey, doc='The key for this fw')
 
     def add_interface(self, pa1, port1):
-        send(self.p, 'pemu create_nic %s %i 00:00:ab:cd:%s%s:0%i' % (self.name, port1, self.first_mac_number, self.second_mac_number, port1))
+        send(self.p, 'pemu create_nic %s %i 00:00:ab:%s%s:%s%s:0%i' % (self.name, port1, self.first_mac_number, self.second_mac_number, self.third_mac_number, self.fourth_mac_number, port1))
 
     def __allocate_udp_port(self, remote_hypervisor):
         """allocate a new src and dst udp port from hypervisors"""
@@ -449,3 +455,10 @@ class FW(object):
                 str(self._ram) + ' MB RAM\n' + '  Firewall\'s pemuwrapper runs on ' + self.dynamips.host + ":" + str(self.dynamips.port) + \
                 ', console is on port ' + str(self.console) + '\n  Image is ' + self.image + '\n  ' + str(self.nvram) + ' KB NVRAM, ' + str(self.disk0) + \
                 ' MB flash size, with serial number '  + self._serial + '\n' '  Activation key ' + self._key + '\n' + slot_info
+
+def nosend_pemu(flag):
+    """ If true, don't actually send any commands to the back end.
+    """
+
+    global NOSEND
+    NOSEND = flag

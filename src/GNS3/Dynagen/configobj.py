@@ -1858,7 +1858,7 @@ class ConfigObj(Section):
         """Write an individual line, for the write method"""
         # NOTE: the calls to self._quote here handles non-StringType values.
         if not self.unrepr:
-            val = self._decode_element(self._quote(this_entry))
+            val = self._decode_element(this_entry)
         else:
             val = repr(this_entry)
         return '%s%s%s%s%s' % (

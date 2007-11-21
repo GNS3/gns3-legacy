@@ -21,7 +21,7 @@
 
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui, QtSvg
-from GNS3.Utils import translate
+from GNS3.Utils import translate, debug
 import GNS3.Dynagen.dynamips_lib as lib
 
 error = None
@@ -344,7 +344,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 
         key = self.hypervisor_host + ':' + str(self.hypervisor_port)
         if not globals.GApp.dynagen.dynamips.has_key(key):
-            #print 'connection to ' + self.hypervisor_host + ' ' + str(self.hypervisor_port)
+            debug("AbstractNode: connection to hypervisor " +  self.hypervisor_host + ':' + str(self.hypervisor_port))
             globals.GApp.dynagen.dynamips[key] = lib.Dynamips(self.hypervisor_host, self.hypervisor_port)
             globals.GApp.dynagen.dynamips[key].reset()
             if self.baseUDP:
@@ -353,14 +353,14 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 globals.GApp.dynagen.dynamips[key].baseconsole = self.baseConsole
             if self.hypervisor_wd:
                 globals.GApp.dynagen.dynamips[key].workingdir =  self.hypervisor_wd
-                #globals.GApp.dynagen.dynamips[key].workingdir = '"' + self.hypervisor_wd + '"'
+        debug("Node " + self.hostname + ": connected to hypervisor " +  self.hypervisor_host + ':' + str(self.hypervisor_port))
         return globals.GApp.dynagen.dynamips[key]
         
     def configHypervisor(self,  host,  port, workingdir = None,  baseudp = None,  baseconsole = None):
         """ Setup an hypervisor
         """
-    
-        #print 'record hypervisor : ' + host + ' ' + str(port) + ' base UDP ' + str(baseudp)
+
+        debug("Node " + self.hostname + ": recording hypervisor " +  host + ":" + str(port) + " base UDP " + str(baseudp))
         self.hypervisor_host = host
         self.hypervisor_port = port
         if  baseudp:

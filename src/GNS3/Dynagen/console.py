@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+
 """
 console.py
-Copyright (C) 2006  Greg Anuzelli
+Copyright (C) 2006, 2007  Greg Anuzelli
 contributions: Pavel Skovajsa
 
 Derived from recipe on ASPN Cookbook
@@ -103,7 +104,7 @@ class Console(AbstractConsole):
 conf
 \tswitch into global config mode"""
 
-        if '?' in args:
+        if '?' in args or args.strip() == "":
             print self.do_conf.__doc__
             return
 
@@ -185,7 +186,7 @@ conf
             except DynamipsWarning, e:
                 print "Note: " + str(e)
 
-    
+
 
     def do_start(self, args):
         """start  {/all [delay] | router1 [router2] ...}
@@ -370,12 +371,22 @@ conf
                 print "Note: " + str(e)
 
     def do_ver(self, args):
-        """Print the dynagen version"""
+        """Print the dynagen version and credits"""
 
         print 'dynagen has version ' + self.namespace.VERSION
         print 'hypervisor version(s):'
         for d in self.dynagen.dynamips.values():
             print ' %s at %s:%i has version %s' % (d.type, d.host, d.port, d.version)
+        print """
+Credits:
+Dynagen is written and maintained by Greg Anuzelli
+Contributing developer: Pavel Skovajsa
+Pemuwrapper: Thomas Pani
+Pemu: Milen Svobodnikov
+The authors of the ConfObj library
+
+And big thanks of course to Chris Filot as the author of Dynamips.
+"""
 
     def do_shell(self, args):
         """Pass command to a system shell when line begins with '!'"""
@@ -439,10 +450,8 @@ conf
             output = []
             for device in self.dynagen.devices.values():
                 #if it is a router or FW
-                if isinstance(device, self.namespace.Router) or isinstance(device, self.namespace.FW) or isinstance(device, self.namespace.FRSW) or isinstance(device, self.namespace.ATMBR) or isinstance(device, self.namespace.ATMSW):
+                if isinstance(device, self.namespace.Router) or isinstance(device, self.namespace.FW) or isinstance(device, self.namespace.FRSW) or isinstance(device, self.namespace.ATMBR) or isinstance(device, self.namespace.ATMSW) or isinstance(device, self.namespace.ETHSW):
                     output.append(device.info())
-                #TODO .... work on FRSW, ATMSW etc.
-
             output.sort()
             for devinfo in output:
                 print devinfo
@@ -450,7 +459,7 @@ conf
             #if this is 'show device {something}' command print info about specific device
             try:
                 device = self.dynagen.devices[params[1]]
-                if isinstance(device, self.namespace.Router) or isinstance(device, self.namespace.FW) or isinstance(device, self.namespace.FRSW) or isinstance(device, self.namespace.ATMBR) or isinstance(device, self.namespace.ATMSW):
+                if isinstance(device, self.namespace.Router) or isinstance(device, self.namespace.FW) or isinstance(device, self.namespace.FRSW) or isinstance(device, self.namespace.ATMBR) or isinstance(device, self.namespace.ATMSW) or isinstance(device, self.namespace.ETHSW):
                     print device.info()
             except KeyError:
                 error('unknown device: ' + params[1])
@@ -464,16 +473,19 @@ conf
         #print out the start_config
         for line in startup_config_tuple:
             print line
-    
+
     def show_run(self, params):
-        #if this is a 'show run' command update the running config and print it out
+        """update the running config and print it out"""
+
         running_config_tuple = self.dynagen.get_running_config(params)
         for line in running_config_tuple:
             #we do not want to see that BIG configuration blob on the screen
             if line.find('configuration') == -1:
                 print line
-    
+
     def show_mac(self, params):
+        """print out the mac table of the ETHSW in params"""
+
         try:
             result = self.dynagen.devices[params[1]].show_mac()
             for chunks in result:
@@ -538,7 +550,7 @@ show run <device_name>
         self.dynagen.update_running_config(need_active_config=True)
         params = args.split(" ")
         if len(params) == 2 and params[0] == 'run' and params[1] == 'start':
-            filename = self.namespace.global_filename
+            filename = self.dynagen.global_filename
             self.dynagen.running_config.filename = filename
             self.dynagen.running_config.write()
             self.dynagen.running_config.filename = None
@@ -708,7 +720,7 @@ show run <device_name>
         # Set the current directory to the one that contains our network file
         try:
             netdir = os.getcwd()
-            subdir = os.path.dirname(self.namespace.global_filename)
+            subdir = os.path.dirname(self.dynagen.global_filename)
             debug('current dir is -> ' + os.getcwd())
             if subdir != "":
                 debug("changing dir to -> " + subdir)
@@ -762,7 +774,7 @@ show run <device_name>
 
     def do_import(self, args):
         '''import {/all | router1 [router2] "directory"
-\timport all or individual configuration files 
+\timport all or individual configuration files
 \tEnclose the directory or filename in quotes if there are spaces in the filespec.'''
 
         if '?' in args or args.strip() == "":
@@ -775,7 +787,7 @@ show run <device_name>
         # Set the current directory to the one that contains our network file
         try:
             netdir = os.getcwd()
-            subdir = os.path.dirname(self.namespace.global_filename)
+            subdir = os.path.dirname(self.dynagen.global_filename)
             debug('current dir is -> ' + os.getcwd())
             if subdir != "":
                 debug("changing dir to -> " + subdir)
@@ -1103,26 +1115,29 @@ show run <device_name>
             print line
 
     def do_idlepc(self, args):
-        '''idlepc {get|set|show|save|idlemax|idlesleep|showdrift} device [value]
-\tidlepc save device [default]
-
+        '''idlepc {get|set|copy|show|save|idlemax|idlesleep|showdrift} device [value]
 \tget, set, or show the online idlepc value(s)
-\tExamples:
-  idlepc get r1             -- Get a list of the possible idlepc value(s) for
-                                router r1
-  idlepc show r1            -- Show the previously determined idlepc values for
-                               router r1
-  idlepc set r1 0x12345     -- Manually set r1\'s idlepc to 0x12345
-  idlepc save r1            -- Save r1\'s current idlepc value to the "router r1"
-                               section of your network file
-  idlepc save r1 default    -- Save r1\'s current idlepc value to the device
-                               defaults section of your network file
-                               (i.e. [[7200]])
-  idlepc save r1 db         -- Save r1\'s current idlepc value to the idlepc
-                               database
-  idlepc idlemax r1 1500    -- Commands for advanced manipulation of idlepc
-  idlepc idlesleep r1 30       settings
+Examples:
+  idlepc get r1
+\tGet a list of the possible idlepc value(s) for router r1
+  idlepc show r1
+\tShow the previously determined idlepc values for router r1
+  idlepc set r1 0x12345
+\tManually set r1\'s idlepc to 0x12345
+  idlepc copy r1 /all
+\tSet the same idlepc as on r1 for all routers that have the same IOS as r1
+  idlepc save r1
+\tSave r1\'s current idlepc value to the "router r1" section of your network file
+  idlepc save r1 default
+\tSave r1\'s current idlepc value to the device defaults section of your network file (i.e. [[7200]])
+  idlepc save r1 db
+\tSave r1\'s current idlepc value to the idlepc database
+  idlepc idlemax r1 1500
+\tSet the idlemax parameter for "router r1". Use /all instead to set on all routers.
+  idlepc idlesleep r1 30
+\tSet the idlesleep parameter for "router r1". Use /all instead to set on all routers.
   idlepc showdrift r1
+\tDisplay the drift of idlepc on "router r1"
         '''
 
         if '?' in args or args.strip() == "":
@@ -1185,6 +1200,24 @@ show run <device_name>
                     # Apply the selected idle
                     self.dynagen.devices[device].idleprop(IDLEPROPSET, idles[selection])
                     print 'Applied idlepc value %s to %s\n' % (idles[selection], device)
+            elif command == 'copy':
+                (device, second_dev) = params
+                if device == second_dev:
+                    return
+                #check if the first device has idlepc value
+                idlepc = self.dynagen.devices[device].idlepc
+                if idlepc == None:
+                    print "***Error: %s router does not idlepc value set" % device
+                    return
+                if second_dev == '/all':
+                    for dev in self.dynagen.devices.values():
+                        if isinstance(dev, self.namespace.Router):
+                            self.do_idlepc('copy ' + device + ' ' + dev.name)
+                    return
+
+                if self.dynagen.devices[device].image == self.dynagen.devices[second_dev].image:
+                    self.dynagen.devices[second_dev].idlepc = idlepc
+                    print second_dev + ': idlepc set to ' + idlepc
             elif command == 'set':
 
                 (device, value) = params
@@ -1207,7 +1240,7 @@ show run <device_name>
                 if idlepc == None:
                     print '****Error: device %s has no idlepc value to save' % device
                     return
-                self.dynagen.globalconfig = self.running_config
+
                 netfile = self.dynagen.globalconfig
                 host = self.dynagen.devices[device].dynamips.host
                 port = self.dynagen.devices[device].dynamips.port
@@ -1223,8 +1256,8 @@ show run <device_name>
                 if location.lower() == 'default':
                     # Find the default section for this device
                     section = self.dynagen.devices[device].model_string
-                    if self.defaults_config_ran:
-                        self.defaults_config[serverSection][section]['idlepc'] = idlepc
+                    if self.dynagen.defaults_config_ran:
+                        self.dynagen.defaults_config[serverSection][section]['idlepc'] = idlepc
                 elif location.lower() == 'db':
 
                     # Store the idlepc value for this image in the idlepc user database
@@ -1258,12 +1291,10 @@ show run <device_name>
                 if section not in netfile[serverSection].sections:
                     print '***Error: section %s not found in network configuration file for host %s' % (section, host)
                     return
-
                 netfile[serverSection][section]['idlepc'] = idlepc
                 netfile.write()
                 print 'idlepc value saved to section: ' + section
             elif command == 'showdrift':
-
                 device = params[0]
                 print 'Current idlemax value: %i' % self.dynagen.devices[device].idlemax
                 print 'Current idlesleep value: %i' % self.dynagen.devices[device].idlesleep
@@ -1275,14 +1306,18 @@ show run <device_name>
 
                 (device, value) = params
                 value = int(value)
+                if device == '/all':
+                    for dev in self.dynagen.devices.values():
+                        if isinstance(dev, self.namespace.Router):
+                            self.do_idlepc(command + ' ' + dev.name + ' ' + str(value))
+                    return
                 if command == 'idlemax':
                     self.dynagen.devices[device].idlemax = value
                 elif command == 'idlesleep':
                     self.dynagen.devices[device].idlesleep = value
-                print 'OK'
+                print device + ': ' + command + 'set to ' + str(value)
                 return
             else:
-
                 print '***Error: Unknown command ' + command
                 return
         except ValueError:
@@ -1344,9 +1379,10 @@ show run <device_name>
             except DynamipsWarning, e:
                 print "Note: " + str(e)
 
-   
+
     def do_cpuinfo(self, args):
-        """cpuinfo  {/all | router1 [router2] ...}\nshow cpu info for a specific router(s)"""
+        """cpuinfo  {/all | router1 [router2] ...}\nshow CPU info for a specific router(s)"""
+
         if '?' in args or args.strip() == '':
             print self.do_cpuinfo.__doc__
             return
@@ -1355,7 +1391,8 @@ show run <device_name>
         if '/all' in devices:
             for device in self.dynagen.devices.values():
                 try:
-                    for line in device.cpuinfo: print line.strip()
+                    for line in device.cpuinfo:
+                        print line.strip()
                 except IndexError:
                     pass
                 except AttributeError:
@@ -1379,7 +1416,7 @@ show run <device_name>
                 error(e)
             except DynamipsWarning, e:
                 print "Note: " + str(e)
-  
+
 def telnet(device):
     """Telnet to the console port of device"""
 

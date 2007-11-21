@@ -3,6 +3,7 @@
 """
 confConsole.py
 Copyright (C) 2007  Pavel Skovajsa
+
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
 as published by the Free Software Foundation; either version 2
@@ -56,7 +57,8 @@ def debug(string):
 
 
 class AbstractConsole(cmd.Cmd):
-
+    """abstract console class, all other console and confconsole classes inherit behavior from it"""
+    
     def __init__(self):
         cmd.Cmd.__init__(self)
         # Import the main namespace for use in this module
@@ -163,6 +165,7 @@ class AbstractConsole(cmd.Cmd):
 
 
 class confDefaultsConsole(AbstractConsole):
+    """console class for managing the device Defaults console"""
 
     def __init__(self, prompt, dynagen, dynamips_server):
         AbstractConsole.__init__(self)
@@ -217,6 +220,8 @@ class confDefaultsConsole(AbstractConsole):
             return line
 
     def clean_args(self, args):
+        """clean the arguments from spaces and stuff"""
+        
         #get rid of that '='
         argument = args.strip('=')
         #get rid of starting space
@@ -224,6 +229,8 @@ class confDefaultsConsole(AbstractConsole):
         return argument
 
     def set_int_option(self, option, args):
+        """set integer type option in config"""
+        
         if '?' in args or args.strip() == '':
             print getattr(self, 'do_' + option).__doc__
             return
@@ -241,6 +248,8 @@ class confDefaultsConsole(AbstractConsole):
         self.dynamips_server.configchange = True
 
     def set_string_option(self, option, args):
+        """set string type option in config"""
+        
         if '?' in args or args.strip() == '':
             print getattr(self, 'do_' + option).__doc__
             return
@@ -788,6 +797,8 @@ class confRouterConsole(confDefaultsConsole):
         except DynamipsError, e:
             err = e[0]
             error('Connecting %s %s to %s resulted in:    %s' % (self.router.name, source, destination, err))
+            return
+        
         if result == False:
             error('Attempt to connect %s %s to unknown device: "%s"' % (self.router.name, source, destination))
 
@@ -1103,7 +1114,8 @@ class conf1700RouterConsole(confRouterConsole):
 
 
 class AbstractConfSWConsole(AbstractConsole):
-    
+    """abstract console for all dynamips emulated switches, that implement the common behaviour"""
+       
     def __init__(self):
         AbstractConsole.__init__(self)
         
@@ -1208,6 +1220,113 @@ class confFRSWConsole(AbstractConfSWConsole):
                     if self.dynagen.running_config[self.d][self.f][left_side] == right_side:
                         self.frsw.unmap(port1, dlci1, port2, dlci2)
                         self.frsw.unmap(port2, dlci2, port1, dlci1)
+                        self.dynagen.update_running_config()
+                
+                    else:
+                        error('semantic error in: ' + args + ' this connection does not exist')
+                except AttributeError:
+                    error('semantic error in: ' + args)
+                    return
+                except DynamipsError, e:
+                    error(e)
+                    return
+                except DynamipsWarning, e:
+                    error(e)
+                    return
+            else:
+                error('invalid syntax in: ' + args)
+        else:
+            error('invalid syntax in: ' + args)
+
+class confETHSWConsole(AbstractConfSWConsole):
+
+    def __init__(self, ethsw, prompt, dynagen):
+        AbstractConfSWConsole.__init__(self)
+        self.ethsw = ethsw
+        self.prompt = prompt[:-1] + '-ethsw ' + ethsw.name + ')'
+        self.dynagen = dynagen
+        self.d = self.ethsw.dynamips.host + ':' + str(self.ethsw.dynamips.port)
+        self.e = 'ETHSW ' + self.ethsw.name
+        self.dynagen.update_running_config()
+        self.running_config = self.dynagen.running_config[self.d][self.e]
+
+    def connect(self, args):
+        params = args.split('=')
+        if self.dynagen.running_config[self.d][self.e].has_key(params[0].strip()):
+            error('semantic error in: ' + args + ' , this connection already exists')
+            return
+        self.dynagen.ethsw_map(self.ethsw, params[0].strip(), params[1].strip())
+
+    def do_no(self, args):
+        params = args.split('=')
+        left_side = params[0].strip()
+        right_side = params[1].strip()
+        try:
+            if self.dynagen.running_config[self.d][self.e][left_side] == right_side:
+                self.ethsw.unset_port(int(left_side))
+            else:
+                error('this mapping does not exist')
+        except IndexError:
+            error('this mapping does not exist')
+        except DynamipsError, e:
+            error(e)
+
+class confATMBRConsole(AbstractConfSWConsole):
+
+    def __init__(self, atmbr, prompt, dynagen):
+        AbstractConfSWConsole.__init__(self)
+        self.atmbr = atmbr
+        self.prompt = prompt[:-1] + '-atmbr ' + atmbr.name + ')'
+        self.dynagen = dynagen
+        self.d = self.atmbr.dynamips.host + ':' + str(self.atmbr.dynamips.port)
+        self.a = 'ATMBR ' + self.atmbr.name
+        self.dynagen.update_running_config()
+        self.running_config = self.dynagen.running_config[self.d][self.a]
+
+    def connect(self, args):
+        params = args.split('=')
+        if len(params) == 2:
+            left_side = params[0]
+            right_side = params[1].split(':')
+            if len(right_side) == 3:
+                try:
+                    port1 = int(left_side)     
+                    port2 = int(right_side[0])
+                    vpi2 = int(right_side[1])
+                    vci2 = int(right_side[2])
+                    #check whether this connection already exists:
+                    if self.dynagen.running_config[self.d][self.a].has_key(params[0].strip()):
+                        error('semantic error in: ' + args + ' this connection already exists')
+                    else:
+                        self.atmbr.configure(port1, port2, vpi2, vci2)
+                        self.dynagen.update_running_config()                    
+                except AttributeError:
+                    error('semantic error in: ' + args)
+                    return
+                except DynamipsError, e:
+                    error(e)
+                    return
+            else:
+                error('invalid syntax in: ' + args)
+        else:
+            error('invalid syntax in: ' + args)
+
+    def do_no(self, args):
+        params = args.split('=')
+        if len(params) == 2:
+            left_side = params[0]
+            right_side = params[1].split(':')
+            if len(right_side) == 3:
+                try:
+                    port1 = int(left_side)     
+                    port2 = int(right_side[0])
+                    vpi2 = int(right_side[1])
+                    vci2 = int(right_side[2])
+                    left_side = params[0].strip()
+                    right_side = params[1].strip()
+                    #check whether this connection already exists:
+                    if self.dynagen.running_config[self.d][self.a][left_side] == right_side:
+                        self.atmbr.unconfigure(port1, port2, vpi2, vci2)
                         self.dynagen.update_running_config()
                 
                     else:
@@ -1429,7 +1548,7 @@ class confHypervisorConsole(AbstractConsole):
             # compare whether this is defaults section
             if router_model.name in self.namespace.DEVICETUPLE:
                 self.onecmd('no defaults ' + router_model.name)
-        #TODO ATMSW,FRSW,ETHSW
+
         #reset backend
         self.dynamips_server.reset()
         #update running_config
@@ -1826,6 +1945,37 @@ router <new_router_name>
         print 'ATM switch ' + params[1] + ' deleted'
         #update the config
         self.dynagen.update_running_config()
+        
+    def no_atmbr(self, params):
+        """delete the atmbr and all its connections"""
+        #check if the atmbr exists
+        try:
+            atmbr = self.dynagen.devices[params[1]]
+        except (KeyError, AttributeError):
+            error('this device does not exist: ' + params[1])
+            return
+        #check whether we are on correct hypervisor
+        if atmbr.dynamips != self.dynamips_server:
+            error('this device is on different hypervisor: ' + atmbr.dynamips.host + ':' + str(atmbr.dynamips.port))
+            return
+            
+        #delete all atmbr mappings
+        atmbr_section = self.dynagen.running_config[self.d]['ATMBR ' + atmbr.name]
+        for scalar in atmbr_section.scalars:
+            nested_cmd = confATMBRConsole(atmbr, self.prompt, self.dynagen)
+            if self.dynagen.running_config[self.d]['ATMBR ' + atmbr.name].has_key(scalar):
+                nested_cmd.onecmd('no ' + scalar + ' = ' + atmbr_section[scalar])
+            self.dynagen.update_running_config()
+        
+        self.__delete_all_connections_to_sw(atmbr)
+
+        #now delete the atmbr from backend
+        atmbr.delete()
+        #delete router from front-end
+        del self.dynagen.devices[params[1]]
+        print 'ATM bridge ' + params[1] + ' deleted'
+        #update the config
+        self.dynagen.update_running_config()
 
     def no_defaults(self, params):
         """delete the model default section, delete all the routers of this model that are under current hypervisor"""
@@ -1869,6 +2019,8 @@ no defaults <router_model>
             self.no_frsw(params)
         elif params[0] == 'atmsw':
             self.no_atmsw(params)
+        elif params[0] == 'atmbr':
+            self.no_atmbr(params)
         else:
             error('syntax error in second argument ' + args)
             return
@@ -1958,8 +2110,76 @@ atmsw <new atmsw_name>
             #and let's jump into the confFRSWConsole
             nested_cmd = confATMSWConsole(atmsw, self.prompt, self.dynagen)
             nested_cmd.cmdloop()
+            
+    def do_atmbr(self, args):
+        """atmbr <atmbr name>
+\tgo into ATM Bridge conf mode
+atmbr <new atmbr_name>
+\tcreate new ATM Bridge of this name"""
 
+        if '?' in args or args.strip() == '':
+            print self.do_atmbr.__doc__
+            return
+        try:
+            atmbr = self.dynagen.devices[args]
+            #check whether we are on correct hypervisor
+            if atmbr.dynamips != self.dynamips_server:
+                error('this device is on different hypervisor: ' + atmbr.dynamips.host + ':' + str(atmbr.dynamips.port))
+                return
+            #ok device_name exists, so let's run the nested Cmd console
+            if isinstance(atmbr, self.namespace.ATMBR):
+                nested_cmd = confATMBRConsole(atmbr, self.prompt, self.dynagen)
+                nested_cmd.cmdloop()
+            else:
+                error(args + ' is not a ATMBR switch')
+        except KeyError:
+            #atmbr does not exist so let's create it
+            try:
+                atmbr = self.namespace.ATMBR(self.dynamips_server, name=args)
+                #add it to frontend
+                self.dynagen.devices[args] = atmbr
+                debug('ATMBR switch ' + atmbr.name + ' created')
+                #and let's jump into the confATMBRConsole
+                nested_cmd = confATMBRConsole(atmbr, self.prompt, self.dynagen)
+                nested_cmd.cmdloop()
+            except DynamipsError, e:
+                print 'dynamips error in creating ATMBR bridge, ' + str(e)
+                
+    def do_ethsw(self, args):
+        """ethsw <ethsw name>
+\tgo into Ethernet switch conf mode
+ethsw <new ethsw_name>
+\tcreate new Ethernet switch of this name"""
 
+        if '?' in args or args.strip() == '':
+            print self.do_ethsw.__doc__
+            return
+        try:
+            ethsw = self.dynagen.devices[args]
+            #check whether we are on correct hypervisor
+            if ethsw.dynamips != self.dynamips_server:
+                error('this device is on different hypervisor: ' + ethsw.dynamips.host + ':' + str(ethsw.dynamips.port))
+                return
+            #ok device_name exists, so let's run the nested Cmd console
+            if isinstance(ethsw, self.namespace.ETHSW):
+                nested_cmd = confETHSWConsole(ethsw, self.prompt, self.dynagen)
+                nested_cmd.cmdloop()
+            else:
+                error(args + ' is not a ethsw switch')
+        except KeyError:
+            #ethsw does not exist so let's create it
+            try:
+                ethsw = self.namespace.ETHSW(self.dynamips_server, name=args)
+                #add it to frontend
+                self.dynagen.devices[args] = ethsw
+                debug('ethsw switch ' + ethsw.name + ' created')
+                #and let's jump into the confethswConsole
+                nested_cmd = confETHSWConsole(ethsw, self.prompt, self.dynagen)
+                nested_cmd.cmdloop()
+            except DynamipsError, e:
+                print 'dynamips error in creating ethsw bridge, ' + str(e)
+                
+                
 class confConsole(AbstractConsole):
 
     def __init__(self, dynagen, console):

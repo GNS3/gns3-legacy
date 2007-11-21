@@ -23,7 +23,7 @@ import time
 import GNS3.Globals as globals
 from socket import socket, timeout, AF_INET, SOCK_STREAM
 from PyQt4 import QtCore, QtGui
-from GNS3.Utils import translate
+from GNS3.Utils import translate,  debug
 from GNS3.Node.IOSRouter import IOSRouter
 
 class HypervisorManager:
@@ -34,18 +34,13 @@ class HypervisorManager:
     def __init__(self):
     
         self.hypervisors = []
-        self.preloaded_hypervisors = []
-        self.used_preloaded_hypervisors = []
         self.setDefaults()
         
     def __del__(self):
         """ Shutdown all started hypervisors 
         """
-
+    
         self.stopProcHypervisors()
-#        for hypervisor in self.preloaded_hypervisors:
-#            hypervisor['proc_instance'].close()
-#        self.preloaded_hypervisors = []
        
     def setDefaults(self):
         """ Set the default values for the hypervisor manager
@@ -62,12 +57,6 @@ class HypervisorManager:
         """ Create a new dynamips process and start it
         """
 
-#        if len(self.preloaded_hypervisors):
-#            for hypervisor in self.preloaded_hypervisors:
-#                if hypervisor not in self.used_preloaded_hypervisors:
-#                    self.used_preloaded_hypervisors.append(hypervisor)
-#                    return hypervisor
-
         proc = QtCore.QProcess(globals.GApp.mainWindow)
         port = self.hypervisor_baseport
         self.hypervisor_baseport += 1
@@ -83,7 +72,7 @@ class HypervisorManager:
         hypervisor = {'port': port,
                             'proc_instance': proc, 
                             'load': 0}
-
+                            
         self.hypervisors.append(hypervisor)
         return hypervisor
     
@@ -100,14 +89,18 @@ class HypervisorManager:
         s = socket(AF_INET, SOCK_STREAM)
         s.setblocking(0)
         s.settimeout(300)
+
         hypervisor = self.startNewHypervisor()
+        if hypervisor == None:
+            return False
+        
         # give 15 seconds to the hypervisor to accept connections
         count = 15
         progress = None
         connection_success = False
         for nb in range(count + 1):
             if nb == 3:
-                progress = QtGui.QProgressDialog(translate("HypervisorManager", "Starting a new hypervisor ..."), translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
+                progress = QtGui.QProgressDialog(translate("HypervisorManager", "Connecting to an hypervisor ..."), translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
                 progress.setMinimum(1)
                 progress.setWindowModality(QtCore.Qt.WindowModal)
                 globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 2000)
@@ -122,6 +115,7 @@ class HypervisorManager:
             except:
                 time.sleep(1)
                 continue
+            debug("Hypervisor manager: hypervisor on port " +  str(hypervisor['port']) + " started")
             connection_success = True
             break
 
@@ -152,7 +146,6 @@ class HypervisorManager:
                     hypervisor['load'] = 0
                 break
     
-
     def stopProcHypervisors(self):
         """ Shutdown all started hypervisors 
         """
@@ -163,7 +156,7 @@ class HypervisorManager:
             hypervisor['proc_instance'].close()
         self.hypervisors = []
 
-    def preloadDynamips(self, showErrMessage=True):
+    def preloadDynamips(self):
         """ Preload Dynamips
         """
 
@@ -177,12 +170,5 @@ class HypervisorManager:
         # start dynamips in hypervisor mode (-H)
         proc.start(self.hypervisor_path,  ['-H', str(port)])
         if proc.waitForStarted() == False:
-            if showErrMessage:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Can't start Dynamips"))
             return False
-
-        hypervisor = {'port': port,
-                            'proc_instance': proc}
-
-        #self.preloaded_hypervisors.append(hypervisor)
         return True

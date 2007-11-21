@@ -230,10 +230,9 @@ class Application(QApplication, Singleton):
         self.translator = Translator()
         self.translator.loadByLangEnv(self.systconf['general'].lang)
 
-        # preload dynamips
+        # HypervisorManager
         if globals.GApp.systconf['dynamips'].path:
             globals.HypervisorManager = HypervisorManager()
-            #globals.HypervisorManager.preloadDynamips()#showErrMessage=False)
 
         # full screen
         #geometry = QApplication.desktop().availableGeometry(self.mainWindow)

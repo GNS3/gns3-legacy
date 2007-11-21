@@ -28,7 +28,7 @@ ClearOldDynamipsFiles = False
 useIOSghosting = True
 ShowStatusPoints = True
 useManualConnection = False
-debugLevel = 0
+debugLevel = 4
 
 # A singleton instance of GNS3 Application
 #   used for storing / accessing highly used object.

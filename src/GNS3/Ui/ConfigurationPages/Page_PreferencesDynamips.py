@@ -155,7 +155,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         self.saveConf()
         if globals.GApp.systconf['dynamips'].path:
             globals.HypervisorManager = HypervisorManager()
-            if globals.HypervisorManager.preloadDynamips(showErrMessage=False):
+            if globals.HypervisorManager.preloadDynamips():
                 self.labelDynamipsStatus.setText('<font color="green">' + translate("UiConfig_PreferencesDynamips", "Dynamips successfully started")  + '</font>')
             else:
                 self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Failed to start Dynamips")  + '</font>')
