@@ -22,6 +22,7 @@
 import os, sys
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
+from GNS3.Utils import debug
 import GNS3.Langs
 
 class Translator(object):
@@ -39,9 +40,14 @@ class Translator(object):
         if sys.platform[:3] == "win":
         
             self.__i18n_dirs = [
-                os.path.dirname(os.path.abspath(GNS3.Langs.__file__)),
-                os.environ["APPDATA"] + "\\gns3\\Langs"
+                os.path.dirname(os.path.abspath(GNS3.Langs.__file__))
             ]
+            
+            if os.environ.has_key("APPDATA"):
+                self.__i18n_dirs.append(os.environ["APPDATA"] + "\\gns3\\Langs")
+            else:
+                debug('Translation: unable to find APPDATA in environ')
+
             # Get gns3.exe installation path
             try:
                 import _winreg
@@ -56,9 +62,13 @@ class Translator(object):
         else:
             
             self.__i18n_dirs = [
-                os.path.dirname(os.path.abspath(GNS3.Langs.__file__)), 
-                os.environ["HOME"] + "/.gns3/Langs"
+                os.path.dirname(os.path.abspath(GNS3.Langs.__file__))
             ]
+
+            if os.environ.has_key("HOME"):
+                self.__i18n_dirs.append(os.environ["HOME"] + "/.gns3/Langs")
+            else:
+                debug('Translation: unable to find HOME in environ')
         
         # Now find all available languages...
         self.findAvailableLangs()
