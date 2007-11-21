@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="ja_JP">
-<defaultcodec></defaultcodec>
 <context>
     <name>ATMSW</name>
     <message>
@@ -85,22 +84,22 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../Ui/Form_About.ui" line="13"/>
+        <location filename="../Ui/Form_About.py" line="885"/>
         <source>About</source>
         <translation>GNS3について</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.ui" line="26"/>
+        <location filename="../Ui/Form_About.py" line="902"/>
         <source>&amp;About</source>
         <translation>GNS3について&amp;A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.ui" line="107"/>
+        <location filename="../Ui/Form_About.py" line="911"/>
         <source>&amp;Thanks to</source>
         <translation>&amp;Thanks to</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.ui" line="113"/>
+        <location filename="../Ui/Form_About.py" line="910"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -112,12 +111,12 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.ui" line="128"/>
+        <location filename="../Ui/Form_About.py" line="1198"/>
         <source>&amp;License Agreement</source>
         <translation>ライセンス契約&amp;L</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.ui" line="134"/>
+        <location filename="../Ui/Form_About.py" line="1197"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -407,7 +406,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.ui" line="45"/>
+        <location filename="../Ui/Form_About.py" line="901"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -430,7 +429,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractEdge</name>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="133"/>
+        <location filename="../Link/AbstractEdge.py" line="134"/>
         <source>delete</source>
         <translation>削除</translation>
     </message>
@@ -471,6 +470,16 @@ p, li { white-space: pre-wrap; }
         <location filename="../Node/AbstractNode.py" line="165"/>
         <source>Hostname: </source>
         <translation>ホスト名: </translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="87"/>
+        <source>Hostname</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="87"/>
+        <source>Hostname already used</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -790,24 +799,29 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="../HypervisorManager.py" line="181"/>
+        <location filename="../HypervisorManager.py" line="70"/>
         <source>Can&apos;t start Dynamips</source>
         <translation>Dynamipsを起動できません</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="110"/>
+        <location filename="../HypervisorManager.py" line="103"/>
         <source>Abort</source>
         <translation>中止</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="110"/>
         <source>Starting a new hypervisor ...</source>
-        <translation>ハイパーバイザ起動中...</translation>
+        <translation type="obsolete">ハイパーバイザ起動中...</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="131"/>
+        <location filename="../HypervisorManager.py" line="125"/>
         <source>Can&apos;t connect to the hypervisor</source>
         <translation>ハイパーバイザに接続できません</translation>
+    </message>
+    <message>
+        <location filename="../HypervisorManager.py" line="103"/>
+        <source>Connecting to an hypervisor ...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -828,127 +842,127 @@ p, li { white-space: pre-wrap; }
         <translation>作業ディレクトリを選択して下さい</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="13"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2263"/>
         <source>IOS images and hypervisors</source>
         <translation>IOS イメージ とハイパーバイザ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="26"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2279"/>
         <source>IOS Images</source>
         <translation>IOS イメージ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="259"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2280"/>
         <source>Settings</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="73"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2268"/>
         <source>Image file :</source>
         <translation>イメージファイル:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="403"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2287"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="96"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2270"/>
         <source>Platform:</source>
         <translation>プラットフォーム:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="113"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2271"/>
         <source>Chassis:</source>
         <translation>シャーシ:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="130"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2272"/>
         <source>IDLE PC:</source>
         <translation>IDLE PC:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="32"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2264"/>
         <source>Images</source>
         <translation>イメージ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="45"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2265"/>
         <source>IOS image</source>
         <translation>IOS イメージ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="50"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2266"/>
         <source>Chassis</source>
         <translation>シャーシ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="426"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2288"/>
         <source>Hypervisors</source>
         <translation>ハイパーバイザ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="169"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2275"/>
         <source>Use the hypervisor manager</source>
         <translation>ハイパーバイザを使用する</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="454"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2291"/>
         <source>&amp;Save</source>
         <translation>保存&amp;S</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="464"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2292"/>
         <source>&amp;Edit</source>
         <translation>編集&amp;E</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="474"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2293"/>
         <source>&amp;Delete</source>
         <translation>削除&amp;D</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="265"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2281"/>
         <source>Host:</source>
         <translation>ホスト:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="288"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2282"/>
         <source>localhost</source>
         <translation>localhost</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="295"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2283"/>
         <source>Port:</source>
         <translation>ポート:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="331"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2284"/>
         <source>Base UDP:</source>
         <translation>ベース UDP:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="387"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2286"/>
         <source>Working directory:</source>
         <translation>作業ディレクトリ:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="436"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2289"/>
         <source>Host:Port</source>
         <translation>ホスト:ポート</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="441"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2290"/>
         <source>Base UDP</source>
         <translation>ベース UDP</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="144"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2273"/>
         <source>Default image for this chassis</source>
         <translation>このシャーシのデフォルトイメージにする</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="367"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2285"/>
         <source>Base console:</source>
         <translation>ペースコンソール:</translation>
     </message>
@@ -958,9 +972,19 @@ p, li { white-space: pre-wrap; }
         <translation>既にデフォルト設定されてます</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.ui" line="250"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="2294"/>
         <source>External hypervisors</source>
         <translation>外部ハイパーバイザ</translation>
+    </message>
+    <message>
+        <location filename="../IOSDialog.py" line="161"/>
+        <source>Select an IOS image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../IOSDialog.py" line="167"/>
+        <source>Can&apos;t open file: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -974,6 +998,26 @@ p, li { white-space: pre-wrap; }
         <location filename="../Node/IOSRouter.py" line="567"/>
         <source>No interface available</source>
         <translation>インターフェイスが見つかりません</translation>
+    </message>
+    <message>
+        <location filename="../Node/IOSRouter.py" line="273"/>
+        <source>Node configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/IOSRouter.py" line="273"/>
+        <source>No IOS image available !</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/IOSRouter.py" line="557"/>
+        <source>No IOS configured</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/IOSRouter.py" line="560"/>
+        <source>Can&apos;t find the IOS image</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1142,339 +1186,372 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="DynamicStrings.py" line="27"/>
+        <location filename="../Translations.py" line="105"/>
         <source>English</source>
         <translation>日本語</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="13"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2642"/>
         <source>GNS3</source>
         <translation>GNS3</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="61"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2643"/>
         <source>&amp;Edit</source>
         <translation>編集&amp;E</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="76"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2644"/>
         <source>&amp;File</source>
         <translation>ファイル&amp;F</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="88"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2645"/>
         <source>&amp;Help</source>
         <translation>ヘルプ&amp;H</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="96"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2646"/>
         <source>&amp;View</source>
         <translation>表示&amp;V</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="113"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2647"/>
         <source>General</source>
         <translation>一般</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="141"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2648"/>
         <source>Nodes Types</source>
         <translation>ノード種類</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="272"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2653"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="192"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2650"/>
         <source>Design</source>
         <translation>デザイン</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="204"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2651"/>
         <source>Simulation</source>
         <translation>シミュレーション</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="237"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2652"/>
         <source>Topology Summary</source>
         <translation>トポロジの概要</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="291"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2654"/>
         <source>Console</source>
         <translation>コンソール</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="328"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2655"/>
         <source>&amp;About</source>
         <translation>GNS3について&amp;A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="336"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2656"/>
         <source>&amp;Quit</source>
         <translation>終了&amp;Q</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="342"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2657"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="350"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2658"/>
         <source>&amp;Open</source>
         <translation>開く &amp;O</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="353"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2659"/>
         <source>Open project</source>
         <translation>プロジェクトを開く</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="356"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2660"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="364"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2661"/>
         <source>&amp;Save</source>
         <translation>保存&amp;S</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="367"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2662"/>
         <source>Save project</source>
         <translation>プロジェクトを保存</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="370"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2663"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="390"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2667"/>
         <source>Add a link</source>
         <translation>リンクを追加する</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="398"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2669"/>
         <source>Ctrl+Shift+I</source>
         <translation>Ctrl+Shift+I</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="406"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2670"/>
         <source>&amp;Online Help</source>
         <translation>&amp;オンラインヘルプ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="414"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2671"/>
         <source>&amp;Export</source>
         <translation>&amp;エクスポート</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="425"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2672"/>
         <source>Start/Resume all IOS</source>
         <translation>IOSをロードする</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="428"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2673"/>
         <source>Start or resume all IOS instances</source>
         <translation>IOSを再ロードする</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="439"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2674"/>
         <source>Stop all IOS</source>
         <translation>IOSを停止する</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="442"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2675"/>
         <source>Stop all IOS instances</source>
         <translation>IOSを停止する</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="456"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2677"/>
         <source>Show hostnames</source>
         <translation>ホスト名を表示する</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="467"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2678"/>
         <source>Telnet all IOS</source>
         <translation>全 IOSにログインする</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="470"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2679"/>
         <source>Start a console on all running IOS instances</source>
         <translation>全 IOSのコンソールポートにログインする</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="475"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2680"/>
         <source>&amp;Design Mode</source>
         <translation>デザイン &amp;D</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="480"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2681"/>
         <source>&amp;Emulation Mode</source>
         <translation>エミュレーション &amp;E</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="485"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2682"/>
         <source>&amp;Simulation Mode</source>
         <translation>シミュレーション &amp;S</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="493"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2683"/>
         <source>Save &amp;As</source>
         <translation>名前を指定して保存 &amp;A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="496"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2684"/>
         <source>Save As</source>
         <translation>名前を指定して保存</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="499"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2685"/>
         <source>Save project as</source>
         <translation>名前をしてプロジェクトを保存</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="507"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2686"/>
         <source>&amp;New</source>
         <translation>新規&amp;N</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="510"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2687"/>
         <source>New project</source>
         <translation>新規プロジェクト</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="513"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2688"/>
         <source>Create a new project</source>
         <translation>新規プロジェクトを作成</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="516"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2689"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="521"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2690"/>
         <source>About &amp;Qt</source>
         <translation>&amp;Qt について</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="529"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2691"/>
         <source>Zoom &amp;In</source>
         <translation>拡大 &amp;I</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="532"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2692"/>
         <source>Ctrl++</source>
         <translation>Ctrl++</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="537"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2693"/>
         <source>Zoom &amp;Out</source>
         <translation>縮小&amp;O</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="540"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2694"/>
         <source>Ctrl+-</source>
         <translation>Ctrl+-</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="545"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2695"/>
         <source>Zoom &amp;1:1</source>
         <translation>実際のサイズ &amp;1:1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="548"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2696"/>
         <source>Ctrl+/</source>
         <translation>Ctrl+/</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="556"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2697"/>
         <source>Zoom &amp;Fit</source>
         <translation>適当なサイズ &amp;F</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="559"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2698"/>
         <source>Ctrl+=</source>
         <translation>Ctrl+=</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="564"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2699"/>
         <source>Select &amp;All</source>
         <translation>全部選択する &amp;A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="567"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2700"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="572"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2701"/>
         <source>Select &amp;None</source>
         <translation>選択をクリアする &amp;N</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="575"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2702"/>
         <source>Ctrl+Shift+A</source>
         <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="591"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2705"/>
         <source>Cut</source>
         <translation>切り取り</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="594"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2706"/>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="602"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2707"/>
         <source>Copy</source>
         <translation>コピー</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="605"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2708"/>
         <source>Ctrl+C</source>
         <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="613"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2709"/>
         <source>&amp;Paste</source>
         <translation>貼り付け&amp;P</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="616"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2710"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="624"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2711"/>
         <source>Suspend all IOS</source>
         <translation> IOSをサスペンドする</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="627"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2712"/>
         <source>Suspend all IOS instances</source>
         <translation> IOSをサスペンドする</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="580"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2703"/>
         <source>&amp;Preferences...</source>
         <translation>設定&amp;P...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="583"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2704"/>
         <source>Ctrl+Shift+P</source>
         <translation>Ctrl+Shift+P</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.ui" line="395"/>
+        <location filename="../Ui/Form_MainWindow.py" line="2668"/>
         <source>IOS images and hypervisors</source>
         <translation>IOS イメージ とハイパーバイザ</translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_MainWindow.py" line="1899"/>
+        <source>Emulation Mode</source>
+        <translation type="unfinished">エミュレーション</translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_MainWindow.py" line="340"/>
+        <source>IOS images</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NETFile</name>
+    <message>
+        <location filename="../NETFile.py" line="59"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="59"/>
+        <source>Please configure the path to Dynamips</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="75"/>
+        <source>Dynamips error</source>
+        <translation type="unfinished">Dynamips エラー</translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="81"/>
+        <source>Dynamips warning</source>
+        <translation type="unfinished">Dynamips 警告</translation>
     </message>
 </context>
 <context>
@@ -1525,34 +1602,49 @@ p, li { white-space: pre-wrap; }
         <translation>グループの %d %s</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NodeConfigurator.ui" line="13"/>
+        <location filename="../Ui/Form_NodeConfigurator.py" line="722"/>
         <source>Node configurator</source>
         <translation>ノード設定</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NodeConfigurator.ui" line="36"/>
+        <location filename="../Ui/Form_NodeConfigurator.py" line="723"/>
         <source>Nodes</source>
         <translation>ノード</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NodeConfigurator.ui" line="71"/>
+        <location filename="../Ui/Form_NodeConfigurator.py" line="724"/>
         <source>Node Configuration</source>
         <translation>ノード設定</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NodeConfigurator.ui" line="131"/>
+        <location filename="../Ui/Form_NodeConfigurator.py" line="726"/>
         <source>Please select a node in the list 
 to display the configuration page.</source>
         <translation>各ノードを選択して
 設定して下さい。 </translation>
     </message>
+    <message>
+        <location filename="../NodeConfigurator.py" line="246"/>
+        <source>Node configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreferencesDialog</name>
     <message>
-        <location filename="../Ui/Form_PreferencesDialog.ui" line="19"/>
+        <location filename="../Ui/Form_PreferencesDialog.py" line="712"/>
         <source>Preferences</source>
         <translation>設定</translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="29"/>
+        <source>General</source>
+        <translation type="unfinished">一般</translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="32"/>
+        <source>Applications</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1678,6 +1770,46 @@ to display the configuration page.</source>
         <source>Interfaces are not compatible !</source>
         <translation>Interfaces are not compatible !</translation>
     </message>
+    <message>
+        <location filename="../Scene.py" line="89"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="94"/>
+        <source>Configure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="99"/>
+        <source>Change hostname</source>
+        <translation type="unfinished">ホスト名を変更</translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="112"/>
+        <source>Console</source>
+        <translation type="unfinished">コンソール</translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="117"/>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="122"/>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="127"/>
+        <source>Suspend</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="138"/>
+        <source>Show hostname</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Topology</name>
@@ -1691,11 +1823,31 @@ to display the configuration page.</source>
         <source>Please register at least one IOS image</source>
         <translation>IOSイメージを登録して下さい</translation>
     </message>
+    <message>
+        <location filename="../Topology.py" line="97"/>
+        <source>Hypervisor</source>
+        <translation type="unfinished">ハイパーバイザ</translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="97"/>
+        <source>Please configure the path to Dynamips</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="121"/>
+        <source>Dynamips error</source>
+        <translation type="unfinished">Dynamips エラー</translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="121"/>
+        <source>Connection lost</source>
+        <translation type="unfinished">接続失敗</translation>
+    </message>
 </context>
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="120"/>
+        <location filename="../Workspace.py" line="126"/>
         <source>Docks</source>
         <translation>ドック</translation>
     </message>
@@ -1707,17 +1859,17 @@ to display the configuration page.</source>
     <message>
         <location filename="../Workspace.py" line="200"/>
         <source>Design Mode</source>
-        <translation>デザイン</translation>
+        <translation type="obsolete">デザイン</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="264"/>
         <source>Emulation Mode</source>
-        <translation>エミュレーション</translation>
+        <translation type="obsolete">エミュレーション</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="217"/>
         <source>Please register at least one IOS image</source>
-        <translation>IOSイメージを登録して下さい</translation>
+        <translation type="obsolete">IOSイメージを登録して下さい</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="474"/>
@@ -1763,6 +1915,142 @@ to display the configuration page.</source>
         <location filename="../Workspace.py" line="541"/>
         <source>Invalid file</source>
         <translation>無効なファイル</translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="400"/>
+        <source>Hide hostnames</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="405"/>
+        <source>Show hostnames</source>
+        <translation type="unfinished">ホスト名を表示する</translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="558"/>
+        <source>Open a file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="554"/>
+        <source>The path to Dynamips must be configured</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="566"/>
+        <source>Project Loaded...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="582"/>
+        <source>Project saved...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="592"/>
+        <source>Save Project As</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>nodesDock</name>
+    <message>
+        <location filename="DynamicStrings.py" line="33"/>
+        <source>Router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="34"/>
+        <source>Netflow router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="35"/>
+        <source>Router with firewall</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="36"/>
+        <source>Gateway</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="37"/>
+        <source>Edge label switch router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="38"/>
+        <source>Label switch router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="39"/>
+        <source>Optical router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="40"/>
+        <source>Switch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="41"/>
+        <source>Hub</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="42"/>
+        <source>Multilayer switch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="43"/>
+        <source>Route switch processor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="44"/>
+        <source>ATM switch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="45"/>
+        <source>Frame Relay switch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="46"/>
+        <source>Cloud</source>
+        <translation type="unfinished">雲</translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="47"/>
+        <source>Access Point</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="48"/>
+        <source>Lightweight Access Point</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="49"/>
+        <source>WLAN controller</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="50"/>
+        <source>PIX firewall</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>topologySummaryDock</name>
+    <message>
+        <location filename="../Ui/Widget_topologySummaryDock.py" line="83"/>
+        <source>%s is connected to %s %s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

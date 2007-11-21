@@ -322,7 +322,6 @@ class IOSRouter(AbstractNode):
                 setattr(self.config, property, value)
         
         if platform == '3600':
-            pass
             self.dev.iomem = str(self.config.iomem)
         if platform == '7200':
             self.dev.midplane = self.config.midplane
