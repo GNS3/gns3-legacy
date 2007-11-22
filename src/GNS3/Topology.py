@@ -156,37 +156,44 @@ class Topology(QtGui.QGraphicsScene):
         """ Add a link to the topology
         """
 
+        srcdev = self.__nodes[srcid].dev
+        dstdev = self.__nodes[dstid].dev
+        try:
+            if type(self.__nodes[srcid]) == IOSRouter:
+                globals.GApp.dynagen.connect(srcdev, srcif, dstdev.name + ' ' + dstif)
+            elif type(self.__nodes[dstid]) == IOSRouter:
+                globals.GApp.dynagen.connect(dstdev, dstif, srcdev.name + ' ' + srcif)
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
+            return
+
         if srcif[0] == 's' or srcif[0] == 'a' or dstif[0] == 's' or dstif[0] == 'a':
             # interface is serial or ATM
             link = Serial(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif)
         else:
             # by default use an ethernet link
             link = Ethernet(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif)
-
-        srcdev = self.__nodes[srcid].dev
-        dstdev = self.__nodes[dstid].dev
-        if srcdev == IOSRouter:
-            globals.GApp.dynagen.connect(srcdev, srcif, dstdev.name + ' ' + dstif)
-        elif dstdev == IOSRouter:
-            globals.GApp.dynagen.connect(dstdev, dstif, srcdev.name + ' ' + srcif)
-
+            
         self.__links.add(link)
         self.addItem(link)
  
     def deleteLink(self, link):
         """ Delete a link from the topology
         """
-    
-        link.source.deleteEdge(link)
-        link.dest.deleteEdge(link)
-        
+
         srcdev = link.source.dev
         dstdev = link.dest.dev
-        if srcdev == IOSRouter:
-            globals.GApp.dynagen.disconnect(srcdev, srcif, dstdev.name + ' ' + dstif)
-        elif dstdev == IOSRouter:
-            globals.GApp.dynagen.disconnect(dstdev, dstif, srcdev.name + ' ' + srcif)
+        try:
+            if type(link.source) == IOSRouter:
+                globals.GApp.dynagen.disconnect(srcdev, link.srcIf, dstdev.name + ' ' + link.destIf)
+            elif type(link.dest) == IOSRouter:
+                globals.GApp.dynagen.disconnect(dstdev, link.destIf, srcdev.name + ' ' + link.srcIf)
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
+            return
 
+        link.source.deleteEdge(link)
+        link.dest.deleteEdge(link)
         if link in self.__links:
             self.__links.remove(link)
             self.removeItem(link)

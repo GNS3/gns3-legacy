@@ -58,10 +58,8 @@ class Console(PyCutExt, Dynagen_Console):
         """
 
         cmd.Cmd.__init__(self)
-        self.namespace = Dynagen_Namespace 
-        
-        #FIXME: debuglevel is in the Dynagen class now
-        #debuglevel = self.namespace.debuglevel
+        self.namespace = globals.GApp.dynagen
+        debuglevel = self.namespace.debuglevel
 
     def onKeyPress_Tab(self):
         """ Imitate cmd.Cmd.complete(self, text, state) function
@@ -124,7 +122,6 @@ class Console(PyCutExt, Dynagen_Console):
             self.more = self.onecmd(source)
         except Exception,e:
             print e
-            globals.GApp.workspace.switchToMode_Design()
 
         if self.more:
             self.write(sys.ps2)

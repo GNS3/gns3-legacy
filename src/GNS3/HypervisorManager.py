@@ -121,6 +121,7 @@ class HypervisorManager:
 
         if connection_success:
             s.close()
+            time.sleep(0.2)
         else:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Can't connect to the hypervisor"))
             hypervisor['proc_instance'].close()
@@ -154,6 +155,7 @@ class HypervisorManager:
             self.setDefaults()
         for hypervisor in self.hypervisors:
             hypervisor['proc_instance'].close()
+            hypervisor['proc_instance'] = None
         self.hypervisors = []
 
     def preloadDynamips(self):
@@ -171,4 +173,6 @@ class HypervisorManager:
         proc.start(self.hypervisor_path,  ['-H', str(port)])
         if proc.waitForStarted() == False:
             return False
+        proc.close()
+        proc = None
         return True

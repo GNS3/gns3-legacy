@@ -204,6 +204,8 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             IOSconfig.slots.append(module)
             slotnb += 1
 
+        node.reconfigNode()
+
 def create(dlg):
 
     return  Page_IOSRouter()

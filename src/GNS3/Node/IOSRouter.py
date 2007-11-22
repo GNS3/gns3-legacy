@@ -136,8 +136,8 @@ ADAPTERS = {
 
 # some chassis have adapters on their motherboard (not optional)
 MBCHASSIS = ('2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM',  '2691',  '3660',  '3725',  '3745',  '7200')
-IF_REGEXP = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)\/([0-9]+)$""") 
-PORT_REGEXP = re.compile(r"""^[0-9]*$""")
+#IF_REGEXP = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)\/([0-9]+)$""") 
+#PORT_REGEXP = re.compile(r"""^[0-9]*$""")
 router_id = 0
 
 class IOSRouter(AbstractNode):
@@ -327,27 +327,31 @@ class IOSRouter(AbstractNode):
             self.dev.midplane = self.config.midplane
             self.dev.npe = self.config.npe
 
-        slotnb = 0
-        for module in self.config.slots:
-            self.configSlot(slotnb, module)
-            slotnb += 1
-
         #self.sparsemem = True
         # register into Dynagen
         globals.GApp.dynagen.devices[self.hostname] = self.dev
 #        dynagen.ghosteddevices[self.hostname] = True
 #        dynagen.ghostsizes[self.hostname] = None
 
+        self.config.slots = ['NM-4E',  '',  '',  '',  '',  '',  '']
+        self.reconfigNode()
+        #self.dev.slot[0] = ADAPTERS["NM-4E"][0](self.dev, 0)
+
     def reconfigNode(self):
         """ Node reconfiguration
         """
 
-        #FIXME: confreg
-        properties = ('console', 'cnfg', 'mac', 'ram', 'nvram', 'disk0', 'disk1', 'mmap', 'exec_area')
-        for property in properties:
-            value = getattr(self.config, property)
-            if value != None:
-                setattr(self.dev, property, value)
+        #FIXME: confreg, cnfg, mac
+#        properties = ('console', 'ram', 'nvram', 'disk0', 'disk1', 'mmap', 'exec_area')
+#        for property in properties:
+#            value = getattr(self.config, property)
+#            if value != None:
+#                setattr(self.dev, property, value)
+                
+        slotnb = 0
+        for module in self.config.slots:
+            self.configSlot(slotnb, module)
+            slotnb += 1
   
     def configSlot(self, slotnb, module):
         """ Add an new module into a slot
@@ -384,7 +388,7 @@ class IOSRouter(AbstractNode):
     def updateLinks(self, slotnb, module):
         """ Update already connected links to react to a slot change
         """
-
+        
         global error
         node_interfaces = self.getConnectedInterfaceList()
 
