@@ -105,8 +105,8 @@ class Scene(QtGui.QGraphicsView):
         menu.addAction(deleteAct)
         menu.addAction(changeHostnameAct)
 
-        types = map(type,  items)
-        if IOSRouter in types:
+        instances = map(lambda item: isinstance(item, IOSRouter), items)
+        if True in instances:
 
             # Action: Console (Connect to the node console)
             consoleAct = QtGui.QAction(translate('Scene', 'Console'), menu)
@@ -195,7 +195,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            if type(item) == IOSRouter:
+            if  isinstance(item, IOSRouter):
                 item.console()
                 
     def slotStartNode(self):
@@ -203,7 +203,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            if type(item) == IOSRouter:
+            if  isinstance(item, IOSRouter):
                 item.startNode()
 
     def slotStopNode(self):
@@ -211,7 +211,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            if type(item) == IOSRouter:
+            if  isinstance(item, IOSRouter):
                 item.stopNode()
     
     def slotSuspendNode(self):
@@ -219,7 +219,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            if type(item) == IOSRouter:
+            if  isinstance(item, IOSRouter):
                 item.suspendNode()
 
     def __addLink(self):
@@ -237,15 +237,9 @@ class Scene(QtGui.QGraphicsView):
             self.__isFirstClick = True
             return
 
-        # check interface compatibility, at least one-way compatibility must occur
-        if not self.checkInterfaceCompatibility(srcnode, self.__sourceInterface,  destnode,  self.__destInterface) and \
-            not self.checkInterfaceCompatibility(destnode, self.__destInterface,  srcnode,  self.__sourceInterface):
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Connection',  translate("Scene", "Interfaces are not compatible !"))
-            self.__isFirstClick = True
-            return
-
         # add the link into the topology
-        self.__topology.addLink(self.__sourceNodeID, self.__sourceInterface, self.__destNodeID, self.__destInterface)
+        if self.__topology.addLink(self.__sourceNodeID, self.__sourceInterface, self.__destNodeID, self.__destInterface) == False:
+            self.__isFirstClick = True
 
     def slotAddLink(self, id,  interface):
         """ Called when a node wants to add a link
@@ -356,46 +350,6 @@ class Scene(QtGui.QGraphicsView):
             event.accept()
         else:
             event.ignore()
-
-    def checkInterfaceCompatibility(self,  srcnode,  srcinterface,  destnode,  destinterface):
-        """ Check if an interface can be connected to another
-        """
-    
-        match_obj = IF_REGEXP.search(srcinterface)
-        if match_obj:
-            # source interface is from a slot
-            if destinterface.lower()[:3] == 'nio':
-                # connected to a NIO
-                return True
-            typesrc = match_obj.group(1)
-            match_obj = IF_REGEXP.search(destinterface)
-            if match_obj:
-                # connected to another slot interface
-                typedest = match_obj.group(1)
-                if (typesrc == 'e' or typesrc == 'f' or typesrc == 'g') or (typesrc == typedest):
-                    # same type, it's ok
-                    return True
-            else:
-                # destination interface is a port (ETHSW, FRSW, Bridge or ATMSW)
-                match_obj = PORT_REGEXP.search(destinterface)
-                if match_obj:
-                    if (typesrc == 'e' or typesrc == 'f' or typesrc == 'g') and (type(destnode) == ETHSW or type(destnode) == Hub):
-                        # ETHSW or Hub is connected to a Ethernet interface
-                        return True
-                    if typesrc == 's' and type(destnode) == FRSW:
-                        # FRSW is connected to a serial interface
-                        return True
-                    if typesrc == 'a' and type(destnode) == ATMSW:
-                        # ATMSW is connected to an ATM interface
-                        return True
-
-        match_obj = PORT_REGEXP.search(srcinterface)
-        if match_obj and type(srcnode) == ETHSW:
-            # source interface is from an ETHSW port
-            if destinterface.lower()[:3] == 'nio':
-                # connected to a NIO
-                return True
-        return False
 
     def mousePressEvent(self, event):
         """ Call when the node is clicked

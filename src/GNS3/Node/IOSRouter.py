@@ -22,126 +22,39 @@
 import os, re, glob
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
-import GNS3.Dynagen.dynagen as dynagen
+import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Telnet as console
 from PyQt4 import QtCore, QtGui,  QtSvg
-from GNS3.Utils import translate, debug
-from GNS3.Config.Objects import iosRouterConf
+from GNS3.Utils import translate, debug, error
 from GNS3.Node.AbstractNode import AbstractNode
 
-ROUTERS = {
-    "7200": lib.C7200,
-    "2691": lib.C2691,
-    "2600": lib.C2600,
-    "3725": lib.C3725,
-    "3745": lib.C3745,
-    "3600": lib.C3600
+#FIXME: keep it in globals ?
+MODULES_INTERFACES = {
+    "PA-A1": ('a', 1),
+    "PA-2FE-TX": ('f', 2),
+    "PA-GE": ('g', 1),
+    "PA-8T": ('s', 8),
+    "PA-8E": ('e', 8),
+    "PA-POS-OC3": ('p', 1),
+    "NM-1FE-TX" : ('f', 1),
+    "NM-4E": ('e', 4),
+    "NM-4T": ('s', 4),
 }
 
-SLOTMATRIX = {
-                        '2610' : { 0 : ('CISCO2600-MB-1E',  ), 
-                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
-                                    },
-                        '2611' : { 0 : ('CISCO2600-MB-2E',  ), 
-                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
-                                    },
-                        '2620' : { 0 : ('CISCO2600-MB-1FE',  ), 
-                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
-                                    }, 
-                        '2621' : { 0 : ('CISCO2600-MB-2FE',  ), 
-                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
-                                    }, 
-                        '2610XM' : { 0 : ('CISCO2600-MB-1FE',  ), 
-                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
-                                    },
-                        '2611XM' : { 0 : ('CISCO2600-MB-2FE',  ), 
-                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
-                                    },
-                        '2620XM' : { 0 : ('CISCO2600-MB-1FE',  ), 
-                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
-                                    }, 
-                        '2621XM' : { 0 : ('CISCO2600-MB-2FE',  ), 
-                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
-                                    },
-                        '2650XM' : { 0 : ('CISCO2600-MB-1FE',  ), 
-                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
-                                    }, 
-                        '2651XM' : { 0 : ('CISCO2600-MB-2FE',  ), 
-                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E',  'NM-1E')
-                                    },
-                        '2691' : { 0 : ('GT96100-FE',  ), 
-                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T')
-                                    }, 
-                        '3620' : { 0 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
-                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
-                                    }, 
-                        '3640' : {0 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'),
-                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'),
-                                        2 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'),
-                                        3 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'),
-                                    }, 
-                        '3660' : { 0 : ('Leopard-2FE',  ),
-                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
-                                        2 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
-                                        3 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
-                                        4 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
-                                        5 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'),
-                                        6 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4E', 'NM-1E', 'NM-4T'), 
-                                    },
-                        '3725' : { 0 : ('GT96100-FE',  ),
-                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'), 
-                                        2 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'),
-                                    },
-                        '3745' : { 0 : ('GT96100-FE',  ),
-                                        1 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'), 
-                                        2 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'),
-                                        3 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'),
-                                        4 : ('NM-1FE-TX', 'NM-16ESW', 'NM-4T'),
-                                    },
-                        '7200' : { 0 :  ('C7200-IO-FE',  ), 
-                                        1 : ('PA-A1', 'PA-FE-TX', 'PA-8T', 'PA-4T+', 'PA-8E', 'PA-4E', 'PA-POS-OC3'), 
-                                        2 : ('PA-A1', 'PA-FE-TX', 'PA-8T', 'PA-4T+', 'PA-8E', 'PA-4E', 'PA-POS-OC3'), 
-                                        3 : ('PA-A1', 'PA-FE-TX', 'PA-8T', 'PA-4T+', 'PA-8E', 'PA-4E', 'PA-POS-OC3'),
-                                        4 : ('PA-A1', 'PA-FE-TX', 'PA-8T', 'PA-4T+', 'PA-8E', 'PA-4E', 'PA-POS-OC3'),
-                                        5 : ('PA-A1', 'PA-FE-TX', 'PA-8T', 'PA-4T+', 'PA-8E', 'PA-4E', 'PA-POS-OC3'),
-                                        6 : ('PA-A1', 'PA-FE-TX', 'PA-8T', 'PA-4T+', 'PA-8E', 'PA-4E', 'PA-POS-OC3'), 
-                                    },
+#TODO: WICS support
+WICS_INTERFACES = {
+    "WIC-1T": ('s', 1),
+    "WIC-2T": ('s', 2),
+    "WIC-1ENET": ('e', 1)
 }
 
-ADAPTERS = {
-    "C7200-IO-FE": (lib.PA_C7200_IO_FE, 1, 'f'),
-    "C7200-IO-2FE": (lib.PA_C7200_IO_2FE, 2, 'f'),
-    "C7200-IO-GE-E": (lib.PA_C7200_IO_GE_E, 1, 'g'),
-    "PA-A1": (lib.PA_A1, 1, 'a'),
-    "PA-FE-TX": (lib.PA_FE_TX, 1, 'f'),
-    "PA-2FE-TX": (lib.PA_2FE_TX, 2, 'f'),
-    "PA-GE": (lib.PA_GE, 1, 'g'),
-    "PA-4T+": (lib.PA_4T, 4, 's'),
-    "PA-8T": (lib.PA_8T, 8, 's'),
-    "PA-4E": (lib.PA_4E, 4, 'e'),
-    "PA-8E": (lib.PA_8E, 8, 'e'),
-    "PA-POS-OC3": (lib.PA_POS_OC3, 1, 'p'),
-    "NM-1FE-TX" : (lib.NM_1FE_TX, 1, 'f'),
-    "NM-1E": (lib.NM_1E, 1, 'e'),
-    "NM-4E": (lib.NM_4E, 4, 'e'),
-    "NM-4T": (lib.NM_4T, 4, 's'),
-    "NM-16ESW": (lib.NM_16ESW, 16, 'f'),
-    "Leopard-2FE": (lib.Leopard_2FE, 2, 'f'),
-    "GT96100-FE": (lib.GT96100_FE, 2, 'f'),
-    "CISCO2600-MB-1E": (lib.CISCO2600_MB_1E, 1, 'e'),
-    "CISCO2600-MB-2E": (lib.CISCO2600_MB_2E, 2, 'e'),
-    "CISCO2600-MB-1FE": (lib.CISCO2600_MB_1FE, 1, 'f'),
-    "CISCO2600-MB-2FE": (lib.CISCO2600_MB_2FE, 2, 'f')
-}
+SLOTLESS_MODELS = ('1710', '1720', '1721', '1750')
 
-# some chassis have adapters on their motherboard (not optional)
-MBCHASSIS = ('2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM',  '2691',  '3660',  '3725',  '3745',  '7200')
-#IF_REGEXP = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)\/([0-9]+)$""") 
-#PORT_REGEXP = re.compile(r"""^[0-9]*$""")
+# base ID for routers
 router_id = 0
 
 class IOSRouter(AbstractNode):
-    """ IOSRouter class implementing the IOS Router
+    """ IOSRouter class implementing a IOS router
     """
 
     def __init__(self, renderer_normal, renderer_select):
@@ -153,402 +66,367 @@ class IOSRouter(AbstractNode):
         self.hostname = 'R' + str(router_id)
         router_id = router_id + 1
         self.setCustomToolTip()
-    
-        self.config = self.getDefaultConfig()
-        self.setDefaultIOSImage()
-        self.platform = ''
         
+        self.dynagen = globals.GApp.dynagen
+        self.r = 'ROUTER ' + self.hostname
+        self.running_config = None
+        self.defaults_config = None
+        self.router = None
+        self.local_config = None
+
+        self.routerInstanceMap = {
+            '1710': lib.C1700,
+            '1720': lib.C1700,
+            '1721': lib.C1700,
+            '1750': lib.C1700,
+            '1751': lib.C1700,
+            '1760': lib.C1700,
+            '2691': lib.C2691,
+            '3620': lib.C3600,
+            '3640': lib.C3600,
+            '3660': lib.C3600,
+            '3725': lib.C3725,
+            '3745': lib.C3745,
+            '7200': lib.C7200,
+            '2610': lib.C2600,
+            '2611': lib.C2600,
+            '2620': lib.C2600,
+            '2621': lib.C2600,
+            '2610XM': lib.C2600,
+            '2611XM': lib.C2600,
+            '2620XM': lib.C2600,
+            '2621XM': lib.C2600,
+            '2650XM': lib.C2600,
+            '2651XM': lib.C2600,
+            }
+
+        self.router_options = [
+            'ram',
+            'nvram',
+            'disk0',
+            'disk1',
+            'confreg',
+            'mmap',
+            'idlepc',
+            'exec_area',
+            'idlemax',
+            'idlesleep',
+            'sparsemem',
+            'image',
+            'cnfg',
+            'mac',
+            'iomem', 
+            'npe', 
+            'midplane'
+            ]
+
     def __del__(self):
     
-        if self.dev != None:
-            self.dev.delete()
-            image = globals.GApp.iosimages[self.config.image]
-            if image.hypervisor_host == '':
-                globals.HypervisorManager.unallocateHypervisor(self)
-        
-    def getDefaultConfig(self):
-        """ Returns the default configuration
+        # don't forget to delete this router in Dynamips
+        if self.router != None:
+            self.router.delete()
+    
+    def get_module_name(self, module):
+        """ Returns a module name
+            module: object
         """
     
-        conf = iosRouterConf()
-        #FIXME: temporary hack
-        conf.slots = ['',  '',  '',  '',  '',  '',  '']
-        return conf
+        if module:
+            return (module.adapter)
+        else:
+            return (None)
+
+    def create_config(self):
+        """ Creates a copy of the configuration of this router for the node configurator
+        """
+    
+        assert(self.router)
+        self.local_config = {}
+        for option in self.router_options:
+            try:
+                self.local_config[option] = getattr(self.router, option)
+            except AttributeError:
+                continue
+        self.local_config['slots'] = map(self.get_module_name, list(self.router.slot))
+        return self.local_config
+    
+    def get_config(self):
+        """ Returns the local configuration copy
+        """
+    
+        assert(self.router and self.local_config)
+        return self.local_config
+
+    def set_config(self, config):
+        """ Set a configuration in Dynamips
+            config: dict
+        """
+
+        assert(self.router)
+        # apply the options
+        for option in self.router_options:
+            if getattr(self.router, option) != config[option]:
+                try:
+                    setattr(self.router, option, config[option])
+                except lib.DynamipsError, e:
+                    error(e)
+
+        # configure the slots
+        slot_number = 0
+        for module_name in self.local_config['slots']:
+            if module_name and self.router.slot[slot_number] == None:
+                self.set_slot(slot_number, module_name)
+            elif self.router.slot[slot_number] and module_name and module_name != self.router.slot[slot_number].adapter:
+                self.clean_slot(self.router.slot[slot_number])
+                self.set_slot(slot_number, module_name)
+            elif module_name == None and self.router.slot[slot_number]:
+                self.clean_slot(self.router.slot[slot_number])
+            slot_number += 1
+
+        self.dynagen.update_running_config()
+        self.running_config =  self.dynagen.running_config[self.d][self.r]
+        print self.running_config
+
+    def get_platform(self):
+        """ Returns router platform
+        """
+    
+        assert(self.router)
+        return (self.router.model)
+        
+    def get_chassis(self):
+        """ Returns router chassis/model
+        """
+    
+        assert(self.router)
+        return (self.router.model_string)
+        
+    def get_dynagen_device(self):
+        """ Returns the dynagen device corresponding to this router
+        """
+        
+        assert(self.router)
+        return (self.router)
   
-    def smartInterface(self,  link_type,  chassis):
-        """ Pick automatically (if possible) the right interface for the desired link type
-            link_type: a one character string 'g', 'f', 'e', 's', 'a', or 'p'
+    def smart_interface(self,  link_type):
+        """ Pick automatically (if possible) the right interface and adapter for the desired link type
+            link_type: an one character string 'g', 'f', 'e', 's', 'a', or 'p'
             chassis: string corresponding to the chassis model
         """
 
-        interfaces = self.getConnectedInterfaceList()
-        # clean unused slots
-        for slot in range(7):
-            try:
-                module = self.config.slots[slot]
-                # number of interfaces for this module and type of interfaces (ethernet, serial etc ...)
-                (nbif, type) = ADAPTERS[module][1:3]
-                flag = False
-                for interface in range(nbif):
-                    name = type + str(slot) + '/' + str(interface)
-                    if name in interfaces:
-                        flag = True
+        connected_interfaces = self.getConnectedInterfaceList()
+        
+        # remove unused module from the slots
+        for module in self.router.slot:
+            if module:
+                interfaces = module.interfaces
+                type= interfaces.keys()[0]
+                found = False
+                for port in interfaces[type].values():
+                    if self.router.model_string in SLOTLESS_MODELS:
+                        interface_name = type + str(port)
+                    else:
+                        interface_name = type + str(module.slot) + '/' + str(port)
+                    if interface_name in connected_interfaces:
+                        found = True
                         break
-                if flag == False:
-                    # no interface connected for this slot, clean it
-                    self.config.slots[slot] = ''
-            except KeyError:
-                continue
-        for slot in range(7):
-            try:
-                # get the possible modules for the specified chassis and slot number
-                modules = SLOTMATRIX[chassis][slot]
-                for module_name in modules:
-                    if module_name == 'NM-16ESW':
-                        # don't use the switch module
-                        continue
-                    # number of interfaces for this module and type of interfaces (ethernet, serial etc ...)
-                    (nbif, type) = ADAPTERS[module_name][1:3]
-                    if type == link_type:
-                        # if the right type
-                        for interface in range(nbif):
-                            # for each possible interface number
-                            interface_name = type + str(slot) + '/' + str(interface)
-                            if not interface_name in interfaces:
-                                # this interface is not connected
-                                if not self.config.slots[slot]:
-                                    # need to add the module for this slot
-                                    self.config.slots[slot] = module_name
-                                if ADAPTERS[self.config.slots[slot]][2] == link_type:
-                                    # the configured slot has the right type
-                                    return interface_name
-            except KeyError:
-                break
-        return ''
-  
-    def getAdapters(platform, chassis,  slotnb):
-        """ Get all adapters from a slot (static method)
-        """
-    
-        try:
-            if slotnb == 0 and chassis in MBCHASSIS:
-                return list(SLOTMATRIX[chassis][slotnb])
-            return  [''] + list(SLOTMATRIX[chassis][slotnb])
-        except KeyError:
-            return ['']
-            
-    getAdapters = staticmethod(getAdapters)
-            
-    def setDefaultIOSImage(self):
-        """ Set a default IOS image when no selected
-        """
-    
-        iosimages = globals.GApp.iosimages.keys()
-        if len(iosimages):
-            image = globals.GApp.iosimages[iosimages[0]]
-            platform = image.platform
-            chassis = image.chassis
-            self.config.image = iosimages[0]
-            if platform =='7200':
-                self.config.ram = 256
-            if (platform =='2600' or platform == '1700') and chassis != '2691':
-                self.config.ram = 64
+                if found == False:
+                    self.clean_slot(module)
 
-            for slotnb in range(7):
-                modules = IOSRouter.getAdapters(platform,  chassis,  slotnb)
-                if modules and modules[0]:
-                    self.config.slots[slotnb] = modules[0]
+        # try to find an empty interface in an occupied slot
+        for module in self.router.slot:
+            if module:
+                interfaces = module.interfaces
+                interface_type = interfaces.keys()[0]
+                if interface_type == link_type:
+                    for port in interfaces[link_type].values():
+                        if self.router.model_string in SLOTLESS_MODELS:
+                            interface_name = type + str(port)
+                        else:
+                            interface_name = type + str(module.slot) + '/' + str(port)
+                        if interface_name not in connected_interfaces:
+                            return (interface_name)
+        
+        #TODO: automatically asign WICS ...
+        # put a new module in an empty slot and return the first interface
+        slot_number = 0
+        for module in self.router.slot:
+            if module == None:
+                # get all possible modules for the specified router model and module slot
+                possible_modules = lib.ADAPTER_MATRIX[self.router.model][self.router.model_string][slot_number]
+                for module_name in possible_modules:
+                    # check if we want to use this module
+                    if not MODULES_INTERFACES.has_key(module_name):
+                        continue
+                    (int_type, number_of_interfaces) = MODULES_INTERFACES[module_name][0:2]
+                    if int_type == link_type:
+                        self.local_config['slots'][slot_number] = module_name
+                        self.set_config(self.local_config)
+                        interfaces = self.router.slot[slot_number].interfaces
+                        port = interfaces[int_type][0]
+                        interface_name = int_type + str(slot_number) + '/' + str(port)
+                        return (interface_name)
+            slot_number += 1
+        return ''
 
     def configNode(self):
         """ Node configuration
         """
 
-        image = self.config.image
-        if image == '':
-            # No IOS image configured, take the first one available ...
-            iosimages = globals.GApp.iosimages.keys()
-            if len(iosimages):
-                image = iosimages[0]
-            else:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate('IOSRouter', 'Node configuration'),  translate('IOSRouter', 'No IOS image available !'))
-                return
-    
-        image = globals.GApp.iosimages[image]
-        filename = image.filename
-        platform = image.platform
-        chassis = image.chassis
-        idlepc =  image.idlepc
-        hypervisor_host = image.hypervisor_host
-        hypervisor_port = image.hypervisor_port
-
-        if hypervisor_host:
-            hypervisorkey = hypervisor_host + ':' + str(hypervisor_port)
-            if globals.GApp.hypervisors.has_key(hypervisorkey):
-                hypervisor = globals.GApp.hypervisors[hypervisorkey]
-                self.configHypervisor(hypervisor.host,  hypervisor.port,  hypervisor.workdir,  hypervisor.baseUDP, hypervisor.baseConsole)
-            else:
-                debug("Node " + self.hostname + ": hypervisor " + hypervisorkey  + " not registed (fatal)") 
-                return
-
-        hypervisor = self.getHypervisor()
-        # delete lock file to prevent an error from Dynamips
-        workingdir = hypervisor.workingdir[1:-1]
-        lock = workingdir + '/c' + self.platform + '_' + self.hostname + '_lock'
-        path = os.path.abspath(lock)
-        if os.path.isfile(path):
-            debug("Node " + self.hostname + ": deleting " + path) 
-            os.remove(path)
+        assert(self.d != None and self.hypervisor != None)
+        model = self.model
+        #first let's gather all defaults/setting for each model from running config
+        self.dynagen.update_running_config()
         
-        #ROUTERS
-        if platform == '7200':
-            self.dev = ROUTERS[platform](hypervisor, name = self.hostname)
-            self.platform = platform
-        if chassis in ('2691', '3725', '3745'):
-            self.dev = ROUTERS[chassis](hypervisor, name = self.hostname)
-            self.platform = chassis
-        elif platform in ('3600', '2600'):
-            self.dev = ROUTERS[platform](hypervisor, chassis = chassis, name = self.hostname)
-            self.platform = platform
+        devdefaults = {}
+        for key in dynagen_namespace.DEVICETUPLE:
+            devdefaults[key] = {}
 
-        self.dev.image = filename
-        if idlepc:
-            self.dev.idlepc = idlepc
+        config = globals.GApp.dynagen.defaults_config
+        #go through all section under dynamips server in running config and populate the devdefaults with model defaults
+        for r in config[self.d]:
+            router_model = config[self.d][r]
+            # compare whether this is defaults section
+            if router_model.name in dynagen_namespace.DEVICETUPLE and router_model.name == model:
+                # Populate the appropriate dictionary
+                for scalar in router_model.scalars:
+                    if router_model[scalar] != None:
+                        devdefaults[router_model.name][scalar] = router_model[scalar]
 
-        #FIXME: confreg ?
-        properties = ('console', 'cnfg', 'mac', 'ram', 'nvram', 'disk0', 'disk1', 'mmap', 'exec_area')
-        for property in properties:
-            value = getattr(self.dev, property)
-            if value != None:
-                setattr(self.config, property, value)
-        
-        if platform == '3600':
-            self.dev.iomem = str(self.config.iomem)
-        if platform == '7200':
-            self.dev.midplane = self.config.midplane
-            self.dev.npe = self.config.npe
-
-        #self.sparsemem = True
-        # register into Dynagen
-        globals.GApp.dynagen.devices[self.hostname] = self.dev
-#        dynagen.ghosteddevices[self.hostname] = True
-#        dynagen.ghostsizes[self.hostname] = None
-
-        self.config.slots = ['NM-4E',  '',  '',  '',  '',  '',  '']
-        self.reconfigNode()
-        #self.dev.slot[0] = ADAPTERS["NM-4E"][0](self.dev, 0)
-
-    def reconfigNode(self):
-        """ Node reconfiguration
-        """
-
-        #FIXME: confreg, cnfg, mac
-#        properties = ('console', 'ram', 'nvram', 'disk0', 'disk1', 'mmap', 'exec_area')
-#        for property in properties:
-#            value = getattr(self.config, property)
-#            if value != None:
-#                setattr(self.dev, property, value)
-                
-        slotnb = 0
-        for module in self.config.slots:
-            self.configSlot(slotnb, module)
-            slotnb += 1
-  
-    def configSlot(self, slotnb, module):
-        """ Add an new module into a slot
-            slotnb: integer
-            module: string
-        """
-
-        if (module == ''):
-            return
-        if module in ADAPTERS:
-            self.dev.slot[slotnb] = ADAPTERS[module][0](self.dev, slotnb)
+        #check whether a defaults section for this router type exists
+        if model in dynagen_namespace.DEVICETUPLE:
+            if devdefaults[model] == {} and not devdefaults[model].has_key('image'):
+                error('Create a defaults section for ' + model + ' first! Minimum setting is image name')
+                return False
+            elif not devdefaults[model].has_key('image'):
+                error('Specify image name for ' + model + ' routers first!')
+                return False
         else:
-            print module + " module not found !\n"
-            return
+            error('Bad model: ' + model)
+            return False
+
+        #now we have everything ready to create routers
+        router = self.routerInstanceMap[model](self.hypervisor, chassis=model, name=self.hostname)
+        self.dynagen.setdefaults(router, devdefaults[model])
+
+        #implement IOS ghosting when creating the router from configConsole
+        #use devdefaults to find out whether we have ghostios = True, and simply set the ghostios
+        if devdefaults[model].has_key('ghostios'):
+            if devdefaults[model]['ghostios']:
+                ghost_file = router.imagename + '.ghost'
+                router.ghost_status = 2
+                router.ghost_file = ghost_file
+
+        #add router to frontend
+        self.dynagen.devices[self.hostname] = router
+        self.router = router
+        debug('Router ' + router.name + ' created')
+
+        self.dynagen.update_running_config()
+        self.running_config = self.dynagen.running_config[self.d][self.r]
+        self.defaults_config = self.dynagen.defaults_config[self.d][self.router.model_string]
+        self.create_config()
+        
+#        print router.slot[0].wics
+#        self.router.installwic('WIC-2T', 0)
+#        self.router.installwic('WIC-1ENET', 0)
+#        print router.slot[0].wics
+        
+#        try:
+#            router.slot[slot].wics[0]
+#        except KeyError:
+#            pass
+#        else:
+#            pass
+        
+        return True
+
+    def set_slot(self, slot_number, slot_type):
+        """ Adds a module in a slot
+            slot_number: integer
+            slot_type: string
+        """
+
+        try:
+            self.dynagen.setproperty(self.router, 'slot' + str(slot_number), slot_type)
+        except (TypeError, ValueError, lib.DynamipsError), e:
+            error(e)
+
+    def clean_slot(self, module):
+        """ Removes a module
+            module: object
+        """
+    
+        if module.can_be_removed():
+            module.remove()
+            self.router.slot[module.slot] = None
             
     def getInterfaces(self):
-        """ Returns all interfaces
+        """ Returns all the router interfaces
         """
         
         interface_list = []
-        slotnb = 0
-        for module in self.config.slots:
-            # add interfaces corresponding to the given module
-            if module != '' and module in ADAPTERS:
-                # get number of interfaces and the abbreviation letter
-                (interfaces, abrv) = ADAPTERS[module][1:3]
-                # for each interface, add an entry to the menu
-                for interface in range(interfaces):
-                    name = abrv + str(slotnb) + '/' + str(interface)
-                    interface_list.append(name)
-            slotnb += 1
+        for module in self.router.slot:
+            if module:
+                interfaces = module.interfaces
+                print interfaces
+                for type in interfaces.keys():
+                    for port in interfaces[type].keys():
+                        if self.router.model_string in SLOTLESS_MODELS:
+                            interface_list.append(type + str(port))
+                        else:
+                            interface_list.append(type + str(module.slot) + '/' + str(port))
         return (interface_list)
-        
-    def updateLinks(self, slotnb, module):
-        """ Update already connected links to react to a slot change
-        """
-        
-        global error
-        node_interfaces = self.getConnectedInterfaceList()
 
-        if module == '':
-            for ifname in node_interfaces:
-                if int(ifname[1]) == slotnb:
-                    self.error.showMessage(translate('IOSRouter', 'Router ' + self.hostname + ': ' + ifname + ' is still used with no module in the slot ' +  str(slotnb)))
-                    self.deleteInterface(ifname)
-            return
-
-        assert(module in ADAPTERS)
-         # get number of interfaces and the abbreviation letter
-        (interfaces, abrv) = ADAPTERS[module][1:3]
-
-        errormsg = ""
-        # for each interface of the node
-        for ifname in node_interfaces:
-            # slot number
-            ifslot = int(ifname[1])
-            # interface number
-            ifnb = int(ifname[3])
-            found = False
-            # for each interface number in the module
-            for modifnb in range(interfaces):
-                # if the slot number and the interface number exists for this module
-                if ifslot == slotnb and ifnb == modifnb:
-                    found = True
-                    # check if the interface type has changed
-                    if ifname[0] != abrv:
-                        errormsg += translate('IOSRouter', 'Router ' + self.hostname + ': ' + ifname + " is no longer compatible with module " + module + " in the slot " + str(slotnb) + ", deleting interface ...\n")
-                        self.deleteInterface(ifname)
-            # check if the interface number has changed
-            if ifslot == slotnb and found == False:
-                errormsg +=  translate('IOSRouter', 'Router ' + self.hostname + ': ' + ifname + " is no longer compatible with module " + module + " in the slot " + str(slotnb) + ", deleting interface ...\n")
-                self.deleteInterface(ifname)
-        if errormsg:
-            self.error.showMessage(errormsg)
-
-#    def configConnections(self):
-#        """ Connections configuration
-#        """
-#        
-#        if self.dev == None:
-#            return
-#
-#        for interface in self.getConnectedInterfaceList():
-#            match_obj = IF_REGEXP.search(interface)
-#            assert(match_obj)
-#            (source_type, source_slot, source_port) = match_obj.group(1,2,3)
-#            source_slot = int(source_slot)
-#            source_port = int(source_port)
-#                
-#            (destnode, destinterface)  = self.getConnectedNeighbor(interface)
-#            match_if = IF_REGEXP.search(destinterface)
-#            match_port = PORT_REGEXP.search(destinterface)
-#            if match_if:
-#                (dest_type, dest_slot, dest_port) = match_if.group(1,2,3)
-#                dest_slot = int(dest_slot)
-#                dest_port = int(dest_port)
-#                destination = destnode.dev.slot[dest_slot]
-#            if match_port:
-#                dest_port = int(destinterface)
-#                destination = destnode.dev
-#                if destnode.dev.adapter ==  'ETHSW' or destnode.dev.adapter ==  'Bridge':
-#                    dest_type = 'f'       # Ethernet switches and hubs are FastEthernets (for our purposes anyway)
-#                elif destnode.dev.adapter ==  'FRSW':
-#                    dest_type = 's'       # Frame Relays switches are Serials
-#                elif destnode.dev.adapter ==  'ATMSW':
-#                    dest_type = 'a'       # And ATM switches are, well, ATM interfaces
-#                else:
-#                    assert('Not type for destination port')
-#
-#            if match_if or match_port:
-#                if self.dev.slot[source_slot] != None and self.dev.slot[source_slot].connected(source_port) == False:
-##                    print 'source = ' + str(source_port) + '/' + str(source_slot)
-##                    print  'hypervisor ' + str(destnode.getHypervisor().port) + ' with UDP ' + str(destnode.getHypervisor().udp)
-##                    print destnode.hostname + ' port ' + str(dest_port)
-#                    self.dev.slot[source_slot].connect(source_type,  source_port, destnode.getHypervisor(), destination, dest_type,  dest_port)
-#            elif destinterface.lower()[:3] == 'nio':
-#                self.dev.slot[source_slot].nio(source_port, nio=self.createNIO(self.getHypervisor(),  destinterface))
-            
     def startNode(self, progress=False):
-        """ Start/Resume the node
+        """ Start/Resume this node
         """
 
-        if self.dev == None:
-            return
         try:
-            if self.dev.state == 'stopped':
-                self.dev.start()
-            if self.dev.state == 'suspended':
-                self.dev.resume()
+            if self.router.state == 'stopped':
+                self.router.start()
+            if self.router.state == 'suspended':
+                self.router.resume()
         except:
             if progress:
                 raise
             else:
                 return
         self.startupInterfaces()
-        globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.dev.state)
-        
+        globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.router.state)
+
     def stopNode(self, progress=False):
-        """ Stop the node
+        """ Stop this node
         """
 
-        if self.dev != None and self.dev.state != 'stopped':
+        if self.router.state != 'stopped':
             try:
-                self.dev.stop()
+                self.router.stop()
             except:
                 if progress:
                     raise
             self.shutdownInterfaces()
-            globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.dev.state)
+            globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.router.state)
             
     def suspendNode(self, progress=False):
-        """ Suspend the node
+        """ Suspend this node
         """
 
-        if self.dev != None and self.dev.state == 'running':
+        if self.router.state == 'running':
             try:
-                self.dev.suspend()
+                self.router.suspend()
             except:
                 if progress:
                     raise
             self.suspendInterfaces()
-            globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.dev.state)
-
-    def cleanNodeFiles(self):
-        """ Delete nvram/flash/log files created by Dynamips
-        """
-
-        # always clean the lock, ram and rommon_vars if present
-        workingdir = self.getHypervisor().workingdir[1:-1]
-        files = []
-        files.append(workingdir + '/c' + self.platform + '_' + self.hostname + '_lock')
-        files.append(workingdir + '/c' + self.platform + '_' + self.hostname + '_ram')
-        files.append(workingdir + '/c' + self.platform + '_' + self.hostname + '_rommon_vars')
-        for filename in files:
-            try:
-                path = os.path.abspath(filename)
-                if os.path.isfile(path): 
-                    os.remove(path)
-            except:
-                continue
-        if globals.ClearOldDynamipsFiles:
-            files = glob.glob(workingdir + '/c' + self.platform + '_' + self.hostname + '_*')
-            for filename in files:
-                try:
-                    path = os.path.abspath(filename)
-                    if os.path.isfile(path): 
-                        os.remove(path)
-                except:
-                    continue
+            globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.router.state)
 
     def console(self):
-        """ Start a telnet console and connect it to an IOS
+        """ Start a telnet console and connect it to this router
         """
 
-        if self.dev and self.dev.state == 'running' and self.dev.console != None:
-            hypervisor = self.getHypervisor()
-            console.connect(hypervisor.host,  self.dev.console,  self.hostname)
+        if self.router and self.router.state == 'running' and self.router.console:
+            console.connect(self.hypervisor.host,  self.router.console,  self.hostname)
 
     def mousePressEvent(self, event):
         """ Call when the node is clicked
@@ -556,15 +434,7 @@ class IOSRouter(AbstractNode):
         """
 
         if globals.addingLinkFlag and globals.currentLinkType != globals.Enum.LinkType.Manual and event.button() == QtCore.Qt.LeftButton:
-            iosimages = globals.GApp.iosimages.keys()
-            if len(iosimages) == 0:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSRouter", "Connection"),  translate("IOSRouter", "No IOS configured"))
-                return
-            if not globals.GApp.iosimages.has_key(self.config.image):
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSRouter", "Connection"),  translate("IOSRouter", "Can't find the IOS image"))
-                return
-            image = globals.GApp.iosimages[self.config.image]
-            interface = self.smartInterface(globals.linkAbrv[globals.currentLinkType],  image.chassis)
+            interface = self.smart_interface(globals.linkAbrv[globals.currentLinkType])
             if interface:
                 self.emit(QtCore.SIGNAL("Add link"), self.id, interface)
             else:
@@ -572,5 +442,4 @@ class IOSRouter(AbstractNode):
                 return
         else:
             AbstractNode.mousePressEvent(self, event)
-
         QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)

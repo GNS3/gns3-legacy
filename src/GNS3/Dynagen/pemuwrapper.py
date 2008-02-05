@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # $Id: pemuwrapper.py 27 2007-10-05 17:17:46Z tpani $
 #
 # Copyright (c) 2007 Thomas Pani
@@ -47,7 +48,7 @@ import pemubin
 
 
 __author__ = 'Thomas Pani'
-__version__ = '0.2.1'   # TODO: remove RC when done
+__version__ = '0.2.2'   # TODO: remove RC when done
 
 PORT = 10525
 PEMU_INSTANCES = {}
@@ -103,9 +104,12 @@ class PEMUInstance:
             os.makedirs(self.workdir)
         flashfile = os.path.join(self.workdir, 'FLASH')
         if not os.path.exists(flashfile):
-            f = open(flashfile, 'w')
-            f.write(chr(0)*1024*1024*16)
-            f.close()
+            print "Unpacking FLASH..."
+            f = cStringIO.StringIO(base64.decodestring(pemubin.flash))
+            tar = tarfile.open('dummy', 'r:gz', f)
+            for member in tar.getmembers():
+                tar.extract(member, self.workdir)
+            print "Done unpacking FLASH."
 
     def write_config(self):
         f = open(os.path.join(self.workdir, 'pemu.ini'), 'w')
@@ -176,7 +180,7 @@ class PEMUInstance:
         else:
             import signal
             try:
-                os.kill(self.process.pid, signal.SIGKILL)
+                os.kill(self.process.pid, signal.SIGINT)
             except OSError, e:
                 print >> sys.stderr, "Unable to stop PEMU instance", self.name
                 print >> sys.stderr, e

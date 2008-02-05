@@ -47,7 +47,7 @@
             </column>
             <column>
              <property name="text" >
-              <string>Chassis</string>
+              <string>Model/Chassis</string>
              </property>
             </column>
            </widget>
@@ -110,7 +110,7 @@
           <item row="2" column="0" >
            <widget class="QLabel" name="label_6" >
             <property name="text" >
-             <string>Chassis:</string>
+             <string>Model:</string>
             </property>
            </widget>
           </item>
@@ -141,7 +141,7 @@
           <item row="4" column="0" colspan="2" >
            <widget class="QCheckBox" name="checkBoxDefaultImage" >
             <property name="text" >
-             <string>Default image for this chassis</string>
+             <string>Default image for this platform</string>
             </property>
             <property name="checked" >
              <bool>true</bool>

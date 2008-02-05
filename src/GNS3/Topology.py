@@ -33,7 +33,6 @@ from GNS3.Node.FRSW import FRSW
 from GNS3.Node.Hub import Hub
 from GNS3.Node.Cloud import Cloud
 
-
 class Topology(QtGui.QGraphicsScene):
     """ Topology class
     """
@@ -54,6 +53,7 @@ class Topology(QtGui.QGraphicsScene):
     def clear(self):
         """ Clear the topology
         """
+
         for n_key in self.__nodes.copy().iterkeys():
             self.deleteNode(n_key)
         self.__nodes = {}
@@ -72,54 +72,76 @@ class Topology(QtGui.QGraphicsScene):
         
     def addNode(self, node):
         """ Add node in the topology
+            node: object
         """
 
-        if len(globals.GApp.iosimages.keys()) == 0:
-            # No IOS images configured, users have to register an IOS
-            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), translate("Topology", "Please register at least one IOS image"))
-            #self.__action_IOSImages()
-            return
-
-        useHypervisorManager = False
-        if type(node) == IOSRouter and not node.config.image:
-            #node.setDefaultIOSImage()
-            print 'No IOS image !'
-        if type(node) == IOSRouter:
-            image = globals.GApp.iosimages[node.config.image]
-            if image.hypervisor_host == '':
-                useHypervisorManager = True
-        elif type(node) != Cloud and node.config.hypervisor_host == '':
-            self.useHypervisorManager = True
-            
-        if useHypervisorManager:
-
-            if globals.GApp.systconf['dynamips'].path == '':
-                QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Hypervisor"), translate("Topology", "Please configure the path to Dynamips"))
-                #self.__action_Preferences()
-                return
-            if not globals.HypervisorManager.allocateHypervisor(node):
-                return
-        else:
-            node.configHypervisor('localhost',  7200, '/tmp')
-
-        # connect signals (received by the Scene)
-        QtCore.QObject.connect(node,
-            QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
-        QtCore.QObject.connect(node,
-            QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
-
-        self.__nodes[node.id] = node
-        self.addItem(node)
-        
         try:
-            node.configNode()
+            if isinstance(node, IOSRouter):
+             
+                if len(globals.GApp.iosimages.keys()) == 0:
+                    # No IOS images configured, users have to register an IOS
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), translate("Topology", "Please register at least one IOS image"))
+                    return
+        
+                image_to_use = None
+                selected_images = []
+                for (image, conf) in globals.GApp.iosimages.iteritems():
+                    if conf.platform == node.platform:
+                        selected_images.append(image)
+        
+                if len(selected_images) == 0:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), translate("Topology", "No image for platform " + node.platform))
+                    return
+                
+                if len(selected_images) > 1:
+                    for image in selected_images:
+                        conf = globals.GApp.iosimages[image]
+                        if conf.default:
+                            image_to_use = image
+                            break
+                    if not image_to_use:
+                        # give users a way to choose it.
+                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), translate("Topology", "Please configure a default image for platform " + node.platform))
+                        return
+                else:
+                    image_to_use = selected_images[0]
+    
+                image_conf = globals.GApp.iosimages[image_to_use]
+                if image_conf.hypervisor_host == '':
+                    # no hypervisor selected, allocate a new hypervisor for the node
+                    if globals.GApp.systconf['dynamips'].path == '':
+                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Hypervisor"), translate("Topology", "Please configure the path to Dynamips"))
+                        return
+                    if not globals.HypervisorManager.allocateHypervisor(node):
+                        return
+                else:
+                    dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor(image_conf.hypervisor_host, image_conf.hypervisor_port)
+                    globals.GApp.dynagen.update_running_config()
+                    dynamips_hypervisor.configchange = True
+                    node.set_hypervisor(dynamips_hypervisor)
+    
+                node.set_image(image_conf.filename, image_conf.chassis)
+            else:
+                pass
+#                dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor('localhost', 7200)
+#                globals.GApp.dynagen.update_running_config()
+#                dynamips_hypervisor.configchange = True
+#                node.set_hypervisor(dynamips_hypervisor)
+
+            # connect signals (received by the Scene)
+            QtCore.QObject.connect(node, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
+            QtCore.QObject.connect(node, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
+    
+            self.__nodes[node.id] = node
+            self.addItem(node)
+
+            if node.configNode() == False:
+                self.deleteNode(node.id)
         except (lib.DynamipsVerError, lib.DynamipsError), msg:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
-            self.deleteNode(node.id)
             return
         except (lib.DynamipsErrorHandled,  socket.error):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"), translate("Topology", "Connection lost"))
-            self.deleteNode(node.id)
             return
 
     def getNode(self, id):
@@ -156,16 +178,26 @@ class Topology(QtGui.QGraphicsScene):
         """ Add a link to the topology
         """
 
-        srcdev = self.__nodes[srcid].dev
-        dstdev = self.__nodes[dstid].dev
+        src_node = globals.GApp.topology.getNode(srcid)
+        dst_node = globals.GApp.topology.getNode(dstid)
+        if not isinstance(src_node, IOSRouter):
+            src_node.set_hypervisor(dst_node.hypervisor)
+        if not isinstance(dst_node, IOSRouter):
+            dst_node.set_hypervisor(src_node.hypervisor)
+        
+        src_node.hypervisor.configchange = True
+        dst_node.hypervisor.configchange = True
+        srcdev = self.__nodes[srcid].get_dynagen_device()
+        dstdev = self.__nodes[dstid].get_dynagen_device()
+        print 'connect link from ' + srcdev.name + ' ' + srcif +' to ' + dstdev.name + ' ' + dstif
         try:
-            if type(self.__nodes[srcid]) == IOSRouter:
+            if isinstance(self.__nodes[srcid], IOSRouter):
                 globals.GApp.dynagen.connect(srcdev, srcif, dstdev.name + ' ' + dstif)
-            elif type(self.__nodes[dstid]) == IOSRouter:
+            elif isinstance(self.__nodes[dstid], IOSRouter):
                 globals.GApp.dynagen.connect(dstdev, dstif, srcdev.name + ' ' + srcif)
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
-            return
+            return False
 
         if srcif[0] == 's' or srcif[0] == 'a' or dstif[0] == 's' or dstif[0] == 'a':
             # interface is serial or ATM
@@ -176,13 +208,16 @@ class Topology(QtGui.QGraphicsScene):
             
         self.__links.add(link)
         self.addItem(link)
+        globals.GApp.dynagen.update_running_config()
+        print globals.GApp.dynagen.running_config
+        return True
  
     def deleteLink(self, link):
         """ Delete a link from the topology
         """
 
-        srcdev = link.source.dev
-        dstdev = link.dest.dev
+        srcdev = link.source.get_dynagen_device()
+        dstdev = link.dest.get_dynagen_device()
         try:
             if type(link.source) == IOSRouter:
                 globals.GApp.dynagen.disconnect(srcdev, link.srcIf, dstdev.name + ' ' + link.destIf)
@@ -191,12 +226,12 @@ class Topology(QtGui.QGraphicsScene):
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
             return
-
         link.source.deleteEdge(link)
         link.dest.deleteEdge(link)
         if link in self.__links:
             self.__links.remove(link)
             self.removeItem(link)
+        globals.GApp.dynagen.update_running_config()
 
     def __getLinks(self):
         """ Return topology links

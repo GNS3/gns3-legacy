@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 """
@@ -335,6 +336,11 @@ class FW(object):
 
     key = property(_getkey, _setkey, doc='The key for this fw')
 
+    def idleprop(self,prop):
+        """Returns nothing so that all function in console.py recognize that there are no idlepc value
+        """
+        return ['100-OK']
+        
     def add_interface(self, pa1, port1):
         send(self.p, 'pemu create_nic %s %i 00:00:ab:%s%s:%s%s:0%i' % (self.name, port1, self.first_mac_number, self.second_mac_number, self.third_mac_number, self.fourth_mac_number, port1))
 

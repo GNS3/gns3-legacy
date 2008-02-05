@@ -58,6 +58,12 @@ def debug(string):
         # Level 4, GNS3 debugs
         if globals.debugLevel >= 4:
             print '* DEBUG: ' + str(string)
+            
+def error(msg):
+    """Print out an error message
+    """
+
+    print '*** Error:', str(msg)
 
 class fileBrowser(object):
     """ fileBrowser class

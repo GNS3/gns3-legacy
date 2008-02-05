@@ -404,7 +404,7 @@ class Dynagen:
             source: a string specifying the local interface
             dest: a string specifying a device and a remote interface, LAN, a raw NIO
         """
-
+        
         match_obj = interface_re.search(source)
         if not match_obj:
             # is this an interface without a port designation (e.g. "f0")?
@@ -1323,6 +1323,9 @@ class Dynagen:
     def ethsw_map(self, switch, source, dest):
         """ handle the connecton on ethsw switch with .net file syntax source = dest"""
 
+        print 'ethsw map:'
+        print source
+        print dest
         parameters = len(dest.split(' '))
         if parameters == 2:
             # should be a porttype and a vlan
@@ -1709,7 +1712,6 @@ class Dynagen:
             self.running_config[h][r][slot] = adapter.adapter
 
         #go through all interfaces on the adapter
-
         for interface in adapter.interfaces:
             for dynagenport in adapter.interfaces[interface]:
                 i = adapter.interfaces[interface][dynagenport]
@@ -2050,7 +2052,7 @@ class Dynagen:
     def doreset(self):
         """reset all hypervisors"""
 
-        for d in dynagen.dynamips.values():
+        for d in self.dynamips.values():
             d.reset()
 
 

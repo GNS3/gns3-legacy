@@ -30,11 +30,11 @@ import GNS3.Globals as globals
 
 # known platforms and corresponding chassis
 PLATFORMS = {
-             '1700': ['1710', '1720', '1721', '1750', '1751', '1760'], 
-             '2600': ['2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM', '2691'],
-             '3600': ['3620', '3640', '3660'],
-             '3700': ['3725', '3745'],
-             '7200': ['7200']
+             'c1700': ['1710', '1720', '1721', '1750', '1751', '1760'], 
+             'c2600': ['2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM'],
+             'c3600': ['3620', '3640', '3660'],
+             'c3700': ['2691','3725', '3745'],
+             'c7200': ['7200']
              }
 
 # where the IOS images are stored
@@ -244,16 +244,16 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         conf.hypervisor_host = hypervisor_host
         conf.hypervisor_port = int(hypervisor_port)
 
-        default_chassis = True
+        default_platform = True
         if self.checkBoxDefaultImage.checkState() == QtCore.Qt.Checked:
             for image in globals.GApp.iosimages:
                 image_conf = globals.GApp.iosimages[image]
-                if imagekey !=  image and image_conf.chassis == conf.chassis and image_conf.default:
-                    QtGui.QMessageBox.warning(self, 'IOS Configuration', translate("IOSDialog", "There is already a default image for this chassis"))
-                    default_chassis = False
+                if imagekey !=  image and image_conf.platform == conf.platform and image_conf.default:
+                    QtGui.QMessageBox.warning(self, 'IOS Configuration', translate("IOSDialog", "There is already a default image for this platform"))
+                    default_platform = False
         else:
-            default_chassis = False
-        if default_chassis:
+            default_platform = False
+        if default_platform:
             conf.default = True
         globals.GApp.iosimages[imagekey] = conf
         self.treeWidgetIOSimages.resizeColumnToContents(0)

@@ -59,48 +59,6 @@ conf_hypervisor_types = {
     'baseConsole': int
 }
 
-conf_iosRouter_defaults = {
-    'image': '', 
-    'platform': '', 
-    'chassis': '',
-    'console': 0, 
-    'mac': '', 
-    'ram': 128, 
-    'nvram': 128,
-    'mmap': True,
-    'disk0': 0,
-    'disk1': 0,
-    'confreg': '0x2102',
-    'cnfg': '', 
-    'exec_area': 64, 
-    'iomem': 5, 
-    'npe': 'npe-200',
-    'midplane': 'vxr', 
-    'slots': ['',  '',  '',  '',  '',  '',  '']
-}
-
-conf_iosRouter_types = {
-    'image': unicode, 
-    'platform': str, 
-    'chassis': str,
-    'console': int, 
-    'mac': str,
-    'ram': int, 
-    'rom': int, 
-    'nvram': int,
-    'mmap': bool, 
-    'delete_files': bool, 
-    'disk0': int,
-    'disk1': int,
-    'confreg': str, 
-    'cnfg': unicode, 
-    'exec_area': int, 
-    'iomem': int, 
-    'npe': str,
-    'midplane': str, 
-    'slots': list
-}
-
 conf_FRSW_defaults = {
     'ports': [],
     'mapping': {},

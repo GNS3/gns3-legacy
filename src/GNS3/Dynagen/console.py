@@ -51,8 +51,8 @@ class Console(AbstractConsole):
 
     """Interactive console for users to manage dynamips"""
 
-    def __init__(self, dynagen):
-        AbstractConsole.__init__(self)
+    def __init__(self, dynagen,  namespace = None):
+        AbstractConsole.__init__(self, namespace)
         self.prompt = '=> '
         self.intro  = 'Dynagen management console for Dynamips and Pemuwrapper\nCopyright (c) 2005-2007 Greg Anuzelli, contributions Pavel Skovajsa\n'
         self.dynagen = dynagen

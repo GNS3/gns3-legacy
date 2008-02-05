@@ -24,7 +24,11 @@ import GNS3.Ui.svg_resources_rc
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
 from GNS3.Ui.Form_NodeConfigurator import Ui_NodeConfigurator
-from GNS3.Node.IOSRouter import IOSRouter
+from GNS3.Node.IOSRouter1700 import IOSRouter1700
+from GNS3.Node.IOSRouter2600 import IOSRouter2600
+from GNS3.Node.IOSRouter3600 import IOSRouter3600
+from GNS3.Node.IOSRouter3700 import IOSRouter3700
+from GNS3.Node.IOSRouter7200 import IOSRouter7200
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
@@ -94,8 +98,20 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             # The dialog module must have the module function create to create
             # the configuration page. This must have the method save to save 
             # the settings.
-            "Routers" : \
-                [translate("NodeConfigurator", "Routers"), ":/symbols/rt_standard.normal.svg",
+            "Routers (1700)" : \
+                [translate("NodeConfigurator", "Routers c1700"), ":/symbols/rt_standard.normal.svg",
+                 "Page_IOSRouter", None, None], 
+            "Routers (2600)" : \
+                [translate("NodeConfigurator", "Routers c2600"), ":/symbols/rt_standard.normal.svg",
+                 "Page_IOSRouter", None, None], 
+            "Routers (3600)" : \
+                [translate("NodeConfigurator", "Routers c3600"), ":/symbols/rt_standard.normal.svg",
+                 "Page_IOSRouter", None, None], 
+            "Routers (3700)" : \
+                [translate("NodeConfigurator", "Routers c3700"), ":/symbols/rt_standard.normal.svg",
+                 "Page_IOSRouter", None, None], 
+            "Routers (7200)" : \
+                [translate("NodeConfigurator", "Routers c7200"), ":/symbols/rt_standard.normal.svg",
                  "Page_IOSRouter", None, None], 
             "FRSW":
                 [translate("NodeConfigurator", "Frame Relay switches"), ":/symbols/sw_frame_relay.normal.svg",
@@ -114,7 +130,12 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                  "Page_Hub", None, None]
                  }
 
-        self.assocPage = { IOSRouter: "Routers", 
+        self.assocPage = {
+                                     IOSRouter1700: "Routers (1700)",
+                                     IOSRouter2600: "Routers (2600)", 
+                                     IOSRouter3600: "Routers (3600)", 
+                                     IOSRouter3700: "Routers (3700)",
+                                     IOSRouter7200: "Routers (7200)", 
                                      FRSW: "FRSW",
                                      ETHSW: "ETHSW",
                                      ATMSW: "ATMSW",
@@ -154,9 +175,9 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             self.itmDict[parent].addID(node.id)
             item = ConfigurationPageItem(self.itmDict[parent], node.hostname, parent,  None)
             item.addID(node.id)
-            item.tmpConfig = node.config
+            item.tmpConfig = node.get_config()
             if self.itmDict[parent].tmpConfig == None:
-                self.itmDict[parent].tmpConfig = node.config
+                self.itmDict[parent].tmpConfig = node.get_config()
         self.treeViewNodes.sortByColumn(0, QtCore.Qt.AscendingOrder)
             
     def __slotSelectionChanged(self):
@@ -254,7 +275,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         
             if itm.origConfig == None and itm.parent():
                 node = globals.GApp.topology.getNode(itm.getIDs()[0])
-                itm.origConfig = node.config
+                itm.origConfig = node.get_config()
 
             if self.previousItem:
                 self.previousPage.saveConfig(self.previousItem.getIDs()[0],  self.previousItem.tmpConfig)
@@ -287,6 +308,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         """ Private slot called by a button of the button box clicked.
             button: button that was clicked (QAbstractButton)
         """
+
         if button == self.buttonBox.button(QtGui.QDialogButtonBox.Apply):
             self.on_applyButton_clicked()
         elif button == self.buttonBox.button(QtGui.QDialogButtonBox.Reset):
@@ -307,11 +329,15 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
 
             for item in self.treeViewNodes.selectedItems():
                 if item.parent():
-                        page.saveConfig(item.getIDs()[0])
+                        config = page.saveConfig(item.getIDs()[0])
+                        node = globals.GApp.topology.getNode(item.getIDs()[0])
+                        node.set_config(config)
                 else:
                     children = item.getIDs()
                     for child in children:
-                        page.saveConfig(child)
+                        config = page.saveConfig(child)
+                        node = globals.GApp.topology.getNode(child)
+                        node.set_config(config)
 
     def on_cancelButton_clicked(self):
         """ Private slot called to cancel the settings
@@ -322,7 +348,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             for child in children:
                 if child.origConfig:
                     node = globals.GApp.topology.getNode(child.getIDs()[0])
-                    node.config = child.origConfig
+                    node.set_config(child.origConfig)
 
     def on_resetButton_clicked(self):
         """ Private slot called to reset the settings of the current page.
@@ -335,4 +361,3 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                 node = globals.GApp.topology.getNode(item.getIDs()[0])
                 item.tmpConfig = node.getDefaultConfig()
                 page.loadConfig(item.getIDs()[0],  item.tmpConfig)
-

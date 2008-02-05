@@ -49,13 +49,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             error = QtGui.QErrorMessage(globals.GApp.mainWindow)
         self.error = error
 
-        # hypervisor settings
-        self.hypervisor_host = None
-        self.hypervisor_port = None
-        self.baseUDP = None
-        self.baseConsole = None
-        self.hypervisor_wd = None
-        
         # create a unique ID
         self.id = globals.GApp.topology.node_baseid
         globals.GApp.topology.node_baseid += 1
@@ -338,55 +331,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             (controlsock, localsock) = niostring.split(':',1)
             return lib.NIO_vde(dynamips, controlsock, localsock)
 
-    def getHypervisor(self):
-        """ Returns the configured hypervisor
-        """
-
-        key = self.hypervisor_host + ':' + str(self.hypervisor_port)
-        if not globals.GApp.dynagen.dynamips.has_key(key):
-            debug("AbstractNode: connection to hypervisor " +  self.hypervisor_host + ':' + str(self.hypervisor_port))
-            globals.GApp.dynagen.dynamips[key] = lib.Dynamips(self.hypervisor_host, self.hypervisor_port)
-            globals.GApp.dynagen.dynamips[key].reset()
-            if self.baseUDP:
-                globals.GApp.dynagen.dynamips[key].udp = self.baseUDP
-            if self.baseConsole:
-                globals.GApp.dynagen.dynamips[key].baseconsole = self.baseConsole
-            if self.hypervisor_wd:
-                globals.GApp.dynagen.dynamips[key].workingdir =  self.hypervisor_wd
-        debug("Node " + self.hostname + ": connected to hypervisor " +  self.hypervisor_host + ':' + str(self.hypervisor_port))
-        return globals.GApp.dynagen.dynamips[key]
-        
-    def configHypervisor(self,  host,  port, workingdir = None,  baseudp = None,  baseconsole = None):
-        """ Setup an hypervisor
-        """
-
-        debug("Node " + self.hostname + ": recording hypervisor " +  host + ":" + str(port) + " base UDP " + str(baseudp))
-        self.hypervisor_host = host
-        self.hypervisor_port = port
-        if  baseudp:
-            self.baseUDP = baseudp
-        if  baseconsole:
-            self.baseConsole = baseconsole
-        if workingdir:
-            self.hypervisor_wd = workingdir
-          
-    def closeHypervisor(self):
-        """ Close the connection to the hypervisor
-        """
-        
-        if self.hypervisor_host:
-            key = self.hypervisor_host + ':' + str(self.hypervisor_port)
-            if globals.GApp.dynagen.dynamips.has_key(key):
-                try:
-                    globals.GApp.dynagen.dynamips[key].close()
-                except:
-                    pass
-                del globals.GApp.dynagen.dynamips[key]
-            self.hypervisor_host = None
-            self.hypervisor_port = None
-            self.baseUDP = None
-            self.baseConsole = None
-            
 #    def resetNode(self):
 #        """ Reset the node configuration
 #        """

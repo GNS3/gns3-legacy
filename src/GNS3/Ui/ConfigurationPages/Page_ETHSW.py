@@ -135,14 +135,14 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         self.vlans = {}
         self.ports = {}
         
-        for (vlan,  portlist) in ETHSWconfig.vlans.iteritems():
+        for (vlan,  portlist) in ETHSWconfig['vlans'].iteritems():
             for port in portlist:
                 item = QtGui.QTreeWidgetItem(self.treeWidgetPorts)
                 item.setText(0, str(port))
                 item.setText(1, str(vlan))
-                item.setText(2, ETHSWconfig.ports[port])
+                item.setText(2, ETHSWconfig['ports'][port])
                 self.treeWidgetPorts.addTopLevelItem(item)
-                self.ports[port] = ETHSWconfig.ports[port]
+                self.ports[port] = ETHSWconfig['ports'][port]
                 if not self.vlans.has_key(vlan):
                     self.vlans[vlan] = []
                 if not port in self.vlans[vlan]:
@@ -150,16 +150,16 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         self.treeWidgetPorts.resizeColumnToContents(0)
         self.treeWidgetPorts.resizeColumnToContents(1)
 
-        self.comboBoxHypervisors.clear()
-        for hypervisor in globals.GApp.hypervisors:
-            self.comboBoxHypervisors.addItem(hypervisor)
-        if not ETHSWconfig.hypervisor_host:
-            self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Unchecked)
-            index = self.comboBoxHypervisors.findText(ETHSWconfig.hypervisor_host + ':' + str(ETHSWconfig.hypervisor_port))
-            if index != -1:
-                self.comboBoxHypervisors.setCurrentIndex(index)
+#        self.comboBoxHypervisors.clear()
+#        for hypervisor in globals.GApp.hypervisors:
+#            self.comboBoxHypervisors.addItem(hypervisor)
+#        if not ETHSWconfig.hypervisor_host:
+#            self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
+#        else:
+#            self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Unchecked)
+#            index = self.comboBoxHypervisors.findText(ETHSWconfig.hypervisor_host + ':' + str(ETHSWconfig.hypervisor_port))
+#            if index != -1:
+#                self.comboBoxHypervisors.setCurrentIndex(index)
             
     def saveConfig(self, id, config = None):
         """ Save the config
@@ -171,20 +171,20 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         else:
             ETHSWconfig  = node.config
 
-        ETHSWconfig.ports = self.ports
-        ETHSWconfig.vlans = self.vlans
+        ETHSWconfig['ports'] = self.ports
+        ETHSWconfig['vlans'] = self.vlans
                 
-        if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Checked:
-            ETHSWconfig.hypervisor_host = unicode('',  'utf-8')
-        elif str(self.comboBoxHypervisors.currentText()):
-            selected_hypervisor = unicode(self.comboBoxHypervisors.currentText(),  'utf-8')
-            assert(globals.GApp.hypervisors.has_key(selected_hypervisor) != None)
-            hypervisor = globals.GApp.hypervisors[selected_hypervisor]
-            ETHSWconfig.hypervisor_host = hypervisor.host
-            ETHSWconfig.hypervisor_port = hypervisor.port
+#        if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Checked:
+#            ETHSWconfig.hypervisor_host = unicode('',  'utf-8')
+#        elif str(self.comboBoxHypervisors.currentText()):
+#            selected_hypervisor = unicode(self.comboBoxHypervisors.currentText(),  'utf-8')
+#            assert(globals.GApp.hypervisors.has_key(selected_hypervisor) != None)
+#            hypervisor = globals.GApp.hypervisors[selected_hypervisor]
+#            ETHSWconfig.hypervisor_host = hypervisor.host
+#            ETHSWconfig.hypervisor_port = hypervisor.port
             
-        if config == None:
-            node.updatePorts()
+#        if config == None:
+#            node.updatePorts()
 
 def create(dlg):
 

@@ -43,7 +43,6 @@ def error(msg):
 
     print '*** Error:', str(msg)
 
-
 def debug(string):
     """ Print string if debugging is true"""
 
@@ -59,14 +58,18 @@ def debug(string):
 class AbstractConsole(cmd.Cmd):
     """abstract console class, all other console and confconsole classes inherit behavior from it"""
     
-    def __init__(self):
+    def __init__(self, namespace = None):
         cmd.Cmd.__init__(self)
         # Import the main namespace for use in this module
         # Yes, normally this is bad mojo, but I'm doing this to provide the console
         # access to the entire namespace in case the user wants to futz with stuff
-        import __main__
-        self.namespace = __main__
-        self.debuglevel = self.namespace.dynagen.debuglevel
+        if namespace == None:
+            import __main__
+            self.namespace = __main__
+        else:
+            self.namespace = namespace
+        
+        #self.debuglevel = self.namespace.debuglevel
 
 ## Override methods in Cmd object ##
 
@@ -812,6 +815,11 @@ class confRouterConsole(confDefaultsConsole):
                     #emit the 'no' version of the command
                     command = 'no ' + scalar + ' = ' + self.running_config[scalar]
                     self.onecmd(command)
+                    
+        #determine whether this is a slot that can be removed (f.e. PA_C7200_IO_FE cannot be removed)
+        if adapter.can_be_removed():
+            adapter.remove()
+            self.router.slot[adapter.slot] = None
         self.dynagen.update_running_config()
 
     def do_no(self, args):
@@ -1380,6 +1388,7 @@ class confATMSWConsole(AbstractConfSWConsole):
                     port1 = int(left_side[0])
                     vpi1 = int(left_side[1])
                     vci1 = int(left_side[2])
+                    vci1 = int(left_side[2])
                     port2 = int(right_side[0])
                     vpi2 = int(right_side[1])
                     vci2 = int(right_side[2])
@@ -1702,7 +1711,7 @@ set defaults for Cisco 3745 in this hypervisor. Every new 3745 router will be cr
         nested_cmd.cmdloop()
 
     def do_1751(self, args):
-        """1751
+        """1751setdefaults
 \tset defaults for Cisco 1751 in this hypervisor. Every new 1751 router will be created using these."""
 
         nested_cmd = self.defaultConsoleInstanceMap['1751'](self.prompt, self.dynagen, self.dynamips_server, '1751')

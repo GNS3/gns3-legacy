@@ -1,51 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE Project SYSTEM "Project-4.1.dtd">
+<!DOCTYPE Project SYSTEM "Project-4.0.dtd">
 <!-- eric4 project file for project GNS3 -->
-<!-- Saved: 2007-11-21, 18:28:30 -->
-<!-- Copyright (C) 2007 , contact@gns3.net -->
-<Project version="4.1">
+<!-- Saved: 2008-02-02, 10:46:40 -->
+<!-- Copyright (C) 2008 ,  -->
+<Project version="4.0">
   <ProgLanguage mixed="0">Python</ProgLanguage>
   <UIType>Qt4</UIType>
   <Description></Description>
-  <Version>0.3.2</Version>
+  <Version>0.2</Version>
   <Author></Author>
-  <Email>contact@gns3.net</Email>
+  <Email></Email>
   <Sources>
     <Source>
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Name>Form_MainWindow.py</Name>
+      <Dir>Link</Dir>
+      <Name>Ethernet.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Name>svg_resources_rc.py</Name>
+      <Dir>Link</Dir>
+      <Name>__init__.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Name>Form_About.py</Name>
+      <Dir>Link</Dir>
+      <Name>AbstractEdge.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Name>Widget_topologySummaryDock.py</Name>
+      <Dir>Link</Dir>
+      <Name>Serial.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Name>Form_IOSDialog.py</Name>
+      <Name>NodeConfigurator.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Name>Form_NodeConfigurator.py</Name>
+      <Name>Main.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Name>Utils.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
@@ -63,21 +66,8 @@
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
-      <Name>__init__.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
       <Dir>ConfigurationPages</Dir>
-      <Name>Page_Cloud.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>Form_ETHSWPage.py</Name>
+      <Name>Form_HubPage.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
@@ -91,63 +81,7 @@
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
       <Dir>ConfigurationPages</Dir>
-      <Name>Page_PreferencesDynamips.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>Form_FRSWPage.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>Page_IOSRouter.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>Form_IOSRouterPage.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>Form_CloudPage.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>Page_FRSW.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>Form_PreferencesGeneral.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>Page_ATMSW.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>Form_ATMSWPage.py</Name>
+      <Name>Form_ETHSWPage.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
@@ -161,7 +95,63 @@
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
       <Dir>ConfigurationPages</Dir>
+      <Name>Form_PreferencesGeneral.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Form_FRSWPage.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Page_PreferencesDynamips.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Form_ATMSWPage.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
       <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Form_IOSRouterPage.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Page_FRSW.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Page_ATMSW.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Page_IOSRouter.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
@@ -175,7 +165,7 @@
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
       <Dir>ConfigurationPages</Dir>
-      <Name>Form_HubPage.py</Name>
+      <Name>Form_CloudPage.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
@@ -187,44 +177,201 @@
     <Source>
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
-      <Dir>Link</Dir>
-      <Name>AbstractEdge.py</Name>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Page_Cloud.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
-      <Dir>Link</Dir>
-      <Name>Ethernet.py</Name>
+      <Dir>Ui</Dir>
+      <Name>Form_NodeConfigurator.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
-      <Dir>Link</Dir>
-      <Name>Serial.py</Name>
+      <Dir>Ui</Dir>
+      <Name>Widget_topologySummaryDock.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
-      <Dir>Link</Dir>
+      <Dir>Ui</Dir>
+      <Name>Form_MainWindow.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
       <Name>__init__.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
-      <Dir>Node</Dir>
-      <Name>Hub.py</Name>
+      <Dir>Ui</Dir>
+      <Name>svg_resources_rc.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
-      <Dir>Node</Dir>
-      <Name>FRSW.py</Name>
+      <Dir>Ui</Dir>
+      <Name>Form_IOSDialog.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
-      <Dir>Node</Dir>
-      <Name>IOSRouter.py</Name>
+      <Dir>Ui</Dir>
+      <Name>Form_About.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Langs</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Langs</Dir>
+      <Name>DynamicStrings.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Name>Application.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Name>IOSDialog.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Name>Topology.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Name>Telnet.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Name>HypervisorManager.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Name>Workspace.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Name>DynagenSub.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Globals</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Globals</Dir>
+      <Name>Symbols.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Name>NETFile.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Name>Translations.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>External</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>External</Dir>
+      <Name>PyCutExt.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Name>Console.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Name>Scene.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Dynagen</Dir>
+      <Name>dynagen.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Dynagen</Dir>
+      <Name>dynamips_lib.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Dynagen</Dir>
+      <Name>pemu_lib.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Dynagen</Dir>
+      <Name>pemuwrapper.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Dynagen</Dir>
+      <Name>console.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Dynagen</Dir>
+      <Name>confConsole.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Dynagen</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Dynagen</Dir>
+      <Name>validate.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Dynagen</Dir>
+      <Name>configobj.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
@@ -236,13 +383,13 @@
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
       <Dir>Node</Dir>
-      <Name>ATMSW.py</Name>
+      <Name>IOSRouter.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
       <Dir>Node</Dir>
-      <Name>Cloud.py</Name>
+      <Name>ATMSW.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
@@ -254,19 +401,37 @@
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
       <Dir>Node</Dir>
+      <Name>FRSW.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Node</Dir>
+      <Name>Cloud.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Node</Dir>
+      <Name>Hub.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Node</Dir>
       <Name>ETHSW.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
       <Dir>Config</Dir>
-      <Name>Objects.py</Name>
+      <Name>Config.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
       <Dir>Config</Dir>
-      <Name>Config.py</Name>
+      <Name>Preferences.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
@@ -284,199 +449,85 @@
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
       <Dir>Config</Dir>
-      <Name>Preferences.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Langs</Dir>
-      <Name>DynamicStrings.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Langs</Dir>
-      <Name>__init__.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Name>NodeConfigurator.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Name>Console.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Name>Telnet.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Name>Workspace.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Name>DynagenSub.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Name>Application.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Name>Main.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Dynagen</Dir>
-      <Name>configobj.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Dynagen</Dir>
-      <Name>console.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Dynagen</Dir>
-      <Name>dynamips_lib.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Dynagen</Dir>
-      <Name>dynagen.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Dynagen</Dir>
-      <Name>pemu_lib.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Dynagen</Dir>
-      <Name>__init__.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Dynagen</Dir>
-      <Name>validate.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Name>Utils.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Name>NETFile.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>External</Dir>
-      <Name>__init__.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>External</Dir>
-      <Name>PyCutExt.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Name>Translations.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Name>IOSDialog.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Name>Topology.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Name>__init__.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Globals</Dir>
-      <Name>Symbols.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Globals</Dir>
-      <Name>__init__.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Name>HypervisorManager.py</Name>
-    </Source>
-    <Source>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Name>Scene.py</Name>
+      <Name>Objects.py</Name>
     </Source>
     <Source>
       <Name>setup.py</Name>
     </Source>
     <Source>
-      <Name>gns3</Name>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Defaults</Dir>
+      <Name>__init__.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
-      <Dir>Dynagen</Dir>
-      <Name>confConsole.py</Name>
+      <Dir>Defaults</Dir>
+      <Name>AbstractDefaults.py</Name>
     </Source>
     <Source>
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
-      <Dir>Dynagen</Dir>
-      <Name>pemuwrapper.py</Name>
+      <Dir>Defaults</Dir>
+      <Name>IOSRouter3600Defaults.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Defaults</Dir>
+      <Name>IOSRouter1700Defaults.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Node</Dir>
+      <Name>IOSRouter3600.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Defaults</Dir>
+      <Name>IOSRouter3700Defaults.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Defaults</Dir>
+      <Name>IOSRouter2600Defaults.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Defaults</Dir>
+      <Name>IOSRouter7200Defaults.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Node</Dir>
+      <Name>IOSRouter1700.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Node</Dir>
+      <Name>IOSRouter2600.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Node</Dir>
+      <Name>IOSRouter3700.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Node</Dir>
+      <Name>IOSRouter7200.py</Name>
     </Source>
   </Sources>
   <Forms>
-    <Form>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Name>Form_MainWindow.ui</Name>
-    </Form>
-    <Form>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Name>Form_About.ui</Name>
-    </Form>
-    <Form>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Name>Form_IOSDialog.ui</Name>
-    </Form>
     <Form>
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
@@ -487,49 +538,8 @@
       <Dir>src</Dir>
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
-      <Name>Form_PreferencesDialog.ui</Name>
-    </Form>
-    <Form>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
       <Dir>ConfigurationPages</Dir>
-      <Name>Form_ETHSWPage.ui</Name>
-    </Form>
-    <Form>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>Form_FRSWPage.ui</Name>
-    </Form>
-    <Form>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>Form_IOSRouterPage.ui</Name>
-    </Form>
-    <Form>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>Form_CloudPage.ui</Name>
-    </Form>
-    <Form>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>Form_PreferencesGeneral.ui</Name>
-    </Form>
-    <Form>
-      <Dir>src</Dir>
-      <Dir>GNS3</Dir>
-      <Dir>Ui</Dir>
-      <Dir>ConfigurationPages</Dir>
-      <Name>Form_ATMSWPage.ui</Name>
+      <Name>Form_PreferencesDynamips.ui</Name>
     </Form>
     <Form>
       <Dir>src</Dir>
@@ -543,7 +553,66 @@
       <Dir>GNS3</Dir>
       <Dir>Ui</Dir>
       <Dir>ConfigurationPages</Dir>
-      <Name>Form_PreferencesDynamips.ui</Name>
+      <Name>Form_ATMSWPage.ui</Name>
+    </Form>
+    <Form>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Form_CloudPage.ui</Name>
+    </Form>
+    <Form>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Form_IOSRouterPage.ui</Name>
+    </Form>
+    <Form>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Form_PreferencesGeneral.ui</Name>
+    </Form>
+    <Form>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Form_FRSWPage.ui</Name>
+    </Form>
+    <Form>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Form_ETHSWPage.ui</Name>
+    </Form>
+    <Form>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Name>Form_IOSDialog.ui</Name>
+    </Form>
+    <Form>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Name>Form_PreferencesDialog.ui</Name>
+    </Form>
+    <Form>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Name>Form_About.ui</Name>
+    </Form>
+    <Form>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Name>Form_MainWindow.ui</Name>
     </Form>
   </Forms>
   <Translations>
@@ -569,6 +638,34 @@
   <Vcs>
     <VcsType>None</VcsType>
   </Vcs>
+  <Eric4Api>
+    <Eric4ApiParams>
+      <dict>
+        <key>
+          <string>sourceExtensions</string>
+        </key>
+        <value>
+          <list>
+            <unicode></unicode>
+          </list>
+        </value>
+        <key>
+          <string>outputFile</string>
+        </key>
+        <value>
+          <unicode>//doc</unicode>
+        </value>
+        <key>
+          <string>ignoreFilePatterns</string>
+        </key>
+        <value>
+          <list>
+            <unicode></unicode>
+          </list>
+        </value>
+      </dict>
+    </Eric4ApiParams>
+  </Eric4Api>
   <FiletypeAssociations>
     <FiletypeAssociation pattern="*.ui" type="FORMS" />
     <FiletypeAssociation pattern="*.idl" type="INTERFACES" />

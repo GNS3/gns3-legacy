@@ -39,7 +39,7 @@ class HypervisorManager:
     def __del__(self):
         """ Shutdown all started hypervisors 
         """
-    
+
         self.stopProcHypervisors()
        
     def setDefaults(self):
@@ -66,9 +66,11 @@ class HypervisorManager:
             proc.setWorkingDirectory(self.hypervisor_wd)
         # start dynamips in hypervisor mode (-H)
         proc.start(self.hypervisor_path,  ['-H', str(port)])
+        
         if proc.waitForStarted() == False:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Can't start Dynamips"))
             return None
+
         hypervisor = {'port': port,
                             'proc_instance': proc, 
                             'load': 0}
@@ -80,19 +82,27 @@ class HypervisorManager:
         """ Allocate an hypervisor for a given node
         """
 
-        for hypervisor in self.hypervisors:
-            if hypervisor['load'] + node.config.ram <= globals.HypervisorMemoryUsageLimit:
-                hypervisor['load'] += node.config.ram
-                node.configHypervisor('localhost',  hypervisor['port'],  self.hypervisor_wd,  self.baseUDP, self.baseConsole)
-                return True
+#        for hypervisor in self.hypervisors:
+#            if hypervisor['load'] + node.config.ram <= globals.HypervisorMemoryUsageLimit:
+#                hypervisor['load'] += node.config.ram
+#                node.configHypervisor('localhost',  hypervisor['port'],  self.hypervisor_wd,  self.baseUDP, self.baseConsole)
+#                return True
 
+        for hypervisor in self.hypervisors:
+            if hypervisor['load'] + node.default_ram <= globals.HypervisorMemoryUsageLimit:
+                hypervisor['load'] += node.default_ram
+                print 'Already existing hypervisor port = ' + str(hypervisor['port'])
+                dynamips_hypervisor = globals.GApp.dynagen.dynamips['localhost:' + str(hypervisor['port'])]
+                node.set_hypervisor(dynamips_hypervisor)
+                return hypervisor
+                
         s = socket(AF_INET, SOCK_STREAM)
         s.setblocking(0)
         s.settimeout(300)
 
         hypervisor = self.startNewHypervisor()
         if hypervisor == None:
-            return False
+            return None
         
         # give 15 seconds to the hypervisor to accept connections
         count = 15
@@ -100,7 +110,7 @@ class HypervisorManager:
         connection_success = False
         for nb in range(count + 1):
             if nb == 3:
-                progress = QtGui.QProgressDialog(translate("HypervisorManager", "Connecting to an hypervisor ..."), translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
+                progress = QtGui.QProgressDialog(translate("HypervisorManager", "Connecting to an hypervisor on port " + str(hypervisor['port']) + " ..."), translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
                 progress.setMinimum(1)
                 progress.setWindowModality(QtCore.Qt.WindowModal)
                 globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 2000)
@@ -123,18 +133,25 @@ class HypervisorManager:
             s.close()
             time.sleep(0.2)
         else:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Can't connect to the hypervisor"))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Can't connect to the hypervisor on port " + str(hypervisor['port'])))
             hypervisor['proc_instance'].close()
             self.hypervisors.remove(hypervisor)
-            return False
+            return None
         if progress:
             progress.setValue(count)
             progress.deleteLater()
             progress = None
-        hypervisor['load'] = node.config.ram
-        node.configHypervisor('localhost',  hypervisor['port'],  self.hypervisor_wd,  self.baseUDP, self.baseConsole)
+        hypervisor['load'] = node.default_ram
+
+        dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor('localhost', hypervisor['port'])
+        globals.GApp.dynagen.update_running_config()
+        dynamips_hypervisor.configchange = True
+        node.set_hypervisor(dynamips_hypervisor)
+        dynamips_hypervisor.udp = self.baseUDP
+        
+        print 'New created hypervisor port = ' + str(hypervisor['port'])
         self.baseUDP += globals.HypervisorUDPIncrementation
-        return True
+        return hypervisor
 
     def unallocateHypervisor(self, node):
         """ Unallocate an hypervisor for a given node

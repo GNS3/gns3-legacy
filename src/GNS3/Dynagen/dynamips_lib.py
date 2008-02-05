@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 """
@@ -16,7 +17,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
+along with this program; if not, write to the Free Softwarec
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 
@@ -25,7 +26,7 @@ import os
 import re
 import copy
 
-#version = "0.11.0.110207"
+#version = "0.11.0.010408"
 # Minimum version of dynamips required. Currently 0.2.8-RC1 (due to change to
 # hypervisor commands related to slot/port handling, and the pluggable archtecture
 # that changed model specific commands to "vm")
@@ -63,32 +64,32 @@ ROUTERMODELS = (
     'c3745',
     'c3600',
     'c7200',
-    )
+)
 DEVICETUPLE = (  # A tuple of known device names
-    '1710',
-    '1720',
-    '1721',
-    '1750',
-    '1751',
-    '1760',
-    '2610',
-    '2611',
-    '2620',
-    '2621',
-    '2610XM',
-    '2611XM',
-    '2620XM',
-    '2621XM',
-    '2650XM',
-    '2651XM',
-    '2691',
-    '3725',
-    '3745',
-    '3620',
-    '3640',
-    '3660',
-    '7200',
-    )
+                 '1710',
+                 '1720',
+                 '1721',
+                 '1750',
+                 '1751',
+                 '1760',
+                 '2610',
+                 '2611',
+                 '2620',
+                 '2621',
+                 '2610XM',
+                 '2611XM',
+                 '2620XM',
+                 '2621XM',
+                 '2650XM',
+                 '2651XM',
+                 '2691',
+                 '3725',
+                 '3745',
+                 '3620',
+                 '3640',
+                 '3660',
+                 '7200',
+             )
 CHASSIS1700 = (
     '1710',
     '1720',
@@ -96,7 +97,7 @@ CHASSIS1700 = (
     '1750',
     '1751',
     '1760',
-    )
+)
 CHASSIS2600 = (
     '2610',
     '2611',
@@ -108,7 +109,7 @@ CHASSIS2600 = (
     '2621XM',
     '2650XM',
     '2651XM',
-    )
+)
 CHASSIS3600 = ('3620', '3640', '3660')
 
 MB2CHASSIS1700 = {
@@ -118,7 +119,7 @@ MB2CHASSIS1700 = {
     '1750': 'C1700-MB-1ETH',
     '1751': 'C1700-MB-1ETH',
     '1760': 'C1700-MB-1ETH',
-    }
+}
 
 MB2CHASSIS2600 = {
     '2610': 'CISCO2600-MB-1E',
@@ -131,7 +132,7 @@ MB2CHASSIS2600 = {
     '2621XM': 'CISCO2600-MB-2FE',
     '2650XM': 'CISCO2600-MB-1FE',
     '2651XM': 'CISCO2600-MB-2FE',
-    }
+}
 GENERIC_1700_NMS = ()
 GENERIC_2600_NMS = (
     'NM-1FE-TX',
@@ -140,21 +141,21 @@ GENERIC_2600_NMS = (
     'NM-16ESW',
     'NM-CIDS',
     'NM-NAM',
-    )
+)
 GENERIC_3600_NMS = (
     'NM-1FE-TX',
     'NM-1E',
     'NM-4E',
     'NM-16ESW',
     'NM-4T',
-    )
+)
 GENERIC_3700_NMS = (
     'NM-1FE-TX',
     'NM-4T',
     'NM-16ESW',
     'NM-CIDS',
     'NM-NAM',
-    )
+)
 GENERIC_7200_PAS = (
     'PA-A1',
     'PA-FE-TX',
@@ -165,7 +166,7 @@ GENERIC_7200_PAS = (
     'PA-4E',
     'PA-8E',
     'PA-POS-OC3',
-    )
+)
 IO_7200 = ('C7200-IO-FE', 'C7200-IO-2FE', 'C7200-IO-GE-E')
 WICS = {'WIC-1T': 1 * ['s'], 'WIC-2T': 2 * ['s'], 'WIC-1ENET': 1 * ['e']}
 
@@ -454,8 +455,10 @@ class Dynamips(object):
 
     type = property(__gettype, doc='The type of hypervisor')
 
+class NIO(object):
+    """abstract NIO class"""
 
-class NIO_udp(object):
+class NIO_udp(NIO):
 
     """ Create a nio_udp object
         dynamips: the dynamips server object
@@ -529,7 +532,7 @@ class NIO_udp(object):
 
                 return ' is connected to router ' + remote_device.name + " " + rem_int_full_name + str(rem_dynagen_port)
             return ' is connected to router ' + remote_device.name + " " + remote_adapter.interface_name + str(remote_adapter.slot) + \
-                "/" + str(rem_dynagen_port)
+                   "/" + str(rem_dynagen_port)
 
         #if this is only UDP NIO without the other side
         elif remote_device == 'nothing':
@@ -563,11 +566,6 @@ class NIO_udp(object):
 
     port = property(__getport)
 
-    def __getname(self):
-        return self.__name
-
-    name = property(__getname)
-
     def __getudplocal(self):
         return self.__udplocal
 
@@ -586,7 +584,10 @@ class NIO_udp(object):
     def delete(self):
         send(self.__d, 'nio delete %s' % self.__name)
 
-class NIO_linux_eth(object):
+    def __getname(self):
+        return self.__name
+    name = property(__getname)
+class NIO_linux_eth(NIO):
 
     """ Create a nio_linux_eth object
         dynamips: the dynamips server object
@@ -619,23 +620,18 @@ class NIO_linux_eth(object):
 
         return ' is connected to real ' + self.__interface + ' interface'
 
-    def delete(self):
-        """delete this NIO"""
-
-        send(self.__d, 'nio delete %s' % self.__name)
-
     def __getinterface(self):
         return self.__interface
-
     interface = property(__getinterface)
+    def delete(self):
+        send(self.__d, 'nio delete %s' % self.__name)
 
     def __getname(self):
         return self.__name
 
     name = property(__getname)
 
-
-class NIO_gen_eth(object):
+class NIO_gen_eth(NIO):
 
     """ Create a nio_gen_eth object
         dynamips: the dynamips server object
@@ -666,21 +662,18 @@ class NIO_gen_eth(object):
 
         return ' is connected to real PCAP ' + self.__interface + ' interface'
 
-    def delete(self):
-        send(self.__d, 'nio delete %s' % self.__name)
-
     def __getinterface(self):
         return self.__interface
-
     interface = property(__getinterface)
+    def delete(self):
+        send(self.__d, 'nio delete %s' % self.__name)
 
     def __getname(self):
         return self.__name
 
     name = property(__getname)
 
-
-class NIO_tap(object):
+class NIO_tap(NIO):
 
     """ Create a nio_tap object
         dynamips: the dynamips server object
@@ -712,21 +705,18 @@ class NIO_tap(object):
 
         return ' is connected to real TAP ' + self.__interface + ' interface'
 
-    def delete(self):
-        send(self.__d, 'nio delete %s' % self.__name)
-
     def __getinterface(self):
         return self.__interface
-
     interface = property(__getinterface)
+    def delete(self):
+        send(self.__d, 'nio delete %s' % self.__name)
 
     def __getname(self):
         return self.__name
 
     name = property(__getname)
 
-
-class NIO_unix(object):
+class NIO_unix(NIO):
 
     """ Create a nio_unix object
         dynamips: the dynamips server object
@@ -756,9 +746,6 @@ class NIO_unix(object):
 
         send(self.__d, 'nio create_unix %s %s %s' % (self.__name, self.__unixlocal, self.__unixremote))
 
-    def delete(self):
-        send(self.__d, 'nio delete %s' % self.__name)
-
     def config_info(self):
         """return an info string for .net file config"""
 
@@ -779,13 +766,14 @@ class NIO_unix(object):
 
     unixremote = property(__getunixremote)
 
+    def delete(self):
+        send(self.__d, 'nio delete %s' % self.__name)
     def __getname(self):
         return self.__name
 
     name = property(__getname)
 
-
-class NIO_vde(object):
+class NIO_vde(NIO):
 
     """ Create a nio_vde object
         dynamips: the dynamips server object
@@ -825,9 +813,6 @@ class NIO_vde(object):
 
         return ' is connected to VDE ' + self.controlsock + ":" + self.localsock
 
-    def delete(self):
-        send(self.__d, 'nio delete %s' % self.__name)
-
     def __getcontrolsock(self):
         return self.__controlsock
 
@@ -838,13 +823,14 @@ class NIO_vde(object):
 
     localsock = property(__getlocalsock)
 
+    def delete(self):
+        send(self.__d, 'nio delete %s' % self.__name)
     def __getname(self):
         return self.__name
 
     name = property(__getname)
 
-
-class NIO_null(object):
+class NIO_null(NIO):
 
     """ Create a nio_nulll object
         dynamips: the dynamips server object
@@ -876,7 +862,6 @@ class NIO_null(object):
         return self.__name
 
     name = property(__getname)
-
 
 class BaseAdapter(object):
 
@@ -918,7 +903,7 @@ class BaseAdapter(object):
                 return
             else:
                 raise DynamipsError, 'Cannot insert %s into slot %i into router %s, because the slot is already occupied by another %s' % (adapter, slot, router.name,
-                    router.slot[slot].adapter)
+                                                                                                                                           router.slot[slot].adapter)
         except AttributeError:
             # There is no adapter in this slot
             pass
@@ -950,7 +935,7 @@ class BaseAdapter(object):
                 slot,
                 0,
                 adapter,
-                ))
+            ))
 
     def is_empty(self):
         """ Return true if the adapter is empty
@@ -1099,7 +1084,7 @@ class BaseAdapter(object):
                 dst_dynamips=remoteserver,
                 dst_adapter=remoteadapter,
                 dst_port=dst_port,
-                )
+            )
 
     def filter(
         self,
@@ -1247,7 +1232,7 @@ class PA(BaseAdapter):
             'slot_add_binding',
             intlist,
             wics,
-            )
+        )
         self.default = False
         #generate an OIR event
         if router.state == 'running':
@@ -1278,7 +1263,7 @@ class PA_C7200_IO_FE(PA):
             'C7200-IO-FE',
             ports,
             intlist,
-            )
+        )
         self.interface_name = 'FastEthernet'
         #this IS a default adapter that we don't want to see in running config
         self.default = True
@@ -1307,7 +1292,7 @@ class PA_C7200_IO_2FE(PA):
             'C7200-IO-2FE',
             ports,
             intlist,
-            )
+        )
         self.interface_name = 'FastEthernet'
         #this IS a default adapter that we don't want to see in running config
         self.default = True
@@ -1336,7 +1321,7 @@ class PA_C7200_IO_GE_E(PA):
             'C7200-IO-GE-E',
             ports,
             intlist,
-            )
+        )
         self.interface_name = 'GigabitEthernet'
         #this IS a default adapter that we don't want to see in running config
         self.default = True
@@ -1359,7 +1344,7 @@ class PA_A1(PA):
             'PA-A1',
             1,
             intlist,
-            )
+        )
         self.interface_name = 'ATM'
 
 
@@ -1377,7 +1362,7 @@ class PA_FE_TX(PA):
             'PA-FE-TX',
             1,
             intlist,
-            )
+        )
         self.interface_name = 'FastEthernet'
 
 
@@ -1395,7 +1380,7 @@ class PA_2FE_TX(PA):
             'PA-2FE-TX',
             2,
             intlist,
-            )
+        )
         self.interface_name = 'FastEthernet'
 
 
@@ -1413,7 +1398,7 @@ class PA_GE(PA):
             'PA-GE',
             1,
             intlist,
-            )
+        )
         self.interface_name = 'GigabitEthernet'
 
 
@@ -1431,7 +1416,7 @@ class PA_4T(PA):
             'PA-4T+',
             4,
             intlist,
-            )
+        )
         self.interface_name = 'Serial'
 
 
@@ -1450,7 +1435,7 @@ class PA_8T(PA):
             ['s', 5, 5],
             ['s', 6, 6],
             ['s', 7, 7],
-            )
+        )
         PA.__init__(
             self,
             router,
@@ -1458,7 +1443,7 @@ class PA_8T(PA):
             'PA-8T',
             8,
             intlist,
-            )
+        )
         self.interface_name = 'Serial'
 
 
@@ -1476,7 +1461,7 @@ class PA_4E(PA):
             'PA-4E',
             4,
             intlist,
-            )
+        )
         self.interface_name = 'Ethernet'
 
 
@@ -1495,7 +1480,7 @@ class PA_8E(PA):
             ['e', 5, 5],
             ['e', 6, 6],
             ['e', 7, 7],
-            )
+        )
         PA.__init__(
             self,
             router,
@@ -1503,7 +1488,7 @@ class PA_8E(PA):
             'PA-8E',
             8,
             intlist,
-            )
+        )
         self.interface_name = 'Ethernet'
 
 
@@ -1521,7 +1506,7 @@ class PA_POS_OC3(PA):
             'PA-POS-OC3',
             1,
             intlist,
-            )
+        )
         self.interface_name = 'POS'
 
 
@@ -1571,13 +1556,15 @@ class NM(BaseAdapter):
             bindingcommand,
             intlist,
             wics,
-            )
+        )
         #set up default values for modules
         self.default = False
 
     def can_be_removed(self):
-        return True
-
+        if self.router.state == 'running':
+            return False
+        else:
+            return True
 
 class Leopard_2FE(NM):
 
@@ -1593,7 +1580,7 @@ class Leopard_2FE(NM):
             'Leopard-2FE',
             2,
             intlist,
-            )
+        )
         self.interface_name = 'FastEthernet'
         #this IS a default adapter that we don't want to see in running config
         self.default = True
@@ -1616,7 +1603,7 @@ class NM_1FE_TX(NM):
             'NM-1FE-TX',
             1,
             intlist,
-            )
+        )
         self.interface_name = 'FastEthernet'
 
 
@@ -1634,7 +1621,7 @@ class NM_1E(NM):
             'NM-1E',
             1,
             intlist,
-            )
+        )
         self.interface_name = 'Ethernet'
 
 
@@ -1652,7 +1639,7 @@ class NM_4E(NM):
             'NM-4E',
             4,
             intlist,
-            )
+        )
         self.interface_name = 'Ethernet'
 
 
@@ -1670,7 +1657,7 @@ class NM_4T(NM):
             'NM-4T',
             4,
             intlist,
-            )
+        )
         self.interface_name = 'Serial'
 
 
@@ -1691,7 +1678,7 @@ class NM_16ESW(NM):
             'NM-16ESW',
             16,
             intlist,
-            )
+        )
         self.interface_name = 'FastEthernet'
 
 
@@ -1710,7 +1697,7 @@ class NM_CIDS(NM):
             'NM-CIDS',
             1,
             intlist,
-            )
+        )
 
 
 class NM_NAM(NM):
@@ -1728,7 +1715,7 @@ class NM_NAM(NM):
             'NM-NAM',
             1,
             intlist,
-            )
+        )
 
 
 class GT96100_FE(NM):
@@ -1746,7 +1733,7 @@ class GT96100_FE(NM):
             2,
             intlist,
             wics=3,
-            )
+        )
         self.interface_name = 'FastEthernet'
         self.default = True
 
@@ -1769,7 +1756,7 @@ class CISCO2600_MB_1E(NM):
             1,
             intlist,
             wics=2,
-            )
+        )
         self.interface_name = 'FastEthernet'
         #this IS a default adapter that we don't want to see in running config
         self.default = True
@@ -1793,7 +1780,7 @@ class CISCO2600_MB_2E(NM):
             2,
             intlist,
             wics=2,
-            )
+        )
         self.interface_name = 'Ethernet'
         self.default = True
 
@@ -1816,7 +1803,7 @@ class CISCO2600_MB_1FE(NM):
             1,
             intlist,
             wics=2,
-            )
+        )
         self.interface_name = 'FastEthernet'
         self.default = True
 
@@ -1839,7 +1826,7 @@ class CISCO2600_MB_2FE(NM):
             2,
             intlist,
             wics=2,
-            )
+        )
         self.interface_name = 'FastEthernet'
         self.default = True
 
@@ -1863,7 +1850,7 @@ class CISCO1710_MB_1FE_1E(NM):
             2,
             intlist,
             wics=0,
-            )
+        )
         self.interface_name = 'FastEthernet'
         self.default = True
 
@@ -1886,7 +1873,7 @@ class C1700_MB_1ETH(NM):
             2,
             intlist,
             2,
-            )
+        )
         self.interface_name = 'FastEthernet'
         self.default = True
 
@@ -1910,7 +1897,7 @@ class C1700_WIC1(NM):
             1,
             intlist,
             wics=2,
-            )
+        )
         self.interface_name = 'WIC'
         self.default = True
 
@@ -1984,7 +1971,7 @@ class Router(object):
             'sparsemem': 'False',
             'idlemax': 1500,
             'idlesleep': 30,
-            }
+        }
 
         send(self.__d, 'vm create %s %i %s' % (name, self.__instance, model))
         # Ghosts don't get console ports
@@ -2278,9 +2265,9 @@ class Router(object):
 
         #create final output, with proper indentation
         return 'Router ' + self.name + ' is ' + self.state + '\n' + '  Hardware is dynamips emulated Cisco ' + model + router_specific_info + ' with ' + \
-                str(self.ram) + ' MB RAM\n' + '  Router\'s hypervisor runs on ' + self.dynamips.host + ":" + str(self.dynamips.port) + \
-                ', console is on port ' + str(self.console) + image_info + idlepc_info + '\n  ' + str(self.nvram) + ' KB NVRAM, ' + str(self.disk0) + \
-                ' MB disk0 size, ' + str(self.disk1) + ' MB disk1 size' + '\n' + slot_info
+               str(self.ram) + ' MB RAM\n' + '  Router\'s hypervisor runs on ' + self.dynamips.host + ":" + str(self.dynamips.port) + \
+               ', console is on port ' + str(self.console) + image_info + idlepc_info + '\n  ' + str(self.nvram) + ' KB NVRAM, ' + str(self.disk0) + \
+               ' MB disk0 size, ' + str(self.disk1) + ' MB disk1 size' + '\n' + slot_info
 
     def idleprop(self, function, value=None):
         """ get, show, or set the online idlepc value
@@ -2484,10 +2471,17 @@ class Router(object):
 
         if self.__state != 'running':
             #TODO this is overhere because of dynamips bug
-            if self.slot[0] == None:
+            try:
+                if self.slot[0] == None:
+                    send(self.__d, '%s set_npe %s %s' % (self.__model, self.__name, npe))
+                    self.__npe = npe
+                    return
+            except AttributeError:
+                # This must be a ghost instance without slots
                 send(self.__d, '%s set_npe %s %s' % (self.__model, self.__name, npe))
                 self.__npe = npe
                 return
+            
             if npe in ['npe-g1', 'npe-g2'] and type(self.slot[0]) != PA_C7200_IO_GE_E:
                 #lets change the IO card to the GE one
                 #TODO handle all the connections on the card
@@ -2634,10 +2628,8 @@ class Router(object):
 
         if DEBUGGER:  # Work around an annoying bug in the Komodo debugger
             return
-        #check if the NVRAM file exists
+        #cannot check whether the NVRAM file exists, because it might be distributed on another mashine, in another workingdir etc.
         try:
-            nvram_file = open(self.__model + '_' + self.__name + '_nvram')
-            nvram_file.close()
             #TODO
             #for some funny reason dynamips gets frozen when it does not find the magic number in the nvram file...need to investigate this
             cf = send(self.__d, 'vm extract_config %s' % self.__name)
@@ -2750,7 +2742,7 @@ class Router(object):
         return self.__oldidle
 
     oldidle = property(__getoldidle, __setoldidle, doc=
-        'Enable or disable legacy idle pc value option. Setting to True disables direct jumps between JIT blocks, allowing use of pre 0.2.7-RC2 idlepc values.')
+                       'Enable or disable legacy idle pc value option. Setting to True disables direct jumps between JIT blocks, allowing use of pre 0.2.7-RC2 idlepc values.')
 
     def __setexec_area(self, exec_area):
         """ Set the Exec Area size for this instance
@@ -2889,7 +2881,7 @@ class C7200(Router):
             disk1=0,
             npe='npe-200',
             midplane='vxr',
-            )
+        )
         self.model_string = '7200'
         #fill 7200 defaults
         self._defaults['ram'] = 256
@@ -2902,8 +2894,6 @@ class C7200(Router):
         # generate the slots for port adapters
         Router.createslots(self, 7)
 
-
-        #TODO default slot0 can now be also other PAs
         #self.slot[0] = PA_C7200_IO_2FE(self, 0)
 
 
@@ -2925,7 +2915,7 @@ class C2691(Router):
             nvram=55,
             disk0=16,
             disk1=0,
-            )
+        )
         self.model_string = '2691'
         #fill 2691 defaults
         self._defaults['ram'] = 128
@@ -2961,7 +2951,7 @@ class C2600(Router):
             nvram=128,
             disk0=8,
             disk1=8,
-            )
+        )
         self.model_string = chassis
         self._defaults['ram'] = 64
         self._defaults['nvram'] = 128
@@ -2983,7 +2973,7 @@ class C2600(Router):
             '2621XM': CISCO2600_MB_2FE,
             '2650XM': CISCO2600_MB_1FE,
             '2651XM': CISCO2600_MB_2FE,
-            }
+        }
         self.slot[0] = chassis2600transform[chassis](self, 0)
 
     def __setchassis(self, chassis):
@@ -3027,7 +3017,7 @@ class C3725(Router):
             nvram=55,
             disk0=16,
             disk1=0,
-            )
+        )
         self.model_string = '3725'
         #fill 3725 defaults
         self._defaults['ram'] = 2128
@@ -3059,7 +3049,7 @@ class C3745(Router):
             nvram=151,
             disk0=16,
             disk1=0,
-            )
+        )
         self.model_string = '3745'
         #fill 3746 defaults
         self._defaults['ram'] = 128
@@ -3095,7 +3085,7 @@ class C3600(Router):
             nvram=128,
             disk0=0,
             disk1=0,
-            )
+        )
         self.chassis = chassis
         #fill 3600 defaults
         self._defaults['ram'] = 128
@@ -3183,7 +3173,7 @@ class C1700(Router):
             nvram=32,
             disk0=0,
             disk1=0,
-            )
+        )
 
         self.chassis = chassis
         self.model_string = chassis
@@ -3205,7 +3195,7 @@ class C1700(Router):
             '1750': C1700_MB_1ETH,
             '1751': C1700_MB_1ETH,
             '1760': C1700_MB_1ETH,
-            }
+        }
         self.slot[0] = chassis1700transform[chassis](self, 0)
 
         # Hack for 1751 and 1760
@@ -3323,9 +3313,10 @@ class Bridge(object):
             except KeyError:
                 raise DynamipsError, 'port does not exist on this switch'
 
-        nio_t = type(nio)
-        if nio_t == NIO_udp or nio_t == NIO_linux_eth or nio_t == NIO_gen_eth or nio_t == NIO_tap or nio_t == NIO_unix:
+        if isinstance(nio, NIO):
             send(self.__d, 'nio_bridge add_nio %s %s' % (self.__name, nio.name))
+        else:
+            raise DynamipsError, 'invalid NIO type'
 
         # Add the NETIO to the list
         self.__nios.append(nio)
@@ -3445,12 +3436,9 @@ class FRSW(object):
 
         try:
             nio1 = self.nio(port1).name
-        except KeyError:
-            raise DynamipsError, 'port1 does not exist on this switch'
-        try:
             nio2 = self.nio(port2).name
-        except KeyError:
-            raise DynamipsError, 'port2 does not exist on this switch'
+        except DynamipsWarning, e:
+            raise DynamipsError, e
 
         send(self.__d, 'frsw create_vc %s %s %i %s %i' % (
             self.__name,
@@ -3458,7 +3446,7 @@ class FRSW(object):
             dlci1,
             nio2,
             dlci2,
-            ))
+        ))
 
         #track the connections
         self.__pvcs[(port1, dlci1)] = (port2, dlci2)
@@ -3507,13 +3495,10 @@ class FRSW(object):
 
         try:
             nio1 = self.nio(port1).name
-        except KeyError:
-            raise DynamipsError, 'port1 does not exist on this switch'
-        try:
             nio2 = self.nio(port2).name
-        except KeyError:
-            raise DynamipsError, 'port2 does not exist on this switch'
-
+        except DynamipsWarning, e:
+            raise DynamipsError, e
+              
         send(self.__d, 'frsw delete_vc %s %s %i %s %i' % (self.__name, nio1, dlci1, nio2, dlci2))
 
         #untrack the connections
@@ -3563,7 +3548,7 @@ class FRSW(object):
                 dst_dynamips=remoteserver,
                 dst_adapter=remoteadapter,
                 dst_port=dst_port,
-                )
+            )
 
     def connected(self, interface, port):
         """ Returns a boolean indicating if a port on this adapter is connected or not
@@ -3585,17 +3570,12 @@ class FRSW(object):
             try:
                 return self.__nios[port]
             except KeyError:
-                raise DynamipsWarning, 'Frame-Relay switchport ' + str(port) + ' on device ' + self.name + ' is defined, but not used'
-
-        # as of 0.2.5pre5 add_nio has been removed. For now I'm just removing sending the nio command
-        #nio_t = type(nio)
-        # is is kosher to connect a frame relay switch to a linux or gen interface? I don't know... How about chained FRSW switches?
-        #if nio_t == NIO_udp or nio_t == NIO_linux_eth or nio_t == NIO_gen_eth or nio_t == NIO_tap or nio_t == NIO_unix:
-        #    send(self.__d, 'frsw add_nio %s %s' % (self.__name, nio.name))
-
-        # Set the NETIO for this port
-        self.__nios[port] = nio
-
+                raise DynamipsWarning, 'switchport ' + str(port) + ' is not connected to anything'
+        if isinstance(nio, NIO):
+            # Set the NETIO for this port
+            self.__nios[port] = nio
+        else:
+            raise DynamipsError, 'invalid NIO type'
 
     def __getadapter(self):
         """ Returns the adapter property
@@ -3634,8 +3614,6 @@ class FRSW(object):
         return self.__pvcs
 
     pvcs = property(__getpvcs, doc='Return the pvc which maps port,dlci pair to each other')
-
-
 
 ###############################################################################
 
@@ -3682,12 +3660,12 @@ class ATMBR(object):
 
 
     def configure(
-         self,
-         port1,
-         port2,
-         vpi2,
-         vci2,
-         ):
+        self,
+        port1,
+        port2,
+        vpi2,
+        vci2,
+        ):
         """ Tell the switch to switch between port1 and port 2 / vpi2 / vci2
         NOTE: both ports must be connected to something before map can be applied
         port1, port2: Two different ports on this switch
@@ -3710,12 +3688,9 @@ class ATMBR(object):
 
         try:
             nio1 = self.nio(port1).name
-        except KeyError:
-            raise DynamipsError, 'port1 does not exist on this switch'
-        try:
             nio2 = self.nio(port2).name
-        except KeyError:
-            raise DynamipsError, 'port2 does not exist on this switch'
+        except DynamipsWarning, e:
+            raise DynamipsError, e
 
         send(self.__d, 'atm_bridge configure %s %s %s %i %i' % (
             self.__name,
@@ -3723,17 +3698,17 @@ class ATMBR(object):
             nio2,
             vpi2,
             vci2,
-            ))
+        ))
 
         self.__mapping[port1] = (port2, vpi2, vci2)
 
     def unconfigure(
-         self,
-         port1,
-         port2,
-         vpi2,
-         vci2,
-         ):
+        self,
+        port1,
+        port2,
+        vpi2,
+        vci2,
+        ):
         """ Tell the switch to delete the switch between port1 and port 2 / vpi2 / vci2
         NOTE: both ports must be connected to something before map can be applied
         port1, port2: Two different ports on this switch
@@ -3756,12 +3731,9 @@ class ATMBR(object):
 
         try:
             nio1 = self.nio(port1).name
-        except KeyError:
-            raise DynamipsError, 'port1 does not exist on this switch'
-        try:
             nio2 = self.nio(port2).name
-        except KeyError:
-            raise DynamipsError, 'port2 does not exist on this switch'
+        except DynamipsWarning, e:
+            raise DynamipsError, e
 
         send(self.__d, 'atm_bridge unconfigure %s %s %s %i %i' % (
             self.__name,
@@ -3769,7 +3741,7 @@ class ATMBR(object):
             nio2,
             vpi2,
             vci2,
-            ))
+        ))
 
         del self.__mapping[port1]
 
@@ -3816,7 +3788,7 @@ class ATMBR(object):
                 dst_dynamips=remoteserver,
                 dst_adapter=remoteadapter,
                 dst_port=dst_port,
-                )
+            )
 
     def disconnect(self, port):
         #disconnect everything on port1, delete the nio and delete all mappings.....TODO talk to Chris about redesigning the IPC
@@ -3852,10 +3824,13 @@ class ATMBR(object):
             try:
                 return self.__nios[port]
             except KeyError:
-                raise DynamipsWarning, 'ATMBR switchport ' + str(port) + ' on device ' + self.name + ' is defined, but not used'
+                raise DynamipsWarning, 'switchport ' + str(port) + ' is not connected to anything'
 
-        # Set the NETIO for this port
-        self.__nios[port] = nio
+        if isinstance(nio, NIO):
+            # Set the NETIO for this port
+            self.__nios[port] = nio
+        else:
+            raise DynamipsError, 'invalid NIO type'
 
     def __getadapter(self):
         """Returns the adapter property
@@ -3983,12 +3958,9 @@ class ATMSW(object):
 
         try:
             nio1 = self.nio(port1).name
-        except KeyError:
-            raise DynamipsError, 'port1 does not exist on this switch'
-        try:
             nio2 = self.nio(port2).name
-        except KeyError:
-            raise DynamipsError, 'port2 does not exist on this switch'
+        except DynamipsWarning, e:
+            raise DynamipsError, e
 
         send(self.__d, 'atmsw delete_vpc %s %s %i %s %i' % (
             self.__name,
@@ -3996,7 +3968,7 @@ class ATMSW(object):
             vpi1,
             nio2,
             vpi2,
-            ))
+        ))
 
         #untrack the connections
         del self.__vpivci_map[(port1, vpi1)]
@@ -4028,12 +4000,9 @@ class ATMSW(object):
 
         try:
             nio1 = self.nio(port1).name
-        except KeyError:
-            raise DynamipsError, 'port1 does not exist on this switch'
-        try:
             nio2 = self.nio(port2).name
-        except KeyError:
-            raise DynamipsError, 'port2 does not exist on this switch'
+        except DynamipsWarning, e:
+            raise DynamipsError, e
 
         send(self.__d, 'atmsw create_vpc %s %s %i %s %i' % (
             self.__name,
@@ -4041,7 +4010,7 @@ class ATMSW(object):
             vpi1,
             nio2,
             vpi2,
-            ))
+        ))
 
         #track the mapping
         self.__vpivci_map[(port1, vpi1)] = (port2, vpi2)
@@ -4080,12 +4049,9 @@ class ATMSW(object):
 
         try:
             nio1 = self.nio(port1).name
-        except KeyError:
-            raise DynamipsError, 'port1 does not exist on this switch'
-        try:
             nio2 = self.nio(port2).name
-        except KeyError:
-            raise DynamipsError, 'port2 does not exist on this switch'
+        except DynamipsWarning, e:
+            raise DynamipsError, e
 
         send(self.__d, 'atmsw delete_vcc %s %s %i %i %s %i %i' % (
             self.__name,
@@ -4095,7 +4061,7 @@ class ATMSW(object):
             nio2,
             vpi2,
             vci2,
-            ))
+        ))
 
         del self.__vpivci_map[(port1, vpi1, vci1)]
 
@@ -4133,12 +4099,9 @@ class ATMSW(object):
 
         try:
             nio1 = self.nio(port1).name
-        except KeyError:
-            raise DynamipsError, 'port1 does not exist on this switch'
-        try:
             nio2 = self.nio(port2).name
-        except KeyError:
-            raise DynamipsError, 'port2 does not exist on this switch'
+        except DynamipsWarning, e:
+            raise DynamipsError, e
 
         send(self.__d, 'atmsw create_vcc %s %s %i %i %s %i %i' % (
             self.__name,
@@ -4148,7 +4111,7 @@ class ATMSW(object):
             nio2,
             vpi2,
             vci2,
-            ))
+        ))
 
         self.__vpivci_map[(port1, vpi1, vci1)] = (port2, vpi2, vci2)
 
@@ -4195,7 +4158,7 @@ class ATMSW(object):
                 dst_dynamips=remoteserver,
                 dst_adapter=remoteadapter,
                 dst_port=dst_port,
-                )
+            )
 
     def disconnect(self, port):
         #disconnect everything on port1, delete the nio and delete all mappings.....TODO talk to Chris about redesigning the IPC
@@ -4244,10 +4207,12 @@ class ATMSW(object):
             try:
                 return self.__nios[port]
             except KeyError:
-                raise DynamipsWarning, 'ATM switchport ' + str(port) + ' on device ' + self.name + ' is defined, but not used'
-
-        # Set the NETIO for this port
-        self.__nios[port] = nio
+                raise DynamipsWarning, 'switchport ' + str(port) + ' is not connected to anything'
+        if isinstance(nio, NIO):
+            # Set the NETIO for this port
+            self.__nios[port] = nio
+        else:
+            raise DynamipsError, 'invalid NIO type'
 
     def __getadapter(self):
         """ Returns the adapter property
@@ -4344,8 +4309,8 @@ class ETHSW(object):
             raise DynamipsError, 'invalid port. Must be an int >= 0'
         try:
             nio = self.nio(port).name
-        except KeyError:
-            raise DynamipsError, 'port1 does not exist on this switch'
+        except DynamipsWarning, e:
+            raise DynamipsError, e
 
         #not implemented yet in dynamips
         #send(self.__d, 'ethsw unset_port ' + self.__name + ' ' + nio + ' ' + str(vlan))
@@ -4364,8 +4329,8 @@ class ETHSW(object):
             raise DynamipsError, 'invalid vlan. Must be an int >= 0'
         try:
             nio = self.nio(port).name
-        except KeyError:
-            raise DynamipsError, 'port1 does not exist on this switch'
+        except DynamipsWarning, e:
+            raise DynamipsError, e
 
         porttype = porttype.lower()
         if porttype != 'access' and porttype != 'dot1q':
@@ -4429,13 +4394,13 @@ class ETHSW(object):
                 dst_dynamips=remoteserver,
                 dst_adapter=remoteadapter,
                 dst_port=dst_port,
-                )
+            )
 
     def disconnect(self, port):
         try:
             nio = self.nio(port).name
-        except KeyError:
-            raise DynamipsError, 'port1 does not exist on this switch'
+        except DynamipsWarning, e:
+            raise DynamipsError, e
 
         send(self.__d, 'ethsw remove_nio %s %s' % (self.__name, nio))
         del self.mapping[port]
@@ -4467,10 +4432,9 @@ class ETHSW(object):
             try:
                 return self.nios[port]
             except KeyError:
-                raise DynamipsWarning, 'Ethernet switchport ' + str(port) + ' on device ' + self.name + ' is defined, but not used'
+                raise DynamipsWarning, 'switchport ' + str(port) + ' is not connected to anything'
 
-        nio_t = type(nio)
-        if nio_t == NIO_udp or nio_t == NIO_linux_eth or nio_t == NIO_gen_eth or nio_t == NIO_tap or nio_t == NIO_unix:
+        if isinstance(nio, NIO):
             send(self.__d, 'ethsw add_nio %s %s' % (self.__name, nio.name))
         else:
             raise DynamipsError, 'invalid NIO type'
@@ -4687,7 +4651,7 @@ def validate_connect(
         'g',
         'n',
         'i',
-        )
+    )
     serials = 's'
     atms = 'a'
     poss = 'p'

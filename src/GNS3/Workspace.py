@@ -158,7 +158,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         # FIXME: Define step for project creation
         self.loadProject(file)
 
-
     def loadProject(self, projectFile=None):
         """ Load a project from the given file
 
@@ -167,118 +166,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         if projectFile is None:
             self.mainWindow.setWindowTitle(translate("Workspace", "GNS3 - New Project"))
-
-#    def cleanNodeStates(self):
-#        """ Shutdown the interfaces and hypervisors
-#        """
-#        for node in globals.GApp.topology.nodes.itervalues():
-#            node.shutdownInterfaces()
-#            node.closeHypervisor()
-#  
-#    def switchToMode_Design(self):
-#        """ Function called to switch to mode `Design'
-#        """
-#
-#        # disabled the console
-#        self.textEditConsole.setEnabled(False)
-#        try:
-#                try:
-#                    for node in globals.GApp.topology.nodes.itervalues():
-#                        node.resetNode()
-#                        if type(node) == IOSRouter:
-#                            node.cleanNodeFiles()
-#                except (lib.DynamipsErrorHandled,  socket.error):
-#                    pass
-#        finally:
-#            self.cleanNodeStates()
-#
-#        if globals.HypervisorManager != None and self.useHypervisorManager:
-#            globals.HypervisorManager.stopProcHypervisors()
-#
-#        self.__switchToMode(globals.Enum.Mode.Design)
-#        self.action_swModeDesign.setChecked(True)
-#        self.statusbar.showMessage(translate("Workspace", "Design Mode"))
-
-#    def __restoreButtonState(self):
-#        """ Restore button state if can't continue when switching to emulation mode
-#        """
-#    
-#        if self.previousMode == globals.Enum.Mode.Design:
-#            self.action_swModeDesign.setChecked(True)
-#        if globals.HypervisorManager != None and self.useHypervisorManager:
-#            globals.HypervisorManager.stopProcHypervisors()
-            
-#    def switchToMode_Emulation(self):
-#        """ Function called to switch to mode `Emulation'
-#        """
-#
-#        if len(globals.GApp.iosimages.keys()) == 0:
-#            # No IOS images configured, users have to register an IOS before going into emulation mode
-#            QtGui.QMessageBox.warning(self, translate("Workspace", "Emulation Mode"), translate("Workspace", "Please register at least one IOS image"))
-#            self.__action_IOSImages()
-#            self.__restoreButtonState()
-#            return
-#
-#        self.useHypervisorManager = False
-#        for node in globals.GApp.topology.nodes.itervalues():
-#            if type(node) == IOSRouter and not node.config.image:
-#                node.setDefaultIOSImage()
-#            if type(node) == IOSRouter:
-#                image = globals.GApp.iosimages[node.config.image]
-#                if image.hypervisor_host == '':
-#                    self.useHypervisorManager = True
-#            elif type(node) != Cloud and node.config.hypervisor_host == '':
-#                self.useHypervisorManager = True
-#            
-#        if self.useHypervisorManager:
-#
-#            if globals.GApp.systconf['dynamips'].path == '':
-#                QtGui.QMessageBox.warning(self, translate("Workspace", "Emulation Mode"), translate("Workspace", "Please configure the path to Dynamips"))
-#                self.__action_Preferences()
-#                self.__restoreButtonState()
-#                return
-#
-#            # hypervisor not started, so don't try to continue
-#            if globals.HypervisorManager != None and globals.HypervisorManager.startProcHypervisors() == False:
-#                self.__restoreButtonState()
-#                return
-#        try:
-#            for node in globals.GApp.topology.nodes.itervalues():
-#                node.configNode()
-#            for node in globals.GApp.topology.nodes.itervalues():
-#                if type(node) == IOSRouter:
-#                    node.configConnections()
-#        except (lib.DynamipsVerError, lib.DynamipsError), msg:
-#            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"),  str(msg))
-#            self.cleanNodeStates()
-#            self.__restoreButtonState()
-#            return
-#        except (lib.DynamipsErrorHandled,  socket.error):
-#            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
-#            self.cleanNodeStates()
-#            self.__restoreButtonState()
-#            return
-#
-#        self.__switchToMode(globals.Enum.Mode.Emulation)
-#        self.action_swModeEmulation.setChecked(True)
-#        self.statusbar.showMessage(translate("Workspace", "Emulation Mode"))
-#        self.action_Add_link.setChecked(False)
-#        self.__action_addLink()
-#        self.treeWidget_TopologySummary.emulationMode()
-#        self.__startNonIOSNodes()
-#        try:
-#            globals.GApp.dynagen.apply_idlepc()
-#            if globals.useIOSghosting:
-#                globals.GApp.dynagen.ghosting()
-#        except:
-#            self.cleanNodeStates()
-#            self.__restoreButtonState()
-#            self.switchToMode_Design()
-#            return
-#        # enable the console
-#        self.textEditConsole.setEnabled(True)
-
-    #-----------------------------------------------------------------------
 
     def __action_Export(self):
         """ Export the scene to an image file
@@ -411,7 +298,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
     
         for node in globals.GApp.topology.nodes.itervalues():
-            if type(node) == IOSRouter and node.dev.state == 'running':
+            if isinstance(node, IOSRouter) and node.dev.state == 'running':
                 node.console()
 
     def __startNonIOSNodes(self):
@@ -443,7 +330,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     
         node_list = []
         for node in globals.GApp.topology.nodes.values():
-            if type(node) == IOSRouter:
+            if isinstance(node, IOSRouter):
                 node_list.append(node)
                 
         count = len(node_list)

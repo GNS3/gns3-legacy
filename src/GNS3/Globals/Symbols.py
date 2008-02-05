@@ -19,15 +19,24 @@
 # Contact: contact@gns3.net
 #
 
-from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.Cloud import Cloud
 from GNS3.Node.Hub import Hub
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
+from GNS3.Node.IOSRouter1700 import IOSRouter1700
+from GNS3.Node.IOSRouter2600 import IOSRouter2600
+from GNS3.Node.IOSRouter3600 import IOSRouter3600
+from GNS3.Node.IOSRouter3700 import IOSRouter3700
+from GNS3.Node.IOSRouter7200 import IOSRouter7200
 
 SYMBOLS = (
-    {'name': "Router", 'object': IOSRouter,
+        
+    {'name': "Router c1700", 'object': IOSRouter1700,
+    'normal_svg_file': ":/symbols/rt_standard.normal.svg",
+    'select_svg_file': ":/symbols/rt_standard.selected.svg"},
+           
+    {'name': "Router c3600", 'object': IOSRouter3600,
     'normal_svg_file': ":/symbols/rt_standard.normal.svg",
     'select_svg_file': ":/symbols/rt_standard.selected.svg"},
     
@@ -35,7 +44,7 @@ SYMBOLS = (
 #    'normal_svg_file': ":/symbols/rt_netflow.normal.svg",
 #    'select_svg_file': ":/symbols/rt_standard.selected.svg"},
 
-    {'name': "Router with firewall", 'object': IOSRouter,
+    {'name': "Router with firewall", 'object': IOSRouter3600,
     'normal_svg_file': ":/symbols/rt_firewall.normal.svg",
     'select_svg_file': ":/symbols/rt_firewall.selected.svg"},
     
@@ -43,7 +52,7 @@ SYMBOLS = (
 #    'normal_svg_file': ":/symbols/gateway.normal.svg",
 #    'select_svg_file': ":/symbols/gateway.selected.svg"},
 
-    {'name': "Edge label switch router", 'object': IOSRouter,
+    {'name': "Edge label switch router", 'object': IOSRouter3600,
     'normal_svg_file': ":/symbols/edgelabel_swproc.normal.svg",
     'select_svg_file': ":/symbols/edgelabel_swproc.selected.svg"},
     

@@ -17,12 +17,15 @@ import os, sys, cmd, time
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as Dynagen_Namespace
 import GNS3.Dynagen.dynamips_lib as lib
+import GNS3.Dynagen as DynagenFile
 from PyQt4 import QtCore, QtGui
 from GNS3.Dynagen.console import Console as Dynagen_Console, getItems
 from GNS3.External.PyCutExt import PyCutExt
 from GNS3.Node.IOSRouter import IOSRouter
 
-class Console(PyCutExt, Dynagen_Console):
+from GNS3.Dynagen.confConsole import AbstractConsole as Dynagen_Console2
+
+class Console(PyCutExt,  Dynagen_Console):
 
     # list of keywords to color
     keywords = set(["capture", "console", "filter", "idlepc", "no",
@@ -35,10 +38,10 @@ class Console(PyCutExt, Dynagen_Console):
     def __init__(self, parent):
         """ Initialise the Console widget
         """
+
         # Set the prompt, for Dynagen.Console and PyCutExt
         self.prompt = '=> '
         sys.ps1 = '=> '
-        sys.ps2 = '.. '
 
         # Set introduction message
         self.intro = 'Dynagen management console for Dynamips (adapted for GNS3)\nCopyright (c) 2005-2007 Greg Anuzelli\nCopyright (c) 2007 GNS3 Project'
@@ -59,7 +62,9 @@ class Console(PyCutExt, Dynagen_Console):
 
         cmd.Cmd.__init__(self)
         self.namespace = globals.GApp.dynagen
+        #self.dynagen = globals.GApp.dynagen
         debuglevel = self.namespace.debuglevel
+        #Dynagen_Console.__init__(self,  globals.GApp.dynagen, DynagenFile)
 
     def onKeyPress_Tab(self):
         """ Imitate cmd.Cmd.complete(self, text, state) function
@@ -123,12 +128,9 @@ class Console(PyCutExt, Dynagen_Console):
         except Exception,e:
             print e
 
-        if self.more:
-            self.write(sys.ps2)
-        else:
-            self.write(sys.ps1)
-            self.lines = []
-            self._clearLine()
+        self.write(self.prompt)
+        self.lines = []
+        self._clearLine()
             
     def do_start(self, args):
         """start  {/all | router1 [router2] ...}\nstart all or a specific router(s)"""

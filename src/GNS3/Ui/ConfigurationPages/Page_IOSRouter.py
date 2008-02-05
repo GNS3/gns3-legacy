@@ -19,13 +19,12 @@
 # Contact: contact@gns3.net
 #
 
-import os,  re
+import os, re
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_IOSRouterPage import Ui_IOSRouterPage
-from GNS3.Utils import fileBrowser, translate,  testOpenFile
-from GNS3.Config.Objects import iosRouterConf
-from GNS3.Node.IOSRouter import IOSRouter 
+from GNS3.Utils import fileBrowser, translate, testOpenFile
+import GNS3.Dynagen.dynamips_lib as lib
 
 # where the configs are stored
 configDirectory = '.'
@@ -43,73 +42,14 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
 
         # connect slots
         self.connect(self.pushButtonStartupConfig, QtCore.SIGNAL('clicked()'), self.slotSelectStartupConfig)
-        self.connect(self.comboBoxIOS, QtCore.SIGNAL('currentIndexChanged(int)'), self.slotSelectedIOS)
-        
-        self.slots_list = [self.comboBoxSlot0,
-                           self.comboBoxSlot1,
-                           self.comboBoxSlot2,
-                           self.comboBoxSlot3,
-                           self.comboBoxSlot4,
-                           self.comboBoxSlot5,
-                           self.comboBoxSlot6]
 
-    def slotSelectedIOS(self, index):
-        """ Add network modules / port adapters to combo boxes
-            Specifics platform configuration
-            index: integer
-        """
-
-        for widget in self.slots_list:
-            widget.clear()
-        
-        image = unicode(self.comboBoxIOS.currentText(),  'utf-8')
-        if image == '':
-            return
-        
-        image = globals.GApp.iosimages[image]
-        # create slots entries
-        platform = image.platform
-        chassis =  image.chassis
-        
-        for slotnb in range(7):
-            adapters = IOSRouter.getAdapters(platform, chassis,  slotnb)
-            if adapters:
-                widget = self.slots_list[slotnb]
-                widget.addItems(adapters)
-    
-        # restore previous selected modules
-        if self.currentNodeID != None:
-            
-            node = globals.GApp.topology.getNode(self.currentNodeID)
-            IOSconfig = node.config
-            index = 0
-        
-            for widget in self.slots_list:
-                combobox_index = widget.findText(IOSconfig.slots[index])
-                if (combobox_index != -1):
-                    widget.setCurrentIndex(combobox_index)
-                index += 1
-    
-                self.comboBoxMidplane.clear()
-                self.comboBoxMidplane.setEnabled(False)
-                self.comboBoxNPE.clear()
-                self.comboBoxNPE.setEnabled(False)
-                self.spinBoxIomem.setEnabled(False)
-    
-            if platform == '7200':
-                self.comboBoxMidplane.addItems(['std', 'vxr'])
-                self.comboBoxMidplane.setEnabled(True)
-                index = self.comboBoxMidplane.findText(IOSconfig.midplane)
-                if index != -1:
-                    self.comboBoxMidplane.setCurrentIndex(index)
-                self.comboBoxNPE.addItems(['npe-100', 'npe-150', 'npe-175', 'npe-200', 'npe-225', 'npe-300', 'npe-400'])
-                self.comboBoxNPE.setEnabled(True)
-                index = self.comboBoxNPE.findText(IOSconfig.npe)
-                if index != -1:
-                    self.comboBoxNPE.setCurrentIndex(index)
-            if platform == '3600':
-                self.spinBoxIomem.setEnabled(True)
-                self.spinBoxIomem.setValue(IOSconfig.iomem)
+        self.widget_slots = {0: self.comboBoxSlot0,
+                                        1: self.comboBoxSlot1,
+                                        2: self.comboBoxSlot2,
+                                        3: self.comboBoxSlot3,
+                                        4: self.comboBoxSlot4,
+                                        5: self.comboBoxSlot5,
+                                        6: self.comboBoxSlot6}
 
     def slotSelectStartupConfig(self):
         """ Get startup-config from the file system
@@ -132,35 +72,69 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         node = globals.GApp.topology.getNode(id)
         self.currentNodeID = id
         if config:
-            IOSconfig = config
+            router_config = config
         else:
-            IOSconfig = node.config
-        self.comboBoxIOS.clear()
-        images = globals.GApp.iosimages.keys()
-        self.comboBoxIOS.addItems(images)
-        index = self.comboBoxIOS.findText(IOSconfig.image)
-        if index != -1:
-            self.comboBoxIOS.setCurrentIndex(index)
-        self.spinBoxConsolePort.setValue(IOSconfig.console)
-        self.lineEditStartupConfig.setText(IOSconfig.cnfg)
-        self.lineEditMAC.setText(IOSconfig.mac)
-        self.spinBoxRamSize.setValue(IOSconfig.ram)
-        self.spinBoxNvramSize.setValue(IOSconfig.nvram)
-        self.spinBoxPcmciaDisk0Size.setValue(IOSconfig.disk0)
-        self.spinBoxPcmciaDisk1Size.setValue(IOSconfig.disk1)
-        if IOSconfig.mmap == True:
+            router_config = node.get_config()
+ 
+        platform = node.get_platform()
+        chassis = node.get_chassis()
+        self.textLabel_Platform.setText(platform)
+        self.textLabel_Model.setText(chassis)
+        self.textLabel_ImageIOS.setText(router_config['image'])
+        for widget in self.widget_slots.values():
+            widget.clear()
+        
+        for (slot_number,  slot_modules) in lib.ADAPTER_MATRIX[platform][chassis].iteritems():
+            if type(slot_modules) == str:
+                self.widget_slots[slot_number].addItem(slot_modules)
+            else:
+                self.widget_slots[slot_number].addItems([''] + list(slot_modules))
+            if router_config['slots'][slot_number]:
+                index = self.widget_slots[slot_number].findText(router_config['slots'][slot_number])
+                if (index != -1):
+                    self.widget_slots[slot_number].setCurrentIndex(index)
+
+        if platform == 'c7200':
+            self.comboBoxMidplane.addItems(['std', 'vxr'])
+            self.comboBoxMidplane.setEnabled(True)
+            self.comboBoxNPE.addItems(['npe-100', 'npe-150', 'npe-175', 'npe-200', 'npe-225', 'npe-300', 'npe-400'])
+            self.comboBoxNPE.setEnabled(True)
+        else:
+            self.comboBoxMidplane.setEnabled(False)
+            self.comboBoxNPE.setEnabled(False)
+        if platform in ('c3600', 'c1700'):
+            self.spinBoxIomem.setEnabled(True)
+        else:
+            self.spinBoxIomem.setEnabled(False)
+
+        if router_config['cnfg']:
+            self.lineEditStartupConfig.setText(router_config['cnfg'])
+        
+        if router_config['mac']:
+            self.lineEditMAC.setText(router_config['mac'])
+        
+        self.spinBoxRamSize.setValue(router_config['ram'])
+        self.spinBoxNvramSize.setValue(router_config['nvram'])
+        self.spinBoxPcmciaDisk0Size.setValue(router_config['disk0'])
+        self.spinBoxPcmciaDisk1Size.setValue(router_config['disk1'])
+        if router_config['mmap'] == True:
             self.checkBoxMapped.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxMapped.setCheckState(QtCore.Qt.Unchecked)
-        self.lineEditConfreg.setText(IOSconfig.confreg)
-        self.spinBoxExecArea.setValue(IOSconfig.exec_area)
-        self.spinBoxIomem.setValue(IOSconfig.iomem)
-        index = self.comboBoxMidplane.findText(IOSconfig.midplane)
-        if index != -1:
-            self.comboBoxMidplane.setCurrentIndex(index)
-        index = self.comboBoxNPE.findText(IOSconfig.npe)
-        if index != -1:
-            self.comboBoxNPE.setCurrentIndex(index)
+        self.lineEditConfreg.setText(router_config['confreg'])
+        if router_config['exec_area']:
+            self.spinBoxExecArea.setValue(router_config['exec_area'])
+
+        if platform == 'c3600' and router_config['iomem']: 
+            self.spinBoxIomem.setValue(router_config['iomem'])
+        if router_config['midplane']:
+            index = self.comboBoxMidplane.findText(router_config.midplane['midplane'])
+            if index != -1:
+                self.comboBoxMidplane.setCurrentIndex(index)
+        if router_config['npe']:
+            index = self.comboBoxNPE.findText(router_config['npe'])
+            if index != -1:
+                self.comboBoxNPE.setCurrentIndex(index)
 
     def saveConfig(self, id, config = None):
         """ Save the config
@@ -168,43 +142,54 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
 
         node = globals.GApp.topology.getNode(id)
         if config:
-            IOSconfig = config
+            router_config = config
         else:
-            IOSconfig = node.config
-        IOSconfig.image = unicode(self.comboBoxIOS.currentText(),  'utf-8')
-        IOSconfig.console = self.spinBoxConsolePort.value()
-        IOSconfig.cnfg = unicode(self.lineEditStartupConfig.text(),  'utf-8')
+            router_config = node.get_config()
+
+        cnfg = unicode(self.lineEditStartupConfig.text(),  'utf-8')
+        if cnfg:
+            router_config['cnfg'] = cnfg
+            
         mac = str(self.lineEditMAC.text())
         if mac and not re.search(r"""^([0-9a-fA-F]{2}[:-]){5}[0-9a-fA-F]{2}$""", mac):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'MAC', translate("Page_IOSRouter", "Invalid MAC address (format required: hh:hh:hh:hh:hh:hh)"))
-        else:
-            IOSconfig.mac = mac
-        IOSconfig.ram = self.spinBoxRamSize.value()
-        IOSconfig.nvram = self.spinBoxNvramSize.value()
-        IOSconfig.disk0 = self.spinBoxPcmciaDisk0Size.value()
-        IOSconfig.disk1 = self.spinBoxPcmciaDisk1Size.value()
+        elif mac != '':
+            router_config['mac'] = mac
+        router_config['ram'] = self.spinBoxRamSize.value()
+        router_config['nvram'] = self.spinBoxNvramSize.value()
+        router_config['disk0'] = self.spinBoxPcmciaDisk0Size.value()
+        router_config['disk1'] = self.spinBoxPcmciaDisk1Size.value()
         if self.checkBoxMapped.checkState() == QtCore.Qt.Checked:
-            IOSconfig.mmap = True
+            router_config['mmap'] = True
         else:
-            IOSconfig.mmap = False
-        IOSconfig.confreg = str(self.lineEditConfreg.text())
-        IOSconfig.exec_area = self.spinBoxExecArea.value()
-        IOSconfig.iomem = self.spinBoxIomem.value()
-        if str(self.comboBoxMidplane.currentText()):
-            IOSconfig.midplane = str(self.comboBoxMidplane.currentText())
-        if str(self.comboBoxNPE.currentText()):
-            IOSconfig.npe = str(self.comboBoxNPE.currentText())
+            router_config['mmap'] = False
+        router_config['confreg'] = str(self.lineEditConfreg.text())
+        exec_area = self.spinBoxExecArea.value()
+        
+        if exec_area:
+            router_config['exec_area'] = exec_area 
 
-        IOSconfig.slots = []
-        slotnb = 0
-        for widget in self.slots_list:
+        platform = node.get_platform()
+        if platform == 'c7200':
+            if str(self.comboBoxMidplane.currentText()):
+                router_config['midplane'] = str(self.comboBoxMidplane.currentText())
+            if str(self.comboBoxNPE.currentText()):
+                router_config['npe'] = str(self.comboBoxNPE.currentText())
+
+        if platform == 'c3600':
+            router_config['iomem'] = self.spinBoxIomem.value()
+        
+        for (slot_number,  widget) in self.widget_slots.iteritems():
             module = str(widget.currentText())
-            if config == None:
-                node.updateLinks(slotnb, module)
-            IOSconfig.slots.append(module)
-            slotnb += 1
+            if module:
+                router_config['slots'][slot_number] = module
+            else:
+                try:
+                    router_config['slots'][slot_number] = None
+                except:
+                    pass
 
-        node.reconfigNode()
+        return router_config
 
 def create(dlg):
 
