@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 
 from socket import socket, AF_INET, SOCK_STREAM
-from dynamips_lib import NIO_udp, send, debug, DynamipsError, validate_connect, Bridge, DynamipsVerError, get_reverse_udp_nio, Router, FRSW, ATMSW, ETHSW
+from dynamips_lib import NIO_udp, send, debug, DynamipsError, validate_connect, Bridge, DynamipsVerError, get_reverse_udp_nio, Router, FRSW, ATMSW, ETHSW, DynamipsWarning
 import random
 
 #version = "0.11.0.110207"
@@ -193,7 +193,7 @@ class FW(object):
             'key': '0x00000000,0x00000000,0x00000000,0x00000000',
             'ram': 128,
             }
-        self._serial = self.defaults['key']
+        self._serial = self.defaults['serial']
         self._key = self.defaults['key']
         self._ram = self.defaults['ram']
 
@@ -214,7 +214,7 @@ class FW(object):
         """starts the fw instance in pemu"""
 
         if self.state == 'running':
-            raise DynamipsError, 'firewall %s is already running' % self.name
+            raise DynamipsWarning, 'firewall %s is already running' % self.name
 
         r = send(self.p, 'pemu start %s' % self.name)
         self.state = 'running'
@@ -224,7 +224,7 @@ class FW(object):
         """stops the fw instance in pemu"""
 
         if self.state == 'stopped':
-            raise DynamipsError, 'firewall %s is already stopped' % self.name
+            raise DynamipsWarning, 'firewall %s is already stopped' % self.name
         r = send(self.p, 'pemu stop %s' % self.name)
         self.state = 'stopped'
         return r
@@ -232,7 +232,7 @@ class FW(object):
     def suspend(self):
         """suspends the fw instance in pemu"""
 
-        return self.name + ' does not support suspending'
+        return [self.name + ' does not support suspending']
 
     def resume(self):
         """resumes the fw instance in pemu"""

@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 """
@@ -39,7 +40,7 @@ from configobj import ConfigObj, flatten_errors
 from optparse import OptionParser
 
 # Constants
-VERSION = '0.11.0.111807'
+VERSION = '0.11.0.020308'
 CONFIGSPECPATH = ['/usr/share/dynagen', '/usr/local/share']
 CONFIGSPEC = 'configspec'
 INIPATH = ['/etc', '/usr/local/etc']
@@ -82,6 +83,9 @@ ADAPTER_TRANSFORM = {
     'C7200-IO-FE': PA_C7200_IO_FE,
     'C7200-IO-2FE': PA_C7200_IO_2FE,
     'C7200-IO-GE-E': PA_C7200_IO_GE_E,
+    'PA-C7200-IO-FE': PA_C7200_IO_FE,
+    'PA-C7200-IO-2FE': PA_C7200_IO_2FE,
+    'PA-C7200-IO-GE-E': PA_C7200_IO_GE_E,
     'PA-A1': PA_A1,
     'PA-FE-TX': PA_FE_TX,
     'PA-2FE-TX': PA_2FE_TX,
@@ -138,7 +142,7 @@ class Dynagen:
         self.dynamips = {}  # A dictionary of dynamips objects, indexed by dynamips server name
         self.devices = {}  # Dictionary of device objects, indexed by name
         self.bridges = {}  # Dictionary of bridge objects, indexed by name
-        self.autostart = {}  # Dictionary that tracks autostart, indexed by router name
+        self.autostart = {}  # Dictionary that tracks autostart, indexed by device name
         self.ghostsizes = {}  # A dict of the sizes of the ghosts
         self.ghosteddevices = {}  # A dict of devices that will use ghosted IOS indexed by device name\
         self.configurations = {}  # A global copy of all b64 exported configurations from the network file indexed by devicename
@@ -317,7 +321,7 @@ class Dynagen:
                     local_device.slot[slot1] = None
             return True
 
-        # Does the device we are trying to connect to actually exist?
+        # Does the device we are trying to disconnect from actually exist?
         if not self.devices.has_key(devname):
             raise DynamipsError , 'Nonexistant device ' + devname
 
@@ -404,7 +408,7 @@ class Dynagen:
             source: a string specifying the local interface
             dest: a string specifying a device and a remote interface, LAN, a raw NIO
         """
-        
+
         match_obj = interface_re.search(source)
         if not match_obj:
             # is this an interface without a port designation (e.g. "f0")?
@@ -696,11 +700,17 @@ class Dynagen:
                                     for i in range(0, port / 2 + 1):
                                         router.installwic(chosenwic, slot)
                                     return True
+                        else:
+                            # No WIC can provide the interface we need
+                            raise DynamipsError('invalid interface %s%i/%i specified on device %s. Port %i does not exist on adapter %s already in slot %i'
+                                                % (pa, slot, port, router.name, port, router.slot[slot].adapter, slot))
                 else:
                     return True
         except KeyError:
             raise DynamipsError('invalid slot %i specified for device %s' % (slot, router.name))
         except IndexError:
+            raise DynamipsError('invalid slot %i specified on device %s' % (slot, router.name))
+        except AttributeError:
             raise DynamipsError('invalid slot %i specified on device %s' % (slot, router.name))
 
         """ Note to self: One of these days you should do this section right. Programatically build a matrix of
@@ -1003,7 +1013,7 @@ class Dynagen:
                         self.dynamips[pemu_name] = Pemu(host)
                         self.dynamips[pemu_name].reset()
                     except DynamipsError:
-                        self.dowarning('Could not connect to server %s' % server.name)
+                        self.dowarning('Could not connect to pemuwrapper server %s' % server.name)
                         self.import_error = True
                         continue
 
@@ -1077,12 +1087,21 @@ class Dynagen:
                                     ):
                                     setattr(dev, subitem, device[subitem])
                                     continue
+                                elif subitem.lower() == 'autostart':
+                                    self.autostart[name] = device[subitem]
                                 elif pemu_int_re.search(subitem):
                                     # Add the tuple to the list of connections to deal with later
                                     connectionlist.append((dev, subitem, device[subitem]))
                                 else:
                                     self.dowarning( 'ignoring unknown config item: %s = %s' % (str(subitem), str(device[subitem])))
                                     self.import_error = True
+
+                        # Set default autostart flag for this fw if not already set
+                        if device['autostart'] == None:
+                            self.autostart[name] = config['autostart']
+                        else:
+                            self.autostart[name] = device['autostart']
+
                 else:
                     self.dowarning('Bad emulator definition format: %s' % server.name)
                     self.import_error = True
@@ -1111,7 +1130,7 @@ class Dynagen:
                     self.import_error = True
 
                 except DynamipsError:
-                    self.dowarning('Could not connect to server %s' % server.name)
+                    self.dowarning('Could not connect to dynamips server %s' % server.name)
                     self.import_error = True
                     continue
 
@@ -1323,9 +1342,6 @@ class Dynagen:
     def ethsw_map(self, switch, source, dest):
         """ handle the connecton on ethsw switch with .net file syntax source = dest"""
 
-        print 'ethsw map:'
-        print source
-        print dest
         parameters = len(dest.split(' '))
         if parameters == 2:
             # should be a porttype and a vlan
@@ -1589,7 +1605,7 @@ class Dynagen:
             # Reset server
             self.dynamips[hypervisor_name].reset()
         except DynamipsError:
-            self.doerror('Could not connect to server: %s' % hypervisor_name)
+            self.dowarning('Could not connect to server: %s' % hypervisor_name)
             return
 
         # if workingdir is not specified try the default_config or set it to the same directory
@@ -1603,7 +1619,7 @@ class Dynagen:
         try:
             self.dynamips[hypervisor_name].workingdir = workingdir
         except DynamipsError:
-            self.doerror('Could not set working directory to: "%s" on server: %s' % (workingdir, hypervisor_name))
+            self.dowarning('Could not set working directory to: "%s" on server: %s' % (workingdir, hypervisor_name))
             return
 
         #change the defaults config so that we have defaults for the new hypervisor
@@ -1656,7 +1672,7 @@ class Dynagen:
                         if device.serial != device.defaults['serial']:
                             self.defaults_config[h][model]['serial'] = device.serial
                         if device.key != device.defaults['key']:
-                            self.defaults_config[h][model]['serial'] = device.key
+                            self.defaults_config[h][model]['key'] = device.key
                     else:
                         #find out the model of the device
                         model = device.model_string
@@ -1712,6 +1728,7 @@ class Dynagen:
             self.running_config[h][r][slot] = adapter.adapter
 
         #go through all interfaces on the adapter
+
         for interface in adapter.interfaces:
             for dynagenport in adapter.interfaces[interface]:
                 i = adapter.interfaces[interface][dynagenport]
@@ -1736,7 +1753,8 @@ class Dynagen:
         self.running_config[h][r] = {}
 
         #add model to the running config
-        self.running_config[h][r]['model'] = model
+        if model != '7200':
+            self.running_config[h][r]['model'] = model
 
         #populate with non-default router information
         defaults = self.defaults_config[h][model]

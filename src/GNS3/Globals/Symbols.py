@@ -35,8 +35,20 @@ SYMBOLS = (
     {'name': "Router c1700", 'object': IOSRouter1700,
     'normal_svg_file': ":/symbols/rt_standard.normal.svg",
     'select_svg_file': ":/symbols/rt_standard.selected.svg"},
-           
+
+    {'name': "Router c2600", 'object': IOSRouter2600,
+    'normal_svg_file': ":/symbols/rt_standard.normal.svg",
+    'select_svg_file': ":/symbols/rt_standard.selected.svg"},
+    
     {'name': "Router c3600", 'object': IOSRouter3600,
+    'normal_svg_file': ":/symbols/rt_standard.normal.svg",
+    'select_svg_file': ":/symbols/rt_standard.selected.svg"},
+    
+    {'name': "Router c3700", 'object': IOSRouter3700,
+    'normal_svg_file': ":/symbols/rt_standard.normal.svg",
+    'select_svg_file': ":/symbols/rt_standard.selected.svg"},
+    
+    {'name': "Router c7200", 'object': IOSRouter7200,
     'normal_svg_file': ":/symbols/rt_standard.normal.svg",
     'select_svg_file': ":/symbols/rt_standard.selected.svg"},
     
@@ -44,17 +56,17 @@ SYMBOLS = (
 #    'normal_svg_file': ":/symbols/rt_netflow.normal.svg",
 #    'select_svg_file': ":/symbols/rt_standard.selected.svg"},
 
-    {'name': "Router with firewall", 'object': IOSRouter3600,
-    'normal_svg_file': ":/symbols/rt_firewall.normal.svg",
-    'select_svg_file': ":/symbols/rt_firewall.selected.svg"},
+#    {'name': "Router with firewall", 'object': IOSRouter3600,
+#    'normal_svg_file': ":/symbols/rt_firewall.normal.svg",
+#    'select_svg_file': ":/symbols/rt_firewall.selected.svg"},
     
 #    {'name': "Gateway", 'object': IOSRouter,
 #    'normal_svg_file': ":/symbols/gateway.normal.svg",
 #    'select_svg_file': ":/symbols/gateway.selected.svg"},
 
-    {'name': "Edge label switch router", 'object': IOSRouter3600,
-    'normal_svg_file': ":/symbols/edgelabel_swproc.normal.svg",
-    'select_svg_file': ":/symbols/edgelabel_swproc.selected.svg"},
+#    {'name': "Edge label switch router", 'object': IOSRouter3600,
+#    'normal_svg_file': ":/symbols/edgelabel_swproc.normal.svg",
+#    'select_svg_file': ":/symbols/edgelabel_swproc.selected.svg"},
     
 #    {'name': "Label switch router", 'object': IOSRouter,
 #    'normal_svg_file': ":/symbols/label_switch_router.normal.svg",

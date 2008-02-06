@@ -32,17 +32,7 @@ class Page_Hub(QtGui.QWidget, Ui_HubPage):
         QtGui.QWidget.__init__(self)
         self.setupUi(self)
         self.setObjectName("Hub")
-        self.connect(self.checkBoxIntegratedHypervisor, QtCore.SIGNAL('stateChanged(int)'), self.slotCheckBoxIntegratedHypervisor)
 
-    def slotCheckBoxIntegratedHypervisor(self, state):
-        """ Enable the comboBoxHypervisors if the check box is checked
-        """
-        
-        if state == QtCore.Qt.Checked:
-            self.comboBoxHypervisors.setEnabled(False)
-        else:
-            self.comboBoxHypervisors.setEnabled(True)
-        
     def loadConfig(self,  id,  config = None):
         """ Load the config
         """
@@ -54,17 +44,6 @@ class Page_Hub(QtGui.QWidget, Ui_HubPage):
             Hubconfig  = node.config
             
         self.spinBoxNbPorts.setValue(Hubconfig.ports)
-        
-        self.comboBoxHypervisors.clear()
-        for hypervisor in globals.GApp.hypervisors:
-            self.comboBoxHypervisors.addItem(hypervisor)
-        if not Hubconfig.hypervisor_host:
-            self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Unchecked)
-            index = self.comboBoxHypervisors.findText(Hubconfig.hypervisor_host + ':' + str(Hubconfig.hypervisor_port))
-            if index != -1:
-                self.comboBoxHypervisors.setCurrentIndex(index)
 
     def saveConfig(self, id, config = None):
         """ Save the config
@@ -77,18 +56,6 @@ class Page_Hub(QtGui.QWidget, Ui_HubPage):
             Hubconfig  = node.config
             
         Hubconfig.ports = self.spinBoxNbPorts.value()
-            
-        if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Checked:
-            Hubconfig.hypervisor_host = unicode('',  'utf-8')
-        elif str(self.comboBoxHypervisors.currentText()):
-            selected_hypervisor = unicode(self.comboBoxHypervisors.currentText(),  'utf-8')
-            assert(globals.GApp.hypervisors.has_key(selected_hypervisor) != None)
-            hypervisor = globals.GApp.hypervisors[selected_hypervisor]
-            Hubconfig.hypervisor_host = hypervisor.host
-            Hubconfig.hypervisor_port = hypervisor.port
-            
-        if config == None:
-            node.updatePorts()
 
 def create(dlg):
 

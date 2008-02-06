@@ -6,53 +6,14 @@
     <x>0</x>
     <y>0</y>
     <width>397</width>
-    <height>397</height>
+    <height>315</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Ethernet Switch</string>
   </property>
   <layout class="QGridLayout" >
-   <item row="0" column="0" colspan="3" >
-    <widget class="QGroupBox" name="groupBox_4" >
-     <property name="title" >
-      <string>Hypervisor</string>
-     </property>
-     <layout class="QGridLayout" >
-      <item row="0" column="0" >
-       <widget class="QCheckBox" name="checkBoxIntegratedHypervisor" >
-        <property name="text" >
-         <string>Use the hypervisor manager</string>
-        </property>
-        <property name="checked" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1" >
-       <spacer>
-        <property name="orientation" >
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" >
-         <size>
-          <width>141</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="1" column="0" colspan="2" >
-       <widget class="QComboBox" name="comboBoxHypervisors" >
-        <property name="enabled" >
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="1" column="0" colspan="2" >
+   <item row="0" column="0" colspan="2" >
     <widget class="QGroupBox" name="groupBox" >
      <property name="sizePolicy" >
       <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
@@ -140,7 +101,7 @@
      </layout>
     </widget>
    </item>
-   <item rowspan="3" row="1" column="2" >
+   <item rowspan="3" row="0" column="2" >
     <widget class="QGroupBox" name="groupBox_2" >
      <property name="title" >
       <string>Ports</string>
@@ -177,14 +138,14 @@
      </layout>
     </widget>
    </item>
-   <item row="2" column="0" >
+   <item row="1" column="0" >
     <widget class="QPushButton" name="pushButtonAdd" >
      <property name="text" >
       <string>&amp;Add</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="1" >
+   <item row="1" column="1" >
     <widget class="QPushButton" name="pushButtonDelete" >
      <property name="enabled" >
       <bool>false</bool>
@@ -194,7 +155,7 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="1" >
+   <item row="2" column="1" >
     <spacer>
      <property name="orientation" >
       <enum>Qt::Vertical</enum>
@@ -207,7 +168,7 @@
      </property>
     </spacer>
    </item>
-   <item row="4" column="2" >
+   <item row="3" column="2" >
     <spacer>
      <property name="orientation" >
       <enum>Qt::Vertical</enum>

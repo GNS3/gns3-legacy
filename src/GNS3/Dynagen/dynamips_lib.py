@@ -17,7 +17,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Softwarec
+along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 
@@ -1565,6 +1565,7 @@ class NM(BaseAdapter):
             return False
         else:
             return True
+
 
 class Leopard_2FE(NM):
 
@@ -4596,6 +4597,8 @@ def gen_connect(
         # source and dest adapters are on the same dynamips server, perform loopback binding optimization
         src_ip = '127.0.0.1'
         dst_ip = '127.0.0.1'
+        if src_dynamips.udp == dst_dynamips.udp:
+            dst_dynamips.udp = dst_dynamips.udp + 1000
     else:
         # source and dest are on different dynamips servers
         src_ip = src_dynamips.host

@@ -39,8 +39,7 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         self.connect(self.pushButtonDelete, QtCore.SIGNAL('clicked()'), self.slotDeletePort)
         self.connect(self.treeWidgetPorts,  QtCore.SIGNAL('itemActivated(QTreeWidgetItem *, int)'),  self.slotPortselected)
         self.connect(self.treeWidgetPorts,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotPortSelectionChanged)
-        self.connect(self.checkBoxIntegratedHypervisor, QtCore.SIGNAL('stateChanged(int)'), self.slotCheckBoxIntegratedHypervisor)
-       
+
         # enable sorting
         self.treeWidgetPorts.sortByColumn(0, QtCore.Qt.AscendingOrder)
         self.treeWidgetPorts.setSortingEnabled(True)
@@ -48,15 +47,6 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         self.ports = {}
         self.vlans= {}
 
-    def slotCheckBoxIntegratedHypervisor(self, state):
-        """ Enable the comboBoxHypervisors if the check box is checked
-        """
-    
-        if state == QtCore.Qt.Checked:
-            self.comboBoxHypervisors.setEnabled(False)
-        else:
-            self.comboBoxHypervisors.setEnabled(True)
-        
     def slotPortselected(self, item, column):
         """ Load a selected port
         """
@@ -150,17 +140,6 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         self.treeWidgetPorts.resizeColumnToContents(0)
         self.treeWidgetPorts.resizeColumnToContents(1)
 
-#        self.comboBoxHypervisors.clear()
-#        for hypervisor in globals.GApp.hypervisors:
-#            self.comboBoxHypervisors.addItem(hypervisor)
-#        if not ETHSWconfig.hypervisor_host:
-#            self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
-#        else:
-#            self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Unchecked)
-#            index = self.comboBoxHypervisors.findText(ETHSWconfig.hypervisor_host + ':' + str(ETHSWconfig.hypervisor_port))
-#            if index != -1:
-#                self.comboBoxHypervisors.setCurrentIndex(index)
-            
     def saveConfig(self, id, config = None):
         """ Save the config
         """
@@ -173,18 +152,6 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
 
         ETHSWconfig['ports'] = self.ports
         ETHSWconfig['vlans'] = self.vlans
-                
-#        if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Checked:
-#            ETHSWconfig.hypervisor_host = unicode('',  'utf-8')
-#        elif str(self.comboBoxHypervisors.currentText()):
-#            selected_hypervisor = unicode(self.comboBoxHypervisors.currentText(),  'utf-8')
-#            assert(globals.GApp.hypervisors.has_key(selected_hypervisor) != None)
-#            hypervisor = globals.GApp.hypervisors[selected_hypervisor]
-#            ETHSWconfig.hypervisor_host = hypervisor.host
-#            ETHSWconfig.hypervisor_port = hypervisor.port
-            
-#        if config == None:
-#            node.updatePorts()
 
 def create(dlg):
 

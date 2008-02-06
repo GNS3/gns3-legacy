@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 """
@@ -51,10 +52,10 @@ class Console(AbstractConsole):
 
     """Interactive console for users to manage dynamips"""
 
-    def __init__(self, dynagen,  namespace = None):
-        AbstractConsole.__init__(self, namespace)
+    def __init__(self, dynagen):
+        AbstractConsole.__init__(self)
         self.prompt = '=> '
-        self.intro  = 'Dynagen management console for Dynamips and Pemuwrapper\nCopyright (c) 2005-2007 Greg Anuzelli, contributions Pavel Skovajsa\n'
+        self.intro  = 'Dynagen management console for Dynamips and Pemuwrapper ' + self.namespace.VERSION + '\nCopyright (c) 2005-2007 Greg Anuzelli, contributions Pavel Skovajsa\n'
         self.dynagen = dynagen
     ## Command definitions ##
 
@@ -104,7 +105,7 @@ class Console(AbstractConsole):
 conf
 \tswitch into global config mode"""
 
-        if '?' in args or args.strip() == "":
+        if '?' in args:
             print self.do_conf.__doc__
             return
 
@@ -141,8 +142,9 @@ conf
             dynamips = self.dynagen.create_dynamips_hypervisor(hyp_name, hyp_port)
 
             #call hypervisor config mode
-            nested_cmd = confHypervisorConsole(dynamips, self.dynagen)
-            nested_cmd.cmdloop()
+            if dynamips != None:
+                nested_cmd = confHypervisorConsole(dynamips, self.dynagen)
+                nested_cmd.cmdloop()
         else:
 
             #looks like we found an already existing hypervisor instance, so let's jump into nested conf Cmd to configure it
@@ -344,6 +346,7 @@ conf
                 try:
                     for line in device.stop():
                         print line.strip()
+                    time.sleep(1)
                     for line in device.start():
                         print line.strip()
                 except IndexError:
@@ -360,6 +363,7 @@ conf
         for device in devices:
             try:
                 print self.dynagen.devices[device].stop()[0].strip()
+                time.sleep(1)
                 print self.dynagen.devices[device].start()[0].strip()
             except IndexError:
                 pass
@@ -373,7 +377,7 @@ conf
     def do_ver(self, args):
         """Print the dynagen version and credits"""
 
-        print 'dynagen has version ' + self.namespace.VERSION
+        print 'Dynagen version ' + self.namespace.VERSION
         print 'hypervisor version(s):'
         for d in self.dynagen.dynamips.values():
             print ' %s at %s:%i has version %s' % (d.type, d.host, d.port, d.version)
@@ -383,7 +387,7 @@ Dynagen is written and maintained by Greg Anuzelli
 Contributing developer: Pavel Skovajsa
 Pemuwrapper: Thomas Pani
 Pemu: Milen Svobodnikov
-The authors of the ConfObj library
+Thanks to the authors of the ConfObj library
 
 And big thanks of course to Chris Filot as the author of Dynamips.
 """
@@ -510,7 +514,7 @@ show device
 show device <device_name>
 \tshow detail information about a device
 show start
-\tshow startup lab configuration - the configuration that
+\tshow startup lab configuration
 show run
 \tshow running configuration of current lab
 show run <device_name>

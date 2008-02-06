@@ -96,9 +96,10 @@ class HypervisorManager:
                 node.set_hypervisor(dynamips_hypervisor)
                 return hypervisor
                 
-        s = socket(AF_INET, SOCK_STREAM)
-        s.setblocking(0)
-        s.settimeout(300)
+#        s = socket(AF_INET, SOCK_STREAM)
+#        s.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+#        s.setblocking(0)
+#        s.settimeout(300)
 
         hypervisor = self.startNewHypervisor()
         if hypervisor == None:
@@ -109,6 +110,9 @@ class HypervisorManager:
         progress = None
         connection_success = False
         for nb in range(count + 1):
+            s = socket(AF_INET, SOCK_STREAM)
+            s.setblocking(0)
+            s.settimeout(300)
             if nb == 3:
                 progress = QtGui.QProgressDialog(translate("HypervisorManager", "Connecting to an hypervisor on port " + str(hypervisor['port']) + " ..."), translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
                 progress.setMinimum(1)
@@ -123,6 +127,7 @@ class HypervisorManager:
             try:
                 s.connect(('localhost', hypervisor['port']))
             except:
+                s.close()
                 time.sleep(1)
                 continue
             debug("Hypervisor manager: hypervisor on port " +  str(hypervisor['port']) + " started")

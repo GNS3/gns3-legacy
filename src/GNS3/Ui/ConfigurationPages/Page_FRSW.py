@@ -39,23 +39,13 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
         self.connect(self.pushButtonDelete, QtCore.SIGNAL('clicked()'), self.slotDeleteVC)
         self.connect(self.treeWidgetVCmap,  QtCore.SIGNAL('itemActivated(QTreeWidgetItem *, int)'),  self.slotVCselected)
         self.connect(self.treeWidgetVCmap,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotVCSelectionChanged)
-        self.connect(self.checkBoxIntegratedHypervisor, QtCore.SIGNAL('stateChanged(int)'), self.slotCheckBoxIntegratedHypervisor)
-        
+
         # enable sorting
         self.treeWidgetVCmap.sortByColumn(0, QtCore.Qt.AscendingOrder)
         self.treeWidgetVCmap.setSortingEnabled(True)
         
         self.mapping = {}
 
-    def slotCheckBoxIntegratedHypervisor(self, state):
-        """ Enable the comboBoxHypervisors if the check box is checked
-        """
-        
-        if state == QtCore.Qt.Checked:
-            self.comboBoxHypervisors.setEnabled(False)
-        else:
-            self.comboBoxHypervisors.setEnabled(True)
-        
     def slotVCselected(self, item, column):
         """ Load a selected virtual channel
         """
@@ -138,17 +128,6 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
             self.mapping[source] = destination
         self.treeWidgetVCmap.resizeColumnToContents(0)
         self.treeWidgetVCmap.resizeColumnToContents(1)
-        
-        self.comboBoxHypervisors.clear()
-        for hypervisor in globals.GApp.hypervisors:
-            self.comboBoxHypervisors.addItem(hypervisor)
-        if not FRSWconfig.hypervisor_host:
-            self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Unchecked)
-            index = self.comboBoxHypervisors.findText(FRSWconfig.hypervisor_host + ':' + str(FRSWconfig.hypervisor_port))
-            if index != -1:
-                self.comboBoxHypervisors.setCurrentIndex(index)
 
     def saveConfig(self, id, config = None):
         """ Save the config
@@ -169,18 +148,6 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
                 FRSWconfig.ports.append(srcport)
             if not destport in FRSWconfig.ports:
                 FRSWconfig.ports.append(destport)
-                
-        if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Checked:
-            FRSWconfig.hypervisor_host = unicode('',  'utf-8')
-        elif str(self.comboBoxHypervisors.currentText()):
-            selected_hypervisor = unicode(self.comboBoxHypervisors.currentText(),  'utf-8')
-            assert(globals.GApp.hypervisors.has_key(selected_hypervisor) != None)
-            hypervisor = globals.GApp.hypervisors[selected_hypervisor]
-            FRSWconfig.hypervisor_host = hypervisor.host
-            FRSWconfig.hypervisor_port = hypervisor.port
-            
-        if config == None:
-            node.updatePorts()
 
 def create(dlg):
 
