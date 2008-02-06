@@ -184,7 +184,7 @@ class Topology(QtGui.QGraphicsScene):
             src_node.set_hypervisor(dst_node.hypervisor)
         if not isinstance(dst_node, IOSRouter):
             dst_node.set_hypervisor(src_node.hypervisor)
-        
+
         src_node.hypervisor.configchange = True
         dst_node.hypervisor.configchange = True
         srcdev = self.__nodes[srcid].get_dynagen_device()
@@ -219,19 +219,29 @@ class Topology(QtGui.QGraphicsScene):
         srcdev = link.source.get_dynagen_device()
         dstdev = link.dest.get_dynagen_device()
         try:
-            if type(link.source) == IOSRouter:
+            if isinstance(link.source, IOSRouter):
                 globals.GApp.dynagen.disconnect(srcdev, link.srcIf, dstdev.name + ' ' + link.destIf)
-            elif type(link.dest) == IOSRouter:
+                link.source.set_config(link.source.get_config())
+            elif isinstance(link.dest, IOSRouter):
                 globals.GApp.dynagen.disconnect(dstdev, link.destIf, srcdev.name + ' ' + link.srcIf)
+                link.dest.set_config(link.dest.get_config())
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
             return
+            
+
+        if isinstance(link.source, IOSRouter):
+            link.source.set_config(link.source.get_config())
+        if isinstance(link.dest, IOSRouter):
+            link.dest.set_config(link.dest.get_config())
+            
         link.source.deleteEdge(link)
         link.dest.deleteEdge(link)
         if link in self.__links:
             self.__links.remove(link)
             self.removeItem(link)
         globals.GApp.dynagen.update_running_config()
+        print globals.GApp.dynagen.running_config
 
     def __getLinks(self):
         """ Return topology links

@@ -87,6 +87,8 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         for (slot_number,  slot_modules) in lib.ADAPTER_MATRIX[platform][chassis].iteritems():
             if type(slot_modules) == str:
                 self.widget_slots[slot_number].addItem(slot_modules)
+            elif platform == 'c7200' and slot_number == 0:
+                self.widget_slots[slot_number].addItems(list(slot_modules))
             else:
                 self.widget_slots[slot_number].addItems([''] + list(slot_modules))
             if router_config['slots'][slot_number]:

@@ -339,7 +339,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
             except (lib.DynamipsErrorHandled,  socket.error):
                 QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
                 progress.reset()
-                self.switchToMode_Design()
                 return
             current += 1
         progress.setValue(count)
