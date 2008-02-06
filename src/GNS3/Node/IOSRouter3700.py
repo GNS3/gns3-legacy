@@ -31,3 +31,10 @@ class IOSRouter3700(IOSRouter, IOSRouter3700Defaults):
         IOSRouter.__init__(self, renderer_normal, renderer_select)
         IOSRouter3700Defaults.__init__(self)
         self.platform = 'c3700'
+
+    def get_chassis(self):
+        """ Returns router model
+        """
+    
+        assert(self.router)
+        return ('')

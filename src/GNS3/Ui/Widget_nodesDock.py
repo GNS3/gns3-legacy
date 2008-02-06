@@ -22,7 +22,7 @@
 from PyQt4 import QtCore, QtGui
 import GNS3.Ui.svg_resources_rc
 from GNS3.Utils import translate
-from GNS3.Globals.Symbols import SYMBOLS,  DECORATIVE_SYMBOLS
+from GNS3.Globals.Symbols import SYMBOLS
 
 class nodesDock(QtGui.QTreeWidget):
     """ Class for managing the node types list

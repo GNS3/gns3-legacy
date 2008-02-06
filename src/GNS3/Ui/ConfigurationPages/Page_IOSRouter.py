@@ -128,7 +128,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         if platform == 'c3600' and router_config['iomem']: 
             self.spinBoxIomem.setValue(router_config['iomem'])
         if router_config['midplane']:
-            index = self.comboBoxMidplane.findText(router_config.midplane['midplane'])
+            index = self.comboBoxMidplane.findText(router_config['midplane'])
             if index != -1:
                 self.comboBoxMidplane.setCurrentIndex(index)
         if router_config['npe']:

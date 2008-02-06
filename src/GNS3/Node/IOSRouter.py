@@ -115,7 +115,7 @@ class IOSRouter(AbstractNode):
             'image',
             'cnfg',
             'mac',
-            'iomem', 
+            #'iomem', 
             'npe', 
             'midplane'
             ]
@@ -253,7 +253,7 @@ class IOSRouter(AbstractNode):
         for module in self.router.slot:
             if module == None:
                 # get all possible modules for the specified router model and module slot
-                possible_modules = lib.ADAPTER_MATRIX[self.router.model][self.router.model_string][slot_number]
+                possible_modules = lib.ADAPTER_MATRIX[self.get_platform()][self.get_chassis()][slot_number]
                 for module_name in possible_modules:
                     # check if we want to use this module
                     if not MODULES_INTERFACES.has_key(module_name):

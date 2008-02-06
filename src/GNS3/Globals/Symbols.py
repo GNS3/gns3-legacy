@@ -126,10 +126,3 @@ SYMBOLS = (
 #    'normal_svg_file': ":/symbols/PIX_firewall.normal.svg",
 #    'select_svg_file': ":/symbols/PIX_firewall.selected.svg"},
 )
-
-DECORATIVE_SYMBOLS = ("Multilayer switch", 
-                      "Route switch processor",  
-                      "Access Point", 
-                      "Lightweight Access Point", 
-                      "WLAN controller", 
-                      "PIX firewall")

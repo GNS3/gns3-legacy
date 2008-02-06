@@ -31,3 +31,10 @@ class IOSRouter7200(IOSRouter, IOSRouter7200Defaults):
         IOSRouter.__init__(self, renderer_normal, renderer_select)
         IOSRouter7200Defaults.__init__(self)
         self.platform = 'c7200'
+
+    def get_chassis(self):
+        """ Returns router model
+        """
+    
+        assert(self.router)
+        return ('')

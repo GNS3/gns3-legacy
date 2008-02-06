@@ -298,30 +298,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
     
         for node in globals.GApp.topology.nodes.itervalues():
-            if isinstance(node, IOSRouter) and node.dev.state == 'running':
+            if isinstance(node, IOSRouter) and node.get_dynagen_device().state == 'running':
                 node.console()
 
-    def __startNonIOSNodes(self):
-        """ Start non IOS nodes (ETHSW, ATMSW, FRSW, Bridge, Cloud)
-        """
-    
-        node_list = []
-        for node in globals.GApp.topology.nodes.values():
-            if type(node) != IOSRouter:
-                node_list.append(node)
-        for node in node_list:
-            try:
-                node.startNode()
-            except lib.DynamipsError, msg:
-                QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Workspace", "Dynamips error"),  str(msg))
-            except lib.DynamipsWarning,  msg:
-                QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Workspace", "Dynamips warning"),  str(msg))
-                continue
-            except (lib.DynamipsErrorHandled,  socket.error):
-                QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
-                self.switchToMode_Design()
-                return
-    
     def __launchProgressDialog(self,  action,  text):
         """ Launch a progress dialog and do a action
             action: string
