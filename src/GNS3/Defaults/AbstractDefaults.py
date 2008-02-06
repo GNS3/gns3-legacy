@@ -78,3 +78,25 @@ class AbstractDefaults:
                 if imagename in self.dynagen.useridledb:
                     print imagename + ' found in user idlepc database\nSetting idlepc value to ' + self.dynagen.useridledb[imagename]
                     self.config['idlepc'] = self.dynagen.useridledb[imagename]
+
+    def set_int_option(self, option, argument):
+        """ Set integer type option in config
+        """
+
+        option_value = int(argument)
+        if getattr(self, 'default_' + option) == option_value:
+            if self.config.has_key(option):
+                del self.config[option]
+        else:
+            self.config[option] = option_value
+
+    def set_string_option(self, option, argument):
+        """ Set string type option in config
+        """
+
+        option_value = argument
+        if getattr(self, 'default_' + option) == option_value:
+            if self.config.has_key(option):
+                del self.config[option]
+        else:
+            self.config[option] = option_value

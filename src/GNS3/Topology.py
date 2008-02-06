@@ -121,6 +121,8 @@ class Topology(QtGui.QGraphicsScene):
                     node.set_hypervisor(dynamips_hypervisor)
     
                 node.set_image(image_conf.filename, image_conf.chassis)
+                if image_conf.idlepc:
+                    node.set_string_option('idlepc', image_conf.idlepc)
             else:
                 pass
 #                dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor('localhost', 7200)
@@ -195,6 +197,12 @@ class Topology(QtGui.QGraphicsScene):
                 globals.GApp.dynagen.connect(srcdev, srcif, dstdev.name + ' ' + dstif)
             elif isinstance(self.__nodes[dstid], IOSRouter):
                 globals.GApp.dynagen.connect(dstdev, dstif, srcdev.name + ' ' + srcif)
+            
+#            if not isinstance(src_node, IOSRouter):
+#                src_node.startNode()
+#            elif not isinstance(dst_node, IOSRouter):
+#                dst_node.startNode()
+            
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
             return False

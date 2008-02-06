@@ -51,17 +51,6 @@ class ETHSW(AbstractNode):
         self.ethsw = None
         self.dynagen.update_running_config()
 
-#        self.d = self.ethsw.dynamips.host + ':' + str(self.ethsw.dynamips.port)
-#        
-#        self.running_config = self.dynagen.running_config[self.d][self.e]
-        
-#conf_ETHSW_defaults = {
-#    'ports': {},
-#    'vlans': {},
-#    'hypervisor_host': '',
-#    'hypervisor_port': 0,
-#}
-
     def create_config(self):
         """ Creates the configuration of this switch
         """
@@ -126,36 +115,28 @@ class ETHSW(AbstractNode):
         """ Node configuration
         """
 
-#        self.ethsw = lib.ETHSW(self.hypervisor, name = self.hostname)
-#        self.dynagen.devices[self.hostname] = self.ethsw
         self.create_config()
-        #self.startNode()
         return True
         
     def startNode(self):
         """ Start the node
         """
 
-#        connected_interfaces = self.getConnectedInterfaceList()
-#        connected_interfaces = map(int, connected_interfaces)
-        
+        #self.dynagen.ethsw_map(self.ethsw, '1', 'access 1')
+        return
+        connected_interfaces = map(int, self.getConnectedInterfaceList())
+        print connected_interfaces
         for (vlan,  portlist) in self.config['vlans'].iteritems():
             for port in portlist:
-                    porttype = self.config['ports'][port]
-#                    if destinterface.lower()[:3] == 'nio':
-#                        self.dev.nio(port, nio=self.createNIO(self.getHypervisor(), destinterface), porttype=porttype, vlan=vlan)
-#                    else:
-                    self.ethsw.set_port(port, porttype, vlan)
-                        
-#        for (vlan,  portlist) in self.config['vlans'].iteritems():
-#            for port in portlist:
-#                if port in connected_interfaces:
-#                    (destnode, destinterface)= self.getConnectedNeighbor(str(port))
-#                    porttype = self.config.ports[port]
-#                    if destinterface.lower()[:3] == 'nio':
-#                        self.dev.nio(port, nio=self.createNIO(self.getHypervisor(), destinterface), porttype=porttype, vlan=vlan)
-#                    else:
-#                        self.dev.set_port(port, porttype, vlan)
+                if port in connected_interfaces:
+                    (destnode, destinterface)= self.getConnectedNeighbor(str(port))
+                    porttype = self.config.ports[port]
+                    print 'here'
+                    if destinterface.lower()[:3] == 'nio':
+                        self.dynagen.ethsw_map(self.ethsw, port, portype + str(vlan) + destinterface)
+                    else:
+                        print 'call ethswmap'
+                        self.dynagen.ethsw_map(self.ethsw, port, portype + str(vlan))
 
         self.startupInterfaces()
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
