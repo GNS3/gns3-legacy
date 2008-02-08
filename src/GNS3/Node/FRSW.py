@@ -122,27 +122,13 @@ class FRSW(AbstractNode):
             (srcport,  srcdlci) = source.split(':')
             (destport,  destdlci) = destination.split(':')
             if int(srcport) in connected_interfaces and int(destport) in connected_interfaces:
-#                if not self.frsw.connected('s', int(srcport)):
-                self.frsw.map(int(srcport), int(srcdlci), int(destport), int(destdlci))
-#                if not self.frsw.connected('s', int(destport)):
-                self.frsw.map(int(destport), int(destdlci), int(srcport), int(srcdlci))
+                if not self.frsw.connected('s', int(srcport)):
+                    self.frsw.map(int(srcport), int(srcdlci), int(destport), int(destdlci))
+                if not self.frsw.connected('s', int(destport)):
+                    self.frsw.map(int(destport), int(destdlci), int(srcport), int(srcdlci))
 
         self.startupInterfaces()
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
-
-#    def updatePorts(self):
-#        """ Check if the connections are still ok
-#        """
-#
-#        misconfigured_port = []
-#        connected_ports = self.getConnectedInterfaceList()
-#        for port in connected_ports:
-#            if not port in self.getInterfaces():
-#                misconfigured_port.append(port)
-#                self.deleteInterface(port)
-#        
-#        if len(misconfigured_port):
-#            self.error.showMessage(translate('FRSW', 'Frame Relay switch ' + self.hostname + ': ports ' + str(misconfigured_port) + ' no longer available, deleting connected links ...'))
 
     def mousePressEvent(self, event):
         """ Call when the node is clicked

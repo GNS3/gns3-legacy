@@ -82,20 +82,7 @@ class Cloud(AbstractNode):
 
         self.startupInterfaces()
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
-        
 
-#    def updateNIOs(self):
-#    
-#        misconfigured_nio = []
-#        connected_nios = self.getConnectedInterfaceList()
-#        for nio in connected_nios:
-#            if not nio in self.getInterfaces():
-#                misconfigured_nio.append(nio)
-#                self.deleteInterface(nio)
-#        
-#        if len(misconfigured_nio):
-#            self.error.showMessage(translate('Cloud', 'Cloud ' + self.hostname + ': NIOs ' + str(misconfigured_nio) + ' no longer available, deleting connected links ...'))
-        
     def mousePressEvent(self, event):
         """ Call when the node is clicked
             event: QtGui.QGraphicsSceneMouseEvent instance

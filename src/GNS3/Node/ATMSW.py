@@ -133,33 +133,19 @@ class ATMSW(AbstractNode):
                 srcvci = destvci = None
 
             if int(srcport) in connected_interfaces and int(destport) in connected_interfaces:
-#                if not self.atmsw.connected('a', int(srcport)):
-                if srcvci and destvci:
-                    self.atmsw.mapvc(int(srcport), int(srcvpi), int(srcvci), int(destport), int(destvpi),  int(destvci))
-                else:
-                    self.atmsw.mapvp(int(srcport), int(srcvpi), int(destport), int(destvpi))
-#                if not self.atmsw.connected('a', int(destport)):
-                if srcvci and destvci:
-                    self.atmsw.mapvc(int(destport), int(destvpi), int(destvci), int(srcport), int(srcvpi),  int(srcvci))
-                else:
-                    self.atmsw.mapvp(int(destport), int(destvpi), int(srcport), int(srcvpi))
+                if not self.atmsw.connected('a', int(srcport)):
+                    if srcvci and destvci:
+                        self.atmsw.mapvc(int(srcport), int(srcvpi), int(srcvci), int(destport), int(destvpi),  int(destvci))
+                    else:
+                        self.atmsw.mapvp(int(srcport), int(srcvpi), int(destport), int(destvpi))
+                if not self.atmsw.connected('a', int(destport)):
+                    if srcvci and destvci:
+                        self.atmsw.mapvc(int(destport), int(destvpi), int(destvci), int(srcport), int(srcvpi),  int(srcvci))
+                    else:
+                        self.atmsw.mapvp(int(destport), int(destvpi), int(srcport), int(srcvpi))
 
         self.startupInterfaces()
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
-
-#    def updatePorts(self):
-#        """ Check if the connections are still ok
-#        """
-#
-#        misconfigured_port = []
-#        connected_ports = self.getConnectedInterfaceList()
-#        for port in connected_ports:
-#            if not port in self.getInterfaces():
-#                misconfigured_port.append(port)
-#                self.deleteInterface(port)
-#        
-#        if len(misconfigured_port):
-#            self.error.showMessage(translate('ATMSW', 'ATM switch ' + self.hostname + ': ports ' + str(misconfigured_port) + ' no longer available, deleting connected links ...'))
 
     def mousePressEvent(self, event):
         """ Call when the node is clicked
