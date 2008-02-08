@@ -165,7 +165,7 @@ class Page_ATMSW(QtGui.QWidget, Ui_ATMSWPage):
             
         self.treeWidgetVCmap.clear()
         self.mapping = {}
-        for (source,  destination) in ATMSWconfig.mapping.iteritems():
+        for (source,  destination) in ATMSWconfig['mapping'].iteritems():
             item = QtGui.QTreeWidgetItem(self.treeWidgetVCmap)
             item.setText(0, source)
             item.setText(1, destination)
@@ -184,15 +184,22 @@ class Page_ATMSW(QtGui.QWidget, Ui_ATMSWPage):
         else:
             ATMSWconfig  = node.config
 
-        ATMSWconfig.mapping = self.mapping
-        ATMSWconfig.ports = []
+        connected_ports = node.getConnectedInterfaceList()
+        for port in ATMSWconfig['ports'].keys():
+            if str(port) in connected_ports and not self.ports.has_key(port):
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Ports', translate("Page_ATMSW", "A link is connected in port ") + str(port))
+                return ATMSWconfig
+            
+        ATMSWconfig['mapping'] = self.mapping
+        ATMSWconfig['ports'] = []
         for (source,  destination) in self.mapping.iteritems():
             (srcport,  rest) = source.split(':',  1)
             (destport,  rest) = destination.split(':',  1)
-            if not srcport in ATMSWconfig.ports:
-                ATMSWconfig.ports.append(srcport)
-            if not destport in ATMSWconfig.ports:
-                ATMSWconfig.ports.append(destport)
+            if not srcport in ATMSWconfig['ports']:
+                ATMSWconfig['ports'].append(srcport)
+            if not destport in ATMSWconfig['ports']:
+                ATMSWconfig['ports'].append(destport)
+        return ATMSWconfig
 
 def create(dlg):
 

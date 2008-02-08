@@ -17,13 +17,10 @@ import os, sys, cmd, time
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as Dynagen_Namespace
 import GNS3.Dynagen.dynamips_lib as lib
-import GNS3.Dynagen as DynagenFile
 from PyQt4 import QtCore, QtGui
 from GNS3.Dynagen.console import Console as Dynagen_Console, getItems
 from GNS3.External.PyCutExt import PyCutExt
 from GNS3.Node.IOSRouter import IOSRouter
-
-from GNS3.Dynagen.confConsole import AbstractConsole as Dynagen_Console2
 
 class Console(PyCutExt,  Dynagen_Console):
 
@@ -61,10 +58,9 @@ class Console(PyCutExt,  Dynagen_Console):
         """
 
         cmd.Cmd.__init__(self)
-        self.namespace = globals.GApp.dynagen
-        #self.dynagen = globals.GApp.dynagen
-        debuglevel = self.namespace.debuglevel
-        #Dynagen_Console.__init__(self,  globals.GApp.dynagen, DynagenFile)
+        self.namespace = Dynagen_Namespace
+        self.dynagen = globals.GApp.dynagen
+        debuglevel = 4#self.namespace.debuglevel
 
     def onKeyPress_Tab(self):
         """ Imitate cmd.Cmd.complete(self, text, state) function

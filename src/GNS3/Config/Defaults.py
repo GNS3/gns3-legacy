@@ -59,68 +59,6 @@ conf_hypervisor_types = {
     'baseConsole': int
 }
 
-conf_FRSW_defaults = {
-    'ports': [],
-    'mapping': {},
-    'hypervisor_host': '',
-    'hypervisor_port': 0,
-}
-
-conf_FRSW_types = {
-    'ports': list,
-    'mapping': dict,
-    'hypervisor_host': unicode,
-    'hypervisor_port': int,
-}
-
-conf_ATMSW_defaults = {
-    'ports': [],
-    'mapping': {},
-    'hypervisor_host': '',
-    'hypervisor_port': 0,
-}
-
-conf_ATMSW_types = {
-    'ports': list,
-    'mapping': dict,
-    'hypervisor_host': unicode,
-    'hypervisor_port': int,
-}
-
-conf_ETHSW_defaults = {
-    'ports': {},
-    'vlans': {},
-    'hypervisor_host': '',
-    'hypervisor_port': 0,
-}
-
-conf_ETHSW_types = {
-    'ports': dict,
-    'vlans': dict,
-    'hypervisor_host': unicode,
-    'hypervisor_port': int,
-}
-
-conf_Cloud_defaults = {
-    'nios': []
-}
-
-conf_Cloud_types = {
-    'nios': list,
-}
-
-conf_Hub_defaults = {
-    'ports': 8,
-    'hypervisor_host': '',
-    'hypervisor_port': 0,
-}
-
-conf_Hub_types = {
-    'ports': int,
-    'hypervisor_host': unicode,
-    'hypervisor_port': int,
-}
-
 conf_systemDynamips_defaults = {
     'path': '',
     'port': 7200,

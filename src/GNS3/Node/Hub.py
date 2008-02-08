@@ -42,44 +42,45 @@ class Hub(AbstractNode):
         self.hostname = 'H' + str(hub_id)
         hub_id = hub_id + 1
         self.setCustomToolTip()
-        self.config = self.getDefaultConfig()
+        
+        self.config = None
 
-    def getDefaultConfig(self):
-        """ Returns the default configuration
+    def create_config(self):
+        """ Creates the configuration of this hub
         """
-    
-        return HubConf()
+
+        self.config = {}
+        # by default create 8 ports
+        self.config['ports'] = 8
+
+    def get_config(self):
+        """ Returns the local configuration copy
+        """
+
+        return self.config
+
+    def set_config(self, config):
+        """ Set a configuration in Dynamips
+            config: dict
+        """
+        
+        self.config = config
 
     def getInterfaces(self):
         """ Return all interfaces
         """
         
         interfaces = []
-        for port in range(1,  self.config.ports + 1):
+        for port in range(1,  self.config['ports'] + 1):
             interfaces.append(str(port))
         return (interfaces)
         
     def configNode(self):
         """ Node configuration
         """
-    
-        if self.config.hypervisor_host:
-            hypervisorkey = self.config.hypervisor_host + ':' + str(self.config.hypervisor_port)
-            if globals.GApp.hypervisors.has_key(hypervisorkey):
-                hypervisor = globals.GApp.hypervisors[hypervisorkey]
-                self.configHypervisor(hypervisor.host,  hypervisor.port,  hypervisor.workdir,  hypervisor.baseUDP)
-            else:
-                print 'Hypervisor ' + hypervisorkey + ' not registered !'
-                return
-        else:
-            dynamips = globals.GApp.systconf['dynamips']
-            self.configHypervisor('localhost',  dynamips.port,  dynamips.workdir,  None)
-            
-        hypervisor = self.getHypervisor()
-        self.dev = lib.Bridge(hypervisor, name = self.hostname)
-        # register into Dynagen
-        #dynagen.devices[self.hostname] = self.dev
-        globals.GApp.dynagen.bridges[self.hostname] = self.dev
+
+        self.create_config()
+        return True
         
     def startNode(self):
         """ Start the node
@@ -88,19 +89,19 @@ class Hub(AbstractNode):
         self.startupInterfaces()
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
 
-    def updatePorts(self):
-        """ Check if the connections are still ok
-        """
-        
-        misconfigured_port = []
-        connected_ports = self.getConnectedInterfaceList()
-        for port in connected_ports:
-            if not port in self.getInterfaces():
-                misconfigured_port.append(port)
-                self.deleteInterface(port)
-        
-        if len(misconfigured_port):
-            self.error.showMessage(translate('Hub', 'Hub ' + self.hostname + ': ports ' + str(misconfigured_port) + ' no longer available, deleting connected links ...'))
+#    def updatePorts(self):
+#        """ Check if the connections are still ok
+#        """
+#        
+#        misconfigured_port = []
+#        connected_ports = self.getConnectedInterfaceList()
+#        for port in connected_ports:
+#            if not port in self.getInterfaces():
+#                misconfigured_port.append(port)
+#                self.deleteInterface(port)
+#        
+#        if len(misconfigured_port):
+#            self.error.showMessage(translate('Hub', 'Hub ' + self.hostname + ': ports ' + str(misconfigured_port) + ' no longer available, deleting connected links ...'))
         
     def mousePressEvent(self, event):
         """ Call when the node is clicked
@@ -109,7 +110,7 @@ class Hub(AbstractNode):
 
         if globals.addingLinkFlag and globals.currentLinkType != globals.Enum.LinkType.Manual and event.button() == QtCore.Qt.LeftButton:
             connected_ports = self.getConnectedInterfaceList()
-            for port in range(self.config.ports):
+            for port in range(self.config['ports']):
                 if not str(port) in connected_ports:
                     self.emit(QtCore.SIGNAL("Add link"), self.id, str(port))
                     return

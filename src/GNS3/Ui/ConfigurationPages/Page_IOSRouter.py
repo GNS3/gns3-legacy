@@ -97,8 +97,10 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                     self.widget_slots[slot_number].setCurrentIndex(index)
 
         if platform == 'c7200':
+            self.comboBoxMidplane.clear()
             self.comboBoxMidplane.addItems(['std', 'vxr'])
             self.comboBoxMidplane.setEnabled(True)
+            self.comboBoxNPE.clear()
             self.comboBoxNPE.addItems(['npe-100', 'npe-150', 'npe-175', 'npe-200', 'npe-225', 'npe-300', 'npe-400'])
             self.comboBoxNPE.setEnabled(True)
         else:
@@ -181,13 +183,26 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         if platform == 'c3600':
             router_config['iomem'] = self.spinBoxIomem.value()
         
+        router = node.get_dynagen_device()
         for (slot_number,  widget) in self.widget_slots.iteritems():
             module = str(widget.currentText())
             if module:
                 router_config['slots'][slot_number] = module
             else:
                 try:
-                    router_config['slots'][slot_number] = None
+                    remove = True
+                    if router_config['slots'][slot_number]:
+                        interfaces = router.slot[slot_number].interfaces
+                        type= interfaces.keys()[0]
+                        for port in interfaces[type].values():
+                            if router.slot[slot_number].connected(type, port):
+                                remove = False
+                                break
+                    if remove:
+                        router_config['slots'][slot_number] = None
+                    else:
+                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Slots', translate("Page_IOSRouter", "Links are connected in slot ") + str(slot_number)) 
+                        continue
                 except:
                     pass
 

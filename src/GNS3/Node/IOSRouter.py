@@ -115,17 +115,21 @@ class IOSRouter(AbstractNode):
             'image',
             'cnfg',
             'mac',
-            #'iomem', 
+            'iomem', 
             'npe', 
             'midplane'
             ]
 
     def __del__(self):
-    
-        # don't forget to delete this router in Dynamips
-        if self.router != None:
+
+        if self.router:
+            if self.router.state != 'stopped':
+                self.router.stop()
+            # don't forget to delete this router in Dynamips
             self.router.delete()
-    
+            del self.dynagen.devices[self.hostname]
+        self.dynagen.update_running_config()
+
     def get_module_name(self, module):
         """ Returns a module name
             module: object
@@ -165,7 +169,11 @@ class IOSRouter(AbstractNode):
         assert(self.router)
         # apply the options
         for option in self.router_options:
-            if getattr(self.router, option) != config[option]:
+            try:
+                router_option = getattr(self.router, option)
+            except AttributeError:
+                continue
+            if router_option != config[option]:
                 try:
                     setattr(self.router, option, config[option])
                 except lib.DynamipsError, e:
@@ -319,6 +327,9 @@ class IOSRouter(AbstractNode):
 
         #add router to frontend
         self.dynagen.devices[self.hostname] = router
+#        self.dynagen.ghosteddevices[self.hostname] = router
+#        self.dynagen.ghostsizes[self.hostname] = router.ram
+
         self.router = router
         debug('Router ' + router.name + ' created')
 
@@ -384,6 +395,7 @@ class IOSRouter(AbstractNode):
 
         try:
             if self.router.state == 'stopped':
+                self.dynagen.check_ghost_file(self.router)
                 self.router.start()
             if self.router.state == 'suspended':
                 self.router.resume()

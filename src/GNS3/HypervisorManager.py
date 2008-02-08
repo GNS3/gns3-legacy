@@ -74,19 +74,13 @@ class HypervisorManager:
         hypervisor = {'port': port,
                             'proc_instance': proc, 
                             'load': 0}
-                            
+
         self.hypervisors.append(hypervisor)
         return hypervisor
     
     def allocateHypervisor(self, node):
         """ Allocate an hypervisor for a given node
         """
-
-#        for hypervisor in self.hypervisors:
-#            if hypervisor['load'] + node.config.ram <= globals.HypervisorMemoryUsageLimit:
-#                hypervisor['load'] += node.config.ram
-#                node.configHypervisor('localhost',  hypervisor['port'],  self.hypervisor_wd,  self.baseUDP, self.baseConsole)
-#                return True
 
         for hypervisor in self.hypervisors:
             if hypervisor['load'] + node.default_ram <= globals.HypervisorMemoryUsageLimit:
@@ -95,11 +89,6 @@ class HypervisorManager:
                 dynamips_hypervisor = globals.GApp.dynagen.dynamips['localhost:' + str(hypervisor['port'])]
                 node.set_hypervisor(dynamips_hypervisor)
                 return hypervisor
-                
-#        s = socket(AF_INET, SOCK_STREAM)
-#        s.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
-#        s.setblocking(0)
-#        s.settimeout(300)
 
         hypervisor = self.startNewHypervisor()
         if hypervisor == None:
@@ -153,18 +142,20 @@ class HypervisorManager:
         dynamips_hypervisor.configchange = True
         node.set_hypervisor(dynamips_hypervisor)
         dynamips_hypervisor.udp = self.baseUDP
-        
+        if self.hypervisor_wd:
+            dynamips_hypervisor.workingdir = self.hypervisor_wd
+
         print 'New created hypervisor port = ' + str(hypervisor['port'])
         self.baseUDP += globals.HypervisorUDPIncrementation
         return hypervisor
 
-    def unallocateHypervisor(self, node):
+    def unallocateHypervisor(self, node, port):
         """ Unallocate an hypervisor for a given node
         """
-        
+
         for hypervisor in self.hypervisors:
-            if hypervisor['port'] == node.hypervisor_port:
-                hypervisor['load'] -= node.config.ram
+            if hypervisor['port'] == int(port):
+                hypervisor['load'] -= node.default_ram
                 if hypervisor['load'] <= 0:
                     hypervisor['load'] = 0
                 break
@@ -186,7 +177,6 @@ class HypervisorManager:
 
         proc = QtCore.QProcess(globals.GApp.mainWindow)
         port = self.hypervisor_baseport
-        self.hypervisor_baseport += 1
         
         if self.hypervisor_wd:
             # set the working directory

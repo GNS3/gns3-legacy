@@ -100,3 +100,13 @@ class AbstractDefaults:
                 del self.config[option]
         else:
             self.config[option] = option_value
+
+    def set_ghostios(self, ghostios):
+        """ghostios = {True|False}
+\tenable or disable IOS ghosting"""
+
+        if self.default_ghostios == ghostios:
+            if self.config.has_key('ghostios'):
+                del self.config['ghostios']
+        else:
+            self.config['ghostios'] = bool(ghostios)

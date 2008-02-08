@@ -51,6 +51,13 @@ class ETHSW(AbstractNode):
         self.ethsw = None
         self.dynagen.update_running_config()
 
+    def __del__(self):
+    
+        if self.ethsw:
+            self.ethsw.delete()
+            del self.dynagen.devices[self.hostname]
+        self.dynagen.update_running_config()
+        
     def create_config(self):
         """ Creates the configuration of this switch
         """
@@ -63,7 +70,6 @@ class ETHSW(AbstractNode):
         for port in range(1, 9):
             self.config['ports'][port] = 'access'
             self.config['vlans'][1].append(port)
-        return self.config
 
     def get_config(self):
         """ Returns the local configuration copy
@@ -76,7 +82,7 @@ class ETHSW(AbstractNode):
             config: dict
         """
         
-        print 'set_config'
+        self.config = config
         
     def set_hypervisor(self,  hypervisor):
         """ Records an hypervisor
@@ -93,13 +99,6 @@ class ETHSW(AbstractNode):
         ports = map(str, self.config['ports'].keys())
         return (ports) 
 
-#    def connect(self, args):
-#        params = args.split('=')
-#        if self.dynagen.running_config[self.d][self.e].has_key(params[0].strip()):
-#            error('semantic error in: ' + args + ' , this connection already exists')
-#            return
-#        self.dynagen.ethsw_map(self.ethsw, params[0].strip(), params[1].strip())
-        
     def get_dynagen_device(self):
         """ Returns the dynagen device corresponding to this switch
         """
@@ -122,21 +121,16 @@ class ETHSW(AbstractNode):
         """ Start the node
         """
 
-        #self.dynagen.ethsw_map(self.ethsw, '1', 'access 1')
-        return
         connected_interfaces = map(int, self.getConnectedInterfaceList())
-        print connected_interfaces
         for (vlan,  portlist) in self.config['vlans'].iteritems():
             for port in portlist:
                 if port in connected_interfaces:
                     (destnode, destinterface)= self.getConnectedNeighbor(str(port))
-                    porttype = self.config.ports[port]
-                    print 'here'
+                    porttype = self.config['ports'][port]
                     if destinterface.lower()[:3] == 'nio':
-                        self.dynagen.ethsw_map(self.ethsw, port, portype + str(vlan) + destinterface)
+                        self.dynagen.ethsw_map(self.ethsw, port, porttype + ' ' + str(vlan) + ' ' + destinterface)
                     else:
-                        print 'call ethswmap'
-                        self.dynagen.ethsw_map(self.ethsw, port, portype + str(vlan))
+                        self.dynagen.ethsw_map(self.ethsw, port, porttype + ' ' + str(vlan))
 
         self.startupInterfaces()
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
