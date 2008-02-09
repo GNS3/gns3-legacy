@@ -34,8 +34,8 @@ class topologySummaryDock(QtGui.QTreeWidget):
         self.header().hide()
         self.setRootIsDecorated(True)
 
-    def emulationMode(self):
-        """ Create items for emulation mode
+    def refresh(self):
+        """ Refresh topology summary
         """
         
         self.clear()
@@ -65,7 +65,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
             status: string 'running', 'stopped' or 'suspended'
         """    
 
-        items = self.findItems (hostname, QtCore.Qt.MatchFixedString)
+        items = self.findItems(hostname, QtCore.Qt.MatchFixedString)
         if len(items):
             item = items[0]
             if status == 'running':

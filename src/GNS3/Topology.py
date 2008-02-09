@@ -135,6 +135,7 @@ class Topology(QtGui.QGraphicsScene):
     
             self.__nodes[node.id] = node
             self.addItem(node)
+            globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
 
             if node.configNode() == False:
                 self.deleteNode(node.id)
@@ -178,6 +179,7 @@ class Topology(QtGui.QGraphicsScene):
                         globals.HypervisorManager.unallocateHypervisor(node, router.dynamips.port)
         self.removeItem(node)
         del self.__nodes[id]
+        globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
         # Work-around QGraphicsSvgItem caching bug:
         # Forcing to clear the QPixmapCache on node delete.
         # FIXME: in Qt 4.4
@@ -236,6 +238,7 @@ class Topology(QtGui.QGraphicsScene):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
             return False
         
+        globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
         globals.GApp.dynagen.update_running_config()
         print globals.GApp.dynagen.running_config
         return True
@@ -267,6 +270,7 @@ class Topology(QtGui.QGraphicsScene):
         if link in self.__links:
             self.__links.remove(link)
             self.removeItem(link)
+        globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
         globals.GApp.dynagen.update_running_config()
         print globals.GApp.dynagen.running_config
 
