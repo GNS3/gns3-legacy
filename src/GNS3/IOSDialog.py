@@ -20,13 +20,13 @@
 #
 
 import os,  re
+import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_IOSDialog import Ui_IOSDialog
 from GNS3.Config.Config import ConfDB
-from GNS3.Utils import fileBrowser, translate,  testOpenFile
-from GNS3.Config.Objects import iosImageConf,  hypervisorConf
+from GNS3.Utils import fileBrowser, translate, testOpenFile
+from GNS3.Config.Objects import iosImageConf, hypervisorConf
 from GNS3.Node.IOSRouter import IOSRouter
-import GNS3.Globals as globals
 
 # known platforms and corresponding chassis
 PLATFORMS = {
@@ -74,6 +74,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         self.treeWidgetIOSimages.setSortingEnabled(True)
         self.treeWidgetHypervisor.sortByColumn(0, QtCore.Qt.AscendingOrder)
         self.treeWidgetHypervisor.setSortingEnabled(True)
+
         # reload saved infos
         self._reloadInfos()
 

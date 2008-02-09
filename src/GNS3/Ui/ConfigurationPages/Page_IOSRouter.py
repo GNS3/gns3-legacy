@@ -76,10 +76,11 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         else:
             router_config = node.get_config()
  
+        router = node.get_dynagen_device()
         platform = node.get_platform()
         chassis = node.get_chassis()
         self.textLabel_Platform.setText(platform)
-        self.textLabel_Model.setText(chassis)
+        self.textLabel_Model.setText(router.model_string)
         self.textLabel_ImageIOS.setText(router_config['image'])
         for widget in self.widget_slots.values():
             widget.clear()

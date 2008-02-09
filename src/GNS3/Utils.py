@@ -31,7 +31,6 @@ class  Singleton(object):
                                 cls, *args, **kwargs)
         return cls._instance
 
-
 def translate(context, text):
     """ returns the translated text
         context: string (classname)
@@ -60,7 +59,7 @@ def debug(string):
             print '* DEBUG: ' + str(string)
             
 def error(msg):
-    """Print out an error message
+    """ Print out an error message
     """
 
     print '*** Error:', str(msg)
@@ -73,7 +72,6 @@ class fileBrowser(object):
         
         self.filedialog = QtGui.QFileDialog()
         self.selected = QtCore.QString()
-
         self.caption = caption
         self.directory = directory
         self.filter = filter

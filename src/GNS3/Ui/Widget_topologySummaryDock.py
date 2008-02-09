@@ -76,6 +76,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
                 item.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
             
     def retranslateItem(self, item):
+
         # Translate current item
         data = item.data(0, QtCore.Qt.UserRole).toStringList()
 
@@ -93,6 +94,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
             childNum += 1
 
     def retranslateUi(self, MainWindow):
+
         topItemNum = 0
         topItemsCount = self.topLevelItemCount()
         while topItemNum < topItemsCount:

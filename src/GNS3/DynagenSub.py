@@ -35,6 +35,7 @@ class DynagenSub(dynagen.Dynagen):
         self.original_config = {}
         dynagen.Dynagen.__init__(self)
     
+    #TODO: mr proper needed
     def open_config(self,  FILENAME):
         """ Open the config file
         """

@@ -22,6 +22,7 @@
 import os, sys, socket
 import GNS3.NETFile as netfile
 import GNS3.Dynagen.dynamips_lib as lib
+import GNS3.Globals as globals 
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtGui import QMainWindow, QAction, QActionGroup, QAction, QIcon
 from GNS3.Ui.Form_MainWindow import Ui_MainWindow
@@ -33,7 +34,6 @@ from GNS3.Config.Preferences import PreferencesDialog
 from GNS3.Config.Config import ConfDB
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.Cloud import Cloud
-import GNS3.Globals as globals 
 
 # where the topology files are stored
 topologiesDirectory = '.'
@@ -68,46 +68,26 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Connect all needed pair (action, SIGNAL)
         """
 
-        self.connect(self.action_Export, QtCore.SIGNAL('triggered()'),
-            self.__action_Export)
-        self.connect(self.action_Add_link, QtCore.SIGNAL('triggered()'),
-            self.__action_addLink)
-        self.connect(self.action_IOS_images, QtCore.SIGNAL('triggered()'),
-            self.__action_IOSImages)
-        self.connect(self.action_ShowHostnames, QtCore.SIGNAL('triggered()'),
-            self.__action_ShowHostnames)
-        self.connect(self.action_ZoomIn, QtCore.SIGNAL('triggered()'),
-            self.__action_ZoomIn)
-        self.connect(self.action_ZoomOut, QtCore.SIGNAL('triggered()'),
-            self.__action_ZoomOut)
-        self.connect(self.action_ZoomReset, QtCore.SIGNAL('triggered()'),
-            self.__action_ZoomReset)
-        self.connect(self.action_ZoomFit, QtCore.SIGNAL('triggered()'),
-            self.__action_ZoomFit)
-        self.connect(self.action_SelectAll, QtCore.SIGNAL('triggered()'),
-            self.__action_SelectAll)
-        self.connect(self.action_SelectNone, QtCore.SIGNAL('triggered()'),
-            self.__action_SelectNone)
-        self.connect(self.action_TelnetAll,  QtCore.SIGNAL('triggered()'),
-            self.__action_TelnetAll)
-        self.connect(self.action_StartAll,  QtCore.SIGNAL('triggered()'),
-            self.__action_StartAll)
-        self.connect(self.action_StopAll,  QtCore.SIGNAL('triggered()'),
-            self.__action_StopAll)
-        self.connect(self.action_SuspendAll,  QtCore.SIGNAL('triggered()'),
-            self.__action_SuspendAll)
-        self.connect(self.action_About,  QtCore.SIGNAL('triggered()'),
-            self.__action_About)
-        self.connect(self.action_AboutQt,  QtCore.SIGNAL('triggered()'),
-            self.__action_AboutQt)
-        self.connect(self.action_Open,  QtCore.SIGNAL('triggered()'),
-            self.__action_OpenFile)
-        self.connect(self.action_Save,  QtCore.SIGNAL('triggered()'),
-            self.__action_Save)
-        self.connect(self.action_SaveAs,  QtCore.SIGNAL('triggered()'),
-            self.__action_SaveAs)
-        self.connect(self.action_Preferences,
-            QtCore.SIGNAL('triggered()'), self.__action_Preferences)
+        self.connect(self.action_Export, QtCore.SIGNAL('triggered()'), self.__action_Export)
+        self.connect(self.action_Add_link, QtCore.SIGNAL('triggered()'), self.__action_addLink)
+        self.connect(self.action_IOS_images, QtCore.SIGNAL('triggered()'), self.__action_IOSImages)
+        self.connect(self.action_ShowHostnames, QtCore.SIGNAL('triggered()'), self.__action_ShowHostnames)
+        self.connect(self.action_ZoomIn, QtCore.SIGNAL('triggered()'), self.__action_ZoomIn)
+        self.connect(self.action_ZoomOut, QtCore.SIGNAL('triggered()'), self.__action_ZoomOut)
+        self.connect(self.action_ZoomReset, QtCore.SIGNAL('triggered()'), self.__action_ZoomReset)
+        self.connect(self.action_ZoomFit, QtCore.SIGNAL('triggered()'), self.__action_ZoomFit)
+        self.connect(self.action_SelectAll, QtCore.SIGNAL('triggered()'), self.__action_SelectAll)
+        self.connect(self.action_SelectNone, QtCore.SIGNAL('triggered()'), self.__action_SelectNone)
+        self.connect(self.action_TelnetAll,  QtCore.SIGNAL('triggered()'), self.__action_TelnetAll)
+        self.connect(self.action_StartAll,  QtCore.SIGNAL('triggered()'), self.__action_StartAll)
+        self.connect(self.action_StopAll,  QtCore.SIGNAL('triggered()'), self.__action_StopAll)
+        self.connect(self.action_SuspendAll,  QtCore.SIGNAL('triggered()'), self.__action_SuspendAll)
+        self.connect(self.action_About,  QtCore.SIGNAL('triggered()'), self.__action_About)
+        self.connect(self.action_AboutQt,  QtCore.SIGNAL('triggered()'), self.__action_AboutQt)
+        self.connect(self.action_Open,  QtCore.SIGNAL('triggered()'), self.__action_OpenFile)
+        self.connect(self.action_Save,  QtCore.SIGNAL('triggered()'), self.__action_Save)
+        self.connect(self.action_SaveAs,  QtCore.SIGNAL('triggered()'), self.__action_SaveAs)
+        self.connect(self.action_Preferences, QtCore.SIGNAL('triggered()'), self.__action_Preferences)
 
     def __createMenus(self):
         """ Add own menu actions, and create new sub-menu
@@ -145,8 +125,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.graphicsView.render(painter)
         painter.end()
         pixmap.save(name, format)
-
-    #-------------------------------------------------------------------------
 
     def newProject(self, type, file):
         """ Create a new project
@@ -407,7 +385,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             return
         net = netfile.NETFile()
         globals.GApp.scene.resetMatrix()
-        net.live_import(path)
+        net.import_net_file(path)
             
     def __action_OpenFile(self):
         """ Open a file (scenario or dynagen .NET format)
@@ -443,7 +421,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         try:
             net = netfile.NETFile()
             globals.GApp.scene.resetMatrix()
-            net.live_export(self.projectFile)
+            net.export_net_file(self.projectFile)
             self.statusbar.showMessage(translate("Workspace", "Project saved..."))
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
@@ -466,4 +444,4 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 self.setWindowTitle("GNS3 - " + self.projectFile)
                 net = netfile.NETFile()
                 globals.GApp.scene.resetMatrix()
-                net.live_export(path)
+                net.export_net_file(path)

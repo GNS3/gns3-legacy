@@ -19,16 +19,16 @@
 # Contact: contact@gns3.net
 #
 
-from GNS3.Node.Cloud import Cloud
-from GNS3.Node.Hub import Hub
-from GNS3.Node.FRSW import FRSW
-from GNS3.Node.ETHSW import ETHSW
-from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.IOSRouter1700 import IOSRouter1700
 from GNS3.Node.IOSRouter2600 import IOSRouter2600
 from GNS3.Node.IOSRouter3600 import IOSRouter3600
 from GNS3.Node.IOSRouter3700 import IOSRouter3700
 from GNS3.Node.IOSRouter7200 import IOSRouter7200
+from GNS3.Node.Cloud import Cloud
+from GNS3.Node.Hub import Hub
+from GNS3.Node.FRSW import FRSW
+from GNS3.Node.ETHSW import ETHSW
+from GNS3.Node.ATMSW import ATMSW
 
 SYMBOLS = (
         
@@ -51,30 +51,6 @@ SYMBOLS = (
     {'name': "Router c7200", 'object': IOSRouter7200,
     'normal_svg_file': ":/symbols/rt_standard.normal.svg",
     'select_svg_file': ":/symbols/rt_standard.selected.svg"},
-    
-#    {'name': "Netflow router", 'object': IOSRouter,
-#    'normal_svg_file': ":/symbols/rt_netflow.normal.svg",
-#    'select_svg_file': ":/symbols/rt_standard.selected.svg"},
-
-#    {'name': "Router with firewall", 'object': IOSRouter3600,
-#    'normal_svg_file': ":/symbols/rt_firewall.normal.svg",
-#    'select_svg_file': ":/symbols/rt_firewall.selected.svg"},
-    
-#    {'name': "Gateway", 'object': IOSRouter,
-#    'normal_svg_file': ":/symbols/gateway.normal.svg",
-#    'select_svg_file': ":/symbols/gateway.selected.svg"},
-
-#    {'name': "Edge label switch router", 'object': IOSRouter3600,
-#    'normal_svg_file': ":/symbols/edgelabel_swproc.normal.svg",
-#    'select_svg_file': ":/symbols/edgelabel_swproc.selected.svg"},
-    
-#    {'name': "Label switch router", 'object': IOSRouter,
-#    'normal_svg_file': ":/symbols/label_switch_router.normal.svg",
-#    'select_svg_file': ":/symbols/label_switch_router.selected.svg"}, 
-    
-#    {'name': "Optical router", 'object': IOSRouter,
-#    'normal_svg_file': ":/symbols/optical_router.normal.svg",
-#    'select_svg_file': ":/symbols/optical_router.selected.svg"}, 
 
     {'name': "Switch", 'object': ETHSW,
     'normal_svg_file': ":/symbols/sw_standard.normal.svg",
@@ -83,16 +59,6 @@ SYMBOLS = (
     {'name': "Hub", 'object': Hub,
     'normal_svg_file': ":/symbols/hub.normal.svg",
     'select_svg_file': ":/symbols/hub.selected.svg"},
-
-#    # Decorated Symbol
-#    {'name': "Multilayer switch", 'object': IOSRouter,
-#    'normal_svg_file': ":/symbols/sw_multilayer.normal.svg",
-#    'select_svg_file': ":/symbols/sw_multilayer.selected.svg"},
-#    
-#    # Decorated Symbol
-#    {'name': "Route switch processor", 'object': IOSRouter,
-#    'normal_svg_file': ":/symbols/route_swproc.normal.svg",
-#    'select_svg_file': ":/symbols/route_swproc.selected.svg"},
      
     {'name': "ATM switch", 'object': ATMSW,
     'normal_svg_file': ":/symbols/sw_atm.normal.svg",
@@ -104,25 +70,5 @@ SYMBOLS = (
  
     {'name': "Cloud", 'object': Cloud,
     'normal_svg_file': ":/symbols/cloud.normal.svg",
-    'select_svg_file': ":/symbols/cloud.selected.svg"}, 
-    
-#    # Decorative Symbol
-#    {'name': "Access Point", 'object': ETHSW,
-#    'normal_svg_file': ":/symbols/access_point.normal.svg",
-#    'select_svg_file': ":/symbols/access_point.selected.svg"}, 
-#    
-#    # Decoratives Symbol
-#    {'name': "Lightweight Access Point", 'object': ETHSW,
-#    'normal_svg_file': ":/symbols/lightweight_ap.normal.svg",
-#    'select_svg_file': ":/symbols/lightweight_ap.selected.svg"}, 
-#    
-#    # Decoratives Symbol
-#    {'name': "WLAN controller", 'object': ETHSW,
-#    'normal_svg_file': ":/symbols/wlan_controller.normal.svg",
-#    'select_svg_file': ":/symbols/wlan_controller.selected.svg"}, 
-#
-#    # Decorative Symbol
-#    {'name': "PIX firewall", 'object': IOSRouter,
-#    'normal_svg_file': ":/symbols/PIX_firewall.normal.svg",
-#    'select_svg_file': ":/symbols/PIX_firewall.selected.svg"},
+    'select_svg_file': ":/symbols/cloud.selected.svg"},
 )

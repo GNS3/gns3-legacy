@@ -20,13 +20,12 @@
 #
 
 import re
-from GNS3.Node.AbstractNode import AbstractNode
-from GNS3.Config.Objects import ATMSWConf
-from PyQt4 import QtCore, QtGui
-from GNS3.Utils import translate
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.dynagen as dynagen
 import GNS3.Globals as globals
+from GNS3.Node.AbstractNode import AbstractNode
+from PyQt4 import QtCore, QtGui
+from GNS3.Utils import translate
 
 atm_id = 0
 MAPVCI = re.compile(r"""^([0-9]*):([0-9]*):([0-9]*)$""")

@@ -60,7 +60,7 @@ class Console(PyCutExt,  Dynagen_Console):
         cmd.Cmd.__init__(self)
         self.namespace = Dynagen_Namespace
         self.dynagen = globals.GApp.dynagen
-        debuglevel = 4#self.namespace.debuglevel
+        debuglevel = self.dynagen.debuglevel
 
     def onKeyPress_Tab(self):
         """ Imitate cmd.Cmd.complete(self, text, state) function
@@ -410,4 +410,3 @@ Examples:
             print 'You have to save your topology before using import'
         else:
             Dynagen_Console.do_import(self, args)
-    

@@ -128,6 +128,7 @@ class IOSRouter(AbstractNode):
             # don't forget to delete this router in Dynamips
             self.router.delete()
             del self.dynagen.devices[self.hostname]
+            debug('Router ' + self.hostname + ' deleted')
         self.dynagen.update_running_config()
 
     def get_module_name(self, module):
@@ -193,7 +194,7 @@ class IOSRouter(AbstractNode):
 
         self.dynagen.update_running_config()
         self.running_config =  self.dynagen.running_config[self.d][self.r]
-        print self.running_config
+        debug("Node " + self.hostname + ": running config: " + str(self.running_config))
 
     def get_platform(self):
         """ Returns router platform

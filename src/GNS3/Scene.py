@@ -56,9 +56,6 @@ class Scene(QtGui.QGraphicsView):
         self.setRenderHint(QtGui.QPainter.Antialiasing)
         self.setTransformationAnchor(self.AnchorUnderMouse)
         self.setResizeAnchor(self.AnchorViewCenter)
-        
-        #FIXME: tests
-        #self.setMouseTracking(True)
 
         # Flags for GUI state matching
         self.__isFirstClick = True

@@ -53,7 +53,7 @@ class NETFile(object):
         dynagen.bridges.clear()
         dynagen.autostart.clear()
     
-    def live_import(self, path):
+    def import_net_file(self, path):
     
         hypervisors = []
         if globals.GApp.systconf['dynamips'].path == '':
@@ -269,7 +269,7 @@ class NETFile(object):
                     #print "Can't import property: " + property
                     continue
 
-    def live_export(self, path):
+    def export_net_file(self, path):
     
         globals.GApp.dynagen.update_running_config(need_active_config=True)
         globals.GApp.dynagen.running_config.filename = path

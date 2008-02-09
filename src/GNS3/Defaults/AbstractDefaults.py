@@ -23,7 +23,7 @@ import os
 import GNS3.Globals as globals
 
 class AbstractDefaults:
-    """Abstract class for managing the device Defaults"""
+    """Abstract class for managing the device defaults"""
 
     def __init__(self):
     
@@ -47,7 +47,7 @@ class AbstractDefaults:
 
     def set_hypervisor(self,  hypervisor):
         """ Records an hypervisor
-            hypervisor: object
+            hypervisor: Dynamips object
         """
     
         self.hypervisor = hypervisor
@@ -102,8 +102,8 @@ class AbstractDefaults:
             self.config[option] = option_value
 
     def set_ghostios(self, ghostios):
-        """ghostios = {True|False}
-\tenable or disable IOS ghosting"""
+        """ Enable or disable ghostios feature
+        """
 
         if self.default_ghostios == ghostios:
             if self.config.has_key('ghostios'):

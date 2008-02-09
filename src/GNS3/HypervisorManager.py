@@ -23,7 +23,7 @@ import time
 import GNS3.Globals as globals
 from socket import socket, timeout, AF_INET, SOCK_STREAM
 from PyQt4 import QtCore, QtGui
-from GNS3.Utils import translate,  debug
+from GNS3.Utils import translate, debug
 from GNS3.Node.IOSRouter import IOSRouter
 
 class HypervisorManager:
@@ -68,7 +68,7 @@ class HypervisorManager:
         proc.start(self.hypervisor_path,  ['-H', str(port)])
         
         if proc.waitForStarted() == False:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Can't start Dynamips"))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Can't start Dynamips on port ") + str(port))
             return None
 
         hypervisor = {'port': port,
@@ -85,7 +85,7 @@ class HypervisorManager:
         for hypervisor in self.hypervisors:
             if hypervisor['load'] + node.default_ram <= globals.HypervisorMemoryUsageLimit:
                 hypervisor['load'] += node.default_ram
-                print 'Already existing hypervisor port = ' + str(hypervisor['port'])
+                debug('Hypervisor manager: allocates an already started hypervisor (port: ' + str(hypervisor['port']) + ')')
                 dynamips_hypervisor = globals.GApp.dynagen.dynamips['localhost:' + str(hypervisor['port'])]
                 node.set_hypervisor(dynamips_hypervisor)
                 return hypervisor
@@ -103,7 +103,8 @@ class HypervisorManager:
             s.setblocking(0)
             s.settimeout(300)
             if nb == 3:
-                progress = QtGui.QProgressDialog(translate("HypervisorManager", "Connecting to an hypervisor on port " + str(hypervisor['port']) + " ..."), translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
+                progress = QtGui.QProgressDialog(translate("HypervisorManager", "Connecting to an hypervisor on port " + str(hypervisor['port']) + " ..."), 
+                                                                                                                                        translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
                 progress.setMinimum(1)
                 progress.setWindowModality(QtCore.Qt.WindowModal)
                 globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 2000)
@@ -138,14 +139,14 @@ class HypervisorManager:
         hypervisor['load'] = node.default_ram
 
         dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor('localhost', hypervisor['port'])
+        debug("Hypervisor manager: create a new hypervisor on port " + str(hypervisor['port']))
         globals.GApp.dynagen.update_running_config()
         dynamips_hypervisor.configchange = True
         node.set_hypervisor(dynamips_hypervisor)
         dynamips_hypervisor.udp = self.baseUDP
+        dynamips_hypervisor.baseconsole = self.baseConsole
         if self.hypervisor_wd:
             dynamips_hypervisor.workingdir = self.hypervisor_wd
-
-        print 'New created hypervisor port = ' + str(hypervisor['port'])
         self.baseUDP += globals.HypervisorUDPIncrementation
         return hypervisor
 
@@ -155,6 +156,7 @@ class HypervisorManager:
 
         for hypervisor in self.hypervisors:
             if hypervisor['port'] == int(port):
+                debug("Hypervisor manager: unallocate hypervisor (port: " + str(port) + ") for node " + node.hostname)
                 hypervisor['load'] -= node.default_ram
                 if hypervisor['load'] <= 0:
                     hypervisor['load'] = 0

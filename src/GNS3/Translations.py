@@ -38,11 +38,7 @@ class Translator(object):
 
         # Add i18n dirs depending on platform.
         if sys.platform[:3] == "win":
-        
-            self.__i18n_dirs = [
-                os.path.dirname(os.path.abspath(GNS3.Langs.__file__))
-            ]
-            
+            self.__i18n_dirs = [os.path.dirname(os.path.abspath(GNS3.Langs.__file__))]
             if os.environ.has_key("APPDATA"):
                 self.__i18n_dirs.append(os.environ["APPDATA"] + "\\gns3\\Langs")
             else:
@@ -51,9 +47,7 @@ class Translator(object):
             # Get gns3.exe installation path
             try:
                 import _winreg
-    
-                key = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, 
-                                      Translator.gns3_regkey,  _winreg.KEY_READ)
+                key = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, Translator.gns3_regkey,  _winreg.KEY_READ)
                 (value, typevalue) = _winreg.QueryValueEx(key, '')
                 self.__i18n_dirs.append(os.path.dirname(value) + "\\Langs")
             except:
@@ -61,10 +55,7 @@ class Translator(object):
 
         else:
             
-            self.__i18n_dirs = [
-                os.path.dirname(os.path.abspath(GNS3.Langs.__file__))
-            ]
-
+            self.__i18n_dirs = [os.path.dirname(os.path.abspath(GNS3.Langs.__file__))]
             if os.environ.has_key("HOME"):
                 self.__i18n_dirs.append(os.environ["HOME"] + "/.gns3/Langs")
             else:
@@ -72,7 +63,6 @@ class Translator(object):
         
         # Now find all available languages...
         self.findAvailableLangs()
-
 
     def findAvailableLangs(self):
         local_translator = QtCore.QTranslator()
@@ -197,6 +187,5 @@ class Translator(object):
                 # simply ignore topLevelWidgets which don't
                 # have a retranslateUi method
                 pass
-
         return True
 

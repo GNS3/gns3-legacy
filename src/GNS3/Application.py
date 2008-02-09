@@ -20,8 +20,9 @@
 #
 
 import sys, time
+import GNS3.Globals as globals
 from PyQt4.QtGui import QApplication
-from PyQt4.QtCore import QMutex, QMutexLocker, QVariant
+from PyQt4.QtCore import QVariant
 from GNS3.Utils import Singleton
 from GNS3.Workspace import Workspace
 from GNS3.Topology import Topology
@@ -30,7 +31,6 @@ from GNS3.Config.Config import ConfDB, GNS_Conf
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Translations import Translator
 from GNS3.DynagenSub import DynagenSub
-import GNS3.Globals as globals
 
 class Application(QApplication, Singleton):
     """ GNS3 Application instance
@@ -45,7 +45,6 @@ class Application(QApplication, Singleton):
         # call parent contructor
         QApplication.__init__(self, sys.argv)
 
-        self.__clsmutex = QMutex()
         self.__mainWindow = None
         self.__workspace = None
         self.__scene = None
@@ -63,130 +62,124 @@ class Application(QApplication, Singleton):
         # set global app to ourself
         globals.GApp = self
         
-    # property: `mainWindow'
+
     def __setMainWindow(self, mw):
         """ register the MainWindow instance
         """
-        QMutexLocker(self.__clsmutex)
         self.__mainWindow = mw
+
     def __getMainWindow(self):
         """ return the MainWindow instance
         """
-        QMutexLocker(self.__clsmutex)
+
         return self.__mainWindow
 
-    mainWindow = property(__getMainWindow, __setMainWindow,
-                    doc = 'MainWindow instance')
+    mainWindow = property(__getMainWindow, __setMainWindow, doc = 'MainWindow instance')
 
-    # property: `workspace'
     def __setWorkspace(self, wkspc):
         """ register the Workspace instance
         """
-        QMutexLocker(self.__clsmutex)
+
         self.__workspace = wkspc
+
     def __getWorkspace(self):
         """ return the Workspace instance
         """
-        QMutexLocker(self.__clsmutex)
-        return self.__workspace
-    workspace = property(__getWorkspace, __setWorkspace,
-                    doc = 'Workspace instance')
 
-    # property: `scene'
+        return self.__workspace
+
+    workspace = property(__getWorkspace, __setWorkspace, doc = 'Workspace instance')
+
     def __setScene(self, scene):
         """ register the Scene instance
         """
-        QMutexLocker(self.__clsmutex)
+
         self.__scene = scene 
+
     def __getScene(self):
         """ return the Scene instance
         """
-        QMutexLocker(self.__clsmutex)
-        return self.__scene
-    scene = property(__getScene, __setScene,
-                    doc = 'Scene instance')
 
-    # property: `topology'
+        return self.__scene
+
+    scene = property(__getScene, __setScene, doc = 'Scene instance')
+
     def __setTopology(self, topology):
         """ register the Topology instance
         """
-        QMutexLocker(self.__clsmutex)
+
         self.__topology = topology
 
     def __getTopology(self):
         """ return the Topology instance
         """
-        QMutexLocker(self.__clsmutex)
-        return self.__topology
-    topology = property(__getTopology, __setTopology,
-                    doc = 'Workspace instance')
 
-    # property: `systconf'
+        return self.__topology
+    
+    topology = property(__getTopology, __setTopology, doc = 'Workspace instance')
+
     def __setSystConf(self, systconf):
         """ register the systconf instance
         """
-        QMutexLocker(self.__clsmutex)
+
         self.__systconf = sytsconf
     
     def __getSystConf(self):
         """ return the systconf instance
         """
-        QMutexLocker(self.__clsmutex)
+
         return self.__systconf
-    systconf = property(__getSystConf, __setSystConf,
-                    doc = 'System config instance')
-                    
-    # property: `iosimages'
+    
+    systconf = property(__getSystConf, __setSystConf, doc = 'System config instance')
+
     def __setIOSImages(self, iosimages):
         """ register the sysconf instance
         """
-        QMutexLocker(self.__clsmutex)
+
         self.__iosimages = iosimages 
     
     def __getIOSImages(self):
         """ return the sysconf instance
         """
-        QMutexLocker(self.__clsmutex)
+
         return self.__iosimages
-    iosimages = property(__getIOSImages, __setIOSImages,
-                    doc = 'IOS images dictionnary')
-                    
-    # property: `hypervisors'
+    
+    iosimages = property(__getIOSImages, __setIOSImages, doc = 'IOS images dictionnary')
+
     def __setHypervisors(self, hypervisors):
         """ register the sysconf instance
         """
-        QMutexLocker(self.__clsmutex)
+
         self.__hypervisors = hypervisors
     
     def __getHypervisors(self):
         """ return the sysconf instance
         """
-        QMutexLocker(self.__clsmutex)
-        return self.__hypervisors
-    hypervisors = property(__getHypervisors, __setHypervisors,
-                    doc = 'Hypervisors dictionnary')
 
-    # property: `dynagen'
+        return self.__hypervisors
+    
+    hypervisors = property(__getHypervisors, __setHypervisors, doc = 'Hypervisors dictionnary')
+
     def __setDynagen(self, dynagen):
         """ register the dynagen instance
         """
-        QMutexLocker(self.__clsmutex)
+
         self.__dynagen = dynagen
     
     def __getDynagen(self):
         """ return the systconf instance
         """
-        QMutexLocker(self.__clsmutex)
+
         return self.__dynagen
-    dynagen = property(__getDynagen, __setDynagen,
-                    doc = 'System config instance')
-                    
+    
+    dynagen = property(__getDynagen, __setDynagen, doc = 'System config instance')
+
     def run(self, file):
     
-        # instantiation of Dynagen
+        # Instantiation of Dynagen
         self.__dynagen = DynagenSub()
     
-        # INFO: Workspace create a ` Scene' object,
+        # Workspace create a ` Scene' object,
         # so it also set self.__topology
         self.__workspace = Workspace()
 
@@ -235,26 +228,22 @@ class Application(QApplication, Singleton):
             globals.HypervisorManager = HypervisorManager()
             globals.HypervisorManager.preloadDynamips()
 
-        # full screen
-        #geometry = QApplication.desktop().availableGeometry(self.mainWindow)
-        #geometry = QApplication.desktop().screenGeometry(self.mainWindow)
-        #self.mainWindow.setGeometry(geometry)
         # Restore the geometry
         self.mainWindow.restoreGeometry(ConfDB().value("GNS3/geometry").toByteArray())
         self.mainWindow.show()
 
-        if file:
-            time.sleep(2)
-            self.mainWindow.load_saved_config(file)
+#        if file:
+#            time.sleep(2)
+#            self.mainWindow.load_saved_config(file)
+        #TODO: load .net file
         retcode = QApplication.exec_()
         
         globals.HypervisorManager = None
         
         # Save the geometry
         ConfDB().set("GNS3/geometry", self.mainWindow.saveGeometry())
-        # ---
         self.syncConf()
-        # ---
+
         sys.exit(retcode)
 
     def syncConf(self):
@@ -301,7 +290,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/idlepc", o.idlepc)
             c.set(basekey + "/default",  o.default)
 
-        # IOS Hypervisors
+        # Hypervisors
         for (key, o) in self.__hypervisors.iteritems():
             basekey = "IOS.hypervisors/" + str(o.id)
             c.set(basekey + "/host", o.host)

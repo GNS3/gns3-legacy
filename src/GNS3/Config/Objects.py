@@ -81,44 +81,12 @@ class ConfigObject(object):
             # silently ignore errors
             pass
 
-# ----------------------------------------------------------------------------
-
 class iosImageConf(ConfigObject):
     def __init__(self):
         ConfigObject.__init__(self)
         self.conf = Defaults.conf_iosImage_defaults.copy() 
         self.types = Defaults.conf_iosImage_types
 
-class FRSWConf(ConfigObject):
-    def __init__(self):
-        ConfigObject.__init__(self)
-        self.conf = Defaults.conf_FRSW_defaults.copy() 
-        self.types = Defaults.conf_FRSW_types
-
-class ATMSWConf(ConfigObject):
-    def __init__(self):
-        ConfigObject.__init__(self)
-        self.conf = Defaults.conf_ATMSW_defaults.copy() 
-        self.types = Defaults.conf_ATMSW_types
-        
-class ETHSWConf(ConfigObject):
-    def __init__(self):
-        ConfigObject.__init__(self)
-        self.conf = Defaults.conf_ETHSW_defaults.copy() 
-        self.types = Defaults.conf_ETHSW_types
-
-class CloudConf(ConfigObject):
-    def __init__(self):
-        ConfigObject.__init__(self)
-        self.conf = Defaults.conf_Cloud_defaults.copy() 
-        self.types = Defaults.conf_Cloud_types
-        
-class HubConf(ConfigObject):
-    def __init__(self):
-        ConfigObject.__init__(self)
-        self.conf = Defaults.conf_Hub_defaults.copy() 
-        self.types = Defaults.conf_Hub_types
-        
 class hypervisorConf(ConfigObject):
     def __init__(self):
         ConfigObject.__init__(self)
@@ -126,13 +94,6 @@ class hypervisorConf(ConfigObject):
         self.types = Defaults.conf_hypervisor_types
 
 class systemDynamipsConf(ConfigObject):
-    oldconf = {
-        'path': 'Dynamips/hypervisor_path',
-        'port': 'Dynamips/hypervisor_port',
-        'workdir': 'Dynamips/hypervisor_working_directory',
-        'term_cmd': 'Dynamips/console',
-    }
-
     def __init__(self):
         ConfigObject.__init__(self)
         self.conf = Defaults.conf_systemDynamips_defaults.copy()

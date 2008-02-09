@@ -36,4 +36,3 @@ class IOSRouter7200Defaults(AbstractDefaults):
         self.default_disk1 = 0
         self.default_npe = 'npe-200'
         self.default_midplane = 'vxr'
-

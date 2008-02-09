@@ -20,9 +20,9 @@
 #
 
 import math
+import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
-import GNS3.Globals as globals
 
 class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
     """ AbstractEdge class
@@ -66,11 +66,9 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
 
         self.prepareGeometryChange()
         src_rect = self.source.boundingRect()
-        self.src = self.mapFromItem(self.source,
-                    src_rect.width() / 2.0, src_rect.height() / 2.0)
+        self.src = self.mapFromItem(self.source, src_rect.width() / 2.0, src_rect.height() / 2.0)
         dst_rect = self.dest.boundingRect()
-        self.dst = self.mapFromItem(self.dest,
-                        dst_rect.width() / 2.0, dst_rect.height() / 2.0)
+        self.dst = self.mapFromItem(self.dest, dst_rect.width() / 2.0, dst_rect.height() / 2.0)
         
         # compute vectors
         self.dx = self.dst.x() - self.src.x()

@@ -22,7 +22,6 @@
 from GNS3.Node.AbstractNode import AbstractNode
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
-from GNS3.Config.Objects import HubConf
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.dynagen as dynagen
 import GNS3.Globals as globals 

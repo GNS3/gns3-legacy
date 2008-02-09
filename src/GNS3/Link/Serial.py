@@ -49,17 +49,12 @@ class Serial(AbstractEdge):
 
         # get mini-vector, and it angle
         rot_angle = - math.pi / 4.0
-        vectrot = QtCore.QPointF(math.cos(vector_angle + rot_angle),
-                                 math.sin(vector_angle + rot_angle))
+        vectrot = QtCore.QPointF(math.cos(vector_angle + rot_angle), math.sin(vector_angle + rot_angle))
         vectrot_angle = math.atan2(vectrot.y(), vectrot.x())
 
-        # Get the rotated points position
-        angle_srcPt = QtCore.QPointF(
-            self.src.x() + vector.x() / 2.0 + 15 * vectrot.x(),
-            self.src.y() + vector.y() / 2.0 + 15 * vectrot.y())
-        angle_dstPt = QtCore.QPointF(
-            self.dst.x() - vector.x() / 2.0 - 15 * vectrot.x(),
-            self.dst.y() - vector.y() / 2.0 - 15 * vectrot.y())
+        # get the rotated points position
+        angle_srcPt = QtCore.QPointF(self.src.x() + vector.x() / 2.0 + 15 * vectrot.x(), self.src.y() + vector.y() / 2.0 + 15 * vectrot.y())
+        angle_dstPt = QtCore.QPointF(self.dst.x() - vector.x() / 2.0 - 15 * vectrot.x(), self.dst.y() - vector.y() / 2.0 - 15 * vectrot.y())
 
         # draw the path
         self.path = QtGui.QPainterPath(self.src)
@@ -69,18 +64,12 @@ class Serial(AbstractEdge):
         self.setPath(self.path)
 
         # set interface status points positions
-        scale_vect = QtCore.QPointF(angle_srcPt.x() - self.src.x(),
-                                    angle_srcPt.y() - self.src.y())
-        scale_vect_diag = math.sqrt(scale_vect.x() ** 2 +
-                                    scale_vect.y() ** 2)
+        scale_vect = QtCore.QPointF(angle_srcPt.x() - self.src.x(), angle_srcPt.y() - self.src.y())
+        scale_vect_diag = math.sqrt(scale_vect.x() ** 2 + scale_vect.y() ** 2)
         scale_coef = scale_vect_diag / 40.0
 
-        self.status_src = QtCore.QPointF(
-                self.src.x() + scale_vect.x() / scale_coef,
-                self.src.y() + scale_vect.y() / scale_coef)
-        self.status_dst = QtCore.QPointF(
-                self.dst.x() - scale_vect.x() / scale_coef,
-                self.dst.y() - scale_vect.y() / scale_coef)
+        self.status_src = QtCore.QPointF(self.src.x() + scale_vect.x() / scale_coef, self.src.y() + scale_vect.y() / scale_coef)
+        self.status_dst = QtCore.QPointF(self.dst.x() - scale_vect.x() / scale_coef, self.dst.y() - scale_vect.y() / scale_coef)
 
     def shape(self):
         """ Return the shape of the item to the scene renderer
@@ -105,8 +94,7 @@ class Serial(AbstractEdge):
             # if nodes are too close, points disappears
             if self.length < 80:
                return
-    
-           
+
             # source point
             if self.src_interface_status == 'up':
                 color = QtCore.Qt.green
