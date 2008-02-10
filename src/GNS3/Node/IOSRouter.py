@@ -135,6 +135,12 @@ class IOSRouter(AbstractNode):
             debug('Router ' + self.hostname + ' deleted')
         self.dynagen.update_running_config()
     
+    def get_running_config_name(self):
+        """ Return node name as stored in the running config
+        """
+        
+        return (self.r)
+    
     def get_module_name(self, module):
         """ Returns a module name
             module: object

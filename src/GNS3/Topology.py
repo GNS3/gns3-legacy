@@ -73,6 +73,7 @@ class Topology(QtGui.QGraphicsScene):
     def getNode(self, id):
         """ Returns the node corresponding to id
         """
+        
         if self.__nodes.has_key(id):
             return self.__nodes[id]
         else:
@@ -81,11 +82,13 @@ class Topology(QtGui.QGraphicsScene):
     def __getNodes(self):
         """ Return topology nodes
         """
+        
         return self.__nodes
 
     def __setNodes(self, value):
         """ Set the topology nodes (disabled)
         """
+        
         self.__nodes = value 
 
     nodes = property(__getNodes, __setNodes, doc='Property of nodes topology')
@@ -170,12 +173,14 @@ class Topology(QtGui.QGraphicsScene):
             self.addItem(node)
             if node.configNode() == False:
                 self.deleteNode(node.id)
+
         except (lib.DynamipsVerError, lib.DynamipsError), msg:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
             return
         except (lib.DynamipsErrorHandled,  socket.error):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"), translate("Topology", "Connection lost"))
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
+        debug("Running config: " + str(globals.GApp.dynagen.running_config))
         return
 
     def deleteNode(self, id):
@@ -203,6 +208,7 @@ class Topology(QtGui.QGraphicsScene):
 
         src_node = globals.GApp.topology.getNode(srcid)
         dst_node = globals.GApp.topology.getNode(dstid)
+
         if not isinstance(src_node, IOSRouter) and type(src_node) not in (Cloud, Hub):
             src_node.set_hypervisor(dst_node.hypervisor)
             src_node.hypervisor.configchange = True

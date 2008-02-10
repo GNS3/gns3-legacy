@@ -1269,7 +1269,7 @@ class Dynagen:
                                 else:
                                     # Should be either an interface connection or a switch mapping
                                     # is it an interface?
-                                    if subitem in ['model', 'configuration', 'autostart']:
+                                    if subitem in ['model', 'configuration', 'autostart', 'x', 'y']:
                                         # These options are already handled elsewhere
                                         continue
                                     elif interface_re.search(subitem):

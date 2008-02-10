@@ -63,6 +63,12 @@ class ETHSW(AbstractNode):
             self.ethsw = None
         self.dynagen.update_running_config()
         
+    def get_running_config_name(self):
+        """ Return node name as stored in the running config
+        """
+        
+        return (self.e)
+        
     def create_config(self):
         """ Creates the configuration of this switch
         """
@@ -125,9 +131,10 @@ class ETHSW(AbstractNode):
         self.delete_ethsw()
         self.hostname = new_hostname
         self.e = 'ETHSW ' + self.hostname
-        self.get_dynagen_device()
-        for link in links:
-            globals.GApp.topology.addLink(link.source.id, link.srcIf, link.dest.id, link.destIf)
+        if len(links):
+            self.get_dynagen_device()
+            for link in links:
+                globals.GApp.topology.addLink(link.source.id, link.srcIf, link.dest.id, link.destIf)
         
     def configNode(self):
         """ Node configuration

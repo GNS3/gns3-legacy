@@ -63,6 +63,12 @@ class FRSW(AbstractNode):
             self.frsw = None
         self.dynagen.update_running_config()
         
+    def get_running_config_name(self):
+        """ Return node name as stored in the running config
+        """
+        
+        return (self.f)
+        
     def create_config(self):
         """ Creates the configuration of this switch
         """
@@ -121,9 +127,10 @@ class FRSW(AbstractNode):
         self.delete_frsw()
         self.hostname = new_hostname
         self.f = 'FRSW ' + self.hostname
-        self.get_dynagen_device()
-        for link in links:
-            globals.GApp.topology.addLink(link.source.id, link.srcIf, link.dest.id, link.destIf)
+        if len(links):
+            self.get_dynagen_device()
+            for link in links:
+                globals.GApp.topology.addLink(link.source.id, link.srcIf, link.dest.id, link.destIf)
         
     def configNode(self):
         """ Node configuration

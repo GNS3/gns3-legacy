@@ -272,6 +272,11 @@ class NETFile(object):
     def export_net_file(self, path):
     
         globals.GApp.dynagen.update_running_config(need_active_config=True)
+        # record node x & y position
+        for node in globals.GApp.topology.nodes.values():
+            if not type(node) == Cloud:
+                globals.GApp.dynagen.running_config[node.d][node.get_running_config_name()]['x'] = node.x()
+                globals.GApp.dynagen.running_config[node.d][node.get_running_config_name()]['y'] = node.y()
         globals.GApp.dynagen.running_config.filename = path
         globals.GApp.dynagen.running_config.write()
         globals.GApp.dynagen.running_config.filename = None
