@@ -122,6 +122,10 @@ class IOSRouter(AbstractNode):
 
     def __del__(self):
 
+        self.delete_router()
+
+    def delete_router(self):
+    
         if self.router:
             if self.router.state != 'stopped':
                 self.router.stop()
@@ -130,7 +134,7 @@ class IOSRouter(AbstractNode):
             del self.dynagen.devices[self.hostname]
             debug('Router ' + self.hostname + ' deleted')
         self.dynagen.update_running_config()
-
+    
     def get_module_name(self, module):
         """ Returns a module name
             module: object
@@ -277,12 +281,9 @@ class IOSRouter(AbstractNode):
                         return (interface_name)
             slot_number += 1
         return ''
-
-    def configNode(self):
-        """ Node configuration
-        """
-
-        assert(self.d != None and self.hypervisor != None)
+        
+    def create_router(self):
+    
         model = self.model
         #first let's gather all defaults/setting for each model from running config
         self.dynagen.update_running_config()
@@ -328,15 +329,34 @@ class IOSRouter(AbstractNode):
 
         #add router to frontend
         self.dynagen.devices[self.hostname] = router
-#        self.dynagen.ghosteddevices[self.hostname] = router
-#        self.dynagen.ghostsizes[self.hostname] = router.ram
-
         self.router = router
         debug('Router ' + router.name + ' created')
 
         self.dynagen.update_running_config()
         self.running_config = self.dynagen.running_config[self.d][self.r]
         self.defaults_config = self.dynagen.defaults_config[self.d][self.router.model_string]
+        
+    def reconfigNode(self, new_hostname):
+        """ Used when changing the hostname
+        """
+
+        links = self.getEdgeList().copy()
+        for link in links:
+            globals.GApp.topology.deleteLink(link)
+        self.delete_router()
+        self.hostname = new_hostname
+        self.r = 'ROUTER ' + self.hostname
+        self.create_router()
+        self.set_config(self.local_config)
+        for link in links:
+            globals.GApp.topology.addLink(link.source.id, link.srcIf, link.dest.id, link.destIf)
+
+    def configNode(self):
+        """ Node configuration
+        """
+
+        assert(self.d != None and self.hypervisor != None)
+        self.create_router()
         self.create_config()
         
 #        print router.slot[0].wics

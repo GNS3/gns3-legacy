@@ -55,11 +55,16 @@ class ATMSW(AbstractNode):
 
     def __del__(self):
     
+        self.delete_atmsw()
+
+    def delete_atmsw(self):
+    
         if self.atmsw:
             self.atmsw.delete()
             del self.dynagen.devices[self.hostname]
+            self.atmsw = None
         self.dynagen.update_running_config()
-
+        
     def create_config(self):
         """ Creates the configuration of this switch
         """
@@ -107,6 +112,20 @@ class ATMSW(AbstractNode):
             self.dynagen.update_running_config()
             self.running_config = self.dynagen.running_config[self.d][self.a]
         return (self.atmsw)
+
+    def reconfigNode(self, new_hostname):
+        """ Used when changing the hostname
+        """
+
+        links = self.getEdgeList().copy()
+        for link in links:
+            globals.GApp.topology.deleteLink(link)
+        self.delete_atmsw()
+        self.hostname = new_hostname
+        self.a = 'ATMSW ' + self.hostname
+        self.get_dynagen_device()
+        for link in links:
+            globals.GApp.topology.addLink(link.source.id, link.srcIf, link.dest.id, link.destIf)
         
     def configNode(self):
         """ Node configuration

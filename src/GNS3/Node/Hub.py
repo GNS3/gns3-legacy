@@ -73,7 +73,13 @@ class Hub(AbstractNode):
         for port in range(1,  self.config['ports'] + 1):
             interfaces.append(str(port))
         return (interfaces)
-        
+       
+    def reconfigNode(self, new_hostname):
+        """ Used when changing the hostname
+        """
+
+        pass
+      
     def configNode(self):
         """ Node configuration
         """

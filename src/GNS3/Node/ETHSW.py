@@ -53,9 +53,14 @@ class ETHSW(AbstractNode):
 
     def __del__(self):
     
+        self.delete_ethsw()
+        
+    def delete_ethsw(self):
+
         if self.ethsw:
             self.ethsw.delete()
             del self.dynagen.devices[self.hostname]
+            self.ethsw = None
         self.dynagen.update_running_config()
         
     def create_config(self):
@@ -109,6 +114,20 @@ class ETHSW(AbstractNode):
             self.dynagen.update_running_config()
             self.running_config = self.dynagen.running_config[self.d][self.e]
         return (self.ethsw)
+
+    def reconfigNode(self, new_hostname):
+        """ Used when changing the hostname
+        """
+
+        links = self.getEdgeList().copy()
+        for link in links:
+            globals.GApp.topology.deleteLink(link)
+        self.delete_ethsw()
+        self.hostname = new_hostname
+        self.e = 'ETHSW ' + self.hostname
+        self.get_dynagen_device()
+        for link in links:
+            globals.GApp.topology.addLink(link.source.id, link.srcIf, link.dest.id, link.destIf)
         
     def configNode(self):
         """ Node configuration

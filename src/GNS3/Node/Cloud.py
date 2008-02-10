@@ -69,6 +69,12 @@ class Cloud(AbstractNode):
 
         return (self.config)
         
+    def reconfigNode(self, new_hostname):
+        """ Used when changing the hostname
+        """
+
+        pass
+        
     def configNode(self):
         """ Node configuration
         """

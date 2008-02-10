@@ -79,7 +79,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 if text == node.hostname:
                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hostname"),  translate("AbstractNode", "Hostname already used"))
                     return
-            self.hostname = text
+            self.reconfigNode(text)
             if self.__flag_hostname:
                 # force to redisplay the hostname
                 self.removeHostname()
@@ -88,6 +88,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 self.setCustomToolTip()
                 for edge in self.__edgeList:
                     edge.setCustomToolTip()
+            globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
                     
     def paint(self, painter, option, widget=None):
         """ Don't show the selection rectangle
