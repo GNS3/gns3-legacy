@@ -50,6 +50,10 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                                         4: self.comboBoxSlot4,
                                         5: self.comboBoxSlot5,
                                         6: self.comboBoxSlot6}
+                                        
+        self.widget_wics = {0: self.comboBoxWIC0,
+                                        1: self.comboBoxWIC1,
+                                        2: self.comboBoxWIC2}
 
     def slotSelectStartupConfig(self):
         """ Get startup-config from the file system
@@ -82,10 +86,11 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         self.textLabel_Platform.setText(platform)
         self.textLabel_Model.setText(router.model_string)
         self.textLabel_ImageIOS.setText(router_config['image'])
+        
         for widget in self.widget_slots.values():
             widget.clear()
         
-        for (slot_number,  slot_modules) in lib.ADAPTER_MATRIX[platform][chassis].iteritems():
+        for (slot_number, slot_modules) in lib.ADAPTER_MATRIX[platform][chassis].iteritems():
             if type(slot_modules) == str:
                 self.widget_slots[slot_number].addItem(slot_modules)
             elif platform == 'c7200' and slot_number == 0:
@@ -97,6 +102,26 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                 if (index != -1):
                     self.widget_slots[slot_number].setCurrentIndex(index)
 
+        for widget in self.widget_wics.values():
+            widget.clear()
+
+        if router_config['wics']:
+            wic_number = 0
+            for wic_name in router_config['wics']:
+                if wic_name:
+                    self.widget_wics[wic_number].addItem(wic_name)
+                else:
+                    available_wics = ['', 'WIC-1T', 'WIC-2T']
+                    if platform == 'c1700':
+                        # Ethernet WIC only available on platform c1700
+                        available_wics.append('WIC-1ENET')
+                    self.widget_wics[wic_number].addItems(available_wics)
+                    if wic_name:
+                        index = self.widget_wics[wic_number].findText(wic_name)
+                        if (index != -1):
+                            self.widget_wics[wic_number].setCurrentIndex(index)
+                wic_number += 1
+        
         if platform == 'c7200':
             self.comboBoxMidplane.clear()
             self.comboBoxMidplane.addItems(['std', 'vxr'])
@@ -128,7 +153,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             self.checkBoxMapped.setCheckState(QtCore.Qt.Unchecked)
         self.lineEditConfreg.setText(router_config['confreg'])
         if router_config['exec_area']:
-            self.spinBoxExecArea.setValue(router_config['exec_area'])
+            self.spinBoxExecArea.setValue(int(router_config['exec_area']))
 
         if platform == 'c3600' and router_config['iomem']: 
             self.spinBoxIomem.setValue(router_config['iomem'])
@@ -184,8 +209,9 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         if platform == 'c3600':
             router_config['iomem'] = self.spinBoxIomem.value()
         
+        #TODO: check if links are connected on slots
         router = node.get_dynagen_device()
-        for (slot_number,  widget) in self.widget_slots.iteritems():
+        for (slot_number, widget) in self.widget_slots.iteritems():
             module = str(widget.currentText())
             if module:
                 router_config['slots'][slot_number] = module
@@ -206,6 +232,12 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                         continue
                 except:
                     pass
+                    
+            for (wic_number, widget) in self.widget_wics.iteritems():
+                wic_name = str(widget.currentText())
+                if wic_name:
+                    router_config['wics'][wic_number] = wic_name
+            #TODO: check if links are connected on WICS ?
 
         return router_config
 

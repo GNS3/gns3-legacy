@@ -291,7 +291,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 node_list.append(node)
                 
         count = len(node_list)
-        progress = QtGui.QProgressDialog(text, translate("Workspace", "Abort"), 0, count, self)
+        progress = QtGui.QProgressDialog(text, translate("Workspace", "Abort"), 0, count, globals.GApp.mainWindow)
         progress.setMinimum(1)
         progress.setWindowModality(QtCore.Qt.WindowModal)
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents)

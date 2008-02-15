@@ -92,7 +92,7 @@ class Hub(AbstractNode):
         """
 
         self.startupInterfaces()
-        globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
+        self.state = 'running'
 
     def mousePressEvent(self, event):
         """ Call when the node is clicked

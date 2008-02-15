@@ -184,11 +184,11 @@ class Page_ATMSW(QtGui.QWidget, Ui_ATMSWPage):
         else:
             ATMSWconfig  = node.config
 
-        connected_ports = node.getConnectedInterfaceList()
-        for port in ATMSWconfig['ports'].keys():
-            if str(port) in connected_ports and not self.ports.has_key(port):
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Ports', translate("Page_ATMSW", "A link is connected in port ") + str(port))
-                return ATMSWconfig
+#        connected_ports = node.getConnectedInterfaceList()
+#        for port in ATMSWconfig['ports']:
+#            if str(port) in connected_ports and not port in self.ports:
+#                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Ports', translate("Page_ATMSW", "A link is connected in port ") + str(port))
+#                return ATMSWconfig
             
         ATMSWconfig['mapping'] = self.mapping
         ATMSWconfig['ports'] = []

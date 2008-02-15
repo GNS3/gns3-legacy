@@ -120,7 +120,7 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
         self.treeWidgetVCmap.clear()
         self.mapping = {}
         
-        for (source,  destination) in FRSWconfig['mapping'].iteritems():
+        for (source, destination) in FRSWconfig['mapping'].iteritems():
             item = QtGui.QTreeWidgetItem(self.treeWidgetVCmap)
             item.setText(0, source)
             item.setText(1, destination)
@@ -139,16 +139,15 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
         else:
             FRSWconfig  = node.config
 
-            
-        connected_ports = node.getConnectedInterfaceList()
-        for port in FRSWconfig['ports'].keys():
-            if str(port) in connected_ports and not self.ports.has_key(port):
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Ports', translate("Page_FRSW", "A link is connected in port ") + str(port))
-                return FRSWconfig
+#        connected_ports = node.getConnectedInterfaceList()
+#        for port in FRSWconfig['ports']:
+#            if str(port) in connected_ports and not port in self.ports:
+#                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Ports', translate("Page_FRSW", "A link is connected in port ") + str(port))
+#                return FRSWconfig
 
         FRSWconfig['mapping'] = self.mapping
         FRSWconfig['ports'] = []
-        for (source,  destination) in self.mapping.iteritems():
+        for (source, destination) in self.mapping.iteritems():
             (srcport,  srcdlci) = source.split(':')
             (destport,  destdlci) = destination.split(':')
             if not srcport in FRSWconfig['ports']:

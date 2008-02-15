@@ -4597,8 +4597,11 @@ def gen_connect(
         # source and dest adapters are on the same dynamips server, perform loopback binding optimization
         src_ip = '127.0.0.1'
         dst_ip = '127.0.0.1'
-        if src_dynamips.udp == dst_dynamips.udp:
-            dst_dynamips.udp = dst_dynamips.udp + 1000
+        #if the dynamips instances are different also compare the base udp port
+        if src_dynamips.port != dst_dynamips.port:
+            if abs(src_dynamips.udp - dst_dynamips.udp) <= 500:
+                if src_dynamips.udp == dst_dynamips.udp:
+                    dst_dynamips.udp = dst_dynamips.udp + 1000
     else:
         # source and dest are on different dynamips servers
         src_ip = src_dynamips.host

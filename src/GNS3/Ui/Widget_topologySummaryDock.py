@@ -22,6 +22,7 @@
 import GNS3.Globals as globals 
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
+from GNS3.Node.IOSRouter import IOSRouter
 
 class topologySummaryDock(QtGui.QTreeWidget):
     """ Class for displaying the topology
@@ -42,7 +43,12 @@ class topologySummaryDock(QtGui.QTreeWidget):
         for node in globals.GApp.topology.nodes.itervalues():
             rootitem = QtGui.QTreeWidgetItem(self)
             rootitem.setText(0, node.hostname)
-            rootitem.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
+            if node.getState() == 'running':
+                rootitem.setIcon(0, QtGui.QIcon(':/icons/led_green.svg'))
+            elif node.getState() == 'suspended':
+                rootitem.setIcon(0, QtGui.QIcon(':/icons/led_yellow.svg'))
+            else:
+                rootitem.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
     
             items = []
             for interface in node.getConnectedInterfaceList():

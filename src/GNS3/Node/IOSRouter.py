@@ -28,7 +28,6 @@ from PyQt4 import QtCore, QtGui,  QtSvg
 from GNS3.Utils import translate, debug, error
 from GNS3.Node.AbstractNode import AbstractNode
 
-#FIXME: keep it in globals ?
 MODULES_INTERFACES = {
     "PA-A1": ('a', 1),
     "PA-2FE-TX": ('f', 2),
@@ -41,7 +40,6 @@ MODULES_INTERFACES = {
     "NM-4T": ('s', 4),
 }
 
-#TODO: WICS support
 WICS_INTERFACES = {
     "WIC-1T": ('s', 1),
     "WIC-2T": ('s', 2),
@@ -135,6 +133,13 @@ class IOSRouter(AbstractNode):
             debug('Router ' + self.hostname + ' deleted')
         self.dynagen.update_running_config()
     
+    def set_hostname(self, hostname):
+        """ Set a hostname
+        """
+        
+        self.hostname = hostname
+        self.r = 'ROUTER ' + self.hostname
+    
     def get_running_config_name(self):
         """ Return node name as stored in the running config
         """
@@ -163,6 +168,16 @@ class IOSRouter(AbstractNode):
             except AttributeError:
                 continue
         self.local_config['slots'] = map(self.get_module_name, list(self.router.slot))
+        self.local_config['wics'] = None
+        
+        # consider that all wics are in slot 0
+        if self.router.slot[0]:
+            try:
+                self.router.slot[0].wics
+            except KeyError:
+                pass
+            else:
+                self.local_config['wics'] = list(self.router.slot[0].wics)
         return self.local_config
     
     def get_config(self):
@@ -202,6 +217,16 @@ class IOSRouter(AbstractNode):
                 self.clean_slot(self.router.slot[slot_number])
             slot_number += 1
 
+        # configure wics if available
+        if self.local_config['wics']:
+            wic_number = 0
+            for wic_name in self.local_config['wics']:
+                if wic_name and not self.router.slot[0].wics[wic_number]:
+                    # consider that all wics are in slot 0
+                    debug('Install ' + wic_name + ' in wic port ' + str(wic_number))
+                    self.router.installwic(wic_name, 0, wic_number)
+                wic_number += 1
+            
         self.dynagen.update_running_config()
         self.running_config =  self.dynagen.running_config[self.d][self.r]
         debug("Node " + self.hostname + ": running config: " + str(self.running_config))
@@ -227,12 +252,26 @@ class IOSRouter(AbstractNode):
         assert(self.router)
         return (self.router)
   
+    def set_dynagen_device(self, router):
+        """ Set a dynagen device in this node, used for .net import
+        """
+
+        model = self.model
+        devdefaults = self.get_devdefaults()
+        self.router = router
+        self.dynagen.setdefaults(router, devdefaults[model])
+        self.dynagen.update_running_config()
+        self.running_config = self.dynagen.running_config[self.d][self.r]
+        self.defaults_config = self.dynagen.defaults_config[self.d][self.router.model_string]
+        self.create_config()
+  
     def smart_interface(self,  link_type):
         """ Pick automatically (if possible) the right interface and adapter for the desired link type
             link_type: an one character string 'g', 'f', 'e', 's', 'a', or 'p'
             chassis: string corresponding to the chassis model
         """
 
+        #TODO: check bug with already inserted module
         connected_interfaces = self.getConnectedInterfaceList()
         
         # remove unused module from the slots
@@ -287,13 +326,12 @@ class IOSRouter(AbstractNode):
                         return (interface_name)
             slot_number += 1
         return ''
-        
-    def create_router(self):
+    
+    def get_devdefaults(self):
+        """ Get device defaults
+        """
     
         model = self.model
-        #first let's gather all defaults/setting for each model from running config
-        self.dynagen.update_running_config()
-        
         devdefaults = {}
         for key in dynagen_namespace.DEVICETUPLE:
             devdefaults[key] = {}
@@ -320,6 +358,16 @@ class IOSRouter(AbstractNode):
         else:
             error('Bad model: ' + model)
             return False
+        return devdefaults
+      
+    def create_router(self):
+    
+        model = self.model
+        #first let's gather all defaults/setting for each model from running config
+        self.dynagen.update_running_config()
+        devdefaults = self.get_devdefaults()
+        if devdefaults == False:
+            return False
 
         #now we have everything ready to create routers
         router = self.routerInstanceMap[model](self.hypervisor, chassis=model, name=self.hostname)
@@ -341,7 +389,7 @@ class IOSRouter(AbstractNode):
         self.dynagen.update_running_config()
         self.running_config = self.dynagen.running_config[self.d][self.r]
         self.defaults_config = self.dynagen.defaults_config[self.d][self.router.model_string]
-        
+
     def reconfigNode(self, new_hostname):
         """ Used when changing the hostname
         """
@@ -364,19 +412,6 @@ class IOSRouter(AbstractNode):
         assert(self.d != None and self.hypervisor != None)
         self.create_router()
         self.create_config()
-        
-#        print router.slot[0].wics
-#        self.router.installwic('WIC-2T', 0)
-#        self.router.installwic('WIC-1ENET', 0)
-#        print router.slot[0].wics
-        
-#        try:
-#            router.slot[slot].wics[0]
-#        except KeyError:
-#            pass
-#        else:
-#            pass
-        
         return True
 
     def set_slot(self, slot_number, slot_type):
@@ -407,7 +442,6 @@ class IOSRouter(AbstractNode):
         for module in self.router.slot:
             if module:
                 interfaces = module.interfaces
-                print interfaces
                 for type in interfaces.keys():
                     for port in interfaces[type].keys():
                         if self.router.model_string in SLOTLESS_MODELS:
@@ -432,6 +466,7 @@ class IOSRouter(AbstractNode):
             else:
                 return
         self.startupInterfaces()
+        self.state = self.router.state
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.router.state)
 
     def stopNode(self, progress=False):
@@ -445,6 +480,7 @@ class IOSRouter(AbstractNode):
                 if progress:
                     raise
             self.shutdownInterfaces()
+            self.state = self.router.state
             globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.router.state)
             
     def suspendNode(self, progress=False):
@@ -458,6 +494,7 @@ class IOSRouter(AbstractNode):
                 if progress:
                     raise
             self.suspendInterfaces()
+            self.state = self.router.state
             globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.router.state)
 
     def console(self):

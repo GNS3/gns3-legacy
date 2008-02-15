@@ -56,9 +56,9 @@ SYMBOLS = (
     'normal_svg_file': ":/symbols/sw_standard.normal.svg",
     'select_svg_file': ":/symbols/sw_standard.selected.svg"},
     
-    {'name': "Hub", 'object': Hub,
-    'normal_svg_file': ":/symbols/hub.normal.svg",
-    'select_svg_file': ":/symbols/hub.selected.svg"},
+#    {'name': "Hub", 'object': Hub,
+#    'normal_svg_file': ":/symbols/hub.normal.svg",
+#    'select_svg_file': ":/symbols/hub.selected.svg"},
      
     {'name': "ATM switch", 'object': ATMSW,
     'normal_svg_file': ":/symbols/sw_atm.normal.svg",

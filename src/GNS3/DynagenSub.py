@@ -20,71 +20,50 @@
 #
 
 import sys, os
+import GNS3.Globals as globals
 from GNS3.Dynagen.validate import Validator
 from GNS3.Dynagen.configobj import ConfigObj, flatten_errors
 from GNS3.Config.Objects import hypervisorConf
-import GNS3.Dynagen.dynagen as dynagen
-import GNS3.Globals as globals
+from GNS3.Dynagen.dynagen import Dynagen
+from GNS3.Utils import translate, debug
+from PyQt4 import QtCore, QtGui
 
-class DynagenSub(dynagen.Dynagen):
+class DynagenSub(Dynagen):
     """ Subclass of Dynagen
     """
     
     def __init__(self):
 
-        self.original_config = {}
-        dynagen.Dynagen.__init__(self)
-    
-    #TODO: mr proper needed
+        Dynagen.__init__(self)
+
     def open_config(self,  FILENAME):
         """ Open the config file
         """
-        
-        self.original_config.clear()
+
         # look for configspec in CONFIGSPECPATH and the same directory as dynagen
-        realpath = os.path.realpath(sys.argv[0])
-        self.debug('realpath ' + realpath)
-        pathname = os.path.dirname(realpath)
-        self.debug('pathname -> ' + pathname)
-        dynagen.CONFIGSPECPATH.append(pathname)
-        for dir in dynagen.CONFIGSPECPATH:
-            configspec = dir +'/' + dynagen.CONFIGSPEC
-            self.debug('configspec -> ' + configspec)
+#        realpath = os.path.realpath(sys.argv[0])
+#        self.debug('realpath ' + realpath)
+#        pathname = os.path.dirname(realpath)
+#        self.debug('pathname -> ' + pathname)
+#        dynagen.CONFIGSPECPATH.append(pathname)
+#        for dir in dynagen.CONFIGSPECPATH:
+#            configspec = dir +'/' + dynagen.CONFIGSPEC
+#            self.debug('configspec -> ' + configspec)
 
-            # Check to see if configuration file exists
-            try:
-                h=open(FILENAME)
-                h.close()
-                try:
-                    config = ConfigObj(FILENAME, configspec=configspec, raise_errors=True)
-                except SyntaxError, e:
-                    print "\nError:"
-                    print e
-                    print e.line, '\n'
-                    raise SyntaxError, e
-            except IOError:
-               continue
-
-        vtor = Validator()
-        res = config.validate(vtor, preserve_errors=True)
-        if res == True:
-            self.debug('Passed validation')
-        else:
-            for entry in flatten_errors(config, res):
-                # each entry is a tuple
-                section_list, key, error = entry
-                if key is not None:
-                   section_list.append(key)
-                else:
-                    section_list.append('[missing section]')
-                section_string = ', '.join(section_list)
-                if error == False:
-                    error = 'Missing value or section.'
-                print section_string, ' = ', error
-            raise SyntaxError, e
-
-        subsections = {}
-        for section in config.sections:
+        config = Dynagen.open_config(self, FILENAME)
+        count = len(config.sections)
+        progress = QtGui.QProgressDialog(translate("DynagenSub", "Starting hypervisors ..."), translate("DynagenSub", "Abort"), 0, count, globals.GApp.mainWindow)
+        progress.setMinimum(1)
+        progress.setWindowModality(QtCore.Qt.WindowModal)
+        globals.GApp.processEvents(QtCore.QEventLoop.AllEvents)
+        current = 0
+        for section in config.sections: 
+            progress.setValue(current)
+            globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+            if progress.wasCanceled():
+                progress.reset()
+                break
+        
             server = config[section]
             server.host = server.name
             controlPort = None
@@ -94,65 +73,26 @@ class DynagenSub(dynagen.Dynagen):
                 controlPort = server['port']
             if controlPort == None:
                 controlPort = 7200
-            hypervisorkey = server.host + ':' + controlPort
-            
-            if not globals.GApp.hypervisors.has_key(hypervisorkey):# and not globals.ImportuseHypervisorManager:
-                conf = hypervisorConf()
-                conf.id = globals.GApp.hypervisors_ids
-                globals.GApp.hypervisors_ids +=1
-            else:
-                conf = globals.GApp.hypervisors[hypervisorkey]
 
-            conf.host = unicode(server.host, 'utf-8')
-            conf.port = int(controlPort)
-            if server['workingdir'] != None:
-                conf.workdir = unicode(server['workingdir'], 'utf-8')
-            if server['udp'] != None:
-                conf.baseUDP = server['udp']
-            globals.GApp.hypervisors[hypervisorkey] = conf
-            
-            for subsection in server.sections:
-                subsections[subsection] = config[section][subsection]
-                device = server[subsection]
-                if device.name not in dynagen.DEVICETUPLE:
-                    (devtype, devname) = device.name.split(' ')
-                    x  = y = None
-                    if device.has_key('x'):
-                        x = device['x']
-                    if device.has_key('y'):
-                        y = device['y']
-                    self.original_config[devname] = {'host': server.host, 
-                                                                        'port': controlPort, 
-                                                                        'x': x, 'y': y}
+            # need to start hypervisors
+            if server.host == 'localhost' and globals.ImportuseHypervisorManager:
+                debug("Start hypervisor on: " + str(controlPort))
+                hypervisor = globals.HypervisorManager.startNewHypervisor(int(controlPort))
+                globals.HypervisorManager.waitHypervisor(hypervisor)
+                dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor('localhost', hypervisor['port'])
+                globals.GApp.dynagen.update_running_config()
+                dynamips_hypervisor.configchange = True
+            current += 1
 
-        dynamips = globals.GApp.systconf['dynamips']
-        dynamipskey = 'localhost' + ':' + str(dynamips.port)
-        if not config.has_key(dynamipskey):
-            # need to create a localhost section
-            config[dynamipskey] = {}
-            config[dynamipskey]['port'] = dynamips.port
-            config[dynamipskey]['workingdir'] = dynamips.workdir
-            config[dynamipskey]['console'] = None
-            config[dynamipskey]['udp'] = None
-        
-        subsection_keys = []
-        for key in subsections.iterkeys():
-            subsection_keys.append(key)
-
-        subsection_keys.sort()
-        for key in subsection_keys:
-            config[dynamipskey][key] = subsections[key]
-
-        for section in config.sections:
-            if config[section].name != dynamipskey:
-                del config[section]
-
+        progress.setValue(count)
+        progress.deleteLater()
+        progress = None
         return config
 
     def doerror(self, msg):
         """Print out an error message"""
 
         print '\n*** Error:', str(msg)
-        dynagen.handled = True
+        Dynagen.handled = True
         self.doreset()
         raise

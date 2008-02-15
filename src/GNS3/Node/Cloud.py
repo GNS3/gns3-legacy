@@ -60,7 +60,7 @@ class Cloud(AbstractNode):
         """ Set a configuration in Dynamips
             config: dict
         """
-        
+    
         self.config = config
 
     def getInterfaces(self):
@@ -87,7 +87,7 @@ class Cloud(AbstractNode):
         """
 
         self.startupInterfaces()
-        globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
+        self.state = 'running'
 
     def mousePressEvent(self, event):
         """ Call when the node is clicked

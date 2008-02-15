@@ -43,7 +43,9 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.__edgeList = set()
         self.__selectedInterface = None
         self.__flag_hostname = False
-        self.dev = None
+        
+        # status used in the topology summary
+        self.state = 'stopped'
         
         if error == None:
             error = QtGui.QErrorMessage(globals.GApp.mainWindow)
@@ -65,10 +67,15 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.setZValue(1)
         self.setSharedRenderer(self.__render_normal)
         
+    def getState(self):
+        """ Returns the current node state
+        """
+        
+        return (self.state)
+        
     def changeHostname(self):
         """ Called to change the hostname
         """
-        
         
         (text,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, translate("AbstractNode", "Change hostname"),
                                           translate("AbstractNode", "Hostname:"), QtGui.QLineEdit.Normal,

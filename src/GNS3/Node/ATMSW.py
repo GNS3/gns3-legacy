@@ -65,6 +65,13 @@ class ATMSW(AbstractNode):
             self.atmsw = None
         self.dynagen.update_running_config()
         
+    def set_hostname(self, hostname):
+        """ Set a hostname
+        """
+        
+        self.hostname = hostname
+        self.a= 'ATMSW ' + self.hostname
+        
     def get_running_config_name(self):
         """ Return node name as stored in the running config
         """
@@ -115,9 +122,16 @@ class ATMSW(AbstractNode):
         if not self.atmsw:
             self.atmsw = lib.ATMSW(self.hypervisor, name = self.hostname)
             self.dynagen.devices[self.hostname] = self.atmsw
+        if not self.dynagen.running_config[self.d].has_key(self.a):
             self.dynagen.update_running_config()
             self.running_config = self.dynagen.running_config[self.d][self.a]
         return (self.atmsw)
+        
+    def set_dynagen_device(self, atmsw):
+        """ Set a dynagen device in this node, used for .net import
+        """
+
+        self.atmsw = atmsw
 
     def reconfigNode(self, new_hostname):
         """ Used when changing the hostname
@@ -158,18 +172,17 @@ class ATMSW(AbstractNode):
                 srcvci = destvci = None
 
             if int(srcport) in connected_interfaces and int(destport) in connected_interfaces:
-                if not self.atmsw.connected('a', int(srcport)):
-                    if srcvci and destvci:
+                if srcvci and destvci:
+                    if not self.atmsw.vpivci_map.has_key((int(srcport), int(srcvpi), int(srcvci))) and not self.atmsw.vpivci_map.has_key((int(destport), int(destvpi), int(destvci))):
                         self.atmsw.mapvc(int(srcport), int(srcvpi), int(srcvci), int(destport), int(destvpi),  int(destvci))
-                    else:
-                        self.atmsw.mapvp(int(srcport), int(srcvpi), int(destport), int(destvpi))
-                if not self.atmsw.connected('a', int(destport)):
-                    if srcvci and destvci:
                         self.atmsw.mapvc(int(destport), int(destvpi), int(destvci), int(srcport), int(srcvpi),  int(srcvci))
-                    else:
+                else:
+                    if not self.atmsw.vpivci_map.has_key((int(srcport), int(srcvpi))) and not self.atmsw.vpivci_map.has_key((int(destport), int(destvpi))):
+                        self.atmsw.mapvp(int(srcport), int(srcvpi), int(destport), int(destvpi))
                         self.atmsw.mapvp(int(destport), int(destvpi), int(srcport), int(srcvpi))
 
         self.startupInterfaces()
+        self.state = 'running'
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
 
     def mousePressEvent(self, event):

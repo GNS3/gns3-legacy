@@ -21,7 +21,7 @@
 
 from GNS3.Node.AbstractNode import AbstractNode
 from PyQt4 import QtCore, QtGui
-from GNS3.Utils import translate
+from GNS3.Utils import translate, debug
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.dynagen as dynagen
 import GNS3.Globals as globals 
@@ -63,6 +63,13 @@ class FRSW(AbstractNode):
             self.frsw = None
         self.dynagen.update_running_config()
         
+    def set_hostname(self, hostname):
+        """ Set a hostname
+        """
+        
+        self.hostname = hostname
+        self.f = 'FRSW ' + self.hostname
+        
     def get_running_config_name(self):
         """ Return node name as stored in the running config
         """
@@ -94,7 +101,7 @@ class FRSW(AbstractNode):
         """ Records an hypervisor
             hypervisor: object
         """
-    
+
         self.hypervisor = hypervisor
         self.d = self.hypervisor.host + ':' + str(self.hypervisor.port)
 
@@ -102,20 +109,28 @@ class FRSW(AbstractNode):
         """ Returns all interfaces
         """
 
-        ports = map(int, self.config.ports)
+        ports = map(int, self.config['ports'])
         ports.sort()
         return (map(str, ports))
         
     def get_dynagen_device(self):
         """ Returns the dynagen device corresponding to this switch
         """
-        
+
         if not self.frsw:
             self.frsw = lib.FRSW(self.hypervisor, name = self.hostname)
             self.dynagen.devices[self.hostname] = self.frsw
+        if not self.dynagen.running_config[self.d].has_key(self.f):
             self.dynagen.update_running_config()
+            print self.dynagen.running_config[self.d]
             self.running_config = self.dynagen.running_config[self.d][self.f]
         return (self.frsw)
+
+    def set_dynagen_device(self, frsw):
+        """ Set a dynagen device in this node, used for .net import
+        """
+
+        self.frsw = frsw
         
     def reconfigNode(self, new_hostname):
         """ Used when changing the hostname
@@ -145,15 +160,16 @@ class FRSW(AbstractNode):
 
         connected_interfaces = map(int, self.getConnectedInterfaceList())
         for (source,  destination) in self.config['mapping'].iteritems():
-            (srcport,  srcdlci) = source.split(':')
-            (destport,  destdlci) = destination.split(':')
+            (srcport, srcdlci) = source.split(':')
+            (destport, destdlci) = destination.split(':')
             if int(srcport) in connected_interfaces and int(destport) in connected_interfaces:
-                if not self.frsw.connected('s', int(srcport)):
+                debug('FRSW ' + self.hostname + ' is mapping: ' + source + ' to ' + destination)
+                if not self.frsw.pvcs.has_key((int(srcport), int(srcdlci))) and not self.frsw.pvcs.has_key((int(destport), int(destdlci))):
                     self.frsw.map(int(srcport), int(srcdlci), int(destport), int(destdlci))
-                if not self.frsw.connected('s', int(destport)):
                     self.frsw.map(int(destport), int(destdlci), int(srcport), int(srcdlci))
 
         self.startupInterfaces()
+        self.state = 'running'
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
 
     def mousePressEvent(self, event):

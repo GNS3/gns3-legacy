@@ -62,6 +62,13 @@ class ETHSW(AbstractNode):
             del self.dynagen.devices[self.hostname]
             self.ethsw = None
         self.dynagen.update_running_config()
+    
+    def set_hostname(self, hostname):
+        """ Set a hostname
+        """
+        
+        self.hostname = hostname
+        self.e = 'ETHSW ' + self.hostname
         
     def get_running_config_name(self):
         """ Return node name as stored in the running config
@@ -117,10 +124,17 @@ class ETHSW(AbstractNode):
         if not self.ethsw:
             self.ethsw = lib.ETHSW(self.hypervisor, name = self.hostname)
             self.dynagen.devices[self.hostname] = self.ethsw
+        if not self.dynagen.running_config[self.d].has_key(self.e):
             self.dynagen.update_running_config()
             self.running_config = self.dynagen.running_config[self.d][self.e]
         return (self.ethsw)
 
+    def set_dynagen_device(self, ethsw):
+        """ Set a dynagen device in this node, used for .net import
+        """
+
+        self.ethsw = ethsw
+        
     def reconfigNode(self, new_hostname):
         """ Used when changing the hostname
         """
@@ -148,7 +162,7 @@ class ETHSW(AbstractNode):
         """
 
         connected_interfaces = map(int, self.getConnectedInterfaceList())
-        for (vlan,  portlist) in self.config['vlans'].iteritems():
+        for (vlan, portlist) in self.config['vlans'].iteritems():
             for port in portlist:
                 if port in connected_interfaces:
                     (destnode, destinterface)= self.getConnectedNeighbor(str(port))
@@ -159,6 +173,7 @@ class ETHSW(AbstractNode):
                         self.dynagen.ethsw_map(self.ethsw, port, porttype + ' ' + str(vlan))
 
         self.startupInterfaces()
+        self.state = 'running'
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
 
     def mousePressEvent(self, event):

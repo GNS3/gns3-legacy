@@ -381,7 +381,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
             Cloudconfig = config
         else:
             Cloudconfig  = node.config
-            
+
         self.nios = []
         self.listWidgetGenericEth.clear()
         self.listWidgetLinuxEth.clear()
@@ -390,19 +390,19 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         self.listWidgetUNIX.clear()
         self.listWidgetVDE.clear()
         for nio in Cloudconfig:
-            (niotype,  niostring) = nio.split(':',  1)
+            (niotype, niostring) = nio.split(':',  1)
             self.nios.append(nio)
-            if niotype == 'NIO_gen_eth':
+            if niotype.lower() == 'nio_gen_eth':
                 self.listWidgetGenericEth.addItem(nio)
-            elif niotype == 'NIO_linux_eth':
+            elif niotype.lower() == 'nio_linux_eth':
                 self.listWidgetLinuxEth.addItem(nio)
-            elif niotype == 'NIO_udp':
+            elif niotype.lower() == 'nio_udp':
                 self.listWidgetUDP.addItem(nio)
-            elif niotype == 'NIO_tap':
+            elif niotype.lower() == 'nio_tap':
                 self.listWidgetTAP.addItem(nio)
-            elif niotype == 'NIO_unix':
+            elif niotype.lower() == 'nio_unix':
                 self.listWidgetUNIX.addItem(nio)
-            elif niotype == 'NIO_vde':
+            elif niotype.lower() == 'nio_vde':
                 self.listWidgetVDE.addItem(nio)
 
     def saveConfig(self, id, config = None):
