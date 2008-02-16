@@ -44,12 +44,28 @@ class Topology(QtGui.QGraphicsScene):
 
         self.node_baseid = 0
         self.link_baseid = 0
+        self.dynagen = globals.GApp.dynagen
 
         QtGui.QGraphicsScene.__init__(self, parent)
 
         #TODO: A better management of the scene size ?
         self.setSceneRect(-250, -250, 500, 500)
 
+    def cleanDynagen(self):
+        """ Clean all dynagen data
+        """
+    
+        self.dynagen.handled = False
+        self.dynagen.devices.clear()
+        self.dynagen.globalconfig.clear()
+        self.dynagen.configurations.clear()
+        self.dynagen.ghosteddevices.clear()
+        self.dynagen.ghostsizes.clear()
+        self.dynagen.dynamips.clear()
+        self.dynagen.bridges.clear()
+        self.dynagen.autostart.clear()
+        globals.HypervisorManager.stopProcHypervisors()
+        
     def clear(self):
         """ Clear the topology
         """
@@ -69,6 +85,7 @@ class Topology(QtGui.QGraphicsScene):
         FRSW.frsw_id = 0
         Hub.hub_id = 0
         Cloud.cloud_id = 0
+        self.cleanDynagen()
         
     def getNode(self, id):
         """ Returns the node corresponding to id
@@ -106,17 +123,17 @@ class Topology(QtGui.QGraphicsScene):
         """
         
         external_hypervisor_key = host + ':' + str(port)
-        if globals.GApp.dynagen.dynamips.has_key(external_hypervisor_key):
+        if self.dynagen.dynamips.has_key(external_hypervisor_key):
             debug("Use an external hypervisor: " + external_hypervisor_key)
-            dynamips_hypervisor = globals.GApp.dynagen.dynamips[external_hypervisor_key]
+            dynamips_hypervisor = self.dynagen.dynamips[external_hypervisor_key]
         else:
             debug("Connection to an external hypervisor: " + external_hypervisor_key)
-            dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor(host, port)
+            dynamips_hypervisor = self.dynagen.create_dynamips_hypervisor(host, port)
             if not dynamips_hypervisor:
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Hypervisor"),  
                                            translate("Topology", "Can't connect to the external hypervisor on ") + external_hypervisor_key)
                 return False
-            globals.GApp.dynagen.update_running_config()
+            self.dynagen.update_running_config()
             dynamips_hypervisor.configchange = True
             hypervisor_conf = globals.GApp.hypervisors[external_hypervisor_key]
             if hypervisor_conf.workdir:
@@ -206,7 +223,7 @@ class Topology(QtGui.QGraphicsScene):
                 self.deleteNode(node.id)
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"), translate("Topology", "Connection lost"))
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
-        debug("Running config: " + str(globals.GApp.dynagen.running_config))
+        debug("Running config: " + str(self.dynagen.running_config))
         return
 
     def deleteNode(self, id):
@@ -273,20 +290,20 @@ class Topology(QtGui.QGraphicsScene):
             if isinstance(src_node, IOSRouter):
                 srcdev = self.__nodes[srcid].get_dynagen_device()
                 if type(dst_node) == Cloud:
-                    globals.GApp.dynagen.connect(srcdev, srcif, dstif)
+                    self.dynagen.connect(srcdev, srcif, dstif)
                     debug('Connect link from ' + srcdev.name + ' ' + srcif +' to ' + dstif)
                 else:
                     dstdev = dst_node.get_dynagen_device()
-                    globals.GApp.dynagen.connect(srcdev, srcif, dstdev.name + ' ' + dstif)
+                    self.dynagen.connect(srcdev, srcif, dstdev.name + ' ' + dstif)
                     debug('Connect link from ' + srcdev.name + ' ' + srcif +' to ' + dstdev.name + ' ' + dstif)
             elif isinstance(dst_node, IOSRouter):
                 dstdev = dst_node.get_dynagen_device()
                 if type(src_node) == Cloud:
-                    globals.GApp.dynagen.connect(dstdev, dstif, srcif)
+                    self.dynagen.connect(dstdev, dstif, srcif)
                     debug('Connect link from ' + dstdev.name + ' ' + srcif +' to ' + dstif)
                 else:
                     srcdev = src_node.get_dynagen_device()
-                    globals.GApp.dynagen.connect(dstdev, dstif, srcdev.name + ' ' + srcif)
+                    self.dynagen.connect(dstdev, dstif, srcdev.name + ' ' + srcif)
                     debug('Connect link from ' + dstdev.name + ' ' + srcif +' to ' + srcdev.name + ' ' + dstif)
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
@@ -305,7 +322,7 @@ class Topology(QtGui.QGraphicsScene):
             return False
         
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
-        globals.GApp.dynagen.update_running_config()
+        self.dynagen.update_running_config()
         return True
  
     def deleteLink(self, link):
@@ -316,11 +333,11 @@ class Topology(QtGui.QGraphicsScene):
         dstdev = link.dest.get_dynagen_device()
         try:
             if isinstance(link.source, IOSRouter):
-                globals.GApp.dynagen.disconnect(srcdev, link.srcIf, dstdev.name + ' ' + link.destIf)
+                self.dynagen.disconnect(srcdev, link.srcIf, dstdev.name + ' ' + link.destIf)
                 debug('Disconnect link from ' + srcdev.name + ' ' + link.srcIf +' to ' + dstdev.name + ' ' + link.destIf)
                 link.source.set_config(link.source.get_config())
             elif isinstance(link.dest, IOSRouter):
-                globals.GApp.dynagen.disconnect(dstdev, link.destIf, srcdev.name + ' ' + link.srcIf)
+                self.dynagen.disconnect(dstdev, link.destIf, srcdev.name + ' ' + link.srcIf)
                 debug('Disconnect link from ' + dstdev.name + ' ' + link.destIf +' to ' + srcdev.name + ' ' + link.srcIf)
                 link.dest.set_config(link.dest.get_config())
         except lib.DynamipsError, msg:
@@ -338,4 +355,4 @@ class Topology(QtGui.QGraphicsScene):
             self.__links.remove(link)
             self.removeItem(link)
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
-        globals.GApp.dynagen.update_running_config()
+        self.dynagen.update_running_config()

@@ -952,7 +952,7 @@ class BaseAdapter(object):
         #"c7200 pa_stop_online <instance_name> <slot>"
         if self.__router.state == 'running':
             if self.__router.model == 'c7200':
-                send(self.__router.dynamips, 'vm slot_oir_stop %s %i 0' % (self.__router.name, slot))
+                send(self.__router.dynamips, 'vm slot_oir_stop %s %i 0' % (self.__router.name, self.slot))
                 #send(self.__router.dynamips, '%s pa_stop_online %s %i' % (self.__router.model, self.__router.name, self.slot))
 
         #remove the PA from the router
@@ -2897,7 +2897,7 @@ class C7200(Router):
         # generate the slots for port adapters
         Router.createslots(self, 7)
 
-        #self.slot[0] = PA_C7200_IO_2FE(self, 0)
+        self.slot[0] = PA_C7200_IO_FE(self, 0)
 
 
 class C2691(Router):

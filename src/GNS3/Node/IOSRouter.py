@@ -314,14 +314,12 @@ class IOSRouter(AbstractNode):
                 interfaces = module.interfaces
                 for interface_type in interfaces.keys():
                     if interface_type == link_type:
-                        print interfaces[link_type]
                         for port in interfaces[link_type].keys():
                             if self.router.model_string in SLOTLESS_MODELS:
                                 interface_name = interface_type + str(port)
                             else:
                                 interface_name = interface_type + str(module.slot) + '/' + str(port)
                             if interface_name not in connected_interfaces:
-                                print interface_name
                                 return (interface_name)
 
         # put a new module in an empty slot and return the first interface

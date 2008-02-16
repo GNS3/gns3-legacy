@@ -45,22 +45,7 @@ class NETFile(object):
     def __init__(self):
     
         self.dynagen = globals.GApp.dynagen
-    
-    def clean_Dynagen(self):
-        """ Clean all dynagen data
-        """
-    
-        self.dynagen.handled = False
-        self.dynagen.devices.clear()
-        self.dynagen.globalconfig.clear()
-        self.dynagen.configurations.clear()
-        self.dynagen.ghosteddevices.clear()
-        self.dynagen.ghostsizes.clear()
-        self.dynagen.dynamips.clear()
-        self.dynagen.bridges.clear()
-        self.dynagen.autostart.clear()
-        globals.HypervisorManager.stopProcHypervisors()
-    
+
     def add_in_connection_list(self, connection_data, connection_list):
         """ Record the connection in connection_list
         """
@@ -242,7 +227,6 @@ class NETFile(object):
             return
 
         globals.GApp.topology.clear()
-        self.clean_Dynagen()
         dir = os.path.dirname(dynagen_namespace.__file__)
         dynagen_namespace.CONFIGSPECPATH.append(dir)
         try:
@@ -252,19 +236,19 @@ class NETFile(object):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "Dynamips error"),  str(msg))
             globals.GApp.workspace.projectFile = None
             globals.GApp.workspace.setWindowTitle("GNS3")
-            self.clean_Dynagen()
+            globals.GApp.topology.clear()
             return
         except lib.DynamipsWarning,  msg:
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("NETFile", "Dynamips warning"),  str(msg))
             globals.GApp.workspace.projectFile = None
             globals.GApp.workspace.setWindowTitle("GNS3")
-            self.clean_Dynagen()
+            globals.GApp.topology.clear()
             return
         except:
             print 'Exception detected, stopping importation...'
             globals.GApp.workspace.projectFile = None
             globals.GApp.workspace.setWindowTitle("GNS3")
-            self.clean_Dynagen()
+            globals.GApp.topology.clear()
             return
 
         devices = self.dynagen.devices.copy()

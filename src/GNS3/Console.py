@@ -18,6 +18,7 @@ import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as Dynagen_Namespace
 import GNS3.Dynagen.dynamips_lib as lib
 from PyQt4 import QtCore, QtGui
+from GNS3.Utils import translate
 from GNS3.Dynagen.console import Console as Dynagen_Console, getItems
 from GNS3.External.PyCutExt import PyCutExt
 from GNS3.Node.IOSRouter import IOSRouter
@@ -41,7 +42,7 @@ class Console(PyCutExt,  Dynagen_Console):
         sys.ps1 = '=> '
 
         # Set introduction message
-        self.intro = 'Dynagen management console for Dynamips (adapted for GNS3)\nCopyright (c) 2005-2007 Greg Anuzelli\nCopyright (c) 2007 GNS3 Project'
+        self.intro = 'Dynagen management console for Dynamips (adapted for GNS3)\nCopyright (c) 2005-2008 Greg Anuzelli\nCopyright (c) 2008 GNS3 Project'
 
         # Parent class initialisation
         try:
@@ -140,12 +141,16 @@ class Console(PyCutExt,  Dynagen_Console):
             Dynagen_Console.do_start(self, args)
             devices = args.split(' ')
             for node in globals.GApp.topology.nodes.values():
-                if type(node) == IOSRouter and (node.hostname in devices or '/all' in devices):
+                if isinstance(node, IOSRouter) and (node.hostname in devices or '/all' in devices):
                     node.startupInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'running')
-        except:
-            globals.GApp.workspace.switchToMode_Design()
-        
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  str(msg))
+        except lib.DynamipsWarning,  msg:
+            QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  str(msg))
+        except (lib.DynamipsErrorHandled,  socket.error):
+            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
+
     def do_stop(self, args):
         """stop  {/all | router1 [router2] ...}\nstop all or a specific router(s)"""
 
@@ -153,11 +158,15 @@ class Console(PyCutExt,  Dynagen_Console):
             Dynagen_Console.do_stop(self, args)
             devices = args.split(' ')
             for node in globals.GApp.topology.nodes.values():
-                if type(node) == IOSRouter and (node.hostname in devices or '/all' in devices):
+                if isinstance(node, IOSRouter) and (node.hostname in devices or '/all' in devices):
                     node.shutdownInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'stopped')
-        except:
-            globals.GApp.workspace.switchToMode_Design()
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  str(msg))
+        except lib.DynamipsWarning,  msg:
+            QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  str(msg))
+        except (lib.DynamipsErrorHandled,  socket.error):
+            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
 
     def do_suspend(self, args):
         """suspend  {/all | router1 [router2] ...}\nsuspend all or a specific router(s)"""
@@ -166,11 +175,15 @@ class Console(PyCutExt,  Dynagen_Console):
             Dynagen_Console.do_suspend(self, args)
             devices = args.split(' ')
             for node in globals.GApp.topology.nodes.values():
-                if type(node) == IOSRouter and (node.hostname in devices or '/all' in devices):
+                if isinstance(node, IOSRouter) and (node.hostname in devices or '/all' in devices):
                     node.suspendInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'suspended')
-        except:
-            globals.GApp.workspace.switchToMode_Design()
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  str(msg))
+        except lib.DynamipsWarning,  msg:
+            QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  str(msg))
+        except (lib.DynamipsErrorHandled,  socket.error):
+            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
 
     def do_resume(self, args):
         """resume  {/all | router1 [router2] ...}\nresume all or a specific router(s)"""
@@ -179,11 +192,15 @@ class Console(PyCutExt,  Dynagen_Console):
             Dynagen_Console.do_resume(self, args)
             devices = args.split(' ')
             for node in globals.GApp.topology.nodes.values():
-                if type(node) == IOSRouter and (node.hostname in devices or '/all' in devices):
+                if isinstance(node, IOSRouter) and (node.hostname in devices or '/all' in devices):
                     node.startupInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'running')
-        except:
-            globals.GApp.workspace.switchToMode_Design()
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  str(msg))
+        except lib.DynamipsWarning,  msg:
+            QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  str(msg))
+        except (lib.DynamipsErrorHandled,  socket.error):
+            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
             
     def do_reload(self, args):
         """reload  {/all | router1 [router2] ...}\nreload all or a specific router(s)"""
@@ -192,22 +209,22 @@ class Console(PyCutExt,  Dynagen_Console):
         self.do_start(args)
             
     def do_exit(self,  args):
-        """ Returns to design mode """
+        """clear the topology"""
         
-        globals.GApp.workspace.switchToMode_Design()
+        globals.GApp.topology.clear()
         
     def do_disconnect(self,  args):
-        """ Returns to design mode """
+        """clear the topology"""
         
-        globals.GApp.workspace.switchToMode_Design()
+        globals.GApp.topology.clear()
         
     def do_py(self,  args):
-        """ Not implemented in GNS3 """
+        """not implemented in GNS3"""
         
-        print 'Sorry, not implemented in GNS3'
+        print translate("Console", "Sorry, not implemented in GNS3")
     
     def do_hist(self, args):
-        """Print a list of commands that have been entered"""
+        """print a list of commands that have been entered"""
 
         for entry in self.history:
             print unicode(entry)
@@ -247,38 +264,21 @@ Examples:
                 return
                 
             if command == 'save':
-                print 'Sorry, save has not been implemented in GNS3 yet'
+                print translate("Console", "Sorry, not implemented in GNS3")
                 return
             
             if command == 'get' or command == 'show':
                 device = params[0]
                 if command == 'get':
-                    if self.namespace.devices[device].idlepc != None:
-                        print '%s already has an idlepc value applied.' % device
+                    if self.dynagen.devices[device].idlepc != None:
+                        print translate("Console", device + " already has an idlepc value applied.")
                         return
-                    print 'Please wait while gathering statistics...'
+                         
+                    print translate("Console", "Please wait while gathering statistics...")
                     globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-                    result = self.namespace.devices[device].idleprop(lib.IDLEPROPGET)
-                    
-#                    progress = QtGui.QProgressDialog('IDLEPC', 'Abort', 0, 20, self)
-#                    progress.setMinimum(1)
-#                    progress.setWindowModality(QtCore.Qt.WindowModal)
-#                    self.processEvents(QtCore.QEventLoop.AllEvents)
-#                    for nb in range(1, 21):
-#                        print nb
-#                        progress.setValue(nb)
-#                        time.sleep(1)
-#                        self.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-#                        if progress.wasCanceled():
-#                            progress.reset()
-#                            break
-#                    progress.setValue(20)
-#                    progress.deleteLater()
-#                    progress = None
-
-
+                    result = self.dynagen.devices[device].idleprop(lib.IDLEPROPGET)
                 elif command == 'show':
-                    result = self.namespace.devices[device].idleprop(lib.IDLEPROPSHOW)
+                    result = self.dynagen.devices[device].idleprop(lib.IDLEPROPSHOW)
                 result.pop()        # Remove the '100-OK' line
                 idles = {}
                 i = 1
@@ -299,39 +299,41 @@ Examples:
 
                 # Allow user to choose a value by number
                 if len(idles) == 0:
-                    print 'No idlepc values found\n'
+                    print translate("Console", "No idlepc values found")
                 else:
-                    output = "Potentially better idlepc values marked with '*'\nEnter the number of the idlepc value to apply [1-%i] or ENTER for no change:\n" % len(idles) + output
+                    output = translate("Console", "Potentially better idlepc values marked with '*'\nEnter the number of the idlepc value to apply [1-" + 
+                                                                                                                                                    str(len(idles)) + "] or ENTER for no change:\n") + output
                     globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
                     (selection,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, 'idlepc',
                                           output, QtGui.QLineEdit.Normal)
                     
                     if not ok:
-                        print 'No changes made'
+                        print translate("Console", "No changes made")
                         return
                     selection = str(selection)
                     if selection == "":
-                        print 'No changes made'
+                        print translate("Console", "No changes made")
                         return
                         
                     try:
-                        self.namespace.devices[device].idleprop(lib.IDLEPROPSET, idles[int(selection)])
-                        print "Applied idlepc value %s to %s\n" % (idles[int(selection)], device)
+                        self.dynagen.devices[device].idleprop(lib.IDLEPROPSET, idles[int(selection)])
+                        print translate("Console", "Applied idlepc value " + idles[int(selection)] + " to " + device + "\n")
                         for node in globals.GApp.topology.nodes.values():
-                            if type(node) == IOSRouter and node.hostname == device:
-                                if node.config.image and globals.GApp.iosimages.has_key(node.config.image):
-                                    image = globals.GApp.iosimages[node.config.image]
+                            if isinstance(node, IOSRouter) and node.hostname == device:
+                                router = node.get_dynagen_device()
+                                if globals.GApp.iosimages.has_key(router.dynamips.host + ':' + router.image):
+                                    image = globals.GApp.iosimages[router.dynamips.host + ':' + router.image]
                                     image.idlepc =  idles[int(selection)]
                     except:
-                        print "Can't apply idlepc value"
+                        print translate("Console", "Can't apply idlepc value")
             else:
                 Dynagen_Console.do_idlepc(self, args)
             
         except ValueError:
-            print '***Error: Incorrect number of paramaters or invalid parameters'
+            print translate("Console", "Incorrect number of paramaters or invalid parameters")
             return
         except KeyError:
-            print '***Error: Unknown device: ' + device
+            print translate("Console", "Unknown device: " + device)
             return
         except lib.DynamipsError, e:
             print e
@@ -341,7 +343,7 @@ Examples:
         """save {/all | router1 [router2] ...}\nstores router configs in the network file"""
     
         if not globals.GApp.workspace.projectFile:
-            print 'You have to save your topology before using save'
+            print translate("Console", "You have to save your topology before using save")
         else:
             Dynagen_Console.do_save(self, args)
     
@@ -349,7 +351,7 @@ Examples:
         """push {/all | router1 [router2] ...}\npushes router configs from the network file to the router's nvram"""
     
         if not globals.GApp.workspace.projectFile:
-            print 'You have to save your topology before using push'
+            print translate("Console", "You have to save your topology before using push")
         else:
             Dynagen_Console.do_push(self, args)
 
@@ -363,14 +365,14 @@ Examples:
         
         devices = args.split(' ')
         for node in globals.GApp.topology.nodes.values():
-            if type(node) == IOSRouter and (node.hostname in devices or '/all' in devices):
+            if isinstance(node, IOSRouter) and (node.hostname in devices or '/all' in devices):
                 node.console()
 
     def do_export(self, args):
         """export {/all | router1 [router2] ...} \"directory\"\nsaves router configs individual files in \"directory\"\nEnclose the directory in quotes if there are spaces in the filespec."""
         
         if not globals.GApp.workspace.projectFile:
-            print 'You have to save your topology before using export'
+            print translate("Console", "You have to save your topology before using export")
             return
         if '?' in args or args.strip() == '':
             print Dynagen_Console.do_export.__doc__
@@ -389,14 +391,14 @@ Examples:
         directory = items.pop()
         try:
             netdir = os.getcwd()
-            subdir = os.path.dirname(self.namespace.FILENAME)
+            subdir = os.path.dirname(self.dynagen.global_filename)
             if subdir != '':
                 os.chdir(subdir)
             if os.path.isdir(directory):
                 # Directory exists
                 print directory
-                (result,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, 'Destination directory',
-                  'The directory already exists. Ok to overwrite (Y/N)?', QtGui.QLineEdit.Normal)
+                (result,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, translate("Console", "Destination directory"),
+                  translate("Console", "The directory already exists. Ok to overwrite (Y/N)?"), QtGui.QLineEdit.Normal)
                 if not ok:
                     return
                 if str(result).lower() != 'y':
@@ -412,6 +414,6 @@ Examples:
         """import {/all | router1 [router2] \"directory\"\nimport all or individual configuration files \nEnclose the directory or filename in quotes if there are spaces in the filespec."""
         
         if not globals.GApp.workspace.projectFile:
-            print 'You have to save your topology before using import'
+            print translate("Console", "You have to save your topology before using import")
         else:
             Dynagen_Console.do_import(self, args)
