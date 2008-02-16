@@ -37,7 +37,7 @@ class AbstractDefaults:
         self.default_aux = 'None'
         self.default_image = 'None'
         self.default_idlepc = 'None'
-        self.default_exec_area = 'None'
+        self.default_exec_area = 64
         self.default_mmap = True
         self.default_sparsemem = 'False'
         self.config = None

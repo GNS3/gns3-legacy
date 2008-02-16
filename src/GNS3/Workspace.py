@@ -173,12 +173,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Implement the QAction `addLink'
         - This function manage the creation of a connection between two nodes.
         """
-        
-        ctx = 'Workspace'
+
         if not self.action_Add_link.isChecked():
-            self.action_Add_link.setText(translate(ctx, 'Add a link'))
+            self.action_Add_link.setText(translate('Workspace', 'Add a link'))
             self.action_Add_link.setIcon(QIcon(':/icons/connection.svg'))
             globals.addingLinkFlag = False
+            globals.GApp.scene.cleanFlags()
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
         else:
             if not globals.useManualConnection:
@@ -190,7 +190,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             else:
                 globals.currentLinkType =  globals.Enum.LinkType.Manual
             
-            self.action_Add_link.setText(translate(ctx, 'Cancel'))
+            self.action_Add_link.setText(translate('Workspace', 'Cancel'))
             self.action_Add_link.setIcon(QIcon(':/icons/cancel.svg'))
             globals.addingLinkFlag = True
             globals.GApp.scene.setCursor(QtCore.Qt.CrossCursor)

@@ -40,12 +40,6 @@ MODULES_INTERFACES = {
     "NM-4T": ('s', 4),
 }
 
-WICS_INTERFACES = {
-    "WIC-1T": ('s', 1),
-    "WIC-2T": ('s', 2),
-    "WIC-1ENET": ('e', 1)
-}
-
 SLOTLESS_MODELS = ('1710', '1720', '1721', '1750')
 
 # base ID for routers
@@ -207,15 +201,21 @@ class IOSRouter(AbstractNode):
 
         # configure the slots
         slot_number = 0
+        slot_changed = False
         for module_name in self.local_config['slots']:
             if module_name and self.router.slot[slot_number] == None:
                 self.set_slot(slot_number, module_name)
+                slot_changed = True
             elif self.router.slot[slot_number] and module_name and module_name != self.router.slot[slot_number].adapter:
                 self.clean_slot(self.router.slot[slot_number])
                 self.set_slot(slot_number, module_name)
+                slot_changed = True
             elif module_name == None and self.router.slot[slot_number]:
                 self.clean_slot(self.router.slot[slot_number])
             slot_number += 1
+        
+        if slot_changed and self.router.state == "running" and self.router.model != "c7200":
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("IOSRouter", "Slots"), translate("IOSRouter", "You have to restart this router to use new modules"))
 
         # configure wics if available
         if self.local_config['wics']:
@@ -271,9 +271,8 @@ class IOSRouter(AbstractNode):
             chassis: string corresponding to the chassis model
         """
 
-        #TODO: check bug with already inserted module
         connected_interfaces = self.getConnectedInterfaceList()
-        
+
         # remove unused module from the slots
         for module in self.router.slot:
             if module:
@@ -291,21 +290,40 @@ class IOSRouter(AbstractNode):
                 if found == False:
                     self.clean_slot(module)
 
+        # try to automatically asign a WIC ...
+        if self.local_config['wics']:
+            wic_number = 0
+            new_wic = None
+            for wic_name in self.local_config['wics']:
+                if wic_name == None:
+                    # Ethernet WIC only available on platform c1700
+                    if link_type == 'e' and self.router.model == 'c1700':
+                        new_wic = self.local_config['wics'][wic_number] = 'WIC-1ENET'
+                        break
+                    elif link_type == 's':
+                        new_wic = self.local_config['wics'][wic_number] = 'WIC-2T'
+                        break
+                wic_number += 1
+            if new_wic:
+                debug('Install ' + new_wic + ' in wic port ' + str(wic_number))
+                self.router.installwic(new_wic, 0, wic_number)
+
         # try to find an empty interface in an occupied slot
         for module in self.router.slot:
             if module:
                 interfaces = module.interfaces
-                interface_type = interfaces.keys()[0]
-                if interface_type == link_type:
-                    for port in interfaces[link_type].values():
-                        if self.router.model_string in SLOTLESS_MODELS:
-                            interface_name = type + str(port)
-                        else:
-                            interface_name = type + str(module.slot) + '/' + str(port)
-                        if interface_name not in connected_interfaces:
-                            return (interface_name)
-        
-        #TODO: automatically asign WICS ...
+                for interface_type in interfaces.keys():
+                    if interface_type == link_type:
+                        print interfaces[link_type]
+                        for port in interfaces[link_type].keys():
+                            if self.router.model_string in SLOTLESS_MODELS:
+                                interface_name = interface_type + str(port)
+                            else:
+                                interface_name = interface_type + str(module.slot) + '/' + str(port)
+                            if interface_name not in connected_interfaces:
+                                print interface_name
+                                return (interface_name)
+
         # put a new module in an empty slot and return the first interface
         slot_number = 0
         for module in self.router.slot:

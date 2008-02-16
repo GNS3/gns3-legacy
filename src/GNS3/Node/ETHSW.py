@@ -38,7 +38,7 @@ class ETHSW(AbstractNode):
         
         # assign a new hostname
         global ethsw_id
-        self.hostname = 'S' + str(ethsw_id)
+        self.hostname = 'SW' + str(ethsw_id)
         ethsw_id = ethsw_id + 1
         self.setCustomToolTip()
 

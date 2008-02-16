@@ -34,4 +34,5 @@ class IOSRouter3600Defaults(AbstractDefaults):
         self.default_nvram = 128
         self.default_disk0 = 0
         self.default_disk1 = 0
-        self.default_iomem = None
+        self.default_iomem = 5
+

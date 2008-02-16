@@ -1780,7 +1780,7 @@ class Dynagen:
             for option in ['npe', 'midplane']:
                 self._set_option_in_config(self.running_config[h][r], defaults, router, option)
 
-        if model == '3600':
+        if router.model == 'c3600':
             for option in ['iomem']:
                 self._set_option_in_config(self.running_config[h][r], defaults, router, option)
 

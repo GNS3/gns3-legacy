@@ -208,8 +208,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
 
         if platform == 'c3600':
             router_config['iomem'] = self.spinBoxIomem.value()
-        
-        #TODO: check if links are connected on slots
+
         router = node.get_dynagen_device()
         for (slot_number, widget) in self.widget_slots.iteritems():
             module = str(widget.currentText())
@@ -237,8 +236,6 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                 wic_name = str(widget.currentText())
                 if wic_name:
                     router_config['wics'][wic_number] = wic_name
-            #TODO: check if links are connected on WICS ?
-
         return router_config
 
 def create(dlg):

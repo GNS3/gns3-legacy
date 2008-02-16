@@ -952,7 +952,8 @@ class BaseAdapter(object):
         #"c7200 pa_stop_online <instance_name> <slot>"
         if self.__router.state == 'running':
             if self.__router.model == 'c7200':
-                send(self.__router.dynamips, '%s pa_stop_online %s %i' % (self.__router.model, self.__router.name, self.slot))
+                send(self.__router.dynamips, 'vm slot_oir_stop %s %i 0' % (self.__router.name, slot))
+                #send(self.__router.dynamips, '%s pa_stop_online %s %i' % (self.__router.model, self.__router.name, self.slot))
 
         #remove the PA from the router
         send(self.__router.dynamips, 'vm slot_remove_binding %s %i 0' % (self.__router.name, self.slot))
@@ -1236,7 +1237,8 @@ class PA(BaseAdapter):
         self.default = False
         #generate an OIR event
         if router.state == 'running':
-            send(router.dynamips, '%s %s %s %i' % (router.model, 'pa_init_online', router.name, slot))
+            send(router.dynamips, 'vm slot_oir_start %s %i 0' % (router.name, slot))
+            #send(router.dynamips, '%s %s %s %i' % (router.model, 'pa_init_online', router.name, slot))
 
     def can_be_removed(self):
         return True

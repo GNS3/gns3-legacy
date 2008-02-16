@@ -213,3 +213,13 @@ class HypervisorManager:
         proc.close()
         proc = None
         return True
+
+    def showHypervisors(self):
+        """ Show hypervisors port & load
+        """
+        
+        print "Memory usage limit per hypervisor : " + str(globals.HypervisorMemoryUsageLimit) + " MB"
+        print '%-10s %-10s' % ('Port','Memory load')
+        for hypervisor in self.hypervisors:
+            print '%-10s %-10s' % (hypervisor['port'], str(hypervisor['load']) + ' MB')
+    

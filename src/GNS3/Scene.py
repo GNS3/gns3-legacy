@@ -56,13 +56,7 @@ class Scene(QtGui.QGraphicsView):
         self.setRenderHint(QtGui.QPainter.Antialiasing)
         self.setTransformationAnchor(self.AnchorUnderMouse)
         self.setResizeAnchor(self.AnchorViewCenter)
-
-        # Flags for GUI state matching
-        self.__isFirstClick = True
-        self.__sourceNodeID = None
-        self.__destNodeID = None
-        self.__sourceInterface = None
-        self.__destInterface = None
+        self.cleanFlags()
 
         # Load all renders
         self.renders = {}
@@ -72,6 +66,16 @@ class Scene(QtGui.QGraphicsView):
             self.renders[name]['normal'] = QtSvg.QSvgRenderer(item['normal_svg_file'])
             self.renders[name]['selected'] = QtSvg.QSvgRenderer(item['select_svg_file'])
 
+    def cleanFlags(self):
+        """ Clean flags used when adding links
+        """
+
+        self.__isFirstClick = True
+        self.__sourceNodeID = None
+        self.__destNodeID = None
+        self.__sourceInterface = None
+        self.__destInterface = None
+            
     def showContextualMenu(self):
         """  Create and display a contextual menu when clicking on the view
         """
@@ -129,7 +133,6 @@ class Scene(QtGui.QGraphicsView):
             menu.addAction(startAct)
             menu.addAction(suspendAct)
             menu.addAction(stopAct)
-   
 
         # Action: ShowHostname (Display the hostname)
         showHostnameAct = QtGui.QAction(translate('Scene', 'Show hostname'), menu)
@@ -238,7 +241,7 @@ class Scene(QtGui.QGraphicsView):
         if self.__topology.addLink(self.__sourceNodeID, self.__sourceInterface, self.__destNodeID, self.__destInterface) == False:
             self.__isFirstClick = True
 
-    def slotAddLink(self, id,  interface):
+    def slotAddLink(self, id, interface):
         """ Called when a node wants to add a link
             id: integer
             interface: string

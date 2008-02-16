@@ -30,7 +30,7 @@ class Console(PyCutExt,  Dynagen_Console):
                 "exit", "help", "import", "push", "resume",
                 "shell", "stop", "ver", "confreg",
                 "export", "hist", "list", "py",
-                "save", "show", "suspend"])
+                "save", "show", "suspend", "hypervisors"])
 
     def __init__(self, parent):
         """ Initialise the Console widget
@@ -127,6 +127,11 @@ class Console(PyCutExt,  Dynagen_Console):
         self.write(self.prompt)
         self.lines = []
         self._clearLine()
+            
+    def do_hypervisors(self, args):
+        """hypervisors \nshow the hypervisors started by the hypervisor manager"""
+    
+        globals.HypervisorManager.showHypervisors()
             
     def do_start(self, args):
         """start  {/all | router1 [router2] ...}\nstart all or a specific router(s)"""

@@ -76,7 +76,7 @@ class DynagenSub(Dynagen):
 
             # need to start hypervisors
             if server.host == 'localhost' and globals.ImportuseHypervisorManager:
-                debug("Start hypervisor on: " + str(controlPort))
+                debug("Start hypervisor on port: " + str(controlPort))
                 hypervisor = globals.HypervisorManager.startNewHypervisor(int(controlPort))
                 globals.HypervisorManager.waitHypervisor(hypervisor)
                 dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor('localhost', hypervisor['port'])

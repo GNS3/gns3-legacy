@@ -37,7 +37,7 @@ class Cloud(AbstractNode):
         
         # assign a new hostname
         global cloud_id
-        self.hostname = 'C' + str(cloud_id)
+        self.hostname = 'CLOUD' + str(cloud_id)
         cloud_id = cloud_id + 1
         self.setCustomToolTip()
         

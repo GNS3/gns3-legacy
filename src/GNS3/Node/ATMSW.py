@@ -40,7 +40,7 @@ class ATMSW(AbstractNode):
         
         # assign a new hostname
         global atm_id
-        self.hostname = 'A' + str(atm_id)
+        self.hostname = 'ATM' + str(atm_id)
         atm_id = atm_id + 1
         self.setCustomToolTip()
 

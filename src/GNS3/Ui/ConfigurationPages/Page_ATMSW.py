@@ -150,6 +150,12 @@ class Page_ATMSW(QtGui.QWidget, Ui_ATMSWPage):
         item = self.treeWidgetVCmap.currentItem()
         if (item != None):
             source = str(item.text(0))
+            connected_ports = self.node.getConnectedInterfaceList()
+            vc = source.split(':')
+            port = vc[0]
+            if port in connected_ports:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_ATMSW", "ATM switch"), translate("Page_ATMSW", "A link is connected in port ") + port)
+                return
             del self.mapping[source]
             self.treeWidgetVCmap.takeTopLevelItem(self.treeWidgetVCmap.indexOfTopLevelItem(item))
         
@@ -157,11 +163,11 @@ class Page_ATMSW(QtGui.QWidget, Ui_ATMSWPage):
         """ Load the config
         """
 
-        node = globals.GApp.topology.getNode(id)
+        self.node = globals.GApp.topology.getNode(id)
         if config:
             ATMSWconfig = config
         else:
-            ATMSWconfig  = node.config
+            ATMSWconfig  = self.node.config
             
         self.treeWidgetVCmap.clear()
         self.mapping = {}
@@ -178,18 +184,12 @@ class Page_ATMSW(QtGui.QWidget, Ui_ATMSWPage):
         """ Save the config
         """
 
-        node = globals.GApp.topology.getNode(id)
+        self.node = globals.GApp.topology.getNode(id)
         if config:
             ATMSWconfig = config
         else:
-            ATMSWconfig  = node.config
+            ATMSWconfig  = self.node.config
 
-#        connected_ports = node.getConnectedInterfaceList()
-#        for port in ATMSWconfig['ports']:
-#            if str(port) in connected_ports and not port in self.ports:
-#                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Ports', translate("Page_ATMSW", "A link is connected in port ") + str(port))
-#                return ATMSWconfig
-            
         ATMSWconfig['mapping'] = self.mapping
         ATMSWconfig['ports'] = []
         for (source,  destination) in self.mapping.iteritems():

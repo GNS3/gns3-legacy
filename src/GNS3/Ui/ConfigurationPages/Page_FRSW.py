@@ -104,6 +104,11 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
         item = self.treeWidgetVCmap.currentItem()
         if (item != None):
             source = str(item.text(0))
+            connected_ports = self.node.getConnectedInterfaceList()
+            (port, dlci) = source.split(':')
+            if port in connected_ports:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow,  translate("Page_ATMSW", "Frame Relay switch"), translate("Page_FRSW", "A link is connected in port ") + port)
+                return
             del self.mapping[source]
             self.treeWidgetVCmap.takeTopLevelItem(self.treeWidgetVCmap.indexOfTopLevelItem(item))
         
@@ -111,11 +116,11 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
         """ Load the config
         """
 
-        node = globals.GApp.topology.getNode(id)
+        self.node = globals.GApp.topology.getNode(id)
         if config:
             FRSWconfig = config
         else:
-            FRSWconfig  = node.config
+            FRSWconfig  = self.node.config
             
         self.treeWidgetVCmap.clear()
         self.mapping = {}
@@ -133,17 +138,11 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
         """ Save the config
         """
 
-        node = globals.GApp.topology.getNode(id)
+        self.node = globals.GApp.topology.getNode(id)
         if config:
             FRSWconfig = config
         else:
-            FRSWconfig  = node.config
-
-#        connected_ports = node.getConnectedInterfaceList()
-#        for port in FRSWconfig['ports']:
-#            if str(port) in connected_ports and not port in self.ports:
-#                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Ports', translate("Page_FRSW", "A link is connected in port ") + str(port))
-#                return FRSWconfig
+            FRSWconfig  = self.node.config
 
         FRSWconfig['mapping'] = self.mapping
         FRSWconfig['ports'] = []

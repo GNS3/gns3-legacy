@@ -38,7 +38,7 @@ class FRSW(AbstractNode):
         
         # assign a new hostname
         global frsw_id
-        self.hostname = 'F' + str(frsw_id)
+        self.hostname = 'FR' + str(frsw_id)
         frsw_id = frsw_id + 1
         self.setCustomToolTip()
         
