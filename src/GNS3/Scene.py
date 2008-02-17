@@ -31,6 +31,7 @@ from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.Hub import Hub
+from GNS3.Link.AbstractEdge import AbstractEdge
 from GNS3.Link.Ethernet import Ethernet
 from GNS3.Link.Serial import Serial
 
@@ -371,9 +372,9 @@ class Scene(QtGui.QGraphicsView):
 
     def mouseDoubleClickEvent(self, event):
     
-        if  not globals.addingLinkFlag:
+        if not globals.addingLinkFlag:
             item = self.itemAt(event.pos())
-            if item:
+            if item and not isinstance(item, AbstractEdge):
                 item.setSelected(True)
                 self.slotConfigNode()
         else:

@@ -212,7 +212,7 @@
              </sizepolicy>
             </property>
             <property name="suffix" >
-             <string> MB</string>
+             <string>KB</string>
             </property>
             <property name="maximum" >
              <number>4096</number>

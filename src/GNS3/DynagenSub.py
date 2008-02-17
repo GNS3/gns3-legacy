@@ -35,6 +35,7 @@ class DynagenSub(Dynagen):
     def __init__(self):
 
         Dynagen.__init__(self)
+        self.gns3_data = None
 
     def open_config(self,  FILENAME):
         """ Open the config file
@@ -51,6 +52,11 @@ class DynagenSub(Dynagen):
 #            self.debug('configspec -> ' + configspec)
 
         config = Dynagen.open_config(self, FILENAME)
+        self.gns3_data = None
+        if 'GNS3-DATA' in config.sections:
+            self.gns3_data = config['GNS3-DATA'].copy()
+            config.sections.remove('GNS3-DATA')
+        
         count = len(config.sections)
         progress = QtGui.QProgressDialog(translate("DynagenSub", "Starting hypervisors ..."), translate("DynagenSub", "Abort"), 0, count, globals.GApp.mainWindow)
         progress.setMinimum(1)
@@ -89,6 +95,12 @@ class DynagenSub(Dynagen):
         progress = None
         return config
 
+    def getGNS3Data(self):
+        """ Returns GNS3 specific data from NET file
+        """
+    
+        return self.gns3_data
+        
     def doerror(self, msg):
         """Print out an error message"""
 

@@ -169,6 +169,7 @@ class NETFile(object):
         QtCore.QObject.connect(node, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
         globals.GApp.topology.nodes[node.id] = node
         node.set_dynagen_device(device)
+        device.dynamips.configchange = True
         return True
     
     def add_connection(self, connection):
@@ -205,6 +206,14 @@ class NETFile(object):
         """ Create a cloud (used for NIO connections)
         """
     
+        # try to find a cloud in the topology
+        for node in globals.GApp.topology.nodes.values():
+            if isinstance(node, Cloud):
+                for confnio in node.get_config():
+                    if confnio == nio:
+                        return (node)
+
+        # else create it
         renders = globals.GApp.scene.renders['Cloud']
         cloud = Cloud(renders['normal'], renders['selected'])
         x = random.uniform(-200, 200)
@@ -218,6 +227,29 @@ class NETFile(object):
         globals.GApp.topology.addItem(cloud)
         return cloud
 
+    def apply_gns3_data(self):
+        """ Apply specific GNS3 data
+        """
+        
+        gns3data = self.dynagen.getGNS3Data()
+        if gns3data:
+            for section in gns3data:
+                try:
+                    (devtype, hostname) = section.split(' ')
+                except ValueError:
+                    continue
+                if devtype.lower() == 'cloud':
+                    renders = globals.GApp.scene.renders['Cloud']
+                    cloud = Cloud(renders['normal'], renders['selected'])
+                    cloud.hostname = hostname
+                    cloud.setPos(gns3data[section]['x'], gns3data[section]['y'])
+                    config = gns3data[section]['nios'].split(' ')
+                    cloud.set_config(config)
+                    QtCore.QObject.connect(cloud, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
+                    QtCore.QObject.connect(cloud, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
+                    globals.GApp.topology.nodes[cloud.id] = cloud
+                    globals.GApp.topology.addItem(cloud)
+        
     def import_net_file(self, path):
         """ Import a .net file
         """
@@ -251,6 +283,7 @@ class NETFile(object):
             globals.GApp.topology.clear()
             return
 
+        self.apply_gns3_data()
         devices = self.dynagen.devices.copy()
         self.dynagen.devices.clear()
         connection_list = []
@@ -356,14 +389,26 @@ class NETFile(object):
     def export_net_file(self, path):
         """ Export a .net file
         """
-    
+
         self.dynagen.update_running_config(need_active_config=True)
         debug("Running config: " + str(self.dynagen.running_config))
+       
         # record node x & y position
         for node in globals.GApp.topology.nodes.values():
             if not type(node) == Cloud:
                 self.dynagen.running_config[node.d][node.get_running_config_name()]['x'] = node.x()
                 self.dynagen.running_config[node.d][node.get_running_config_name()]['y'] = node.y()
+            else:
+                if not self.dynagen.running_config.has_key('GNS3-DATA'):
+                    self.dynagen.running_config['GNS3-DATA'] = {}
+                self.dynagen.running_config['GNS3-DATA']['Cloud ' + node.hostname] = {}
+                self.dynagen.running_config['GNS3-DATA']['Cloud ' + node.hostname]['x'] = node.x()
+                self.dynagen.running_config['GNS3-DATA']['Cloud ' + node.hostname]['y'] = node.y()
+                nios = ''
+                for nio in node.getInterfaces():
+                    nios = nios + ' ' + nio
+                if nios:
+                    self.dynagen.running_config['GNS3-DATA']['Cloud ' + node.hostname]['nios'] = nios
         self.dynagen.running_config.filename = path
         self.dynagen.running_config.write()
         self.dynagen.running_config.filename = None

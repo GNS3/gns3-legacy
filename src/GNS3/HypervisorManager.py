@@ -61,9 +61,22 @@ class HypervisorManager:
         if self.hypervisor_wd:
             # set the working directory
             proc.setWorkingDirectory(self.hypervisor_wd)
+            
+        # test if an hypervisor is already running on this port
+        s = socket(AF_INET, SOCK_STREAM)
+        s.setblocking(0)
+        s.settimeout(300)
+        try:
+            s.connect(('localhost', port))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Hypervisor already running on port ") + str(port))
+            s.close()
+            return None
+        except:
+            s.close()
+
         # start dynamips in hypervisor mode (-H)
         proc.start(self.hypervisor_path,  ['-H', str(port)])
-        
+
         if proc.waitForStarted() == False:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Can't start Dynamips on port ") + str(port))
             return None

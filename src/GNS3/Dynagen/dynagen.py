@@ -90,7 +90,7 @@ ADAPTER_TRANSFORM = {
     'PA-FE-TX': PA_FE_TX,
     'PA-2FE-TX': PA_2FE_TX,
     'PA-GE': PA_GE,
-    'PA-4T': PA_4T,
+    'PA-4T+': PA_4T,
     'PA-8T': PA_8T,
     'PA-4E': PA_4E,
     'PA-8E': PA_8E,

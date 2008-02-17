@@ -283,6 +283,7 @@ class Dynamips(object):
                   % (STRVER, host, version)
 
         self.__version = version
+        self.__intversion = intver
 
     def __getstate__(self):
         """remove the socket object so this class can be pickled"""
@@ -446,6 +447,14 @@ class Dynamips(object):
         return self.__version
 
     version = property(__getversion, doc='The dynamips version')
+    
+    def __getintversion(self):
+        """ Returns dynamips integer version
+        """
+
+        return self.__intversion
+
+    intversion = property(__getintversion, doc='The dynamips version (integer)')
 
     def __gettype(self):
         """ Returns type of hypervisor
@@ -947,13 +956,17 @@ class BaseAdapter(object):
         return True
 
     def remove(self):
+        """ Remove the adapter
+        """
+
         #if the router is running let's send also the OIR event
-        #"c7200 remove_pa_binding <instance_name> <slot>"
-        #"c7200 pa_stop_online <instance_name> <slot>"
         if self.__router.state == 'running':
             if self.__router.model == 'c7200':
-                send(self.__router.dynamips, 'vm slot_oir_stop %s %i 0' % (self.__router.name, self.slot))
-                #send(self.__router.dynamips, '%s pa_stop_online %s %i' % (self.__router.model, self.__router.name, self.slot))
+            # if version of dynamips is > 0.2.8-RC2, then use 'vm slot_oir_stop' command
+                if self.__router.dynamips.intversion > 208.2:
+                    send(self.__router.dynamips, 'vm slot_oir_stop %s %i 0' % (self.__router.name, self.slot))
+                else:
+                    send(self.__router.dynamips, '%s pa_stop_online %s %i' % (self.__router.model, self.__router.name, self.slot))
 
         #remove the PA from the router
         send(self.__router.dynamips, 'vm slot_remove_binding %s %i 0' % (self.__router.name, self.slot))
@@ -1237,8 +1250,11 @@ class PA(BaseAdapter):
         self.default = False
         #generate an OIR event
         if router.state == 'running':
-            send(router.dynamips, 'vm slot_oir_start %s %i 0' % (router.name, slot))
-            #send(router.dynamips, '%s %s %s %i' % (router.model, 'pa_init_online', router.name, slot))
+            # if version of dynamips is > 0.2.8-RC2, then use 'vm slot_oir_start' command
+            if router.dynamips.intversion > 208.2:
+                send(router.dynamips, '%s %s %i 0' % ('vm slot_oir_start', router.name, slot))
+            else:
+                send(router.dynamips, '%s %s %s %i' % (router.model, 'pa_init_online', router.name, slot))
 
     def can_be_removed(self):
         return True
