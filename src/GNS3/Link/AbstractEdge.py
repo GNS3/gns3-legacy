@@ -141,7 +141,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         """
 
         action = action.text()
-        if action == translate("AbstractEdge", "delete"):
+        if action == translate("AbstractEdge", "Delete"):
             self.__deleteAction()
 
     def __deleteAction(self):

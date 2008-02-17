@@ -24,6 +24,7 @@ import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Topology import Topology
 from GNS3.Utils import translate
+from Annotation import Annotation
 from GNS3.NodeConfigurator import NodeConfigurator
 from GNS3.Globals.Symbols import SYMBOLS
 from GNS3.Node.IOSRouter import IOSRouter
@@ -92,25 +93,28 @@ class Scene(QtGui.QGraphicsView):
 
         menu = QtGui.QMenu()
         
-        # Action: Delete (Delete the node)
-        deleteAct = QtGui.QAction(translate('Scene', 'Delete'), menu)
-        deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
-        self.connect(deleteAct, QtCore.SIGNAL('triggered()'), self.slotDeleteNode)
+        instances = map(lambda item: not isinstance(item, Annotation), items)
+        if True in instances:
         
-        # Action: Configure (Configure the node)
-        configAct = QtGui.QAction(translate('Scene', 'Configure'), menu)
-        configAct.setIcon(QtGui.QIcon(":/icons/configuration.svg"))
-        self.connect(configAct, QtCore.SIGNAL('triggered()'), self.slotConfigNode)
+            # Action: Configure (Configure the node)
+            configAct = QtGui.QAction(translate('Scene', 'Configure'), menu)
+            configAct.setIcon(QtGui.QIcon(":/icons/configuration.svg"))
+            self.connect(configAct, QtCore.SIGNAL('triggered()'), self.slotConfigNode)
+            
+            # Action: ChangeHostname (Change the hostname)
+            changeHostnameAct = QtGui.QAction(translate('Scene', 'Change hostname'), menu)
+            changeHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
+            self.connect(changeHostnameAct, QtCore.SIGNAL('triggered()'), self.slotChangeHostname)
+            
+            # Action: ShowHostname (Display the hostname)
+            showHostnameAct = QtGui.QAction(translate('Scene', 'Show hostname'), menu)
+            showHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
+            self.connect(showHostnameAct, QtCore.SIGNAL('triggered()'), self.slotShowHostname)
         
-        # Action: ChangeHostname (Change the hostname)
-        changeHostnameAct = QtGui.QAction(translate('Scene', 'Change hostname'), menu)
-        changeHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
-        self.connect(changeHostnameAct, QtCore.SIGNAL('triggered()'), self.slotChangeHostname)
-
-        # actions for design mode
-        menu.addAction(configAct)
-        menu.addAction(deleteAct)
-        menu.addAction(changeHostnameAct)
+            # actions for design mode
+            menu.addAction(configAct)
+            menu.addAction(showHostnameAct)
+            menu.addAction(changeHostnameAct)
 
         instances = map(lambda item: isinstance(item, IOSRouter), items)
         if True in instances:
@@ -140,12 +144,12 @@ class Scene(QtGui.QGraphicsView):
             menu.addAction(suspendAct)
             menu.addAction(stopAct)
 
-        # Action: ShowHostname (Display the hostname)
-        showHostnameAct = QtGui.QAction(translate('Scene', 'Show hostname'), menu)
-        showHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
-        self.connect(showHostnameAct, QtCore.SIGNAL('triggered()'), self.slotShowHostname)
-
-        menu.addAction(showHostnameAct)
+        # Action: Delete (Delete the node)
+        deleteAct = QtGui.QAction(translate('Scene', 'Delete'), menu)
+        deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
+        self.connect(deleteAct, QtCore.SIGNAL('triggered()'), self.slotDeleteNode)
+        menu.addAction(deleteAct)
+            
         menu.exec_(QtGui.QCursor.pos())
         
         # force the deletion of the children
@@ -192,10 +196,13 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            for link in item.getEdgeList().copy():
-                self.__topology.deleteLink(link)
-            self.__topology.deleteNode(item.id)
-            
+            if not isinstance(item, Annotation):
+                for link in item.getEdgeList().copy():
+                    self.__topology.deleteLink(link)
+                self.__topology.deleteNode(item.id)
+            else:
+                self.__topology.removeItem(item)
+
     def slotConsole(self):
         """ Slot called to launch a console on the selected items
         """
@@ -341,6 +348,7 @@ class Scene(QtGui.QGraphicsView):
             yPos = y - repy
             
             # Get resource corresponding to node type
+            object = None
             svgrc = ":/icons/default.svg"
             for item in SYMBOLS:
                 if item['name'] == symbolname:
@@ -349,16 +357,18 @@ class Scene(QtGui.QGraphicsView):
                     object = item['object']
                     break
 
+            if object == None:
+                return
             node = object(renderer_normal, renderer_select)
             node.type = item['name']
-            #node.setName(s[1])
             node.setPos(xPos, yPos)
 
             if globals.GApp.workspace.flg_showHostname == True:
                 node.showHostname()
 
             self.__topology.addNode(node)
-            # Center node
+            
+            # Center the node
             pos_x = node.pos().x() - (node.boundingRect().width() / 2)
             pos_y = node.pos().y() - (node.boundingRect().height() / 2)
             node.setPos(pos_x, pos_y)
@@ -383,6 +393,13 @@ class Scene(QtGui.QGraphicsView):
             if item:
                 item.setSelected(True)
             self.showContextualMenu()
+        elif event.button() == QtCore.Qt.LeftButton and globals.addingNote:
+            note = Annotation('text')
+            note.setPos(self.mapToScene(event.pos()))
+            pos_x = note.pos().x()
+            pos_y = note.pos().y() - (note.boundingRect().height() / 2)
+            note.setPos(pos_x, pos_y)
+            globals.GApp.topology.addItem(note)
         else:
             QtGui.QGraphicsView.mousePressEvent(self, event)
 
@@ -390,7 +407,9 @@ class Scene(QtGui.QGraphicsView):
     
         if not globals.addingLinkFlag:
             item = self.itemAt(event.pos())
-            if item and not isinstance(item, AbstractEdge):
+            if isinstance(item, Annotation):
+                QtGui.QGraphicsView.mouseDoubleClickEvent(self, event)
+            elif item and not isinstance(item, AbstractEdge):
                 item.setSelected(True)
                 self.slotConfigNode()
         else:

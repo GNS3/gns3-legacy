@@ -26,8 +26,7 @@ import GNS3.Dynagen.dynamips_lib as lib
 from GNS3.Globals.Symbols import SYMBOLS
 from GNS3.Utils import translate, debug
 from PyQt4 import QtGui, QtCore
-from GNS3.Dynagen.configobj import ConfigObj
-from GNS3.Dynagen.validate import Validator
+from Annotation import Annotation
 from GNS3.Config.Objects import iosImageConf
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Objects import iosImageConf, hypervisorConf
@@ -249,6 +248,11 @@ class NETFile(object):
                     QtCore.QObject.connect(cloud, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
                     globals.GApp.topology.nodes[cloud.id] = cloud
                     globals.GApp.topology.addItem(cloud)
+                
+                if devtype.lower() == 'note':
+                    note_object = Annotation(gns3data[section]['text'])
+                    note_object.setPos(gns3data[section]['x'], gns3data[section]['y'])
+                    globals.GApp.topology.addItem(note_object)
         
     def import_net_file(self, path):
         """ Import a .net file
@@ -405,10 +409,24 @@ class NETFile(object):
                 self.dynagen.running_config['GNS3-DATA']['Cloud ' + node.hostname]['x'] = node.x()
                 self.dynagen.running_config['GNS3-DATA']['Cloud ' + node.hostname]['y'] = node.y()
                 nios = ''
+                # record nios
                 for nio in node.getInterfaces():
                     nios = nios + ' ' + nio
                 if nios:
                     self.dynagen.running_config['GNS3-DATA']['Cloud ' + node.hostname]['nios'] = nios
+                    
+        # records notes
+        note_nb = 1
+        for item in globals.GApp.topology.items():
+            if isinstance(item , Annotation):
+                if not self.dynagen.running_config.has_key('GNS3-DATA'):
+                    self.dynagen.running_config['GNS3-DATA'] = {}
+                self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] = {}
+                self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)]['text'] = str(item.toPlainText())
+                self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)]['x'] = item.x()
+                self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)]['y'] = item.y()
+                note_nb += 1
+
         self.dynagen.running_config.filename = path
         self.dynagen.running_config.write()
         self.dynagen.running_config.filename = None

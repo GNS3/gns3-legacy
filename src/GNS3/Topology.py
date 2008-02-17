@@ -321,8 +321,12 @@ class Topology(QtGui.QGraphicsScene):
             # start nodes that are always on
             if not isinstance(src_node, IOSRouter):
                 src_node.startNode()
+            elif src_node.state == 'running':
+                src_node.startupInterfaces()
             if not isinstance(dst_node, IOSRouter):
                 dst_node.startNode()
+            elif dst_node.state == 'running':
+                dst_node.startupInterfaces()
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
             return False

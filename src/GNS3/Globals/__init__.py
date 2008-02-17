@@ -20,6 +20,7 @@
 #
 
 addingLinkFlag = False
+addingNote = False
 HypervisorManager = None
 HypervisorMemoryUsageLimit = 512
 HypervisorUDPIncrementation = 100

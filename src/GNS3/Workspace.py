@@ -88,6 +88,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_Save,  QtCore.SIGNAL('triggered()'), self.__action_Save)
         self.connect(self.action_SaveAs,  QtCore.SIGNAL('triggered()'), self.__action_SaveAs)
         self.connect(self.action_Preferences, QtCore.SIGNAL('triggered()'), self.__action_Preferences)
+        self.connect(self.action_AddNote, QtCore.SIGNAL('triggered()'), self.__action_AddNote)
+        self.connect(self.action_Clear, QtCore.SIGNAL('triggered()'), self.__action_Clear)
 
     def __createMenus(self):
         """ Add own menu actions, and create new sub-menu
@@ -169,6 +171,26 @@ class Workspace(QMainWindow, Ui_MainWindow):
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
 
+    def __action_Clear(self):
+        """" Clear the topology
+        """
+        
+        globals.GApp.topology.clear()
+        for item in globals.GApp.topology.items():
+            globals.GApp.topology.removeItem(item)
+        #TODO: clean files ?
+            
+    def __action_AddNote(self):
+        """ Add a note to the scene
+        """
+
+        if not self.action_AddNote.isChecked():
+            globals.addingNote = False
+            globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
+        else:
+            globals.addingNote = True
+            globals.GApp.scene.setCursor(QtCore.Qt.IBeamCursor)
+            
     def __action_addLink(self):
         """ Implement the QAction `addLink'
         - This function manage the creation of a connection between two nodes.

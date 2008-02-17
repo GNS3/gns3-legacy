@@ -638,6 +638,9 @@
    </property>
   </action>
   <action name="action_AddNote" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
    <property name="icon" >
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/add-note.svg</iconset>
    </property>
