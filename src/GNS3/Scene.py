@@ -57,6 +57,8 @@ class Scene(QtGui.QGraphicsView):
         self.setRenderHint(QtGui.QPainter.Antialiasing)
         self.setTransformationAnchor(self.AnchorUnderMouse)
         self.setResizeAnchor(self.AnchorViewCenter)
+        
+        self.newedge = None
         self.cleanFlags()
 
         # Load all renders
@@ -76,6 +78,9 @@ class Scene(QtGui.QGraphicsView):
         self.__destNodeID = None
         self.__sourceInterface = None
         self.__destInterface = None
+        if self.newedge:
+            self.__topology.removeItem(self.newedge)
+            self.newedge = None
             
     def showContextualMenu(self):
         """  Create and display a contextual menu when clicking on the view
@@ -251,7 +256,7 @@ class Scene(QtGui.QGraphicsView):
         if id == None and interface == None:
             self.__isFirstClick = True
             return
-            
+
         if globals.addingLinkFlag:
             # user is adding a link
             if self.__isFirstClick:
@@ -259,10 +264,19 @@ class Scene(QtGui.QGraphicsView):
                 self.__sourceNodeID = id
                 self.__sourceInterface = interface
                 self.__isFirstClick = False
+                if interface[0] == 's' or interface[0] == 'a':
+                    # interface is serial or ATM
+                    self.newedge = Serial(self.__topology.getNode(id), interface, self.mapToScene(QtGui.QCursor.pos()), 0, Fake = True)
+                else:
+                    # by default use an ethernet link
+                    self.newedge = Ethernet(self.__topology.getNode(id), interface, self.mapToScene(QtGui.QCursor.pos()), 0, Fake = True)
+                self.__topology.addItem(self.newedge)
             else:
                 # destination node
                 self.__destNodeID = id
                 self.__destInterface = interface
+                self.__topology.removeItem(self.newedge)
+                self.newedge = None
                 self.__addLink()
                 self.__isFirstClick = True
 
@@ -301,6 +315,8 @@ class Scene(QtGui.QGraphicsView):
             self.scaleView(factor_out)
         elif key == QtCore.Qt.Key_Delete:
             self.slotDeleteNode()
+        elif globals.addingLinkFlag and key == QtCore.Qt.Key_Escape:
+            self.cleanFlags()
         else:
             QtGui.QGraphicsView.keyPressEvent(self, event)
       
@@ -379,3 +395,12 @@ class Scene(QtGui.QGraphicsView):
                 self.slotConfigNode()
         else:
             QtGui.QGraphicsView.mouseDoubleClickEvent(self, event)
+            
+    def mouseMoveEvent(self, event):
+        
+        # update new edge position
+        if(self.newedge):
+            self.newedge.setMousePoint(self.mapToScene(event.pos()))
+            event.ignore()
+        else:
+            QtGui.QGraphicsView.mouseMoveEvent(self, event)

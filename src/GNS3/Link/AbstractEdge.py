@@ -40,25 +40,33 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
 
         self.source = sourceNode
         self.dest = destNode
-        self.srcIf = sourceIf
-        self.destIf = destIf
-        self.src_interface_status = 'down'
-        self.dest_interface_status = 'down'
-        
-        # create a unique ID
-        self.id = globals.GApp.topology.link_baseid
-        globals.GApp.topology.link_baseid += 1
+        self.fake = Fake
 
-        # Set default tooltip
-        self.setCustomToolTip()
+        if not self.fake:
 
-        # record the edge into the nodes
-        self.source.addEdge(self)
-        self.dest.addEdge(self)
+            self.srcIf = sourceIf
+            self.destIf = destIf
+            self.src_interface_status = 'down'
+            self.dest_interface_status = 'down'
+            
+            # create a unique ID
+            self.id = globals.GApp.topology.link_baseid
+            globals.GApp.topology.link_baseid += 1
+    
+            # Set default tooltip
+            self.setCustomToolTip()
+    
+            # record the edge into the nodes
+            self.source.addEdge(self)
+            self.dest.addEdge(self)
+    
+            # set item focusable
+            self.setFlag(self.ItemIsFocusable)
+        else:
+            src_rect = self.source.boundingRect()
+            self.src = self.mapFromItem(self.source, src_rect.width() / 2.0, src_rect.height() / 2.0)
+            self.dst = self.dest
 
-        # set item focusable
-        self.setFlag(self.ItemIsFocusable)
-       
     def adjust(self):
         """ Compute the source point and destination point
             Must be called when overloaded
@@ -67,8 +75,11 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         self.prepareGeometryChange()
         src_rect = self.source.boundingRect()
         self.src = self.mapFromItem(self.source, src_rect.width() / 2.0, src_rect.height() / 2.0)
-        dst_rect = self.dest.boundingRect()
-        self.dst = self.mapFromItem(self.dest, dst_rect.width() / 2.0, dst_rect.height() / 2.0)
+
+        # if source point is not a mouse point
+        if not self.fake:
+            dst_rect = self.dest.boundingRect()
+            self.dst = self.mapFromItem(self.dest, dst_rect.width() / 2.0, dst_rect.height() / 2.0)
         
         # compute vectors
         self.dx = self.dst.x() - self.src.x()
@@ -76,6 +87,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         
         # compute the length of the line
         self.length = math.sqrt(self.dx * self.dx + self.dy * self.dy)
+        self.draw = True
         
     def getLocalInterface(self, node):
         """ Returns the local interface of the node
@@ -119,7 +131,8 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
 
         if (event.button() == QtCore.Qt.RightButton):
             menu = QtGui.QMenu()
-            menu.addAction(QtGui.QIcon(':/icons/delete.svg'), translate("AbstractEdge", "delete"))
+            menu.addAction(QtGui.QIcon(':/icons/delete.svg'), translate("AbstractEdge", "Delete"))
+            menu.addAction(QtGui.QIcon(':/icons/inspect.svg'), translate("AbstractEdge", "Capture"))
             menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.mousePressEvent_actions)
             menu.exec_(QtGui.QCursor.pos())
 
@@ -148,4 +161,10 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             self.src_interface_status = status
         else:    
             self.dest_interface_status = status
+        self.update()
+
+    def setMousePoint(self, scene_point):
+
+        self.dst = scene_point
+        self.adjust()
         self.update()

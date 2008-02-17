@@ -28,12 +28,12 @@ class Ethernet(AbstractEdge):
         Draw an Ethernet link
     """
     
-    def __init__(self, sourceNode, sourceIf, destNode, destIf):
+    def __init__(self, sourceNode, sourceIf, destNode, destIf, Fake = False):
         """ sourceNode: MNode instance
             destNode: MNode instance
         """
 
-        AbstractEdge.__init__(self, sourceNode, sourceIf, destNode, destIf)
+        AbstractEdge.__init__(self, sourceNode, sourceIf, destNode, destIf, Fake)
         self.setPen(QtGui.QPen(QtCore.Qt.black, self.penWidth, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
 
     def adjust(self):
@@ -48,7 +48,7 @@ class Ethernet(AbstractEdge):
         self.setPath(self.path)
 
         # offset on the line for status points
-        # FIXME: compute the offset dynamically with height and width of the nodes
+        #FIXME: compute the offset dynamically with height and width of the nodes
         if self.length == 0:
            self.edgeOffset = QtCore.QPointF(0, 0)
         else:
@@ -57,12 +57,18 @@ class Ethernet(AbstractEdge):
     def shape(self):
         """ Return the shape of the item to the scene renderer
         """
-        
+
         path = QtGui.QGraphicsPathItem.shape(self)
         offset = self.pointSize / 2
-        point = self.src + self.edgeOffset
+        if not self.fake:
+            point = self.src + self.edgeOffset
+        else:
+            point = self.src
         path.addEllipse(point.x() - offset, point.y() - offset, self.pointSize, self.pointSize)
-        point = self.dst -  self.edgeOffset
+        if not self.fake:
+            point = self.dst -  self.edgeOffset
+        else:
+            point = self.dst
         path.addEllipse(point.x() - offset, point.y() - offset, self.pointSize, self.pointSize)
         return path
 
@@ -72,7 +78,7 @@ class Ethernet(AbstractEdge):
 
         QtGui.QGraphicsPathItem.paint(self, painter, option, widget)
         
-        if globals.ShowStatusPoints:
+        if not self.fake and globals.ShowStatusPoints:
 
             # if nodes are too close, points disappears
             if self.length < 80:

@@ -53,7 +53,7 @@
      <x>0</x>
      <y>0</y>
      <width>840</width>
-     <height>25</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit" >
@@ -131,6 +131,8 @@
    <addaction name="action_Save" />
    <addaction name="action_SaveAs" />
    <addaction name="separator" />
+   <addaction name="action_Clear" />
+   <addaction name="action_AddNote" />
    <addaction name="action_ShowHostnames" />
   </widget>
   <widget class="QDockWidget" name="dockWidget_NodeTypes" >
@@ -450,7 +452,7 @@
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/show-hostname.svg</iconset>
    </property>
    <property name="text" >
-    <string>Show hostnames</string>
+    <string>Show the hostnames</string>
    </property>
    <property name="toolTip" >
     <string>Show hostnames</string>
@@ -464,7 +466,7 @@
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/console.svg</iconset>
    </property>
    <property name="text" >
-    <string>Telnet all IOS</string>
+    <string>Telnet to all IOS</string>
    </property>
    <property name="statusTip" >
     <string>Start a console on all running IOS instances</string>
@@ -625,6 +627,22 @@
    </property>
    <property name="statusTip" >
     <string>Suspend all IOS instances</string>
+   </property>
+  </action>
+  <action name="action_Clear" >
+   <property name="icon" >
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/edit-clear.svg</iconset>
+   </property>
+   <property name="text" >
+    <string>Clear the topology</string>
+   </property>
+  </action>
+  <action name="action_AddNote" >
+   <property name="icon" >
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/add-note.svg</iconset>
+   </property>
+   <property name="text" >
+    <string>Add a note</string>
    </property>
   </action>
  </widget>

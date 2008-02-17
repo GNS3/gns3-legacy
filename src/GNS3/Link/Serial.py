@@ -29,12 +29,12 @@ class Serial(AbstractEdge):
         Draw a serial link
     """
 
-    def __init__(self, sourceNode, sourceIf, destNode, destIf):
+    def __init__(self, sourceNode, sourceIf, destNode, destIf, Fake = False):
         """ sourceNode: Node instance
             destNode: Node instance
         """
 
-        AbstractEdge.__init__(self, sourceNode, sourceIf, destNode, destIf)
+        AbstractEdge.__init__(self, sourceNode, sourceIf, destNode, destIf, Fake)
         self.setPen(QtGui.QPen(QtCore.Qt.red, self.penWidth, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
 
     def adjust(self):
@@ -68,8 +68,8 @@ class Serial(AbstractEdge):
         scale_vect_diag = math.sqrt(scale_vect.x() ** 2 + scale_vect.y() ** 2)
         scale_coef = scale_vect_diag / 40.0
 
-        self.status_src = QtCore.QPointF(self.src.x() + scale_vect.x() / scale_coef, self.src.y() + scale_vect.y() / scale_coef)
-        self.status_dst = QtCore.QPointF(self.dst.x() - scale_vect.x() / scale_coef, self.dst.y() - scale_vect.y() / scale_coef)
+        self.src = QtCore.QPointF(self.src.x() + scale_vect.x() / scale_coef, self.src.y() + scale_vect.y() / scale_coef)
+        self.dst = QtCore.QPointF(self.dst.x() - scale_vect.x() / scale_coef, self.dst.y() - scale_vect.y() / scale_coef)
 
     def shape(self):
         """ Return the shape of the item to the scene renderer
@@ -77,9 +77,9 @@ class Serial(AbstractEdge):
         
         path = QtGui.QGraphicsPathItem.shape(self)
         offset = self.pointSize / 2
-        point = self.status_src
+        point = self.src
         path.addEllipse(point.x() - offset, point.y() - offset, self.pointSize, self.pointSize)
-        point = self.status_dst
+        point = self.dst
         path.addEllipse(point.x() - offset, point.y() - offset, self.pointSize, self.pointSize)
         return path
 
@@ -89,7 +89,7 @@ class Serial(AbstractEdge):
 
         QtGui.QGraphicsPathItem.paint(self, painter, option, widget)
 
-        if globals.ShowStatusPoints:
+        if not self.fake and globals.ShowStatusPoints:
         
             # if nodes are too close, points disappears
             if self.length < 80:
@@ -104,7 +104,7 @@ class Serial(AbstractEdge):
                 color = QtCore.Qt.red
                 
             painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
-            painter.drawPoint(self.status_src) 
+            painter.drawPoint(self.src) 
     
             # destination point
             if self.dest_interface_status == 'up':
@@ -115,4 +115,4 @@ class Serial(AbstractEdge):
                 color = QtCore.Qt.red
                 
             painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
-            painter.drawPoint(self.status_dst)
+            painter.drawPoint(self.dst)
