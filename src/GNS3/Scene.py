@@ -394,15 +394,23 @@ class Scene(QtGui.QGraphicsView):
                 item.setSelected(True)
             self.showContextualMenu()
         elif event.button() == QtCore.Qt.LeftButton and globals.addingNote:
-            note = Annotation('text')
+            note = Annotation()
             note.setPos(self.mapToScene(event.pos()))
             pos_x = note.pos().x()
             pos_y = note.pos().y() - (note.boundingRect().height() / 2)
             note.setPos(pos_x, pos_y)
             globals.GApp.topology.addItem(note)
+            note.editText()
+            globals.GApp.workspace.action_AddNote.setChecked(False)
+            globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
+            globals.addingNote = False
         else:
             QtGui.QGraphicsView.mousePressEvent(self, event)
 
+    def  slotTextInserted(self, note):
+    
+        print 'inserted !'
+            
     def mouseDoubleClickEvent(self, event):
     
         if not globals.addingLinkFlag:
