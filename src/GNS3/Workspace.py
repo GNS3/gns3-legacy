@@ -174,10 +174,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_Clear(self):
         """" Clear the topology
         """
-        
-        globals.GApp.topology.clear()
-        for item in globals.GApp.topology.items():
-            globals.GApp.topology.removeItem(item)
+
+        reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Are you sure to clear the topology?"), 
+                                           QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+        if reply == QtGui.QMessageBox.Yes:
+            globals.GApp.topology.clear()
+            for item in globals.GApp.topology.items():
+                globals.GApp.topology.removeItem(item)
         #TODO: clean files ?
             
     def __action_AddNote(self):
@@ -467,3 +470,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 net = netfile.NETFile()
                 globals.GApp.scene.resetMatrix()
                 net.export_net_file(path)
+
+    def closeEvent(self, event):
+        """ Ask to close GNS3
+        """
+        
+        reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Are you sure to quit?"), QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+        if reply == QtGui.QMessageBox.Yes:
+            globals.GApp.topology.clear()
+            event.accept()
+        else:
+            event.ignore()

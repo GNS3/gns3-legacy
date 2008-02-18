@@ -23,6 +23,7 @@ import math
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
+from GNS3.Node.IOSRouter import IOSRouter
 
 class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
     """ AbstractEdge class
@@ -143,6 +144,52 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         action = action.text()
         if action == translate("AbstractEdge", "Delete"):
             self.__deleteAction()
+        elif action == translate("AbstractEdge", "Capture"):
+            self.__captureAction()
+
+    def __captureAction(self):
+        """ Capture frames on the link
+        """
+        
+        choices = []
+        if isinstance(self.source, IOSRouter):
+            choices.append(self.source.hostname)
+        if isinstance(self.dest, IOSRouter):
+            choices.append(self.dest.hostname)
+        if len(choices):
+            (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), 
+                                                          translate("AbstractEdge", "Please choose the source device"), choices)
+        else:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  translate("AbstractEdge", "No device available for traffic capture"))
+            return
+        
+        if ok:
+            print "not implemented yet"
+        
+#            device = str(selection)
+#            linktype = 'EN10MB'
+#            globals.GApp.dynagen.devices[device].slot[0].filter(
+#                    'e',
+#                    0,
+#                    'capture',
+#                    'both',
+#                    linktype + " " +'/home/grossmj/test.cap',
+#                    )
+#            import subprocess as sub
+#            sub.Popen("/usr/bin/wireshark /home/grossmj/test.cap", shell=True)
+            
+            
+#                    except DynamipsError, e:
+#            print e
+#            return
+#        except DynamipsWarning, e:
+#            print "Note: " + str(e)
+#        except IndexError:
+#            print 'Error: No such interface %s on device %s' % (interface, device)
+#            return
+#        except AttributeError:
+#            print 'Error: Interface %s on device %s is not connected' % (interface, device)
+#            return
 
     def __deleteAction(self):
         """ Delete the link

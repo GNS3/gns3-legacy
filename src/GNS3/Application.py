@@ -227,7 +227,7 @@ class Application(QApplication, Singleton):
         if globals.GApp.systconf['dynamips'].path:
             globals.HypervisorManager = HypervisorManager()
             globals.HypervisorManager.preloadDynamips()
-
+            
         # Restore the geometry
         self.mainWindow.restoreGeometry(ConfDB().value("GNS3/geometry").toByteArray())
         self.mainWindow.show()

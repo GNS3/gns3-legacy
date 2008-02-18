@@ -530,7 +530,7 @@ class IOSRouter(AbstractNode):
             if interface:
                 self.emit(QtCore.SIGNAL("Add link"), self.id, interface)
             else:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSRouter", "Connection"),  translate("IOSRouter", "No interface available") )
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSRouter", "Connection"),  translate("IOSRouter", "No interface available"))
                 return
         else:
             AbstractNode.mousePressEvent(self, event)
