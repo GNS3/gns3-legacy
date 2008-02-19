@@ -10,7 +10,7 @@ except ImportError:
 
 setup( # Distribution meta-data
         name = "gns3",
-        version = "0.2alpha",
+        version = "0.4",
         description = "A graphical frontend to dynamips",
         author = "Jeremy Grossmann, David Ruiz, Romain Lamaison, Aurelien Levesque, Xavier Alt",
         author_email = "contact@gns3.net",
@@ -22,6 +22,7 @@ setup( # Distribution meta-data
             'GNS3.Config',
             'GNS3.Globals',
             'GNS3.Dynagen',
+            'GNS3.Defaults',
             'GNS3.External',
             'GNS3.Link',
             'GNS3.Node',

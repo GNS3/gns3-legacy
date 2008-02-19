@@ -26,7 +26,7 @@ from PyQt4.QtCore import QVariant
 from GNS3.Utils import Singleton
 from GNS3.Workspace import Workspace
 from GNS3.Topology import Topology
-from GNS3.Config.Objects import systemDynamipsConf, systemGeneralConf
+from GNS3.Config.Objects import systemDynamipsConf, systemGeneralConf, systemCaptureConf
 from GNS3.Config.Config import ConfDB, GNS_Conf
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Translations import Translator
@@ -205,6 +205,13 @@ class Application(QApplication, Singleton):
         confo.workdir = ConfDB().get('Dynamips/hypervisor_working_directory', unicode('',  'utf-8'))
         confo.term_cmd = ConfDB().get('Dynamips/console', unicode('',  'utf-8'))
 
+        # Capture config
+        self.systconf['capture'] = systemCaptureConf()
+        confo = self.systconf['capture']
+        confo.workdir = ConfDB().get('Capture/working_directory', unicode('',  'utf-8'))
+        confo.cap_cmd = ConfDB().get('Capture/capture_reader_cmd', unicode('',  'utf-8'))
+        confo.auto_start = ConfDB().value('Capture/auto_start_cmd', QVariant(True)).toBool()
+
         # System general config
         self.systconf['general'] = systemGeneralConf()
         confo = self.systconf['general']
@@ -270,6 +277,12 @@ class Application(QApplication, Singleton):
         c.set('Dynamips/hypervisor_port', confo.port)
         c.set('Dynamips/hypervisor_working_directory', confo.workdir)
         c.set('Dynamips/console', confo.term_cmd)
+        
+        # Capture settings
+        confo = self.systconf['capture'] 
+        c.set('Capture/working_directory', confo.workdir)
+        c.set('Capture/capture_reader_cmd', confo.cap_cmd)
+        c.set('Capture/auto_start_cmd', confo.auto_start)
 
         # Clear IOS.hypervisors and IOS.images group
         c.beginGroup("IOs.images")

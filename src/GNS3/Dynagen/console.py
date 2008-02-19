@@ -750,7 +750,6 @@ show run <device_name>
                 config = base64.decodestring(device.config_b64)
                 config = config.replace('\r', "")
             except AttributeError:
-
                 # This device doesn't support export
                 continue
             except DynamipsError, e:

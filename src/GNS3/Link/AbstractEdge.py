@@ -19,11 +19,15 @@
 # Contact: contact@gns3.net
 #
 
-import math
+import math, time
 import GNS3.Globals as globals
+import subprocess as sub
+import GNS3.Dynagen.dynamips_lib as lib
+import GNS3.Dynagen.dynagen as dynagen_namespace
 from PyQt4 import QtCore, QtGui
-from GNS3.Utils import translate
+from GNS3.Utils import translate, debug
 from GNS3.Node.IOSRouter import IOSRouter
+from GNS3.Node.FRSW import FRSW
 
 class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
     """ AbstractEdge class
@@ -49,6 +53,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             self.destIf = destIf
             self.src_interface_status = 'down'
             self.dest_interface_status = 'down'
+            self.capturing = False
             
             # create a unique ID
             self.id = globals.GApp.topology.link_baseid
@@ -63,6 +68,12 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
     
             # set item focusable
             self.setFlag(self.ItemIsFocusable)
+            
+            self.encapsulationTransform = {'ETH': 'EN10MB',
+                                                            'FR': 'FRELAY',
+                                                            'HDLC': 'C_HDLC',
+                                                            'PPP': 'PPP_SERIAL'}
+
         else:
             src_rect = self.source.boundingRect()
             self.src = self.mapFromItem(self.source, src_rect.width() / 2.0, src_rect.height() / 2.0)
@@ -147,49 +158,90 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         elif action == translate("AbstractEdge", "Capture"):
             self.__captureAction()
 
+    def __returnCaptureOptions(self, options, hostname, dest, interface):
+        """ Returns capture options (source hostname, encapsulation ...)
+        """
+        
+        iftype = interface[0]
+        if iftype == 'e' or iftype == 'f' or iftype == 'g':
+            options.append(hostname + ' ' +  interface + ' (encapsulation:ETH)')
+        elif iftype == 's' and isinstance(dest, FRSW):
+            options.append(hostname + ' ' +  interface + ' (encapsulation:FR)')
+        elif iftype == 's':
+            options.append(hostname + ' ' +  interface + ' (encapsulation:HDLC)')
+            options.append(hostname + ' ' +  interface + ' (encapsulation:PPP)')
+        else:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  
+                                           translate("AbstractEdge", "Packet capture is not supported on this link type"))
+            return False
+        return True
+    
     def __captureAction(self):
         """ Capture frames on the link
         """
-        
-        choices = []
+
+        options = []
         if isinstance(self.source, IOSRouter):
-            choices.append(self.source.hostname)
+            hostname = self.source.hostname
+            if type(hostname) != unicode:
+                hostname = unicode(hostname,  'utf-8')
+            if not self.__returnCaptureOptions(options, hostname, self.dest, self.srcIf):
+                return
         if isinstance(self.dest, IOSRouter):
-            choices.append(self.dest.hostname)
-        if len(choices):
+            hostname = self.dest.hostname
+            if type(hostname) != unicode:
+                hostname = unicode(hostname,  'utf-8')
+            if not self.__returnCaptureOptions(options, hostname, self.source, self.destIf):
+                return
+
+        if len(options):
             (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), 
-                                                          translate("AbstractEdge", "Please choose the source device"), choices)
+                                                          translate("AbstractEdge", "Please choose a source"), options, 0, False)
         else:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  translate("AbstractEdge", "No device available for traffic capture"))
             return
         
         if ok:
-            print "not implemented yet"
-        
-#            device = str(selection)
-#            linktype = 'EN10MB'
-#            globals.GApp.dynagen.devices[device].slot[0].filter(
-#                    'e',
-#                    0,
-#                    'capture',
-#                    'both',
-#                    linktype + " " +'/home/grossmj/test.cap',
-#                    )
-#            import subprocess as sub
-#            sub.Popen("/usr/bin/wireshark /home/grossmj/test.cap", shell=True)
+            self.capturing = True
+            (device, interface, encapsulation) = str(selection).split(' ')
+            encapsulation = encapsulation[1:-1].split(':')[1]
+
+            if globals.GApp.dynagen.devices[device].state != 'running':
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  translate("AbstractEdge", "Device " + device + " is not running"))
+                return
             
-            
-#                    except DynamipsError, e:
-#            print e
-#            return
-#        except DynamipsWarning, e:
-#            print "Note: " + str(e)
-#        except IndexError:
-#            print 'Error: No such interface %s on device %s' % (interface, device)
-#            return
-#        except AttributeError:
-#            print 'Error: Interface %s on device %s is not connected' % (interface, device)
-#            return
+            match_obj = dynagen_namespace.interface_re.search(interface)
+            if match_obj:
+                (inttype, slot, port) = match_obj.group(1, 2, 3)
+                slot = int(slot)
+                port = int(port)
+            else:
+                # Try checking for WIC interface specification (e.g. S1)
+                match_obj = dynagen_namespace.interface_noport_re.search(interface)
+                (inttype, port) = match_obj.group(1, 2)
+                slot = 0
+
+            encapsulation = self.encapsulationTransform[encapsulation]
+            capture_conf = globals.GApp.systconf['capture']
+            try:
+                if capture_conf.workdir:
+                    workdir = capture_conf.workdir
+                else:
+                    workdir = globals.GApp.dynagen.devices[device].dynamips.workingdir
+                capfile = workdir + self.source.hostname + '_to_' + self.dest.hostname + '.cap'
+                debug("Start capture in " + capfile)
+                globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'capture','both', encapsulation + " " + capfile)
+            except lib.DynamipsError, msg:
+                QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Dynamips error"),  str(msg))
+                return
+            if capture_conf.cap_cmd != '' and capture_conf.auto_start:
+                try:
+                    path = capture_conf.cap_cmd.replace("%c", capfile)
+                    debug("Start Wireshark like application (wait 2 seconds): " + path)
+                    time.sleep(2)
+                    sub.Popen(path, shell=True)
+                except OSError, (errno, strerror):
+                    QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Capture"), "Cannot start " + path + ": " + strerror)
 
     def __deleteAction(self):
         """ Delete the link

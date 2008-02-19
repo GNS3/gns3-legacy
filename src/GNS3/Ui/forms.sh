@@ -14,6 +14,7 @@ FILES=" Form_MainWindow
         ./ConfigurationPages/Form_ATMSWPage
         ./ConfigurationPages/Form_PreferencesGeneral
         ./ConfigurationPages/Form_PreferencesDynamips
+        ./ConfigurationPages/Form_PreferencesCapture
 "
 
 # Update files...

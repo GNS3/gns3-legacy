@@ -241,8 +241,10 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         # don't try to show hostname twice
         if self.__flag_hostname == True:
             return
-
-        self.textItem = QtGui.QGraphicsTextItem(self.hostname, self)
+        hostname = self.hostname
+        if type(hostname) != unicode:
+            hostname = unicode(hostname,  'utf-8')
+        self.textItem = QtGui.QGraphicsTextItem(hostname, self)
         self.textItem.setFont(QtGui.QFont("TypeWriter", 10, QtGui.QFont.Bold))
         self.textItem.setFlag(self.textItem.ItemIsMovable)
         self.textItem.setZValue(2)

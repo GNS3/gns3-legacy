@@ -25,7 +25,7 @@ from GNS3.Ui.ConfigurationPages.Form_PreferencesDynamips import Ui_PreferencesDy
 from GNS3.Config.Objects import systemDynamipsConf
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Config import ConfDB
-from GNS3.Utils import fileBrowser, translate,  testOpenFile
+from GNS3.Utils import fileBrowser, translate, testOpenFile
 import GNS3.Globals as globals
 
 class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
@@ -69,7 +69,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             else:
                 self.conf.term_cmd = unicode("xterm -T %d -e 'telnet %h %p' >/dev/null 2>&1 &",  'utf-8')
 
-        # Push default value to GUI
+        # Push default values to GUI
         self.dynamips_path.setText(self.conf.path)
         self.dynamips_workdir.setText(self.conf.workdir)
         self.dynamips_term_cmd.setText(self.conf.term_cmd)
@@ -123,8 +123,6 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             globals.useIOSghosting = True
         else:
             globals.useIOSghosting = False
-
-
         ConfDB().sync()
 
     def __setDynamipsPath(self):
@@ -144,7 +142,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         """ Open a file dialog for choosing the location of local hypervisor
         working directory
         """
-        fb = fileBrowser(translate('UiConfig_PreferencesDynamips', 'Local Hypervisor Workdir'))
+        fb = fileBrowser(translate('UiConfig_PreferencesDynamips', 'Local hypervisor working directory'))
         path = fb.getDir()
 
         if path is not None:

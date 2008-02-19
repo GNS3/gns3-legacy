@@ -84,3 +84,15 @@ conf_systemGeneral_defaults = {
 conf_systemGeneral_types = {
     'lang': unicode,
 }
+
+conf_systemCapture_defaults = {
+    'workdir': '',
+    'cap_cmd': '', 
+    'auto_start': True,
+}
+
+conf_systemCapture_types = {
+    'workdir': unicode,
+    'cap_cmd': unicode,
+    'auto_start': bool
+}

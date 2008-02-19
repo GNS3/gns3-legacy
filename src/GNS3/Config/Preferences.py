@@ -34,6 +34,7 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
         self.__prefsList = [
                         'General',
                         'Dynamips',
+                        'Capture', 
                         ]
 
         QtGui.QDialog.__init__(self)

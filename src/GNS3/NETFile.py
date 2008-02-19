@@ -240,7 +240,7 @@ class NETFile(object):
                 if devtype.lower() == 'cloud':
                     renders = globals.GApp.scene.renders['Cloud']
                     cloud = Cloud(renders['normal'], renders['selected'])
-                    cloud.hostname = hostname
+                    cloud.hostname = unicode(hostname, 'utf-8')
                     cloud.setPos(gns3data[section]['x'], gns3data[section]['y'])
                     config = gns3data[section]['nios'].split(' ')
                     cloud.set_config(config)
@@ -282,7 +282,7 @@ class NETFile(object):
             globals.GApp.topology.clear()
             return
         except:
-            print 'Exception detected, stopping importation...'
+            print translate("NETFile", "Exception detected, stopping importation...")
             globals.GApp.workspace.projectFile = None
             globals.GApp.workspace.setWindowTitle("GNS3")
             globals.GApp.topology.clear()
@@ -293,7 +293,6 @@ class NETFile(object):
         self.dynagen.devices.clear()
         connection_list = []
         for (devicename, device) in devices.iteritems():
-            #unicode(devicename, 'utf-8')
             self.dynagen.devices[device.name] = device
             if device.isrouter:
                 platform = device.model

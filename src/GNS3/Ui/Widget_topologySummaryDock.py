@@ -42,7 +42,10 @@ class topologySummaryDock(QtGui.QTreeWidget):
         self.clear()
         for node in globals.GApp.topology.nodes.itervalues():
             rootitem = QtGui.QTreeWidgetItem(self)
-            rootitem.setText(0, node.hostname)
+            hostname = node.hostname
+            if type(hostname) != unicode:
+                hostname = unicode(node.hostname,  'utf-8')
+            rootitem.setText(0, hostname)
             if node.getState() == 'running':
                 rootitem.setIcon(0, QtGui.QIcon(':/icons/led_green.svg'))
             elif node.getState() == 'suspended':
@@ -71,6 +74,8 @@ class topologySummaryDock(QtGui.QTreeWidget):
             status: string 'running', 'stopped' or 'suspended'
         """    
 
+        if type(hostname) != unicode:
+            hostname = unicode(hostname,  'utf-8')
         items = self.findItems(hostname, QtCore.Qt.MatchFixedString)
         if len(items):
             item = items[0]

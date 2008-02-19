@@ -173,7 +173,10 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                 continue
             parent = self.assocPage[type(node)]
             self.itmDict[parent].addID(node.id)
-            item = ConfigurationPageItem(self.itmDict[parent], node.hostname, parent,  None)
+            hostname = node.hostname
+            if type(hostname) != unicode:
+                hostname = unicode(node.hostname,  'utf-8')
+            item = ConfigurationPageItem(self.itmDict[parent], hostname, parent,  None)
             item.addID(node.id)
             item.tmpConfig = node.get_config()
             if self.itmDict[parent].tmpConfig == None:
