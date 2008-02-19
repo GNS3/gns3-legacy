@@ -268,7 +268,7 @@ class Topology(QtGui.QGraphicsScene):
         
         if not isinstance(src_node, IOSRouter) and not isinstance(dst_node, IOSRouter):
             if type(src_node) in (ETHSW, ATMSW, FRSW) and not type(dst_node) in (IOSRouter, Cloud) or type(dst_node) in (ETHSW, ATMSW, FRSW) and not type(src_node) in (IOSRouter, Cloud):
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "Can't connect switchs together"))
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "Can't connect switches"))
                 return False
 
         if not isinstance(src_node, IOSRouter) and not isinstance(src_node, Cloud):

@@ -53,7 +53,11 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             self.destIf = destIf
             self.src_interface_status = 'down'
             self.dest_interface_status = 'down'
+            
+            # capture feature variables
             self.capturing = False
+            self.capfile = None
+            self.captureInfo = None
             
             # create a unique ID
             self.id = globals.GApp.topology.link_baseid
@@ -144,7 +148,11 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         if (event.button() == QtCore.Qt.RightButton):
             menu = QtGui.QMenu()
             menu.addAction(QtGui.QIcon(':/icons/delete.svg'), translate("AbstractEdge", "Delete"))
-            menu.addAction(QtGui.QIcon(':/icons/inspect.svg'), translate("AbstractEdge", "Capture"))
+            if self.capturing == True:
+                menu.addAction(QtGui.QIcon(':/icons/inspect.svg'), translate("AbstractEdge", "Stop the capture"))
+                menu.addAction(QtGui.QIcon(':/icons/wireshark.png'), translate("AbstractEdge", "Start Wireshark"))
+            else:
+                menu.addAction(QtGui.QIcon(':/icons/inspect.svg'), translate("AbstractEdge", "Capture"))
             menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.mousePressEvent_actions)
             menu.exec_(QtGui.QCursor.pos())
 
@@ -157,6 +165,10 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             self.__deleteAction()
         elif action == translate("AbstractEdge", "Capture"):
             self.__captureAction()
+        elif action == translate("AbstractEdge", "Stop the capture"):
+            self.__stopCaptureAction()
+        elif action == translate("AbstractEdge", "Start Wireshark"):
+            self.__startWiresharkAction()
 
     def __returnCaptureOptions(self, options, hostname, dest, interface):
         """ Returns capture options (source hostname, encapsulation ...)
@@ -202,10 +214,8 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             return
         
         if ok:
-            self.capturing = True
-            (device, interface, encapsulation) = str(selection).split(' ')
-            encapsulation = encapsulation[1:-1].split(':')[1]
 
+            (device, interface, encapsulation) = str(selection).split(' ')
             if globals.GApp.dynagen.devices[device].state != 'running':
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  translate("AbstractEdge", "Device " + device + " is not running"))
                 return
@@ -220,29 +230,57 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 match_obj = dynagen_namespace.interface_noport_re.search(interface)
                 (inttype, port) = match_obj.group(1, 2)
                 slot = 0
-
-            encapsulation = self.encapsulationTransform[encapsulation]
-            capture_conf = globals.GApp.systconf['capture']
+            
             try:
+                encapsulation = encapsulation[1:-1].split(':')[1]
+                encapsulation = self.encapsulationTransform[encapsulation]
+                capture_conf = globals.GApp.systconf['capture']
                 if capture_conf.workdir:
                     workdir = capture_conf.workdir
                 else:
                     workdir = globals.GApp.dynagen.devices[device].dynamips.workingdir
-                capfile = workdir + self.source.hostname + '_to_' + self.dest.hostname + '.cap'
-                debug("Start capture in " + capfile)
-                globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'capture','both', encapsulation + " " + capfile)
+                self.capfile = workdir + self.source.hostname + '_to_' + self.dest.hostname + '.cap'
+                debug("Start capture in " + self.capfile)
+                globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'capture','both', encapsulation + " " + self.capfile)
+                self.captureInfo = (device, slot, inttype, port)
+                self.capturing = True
             except lib.DynamipsError, msg:
                 QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Dynamips error"),  str(msg))
                 return
-            if capture_conf.cap_cmd != '' and capture_conf.auto_start:
-                try:
-                    path = capture_conf.cap_cmd.replace("%c", capfile)
-                    debug("Start Wireshark like application (wait 2 seconds): " + path)
-                    time.sleep(2)
-                    sub.Popen(path, shell=True)
-                except OSError, (errno, strerror):
-                    QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Capture"), "Cannot start " + path + ": " + strerror)
+            self.__startWiresharkAction()
 
+    def __stopCaptureAction(self):
+        """ Stop capturing frames on the link
+        """
+
+        try:
+            (device, slot, inttype, port) = self.captureInfo
+            globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'none','both')
+            QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  translate("AbstractEdge", "Capture stopped"))
+            self.capturing = False
+            self.captureInfo = None
+            self.capfile = None
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Dynamips error"),  str(msg))
+            return
+    
+    def __startWiresharkAction(self):
+        """ Start a Wireshark like tool
+        """
+
+        capture_conf = globals.GApp.systconf['capture']
+        if capture_conf.auto_start:
+            if capture_conf.cap_cmd == '':
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  translate("AbstractEdge", "Please configure capture options"))
+                return
+            try:
+                path = capture_conf.cap_cmd.replace("%c", self.capfile)
+                debug("Start Wireshark like application (wait 2 seconds): " + path)
+                time.sleep(2)
+                sub.Popen(path, shell=True)
+            except OSError, (errno, strerror):
+                QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Capture"), "Cannot start " + path + ": " + strerror)
+    
     def __deleteAction(self):
         """ Delete the link
         """
