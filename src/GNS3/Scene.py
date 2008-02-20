@@ -126,7 +126,7 @@ class Scene(QtGui.QGraphicsView):
             self.connect(consoleAct, QtCore.SIGNAL('triggered()'), self.slotConsole)
     
             # Action: Calculate IDLE PC
-            idlepcAct = QtGui.QAction(translate('Scene', 'Compute IDLE PC'), menu)
+            idlepcAct = QtGui.QAction(translate('Scene', 'Idle PC'), menu)
             idlepcAct.setIcon(QtGui.QIcon(':/icons/calculate.svg'))
             self.connect(idlepcAct, QtCore.SIGNAL('triggered()'), self.slotIdlepc)
     
@@ -192,14 +192,16 @@ class Scene(QtGui.QGraphicsView):
         assert(isinstance(router, IOSRouter))
 
         try:
-            if globals.GApp.dynagen.devices[router.hostname].idlepc != None and len(globals.GApp.dynagen.devices[router.hostname].idlepc):
-#                reply = QtGui.QMessageBox.question(globals.GApp.mainWindow,translate("Scene", "IDLE PC"), 
-#                                                   translate("Scene", router.hostname + " already has an idlepc value applied, do you want to calculate a new one?"), 
-#                                                   QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-#                if reply == QtGui.QMessageBox.Yes:
-#                    result = self.calculateIDLEPC(router)
-#                else:
-                result = globals.GApp.dynagen.devices[router.hostname].idleprop(lib.IDLEPROPSHOW)
+            if globals.GApp.dynagen.devices[router.hostname].idlepc != None:
+                reply = QtGui.QMessageBox.question(globals.GApp.mainWindow,translate("Scene", "IDLE PC"), 
+                                                   translate("Scene", router.hostname + " already has an idlepc value applied, do you want to calculate a new one?"), 
+                                                   QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+                if reply == QtGui.QMessageBox.Yes:
+                    # reset idlepc
+                    lib.send(globals.GApp.dynagen.devices[router.hostname].dynamips, 'vm set_idle_pc_online %s 0 %s' % (router.hostname, '0x0'))
+                    result = self.calculateIDLEPC(router)
+                else:
+                    result = globals.GApp.dynagen.devices[router.hostname].idleprop(lib.IDLEPROPSHOW)
             else:
                 result = self.calculateIDLEPC(router)
 
@@ -230,7 +232,7 @@ class Scene(QtGui.QGraphicsView):
             (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Scene", "IDLE PC"), 
                                                         translate("Scene", "Potentially better idlepc values marked with '*'"), options, 0, False)
             if ok:
-                index = int(selection[3:][0])
+                index = int(selection[3:].split(':')[0])
                 globals.GApp.dynagen.devices[router.hostname].idleprop(lib.IDLEPROPSET, idles[index])
                 QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("Scene", "IDLE PC"),  translate("Scene", "Applied idlepc value " + idles[index] + " to " + router.hostname))
                 for node in globals.GApp.topology.nodes.values():

@@ -26,6 +26,7 @@ from GNS3.Utils import translate
 from GNS3.Ui.Form_NodeConfigurator import Ui_NodeConfigurator
 from GNS3.Node.IOSRouter1700 import IOSRouter1700
 from GNS3.Node.IOSRouter2600 import IOSRouter2600
+from GNS3.Node.IOSRouter2691 import IOSRouter2691
 from GNS3.Node.IOSRouter3600 import IOSRouter3600
 from GNS3.Node.IOSRouter3700 import IOSRouter3700
 from GNS3.Node.IOSRouter7200 import IOSRouter7200
@@ -103,6 +104,9 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                  "Page_IOSRouter", None, None], 
             "Routers (2600)" : \
                 [translate("NodeConfigurator", "Routers c2600"), ":/symbols/rt_standard.normal.svg",
+                 "Page_IOSRouter", None, None],
+            "Routers (2691)" : \
+                [translate("NodeConfigurator", "Routers c2691"), ":/symbols/rt_standard.normal.svg",
                  "Page_IOSRouter", None, None], 
             "Routers (3600)" : \
                 [translate("NodeConfigurator", "Routers c3600"), ":/symbols/rt_standard.normal.svg",
@@ -133,6 +137,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         self.assocPage = {
                                      IOSRouter1700: "Routers (1700)",
                                      IOSRouter2600: "Routers (2600)", 
+                                     IOSRouter2691: "Routers (2691)", 
                                      IOSRouter3600: "Routers (3600)", 
                                      IOSRouter3700: "Routers (3700)",
                                      IOSRouter7200: "Routers (7200)", 

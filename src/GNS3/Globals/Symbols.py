@@ -21,6 +21,7 @@
 
 from GNS3.Node.IOSRouter1700 import IOSRouter1700
 from GNS3.Node.IOSRouter2600 import IOSRouter2600
+from GNS3.Node.IOSRouter2691 import IOSRouter2691
 from GNS3.Node.IOSRouter3600 import IOSRouter3600
 from GNS3.Node.IOSRouter3700 import IOSRouter3700
 from GNS3.Node.IOSRouter7200 import IOSRouter7200
@@ -37,6 +38,10 @@ SYMBOLS = (
     'select_svg_file': ":/symbols/rt_standard.selected.svg"},
 
     {'name': "Router c2600", 'object': IOSRouter2600,
+    'normal_svg_file': ":/symbols/rt_standard.normal.svg",
+    'select_svg_file': ":/symbols/rt_standard.selected.svg"},
+    
+    {'name': "Router c2691", 'object': IOSRouter2691,
     'normal_svg_file': ":/symbols/rt_standard.normal.svg",
     'select_svg_file': ":/symbols/rt_standard.selected.svg"},
     
