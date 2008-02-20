@@ -21,6 +21,7 @@
 
 import re
 import GNS3.Globals as globals
+import GNS3.Dynagen.dynamips_lib as lib
 from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Topology import Topology
 from GNS3.Utils import translate
@@ -124,6 +125,11 @@ class Scene(QtGui.QGraphicsView):
             consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
             self.connect(consoleAct, QtCore.SIGNAL('triggered()'), self.slotConsole)
     
+            # Action: Calculate IDLE PC
+            idlepcAct = QtGui.QAction(translate('Scene', 'Compute IDLE PC'), menu)
+            idlepcAct.setIcon(QtGui.QIcon(':/icons/calculate.svg'))
+            self.connect(idlepcAct, QtCore.SIGNAL('triggered()'), self.slotIdlepc)
+    
             # Action: Start (Start IOS on hypervisor)
             startAct = QtGui.QAction(translate('Scene', 'Start'), menu)
             startAct.setIcon(QtGui.QIcon(':/icons/play.svg'))
@@ -140,6 +146,7 @@ class Scene(QtGui.QGraphicsView):
             self.connect(suspendAct, QtCore.SIGNAL('triggered()'), self.slotSuspendNode)
         
             menu.addAction(consoleAct)
+            menu.addAction(idlepcAct)
             menu.addAction(startAct)
             menu.addAction(suspendAct)
             menu.addAction(stopAct)
@@ -161,6 +168,80 @@ class Scene(QtGui.QGraphicsView):
         """
         
         self.__topology.addNode(node)
+
+    def calculateIDLEPC(self, router):
+        """ Show a splash screen
+        """
+
+        splash = QtGui.QSplashScreen(QtGui.QPixmap(":images/logo_gns3_splash.png"))
+        splash.show()
+        splash.showMessage("Please wait while calculating an IDLE PC")
+        globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+        result = globals.GApp.dynagen.devices[router.hostname].idleprop(lib.IDLEPROPGET)
+        return result
+        
+    def slotIdlepc(self):
+        """ Compute an IDLE PC
+        """
+    
+        items = self.__topology.selectedItems()
+        if len(items) != 1:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "IDLE PC"),  translate("Scene", "Please select only one router"))
+            return
+        router = items[0]
+        assert(isinstance(router, IOSRouter))
+
+        try:
+            if globals.GApp.dynagen.devices[router.hostname].idlepc != None and len(globals.GApp.dynagen.devices[router.hostname].idlepc):
+#                reply = QtGui.QMessageBox.question(globals.GApp.mainWindow,translate("Scene", "IDLE PC"), 
+#                                                   translate("Scene", router.hostname + " already has an idlepc value applied, do you want to calculate a new one?"), 
+#                                                   QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+#                if reply == QtGui.QMessageBox.Yes:
+#                    result = self.calculateIDLEPC(router)
+#                else:
+                result = globals.GApp.dynagen.devices[router.hostname].idleprop(lib.IDLEPROPSHOW)
+            else:
+                result = self.calculateIDLEPC(router)
+
+            # remove the '100-OK' line
+            result.pop()
+            
+            idles = {}
+            options = []
+            i = 1
+            for line in result:
+                (value, count) = line.split()[1:]
+    
+                # Flag potentially "best" idlepc values (between 50 and 60)
+                iCount = int(count[1:-1])
+                if 50 < iCount < 60:
+                    flag = '*'
+                else:
+                    flag = ' '
+        
+                option = "%s %2i: %s %s" % (flag, i, value, count)
+                options.append(option)
+                idles[i] = value
+                i += 1
+            
+            if len(idles) == 0:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "IDLE PC"),  translate("Scene", "No idlepc values found"))
+                return
+            (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Scene", "IDLE PC"), 
+                                                        translate("Scene", "Potentially better idlepc values marked with '*'"), options, 0, False)
+            if ok:
+                index = int(selection[3:][0])
+                globals.GApp.dynagen.devices[router.hostname].idleprop(lib.IDLEPROPSET, idles[index])
+                QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("Scene", "IDLE PC"),  translate("Scene", "Applied idlepc value " + idles[index] + " to " + router.hostname))
+                for node in globals.GApp.topology.nodes.values():
+                    if isinstance(node, IOSRouter) and node.hostname == router.hostname:
+                        dyn_router = node.get_dynagen_device()
+                        if globals.GApp.iosimages.has_key(dyn_router.dynamips.host + ':' + dyn_router.image):
+                            image = globals.GApp.iosimages[dyn_router.dynamips.host + ':' + dyn_router.image]
+                            image.idlepc =  idles[index]
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(self, translate("Scene", "Dynamips error"),  str(msg))
+            return            
 
     def slotConfigNode(self):
         """ Called to configure nodes
@@ -407,10 +488,6 @@ class Scene(QtGui.QGraphicsView):
         else:
             QtGui.QGraphicsView.mousePressEvent(self, event)
 
-    def  slotTextInserted(self, note):
-    
-        print 'inserted !'
-            
     def mouseDoubleClickEvent(self, event):
     
         if not globals.addingLinkFlag:

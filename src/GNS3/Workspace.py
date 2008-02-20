@@ -75,7 +75,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_ZoomIn, QtCore.SIGNAL('triggered()'), self.__action_ZoomIn)
         self.connect(self.action_ZoomOut, QtCore.SIGNAL('triggered()'), self.__action_ZoomOut)
         self.connect(self.action_ZoomReset, QtCore.SIGNAL('triggered()'), self.__action_ZoomReset)
-        self.connect(self.action_ZoomFit, QtCore.SIGNAL('triggered()'), self.__action_ZoomFit)
         self.connect(self.action_SelectAll, QtCore.SIGNAL('triggered()'), self.__action_SelectAll)
         self.connect(self.action_SelectNone, QtCore.SIGNAL('triggered()'), self.__action_SelectNone)
         self.connect(self.action_TelnetAll,  QtCore.SIGNAL('triggered()'), self.__action_TelnetAll)
@@ -84,6 +83,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_SuspendAll,  QtCore.SIGNAL('triggered()'), self.__action_SuspendAll)
         self.connect(self.action_About,  QtCore.SIGNAL('triggered()'), self.__action_About)
         self.connect(self.action_AboutQt,  QtCore.SIGNAL('triggered()'), self.__action_AboutQt)
+        self.connect(self.action_New,  QtCore.SIGNAL('triggered()'), self.__action_NewProject)
         self.connect(self.action_Open,  QtCore.SIGNAL('triggered()'), self.__action_OpenFile)
         self.connect(self.action_Save,  QtCore.SIGNAL('triggered()'), self.__action_Save)
         self.connect(self.action_SaveAs,  QtCore.SIGNAL('triggered()'), self.__action_SaveAs)
@@ -127,25 +127,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.graphicsView.render(painter)
         painter.end()
         pixmap.save(name, format)
-
-    def newProject(self, type, file):
-        """ Create a new project
-        """
-
-        self.projectType = type
-        self.projectFile = file
-        
-        # FIXME: Define step for project creation
-        self.loadProject(file)
-
-    def loadProject(self, projectFile=None):
-        """ Load a project from the given file
-
-        - If projectFile=None, the loadProject function act like newProject
-        """
-
-        if projectFile is None:
-            self.mainWindow.setWindowTitle(translate("Workspace", "GNS3 - New Project"))
 
     def __action_Export(self):
         """ Export the scene to an image file
@@ -275,12 +256,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         globals.GApp.scene.resetMatrix()
 
-    def __action_ZoomFit(self):
-        """ Scale the scene (QGraphicsView) to view all nodes
-        """
-
-        pass
-        
     def __action_ShowHostnames(self):
         """ Display/Hide hostnames for all the nodes on the scene
         """
@@ -412,8 +387,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
         globals.GApp.scene.resetMatrix()
         net.import_net_file(path)
             
+    def __action_NewProject(self):
+        """ Create a new project
+        """
+
+        print 'New Project'
+
     def __action_OpenFile(self):
-        """ Open a file (scenario or dynagen .NET format)
+        """ Open a file
         """
         
         global topologiesDirectory 

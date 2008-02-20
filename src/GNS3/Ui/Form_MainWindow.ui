@@ -60,7 +60,6 @@
     <property name="title" >
      <string>&amp;Edit</string>
     </property>
-    <addaction name="action_Cut" />
     <addaction name="action_Copy" />
     <addaction name="action_Paste" />
     <addaction name="separator" />
@@ -75,6 +74,7 @@
     <property name="title" >
      <string>&amp;File</string>
     </property>
+    <addaction name="action_New" />
     <addaction name="action_Open" />
     <addaction name="action_Save" />
     <addaction name="action_SaveAs" />
@@ -98,7 +98,6 @@
     <addaction name="action_ZoomIn" />
     <addaction name="action_ZoomOut" />
     <addaction name="action_ZoomReset" />
-    <addaction name="action_ZoomFit" />
     <addaction name="separator" />
     <addaction name="separator" />
    </widget>
@@ -325,6 +324,17 @@
     </layout>
    </widget>
   </widget>
+  <widget class="QToolBar" name="toolBar" >
+   <property name="windowTitle" >
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea" >
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
+   </attribute>
+  </widget>
   <action name="action_About" >
    <property name="text" >
     <string>&amp;About</string>
@@ -334,6 +344,9 @@
    </property>
   </action>
   <action name="action_Quit" >
+   <property name="icon" >
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/quit.svg</iconset>
+   </property>
    <property name="text" >
     <string>&amp;Quit</string>
    </property>
@@ -352,7 +365,7 @@
     <string>&amp;Open</string>
    </property>
    <property name="toolTip" >
-    <string>Open project</string>
+    <string>Open network file</string>
    </property>
    <property name="shortcut" >
     <string>Ctrl+O</string>
@@ -366,7 +379,7 @@
     <string>&amp;Save</string>
    </property>
    <property name="toolTip" >
-    <string>Save project</string>
+    <string>Save network file</string>
    </property>
    <property name="shortcut" >
     <string>Ctrl+S</string>
@@ -393,6 +406,9 @@
    </property>
   </action>
   <action name="action_IOS_images" >
+   <property name="icon" >
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/binary.svg</iconset>
+   </property>
    <property name="text" >
     <string>IOS images and hypervisors</string>
    </property>
@@ -404,13 +420,16 @@
    <property name="enabled" >
     <bool>false</bool>
    </property>
+   <property name="icon" >
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/help.svg</iconset>
+   </property>
    <property name="text" >
     <string>&amp;Online Help</string>
    </property>
   </action>
   <action name="action_Export" >
    <property name="icon" >
-    <iconset/>
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/edit-redo.svg</iconset>
    </property>
    <property name="text" >
     <string>&amp;Export</string>
@@ -472,21 +491,6 @@
     <string>Start a console on all running IOS instances</string>
    </property>
   </action>
-  <action name="action_Design_Mode" >
-   <property name="text" >
-    <string>&amp;Design Mode</string>
-   </property>
-  </action>
-  <action name="action_Emulation_Mode" >
-   <property name="text" >
-    <string>&amp;Emulation Mode</string>
-   </property>
-  </action>
-  <action name="action_Simulation_Mode" >
-   <property name="text" >
-    <string>&amp;Simulation Mode</string>
-   </property>
-  </action>
   <action name="action_SaveAs" >
    <property name="icon" >
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/save-as.svg</iconset>
@@ -498,24 +502,7 @@
     <string>Save As</string>
    </property>
    <property name="toolTip" >
-    <string>Save project as</string>
-   </property>
-  </action>
-  <action name="action_New_Project" >
-   <property name="enabled" >
-    <bool>false</bool>
-   </property>
-   <property name="text" >
-    <string>&amp;New</string>
-   </property>
-   <property name="toolTip" >
-    <string>New project</string>
-   </property>
-   <property name="statusTip" >
-    <string>Create a new project</string>
-   </property>
-   <property name="shortcut" >
-    <string>Ctrl+N</string>
+    <string>Save network file as</string>
    </property>
   </action>
   <action name="action_AboutQt" >
@@ -550,17 +537,6 @@
     <string>Ctrl+/</string>
    </property>
   </action>
-  <action name="action_ZoomFit" >
-   <property name="enabled" >
-    <bool>false</bool>
-   </property>
-   <property name="text" >
-    <string>Zoom &amp;Fit</string>
-   </property>
-   <property name="shortcut" >
-    <string>Ctrl+=</string>
-   </property>
-  </action>
   <action name="action_SelectAll" >
    <property name="text" >
     <string>Select &amp;All</string>
@@ -578,6 +554,9 @@
    </property>
   </action>
   <action name="action_Preferences" >
+   <property name="icon" >
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/applications.svg</iconset>
+   </property>
    <property name="text" >
     <string>&amp;Preferences...</string>
    </property>
@@ -585,20 +564,12 @@
     <string>Ctrl+Shift+P</string>
    </property>
   </action>
-  <action name="action_Cut" >
-   <property name="enabled" >
-    <bool>false</bool>
-   </property>
-   <property name="text" >
-    <string>Cut</string>
-   </property>
-   <property name="shortcut" >
-    <string>Ctrl+X</string>
-   </property>
-  </action>
   <action name="action_Copy" >
    <property name="enabled" >
     <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/edit-copy.svg</iconset>
    </property>
    <property name="text" >
     <string>Copy</string>
@@ -610,6 +581,9 @@
   <action name="action_Paste" >
    <property name="enabled" >
     <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/edit-paste.svg</iconset>
    </property>
    <property name="text" >
     <string>&amp;Paste</string>
@@ -646,6 +620,23 @@
    </property>
    <property name="text" >
     <string>Add a note</string>
+   </property>
+  </action>
+  <action name="action_New" >
+   <property name="icon" >
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/new.svg</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;New Project</string>
+   </property>
+   <property name="iconText" >
+    <string>New Project</string>
+   </property>
+   <property name="toolTip" >
+    <string>New Project</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+N</string>
    </property>
   </action>
  </widget>
