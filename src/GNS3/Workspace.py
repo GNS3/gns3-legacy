@@ -36,9 +36,6 @@ from GNS3.Config.Config import ConfDB
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.Cloud import Cloud
 
-# where the topology files are stored
-topologiesDirectory = '.'
-
 class Workspace(QMainWindow, Ui_MainWindow):
     """ This class is for managing the whole GUI `Workspace'.
         Currently a Workspace is similar to a MainWindow
@@ -422,8 +419,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_OpenFile(self):
         """ Open a file
         """
-        
-        global topologiesDirectory 
 
         if globals.GApp.systconf['dynamips'].path == '':
             QtGui.QMessageBox.warning(self, translate("Workspace", "Open a file"), translate("Workspace", "The path to Dynamips must be configured"))
@@ -431,7 +426,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             return
 
         (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter = 'NET file (*.net);;All files (*.*)', 
-                                       directory=topologiesDirectory).getFile()
+                                       directory=globals.GApp.systconf['general'].project_path).getFile()
         if path != None:
             try:
                 if str(selected) == 'NET file (*.net)':
@@ -464,10 +459,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Save as (scenario or dynagen .NET format)
         """
 
-        global topologiesDirectory 
-
         fb = fileBrowser(translate("Workspace", "Save Project As"), 
-                                filter='NET file (*.net);;All files (*.*)', directory=topologiesDirectory )
+                                filter='NET file (*.net);;All files (*.*)', directory=globals.GApp.systconf['general'].project_path)
         (path, selected) = fb.getSaveFile()
 
         if path != None and path != '':

@@ -87,12 +87,16 @@ conf_systemDynamips_types = {
 
 conf_systemGeneral_defaults = {
     'lang': 'en',
+    'project_path': '.',
+    'ios_path': '.',
     'status_points': True, 
     'manual_connection': False
 }
 
 conf_systemGeneral_types = {
     'lang': unicode,
+    'project_path': unicode,
+    'ios_path': unicode,
     'status_points': bool, 
     'manual_connection': bool
 }

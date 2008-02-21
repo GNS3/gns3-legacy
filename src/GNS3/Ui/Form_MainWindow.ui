@@ -126,6 +126,7 @@
    <attribute name="toolBarBreak" >
     <bool>false</bool>
    </attribute>
+   <addaction name="action_New" />
    <addaction name="action_Open" />
    <addaction name="action_Save" />
    <addaction name="action_SaveAs" />

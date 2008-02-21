@@ -179,7 +179,7 @@ class Application(QApplication, Singleton):
         """ register the dynagen instance
         """
 
-        self.__HypervisorManager = dynagen
+        self.__HypervisorManager = HypervisorManager
     
     def __getHypervisorManager(self):
         """ return the systconf instance
@@ -235,6 +235,8 @@ class Application(QApplication, Singleton):
         self.systconf['general'] = systemGeneralConf()
         confo = self.systconf['general']
         confo.lang = ConfDB().get('GNS3/lang', unicode('en', 'utf-8'))
+        confo.project_path = ConfDB().get('GNS3/project_directory', unicode('.', 'utf-8'))
+        confo.ios_path = ConfDB().get('GNS3/ios_directory', unicode('.', 'utf-8'))
         confo.status_points = ConfDB().value("GNS3/gui_show_status_points", QVariant(True)).toBool()
         confo.manual_connection =ConfDB().value("GNS3/gui_use_manual_connection", QVariant(False)).toBool()
     
@@ -277,6 +279,8 @@ class Application(QApplication, Singleton):
         c.set('GNS3/lang', confo.lang)
         c.set('GNS3/gui_show_status_points', confo.status_points)
         c.set('GNS3/gui_use_manual_connection', confo.manual_connection)
+        c.set('GNS3/project_directory', confo.project_path)
+        c.set('GNS3/ios_directory', confo.ios_path)
 
         # Dynamips settings
         confo = self.systconf['dynamips'] 

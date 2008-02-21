@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>402</width>
-    <height>308</height>
+    <height>379</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -34,6 +34,55 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_2" >
+     <property name="title" >
+      <string>Paths</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="0" column="0" >
+       <widget class="QLabel" name="label_2" >
+        <property name="text" >
+         <string>Project directory:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" >
+       <widget class="QLineEdit" name="ProjectPath" />
+      </item>
+      <item row="1" column="1" >
+       <widget class="QToolButton" name="ProjectPath_browser" >
+        <property name="text" >
+         <string>...</string>
+        </property>
+        <property name="toolButtonStyle" >
+         <enum>Qt::ToolButtonTextOnly</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" >
+       <widget class="QLabel" name="label_3" >
+        <property name="text" >
+         <string>IOS directory:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" >
+       <widget class="QLineEdit" name="IOSPath" />
+      </item>
+      <item row="3" column="1" >
+       <widget class="QToolButton" name="IOSPath_browser" >
+        <property name="text" >
+         <string>...</string>
+        </property>
+        <property name="toolButtonStyle" >
+         <enum>Qt::ToolButtonTextOnly</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item>
@@ -72,8 +121,8 @@
      </property>
      <property name="sizeHint" >
       <size>
-       <width>312</width>
-       <height>131</height>
+       <width>384</width>
+       <height>51</height>
       </size>
      </property>
     </spacer>

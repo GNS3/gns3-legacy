@@ -19,9 +19,10 @@
 # Contact: contact@gns3.net
 #
 
+import GNS3.Globals as globals
 from PyQt4 import QtGui, QtCore
 from GNS3.Ui.ConfigurationPages.Form_PreferencesGeneral import Ui_PreferencesGeneral
-import GNS3.Globals as globals
+from GNS3.Utils import translate, fileBrowser
 
 class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
 
@@ -35,7 +36,9 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             lang_name = lang[1]
             lang_displayText = u"%s (%s)" % (lang_name, lang_code)
             self.langsBox.addItem(lang_displayText)
-
+        
+        self.connect(self.ProjectPath_browser, QtCore.SIGNAL('clicked()'), self.__setProjectPath)
+        self.connect(self.IOSPath_browser, QtCore.SIGNAL('clicked()'), self.__setIOSPath)
         self.loadConf()
 
     def loadConf(self):
@@ -57,6 +60,8 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.checkBoxManualConnections.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxManualConnections.setCheckState(QtCore.Qt.Unchecked)
+        self.ProjectPath.setText(globals.GApp.systconf['general'].project_path)
+        self.IOSPath.setText(globals.GApp.systconf['general'].ios_path)
 
     def saveConf(self):
 
@@ -75,3 +80,23 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             globals.GApp.systconf['general'].manual_connection = True
         else:
             globals.GApp.systconf['general'].manual_connection = False
+    
+        globals.GApp.systconf['general'].project_path = unicode(self.ProjectPath.text(),  'utf-8')
+        globals.GApp.systconf['general'].ios_path = unicode(self.IOSPath.text(),  'utf-8')
+
+    def __setProjectPath(self):
+    
+        fb = fileBrowser(translate('UiConfig_PreferencesGeneral', 'Project Directory'))
+        path = fb.getDir()
+
+        if path is not None:
+            self.ProjectPath.setText(path)
+        
+    def __setIOSPath(self):
+    
+        fb = fileBrowser(translate('UiConfig_PreferencesGeneral', 'IOS Directory'))
+        path = fb.getDir()
+
+        if path is not None:
+            self.IOSPath.setText(path)
+

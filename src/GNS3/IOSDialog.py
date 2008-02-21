@@ -38,9 +38,6 @@ PLATFORMS = {
              'c7200': ['7200']
              }
 
-# where the IOS images are stored
-IOSDirectory = '.'
-
 class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
     """ IOSDialog class
         IOS images and hypervisors management
@@ -158,9 +155,8 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             Insert platforms and models
         """
 
-        global IOSDirectory
         # get the path to the ios image
-        path = fileBrowser(translate("IOSDialog", "Select an IOS image"),  directory=IOSDirectory).getFile()
+        path = fileBrowser(translate("IOSDialog", "Select an IOS image"),  directory=globals.GApp.systconf['general'].ios_path).getFile()
         
         if path != None and path[0] != '':
             path = path[0]
@@ -168,7 +164,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             if not testOpenFile(path):
                 QtGui.QMessageBox.critical(self, 'IOS Configuration', translate("IOSDialog", "Can't open file: ") + path)
                 return
-            IOSDirectory = os.path.dirname(path)
+    
             self.lineEditIOSImage.clear()
             self.lineEditIOSImage.setText(path)
             # try to guess the platform
