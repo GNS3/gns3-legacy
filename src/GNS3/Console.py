@@ -132,7 +132,7 @@ class Console(PyCutExt,  Dynagen_Console):
     def do_hypervisors(self, args):
         """hypervisors \nshow the hypervisors started by the hypervisor manager"""
     
-        globals.HypervisorManager.showHypervisors()
+        globals.GApp.HypervisorManager.showHypervisors()
             
     def do_start(self, args):
         """start  {/all | router1 [router2] ...}\nstart all or a specific router(s)"""

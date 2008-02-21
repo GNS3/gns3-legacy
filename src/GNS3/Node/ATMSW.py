@@ -27,8 +27,12 @@ from GNS3.Node.AbstractNode import AbstractNode
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
 
-atm_id = 0
+atmsw_id = 0
 MAPVCI = re.compile(r"""^([0-9]*):([0-9]*):([0-9]*)$""")
+
+def init_atmsw_id():
+    global atmsw_id
+    atmsw_id = 0
 
 class ATMSW(AbstractNode):
     """ ATMSW class implementing the ATM switch
@@ -39,9 +43,9 @@ class ATMSW(AbstractNode):
         AbstractNode.__init__(self, renderer_normal, renderer_select)
         
         # assign a new hostname
-        global atm_id
-        self.hostname = 'ATM' + str(atm_id)
-        atm_id = atm_id + 1
+        global atmsw_id
+        self.hostname = 'ATM' + str(atmsw_id)
+        atmsw_id = atmsw_id + 1
         self.setCustomToolTip()
 
         self.config = None

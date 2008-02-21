@@ -28,6 +28,10 @@ import GNS3.Globals as globals
 
 ethsw_id = 0
 
+def init_ethsw_id():
+    global ethsw_id
+    ethsw_id = 0
+
 class ETHSW(AbstractNode):
     """ ETHSW class implementing the Ethernet switch
     """

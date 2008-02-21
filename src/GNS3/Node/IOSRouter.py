@@ -45,6 +45,10 @@ SLOTLESS_MODELS = ('1710', '1720', '1721', '1750')
 # base ID for routers
 router_id = 0
 
+def init_router_id():
+    global router_id
+    router_id = 0
+
 class IOSRouter(AbstractNode):
     """ IOSRouter class implementing a IOS router
     """

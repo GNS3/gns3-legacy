@@ -65,7 +65,11 @@ conf_systemDynamips_defaults = {
     'workdir': '',
     'term_cmd': '',
     'baseUDP': 10000, 
-    'baseConsole': 2000
+    'baseConsole': 2000, 
+    'ghosting': True,
+    'memory_limit': 512, 
+    'udp_incrementation': 100, 
+    'import_use_HypervisorManager': True,
 }
 
 conf_systemDynamips_types = {
@@ -74,15 +78,23 @@ conf_systemDynamips_types = {
     'workdir': unicode,
     'term_cmd': unicode,
     'baseUDP': int,
-    'baseConsole': int
+    'baseConsole': int, 
+    'ghosting': bool, 
+    'memory_limit': int, 
+    'udp_incrementation': int,  
+    'import_use_HypervisorManager': bool,
 }
 
 conf_systemGeneral_defaults = {
     'lang': 'en',
+    'status_points': True, 
+    'manual_connection': False
 }
 
 conf_systemGeneral_types = {
     'lang': unicode,
+    'status_points': bool, 
+    'manual_connection': bool
 }
 
 conf_systemCapture_defaults = {

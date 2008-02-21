@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.0.dtd">
 <!-- eric4 project file for project GNS3 -->
-<!-- Saved: 2008-02-20, 20:02:47 -->
+<!-- Saved: 2008-02-21, 00:03:45 -->
 <!-- Copyright (C) 2008 ,  -->
 <Project version="4.0">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -531,6 +531,11 @@
       <Dir>GNS3</Dir>
       <Dir>Node</Dir>
       <Name>IOSRouter2691.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Name>ProjectDialog.py</Name>
     </Source>
   </Sources>
   <Forms>

@@ -89,7 +89,7 @@ class Serial(AbstractEdge):
 
         QtGui.QGraphicsPathItem.paint(self, painter, option, widget)
 
-        if not self.fake and globals.ShowStatusPoints:
+        if not self.fake and globals.GApp.systconf['general'].status_points:
         
             # if nodes are too close, points disappears
             if self.length < 80:

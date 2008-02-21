@@ -34,12 +34,9 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         QtGui.QWidget.__init__(self)
         Ui_PreferencesDynamips.setupUi(self, self)
 
-        self.connect(self.dynamips_path_browser, QtCore.SIGNAL('clicked()'),
-            self.__setDynamipsPath)
-        self.connect(self.dynamips_workdir_browser, QtCore.SIGNAL('clicked()'),
-            self.__setDynamipsWorkdir)
-        self.connect(self.pushButtonTestDynamips, QtCore.SIGNAL('clicked()'),
-            self.__testDynamips)
+        self.connect(self.dynamips_path_browser, QtCore.SIGNAL('clicked()'), self.__setDynamipsPath)
+        self.connect(self.dynamips_workdir_browser, QtCore.SIGNAL('clicked()'), self.__setDynamipsWorkdir)
+        self.connect(self.pushButtonTestDynamips, QtCore.SIGNAL('clicked()'),self.__testDynamips)
             
         self.loadConf()
 
@@ -76,19 +73,14 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         self.dynamips_port.setValue(self.conf.port)
         self.dynamips_baseUDP.setValue(self.conf.baseUDP)
         self.dynamips_baseConsole.setValue(self.conf.baseConsole)
+        self.spinBoxMemoryLimit.setValue(self.conf.memory_limit)
+        self.spinBoxUDPIncrementation.setValue(self.conf.udp_incrementation)
         
-        # Hypervisor manager settings
-        self.spinBoxMemoryLimit.setValue(globals.HypervisorMemoryUsageLimit)
-        self.spinBoxUDPIncrementation.setValue(globals.HypervisorUDPIncrementation)
-        if globals.ImportuseHypervisorManager == True:
+        if self.conf.import_use_HypervisorManager == True:
             self.checkBoxHypervisorManagerImport.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxHypervisorManagerImport.setCheckState(QtCore.Qt.Unchecked)
-        if globals.ClearOldDynamipsFiles == True:
-            self.checkBoxClearOldFiles.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.checkBoxClearOldFiles.setCheckState(QtCore.Qt.Unchecked)
-        if globals.useIOSghosting == True:
+        if self.conf.ghosting == True:
             self.checkBoxGhosting.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxGhosting.setCheckState(QtCore.Qt.Unchecked)
@@ -106,23 +98,18 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         self.conf.port = self.dynamips_port.value()
         self.conf.baseUDP = self.dynamips_baseUDP.value()
         self.conf.baseConsole = self.dynamips_baseConsole.value()
-        globals.GApp.systconf['dynamips'] = self.conf
-        
-        # Hypervisor manager settings
-        globals.HypervisorMemoryUsageLimit = self.spinBoxMemoryLimit.value()
-        globals.HypervisorUDPIncrementation =  self.spinBoxUDPIncrementation.value()
+        self.conf.memory_limit = self.spinBoxMemoryLimit.value()
+        self.conf.udp_incrementation = self.spinBoxUDPIncrementation.value()
         if self.checkBoxHypervisorManagerImport.checkState() == QtCore.Qt.Checked:
-            globals.ImportuseHypervisorManager = True
+            self.conf.import_use_HypervisorManager = True
         else:
-            globals.ImportuseHypervisorManager = False
-        if self.checkBoxClearOldFiles.checkState() == QtCore.Qt.Checked:
-            globals.ClearOldDynamipsFiles = True
-        else:
-            globals.ClearOldDynamipsFiles= False
+            self.conf.import_use_HypervisorManager = False
         if self.checkBoxGhosting.checkState() == QtCore.Qt.Checked:
-            globals.useIOSghosting = True
+            self.conf.ghosting = True
         else:
-            globals.useIOSghosting = False
+            self.conf.ghosting = False
+            
+        globals.GApp.systconf['dynamips'] = self.conf
         ConfDB().sync()
 
     def __setDynamipsPath(self):
@@ -152,8 +139,8 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
     
         self.saveConf()
         if globals.GApp.systconf['dynamips'].path:
-            globals.HypervisorManager = HypervisorManager()
-            if globals.HypervisorManager.preloadDynamips():
+            globals.GApp.HypervisorManager = HypervisorManager()
+            if globals.GApp.HypervisorManager.preloadDynamips():
                 self.labelDynamipsStatus.setText('<font color="green">' + translate("UiConfig_PreferencesDynamips", "Dynamips successfully started")  + '</font>')
             else:
                 self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Failed to start Dynamips")  + '</font>')

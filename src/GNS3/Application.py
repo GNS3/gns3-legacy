@@ -50,6 +50,7 @@ class Application(QApplication, Singleton):
         self.__scene = None
         self.__topology = None
         self.__dynagen = None
+        self.__HypervisorManager = None
 
         # Dict for storing config
         self.__systconf = {}
@@ -116,7 +117,7 @@ class Application(QApplication, Singleton):
 
         return self.__topology
     
-    topology = property(__getTopology, __setTopology, doc = 'Workspace instance')
+    topology = property(__getTopology, __setTopology, doc = 'Topology instance')
 
     def __setSystConf(self, systconf):
         """ register the systconf instance
@@ -172,7 +173,21 @@ class Application(QApplication, Singleton):
 
         return self.__dynagen
     
-    dynagen = property(__getDynagen, __setDynagen, doc = 'System config instance')
+    dynagen = property(__getDynagen, __setDynagen, doc = 'Dynagen instance')
+    
+    def __setHypervisorManager(self, HypervisorManager):
+        """ register the dynagen instance
+        """
+
+        self.__HypervisorManager = dynagen
+    
+    def __getHypervisorManager(self):
+        """ return the systconf instance
+        """
+
+        return self.__HypervisorManager
+    
+    HypervisorManager = property(__getHypervisorManager, __setHypervisorManager, doc = 'HypervisorManager instance')
 
     def run(self, file):
     
@@ -204,6 +219,10 @@ class Application(QApplication, Singleton):
         confo.port = int(ConfDB().get('Dynamips/hypervisor_port', 7200))
         confo.workdir = ConfDB().get('Dynamips/hypervisor_working_directory', unicode('',  'utf-8'))
         confo.term_cmd = ConfDB().get('Dynamips/console', unicode('',  'utf-8'))
+        confo.ghosting = ConfDB().value("Dynamips/dynamips_ghosting", QVariant(True)).toBool()
+        confo.memory_limit =int(ConfDB().get("Dynamips/hypervisor_memory_usage_limit", 512))
+        confo.udp_incrementation = int(ConfDB().get("Dynamips/hypervisor_udp_incrementation", 100))
+        confo.import_use_HypervisorManager = ConfDB().value("Dynamips/hypervisor_manager_import", QVariant(True)).toBool()
 
         # Capture config
         self.systconf['capture'] = systemCaptureConf()
@@ -216,24 +235,18 @@ class Application(QApplication, Singleton):
         self.systconf['general'] = systemGeneralConf()
         confo = self.systconf['general']
         confo.lang = ConfDB().get('GNS3/lang', unicode('en', 'utf-8'))
-        
-        # Globals config
-        globals.HypervisorMemoryUsageLimit = int(ConfDB().get("GNS3/hypervisor_memory_usage_limit", 512))
-        globals.HypervisorUDPIncrementation = int(ConfDB().get("GNS3/hypervisor_udp_incrementation", 100))
-        globals.ImportuseHypervisorManager = ConfDB().value("GNS3/hypervisor_manager_import", QVariant(True)).toBool()
-        globals.ClearOldDynamipsFiles = ConfDB().value("GNS3/dynamips_clear_old_files", QVariant(False)).toBool()
-        globals.useIOSghosting = ConfDB().value("GNS3/dynamips_ghosting", QVariant(True)).toBool()
-        globals.ShowStatusPoints = ConfDB().value("GNS3/gui_show_status_points", QVariant(True)).toBool()
-        globals.useManualConnection = ConfDB().value("GNS3/gui_use_manual_connection", QVariant(False)).toBool()
-
+        confo.status_points = ConfDB().value("GNS3/gui_show_status_points", QVariant(True)).toBool()
+        confo.manual_connection =ConfDB().value("GNS3/gui_use_manual_connection", QVariant(False)).toBool()
+    
         # Now systGeneral settings are loaded, load the translator
         self.translator = Translator()
-        self.translator.loadByLangEnv(self.systconf['general'].lang)
+        self.translator.switchLangTo(self.systconf['general'].lang)
+        #self.translator.loadByLangEnv(self.systconf['general'].lang)
 
         # HypervisorManager
         if globals.GApp.systconf['dynamips'].path:
-            globals.HypervisorManager = HypervisorManager()
-            globals.HypervisorManager.preloadDynamips()
+            self.__HypervisorManager = HypervisorManager()
+            self.__HypervisorManager.preloadDynamips()
             
         # Restore the geometry
         self.mainWindow.restoreGeometry(ConfDB().value("GNS3/geometry").toByteArray())
@@ -245,7 +258,7 @@ class Application(QApplication, Singleton):
         #TODO: load .net file
         retcode = QApplication.exec_()
         
-        globals.HypervisorManager = None
+        self.__HypervisorManager = None
         
         # Save the geometry
         ConfDB().set("GNS3/geometry", self.mainWindow.saveGeometry())
@@ -259,24 +272,22 @@ class Application(QApplication, Singleton):
         
         c = ConfDB()
 
-        # App Lang.
-        c.set('GNS3/lang', self.systconf['general'].lang)
-            
-        # Globals settings
-        c.set("GNS3/hypervisor_memory_usage_limit", globals.HypervisorMemoryUsageLimit)
-        c.set("GNS3/hypervisor_udp_incrementation", globals.HypervisorUDPIncrementation)
-        c.set("GNS3/hypervisor_manager_import", globals.ImportuseHypervisorManager)
-        c.set("GNS3/dynamips_clear_old_files", globals.ClearOldDynamipsFiles)
-        c.set("GNS3/dynamips_ghosting", globals.useIOSghosting)
-        c.set("GNS3/gui_show_status_points", globals.ShowStatusPoints)
-        c.set("GNS3/gui_use_manual_connection", globals.useManualConnection)
-        
+        # Apply general settings
+        confo = self.systconf['general']
+        c.set('GNS3/lang', confo.lang)
+        c.set('GNS3/gui_show_status_points', confo.status_points)
+        c.set('GNS3/gui_use_manual_connection', confo.manual_connection)
+
         # Dynamips settings
         confo = self.systconf['dynamips'] 
         c.set('Dynamips/hypervisor_path', confo.path)
         c.set('Dynamips/hypervisor_port', confo.port)
         c.set('Dynamips/hypervisor_working_directory', confo.workdir)
         c.set('Dynamips/console', confo.term_cmd)
+        c.set('Dynamips/dynamips_ghosting', confo.ghosting)
+        c.set('Dynamips/hypervisor_memory_usage_limit', confo.memory_limit)
+        c.set('Dynamips/hypervisor_udp_incrementation', confo.udp_incrementation)
+        c.set('Dynamips/hypervisor_manager_import', confo.import_use_HypervisorManager)
         
         # Capture settings
         confo = self.systconf['capture'] 

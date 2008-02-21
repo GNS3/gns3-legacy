@@ -51,6 +51,8 @@ class HypervisorManager:
         self.hypervisor_wd = dynamips.workdir
         self.hypervisor_baseport = dynamips.port
         self.baseConsole = dynamips.baseConsole
+        self.memory_usage_limit = dynamips.memory_limit
+        self.udp_incrementation = dynamips.udp_incrementation
         globals.GApp.dynagen.globaludp = dynamips.baseUDP
       
     def startNewHypervisor(self, port):
@@ -143,7 +145,7 @@ class HypervisorManager:
         """
 
         for hypervisor in self.hypervisors:
-            if not isinstance(node, IOSRouter) or hypervisor['load'] + node.default_ram <= globals.HypervisorMemoryUsageLimit:
+            if not isinstance(node, IOSRouter) or hypervisor['load'] + node.default_ram <= self.memory_usage_limit:
                 if isinstance(node, IOSRouter):
                     hypervisor['load'] += node.default_ram
                 debug('Hypervisor manager: allocates an already started hypervisor (port: ' + str(hypervisor['port']) + ')')
@@ -167,9 +169,12 @@ class HypervisorManager:
         dynamips_hypervisor.udp = globals.GApp.dynagen.globaludp
         dynamips_hypervisor.starting_udp = globals.GApp.dynagen.globaludp
         dynamips_hypervisor.baseconsole = self.baseConsole
-        if self.hypervisor_wd:
+        # use project workdir in priority
+        if globals.GApp.workspace.projectWorkdir:
+            dynamips_hypervisor.workingdir = globals.GApp.workspace.projectWorkdir
+        elif self.hypervisor_wd:
             dynamips_hypervisor.workingdir = self.hypervisor_wd
-        globals.GApp.dynagen.globaludp += globals.HypervisorUDPIncrementation
+        globals.GApp.dynagen.globaludp += self.udp_incrementation
         node.set_hypervisor(dynamips_hypervisor)
         return hypervisor
 
@@ -213,6 +218,7 @@ class HypervisorManager:
         """ Preload Dynamips
         """
 
+        #TODO: do socket connection
         proc = QtCore.QProcess(globals.GApp.mainWindow)
         port = self.hypervisor_baseport
         
@@ -231,7 +237,7 @@ class HypervisorManager:
         """ Show hypervisors port & load
         """
         
-        print "Memory usage limit per hypervisor : " + str(globals.HypervisorMemoryUsageLimit) + " MB"
+        print "Memory usage limit per hypervisor : " + str(self.memory_usage_limit) + " MB"
         print '%-10s %-10s' % ('Port','Memory load')
         for hypervisor in self.hypervisors:
             print '%-10s %-10s' % (hypervisor['port'], str(hypervisor['load']) + ' MB')

@@ -28,6 +28,7 @@ from PyQt4.QtGui import QMainWindow, QAction, QActionGroup, QAction, QIcon
 from GNS3.Ui.Form_MainWindow import Ui_MainWindow
 from GNS3.Ui.Form_About import Ui_AboutDialog
 from GNS3.IOSDialog import IOSDialog
+from GNS3.ProjectDialog import ProjectDialog
 from GNS3.Utils import translate, fileBrowser
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Preferences import PreferencesDialog
@@ -43,11 +44,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
         Currently a Workspace is similar to a MainWindow
     """
 
-    def __init__(self, projType=None, projFile=None):
+    def __init__(self):
         
         # Initialize some variables
-        self.projectType = projType
-        self.projectFile = projFile
+        self.projectFile = None
+        self.projectWorkdir= None
+        self.projectConfigs = None
 
         # Initialize the windows 
         QMainWindow.__init__(self)
@@ -62,7 +64,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # Workspace flags
         self.flg_showHostname = False
-        self.useHypervisorManager = False
 
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)
@@ -152,16 +153,21 @@ class Workspace(QMainWindow, Ui_MainWindow):
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
 
+    def clear(self):
+        """ Clear all the workspace
+        """
+        globals.GApp.topology.clear()
+        for item in globals.GApp.topology.items():
+            globals.GApp.topology.removeItem(item)
+            
     def __action_Clear(self):
-        """" Clear the topology
+        """ Clear the topology
         """
 
         reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Are you sure to clear the topology?"), 
                                            QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
         if reply == QtGui.QMessageBox.Yes:
-            globals.GApp.topology.clear()
-            for item in globals.GApp.topology.items():
-                globals.GApp.topology.removeItem(item)
+            self.clear()
         #TODO: clean files ?
             
     def __action_AddNote(self):
@@ -187,7 +193,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             globals.GApp.scene.cleanFlags()
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
         else:
-            if not globals.useManualConnection:
+            if not globals.GApp.systconf['general'].manual_connection:
                 menu = QtGui.QMenu()
                 for linktype in globals.linkTypes.keys():
                     menu.addAction(linktype)
@@ -391,7 +397,27 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Create a new project
         """
 
-        print 'New Project'
+        
+        dialog = ProjectDialog()
+        dialog.show()
+        if dialog.exec_():
+            self.clear()
+            globals.GApp.workspace.setWindowTitle("GNS3")
+            self.projectWorkdir = None
+            self.projectConfigs = None
+            (self.projectFile, self.projectWorkdir, self.projectConfigs) = dialog.saveProjectSettings()
+            if not self.projectFile:
+                QtGui.QMessageBox.critical(self, translate("Workspace", "New Project"),  translate("Workspace", "Can't create a project"))
+                return
+            try:
+                if self.projectWorkdir:
+                    os.mkdir(self.projectWorkdir)
+                if self.projectConfigs:
+                    os.mkdir(self.projectConfigs)
+            except OSError, (errno, strerror):
+                pass
+            self.setWindowTitle("GNS3 Project - " + self.projectFile)
+            self.statusbar.showMessage(translate("Workspace", "Project loaded..."))
 
     def __action_OpenFile(self):
         """ Open a file
@@ -411,8 +437,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 if str(selected) == 'NET file (*.net)':
                     # here the loading
                     self.projectFile = path
+                    self.projectWorkdir = None
+                    self.projectConfigs = None
                     self.setWindowTitle("GNS3 - " + self.projectFile)
-                    self.statusbar.showMessage(translate("Workspace", "Project Loaded..."))
+                    self.statusbar.showMessage(translate("Workspace", "File loaded..."))
                     self.load_saved_config(path)
             except IOError, (errno, strerror):
                 QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
@@ -428,7 +456,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             net = netfile.NETFile()
             globals.GApp.scene.resetMatrix()
             net.export_net_file(self.projectFile)
-            self.statusbar.showMessage(translate("Workspace", "Project saved..."))
+            self.statusbar.showMessage(translate("Workspace", "File saved..."))
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         

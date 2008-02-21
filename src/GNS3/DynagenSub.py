@@ -41,7 +41,7 @@ class DynagenSub(Dynagen):
         """ Open the config file
         """
 
-        # look for configspec in CONFIGSPECPATH and the same directory as dynagen
+#        # look for configspec in CONFIGSPECPATH and the same directory as dynagen
 #        realpath = os.path.realpath(sys.argv[0])
 #        self.debug('realpath ' + realpath)
 #        pathname = os.path.dirname(realpath)
@@ -81,10 +81,10 @@ class DynagenSub(Dynagen):
                 controlPort = 7200
 
             # need to start hypervisors
-            if server.host == 'localhost' and globals.ImportuseHypervisorManager:
+            if server.host == 'localhost' and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
                 debug("Start hypervisor on port: " + str(controlPort))
-                hypervisor = globals.HypervisorManager.startNewHypervisor(int(controlPort))
-                globals.HypervisorManager.waitHypervisor(hypervisor)
+                hypervisor = globals.GApp.HypervisorManager.startNewHypervisor(int(controlPort))
+                globals.GApp.HypervisorManager.waitHypervisor(hypervisor)
                 dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor('localhost', hypervisor['port'])
                 globals.GApp.dynagen.update_running_config()
                 dynamips_hypervisor.configchange = True

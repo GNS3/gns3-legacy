@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import os, random, time
+import os, random, time, base64
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Dynagen.dynamips_lib as lib
@@ -130,7 +130,7 @@ class NETFile(object):
             conf_image.idlepc = device.idlepc
         conf_image.hypervisor_port = device.dynamips.port
         conf_image.default = False
-        if device.dynamips.host == 'localhost' and globals.ImportuseHypervisorManager:
+        if device.dynamips.host == 'localhost' and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
             conf_image.hypervisor_host = unicode('localhost',  'utf-8')
         else:
             # this is an external hypervisor
@@ -152,8 +152,8 @@ class NETFile(object):
         """
 
         if device.isrouter:
-            if globals.ImportuseHypervisorManager:
-                hypervisor = globals.HypervisorManager.getHypervisor(device.dynamips.port)
+            if globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
+                hypervisor = globals.GApp.HypervisorManager.getHypervisor(device.dynamips.port)
                 hypervisor['load'] += node.default_ram
             node.set_hypervisor(device.dynamips)
             if not globals.GApp.iosimages.has_key(device.dynamips.host + ':' + device.image):
@@ -161,7 +161,7 @@ class NETFile(object):
             image_conf = globals.GApp.iosimages[device.dynamips.host + ':' + device.image]
             globals.GApp.topology.preConfigureNode(node, image_conf)
             # hack to prevent Dynagen to put "ghostios = False" in running config
-            if globals.useIOSghosting:
+            if globals.GApp.systconf['dynamips'].ghosting:
                 device.ghost_status = 2
                 device.ghost_file = device.imagename + '.ghost'
         QtCore.QObject.connect(node, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
@@ -259,11 +259,11 @@ class NETFile(object):
         """ Import a .net file
         """
     
-        if globals.ImportuseHypervisorManager and globals.GApp.systconf['dynamips'].path == '':
+        if globals.GApp.systconf['dynamips'].import_use_HypervisorManager and globals.GApp.systconf['dynamips'].path == '':
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("NETFile", "Save"), translate("NETFile", "Please configure the path to Dynamips"))
             return
 
-        globals.GApp.topology.clear()
+        globals.GApp.workspace.clear()
         dir = os.path.dirname(dynagen_namespace.__file__)
         dynagen_namespace.CONFIGSPECPATH.append(dir)
         try:
@@ -273,19 +273,19 @@ class NETFile(object):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "Dynamips error"),  str(msg))
             globals.GApp.workspace.projectFile = None
             globals.GApp.workspace.setWindowTitle("GNS3")
-            globals.GApp.topology.clear()
+            globals.GApp.workspace.clear()
             return
         except lib.DynamipsWarning,  msg:
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("NETFile", "Dynamips warning"),  str(msg))
             globals.GApp.workspace.projectFile = None
             globals.GApp.workspace.setWindowTitle("GNS3")
-            globals.GApp.topology.clear()
+            globals.GApp.workspace.clear()
             return
         except:
             print translate("NETFile", "Exception detected, stopping importation...")
             globals.GApp.workspace.projectFile = None
             globals.GApp.workspace.setWindowTitle("GNS3")
-            globals.GApp.topology.clear()
+            globals.GApp.workspace.clear()
             return
 
         self.apply_gns3_data()
@@ -382,7 +382,7 @@ class NETFile(object):
         for dynamips in globals.GApp.dynagen.dynamips.values():
             if dynamips.starting_udp > base_udp:
                 base_udp = dynamips.starting_udp
-        globals.GApp.dynagen.globaludp = base_udp + globals.HypervisorUDPIncrementation
+        globals.GApp.dynagen.globaludp = base_udp + globals.GApp.systconf['dynamips'].udp_incrementation
 
         for connection in connection_list:
             self.add_connection(connection)
@@ -390,24 +390,57 @@ class NETFile(object):
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
         globals.GApp.dynagen.update_running_config()
 
+    def export_router_config(self, node):
+    
+        if not isinstance(node , IOSRouter):
+            return
+        device = node.get_dynagen_device()
+        try:
+            config = base64.decodestring(device.config_b64)
+            config = config.replace('\r', "")
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, device.name + ': ' + translate("NETFile", "Dynamips error"),  str(msg))
+            return
+        except lib.DynamipsWarning, msg:
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow,  device.name + ': ' + translate("NETFile", "Dynamips warning"),  str(msg))
+            return
+        except:
+            error('Unknown error exporting config for ' + device.name)
+            return
+        # Write out the config to a file
+        file_path = globals.GApp.workspace.projectConfigs + os.sep + device.name + '.cfg'
+        print translate("NETFile", 'Exporting ' + device.name + ' configuration to ' +  file_path)
+        try:
+            f = open(file_path, 'w')
+            f.write(config)
+            f.close()
+            self.dynagen.running_config[node.d][node.get_running_config_name()]['cnfg'] = file_path
+        except IOError, e:
+            QtGui.QMessageBox.warning(self,  file_path + ': ' + translate("NETFile", "IO Error"),  str(e))
+            return
+        
     def export_net_file(self, path):
         """ Export a .net file
         """
-
-        self.dynagen.update_running_config(need_active_config=True)
+        if globals.GApp.workspace.projectConfigs:
+            self.dynagen.update_running_config()
+        else:
+            self.dynagen.update_running_config(need_active_config=True)
         debug("Running config: " + str(self.dynagen.running_config))
-       
-        # record node x & y position
         for node in globals.GApp.topology.nodes.values():
+            # record router configs
+            if globals.GApp.workspace.projectConfigs:
+                self.export_router_config(node)
+            # record node x & y position
             if not type(node) == Cloud:
                 self.dynagen.running_config[node.d][node.get_running_config_name()]['x'] = node.x()
                 self.dynagen.running_config[node.d][node.get_running_config_name()]['y'] = node.y()
             else:
                 if not self.dynagen.running_config.has_key('GNS3-DATA'):
                     self.dynagen.running_config['GNS3-DATA'] = {}
-                self.dynagen.running_config['GNS3-DATA']['Cloud ' + node.hostname] = {}
-                self.dynagen.running_config['GNS3-DATA']['Cloud ' + node.hostname]['x'] = node.x()
-                self.dynagen.running_config['GNS3-DATA']['Cloud ' + node.hostname]['y'] = node.y()
+                config = self.dynagen.running_config['GNS3-DATA']['Cloud ' + node.hostname] = {}
+                config['x'] = node.x()
+                config['y'] = node.y()
                 nios = ''
                 # record nios
                 for nio in node.getInterfaces():
@@ -421,10 +454,10 @@ class NETFile(object):
             if isinstance(item , Annotation):
                 if not self.dynagen.running_config.has_key('GNS3-DATA'):
                     self.dynagen.running_config['GNS3-DATA'] = {}
-                self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] = {}
-                self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)]['text'] = str(item.toPlainText())
-                self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)]['x'] = item.x()
-                self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)]['y'] = item.y()
+                config = self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] = {}
+                config['text'] = str(item.toPlainText())
+                config['x'] = item.x()
+                config['y'] = item.y()
                 note_nb += 1
 
         self.dynagen.running_config.filename = path

@@ -6,6 +6,7 @@ FILES=" Form_MainWindow
         Form_IOSDialog
         Form_NodeConfigurator
 	Form_PreferencesDialog
+	Form_NewProject
         ./ConfigurationPages/Form_IOSRouterPage
         ./ConfigurationPages/Form_CloudPage
         ./ConfigurationPages/Form_ETHSWPage
@@ -21,5 +22,5 @@ FILES=" Form_MainWindow
 for file in $FILES;
 do
     echo "Generating $file"
-    pyuic4 "$file.ui" >> "$file.py"
+    pyuic4 "$file.ui" > "$file.py"
 done

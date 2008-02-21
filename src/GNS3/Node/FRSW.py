@@ -28,6 +28,10 @@ import GNS3.Globals as globals
 
 frsw_id = 0
 
+def init_frsw_id():
+    global frsw_id
+    frsw_id = 0
+
 class FRSW(AbstractNode):
     """ FRSW class implementing the Frame Relay switch
     """
