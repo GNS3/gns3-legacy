@@ -153,7 +153,7 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         connected_ports = node.getConnectedInterfaceList()
         for port in ETHSWconfig['ports'].keys():
             if str(port) in connected_ports and not self.ports.has_key(port):
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Ports', translate("Page_ETHSW", "A link is connected in port ") + str(port))
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Ports', unicode(translate("Page_ETHSW", "A link is connected in port %i")) + port)
                 return ETHSWconfig
         ETHSWconfig['ports'] = self.ports
         ETHSWconfig['vlans'] = self.vlans

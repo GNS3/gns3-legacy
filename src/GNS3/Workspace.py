@@ -389,7 +389,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             
         path = os.path.abspath(file)
         if not os.path.isfile(path):
-            QtGui.QMessageBox.critical(self, translate("Workspace", "Loading"),  translate("Workspace", "Invalid file") + ' ' + file)
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Loading"), unicode(translate("Workspace", "Invalid file %s")) % file)
             return
         self.projectFile = path
         self.setWindowTitle("GNS3 - " + self.projectFile)

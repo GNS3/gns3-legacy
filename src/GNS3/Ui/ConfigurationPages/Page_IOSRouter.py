@@ -63,7 +63,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         path = fileBrowser('startup-config',  directory=configDirectory).getFile()
         if path != None and path[0] != '':
             if not testOpenFile(path[0]):
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Startup-config', translate("Page_IOSRouter", "Can't open file: ") + path[0])
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Startup-config', unicode(translate("Page_IOSRouter", "Can't open file: %s")) % path[0])
                 return
             self.lineEditStartupConfig.clear()
             self.lineEditStartupConfig.setText(path[0])
@@ -219,7 +219,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                     if remove:
                         router_config['slots'][slot_number] = None
                     else:
-                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Slots', translate("Page_IOSRouter", "Links are connected in slot ") + str(slot_number)) 
+                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Slots', unicode(translate("Page_IOSRouter", "Links are connected in slot %i")) % slot_number)
                         continue
                 except:
                     pass

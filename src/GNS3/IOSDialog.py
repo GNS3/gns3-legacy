@@ -162,7 +162,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             path = path[0]
             # test if we can open it
             if not testOpenFile(path):
-                QtGui.QMessageBox.critical(self, 'IOS Configuration', translate("IOSDialog", "Can't open file: ") + path)
+                QtGui.QMessageBox.critical(self, 'IOS Configuration', unicode(translate("IOSDialog", "Can't open file: %s")) % path)
                 return
     
             self.lineEditIOSImage.clear()

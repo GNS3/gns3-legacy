@@ -68,7 +68,7 @@ class HypervisorManager:
         s.settimeout(300)
         try:
             s.connect(('localhost', port))
-            QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Hypervisor already running on port ") + str(port))
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Hypervisor Manager',  unicode(translate("HypervisorManager", "Hypervisor already running on port %i")) % port) 
             s.close()
             globals.hypervisor_baseport += 1
             return None
@@ -79,7 +79,7 @@ class HypervisorManager:
         proc.start(self.hypervisor_path,  ['-H', str(port)])
 
         if proc.waitForStarted() == False:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Can't start Dynamips on port ") + str(port))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  unicode(translate("HypervisorManager", "Can't start Dynamips on port %i")) % port)
             return None
 
         hypervisor = {'port': port,
@@ -103,7 +103,7 @@ class HypervisorManager:
             s.setblocking(0)
             s.settimeout(300)
             if nb == 3:
-                progress = QtGui.QProgressDialog(translate("HypervisorManager", "Connecting to an hypervisor on port " + str(hypervisor['port']) + " ..."), 
+                progress = QtGui.QProgressDialog(unicode(translate("HypervisorManager", "Connecting to an hypervisor on port %i ...")) % hypervisor['port'], 
                                                                                                                                         translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
                 progress.setMinimum(1)
                 progress.setWindowModality(QtCore.Qt.WindowModal)
@@ -129,7 +129,8 @@ class HypervisorManager:
             globals.hypervisor_baseport += 1
             time.sleep(0.2)
         else:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Can't connect to the hypervisor on port " + str(hypervisor['port'])))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  
+                                       unicode(translate("HypervisorManager", "Can't connect to the hypervisor on port %i")) % hypervisor['port'])
             hypervisor['proc_instance'].close()
             self.hypervisors.remove(hypervisor)
             return False

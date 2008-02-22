@@ -130,7 +130,7 @@ class Topology(QtGui.QGraphicsScene):
             dynamips_hypervisor = self.dynagen.create_dynamips_hypervisor(host, port)
             if not dynamips_hypervisor:
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Hypervisor"),  
-                                           translate("Topology", "Can't connect to the external hypervisor on ") + external_hypervisor_key)
+                                           unicode(translate("Topology", "Can't connect to the external hypervisor on %s")) % external_hypervisor_key)
                 return False
             self.dynagen.update_running_config()
             dynamips_hypervisor.configchange = True
@@ -186,7 +186,8 @@ class Topology(QtGui.QGraphicsScene):
                         selected_images.append(image)
         
                 if len(selected_images) == 0:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), translate("Topology", "No image for platform " + node.platform))
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), 
+                                              unicode(translate("Topology", "No image for platform %s")) % node.platform)
                     return False
                 
                 if len(selected_images) > 1:
@@ -198,7 +199,7 @@ class Topology(QtGui.QGraphicsScene):
                     if not image_to_use:
                         # give users a way to choose it.
                         QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), 
-                                                translate("Topology", "Please configure a default image for this platform " + node.platform))
+                                                unicode(translate("Topology", "Please configure a default image for this platform %s")) % node.platform)
                         return
                 else:
                     image_to_use = selected_images[0]

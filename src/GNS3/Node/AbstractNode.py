@@ -163,7 +163,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """ Set a custom tool tip
         """
 
-        self.setToolTip(translate("AbstractNode", "Hostname: ") + self.hostname)
+        self.setToolTip(unicode(translate("AbstractNode", "Hostname: %s")) % self.hostname)
 
     def keyReleaseEvent(self, event):
         """ Key release handler

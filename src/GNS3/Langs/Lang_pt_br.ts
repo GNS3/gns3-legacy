@@ -5,12 +5,12 @@
     <message>
         <location filename="../Node/ATMSW.py" line="203"/>
         <source>Connection</source>
-        <translation>Connection</translation>
+        <translation>Conexão</translation>
     </message>
     <message>
         <location filename="../Node/ATMSW.py" line="203"/>
         <source>No port available</source>
-        <translation>No port available</translation>
+        <translation>Porta não disponível</translation>
     </message>
 </context>
 <context>
@@ -18,57 +18,57 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="13"/>
         <source>ATM Switch</source>
-        <translation>ATM Switch</translation>
+        <translation type="unfinished">Switch ATM</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="19"/>
         <source>Use VCI</source>
-        <translation>Use VCI</translation>
+        <translation type="unfinished">Use VCI</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="26"/>
         <source>Mapping</source>
-        <translation>Mapping</translation>
+        <translation type="unfinished">Mapeamento</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="47"/>
         <source>Port:VCI:VPI</source>
-        <translation>Port:VCI:VPI</translation>
+        <translation type="unfinished">Porta:VCI:VPI</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="64"/>
         <source>Source</source>
-        <translation>Source</translation>
+        <translation type="unfinished">Fonte</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="160"/>
         <source>Port:</source>
-        <translation>Port:</translation>
+        <translation type="unfinished">Porta:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="186"/>
         <source>VCI:</source>
-        <translation>VCI:</translation>
+        <translation type="unfinished">VCI:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="212"/>
         <source>VPI:</source>
-        <translation>VPI:</translation>
+        <translation type="unfinished">VPI:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="154"/>
         <source>Destination</source>
-        <translation>Destination</translation>
+        <translation type="unfinished">Destino</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="238"/>
         <source>&amp;Add</source>
-        <translation>&amp;Add</translation>
+        <translation type="unfinished">Adicionar</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="248"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Delete</translation>
+        <translation type="unfinished">Apagar</translation>
     </message>
 </context>
 <context>
@@ -76,12 +76,12 @@
     <message>
         <location filename="../Ui/Form_About.py" line="85"/>
         <source>About</source>
-        <translation>About</translation>
+        <translation>Sobre</translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="102"/>
         <source>&amp;About</source>
-        <translation type="unfinished">&amp;About</translation>
+        <translation>&amp;Sobre</translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="111"/>
@@ -456,7 +456,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="264"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips error</translation>
+        <translation type="unfinished">Erro do Dynamips</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="259"/>
@@ -489,37 +489,37 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="80"/>
         <source>Change hostname</source>
-        <translation>Change hostname</translation>
+        <translation>Mudar nome do hospedeiro</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="81"/>
         <source>Hostname:</source>
-        <translation>Hostname:</translation>
-    </message>
-    <message>
-        <location filename="../Node/AbstractNode.py" line="222"/>
-        <source>Connection</source>
-        <translation>Connection</translation>
-    </message>
-    <message>
-        <location filename="../Node/AbstractNode.py" line="189"/>
-        <source>Already connected interface</source>
-        <translation>Already connected interface</translation>
-    </message>
-    <message>
-        <location filename="../Node/AbstractNode.py" line="222"/>
-        <source>Please, configure the slots</source>
-        <translation>Please, configure the slots</translation>
+        <translation>Nome do hospedeiro:</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="87"/>
         <source>Hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome do hospedeiro</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="87"/>
         <source>Hostname already used</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome de hospedeiro já em uso</translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="222"/>
+        <source>Connection</source>
+        <translation>Conexão</translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="189"/>
+        <source>Already connected interface</source>
+        <translation>Interface já conectada</translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="222"/>
+        <source>Please, configure the slots</source>
+        <translation>Por favor, configure os slots</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="166"/>
@@ -532,12 +532,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/Cloud.py" line="107"/>
         <source>Connection</source>
-        <translation>Connection</translation>
+        <translation>Conexão</translation>
     </message>
     <message>
         <location filename="../Node/Cloud.py" line="107"/>
         <source>No NIO available</source>
-        <translation>No NIO available</translation>
+        <translation>NIO indisponível</translation>
     </message>
 </context>
 <context>
@@ -545,7 +545,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="13"/>
         <source>Cloud</source>
-        <translation>Cloud</translation>
+        <translation>Nuvem</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="23"/>
@@ -555,22 +555,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="29"/>
         <source>Generic Ethernet NIO (require root access)</source>
-        <translation>Generic Ethernet NIO (require root access)</translation>
+        <translation>NIO Ethernet Genérica (requer acesso de root)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="508"/>
         <source>&amp;Add</source>
-        <translation>&amp;Add</translation>
+        <translation>&amp;Adicionar</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="518"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Delete</translation>
+        <translation>&amp;Apagar</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="77"/>
         <source>Linux Ethernet NIO (require root access)</source>
-        <translation>Linux Ethernet NIO (require root access)</translation>
+        <translation>NIO Linux Ethernet (requer acesso de root)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="136"/>
@@ -580,22 +580,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="438"/>
         <source>Settings</source>
-        <translation>Settings</translation>
+        <translation>Configurações</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="148"/>
         <source>Local port:</source>
-        <translation>Local port:</translation>
+        <translation>Porta local:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="171"/>
         <source>Remote host:</source>
-        <translation>Remote host:</translation>
+        <translation>Hospedeiro remoto:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="188"/>
         <source>Remote port:</source>
-        <translation>Remote port:</translation>
+        <translation>Porta Remota:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="489"/>
@@ -610,7 +610,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="263"/>
         <source>TAP interface (require root access)</source>
-        <translation>TAP interface (require root access)</translation>
+        <translation>Interface TAP (requer acesso de root)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="309"/>
@@ -620,12 +620,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="467"/>
         <source>Local file:</source>
-        <translation>Local file:</translation>
+        <translation>Arquivo local:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="344"/>
         <source>Remote file:</source>
-        <translation>Remote file:</translation>
+        <translation>Arquivo remote:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="432"/>
@@ -635,7 +635,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="446"/>
         <source>Control file:</source>
-        <translation>Control file:</translation>
+        <translation>Arquivo de controle:</translation>
     </message>
 </context>
 <context>
@@ -643,17 +643,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Console.py" line="203"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips error</translation>
+        <translation type="unfinished">Erro do Dynamips</translation>
     </message>
     <message>
         <location filename="../Console.py" line="201"/>
         <source>Dynamips warning</source>
-        <translation type="unfinished">Dynamips warning</translation>
+        <translation type="unfinished">Avisos do Dynamips</translation>
     </message>
     <message>
         <location filename="../Console.py" line="203"/>
         <source>Connection lost</source>
-        <translation type="unfinished">Connection lost</translation>
+        <translation type="unfinished">Perda de conexão</translation>
     </message>
     <message>
         <location filename="../Console.py" line="268"/>
@@ -734,12 +734,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../DynagenSub.py" line="61"/>
         <source>Starting hypervisors ...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Inicializando o hypervisors ...</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="61"/>
         <source>Abort</source>
-        <translation type="unfinished">Abort</translation>
+        <translation type="unfinished">Abortar</translation>
     </message>
 </context>
 <context>
@@ -747,12 +747,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Node/ETHSW.py" line="194"/>
         <source>Connection</source>
-        <translation>Connection</translation>
+        <translation>Conexão</translation>
     </message>
     <message>
         <location filename="../Node/ETHSW.py" line="194"/>
         <source>No port available</source>
-        <translation>No port available</translation>
+        <translation>Porta indisponível</translation>
     </message>
 </context>
 <context>
@@ -760,17 +760,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="13"/>
         <source>Ethernet Switch</source>
-        <translation>Ethernet Switch</translation>
+        <translation>Switch Ethernet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="25"/>
         <source>Settings</source>
-        <translation>Settings</translation>
+        <translation>Configurações</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="31"/>
         <source>Port:</source>
-        <translation>Port:</translation>
+        <translation>Porta:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="57"/>
@@ -780,12 +780,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="83"/>
         <source>Type:</source>
-        <translation>Type:</translation>
+        <translation>Tipo:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="91"/>
         <source>access</source>
-        <translation>access</translation>
+        <translation>acesso</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="96"/>
@@ -795,12 +795,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="107"/>
         <source>Ports</source>
-        <translation>Ports</translation>
+        <translation>Portas</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="123"/>
         <source>Port</source>
-        <translation>Port</translation>
+        <translation>Porta</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="128"/>
@@ -810,17 +810,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="133"/>
         <source>Type</source>
-        <translation>Type</translation>
+        <translation>Tipo</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="144"/>
         <source>&amp;Add</source>
-        <translation>&amp;Add</translation>
+        <translation type="unfinished">Adicionar</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="154"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Delete</translation>
+        <translation type="unfinished">Apagar</translation>
     </message>
 </context>
 <context>
@@ -828,12 +828,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Node/FRSW.py" line="190"/>
         <source>Connection</source>
-        <translation>Connection</translation>
+        <translation type="unfinished">Conexão</translation>
     </message>
     <message>
         <location filename="../Node/FRSW.py" line="190"/>
         <source>No port available</source>
-        <translation>No port available</translation>
+        <translation type="unfinished">Porta não disponível</translation>
     </message>
 </context>
 <context>
@@ -841,17 +841,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="13"/>
         <source>Frame Relay Switch</source>
-        <translation>Frame Relay Switch</translation>
+        <translation type="unfinished">Switch Frame Relay</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="25"/>
         <source>Source</source>
-        <translation>Source</translation>
+        <translation type="unfinished">Fonte</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="127"/>
         <source>Port:</source>
-        <translation>Port:</translation>
+        <translation type="unfinished">Porta:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="153"/>
@@ -861,27 +861,27 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="83"/>
         <source>Mapping</source>
-        <translation>Mapping</translation>
+        <translation type="unfinished">Mapeamento</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="104"/>
         <source>Port:DLCI</source>
-        <translation>Port:DLCI</translation>
+        <translation type="unfinished">Porta:DLCI</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="121"/>
         <source>Destination</source>
-        <translation>Destination</translation>
+        <translation type="unfinished">Destino</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="179"/>
         <source>&amp;Add</source>
-        <translation>&amp;Add</translation>
+        <translation type="unfinished">Adicionar</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="189"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Delete</translation>
+        <translation type="unfinished">Apagar</translation>
     </message>
 </context>
 <context>
@@ -889,12 +889,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Node/Hub.py" line="108"/>
         <source>Connection</source>
-        <translation>Connection</translation>
+        <translation type="unfinished">Conexão</translation>
     </message>
     <message>
         <location filename="../Node/Hub.py" line="108"/>
         <source>No port available</source>
-        <translation>No port available</translation>
+        <translation type="unfinished">Porta não disponível</translation>
     </message>
 </context>
 <context>
@@ -902,17 +902,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_HubPage.ui" line="13"/>
         <source>Ethernet Hub</source>
-        <translation>Ethernet Hub</translation>
+        <translation type="unfinished">Hub Ethernet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_HubPage.ui" line="25"/>
         <source>Settings</source>
-        <translation>Settings</translation>
+        <translation>Configurações</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_HubPage.ui" line="31"/>
         <source>Ports:</source>
-        <translation>Ports:</translation>
+        <translation type="unfinished">Portas:</translation>
     </message>
 </context>
 <context>
@@ -920,7 +920,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../HypervisorManager.py" line="107"/>
         <source>Abort</source>
-        <translation>Abort</translation>
+        <translation type="unfinished">Abortar</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="71"/>
@@ -946,39 +946,44 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>IOSDialog</name>
     <message>
+        <location filename="../IOSDialog.py" line="159"/>
+        <source>Select an IOS image</source>
+        <translation type="unfinished">Selecione uma imagem de IOS</translation>
+    </message>
+    <message>
         <location filename="../IOSDialog.py" line="195"/>
         <source>IDLE PC not valid (format required: 0xhhhhhhhh)</source>
-        <translation>IDLE PC not valid (format required: 0xhhhhhhhh)</translation>
+        <translation type="unfinished">IDLE PC não válido (formato requerido: 0xhhhhhhhh)</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="204"/>
         <source>No hypervisor selected, use the local hypervisor</source>
-        <translation>No hypervisor selected, use the local hypervisor</translation>
+        <translation type="unfinished">Hypervisor não selecionado, use o hypervisor local</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="332"/>
         <source>Select a working directory</source>
-        <translation>Select a working directory</translation>
+        <translation type="unfinished">Selecione o diretório de trabalho</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="295"/>
         <source>IOS images and hypervisors</source>
-        <translation>IOS images and hypervisors</translation>
+        <translation type="unfinished">Imagens IOS e hypervisors</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="311"/>
         <source>IOS Images</source>
-        <translation>IOS Images</translation>
+        <translation type="unfinished">Imagens IOS</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="312"/>
         <source>Settings</source>
-        <translation>Settings</translation>
+        <translation>Configurações</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="300"/>
         <source>Image file :</source>
-        <translation>Image file :</translation>
+        <translation type="unfinished">Arquivo de imagem :</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="319"/>
@@ -988,7 +993,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="302"/>
         <source>Platform:</source>
-        <translation>Platform:</translation>
+        <translation type="unfinished">Plataforma:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="304"/>
@@ -998,12 +1003,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="296"/>
         <source>Images</source>
-        <translation>Images</translation>
+        <translation type="unfinished">Imagens</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="297"/>
         <source>IOS image</source>
-        <translation>IOS image</translation>
+        <translation type="unfinished">Imagem IOS</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="320"/>
@@ -1013,72 +1018,67 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="307"/>
         <source>Use the hypervisor manager</source>
-        <translation>Use the hypervisor manager</translation>
+        <translation type="unfinished">Use o gerenciador de hypervisor</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="323"/>
         <source>&amp;Save</source>
-        <translation>&amp;Save</translation>
+        <translation type="unfinished">Salvar</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="324"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Edit</translation>
+        <translation type="unfinished">Editar</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="325"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Delete</translation>
+        <translation type="unfinished">Apagar</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="313"/>
         <source>Host:</source>
-        <translation>Host:</translation>
+        <translation type="unfinished">Hospedeiro:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="314"/>
         <source>localhost</source>
-        <translation>localhost</translation>
+        <translation type="unfinished">hospedeiro local</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="315"/>
         <source>Port:</source>
-        <translation>Port:</translation>
+        <translation type="unfinished">Porta:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="316"/>
         <source>Base UDP:</source>
-        <translation>Base UDP:</translation>
+        <translation type="unfinished">UDP base:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="318"/>
         <source>Working directory:</source>
-        <translation>Working directory:</translation>
+        <translation type="unfinished">Diretório de Trabalho:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="321"/>
         <source>Host:Port</source>
-        <translation>Host:Port</translation>
+        <translation type="unfinished">Hospedeiro:Porta</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="322"/>
         <source>Base UDP</source>
-        <translation>Base UDP</translation>
+        <translation type="unfinished">UDP base</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="317"/>
         <source>Base console:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Console base:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="326"/>
         <source>External hypervisors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../IOSDialog.py" line="159"/>
-        <source>Select an IOS image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hypervisors externos</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="298"/>
@@ -1111,12 +1111,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Node/IOSRouter.py" line="535"/>
         <source>Connection</source>
-        <translation>Connection</translation>
+        <translation type="unfinished">Conexão</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="535"/>
         <source>No interface available</source>
-        <translation>No interface available</translation>
+        <translation type="unfinished">Interface indisponível</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="220"/>
@@ -1134,17 +1134,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="13"/>
         <source>Router configuration</source>
-        <translation>Router configuration</translation>
+        <translation type="unfinished">Configuração de Roteador</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="23"/>
         <source>General</source>
-        <translation>General</translation>
+        <translation type="unfinished">Geral</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="57"/>
         <source>IOS image:</source>
-        <translation>IOS image:</translation>
+        <translation type="unfinished">Imagem IOS:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="71"/>
@@ -1169,17 +1169,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="161"/>
         <source>Memories and disks</source>
-        <translation>Memories and disks</translation>
+        <translation type="unfinished">Memórias e discos</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="167"/>
         <source>Memories</source>
-        <translation>Memories</translation>
+        <translation type="unfinished">Memórias</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="173"/>
         <source>RAM size:</source>
-        <translation>RAM size:</translation>
+        <translation type="unfinished">Tamanho da RAM:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="560"/>
@@ -1189,22 +1189,22 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="202"/>
         <source>NVRAM size:</source>
-        <translation>NVRAM size:</translation>
+        <translation type="unfinished">Tamanho da NVRAM:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="234"/>
         <source>Disks</source>
-        <translation>Disks</translation>
+        <translation type="unfinished">Discos</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="240"/>
         <source>PCMCIA disk0 size:</source>
-        <translation>PCMCIA disk0 size:</translation>
+        <translation type="unfinished">Tamanho do PCMCIA disk0:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="263"/>
         <source>PCMCIA disk1 size:</source>
-        <translation>PCMCIA disk1 size:</translation>
+        <translation type="unfinished">Tamanho do PCMCIA disk1:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="303"/>
@@ -1249,7 +1249,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="501"/>
         <source>Advanced</source>
-        <translation>Advanced</translation>
+        <translation type="unfinished">Avançado</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="520"/>
@@ -1259,12 +1259,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="527"/>
         <source>Base MAC :</source>
-        <translation>Base MAC :</translation>
+        <translation type="unfinished">MAC base:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="547"/>
         <source>exec area:</source>
-        <translation>exec area:</translation>
+        <translation type="unfinished">Área exec:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="576"/>
@@ -1279,7 +1279,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="29"/>
         <source>Platform:</source>
-        <translation type="unfinished">Platform:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="43"/>
@@ -1327,7 +1327,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Translations.py" line="95"/>
         <source>English</source>
-        <translation>English</translation>
+        <translation>Português do Brasil</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="313"/>
@@ -1337,32 +1337,32 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="314"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Edit</translation>
+        <translation type="unfinished">Editar</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="315"/>
         <source>&amp;File</source>
-        <translation>&amp;File</translation>
+        <translation type="unfinished">Arquivo</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="316"/>
         <source>&amp;Help</source>
-        <translation>&amp;Help</translation>
+        <translation type="unfinished">Ajuda</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="317"/>
         <source>&amp;View</source>
-        <translation>&amp;View</translation>
+        <translation type="unfinished">Visão</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="318"/>
         <source>General</source>
-        <translation>General</translation>
+        <translation type="unfinished">Geral</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="319"/>
         <source>Nodes Types</source>
-        <translation>Nodes Types</translation>
+        <translation type="unfinished">Tipos de Nós</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="324"/>
@@ -1372,17 +1372,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="321"/>
         <source>Design</source>
-        <translation>Design</translation>
+        <translation type="unfinished">Projeto</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="322"/>
         <source>Simulation</source>
-        <translation>Simulation</translation>
+        <translation type="unfinished">Simulação</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="323"/>
         <source>Topology Summary</source>
-        <translation>Topology Summary</translation>
+        <translation type="unfinished">Sumário da Topologia</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="325"/>
@@ -1392,12 +1392,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="327"/>
         <source>&amp;About</source>
-        <translation>&amp;About</translation>
+        <translation type="unfinished">Sobre</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="328"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Quit</translation>
+        <translation type="unfinished">Sair</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="329"/>
@@ -1407,7 +1407,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="330"/>
         <source>&amp;Open</source>
-        <translation>&amp;Open</translation>
+        <translation type="unfinished">Abrir</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="332"/>
@@ -1417,7 +1417,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="333"/>
         <source>&amp;Save</source>
-        <translation>&amp;Save</translation>
+        <translation type="unfinished">Salvar</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="335"/>
@@ -1427,7 +1427,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="339"/>
         <source>Add a link</source>
-        <translation>Add a link</translation>
+        <translation type="unfinished">Adicionar um enlace</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="341"/>
@@ -1437,52 +1437,52 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="342"/>
         <source>&amp;Online Help</source>
-        <translation>&amp;Online Help</translation>
+        <translation type="unfinished">Ajuda Online</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="343"/>
         <source>&amp;Export</source>
-        <translation>&amp;Export</translation>
+        <translation type="unfinished">Exportar</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="344"/>
         <source>Start/Resume all IOS</source>
-        <translation>Start/Resume all IOS</translation>
+        <translation type="unfinished">Iniciar/Parar todos IOS</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="345"/>
         <source>Start or resume all IOS instances</source>
-        <translation>Start or resume all IOS instances</translation>
+        <translation type="unfinished">Iniciar ou parar todas as instâncias de IOS</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="346"/>
         <source>Stop all IOS</source>
-        <translation>Stop all IOS</translation>
+        <translation type="unfinished">Parar todos IOS</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="347"/>
         <source>Stop all IOS instances</source>
-        <translation>Stop all IOS instances</translation>
+        <translation type="unfinished">Parar todas as instâncias do IOS</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="349"/>
         <source>Show hostnames</source>
-        <translation>Show hostnames</translation>
+        <translation type="unfinished">Mostrar os nomes dos hospedeiros</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="351"/>
         <source>Start a console on all running IOS instances</source>
-        <translation>Start a console on all running IOS instances</translation>
+        <translation type="unfinished">Iniciar console em todas as instâncias de IOS em execução</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="352"/>
         <source>Save &amp;As</source>
-        <translation>Save &amp;As</translation>
+        <translation type="unfinished">Save como</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="353"/>
         <source>Save As</source>
-        <translation>Save As</translation>
+        <translation type="unfinished">Salve Como</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="379"/>
@@ -1492,7 +1492,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="355"/>
         <source>About &amp;Qt</source>
-        <translation>About &amp;Qt</translation>
+        <translation type="unfinished">Sobre o Qt</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="356"/>
@@ -1527,7 +1527,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="362"/>
         <source>Select &amp;All</source>
-        <translation>Select &amp;All</translation>
+        <translation type="unfinished">Selecione Tudo</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="363"/>
@@ -1537,7 +1537,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="364"/>
         <source>Select &amp;None</source>
-        <translation>Select &amp;None</translation>
+        <translation type="unfinished">Anular Seleção</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="365"/>
@@ -1547,7 +1547,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="368"/>
         <source>Copy</source>
-        <translation>Copy</translation>
+        <translation type="unfinished">Copiar</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="369"/>
@@ -1557,7 +1557,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="370"/>
         <source>&amp;Paste</source>
-        <translation>&amp;Paste</translation>
+        <translation type="unfinished">Colar</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="371"/>
@@ -1567,17 +1567,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="372"/>
         <source>Suspend all IOS</source>
-        <translation>Suspend all IOS</translation>
+        <translation type="unfinished">Suspender todos IOS</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="373"/>
         <source>Suspend all IOS instances</source>
-        <translation>Suspend all IOS instances</translation>
+        <translation type="unfinished">Suspender todas as instâncias de IOS</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="366"/>
         <source>&amp;Preferences...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Preferências</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="367"/>
@@ -1587,7 +1587,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="340"/>
         <source>IOS images and hypervisors</source>
-        <translation type="unfinished">IOS images and hypervisors</translation>
+        <translation type="unfinished">Imagens IOS e hypervisors</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="326"/>
@@ -1645,22 +1645,22 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../NETFile.py" line="263"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Salvar</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="263"/>
         <source>Please configure the path to Dynamips</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Por favor configure o caminho para o Dynamips</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="409"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips error</translation>
+        <translation type="unfinished">Erro no Dynamips</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="412"/>
         <source>Dynamips warning</source>
-        <translation type="unfinished">Dynamips warning</translation>
+        <translation type="unfinished">Avisos Dynamips</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="286"/>
@@ -1688,7 +1688,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_NewProject.py" line="64"/>
         <source>Settings</source>
-        <translation type="unfinished">Settings</translation>
+        <translation type="unfinished">Configurações</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="65"/>
@@ -1714,24 +1714,29 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>NodeConfigurator</name>
     <message>
+        <location filename="../NodeConfigurator.py" line="275"/>
+        <source>Node configuration</source>
+        <translation type="unfinished">Configuração do Nó</translation>
+    </message>
+    <message>
         <location filename="../NodeConfigurator.py" line="121"/>
         <source>Frame Relay switches</source>
-        <translation>Frame Relay switches</translation>
+        <translation type="unfinished">Switches Frame Relay</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="124"/>
         <source>Ethernet switches</source>
-        <translation>Ethernet switches</translation>
+        <translation type="unfinished">Switches Ethernet</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="127"/>
         <source>ATM switches</source>
-        <translation>ATM switches</translation>
+        <translation type="unfinished">Switches ATM</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="130"/>
         <source>Clouds</source>
-        <translation>Clouds</translation>
+        <translation type="unfinished">Nuvens</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="133"/>
@@ -1741,44 +1746,39 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../NodeConfigurator.py" line="221"/>
         <source>%s node</source>
-        <translation>%s node</translation>
+        <translation type="unfinished">nó %s</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="213"/>
         <source>%s group</source>
-        <translation>%s group</translation>
+        <translation type="unfinished">grupo %s</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="218"/>
         <source>Group of %d %s</source>
-        <translation>Group of %d %s</translation>
+        <translation type="unfinished">Grupo %d de %s</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NodeConfigurator.py" line="98"/>
         <source>Node configurator</source>
-        <translation>Node configurator</translation>
+        <translation type="unfinished">Configurador do nó</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NodeConfigurator.py" line="99"/>
         <source>Nodes</source>
-        <translation>Nodes</translation>
+        <translation type="unfinished">Nós</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NodeConfigurator.py" line="100"/>
         <source>Node Configuration</source>
-        <translation>Node Configuration</translation>
+        <translation type="unfinished">Configuração do Nó</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NodeConfigurator.py" line="102"/>
         <source>Please select a node in the list 
 to display the configuration page.</source>
-        <translation>Please select a node in the list 
-to display the configuration page.</translation>
-    </message>
-    <message>
-        <location filename="../NodeConfigurator.py" line="275"/>
-        <source>Node configuration</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Por favor selecione um nó na lista 
+para amostrar a página de configuração.</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="103"/>
@@ -1821,7 +1821,7 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="19"/>
         <source>Settings</source>
-        <translation type="unfinished">Settings</translation>
+        <translation type="unfinished">Configurações</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="28"/>
@@ -1849,17 +1849,17 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/Form_PreferencesDialog.py" line="100"/>
         <source>Preferences</source>
-        <translation>Preferences</translation>
+        <translation type="unfinished">Preferências</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="27"/>
         <source>General</source>
-        <translation type="unfinished">General</translation>
+        <translation type="unfinished">Geral</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="30"/>
         <source>Applications</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aplicações</translation>
     </message>
 </context>
 <context>
@@ -1867,22 +1867,22 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="13"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation type="unfinished">Forma</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="23"/>
         <source>Dynamips</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dynamips</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="222"/>
         <source>Settings</source>
-        <translation type="unfinished">Settings</translation>
+        <translation type="unfinished">Configurações</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="41"/>
         <source>Executable path:</source>
-        <translation type="unfinished">Executable path:</translation>
+        <translation type="unfinished">Caminho do executável:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="71"/>
@@ -1892,52 +1892,52 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="61"/>
         <source>Working directory:</source>
-        <translation type="unfinished">Working directory:</translation>
+        <translation type="unfinished">Diretório de trabalho:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="78"/>
         <source>Base port:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Porta base:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="85"/>
         <source> Base UDP:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">UDP base:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="92"/>
         <source>Base console:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Console base:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="129"/>
         <source>Terminal command:</source>
-        <translation type="unfinished">Terminal command:</translation>
+        <translation type="unfinished">Comando para terminal:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="174"/>
         <source>&amp;Test</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Teste</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="210"/>
         <source>Hypervisor Manager</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gerenciador de Hypervisor</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="228"/>
         <source>Memory usage limit per hypervisor:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Limite de memória por hypervisor:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="248"/>
         <source>UDP incrementation:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Incremento UDP:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="268"/>
         <source>Use the hypervisor manager when importing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Use o gerenciador de hypervisor para importar</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="139"/>
@@ -1960,27 +1960,27 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="13"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation type="unfinished">Forma</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="22"/>
         <source>Language:</source>
-        <translation type="unfinished">Language:</translation>
+        <translation type="unfinished">Língua:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="91"/>
         <source>GUI settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Configuração da GUI</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="97"/>
         <source>Show link status points on the scene</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mostre o estado do enlace no cenário</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="107"/>
         <source>Always use the manual mode when adding links</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sempre use o modo manual quando adiciona enlaces</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
@@ -2008,17 +2008,17 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Scene.py" line="155"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Apagar</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="101"/>
         <source>Configure</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Configurar</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="106"/>
         <source>Change hostname</source>
-        <translation type="unfinished">Change hostname</translation>
+        <translation type="unfinished">Alterar o nome do hospedeiro</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="124"/>
@@ -2028,22 +2028,22 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Scene.py" line="134"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Iniciar</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="139"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Parar</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="144"/>
         <source>Suspend</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Suspender</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="111"/>
         <source>Show hostname</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mostrar os nomes de hospedeiros</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="129"/>
@@ -2073,7 +2073,7 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Scene.py" line="246"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips error</translation>
+        <translation type="unfinished">Erro do Dynamips</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="197"/>
@@ -2089,39 +2089,39 @@ to display the configuration page.</translation>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="201"/>
-        <source>IOS image</source>
-        <translation type="unfinished">IOS image</translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="179"/>
-        <source>Please register at least one IOS image</source>
-        <translation type="unfinished">Please register at least one IOS image</translation>
-    </message>
-    <message>
         <location filename="../Topology.py" line="212"/>
         <source>Hypervisor</source>
         <translation type="unfinished">Hypervisor</translation>
     </message>
     <message>
+        <location filename="../Topology.py" line="201"/>
+        <source>IOS image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="179"/>
+        <source>Please register at least one IOS image</source>
+        <translation type="unfinished">Por favor registre pelo menos uma imagem IOS</translation>
+    </message>
+    <message>
         <location filename="../Topology.py" line="212"/>
         <source>Please configure the path to Dynamips</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Por favor configure o caminho para o Dynamips</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="376"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips error</translation>
+        <translation type="unfinished">Erro do Dynamips</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="236"/>
         <source>Connection lost</source>
-        <translation type="unfinished">Connection lost</translation>
+        <translation type="unfinished">Perda de conexão</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="283"/>
         <source>Connection</source>
-        <translation type="unfinished">Connection</translation>
+        <translation type="unfinished">Conexão</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="283"/>
@@ -2154,67 +2154,67 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Workspace.py" line="326"/>
         <source>Dynamips error</source>
-        <translation>Dynamips error</translation>
+        <translation>Erro do Dynamips</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="326"/>
         <source>Connection lost</source>
-        <translation>Connection lost</translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="323"/>
-        <source>Dynamips warning</source>
-        <translation>Dynamips warning</translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="302"/>
-        <source>Abort</source>
-        <translation>Abort</translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="338"/>
-        <source>Starting nodes ...</source>
-        <translation>Starting nodes ...</translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="344"/>
-        <source>Stopping nodes ...</source>
-        <translation>Stopping nodes ...</translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="350"/>
-        <source>Suspending nodes ...</source>
-        <translation>Suspending nodes ...</translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="392"/>
-        <source>Loading</source>
-        <translation type="unfinished"></translation>
+        <translation>Perda de conexão</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="273"/>
         <source>Hide hostnames</source>
-        <translation type="unfinished"></translation>
+        <translation>Esconder os nomes dos hospedeirosHide hostnames</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="278"/>
         <source>Show hostnames</source>
-        <translation type="unfinished">Show hostnames</translation>
+        <translation>Mostrar os nomes dos hospedeiros</translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="323"/>
+        <source>Dynamips warning</source>
+        <translation>Avisos do Dynamips</translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="302"/>
+        <source>Abort</source>
+        <translation>Abortar</translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="338"/>
+        <source>Starting nodes ...</source>
+        <translation>Iniciar nós...</translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="344"/>
+        <source>Stopping nodes ...</source>
+        <translation>Parar nós...</translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="350"/>
+        <source>Suspending nodes ...</source>
+        <translation>Suspender nós...</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="435"/>
         <source>Open a file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="431"/>
-        <source>The path to Dynamips must be configured</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrr o arquivo</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="466"/>
         <source>Save Project As</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar Projeto Como</translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="392"/>
+        <source>Loading</source>
+        <translation>Carregando</translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="431"/>
+        <source>The path to Dynamips must be configured</source>
+        <translation>O caminho para o Dynamips deve ser configurado</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="414"/>
@@ -2234,7 +2234,7 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Workspace.py" line="192"/>
         <source>Add a link</source>
-        <translation type="unfinished">Add a link</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="207"/>
@@ -2285,27 +2285,27 @@ to display the configuration page.</translation>
     <message>
         <location filename="DynamicStrings.py" line="38"/>
         <source>Switch</source>
-        <translation type="unfinished"></translation>
+        <translation>Switch</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="39"/>
         <source>Hub</source>
-        <translation type="unfinished"></translation>
+        <translation>Hub</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="40"/>
         <source>ATM switch</source>
-        <translation type="unfinished"></translation>
+        <translation>Switch ATM</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="41"/>
         <source>Frame Relay switch</source>
-        <translation type="unfinished"></translation>
+        <translation>Switch Frame Relay</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="42"/>
         <source>Cloud</source>
-        <translation type="unfinished">Cloud</translation>
+        <translation>Nuvem</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="31"/>
@@ -2348,7 +2348,7 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/Widget_topologySummaryDock.py" line="95"/>
         <source>%s is connected to %s %s</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%s está conectado para %s %s</translation>
     </message>
 </context>
 </TS>

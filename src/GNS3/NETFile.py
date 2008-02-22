@@ -416,14 +416,14 @@ class NETFile(object):
             return
         # Write out the config to a file
         file_path = globals.GApp.workspace.projectConfigs + os.sep + device.name + '.cfg'
-        print translate("NETFile", 'Exporting ' + device.name + ' configuration to ' +  file_path)
+        print unicode(translate("NETFile", "Exporting %s configuration to %s")) % (device.name, file_path)
         try:
             f = open(file_path, 'w')
             f.write(config)
             f.close()
             self.dynagen.running_config[node.d][node.get_running_config_name()]['cnfg'] = file_path
         except IOError, e:
-            QtGui.QMessageBox.warning(self,  file_path + ': ' + translate("NETFile", "IO Error"),  str(e))
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, unicode(translate("NETFile", "%s: IO Error: %s")) % (file_path, str(e)))
             return
         
     def export_net_file(self, path):

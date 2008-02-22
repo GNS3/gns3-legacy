@@ -128,8 +128,8 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         """ Set a custom tool tip
         """
         
-        self.setToolTip(translate("AbstractEdge", "Link: ") + self.source.hostname + ' (' + self.srcIf + ') ' +'-> ' + self.dest.hostname + ' (' + self.destIf + ')')
-
+        self.setToolTip(unicode(translate("AbstractEdge", "Link: %s (%s) -> %s (%s)")) % (self.source.hostname, self.srcIf, self.dest.hostname, self.destIf))
+        
     def keyReleaseEvent(self, event):
         """ Key release handler
         """
@@ -217,7 +217,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
 
             (device, interface, encapsulation) = str(selection).split(' ')
             if globals.GApp.dynagen.devices[device].state != 'running':
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  translate("AbstractEdge", "Device " + device + " is not running"))
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s is not running")) % device)
                 return
             
             match_obj = dynagen_namespace.interface_re.search(interface)
@@ -279,7 +279,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 time.sleep(2)
                 sub.Popen(path, shell=True)
             except OSError, (errno, strerror):
-                QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Capture"), "Cannot start " + path + ": " + strerror)
+                QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Capture"), unicode(translate("AbstractEdge", "Cannot start %s : %s")) % (path, strerror))
     
     def __deleteAction(self):
         """ Delete the link

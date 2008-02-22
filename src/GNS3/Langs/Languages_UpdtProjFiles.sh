@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LANGUAGES="en fr de cn"
+LANGUAGES="en fr de cn jp es ar pt_br tr"
 
 PROJ_FILE="Languages.pro"
 QRC_FILE="Languages.qrc"
@@ -8,6 +8,7 @@ QRC_FILE="Languages.qrc"
 PY_SRC="DynamicStrings.py	\
 	../*.py		\
 	../Ui/*.py		\
+	../Defaults/*.py		\
         ../Config/*.py	\
         ../Globals/*.py	\
         ../Link/*.py	\
