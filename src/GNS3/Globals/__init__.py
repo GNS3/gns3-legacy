@@ -21,6 +21,7 @@
 
 addingLinkFlag = False
 addingNote = False
+hypervisor_baseport = 7200
 debugLevel = 0
 
 # A singleton instance of GNS3 Application

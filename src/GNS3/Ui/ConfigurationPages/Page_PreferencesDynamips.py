@@ -84,6 +84,14 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.checkBoxGhosting.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxGhosting.setCheckState(QtCore.Qt.Unchecked)
+        if self.conf.sparsemem == True:
+            self.checkBoxSparseMem.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxSparseMem.setCheckState(QtCore.Qt.Unchecked)
+        if self.conf.mmap == True:
+            self.checkBoxMmap.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxMmap.setCheckState(QtCore.Qt.Unchecked)
 
 
     def saveConf(self):
@@ -108,6 +116,14 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.conf.ghosting = True
         else:
             self.conf.ghosting = False
+        if self.checkBoxSparseMem.checkState() == QtCore.Qt.Checked:
+            self.conf.sparsemem = True
+        else:
+            self.conf.sparsemem = False
+        if self.checkBoxMmap.checkState() == QtCore.Qt.Checked:
+            self.conf.mmap = True
+        else:
+            self.conf.mmap = False
             
         globals.GApp.systconf['dynamips'] = self.conf
         ConfDB().sync()
@@ -139,6 +155,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
     
         self.saveConf()
         if globals.GApp.systconf['dynamips'].path:
+            globals.GApp.workspace.clear()
             globals.GApp.HypervisorManager = HypervisorManager()
             if globals.GApp.HypervisorManager.preloadDynamips():
                 self.labelDynamipsStatus.setText('<font color="green">' + translate("UiConfig_PreferencesDynamips", "Dynamips successfully started")  + '</font>')

@@ -49,10 +49,8 @@ class HypervisorManager:
         dynamips = globals.GApp.systconf['dynamips']
         self.hypervisor_path = dynamips.path
         self.hypervisor_wd = dynamips.workdir
-        self.hypervisor_baseport = dynamips.port
         self.baseConsole = dynamips.baseConsole
-        self.memory_usage_limit = dynamips.memory_limit
-        self.udp_incrementation = dynamips.udp_incrementation
+        globals.hypervisor_baseport = dynamips.port
         globals.GApp.dynagen.globaludp = dynamips.baseUDP
       
     def startNewHypervisor(self, port):
@@ -70,8 +68,9 @@ class HypervisorManager:
         s.settimeout(300)
         try:
             s.connect(('localhost', port))
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Hypervisor already running on port ") + str(port))
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Hypervisor already running on port ") + str(port))
             s.close()
+            globals.hypervisor_baseport += 1
             return None
         except:
             s.close()
@@ -127,7 +126,7 @@ class HypervisorManager:
 
         if connection_success:
             s.close()
-            self.hypervisor_baseport += 1
+            globals.hypervisor_baseport += 1
             time.sleep(0.2)
         else:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  translate("HypervisorManager", "Can't connect to the hypervisor on port " + str(hypervisor['port'])))
@@ -145,7 +144,7 @@ class HypervisorManager:
         """
 
         for hypervisor in self.hypervisors:
-            if not isinstance(node, IOSRouter) or hypervisor['load'] + node.default_ram <= self.memory_usage_limit:
+            if not isinstance(node, IOSRouter) or hypervisor['load'] + node.default_ram <= globals.GApp.systconf['dynamips'].memory_limit:
                 if isinstance(node, IOSRouter):
                     hypervisor['load'] += node.default_ram
                 debug('Hypervisor manager: allocates an already started hypervisor (port: ' + str(hypervisor['port']) + ')')
@@ -153,7 +152,7 @@ class HypervisorManager:
                 node.set_hypervisor(dynamips_hypervisor)
                 return hypervisor
 
-        hypervisor = self.startNewHypervisor(self.hypervisor_baseport)
+        hypervisor = self.startNewHypervisor(globals.hypervisor_baseport)
         if hypervisor == None:
             return None
 
@@ -174,7 +173,7 @@ class HypervisorManager:
             dynamips_hypervisor.workingdir = globals.GApp.workspace.projectWorkdir
         elif self.hypervisor_wd:
             dynamips_hypervisor.workingdir = self.hypervisor_wd
-        globals.GApp.dynagen.globaludp += self.udp_incrementation
+        globals.GApp.dynagen.globaludp += globals.GApp.systconf['dynamips'].udp_incrementation
         node.set_hypervisor(dynamips_hypervisor)
         return hypervisor
 
@@ -218,9 +217,8 @@ class HypervisorManager:
         """ Preload Dynamips
         """
 
-        #TODO: do socket connection
         proc = QtCore.QProcess(globals.GApp.mainWindow)
-        port = self.hypervisor_baseport
+        port = globals.hypervisor_baseport
         
         if self.hypervisor_wd:
             # set the working directory
@@ -229,15 +227,32 @@ class HypervisorManager:
         proc.start(self.hypervisor_path,  ['-H', str(port)])
         if proc.waitForStarted() == False:
             return False
-        proc.close()
-        proc = None
-        return True
+            
+        # give 5 seconds to the hypervisor to accept connections
+        count = 5
+        connection_success = False
+        for nb in range(count + 1):
+            s = socket(AF_INET, SOCK_STREAM)
+            s.setblocking(0)
+            s.settimeout(300)
+            try:
+                s.connect(('localhost', port))
+            except:
+                s.close()
+                time.sleep(1)
+                continue
+            connection_success = True
+            break
+        if connection_success:
+            s.close()
+            return True
+        return False
 
     def showHypervisors(self):
         """ Show hypervisors port & load
         """
         
-        print "Memory usage limit per hypervisor : " + str(self.memory_usage_limit) + " MB"
+        print "Memory usage limit per hypervisor : " + str(globals.GApp.systconf['dynamips'].memory_limit) + " MB"
         print '%-10s %-10s' % ('Port','Memory load')
         for hypervisor in self.hypervisors:
             print '%-10s %-10s' % (hypervisor['port'], str(hypervisor['load']) + ' MB')

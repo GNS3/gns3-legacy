@@ -153,6 +153,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def clear(self):
         """ Clear all the workspace
         """
+        
+        globals.GApp.workspace.setWindowTitle("GNS3")
+        self.projectFile = None
+        self.projectWorkdir = None
+        self.projectConfigs = None
         globals.GApp.topology.clear()
         for item in globals.GApp.topology.items():
             globals.GApp.topology.removeItem(item)

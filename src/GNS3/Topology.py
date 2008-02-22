@@ -154,6 +154,15 @@ class Topology(QtGui.QGraphicsScene):
         if image_conf.idlepc:
             debug("Set idlepc " + image_conf.idlepc)
             node.set_string_option('idlepc', image_conf.idlepc)
+        if globals.GApp.systconf['dynamips'].mmap:
+            debug("Enable mmap")
+            node.set_string_option('mmap', True)
+        else:
+            debug("Disable mmap")
+            node.set_string_option('mmap', False)
+        if globals.GApp.systconf['dynamips'].sparsemem:
+            debug("Enable sparse memory")
+            node.set_string_option('sparsemem', True)
         if globals.GApp.systconf['dynamips'].ghosting:
             debug("Enable Ghost IOS")
             node.set_ghostios(True)

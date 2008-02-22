@@ -147,10 +147,6 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         self.spinBoxNvramSize.setValue(router_config['nvram'])
         self.spinBoxPcmciaDisk0Size.setValue(router_config['disk0'])
         self.spinBoxPcmciaDisk1Size.setValue(router_config['disk1'])
-        if router_config['mmap'] == True:
-            self.checkBoxMapped.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.checkBoxMapped.setCheckState(QtCore.Qt.Unchecked)
         self.lineEditConfreg.setText(router_config['confreg'])
         if router_config['exec_area']:
             self.spinBoxExecArea.setValue(int(router_config['exec_area']))
@@ -189,10 +185,6 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         router_config['nvram'] = self.spinBoxNvramSize.value()
         router_config['disk0'] = self.spinBoxPcmciaDisk0Size.value()
         router_config['disk1'] = self.spinBoxPcmciaDisk1Size.value()
-        if self.checkBoxMapped.checkState() == QtCore.Qt.Checked:
-            router_config['mmap'] = True
-        else:
-            router_config['mmap'] = False
         router_config['confreg'] = str(self.lineEditConfreg.text())
         exec_area = self.spinBoxExecArea.value()
         

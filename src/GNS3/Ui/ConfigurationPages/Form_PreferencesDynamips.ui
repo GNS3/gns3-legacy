@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>430</width>
-    <height>427</height>
+    <height>451</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -22,8 +22,8 @@
       <attribute name="title" >
        <string>Dynamips</string>
       </attribute>
-      <layout class="QGridLayout" >
-       <item row="0" column="0" colspan="2" >
+      <layout class="QVBoxLayout" >
+       <item>
         <widget class="QGroupBox" name="groupBox" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Maximum" hsizetype="MinimumExpanding" >
@@ -133,40 +133,64 @@
           <item row="7" column="0" colspan="4" >
            <widget class="QLineEdit" name="dynamips_term_cmd" />
           </item>
-          <item row="9" column="0" colspan="2" >
+          <item row="8" column="0" colspan="2" >
            <widget class="QCheckBox" name="checkBoxGhosting" >
             <property name="text" >
-             <string>Enable IOS ghost feature</string>
+             <string>Enable ghost IOS feature</string>
             </property>
             <property name="checked" >
              <bool>true</bool>
             </property>
            </widget>
           </item>
+          <item row="9" column="0" colspan="2" >
+           <widget class="QCheckBox" name="checkBoxMmap" >
+            <property name="text" >
+             <string>Enable mmap feature</string>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0" colspan="2" >
+           <widget class="QCheckBox" name="checkBoxSparseMem" >
+            <property name="text" >
+             <string>Enable sparse memory feature</string>
+            </property>
+            <property name="checked" >
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
-       <item row="1" column="0" >
-        <widget class="QPushButton" name="pushButtonTestDynamips" >
-         <property name="text" >
-          <string>&amp;Test</string>
-         </property>
-        </widget>
+       <item>
+        <layout class="QHBoxLayout" >
+         <item>
+          <widget class="QPushButton" name="pushButtonTestDynamips" >
+           <property name="text" >
+            <string>&amp;Test</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="labelDynamipsStatus" >
+           <property name="sizePolicy" >
+            <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text" >
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
-       <item row="1" column="1" >
-        <widget class="QLabel" name="labelDynamipsStatus" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text" >
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0" colspan="2" >
+       <item>
         <spacer>
          <property name="orientation" >
           <enum>Qt::Vertical</enum>

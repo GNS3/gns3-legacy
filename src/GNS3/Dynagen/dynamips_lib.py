@@ -4618,8 +4618,7 @@ def gen_connect(
         #if the dynamips instances are different also compare the base udp port
         if src_dynamips.port != dst_dynamips.port:
             if abs(src_dynamips.udp - dst_dynamips.udp) <= 500:
-                if src_dynamips.udp == dst_dynamips.udp:
-                    dst_dynamips.udp = dst_dynamips.udp + 1000
+                dst_dynamips.udp = dst_dynamips.udp + 1000
     else:
         # source and dest are on different dynamips servers
         src_ip = src_dynamips.host

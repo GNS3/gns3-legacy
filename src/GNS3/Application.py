@@ -220,6 +220,8 @@ class Application(QApplication, Singleton):
         confo.workdir = ConfDB().get('Dynamips/hypervisor_working_directory', unicode('',  'utf-8'))
         confo.term_cmd = ConfDB().get('Dynamips/console', unicode('',  'utf-8'))
         confo.ghosting = ConfDB().value("Dynamips/dynamips_ghosting", QVariant(True)).toBool()
+        confo.mmap = ConfDB().value("Dynamips/dynamips_mmap", QVariant(True)).toBool()
+        confo.sparsemem = ConfDB().value("Dynamips/dynamips_sparsemem", QVariant(False)).toBool()
         confo.memory_limit =int(ConfDB().get("Dynamips/hypervisor_memory_usage_limit", 512))
         confo.udp_incrementation = int(ConfDB().get("Dynamips/hypervisor_udp_incrementation", 100))
         confo.import_use_HypervisorManager = ConfDB().value("Dynamips/hypervisor_manager_import", QVariant(True)).toBool()
@@ -248,7 +250,6 @@ class Application(QApplication, Singleton):
         # HypervisorManager
         if globals.GApp.systconf['dynamips'].path:
             self.__HypervisorManager = HypervisorManager()
-            self.__HypervisorManager.preloadDynamips()
             
         # Restore the geometry
         self.mainWindow.restoreGeometry(ConfDB().value("GNS3/geometry").toByteArray())
@@ -287,6 +288,8 @@ class Application(QApplication, Singleton):
         c.set('Dynamips/hypervisor_working_directory', confo.workdir)
         c.set('Dynamips/console', confo.term_cmd)
         c.set('Dynamips/dynamips_ghosting', confo.ghosting)
+        c.set('Dynamips/dynamips_sparsemem', confo.sparsemem)
+        c.set('Dynamips/dynamips_mmap', confo.mmap)
         c.set('Dynamips/hypervisor_memory_usage_limit', confo.memory_limit)
         c.set('Dynamips/hypervisor_udp_incrementation', confo.udp_incrementation)
         c.set('Dynamips/hypervisor_manager_import', confo.import_use_HypervisorManager)
