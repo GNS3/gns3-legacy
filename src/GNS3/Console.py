@@ -23,7 +23,7 @@ from GNS3.Dynagen.console import Console as Dynagen_Console, getItems
 from GNS3.External.PyCutExt import PyCutExt
 from GNS3.Node.IOSRouter import IOSRouter
 
-class Console(PyCutExt,  Dynagen_Console):
+class Console(PyCutExt, Dynagen_Console):
 
     # list of keywords to color
     keywords = set(["capture", "console", "filter", "idlepc", "no",
@@ -61,7 +61,6 @@ class Console(PyCutExt,  Dynagen_Console):
         cmd.Cmd.__init__(self)
         self.namespace = Dynagen_Namespace
         self.dynagen = globals.GApp.dynagen
-        debuglevel = self.dynagen.debuglevel
 
     def onKeyPress_Tab(self):
         """ Imitate cmd.Cmd.complete(self, text, state) function
@@ -132,7 +131,8 @@ class Console(PyCutExt,  Dynagen_Console):
     def do_hypervisors(self, args):
         """hypervisors \nshow the hypervisors started by the hypervisor manager"""
     
-        globals.GApp.HypervisorManager.showHypervisors()
+        if globals.GApp.HypervisorManager:
+            globals.GApp.HypervisorManager.showHypervisors()
             
     def do_start(self, args):
         """start  {/all | router1 [router2] ...}\nstart all or a specific router(s)"""
@@ -370,10 +370,7 @@ Examples:
 
     def do_export(self, args):
         """export {/all | router1 [router2] ...} \"directory\"\nsaves router configs individual files in \"directory\"\nEnclose the directory in quotes if there are spaces in the filespec."""
-        
-        if not globals.GApp.workspace.projectFile:
-            print translate("Console", "You have to save your topology before using export")
-            return
+
         if '?' in args or args.strip() == '':
             print Dynagen_Console.do_export.__doc__
             return
@@ -413,7 +410,4 @@ Examples:
     def do_import(self, args):
         """import {/all | router1 [router2] \"directory\"\nimport all or individual configuration files \nEnclose the directory or filename in quotes if there are spaces in the filespec."""
         
-        if not globals.GApp.workspace.projectFile:
-            print translate("Console", "You have to save your topology before using import")
-        else:
-            Dynagen_Console.do_import(self, args)
+        Dynagen_Console.do_import(self, args)

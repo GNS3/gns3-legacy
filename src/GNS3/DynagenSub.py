@@ -81,13 +81,10 @@ class DynagenSub(Dynagen):
                 controlPort = 7200
 
             # need to start hypervisors
-            if server.host == 'localhost' and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
+            if server.host == 'localhost' and globals.GApp.HypervisorManager and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
                 debug("Start hypervisor on port: " + str(controlPort))
                 hypervisor = globals.GApp.HypervisorManager.startNewHypervisor(int(controlPort))
                 globals.GApp.HypervisorManager.waitHypervisor(hypervisor)
-                dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor('localhost', hypervisor['port'])
-                globals.GApp.dynagen.update_running_config()
-                dynamips_hypervisor.configchange = True
             current += 1
 
         progress.setValue(count)

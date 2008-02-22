@@ -63,7 +63,8 @@ class Topology(QtGui.QGraphicsScene):
         self.dynagen.dynamips.clear()
         self.dynagen.bridges.clear()
         self.dynagen.autostart.clear()
-        globals.GApp.HypervisorManager.stopProcHypervisors()
+        if globals.GApp.HypervisorManager:
+            globals.GApp.HypervisorManager.stopProcHypervisors()
         
     def clear(self):
         """ Clear the topology
@@ -236,7 +237,7 @@ class Topology(QtGui.QGraphicsScene):
                 #router = node.get_dynagen_device()
                 if globals.GApp.iosimages.has_key('localhost:' + node.default_image):
                     image_conf = globals.GApp.iosimages['localhost:' + node.default_image]
-                    if image_conf.hypervisor_host == '':
+                    if globals.GApp.HypervisorManager and image_conf.hypervisor_host == '':
                         globals.GApp.HypervisorManager.unallocateHypervisor(node, router.dynamips.port)
         self.removeItem(node)
         del self.__nodes[id]
@@ -275,7 +276,7 @@ class Topology(QtGui.QGraphicsScene):
         if not isinstance(src_node, IOSRouter) and not isinstance(src_node, Cloud):
             if isinstance(dst_node, Cloud) and isinstance(src_node, ETHSW):
                 debug('Allocate an hypervisor for ' + src_node.hostname)
-                if not globals.GApp.HypervisorManager.allocateHypervisor(src_node):
+                if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(src_node):
                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
                     return False
                 else:
@@ -285,7 +286,7 @@ class Topology(QtGui.QGraphicsScene):
         elif not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, Cloud):
             if isinstance(src_node, Cloud) and isinstance(dst_node, ETHSW):
                 debug('Allocate an hypervisor for ' + dst_node.hostname)
-                if not globals.GApp.HypervisorManager.allocateHypervisor(dst_node):
+                if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(dst_node):
                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
                     return False
                 else:

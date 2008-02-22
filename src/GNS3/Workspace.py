@@ -376,25 +376,27 @@ class Workspace(QMainWindow, Ui_MainWindow):
         dialog.show()
         dialog.exec_()
        
-    def load_saved_config(self, file):
+    def load_netfile(self, file):
         """ Load a .net file"""
 
         if file == None:
             return
-        
+            
         path = os.path.abspath(file)
         if not os.path.isfile(path):
             QtGui.QMessageBox.critical(self, translate("Workspace", "Loading"),  translate("Workspace", "Invalid file") + ' ' + file)
             return
+        self.projectFile = path
+        self.setWindowTitle("GNS3 - " + self.projectFile)
         net = netfile.NETFile()
         globals.GApp.scene.resetMatrix()
         net.import_net_file(path)
+        self.statusbar.showMessage(translate("Workspace", "File loaded..."))
             
     def __action_NewProject(self):
         """ Create a new project
         """
 
-        
         dialog = ProjectDialog()
         dialog.show()
         if dialog.exec_():
@@ -431,12 +433,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
             try:
                 if str(selected) == 'NET file (*.net)':
                     # here the loading
-                    self.projectFile = path
                     self.projectWorkdir = None
                     self.projectConfigs = None
-                    self.setWindowTitle("GNS3 - " + self.projectFile)
-                    self.statusbar.showMessage(translate("Workspace", "File loaded..."))
-                    self.load_saved_config(path)
+                    self.load_netfile(path)
             except IOError, (errno, strerror):
                 QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         

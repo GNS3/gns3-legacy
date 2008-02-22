@@ -33,6 +33,8 @@ from dynamips_lib import DynamipsError, DynamipsWarning, IDLEPROPGET, IDLEPROPSH
 from configobj import ConfigObj
 from confConsole import AbstractConsole, confHypervisorConsole, confConsole
 
+globaldebug = 0
+
 # determine if we are in the debugger
 try:
     DBGPHideChildren
@@ -1458,15 +1460,12 @@ def error(msg):
 
     print '*** Error:', str(msg)
 
-
 def debug(string):
-    """ Print string if debugging is true"""
-
-    import __main__
+    """ Print string if debugging is true
+    """
     # Debug level 2, console debugs
-    if __main__.dynagen.debuglevel >= 2:
+    if globaldebug >= 2: 
         print '  DEBUG: ' + str(string)
-
 
 if __name__ == '__main__':
     #console = Console()

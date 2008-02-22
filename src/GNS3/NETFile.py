@@ -152,7 +152,7 @@ class NETFile(object):
         """
 
         if device.isrouter:
-            if globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
+            if globals.GApp.HypervisorManager and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
                 hypervisor = globals.GApp.HypervisorManager.getHypervisor(device.dynamips.port)
                 hypervisor['load'] += node.default_ram
             node.set_hypervisor(device.dynamips)
@@ -287,7 +287,8 @@ class NETFile(object):
             globals.GApp.workspace.setWindowTitle("GNS3")
             globals.GApp.workspace.clear()
             return
-
+            
+        self.dynagen.update_running_config()
         self.apply_gns3_data()
         devices = self.dynagen.devices.copy()
         self.dynagen.devices.clear()

@@ -254,10 +254,8 @@ class Application(QApplication, Singleton):
         self.mainWindow.restoreGeometry(ConfDB().value("GNS3/geometry").toByteArray())
         self.mainWindow.show()
 
-#        if file:
-#            time.sleep(2)
-#            self.mainWindow.load_saved_config(file)
-        #TODO: load .net file
+        if file:
+            self.mainWindow.load_netfile(file)
         retcode = QApplication.exec_()
         
         self.__HypervisorManager = None
