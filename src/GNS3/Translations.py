@@ -35,6 +35,7 @@ class Translator(object):
         self.__langs_code = []
         self.__lang_current = "" 
         self.__lastTranslator = None
+        self.__lastQtTranslator = None
 
         # Add i18n dirs depending on platform.
         if sys.platform[:3] == "win":
@@ -162,8 +163,12 @@ class Translator(object):
             return
 
         translator = QtCore.QTranslator()
+        qt_translator = QtCore.QTranslator()
+
         r_code = False
         for lang_dir in self.__langs[lang]['dirs']:
+            # load Qt translation (for button in QMessageBox, QFileDialog etc.)
+            qt_translator.load("qt_" + lang, lang_dir)
             r_code = translator.load("Lang_" + lang, lang_dir)
             if r_code == True:
                 break 
@@ -174,10 +179,13 @@ class Translator(object):
             return False
 
         globals.GApp.installTranslator(translator)
+        globals.GApp.installTranslator(qt_translator)
         if self.__lastTranslator is not None:
             globals.GApp.removeTranslator(self.__lastTranslator)
+            globals.GApp.removeTranslator(self.__lastQtTranslator)
 
         self.__lastTranslator = translator
+        self.__lastQtTranslator = qt_translator
         self.__lang_current = lang
 
         for widget in globals.GApp.topLevelWidgets():

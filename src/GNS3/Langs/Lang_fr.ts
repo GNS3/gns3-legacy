@@ -1329,7 +1329,7 @@ panier:</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../Translations.py" line="95"/>
+        <location filename="../Translations.py" line="96"/>
         <source>English</source>
         <translation>Français</translation>
     </message>
@@ -2094,16 +2094,6 @@ pour afficher sa page de configuration.</translation>
         <source>Please wait while calculating an IDLE PC</source>
         <translation>SVP, attendez pendant le calcul de l&apos;IDLE PC</translation>
     </message>
-    <message>
-        <location filename="../Scene.py" line="198"/>
-        <source>Yes</source>
-        <translation>Oui</translation>
-    </message>
-    <message>
-        <location filename="../Scene.py" line="198"/>
-        <source>No</source>
-        <translation>Non</translation>
-    </message>
 </context>
 <context>
     <name>Topology</name>
@@ -2289,16 +2279,6 @@ pour afficher sa page de configuration.</translation>
         <location filename="../Workspace.py" line="393"/>
         <source>Invalid file %s</source>
         <translation>Fichier invalide %s</translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="486"/>
-        <source>Yes</source>
-        <translation>Oui</translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="486"/>
-        <source>No</source>
-        <translation>Non</translation>
     </message>
 </context>
 <context>

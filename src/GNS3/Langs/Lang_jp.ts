@@ -63,12 +63,12 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="238"/>
         <source>&amp;Add</source>
-        <translation>追加&amp;A</translation>
+        <translation>追加(&amp;A)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="248"/>
         <source>&amp;Delete</source>
-        <translation>削除&amp;D</translation>
+        <translation>削除(&amp;D)</translation>
     </message>
 </context>
 <context>
@@ -81,12 +81,12 @@
     <message>
         <location filename="../Ui/Form_About.py" line="102"/>
         <source>&amp;About</source>
-        <translation>GNS3について&amp;A</translation>
+        <translation>GNS3について(&amp;A)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="111"/>
         <source>&amp;Thanks to</source>
-        <translation>&amp;Thanks to</translation>
+        <translation>謝辞(&amp;T)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="110"/>
@@ -103,7 +103,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/Form_About.py" line="398"/>
         <source>&amp;License Agreement</source>
-        <translation>ライセンス契約&amp;L</translation>
+        <translation>ライセンス契約(&amp;L)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="397"/>
@@ -421,67 +421,67 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="165"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>削除</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="169"/>
         <source>Stop the capture</source>
-        <translation type="unfinished"></translation>
+        <translation>キャプチャをやめる</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="171"/>
         <source>Start Wireshark</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiresharkを起動</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="282"/>
         <source>Capture</source>
-        <translation type="unfinished"></translation>
+        <translation>キャプチャする</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="187"/>
         <source>Packet capture is not supported on this link type</source>
-        <translation type="unfinished"></translation>
+        <translation>このリンクはキャプチャできません</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="211"/>
         <source>Please choose a source</source>
-        <translation type="unfinished"></translation>
+        <translation>ソースを選択して下さい</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="213"/>
         <source>No device available for traffic capture</source>
-        <translation type="unfinished"></translation>
+        <translation>キャプチャできるデバイスはありません</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="264"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips エラー</translation>
+        <translation>Dynamips エラー</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="259"/>
         <source>Capture stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>キャプチャ止まりました</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="274"/>
         <source>Please configure capture options</source>
-        <translation type="unfinished"></translation>
+        <translation>キャプチャの設定をしてください</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="131"/>
         <source>Link: %s (%s) -&gt; %s (%s)</source>
-        <translation type="unfinished"></translation>
+        <translation>リンク: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="220"/>
         <source>Device %s is not running</source>
-        <translation type="unfinished"></translation>
+        <translation>デバイス %s は起動していません</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="282"/>
         <source>Cannot start %s : %s</source>
-        <translation type="unfinished"></translation>
+        <translation>スタートできません %s : %s</translation>
     </message>
 </context>
 <context>
@@ -514,17 +514,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="87"/>
         <source>Hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>ホスト名</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="87"/>
         <source>Hostname already used</source>
-        <translation type="unfinished"></translation>
+        <translation>このホスト名は既に使用されています</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="166"/>
         <source>Hostname: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>ホスト名: %s</translation>
     </message>
 </context>
 <context>
@@ -560,12 +560,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="508"/>
         <source>&amp;Add</source>
-        <translation>追加&amp;A</translation>
+        <translation>追加(&amp;A)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="518"/>
         <source>&amp;Delete</source>
-        <translation>削除&amp;D</translation>
+        <translation>削除(&amp;D)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="77"/>
@@ -590,7 +590,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="171"/>
         <source>Remote host:</source>
-        <translation>リモートホスト:</translation>
+        <translation>リモート ホスト:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="188"/>
@@ -620,12 +620,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="467"/>
         <source>Local file:</source>
-        <translation>ローカルファイル:</translation>
+        <translation>ローカル ファイル:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="344"/>
         <source>Remote file:</source>
-        <translation>リモートファイル:</translation>
+        <translation>リモート ファイル:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="432"/>
@@ -635,7 +635,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="446"/>
         <source>Control file:</source>
-        <translation>コントロールファイル:</translation>
+        <translation>コントロール ファイル:</translation>
     </message>
 </context>
 <context>
@@ -643,90 +643,92 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Console.py" line="203"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips エラー</translation>
+        <translation>Dynamips エラー</translation>
     </message>
     <message>
         <location filename="../Console.py" line="201"/>
         <source>Dynamips warning</source>
-        <translation type="unfinished">Dynamips 警告</translation>
+        <translation>Dynamips 警告</translation>
     </message>
     <message>
         <location filename="../Console.py" line="203"/>
         <source>Connection lost</source>
-        <translation type="unfinished">接続失敗</translation>
+        <translation>接続失敗しました</translation>
     </message>
     <message>
         <location filename="../Console.py" line="268"/>
         <source>Sorry, not implemented in GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>この機能はGNS3で対応していません</translation>
     </message>
     <message>
         <location filename="../Console.py" line="278"/>
         <source>Please wait while gathering statistics...</source>
-        <translation type="unfinished"></translation>
+        <translation>情報を収集中...</translation>
     </message>
     <message>
         <location filename="../Console.py" line="303"/>
         <source>No idlepc values found</source>
-        <translation type="unfinished"></translation>
+        <translation>idlepc値を見つかりませんでした</translation>
     </message>
     <message>
         <location filename="../Console.py" line="315"/>
         <source>No changes made</source>
-        <translation type="unfinished"></translation>
+        <translation>変更されていませんでした</translation>
     </message>
     <message>
         <location filename="../Console.py" line="328"/>
         <source>Can&apos;t apply idlepc value</source>
-        <translation type="unfinished"></translation>
+        <translation>このidlepc値は使えません</translation>
     </message>
     <message>
         <location filename="../Console.py" line="333"/>
         <source>Incorrect number of paramaters or invalid parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>パラメータ数またはパラメータの値に誤りがあります</translation>
     </message>
     <message>
         <location filename="../Console.py" line="346"/>
         <source>You have to save your topology before using save</source>
-        <translation type="unfinished"></translation>
+        <translation>保存ボタンを使ってトポロジーの保存を先にしてください</translation>
     </message>
     <message>
         <location filename="../Console.py" line="354"/>
         <source>You have to save your topology before using push</source>
-        <translation type="unfinished"></translation>
+        <translation>プッシュボタンを使ってトポロジーの保存を先にしてください</translation>
     </message>
     <message>
         <location filename="../Console.py" line="396"/>
         <source>Destination directory</source>
-        <translation type="unfinished"></translation>
+        <translation>保存する場所</translation>
     </message>
     <message>
         <location filename="../Console.py" line="397"/>
         <source>The directory already exists. Ok to overwrite (Y/N)?</source>
-        <translation type="unfinished"></translation>
+        <translation>ディレクトリが既にあります。上書きしますか (Y/N)?</translation>
     </message>
     <message>
         <location filename="../Console.py" line="274"/>
         <source>%s already has an idlepc value applied.</source>
-        <translation type="unfinished"></translation>
+        <translation>%s に idlepc値を設定済みです。</translation>
     </message>
     <message>
         <location filename="../Console.py" line="304"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;
 Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 </source>
-        <translation type="unfinished"></translation>
+        <translation> &apos;*&apos;マークのあるidlepc値はお勧めです
+idlepc値の前にある番号を入力してください [1-%i]　またはENTERキーを押せば変更しません:
+</translation>
     </message>
     <message>
         <location filename="../Console.py" line="319"/>
         <source>Applied idlepc value %s to %s
 </source>
-        <translation type="unfinished"></translation>
+        <translation>idlepc値　%s を %s　に設定しました</translation>
     </message>
     <message>
         <location filename="../Console.py" line="335"/>
         <source>Unknown device: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>不明なデバイス: %s</translation>
     </message>
 </context>
 <context>
@@ -734,12 +736,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../DynagenSub.py" line="61"/>
         <source>Starting hypervisors ...</source>
-        <translation type="unfinished"></translation>
+        <translation>ハイパーバイザを起動中 ...</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="61"/>
         <source>Abort</source>
-        <translation type="unfinished">中止</translation>
+        <translation>中止</translation>
     </message>
 </context>
 <context>
@@ -815,12 +817,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="144"/>
         <source>&amp;Add</source>
-        <translation>追加&amp;A</translation>
+        <translation>追加(&amp;A)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="154"/>
         <source>&amp;Delete</source>
-        <translation>削除&amp;D</translation>
+        <translation>削除(&amp;D)</translation>
     </message>
 </context>
 <context>
@@ -925,22 +927,22 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../HypervisorManager.py" line="71"/>
         <source>Hypervisor already running on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>ハイパーバイザはポート %i に既に起動しています</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="82"/>
         <source>Can&apos;t start Dynamips on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Dynamipsをポート　%i に起動できませんでした</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="106"/>
         <source>Connecting to an hypervisor on port %i ...</source>
-        <translation type="unfinished"></translation>
+        <translation>ハイパーバイザポート %i に接続中 ...</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="133"/>
         <source>Can&apos;t connect to the hypervisor on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>ハイパーバイザポート %i に接続できませんでした</translation>
     </message>
 </context>
 <context>
@@ -1068,7 +1070,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="317"/>
         <source>Base console:</source>
-        <translation>ペースコンソール:</translation>
+        <translation>ベースコンソール:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="326"/>
@@ -1078,32 +1080,32 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../IOSDialog.py" line="159"/>
         <source>Select an IOS image</source>
-        <translation type="unfinished"></translation>
+        <translation>IOSを選択してください</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="298"/>
         <source>Model/Chassis</source>
-        <translation type="unfinished"></translation>
+        <translation>モデルとシャーシ</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="303"/>
         <source>Model:</source>
-        <translation type="unfinished"></translation>
+        <translation>モデル:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="305"/>
         <source>Default image for this platform</source>
-        <translation type="unfinished"></translation>
+        <translation>このイメージをプラットフォームのデフォルト設定にする</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="250"/>
         <source>There is already a default image for this platform</source>
-        <translation type="unfinished"></translation>
+        <translation>このプラットフォームにデフォルトイメージは既に設定されています</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="165"/>
         <source>Can&apos;t open file: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイルを開けませんでした: %s</translation>
     </message>
 </context>
 <context>
@@ -1121,12 +1123,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Node/IOSRouter.py" line="220"/>
         <source>Slots</source>
-        <translation type="unfinished">スロット</translation>
+        <translation>スロット</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="220"/>
         <source>You have to restart this router to use new modules</source>
-        <translation type="unfinished"></translation>
+        <translation>新規モジュールを使用するためにルータを再起動する必要あります</translation>
     </message>
 </context>
 <context>
@@ -1134,12 +1136,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="13"/>
         <source>Router configuration</source>
-        <translation>ルータ設定</translation>
+        <translation>ルータのコンフィッグ</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="23"/>
         <source>General</source>
-        <translation>一般</translation>
+        <translation>一般設定</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="57"/>
@@ -1214,37 +1216,37 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="321"/>
         <source>slot0:</source>
-        <translation>slot0:</translation>
+        <translation>スロット0:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="337"/>
         <source>slot1:</source>
-        <translation>slot1:</translation>
+        <translation>スロット1:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="353"/>
         <source>slot2:</source>
-        <translation>slot2:</translation>
+        <translation>スロット2:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="369"/>
         <source>slot3:</source>
-        <translation>slot3:</translation>
+        <translation>スロット3:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="385"/>
         <source>slot4:</source>
-        <translation>slot4:</translation>
+        <translation>スロット4:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="401"/>
         <source>slot5:</source>
-        <translation>slot5:</translation>
+        <translation>スロット5:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="417"/>
         <source>slot6:</source>
-        <translation>slot6:</translation>
+        <translation>スロット6:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="501"/>
@@ -1279,53 +1281,53 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="29"/>
         <source>Platform:</source>
-        <translation type="unfinished">プラットフォーム:</translation>
+        <translation>プラットフォーム:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="43"/>
         <source>Model:</source>
-        <translation type="unfinished"></translation>
+        <translation>モデル:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="215"/>
         <source>KB</source>
-        <translation type="unfinished"></translation>
+        <translation>KB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="309"/>
         <source>Adapters</source>
-        <translation type="unfinished"></translation>
+        <translation>アダプタ</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="430"/>
         <source>WICs</source>
-        <translation type="unfinished"></translation>
+        <translation>WICs</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="442"/>
         <source>wic0:</source>
-        <translation type="unfinished"></translation>
+        <translation>wic0:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="458"/>
         <source>wic1:</source>
-        <translation type="unfinished"></translation>
+        <translation>wic1:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="474"/>
         <source>wic2:</source>
-        <translation type="unfinished"></translation>
+        <translation>wic2:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="507"/>
         <source>Confreg:</source>
-        <translation type="unfinished"></translation>
+        <translation>Confreg:</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../Translations.py" line="95"/>
+        <location filename="../Translations.py" line="96"/>
         <source>English</source>
         <translation>日本語</translation>
     </message>
@@ -1337,22 +1339,22 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="314"/>
         <source>&amp;Edit</source>
-        <translation>編集&amp;E</translation>
+        <translation>編集(&amp;E)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="315"/>
         <source>&amp;File</source>
-        <translation>ファイル&amp;F</translation>
+        <translation>ファイル(&amp;F)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="316"/>
         <source>&amp;Help</source>
-        <translation>ヘルプ&amp;H</translation>
+        <translation>ヘルプ(&amp;H)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="317"/>
         <source>&amp;View</source>
-        <translation>表示&amp;V</translation>
+        <translation>表示(&amp;V)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="318"/>
@@ -1392,12 +1394,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="327"/>
         <source>&amp;About</source>
-        <translation>GNS3について&amp;A</translation>
+        <translation>GNS3について(&amp;A)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="328"/>
         <source>&amp;Quit</source>
-        <translation>終了&amp;Q</translation>
+        <translation>終了(&amp;Q)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="329"/>
@@ -1407,7 +1409,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="330"/>
         <source>&amp;Open</source>
-        <translation>開く &amp;O</translation>
+        <translation>開く(&amp;O)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="332"/>
@@ -1417,7 +1419,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="333"/>
         <source>&amp;Save</source>
-        <translation>保存&amp;S</translation>
+        <translation>保存(&amp;S)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="335"/>
@@ -1437,12 +1439,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="342"/>
         <source>&amp;Online Help</source>
-        <translation>&amp;オンラインヘルプ</translation>
+        <translation>オンラインヘルプ(&amp;O)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="343"/>
         <source>&amp;Export</source>
-        <translation>&amp;エクスポート</translation>
+        <translation>エクスポート(&amp;E)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="344"/>
@@ -1477,12 +1479,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="352"/>
         <source>Save &amp;As</source>
-        <translation>名前を指定して保存 &amp;A</translation>
+        <translation>名前を付けて保存 (&amp;A)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="353"/>
         <source>Save As</source>
-        <translation>名前を指定して保存</translation>
+        <translation>名前を付けて保存</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="379"/>
@@ -1497,7 +1499,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="356"/>
         <source>Zoom &amp;In</source>
-        <translation>拡大 &amp;I</translation>
+        <translation>拡大 (&amp;I)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="357"/>
@@ -1507,7 +1509,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="358"/>
         <source>Zoom &amp;Out</source>
-        <translation>縮小&amp;O</translation>
+        <translation>縮小(&amp;O)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="359"/>
@@ -1527,7 +1529,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="362"/>
         <source>Select &amp;All</source>
-        <translation>全部選択する &amp;A</translation>
+        <translation>全部選択する(&amp;A)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="363"/>
@@ -1537,7 +1539,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="364"/>
         <source>Select &amp;None</source>
-        <translation>選択をクリアする &amp;N</translation>
+        <translation>選択をクリアする(&amp;N)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="365"/>
@@ -1557,7 +1559,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="370"/>
         <source>&amp;Paste</source>
-        <translation>貼り付け&amp;P</translation>
+        <translation>貼り付け(&amp;P)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="371"/>
@@ -1577,7 +1579,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="366"/>
         <source>&amp;Preferences...</source>
-        <translation>設定&amp;P...</translation>
+        <translation>設定(&amp;P)...</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="367"/>
@@ -1592,52 +1594,52 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="326"/>
         <source>toolBar</source>
-        <translation type="unfinished"></translation>
+        <translation>ツールバー</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="331"/>
         <source>Open network file</source>
-        <translation type="unfinished"></translation>
+        <translation>ネットワークファイルを開く</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="334"/>
         <source>Save network file</source>
-        <translation type="unfinished"></translation>
+        <translation>ネットワークファイルに保存</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="348"/>
         <source>Show the hostnames</source>
-        <translation type="unfinished"></translation>
+        <translation>ホスト名を表示する</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="350"/>
         <source>Telnet to all IOS</source>
-        <translation type="unfinished"></translation>
+        <translation>全IOSにログインする</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="354"/>
         <source>Save network file as</source>
-        <translation type="unfinished"></translation>
+        <translation>ネットワークファイルを名前付けて保存</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="374"/>
         <source>Clear the topology</source>
-        <translation type="unfinished"></translation>
+        <translation>トポロジーをクリアする</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="375"/>
         <source>Add a note</source>
-        <translation type="unfinished"></translation>
+        <translation>メモを追加する</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="376"/>
         <source>&amp;New Project</source>
-        <translation type="unfinished"></translation>
+        <translation>新規のプロジェクト(&amp;N)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="378"/>
         <source>New Project</source>
-        <translation type="unfinished"></translation>
+        <translation>新規のプロジェクト</translation>
     </message>
 </context>
 <context>
@@ -1645,37 +1647,37 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../NETFile.py" line="263"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>保存</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="263"/>
         <source>Please configure the path to Dynamips</source>
-        <translation type="unfinished"></translation>
+        <translation>Dynamipsのプログラムパスを設定してください</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="409"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips エラー</translation>
+        <translation>Dynamips エラー</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="412"/>
         <source>Dynamips warning</source>
-        <translation type="unfinished">Dynamips 警告</translation>
+        <translation>Dynamips 警告</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="286"/>
         <source>Exception detected, stopping importation...</source>
-        <translation type="unfinished"></translation>
+        <translation>例外エラーでましたためインポートを中止しています...</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="419"/>
         <source>Exporting %s configuration to %s</source>
-        <translation type="unfinished"></translation>
+        <translation>%s のコンフィッグを %s にエクスポート中</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="426"/>
         <source>%s: IO Error: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: IO エラー: %s</translation>
     </message>
 </context>
 <context>
@@ -1683,32 +1685,32 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_NewProject.py" line="63"/>
         <source>New Project</source>
-        <translation type="unfinished"></translation>
+        <translation>新規プロジェクト</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="64"/>
         <source>Settings</source>
-        <translation type="unfinished">設定</translation>
+        <translation>設定</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="65"/>
         <source>Project file:</source>
-        <translation type="unfinished"></translation>
+        <translation>プロジェクトファイル:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="66"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="67"/>
         <source>Export router configuration files</source>
-        <translation type="unfinished"></translation>
+        <translation>ルータのコンフィッグをエクスポートする</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="68"/>
         <source>Keep working directory files</source>
-        <translation type="unfinished"></translation>
+        <translation>作業フォルダのファイルをキープする</translation>
     </message>
 </context>
 <context>
@@ -1741,12 +1743,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../NodeConfigurator.py" line="221"/>
         <source>%s node</source>
-        <translation>%s </translation>
+        <translation>%s ノード</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="213"/>
         <source>%s group</source>
-        <translation>%s </translation>
+        <translation>%s グループ</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="218"/>
@@ -1772,43 +1774,43 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <location filename="../Ui/Form_NodeConfigurator.py" line="102"/>
         <source>Please select a node in the list 
 to display the configuration page.</source>
-        <translation>各ノードを選択して
+        <translation>各ノードをリストから選択して
 設定して下さい。 </translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="275"/>
         <source>Node configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>ノード設定</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="103"/>
         <source>Routers c1700</source>
-        <translation type="unfinished"></translation>
+        <translation>ルータ c1700</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="106"/>
         <source>Routers c2600</source>
-        <translation type="unfinished"></translation>
+        <translation>ルータ c2600</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="109"/>
         <source>Routers c2691</source>
-        <translation type="unfinished"></translation>
+        <translation>ルータ c2691</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="112"/>
         <source>Routers c3600</source>
-        <translation type="unfinished"></translation>
+        <translation>ルータ c3600</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="115"/>
         <source>Routers c3700</source>
-        <translation type="unfinished"></translation>
+        <translation>ルータ c3700</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="118"/>
         <source>Routers c7200</source>
-        <translation type="unfinished"></translation>
+        <translation>ルータ c7200</translation>
     </message>
 </context>
 <context>
@@ -1816,32 +1818,32 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="13"/>
         <source>Form</source>
-        <translation type="unfinished">フォーム</translation>
+        <translation>フォーム</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="19"/>
         <source>Settings</source>
-        <translation type="unfinished">設定</translation>
+        <translation>設定</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="28"/>
         <source>Working directory for capture files:</source>
-        <translation type="unfinished"></translation>
+        <translation>キャプチャファイルの作業ディレクトリ:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="38"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="51"/>
         <source>Command to launch Wireshark or a capture file reader:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiresharkの起動コマンド、またはキャプチャファイルを開くコマンド:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="61"/>
         <source>Automatically start the command when capturing</source>
-        <translation type="unfinished"></translation>
+        <translation>キャプチャ中に自動起動するコマンド</translation>
     </message>
 </context>
 <context>
@@ -1854,12 +1856,12 @@ to display the configuration page.</source>
     <message>
         <location filename="DynamicStrings.py" line="27"/>
         <source>General</source>
-        <translation type="unfinished">一般</translation>
+        <translation>一般設定</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="30"/>
         <source>Applications</source>
-        <translation type="unfinished"></translation>
+        <translation>アプリケーション</translation>
     </message>
 </context>
 <context>
@@ -1917,7 +1919,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="174"/>
         <source>&amp;Test</source>
-        <translation>テスト&amp;T</translation>
+        <translation>テスト(&amp;T)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="210"/>
@@ -1942,17 +1944,17 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="139"/>
         <source>Enable ghost IOS feature</source>
-        <translation type="unfinished"></translation>
+        <translation>IOSのゴースト機能を使用する</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="149"/>
         <source>Enable mmap feature</source>
-        <translation type="unfinished"></translation>
+        <translation>mmap機能を使用する</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="159"/>
         <source>Enable sparse memory feature</source>
-        <translation type="unfinished"></translation>
+        <translation>スパースメモリ機能を使用する</translation>
     </message>
 </context>
 <context>
@@ -1985,22 +1987,22 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
         <source>Paths</source>
-        <translation type="unfinished"></translation>
+        <translation>パス</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="48"/>
         <source>Project directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>プロジェクトディレクトリ:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="78"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="68"/>
         <source>IOS directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>IOS ディレクトリ:</translation>
     </message>
 </context>
 <context>
@@ -2008,96 +2010,86 @@ to display the configuration page.</source>
     <message>
         <location filename="../Scene.py" line="155"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>削除</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="101"/>
         <source>Configure</source>
-        <translation type="unfinished"></translation>
+        <translation>設定</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="106"/>
         <source>Change hostname</source>
-        <translation type="unfinished">ホスト名を変更</translation>
+        <translation>ホスト名を変更</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="124"/>
         <source>Console</source>
-        <translation type="unfinished">コンソール</translation>
+        <translation>コンソール</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="134"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>スタート</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="139"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>ストップ</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="144"/>
         <source>Suspend</source>
-        <translation type="unfinished"></translation>
+        <translation>サスペンド</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="111"/>
         <source>Show hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>ホスト名を表示</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="129"/>
         <source>Idle PC</source>
-        <translation type="unfinished"></translation>
+        <translation>Idle PC</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="237"/>
         <source>IDLE PC</source>
-        <translation type="unfinished"></translation>
+        <translation>IDLE PC</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="189"/>
         <source>Please select only one router</source>
-        <translation type="unfinished"></translation>
+        <translation>ルータを一台だけ選択してください</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="230"/>
         <source>No idlepc values found</source>
-        <translation type="unfinished"></translation>
+        <translation>idlepc値を見つかりませんでした</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="233"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation> &apos;*&apos;マークのあるidlepc値はお勧めです</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="246"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips エラー</translation>
+        <translation>Dynamips エラー</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="197"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
-        <translation type="unfinished"></translation>
+        <translation>%s　にidlepc値が既に指定されています。新しい値を発行しますか?</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="238"/>
         <source>Applied idlepc value %s to %s</source>
-        <translation type="unfinished"></translation>
+        <translation>idlepc値　%s を %s　に設定しました</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="178"/>
         <source>Please wait while calculating an IDLE PC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Scene.py" line="198"/>
-        <source>Yes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Scene.py" line="198"/>
-        <source>No</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2106,7 +2098,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Topology.py" line="201"/>
         <source>IOS image</source>
-        <translation>IOS イメージ</translation>
+        <translation>IOSイメージ</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="179"/>
@@ -2116,47 +2108,47 @@ to display the configuration page.</source>
     <message>
         <location filename="../Topology.py" line="212"/>
         <source>Hypervisor</source>
-        <translation type="unfinished">ハイパーバイザ</translation>
+        <translation>ハイパーバイザ</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="212"/>
         <source>Please configure the path to Dynamips</source>
-        <translation type="unfinished"></translation>
+        <translation>Dynamipsのプログラムパスを設定してください</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="376"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips エラー</translation>
+        <translation>Dynamips エラー</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="236"/>
         <source>Connection lost</source>
-        <translation type="unfinished">接続失敗</translation>
+        <translation>接続失敗しました</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="283"/>
         <source>Connection</source>
-        <translation type="unfinished">接続</translation>
+        <translation>接続</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="283"/>
         <source>Can&apos;t connect switches</source>
-        <translation type="unfinished"></translation>
+        <translation>スイッチ同士接続できません</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="133"/>
         <source>Can&apos;t connect to the external hypervisor on %s</source>
-        <translation type="unfinished"></translation>
+        <translation>外部スパーバイザ %s に接続できませんでした</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="190"/>
         <source>No image for platform %s</source>
-        <translation type="unfinished"></translation>
+        <translation>このプラットフォーム %s にIOSイメージは設定されていません</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="202"/>
         <source>Please configure a default image for this platform %s</source>
-        <translation type="unfinished"></translation>
+        <translation>このプラットフォーム %s にデフォルトのイメージを指定してください</translation>
     </message>
 </context>
 <context>
@@ -2164,7 +2156,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Workspace.py" line="106"/>
         <source>Docks</source>
-        <translation>ドック</translation>
+        <translation>ドッキング</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="327"/>
@@ -2174,7 +2166,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Workspace.py" line="327"/>
         <source>Connection lost</source>
-        <translation>接続失敗</translation>
+        <translation>接続失敗しました</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="324"/>
@@ -2209,92 +2201,82 @@ to display the configuration page.</source>
     <message>
         <location filename="../Workspace.py" line="274"/>
         <source>Hide hostnames</source>
-        <translation type="unfinished"></translation>
+        <translation>ホスト名を表示しない</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="279"/>
         <source>Show hostnames</source>
-        <translation type="unfinished">ホスト名を表示する</translation>
+        <translation>ホスト名を表示する</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="436"/>
         <source>Open a file</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイルを開く</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="432"/>
         <source>The path to Dynamips must be configured</source>
-        <translation type="unfinished"></translation>
+        <translation>Dynamipsのプログラムパスを使用する必要があります</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="467"/>
         <source>Save Project As</source>
-        <translation type="unfinished"></translation>
+        <translation>プロジェクトを名前指定して保存</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="415"/>
         <source>New Project</source>
-        <translation type="unfinished"></translation>
+        <translation>新規プロジェクト</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="485"/>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation>メッセージ</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="169"/>
         <source>Are you sure to clear the topology?</source>
-        <translation type="unfinished"></translation>
+        <translation>トポロジーをクリアします、よろしいですか?</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="193"/>
         <source>Add a link</source>
-        <translation type="unfinished">リンクを追加する</translation>
+        <translation>リンクを追加する</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="208"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>キャンセル</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="400"/>
         <source>File loaded...</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイルをロードしました...</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="415"/>
         <source>Can&apos;t create a project</source>
-        <translation type="unfinished"></translation>
+        <translation>プロジェクトを作成できませんでした</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="425"/>
         <source>Project loaded...</source>
-        <translation type="unfinished"></translation>
+        <translation>プロジェクトをロードしました...</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="459"/>
         <source>File saved...</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイルを保存しました...</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="485"/>
         <source>Are you sure to quit?</source>
-        <translation type="unfinished"></translation>
+        <translation>終了します、よろしいですか?</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="393"/>
         <source>Invalid file %s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="486"/>
-        <source>Yes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="486"/>
-        <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイル %s に誤りがあります</translation>
     </message>
 </context>
 <context>
@@ -2302,7 +2284,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Telnet.py" line="41"/>
         <source>Console</source>
-        <translation type="unfinished">コンソール</translation>
+        <translation>コンソール</translation>
     </message>
 </context>
 <context>
@@ -2310,62 +2292,62 @@ to display the configuration page.</source>
     <message>
         <location filename="DynamicStrings.py" line="38"/>
         <source>Switch</source>
-        <translation type="unfinished"></translation>
+        <translation>スイッチ</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="39"/>
         <source>Hub</source>
-        <translation type="unfinished"></translation>
+        <translation>ハブ</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="40"/>
         <source>ATM switch</source>
-        <translation type="unfinished"></translation>
+        <translation>ATM スイッチ</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="41"/>
         <source>Frame Relay switch</source>
-        <translation type="unfinished"></translation>
+        <translation>フレームリレースイッチ</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="42"/>
         <source>Cloud</source>
-        <translation type="unfinished">雲</translation>
+        <translation>雲</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="31"/>
         <source>Router c1700</source>
-        <translation type="unfinished"></translation>
+        <translation>ルータ c1700</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="32"/>
         <source>Router c2600</source>
-        <translation type="unfinished"></translation>
+        <translation>ルータ c2600</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="34"/>
         <source>Router c3600</source>
-        <translation type="unfinished"></translation>
+        <translation>ルータ c3600</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="35"/>
         <source>Router c3700</source>
-        <translation type="unfinished"></translation>
+        <translation>ルータ c3700</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="36"/>
         <source>Router c7200</source>
-        <translation type="unfinished"></translation>
+        <translation>ルータ c7200</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="33"/>
         <source>Router c2691</source>
-        <translation type="unfinished"></translation>
+        <translation>ルータ c2691</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="37"/>
         <source>Firewall PIX</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX ファイアウォール</translation>
     </message>
 </context>
 <context>
@@ -2373,7 +2355,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/Widget_topologySummaryDock.py" line="95"/>
         <source>%s is connected to %s %s</source>
-        <translation type="unfinished"></translation>
+        <translation>%s は %s %s に接続しました</translation>
     </message>
 </context>
 </TS>

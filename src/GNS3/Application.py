@@ -241,7 +241,7 @@ class Application(QApplication, Singleton):
         confo.ios_path = ConfDB().get('GNS3/ios_directory', unicode('.', 'utf-8'))
         confo.status_points = ConfDB().value("GNS3/gui_show_status_points", QVariant(True)).toBool()
         confo.manual_connection =ConfDB().value("GNS3/gui_use_manual_connection", QVariant(False)).toBool()
-    
+
         # Now systGeneral settings are loaded, load the translator
         self.translator = Translator()
         self.translator.switchLangTo(self.systconf['general'].lang)

@@ -195,8 +195,8 @@ class Scene(QtGui.QGraphicsView):
             if globals.GApp.dynagen.devices[router.hostname].idlepc != None:
                 reply = QtGui.QMessageBox.question(globals.GApp.mainWindow,translate("Scene", "IDLE PC"), 
                                                    unicode(translate("Scene", "%s already has an idlepc value applied, do you want to calculate a new one?")) % router.hostname, 
-                                                   translate("Scene", "Yes"),  translate("Scene", "No"))
-                if reply == 0:
+                                                   QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+                if reply == QtGui.QMessageBox.Yes:
                     # reset idlepc
                     lib.send(globals.GApp.dynagen.devices[router.hostname].dynamips, 'vm set_idle_pc_online %s 0 %s' % (router.hostname, '0x0'))
                     result = self.calculateIDLEPC(router)

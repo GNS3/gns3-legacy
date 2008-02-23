@@ -167,9 +167,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Are you sure to clear the topology?"), 
-                                            translate("Workspace", "Yes"),  translate("Workspace", "No"))
+                                            QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
-        if reply == 0:
+        if reply == QtGui.QMessageBox.Yes:
             self.clear()
         #TODO: clean files ?
             
@@ -483,8 +483,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
         
         reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Are you sure to quit?"), 
-                                            translate("Workspace", "Yes"),  translate("Workspace", "No"))
-        if reply == 0:
+                                           QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+        if reply == QtGui.QMessageBox.Yes:
             globals.GApp.topology.clear()
             event.accept()
         else:

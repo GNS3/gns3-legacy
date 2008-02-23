@@ -1325,7 +1325,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../Translations.py" line="95"/>
+        <location filename="../Translations.py" line="96"/>
         <source>English</source>
         <translation>English</translation>
     </message>
@@ -2090,16 +2090,6 @@ to display the configuration page.</translation>
         <source>Please wait while calculating an IDLE PC</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../Scene.py" line="198"/>
-        <source>Yes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Scene.py" line="198"/>
-        <source>No</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>Topology</name>
@@ -2284,16 +2274,6 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Workspace.py" line="393"/>
         <source>Invalid file %s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="486"/>
-        <source>Yes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="486"/>
-        <source>No</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
