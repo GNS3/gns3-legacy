@@ -2085,6 +2085,21 @@ para ver la pagina de configuracion.</translation>
         <source>Applied idlepc value %s to %s</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Scene.py" line="178"/>
+        <source>Please wait while calculating an IDLE PC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="198"/>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="198"/>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Topology</name>
@@ -2152,77 +2167,77 @@ para ver la pagina de configuracion.</translation>
         <translation>Paneles</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="326"/>
+        <location filename="../Workspace.py" line="327"/>
         <source>Dynamips error</source>
         <translation>Error de Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="326"/>
+        <location filename="../Workspace.py" line="327"/>
         <source>Connection lost</source>
         <translation>Perdida de conexion</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="323"/>
+        <location filename="../Workspace.py" line="324"/>
         <source>Dynamips warning</source>
         <translation>Advertencia Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="302"/>
+        <location filename="../Workspace.py" line="303"/>
         <source>Abort</source>
         <translation>Abortar</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="338"/>
+        <location filename="../Workspace.py" line="339"/>
         <source>Starting nodes ...</source>
         <translation>Iniciando nodos ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="344"/>
+        <location filename="../Workspace.py" line="345"/>
         <source>Stopping nodes ...</source>
         <translation>Deteniendo nodos ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="350"/>
+        <location filename="../Workspace.py" line="351"/>
         <source>Suspending nodes ...</source>
         <translation>Suspendiendo nodos ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="392"/>
+        <location filename="../Workspace.py" line="393"/>
         <source>Loading</source>
         <translation>Cargando</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="273"/>
+        <location filename="../Workspace.py" line="274"/>
         <source>Hide hostnames</source>
         <translation>Ocultar el nombre de host</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="278"/>
+        <location filename="../Workspace.py" line="279"/>
         <source>Show hostnames</source>
         <translation>Ver nombre  de host</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="435"/>
+        <location filename="../Workspace.py" line="436"/>
         <source>Open a file</source>
         <translation>Abrir archivo</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="431"/>
+        <location filename="../Workspace.py" line="432"/>
         <source>The path to Dynamips must be configured</source>
         <translation>El camino para Dynamips debe ser configurado</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="466"/>
+        <location filename="../Workspace.py" line="467"/>
         <source>Save Project As</source>
         <translation>Guardar Proyecto como</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="414"/>
+        <location filename="../Workspace.py" line="415"/>
         <source>New Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="484"/>
+        <location filename="../Workspace.py" line="485"/>
         <source>Message</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2232,43 +2247,53 @@ para ver la pagina de configuracion.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="192"/>
+        <location filename="../Workspace.py" line="193"/>
         <source>Add a link</source>
         <translation type="unfinished">Agregar un vinculo</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="207"/>
+        <location filename="../Workspace.py" line="208"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="399"/>
+        <location filename="../Workspace.py" line="400"/>
         <source>File loaded...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="414"/>
+        <location filename="../Workspace.py" line="415"/>
         <source>Can&apos;t create a project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="424"/>
+        <location filename="../Workspace.py" line="425"/>
         <source>Project loaded...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="458"/>
+        <location filename="../Workspace.py" line="459"/>
         <source>File saved...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="484"/>
+        <location filename="../Workspace.py" line="485"/>
         <source>Are you sure to quit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="392"/>
+        <location filename="../Workspace.py" line="393"/>
         <source>Invalid file %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="486"/>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="486"/>
+        <source>No</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -41,10 +41,8 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
         self.setupUi(self)
 
         self.connect(self.listWidget, QtCore.SIGNAL('currentItemChanged(QListWidgetItem *, QListWidgetItem *)'), self.configItemChanged)
-        self.connect(self.buttonBox.button(QtGui.QDialogButtonBox.Apply),
-            QtCore.SIGNAL('clicked()'), self.__applyChanges)
-        self.connect(self.buttonBox.button(QtGui.QDialogButtonBox.Ok),
-            QtCore.SIGNAL('clicked()'), self.__applyChanges)
+        self.connect(self.buttonBox.button(QtGui.QDialogButtonBox.Apply), QtCore.SIGNAL('clicked()'), self.__applyChanges)
+        self.connect(self.buttonBox.button(QtGui.QDialogButtonBox.Ok), QtCore.SIGNAL('clicked()'), self.__applyChanges)
 
         # Init dialog
         self.__initDialog()
