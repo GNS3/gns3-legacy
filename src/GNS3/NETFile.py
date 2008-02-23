@@ -241,7 +241,7 @@ class NETFile(object):
                     renders = globals.GApp.scene.renders['Cloud']
                     cloud = Cloud(renders['normal'], renders['selected'])
                     cloud.hostname = unicode(hostname, 'utf-8')
-                    cloud.setPos(gns3data[section]['x'], gns3data[section]['y'])
+                    cloud.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
                     config = gns3data[section]['nios'].split(' ')
                     cloud.set_config(config)
                     QtCore.QObject.connect(cloud, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
@@ -252,7 +252,7 @@ class NETFile(object):
                 if devtype.lower() == 'note':
                     note_object = Annotation()
                     note_object.setPlainText(gns3data[section]['text'])
-                    note_object.setPos(gns3data[section]['x'], gns3data[section]['y'])
+                    note_object.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
                     globals.GApp.topology.addItem(note_object)
         
     def import_net_file(self, path):
