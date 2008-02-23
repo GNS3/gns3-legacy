@@ -2005,87 +2005,87 @@ to display the configuration page.</source>
 <context>
     <name>Scene</name>
     <message>
-        <location filename="../Scene.py" line="155"/>
+        <location filename="../Scene.py" line="152"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="101"/>
+        <location filename="../Scene.py" line="98"/>
         <source>Configure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="106"/>
+        <location filename="../Scene.py" line="103"/>
         <source>Change hostname</source>
         <translation type="unfinished">修改设备名</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="124"/>
+        <location filename="../Scene.py" line="121"/>
         <source>Console</source>
         <translation type="unfinished">控制台</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="134"/>
+        <location filename="../Scene.py" line="131"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="139"/>
+        <location filename="../Scene.py" line="136"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="144"/>
+        <location filename="../Scene.py" line="141"/>
         <source>Suspend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="111"/>
+        <location filename="../Scene.py" line="108"/>
         <source>Show hostname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="129"/>
+        <location filename="../Scene.py" line="126"/>
         <source>Idle PC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="237"/>
+        <location filename="../Scene.py" line="234"/>
         <source>IDLE PC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="189"/>
+        <location filename="../Scene.py" line="186"/>
         <source>Please select only one router</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="230"/>
+        <location filename="../Scene.py" line="227"/>
         <source>No idlepc values found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="233"/>
+        <location filename="../Scene.py" line="230"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="246"/>
+        <location filename="../Scene.py" line="243"/>
         <source>Dynamips error</source>
         <translation type="unfinished">Dynamips 错误</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="197"/>
+        <location filename="../Scene.py" line="194"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="238"/>
+        <location filename="../Scene.py" line="235"/>
         <source>Applied idlepc value %s to %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="178"/>
+        <location filename="../Scene.py" line="175"/>
         <source>Please wait while calculating an IDLE PC</source>
         <translation type="unfinished"></translation>
     </message>

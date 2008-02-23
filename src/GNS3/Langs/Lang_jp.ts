@@ -2008,87 +2008,87 @@ to display the configuration page.</source>
 <context>
     <name>Scene</name>
     <message>
-        <location filename="../Scene.py" line="155"/>
+        <location filename="../Scene.py" line="152"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="101"/>
+        <location filename="../Scene.py" line="98"/>
         <source>Configure</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="106"/>
+        <location filename="../Scene.py" line="103"/>
         <source>Change hostname</source>
         <translation>ホスト名を変更</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="124"/>
+        <location filename="../Scene.py" line="121"/>
         <source>Console</source>
         <translation>コンソール</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="134"/>
+        <location filename="../Scene.py" line="131"/>
         <source>Start</source>
         <translation>スタート</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="139"/>
+        <location filename="../Scene.py" line="136"/>
         <source>Stop</source>
         <translation>ストップ</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="144"/>
+        <location filename="../Scene.py" line="141"/>
         <source>Suspend</source>
         <translation>サスペンド</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="111"/>
+        <location filename="../Scene.py" line="108"/>
         <source>Show hostname</source>
         <translation>ホスト名を表示</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="129"/>
+        <location filename="../Scene.py" line="126"/>
         <source>Idle PC</source>
         <translation>Idle PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="237"/>
+        <location filename="../Scene.py" line="234"/>
         <source>IDLE PC</source>
         <translation>IDLE PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="189"/>
+        <location filename="../Scene.py" line="186"/>
         <source>Please select only one router</source>
         <translation>ルータを一台だけ選択してください</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="230"/>
+        <location filename="../Scene.py" line="227"/>
         <source>No idlepc values found</source>
         <translation>idlepc値を見つかりませんでした</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="233"/>
+        <location filename="../Scene.py" line="230"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
         <translation> &apos;*&apos;マークのあるidlepc値はお勧めです</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="246"/>
+        <location filename="../Scene.py" line="243"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="197"/>
+        <location filename="../Scene.py" line="194"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
         <translation>%s　にidlepc値が既に指定されています。新しい値を発行しますか?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="238"/>
+        <location filename="../Scene.py" line="235"/>
         <source>Applied idlepc value %s to %s</source>
         <translation>idlepc値　%s を %s　に設定しました</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="178"/>
+        <location filename="../Scene.py" line="175"/>
         <source>Please wait while calculating an IDLE PC</source>
         <translation type="unfinished"></translation>
     </message>

@@ -482,10 +482,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Ask to close GNS3
         """
         
-        reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Are you sure to quit?"), 
-                                           QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-        if reply == QtGui.QMessageBox.Yes:
-            globals.GApp.topology.clear()
-            event.accept()
-        else:
-            event.ignore()
+        if len(globals.GApp.topology.nodes):
+            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Are you sure to quit?"), 
+                                               QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+            if reply == QtGui.QMessageBox.Yes:
+                globals.GApp.topology.clear()
+                event.accept()
+            else:
+                event.ignore()

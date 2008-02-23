@@ -37,9 +37,6 @@ from GNS3.Link.AbstractEdge import AbstractEdge
 from GNS3.Link.Ethernet import Ethernet
 from GNS3.Link.Serial import Serial
 
-IF_REGEXP = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)\/([0-9]+)$""") 
-PORT_REGEXP = re.compile(r"""^[0-9]*$""")
-
 class Scene(QtGui.QGraphicsView):
     """ Scene class
     """
@@ -103,12 +100,12 @@ class Scene(QtGui.QGraphicsView):
             self.connect(configAct, QtCore.SIGNAL('triggered()'), self.slotConfigNode)
             
             # Action: ChangeHostname (Change the hostname)
-            changeHostnameAct = QtGui.QAction(translate('Scene', 'Change hostname'), menu)
+            changeHostnameAct = QtGui.QAction(translate('Scene', 'Change the hostname'), menu)
             changeHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
             self.connect(changeHostnameAct, QtCore.SIGNAL('triggered()'), self.slotChangeHostname)
             
             # Action: ShowHostname (Display the hostname)
-            showHostnameAct = QtGui.QAction(translate('Scene', 'Show hostname'), menu)
+            showHostnameAct = QtGui.QAction(translate('Scene', 'Show/Hide the hostname'), menu)
             showHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
             self.connect(showHostnameAct, QtCore.SIGNAL('triggered()'), self.slotShowHostname)
         
