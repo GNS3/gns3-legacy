@@ -206,7 +206,7 @@ class PyCutExt(QTextEdit):
         cursor.movePosition(QTextCursor.End)
 
         pos1 = cursor.position()
-        cursor.insertText(text)
+        cursor.insertText(unicode(text))
 
         self.cursor_pos = cursor.position()
         self.setTextCursor(cursor)

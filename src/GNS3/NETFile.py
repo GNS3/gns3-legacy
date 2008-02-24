@@ -131,7 +131,8 @@ class NETFile(object):
         conf_image.hypervisor_port = device.dynamips.port
         conf_image.default = False
         if device.dynamips.host == 'localhost' and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
-            conf_image.hypervisor_host = unicode('localhost',  'utf-8')
+            conf_image.hypervisor_host = unicode('',  'utf-8')
+            globals.GApp.iosimages['localhost' + ':' + device.image] = conf_image
         else:
             # this is an external hypervisor
             conf_image.hypervisor_host = unicode(device.dynamips.host,  'utf-8')
@@ -144,8 +145,7 @@ class NETFile(object):
             conf_hypervisor.baseUDP = device.dynamips.udp
             conf_hypervisor.baseConsole = device.dynamips.baseconsole
             globals.GApp.hypervisors[conf_hypervisor.host + ':' + str(conf_hypervisor.port)] = conf
-            
-        globals.GApp.iosimages[conf_image.hypervisor_host + ':' + device.image] = conf_image
+            globals.GApp.iosimages[conf_image.hypervisor_host + ':' + device.image] = conf_image
 
     def configure_node(self, node, device):
         """ Configure a node
@@ -293,15 +293,21 @@ class NETFile(object):
         devices = self.dynagen.devices.copy()
         self.dynagen.devices.clear()
         connection_list = []
+        config_dir = None
         for (devicename, device) in devices.iteritems():
             self.dynagen.devices[device.name] = device
             if device.isrouter:
                 platform = device.model
+                # dynamips lib doesn't return c3700, force platform
+                if platform == 'c3725' or platform == 'c3745':
+                    platform = 'c3700'
                 model = device.model_string
                 node = self.create_node(device, 'Router ' + platform)
                 assert(node)
                 self.configure_node(node, device)
                 self.populate_connection_list(device, connection_list)
+                if not config_dir and device.cnfg:
+                    config_dir = os.path.dirname(device.cnfg)
 
             elif isinstance(device, lib.ETHSW):
 
@@ -381,7 +387,10 @@ class NETFile(object):
 
         base_udp = 0
         hypervisor_port = 0
+        working_dir = None
         for dynamips in globals.GApp.dynagen.dynamips.values():
+            if not working_dir:
+                working_dir = dynamips.workingdir
             if dynamips.starting_udp > base_udp:
                 base_udp = dynamips.starting_udp
             if dynamips.port > hypervisor_port:
@@ -391,6 +400,16 @@ class NETFile(object):
         debug("set hypervisor base port: " + str(globals.hypervisor_baseport))
         debug("set base UDP: " + str(globals.GApp.dynagen.globaludp))
 
+        # restore project working directory
+        if working_dir and working_dir[-7:] == 'working':
+            globals.GApp.workspace.projectWorkdir = working_dir
+            debug("Set working directory: " + working_dir)
+
+        # restore project configs directory
+        if config_dir and config_dir[-7:] == 'configs':
+            globals.GApp.workspace.projectConfigs = config_dir
+            debug("Set working directory: " + config_dir)
+        
         for connection in connection_list:
             self.add_connection(connection)
 
@@ -409,7 +428,7 @@ class NETFile(object):
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, device.name + ': ' + translate("NETFile", "Dynamips error"),  str(msg))
             return
         except lib.DynamipsWarning, msg:
-            QtGui.QMessageBox.warning(globals.GApp.mainWindow,  device.name + ': ' + translate("NETFile", "Dynamips warning"),  str(msg))
+            print device.name + ': ' + translate("NETFile", "Dynamips warning") + ': ' + str(msg)
             return
         except:
             error('Unknown error exporting config for ' + device.name)

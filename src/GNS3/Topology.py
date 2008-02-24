@@ -46,9 +46,7 @@ class Topology(QtGui.QGraphicsScene):
         self.dynagen = globals.GApp.dynagen
 
         QtGui.QGraphicsScene.__init__(self, parent)
-
-        #TODO: A better management of the scene size ?
-        self.setSceneRect(-250, -250, 500, 500)
+        self.setSceneRect(-300, -300, 600, 600)
 
     def cleanDynagen(self):
         """ Clean all dynagen data
@@ -197,10 +195,12 @@ class Topology(QtGui.QGraphicsScene):
                             image_to_use = image
                             break
                     if not image_to_use:
-                        # give users a way to choose it.
-                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), 
-                                                unicode(translate("Topology", "Please configure a default image for this platform %s")) % node.platform)
-                        return
+                        (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "IOS image"), 
+                                                                      translate("Topology", "Please choose an image"), selected_images, 0, False)
+                        if ok:
+                            image_to_use = str(selection)
+                        else:
+                            return
                 else:
                     image_to_use = selected_images[0]
 

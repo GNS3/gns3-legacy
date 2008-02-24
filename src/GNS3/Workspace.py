@@ -442,6 +442,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     self.projectWorkdir = None
                     self.projectConfigs = None
                     self.load_netfile(path)
+                    self.projectFile = path
+                    self.setWindowTitle("GNS3 - " + self.projectFile)
             except IOError, (errno, strerror):
                 QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         
