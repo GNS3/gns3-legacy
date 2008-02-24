@@ -397,7 +397,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         net = netfile.NETFile()
         globals.GApp.scene.resetMatrix()
         net.import_net_file(path)
-        self.statusbar.showMessage(translate("Workspace", "File loaded..."))
             
     def __action_NewProject(self):
         """ Create a new project
@@ -422,7 +421,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
             except OSError, (errno, strerror):
                 pass
             self.setWindowTitle("GNS3 Project - " + self.projectFile)
-            self.statusbar.showMessage(translate("Workspace", "Project loaded..."))
 
     def __action_OpenFile(self):
         """ Open a file
@@ -441,9 +439,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     # here the loading
                     self.projectWorkdir = None
                     self.projectConfigs = None
+                    self.projectFile = None
                     self.load_netfile(path)
-                    self.projectFile = path
-                    self.setWindowTitle("GNS3 - " + self.projectFile)
             except IOError, (errno, strerror):
                 QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         
@@ -458,7 +455,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
             net = netfile.NETFile()
             globals.GApp.scene.resetMatrix()
             net.export_net_file(self.projectFile)
-            self.statusbar.showMessage(translate("Workspace", "File saved..."))
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         
@@ -487,6 +483,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if len(globals.GApp.topology.nodes):
             reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Are you sure to quit?"), 
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+            #TODO: optionnal
             if reply == QtGui.QMessageBox.Yes:
                 globals.GApp.topology.clear()
                 event.accept()

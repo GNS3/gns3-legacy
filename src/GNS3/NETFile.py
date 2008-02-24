@@ -34,7 +34,6 @@ from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.FRSW import FRSW
-from GNS3.Node.Hub import Hub
 from GNS3.Node.Cloud import Cloud
 
 class NETFile(object):
@@ -282,12 +281,13 @@ class NETFile(object):
             globals.GApp.workspace.clear()
             return
         except:
-            print translate("NETFile", "Exception detected, stopping importation...")
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "Importation"),  translate("NETFile", "Exception detected, stopping importation..."))
             globals.GApp.workspace.projectFile = None
             globals.GApp.workspace.setWindowTitle("GNS3")
             globals.GApp.workspace.clear()
             return
-            
+
+        self.dynagen.get_defaults_config()
         self.dynagen.update_running_config()
         self.apply_gns3_data()
         devices = self.dynagen.devices.copy()
@@ -296,6 +296,7 @@ class NETFile(object):
         config_dir = None
         for (devicename, device) in devices.iteritems():
             self.dynagen.devices[device.name] = device
+
             if device.isrouter:
                 platform = device.model
                 # dynamips lib doesn't return c3700, force platform
@@ -377,7 +378,6 @@ class NETFile(object):
                     config['ports'].append(port1)
                 if not port2 in config['ports']:
                     config['ports'].append(port2)
-                
                 node = self.create_node(device, 'ATM switch')
                 self.configure_node(node, device)
                 node.set_config(config)
@@ -385,6 +385,7 @@ class NETFile(object):
 
             globals.GApp.topology.addItem(node)
 
+        # update current hypervisor base port and base UDP
         base_udp = 0
         hypervisor_port = 0
         working_dir = None
@@ -408,13 +409,15 @@ class NETFile(object):
         # restore project configs directory
         if config_dir and config_dir[-7:] == 'configs':
             globals.GApp.workspace.projectConfigs = config_dir
-            debug("Set working directory: " + config_dir)
+            debug("Set configs directory: " + config_dir)
         
         for connection in connection_list:
             self.add_connection(connection)
 
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
         globals.GApp.dynagen.update_running_config()
+        globals.GApp.workspace.projectFile = path
+        globals.GApp.workspace.setWindowTitle("GNS3 - " + globals.GApp.workspace.projectFile)
 
     def export_router_config(self, node):
     
@@ -425,7 +428,7 @@ class NETFile(object):
             config = base64.decodestring(device.config_b64)
             config = config.replace('\r', "")
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.warning(globals.GApp.mainWindow, device.name + ': ' + translate("NETFile", "Dynamips error"),  str(msg))
+            print device.name + ': ' + translate("NETFile", "Dynamips error") + ': ' + str(msg)
             return
         except lib.DynamipsWarning, msg:
             print device.name + ': ' + translate("NETFile", "Dynamips warning") + ': ' + str(msg)

@@ -30,9 +30,9 @@ from GNS3.Utils import translate
 atmsw_id = 0
 MAPVCI = re.compile(r"""^([0-9]*):([0-9]*):([0-9]*)$""")
 
-def init_atmsw_id():
+def init_atmsw_id(id = 0):
     global atmsw_id
-    atmsw_id = 0
+    atmsw_id = id
 
 class ATMSW(AbstractNode):
     """ ATMSW class implementing the ATM switch
@@ -62,7 +62,9 @@ class ATMSW(AbstractNode):
         self.delete_atmsw()
 
     def delete_atmsw(self):
-    
+        """ Delete this ATMSW
+        """
+        
         if self.atmsw:
             self.atmsw.delete()
             del self.dynagen.devices[self.hostname]

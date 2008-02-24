@@ -45,9 +45,9 @@ SLOTLESS_MODELS = ('1710', '1720', '1721', '1750')
 # base ID for routers
 router_id = 0
 
-def init_router_id():
+def init_router_id(id = 0):
     global router_id
-    router_id = 0
+    router_id = id
 
 class IOSRouter(AbstractNode):
     """ IOSRouter class implementing a IOS router
@@ -119,6 +119,8 @@ class IOSRouter(AbstractNode):
         self.delete_router()
 
     def delete_router(self):
+        """ Delete this router
+        """
     
         if self.router:
             if self.router.state != 'stopped':

@@ -28,9 +28,9 @@ import GNS3.Globals as globals
 
 frsw_id = 0
 
-def init_frsw_id():
+def init_frsw_id(id = 0):
     global frsw_id
-    frsw_id = 0
+    frsw_id = id
 
 class FRSW(AbstractNode):
     """ FRSW class implementing the Frame Relay switch
@@ -60,6 +60,8 @@ class FRSW(AbstractNode):
         self.delete_frsw()
 
     def delete_frsw(self):
+        """ Delete this FRSW
+        """
     
         if self.frsw:
             self.frsw.delete()

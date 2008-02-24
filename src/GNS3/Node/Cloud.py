@@ -27,9 +27,9 @@ import GNS3.Globals as globals
 
 cloud_id = 0
 
-def init_cloud_id():
+def init_cloud_id(id = 0):
     global cloud_id
-    cloud_id = 0
+    cloud_id = id
 
 class Cloud(AbstractNode):
     """ Cloud class implementing NIOs (to external communications)

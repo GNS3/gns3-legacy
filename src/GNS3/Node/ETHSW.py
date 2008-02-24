@@ -28,9 +28,9 @@ import GNS3.Globals as globals
 
 ethsw_id = 0
 
-def init_ethsw_id():
+def init_ethsw_id(id = 0):
     global ethsw_id
-    ethsw_id = 0
+    ethsw_id = id
 
 class ETHSW(AbstractNode):
     """ ETHSW class implementing the Ethernet switch
@@ -60,7 +60,9 @@ class ETHSW(AbstractNode):
         self.delete_ethsw()
         
     def delete_ethsw(self):
-
+        """ Delete this ETHSW
+        """
+        
         if self.ethsw:
             self.ethsw.delete()
             del self.dynagen.devices[self.hostname]
