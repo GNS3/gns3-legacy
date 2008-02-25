@@ -34,12 +34,13 @@ from GNS3.Node.IOSRouter import IOSRouter, init_router_id
 from GNS3.Node.ATMSW import ATMSW, init_atmsw_id
 from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
 from GNS3.Node.FRSW import FRSW, init_frsw_id
-from GNS3.Node.Cloud import Cloud
+from GNS3.Node.Cloud import Cloud, init_cloud_id
 
 router_hostname_re = re.compile(r"""^R([0-9]+)""")
 ethsw_hostname_re = re.compile(r"""^SW([0-9]+)""")
 frsw_hostname_re = re.compile(r"""^FR([0-9]+)""")
 atmsw_hostname_re = re.compile(r"""^ATM([0-9]+)""")
+cloud_hostname_re = re.compile(r"""^C([0-9]+)""")
 
 class NETFile(object):
     """ NETFile implementing the .net file import/export
@@ -193,7 +194,7 @@ class NETFile(object):
             dst_node = globals.GApp.topology.getNode(dstid)
         
         globals.GApp.topology.recordLink(srcid, source_interface, dstid, destination_interface)
-        
+
         if not isinstance(src_node, IOSRouter):
             if not isinstance(src_node,Cloud) and not src_node.hypervisor:
                 src_node.get_dynagen_device()
@@ -208,12 +209,12 @@ class NETFile(object):
     def create_cloud(self, nio):
         """ Create a cloud (used for NIO connections)
         """
-    
+
         # try to find a cloud in the topology
         for node in globals.GApp.topology.nodes.values():
             if isinstance(node, Cloud):
                 for confnio in node.get_config():
-                    if confnio == nio:
+                    if confnio == nio.lower():
                         return (node)
 
         # else create it
@@ -227,6 +228,8 @@ class NETFile(object):
         QtCore.QObject.connect(cloud, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
         QtCore.QObject.connect(cloud, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
         globals.GApp.topology.nodes[cloud.id] = cloud
+        if globals.GApp.workspace.flg_showHostname == True:
+            cloud.showHostname()
         globals.GApp.topology.addItem(cloud)
         return cloud
 
@@ -234,6 +237,7 @@ class NETFile(object):
         """ Apply specific GNS3 data
         """
         
+        max_cloud_id = -1
         gns3data = self.dynagen.getGNS3Data()
         if gns3data:
             for section in gns3data:
@@ -245,19 +249,31 @@ class NETFile(object):
                     renders = globals.GApp.scene.renders['Cloud']
                     cloud = Cloud(renders['normal'], renders['selected'])
                     cloud.hostname = unicode(hostname, 'utf-8')
-                    cloud.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
+                    if gns3data[section]['x'] and gns3data[section]['y']:
+                        cloud.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
                     config = gns3data[section]['nios'].split(' ')
                     cloud.set_config(config)
                     QtCore.QObject.connect(cloud, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
                     QtCore.QObject.connect(cloud, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
                     globals.GApp.topology.nodes[cloud.id] = cloud
+                    if globals.GApp.workspace.flg_showHostname == True:
+                        cloud.showHostname()
                     globals.GApp.topology.addItem(cloud)
+                    match_obj = cloud_hostname_re.match(cloud.hostname)
+                    if match_obj:
+                        id = int(match_obj.group(1))
+                        if id > max_cloud_id:
+                            max_cloud_id = id
                 
                 if devtype.lower() == 'note':
                     note_object = Annotation()
                     note_object.setPlainText(gns3data[section]['text'])
                     note_object.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
                     globals.GApp.topology.addItem(note_object)
+        
+        # update next ID for cloud
+        if max_cloud_id != -1:
+            init_cloud_id(max_cloud_id + 1)
         
     def import_net_file(self, path):
         """ Import a .net file
@@ -458,11 +474,8 @@ class NETFile(object):
         globals.GApp.workspace.projectFile = path
         globals.GApp.workspace.setWindowTitle("GNS3 - " + globals.GApp.workspace.projectFile)
 
-    def export_router_config(self, node):
-    
-        if not isinstance(node , IOSRouter):
-            return
-        device = node.get_dynagen_device()
+    def export_router_config(self, device):
+
         try:
             config = base64.decodestring(device.config_b64)
             config = config.replace('\r', "")
@@ -482,7 +495,7 @@ class NETFile(object):
             f = open(file_path, 'w')
             f.write(config)
             f.close()
-            self.dynagen.running_config[node.d][node.get_running_config_name()]['cnfg'] = file_path
+            self.dynagen.running_config[device.dynamips.host + ':' + str(device.dynamips.port)][node.get_running_config_name()]['cnfg'] = file_path
         except IOError, e:
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, unicode(translate("NETFile", "%s: IO Error: %s")) % (file_path, str(e)))
             return
@@ -493,34 +506,38 @@ class NETFile(object):
 
         self.dynagen.update_running_config()
         debug("Running config: " + str(self.dynagen.running_config))
-        for node in globals.GApp.topology.nodes.values():
+        
+        for device in self.dynagen.devices.values():
             # record router configs
-            if globals.GApp.workspace.projectConfigs:
-                self.export_router_config(node)
+            if device.isrouter and globals.GApp.workspace.projectConfigs:
+                self.export_router_config(device)
+            node = globals.GApp.topology.getNode(globals.GApp.topology.getNodeID(device.name))
             # record node x & y position
-            if not type(node) == Cloud:
-                self.dynagen.running_config[node.d][node.get_running_config_name()]['x'] = node.x()
-                self.dynagen.running_config[node.d][node.get_running_config_name()]['y'] = node.y()
-            else:
-                if not self.dynagen.running_config.has_key('GNS3-DATA'):
-                    self.dynagen.running_config['GNS3-DATA'] = {}
-                config = self.dynagen.running_config['GNS3-DATA']['Cloud ' + node.hostname] = {}
-                config['x'] = node.x()
-                config['y'] = node.y()
-                nios = ''
-                # record nios
-                for nio in node.getInterfaces():
-                    nios = nios + ' ' + nio
-                if nios:
-                    self.dynagen.running_config['GNS3-DATA']['Cloud ' + node.hostname]['nios'] = nios
-                    
-        # records notes
+            self.dynagen.running_config[node.d][node.get_running_config_name()]['x'] = node.x()
+            self.dynagen.running_config[node.d][node.get_running_config_name()]['y'] = node.y()
+    
         note_nb = 1
         for item in globals.GApp.topology.items():
+            # record clouds
+            if isinstance(item, Cloud):
+                if not self.dynagen.running_config.has_key('GNS3-DATA'):
+                    self.dynagen.running_config['GNS3-DATA'] = {}
+                self.dynagen.running_config['GNS3-DATA']['Cloud ' + item.hostname] = {}
+                config = self.dynagen.running_config['GNS3-DATA']['Cloud ' + item.hostname]
+                config['x'] = item.x()
+                config['y'] = item.y()
+                nios = ''
+                # record nios
+                for nio in item.getInterfaces():
+                    nios = nios + ' ' + nio.lower()
+                if nios:
+                    config['nios'] = nios
+            # record notes
             if isinstance(item , Annotation):
                 if not self.dynagen.running_config.has_key('GNS3-DATA'):
                     self.dynagen.running_config['GNS3-DATA'] = {}
-                config = self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] = {}
+                self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] = {}
+                config = self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] 
                 config['text'] = str(item.toPlainText())
                 config['x'] = item.x()
                 config['y'] = item.y()

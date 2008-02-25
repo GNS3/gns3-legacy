@@ -441,6 +441,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     self.projectConfigs = None
                     self.projectFile = None
                     self.load_netfile(path)
+                    globals.GApp.topology.changed = False
             except IOError, (errno, strerror):
                 QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         

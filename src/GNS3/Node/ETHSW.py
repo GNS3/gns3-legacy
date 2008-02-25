@@ -21,7 +21,7 @@
 
 from GNS3.Node.AbstractNode import AbstractNode
 from PyQt4 import QtCore, QtGui
-from GNS3.Utils import translate
+from GNS3.Utils import translate, debug
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Globals as globals 
@@ -172,12 +172,15 @@ class ETHSW(AbstractNode):
         for (vlan, portlist) in self.config['vlans'].iteritems():
             for port in portlist:
                 if port in connected_interfaces:
-                    (destnode, destinterface)= self.getConnectedNeighbor(str(port))
-                    porttype = self.config['ports'][port]
-                    if destinterface.lower()[:3] == 'nio':
-                        self.dynagen.ethsw_map(self.ethsw, port, porttype + ' ' + str(vlan) + ' ' + destinterface)
-                    else:
-                        self.dynagen.ethsw_map(self.ethsw, port, porttype + ' ' + str(vlan))
+                    if not self.ethsw.mapping.has_key(port):
+                        (destnode, destinterface)= self.getConnectedNeighbor(str(port))
+                        porttype = self.config['ports'][port]
+                        if destinterface.lower()[:3] == 'nio':
+                            debug("ethsw_map: " + str(port) + ' to ' + porttype + ' ' + str(vlan) + ' ' + destinterface)
+                            self.dynagen.ethsw_map(self.ethsw, port, porttype + ' ' + str(vlan) + ' ' + destinterface)
+                        else:
+                            debug("ethsw_map: " + str(port) + ' to ' + porttype + ' ' + str(vlan))
+                            self.dynagen.ethsw_map(self.ethsw, port, porttype + ' ' + str(vlan))
 
         self.startupInterfaces()
         self.state = 'running'

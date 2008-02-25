@@ -22,9 +22,9 @@
 import sys, os, traceback
 
 try:
-    from PyQt4 import QtCore,  QtGui
+    from PyQt4 import QtCore, QtGui
 except ImportError:
-    sys.stderr.write("PyQt is not installed, please see the README\n")
+    sys.stderr.write("Can't import Qt modules, PyQt is probably not installed ...\n")
     sys.exit(False)
 
 if QtCore.QT_VERSION < 0x040300:

@@ -47,7 +47,7 @@ class Topology(QtGui.QGraphicsScene):
         self.changed = False
 
         QtGui.QGraphicsScene.__init__(self, parent)
-        self.setSceneRect(-300, -300, 600, 600)
+        self.setSceneRect(-250, -250, 500, 500)
 
     def cleanDynagen(self):
         """ Clean all dynagen data
@@ -281,55 +281,57 @@ class Topology(QtGui.QGraphicsScene):
         src_node = globals.GApp.topology.getNode(srcid)
         dst_node = globals.GApp.topology.getNode(dstid)
         
+        # special cases
         if not isinstance(src_node, IOSRouter) and not isinstance(dst_node, IOSRouter):
             if type(src_node) in (ETHSW, ATMSW, FRSW) and not type(dst_node) in (IOSRouter, Cloud) or type(dst_node) in (ETHSW, ATMSW, FRSW) and not type(src_node) in (IOSRouter, Cloud):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "Can't connect switches"))
                 return False
-
-        if not isinstance(src_node, IOSRouter) and not isinstance(src_node, Cloud):
-            if isinstance(dst_node, Cloud) and isinstance(src_node, ETHSW):
-                debug('Allocate an hypervisor for ' + src_node.hostname)
-                if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(src_node):
-                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
-                    return False
-                else:
+            elif isinstance(dst_node, Cloud) and isinstance(src_node, ETHSW):
+                if not src_node.hypervisor:
+                    debug('Allocate an hypervisor for ethsw ' + src_node.hostname)
+                    if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(src_node):
+                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "You have to connect at least one router to the switch"))
+                        return False
                     src_node.get_dynagen_device()
-            elif not src_node.hypervisor:
-                src_node.set_hypervisor(dst_node.hypervisor)
-        elif not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, Cloud):
-            if isinstance(src_node, Cloud) and isinstance(dst_node, ETHSW):
-                debug('Allocate an hypervisor for ' + dst_node.hostname)
-                if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(dst_node):
-                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
-                    return False
-                else:
+            elif isinstance(src_node, Cloud) and isinstance(dst_node, ETHSW):
+                if not dst_node.hypervisor:
+                    debug('Allocate an hypervisor for ethsw ' + dst_node.hostname)
+                    if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(dst_node):
+                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "You have to connect at least one router to the switch"))
+                        return False
                     dst_node.get_dynagen_device()
-            elif not dst_node.hypervisor:
+        else:
+            if not isinstance(src_node, IOSRouter) and not isinstance(src_node, Cloud) and not src_node.hypervisor:
+                debug('Set hypervisor ' + dst_node.hypervisor.host + ':' + str(dst_node.hypervisor.port) + ' to ' + src_node.hostname)
+                src_node.set_hypervisor(dst_node.hypervisor)
+            elif not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, Cloud) and not dst_node.hypervisor:
+                debug('Set hypervisor ' + src_node.hypervisor.host + ':' + str(src_node.hypervisor.port) + ' to ' + dst_node.hostname)
                 dst_node.set_hypervisor(src_node.hypervisor)
 
         try:
             if isinstance(src_node, IOSRouter):
                 srcdev = self.__nodes[srcid].get_dynagen_device()
                 if type(dst_node) == Cloud:
-                    self.dynagen.connect(srcdev, srcif, dstif)
                     debug('Connect link from ' + srcdev.name + ' ' + srcif +' to ' + dstif)
+                    self.dynagen.connect(srcdev, srcif, dstif)
                 else:
                     dstdev = dst_node.get_dynagen_device()
-                    self.dynagen.connect(srcdev, srcif, dstdev.name + ' ' + dstif)
                     debug('Connect link from ' + srcdev.name + ' ' + srcif +' to ' + dstdev.name + ' ' + dstif)
+                    self.dynagen.connect(srcdev, srcif, dstdev.name + ' ' + dstif)
             elif isinstance(dst_node, IOSRouter):
                 dstdev = dst_node.get_dynagen_device()
                 if type(src_node) == Cloud:
-                    self.dynagen.connect(dstdev, dstif, srcif)
                     debug('Connect link from ' + dstdev.name + ' ' + srcif +' to ' + dstif)
+                    self.dynagen.connect(dstdev, dstif, srcif)
                 else:
                     srcdev = src_node.get_dynagen_device()
-                    self.dynagen.connect(dstdev, dstif, srcdev.name + ' ' + srcif)
                     debug('Connect link from ' + dstdev.name + ' ' + srcif +' to ' + srcdev.name + ' ' + dstif)
+                    self.dynagen.connect(dstdev, dstif, srcdev.name + ' ' + srcif)
+
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
             return False
-            
+
         self.recordLink(srcid, srcif, dstid, dstif)
 
         try:
@@ -345,7 +347,7 @@ class Topology(QtGui.QGraphicsScene):
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
             return False
-        
+
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
         self.dynagen.update_running_config()
         self.changed = True

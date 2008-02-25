@@ -246,7 +246,9 @@ class HypervisorManager:
             break
         if connection_success:
             s.close()
+            proc.close()
             return True
+        proc.close()
         return False
 
     def showHypervisors(self):
