@@ -104,6 +104,7 @@ class ATMSW(AbstractNode):
         """
         
         self.config = config
+        globals.GApp.topology.changed = True
         
     def set_hypervisor(self,  hypervisor):
         """ Records an hypervisor

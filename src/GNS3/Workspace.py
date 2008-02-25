@@ -455,6 +455,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             net = netfile.NETFile()
             globals.GApp.scene.resetMatrix()
             net.export_net_file(self.projectFile)
+            globals.GApp.topology.changed = False
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         
@@ -475,17 +476,15 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 net = netfile.NETFile()
                 globals.GApp.scene.resetMatrix()
                 net.export_net_file(path)
+                globals.GApp.topology.changed = False
 
     def closeEvent(self, event):
         """ Ask to close GNS3
         """
         
-        if len(globals.GApp.topology.nodes):
-            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Are you sure to quit?"), 
+        if len(globals.GApp.topology.nodes) and globals.GApp.topology.changed == True:
+            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the topology before you quit?"), 
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-            #TODO: optionnal
             if reply == QtGui.QMessageBox.Yes:
-                globals.GApp.topology.clear()
-                event.accept()
-            else:
-                event.ignore()
+                self.__action_Save()
+        event.accept()

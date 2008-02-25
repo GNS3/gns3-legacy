@@ -31,7 +31,9 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
         """ Initilize a preferences dialog
         """
 
-        #FIXME: Capture is not translated
+        # force the translation of Capture
+        translate('PreferencesDialog', 'Capture')
+
         self.__prefsList = [
                         'General',
                         'Dynamips',

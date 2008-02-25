@@ -3,12 +3,12 @@
 <context>
     <name>ATMSW</name>
     <message>
-        <location filename="../Node/ATMSW.py" line="203"/>
+        <location filename="../Node/ATMSW.py" line="206"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
     <message>
-        <location filename="../Node/ATMSW.py" line="203"/>
+        <location filename="../Node/ATMSW.py" line="206"/>
         <source>No port available</source>
         <translation>Kein Port verfügbar</translation>
     </message>
@@ -84,36 +84,17 @@
         <translation>&amp;Über</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="111"/>
+        <location filename="../Ui/Form_About.py" line="120"/>
         <source>&amp;Thanks to</source>
         <translation>&amp;Danke an</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="110"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alexander H. Hackenberg from Vienna, Austria &lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Erik Wenzel from Germany&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mike Fuszner vom St. Charles Community College, Cottleville, Missouri, USA&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Greg Anuzelli aus Philadelphia, Pennsylvania, USA&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Christophe Fillot von der Technischen Universität aus Compiegne, France&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alexander H. Hackenberg aus Wien, Österreich&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Erik Wenzel aus Berlin, Germany&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_About.py" line="398"/>
+        <location filename="../Ui/Form_About.py" line="407"/>
         <source>&amp;License Agreement</source>
         <translation>&amp;Lizenzvereinbarung</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="397"/>
+        <location filename="../Ui/Form_About.py" line="406"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -723,6 +704,27 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;contact@gns3.net&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;www.gns3.net&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
+    <message>
+        <location filename="../Ui/Form_About.py" line="119"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alexander H. Hackenberg from Vienna, Austria&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Erik Wenzel from Germany: German translation&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Huan Ji from Wuhan, China: Chinese translation&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jose Sen from Buenos Aires, Argentina: Spanish translation&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mark Soe Min from Tokyo, Japan: Japanese translation&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aboulgasem Albusaifi from Tarabulus, Libya: Arabic translation&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Marcio de Freitas Minicz from Sao Jose dos Campos, SP, Brazil: Brazilian-Portuguese translation &lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hasan Agirol Aksoy from Antalya, Turkey: Turkish translation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AbstractEdge</name>
@@ -838,12 +840,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Cloud</name>
     <message>
-        <location filename="../Node/Cloud.py" line="107"/>
+        <location filename="../Node/Cloud.py" line="108"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
     <message>
-        <location filename="../Node/Cloud.py" line="107"/>
+        <location filename="../Node/Cloud.py" line="108"/>
         <source>No NIO available</source>
         <translation>Kein NIO verfügbar</translation>
     </message>
@@ -1056,12 +1058,12 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="194"/>
+        <location filename="../Node/ETHSW.py" line="197"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="194"/>
+        <location filename="../Node/ETHSW.py" line="197"/>
         <source>No port available</source>
         <translation>Kein Port verfügbar</translation>
     </message>
@@ -1137,12 +1139,12 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>FRSW</name>
     <message>
-        <location filename="../Node/FRSW.py" line="190"/>
+        <location filename="../Node/FRSW.py" line="193"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
     <message>
-        <location filename="../Node/FRSW.py" line="190"/>
+        <location filename="../Node/FRSW.py" line="193"/>
         <source>No port available</source>
         <translation>Kein Port verfügbar</translation>
     </message>
@@ -1420,22 +1422,22 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="535"/>
+        <location filename="../Node/IOSRouter.py" line="538"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="535"/>
+        <location filename="../Node/IOSRouter.py" line="538"/>
         <source>No interface available</source>
         <translation>Kein Interface verfügbar</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="220"/>
+        <location filename="../Node/IOSRouter.py" line="222"/>
         <source>Slots</source>
         <translation>Slots</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="220"/>
+        <location filename="../Node/IOSRouter.py" line="222"/>
         <source>You have to restart this router to use new modules</source>
         <translation>Der Router muss neugestartet werden um die neuen Module benutzen zu können</translation>
     </message>
@@ -1954,39 +1956,44 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="263"/>
+        <location filename="../NETFile.py" line="267"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="263"/>
+        <location filename="../NETFile.py" line="267"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Bitte konfiguriere den Pfad zu Dyamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="409"/>
+        <location filename="../NETFile.py" line="470"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="412"/>
+        <location filename="../NETFile.py" line="473"/>
         <source>Dynamips warning</source>
         <translation>Warnung von Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="286"/>
+        <location filename="../NETFile.py" line="289"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Ausnahmebehandlungentdeckt, stoppe den Import...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="419"/>
+        <location filename="../NETFile.py" line="480"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportiere die Konfiguration von %s nach %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="426"/>
+        <location filename="../NETFile.py" line="487"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: EA Fehler: %s</translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="289"/>
+        <source>Importation</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2172,6 +2179,11 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <source>Applications</source>
         <translation>Anwendungen</translation>
     </message>
+    <message>
+        <location filename="../Config/Preferences.py" line="37"/>
+        <source>Capture</source>
+        <translation type="unfinished">Mitschneiden</translation>
+    </message>
 </context>
 <context>
     <name>PreferencesDynamips</name>
@@ -2327,11 +2339,6 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Konfiguriere</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="103"/>
-        <source>Change hostname</source>
-        <translation>Namen des Hosts ändern</translation>
-    </message>
-    <message>
         <location filename="../Scene.py" line="121"/>
         <source>Console</source>
         <translation>Konsole</translation>
@@ -2350,11 +2357,6 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <location filename="../Scene.py" line="141"/>
         <source>Suspend</source>
         <translation>Suspendieren</translation>
-    </message>
-    <message>
-        <location filename="../Scene.py" line="108"/>
-        <source>Show hostname</source>
-        <translation>Zeige Hostname</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="126"/>
@@ -2402,72 +2404,72 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>IDLE PC Wert wird errechnet, bitte warten</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="198"/>
-        <source>Yes</source>
-        <translation type="obsolete">Ja</translation>
+        <location filename="../Scene.py" line="103"/>
+        <source>Change the hostname</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="198"/>
-        <source>No</source>
-        <translation type="obsolete">Nein</translation>
+        <location filename="../Scene.py" line="108"/>
+        <source>Show/Hide the hostname</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="201"/>
+        <location filename="../Topology.py" line="199"/>
         <source>IOS image</source>
         <translation>IOS-Image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="179"/>
+        <location filename="../Topology.py" line="178"/>
         <source>Please register at least one IOS image</source>
         <translation>Bitte mindestens ein IOS-Image angeben</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="212"/>
+        <location filename="../Topology.py" line="213"/>
         <source>Hypervisor</source>
         <translation>Hypervisor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="212"/>
+        <location filename="../Topology.py" line="213"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Bitte den Pfad zu Dyamips konfigurieren</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="376"/>
+        <location filename="../Topology.py" line="380"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="236"/>
+        <location filename="../Topology.py" line="237"/>
         <source>Connection lost</source>
         <translation>Verbindung verloren</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="283"/>
+        <location filename="../Topology.py" line="286"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="283"/>
+        <location filename="../Topology.py" line="286"/>
         <source>Can&apos;t connect switches</source>
         <translation>Kann Switche nicht verbinden</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="133"/>
+        <location filename="../Topology.py" line="132"/>
         <source>Can&apos;t connect to the external hypervisor on %s</source>
         <translation>Kann nicht zu dem externen Hypervisor auf %s verbinden</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="190"/>
+        <location filename="../Topology.py" line="189"/>
         <source>No image for platform %s</source>
         <translation>Kein IOS-Image für Plattform %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="202"/>
-        <source>Please configure a default image for this platform %s</source>
-        <translation>Konfiguriere ein Standard-Image für die Plattform %s</translation>
+        <location filename="../Topology.py" line="200"/>
+        <source>Please choose an image</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2528,27 +2530,27 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Zeige Hostnamen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="436"/>
+        <location filename="../Workspace.py" line="434"/>
         <source>Open a file</source>
         <translation>Öffne eine Datei</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="432"/>
+        <location filename="../Workspace.py" line="430"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Der Pfad zu Dynamips muss konfiguriert sein</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="467"/>
+        <location filename="../Workspace.py" line="466"/>
         <source>Save Project As</source>
         <translation>Speichere Projekt als</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="415"/>
+        <location filename="../Workspace.py" line="414"/>
         <source>New Project</source>
         <translation>Neues Projekt</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="485"/>
+        <location filename="../Workspace.py" line="486"/>
         <source>Message</source>
         <translation>Nachricht</translation>
     </message>
@@ -2568,29 +2570,9 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="400"/>
-        <source>File loaded...</source>
-        <translation>Datei lädt...</translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="415"/>
+        <location filename="../Workspace.py" line="414"/>
         <source>Can&apos;t create a project</source>
         <translation>Kann ein Projekt nicht anlegen</translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="425"/>
-        <source>Project loaded...</source>
-        <translation>Project lädt...</translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="459"/>
-        <source>File saved...</source>
-        <translation>Datei gespeichert...</translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="485"/>
-        <source>Are you sure to quit?</source>
-        <translation>Sicher, dass das Programm beendet werden soll?</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="393"/>
@@ -2599,13 +2581,8 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="486"/>
-        <source>Yes</source>
-        <translation type="obsolete">Ja</translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="486"/>
-        <source>No</source>
-        <translation type="obsolete">Nein</translation>
+        <source>Would you like to save the topology before you quit?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

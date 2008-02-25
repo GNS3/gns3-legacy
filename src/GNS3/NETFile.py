@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import os, random, time, base64
+import os, re, random, time, base64
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Dynagen.dynamips_lib as lib
@@ -30,11 +30,16 @@ from Annotation import Annotation
 from GNS3.Config.Objects import iosImageConf
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Objects import iosImageConf, hypervisorConf
-from GNS3.Node.IOSRouter import IOSRouter
-from GNS3.Node.ATMSW import ATMSW
-from GNS3.Node.ETHSW import ETHSW
-from GNS3.Node.FRSW import FRSW
+from GNS3.Node.IOSRouter import IOSRouter, init_router_id
+from GNS3.Node.ATMSW import ATMSW, init_atmsw_id
+from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
+from GNS3.Node.FRSW import FRSW, init_frsw_id
 from GNS3.Node.Cloud import Cloud
+
+router_hostname_re = re.compile(r"""^R([0-9]+)""")
+ethsw_hostname_re = re.compile(r"""^SW([0-9]+)""")
+frsw_hostname_re = re.compile(r"""^FR([0-9]+)""")
+atmsw_hostname_re = re.compile(r"""^ATM([0-9]+)""")
 
 class NETFile(object):
     """ NETFile implementing the .net file import/export
@@ -294,6 +299,10 @@ class NETFile(object):
         self.dynagen.devices.clear()
         connection_list = []
         config_dir = None
+        max_router_id = -1
+        max_ethsw_id = -1
+        max_frsw_id = -1
+        max_atmsw_id = -1
         for (devicename, device) in devices.iteritems():
             self.dynagen.devices[device.name] = device
 
@@ -309,6 +318,11 @@ class NETFile(object):
                 self.populate_connection_list(device, connection_list)
                 if not config_dir and device.cnfg:
                     config_dir = os.path.dirname(device.cnfg)
+                match_obj = router_hostname_re.match(node.hostname)
+                if match_obj:
+                    id = int(match_obj.group(1))
+                    if id > max_router_id:
+                        max_router_id = id
 
             elif isinstance(device, lib.ETHSW):
 
@@ -334,6 +348,11 @@ class NETFile(object):
                         cloud.startNode()
                 node.set_config(config)
                 node.set_hypervisor(device.dynamips)
+                match_obj = ethsw_hostname_re.match(node.hostname)
+                if match_obj:
+                    id = int(match_obj.group(1))
+                    if id > max_ethsw_id:
+                        max_ethsw_id = id
         
             elif isinstance(device, lib.FRSW):
                 
@@ -354,6 +373,11 @@ class NETFile(object):
                 self.configure_node(node, device)
                 node.set_config(config)
                 node.set_hypervisor(device.dynamips)
+                match_obj = frsw_hostname_re.match(node.hostname)
+                if match_obj:
+                    id = int(match_obj.group(1))
+                    if id > max_frsw_id:
+                        max_frsw_id = id
                 
             elif isinstance(device, lib.ATMSW):
                 
@@ -382,8 +406,23 @@ class NETFile(object):
                 self.configure_node(node, device)
                 node.set_config(config)
                 node.set_hypervisor(device.dynamips)
+                match_obj = atmsw_hostname_re.match(node.hostname)
+                if match_obj:
+                    id = int(match_obj.group(1))
+                    if id > max_atmsw_id:
+                        max_atmsw_id = id
 
             globals.GApp.topology.addItem(node)
+
+        # update next IDs for nodes
+        if max_router_id != -1:
+            init_router_id(max_router_id + 1)
+        if max_ethsw_id != -1:
+            init_ethsw_id(max_ethsw_id + 1)
+        if max_frsw_id != -1:
+            init_frsw_id(max_frsw_id + 1)
+        if max_atmsw_id != -1:
+            init_atmsw_id(max_atmsw_id + 1)
 
         # update current hypervisor base port and base UDP
         base_udp = 0

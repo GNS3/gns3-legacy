@@ -66,6 +66,7 @@ class Cloud(AbstractNode):
         """
     
         self.config = config
+        globals.GApp.topology.changed = True
 
     def getInterfaces(self):
         """ Return all interfaces

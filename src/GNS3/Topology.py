@@ -44,6 +44,7 @@ class Topology(QtGui.QGraphicsScene):
         self.node_baseid = 0
         self.link_baseid = 0
         self.dynagen = globals.GApp.dynagen
+        self.changed = False
 
         QtGui.QGraphicsScene.__init__(self, parent)
         self.setSceneRect(-300, -300, 600, 600)
@@ -236,6 +237,7 @@ class Topology(QtGui.QGraphicsScene):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"), translate("Topology", "Connection lost"))
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
         debug("Running config: " + str(self.dynagen.running_config))
+        self.changed = True
         return
 
     def deleteNode(self, id):
@@ -256,6 +258,7 @@ class Topology(QtGui.QGraphicsScene):
         # Forcing to clear the QPixmapCache on node delete.
         # FIXME: in Qt 4.4
         QtGui.QPixmapCache.clear()
+        self.changed = True
    
     def recordLink(self, srcid, srcif, dstid, dstif):
         """ Record the link in the topology
@@ -345,6 +348,7 @@ class Topology(QtGui.QGraphicsScene):
         
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
         self.dynagen.update_running_config()
+        self.changed = True
         return True
  
     def deleteLink(self, link):
@@ -388,3 +392,4 @@ class Topology(QtGui.QGraphicsScene):
             self.removeItem(link)
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
         self.dynagen.update_running_config()
+        self.changed = True

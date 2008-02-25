@@ -234,6 +234,7 @@ class IOSRouter(AbstractNode):
         self.dynagen.update_running_config()
         self.running_config =  self.dynagen.running_config[self.d][self.r]
         debug("Node " + self.hostname + ": running config: " + str(self.running_config))
+        globals.GApp.topology.changed = True
 
     def get_platform(self):
         """ Returns router platform
