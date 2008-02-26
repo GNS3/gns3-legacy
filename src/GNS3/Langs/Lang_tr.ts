@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1">
+<!DOCTYPE TS><TS version="1.1" language="tr">
 <context>
     <name>ATMSW</name>
     <message>
@@ -381,7 +381,8 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;POSSIBILITY OF SUCH DAMAGES.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;END OF TERMS AND CONDITIONS&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)
+        <translation>
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)
 p, li { white-space: pre-wrap; }(new line)
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright (c) 2007 GNS3 Team&lt;/p&gt;
@@ -686,9 +687,9 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;contact@gns3.net&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;www.gns3.net&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)
-p, li { white-space: pre-wrap; }(new line)
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;(new line)
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;GNS3 0.3.2 beta&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;EPITECH end of studies &lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;project (www.epitech.net)&lt;/p&gt;
@@ -701,7 +702,7 @@ p, li { white-space: pre-wrap; }(new line)
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;David Ruiz&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;contact@gns3.net&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;www.gns3.net&lt;/p&gt;&lt;/body&gt;&lt;/html&gt; {1&quot;?} {9p?} {400;?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {12p?} {600;?} {3 0.4 ?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {600;?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {600;?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {600;?} {2 ?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {600;?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {600;?} {400;?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {3.?} {0p?} {0p?} {0p?} {0p?} {0;?} {0p?} {3.?}</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;www.gns3.net&lt;/p&gt;&lt;/body&gt;&lt;/html&gt; </translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="119"/>
@@ -730,67 +731,67 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="165"/>
         <source>Delete</source>
-        <translation type="unfinished">Sil</translation>
+        <translation>Sil</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="169"/>
         <source>Stop the capture</source>
-        <translation type="unfinished"></translation>
+        <translation>Yakalamayı bırak</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="171"/>
         <source>Start Wireshark</source>
-        <translation type="unfinished"></translation>
+        <translation>Wireshark&apos;ı başlat</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="282"/>
         <source>Capture</source>
-        <translation type="unfinished"></translation>
+        <translation>Yakala</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="187"/>
         <source>Packet capture is not supported on this link type</source>
-        <translation type="unfinished"></translation>
+        <translation>Link tipi paket yakalamayı desteklemiyor</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="211"/>
         <source>Please choose a source</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen kaynağı seçin</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="213"/>
         <source>No device available for traffic capture</source>
-        <translation type="unfinished"></translation>
+        <translation>Trafik yakalamak için kullanılabilir cihaz yok</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="264"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips hatası</translation>
+        <translation>Dynamips hatası</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="259"/>
         <source>Capture stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Yakalama durdu</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="274"/>
         <source>Please configure capture options</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen yakalama ayarlarını yapın</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="131"/>
         <source>Link: %s (%s) -&gt; %s (%s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bağlantı: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="220"/>
         <source>Device %s is not running</source>
-        <translation type="unfinished"></translation>
+        <translation> %s cihazı çalışmıyor</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="282"/>
         <source>Cannot start %s : %s</source>
-        <translation type="unfinished"></translation>
+        <translation>%s : %s başlatılamadı</translation>
     </message>
 </context>
 <context>
@@ -798,12 +799,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="80"/>
         <source>Change hostname</source>
-        <translation>Hostname&apos;i değiştir</translation>
+        <translation>Host adını değiştir</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="81"/>
         <source>Hostname:</source>
-        <translation>Hostname:</translation>
+        <translation>Host adı:</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="222"/>
@@ -823,17 +824,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="87"/>
         <source>Hostname</source>
-        <translation>Hostname</translation>
+        <translation>Host adı</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="87"/>
         <source>Hostname already used</source>
-        <translation>Hostname kullanılmakta</translation>
+        <translation>Host adı kullanılmakta</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="166"/>
         <source>Hostname: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Host adı: %s</translation>
     </message>
 </context>
 <context>
@@ -952,90 +953,91 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Console.py" line="203"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips hatası</translation>
+        <translation>Dynamips hatası</translation>
     </message>
     <message>
         <location filename="../Console.py" line="201"/>
         <source>Dynamips warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Dynamips uyarısı</translation>
     </message>
     <message>
         <location filename="../Console.py" line="203"/>
         <source>Connection lost</source>
-        <translation type="unfinished">Bağlantı koptu</translation>
+        <translation>Bağlantı koptu</translation>
     </message>
     <message>
         <location filename="../Console.py" line="268"/>
         <source>Sorry, not implemented in GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>Üzgünüz, istetğiniz GNS3 &apos;te yerine getirilemedi</translation>
     </message>
     <message>
         <location filename="../Console.py" line="278"/>
         <source>Please wait while gathering statistics...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen bekleyin istatistikler toplanıyor...</translation>
     </message>
     <message>
         <location filename="../Console.py" line="303"/>
         <source>No idlepc values found</source>
-        <translation type="unfinished"></translation>
+        <translation>Idlepc değeri bulunamadı</translation>
     </message>
     <message>
         <location filename="../Console.py" line="315"/>
         <source>No changes made</source>
-        <translation type="unfinished"></translation>
+        <translation>Değişiklik yapılmadı</translation>
     </message>
     <message>
         <location filename="../Console.py" line="328"/>
         <source>Can&apos;t apply idlepc value</source>
-        <translation type="unfinished"></translation>
+        <translation>Idlepc değeri uygulanamadı</translation>
     </message>
     <message>
         <location filename="../Console.py" line="333"/>
         <source>Incorrect number of paramaters or invalid parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>Parametreler geçersiz ya da yanlış</translation>
     </message>
     <message>
         <location filename="../Console.py" line="346"/>
         <source>You have to save your topology before using save</source>
-        <translation type="unfinished"></translation>
+        <translation>Topolojiyi kaydetmeden önce kayıt yapmalısınız</translation>
     </message>
     <message>
         <location filename="../Console.py" line="354"/>
         <source>You have to save your topology before using push</source>
-        <translation type="unfinished"></translation>
+        <translation>Topolojiyi kaydetmeden önce başlatın</translation>
     </message>
     <message>
         <location filename="../Console.py" line="396"/>
         <source>Destination directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Hedef dizin</translation>
     </message>
     <message>
         <location filename="../Console.py" line="397"/>
         <source>The directory already exists. Ok to overwrite (Y/N)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Böyle bir dizin zaten var. Üzerine yazmak istiyormusunuz (Y/N)?</translation>
     </message>
     <message>
         <location filename="../Console.py" line="274"/>
         <source>%s already has an idlepc value applied.</source>
-        <translation type="unfinished"></translation>
+        <translation>%s için idlepc değeri atandı..</translation>
     </message>
     <message>
         <location filename="../Console.py" line="304"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;
 Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Potansiyel olarak &apos;*&apos; işaretli olanlar daha iyidir
+Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmaması için enter tuşuna basın :</translation>
     </message>
     <message>
         <location filename="../Console.py" line="319"/>
         <source>Applied idlepc value %s to %s
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Bu idlepc değeri %s buna %s uygulandı</translation>
     </message>
     <message>
         <location filename="../Console.py" line="335"/>
         <source>Unknown device: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Bilinmeyen cihaz: %s</translation>
     </message>
 </context>
 <context>
@@ -1043,23 +1045,23 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../DynagenSub.py" line="61"/>
         <source>Starting hypervisors ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Hipervizörler başlatılıyor ...</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="61"/>
         <source>Abort</source>
-        <translation type="unfinished">İptal et</translation>
+        <translation>Yarıda bırak</translation>
     </message>
 </context>
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="197"/>
+        <location filename="../Node/ETHSW.py" line="200"/>
         <source>Connection</source>
         <translation>Bağlantı</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="197"/>
+        <location filename="../Node/ETHSW.py" line="200"/>
         <source>No port available</source>
         <translation>Kullanılabilir port yok</translation>
     </message>
@@ -1094,7 +1096,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="91"/>
         <source>access</source>
-        <translation>erişim</translation>
+        <translation>access</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="96"/>
@@ -1198,7 +1200,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Node/Hub.py" line="108"/>
         <source>Connection</source>
-        <translation>Bağlant</translation>
+        <translation>Bağlantı</translation>
     </message>
     <message>
         <location filename="../Node/Hub.py" line="108"/>
@@ -1229,27 +1231,27 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../HypervisorManager.py" line="107"/>
         <source>Abort</source>
-        <translation>İptal et</translation>
+        <translation>Yarıda bırak</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="71"/>
         <source>Hypervisor already running on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Hipervizör şu an %i portu üzerinde çalışmakta</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="82"/>
         <source>Can&apos;t start Dynamips on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Dynamips %i portu üzerinde başlatılamadı</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="106"/>
         <source>Connecting to an hypervisor on port %i ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Hipervizör&apos;e %i portu üzerinden bağlanılıyor...</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="133"/>
         <source>Can&apos;t connect to the hypervisor on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Hipervizör&apos;e %i portu üzerinden bağlanılamadı</translation>
     </message>
 </context>
 <context>
@@ -1287,7 +1289,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="300"/>
         <source>Image file :</source>
-        <translation>imaj dosyası :</translation>
+        <translation>İmaj dosyası :</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="319"/>
@@ -1392,27 +1394,27 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="298"/>
         <source>Model/Chassis</source>
-        <translation type="unfinished"></translation>
+        <translation>Model/İskelet</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="303"/>
         <source>Model:</source>
-        <translation type="unfinished"></translation>
+        <translation>Model:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="305"/>
         <source>Default image for this platform</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu platform için varsayılan imaj</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="250"/>
         <source>There is already a default image for this platform</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu platform için varsayılan imaj bulunmakta</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="165"/>
         <source>Can&apos;t open file: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>%s : Bu dosya açılamıyor</translation>
     </message>
 </context>
 <context>
@@ -1430,12 +1432,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Node/IOSRouter.py" line="222"/>
         <source>Slots</source>
-        <translation type="unfinished">Yuvalar</translation>
+        <translation>Yuvalar</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="222"/>
         <source>You have to restart this router to use new modules</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni modülleri kullanmak için router&apos;a restart atın</translation>
     </message>
 </context>
 <context>
@@ -1588,47 +1590,47 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="29"/>
         <source>Platform:</source>
-        <translation type="unfinished">Platform:</translation>
+        <translation>Platform:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="43"/>
         <source>Model:</source>
-        <translation type="unfinished"></translation>
+        <translation>Model:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="215"/>
         <source>KB</source>
-        <translation type="unfinished"></translation>
+        <translation>KB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="309"/>
         <source>Adapters</source>
-        <translation type="unfinished"></translation>
+        <translation>Adaptörler</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="430"/>
         <source>WICs</source>
-        <translation type="unfinished"></translation>
+        <translation>Wic&apos;lar</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="442"/>
         <source>wic0:</source>
-        <translation type="unfinished"></translation>
+        <translation>wic0:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="458"/>
         <source>wic1:</source>
-        <translation type="unfinished"></translation>
+        <translation>wic1:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="474"/>
         <source>wic2:</source>
-        <translation type="unfinished"></translation>
+        <translation>wic2:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="507"/>
         <source>Confreg:</source>
-        <translation type="unfinished"></translation>
+        <translation>Confreg:</translation>
     </message>
 </context>
 <context>
@@ -1776,7 +1778,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="349"/>
         <source>Show hostnames</source>
-        <translation>Host isimlerini göster</translation>
+        <translation>Host adlarını göster</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="351"/>
@@ -1901,93 +1903,93 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="326"/>
         <source>toolBar</source>
-        <translation type="unfinished"></translation>
+        <translation>Araç çubuğu</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="331"/>
         <source>Open network file</source>
-        <translation type="unfinished"></translation>
+        <translation>Network dosyasını aç</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="334"/>
         <source>Save network file</source>
-        <translation type="unfinished"></translation>
+        <translation>Network dosyasını kaydet</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="348"/>
         <source>Show the hostnames</source>
-        <translation type="unfinished"></translation>
+        <translation>Host adlarını göster</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="350"/>
         <source>Telnet to all IOS</source>
-        <translation type="unfinished"></translation>
+        <translation>Bütün IOS&apos;lara telnet at</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="354"/>
         <source>Save network file as</source>
-        <translation type="unfinished"></translation>
+        <translation>Network dosyasını farklı kaydet</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="374"/>
         <source>Clear the topology</source>
-        <translation type="unfinished"></translation>
+        <translation>Topolojiyi sil</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="375"/>
         <source>Add a note</source>
-        <translation type="unfinished"></translation>
+        <translation>Not ekle</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="376"/>
         <source>&amp;New Project</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Yeni Proje</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="378"/>
         <source>New Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni Proje</translation>
     </message>
 </context>
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="267"/>
+        <location filename="../NETFile.py" line="283"/>
         <source>Save</source>
         <translation>Kaydet</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="267"/>
+        <location filename="../NETFile.py" line="283"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Lütfen Dynamips&apos;in yolunu ayarlayınız</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="470"/>
+        <location filename="../NETFile.py" line="483"/>
         <source>Dynamips error</source>
         <translation>Dynamips hatası</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="473"/>
+        <location filename="../NETFile.py" line="486"/>
         <source>Dynamips warning</source>
         <translation>Dynamips tehlikesi</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="289"/>
+        <location filename="../NETFile.py" line="305"/>
         <source>Exception detected, stopping importation...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sorun bulundu, içeri aktarma durdu...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="480"/>
+        <location filename="../NETFile.py" line="493"/>
         <source>Exporting %s configuration to %s</source>
-        <translation type="unfinished"></translation>
+        <translation>%s dışa aktarım ayarları şuraya %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="487"/>
+        <location filename="../NETFile.py" line="500"/>
         <source>%s: IO Error: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: IO Hata: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="289"/>
+        <location filename="../NETFile.py" line="305"/>
         <source>Importation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1997,32 +1999,32 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_NewProject.py" line="63"/>
         <source>New Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni Proje</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="64"/>
         <source>Settings</source>
-        <translation type="unfinished">Ayarlar</translation>
+        <translation>Ayarlar</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="65"/>
         <source>Project file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Proje dosyası:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="66"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="67"/>
         <source>Export router configuration files</source>
-        <translation type="unfinished"></translation>
+        <translation>Router&apos;ın konfigürasyon dosyasını dışa aktar</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="68"/>
         <source>Keep working directory files</source>
-        <translation type="unfinished"></translation>
+        <translation>Çalışma dizinini sakla</translation>
     </message>
 </context>
 <context>
@@ -2030,17 +2032,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../NodeConfigurator.py" line="121"/>
         <source>Frame Relay switches</source>
-        <translation>Frame Relay switch&apos;ler</translation>
+        <translation>Frame Relay switchler</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="124"/>
         <source>Ethernet switches</source>
-        <translation>Ethernet switche&apos;ler</translation>
+        <translation>Ethernet switchler</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="127"/>
         <source>ATM switches</source>
-        <translation>ATM switche&apos;ler</translation>
+        <translation>ATM switchler</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="130"/>
@@ -2060,7 +2062,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../NodeConfigurator.py" line="213"/>
         <source>%s group</source>
-        <translation>%s grup</translation>
+        <translation>%s grubu</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="218"/>
@@ -2086,7 +2088,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <location filename="../Ui/Form_NodeConfigurator.py" line="102"/>
         <source>Please select a node in the list 
 to display the configuration page.</source>
-        <translation>Ayarlama penceresinde görmek için  (new line)
+        <translation>Ayarlama penceresinde görmek için
 lütfen nod seçin.</translation>
     </message>
     <message>
@@ -2097,32 +2099,32 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../NodeConfigurator.py" line="103"/>
         <source>Routers c1700</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="106"/>
         <source>Routers c2600</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="109"/>
         <source>Routers c2691</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="112"/>
         <source>Routers c3600</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="115"/>
         <source>Routers c3700</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="118"/>
         <source>Routers c7200</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -2130,32 +2132,32 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="13"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="19"/>
         <source>Settings</source>
-        <translation type="unfinished">Ayarlar</translation>
+        <translation>Ayarlar</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="28"/>
         <source>Working directory for capture files:</source>
-        <translation type="unfinished"></translation>
+        <translation>Yakalama dosyaları için çalışma dizini:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="38"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="51"/>
         <source>Command to launch Wireshark or a capture file reader:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wireshark veya yakalama dosyası okuyucusu için komut çalıştır:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="61"/>
         <source>Automatically start the command when capturing</source>
-        <translation type="unfinished"></translation>
+        <translation>Yakalama başladığı zaman otomatik olarak komutu başlat</translation>
     </message>
 </context>
 <context>
@@ -2178,7 +2180,7 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../Config/Preferences.py" line="37"/>
         <source>Capture</source>
-        <translation type="unfinished"></translation>
+        <translation>Yakala</translation>
     </message>
 </context>
 <context>
@@ -2246,7 +2248,7 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="228"/>
         <source>Memory usage limit per hypervisor:</source>
-        <translation>Hipervizörü başına hafıza kullanımı limitlendir:</translation>
+        <translation>Hipervizör başına hafıza kullanımı limitlendir:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="248"/>
@@ -2261,17 +2263,17 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="139"/>
         <source>Enable ghost IOS feature</source>
-        <translation type="unfinished"></translation>
+        <translation>Hayalet IOS özelliğini aç</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="149"/>
         <source>Enable mmap feature</source>
-        <translation type="unfinished"></translation>
+        <translation>mmap özelliğini aç</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="159"/>
         <source>Enable sparse memory feature</source>
-        <translation type="unfinished"></translation>
+        <translation>Seyrek bellek özelliğini aç</translation>
     </message>
 </context>
 <context>
@@ -2304,22 +2306,22 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
         <source>Paths</source>
-        <translation type="unfinished"></translation>
+        <translation>Yollar</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="48"/>
         <source>Project directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Proje dizini:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="78"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="68"/>
         <source>IOS directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>IOS dizini:</translation>
     </message>
 </context>
 <context>
@@ -2337,7 +2339,7 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../Scene.py" line="121"/>
         <source>Console</source>
-        <translation>Konsole</translation>
+        <translation>Konsol</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="131"/>
@@ -2357,47 +2359,42 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../Scene.py" line="126"/>
         <source>Idle PC</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Scene.py" line="234"/>
         <source>IDLE PC</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Scene.py" line="186"/>
         <source>Please select only one router</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lütfen tek router seçin</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="227"/>
         <source>No idlepc values found</source>
-        <translation type="unfinished"></translation>
+        <translation>Idlepc değeri bulunamadı</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="230"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Potansiyel olarak &apos;*&apos; işaretli olanlar daha iyidir</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="243"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips hatası</translation>
+        <translation>Dynamips hatası</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="194"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
-        <translation type="unfinished"></translation>
+        <translation>%s için idlepc değeri zaten var, yeni bir tane istiyormusunuz?</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="235"/>
         <source>Applied idlepc value %s to %s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Scene.py" line="175"/>
-        <source>Please wait while calculating an IDLE PC</source>
-        <translation type="unfinished"></translation>
+        <translation>%s idlepc değeri %s için uygulandı</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="103"/>
@@ -2407,6 +2404,11 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../Scene.py" line="108"/>
         <source>Show/Hide the hostname</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="175"/>
+        <source>Please wait while calculating an IDLE PC</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2433,7 +2435,7 @@ lütfen nod seçin.</translation>
         <translation>Lütfen Dynamips&apos;in yolunu ayarlayın</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="380"/>
+        <location filename="../Topology.py" line="382"/>
         <source>Dynamips error</source>
         <translation>Dynamips hatası</translation>
     </message>
@@ -2443,28 +2445,33 @@ lütfen nod seçin.</translation>
         <translation>Bağlantı koptu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="286"/>
+        <location filename="../Topology.py" line="300"/>
         <source>Connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Bağlantı</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="286"/>
+        <location filename="../Topology.py" line="287"/>
         <source>Can&apos;t connect switches</source>
-        <translation type="unfinished"></translation>
+        <translation>Switchlere bağlanılamıyor</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="132"/>
         <source>Can&apos;t connect to the external hypervisor on %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Dış hipervizörden %s cihazına bağlanılamıyor</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="189"/>
         <source>No image for platform %s</source>
-        <translation type="unfinished"></translation>
+        <translation>%s için platform imajı yok</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="200"/>
         <source>Please choose an image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="300"/>
+        <source>You have to connect at least one router to the switch</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2473,7 +2480,7 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../Workspace.py" line="106"/>
         <source>Docks</source>
-        <translation>Havuzlar</translation>
+        <translation>Araçlar</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="327"/>
@@ -2493,7 +2500,7 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../Workspace.py" line="303"/>
         <source>Abort</source>
-        <translation>İptal et</translation>
+        <translation>Yarıda bırak</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="339"/>
@@ -2503,7 +2510,7 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../Workspace.py" line="345"/>
         <source>Stopping nodes ...</source>
-        <translation>Node&apos;lar durduruluyor ...</translation>
+        <translation>Nod&apos;lar durduruluyor ...</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="351"/>
@@ -2536,47 +2543,47 @@ lütfen nod seçin.</translation>
         <translation>Dynamips&apos;in yolunu ayarlayınız</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="466"/>
+        <location filename="../Workspace.py" line="467"/>
         <source>Save Project As</source>
         <translation>Projeyi Farklı Kaydet</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="414"/>
         <source>New Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni Proje</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="486"/>
+        <location filename="../Workspace.py" line="487"/>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Mesaj</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="169"/>
         <source>Are you sure to clear the topology?</source>
-        <translation type="unfinished"></translation>
+        <translation>Topolojiyi silmek istediğinize eminmisiniz?</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="193"/>
         <source>Add a link</source>
-        <translation type="unfinished">Bağlantı ekle</translation>
+        <translation>Bağlantı ekle</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="208"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Vazgeç</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="414"/>
         <source>Can&apos;t create a project</source>
-        <translation type="unfinished"></translation>
+        <translation>Proje oluşturulamadı</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="393"/>
         <source>Invalid file %s</source>
-        <translation type="unfinished"></translation>
+        <translation>%s geçersiz dosya</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="486"/>
+        <location filename="../Workspace.py" line="487"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2586,7 +2593,7 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../Telnet.py" line="41"/>
         <source>Console</source>
-        <translation type="unfinished"></translation>
+        <translation>Konsol</translation>
     </message>
 </context>
 <context>
@@ -2614,42 +2621,42 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="DynamicStrings.py" line="42"/>
         <source>Cloud</source>
-        <translation>Cloud</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="31"/>
         <source>Router c1700</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="32"/>
         <source>Router c2600</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="34"/>
         <source>Router c3600</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="35"/>
         <source>Router c3700</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="36"/>
         <source>Router c7200</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="33"/>
         <source>Router c2691</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="37"/>
         <source>Firewall PIX</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -2657,7 +2664,7 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../Ui/Widget_topologySummaryDock.py" line="95"/>
         <source>%s is connected to %s %s</source>
-        <translation></translation>
+        <translation>%s şuna bağlı %s %s</translation>
     </message>
 </context>
 </TS>

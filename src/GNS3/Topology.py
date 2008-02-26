@@ -361,22 +361,22 @@ class Topology(QtGui.QGraphicsScene):
             if isinstance(link.source, IOSRouter):
                 srcdev = link.source.get_dynagen_device()
                 if type(link.dest) == Cloud:
-                    self.dynagen.disconnect(srcdev, link.srcIf, link.destIf)
                     debug('Disconnect link from ' + srcdev.name + ' ' + link.srcIf +' to ' + link.destIf)
+                    self.dynagen.disconnect(srcdev, link.srcIf, link.destIf)
                 else:
                     dstdev = link.dest.get_dynagen_device()
-                    self.dynagen.disconnect(srcdev, link.srcIf, dstdev.name + ' ' + link.destIf)
                     debug('Disconnect link from ' + srcdev.name + ' ' + link.srcIf +' to ' + dstdev.name + ' ' + link.destIf)
+                    self.dynagen.disconnect(srcdev, link.srcIf, dstdev.name + ' ' + link.destIf)
                 link.source.set_config(link.source.get_config())
             elif isinstance(link.dest, IOSRouter):
                 dstdev = link.dest.get_dynagen_device()
                 if type(link.source) == Cloud:
-                    self.dynagen.disconnect(dstdev, link.destIf, link.srcIf)
                     debug('Disconnect link from ' + dstdev.name + ' ' + link.destIf +' to ' + link.srcIf)
+                    self.dynagen.disconnect(dstdev, link.destIf, link.srcIf)
                 else:
                     srcdev = link.source.get_dynagen_device()
-                    self.dynagen.disconnect(dstdev, link.destIf, srcdev.name + ' ' + link.srcIf)
                     debug('Disconnect link from ' + dstdev.name + ' ' + link.destIf +' to ' + srcdev.name + ' ' + link.srcIf)
+                    self.dynagen.disconnect(dstdev, link.destIf, srcdev.name + ' ' + link.srcIf)
                 link.dest.set_config(link.dest.get_config())
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))

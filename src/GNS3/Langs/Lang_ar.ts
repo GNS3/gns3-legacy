@@ -754,12 +754,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="197"/>
+        <location filename="../Node/ETHSW.py" line="200"/>
         <source>Connection</source>
         <translation type="unfinished">توصيل</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="197"/>
+        <location filename="../Node/ETHSW.py" line="200"/>
         <source>No port available</source>
         <translation type="unfinished">عدم توفر منفذ</translation>
     </message>
@@ -1652,42 +1652,42 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="267"/>
+        <location filename="../NETFile.py" line="283"/>
         <source>Save</source>
         <translation type="unfinished">حفظ</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="267"/>
+        <location filename="../NETFile.py" line="283"/>
         <source>Please configure the path to Dynamips</source>
         <translation type="unfinished">أرجو تهيئة مسار ال Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="470"/>
+        <location filename="../NETFile.py" line="483"/>
         <source>Dynamips error</source>
         <translation type="unfinished">Dynamips خطأ</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="473"/>
+        <location filename="../NETFile.py" line="486"/>
         <source>Dynamips warning</source>
         <translation type="unfinished">Dynamips تحذير</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="289"/>
+        <location filename="../NETFile.py" line="305"/>
         <source>Exception detected, stopping importation...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="480"/>
+        <location filename="../NETFile.py" line="493"/>
         <source>Exporting %s configuration to %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="487"/>
+        <location filename="../NETFile.py" line="500"/>
         <source>%s: IO Error: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="289"/>
+        <location filename="../NETFile.py" line="305"/>
         <source>Importation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2134,7 +2134,7 @@ to display the configuration page.</source>
         <translation type="unfinished">أرجو تهيئة مسارDynamips </translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="380"/>
+        <location filename="../Topology.py" line="382"/>
         <source>Dynamips error</source>
         <translation type="unfinished">Dynamips خطأ</translation>
     </message>
@@ -2144,12 +2144,12 @@ to display the configuration page.</source>
         <translation type="unfinished">Connection lost</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="286"/>
+        <location filename="../Topology.py" line="300"/>
         <source>Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="286"/>
+        <location filename="../Topology.py" line="287"/>
         <source>Can&apos;t connect switches</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2166,6 +2166,11 @@ to display the configuration page.</source>
     <message>
         <location filename="../Topology.py" line="200"/>
         <source>Please choose an image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="300"/>
+        <source>You have to connect at least one router to the switch</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2237,7 +2242,7 @@ to display the configuration page.</source>
         <translation type="unfinished">يجب تهيئة مسارDynamips </translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="466"/>
+        <location filename="../Workspace.py" line="467"/>
         <source>Save Project As</source>
         <translation type="unfinished">احفظ المشروع بأسم</translation>
     </message>
@@ -2247,7 +2252,7 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="486"/>
+        <location filename="../Workspace.py" line="487"/>
         <source>Message</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2277,7 +2282,7 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="486"/>
+        <location filename="../Workspace.py" line="487"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation type="unfinished"></translation>
     </message>

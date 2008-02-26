@@ -756,12 +756,12 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="197"/>
+        <location filename="../Node/ETHSW.py" line="200"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="197"/>
+        <location filename="../Node/ETHSW.py" line="200"/>
         <source>No port available</source>
         <translation>使用できるポートはありません</translation>
     </message>
@@ -1654,42 +1654,42 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="267"/>
+        <location filename="../NETFile.py" line="283"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="267"/>
+        <location filename="../NETFile.py" line="283"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Dynamipsのプログラムパスを設定してください</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="470"/>
+        <location filename="../NETFile.py" line="483"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="473"/>
+        <location filename="../NETFile.py" line="486"/>
         <source>Dynamips warning</source>
         <translation>Dynamips 警告</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="289"/>
+        <location filename="../NETFile.py" line="305"/>
         <source>Exception detected, stopping importation...</source>
         <translation>例外エラーでましたためインポートを中止しています...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="480"/>
+        <location filename="../NETFile.py" line="493"/>
         <source>Exporting %s configuration to %s</source>
         <translation>%s のコンフィッグを %s にエクスポート中</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="487"/>
+        <location filename="../NETFile.py" line="500"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO エラー: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="289"/>
+        <location filename="../NETFile.py" line="305"/>
         <source>Importation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2135,7 +2135,7 @@ to display the configuration page.</source>
         <translation>Dynamipsのプログラムパスを設定してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="380"/>
+        <location filename="../Topology.py" line="382"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
@@ -2145,12 +2145,12 @@ to display the configuration page.</source>
         <translation>接続失敗しました</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="286"/>
+        <location filename="../Topology.py" line="300"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="286"/>
+        <location filename="../Topology.py" line="287"/>
         <source>Can&apos;t connect switches</source>
         <translation>スイッチ同士接続できません</translation>
     </message>
@@ -2167,6 +2167,11 @@ to display the configuration page.</source>
     <message>
         <location filename="../Topology.py" line="200"/>
         <source>Please choose an image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="300"/>
+        <source>You have to connect at least one router to the switch</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2238,7 +2243,7 @@ to display the configuration page.</source>
         <translation>Dynamipsのプログラムパスを使用する必要があります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="466"/>
+        <location filename="../Workspace.py" line="467"/>
         <source>Save Project As</source>
         <translation>プロジェクトを名前指定して保存</translation>
     </message>
@@ -2248,7 +2253,7 @@ to display the configuration page.</source>
         <translation>新規プロジェクト</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="486"/>
+        <location filename="../Workspace.py" line="487"/>
         <source>Message</source>
         <translation>メッセージ</translation>
     </message>
@@ -2278,7 +2283,7 @@ to display the configuration page.</source>
         <translation>ファイル %s に誤りがあります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="486"/>
+        <location filename="../Workspace.py" line="487"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation type="unfinished"></translation>
     </message>

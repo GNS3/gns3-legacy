@@ -20,9 +20,10 @@
 #
 
 import os
+import GNS3.Globals as globals 
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_NewProject import Ui_NewProject
-from GNS3.Utils import fileBrowser, translate, testOpenFile
+from GNS3.Utils import fileBrowser, translate
 
 class ProjectDialog(QtGui.QDialog, Ui_NewProject):
     """ ProjectDialog class
@@ -39,7 +40,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         """
 
         fb = fileBrowser(translate("Workspace", "New Project"), 
-                                filter='NET file (*.net);;All files (*.*)', directory='.')
+                                filter='NET file (*.net);;All files (*.*)', directory=globals.GApp.systconf['general'].project_path)
         (path, selected) = fb.getSaveFile()
 
         if path is not None and path != '':

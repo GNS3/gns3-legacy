@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="fr">
-<defaultcodec></defaultcodec>
 <context>
     <name>ATMSW</name>
     <message>
@@ -758,12 +757,12 @@ Entrer le numéro de la valeur a appliquer [1-%i] or ENTRER pour ignorer le chan
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="197"/>
+        <location filename="../Node/ETHSW.py" line="200"/>
         <source>Connection</source>
         <translation>Connexion</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="197"/>
+        <location filename="../Node/ETHSW.py" line="200"/>
         <source>No port available</source>
         <translation>Pas de port disponible</translation>
     </message>
@@ -1657,42 +1656,42 @@ panier:</translation>
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="267"/>
+        <location filename="../NETFile.py" line="283"/>
         <source>Save</source>
         <translation>Sauver</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="267"/>
+        <location filename="../NETFile.py" line="283"/>
         <source>Please configure the path to Dynamips</source>
         <translation>SVP, configurez le chemin vers Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="470"/>
+        <location filename="../NETFile.py" line="483"/>
         <source>Dynamips error</source>
         <translation>Erreur Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="473"/>
+        <location filename="../NETFile.py" line="486"/>
         <source>Dynamips warning</source>
         <translation>Avertissement Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="289"/>
+        <location filename="../NETFile.py" line="305"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Exception détectée, arrêt de l&apos;importation...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="480"/>
+        <location filename="../NETFile.py" line="493"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportation de la configuration %s vers %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="487"/>
+        <location filename="../NETFile.py" line="500"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Erreur E/S: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="289"/>
+        <location filename="../NETFile.py" line="305"/>
         <source>Importation</source>
         <translation>Importation</translation>
     </message>
@@ -2138,7 +2137,7 @@ pour afficher sa page de configuration.</translation>
         <translation>SVP, configurez le chemin vers Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="380"/>
+        <location filename="../Topology.py" line="382"/>
         <source>Dynamips error</source>
         <translation>Erreur Dynamips</translation>
     </message>
@@ -2148,12 +2147,12 @@ pour afficher sa page de configuration.</translation>
         <translation>Connection perdue</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="286"/>
+        <location filename="../Topology.py" line="300"/>
         <source>Connection</source>
         <translation>Connexion</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="286"/>
+        <location filename="../Topology.py" line="287"/>
         <source>Can&apos;t connect switches</source>
         <translation>Impossible de connecter des commutateurs</translation>
     </message>
@@ -2171,6 +2170,11 @@ pour afficher sa page de configuration.</translation>
         <location filename="../Topology.py" line="200"/>
         <source>Please choose an image</source>
         <translation>SVP, choissisez une image</translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="300"/>
+        <source>You have to connect at least one router to the switch</source>
+        <translation>Vous devez relier au moins 1 routeur au commutateur</translation>
     </message>
 </context>
 <context>
@@ -2241,7 +2245,7 @@ pour afficher sa page de configuration.</translation>
         <translation>Le chemin vers Dynamips doit être configuré</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="466"/>
+        <location filename="../Workspace.py" line="467"/>
         <source>Save Project As</source>
         <translation>Sauver le projet sous</translation>
     </message>
@@ -2251,7 +2255,7 @@ pour afficher sa page de configuration.</translation>
         <translation>Nouveau Projet</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="486"/>
+        <location filename="../Workspace.py" line="487"/>
         <source>Message</source>
         <translation>Message</translation>
     </message>
@@ -2281,7 +2285,7 @@ pour afficher sa page de configuration.</translation>
         <translation>Fichier invalide %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="486"/>
+        <location filename="../Workspace.py" line="487"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>Voulez vous sauver la topologie avant de quitter ?</translation>
     </message>

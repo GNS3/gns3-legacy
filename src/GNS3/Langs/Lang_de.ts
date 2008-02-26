@@ -1058,12 +1058,12 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="197"/>
+        <location filename="../Node/ETHSW.py" line="200"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="197"/>
+        <location filename="../Node/ETHSW.py" line="200"/>
         <source>No port available</source>
         <translation>Kein Port verfügbar</translation>
     </message>
@@ -1956,42 +1956,42 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="267"/>
+        <location filename="../NETFile.py" line="283"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="267"/>
+        <location filename="../NETFile.py" line="283"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Bitte konfiguriere den Pfad zu Dyamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="470"/>
+        <location filename="../NETFile.py" line="483"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="473"/>
+        <location filename="../NETFile.py" line="486"/>
         <source>Dynamips warning</source>
         <translation>Warnung von Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="289"/>
+        <location filename="../NETFile.py" line="305"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Ausnahmebehandlungentdeckt, stoppe den Import...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="480"/>
+        <location filename="../NETFile.py" line="493"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportiere die Konfiguration von %s nach %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="487"/>
+        <location filename="../NETFile.py" line="500"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: EA Fehler: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="289"/>
+        <location filename="../NETFile.py" line="305"/>
         <source>Importation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2182,7 +2182,7 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
     <message>
         <location filename="../Config/Preferences.py" line="37"/>
         <source>Capture</source>
-        <translation type="unfinished">Mitschneiden</translation>
+        <translation>Mitschneiden</translation>
     </message>
 </context>
 <context>
@@ -2437,7 +2437,7 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Bitte den Pfad zu Dyamips konfigurieren</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="380"/>
+        <location filename="../Topology.py" line="382"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
@@ -2447,12 +2447,12 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Verbindung verloren</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="286"/>
+        <location filename="../Topology.py" line="300"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="286"/>
+        <location filename="../Topology.py" line="287"/>
         <source>Can&apos;t connect switches</source>
         <translation>Kann Switche nicht verbinden</translation>
     </message>
@@ -2469,6 +2469,11 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
     <message>
         <location filename="../Topology.py" line="200"/>
         <source>Please choose an image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="300"/>
+        <source>You have to connect at least one router to the switch</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2540,7 +2545,7 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Der Pfad zu Dynamips muss konfiguriert sein</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="466"/>
+        <location filename="../Workspace.py" line="467"/>
         <source>Save Project As</source>
         <translation>Speichere Projekt als</translation>
     </message>
@@ -2550,7 +2555,7 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Neues Projekt</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="486"/>
+        <location filename="../Workspace.py" line="487"/>
         <source>Message</source>
         <translation>Nachricht</translation>
     </message>
@@ -2580,7 +2585,7 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Unzulässige Datei %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="486"/>
+        <location filename="../Workspace.py" line="487"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation type="unfinished"></translation>
     </message>

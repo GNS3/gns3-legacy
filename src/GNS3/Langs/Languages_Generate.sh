@@ -3,7 +3,7 @@
 # Set file names in gns-3.pro
 
 # create .ts files (for Qt Linguist)
-pylupdate4 -verbose Languages.pro
+pylupdate4 -noobsolete -verbose Languages.pro
 
 # create .qm files from .ts files
 lrelease-qt4 Languages.pro || lrelease Languages.pro
