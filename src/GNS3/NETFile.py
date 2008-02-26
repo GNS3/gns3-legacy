@@ -495,7 +495,7 @@ class NETFile(object):
             f = open(file_path, 'w')
             f.write(config)
             f.close()
-            self.dynagen.running_config[device.dynamips.host + ':' + str(device.dynamips.port)][node.get_running_config_name()]['cnfg'] = file_path
+            self.dynagen.running_config[device.dynamips.host + ':' + str(device.dynamips.port)]['ROUTER ' + device.name]['cnfg'] = file_path
         except IOError, e:
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, unicode(translate("NETFile", "%s: IO Error: %s")) % (file_path, str(e)))
             return
