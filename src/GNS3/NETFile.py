@@ -49,7 +49,7 @@ class NETFile(object):
     def __init__(self):
     
         self.dynagen = globals.GApp.dynagen
-        self.cloud2devices = {}
+        self.connection2cloud = {}
 
     def add_in_connection_list(self, connection_data, connection_list):
         """ Record the connection in connection_list
@@ -211,12 +211,10 @@ class NETFile(object):
         """ Create a cloud (used for NIO connections)
         """
 
-        # try to find a cloud in the topology
-        for node in globals.GApp.topology.nodes.values():
-            if isinstance(node, Cloud):
-                for confnio in node.get_config():
-                    if confnio == nio.lower() and source_device in self.cloud2devices[node]:
-                        return (node)
+        nio = nio.lower()
+        # try to find a already created cloud
+        if self.connection2cloud.has_key((source_device, nio)):
+            return (self.connection2cloud[(source_device, nio)])
 
         # else create it
         renders = globals.GApp.scene.renders['Cloud']
@@ -252,12 +250,14 @@ class NETFile(object):
                     cloud.hostname = unicode(hostname, 'utf-8')
                     if gns3data[section].has_key('x') and gns3data[section].has_key('y'):
                         cloud.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
-                    if gns3data[section].has_key('nios'):
-                        nios = gns3data[section]['nios'].split(' ')
+                    if gns3data[section].has_key('connections'):
+                        connections = gns3data[section]['connections'].split(' ')
+                        nios = []
+                        for connection in connections:
+                            (nio, device) = connection.split(':', 1)
+                            self.connection2cloud[(nio, device)] = cloud
+                            nios.append(nio)
                         cloud.set_config(nios)
-                    if gns3data[section].has_key('devices'):
-                        devices = gns3data[section]['devices'].split(' ')
-                        self.cloud2devices[cloud] = devices
                     QtCore.QObject.connect(cloud, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
                     QtCore.QObject.connect(cloud, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
                     globals.GApp.topology.nodes[cloud.id] = cloud
@@ -533,19 +533,13 @@ class NETFile(object):
                 config = self.dynagen.running_config['GNS3-DATA']['Cloud ' + item.hostname]
                 config['x'] = item.x()
                 config['y'] = item.y()
-                # record nios
-                nios = ''
-                for nio in item.getInterfaces():
-                    nios = nios + nio.lower() + ' '
-                if nios:
-                    config['nios'] = nios
-                # record neigbhor devices
-                devices = ''
+                # record connections
+                connections = ''
                 for interface in item.getConnectedInterfaceList():
                     neighbor = item.getConnectedNeighbor(interface)
-                    devices = devices + neighbor[0].hostname + ' '
-                if devices:
-                    config['devices'] = devices
+                    connections = connections + neighbor[0].hostname + ':' + interface.lower() + ' '
+                if connections:
+                    config['connections'] = connections
             # record notes
             if isinstance(item , Annotation):
                 if not self.dynagen.running_config.has_key('GNS3-DATA'):
