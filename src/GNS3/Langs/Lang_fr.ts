@@ -506,32 +506,32 @@ p, li { white-space: pre-wrap; }
         <translation>Nom d&apos;hôte:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="222"/>
+        <location filename="../Node/AbstractNode.py" line="223"/>
         <source>Connection</source>
         <translation>Connexion</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="189"/>
+        <location filename="../Node/AbstractNode.py" line="190"/>
         <source>Already connected interface</source>
         <translation>Interface déjà connectée</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="222"/>
+        <location filename="../Node/AbstractNode.py" line="223"/>
         <source>Please, configure the slots</source>
         <translation>Veuillez configurer les slots</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="87"/>
+        <location filename="../Node/AbstractNode.py" line="88"/>
         <source>Hostname</source>
         <translation>Nom d&apos;hôte</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="87"/>
+        <location filename="../Node/AbstractNode.py" line="88"/>
         <source>Hostname already used</source>
         <translation>Nom d&apos;hôte déja utilisé</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="166"/>
+        <location filename="../Node/AbstractNode.py" line="167"/>
         <source>Hostname: %s</source>
         <translation>Nom d&apos;hôte: %s</translation>
     </message>
@@ -1656,42 +1656,42 @@ panier:</translation>
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="283"/>
+        <location filename="../NETFile.py" line="288"/>
         <source>Save</source>
         <translation>Sauver</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="283"/>
+        <location filename="../NETFile.py" line="288"/>
         <source>Please configure the path to Dynamips</source>
         <translation>SVP, configurez le chemin vers Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="483"/>
+        <location filename="../NETFile.py" line="490"/>
         <source>Dynamips error</source>
         <translation>Erreur Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="486"/>
+        <location filename="../NETFile.py" line="493"/>
         <source>Dynamips warning</source>
         <translation>Avertissement Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="305"/>
+        <location filename="../NETFile.py" line="310"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Exception détectée, arrêt de l&apos;importation...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="493"/>
+        <location filename="../NETFile.py" line="500"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportation de la configuration %s vers %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="500"/>
+        <location filename="../NETFile.py" line="507"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Erreur E/S: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="305"/>
+        <location filename="../NETFile.py" line="310"/>
         <source>Importation</source>
         <translation>Importation</translation>
     </message>
@@ -2235,17 +2235,17 @@ pour afficher sa page de configuration.</translation>
         <translation>Afficher les noms d&apos;hôtes</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="434"/>
+        <location filename="../Workspace.py" line="449"/>
         <source>Open a file</source>
         <translation>Ouvrir un fichier</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="430"/>
+        <location filename="../Workspace.py" line="445"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Le chemin vers Dynamips doit être configuré</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="467"/>
+        <location filename="../Workspace.py" line="482"/>
         <source>Save Project As</source>
         <translation>Sauver le projet sous</translation>
     </message>
@@ -2255,7 +2255,7 @@ pour afficher sa page de configuration.</translation>
         <translation>Nouveau Projet</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="487"/>
+        <location filename="../Workspace.py" line="502"/>
         <source>Message</source>
         <translation>Message</translation>
     </message>
@@ -2285,9 +2285,19 @@ pour afficher sa page de configuration.</translation>
         <translation>Fichier invalide %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="487"/>
+        <location filename="../Workspace.py" line="502"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>Voulez vous sauver la topologie avant de quitter ?</translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="425"/>
+        <source>Do you want to apply the project settings to the current topology?</source>
+        <translation>Voulez vous appliquer les options du projet à la topologie courante ?</translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="433"/>
+        <source>Would you like to save the current topology?</source>
+        <translation>Voulez vous sauvegarder la topologie courante ?</translation>
     </message>
 </context>
 <context>

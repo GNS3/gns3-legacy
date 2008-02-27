@@ -506,32 +506,32 @@ p, li { white-space: pre-wrap; }
         <translation>ホスト名:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="222"/>
+        <location filename="../Node/AbstractNode.py" line="223"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="189"/>
+        <location filename="../Node/AbstractNode.py" line="190"/>
         <source>Already connected interface</source>
         <translation>使用済みインターフェイス</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="222"/>
+        <location filename="../Node/AbstractNode.py" line="223"/>
         <source>Please, configure the slots</source>
         <translation>スロートを設定して下さい</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="87"/>
+        <location filename="../Node/AbstractNode.py" line="88"/>
         <source>Hostname</source>
         <translation>ホスト名</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="87"/>
+        <location filename="../Node/AbstractNode.py" line="88"/>
         <source>Hostname already used</source>
         <translation>このホスト名は既に使用されています</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="166"/>
+        <location filename="../Node/AbstractNode.py" line="167"/>
         <source>Hostname: %s</source>
         <translation>ホスト名: %s</translation>
     </message>
@@ -1654,42 +1654,42 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="283"/>
+        <location filename="../NETFile.py" line="288"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="283"/>
+        <location filename="../NETFile.py" line="288"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Dynamipsのプログラムパスを設定してください</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="483"/>
+        <location filename="../NETFile.py" line="490"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="486"/>
+        <location filename="../NETFile.py" line="493"/>
         <source>Dynamips warning</source>
         <translation>Dynamips 警告</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="305"/>
+        <location filename="../NETFile.py" line="310"/>
         <source>Exception detected, stopping importation...</source>
         <translation>例外エラーでましたためインポートを中止しています...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="493"/>
+        <location filename="../NETFile.py" line="500"/>
         <source>Exporting %s configuration to %s</source>
         <translation>%s のコンフィッグを %s にエクスポート中</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="500"/>
+        <location filename="../NETFile.py" line="507"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO エラー: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="305"/>
+        <location filename="../NETFile.py" line="310"/>
         <source>Importation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2233,17 +2233,17 @@ to display the configuration page.</source>
         <translation>ホスト名を表示する</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="434"/>
+        <location filename="../Workspace.py" line="449"/>
         <source>Open a file</source>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="430"/>
+        <location filename="../Workspace.py" line="445"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Dynamipsのプログラムパスを使用する必要があります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="467"/>
+        <location filename="../Workspace.py" line="482"/>
         <source>Save Project As</source>
         <translation>プロジェクトを名前指定して保存</translation>
     </message>
@@ -2253,7 +2253,7 @@ to display the configuration page.</source>
         <translation>新規プロジェクト</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="487"/>
+        <location filename="../Workspace.py" line="502"/>
         <source>Message</source>
         <translation>メッセージ</translation>
     </message>
@@ -2283,8 +2283,18 @@ to display the configuration page.</source>
         <translation>ファイル %s に誤りがあります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="487"/>
+        <location filename="../Workspace.py" line="502"/>
         <source>Would you like to save the topology before you quit?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="425"/>
+        <source>Do you want to apply the project settings to the current topology?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="433"/>
+        <source>Would you like to save the current topology?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

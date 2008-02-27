@@ -807,32 +807,32 @@ p, li { white-space: pre-wrap; }
         <translation>Hostname:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="222"/>
+        <location filename="../Node/AbstractNode.py" line="223"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="189"/>
+        <location filename="../Node/AbstractNode.py" line="190"/>
         <source>Already connected interface</source>
         <translation>Bereits verbundenes Interface</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="222"/>
+        <location filename="../Node/AbstractNode.py" line="223"/>
         <source>Please, configure the slots</source>
         <translation>Bitte, konfiguriere den Slot</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="87"/>
+        <location filename="../Node/AbstractNode.py" line="88"/>
         <source>Hostname</source>
         <translation>Hostname</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="87"/>
+        <location filename="../Node/AbstractNode.py" line="88"/>
         <source>Hostname already used</source>
         <translation>Hostname wird bereits verwendet</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="166"/>
+        <location filename="../Node/AbstractNode.py" line="167"/>
         <source>Hostname: %s</source>
         <translation>Hostname: %s</translation>
     </message>
@@ -1956,42 +1956,42 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="283"/>
+        <location filename="../NETFile.py" line="288"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="283"/>
+        <location filename="../NETFile.py" line="288"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Bitte konfiguriere den Pfad zu Dyamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="483"/>
+        <location filename="../NETFile.py" line="490"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="486"/>
+        <location filename="../NETFile.py" line="493"/>
         <source>Dynamips warning</source>
         <translation>Warnung von Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="305"/>
+        <location filename="../NETFile.py" line="310"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Ausnahmebehandlungentdeckt, stoppe den Import...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="493"/>
+        <location filename="../NETFile.py" line="500"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportiere die Konfiguration von %s nach %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="500"/>
+        <location filename="../NETFile.py" line="507"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: EA Fehler: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="305"/>
+        <location filename="../NETFile.py" line="310"/>
         <source>Importation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2535,17 +2535,17 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Zeige Hostnamen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="434"/>
+        <location filename="../Workspace.py" line="449"/>
         <source>Open a file</source>
         <translation>Öffne eine Datei</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="430"/>
+        <location filename="../Workspace.py" line="445"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Der Pfad zu Dynamips muss konfiguriert sein</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="467"/>
+        <location filename="../Workspace.py" line="482"/>
         <source>Save Project As</source>
         <translation>Speichere Projekt als</translation>
     </message>
@@ -2555,7 +2555,7 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Neues Projekt</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="487"/>
+        <location filename="../Workspace.py" line="502"/>
         <source>Message</source>
         <translation>Nachricht</translation>
     </message>
@@ -2585,8 +2585,18 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Unzulässige Datei %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="487"/>
+        <location filename="../Workspace.py" line="502"/>
         <source>Would you like to save the topology before you quit?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="425"/>
+        <source>Do you want to apply the project settings to the current topology?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="433"/>
+        <source>Would you like to save the current topology?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

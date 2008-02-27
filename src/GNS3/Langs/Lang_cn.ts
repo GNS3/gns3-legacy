@@ -506,32 +506,32 @@ p, li { white-space: pre-wrap; }
         <translation>设备名:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="222"/>
+        <location filename="../Node/AbstractNode.py" line="223"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="189"/>
+        <location filename="../Node/AbstractNode.py" line="190"/>
         <source>Already connected interface</source>
         <translation>端口已被连接</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="222"/>
+        <location filename="../Node/AbstractNode.py" line="223"/>
         <source>Please, configure the slots</source>
         <translation>请配置插槽</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="87"/>
+        <location filename="../Node/AbstractNode.py" line="88"/>
         <source>Hostname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="87"/>
+        <location filename="../Node/AbstractNode.py" line="88"/>
         <source>Hostname already used</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="166"/>
+        <location filename="../Node/AbstractNode.py" line="167"/>
         <source>Hostname: %s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1652,42 +1652,42 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="283"/>
+        <location filename="../NETFile.py" line="288"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="283"/>
+        <location filename="../NETFile.py" line="288"/>
         <source>Please configure the path to Dynamips</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="483"/>
+        <location filename="../NETFile.py" line="490"/>
         <source>Dynamips error</source>
         <translation type="unfinished">Dynamips 错误</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="486"/>
+        <location filename="../NETFile.py" line="493"/>
         <source>Dynamips warning</source>
         <translation type="unfinished">Dynamips 警告</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="305"/>
+        <location filename="../NETFile.py" line="310"/>
         <source>Exception detected, stopping importation...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="493"/>
+        <location filename="../NETFile.py" line="500"/>
         <source>Exporting %s configuration to %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="500"/>
+        <location filename="../NETFile.py" line="507"/>
         <source>%s: IO Error: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="305"/>
+        <location filename="../NETFile.py" line="310"/>
         <source>Importation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2230,17 +2230,17 @@ to display the configuration page.</source>
         <translation type="unfinished">显示设备名</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="434"/>
+        <location filename="../Workspace.py" line="449"/>
         <source>Open a file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="430"/>
+        <location filename="../Workspace.py" line="445"/>
         <source>The path to Dynamips must be configured</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="467"/>
+        <location filename="../Workspace.py" line="482"/>
         <source>Save Project As</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2250,7 +2250,7 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="487"/>
+        <location filename="../Workspace.py" line="502"/>
         <source>Message</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2280,8 +2280,18 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="487"/>
+        <location filename="../Workspace.py" line="502"/>
         <source>Would you like to save the topology before you quit?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="425"/>
+        <source>Do you want to apply the project settings to the current topology?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="433"/>
+        <source>Would you like to save the current topology?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

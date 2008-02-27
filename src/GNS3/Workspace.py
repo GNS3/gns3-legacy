@@ -405,7 +405,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         dialog = ProjectDialog()
         dialog.show()
         if dialog.exec_():
-            self.clear()
+
             globals.GApp.workspace.setWindowTitle("GNS3")
             self.projectWorkdir = None
             self.projectConfigs = None
@@ -420,6 +420,23 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     os.mkdir(self.projectConfigs)
             except OSError, (errno, strerror):
                 pass
+            if len(globals.GApp.dynagen.devices):
+                reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), 
+                                                   translate("Workspace", "Do you want to apply the project settings to the current topology?"), QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+                if reply == QtGui.QMessageBox.Yes:
+                    for node in globals.GApp.topology.nodes.values():
+                        if isinstance(node, IOSRouter):
+                            node.stopNode()
+                    for hypervisor in globals.GApp.dynagen.dynamips.values():
+                        hypervisor.workingdir = self.projectWorkdir
+                elif globals.GApp.topology.changed == True:
+                    reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the current topology?"), 
+                                               QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+                    if reply == QtGui.QMessageBox.Yes:
+                        self.__action_Save()
+                    globals.GApp.topology.clear()
+                    for item in globals.GApp.topology.items():
+                        globals.GApp.topology.removeItem(item)
             self.setWindowTitle("GNS3 Project - " + self.projectFile)
 
     def __action_OpenFile(self):
