@@ -536,14 +536,14 @@ class NETFile(object):
                 # record nios
                 nios = ''
                 for nio in item.getInterfaces():
-                    nios = nios + ' ' + nio.lower()
+                    nios = nios + nio.lower() + ' '
                 if nios:
                     config['nios'] = nios
                 # record neigbhor devices
                 devices = ''
                 for interface in item.getConnectedInterfaceList():
                     neighbor = item.getConnectedNeighbor(interface)
-                    devices = devices + ' ' + neighbor
+                    devices = devices + neighbor[0].hostname + ' '
                 if devices:
                     config['devices'] = devices
             # record notes
