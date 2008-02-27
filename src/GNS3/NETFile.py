@@ -49,6 +49,7 @@ class NETFile(object):
     def __init__(self):
     
         self.dynagen = globals.GApp.dynagen
+        self.cloud2devices = {}
 
     def add_in_connection_list(self, connection_data, connection_list):
         """ Record the connection in connection_list
@@ -129,7 +130,11 @@ class NETFile(object):
         conf_image.id = globals.GApp.iosimages_ids
         globals.GApp.iosimages_ids += 1
         conf_image.filename = unicode(device.image,  'utf-8')
-        conf_image.platform = device.model
+        # dynamips lib doesn't return c3700, force platform
+        if device.model == 'c3725' or device.model == 'c3745':
+            conf_image.platform = 'c3700'
+        else:
+            conf_image.platform = device.model
         conf_image.chassis = device.model_string
         if device.idlepc:
             conf_image.idlepc = device.idlepc
@@ -165,10 +170,6 @@ class NETFile(object):
                 self.record_image(device)
             image_conf = globals.GApp.iosimages[device.dynamips.host + ':' + device.image]
             globals.GApp.topology.preConfigureNode(node, image_conf)
-            # hack to prevent Dynagen to put "ghostios = False" in running config
-            if globals.GApp.systconf['dynamips'].ghosting:
-                device.ghost_status = 2
-                device.ghost_file = device.imagename + '.ghost'
         QtCore.QObject.connect(node, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
         QtCore.QObject.connect(node, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
         globals.GApp.topology.nodes[node.id] = node
@@ -186,7 +187,7 @@ class NETFile(object):
         srcid = globals.GApp.topology.getNodeID(source_name)
         src_node = globals.GApp.topology.getNode(srcid)
         if  destination_name == 'nio':
-            cloud = self.create_cloud(destination_interface)
+            cloud = self.create_cloud(destination_interface, source_name)
             dstid = cloud.id
             dst_node = cloud
         else:
@@ -206,7 +207,7 @@ class NETFile(object):
             dst_node.startupInterfaces()
             dst_node.state = 'running'
 
-    def create_cloud(self, nio):
+    def create_cloud(self, nio, source_device):
         """ Create a cloud (used for NIO connections)
         """
 
@@ -214,7 +215,7 @@ class NETFile(object):
         for node in globals.GApp.topology.nodes.values():
             if isinstance(node, Cloud):
                 for confnio in node.get_config():
-                    if confnio == nio.lower():
+                    if confnio == nio.lower() and source_device in self.cloud2devices[node]:
                         return (node)
 
         # else create it
@@ -249,10 +250,14 @@ class NETFile(object):
                     renders = globals.GApp.scene.renders['Cloud']
                     cloud = Cloud(renders['normal'], renders['selected'])
                     cloud.hostname = unicode(hostname, 'utf-8')
-                    if gns3data[section]['x'] and gns3data[section]['y']:
+                    if gns3data[section].has_key('x') and gns3data[section].has_key('y'):
                         cloud.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
-                    config = gns3data[section]['nios'].split(' ')
-                    cloud.set_config(config)
+                    if gns3data[section].has_key('nios'):
+                        nios = gns3data[section]['nios'].split(' ')
+                        cloud.set_config(nios)
+                    if gns3data[section].has_key('devices'):
+                        devices = gns3data[section]['devices'].split(' ')
+                        self.cloud2devices[cloud] = devices
                     QtCore.QObject.connect(cloud, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
                     QtCore.QObject.connect(cloud, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
                     globals.GApp.topology.nodes[cloud.id] = cloud
@@ -308,6 +313,8 @@ class NETFile(object):
             globals.GApp.workspace.clear()
             return
 
+        self.dynagen.ghosting()
+        self.dynagen.apply_idlepc()
         self.dynagen.get_defaults_config()
         self.dynagen.update_running_config()
         self.apply_gns3_data()
@@ -359,7 +366,7 @@ class NETFile(object):
                     else:
                         config['ports'][port] = porttype
                         config['vlans'][vlan].append(port)
-                        cloud = self.create_cloud(nio.config_info())
+                        cloud = self.create_cloud(nio.config_info(), device.name)
                         globals.GApp.topology.recordLink(node.id, str(port), cloud.id, nio.config_info())
                         cloud.startNode()
                 node.set_config(config)
@@ -526,12 +533,19 @@ class NETFile(object):
                 config = self.dynagen.running_config['GNS3-DATA']['Cloud ' + item.hostname]
                 config['x'] = item.x()
                 config['y'] = item.y()
-                nios = ''
                 # record nios
+                nios = ''
                 for nio in item.getInterfaces():
                     nios = nios + ' ' + nio.lower()
                 if nios:
                     config['nios'] = nios
+                # record neigbhor devices
+                devices = ''
+                for interface in item.getConnectedInterfaceList():
+                    neighbor = item.getConnectedNeighbor(interface)
+                    devices = devices + ' ' + neighbor
+                if devices:
+                    config['devices'] = devices
             # record notes
             if isinstance(item , Annotation):
                 if not self.dynagen.running_config.has_key('GNS3-DATA'):
