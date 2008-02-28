@@ -28,6 +28,7 @@ from GNS3.Link.Ethernet import Ethernet
 from GNS3.Link.Serial import Serial
 from GNS3.Node.IOSRouter import IOSRouter, init_router_id
 from GNS3.Node.ATMSW import ATMSW, init_atmsw_id
+from GNS3.Node.ATMBR import ATMBR, init_atmbr_id
 from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
 from GNS3.Node.FRSW import FRSW, init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
@@ -80,6 +81,7 @@ class Topology(QtGui.QGraphicsScene):
         self.link_baseid = 0
         init_router_id()
         init_atmsw_id()
+        init_atmbr_id()
         init_ethsw_id()
         init_frsw_id()
         init_cloud_id()
@@ -283,7 +285,8 @@ class Topology(QtGui.QGraphicsScene):
         
         # special cases
         if not isinstance(src_node, IOSRouter) and not isinstance(dst_node, IOSRouter):
-            if type(src_node) in (ETHSW, ATMSW, FRSW) and not type(dst_node) in (IOSRouter, Cloud) or type(dst_node) in (ETHSW, ATMSW, FRSW) and not type(src_node) in (IOSRouter, Cloud):
+            if type(src_node) in (ETHSW, ATMSW, FRSW, ATMBR) and not type(dst_node) in (IOSRouter, Cloud) \
+                or type(dst_node) in (ETHSW, ATMSW, FRSW, ATMBR) and not type(src_node) in (IOSRouter, Cloud):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "Can't connect switches"))
                 return False
             elif isinstance(dst_node, Cloud) and isinstance(src_node, ETHSW):

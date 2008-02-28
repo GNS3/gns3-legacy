@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_NodeConfigurator.ui'
 #
-# Created: Mon Feb 25 01:46:02 2008
+# Created: Thu Feb 28 15:30:20 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_NodeConfigurator(object):
     def setupUi(self, NodeConfigurator):
         NodeConfigurator.setObjectName("NodeConfigurator")
-        NodeConfigurator.resize(QtCore.QSize(QtCore.QRect(0,0,665,492).size()).expandedTo(NodeConfigurator.minimumSizeHint()))
+        NodeConfigurator.resize(QtCore.QSize(QtCore.QRect(0,0,789,586).size()).expandedTo(NodeConfigurator.minimumSizeHint()))
         NodeConfigurator.setWindowIcon(QtGui.QIcon(":/images/logo_icon.png"))
 
         self.gridlayout = QtGui.QGridLayout(NodeConfigurator)

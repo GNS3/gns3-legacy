@@ -385,7 +385,7 @@ class Dynagen:
         if match_obj:
             port2 = int(interface)
 
-            #the right side of the connection is a FRSW or ATMSW or ETHSW
+            #the right side of the connection is a FRSW or ATMSW or ATMBR or ETHSW
             #disconnect local from remote
             local_device.slot[slot1].disconnect(pa1, port1)
             #delete local nio

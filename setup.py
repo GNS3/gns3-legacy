@@ -19,6 +19,7 @@ if sys.platform.startswith('win32'):
                                      "includes": ["sip"],
                                      "optimize": 2,
                                      "packages": ["GNS3.Ui.ConfigurationPages.Page_ATMSW",
+                                                          "GNS3.Ui.ConfigurationPages.Page_ATMBR",
                                                           "GNS3.Ui.ConfigurationPages.Page_Cloud",
                                                           "GNS3.Ui.ConfigurationPages.Page_ETHSW",
                                                           "GNS3.Ui.ConfigurationPages.Page_FRSW",

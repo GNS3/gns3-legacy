@@ -33,6 +33,7 @@ from GNS3.Node.IOSRouter7200 import IOSRouter7200
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
+from GNS3.Node.ATMBR import ATMBR
 from GNS3.Node.Cloud import Cloud
 from GNS3.Node.Hub import Hub
 
@@ -126,6 +127,9 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             "ATMSW":
                 [translate("NodeConfigurator", "ATM switches"), ":/symbols/sw_atm.normal.svg",
                  "Page_ATMSW", None, None], 
+            "ATMBR":
+                [translate("NodeConfigurator", "ATM bridges"), ":/symbols/atm_bridge.normal.svg",
+                 "Page_ATMBR", None, None], 
             "Clouds":
                 [translate("NodeConfigurator", "Clouds"), ":/symbols/cloud.normal.svg",
                  "Page_Cloud", None, None], 
@@ -144,6 +148,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                                      FRSW: "FRSW",
                                      ETHSW: "ETHSW",
                                      ATMSW: "ATMSW",
+                                     ATMBR: "ATMBR",
                                      Cloud: "Clouds", 
                                      Hub: "Hubs"
                                     }

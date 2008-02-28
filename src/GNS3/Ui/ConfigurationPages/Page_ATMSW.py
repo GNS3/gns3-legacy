@@ -121,7 +121,7 @@ class Page_ATMSW(QtGui.QWidget, Ui_ATMSWPage):
 
         if self.checkBoxVCI.checkState() == QtCore.Qt.Checked:
             source = str(srcport) + ':' + str(srcvci) + ':' + str(srcvpi)
-            destination = str(destport) + ':' + str(srcvci) + ':' + str(destvpi)
+            destination = str(destport) + ':' + str(destvci) + ':' + str(destvpi)
         else:
             source = str(srcport) + ':' + str(srcvpi)
             destination = str(destport) + ':' + str(destvpi)

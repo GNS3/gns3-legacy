@@ -405,7 +405,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         dialog = ProjectDialog()
         dialog.show()
         if dialog.exec_():
-
+            projectWorkdircopy = self.projectWorkdir
             globals.GApp.workspace.setWindowTitle("GNS3")
             self.projectWorkdir = None
             self.projectConfigs = None
@@ -433,7 +433,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the current topology?"), 
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
                     if reply == QtGui.QMessageBox.Yes:
+                        save = self.projectWorkdir
+                        self.projectWorkdir = projectWorkdircopy
                         self.__action_Save()
+                        self.projectWorkdir = save
                     globals.GApp.topology.clear()
                     for item in globals.GApp.topology.items():
                         globals.GApp.topology.removeItem(item)

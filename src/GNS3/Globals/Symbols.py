@@ -30,6 +30,7 @@ from GNS3.Node.Hub import Hub
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
+from GNS3.Node.ATMBR import ATMBR
 
 SYMBOLS = (
         
@@ -61,9 +62,9 @@ SYMBOLS = (
     'normal_svg_file': ":/symbols/sw_standard.normal.svg",
     'select_svg_file': ":/symbols/sw_standard.selected.svg"},
     
-#    {'name': "Hub", 'object': Hub,
-#    'normal_svg_file': ":/symbols/hub.normal.svg",
-#    'select_svg_file': ":/symbols/hub.selected.svg"},
+    {'name': "ATM bridge", 'object': ATMBR,
+    'normal_svg_file': ":/symbols/atm_bridge.normal.svg",
+    'select_svg_file': ":/symbols/atm_bridge.selected.svg"},
      
     {'name': "ATM switch", 'object': ATMSW,
     'normal_svg_file': ":/symbols/sw_atm.normal.svg",

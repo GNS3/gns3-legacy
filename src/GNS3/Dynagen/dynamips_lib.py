@@ -3815,8 +3815,8 @@ class ATMBR(object):
         for key in mapping:
             if key == port:
                 port1 = key
-                (port2, vpi2) = self.__mapping[port1]
-                self.unconfigure(port1, port2, vpi2)
+                (port2, vpi2, vci2) = self.__mapping[port1]
+                self.unconfigure(port1, port2, vpi2, vci2)
 
         #now delete the NIO from backend
         self.nio(port).delete()
