@@ -306,7 +306,7 @@ class Ui_MainWindow(object):
         self.toolBar_Emulation.addAction(self.action_StopAll)
 
         self.retranslateUi(MainWindow)
-        QtCore.QObject.connect(self.action_Quit,QtCore.SIGNAL("activated()"),MainWindow.close)
+        QtCore.QObject.connect(self.action_Quit,QtCore.SIGNAL("triggered()"),MainWindow.close)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
