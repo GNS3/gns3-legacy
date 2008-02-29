@@ -110,3 +110,9 @@ class systemCaptureConf(ConfigObject):
         ConfigObject.__init__(self)
         self.conf = Defaults.conf_systemCapture_defaults.copy()
         self.types = Defaults.conf_systemCapture_types
+
+class systemPemuConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_systemPemu_defaults.copy()
+        self.types = Defaults.conf_systemPemu_types

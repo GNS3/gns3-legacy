@@ -14,9 +14,11 @@ FILES=" Form_MainWindow
         ./ConfigurationPages/Form_HubPage
         ./ConfigurationPages/Form_ATMSWPage
         ./ConfigurationPages/Form_ATMBRPage
+        ./ConfigurationPages/Form_FWPage
         ./ConfigurationPages/Form_PreferencesGeneral
         ./ConfigurationPages/Form_PreferencesDynamips
         ./ConfigurationPages/Form_PreferencesCapture
+        ./ConfigurationPages/Form_PreferencesPemu
 "
 
 # Update files...

@@ -25,9 +25,11 @@ if sys.platform.startswith('win32'):
                                                           "GNS3.Ui.ConfigurationPages.Page_FRSW",
                                                           "GNS3.Ui.ConfigurationPages.Page_Hub",
                                                           "GNS3.Ui.ConfigurationPages.Page_IOSRouter",
+                                                          "GNS3.Ui.ConfigurationPages.Page_FW",
                                                           "GNS3.Ui.ConfigurationPages.Page_PreferencesDynamips",
                                                           "GNS3.Ui.ConfigurationPages.Page_PreferencesGeneral",
                                                           "GNS3.Ui.ConfigurationPages.Page_PreferencesCapture",
+                                                          "GNS3.Ui.ConfigurationPages.Page_PreferencesPemu",
                                                      ]
                                         }
                              }

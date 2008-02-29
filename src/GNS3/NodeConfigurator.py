@@ -30,6 +30,7 @@ from GNS3.Node.IOSRouter2691 import IOSRouter2691
 from GNS3.Node.IOSRouter3600 import IOSRouter3600
 from GNS3.Node.IOSRouter3700 import IOSRouter3700
 from GNS3.Node.IOSRouter7200 import IOSRouter7200
+from GNS3.Node.FW import FW
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
@@ -118,6 +119,9 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             "Routers (7200)" : \
                 [translate("NodeConfigurator", "Routers c7200"), ":/symbols/rt_standard.normal.svg",
                  "Page_IOSRouter", None, None], 
+            "FW":
+                [translate("NodeConfigurator", "PIX firewalls"), ":/symbols/PIX_firewall.normal.svg",
+                 "Page_FW", None, None], 
             "FRSW":
                 [translate("NodeConfigurator", "Frame Relay switches"), ":/symbols/sw_frame_relay.normal.svg",
                  "Page_FRSW", None, None], 
@@ -145,6 +149,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                                      IOSRouter3600: "Routers (3600)", 
                                      IOSRouter3700: "Routers (3700)",
                                      IOSRouter7200: "Routers (7200)", 
+                                     FW: "FW",
                                      FRSW: "FRSW",
                                      ETHSW: "ETHSW",
                                      ATMSW: "ATMSW",

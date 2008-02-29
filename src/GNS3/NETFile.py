@@ -23,6 +23,7 @@ import os, re, random, time, base64
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Dynagen.dynamips_lib as lib
+import GNS3.Dynagen.pemu_lib as pix
 from GNS3.Globals.Symbols import SYMBOLS
 from GNS3.Utils import translate, debug
 from PyQt4 import QtGui, QtCore
@@ -35,12 +36,14 @@ from GNS3.Node.ATMSW import ATMSW, init_atmsw_id
 from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
 from GNS3.Node.FRSW import FRSW, init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
+from GNS3.Node.FW import FW, init_fw_id
 
 router_hostname_re = re.compile(r"""^R([0-9]+)""")
 ethsw_hostname_re = re.compile(r"""^SW([0-9]+)""")
 frsw_hostname_re = re.compile(r"""^FR([0-9]+)""")
 atmsw_hostname_re = re.compile(r"""^ATM([0-9]+)""")
 cloud_hostname_re = re.compile(r"""^C([0-9]+)""")
+firewall_hostname_re = re.compile(r"""^FW([0-9]+)""")
 
 class NETFile(object):
     """ NETFile implementing the .net file import/export
@@ -94,6 +97,8 @@ class NETFile(object):
                                                                                                                                                                             connection_list)
                                 elif isinstance(remote_device, lib.FRSW) or isinstance(remote_device, lib.ATMSW) or isinstance(remote_device, lib.ETHSW) or isinstance(remote_device, lib.ATMBR):
                                     connection_list.append((device.name, source_interface, remote_device.name, str(remote_port)))
+                                elif isinstance(remote_device, pix.FW):
+                                    connection_list.append((device.name, source_interface, remote_device.name, remote_adapter + str(remote_port)))
     
     def create_node(self, device, symbol_name):
         """ Create a new node
@@ -106,7 +111,10 @@ class NETFile(object):
                 node.set_hostname(device.name)
                 node.type = item['name']
                 x = y = None
-                if self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)].has_key(node.get_running_config_name()):
+                if isinstance(device, pix.FW) and  self.dynagen.globalconfig['pemu ' + str(device.dynamips.host)].has_key(node.get_running_config_name()):
+                    x = self.dynagen.globalconfig['pemu ' + str(device.dynamips.host)][node.get_running_config_name()]['x']
+                    y = self.dynagen.globalconfig['pemu ' + str(device.dynamips.host)][node.get_running_config_name()]['y']
+                elif self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)].has_key(node.get_running_config_name()):
                     x = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['x']
                     y = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['y']
                 else:
@@ -161,7 +169,7 @@ class NETFile(object):
         """ Configure a node
         """
 
-        if device.isrouter:
+        if isinstance(device, lib.Router):
             if globals.GApp.HypervisorManager and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
                 hypervisor = globals.GApp.HypervisorManager.getHypervisor(device.dynamips.port)
                 hypervisor['load'] += node.default_ram
@@ -187,7 +195,7 @@ class NETFile(object):
         srcid = globals.GApp.topology.getNodeID(source_name)
         src_node = globals.GApp.topology.getNode(srcid)
         if  destination_name == 'nio':
-            cloud = self.create_cloud(destination_interface, source_name)
+            cloud = self.create_cloud(destination_interface, source_name, source_interface)
             dstid = cloud.id
             dst_node = cloud
         else:
@@ -207,14 +215,14 @@ class NETFile(object):
             dst_node.startupInterfaces()
             dst_node.state = 'running'
 
-    def create_cloud(self, nio, source_device):
+    def create_cloud(self, nio, source_device, source_interface):
         """ Create a cloud (used for NIO connections)
         """
 
         nio = nio.lower()
         # try to find a already created cloud
-        if self.connection2cloud.has_key((source_device, nio)):
-            return (self.connection2cloud[(source_device, nio)])
+        if self.connection2cloud.has_key((source_device, source_interface, nio)):
+            return (self.connection2cloud[(source_device, source_interface, nio)])
 
         # else create it
         renders = globals.GApp.scene.renders['Cloud']
@@ -254,8 +262,8 @@ class NETFile(object):
                         connections = gns3data[section]['connections'].split(' ')
                         nios = []
                         for connection in connections:
-                            (nio, device) = connection.split(':', 1)
-                            self.connection2cloud[(nio, device)] = cloud
+                            (device, interface, nio) = connection.split(':', 2)
+                            self.connection2cloud[(device, interface, nio)] = cloud
                             nios.append(nio)
                         cloud.set_config(nios)
                     QtCore.QObject.connect(cloud, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
@@ -313,6 +321,9 @@ class NETFile(object):
             globals.GApp.workspace.clear()
             return
 
+        splash = QtGui.QSplashScreen(QtGui.QPixmap(":images/logo_gns3_splash.png"))
+        splash.show()
+        splash.showMessage(translate("NETFile", "Please wait while importing the topology"))
         self.dynagen.ghosting()
         self.dynagen.apply_idlepc()
         self.dynagen.get_defaults_config()
@@ -326,10 +337,11 @@ class NETFile(object):
         max_ethsw_id = -1
         max_frsw_id = -1
         max_atmsw_id = -1
+        max_fw_id = -1
         for (devicename, device) in devices.iteritems():
             self.dynagen.devices[device.name] = device
 
-            if device.isrouter:
+            if isinstance(device, lib.Router):
                 platform = device.model
                 # dynamips lib doesn't return c3700, force platform
                 if platform == 'c3725' or platform == 'c3745':
@@ -366,7 +378,7 @@ class NETFile(object):
                     else:
                         config['ports'][port] = porttype
                         config['vlans'][vlan].append(port)
-                        cloud = self.create_cloud(nio.config_info(), device.name)
+                        cloud = self.create_cloud(nio.config_info(), device.name, str(port))
                         globals.GApp.topology.recordLink(node.id, str(port), cloud.id, nio.config_info())
                         cloud.startNode()
                 node.set_config(config)
@@ -435,6 +447,19 @@ class NETFile(object):
                     if id > max_atmsw_id:
                         max_atmsw_id = id
 
+            elif isinstance(device, pix.FW):
+
+                node = self.create_node(device, 'PIX firewall')
+                assert(node)
+                node.set_hypervisor(device.dynamips)
+                self.configure_node(node, device)
+                node.create_config()
+                match_obj = firewall_hostname_re.match(node.hostname)
+                if match_obj:
+                    id = int(match_obj.group(1))
+                    if id > max_fw_id:
+                        max_fw_id = id
+
             globals.GApp.topology.addItem(node)
 
         # update next IDs for nodes
@@ -446,6 +471,8 @@ class NETFile(object):
             init_frsw_id(max_frsw_id + 1)
         if max_atmsw_id != -1:
             init_atmsw_id(max_atmsw_id + 1)
+        if max_fw_id != -1:
+            init_fw_id(max_fw_id + 1)
 
         # update current hypervisor base port and base UDP
         base_udp = 0
@@ -537,7 +564,7 @@ class NETFile(object):
                 connections = ''
                 for interface in item.getConnectedInterfaceList():
                     neighbor = item.getConnectedNeighbor(interface)
-                    connections = connections + neighbor[0].hostname + ':' + interface.lower() + ' '
+                    connections = connections + neighbor[0].hostname + ':' + neighbor[1] + ':' + interface.lower() + ' '
                 if connections:
                     config['connections'] = connections
             # record notes

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.0.dtd">
 <!-- eric4 project file for project GNS3 -->
-<!-- Saved: 2008-02-28, 14:02:40 -->
+<!-- Saved: 2008-02-29, 16:09:02 -->
 <!-- Copyright (C) 2008 ,  -->
 <Project version="4.0">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -564,6 +564,51 @@
       <Dir>Ui</Dir>
       <Dir>ConfigurationPages</Dir>
       <Name>Form_ATMBRPage.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Node</Dir>
+      <Name>ATMBR.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Node</Dir>
+      <Name>FW.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Form_FWPage.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Page_FW.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Name>PemuManager.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Page_PreferencesPemu.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Ui</Dir>
+      <Dir>ConfigurationPages</Dir>
+      <Name>Form_PreferencesPemu.py</Name>
     </Source>
   </Sources>
   <Forms>

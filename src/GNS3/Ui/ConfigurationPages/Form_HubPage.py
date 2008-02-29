@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_HubPage.ui'
 #
-# Created: Thu Feb 28 15:30:20 2008
+# Created: Fri Feb 29 16:52:53 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!

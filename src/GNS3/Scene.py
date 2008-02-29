@@ -29,6 +29,7 @@ from Annotation import Annotation
 from GNS3.NodeConfigurator import NodeConfigurator
 from GNS3.Globals.Symbols import SYMBOLS
 from GNS3.Node.IOSRouter import IOSRouter
+from GNS3.Node.FW import FW
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
@@ -114,19 +115,14 @@ class Scene(QtGui.QGraphicsView):
             menu.addAction(showHostnameAct)
             menu.addAction(changeHostnameAct)
 
-        instances = map(lambda item: isinstance(item, IOSRouter), items)
+        instances = map(lambda item: isinstance(item, IOSRouter) or isinstance(item, FW), items)
         if True in instances:
 
             # Action: Console (Connect to the node console)
             consoleAct = QtGui.QAction(translate('Scene', 'Console'), menu)
             consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
             self.connect(consoleAct, QtCore.SIGNAL('triggered()'), self.slotConsole)
-    
-            # Action: Calculate IDLE PC
-            idlepcAct = QtGui.QAction(translate('Scene', 'Idle PC'), menu)
-            idlepcAct.setIcon(QtGui.QIcon(':/icons/calculate.svg'))
-            self.connect(idlepcAct, QtCore.SIGNAL('triggered()'), self.slotIdlepc)
-    
+
             # Action: Start (Start IOS on hypervisor)
             startAct = QtGui.QAction(translate('Scene', 'Start'), menu)
             startAct.setIcon(QtGui.QIcon(':/icons/play.svg'))
@@ -137,16 +133,25 @@ class Scene(QtGui.QGraphicsView):
             stopAct.setIcon(QtGui.QIcon(':/icons/stop.svg'))
             self.connect(stopAct, QtCore.SIGNAL('triggered()'), self.slotStopNode)
             
+            menu.addAction(consoleAct)
+            menu.addAction(startAct)
+            menu.addAction(stopAct)
+        
+        instances = map(lambda item: isinstance(item, IOSRouter), items)
+        if True in instances:
+        
+            # Action: Calculate IDLE PC
+            idlepcAct = QtGui.QAction(translate('Scene', 'Idle PC'), menu)
+            idlepcAct.setIcon(QtGui.QIcon(':/icons/calculate.svg'))
+            self.connect(idlepcAct, QtCore.SIGNAL('triggered()'), self.slotIdlepc)
+        
             # Action: Suspend (Suspend IOS on hypervisor)
             suspendAct = QtGui.QAction(translate('Scene', 'Suspend'), menu)
             suspendAct.setIcon(QtGui.QIcon(':/icons/pause.svg'))
             self.connect(suspendAct, QtCore.SIGNAL('triggered()'), self.slotSuspendNode)
-        
-            menu.addAction(consoleAct)
-            menu.addAction(idlepcAct)
-            menu.addAction(startAct)
+
             menu.addAction(suspendAct)
-            menu.addAction(stopAct)
+            menu.addAction(idlepcAct)
 
         # Action: Delete (Delete the node)
         deleteAct = QtGui.QAction(translate('Scene', 'Delete'), menu)
@@ -289,7 +294,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            if  isinstance(item, IOSRouter):
+            if isinstance(item, IOSRouter) or isinstance(item, FW):
                 item.console()
                 
     def slotStartNode(self):
@@ -297,7 +302,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            if  isinstance(item, IOSRouter):
+            if isinstance(item, IOSRouter) or isinstance(item, FW):
                 item.startNode()
 
     def slotStopNode(self):
@@ -305,7 +310,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            if  isinstance(item, IOSRouter):
+            if isinstance(item, IOSRouter) or isinstance(item, FW):
                 item.stopNode()
     
     def slotSuspendNode(self):

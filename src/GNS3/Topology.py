@@ -21,6 +21,7 @@
 
 import socket
 import GNS3.Dynagen.dynamips_lib as lib
+import GNS3.Dynagen.pemu_lib as pix
 import GNS3.Globals as globals
 from PyQt4 import QtGui, QtCore
 from GNS3.Utils import translate, debug
@@ -32,6 +33,7 @@ from GNS3.Node.ATMBR import ATMBR, init_atmbr_id
 from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
 from GNS3.Node.FRSW import FRSW, init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
+from GNS3.Node.FW import FW, init_fw_id
 
 class Topology(QtGui.QGraphicsScene):
     """ Topology class
@@ -84,6 +86,7 @@ class Topology(QtGui.QGraphicsScene):
         init_atmbr_id()
         init_ethsw_id()
         init_frsw_id()
+        init_fw_id()
         init_cloud_id()
         self.cleanDynagen()
         
@@ -167,7 +170,25 @@ class Topology(QtGui.QGraphicsScene):
         if globals.GApp.systconf['dynamips'].ghosting:
             debug("Enable Ghost IOS")
             node.set_ghostios(True)
-        
+
+    def firewallSetup(self):
+        """ Start a connetion to Pemu & set default pix image
+        """
+    
+        pemu_name = 'localhost' + ':10525'
+        if not self.dynagen.dynamips.has_key(pemu_name):
+            #create the Pemu instance and add it to global dictionary
+            self.dynagen.dynamips[pemu_name] = pix.Pemu('localhost')
+            self.dynagen.dynamips[pemu_name].reset()
+            # use dynamips working directory
+            if globals.GApp.workspace.projectWorkdir:
+                self.dynagen.dynamips[pemu_name].workingdir = globals.GApp.workspace.projectWorkdir
+            elif globals.GApp.systconf['dynamips'].workdir:
+                self.dynagen.dynamips[pemu_name].workingdir = globals.GApp.systconf['dynamips'].workdir
+            self.dynagen.get_defaults_config()
+            self.dynagen.update_running_config()
+        #globals.GApp.PemuManager.startPemu()
+    
     def addNode(self, node):
         """ Add node in the topology
             node: object
@@ -222,6 +243,12 @@ class Topology(QtGui.QGraphicsScene):
                         return
                 self.preConfigureNode(node, image_conf)
 
+            if isinstance(node, FW):
+                if not globals.GApp.systconf['pemu'].default_pix_image:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX image"), translate("Topology", "Please configure a default PIX image"))
+                    return
+                self.firewallSetup()
+                
             QtCore.QObject.connect(node, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
             QtCore.QObject.connect(node, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
             
@@ -285,18 +312,19 @@ class Topology(QtGui.QGraphicsScene):
         
         # special cases
         if not isinstance(src_node, IOSRouter) and not isinstance(dst_node, IOSRouter):
-            if type(src_node) in (ETHSW, ATMSW, FRSW, ATMBR) and not type(dst_node) in (IOSRouter, Cloud) \
-                or type(dst_node) in (ETHSW, ATMSW, FRSW, ATMBR) and not type(src_node) in (IOSRouter, Cloud):
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "Can't connect switches"))
+            if (isinstance(src_node, ETHSW) and not type(dst_node) in (IOSRouter, Cloud, FW)) or (isinstance(dst_node, ETHSW) and not type(src_node) in (IOSRouter, Cloud, FW)) \
+                or (type(src_node) in (ATMSW, FRSW, ATMBR) and not isinstance(dst_node, IOSRouter)) or (type(dst_node) in (ATMSW, FRSW, ATMBR) and not isinstance(src_node, IOSRouter)) \
+                or (isinstance(src_node, FW) and isinstance(dst_node, Cloud)) or (isinstance(dst_node, FW) and isinstance(src_node, Cloud)):
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "Can't connect these devices"))
                 return False
-            elif isinstance(dst_node, Cloud) and isinstance(src_node, ETHSW):
+            elif (isinstance(dst_node, Cloud) or isinstance(dst_node,FW)) and isinstance(src_node, ETHSW):
                 if not src_node.hypervisor:
                     debug('Allocate an hypervisor for ethsw ' + src_node.hostname)
                     if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(src_node):
                         QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "You have to connect at least one router to the switch"))
                         return False
                     src_node.get_dynagen_device()
-            elif isinstance(src_node, Cloud) and isinstance(dst_node, ETHSW):
+            elif (isinstance(src_node, Cloud) or isinstance(src_node, FW)) and isinstance(dst_node, ETHSW):
                 if not dst_node.hypervisor:
                     debug('Allocate an hypervisor for ethsw ' + dst_node.hostname)
                     if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(dst_node):
@@ -304,15 +332,15 @@ class Topology(QtGui.QGraphicsScene):
                         return False
                     dst_node.get_dynagen_device()
         else:
-            if not isinstance(src_node, IOSRouter) and not isinstance(src_node, Cloud) and not src_node.hypervisor:
+            if not isinstance(src_node, IOSRouter) and not isinstance(src_node, Cloud) and not isinstance(src_node, FW) and not src_node.hypervisor:
                 debug('Set hypervisor ' + dst_node.hypervisor.host + ':' + str(dst_node.hypervisor.port) + ' to ' + src_node.hostname)
                 src_node.set_hypervisor(dst_node.hypervisor)
-            elif not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, Cloud) and not dst_node.hypervisor:
+            elif not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, Cloud) and not isinstance(dst_node, FW) and not dst_node.hypervisor:
                 debug('Set hypervisor ' + src_node.hypervisor.host + ':' + str(src_node.hypervisor.port) + ' to ' + dst_node.hostname)
                 dst_node.set_hypervisor(src_node.hypervisor)
 
         try:
-            if isinstance(src_node, IOSRouter):
+            if isinstance(src_node, IOSRouter) or isinstance(src_node, FW):
                 srcdev = self.__nodes[srcid].get_dynagen_device()
                 if type(dst_node) == Cloud:
                     debug('Connect link from ' + srcdev.name + ' ' + srcif +' to ' + dstif)
@@ -321,7 +349,7 @@ class Topology(QtGui.QGraphicsScene):
                     dstdev = dst_node.get_dynagen_device()
                     debug('Connect link from ' + srcdev.name + ' ' + srcif +' to ' + dstdev.name + ' ' + dstif)
                     self.dynagen.connect(srcdev, srcif, dstdev.name + ' ' + dstif)
-            elif isinstance(dst_node, IOSRouter):
+            elif isinstance(dst_node, IOSRouter) or isinstance(dst_node, FW):
                 dstdev = dst_node.get_dynagen_device()
                 if type(src_node) == Cloud:
                     debug('Connect link from ' + dstdev.name + ' ' + srcif +' to ' + dstif)
@@ -361,7 +389,7 @@ class Topology(QtGui.QGraphicsScene):
         """
 
         try:
-            if isinstance(link.source, IOSRouter):
+            if isinstance(link.source, IOSRouter) or isinstance(link.source, FW):
                 srcdev = link.source.get_dynagen_device()
                 if type(link.dest) == Cloud:
                     debug('Disconnect link from ' + srcdev.name + ' ' + link.srcIf +' to ' + link.destIf)
@@ -371,7 +399,7 @@ class Topology(QtGui.QGraphicsScene):
                     debug('Disconnect link from ' + srcdev.name + ' ' + link.srcIf +' to ' + dstdev.name + ' ' + link.destIf)
                     self.dynagen.disconnect(srcdev, link.srcIf, dstdev.name + ' ' + link.destIf)
                 link.source.set_config(link.source.get_config())
-            elif isinstance(link.dest, IOSRouter):
+            elif isinstance(link.dest, IOSRouter) or isinstance(link.source, FW):
                 dstdev = link.dest.get_dynagen_device()
                 if type(link.source) == Cloud:
                     debug('Disconnect link from ' + dstdev.name + ' ' + link.destIf +' to ' + link.srcIf)

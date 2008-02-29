@@ -21,6 +21,7 @@
 
 import sys, os
 import GNS3.Globals as globals
+import GNS3.Dynagen.pemu_lib as pix
 from GNS3.Dynagen.validate import Validator
 from GNS3.Dynagen.configobj import ConfigObj, flatten_errors
 from GNS3.Config.Objects import hypervisorConf
@@ -63,13 +64,13 @@ class DynagenSub(Dynagen):
         progress.setWindowModality(QtCore.Qt.WindowModal)
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents)
         current = 0
-        for section in config.sections: 
+        for section in config.sections:
             progress.setValue(current)
             globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
             if progress.wasCanceled():
                 progress.reset()
                 break
-        
+
             server = config[section]
             server.host = server.name
             controlPort = None

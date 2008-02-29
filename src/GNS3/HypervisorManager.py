@@ -26,7 +26,7 @@ from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate, debug
 from GNS3.Node.IOSRouter import IOSRouter
 
-class HypervisorManager:
+class HypervisorManager(object):
     """ HypervisorManager class
         Start one or more dynamips in hypervisor mode
     """

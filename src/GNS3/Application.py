@@ -26,9 +26,10 @@ from PyQt4.QtCore import QVariant
 from GNS3.Utils import Singleton
 from GNS3.Workspace import Workspace
 from GNS3.Topology import Topology
-from GNS3.Config.Objects import systemDynamipsConf, systemGeneralConf, systemCaptureConf
+from GNS3.Config.Objects import systemDynamipsConf, systemGeneralConf, systemCaptureConf, systemPemuConf
 from GNS3.Config.Config import ConfDB, GNS_Conf
 from GNS3.HypervisorManager import HypervisorManager
+from GNS3.PemuManager import PemuManager
 from GNS3.Translations import Translator
 from GNS3.DynagenSub import DynagenSub
 
@@ -51,6 +52,7 @@ class Application(QApplication, Singleton):
         self.__topology = None
         self.__dynagen = None
         self.__HypervisorManager = None
+        self.__PemuManager = None
 
         # Dict for storing config
         self.__systconf = {}
@@ -176,18 +178,32 @@ class Application(QApplication, Singleton):
     dynagen = property(__getDynagen, __setDynagen, doc = 'Dynagen instance')
     
     def __setHypervisorManager(self, HypervisorManager):
-        """ register the dynagen instance
+        """ register the HypervisorManager instance
         """
 
         self.__HypervisorManager = HypervisorManager
     
     def __getHypervisorManager(self):
-        """ return the systconf instance
+        """ return the HypervisorManager instance
         """
 
         return self.__HypervisorManager
     
     HypervisorManager = property(__getHypervisorManager, __setHypervisorManager, doc = 'HypervisorManager instance')
+    
+    def __setPemuManager(self, PemuManager):
+        """ register the PemuManager instance
+        """
+
+        self.__PemuManager = PemuManager
+    
+    def __getPemuManager(self):
+        """ return the PemuManager instance
+        """
+
+        return self.__PemuManager
+    
+    PemuManager = property(__getPemuManager, __setPemuManager, doc = 'PemuManager instance')
 
     def run(self, file):
     
@@ -226,6 +242,11 @@ class Application(QApplication, Singleton):
         confo.udp_incrementation = int(ConfDB().get("Dynamips/hypervisor_udp_incrementation", 100))
         confo.import_use_HypervisorManager = ConfDB().value("Dynamips/hypervisor_manager_import", QVariant(True)).toBool()
 
+        # Pemu config
+        self.systconf['pemu'] = systemPemuConf()
+        confo = self.systconf['pemu']
+        confo.default_pix_image = ConfDB().get('Pemu/default_pix_image', unicode('',  'utf-8'))
+
         # Capture config
         self.systconf['capture'] = systemCaptureConf()
         confo = self.systconf['capture']
@@ -250,6 +271,9 @@ class Application(QApplication, Singleton):
         # HypervisorManager
         if globals.GApp.systconf['dynamips'].path:
             self.__HypervisorManager = HypervisorManager()
+            
+        # PemuManager
+        self.__PemuManager = PemuManager()
             
         # Restore the geometry
         self.mainWindow.restoreGeometry(ConfDB().value("GNS3/geometry").toByteArray())
@@ -294,6 +318,10 @@ class Application(QApplication, Singleton):
         c.set('Dynamips/hypervisor_udp_incrementation', confo.udp_incrementation)
         c.set('Dynamips/hypervisor_manager_import', confo.import_use_HypervisorManager)
         
+        # Pemu config
+        confo = self.systconf['pemu'] 
+        c.set('Pemu/default_pix_image', confo.default_pix_image)
+
         # Capture settings
         confo = self.systconf['capture'] 
         c.set('Capture/working_directory', confo.workdir)

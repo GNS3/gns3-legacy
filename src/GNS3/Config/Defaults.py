@@ -116,3 +116,11 @@ conf_systemCapture_types = {
     'cap_cmd': unicode,
     'auto_start': bool
 }
+
+conf_systemPemu_defaults = {
+    'default_pix_image': '',
+}
+
+conf_systemPemu_types = {
+    'default_pix_image': unicode,
+}

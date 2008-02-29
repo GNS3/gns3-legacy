@@ -448,7 +448,7 @@ class Dynagen:
             # Look at the interfaces dict to find out what the real port is as
             # as far as dynamips is concerned
             realPort = local_device.slot[slot1].interfaces[pa1][port1]
-
+            
             # Process the netio
             if niotype.lower() == 'nio_linux_eth':
                 self.debug('NIO_linux_eth ' + str(dest))
@@ -1089,6 +1089,8 @@ class Dynagen:
                                     continue
                                 elif subitem.lower() == 'autostart':
                                     self.autostart[name] = device[subitem]
+                                elif subitem.lower() in ['x', 'y']:
+                                    continue
                                 elif pemu_int_re.search(subitem):
                                     # Add the tuple to the list of connections to deal with later
                                     connectionlist.append((dev, subitem, device[subitem]))
@@ -1269,7 +1271,7 @@ class Dynagen:
                                 else:
                                     # Should be either an interface connection or a switch mapping
                                     # is it an interface?
-                                    if subitem in ['model', 'configuration', 'autostart', 'x', 'y']:
+                                    if subitem in ['model', 'ghostios', 'configuration', 'autostart', 'x', 'y']:
                                         # These options are already handled elsewhere
                                         continue
                                     elif interface_re.search(subitem):

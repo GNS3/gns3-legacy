@@ -31,6 +31,7 @@ from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ATMBR import ATMBR
+from GNS3.Node.FW import FW
 
 SYMBOLS = (
         
@@ -58,6 +59,10 @@ SYMBOLS = (
     'normal_svg_file': ":/symbols/rt_standard.normal.svg",
     'select_svg_file': ":/symbols/rt_standard.selected.svg"},
 
+    {'name': "PIX firewall", 'object': FW,
+    'normal_svg_file': ":/symbols/PIX_firewall.normal.svg",
+    'select_svg_file': ":/symbols/PIX_firewall.selected.svg"},
+    
     {'name': "Switch", 'object': ETHSW,
     'normal_svg_file': ":/symbols/sw_standard.normal.svg",
     'select_svg_file': ":/symbols/sw_standard.selected.svg"},

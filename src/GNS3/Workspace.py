@@ -34,6 +34,7 @@ from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Preferences import PreferencesDialog
 from GNS3.Config.Config import ConfDB
 from GNS3.Node.IOSRouter import IOSRouter
+from GNS3.Node.FW import FW
 from GNS3.Node.Cloud import Cloud
 
 class Workspace(QMainWindow, Ui_MainWindow):
@@ -285,7 +286,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
     
         for node in globals.GApp.topology.nodes.itervalues():
-            if isinstance(node, IOSRouter) and node.get_dynagen_device().state == 'running':
+            if (isinstance(node, IOSRouter) or isinstance(node, FW)) and node.get_dynagen_device().state == 'running':
                 node.console()
 
     def __launchProgressDialog(self,  action,  text):
@@ -296,7 +297,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     
         node_list = []
         for node in globals.GApp.topology.nodes.values():
-            if isinstance(node, IOSRouter):
+            if isinstance(node, IOSRouter) or isinstance(node, FW):
                 node_list.append(node)
                 
         count = len(node_list)
