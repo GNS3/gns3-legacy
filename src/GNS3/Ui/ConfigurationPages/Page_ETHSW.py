@@ -79,8 +79,16 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         type = str(self.comboBoxPortType.currentText())
         
         if self.ports.has_key(port):
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_ETHSW",  "Add port"),  translate("Page_ETHSW",  "Port already exists"))
-            return
+            item = self.treeWidgetPorts.currentItem()
+            if (item != None):
+                current_port = int(item.text(0))
+            else:
+                current_port = -1
+            if current_port != port:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_ETHSW",  "Add port"),  translate("Page_ETHSW",  "Port already exists"))
+                return
+            else:
+                self.slotDeletePort()
 
         item = QtGui.QTreeWidgetItem(self.treeWidgetPorts)
         item.setText(0, str(port))

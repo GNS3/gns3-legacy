@@ -56,20 +56,10 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         if self.conf.path == '':
             if sys.platform.startswith('win32'):
                 self.conf.path = unicode('C:\Program Files\GNS3\Dynamips\dynamips-wxp.exe',  'utf-8')
-                
-        # Defaults dynamips terminal command
-        if self.conf.term_cmd == '':
-            if sys.platform.startswith('darwin'):
-                self.conf.term_cmd = unicode("/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'",  'utf-8')
-            elif sys.platform.startswith('win32'):
-                self.conf.term_cmd = unicode("start telnet %h %p",  'utf-8')
-            else:
-                self.conf.term_cmd = unicode("xterm -T %d -e 'telnet %h %p' >/dev/null 2>&1 &",  'utf-8')
 
         # Push default values to GUI
         self.dynamips_path.setText(self.conf.path)
         self.dynamips_workdir.setText(self.conf.workdir)
-        self.dynamips_term_cmd.setText(self.conf.term_cmd)
         self.dynamips_port.setValue(self.conf.port)
         self.dynamips_baseUDP.setValue(self.conf.baseUDP)
         self.dynamips_baseConsole.setValue(self.conf.baseConsole)
@@ -102,7 +92,6 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         exec_path = unicode(self.dynamips_path.text(),  'utf-8')
         self.conf.path = exec_path
         self.conf.workdir = working_dir
-        self.conf.term_cmd = unicode(self.dynamips_term_cmd.text(),  'utf-8')
         self.conf.port = self.dynamips_port.value()
         self.conf.baseUDP = self.dynamips_baseUDP.value()
         self.conf.baseConsole = self.dynamips_baseConsole.value()
@@ -139,6 +128,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             if not testOpenFile(path):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Dynamips path', unicode(translate("UiConfig_PreferencesDynamips", "Can't open file: %s")) % path)
                 return
+            self.dynamips_path.clear()
             self.dynamips_path.setText(path)
 
     def __setDynamipsWorkdir(self):
@@ -149,6 +139,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         path = fb.getDir()
 
         if path is not None:
+            self.dynamips_workdir.clear()
             self.dynamips_workdir.setText(path)
 
     def __testDynamips(self):

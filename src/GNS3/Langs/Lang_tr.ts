@@ -1043,12 +1043,12 @@ Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmama
 <context>
     <name>DynagenSub</name>
     <message>
-        <location filename="../DynagenSub.py" line="61"/>
+        <location filename="../DynagenSub.py" line="62"/>
         <source>Starting hypervisors ...</source>
         <translation>Hipervizörler başlatılıyor ...</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="61"/>
+        <location filename="../DynagenSub.py" line="62"/>
         <source>Abort</source>
         <translation>Yarıda bırak</translation>
     </message>
@@ -1954,43 +1954,48 @@ Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmama
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="288"/>
+        <location filename="../NETFile.py" line="296"/>
         <source>Save</source>
         <translation>Kaydet</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="288"/>
+        <location filename="../NETFile.py" line="296"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Lütfen Dynamips&apos;in yolunu ayarlayınız</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="490"/>
+        <location filename="../NETFile.py" line="517"/>
         <source>Dynamips error</source>
         <translation>Dynamips hatası</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="493"/>
+        <location filename="../NETFile.py" line="520"/>
         <source>Dynamips warning</source>
         <translation>Dynamips tehlikesi</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="310"/>
+        <location filename="../NETFile.py" line="318"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Sorun bulundu, içeri aktarma durdu...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="500"/>
+        <location filename="../NETFile.py" line="527"/>
         <source>Exporting %s configuration to %s</source>
         <translation>%s dışa aktarım ayarları şuraya %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="507"/>
+        <location filename="../NETFile.py" line="534"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO Hata: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="310"/>
+        <location filename="../NETFile.py" line="318"/>
         <source>Importation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="326"/>
+        <source>Please wait while importing the topology</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2030,42 +2035,42 @@ Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmama
 <context>
     <name>NodeConfigurator</name>
     <message>
-        <location filename="../NodeConfigurator.py" line="121"/>
+        <location filename="../NodeConfigurator.py" line="126"/>
         <source>Frame Relay switches</source>
         <translation>Frame Relay switchler</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="124"/>
+        <location filename="../NodeConfigurator.py" line="129"/>
         <source>Ethernet switches</source>
         <translation>Ethernet switchler</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="127"/>
+        <location filename="../NodeConfigurator.py" line="132"/>
         <source>ATM switches</source>
         <translation>ATM switchler</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="130"/>
+        <location filename="../NodeConfigurator.py" line="138"/>
         <source>Clouds</source>
         <translation>Cloud&apos;lar</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="133"/>
+        <location filename="../NodeConfigurator.py" line="141"/>
         <source>Hubs</source>
         <translation>Hub&apos;lar</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="221"/>
+        <location filename="../NodeConfigurator.py" line="231"/>
         <source>%s node</source>
         <translation>%s nod</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="213"/>
+        <location filename="../NodeConfigurator.py" line="223"/>
         <source>%s group</source>
         <translation>%s grubu</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="218"/>
+        <location filename="../NodeConfigurator.py" line="228"/>
         <source>Group of %d %s</source>
         <translation>%d %s Grubunda</translation>
     </message>
@@ -2092,39 +2097,49 @@ to display the configuration page.</source>
 lütfen nod seçin.</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="275"/>
+        <location filename="../NodeConfigurator.py" line="285"/>
         <source>Node configuration</source>
         <translation>Nod ayarı</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="103"/>
+        <location filename="../NodeConfigurator.py" line="105"/>
         <source>Routers c1700</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="106"/>
+        <location filename="../NodeConfigurator.py" line="108"/>
         <source>Routers c2600</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="109"/>
+        <location filename="../NodeConfigurator.py" line="111"/>
         <source>Routers c2691</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="112"/>
+        <location filename="../NodeConfigurator.py" line="114"/>
         <source>Routers c3600</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="115"/>
+        <location filename="../NodeConfigurator.py" line="117"/>
         <source>Routers c3700</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="118"/>
+        <location filename="../NodeConfigurator.py" line="120"/>
         <source>Routers c7200</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../NodeConfigurator.py" line="123"/>
+        <source>PIX firewalls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../NodeConfigurator.py" line="135"/>
+        <source>ATM bridges</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2327,87 +2342,87 @@ lütfen nod seçin.</translation>
 <context>
     <name>Scene</name>
     <message>
-        <location filename="../Scene.py" line="152"/>
+        <location filename="../Scene.py" line="157"/>
         <source>Delete</source>
         <translation>Sil</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="98"/>
+        <location filename="../Scene.py" line="99"/>
         <source>Configure</source>
         <translation>Ayarlar</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="121"/>
+        <location filename="../Scene.py" line="122"/>
         <source>Console</source>
         <translation>Konsol</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="131"/>
+        <location filename="../Scene.py" line="127"/>
         <source>Start</source>
         <translation>Başlat</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="136"/>
+        <location filename="../Scene.py" line="132"/>
         <source>Stop</source>
         <translation>Durdur</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="141"/>
+        <location filename="../Scene.py" line="149"/>
         <source>Suspend</source>
         <translation>Askıya al</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="126"/>
+        <location filename="../Scene.py" line="144"/>
         <source>Idle PC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="234"/>
+        <location filename="../Scene.py" line="239"/>
         <source>IDLE PC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="186"/>
+        <location filename="../Scene.py" line="191"/>
         <source>Please select only one router</source>
         <translation type="unfinished">Lütfen tek router seçin</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="227"/>
+        <location filename="../Scene.py" line="232"/>
         <source>No idlepc values found</source>
         <translation>Idlepc değeri bulunamadı</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="230"/>
+        <location filename="../Scene.py" line="235"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
         <translation>Potansiyel olarak &apos;*&apos; işaretli olanlar daha iyidir</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="243"/>
+        <location filename="../Scene.py" line="248"/>
         <source>Dynamips error</source>
         <translation>Dynamips hatası</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="194"/>
+        <location filename="../Scene.py" line="199"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
         <translation>%s için idlepc değeri zaten var, yeni bir tane istiyormusunuz?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="235"/>
+        <location filename="../Scene.py" line="240"/>
         <source>Applied idlepc value %s to %s</source>
         <translation>%s idlepc değeri %s için uygulandı</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="103"/>
+        <location filename="../Scene.py" line="104"/>
         <source>Change the hostname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="108"/>
+        <location filename="../Scene.py" line="109"/>
         <source>Show/Hide the hostname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="175"/>
+        <location filename="../Scene.py" line="180"/>
         <source>Please wait while calculating an IDLE PC</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2415,185 +2430,195 @@ lütfen nod seçin.</translation>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="199"/>
+        <location filename="../Topology.py" line="224"/>
         <source>IOS image</source>
         <translation>IOS imajı</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="178"/>
+        <location filename="../Topology.py" line="203"/>
         <source>Please register at least one IOS image</source>
         <translation>Lütfen en az bir IOS imajını kaydedin</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="213"/>
+        <location filename="../Topology.py" line="238"/>
         <source>Hypervisor</source>
         <translation>Hipervizör</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="213"/>
+        <location filename="../Topology.py" line="238"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Lütfen Dynamips&apos;in yolunu ayarlayın</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="382"/>
+        <location filename="../Topology.py" line="417"/>
         <source>Dynamips error</source>
         <translation>Dynamips hatası</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="237"/>
+        <location filename="../Topology.py" line="270"/>
         <source>Connection lost</source>
         <translation>Bağlantı koptu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="300"/>
+        <location filename="../Topology.py" line="335"/>
         <source>Connection</source>
         <translation>Bağlantı</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="287"/>
-        <source>Can&apos;t connect switches</source>
-        <translation>Switchlere bağlanılamıyor</translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="132"/>
+        <location filename="../Topology.py" line="139"/>
         <source>Can&apos;t connect to the external hypervisor on %s</source>
         <translation>Dış hipervizörden %s cihazına bağlanılamıyor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="189"/>
+        <location filename="../Topology.py" line="214"/>
         <source>No image for platform %s</source>
         <translation>%s için platform imajı yok</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="200"/>
+        <location filename="../Topology.py" line="225"/>
         <source>Please choose an image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="300"/>
+        <location filename="../Topology.py" line="335"/>
         <source>You have to connect at least one router to the switch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="252"/>
+        <source>PIX image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="252"/>
+        <source>Please configure a default PIX image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="322"/>
+        <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="106"/>
+        <location filename="../Workspace.py" line="107"/>
         <source>Docks</source>
         <translation>Araçlar</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="327"/>
+        <location filename="../Workspace.py" line="328"/>
         <source>Dynamips error</source>
         <translation>Dynamips hatası</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="327"/>
+        <location filename="../Workspace.py" line="328"/>
         <source>Connection lost</source>
         <translation>Bağlantı koptu</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="324"/>
+        <location filename="../Workspace.py" line="325"/>
         <source>Dynamips warning</source>
         <translation>Dynamips tehlike</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="303"/>
+        <location filename="../Workspace.py" line="304"/>
         <source>Abort</source>
         <translation>Yarıda bırak</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="339"/>
+        <location filename="../Workspace.py" line="340"/>
         <source>Starting nodes ...</source>
         <translation>Nod&apos;lar başlatılıyor ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="345"/>
+        <location filename="../Workspace.py" line="346"/>
         <source>Stopping nodes ...</source>
         <translation>Nod&apos;lar durduruluyor ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="351"/>
+        <location filename="../Workspace.py" line="352"/>
         <source>Suspending nodes ...</source>
         <translation>Nod&apos;lar askıya alınıyor ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="393"/>
+        <location filename="../Workspace.py" line="394"/>
         <source>Loading</source>
         <translation>Yükleniyor</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="274"/>
+        <location filename="../Workspace.py" line="275"/>
         <source>Hide hostnames</source>
         <translation>Host adlarını gizle</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="279"/>
+        <location filename="../Workspace.py" line="280"/>
         <source>Show hostnames</source>
         <translation>Host adlarını göster</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="449"/>
+        <location filename="../Workspace.py" line="455"/>
         <source>Open a file</source>
         <translation>Dosya aç</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="445"/>
+        <location filename="../Workspace.py" line="451"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Dynamips&apos;in yolunu ayarlayınız</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="482"/>
+        <location filename="../Workspace.py" line="488"/>
         <source>Save Project As</source>
         <translation>Projeyi Farklı Kaydet</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="414"/>
+        <location filename="../Workspace.py" line="415"/>
         <source>New Project</source>
         <translation>Yeni Proje</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="502"/>
+        <location filename="../Workspace.py" line="508"/>
         <source>Message</source>
         <translation>Mesaj</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="169"/>
+        <location filename="../Workspace.py" line="170"/>
         <source>Are you sure to clear the topology?</source>
         <translation>Topolojiyi silmek istediğinize eminmisiniz?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="193"/>
+        <location filename="../Workspace.py" line="194"/>
         <source>Add a link</source>
         <translation>Bağlantı ekle</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="208"/>
+        <location filename="../Workspace.py" line="209"/>
         <source>Cancel</source>
         <translation>Vazgeç</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="414"/>
+        <location filename="../Workspace.py" line="415"/>
         <source>Can&apos;t create a project</source>
         <translation>Proje oluşturulamadı</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="393"/>
+        <location filename="../Workspace.py" line="394"/>
         <source>Invalid file %s</source>
         <translation>%s geçersiz dosya</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="502"/>
+        <location filename="../Workspace.py" line="508"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="425"/>
+        <location filename="../Workspace.py" line="426"/>
         <source>Do you want to apply the project settings to the current topology?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="433"/>
+        <location filename="../Workspace.py" line="434"/>
         <source>Would you like to save the current topology?</source>
         <translation type="unfinished"></translation>
     </message>

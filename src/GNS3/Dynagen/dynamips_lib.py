@@ -853,9 +853,9 @@ class NIO_null(NIO):
         self.__instance = NIO_null.__instance
         NIO_null.__instance += 1
         if name == None:
-            self.__name = 'nio_null' + str(self.__instance)
+            self.__name = 'nio_null:' + str(self.__instance)
         else:
-            self.__name = name
+            self.__name = 'nio_null:' + name
 
         send(self.__d, 'nio create_null %s' % self.__name)
 
@@ -1182,7 +1182,7 @@ class BaseAdapter(object):
                 return None
                 #raise DynamipsError, 'port does not exist on this PA or module'
         nio_t = type(nio)
-        if nio_t == NIO_udp or nio_t == NIO_linux_eth or nio_t == NIO_gen_eth or nio_t == NIO_tap or nio_t == NIO_unix or nio_t == NIO_vde:
+        if nio_t == NIO_udp or nio_t == NIO_linux_eth or nio_t == NIO_gen_eth or nio_t == NIO_tap or nio_t == NIO_unix or nio_t == NIO_vde or nio_t == NIO_null:
             # Ginormously Ugly hack alert
             # Fix the slot for WICs in slot 1 on a 1751 or 1760
             slot = self.slot
@@ -3754,13 +3754,7 @@ class ATMBR(object):
         except DynamipsWarning, e:
             raise DynamipsError, e
 
-        send(self.__d, 'atm_bridge unconfigure %s %s %s %i %i' % (
-            self.__name,
-            nio1,
-            nio2,
-            vpi2,
-            vci2,
-        ))
+        send(self.__d, 'atm_bridge unconfigure %s' % self.__name)
 
         del self.__mapping[port1]
 

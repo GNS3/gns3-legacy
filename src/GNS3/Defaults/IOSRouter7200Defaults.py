@@ -19,15 +19,15 @@
 # Contact: contact@gns3.net
 #
 
-from GNS3.Defaults.AbstractDefaults import AbstractDefaults
+from GNS3.Defaults.IOSRouterDefaults import IOSRouterDefaults
 
-class IOSRouter7200Defaults(AbstractDefaults):
+class IOSRouter7200Defaults(IOSRouterDefaults):
     """ Class for managing the defaults of Cisco 7200 platform
     """
 
     def __init__(self):
     
-        AbstractDefaults.__init__(self)
+        IOSRouterDefaults.__init__(self)
 
         #fill 7200 defaults
         self.default_ram = 256

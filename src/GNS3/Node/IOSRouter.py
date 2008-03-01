@@ -262,10 +262,10 @@ class IOSRouter(AbstractNode):
         """
 
         model = self.model
-        devdefaults = self.get_devdefaults()
+        #devdefaults = self.get_devdefaults()
         self.router = router
-        self.dynagen.setdefaults(router, devdefaults[model])
-        self.dynagen.update_running_config()
+        #self.dynagen.setdefaults(router, devdefaults[model])
+        #self.dynagen.update_running_config()
         self.running_config = self.dynagen.running_config[self.d][self.r]
         self.defaults_config = self.dynagen.defaults_config[self.d][self.router.model_string]
         self.create_config()

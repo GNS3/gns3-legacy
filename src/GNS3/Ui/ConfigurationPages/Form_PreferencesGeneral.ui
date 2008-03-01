@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>402</width>
-    <height>379</height>
+    <width>432</width>
+    <height>394</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -37,6 +37,16 @@
     </widget>
    </item>
    <item>
+    <widget class="QLabel" name="label_4" >
+     <property name="text" >
+      <string>Terminal command:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="lineEditTermCommand" />
+   </item>
+   <item>
     <widget class="QGroupBox" name="groupBox_2" >
      <property name="title" >
       <string>Paths</string>
@@ -65,7 +75,7 @@
       <item row="2" column="0" >
        <widget class="QLabel" name="label_3" >
         <property name="text" >
-         <string>IOS directory:</string>
+         <string>IOS/PIX directory:</string>
         </property>
        </widget>
       </item>
@@ -104,7 +114,7 @@
       <item>
        <widget class="QCheckBox" name="checkBoxManualConnections" >
         <property name="text" >
-         <string>Always use the manual mode when adding links</string>
+         <string>Always use manual mode when adding links</string>
         </property>
         <property name="checked" >
          <bool>true</bool>
@@ -121,8 +131,8 @@
      </property>
      <property name="sizeHint" >
       <size>
-       <width>384</width>
-       <height>51</height>
+       <width>414</width>
+       <height>20</height>
       </size>
      </property>
     </spacer>

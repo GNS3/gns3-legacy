@@ -99,12 +99,4 @@ class Cloud(AbstractNode):
             event: QtGui.QGraphicsSceneMouseEvent instance
         """
 
-        if globals.addingLinkFlag and globals.currentLinkType != globals.Enum.LinkType.Manual and event.button() == QtCore.Qt.LeftButton:
-            connected_nios = self.getConnectedInterfaceList()
-            for nio in self.config:
-                if not nio in connected_nios:
-                    self.emit(QtCore.SIGNAL("Add link"), self.id, nio)
-                    return
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Cloud", "Connection"),  translate("Cloud", "No NIO available") )
-        else:
-            AbstractNode.mousePressEvent(self, event)
+        AbstractNode.mousePressEvent(self, event)

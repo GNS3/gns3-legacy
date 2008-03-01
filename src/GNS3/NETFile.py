@@ -66,8 +66,8 @@ class NETFile(object):
                 return
         connection_list.append(connection_data)
     
-    def populate_connection_list(self, device, connection_list):
-        """ Add device connections in connection_list
+    def populate_connection_list_for_router(self, device, connection_list):
+        """ Add router connections in connection_list
         """
 
         for adapter in device.slot:
@@ -99,6 +99,18 @@ class NETFile(object):
                                     connection_list.append((device.name, source_interface, remote_device.name, str(remote_port)))
                                 elif isinstance(remote_device, pix.FW):
                                     connection_list.append((device.name, source_interface, remote_device.name, remote_adapter + str(remote_port)))
+    
+    def populate_connection_list_for_fw(self, device, connection_list):
+        """ Add firewall connections in connection_list
+        """
+        
+        for port in device.nios:
+            if device.nios[port] != None:
+                (remote_device, remote_adapter, remote_port) = lib.get_reverse_udp_nio(device.nios[port])
+                if isinstance(remote_device, pix.FW):
+                    self.add_in_connection_list((device.name, str(port), remote_device.name, str(remote_port)), connection_list)
+                elif isinstance(remote_device, lib.ETHSW):
+                    connection_list.append((device.name, str(port), remote_device.name, str(remote_port)))
     
     def create_node(self, device, symbol_name):
         """ Create a new node
@@ -204,12 +216,12 @@ class NETFile(object):
         
         globals.GApp.topology.recordLink(srcid, source_interface, dstid, destination_interface)
 
-        if not isinstance(src_node, IOSRouter):
+        if not isinstance(src_node, IOSRouter) and not isinstance(src_node, FW):
             if not isinstance(src_node,Cloud) and not src_node.hypervisor:
                 src_node.get_dynagen_device()
             src_node.startupInterfaces()
             src_node.state = 'running'
-        if not isinstance(dst_node, IOSRouter):
+        if not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, FW):
             if not isinstance(dst_node,Cloud) and not dst_node.hypervisor:
                 dst_node.get_dynagen_device()
             dst_node.startupInterfaces()
@@ -350,7 +362,7 @@ class NETFile(object):
                 node = self.create_node(device, 'Router ' + platform)
                 assert(node)
                 self.configure_node(node, device)
-                self.populate_connection_list(device, connection_list)
+                self.populate_connection_list_for_router(device, connection_list)
                 if not config_dir and device.cnfg:
                     config_dir = os.path.dirname(device.cnfg)
                 match_obj = router_hostname_re.match(node.hostname)
@@ -454,6 +466,7 @@ class NETFile(object):
                 node.set_hypervisor(device.dynamips)
                 self.configure_node(node, device)
                 node.create_config()
+                self.populate_connection_list_for_fw(device, connection_list)
                 match_obj = firewall_hostname_re.match(node.hostname)
                 if match_obj:
                     id = int(match_obj.group(1))

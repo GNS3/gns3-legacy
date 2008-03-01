@@ -24,7 +24,7 @@ def connect(host,  port,  name):
 
         name = '"' + name + '"'
         try:
-            console = globals.GApp.systconf['dynamips'].term_cmd
+            console = globals.GApp.systconf['general'].term_cmd
             if console:
                 console = console.replace('%h', host)
                 console = console.replace('%p', str(port))

@@ -234,18 +234,24 @@ class Application(QApplication, Singleton):
         confo.path = ConfDB().get('Dynamips/hypervisor_path', unicode('',  'utf-8'))
         confo.port = int(ConfDB().get('Dynamips/hypervisor_port', 7200))
         confo.workdir = ConfDB().get('Dynamips/hypervisor_working_directory', unicode('',  'utf-8'))
-        confo.term_cmd = ConfDB().get('Dynamips/console', unicode('',  'utf-8'))
         confo.ghosting = ConfDB().value("Dynamips/dynamips_ghosting", QVariant(True)).toBool()
         confo.mmap = ConfDB().value("Dynamips/dynamips_mmap", QVariant(True)).toBool()
         confo.sparsemem = ConfDB().value("Dynamips/dynamips_sparsemem", QVariant(False)).toBool()
         confo.memory_limit =int(ConfDB().get("Dynamips/hypervisor_memory_usage_limit", 512))
         confo.udp_incrementation = int(ConfDB().get("Dynamips/hypervisor_udp_incrementation", 100))
         confo.import_use_HypervisorManager = ConfDB().value("Dynamips/hypervisor_manager_import", QVariant(True)).toBool()
-
+        
         # Pemu config
         self.systconf['pemu'] = systemPemuConf()
         confo = self.systconf['pemu']
+        confo.pemuwrapper_path = ConfDB().get('Pemu/pemuwrapper_path', unicode('',  'utf-8'))
+        confo.pemuwrapper_workdir = ConfDB().get('Pemu/pemuwrapper_working_directory', unicode('',  'utf-8'))
+        confo.external_host = ConfDB().get('Pemu/external_host', unicode('',  'utf-8'))
+        confo.enable_PemuManager = ConfDB().value("Pemu/enable_PemuManager", QVariant(True)).toBool()
+        confo.import_use_PemuManager = ConfDB().value("Pemu/pemu_manager_import", QVariant(True)).toBool()
         confo.default_pix_image = ConfDB().get('Pemu/default_pix_image', unicode('',  'utf-8'))
+        confo.default_pix_key = str(ConfDB().get('Pemu/default_pix_key', unicode('0x00000000,0x00000000,0x00000000,0x00000000', 'utf-8')))
+        confo.default_pix_serial = str(ConfDB().get('Pemu/default_pix_serial', unicode('0x12345678', 'utf-8')))
 
         # Capture config
         self.systconf['capture'] = systemCaptureConf()
@@ -258,6 +264,7 @@ class Application(QApplication, Singleton):
         self.systconf['general'] = systemGeneralConf()
         confo = self.systconf['general']
         confo.lang = ConfDB().get('GNS3/lang', unicode('en', 'utf-8'))
+        confo.term_cmd = ConfDB().get('GNS3/console', unicode('',  'utf-8'))
         confo.project_path = ConfDB().get('GNS3/project_directory', unicode('.', 'utf-8'))
         confo.ios_path = ConfDB().get('GNS3/ios_directory', unicode('.', 'utf-8'))
         confo.status_points = ConfDB().value("GNS3/gui_show_status_points", QVariant(True)).toBool()
@@ -284,6 +291,7 @@ class Application(QApplication, Singleton):
         retcode = QApplication.exec_()
         
         self.__HypervisorManager = None
+        self.__PemuManager = None
         
         # Save the geometry
         ConfDB().set("GNS3/geometry", self.mainWindow.saveGeometry())
@@ -300,6 +308,7 @@ class Application(QApplication, Singleton):
         # Apply general settings
         confo = self.systconf['general']
         c.set('GNS3/lang', confo.lang)
+        c.set('GNS3/console', confo.term_cmd)
         c.set('GNS3/gui_show_status_points', confo.status_points)
         c.set('GNS3/gui_use_manual_connection', confo.manual_connection)
         c.set('GNS3/project_directory', confo.project_path)
@@ -310,17 +319,23 @@ class Application(QApplication, Singleton):
         c.set('Dynamips/hypervisor_path', confo.path)
         c.set('Dynamips/hypervisor_port', confo.port)
         c.set('Dynamips/hypervisor_working_directory', confo.workdir)
-        c.set('Dynamips/console', confo.term_cmd)
         c.set('Dynamips/dynamips_ghosting', confo.ghosting)
         c.set('Dynamips/dynamips_sparsemem', confo.sparsemem)
         c.set('Dynamips/dynamips_mmap', confo.mmap)
         c.set('Dynamips/hypervisor_memory_usage_limit', confo.memory_limit)
         c.set('Dynamips/hypervisor_udp_incrementation', confo.udp_incrementation)
         c.set('Dynamips/hypervisor_manager_import', confo.import_use_HypervisorManager)
-        
+
         # Pemu config
         confo = self.systconf['pemu'] 
+        c.set('Pemu/pemuwrapper_path', confo.pemuwrapper_path)
+        c.set('Pemu/pemuwrapper_working_directory', confo.pemuwrapper_workdir)
+        c.set('Pemu/external_host', confo.external_host)
+        c.set('Pemu/enable_PemuManager', confo.enable_PemuManager) 
+        c.set('Pemu/pemu_manager_import', confo.import_use_PemuManager) 
         c.set('Pemu/default_pix_image', confo.default_pix_image)
+        c.set('Pemu/default_pix_key', confo.default_pix_key)
+        c.set('Pemu/default_pix_serial', confo.default_pix_serial)
 
         # Capture settings
         confo = self.systconf['capture'] 

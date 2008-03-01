@@ -53,6 +53,7 @@ MODELTUPLE = (  # A tuple of known model objects
     C3745,
     C3600,
     C7200,
+    FW,
     )
 DEVICETUPLE = (  # A tuple of known device names
     '525',
@@ -178,6 +179,13 @@ class Dynagen:
             'cnfg',
             ]
 
+        self.generic_fw_options = [
+            'image',
+            'ram',
+            'key',
+            'serial',
+            ]
+            
         self.defaults_config_ran = False
         self.default_workingdir = ''
 
@@ -465,7 +473,7 @@ class Dynagen:
             elif niotype.lower() == 'nio_null':
 
                 self.debug('nio null')
-                local_device.slot[slot1].nio(realPort, nio=NIO_null(local_device.dynamips))
+                local_device.slot[slot1].nio(realPort, nio=NIO_null(local_device.dynamips, name=niostring))
             elif niotype.lower() == 'nio_tap':
 
                 self.debug('nio tap ' + str(dest))
@@ -1388,7 +1396,7 @@ class Dynagen:
                     switch.nio(int(source), nio=NIO_udp(switch.dynamips, int(udplocal), str(remotehost), int(udpremote)), porttype=porttype, vlan=vlan)
                 elif niotype.lower() == 'nio_null':
                     self.debug('nio null')
-                    switch.nio(int(source), nio=NIO_null(switch.dynamips), porttype=porttype, vlan=vlan)
+                    switch.nio(int(source), nio=NIO_null(switch.dynamips, name=niostring), porttype=porttype, vlan=vlan)
                 elif niotype.lower() == 'nio_tap':
                     self.debug('nio tap ' + str(dest))
                     switch.nio(int(source), nio=NIO_tap(switch.dynamips, niostring), porttype=porttype, vlan=vlan)
@@ -1668,13 +1676,13 @@ class Dynagen:
                     if isinstance(device, FW):
                         model = device.model_string
                         self.defaults_config[h][model] = {}
+                        if device.image == None:
+                            self.error('specify at least image file for device ' + device.name)
+                            device.image = '"None"'
                         self.defaults_config[h][model]['image'] = device.image
-                        if device.ram != device.defaults['ram']:
-                            self.defaults_config[h][model]['ram'] = device.ram
-                        if device.serial != device.defaults['serial']:
-                            self.defaults_config[h][model]['serial'] = device.serial
-                        if device.key != device.defaults['key']:
-                            self.defaults_config[h][model]['key'] = device.key
+                        for option in self.generic_fw_options:
+                            if getattr(device, option) != device.defaults[option]:
+                                self.defaults_config[h][model][option] = getattr(device, option)
                     else:
                         #find out the model of the device
                         model = device.model_string
@@ -1877,6 +1885,14 @@ class Dynagen:
         h = 'pemu ' + hypervisor.host
         f = 'FW ' + device.name
         self.running_config[h][f] = {}
+        
+        #find out the model of the router
+        model = device.model_string
+
+        #populate with non-default router information
+        defaults = self.defaults_config[h][model]
+        for option in self.generic_fw_options:
+            self._set_option_in_config(self.running_config[h][f], defaults, device, option)
 
         for port in device.nios:
             if device.nios[port] != None:

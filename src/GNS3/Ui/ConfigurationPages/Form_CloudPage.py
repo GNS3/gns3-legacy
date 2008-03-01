@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_CloudPage.ui'
 #
-# Created: Fri Feb 29 16:52:52 2008
+# Created: Sat Mar  1 22:48:26 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_CloudPage(object):
     def setupUi(self, CloudPage):
         CloudPage.setObjectName("CloudPage")
-        CloudPage.resize(QtCore.QSize(QtCore.QRect(0,0,415,433).size()).expandedTo(CloudPage.minimumSizeHint()))
+        CloudPage.resize(QtCore.QSize(QtCore.QRect(0,0,476,494).size()).expandedTo(CloudPage.minimumSizeHint()))
 
         self.vboxlayout = QtGui.QVBoxLayout(CloudPage)
         self.vboxlayout.setObjectName("vboxlayout")
@@ -384,6 +384,66 @@ class Ui_CloudPage(object):
         spacerItem6 = QtGui.QSpacerItem(196,132,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
         self.gridlayout9.addItem(spacerItem6,3,2,1,1)
         self.tabWidget.addTab(self.tab_5,"")
+
+        self.tab_6 = QtGui.QWidget()
+        self.tab_6.setObjectName("tab_6")
+
+        self.gridlayout13 = QtGui.QGridLayout(self.tab_6)
+        self.gridlayout13.setObjectName("gridlayout13")
+
+        self.groupBox_11 = QtGui.QGroupBox(self.tab_6)
+        self.groupBox_11.setObjectName("groupBox_11")
+
+        self.gridlayout14 = QtGui.QGridLayout(self.groupBox_11)
+        self.gridlayout14.setObjectName("gridlayout14")
+
+        self.label_9 = QtGui.QLabel(self.groupBox_11)
+        self.label_9.setObjectName("label_9")
+        self.gridlayout14.addWidget(self.label_9,0,0,1,1)
+
+        self.lineEditNullIdentifer = QtGui.QLineEdit(self.groupBox_11)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lineEditNullIdentifer.sizePolicy().hasHeightForWidth())
+        self.lineEditNullIdentifer.setSizePolicy(sizePolicy)
+        self.lineEditNullIdentifer.setObjectName("lineEditNullIdentifer")
+        self.gridlayout14.addWidget(self.lineEditNullIdentifer,1,0,1,1)
+        self.gridlayout13.addWidget(self.groupBox_11,0,0,1,2)
+
+        self.groupBox_10 = QtGui.QGroupBox(self.tab_6)
+        self.groupBox_10.setObjectName("groupBox_10")
+
+        self.vboxlayout6 = QtGui.QVBoxLayout(self.groupBox_10)
+        self.vboxlayout6.setObjectName("vboxlayout6")
+
+        self.listWidgetNull = QtGui.QListWidget(self.groupBox_10)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.listWidgetNull.sizePolicy().hasHeightForWidth())
+        self.listWidgetNull.setSizePolicy(sizePolicy)
+        self.listWidgetNull.setObjectName("listWidgetNull")
+        self.vboxlayout6.addWidget(self.listWidgetNull)
+        self.gridlayout13.addWidget(self.groupBox_10,0,2,3,1)
+
+        self.pushButtonAddNull = QtGui.QPushButton(self.tab_6)
+        self.pushButtonAddNull.setObjectName("pushButtonAddNull")
+        self.gridlayout13.addWidget(self.pushButtonAddNull,1,0,1,1)
+
+        self.pushButtonDeleteNull = QtGui.QPushButton(self.tab_6)
+        self.pushButtonDeleteNull.setEnabled(False)
+        self.pushButtonDeleteNull.setObjectName("pushButtonDeleteNull")
+        self.gridlayout13.addWidget(self.pushButtonDeleteNull,1,1,1,1)
+
+        spacerItem7 = QtGui.QSpacerItem(20,261,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        self.gridlayout13.addItem(spacerItem7,2,0,2,2)
+
+        spacerItem8 = QtGui.QSpacerItem(20,181,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        self.gridlayout13.addItem(spacerItem8,3,2,1,1)
+        self.tabWidget.addTab(self.tab_6,"")
         self.vboxlayout.addWidget(self.tabWidget)
 
         self.retranslateUi(CloudPage)
@@ -425,4 +485,10 @@ class Ui_CloudPage(object):
         self.pushButtonAddVDE.setText(QtGui.QApplication.translate("CloudPage", "&Add", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonDeleteVDE.setText(QtGui.QApplication.translate("CloudPage", "&Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), QtGui.QApplication.translate("CloudPage", "NIO VDE", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox_11.setTitle(QtGui.QApplication.translate("CloudPage", "Settings", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_9.setText(QtGui.QApplication.translate("CloudPage", "Identifier:", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox_10.setTitle(QtGui.QApplication.translate("CloudPage", "NIOs", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonAddNull.setText(QtGui.QApplication.translate("CloudPage", "&Add", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonDeleteNull.setText(QtGui.QApplication.translate("CloudPage", "&Delete", None, QtGui.QApplication.UnicodeUTF8))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_6), QtGui.QApplication.translate("CloudPage", "NIO NULL", None, QtGui.QApplication.UnicodeUTF8))
 

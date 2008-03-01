@@ -86,7 +86,7 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
         if self.mapping.has_key(source) or self.mapping.has_key(destination):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_FRSW",  "Add virtual channel"),  translate("Page_FRSW",  "Mapping already defined"))
             return
-        
+
         item = QtGui.QTreeWidgetItem(self.treeWidgetVCmap)
         item.setText(0, source)
         item.setText(1, destination)

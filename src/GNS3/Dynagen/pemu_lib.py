@@ -189,6 +189,7 @@ class FW(object):
         self.third_mac_number = random.choice('abcdef123456789')
         self.fourth_mac_number = random.choice('abcdef123456789')
         self.defaults = {
+            'image': None,
             'serial': '0x12345678',
             'key': '0x00000000,0x00000000,0x00000000,0x00000000',
             'ram': 128,
@@ -266,7 +267,7 @@ class FW(object):
         if type(ram) != int or ram < 1:
             raise DynamipsError, 'invalid ram size'
 
-        send(self.p, 'pemu set_ram  %s %i' % (self.name, ram))
+        send(self.p, 'pemu set_ram %s %i' % (self.name, ram))
         self._ram = ram
 
     def _getram(self):

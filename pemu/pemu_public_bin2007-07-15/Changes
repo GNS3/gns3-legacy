@@ -1,0 +1,24 @@
+Version 2007-07-15
+- Several bugfixes in network driver, that caused crash on windows
+- New way to read ini file
+- Some unused qemu code is removed
+
+Version 2007-07-12
+- This version can be compiled on linux and windows
+- new network access method pcap (on linux)
+
+Version 2007-07-10
+- new network access method - udp
+
+Version 2007-07-02
+- This Version is based on qemu 0.9.0
+- Problem with multicasts is fixed
+- Some minor changes in mybiosd8000 (e.g. display error message if something
+  is wrong)
+- No need for uncompressing images (but it still can load uncompressed
+  imaged for performance reasons)
+- some unnecessary qemu code is removed
+- new network access method - lcap
+
+Version 2007-04-20
+something like initial release

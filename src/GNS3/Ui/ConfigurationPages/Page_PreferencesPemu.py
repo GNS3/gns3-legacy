@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import sys
+import sys, re, os
 import GNS3.Globals as globals
 from PyQt4 import QtGui, QtCore
 from GNS3.Ui.ConfigurationPages.Form_PreferencesPemu import Ui_PreferencesPemu
@@ -34,6 +34,8 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         QtGui.QWidget.__init__(self)
         Ui_PreferencesPemu.setupUi(self, self)
         self.connect(self.PixImage_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectImage)
+        self.connect(self.PemuwrapperPath_browser, QtCore.SIGNAL('clicked()'),  self.slotSelectPath)
+        self.connect(self.PemuwrapperWorkdir_browser, QtCore.SIGNAL('clicked()'),  self.slotSelectWorkdir)
         self.loadConf()
 
     def loadConf(self):
@@ -45,12 +47,59 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         else:
             self.conf = systemPemuConf()
 
+        # Default path to pemuwrapper
+        if self.conf.pemuwrapper_path == '':
+            if sys.platform.startswith('win32'):
+                self.conf.pemuwrapper_path = unicode('C:\Program Files\GNS3\pemu\pemuwrapper.exe',  'utf-8')
+            else:
+                path = os.getcwd() + '/pemu/pemuwrapper.py'
+                self.conf.pemuwrapper_path = unicode(path,  'utf-8')
+            
         # Push default values to GUI
+        self.lineEditPemuwrapperPath.setText(self.conf.pemuwrapper_path)
+        self.lineEditPemuwrapperWorkdir.setText(self.conf.pemuwrapper_workdir)
+        self.lineEditHostExternalPemu.setText(self.conf.external_host)
         self.PixImage.setText(self.conf.default_pix_image)
+        self.lineEditKey.setText(self.conf.default_pix_key)
+        self.lineEditSerial.setText(self.conf.default_pix_serial)
+        
+        if self.conf.enable_PemuManager == True:
+            self.checkBoxEnablePemuManager.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxEnablePemuManager.setCheckState(QtCore.Qt.Unchecked)
+        if self.conf.import_use_PemuManager == True:
+            self.checkBoxPemuManagerImport.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxPemuManagerImport.setCheckState(QtCore.Qt.Unchecked)
 
     def saveConf(self):
 
+        self.conf.pemuwrapper_path = unicode(self.lineEditPemuwrapperPath.text(),  'utf-8')
+        self.conf.pemuwrapper_workdir = unicode(self.lineEditPemuwrapperWorkdir.text(),  'utf-8')
+        self.conf.external_host = unicode(self.lineEditHostExternalPemu.text(),  'utf-8')
         self.conf.default_pix_image = unicode(self.PixImage.text(),  'utf-8')
+        
+        serial = str(self.lineEditSerial.text())
+        if not re.search(r"""^0x[0-9a-fA-F]{8}$""", serial):
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_PreferencesPemu", "Serial"), 
+                                       translate("Page_PreferencesPemu", "Invalid serial (format required: 0xhhhhhhhh)"))
+        self.conf.default_pix_serial = serial
+
+        key = str(self.lineEditKey.text())
+        if not re.search(r"""^(0x[0-9a-fA-F]{8},){3}0x[0-9a-fA-F]{8}$""", key):
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_PreferencesPemu", "Key"),
+                                       translate("Page_PreferencesPemu", "Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)"))
+        self.conf.default_pix_key  = key
+
+        if self.checkBoxEnablePemuManager.checkState() == QtCore.Qt.Checked:
+            self.conf.enable_PemuManager = True
+        else:
+            self.conf.enable_PemuManager  = False
+        if self.checkBoxPemuManagerImport.checkState() == QtCore.Qt.Checked:
+            self.conf.import_use_PemuManager = True
+        else:
+            self.conf.import_use_PemuManager  = False
+        
         globals.GApp.systconf['pemu'] = self.conf
         ConfDB().sync()
 
@@ -62,4 +111,23 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         if path != None and path[0] != '':
             self.PixImage.clear()
             self.PixImage.setText(path[0])
+            
+    def slotSelectPath(self):
+        """ Get a path to pemuwrapper from the file system
+        """
 
+        path = fileBrowser('Pemuwrapper', directory='.').getFile()
+        if path != None and path[0] != '':
+            self.lineEditPemuwrapperPath.clear()
+            self.lineEditPemuwrapperPath.setText(path[0])
+
+    def slotSelectWorkdir(self):
+        """ Get a working directory for pemu from the file system
+        """
+        
+        fb = fileBrowser(translate('UiConfig_PreferencesPemu', 'Local Pemu working directory'))
+        path = fb.getDir()
+
+        if path is not None:
+            self.lineEditPemuwrapperWorkdir.clear()
+            self.lineEditPemuwrapperWorkdir.setText(path)

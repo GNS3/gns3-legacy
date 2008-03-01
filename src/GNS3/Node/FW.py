@@ -26,9 +26,10 @@ import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.pemu_lib as pix
 import GNS3.Telnet as console
-from GNS3.Node.AbstractNode import AbstractNode
 from PyQt4 import QtCore, QtGui
-from GNS3.Utils import translate, debug
+from GNS3.Node.AbstractNode import AbstractNode
+from GNS3.Defaults.FWDefaults import FWDefaults
+from GNS3.Utils import translate, debug, error
 
 fw_id = 0
 
@@ -36,29 +37,29 @@ def init_fw_id(id = 0):
     global fw_id
     fw_id = id
 
-class FW(AbstractNode):
+class FW(AbstractNode, FWDefaults):
     """ FW class implementing a PIX firewall
     """
 
     def __init__(self, renderer_normal, renderer_select):
         
         AbstractNode.__init__(self, renderer_normal, renderer_select)
-        
+        FWDefaults.__init__(self)
+
         # assign a new hostname
         global fw_id
         self.hostname = 'FW' + str(fw_id)
         fw_id = fw_id + 1
         self.setCustomToolTip()
 
-        self.local_config = None
         self.dynagen = globals.GApp.dynagen
+        self.local_config = None
         self.f = 'FW ' + self.hostname
-        self.d = None
-        self.hypervisor = None
         self.running_config = None
+        self.defaults_config = None
         self.fw = None
-        self.dynagen.update_running_config()
-        
+        self.model = '525'
+
         self.fw_options = [
             'ram',
             'key', 
@@ -84,7 +85,7 @@ class FW(AbstractNode):
         """
         
         self.hostname = hostname
-        self.f= 'FW ' + self.hostname
+        self.f = 'FW ' + self.hostname
         
     def get_running_config_name(self):
         """ Return node name as stored in the running config
@@ -134,14 +135,6 @@ class FW(AbstractNode):
         self.running_config =  self.dynagen.running_config[self.d][self.f]
         debug("Node " + self.hostname + ": running config: " + str(self.running_config))
         globals.GApp.topology.changed = True
-        
-    def set_hypervisor(self,  hypervisor):
-        """ Records an hypervisor
-            hypervisor: object
-        """
-    
-        self.hypervisor = hypervisor
-        self.d = 'pemu ' + self.hypervisor.host
 
     def getInterfaces(self):
         """ Return all interfaces
@@ -156,12 +149,17 @@ class FW(AbstractNode):
 
         assert(self.fw)
         return (self.fw)
-        
+
     def set_dynagen_device(self, fw):
         """ Set a dynagen device in this node, used for .net import
         """
 
+        model = self.model
         self.fw = fw
+        #self.dynagen.update_running_config()
+        self.running_config = self.dynagen.running_config[self.d][self.f]
+        self.defaults_config = self.dynagen.defaults_config[self.d][model]
+        self.create_config()
 
     def reconfigNode(self, new_hostname):
         """ Used when changing the hostname
@@ -173,11 +171,11 @@ class FW(AbstractNode):
         self.delete_fw()
         self.hostname = new_hostname
         self.f = 'FW ' + self.hostname
-        if len(links):
-            self.get_dynagen_device()
-            for link in links:
-                globals.GApp.topology.addLink(link.source.id, link.srcIf, link.dest.id, link.destIf)
-        
+        self.create_firewall()
+        self.set_config(self.local_config)
+        for link in links:
+            globals.GApp.topology.addLink(link.source.id, link.srcIf, link.dest.id, link.destIf)
+
     def configNode(self):
         """ Node configuration
         """
@@ -185,15 +183,52 @@ class FW(AbstractNode):
         self.create_firewall()
         self.create_config()
         return True
+
+    def get_devdefaults(self):
+        """ Get device defaults
+        """
+
+        model = self.model
+        devdefaults = {}
+        for key in dynagen_namespace.DEVICETUPLE:
+            devdefaults[key] = {}
+
+        config = globals.GApp.dynagen.defaults_config
+        #go through all section under dynamips server in running config and populate the devdefaults with model defaults
+        for f in config[self.d]:
+            firewall_model = config[self.d][f]
+
+            # compare whether this is defaults section
+            if firewall_model.name in dynagen_namespace.DEVICETUPLE and firewall_model.name == model:
+                # Populate the appropriate dictionary
+                for scalar in firewall_model.scalars:
+                    if firewall_model[scalar] != None:
+                        devdefaults[firewall_model.name][scalar] = firewall_model[scalar]
+
+        #check whether a defaults section for this router type exists
+        if model in dynagen_namespace.DEVICETUPLE:
+            if devdefaults[model] == {} and not devdefaults[model].has_key('image'):
+                error('Create a defaults section for ' + model + ' first! Minimum setting is image name')
+                return False
+            elif not devdefaults[model].has_key('image'):
+                error('Specify image name for ' + model + ' routers first!')
+                return False
+        else:
+            error('Bad model: ' + model)
+            return False
+        return devdefaults
         
     def create_firewall(self):
 
-        pemu_name = 'localhost' + ':10525'
-        self.d = 'pemu localhost'
-
+        model = self.model
+        self.dynagen.update_running_config()
+        devdefaults = self.get_devdefaults()
+        if devdefaults == False:
+            return False
+        pemu_name = self.pemu.host + ':10525'
         try:
             path = self.dynagen.dynamips[pemu_name].workingdir + self.hostname + '/FLASH'
-            debug('Check if flash is present: ' + path)
+            debug('Check if a flash is present: ' + path)
             file = open(path)
             file.close()
         except IOError:
@@ -203,11 +238,13 @@ class FW(AbstractNode):
             globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
 
         self.fw = pix.FW(self.dynagen.dynamips[pemu_name], self.hostname)
-        self.fw.image = globals.GApp.systconf['pemu'].default_pix_image
+        self.dynagen.setdefaults(self.fw, devdefaults[model])
         self.dynagen.devices[self.hostname] = self.fw
         debug('Firewall ' + self.fw.name + ' created')
+
         self.dynagen.update_running_config()
         self.running_config = self.dynagen.running_config[self.d][self.f]
+        self.defaults_config = self.dynagen.defaults_config[self.d][model]
         
     def startNode(self, progress=False):
         """ Start the node

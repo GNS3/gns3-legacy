@@ -185,14 +185,4 @@ class ATMBR(AbstractNode):
             event: QtGui.QGraphicsSceneMouseEvent instance
         """
 
-        if globals.addingLinkFlag and globals.currentLinkType != globals.Enum.LinkType.Manual and event.button() == QtCore.Qt.LeftButton:
-            connected_ports = self.getConnectedInterfaceList()
-            for port in self.config['ports']:
-                if not str(port) in connected_ports:
-                    self.emit(QtCore.SIGNAL("Add link"), self.id, str(port))
-                    return
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("ATMBR", "Connection"),  translate("ATMBR", "No port available"))
-            # tell the scene to cancel the link addition by sending a None id and None interface
-            self.emit(QtCore.SIGNAL("Add link"), None, None)
-        else:
-            AbstractNode.mousePressEvent(self, event)
+        AbstractNode.mousePressEvent(self, event)

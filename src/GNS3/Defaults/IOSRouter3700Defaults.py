@@ -19,15 +19,15 @@
 # Contact: contact@gns3.net
 #
 
-from GNS3.Defaults.AbstractDefaults import AbstractDefaults
+from GNS3.Defaults.IOSRouterDefaults import IOSRouterDefaults
 
-class IOSRouter3700Defaults(AbstractDefaults):
+class IOSRouter3700Defaults(IOSRouterDefaults):
     """ Class for managing the defaults of Cisco 3700 platform
     """
 
     def __init__(self):
     
-        AbstractDefaults.__init__(self)
+        IOSRouterDefaults.__init__(self)
 
         #fill 3700 defaults
         self.default_ram = 128

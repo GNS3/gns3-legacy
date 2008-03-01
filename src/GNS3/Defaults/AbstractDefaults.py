@@ -22,62 +22,14 @@
 import os
 import GNS3.Globals as globals
 
-class AbstractDefaults:
-    """Abstract class for managing the device defaults"""
+class AbstractDefaults(object):
+    """ Abstract class for managing the device defaults """
 
     def __init__(self):
     
         self.dynagen = globals.GApp.dynagen
-        self.chassis = 'None'
-        self.default_image = 'None'
-        self.default_ghostios = 'False'
-        self.default_cnfg = 'None'
-        self.default_conf = 'None'
-        self.default_confreg = '0x2102'
-        self.default_aux = 'None'
-        self.default_image = 'None'
-        self.default_idlepc = 'None'
-        self.default_exec_area = 'None'
-        self.default_mmap = True
-        self.default_sparsemem = 'False'
         self.config = None
-        self.d = None
-        self.hypervisor = None
         self.model = None
-
-    def set_hypervisor(self,  hypervisor):
-        """ Records an hypervisor
-            hypervisor: Dynamips object
-        """
-    
-        self.hypervisor = hypervisor
-        self.d = self.hypervisor.host + ':' + str(self.hypervisor.port)
-        self.config = self.dynagen.defaults_config[self.d]
-
-    def set_image(self, image, model):
-        """ Set a image path
-            image: string
-            model: string
-        """
-
-        self.model = model
-        if model in self.config:
-            self.config = self.config[model]
-        else:
-            self.config[model] = {}
-            self.config = self.config[model]
-
-        if self.default_image == image:
-            if self.config.has_key('image'):
-                del self.config['image']
-        else:
-            self.config['image'] = image
-            #try to find idlepc value for this image in idlepc db
-            imagename = os.path.basename(image)
-            if self.dynagen.useridledb:
-                if imagename in self.dynagen.useridledb:
-                    print imagename + ' found in user idlepc database\nSetting idlepc value to ' + self.dynagen.useridledb[imagename]
-                    self.config['idlepc'] = self.dynagen.useridledb[imagename]
 
     def set_int_option(self, option, argument):
         """ Set integer type option in config
@@ -100,13 +52,3 @@ class AbstractDefaults:
                 del self.config[option]
         else:
             self.config[option] = option_value
-
-    def set_ghostios(self, ghostios):
-        """ Enable or disable ghostios feature
-        """
-
-        if self.default_ghostios == ghostios:
-            if self.config.has_key('ghostios'):
-                del self.config['ghostios']
-        else:
-            self.config['ghostios'] = bool(ghostios)

@@ -67,6 +67,8 @@ class Topology(QtGui.QGraphicsScene):
         self.dynagen.autostart.clear()
         if globals.GApp.HypervisorManager:
             globals.GApp.HypervisorManager.stopProcHypervisors()
+        if globals.GApp.PemuManager:
+            globals.GApp.PemuManager.stopPemu()
         
     def clear(self):
         """ Clear the topology
@@ -171,24 +173,41 @@ class Topology(QtGui.QGraphicsScene):
             debug("Enable Ghost IOS")
             node.set_ghostios(True)
 
-    def firewallSetup(self):
-        """ Start a connetion to Pemu & set default pix image
+    def firewallSetup(self, node):
+        """ Start a connetion to Pemu & set defaults
         """
     
-        pemu_name = 'localhost' + ':10525'
+        if globals.GApp.systconf['pemu'].enable_PemuManager:
+            globals.GApp.PemuManager.startPemu()
+            host = 'localhost'
+            pemu_name = host + ':10525'
+        else:
+            host = globals.GApp.systconf['pemu'].external_host
+            pemu_name =  host + ':10525'
+
         if not self.dynagen.dynamips.has_key(pemu_name):
             #create the Pemu instance and add it to global dictionary
-            self.dynagen.dynamips[pemu_name] = pix.Pemu('localhost')
+            self.dynagen.dynamips[pemu_name] = pix.Pemu(host)
             self.dynagen.dynamips[pemu_name].reset()
-            # use dynamips working directory
             if globals.GApp.workspace.projectWorkdir:
                 self.dynagen.dynamips[pemu_name].workingdir = globals.GApp.workspace.projectWorkdir
-            elif globals.GApp.systconf['dynamips'].workdir:
-                self.dynagen.dynamips[pemu_name].workingdir = globals.GApp.systconf['dynamips'].workdir
+            elif globals.GApp.systconf['pemu'].pemuwrapper_workdir:
+                self.dynagen.dynamips[pemu_name].workingdir = globals.GApp.systconf['pemu'].pemuwrapper_workdir
+            else:
+                realpath = os.path.realpath(self.dynagen.global_filename)
+                self.dynagen.dynamips[pemu_name].workingdir = os.path.dirname(realpath)
             self.dynagen.get_defaults_config()
-            self.dynagen.update_running_config()
-        #globals.GApp.PemuManager.startPemu()
-    
+            globals.GApp.dynagen.update_running_config()
+            self.dynagen.dynamips[pemu_name].configchange = True
+
+        # set defaults
+        node.set_hypervisor(self.dynagen.dynamips[pemu_name])
+        debug("Set default image " + globals.GApp.systconf['pemu'].default_pix_image)
+        node.set_image(globals.GApp.systconf['pemu'].default_pix_image,'525')
+        node.set_string_option('key', globals.GApp.systconf['pemu'].default_pix_key)
+        node.set_string_option('serial', globals.GApp.systconf['pemu'].default_pix_serial)
+
+
     def addNode(self, node):
         """ Add node in the topology
             node: object
@@ -247,7 +266,7 @@ class Topology(QtGui.QGraphicsScene):
                 if not globals.GApp.systconf['pemu'].default_pix_image:
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX image"), translate("Topology", "Please configure a default PIX image"))
                     return
-                self.firewallSetup()
+                self.firewallSetup(node)
                 
             QtCore.QObject.connect(node, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
             QtCore.QObject.connect(node, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
@@ -367,11 +386,11 @@ class Topology(QtGui.QGraphicsScene):
 
         try:
             # start nodes that are always on
-            if not isinstance(src_node, IOSRouter):
+            if not isinstance(src_node, IOSRouter) and not isinstance(src_node, FW):
                 src_node.startNode()
             elif src_node.state == 'running':
                 src_node.startupInterfaces()
-            if not isinstance(dst_node, IOSRouter):
+            if not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, FW):
                 dst_node.startNode()
             elif dst_node.state == 'running':
                 dst_node.startupInterfaces()

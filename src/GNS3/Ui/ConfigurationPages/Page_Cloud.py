@@ -59,6 +59,10 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         self.connect(self.pushButtonDeleteVDE, QtCore.SIGNAL('clicked()'), self.slotDeleteVDE)
         self.connect(self.listWidgetVDE,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotVDEChanged)
         self.connect(self.listWidgetVDE,  QtCore.SIGNAL('currentRowChanged(int)'),  self.slotVDEselected)
+        self.connect(self.pushButtonAddNull, QtCore.SIGNAL('clicked()'), self.slotAddNull)
+        self.connect(self.pushButtonDeleteNull, QtCore.SIGNAL('clicked()'), self.slotDeleteNull)
+        self.connect(self.listWidgetNull,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotNullChanged)
+        self.connect(self.listWidgetNull,  QtCore.SIGNAL('currentRowChanged(int)'),  self.slotNullselected)
         
         self.nios = []
         if sys.platform.startswith('win32'):
@@ -372,6 +376,48 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
                 self.lineEditVDEControlFile.setText(unicode(match.group(1)))
                 self.lineEditVDELocalFile.setText(unicode(match.group(2)))
 
+    def slotAddNull(self):
+        """ Add a new NULL NIO
+        """
+    
+        identifier = unicode(self.lineEditNullIdentifer.text(),  'utf-8')
+        if identifier:
+            nio = 'NIO_null:' + identifier
+            if not nio in self.nios:
+                self.listWidgetNull.addItem(nio)
+                self.nios.append(nio)
+
+    def slotDeleteNull(self):
+        """ Delete a NULL NIO
+        """
+        
+        item = self.listWidgetNull.currentItem()
+        if (item != None):
+            nio = str(item.text())
+            self.nios.remove(nio)
+            self.listWidgetNull.takeItem(self.listWidgetNull.currentRow())
+
+    def slotNullChanged(self):
+        """ Enabled the use of the delete button
+        """
+        
+        item = self.listWidgetNull.currentItem()
+        if item != None:
+            self.pushButtonDeleteNull.setEnabled(True)
+        else:
+            self.pushButtonDeleteNull.setEnabled(False)
+            
+    def slotNullselected(self,  index):
+        """ Load a selected NULL NIO
+        """
+        
+        item = self.listWidgetNull.currentItem()
+        if (item != None):
+            nio = str(item.text())
+            match = re.search(r"""^NIO_null:(.+)$""", nio)
+            if match:
+                self.lineEditNullIdentifer.setText(unicode(match.group(1)))
+
     def loadConfig(self,  id,  config = None):
         """ Load the config
         """
@@ -404,6 +450,8 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
                 self.listWidgetUNIX.addItem(nio)
             elif niotype.lower() == 'nio_vde':
                 self.listWidgetVDE.addItem(nio)
+            elif niotype.lower() == 'nio_null':
+                self.listWidgetNull.addItem(nio)
 
     def saveConfig(self, id, config = None):
         """ Save the config

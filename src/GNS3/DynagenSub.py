@@ -70,23 +70,28 @@ class DynagenSub(Dynagen):
             if progress.wasCanceled():
                 progress.reset()
                 break
-
+                
             server = config[section]
-            server.host = server.name
-            controlPort = None
-            if ':' in server.host:
-                (server.host, controlPort) = server.host.split(':')
-            if server['port'] != None:
-                controlPort = server['port']
-            if controlPort == None:
-                controlPort = 7200
-
-            # need to start hypervisors
-            if server.host == 'localhost' and globals.GApp.HypervisorManager and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
-                debug("Start hypervisor on port: " + str(controlPort))
-                hypervisor = globals.GApp.HypervisorManager.startNewHypervisor(int(controlPort))
-                globals.GApp.HypervisorManager.waitHypervisor(hypervisor)
-            current += 1
+            if ' ' in server.name:
+                (emulator, host) = server.name.split(' ')
+                if emulator == 'pemu' and globals.GApp.systconf['pemu'].enable_PemuManager:
+                    globals.GApp.PemuManager.startPemu()
+            else:
+                server.host = server.name
+                controlPort = None
+                if ':' in server.host:
+                    (server.host, controlPort) = server.host.split(':')
+                if server['port'] != None:
+                    controlPort = server['port']
+                if controlPort == None:
+                    controlPort = 7200
+    
+                # need to start hypervisors
+                if server.host == 'localhost' and globals.GApp.HypervisorManager and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
+                    debug("Start hypervisor on port: " + str(controlPort))
+                    hypervisor = globals.GApp.HypervisorManager.startNewHypervisor(int(controlPort))
+                    globals.GApp.HypervisorManager.waitHypervisor(hypervisor)
+                current += 1
 
         progress.setValue(count)
         progress.deleteLater()

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
 #
-# Created: Fri Feb 29 16:52:54 2008
+# Created: Sat Mar  1 22:48:27 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_PreferencesGeneral(object):
     def setupUi(self, PreferencesGeneral):
         PreferencesGeneral.setObjectName("PreferencesGeneral")
-        PreferencesGeneral.resize(QtCore.QSize(QtCore.QRect(0,0,402,379).size()).expandedTo(PreferencesGeneral.minimumSizeHint()))
+        PreferencesGeneral.resize(QtCore.QSize(QtCore.QRect(0,0,432,394).size()).expandedTo(PreferencesGeneral.minimumSizeHint()))
 
         self.vboxlayout = QtGui.QVBoxLayout(PreferencesGeneral)
         self.vboxlayout.setObjectName("vboxlayout")
@@ -32,6 +32,14 @@ class Ui_PreferencesGeneral(object):
         self.langsBox.setSizePolicy(sizePolicy)
         self.langsBox.setObjectName("langsBox")
         self.vboxlayout.addWidget(self.langsBox)
+
+        self.label_4 = QtGui.QLabel(PreferencesGeneral)
+        self.label_4.setObjectName("label_4")
+        self.vboxlayout.addWidget(self.label_4)
+
+        self.lineEditTermCommand = QtGui.QLineEdit(PreferencesGeneral)
+        self.lineEditTermCommand.setObjectName("lineEditTermCommand")
+        self.vboxlayout.addWidget(self.lineEditTermCommand)
 
         self.groupBox_2 = QtGui.QGroupBox(PreferencesGeneral)
         self.groupBox_2.setObjectName("groupBox_2")
@@ -83,7 +91,7 @@ class Ui_PreferencesGeneral(object):
         self.vboxlayout1.addWidget(self.checkBoxManualConnections)
         self.vboxlayout.addWidget(self.groupBox)
 
-        spacerItem = QtGui.QSpacerItem(384,51,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        spacerItem = QtGui.QSpacerItem(414,20,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
         self.vboxlayout.addItem(spacerItem)
 
         self.retranslateUi(PreferencesGeneral)
@@ -92,12 +100,13 @@ class Ui_PreferencesGeneral(object):
     def retranslateUi(self, PreferencesGeneral):
         PreferencesGeneral.setWindowTitle(QtGui.QApplication.translate("PreferencesGeneral", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("PreferencesGeneral", "Language:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_4.setText(QtGui.QApplication.translate("PreferencesGeneral", "Terminal command:", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setTitle(QtGui.QApplication.translate("PreferencesGeneral", "Paths", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("PreferencesGeneral", "Project directory:", None, QtGui.QApplication.UnicodeUTF8))
         self.ProjectPath_browser.setText(QtGui.QApplication.translate("PreferencesGeneral", "...", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_3.setText(QtGui.QApplication.translate("PreferencesGeneral", "IOS directory:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_3.setText(QtGui.QApplication.translate("PreferencesGeneral", "IOS/PIX directory:", None, QtGui.QApplication.UnicodeUTF8))
         self.IOSPath_browser.setText(QtGui.QApplication.translate("PreferencesGeneral", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox.setTitle(QtGui.QApplication.translate("PreferencesGeneral", "GUI settings", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxShowStatusPoints.setText(QtGui.QApplication.translate("PreferencesGeneral", "Show link status points on the scene", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxManualConnections.setText(QtGui.QApplication.translate("PreferencesGeneral", "Always use the manual mode when adding links", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxManualConnections.setText(QtGui.QApplication.translate("PreferencesGeneral", "Always use manual mode when adding links", None, QtGui.QApplication.UnicodeUTF8))
 

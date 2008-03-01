@@ -220,7 +220,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         menu = QtGui.QMenu()
         interfaces_list = self.getInterfaces()
         if len(interfaces_list) == 0:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Connection"),  translate("AbstractNode", "Please, configure the slots"))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Connection"),  translate("AbstractNode", "No interface available, please configure this device"))
             return
         connected_list = self.getConnectedInterfaceList()
         for interface in interfaces_list:

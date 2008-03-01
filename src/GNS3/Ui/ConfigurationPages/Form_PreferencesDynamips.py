@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesDynamips.ui'
 #
-# Created: Fri Feb 29 16:52:54 2008
+# Created: Sat Mar  1 22:48:27 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_PreferencesDynamips(object):
     def setupUi(self, PreferencesDynamips):
         PreferencesDynamips.setObjectName("PreferencesDynamips")
-        PreferencesDynamips.resize(QtCore.QSize(QtCore.QRect(0,0,430,451).size()).expandedTo(PreferencesDynamips.minimumSizeHint()))
+        PreferencesDynamips.resize(QtCore.QSize(QtCore.QRect(0,0,430,411).size()).expandedTo(PreferencesDynamips.minimumSizeHint()))
 
         self.vboxlayout = QtGui.QVBoxLayout(PreferencesDynamips)
         self.vboxlayout.setObjectName("vboxlayout")
@@ -93,28 +93,20 @@ class Ui_PreferencesDynamips(object):
         self.dynamips_baseConsole.setObjectName("dynamips_baseConsole")
         self.gridlayout.addWidget(self.dynamips_baseConsole,5,2,1,1)
 
-        self.label_3 = QtGui.QLabel(self.groupBox)
-        self.label_3.setObjectName("label_3")
-        self.gridlayout.addWidget(self.label_3,6,0,1,4)
-
-        self.dynamips_term_cmd = QtGui.QLineEdit(self.groupBox)
-        self.dynamips_term_cmd.setObjectName("dynamips_term_cmd")
-        self.gridlayout.addWidget(self.dynamips_term_cmd,7,0,1,4)
-
         self.checkBoxGhosting = QtGui.QCheckBox(self.groupBox)
         self.checkBoxGhosting.setChecked(True)
         self.checkBoxGhosting.setObjectName("checkBoxGhosting")
-        self.gridlayout.addWidget(self.checkBoxGhosting,8,0,1,2)
+        self.gridlayout.addWidget(self.checkBoxGhosting,6,0,1,2)
 
         self.checkBoxMmap = QtGui.QCheckBox(self.groupBox)
         self.checkBoxMmap.setChecked(True)
         self.checkBoxMmap.setObjectName("checkBoxMmap")
-        self.gridlayout.addWidget(self.checkBoxMmap,9,0,1,2)
+        self.gridlayout.addWidget(self.checkBoxMmap,7,0,1,2)
 
         self.checkBoxSparseMem = QtGui.QCheckBox(self.groupBox)
         self.checkBoxSparseMem.setChecked(False)
         self.checkBoxSparseMem.setObjectName("checkBoxSparseMem")
-        self.gridlayout.addWidget(self.checkBoxSparseMem,10,0,1,2)
+        self.gridlayout.addWidget(self.checkBoxSparseMem,8,0,1,2)
         self.vboxlayout1.addWidget(self.groupBox)
 
         self.hboxlayout = QtGui.QHBoxLayout()
@@ -204,7 +196,6 @@ class Ui_PreferencesDynamips(object):
         self.label_5.setText(QtGui.QApplication.translate("PreferencesDynamips", "Base port:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_6.setText(QtGui.QApplication.translate("PreferencesDynamips", " Base UDP:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_7.setText(QtGui.QApplication.translate("PreferencesDynamips", "Base console:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_3.setText(QtGui.QApplication.translate("PreferencesDynamips", "Terminal command:", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxGhosting.setText(QtGui.QApplication.translate("PreferencesDynamips", "Enable ghost IOS feature", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxMmap.setText(QtGui.QApplication.translate("PreferencesDynamips", "Enable mmap feature", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxSparseMem.setText(QtGui.QApplication.translate("PreferencesDynamips", "Enable sparse memory feature", None, QtGui.QApplication.UnicodeUTF8))
@@ -213,6 +204,6 @@ class Ui_PreferencesDynamips(object):
         self.groupBox_2.setTitle(QtGui.QApplication.translate("PreferencesDynamips", "Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("PreferencesDynamips", "Memory usage limit per hypervisor:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_8.setText(QtGui.QApplication.translate("PreferencesDynamips", "UDP incrementation:", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxHypervisorManagerImport.setText(QtGui.QApplication.translate("PreferencesDynamips", "Use the hypervisor manager when importing", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxHypervisorManagerImport.setText(QtGui.QApplication.translate("PreferencesDynamips", "Use Hypervisor Manager when importing", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QtGui.QApplication.translate("PreferencesDynamips", "Hypervisor Manager", None, QtGui.QApplication.UnicodeUTF8))
 

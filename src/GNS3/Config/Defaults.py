@@ -63,7 +63,6 @@ conf_systemDynamips_defaults = {
     'path': '',
     'port': 7200,
     'workdir': '',
-    'term_cmd': '',
     'baseUDP': 10000, 
     'baseConsole': 2000, 
     'ghosting': True,
@@ -78,7 +77,6 @@ conf_systemDynamips_types = {
     'path': unicode,
     'port': int,
     'workdir': unicode,
-    'term_cmd': unicode,
     'baseUDP': int,
     'baseConsole': int, 
     'ghosting': bool, 
@@ -91,6 +89,7 @@ conf_systemDynamips_types = {
 
 conf_systemGeneral_defaults = {
     'lang': 'en',
+    'term_cmd': '',
     'project_path': '.',
     'ios_path': '.',
     'status_points': True, 
@@ -99,6 +98,7 @@ conf_systemGeneral_defaults = {
 
 conf_systemGeneral_types = {
     'lang': unicode,
+    'term_cmd': unicode,
     'project_path': unicode,
     'ios_path': unicode,
     'status_points': bool, 
@@ -117,10 +117,24 @@ conf_systemCapture_types = {
     'auto_start': bool
 }
 
-conf_systemPemu_defaults = {
+conf_systemPemu_defaults = { 
+    'pemuwrapper_path':'', 
+    'pemuwrapper_workdir':'', 
+    'external_host':'', 
+    'enable_PemuManager': True,
+    'import_use_PemuManager': True,
     'default_pix_image': '',
+    'default_pix_key':'', 
+    'default_pix_serial':'', 
 }
 
 conf_systemPemu_types = {
+    'pemuwrapper_path': unicode, 
+    'pemuwrapper_workdir': unicode, 
+    'external_host': unicode,
+    'enable_PemuManager': bool,
+    'import_use_PemuManager': bool,
     'default_pix_image': unicode,
+    'default_pix_key': str, 
+    'default_pix_serial': str, 
 }
