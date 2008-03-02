@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="es_AR">
 <context>
-    <name>ATMSW</name>
-    <message>
-        <location filename="../Node/ATMSW.py" line="206"/>
-        <source>Connection</source>
-        <translation>Conexion</translation>
-    </message>
-    <message>
-        <location filename="../Node/ATMSW.py" line="206"/>
-        <source>No port available</source>
-        <translation>No existe un puerto disponible</translation>
-    </message>
-</context>
-<context>
     <name>ATMSWPage</name>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="13"/>
@@ -541,11 +528,6 @@ p, li { white-space: pre-wrap; }
         <translation>Interfaz ya conectada</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="223"/>
-        <source>Please, configure the slots</source>
-        <translation>Por favor configure los slots</translation>
-    </message>
-    <message>
         <location filename="../Node/AbstractNode.py" line="88"/>
         <source>Hostname</source>
         <translation>Nombre de host</translation>
@@ -560,18 +542,10 @@ p, li { white-space: pre-wrap; }
         <source>Hostname: %s</source>
         <translation>Nombre de host: %s</translation>
     </message>
-</context>
-<context>
-    <name>Cloud</name>
     <message>
-        <location filename="../Node/Cloud.py" line="108"/>
-        <source>Connection</source>
-        <translation>Conexion</translation>
-    </message>
-    <message>
-        <location filename="../Node/Cloud.py" line="108"/>
-        <source>No NIO available</source>
-        <translation>NIO no disponible </translation>
+        <location filename="../Node/AbstractNode.py" line="223"/>
+        <source>No interface available, please configure this device</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -592,12 +566,12 @@ p, li { white-space: pre-wrap; }
         <translation> NIO Ethernet Generico (se requiere acceso como root)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="508"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="606"/>
         <source>&amp;Add</source>
         <translation>&amp;Agregar</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="518"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="616"/>
         <source>&amp;Delete</source>
         <translation>&amp;Eliminar</translation>
     </message>
@@ -612,7 +586,7 @@ p, li { white-space: pre-wrap; }
         <translation>NIO UDP</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="438"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="561"/>
         <source>Settings</source>
         <translation>Ajustes</translation>
     </message>
@@ -632,7 +606,7 @@ p, li { white-space: pre-wrap; }
         <translation>Puerto remoto:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="489"/>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="587"/>
         <source>NIOs</source>
         <translation>NIOs</translation>
     </message>
@@ -670,6 +644,16 @@ p, li { white-space: pre-wrap; }
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="446"/>
         <source>Control file:</source>
         <translation>Archivo control:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="555"/>
+        <source>NIO NULL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="567"/>
+        <source>Identifier:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -858,19 +842,6 @@ Ingrese el numero del idlepc que desea aplicar  [1-%i] o ENTER para no efectuar 
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="154"/>
         <source>&amp;Delete</source>
         <translation>&amp;Eliminar</translation>
-    </message>
-</context>
-<context>
-    <name>FRSW</name>
-    <message>
-        <location filename="../Node/FRSW.py" line="193"/>
-        <source>Connection</source>
-        <translation>Conexion</translation>
-    </message>
-    <message>
-        <location filename="../Node/FRSW.py" line="193"/>
-        <source>No port available</source>
-        <translation>Puerto no disponible</translation>
     </message>
 </context>
 <context>
@@ -1680,47 +1651,47 @@ Ingrese el numero del idlepc que desea aplicar  [1-%i] o ENTER para no efectuar 
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="296"/>
+        <location filename="../NETFile.py" line="308"/>
         <source>Save</source>
         <translation>Guardar</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="296"/>
+        <location filename="../NETFile.py" line="308"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Por favor configure el camino para Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="517"/>
+        <location filename="../NETFile.py" line="530"/>
         <source>Dynamips error</source>
         <translation>Error de Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="520"/>
+        <location filename="../NETFile.py" line="533"/>
         <source>Dynamips warning</source>
         <translation>Advertencia Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="318"/>
+        <location filename="../NETFile.py" line="330"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Se detecto una excepcion, deteniendo la importacion...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="527"/>
+        <location filename="../NETFile.py" line="540"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportando la configuracion %s a %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="534"/>
+        <location filename="../NETFile.py" line="547"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Error de IO: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="318"/>
+        <location filename="../NETFile.py" line="330"/>
         <source>Importation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="326"/>
+        <location filename="../NETFile.py" line="338"/>
         <source>Please wait while importing the topology</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1937,7 +1908,7 @@ para ver la pagina de configuracion.</translation>
         <translation>Dynamips</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="222"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="212"/>
         <source>Settings</source>
         <translation>Ajustes</translation>
     </message>
@@ -1972,49 +1943,44 @@ para ver la pagina de configuracion.</translation>
         <translation>Consola base:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="129"/>
-        <source>Terminal command:</source>
-        <translation>Comando de terminal:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="174"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="164"/>
         <source>&amp;Test</source>
         <translation>&amp;Prueba</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="210"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="200"/>
         <source>Hypervisor Manager</source>
         <translation>Administrador de Hypervisor</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="228"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="218"/>
         <source>Memory usage limit per hypervisor:</source>
         <translation>Limite de uso de memoria por hypervisor:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="248"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="238"/>
         <source>UDP incrementation:</source>
         <translation>Incremento UDP:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="268"/>
-        <source>Use the hypervisor manager when importing</source>
-        <translation>Utilizar el Administrador de hypervisor durante la importacion</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="139"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="129"/>
         <source>Enable ghost IOS feature</source>
         <translation>Habilitar la funcion de ghost IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="149"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="139"/>
         <source>Enable mmap feature</source>
         <translation>Habilitar la funcion de nmap</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="159"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="149"/>
         <source>Enable sparse memory feature</source>
         <translation>Habilitar la funcion de sparce memory</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="258"/>
+        <source>Use Hypervisor Manager when importing</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2030,39 +1996,44 @@ para ver la pagina de configuracion.</translation>
         <translation>Lenguaje:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="91"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="101"/>
         <source>GUI settings</source>
         <translation>Ajustes de interfaz grafica</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="97"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="107"/>
         <source>Show link status points on the scene</source>
         <translation>Ver el estado de los enlaces en el escenario</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="107"/>
-        <source>Always use the manual mode when adding links</source>
-        <translation>Siempre utilizar el modo manual cuando se agregan vinculos</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
         <source>Paths</source>
         <translation>Caminos</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="48"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="58"/>
         <source>Project directory:</source>
         <translation>Directorio del Proyecto:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="78"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="88"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="68"/>
-        <source>IOS directory:</source>
-        <translation>Directorio de IOS:</translation>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
+        <source>Terminal command:</source>
+        <translation type="unfinished">Comando de terminal:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="78"/>
+        <source>IOS/PIX directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="117"/>
+        <source>Always use manual mode when adding links</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2156,37 +2127,37 @@ para ver la pagina de configuracion.</translation>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="224"/>
+        <location filename="../Topology.py" line="241"/>
         <source>IOS image</source>
         <translation>Imagen IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="203"/>
+        <location filename="../Topology.py" line="220"/>
         <source>Please register at least one IOS image</source>
         <translation>Por favor registre como minimo una imagen de IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="238"/>
+        <location filename="../Topology.py" line="255"/>
         <source>Hypervisor</source>
         <translation>Hypervisor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="238"/>
+        <location filename="../Topology.py" line="255"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Por favor configure el camino para Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="417"/>
+        <location filename="../Topology.py" line="432"/>
         <source>Dynamips error</source>
         <translation>Error de Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="270"/>
+        <location filename="../Topology.py" line="285"/>
         <source>Connection lost</source>
         <translation>Perdida de conexion</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="335"/>
+        <location filename="../Topology.py" line="350"/>
         <source>Connection</source>
         <translation>Conexion</translation>
     </message>
@@ -2196,32 +2167,32 @@ para ver la pagina de configuracion.</translation>
         <translation>No se puede conectar con hypervisors externos en %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="214"/>
+        <location filename="../Topology.py" line="231"/>
         <source>No image for platform %s</source>
         <translation>No se encuentra imagen para la plataforma %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="225"/>
+        <location filename="../Topology.py" line="242"/>
         <source>Please choose an image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="335"/>
+        <location filename="../Topology.py" line="350"/>
         <source>You have to connect at least one router to the switch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="252"/>
+        <location filename="../Topology.py" line="267"/>
         <source>PIX image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="252"/>
+        <location filename="../Topology.py" line="267"/>
         <source>Please configure a default PIX image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="322"/>
+        <location filename="../Topology.py" line="337"/>
         <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>

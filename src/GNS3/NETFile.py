@@ -25,7 +25,7 @@ import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.pemu_lib as pix
 from GNS3.Globals.Symbols import SYMBOLS
-from GNS3.Utils import translate, debug
+from GNS3.Utils import translate, debug, error
 from PyQt4 import QtGui, QtCore
 from Annotation import Annotation
 from GNS3.Config.Objects import iosImageConf
@@ -556,7 +556,7 @@ class NETFile(object):
         
         for device in self.dynagen.devices.values():
             # record router configs
-            if device.isrouter and globals.GApp.workspace.projectConfigs:
+            if isinstance(device, lib.Router) and globals.GApp.workspace.projectConfigs:
                 self.export_router_config(device)
             node = globals.GApp.topology.getNode(globals.GApp.topology.getNodeID(device.name))
             # record node x & y position

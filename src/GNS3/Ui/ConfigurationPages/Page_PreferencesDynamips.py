@@ -139,7 +139,6 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         path = fb.getDir()
 
         if path is not None:
-            self.dynamips_workdir.clear()
             self.dynamips_workdir.setText(path)
 
     def __testDynamips(self):

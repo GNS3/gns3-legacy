@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import re
+import re, shutil
 import GNS3.Dynagen.dynagen as dynagen
 import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Globals as globals
@@ -74,11 +74,13 @@ class FW(AbstractNode, FWDefaults):
     def delete_fw(self):
         """ Delete this FW
         """
-        
         if self.fw:
-            del self.dynagen.devices[self.hostname]
-            self.fw = None
-        self.dynagen.update_running_config()
+            if self.fw.state != 'stopped':
+                self.fw.stop()
+            if self.fw:
+                del self.dynagen.devices[self.hostname]
+                self.fw = None
+            self.dynagen.update_running_config()
         
     def set_hostname(self, hostname):
         """ Set a hostname
@@ -169,6 +171,11 @@ class FW(AbstractNode, FWDefaults):
         for link in links:
             globals.GApp.topology.deleteLink(link)
         self.delete_fw()
+        try:
+            pemu_name = self.pemu.host + ':10525'
+            shutil.move(self.dynagen.dynamips[pemu_name].workingdir + self.hostname, self.dynagen.dynamips[pemu_name].workingdir + new_hostname)
+        except:
+            debug("Cannot move FLASH directory")
         self.hostname = new_hostname
         self.f = 'FW ' + self.hostname
         self.create_firewall()

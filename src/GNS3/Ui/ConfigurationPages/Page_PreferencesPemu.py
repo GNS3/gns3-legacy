@@ -118,7 +118,6 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
 
         path = fileBrowser('Pemuwrapper', directory='.').getFile()
         if path != None and path[0] != '':
-            self.lineEditPemuwrapperPath.clear()
             self.lineEditPemuwrapperPath.setText(path[0])
 
     def slotSelectWorkdir(self):
@@ -129,5 +128,4 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         path = fb.getDir()
 
         if path is not None:
-            self.lineEditPemuwrapperWorkdir.clear()
             self.lineEditPemuwrapperWorkdir.setText(path)

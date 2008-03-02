@@ -408,7 +408,7 @@ class Topology(QtGui.QGraphicsScene):
         """
 
         try:
-            if isinstance(link.source, IOSRouter) or isinstance(link.source, FW):
+            if isinstance(link.source, IOSRouter):
                 srcdev = link.source.get_dynagen_device()
                 if type(link.dest) == Cloud:
                     debug('Disconnect link from ' + srcdev.name + ' ' + link.srcIf +' to ' + link.destIf)
@@ -418,7 +418,7 @@ class Topology(QtGui.QGraphicsScene):
                     debug('Disconnect link from ' + srcdev.name + ' ' + link.srcIf +' to ' + dstdev.name + ' ' + link.destIf)
                     self.dynagen.disconnect(srcdev, link.srcIf, dstdev.name + ' ' + link.destIf)
                 link.source.set_config(link.source.get_config())
-            elif isinstance(link.dest, IOSRouter) or isinstance(link.source, FW):
+            elif isinstance(link.dest, IOSRouter):
                 dstdev = link.dest.get_dynagen_device()
                 if type(link.source) == Cloud:
                     debug('Disconnect link from ' + dstdev.name + ' ' + link.destIf +' to ' + link.srcIf)
