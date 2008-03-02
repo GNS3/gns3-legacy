@@ -49,7 +49,7 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
 
         # Default path to pemuwrapper
         if self.conf.pemuwrapper_path == '':
-            if sys.platform.startswith('win32'):
+            if sys.platform.startswith('win'):
                 self.conf.pemuwrapper_path = unicode('C:\Program Files\GNS3\pemu\pemuwrapper.exe',  'utf-8')
             else:
                 path = os.getcwd() + '/pemu/pemuwrapper.py'

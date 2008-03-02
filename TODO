@@ -1,16 +1,15 @@
 TODO LIST
 
- * Provide a way to do get a IDLE PC directly from GNS3 and include/reuse an IDLE PC database.
- * An all-in-one installer for Mac OS X
- * Show interface names on the scene (as an option).
+ * Use an IDLE PC database.
+ * An all-in-one installer for Mac OS X.
  * Correct minor drawing problems with the status points.
- * Connect links directly in emulation mode (hotplug)
- * Give users a way to write text on the scene
- * Copy/Paste of a node
+ * Copy/Paste of a node.
  * Show more information about hardware (VLANs for switches ...) using the toolTip feature from Qt or something else.
- * Show a number on the scene when there is more than one link between 2 nodes, ex: 'x3' means 3 links
+ * Show a number on the scene when there is more than one link between 2 nodes, ex: 'x3' means 3 links.
  * Improve slot management.
  * A dialog that give users a way to add their own SVG images and to affect a 'behavior' to a symbol.
- * A setup wizard
-
+ * A setup wizard.
+ * Align option for the scene.
+ * Paint ovals,rectangle etc. with different colors.
+ * Change text fonts.
 

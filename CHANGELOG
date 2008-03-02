@@ -1,5 +1,20 @@
 CHANGELOG
 
+GNS3 0.4:
+
+ * Dynamic mode (no design/emulation modes).
+ * New .net import/export.
+ * WICS support.
+ * PEMU support.
+ * GUI improvements.
+ * ATM bridge.
+ * Capture feature for links.
+ * Annotation feature.
+ * Project settings.
+ * NULL NIO.
+ * IDLE PC calculation from the GUI.
+ * New languages.
+
 GNS3 0.3 beta:
 
  * Support of Ethernet, ATM and Frame-Relay switches

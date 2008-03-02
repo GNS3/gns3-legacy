@@ -4,7 +4,7 @@ import sys
 sys.path.append('./src')
 from distutils.core import setup, Extension
 
-if sys.platform.startswith('win32'):
+if sys.platform.startswith('win'):
 
     try:
         import py2exe

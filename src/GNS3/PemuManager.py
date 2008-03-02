@@ -116,7 +116,7 @@ class PemuManager(object):
             s.close()
 
         # start pemu, use python on all platform but Windows
-        if sys.platform.startswith('win32'):
+        if sys.platform.startswith('win'):
             self.proc.start(globals.GApp.systconf['pemu'].pemuwrapper_path)
         else:
             self.proc.start('python',  [globals.GApp.systconf['pemu'].pemuwrapper_path])

@@ -54,7 +54,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
 
         # Default path to dynamips executable
         if self.conf.path == '':
-            if sys.platform.startswith('win32'):
+            if sys.platform.startswith('win'):
                 self.conf.path = unicode('C:\Program Files\GNS3\Dynamips\dynamips-wxp.exe',  'utf-8')
 
         # Push default values to GUI

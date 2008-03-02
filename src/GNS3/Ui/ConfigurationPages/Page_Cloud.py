@@ -65,7 +65,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         self.connect(self.listWidgetNull,  QtCore.SIGNAL('currentRowChanged(int)'),  self.slotNullselected)
         
         self.nios = []
-        if sys.platform.startswith('win32'):
+        if sys.platform.startswith('win'):
             interfaces = self.getWindowsInterfaces()
             # hide linux ethernet
             self.comboBoxLinuxEth.setEnabled(False)

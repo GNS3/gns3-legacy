@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import sys
+import sys, platform
 import GNS3.Globals as globals
 from PyQt4 import QtGui, QtCore
 from GNS3.Config.Objects import systemGeneralConf
@@ -64,8 +64,12 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         if self.conf.term_cmd == '':
             if sys.platform.startswith('darwin'):
                 self.conf.term_cmd = unicode("/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'",  'utf-8')
-            elif sys.platform.startswith('win32'):
-                self.conf.term_cmd = unicode("start telnet %h %p",  'utf-8')
+            elif sys.platform.startswith('win'):
+                # ugly method to detect Vista (Vista doesn't have telnet)
+                if platform.uname()[3][0] == '6':
+                    self.conf.term_cmd = unicode("putty.exe -telnet %h %p",  'utf-8')
+                else:
+                    self.conf.term_cmd = unicode("start telnet %h %p",  'utf-8')
             else:
                 self.conf.term_cmd = unicode("xterm -T %d -e 'telnet %h %p' >/dev/null 2>&1 &",  'utf-8')
 

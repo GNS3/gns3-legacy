@@ -28,7 +28,6 @@ from GNS3.Globals.Symbols import SYMBOLS
 from GNS3.Utils import translate, debug, error
 from PyQt4 import QtGui, QtCore
 from Annotation import Annotation
-from GNS3.Config.Objects import iosImageConf
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Objects import iosImageConf, hypervisorConf
 from GNS3.Node.IOSRouter import IOSRouter, init_router_id

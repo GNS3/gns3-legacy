@@ -49,7 +49,7 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
         if self.conf.cap_cmd == '':
             if sys.platform.startswith('darwin'):
                 self.conf.cap_cmd = unicode("/sw/bin/wireshark %c",  'utf-8')
-            elif sys.platform.startswith('win32'):
+            elif sys.platform.startswith('win'):
                 self.conf.cap_cmd = unicode("C:\Program Files\Wireshark\wireshark.exe %c",  'utf-8')
             else:
                 self.conf.cap_cmd = unicode("/usr/bin/wireshark %c",  'utf-8')
