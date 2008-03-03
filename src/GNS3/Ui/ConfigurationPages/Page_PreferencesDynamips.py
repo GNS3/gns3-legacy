@@ -56,6 +56,10 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         if self.conf.path == '':
             if sys.platform.startswith('win'):
                 self.conf.path = unicode('C:\Program Files\GNS3\Dynamips\dynamips-wxp.exe',  'utf-8')
+                if os.environ.has_key("%TEMP%"):
+                    self.conf.workdir = unicode(os.environ["%TEMP%"], 'utf-8')
+            else:
+                self.conf.workdir = unicode('/tmp', 'utf-8')
 
         # Push default values to GUI
         self.dynamips_path.setText(self.conf.path)

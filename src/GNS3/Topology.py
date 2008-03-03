@@ -294,10 +294,9 @@ class Topology(QtGui.QGraphicsScene):
 
         node = self.__nodes[id]
         if isinstance(node, IOSRouter):
-                #router = node.get_dynagen_device()
-                if globals.GApp.iosimages.has_key('localhost:' + node.default_image):
-                    print 'here'
-                    image_conf = globals.GApp.iosimages['localhost:' + node.default_image]
+                router = node.get_dynagen_device()
+                if globals.GApp.iosimages.has_key('localhost:' + router.image):
+                    image_conf = globals.GApp.iosimages['localhost:' + router.image]
                     if globals.GApp.HypervisorManager and image_conf.hypervisor_host == '':
                         globals.GApp.HypervisorManager.unallocateHypervisor(node, router.dynamips.port)
         self.removeItem(node)
@@ -408,6 +407,9 @@ class Topology(QtGui.QGraphicsScene):
         """ Delete a link from the topology
         """
 
+        if (isinstance(link.source, FW) and isinstance(link.dest, ETHSW)) or (isinstance(link.source, ETHSW) and isinstance(link.dest, FW)):
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  'pemuwrapper does not support removal')
+            return False
         try:
             if isinstance(link.source, IOSRouter):
                 srcdev = link.source.get_dynagen_device()
@@ -431,7 +433,7 @@ class Topology(QtGui.QGraphicsScene):
                 link.dest.set_config(link.dest.get_config())
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
-            return
+            return False
 
         if isinstance(link.source, IOSRouter):
             link.source.set_config(link.source.get_config())
@@ -446,3 +448,4 @@ class Topology(QtGui.QGraphicsScene):
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
         self.dynagen.update_running_config()
         self.changed = True
+        return True

@@ -46,8 +46,8 @@ class PemuManager(object):
         """ Wait pemu until it accepts connections
         """
 
-        # give 10 seconds to pemu to accept connections
-        count = 10
+        # give 15 seconds to pemu to accept connections
+        count = 15
         progress = None
         connection_success = False
         debug("Pemu manager: connect on " + str(self.port))
@@ -94,7 +94,7 @@ class PemuManager(object):
         """ Start Pemu
         """
 
-        if self.proc:
+        if self.proc and self.proc.state():
             debug('PemuManager: pemu is already started with pid ' + str(self.proc.pid()))
             return
 
@@ -118,16 +118,25 @@ class PemuManager(object):
 
         # start pemu, use python on all platform but Windows
         if sys.platform.startswith('win'):
-            self.proc.start(globals.GApp.systconf['pemu'].pemuwrapper_path)
+            try:
+                # ugly test to tell the user to run pemuwrapper manually the first time ...
+                pemu = open(os.path.dirname(globals.GApp.systconf['pemu'].pemuwrapper_path) + "\\pemu_public_win_2007-07-15\\pemu.exe" )
+                pemu.close()
+            except IOError:
+                self.proc  = None
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Pemu Manager',  translate("PemuManager", "Please start pemuwrapper manually to unpack pemu"))
+                return
+            self.proc.start('"' + globals.GApp.systconf['pemu'].pemuwrapper_path + '"')
         else:
             self.proc.start('python',  [globals.GApp.systconf['pemu'].pemuwrapper_path])
 
         if self.proc.waitForStarted() == False:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Pemu Manager',  unicode(translate("PemuManager", "Can't start Pemu on port %i")) % self.port)
             return
-            
+
         self.waitPemu()
-        debug('PemuManager: Pemu has been started with pid ' + str(self.proc.pid()))
+        if self.proc and self.proc.state():
+            debug('PemuManager: Pemu has been started with pid ' + str(self.proc.pid()))
     
     def stopPemu(self):
         """ Stop Pemu
@@ -140,7 +149,7 @@ class PemuManager(object):
                     hypervisor.close()
                 except:
                     continue
-        if self.proc:
+        if self.proc and self.proc.state():
             debug('PemuManager: stop Pemu with pid ' + str(self.proc.pid()))
             self.proc.close()
-            self.proc = None
+        self.proc = None

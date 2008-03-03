@@ -78,7 +78,7 @@ class HypervisorManager(object):
             s.close()
     
         # start dynamips in hypervisor mode (-H)
-        proc.start(self.hypervisor_path,  ['-H', str(port)])
+        proc.start( self.hypervisor_path ,  ['-H', str(port)])
 
         if proc.waitForStarted() == False:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  unicode(translate("HypervisorManager", "Can't start Dynamips on port %i")) % port)
@@ -147,7 +147,7 @@ class HypervisorManager(object):
         """
 
         for hypervisor in self.hypervisors:
-            if not isinstance(node, IOSRouter) or hypervisor['load'] + node.default_ram <= globals.GApp.systconf['dynamips'].memory_limit:
+            if not isinstance(node, IOSRouter) or (isinstance(node, IOSRouter) and hypervisor['load'] + node.default_ram <= globals.GApp.systconf['dynamips'].memory_limit):
                 if isinstance(node, IOSRouter):
                     hypervisor['load'] += node.default_ram
                 debug('Hypervisor manager: allocates an already started hypervisor (port: ' + str(hypervisor['port']) + ')')
@@ -258,7 +258,8 @@ class HypervisorManager(object):
             s.close()
             proc.close()
             return True
-        proc.close()
+        if proc.state():
+            proc.close()
         return False
 
     def showHypervisors(self):

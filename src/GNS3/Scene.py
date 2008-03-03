@@ -281,11 +281,16 @@ class Scene(QtGui.QGraphicsView):
         """ Called to delete nodes
         """
 
+        ok_to_delete_node = True
         for item in self.__topology.selectedItems():
             if not isinstance(item, Annotation):
                 for link in item.getEdgeList().copy():
-                    self.__topology.deleteLink(link)
-                self.__topology.deleteNode(item.id)
+                    if self.__topology.deleteLink(link) == False:
+                        if ok_to_delete_node:
+                            ok_to_delete_node = False
+                        continue
+                if ok_to_delete_node:
+                    self.__topology.deleteNode(item.id)
             else:
                 self.__topology.removeItem(item)
 

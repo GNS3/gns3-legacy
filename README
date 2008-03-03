@@ -1,35 +1,29 @@
 INSTALLATION
 
- * GNS3 dependencies:
+* GNS3 dependencies:
 
- 	- Qt 4.3 (or higher)
- 	- Python 2.4 (or higher)
-  	- Sip 4.5 (or higher)
- 	- PyQt 4.1 (or higher)
+- Qt 4.3 (or higher)
+- Python 2.4 (or higher)
+- Sip 4.5 (or higher)
+- PyQt 4.1 (or higher)
 
- * WINDOWS users:
+* WINDOWS users:
 
-	Download the GNS3 all-in-one for Windows on http://www.gns3.net (~8 MB)
-	This program will install a binary version of GNS3 as well as Dynamips, Pemu and WinPCAP.
-	Recommendation: Dynamips has better performances on other platforms.
+Download the GNS3 all-in-one for Windows on http://www.gns3.net (~8 MB)
+This program will install a binary version of GNS3 as well as Dynamips, Pemu and WinPCAP.
+Recommendation: Dynamips has better performances on other platforms.
 
- * Linux users:
+* Linux users:
 
-	On Linux you just need to install a package called python-qt4 or you can compile all the dependencies manually.
-	A debian package is now available, until officially released with Debian/Ubuntu follow instructions 
-	on http://gpl.code.de/oswiki/GplcodedeApt and install "gns3" package.
+On Linux you just need to install a package called python-qt4 or you can compile all the dependencies manually.
+A debian package is now available, until officially released with Debian/Ubuntu follow instructions
+on http://gpl.code.de/oswiki/GplcodedeApt and install "gns3" package.
 
- * MacOS X users:
+* MacOS X users:
 
-	1. Install the Apple Devs Tools (on your Mac OS X DvD or download it on ADC account).
-
-	2. Download python 2.5.1 (or higher) for MacOS X on http://www.python.org/download/ and install it.
-
-	3. Download qt-mac-opensource-4.3.3.dmg on http://trolltech.com/developer/downloads/qt/mac and install it.
-
-	4. Download SIP http://www.riverbankcomputing.com/Downloads/sip4/sip-4.7.tar.gz, compile and install it.
-
-	5. Download PyQt hhttp://www.riverbankcomputing.com/Downloads/PyQt4/GPL/PyQt-mac-gpl-4.3.tar.gz, compile and install it.
-
-	6. Start GNS3.
-
+1. Install the Apple Devs Tools (on your Mac OS X DvD or download it on ADC account).
+2. Download python 2.5.1 (or higher) for MacOS X on http://www.python.org/download/ and install it.
+3. Download qt-mac-opensource-4.3.3.dmg on http://trolltech.com/developer/downloads/qt/mac and install it.
+4. Download SIP http://www.riverbankcomputing.com/Downloads/sip4/sip-4.7.tar.gz, compile and install it.
+5. Download PyQt hhttp://www.riverbankcomputing.com/Downloads/PyQt4/GPL/PyQt-mac-gpl-4.3.tar.gz, compile and install it.
+6. Start GNS3.
