@@ -917,29 +917,29 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="../HypervisorManager.py" line="107"/>
+        <location filename="../HypervisorManager.py" line="106"/>
         <source>Abort</source>
         <translation>结束</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="71"/>
-        <source>Hypervisor already running on port %i</source>
-        <translation>Hypervisor 已经运行于端口 %i</translation>
-    </message>
-    <message>
-        <location filename="../HypervisorManager.py" line="82"/>
+        <location filename="../HypervisorManager.py" line="81"/>
         <source>Can&apos;t start Dynamips on port %i</source>
         <translation>无法开始Dynamips于端口 %i</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="106"/>
+        <location filename="../HypervisorManager.py" line="105"/>
         <source>Connecting to an hypervisor on port %i ...</source>
         <translation>连接到一个Hypervisor于端口 %i ...</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="133"/>
+        <location filename="../HypervisorManager.py" line="132"/>
         <source>Can&apos;t connect to the hypervisor on port %i</source>
         <translation>无法连接到Hypervisor于端口%i</translation>
+    </message>
+    <message>
+        <location filename="../HypervisorManager.py" line="72"/>
+        <source>Hypervisor already running on port %i, it will not be shutdown after you quit GNS3</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1642,47 +1642,47 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="308"/>
+        <location filename="../NETFile.py" line="309"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="308"/>
+        <location filename="../NETFile.py" line="309"/>
         <source>Please configure the path to Dynamips</source>
         <translation>请配置Dynamips路径</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="530"/>
+        <location filename="../NETFile.py" line="562"/>
         <source>Dynamips error</source>
         <translation>Dynamips 错误</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="533"/>
+        <location filename="../NETFile.py" line="565"/>
         <source>Dynamips warning</source>
         <translation>Dynamips 警告</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="330"/>
+        <location filename="../NETFile.py" line="331"/>
         <source>Exception detected, stopping importation...</source>
         <translation>检测到异常,停止输入...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="540"/>
+        <location filename="../NETFile.py" line="572"/>
         <source>Exporting %s configuration to %s</source>
         <translation>输出%s的配置到%s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="547"/>
+        <location filename="../NETFile.py" line="579"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO 错误: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="330"/>
+        <location filename="../NETFile.py" line="331"/>
         <source>Importation</source>
         <translation>输入</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="338"/>
+        <location filename="../NETFile.py" line="339"/>
         <source>Please wait while importing the topology</source>
         <translation>正在输入拓扑,请稍后</translation>
     </message>
@@ -2378,8 +2378,8 @@ to display the configuration page.</source>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="37"/>
-        <source>Firewall PIX</source>
-        <translation></translation>
+        <source>PIX firewall</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

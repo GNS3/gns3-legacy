@@ -1202,29 +1202,29 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="../HypervisorManager.py" line="107"/>
+        <location filename="../HypervisorManager.py" line="106"/>
         <source>Abort</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="71"/>
-        <source>Hypervisor already running on port %i</source>
-        <translation>Hypervisor läuft bereits auf Port %i</translation>
-    </message>
-    <message>
-        <location filename="../HypervisorManager.py" line="82"/>
+        <location filename="../HypervisorManager.py" line="81"/>
         <source>Can&apos;t start Dynamips on port %i</source>
         <translation>Kann Dynamips auf Port %i nicht starten</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="106"/>
+        <location filename="../HypervisorManager.py" line="105"/>
         <source>Connecting to an hypervisor on port %i ...</source>
         <translation>Verbinde zu einem Hypervisor auf Port %i ...</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="133"/>
+        <location filename="../HypervisorManager.py" line="132"/>
         <source>Can&apos;t connect to the hypervisor on port %i</source>
         <translation>Kann nicht zu dem Hypervisor auf Port %i verbinden</translation>
+    </message>
+    <message>
+        <location filename="../HypervisorManager.py" line="72"/>
+        <source>Hypervisor already running on port %i, it will not be shutdown after you quit GNS3</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1927,47 +1927,47 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="308"/>
+        <location filename="../NETFile.py" line="309"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="308"/>
+        <location filename="../NETFile.py" line="309"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Bitte konfiguriere den Pfad zu Dyamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="530"/>
+        <location filename="../NETFile.py" line="562"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="533"/>
+        <location filename="../NETFile.py" line="565"/>
         <source>Dynamips warning</source>
         <translation>Warnung von Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="330"/>
+        <location filename="../NETFile.py" line="331"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Ausnahmebehandlungentdeckt, stoppe den Import...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="540"/>
+        <location filename="../NETFile.py" line="572"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportiere die Konfiguration von %s nach %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="547"/>
+        <location filename="../NETFile.py" line="579"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: EA Fehler: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="330"/>
+        <location filename="../NETFile.py" line="331"/>
         <source>Importation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="338"/>
+        <location filename="../NETFile.py" line="339"/>
         <source>Please wait while importing the topology</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2663,8 +2663,8 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="37"/>
-        <source>Firewall PIX</source>
-        <translation>PIX Firewall</translation>
+        <source>PIX firewall</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

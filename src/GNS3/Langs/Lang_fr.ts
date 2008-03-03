@@ -520,7 +520,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="223"/>
         <source>No interface available, please configure this device</source>
-        <translation type="unfinished"></translation>
+        <translation>Pas d&apos;interface disponible, SVP configurez le noeud</translation>
     </message>
 </context>
 <context>
@@ -623,12 +623,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="555"/>
         <source>NIO NULL</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="567"/>
         <source>Identifier:</source>
-        <translation type="unfinished"></translation>
+        <translation>Identifiant:</translation>
     </message>
 </context>
 <context>
@@ -901,29 +901,29 @@ Entrer le numéro de la valeur a appliquer [1-%i] or ENTRER pour ignorer le chan
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="../HypervisorManager.py" line="107"/>
+        <location filename="../HypervisorManager.py" line="106"/>
         <source>Abort</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="71"/>
-        <source>Hypervisor already running on port %i</source>
-        <translation>Un hyperviseur fonctionne déjà sur le port %i</translation>
-    </message>
-    <message>
-        <location filename="../HypervisorManager.py" line="82"/>
+        <location filename="../HypervisorManager.py" line="81"/>
         <source>Can&apos;t start Dynamips on port %i</source>
         <translation>Impossible de démarrer Dynamips sur le port %i</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="106"/>
+        <location filename="../HypervisorManager.py" line="105"/>
         <source>Connecting to an hypervisor on port %i ...</source>
         <translation>Connexion à un hypervisor sur le port %i ...</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="133"/>
+        <location filename="../HypervisorManager.py" line="132"/>
         <source>Can&apos;t connect to the hypervisor on port %i</source>
         <translation>Impossible de se connecter à l&apos;hypervisor sur le port %i</translation>
+    </message>
+    <message>
+        <location filename="../HypervisorManager.py" line="72"/>
+        <source>Hypervisor already running on port %i, it will not be shutdown after you quit GNS3</source>
+        <translation>Un hyperviseur fonctionne déjà sur le port %i, il ne sera pas eteint quand vous quitterez GNS3</translation>
     </message>
 </context>
 <context>
@@ -1627,49 +1627,49 @@ panier:</translation>
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="308"/>
+        <location filename="../NETFile.py" line="309"/>
         <source>Save</source>
         <translation>Sauver</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="308"/>
+        <location filename="../NETFile.py" line="309"/>
         <source>Please configure the path to Dynamips</source>
         <translation>SVP, configurez le chemin vers Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="530"/>
+        <location filename="../NETFile.py" line="562"/>
         <source>Dynamips error</source>
         <translation>Erreur Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="533"/>
+        <location filename="../NETFile.py" line="565"/>
         <source>Dynamips warning</source>
         <translation>Avertissement Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="330"/>
+        <location filename="../NETFile.py" line="331"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Exception détectée, arrêt de l&apos;importation...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="540"/>
+        <location filename="../NETFile.py" line="572"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportation de la configuration %s vers %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="547"/>
+        <location filename="../NETFile.py" line="579"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Erreur E/S: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="330"/>
+        <location filename="../NETFile.py" line="331"/>
         <source>Importation</source>
         <translation>Importation</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="338"/>
+        <location filename="../NETFile.py" line="339"/>
         <source>Please wait while importing the topology</source>
-        <translation type="unfinished"></translation>
+        <translation>SVP, patientez pendant le chargement de la topologie</translation>
     </message>
 </context>
 <context>
@@ -1807,12 +1807,12 @@ pour afficher sa page de configuration.</translation>
     <message>
         <location filename="../NodeConfigurator.py" line="123"/>
         <source>PIX firewalls</source>
-        <translation type="unfinished"></translation>
+        <translation>Firewalls PIX</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="135"/>
         <source>ATM bridges</source>
-        <translation type="unfinished"></translation>
+        <translation>Ponts ATM</translation>
     </message>
 </context>
 <context>
@@ -1956,7 +1956,7 @@ pour afficher sa page de configuration.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="258"/>
         <source>Use Hypervisor Manager when importing</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser l&apos;Hypervisor Manager lors d&apos;une importation</translation>
     </message>
 </context>
 <context>
@@ -1999,17 +1999,17 @@ pour afficher sa page de configuration.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
         <source>Terminal command:</source>
-        <translation type="unfinished">Commande pour le terminal:</translation>
+        <translation>Commande pour le terminal:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="78"/>
         <source>IOS/PIX directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire des images IOS/PIX:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="117"/>
         <source>Always use manual mode when adding links</source>
-        <translation type="unfinished"></translation>
+        <translation>Toujours utiliser le mode manuel lors de l&apos;ajout de liens</translation>
     </message>
 </context>
 <context>
@@ -2160,17 +2160,17 @@ pour afficher sa page de configuration.</translation>
     <message>
         <location filename="../Topology.py" line="267"/>
         <source>PIX image</source>
-        <translation type="unfinished"></translation>
+        <translation>Image PIX</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="267"/>
         <source>Please configure a default PIX image</source>
-        <translation type="unfinished"></translation>
+        <translation>SVP, configurez une image PIX par défaut</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="337"/>
         <source>Can&apos;t connect these devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de connecter ces noeuds</translation>
     </message>
 </context>
 <context>
@@ -2363,7 +2363,7 @@ pour afficher sa page de configuration.</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="37"/>
-        <source>Firewall PIX</source>
+        <source>PIX firewall</source>
         <translation>Pare-feu PIX</translation>
     </message>
 </context>

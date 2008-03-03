@@ -109,7 +109,7 @@ class PemuManager(object):
         try:
             s.connect(('localhost', self.port))
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Pemu Manager',  
-                                       unicode(translate("PemuManager", "Pemu is already running on port %i, please kill it manually if necessary")) % self.port) 
+                                       unicode(translate("PemuManager", "Pemu is already running on port %i, it will not be shutdown after you quit GNS3")) % self.port) 
             s.close()
             return
         except:
