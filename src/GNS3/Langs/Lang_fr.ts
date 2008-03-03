@@ -1020,29 +1020,29 @@ Entrer le numéro de la valeur a appliquer [1-%i] or ENTRER pour ignorer le chan
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="../HypervisorManager.py" line="107"/>
+        <location filename="../HypervisorManager.py" line="109"/>
         <source>Abort</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="82"/>
+        <location filename="../HypervisorManager.py" line="84"/>
         <source>Can&apos;t start Dynamips on port %i</source>
         <translation>Impossible de démarrer Dynamips sur le port %i</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="106"/>
-        <source>Connecting to an hypervisor on port %i ...</source>
-        <translation>Connexion à un hypervisor sur le port %i ...</translation>
-    </message>
-    <message>
-        <location filename="../HypervisorManager.py" line="133"/>
+        <location filename="../HypervisorManager.py" line="135"/>
         <source>Can&apos;t connect to the hypervisor on port %i</source>
         <translation>Impossible de se connecter à l&apos;hypervisor sur le port %i</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="71"/>
-        <source>Hypervisor already running on port %i</source>
-        <translation>Un hyperviseur fonctionne déjà sur le port %i</translation>
+        <location filename="../HypervisorManager.py" line="73"/>
+        <source>A hypervisor is already running on port %i, it will not be shutdown after you quit GNS3</source>
+        <translation>Un hypervisor fonctionne déjà sur le port %i, il ne sera pas éteint quand vous quitterez GNS3</translation>
+    </message>
+    <message>
+        <location filename="../HypervisorManager.py" line="108"/>
+        <source>Connecting to a hypervisor on port %i ...</source>
+        <translation>Connexion sur un hyperviseur sur le port %i ...</translation>
     </message>
 </context>
 <context>
@@ -1937,27 +1937,27 @@ pour afficher sa page de configuration.</translation>
 <context>
     <name>PemuManager</name>
     <message>
-        <location filename="../PemuManager.py" line="58"/>
+        <location filename="../PemuManager.py" line="59"/>
         <source>Connecting to pemu on port %i ...</source>
         <translation>Connexion à pemu sur le port %i ...</translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="59"/>
+        <location filename="../PemuManager.py" line="60"/>
         <source>Abort</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="83"/>
+        <location filename="../PemuManager.py" line="84"/>
         <source>Can&apos;t connect to pemu on port %i</source>
         <translation>Impossible de se connecter à pemu sur le port %i</translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="112"/>
+        <location filename="../PemuManager.py" line="113"/>
         <source>Pemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
         <translation>Pemu fonctionne déjà sur le port %i, il ne sera pas eteint quand vous quitterez GNS3</translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="125"/>
+        <location filename="../PemuManager.py" line="126"/>
         <source>Can&apos;t start Pemu on port %i</source>
         <translation>Impossible de démarrer Pemu sur le port %i</translation>
     </message>
@@ -2333,7 +2333,7 @@ pour afficher sa page de configuration.</translation>
         <translation>SVP, configurez le chemin vers Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="432"/>
+        <location filename="../Topology.py" line="433"/>
         <source>Dynamips error</source>
         <translation>Erreur Dynamips</translation>
     </message>
@@ -2343,7 +2343,7 @@ pour afficher sa page de configuration.</translation>
         <translation>Connection perdue</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="350"/>
+        <location filename="../Topology.py" line="351"/>
         <source>Connection</source>
         <translation>Connexion</translation>
     </message>
@@ -2363,7 +2363,7 @@ pour afficher sa page de configuration.</translation>
         <translation>SVP, choissisez une image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="350"/>
+        <location filename="../Topology.py" line="351"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Vous devez relier au moins 1 routeur au commutateur</translation>
     </message>
@@ -2378,7 +2378,7 @@ pour afficher sa page de configuration.</translation>
         <translation>SVP, configurez une image PIX par défaut</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="337"/>
+        <location filename="../Topology.py" line="338"/>
         <source>Can&apos;t connect these devices</source>
         <translation>Impossible de connecter ces noeuds</translation>
     </message>

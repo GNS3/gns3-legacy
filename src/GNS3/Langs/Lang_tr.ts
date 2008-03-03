@@ -1319,28 +1319,28 @@ Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmama
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="../HypervisorManager.py" line="107"/>
+        <location filename="../HypervisorManager.py" line="109"/>
         <source>Abort</source>
         <translation>Yarıda bırak</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="82"/>
+        <location filename="../HypervisorManager.py" line="84"/>
         <source>Can&apos;t start Dynamips on port %i</source>
         <translation>Dynamips %i portu üzerinde başlatılamadı</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="106"/>
-        <source>Connecting to an hypervisor on port %i ...</source>
-        <translation>Hipervizör&apos;e %i portu üzerinden bağlanılıyor...</translation>
-    </message>
-    <message>
-        <location filename="../HypervisorManager.py" line="133"/>
+        <location filename="../HypervisorManager.py" line="135"/>
         <source>Can&apos;t connect to the hypervisor on port %i</source>
         <translation>Hipervizör&apos;e %i portu üzerinden bağlanılamadı</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="71"/>
-        <source>Hypervisor already running on port %i</source>
+        <location filename="../HypervisorManager.py" line="73"/>
+        <source>A hypervisor is already running on port %i, it will not be shutdown after you quit GNS3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../HypervisorManager.py" line="108"/>
+        <source>Connecting to a hypervisor on port %i ...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2235,27 +2235,27 @@ lütfen nod seçin.</translation>
 <context>
     <name>PemuManager</name>
     <message>
-        <location filename="../PemuManager.py" line="58"/>
+        <location filename="../PemuManager.py" line="59"/>
         <source>Connecting to pemu on port %i ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="59"/>
+        <location filename="../PemuManager.py" line="60"/>
         <source>Abort</source>
         <translation type="unfinished">Yarıda bırak</translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="83"/>
+        <location filename="../PemuManager.py" line="84"/>
         <source>Can&apos;t connect to pemu on port %i</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="112"/>
+        <location filename="../PemuManager.py" line="113"/>
         <source>Pemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="125"/>
+        <location filename="../PemuManager.py" line="126"/>
         <source>Can&apos;t start Pemu on port %i</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2631,7 +2631,7 @@ lütfen nod seçin.</translation>
         <translation>Lütfen Dynamips&apos;in yolunu ayarlayın</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="432"/>
+        <location filename="../Topology.py" line="433"/>
         <source>Dynamips error</source>
         <translation>Dynamips hatası</translation>
     </message>
@@ -2641,7 +2641,7 @@ lütfen nod seçin.</translation>
         <translation>Bağlantı koptu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="350"/>
+        <location filename="../Topology.py" line="351"/>
         <source>Connection</source>
         <translation>Bağlantı</translation>
     </message>
@@ -2661,7 +2661,7 @@ lütfen nod seçin.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="350"/>
+        <location filename="../Topology.py" line="351"/>
         <source>You have to connect at least one router to the switch</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2676,7 +2676,7 @@ lütfen nod seçin.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="337"/>
+        <location filename="../Topology.py" line="338"/>
         <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>

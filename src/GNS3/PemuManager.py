@@ -21,6 +21,7 @@
 
 import os, sys, time
 import GNS3.Globals as globals
+import GNS3.Dynagen.pemu_lib as pix
 from socket import socket, timeout, AF_INET, SOCK_STREAM
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate, debug
@@ -132,6 +133,13 @@ class PemuManager(object):
         """ Stop Pemu
         """
         
+        for hypervisor in globals.GApp.dynagen.dynamips.values():
+            if isinstance(hypervisor, pix.Pemu):
+                try:
+                    hypervisor.reset()
+                    hypervisor.close()
+                except:
+                    continue
         if self.proc:
             debug('PemuManager: stop Pemu with pid ' + str(self.proc.pid()))
             self.proc.close()

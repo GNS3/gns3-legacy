@@ -45,7 +45,7 @@ class IOSRouterDefaults(AbstractDefaults):
         self.d = None
 
     def set_hypervisor(self,  hypervisor):
-        """ Records an hypervisor
+        """ Records a hypervisor
             hypervisor: Dynamips object
         """
     

@@ -21,6 +21,7 @@
 
 import time
 import GNS3.Globals as globals
+import GNS3.Dynagen.dynamips_lib as lib
 from socket import socket, timeout, AF_INET, SOCK_STREAM
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate, debug
@@ -62,19 +63,20 @@ class HypervisorManager(object):
             # set the working directory
             proc.setWorkingDirectory(self.hypervisor_wd)
             
-        # test if an hypervisor is already running on this port
+        # test if a hypervisor is already running on this port
         s = socket(AF_INET, SOCK_STREAM)
         s.setblocking(0)
         s.settimeout(300)
         try:
             s.connect(('localhost', port))
-            QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Hypervisor Manager',  unicode(translate("HypervisorManager", "Hypervisor already running on port %i")) % port) 
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  
+                                      unicode(translate("HypervisorManager", "A hypervisor is already running on port %i, it will not be shutdown after you quit GNS3")) % port) 
             s.close()
             globals.hypervisor_baseport += 1
             return None
         except:
             s.close()
-
+    
         # start dynamips in hypervisor mode (-H)
         proc.start(self.hypervisor_path,  ['-H', str(port)])
 
@@ -103,7 +105,7 @@ class HypervisorManager(object):
             s.setblocking(0)
             s.settimeout(300)
             if nb == 3:
-                progress = QtGui.QProgressDialog(unicode(translate("HypervisorManager", "Connecting to an hypervisor on port %i ...")) % hypervisor['port'], 
+                progress = QtGui.QProgressDialog(unicode(translate("HypervisorManager", "Connecting to a hypervisor on port %i ...")) % hypervisor['port'], 
                                                                                                                                         translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
                 progress.setMinimum(1)
                 progress.setWindowModality(QtCore.Qt.WindowModal)
@@ -141,7 +143,7 @@ class HypervisorManager(object):
         return True
 
     def allocateHypervisor(self, node):
-        """ Allocate an hypervisor for a given node
+        """ Allocate a hypervisor for a given node
         """
 
         for hypervisor in self.hypervisors:
@@ -179,7 +181,7 @@ class HypervisorManager(object):
         return hypervisor
 
     def unallocateHypervisor(self, node, port):
-        """ Unallocate an hypervisor for a given node
+        """ Unallocate a hypervisor for a given node
         """
 
         for hypervisor in self.hypervisors:
@@ -191,7 +193,7 @@ class HypervisorManager(object):
                 break
     
     def getHypervisor(self, port):
-        """ Get an hypervisor from the hypervisor manager
+        """ Get a hypervisor from the hypervisor manager
         """
 
         for hypervisor in self.hypervisors:
@@ -205,9 +207,17 @@ class HypervisorManager(object):
     
         if globals.GApp != None and globals.GApp.systconf['dynamips']:
             self.setDefaults()
-        for hypervisor in globals.GApp.dynagen.dynamips.values():
-            hypervisor.reset()
-        globals.GApp.dynagen.dynamips.clear()
+        hypervisors = globals.GApp.dynagen.dynamips.copy()
+        for hypervisor in hypervisors.values():
+            if isinstance(hypervisor, lib.Dynamips):
+                try:
+                    if globals.GApp.dynagen.dynamips.has_key(hypervisor.host + ':' + hypervisor.port):
+                        debug("Hypervisor manager: reset and close hypervisor on port " + str(hypervisor['port']))
+                        hypervisor.reset()
+                        hypervisor.close()
+                        del globals.GApp.dynagen.dynamips[hypervisor.host + ':' + hypervisor.port]
+                except:
+                    continue
         for hypervisor in self.hypervisors:
             debug("Hypervisor manager: close hypervisor on port " + str(hypervisor['port']))
             hypervisor['proc_instance'].close()

@@ -107,7 +107,7 @@ class ATMBR(AbstractNode):
         globals.GApp.topology.changed = True
         
     def set_hypervisor(self,  hypervisor):
-        """ Records an hypervisor
+        """ Records a hypervisor
             hypervisor: object
         """
     

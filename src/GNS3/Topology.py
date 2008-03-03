@@ -55,21 +55,21 @@ class Topology(QtGui.QGraphicsScene):
     def cleanDynagen(self):
         """ Clean all dynagen data
         """
-    
+
+        if globals.GApp.HypervisorManager:
+            globals.GApp.HypervisorManager.stopProcHypervisors()
+        if globals.GApp.PemuManager:
+            globals.GApp.PemuManager.stopPemu()
+        self.dynagen.dynamips.clear()
         self.dynagen.handled = False
         self.dynagen.devices.clear()
         self.dynagen.globalconfig.clear()
         self.dynagen.configurations.clear()
         self.dynagen.ghosteddevices.clear()
         self.dynagen.ghostsizes.clear()
-        self.dynagen.dynamips.clear()
         self.dynagen.bridges.clear()
         self.dynagen.autostart.clear()
-        if globals.GApp.HypervisorManager:
-            globals.GApp.HypervisorManager.stopProcHypervisors()
-        if globals.GApp.PemuManager:
-            globals.GApp.PemuManager.stopPemu()
-        
+
     def clear(self):
         """ Clear the topology
         """
@@ -296,6 +296,7 @@ class Topology(QtGui.QGraphicsScene):
         if isinstance(node, IOSRouter):
                 #router = node.get_dynagen_device()
                 if globals.GApp.iosimages.has_key('localhost:' + node.default_image):
+                    print 'here'
                     image_conf = globals.GApp.iosimages['localhost:' + node.default_image]
                     if globals.GApp.HypervisorManager and image_conf.hypervisor_host == '':
                         globals.GApp.HypervisorManager.unallocateHypervisor(node, router.dynamips.port)
@@ -338,14 +339,14 @@ class Topology(QtGui.QGraphicsScene):
                 return False
             elif (isinstance(dst_node, Cloud) or isinstance(dst_node,FW)) and isinstance(src_node, ETHSW):
                 if not src_node.hypervisor:
-                    debug('Allocate an hypervisor for ethsw ' + src_node.hostname)
+                    debug('Allocate a hypervisor for ethsw ' + src_node.hostname)
                     if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(src_node):
                         QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "You have to connect at least one router to the switch"))
                         return False
                     src_node.get_dynagen_device()
             elif (isinstance(src_node, Cloud) or isinstance(src_node, FW)) and isinstance(dst_node, ETHSW):
                 if not dst_node.hypervisor:
-                    debug('Allocate an hypervisor for ethsw ' + dst_node.hostname)
+                    debug('Allocate a hypervisor for ethsw ' + dst_node.hostname)
                     if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(dst_node):
                         QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "You have to connect at least one router to the switch"))
                         return False

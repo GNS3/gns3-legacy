@@ -1017,28 +1017,28 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="../HypervisorManager.py" line="107"/>
+        <location filename="../HypervisorManager.py" line="109"/>
         <source>Abort</source>
         <translation type="unfinished">فشل</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="82"/>
+        <location filename="../HypervisorManager.py" line="84"/>
         <source>Can&apos;t start Dynamips on port %i</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="106"/>
-        <source>Connecting to an hypervisor on port %i ...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../HypervisorManager.py" line="133"/>
+        <location filename="../HypervisorManager.py" line="135"/>
         <source>Can&apos;t connect to the hypervisor on port %i</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="71"/>
-        <source>Hypervisor already running on port %i</source>
+        <location filename="../HypervisorManager.py" line="73"/>
+        <source>A hypervisor is already running on port %i, it will not be shutdown after you quit GNS3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../HypervisorManager.py" line="108"/>
+        <source>Connecting to a hypervisor on port %i ...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1934,27 +1934,27 @@ to display the configuration page.</source>
 <context>
     <name>PemuManager</name>
     <message>
-        <location filename="../PemuManager.py" line="58"/>
+        <location filename="../PemuManager.py" line="59"/>
         <source>Connecting to pemu on port %i ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="59"/>
+        <location filename="../PemuManager.py" line="60"/>
         <source>Abort</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="83"/>
+        <location filename="../PemuManager.py" line="84"/>
         <source>Can&apos;t connect to pemu on port %i</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="112"/>
+        <location filename="../PemuManager.py" line="113"/>
         <source>Pemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="125"/>
+        <location filename="../PemuManager.py" line="126"/>
         <source>Can&apos;t start Pemu on port %i</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2330,7 +2330,7 @@ to display the configuration page.</source>
         <translation type="unfinished">أرجو تهيئة مسارDynamips </translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="432"/>
+        <location filename="../Topology.py" line="433"/>
         <source>Dynamips error</source>
         <translation type="unfinished">Dynamips خطأ</translation>
     </message>
@@ -2340,7 +2340,7 @@ to display the configuration page.</source>
         <translation type="unfinished">Connection lost</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="350"/>
+        <location filename="../Topology.py" line="351"/>
         <source>Connection</source>
         <translation type="unfinished">توصيل</translation>
     </message>
@@ -2360,7 +2360,7 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="350"/>
+        <location filename="../Topology.py" line="351"/>
         <source>You have to connect at least one router to the switch</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2375,7 +2375,7 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="337"/>
+        <location filename="../Topology.py" line="338"/>
         <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>
