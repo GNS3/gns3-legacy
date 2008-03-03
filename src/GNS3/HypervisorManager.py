@@ -68,9 +68,10 @@ class HypervisorManager(object):
         s.settimeout(300)
         try:
             s.connect(('localhost', port))
-            QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Hypervisor Manager',  
-                                      unicode(translate("HypervisorManager", "Hypervisor already running on port %i, it will not be shutdown after you quit GNS3")) % port) 
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Hypervisor Manager',  unicode(translate("HypervisorManager", "Hypervisor already running on port %i")) % port) 
             s.close()
+            globals.hypervisor_baseport += 1
+            return None
         except:
             s.close()
 

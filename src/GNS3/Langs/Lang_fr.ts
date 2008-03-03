@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="fr">
 <context>
+    <name>ATMBRPage</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="13"/>
+        <source>ATM Bridge</source>
+        <translation>Pont ATM</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="25"/>
+        <source>Ethernet side</source>
+        <translation>Coté Ethernet</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="104"/>
+        <source>Port:</source>
+        <translation>Port:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="60"/>
+        <source>Mapping</source>
+        <translation>Associations</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="76"/>
+        <source>Ethernet Port</source>
+        <translation>Port Ethernet</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="81"/>
+        <source>Port:VCI:VPI</source>
+        <translation>Port:VCI:VPI</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="98"/>
+        <source>ATM side</source>
+        <translation>Coté ATM</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="130"/>
+        <source>VCI:</source>
+        <translation>VCI:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="159"/>
+        <source>VPI:</source>
+        <translation>VPI:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="185"/>
+        <source>&amp;Add</source>
+        <translation>&amp;Ajouter</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="195"/>
+        <source>&amp;Delete</source>
+        <translation>&amp;Supprimer</translation>
+    </message>
+</context>
+<context>
     <name>ATMSWPage</name>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="13"/>
@@ -868,6 +926,67 @@ Entrer le numéro de la valeur a appliquer [1-%i] or ENTRER pour ignorer le chan
     </message>
 </context>
 <context>
+    <name>FW</name>
+    <message>
+        <location filename="../Node/FW.py" line="244"/>
+        <source>Please wait while creating a PIX flash</source>
+        <translation>SVP, patientez pendant la création de la flash PIX</translation>
+    </message>
+    <message>
+        <location filename="../Node/FW.py" line="261"/>
+        <source>%s: no PIX image</source>
+        <translation>%s: pas d&apos;image PIX</translation>
+    </message>
+    <message>
+        <location filename="../Node/FW.py" line="315"/>
+        <source>Connection</source>
+        <translation>Connexion</translation>
+    </message>
+    <message>
+        <location filename="../Node/FW.py" line="315"/>
+        <source>No interface available</source>
+        <translation>Pas d&apos;interface disponible</translation>
+    </message>
+</context>
+<context>
+    <name>FWPage</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="13"/>
+        <source>Firewall configuration</source>
+        <translation>Configuration du pare-feu</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="19"/>
+        <source>PIX Image:</source>
+        <translation>Image PIX:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="48"/>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="55"/>
+        <source>RAM size:</source>
+        <translation>Taille RAM:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="68"/>
+        <source> MB</source>
+        <translation> MO</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="84"/>
+        <source>Key:</source>
+        <translation>Clé:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="101"/>
+        <source>Serial:</source>
+        <translation>Numéro de série:</translation>
+    </message>
+</context>
+<context>
     <name>Hub</name>
     <message>
         <location filename="../Node/Hub.py" line="108"/>
@@ -901,29 +1020,29 @@ Entrer le numéro de la valeur a appliquer [1-%i] or ENTRER pour ignorer le chan
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="../HypervisorManager.py" line="106"/>
+        <location filename="../HypervisorManager.py" line="107"/>
         <source>Abort</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="81"/>
+        <location filename="../HypervisorManager.py" line="82"/>
         <source>Can&apos;t start Dynamips on port %i</source>
         <translation>Impossible de démarrer Dynamips sur le port %i</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="105"/>
+        <location filename="../HypervisorManager.py" line="106"/>
         <source>Connecting to an hypervisor on port %i ...</source>
         <translation>Connexion à un hypervisor sur le port %i ...</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="132"/>
+        <location filename="../HypervisorManager.py" line="133"/>
         <source>Can&apos;t connect to the hypervisor on port %i</source>
         <translation>Impossible de se connecter à l&apos;hypervisor sur le port %i</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="72"/>
-        <source>Hypervisor already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation>Un hyperviseur fonctionne déjà sur le port %i, il ne sera pas eteint quand vous quitterez GNS3</translation>
+        <location filename="../HypervisorManager.py" line="71"/>
+        <source>Hypervisor already running on port %i</source>
+        <translation>Un hyperviseur fonctionne déjà sur le port %i</translation>
     </message>
 </context>
 <context>
@@ -1816,6 +1935,34 @@ pour afficher sa page de configuration.</translation>
     </message>
 </context>
 <context>
+    <name>PemuManager</name>
+    <message>
+        <location filename="../PemuManager.py" line="58"/>
+        <source>Connecting to pemu on port %i ...</source>
+        <translation>Connexion à pemu sur le port %i ...</translation>
+    </message>
+    <message>
+        <location filename="../PemuManager.py" line="59"/>
+        <source>Abort</source>
+        <translation>Annuler</translation>
+    </message>
+    <message>
+        <location filename="../PemuManager.py" line="83"/>
+        <source>Can&apos;t connect to pemu on port %i</source>
+        <translation>Impossible de se connecter à pemu sur le port %i</translation>
+    </message>
+    <message>
+        <location filename="../PemuManager.py" line="112"/>
+        <source>Pemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
+        <translation>Pemu fonctionne déjà sur le port %i, il ne sera pas eteint quand vous quitterez GNS3</translation>
+    </message>
+    <message>
+        <location filename="../PemuManager.py" line="125"/>
+        <source>Can&apos;t start Pemu on port %i</source>
+        <translation>Impossible de démarrer Pemu sur le port %i</translation>
+    </message>
+</context>
+<context>
     <name>PreferencesCapture</name>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="13"/>
@@ -2010,6 +2157,69 @@ pour afficher sa page de configuration.</translation>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="117"/>
         <source>Always use manual mode when adding links</source>
         <translation>Toujours utiliser le mode manuel lors de l&apos;ajout de liens</translation>
+    </message>
+</context>
+<context>
+    <name>PreferencesPemu</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="13"/>
+        <source>Form</source>
+        <translation>Formulaire</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="19"/>
+        <source>Pemuwrapper</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="25"/>
+        <source>Path (pemuwrapper.exe on Windows else pemuwrapper.py):</source>
+        <translation>Chemin (pemuwrapper.exe sur Windows sinon pemuwrapper.py):</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="117"/>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="45"/>
+        <source>Working directory:</source>
+        <translation>Répertoire de travail:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="62"/>
+        <source>Enable Pemu Manager</source>
+        <translation>Activer Pemu Manager</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="72"/>
+        <source>Use Pemu Manager when importing</source>
+        <translation>Utiliser Pemu Manager lors d&apos;une importation</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="85"/>
+        <source>Host for an external pemuwrapper:</source>
+        <translation>Hôte pour un pemuwrapper externe:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="98"/>
+        <source>Defaults PIX settings</source>
+        <translation>Réglages par défaut pour PIX</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="107"/>
+        <source>PIX image:</source>
+        <translation>Image PIX:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="127"/>
+        <source>Key:</source>
+        <translation>Clé:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="144"/>
+        <source>Serial:</source>
+        <translation>Numéro de série:</translation>
     </message>
 </context>
 <context>
