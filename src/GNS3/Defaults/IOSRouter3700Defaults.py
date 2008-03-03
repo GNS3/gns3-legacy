@@ -41,7 +41,7 @@ class IOSRouter3700Defaults(IOSRouterDefaults):
             model: string
         """
         
-        AbstractDefaults.set_image(self, image, model)
+        IOSRouterDefaults.set_image(self, image, model)
         # 3745 has a different default nvram
         if model == '3745':
             self.default_nvram = 151

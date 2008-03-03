@@ -32,6 +32,7 @@ from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Objects import iosImageConf, hypervisorConf
 from GNS3.Node.IOSRouter import IOSRouter, init_router_id
 from GNS3.Node.ATMSW import ATMSW, init_atmsw_id
+from GNS3.Node.ATMBR import ATMBR, init_atmbr_id
 from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
 from GNS3.Node.FRSW import FRSW, init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
@@ -41,6 +42,7 @@ router_hostname_re = re.compile(r"""^R([0-9]+)""")
 ethsw_hostname_re = re.compile(r"""^SW([0-9]+)""")
 frsw_hostname_re = re.compile(r"""^FR([0-9]+)""")
 atmsw_hostname_re = re.compile(r"""^ATM([0-9]+)""")
+atmbr_hostname_re = re.compile(r"""^BR([0-9]+)""")
 cloud_hostname_re = re.compile(r"""^C([0-9]+)""")
 firewall_hostname_re = re.compile(r"""^FW([0-9]+)""")
 
@@ -212,7 +214,7 @@ class NETFile(object):
         else:
             dstid = globals.GApp.topology.getNodeID(destination_name)
             dst_node = globals.GApp.topology.getNode(dstid)
-        
+
         globals.GApp.topology.recordLink(srcid, source_interface, dstid, destination_interface)
 
         if not isinstance(src_node, IOSRouter) and not isinstance(src_node, FW):
@@ -340,17 +342,16 @@ class NETFile(object):
         self.dynagen.get_defaults_config()
         self.dynagen.update_running_config()
         self.apply_gns3_data()
-        devices = self.dynagen.devices.copy()
-        self.dynagen.devices.clear()
+
         connection_list = []
         config_dir = None
         max_router_id = -1
         max_ethsw_id = -1
         max_frsw_id = -1
         max_atmsw_id = -1
+        max_atmbr_id = -1
         max_fw_id = -1
-        for (devicename, device) in devices.iteritems():
-            self.dynagen.devices[device.name] = device
+        for (devicename, device) in  self.dynagen.devices.iteritems():
 
             if isinstance(device, lib.Router):
                 platform = device.model
@@ -438,16 +439,20 @@ class NETFile(object):
                         (port1, vpi1) = key
                         (port2, vpi2) = device.vpivci_map[key]
                         config['mapping'][str(port1) + ':' + str(vpi1)] = str(port2) + ':' + str(vpi2)
+                    if not port1 in config['ports']:
+                        config['ports'].append(port1)
+                    if not port2 in config['ports']:
+                        config['ports'].append(port2)
                 for key in keys:
                     if len(key) == 3:
                         #port1, vpi1, vci1 -> port2, vpi2, vci1
                         (port1, vpi1, vci1) = key
                         (port2, vpi2, vci2) = device.vpivci_map[key]
                         config['mapping'][str(port1) + ':' + str(vpi1) + ':' + str(vci1)] = str(port2) + ':' + str(vpi2) + ':' + str(vci2)
-                if not port1 in config['ports']:
-                    config['ports'].append(port1)
-                if not port2 in config['ports']:
-                    config['ports'].append(port2)
+                    if not port1 in config['ports']:
+                        config['ports'].append(port1)
+                    if not port2 in config['ports']:
+                        config['ports'].append(port2)
                 node = self.create_node(device, 'ATM switch')
                 self.configure_node(node, device)
                 node.set_config(config)
@@ -457,6 +462,30 @@ class NETFile(object):
                     id = int(match_obj.group(1))
                     if id > max_atmsw_id:
                         max_atmsw_id = id
+
+            elif isinstance(device, lib.ATMBR):
+                
+                config = {}
+                config['ports'] = []
+                config['mapping'] = {}
+                keys = device.mapping.keys()
+                keys.sort()
+                for port1 in keys:
+                    (port2, vci2, vpi2) = device.mapping[port1]
+                    config['mapping'][str(port1)] = str(port2) + ':' + str(vci2) + ':' + str(vpi2)
+                    if not port1 in config['ports']:
+                        config['ports'].append(port1)
+                    if not port2 in config['ports']:
+                        config['ports'].append(port2)
+                node = self.create_node(device, 'ATM bridge')
+                self.configure_node(node, device)
+                node.set_config(config)
+                node.set_hypervisor(device.dynamips)
+                match_obj = atmsw_hostname_re.match(node.hostname)
+                if match_obj:
+                    id = int(match_obj.group(1))
+                    if id > max_atmbr_id:
+                        max_atmbr_id = id
 
             elif isinstance(device, pix.FW):
 
@@ -483,6 +512,8 @@ class NETFile(object):
             init_frsw_id(max_frsw_id + 1)
         if max_atmsw_id != -1:
             init_atmsw_id(max_atmsw_id + 1)
+        if max_atmbr_id != -1:
+            init_atmbr_id(max_atmbr_id + 1)
         if max_fw_id != -1:
             init_fw_id(max_fw_id + 1)
 
@@ -490,13 +521,15 @@ class NETFile(object):
         base_udp = 0
         hypervisor_port = 0
         working_dir = None
+
         for dynamips in globals.GApp.dynagen.dynamips.values():
-            if not working_dir:
-                working_dir = dynamips.workingdir
-            if dynamips.starting_udp > base_udp:
-                base_udp = dynamips.starting_udp
-            if dynamips.port > hypervisor_port:
-                hypervisor_port = dynamips.port
+            if isinstance(dynamips, lib.Dynamips):
+                if not working_dir:
+                    working_dir = dynamips.workingdir
+                if dynamips.starting_udp > base_udp:
+                    base_udp = dynamips.starting_udp
+                if dynamips.port > hypervisor_port:
+                    hypervisor_port = dynamips.port
         globals.GApp.dynagen.globaludp = base_udp + globals.GApp.systconf['dynamips'].udp_incrementation
         globals.hypervisor_baseport = hypervisor_port + 1
         debug("set hypervisor base port: " + str(globals.hypervisor_baseport))

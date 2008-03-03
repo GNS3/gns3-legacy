@@ -183,7 +183,7 @@ class HypervisorManager(object):
         """
 
         for hypervisor in self.hypervisors:
-            if hypervisor['port'] == int(port):
+            if isinstance(hypervisor, lib.Dynamips) and hypervisor['port'] == int(port):
                 debug("Hypervisor manager: unallocate hypervisor (port: " + str(port) + ") for node " + node.hostname)
                 hypervisor['load'] -= node.default_ram
                 if hypervisor['load'] <= 0:

@@ -509,4 +509,5 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
             if reply == QtGui.QMessageBox.Yes:
                 self.__action_Save()
+        self.clear()
         event.accept()

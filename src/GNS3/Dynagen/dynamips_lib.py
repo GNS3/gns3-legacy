@@ -862,7 +862,7 @@ class NIO_null(NIO):
     def config_info(self):
         """return an info string for .net file config"""
 
-        return 'nio_null'
+        return self.__name
 
     def delete(self):
         send(self.__d, 'nio delete %s' % self.__name)
