@@ -5,57 +5,57 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="13"/>
         <source>ATM Bridge</source>
-        <translation type="unfinished"></translation>
+        <translation>ATM桥</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="25"/>
         <source>Ethernet side</source>
-        <translation type="unfinished"></translation>
+        <translation>以太网端</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="104"/>
         <source>Port:</source>
-        <translation type="unfinished">端口:</translation>
+        <translation>端口:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="60"/>
         <source>Mapping</source>
-        <translation type="unfinished">映射关系</translation>
+        <translation>映射关系</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="76"/>
         <source>Ethernet Port</source>
-        <translation type="unfinished"></translation>
+        <translation>以太网端口</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="81"/>
         <source>Port:VCI:VPI</source>
-        <translation type="unfinished">端口:VCI:VPI</translation>
+        <translation>端口:VCI:VPI</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="98"/>
         <source>ATM side</source>
-        <translation type="unfinished"></translation>
+        <translation>ATM端</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="130"/>
         <source>VCI:</source>
-        <translation type="unfinished">VCI:</translation>
+        <translation>VCI:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="159"/>
         <source>VPI:</source>
-        <translation type="unfinished">VPI:</translation>
+        <translation>VPI:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="185"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">添加(&amp;A)</translation>
+        <translation>添加(&amp;A)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="195"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished">删除(&amp;D)</translation>
+        <translation>删除(&amp;D)</translation>
     </message>
 </context>
 <context>
@@ -63,7 +63,7 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="13"/>
         <source>ATM Switch</source>
-        <translation>ATM 交换</translation>
+        <translation>ATM交换</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="19"/>
@@ -594,7 +594,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="223"/>
         <source>No interface available, please configure this device</source>
-        <translation type="unfinished"></translation>
+        <translation>没有端口可用,请配置该设备</translation>
     </message>
 </context>
 <context>
@@ -697,12 +697,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="555"/>
         <source>NIO NULL</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="567"/>
         <source>Identifier:</source>
-        <translation type="unfinished"></translation>
+        <translation>标识:</translation>
     </message>
 </context>
 <context>
@@ -946,22 +946,22 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Node/FW.py" line="244"/>
         <source>Please wait while creating a PIX flash</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX flash正在创建,请稍后</translation>
     </message>
     <message>
         <location filename="../Node/FW.py" line="261"/>
         <source>%s: no PIX image</source>
-        <translation type="unfinished"></translation>
+        <translation>%s:无PIXOS文件</translation>
     </message>
     <message>
         <location filename="../Node/FW.py" line="315"/>
         <source>Connection</source>
-        <translation type="unfinished">连接</translation>
+        <translation>连接</translation>
     </message>
     <message>
         <location filename="../Node/FW.py" line="315"/>
         <source>No interface available</source>
-        <translation type="unfinished">无可利用的端口</translation>
+        <translation>无可利用的端口</translation>
     </message>
 </context>
 <context>
@@ -969,27 +969,27 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="13"/>
         <source>Firewall configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>防火墙配置</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="19"/>
         <source>PIX Image:</source>
-        <translation type="unfinished"></translation>
+        <translation>PIXOS:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="48"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="55"/>
         <source>RAM size:</source>
-        <translation type="unfinished">RAM 大小:</translation>
+        <translation>RAM 大小:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="68"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="84"/>
@@ -1053,12 +1053,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../HypervisorManager.py" line="73"/>
         <source>A hypervisor is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>已存在一个hypervisor运行于端口%i,它将在退出GNS3后被关闭</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="108"/>
         <source>Connecting to a hypervisor on port %i ...</source>
-        <translation type="unfinished"></translation>
+        <translation>正在连接到hypervisor于端口%i ...</translation>
     </message>
 </context>
 <context>
@@ -1116,7 +1116,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="296"/>
         <source>Images</source>
-        <translation type="unfinished">IOS</translation>
+        <translation>IOS</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="297"/>
@@ -1131,7 +1131,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="307"/>
         <source>Use the hypervisor manager</source>
-        <translation>使用Hypervisor管理</translation>
+        <translation>使用Hypervisor管理器</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="323"/>
@@ -1783,7 +1783,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../NETFile.py" line="331"/>
         <source>Exception detected, stopping importation...</source>
-        <translation>检测到异常,停止输入...</translation>
+        <translation>检测到异常,停止导入...</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="572"/>
@@ -1798,12 +1798,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../NETFile.py" line="331"/>
         <source>Importation</source>
-        <translation>输入</translation>
+        <translation>导入</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="339"/>
         <source>Please wait while importing the topology</source>
-        <translation>正在输入拓扑,请稍后</translation>
+        <translation>正在导入拓扑,请稍后</translation>
     </message>
 </context>
 <context>
@@ -1831,7 +1831,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_NewProject.py" line="67"/>
         <source>Export router configuration files</source>
-        <translation>输入路由器配置文件</translation>
+        <translation>导入路由器配置文件</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="68"/>
@@ -1954,27 +1954,27 @@ to display the configuration page.</source>
     <message>
         <location filename="../PemuManager.py" line="59"/>
         <source>Connecting to pemu on port %i ...</source>
-        <translation type="unfinished"></translation>
+        <translation>正在连接到pemu于端口%i ...</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="60"/>
         <source>Abort</source>
-        <translation type="unfinished">结束</translation>
+        <translation>结束</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="84"/>
         <source>Can&apos;t connect to pemu on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>无法连接pemu于端口%i</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="113"/>
         <source>Pemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemu已经运行于端口%i,它将在退出GNS3后被关闭</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="134"/>
         <source>Can&apos;t start Pemu on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>无法开始pemu于端口%i</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="127"/>
@@ -2093,7 +2093,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="200"/>
         <source>Hypervisor Manager</source>
-        <translation>Hypervisor管理</translation>
+        <translation>Hypervisor管理器</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="218"/>
@@ -2123,7 +2123,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="258"/>
         <source>Use Hypervisor Manager when importing</source>
-        <translation type="unfinished"></translation>
+        <translation>当导入时使用Hypervisor管理器</translation>
     </message>
 </context>
 <context>
@@ -2166,17 +2166,17 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
         <source>Terminal command:</source>
-        <translation type="unfinished">终端命令:</translation>
+        <translation>终端命令:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="78"/>
         <source>IOS/PIX directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>IOS/PIXOS 目录:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="117"/>
         <source>Always use manual mode when adding links</source>
-        <translation type="unfinished"></translation>
+        <translation>当添加链接默认使用手动模式</translation>
     </message>
 </context>
 <context>
@@ -2184,52 +2184,52 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="13"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="19"/>
         <source>Pemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="25"/>
         <source>Path (pemuwrapper.exe on Windows else pemuwrapper.py):</source>
-        <translation type="unfinished"></translation>
+        <translation>路径 (pemuwraper.exe用于windows,其余环境pemuwrapper.py):</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="117"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="45"/>
         <source>Working directory:</source>
-        <translation type="unfinished">工作目录:</translation>
+        <translation>工作目录:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="62"/>
         <source>Enable Pemu Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>允许Pemu管理器</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="72"/>
         <source>Use Pemu Manager when importing</source>
-        <translation type="unfinished"></translation>
+        <translation>当导入时使用Pemu管理器</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="85"/>
         <source>Host for an external pemuwrapper:</source>
-        <translation type="unfinished"></translation>
+        <translation>外部pemuwrapper主机地址:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="98"/>
         <source>Defaults PIX settings</source>
-        <translation type="unfinished"></translation>
+        <translation>默认PIX设置</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="107"/>
         <source>PIX image:</source>
-        <translation type="unfinished"></translation>
+        <translation>PIXOS:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="127"/>
@@ -2559,7 +2559,7 @@ to display the configuration page.</source>
     <message>
         <location filename="DynamicStrings.py" line="45"/>
         <source>Cloud</source>
-        <translation>Cloud</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="34"/>
@@ -2594,7 +2594,7 @@ to display the configuration page.</source>
     <message>
         <location filename="DynamicStrings.py" line="40"/>
         <source>PIX firewall</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>

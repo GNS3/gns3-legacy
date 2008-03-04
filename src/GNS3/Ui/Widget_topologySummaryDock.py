@@ -76,7 +76,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
 
         if type(hostname) != unicode:
             hostname = unicode(hostname,  'utf-8')
-        items = self.findItems(hostname, QtCore.Qt.MatchFixedString)
+        items = self.findItems(hostname, QtCore.Qt.MatchFixedString | QtCore.Qt.MatchCaseSensitive)
         if len(items):
             item = items[0]
             if status == 'running':
