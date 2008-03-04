@@ -119,12 +119,12 @@ class PemuManager(object):
         # start pemu, use python on all platform but Windows
         if sys.platform.startswith('win'):
             try:
-                # ugly test to tell the user to run pemuwrapper manually the first time ...
+                # ugly test to tell the user to start pemuwrapper manually the first time ...
                 pemu = open(os.path.dirname(globals.GApp.systconf['pemu'].pemuwrapper_path) + "\\pemu_public_win_2007-07-15\\pemu.exe" )
                 pemu.close()
             except IOError:
                 self.proc  = None
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Pemu Manager',  translate("PemuManager", "Please start pemuwrapper manually to unpack pemu"))
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Pemu Manager',  translate("PemuManager", "Please start pemuwrapper manually in order to unpack pemu"))
                 return
             self.proc.start('"' + globals.GApp.systconf['pemu'].pemuwrapper_path + '"')
         else:

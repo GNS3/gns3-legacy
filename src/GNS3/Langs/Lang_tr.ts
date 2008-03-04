@@ -993,77 +993,77 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Console</name>
     <message>
-        <location filename="../Console.py" line="203"/>
+        <location filename="../Console.py" line="205"/>
         <source>Dynamips error</source>
         <translation>Dynamips hatası</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="201"/>
+        <location filename="../Console.py" line="203"/>
         <source>Dynamips warning</source>
         <translation>Dynamips uyarısı</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="203"/>
+        <location filename="../Console.py" line="205"/>
         <source>Connection lost</source>
         <translation>Bağlantı koptu</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="268"/>
+        <location filename="../Console.py" line="270"/>
         <source>Sorry, not implemented in GNS3</source>
         <translation>Üzgünüz, istetğiniz GNS3 &apos;te yerine getirilemedi</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="278"/>
+        <location filename="../Console.py" line="280"/>
         <source>Please wait while gathering statistics...</source>
         <translation>Lütfen bekleyin istatistikler toplanıyor...</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="303"/>
+        <location filename="../Console.py" line="305"/>
         <source>No idlepc values found</source>
         <translation>Idlepc değeri bulunamadı</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="315"/>
+        <location filename="../Console.py" line="317"/>
         <source>No changes made</source>
         <translation>Değişiklik yapılmadı</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="328"/>
+        <location filename="../Console.py" line="330"/>
         <source>Can&apos;t apply idlepc value</source>
         <translation>Idlepc değeri uygulanamadı</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="333"/>
+        <location filename="../Console.py" line="335"/>
         <source>Incorrect number of paramaters or invalid parameters</source>
         <translation>Parametreler geçersiz ya da yanlış</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="346"/>
+        <location filename="../Console.py" line="348"/>
         <source>You have to save your topology before using save</source>
         <translation>Topolojiyi kaydetmeden önce kayıt yapmalısınız</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="354"/>
+        <location filename="../Console.py" line="356"/>
         <source>You have to save your topology before using push</source>
         <translation>Topolojiyi kaydetmeden önce başlatın</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="396"/>
+        <location filename="../Console.py" line="398"/>
         <source>Destination directory</source>
         <translation>Hedef dizin</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="397"/>
+        <location filename="../Console.py" line="399"/>
         <source>The directory already exists. Ok to overwrite (Y/N)?</source>
         <translation>Böyle bir dizin zaten var. Üzerine yazmak istiyormusunuz (Y/N)?</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="274"/>
+        <location filename="../Console.py" line="276"/>
         <source>%s already has an idlepc value applied.</source>
         <translation>%s için idlepc değeri atandı..</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="304"/>
+        <location filename="../Console.py" line="306"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;
 Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 </source>
@@ -1071,13 +1071,13 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmaması için enter tuşuna basın :</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="319"/>
+        <location filename="../Console.py" line="321"/>
         <source>Applied idlepc value %s to %s
 </source>
         <translation>Bu idlepc değeri %s buna %s uygulandı</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="335"/>
+        <location filename="../Console.py" line="337"/>
         <source>Unknown device: %s</source>
         <translation>Bilinmeyen cihaz: %s</translation>
     </message>
@@ -1731,312 +1731,312 @@ Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmama
         <translation>Türkçe</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="313"/>
+        <location filename="../Ui/Form_MainWindow.py" line="312"/>
         <source>GNS3</source>
         <translation>GNS3</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="314"/>
+        <location filename="../Ui/Form_MainWindow.py" line="313"/>
         <source>&amp;Edit</source>
         <translation>&amp;Değiştir</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="315"/>
+        <location filename="../Ui/Form_MainWindow.py" line="314"/>
         <source>&amp;File</source>
         <translation>&amp;Dosya</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="316"/>
+        <location filename="../Ui/Form_MainWindow.py" line="315"/>
         <source>&amp;Help</source>
         <translation>&amp;Yardım</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="317"/>
+        <location filename="../Ui/Form_MainWindow.py" line="316"/>
         <source>&amp;View</source>
         <translation>&amp;Görünüm</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="318"/>
+        <location filename="../Ui/Form_MainWindow.py" line="317"/>
         <source>General</source>
         <translation>Genel</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="319"/>
+        <location filename="../Ui/Form_MainWindow.py" line="318"/>
         <source>Nodes Types</source>
         <translation>Nodların Türleri</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="324"/>
+        <location filename="../Ui/Form_MainWindow.py" line="323"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="321"/>
+        <location filename="../Ui/Form_MainWindow.py" line="320"/>
         <source>Design</source>
         <translation>Dizayn</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="322"/>
+        <location filename="../Ui/Form_MainWindow.py" line="321"/>
         <source>Simulation</source>
         <translation>Simülasyon</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="323"/>
+        <location filename="../Ui/Form_MainWindow.py" line="322"/>
         <source>Topology Summary</source>
         <translation>Topoloji özeti</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="325"/>
+        <location filename="../Ui/Form_MainWindow.py" line="324"/>
         <source>Console</source>
         <translation>Konsol</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="327"/>
+        <location filename="../Ui/Form_MainWindow.py" line="326"/>
         <source>&amp;About</source>
         <translation>&amp;Hakkında</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="328"/>
+        <location filename="../Ui/Form_MainWindow.py" line="327"/>
         <source>&amp;Quit</source>
         <translation>&amp;Çıkış</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="329"/>
+        <location filename="../Ui/Form_MainWindow.py" line="328"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="330"/>
+        <location filename="../Ui/Form_MainWindow.py" line="329"/>
         <source>&amp;Open</source>
         <translation>&amp;Aç</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="332"/>
+        <location filename="../Ui/Form_MainWindow.py" line="331"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="333"/>
+        <location filename="../Ui/Form_MainWindow.py" line="332"/>
         <source>&amp;Save</source>
         <translation>&amp;Kaydet</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="335"/>
+        <location filename="../Ui/Form_MainWindow.py" line="334"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="339"/>
+        <location filename="../Ui/Form_MainWindow.py" line="338"/>
         <source>Add a link</source>
         <translation>Bağlantı ekle</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="341"/>
+        <location filename="../Ui/Form_MainWindow.py" line="340"/>
         <source>Ctrl+Shift+I</source>
         <translation>Ctrl+Shift+I</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="342"/>
+        <location filename="../Ui/Form_MainWindow.py" line="341"/>
         <source>&amp;Online Help</source>
         <translation>&amp;Çevrimiçi Yardım</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="343"/>
+        <location filename="../Ui/Form_MainWindow.py" line="342"/>
         <source>&amp;Export</source>
         <translation>&amp;Dışa aktarım</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="344"/>
+        <location filename="../Ui/Form_MainWindow.py" line="343"/>
         <source>Start/Resume all IOS</source>
         <translation>Bütün IOS&apos;ları Başlat/Durdur</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="345"/>
+        <location filename="../Ui/Form_MainWindow.py" line="344"/>
         <source>Start or resume all IOS instances</source>
         <translation>Bütün IOS örneklerini Başlat ya da Durdur</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="346"/>
+        <location filename="../Ui/Form_MainWindow.py" line="345"/>
         <source>Stop all IOS</source>
         <translation>Bütün IOS&apos;ları durdur</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="347"/>
+        <location filename="../Ui/Form_MainWindow.py" line="346"/>
         <source>Stop all IOS instances</source>
         <translation>Bütün IOS örneklerini durdur</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="349"/>
+        <location filename="../Ui/Form_MainWindow.py" line="348"/>
         <source>Show hostnames</source>
         <translation>Host adlarını göster</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="351"/>
+        <location filename="../Ui/Form_MainWindow.py" line="350"/>
         <source>Start a console on all running IOS instances</source>
         <translation>Bütün IOS örneklerinde konsolu başlat</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="352"/>
+        <location filename="../Ui/Form_MainWindow.py" line="351"/>
         <source>Save &amp;As</source>
         <translation>Farklı &amp;Kaydet</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="353"/>
+        <location filename="../Ui/Form_MainWindow.py" line="352"/>
         <source>Save As</source>
         <translation>Farklı kaydet</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="379"/>
+        <location filename="../Ui/Form_MainWindow.py" line="378"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="355"/>
+        <location filename="../Ui/Form_MainWindow.py" line="354"/>
         <source>About &amp;Qt</source>
         <translation>Qt &amp;Hakkında </translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="356"/>
+        <location filename="../Ui/Form_MainWindow.py" line="355"/>
         <source>Zoom &amp;In</source>
         <translation>Yakınlaştır&amp; </translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="357"/>
+        <location filename="../Ui/Form_MainWindow.py" line="356"/>
         <source>Ctrl++</source>
         <translation>Ctrl++</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="358"/>
+        <location filename="../Ui/Form_MainWindow.py" line="357"/>
         <source>Zoom &amp;Out</source>
         <translation>Uzaklaştır&amp; </translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="359"/>
+        <location filename="../Ui/Form_MainWindow.py" line="358"/>
         <source>Ctrl+-</source>
         <translation>Ctrl+-</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="360"/>
+        <location filename="../Ui/Form_MainWindow.py" line="359"/>
         <source>Zoom &amp;1:1</source>
         <translation>Boyut &amp;1:1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="361"/>
+        <location filename="../Ui/Form_MainWindow.py" line="360"/>
         <source>Ctrl+/</source>
         <translation>Ctrl+/</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="362"/>
+        <location filename="../Ui/Form_MainWindow.py" line="361"/>
         <source>Select &amp;All</source>
         <translation>Hepsini seç&amp; </translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="363"/>
+        <location filename="../Ui/Form_MainWindow.py" line="362"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="364"/>
+        <location filename="../Ui/Form_MainWindow.py" line="363"/>
         <source>Select &amp;None</source>
         <translation>Hiçbirini seçme&amp; </translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="365"/>
+        <location filename="../Ui/Form_MainWindow.py" line="364"/>
         <source>Ctrl+Shift+A</source>
         <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="368"/>
+        <location filename="../Ui/Form_MainWindow.py" line="367"/>
         <source>Copy</source>
         <translation>Kopyala</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="369"/>
+        <location filename="../Ui/Form_MainWindow.py" line="368"/>
         <source>Ctrl+C</source>
         <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="370"/>
+        <location filename="../Ui/Form_MainWindow.py" line="369"/>
         <source>&amp;Paste</source>
         <translation>&amp;Yapıştır</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="371"/>
+        <location filename="../Ui/Form_MainWindow.py" line="370"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="372"/>
+        <location filename="../Ui/Form_MainWindow.py" line="371"/>
         <source>Suspend all IOS</source>
         <translation>Bütün IOS&apos;ları askıya al</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="373"/>
+        <location filename="../Ui/Form_MainWindow.py" line="372"/>
         <source>Suspend all IOS instances</source>
         <translation>Bütün IOS örneklerini askıya al</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="366"/>
+        <location filename="../Ui/Form_MainWindow.py" line="365"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Tercihler...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="367"/>
+        <location filename="../Ui/Form_MainWindow.py" line="366"/>
         <source>Ctrl+Shift+P</source>
         <translation>Ctrl+Shift+P</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="340"/>
+        <location filename="../Ui/Form_MainWindow.py" line="339"/>
         <source>IOS images and hypervisors</source>
         <translation>IOS imajları ve hipervizörler</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="326"/>
+        <location filename="../Ui/Form_MainWindow.py" line="325"/>
         <source>toolBar</source>
         <translation>Araç çubuğu</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="331"/>
+        <location filename="../Ui/Form_MainWindow.py" line="330"/>
         <source>Open network file</source>
         <translation>Network dosyasını aç</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="334"/>
+        <location filename="../Ui/Form_MainWindow.py" line="333"/>
         <source>Save network file</source>
         <translation>Network dosyasını kaydet</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="348"/>
+        <location filename="../Ui/Form_MainWindow.py" line="347"/>
         <source>Show the hostnames</source>
         <translation>Host adlarını göster</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="350"/>
+        <location filename="../Ui/Form_MainWindow.py" line="349"/>
         <source>Telnet to all IOS</source>
         <translation>Bütün IOS&apos;lara telnet at</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="354"/>
+        <location filename="../Ui/Form_MainWindow.py" line="353"/>
         <source>Save network file as</source>
         <translation>Network dosyasını farklı kaydet</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="374"/>
+        <location filename="../Ui/Form_MainWindow.py" line="373"/>
         <source>Clear the topology</source>
         <translation>Topolojiyi sil</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="375"/>
+        <location filename="../Ui/Form_MainWindow.py" line="374"/>
         <source>Add a note</source>
         <translation>Not ekle</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="376"/>
+        <location filename="../Ui/Form_MainWindow.py" line="375"/>
         <source>&amp;New Project</source>
         <translation>&amp;Yeni Proje</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="378"/>
+        <location filename="../Ui/Form_MainWindow.py" line="377"/>
         <source>New Project</source>
         <translation>Yeni Proje</translation>
     </message>
@@ -2255,8 +2255,13 @@ lütfen nod seçin.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="126"/>
+        <location filename="../PemuManager.py" line="134"/>
         <source>Can&apos;t start Pemu on port %i</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../PemuManager.py" line="127"/>
+        <source>Please start pemuwrapper manually in order to unpack pemu</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2301,12 +2306,12 @@ lütfen nod seçin.</translation>
         <translation>Tercihler</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="27"/>
+        <location filename="DynamicStrings.py" line="30"/>
         <source>General</source>
         <translation>Genel</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="30"/>
+        <location filename="DynamicStrings.py" line="33"/>
         <source>Applications</source>
         <translation>Uygulamalar</translation>
     </message>
@@ -2631,7 +2636,7 @@ lütfen nod seçin.</translation>
         <translation>Lütfen Dynamips&apos;in yolunu ayarlayın</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="433"/>
+        <location filename="../Topology.py" line="435"/>
         <source>Dynamips error</source>
         <translation>Dynamips hatası</translation>
     </message>
@@ -2641,7 +2646,7 @@ lütfen nod seçin.</translation>
         <translation>Bağlantı koptu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="351"/>
+        <location filename="../Topology.py" line="350"/>
         <source>Connection</source>
         <translation>Bağlantı</translation>
     </message>
@@ -2661,7 +2666,7 @@ lütfen nod seçin.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="351"/>
+        <location filename="../Topology.py" line="350"/>
         <source>You have to connect at least one router to the switch</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2676,7 +2681,7 @@ lütfen nod seçin.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="338"/>
+        <location filename="../Topology.py" line="337"/>
         <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2684,122 +2689,122 @@ lütfen nod seçin.</translation>
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="107"/>
+        <location filename="../Workspace.py" line="108"/>
         <source>Docks</source>
         <translation>Araçlar</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="328"/>
+        <location filename="../Workspace.py" line="341"/>
         <source>Dynamips error</source>
         <translation>Dynamips hatası</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="328"/>
+        <location filename="../Workspace.py" line="341"/>
         <source>Connection lost</source>
         <translation>Bağlantı koptu</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="325"/>
+        <location filename="../Workspace.py" line="338"/>
         <source>Dynamips warning</source>
         <translation>Dynamips tehlike</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="304"/>
+        <location filename="../Workspace.py" line="317"/>
         <source>Abort</source>
         <translation>Yarıda bırak</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="340"/>
+        <location filename="../Workspace.py" line="353"/>
         <source>Starting nodes ...</source>
         <translation>Nod&apos;lar başlatılıyor ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="346"/>
+        <location filename="../Workspace.py" line="359"/>
         <source>Stopping nodes ...</source>
         <translation>Nod&apos;lar durduruluyor ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="352"/>
+        <location filename="../Workspace.py" line="365"/>
         <source>Suspending nodes ...</source>
         <translation>Nod&apos;lar askıya alınıyor ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="394"/>
+        <location filename="../Workspace.py" line="413"/>
         <source>Loading</source>
         <translation>Yükleniyor</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="275"/>
+        <location filename="../Workspace.py" line="288"/>
         <source>Hide hostnames</source>
         <translation>Host adlarını gizle</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="280"/>
+        <location filename="../Workspace.py" line="293"/>
         <source>Show hostnames</source>
         <translation>Host adlarını göster</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="455"/>
+        <location filename="../Workspace.py" line="474"/>
         <source>Open a file</source>
         <translation>Dosya aç</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="451"/>
+        <location filename="../Workspace.py" line="470"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Dynamips&apos;in yolunu ayarlayınız</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="488"/>
+        <location filename="../Workspace.py" line="507"/>
         <source>Save Project As</source>
         <translation>Projeyi Farklı Kaydet</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="415"/>
+        <location filename="../Workspace.py" line="434"/>
         <source>New Project</source>
         <translation>Yeni Proje</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="508"/>
+        <location filename="../Workspace.py" line="527"/>
         <source>Message</source>
         <translation>Mesaj</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="170"/>
+        <location filename="../Workspace.py" line="183"/>
         <source>Are you sure to clear the topology?</source>
         <translation>Topolojiyi silmek istediğinize eminmisiniz?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="194"/>
+        <location filename="../Workspace.py" line="207"/>
         <source>Add a link</source>
         <translation>Bağlantı ekle</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="209"/>
+        <location filename="../Workspace.py" line="222"/>
         <source>Cancel</source>
         <translation>Vazgeç</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="415"/>
+        <location filename="../Workspace.py" line="434"/>
         <source>Can&apos;t create a project</source>
         <translation>Proje oluşturulamadı</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="394"/>
+        <location filename="../Workspace.py" line="413"/>
         <source>Invalid file %s</source>
         <translation>%s geçersiz dosya</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="508"/>
+        <location filename="../Workspace.py" line="527"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="426"/>
+        <location filename="../Workspace.py" line="445"/>
         <source>Do you want to apply the project settings to the current topology?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="434"/>
+        <location filename="../Workspace.py" line="453"/>
         <source>Would you like to save the current topology?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2807,7 +2812,7 @@ lütfen nod seçin.</translation>
 <context>
     <name>connect</name>
     <message>
-        <location filename="../Telnet.py" line="41"/>
+        <location filename="../Telnet.py" line="44"/>
         <source>Console</source>
         <translation>Konsol</translation>
     </message>
@@ -2815,62 +2820,62 @@ lütfen nod seçin.</translation>
 <context>
     <name>nodesDock</name>
     <message>
-        <location filename="DynamicStrings.py" line="38"/>
+        <location filename="DynamicStrings.py" line="41"/>
         <source>Switch</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="39"/>
+        <location filename="DynamicStrings.py" line="42"/>
         <source>Hub</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="40"/>
+        <location filename="DynamicStrings.py" line="43"/>
         <source>ATM switch</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="41"/>
+        <location filename="DynamicStrings.py" line="44"/>
         <source>Frame Relay switch</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="42"/>
+        <location filename="DynamicStrings.py" line="45"/>
         <source>Cloud</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="31"/>
+        <location filename="DynamicStrings.py" line="34"/>
         <source>Router c1700</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="32"/>
+        <location filename="DynamicStrings.py" line="35"/>
         <source>Router c2600</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="34"/>
+        <location filename="DynamicStrings.py" line="37"/>
         <source>Router c3600</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="35"/>
+        <location filename="DynamicStrings.py" line="38"/>
         <source>Router c3700</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="36"/>
+        <location filename="DynamicStrings.py" line="39"/>
         <source>Router c7200</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="33"/>
+        <location filename="DynamicStrings.py" line="36"/>
         <source>Router c2691</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="37"/>
+        <location filename="DynamicStrings.py" line="40"/>
         <source>PIX firewall</source>
         <translation type="unfinished"></translation>
     </message>

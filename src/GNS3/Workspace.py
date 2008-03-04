@@ -23,7 +23,7 @@ import os, sys, socket
 import GNS3.NETFile as netfile
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Globals as globals
-from PyQt4 import QtGui, QtCore
+from PyQt4 import QtSvg, QtGui, QtCore
 from PyQt4.QtGui import QMainWindow, QAction, QActionGroup, QAction, QIcon
 from GNS3.Ui.Form_MainWindow import Ui_MainWindow
 from GNS3.Ui.Form_About import Ui_AboutDialog
@@ -80,6 +80,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_StartAll,  QtCore.SIGNAL('triggered()'), self.__action_StartAll)
         self.connect(self.action_StopAll,  QtCore.SIGNAL('triggered()'), self.__action_StopAll)
         self.connect(self.action_SuspendAll,  QtCore.SIGNAL('triggered()'), self.__action_SuspendAll)
+        self.connect(self.action_OnlineHelp,  QtCore.SIGNAL('triggered()'), self.__action_Help)
         self.connect(self.action_About,  QtCore.SIGNAL('triggered()'), self.__action_About)
         self.connect(self.action_AboutQt,  QtCore.SIGNAL('triggered()'), self.__action_AboutQt)
         self.connect(self.action_New,  QtCore.SIGNAL('triggered()'), self.__action_NewProject)
@@ -118,14 +119,24 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Export the view to an image
         """
 
-        rect = self.graphicsView.viewport().rect()
-        pixmap = QtGui.QPixmap(rect.width(), rect.height())
-        pixmap.fill(QtCore.Qt.white)
-        painter = QtGui.QPainter(pixmap)
-        painter.setRenderHint(QtGui.QPainter.Antialiasing)
-        self.graphicsView.render(painter)
-        painter.end()
-        pixmap.save(name, format)
+        if format == 'PDF':
+            printer = QtGui.QPrinter(QtGui.QPrinter.HighResolution)
+            printer.setOutputFormat(QtGui.QPrinter.PdfFormat)
+            printer.setOrientation(QtGui.QPrinter.Landscape)
+            printer.setOutputFileName(name)
+            painter = QtGui.QPainter(printer)
+            painter.setRenderHint(QtGui.QPainter.Antialiasing)
+            self.graphicsView.render(painter)
+            painter.end()
+        else:
+            rect = self.graphicsView.viewport().rect()
+            pixmap = QtGui.QPixmap(rect.width(), rect.height())
+            pixmap.fill(QtCore.Qt.white)
+            painter = QtGui.QPainter(pixmap)
+            painter.setRenderHint(QtGui.QPainter.Antialiasing)
+            self.graphicsView.render(painter)
+            painter.end()
+            pixmap.save(name, format)
 
     def __action_Export(self):
         """ Export the scene to an image file
@@ -133,7 +144,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     
         filedialog = QtGui.QFileDialog(self)
         selected = QtCore.QString()
-        exports = 'PNG File (*.png);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm)'
+        exports = 'PNG File (*.png);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm);;PDF File (*.pdf)'
         path = QtGui.QFileDialog.getSaveFileName(filedialog, 'Export', '.', exports, selected)
         if not path:
             return
@@ -146,6 +157,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             path = path + '.bmp'
         if str(selected) == 'BMP File (*.bmp)' and (path[-4:] != '.xpm' or path[-4:] != '.xbm'):
             path = path + '.xpm'
+        if str(selected) == 'PDF File (*.pdf)' and path[-4:] != '.pdf':
+            path = path + '.pdf'
         try:
             self.__export(path, str(str(selected)[:3]))
         except IOError, (errno, strerror):
@@ -351,6 +364,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
         
         self.__launchProgressDialog('suspend', translate("Workspace", "Suspending nodes ..."))
         
+    def __action_Help(self):
+        """ Launch a browser for the pointing to the documentation page
+        """
+        
+        QtGui.QDesktopServices.openUrl(QtCore.QUrl("http://www.gns3.net/documentation"))
+
     def __action_About(self):
         """ Show GNS3 about dialog
         """

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sat Mar  1 22:48:25 2008
+# Created: Tue Mar  4 14:29:35 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -181,7 +181,6 @@ class Ui_MainWindow(object):
         self.action_IOS_images.setObjectName("action_IOS_images")
 
         self.action_OnlineHelp = QtGui.QAction(MainWindow)
-        self.action_OnlineHelp.setEnabled(False)
         self.action_OnlineHelp.setIcon(QtGui.QIcon(":/icons/help.svg"))
         self.action_OnlineHelp.setObjectName("action_OnlineHelp")
 

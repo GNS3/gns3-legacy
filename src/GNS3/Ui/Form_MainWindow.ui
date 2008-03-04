@@ -418,9 +418,6 @@
    </property>
   </action>
   <action name="action_OnlineHelp" >
-   <property name="enabled" >
-    <bool>false</bool>
-   </property>
    <property name="icon" >
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/help.svg</iconset>
    </property>
