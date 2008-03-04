@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -43,10 +43,10 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.__edgeList = set()
         self.__selectedInterface = None
         self.__flag_hostname = False
-        
+
         # status used in the topology summary
         self.state = 'stopped'
-        
+
         if error == None:
             error = QtGui.QErrorMessage(globals.GApp.mainWindow)
         self.error = error
@@ -66,17 +66,17 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.setAcceptsHoverEvents(True)
         self.setZValue(1)
         self.setSharedRenderer(self.__render_normal)
-        
+
     def getState(self):
         """ Returns the current node state
         """
-        
+
         return (self.state)
-        
+
     def changeHostname(self):
         """ Called to change the hostname
         """
-        
+
         (text,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, translate("AbstractNode", "Change hostname"),
                                           translate("AbstractNode", "Hostname:"), QtGui.QLineEdit.Normal,
                                           self.hostname)
@@ -97,11 +97,11 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 for edge in self.__edgeList:
                     edge.setCustomToolTip()
             globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
-                    
+
     def paint(self, painter, option, widget=None):
         """ Don't show the selection rectangle
         """
-        
+
         _local_option = option
         _local_option.state = QtGui.QStyle.State_None
         QtSvg.QGraphicsSvgItem.paint(self, painter, _local_option, widget)
@@ -123,18 +123,18 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 edge.adjust()
 
         return QtGui.QGraphicsItem.itemChange(self, change, value)
-    
+
     def hoverEnterEvent(self, event):
         """ Called when the mouse is hover the node
         """
-        
+
         if not self.isSelected() and self.__render_select:
             self.setSharedRenderer(self.__render_select)
-        
+
     def hoverLeaveEvent(self, event):
         """ Called when the mouse leaves the node
         """
-        
+
         if not self.isSelected() and self.__render_select:
             self.setSharedRenderer(self.__render_normal)
 
@@ -157,7 +157,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
     def getEdgeList(self):
         """ Returns the edge list
         """
-        
+
         return self.__edgeList
 
     def setCustomToolTip(self):
@@ -182,7 +182,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """
 
         if globals.addingLinkFlag and event.button() == QtCore.Qt.LeftButton:
-        
+
             self.__selectedInterface = None
             self.showMenuInterface()
             if self.__selectedInterface:
@@ -192,21 +192,21 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 self.emit(QtCore.SIGNAL("Add link"), self.id,  self.__selectedInterface)
 
         QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
-        
+
     def getConnectedInterfaceList(self):
         """ Returns a list of all the connected local interfaces
         """
-        
+
         interface_list = set()
         for edge in self.__edgeList:
             interface = edge.getLocalInterface(self)
             interface_list.add(interface)
         return interface_list
-        
+
     def getConnectedNeighbor(self, ifname):
         """ Returns the connected neighbor's node and interface
         """
-        
+
         for edge in self.__edgeList:
             interface = edge.getLocalInterface(self)
             if interface == ifname:
@@ -234,7 +234,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         # connect the menu
         menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.slotSelectedInterface)
         menu.exec_(QtGui.QCursor.pos())
-    
+
     def showHostname(self):
         """ Show the hostname on the scene
         """
@@ -255,7 +255,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         nodemiddle = noderect.topRight() / 2
         self.textItem.setPos(nodemiddle.x() - textmiddle.x(), -25)
         self.__flag_hostname = True
-        
+
     def removeHostname(self):
         """ Remove the hostname on the scene
         """
@@ -263,13 +263,13 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         if self.__flag_hostname == True:
             globals.GApp.topology.removeItem(self.textItem)
             self.__flag_hostname = False
-            
+
     def hostnameDiplayed(self):
         """ Check if the hostname is displayed
         """
-    
+
         return self.__flag_hostname
-    
+
     def deleteInterface(self, ifname):
         """ Delete an interface and the link that is connected to it
             ifname: string
@@ -280,7 +280,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             interface = edge.getLocalInterface(self)
             if ifname == interface:
                 self.emit(QtCore.SIGNAL("Delete link"), edge)
-        
+
     def slotSelectedInterface(self, action):
         """ Called when an interface is selected from the contextual menu
             in design mode
@@ -294,20 +294,20 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
     def startupInterfaces(self):
         """ Startup all interfaces
         """
-            
+
         for edge in self.getEdgeList():
             edge.setLocalInterfaceStatus(self.id, 'up')
-        
+
     def shutdownInterfaces(self):
         """ Shutdown all interfaces
         """
-            
+
         for edge in self.getEdgeList():
             edge.setLocalInterfaceStatus(self.id, 'down')
-            
+
     def suspendInterfaces(self):
         """ Suspend all interfaces
         """
-            
+
         for edge in self.getEdgeList():
             edge.setLocalInterfaceStatus(self.id, 'suspended')

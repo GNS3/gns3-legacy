@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -40,7 +40,7 @@ class Topology(QtGui.QGraphicsScene):
     """
 
     def __init__(self, parent=None):
-        
+
         self.__nodes = {}
         self.__links = set()
 
@@ -91,16 +91,16 @@ class Topology(QtGui.QGraphicsScene):
         init_fw_id()
         init_cloud_id()
         self.cleanDynagen()
-        
+
     def getNode(self, id):
         """ Returns the node corresponding to id
         """
-        
+
         if self.__nodes.has_key(id):
             return self.__nodes[id]
         else:
             return None
-            
+
     def getNodeID(self, node_name):
         """ Returns the id corresponding to node_name
         """
@@ -112,21 +112,21 @@ class Topology(QtGui.QGraphicsScene):
     def __getNodes(self):
         """ Return topology nodes
         """
-        
+
         return self.__nodes
 
     def __setNodes(self, value):
         """ Set the topology nodes (disabled)
         """
-        
-        self.__nodes = value 
+
+        self.__nodes = value
 
     nodes = property(__getNodes, __setNodes, doc='Property of nodes topology')
 
     def useExternalHypervisor(self, node, host, port):
         """ Connection to an external hypervisor
         """
-        
+
         external_hypervisor_key = host + ':' + str(port)
         if self.dynagen.dynamips.has_key(external_hypervisor_key):
             debug("Use an external hypervisor: " + external_hypervisor_key)
@@ -135,7 +135,7 @@ class Topology(QtGui.QGraphicsScene):
             debug("Connection to an external hypervisor: " + external_hypervisor_key)
             dynamips_hypervisor = self.dynagen.create_dynamips_hypervisor(host, port)
             if not dynamips_hypervisor:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Hypervisor"),  
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Hypervisor"),
                                            unicode(translate("Topology", "Can't connect to the external hypervisor on %s")) % external_hypervisor_key)
                 return False
             self.dynagen.update_running_config()
@@ -150,11 +150,11 @@ class Topology(QtGui.QGraphicsScene):
             dynamips_hypervisor.baseconsole =  hypervisor_conf.baseConsole
         node.set_hypervisor(dynamips_hypervisor)
         return True
-        
+
     def preConfigureNode(self, node, image_conf):
         """ Apply settings on node
         """
-        
+
         debug("Set image " + image_conf.filename)
         node.set_image(image_conf.filename, image_conf.chassis)
         if image_conf.idlepc:
@@ -176,7 +176,7 @@ class Topology(QtGui.QGraphicsScene):
     def firewallSetup(self, node):
         """ Start a connetion to Pemu & set defaults
         """
-    
+
         if globals.GApp.systconf['pemu'].enable_PemuManager:
             globals.GApp.PemuManager.startPemu()
             host = 'localhost'
@@ -219,18 +219,18 @@ class Topology(QtGui.QGraphicsScene):
                     # no IOS images configured, users have to register an IOS
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), translate("Topology", "Please register at least one IOS image"))
                     return
-        
+
                 image_to_use = None
                 selected_images = []
                 for (image, conf) in globals.GApp.iosimages.iteritems():
                     if conf.platform == node.platform:
                         selected_images.append(image)
-        
+
                 if len(selected_images) == 0:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), 
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"),
                                               unicode(translate("Topology", "No image for platform %s")) % node.platform)
                     return False
-                
+
                 if len(selected_images) > 1:
                     for image in selected_images:
                         conf = globals.GApp.iosimages[image]
@@ -238,7 +238,7 @@ class Topology(QtGui.QGraphicsScene):
                             image_to_use = image
                             break
                     if not image_to_use:
-                        (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "IOS image"), 
+                        (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "IOS image"),
                                                                       translate("Topology", "Please choose an image"), selected_images, 0, False)
                         if ok:
                             image_to_use = str(selection)
@@ -267,10 +267,10 @@ class Topology(QtGui.QGraphicsScene):
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX image"), translate("Topology", "Please configure a default PIX image"))
                     return
                 self.firewallSetup(node)
-                
+
             QtCore.QObject.connect(node, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
             QtCore.QObject.connect(node, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
-            
+
             self.__nodes[node.id] = node
             self.addItem(node)
             if node.configNode() == False:
@@ -307,18 +307,18 @@ class Topology(QtGui.QGraphicsScene):
         # FIXME: in Qt 4.4
         QtGui.QPixmapCache.clear()
         self.changed = True
-   
+
     def recordLink(self, srcid, srcif, dstid, dstif):
         """ Record the link in the topology
         """
-   
+
         if srcif[0] == 's' or srcif[0] == 'a' or dstif[0] == 's' or dstif[0] == 'a':
             # interface is serial or ATM
             link = Serial(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif)
         else:
             # by default use an ethernet link
             link = Ethernet(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif)
-            
+
         self.__links.add(link)
         self.addItem(link)
 
@@ -328,7 +328,7 @@ class Topology(QtGui.QGraphicsScene):
 
         src_node = globals.GApp.topology.getNode(srcid)
         dst_node = globals.GApp.topology.getNode(dstid)
-        
+
         # special cases
         if not isinstance(src_node, IOSRouter) and not isinstance(dst_node, IOSRouter):
             if (isinstance(src_node, ETHSW) and not type(dst_node) in (IOSRouter, Cloud, FW)) or (isinstance(dst_node, ETHSW) and not type(src_node) in (IOSRouter, Cloud, FW)) \
@@ -402,7 +402,7 @@ class Topology(QtGui.QGraphicsScene):
         self.dynagen.update_running_config()
         self.changed = True
         return True
- 
+
     def deleteLink(self, link):
         """ Delete a link from the topology
         """

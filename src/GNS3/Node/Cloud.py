@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -23,7 +23,7 @@ from GNS3.Node.AbstractNode import AbstractNode
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
 import GNS3.Dynagen.dynamips_lib as lib
-import GNS3.Globals as globals 
+import GNS3.Globals as globals
 
 cloud_id = 0
 
@@ -36,15 +36,15 @@ class Cloud(AbstractNode):
     """
 
     def __init__(self, renderer_normal, renderer_select):
-        
+
         AbstractNode.__init__(self, renderer_normal, renderer_select)
-        
+
         # assign a new hostname
         global cloud_id
         self.hostname = 'C' + str(cloud_id)
         cloud_id = cloud_id + 1
         self.setCustomToolTip()
-        
+
         self.config = None
         self.dynagen = globals.GApp.dynagen
 
@@ -64,7 +64,7 @@ class Cloud(AbstractNode):
         """ Set a configuration in Dynamips
             config: dict
         """
-    
+
         self.config = config
         globals.GApp.topology.changed = True
 
@@ -73,20 +73,20 @@ class Cloud(AbstractNode):
         """
 
         return (self.config)
-        
+
     def reconfigNode(self, new_hostname):
         """ Used when changing the hostname
         """
 
         self.hostname = new_hostname
-        
+
     def configNode(self):
         """ Node configuration
         """
-    
+
         self.create_config()
         return True
-        
+
     def startNode(self):
         """ Start the node
         """

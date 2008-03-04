@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -33,27 +33,27 @@ class HypervisorManager(object):
     """
 
     def __init__(self):
-    
+
         self.hypervisors = []
         self.setDefaults()
-        
+
     def __del__(self):
-        """ Shutdown all started hypervisors 
+        """ Shutdown all started hypervisors
         """
 
         self.stopProcHypervisors()
-       
+
     def setDefaults(self):
         """ Set the default values for the hypervisor manager
         """
-        
+
         dynamips = globals.GApp.systconf['dynamips']
         self.hypervisor_path = dynamips.path
         self.hypervisor_wd = dynamips.workdir
         self.baseConsole = dynamips.baseConsole
         globals.hypervisor_baseport = dynamips.port
         globals.GApp.dynagen.globaludp = dynamips.baseUDP
-      
+
     def startNewHypervisor(self, port):
         """ Create a new dynamips process and start it
         """
@@ -62,21 +62,21 @@ class HypervisorManager(object):
         if self.hypervisor_wd:
             # set the working directory
             proc.setWorkingDirectory(self.hypervisor_wd)
-            
+
         # test if a hypervisor is already running on this port
         s = socket(AF_INET, SOCK_STREAM)
         s.setblocking(0)
         s.settimeout(300)
         try:
             s.connect(('localhost', port))
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  
-                                      unicode(translate("HypervisorManager", "A hypervisor is already running on port %i, it will not be shutdown after you quit GNS3")) % port) 
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',
+                                      unicode(translate("HypervisorManager", "A hypervisor is already running on port %i, it will not be shutdown after you quit GNS3")) % port)
             s.close()
             globals.hypervisor_baseport += 1
             return None
         except:
             s.close()
-    
+
         # start dynamips in hypervisor mode (-H)
         proc.start( self.hypervisor_path ,  ['-H', str(port)])
 
@@ -85,12 +85,12 @@ class HypervisorManager(object):
             return None
 
         hypervisor = {'port': port,
-                            'proc_instance': proc, 
+                            'proc_instance': proc,
                             'load': 0}
 
         self.hypervisors.append(hypervisor)
         return hypervisor
-    
+
     def waitHypervisor(self, hypervisor):
         """ Wait the hypervisor until it accepts connections
         """
@@ -105,7 +105,7 @@ class HypervisorManager(object):
             s.setblocking(0)
             s.settimeout(300)
             if nb == 3:
-                progress = QtGui.QProgressDialog(unicode(translate("HypervisorManager", "Connecting to a hypervisor on port %i ...")) % hypervisor['port'], 
+                progress = QtGui.QProgressDialog(unicode(translate("HypervisorManager", "Connecting to a hypervisor on port %i ...")) % hypervisor['port'],
                                                                                                                                         translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
                 progress.setMinimum(1)
                 progress.setWindowModality(QtCore.Qt.WindowModal)
@@ -131,7 +131,7 @@ class HypervisorManager(object):
             globals.hypervisor_baseport += 1
             time.sleep(0.2)
         else:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',
                                        unicode(translate("HypervisorManager", "Can't connect to the hypervisor on port %i")) % hypervisor['port'])
             hypervisor['proc_instance'].close()
             self.hypervisors.remove(hypervisor)
@@ -191,7 +191,7 @@ class HypervisorManager(object):
                 if hypervisor['load'] <= 0:
                     hypervisor['load'] = 0
                 break
-    
+
     def getHypervisor(self, port):
         """ Get a hypervisor from the hypervisor manager
         """
@@ -200,11 +200,11 @@ class HypervisorManager(object):
             if hypervisor['port'] == port:
                 return hypervisor
         return None
-        
+
     def stopProcHypervisors(self):
-        """ Shutdown all started hypervisors 
+        """ Shutdown all started hypervisors
         """
-    
+
         if globals.GApp != None and globals.GApp.systconf['dynamips']:
             self.setDefaults()
         hypervisors = globals.GApp.dynagen.dynamips.copy()
@@ -230,7 +230,7 @@ class HypervisorManager(object):
 
         proc = QtCore.QProcess(globals.GApp.mainWindow)
         port = globals.hypervisor_baseport
-        
+
         if self.hypervisor_wd:
             # set the working directory
             proc.setWorkingDirectory(self.hypervisor_wd)
@@ -238,7 +238,7 @@ class HypervisorManager(object):
         proc.start(self.hypervisor_path,  ['-H', str(port)])
         if proc.waitForStarted() == False:
             return False
-            
+
         # give 5 seconds to the hypervisor to accept connections
         count = 5
         connection_success = False
@@ -265,9 +265,9 @@ class HypervisorManager(object):
     def showHypervisors(self):
         """ Show hypervisors port & load
         """
-        
+
         print "Memory usage limit per hypervisor : " + str(globals.GApp.systconf['dynamips'].memory_limit) + " MB"
         print '%-10s %-10s' % ('Port','Memory load')
         for hypervisor in self.hypervisors:
             print '%-10s %-10s' % (hypervisor['port'], str(hypervisor['load']) + ' MB')
-    
+

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -27,7 +27,7 @@ class FWDefaults(AbstractDefaults):
     """Abstract class for managing the FW defaults"""
 
     def __init__(self):
-    
+
         AbstractDefaults.__init__(self)
 
         self.default_image = 'None'
@@ -41,7 +41,7 @@ class FWDefaults(AbstractDefaults):
         """ Records an pemu hypervisor
             pemu: Pemu object
         """
-    
+
         self.pemu = pemu
         self.d = 'pemu ' + str(self.pemu.host)
         self.config = self.dynagen.defaults_config[self.d]

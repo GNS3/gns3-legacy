@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -24,7 +24,7 @@ from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate, debug
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.dynagen as dynagen_namespace
-import GNS3.Globals as globals 
+import GNS3.Globals as globals
 
 ethsw_id = 0
 
@@ -37,9 +37,9 @@ class ETHSW(AbstractNode):
     """
 
     def __init__(self, renderer_normal, renderer_select):
-        
+
         AbstractNode.__init__(self, renderer_normal, renderer_select)
-        
+
         # assign a new hostname
         global ethsw_id
         self.hostname = 'SW' + str(ethsw_id)
@@ -56,32 +56,32 @@ class ETHSW(AbstractNode):
         self.dynagen.update_running_config()
 
     def __del__(self):
-    
+
         self.delete_ethsw()
-        
+
     def delete_ethsw(self):
         """ Delete this ETHSW
         """
-        
+
         if self.ethsw:
             self.ethsw.delete()
             del self.dynagen.devices[self.hostname]
             self.ethsw = None
         self.dynagen.update_running_config()
-    
+
     def set_hostname(self, hostname):
         """ Set a hostname
         """
-        
+
         self.hostname = hostname
         self.e = 'ETHSW ' + self.hostname
-        
+
     def get_running_config_name(self):
         """ Return node name as stored in the running config
         """
-        
+
         return (self.e)
-        
+
     def create_config(self):
         """ Creates the configuration of this switch
         """
@@ -105,15 +105,15 @@ class ETHSW(AbstractNode):
         """ Set a configuration in Dynamips
             config: dict
         """
-        
+
         self.config = config
         globals.GApp.topology.changed = True
-        
+
     def set_hypervisor(self,  hypervisor):
         """ Records a hypervisor
             hypervisor: object
         """
-    
+
         self.hypervisor = hypervisor
         self.d = self.hypervisor.host + ':' + str(self.hypervisor.port)
 
@@ -122,12 +122,12 @@ class ETHSW(AbstractNode):
         """
 
         ports = map(str, self.config['ports'].keys())
-        return (ports) 
+        return (ports)
 
     def get_dynagen_device(self):
         """ Returns the dynagen device corresponding to this switch
         """
-        
+
         if not self.ethsw:
             self.ethsw = lib.ETHSW(self.hypervisor, name = self.hostname)
             self.dynagen.devices[self.hostname] = self.ethsw
@@ -141,7 +141,7 @@ class ETHSW(AbstractNode):
         """
 
         self.ethsw = ethsw
-        
+
     def reconfigNode(self, new_hostname):
         """ Used when changing the hostname
         """
@@ -156,14 +156,14 @@ class ETHSW(AbstractNode):
             self.get_dynagen_device()
             for link in links:
                 globals.GApp.topology.addLink(link.source.id, link.srcIf, link.dest.id, link.destIf)
-        
+
     def configNode(self):
         """ Node configuration
         """
 
         self.create_config()
         return True
-        
+
     def startNode(self):
         """ Start the node
         """

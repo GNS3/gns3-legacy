@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -32,7 +32,7 @@ from PyQt4 import QtCore, QtGui
 class DynagenSub(Dynagen):
     """ Subclass of Dynagen
     """
-    
+
     def __init__(self):
 
         Dynagen.__init__(self)
@@ -57,7 +57,7 @@ class DynagenSub(Dynagen):
         if 'GNS3-DATA' in config.sections:
             self.gns3_data = config['GNS3-DATA'].copy()
             config.sections.remove('GNS3-DATA')
-        
+
         count = len(config.sections)
         progress = QtGui.QProgressDialog(translate("DynagenSub", "Starting hypervisors ..."), translate("DynagenSub", "Abort"), 0, count, globals.GApp.mainWindow)
         progress.setMinimum(1)
@@ -70,7 +70,7 @@ class DynagenSub(Dynagen):
             if progress.wasCanceled():
                 progress.reset()
                 break
-                
+
             server = config[section]
             if ' ' in server.name:
                 (emulator, host) = server.name.split(' ')
@@ -85,7 +85,7 @@ class DynagenSub(Dynagen):
                     controlPort = server['port']
                 if controlPort == None:
                     controlPort = 7200
-    
+
                 # need to start hypervisors
                 if server.host == 'localhost' and globals.GApp.HypervisorManager and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
                     debug("Start hypervisor on port: " + str(controlPort))
@@ -101,9 +101,9 @@ class DynagenSub(Dynagen):
     def getGNS3Data(self):
         """ Returns GNS3 specific data from NET file
         """
-    
+
         return self.gns3_data
-        
+
     def doerror(self, msg):
         """Print out an error message"""
 

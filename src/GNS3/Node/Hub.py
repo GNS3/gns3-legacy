@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -24,7 +24,7 @@ from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.dynagen as dynagen
-import GNS3.Globals as globals 
+import GNS3.Globals as globals
 
 hub_id = 0
 
@@ -33,15 +33,15 @@ class Hub(AbstractNode):
     """
 
     def __init__(self, renderer_normal, renderer_select):
-        
+
         AbstractNode.__init__(self, renderer_normal, renderer_select)
-        
+
         # assign a new hostname
         global hub_id
         self.hostname = 'H' + str(hub_id)
         hub_id = hub_id + 1
         self.setCustomToolTip()
-        
+
         self.config = None
 
     def create_config(self):
@@ -62,31 +62,31 @@ class Hub(AbstractNode):
         """ Set a configuration in Dynamips
             config: dict
         """
-        
+
         self.config = config
 
     def getInterfaces(self):
         """ Return all interfaces
         """
-        
+
         interfaces = []
         for port in range(1,  self.config['ports'] + 1):
             interfaces.append(str(port))
         return (interfaces)
-       
+
     def reconfigNode(self, new_hostname):
         """ Used when changing the hostname
         """
 
         pass
-      
+
     def configNode(self):
         """ Node configuration
         """
 
         self.create_config()
         return True
-        
+
     def startNode(self):
         """ Start the node
         """

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -42,7 +42,7 @@ class FW(AbstractNode, FWDefaults):
     """
 
     def __init__(self, renderer_normal, renderer_select):
-        
+
         AbstractNode.__init__(self, renderer_normal, renderer_select)
         FWDefaults.__init__(self)
 
@@ -62,13 +62,13 @@ class FW(AbstractNode, FWDefaults):
 
         self.fw_options = [
             'ram',
-            'key', 
-            'serial', 
+            'key',
+            'serial',
             'image'
             ]
 
     def __del__(self):
-    
+
         self.delete_fw()
 
     def delete_fw(self):
@@ -81,20 +81,20 @@ class FW(AbstractNode, FWDefaults):
                 del self.dynagen.devices[self.hostname]
                 self.fw = None
             self.dynagen.update_running_config()
-        
+
     def set_hostname(self, hostname):
         """ Set a hostname
         """
-        
+
         self.hostname = hostname
         self.f = 'FW ' + self.hostname
-        
+
     def get_running_config_name(self):
         """ Return node name as stored in the running config
         """
-        
+
         return (self.f)
-        
+
     def create_config(self):
         """ Creates the configuration of this firewall
         """
@@ -119,7 +119,7 @@ class FW(AbstractNode, FWDefaults):
         """ Set a configuration in Pemu
             config: dict
         """
-        
+
         assert(self.fw)
         # apply the options
         for option in self.fw_options:
@@ -144,7 +144,7 @@ class FW(AbstractNode, FWDefaults):
 
         # 5 ethernet interfaces per default
         return (['e0', 'e1', 'e2', 'e3', 'e4'])
-        
+
     def get_dynagen_device(self):
         """ Returns the dynagen device corresponding to this bridge
         """
@@ -186,7 +186,7 @@ class FW(AbstractNode, FWDefaults):
     def configNode(self):
         """ Node configuration
         """
-    
+
         self.create_firewall()
         self.create_config()
         return True
@@ -224,7 +224,7 @@ class FW(AbstractNode, FWDefaults):
             error('Bad model: ' + model)
             return False
         return devdefaults
-        
+
     def create_firewall(self):
 
         model = self.model
@@ -252,7 +252,7 @@ class FW(AbstractNode, FWDefaults):
         self.dynagen.update_running_config()
         self.running_config = self.dynagen.running_config[self.d][self.f]
         self.defaults_config = self.dynagen.defaults_config[self.d][model]
-        
+
     def startNode(self, progress=False):
         """ Start the node
         """
@@ -287,20 +287,20 @@ class FW(AbstractNode, FWDefaults):
             self.shutdownInterfaces()
             self.state = self.fw.state
             globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.fw.state)
-        
+
     def suspendNode(self, progress=False):
         """ Suspend this node
         """
-        
+
         pass
-        
+
     def console(self):
         """ Start a telnet console and connect it to this router
         """
 
         if self.fw and self.fw.state == 'running' and self.fw.console:
             console.connect(self.fw.dynamips.host, self.fw.console, self.hostname)
-        
+
     def mousePressEvent(self, event):
         """ Call when the node is clicked
             event: QtGui.QGraphicsSceneMouseEvent instance

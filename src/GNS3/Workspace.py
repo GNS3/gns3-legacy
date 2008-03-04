@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -22,7 +22,7 @@
 import os, sys, socket
 import GNS3.NETFile as netfile
 import GNS3.Dynagen.dynamips_lib as lib
-import GNS3.Globals as globals 
+import GNS3.Globals as globals
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtGui import QMainWindow, QAction, QActionGroup, QAction, QIcon
 from GNS3.Ui.Form_MainWindow import Ui_MainWindow
@@ -43,7 +43,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     """
 
     def __init__(self):
-        
+
         # Initialize some variables
         self.projectFile = None
         self.projectWorkdir= None
@@ -382,13 +382,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
     
         dialog.show()
         dialog.exec_()
-       
+
     def load_netfile(self, file):
         """ Load a .net file"""
 
         if file == None:
             return
-            
+
         path = os.path.abspath(file)
         if not os.path.isfile(path):
             QtGui.QMessageBox.critical(self, translate("Workspace", "Loading"), unicode(translate("Workspace", "Invalid file %s")) % file)
@@ -398,7 +398,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         net = netfile.NETFile()
         globals.GApp.scene.resetMatrix()
         net.import_net_file(path)
-            
+
     def __action_NewProject(self):
         """ Create a new project
         """
@@ -422,7 +422,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             except OSError, (errno, strerror):
                 pass
             if len(globals.GApp.dynagen.devices):
-                reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), 
+                reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"),
                                                    translate("Workspace", "Do you want to apply the project settings to the current topology?"), QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
                 if reply == QtGui.QMessageBox.Yes:
                     for node in globals.GApp.topology.nodes.values():
@@ -431,7 +431,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     for hypervisor in globals.GApp.dynagen.dynamips.values():
                         hypervisor.workingdir = self.projectWorkdir
                 elif globals.GApp.topology.changed == True:
-                    reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the current topology?"), 
+                    reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the current topology?"),
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
                     if reply == QtGui.QMessageBox.Yes:
                         save = self.projectWorkdir
@@ -452,7 +452,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__action_Preferences()
             return
 
-        (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter = 'NET file (*.net);;All files (*.*)', 
+        (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter = 'NET file (*.net);;All files (*.*)',
                                        directory=globals.GApp.systconf['general'].project_path).getFile()
         if path != None:
             try:
@@ -465,7 +465,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     globals.GApp.topology.changed = False
             except IOError, (errno, strerror):
                 QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
-        
+
     def __action_Save(self):
         """ Save to a file (scenario or dynagen .NET format)
         """
@@ -480,12 +480,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
             globals.GApp.topology.changed = False
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
-        
+
     def __action_SaveAs(self):
         """ Save as (scenario or dynagen .NET format)
         """
 
-        fb = fileBrowser(translate("Workspace", "Save Project As"), 
+        fb = fileBrowser(translate("Workspace", "Save Project As"),
                                 filter='NET file (*.net);;All files (*.*)', directory=globals.GApp.systconf['general'].project_path)
         (path, selected) = fb.getSaveFile()
 
@@ -503,9 +503,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def closeEvent(self, event):
         """ Ask to close GNS3
         """
-        
+
         if len(globals.GApp.topology.nodes) and globals.GApp.topology.changed == True:
-            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the topology before you quit?"), 
+            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the topology before you quit?"),
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
             if reply == QtGui.QMessageBox.Yes:
                 self.__action_Save()

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Contact: developers@gns3.net
+# Contact: contact@gns3.net
 #
 
 import sys, os, traceback
@@ -32,7 +32,7 @@ if QtCore.QT_VERSION < 0x040300:
 
 if QtCore.PYQT_VERSION < 0x040300:
     raise RuntimeError, "Need PyQt v4.3 or higher, but got v%s" % QtCore.PYQT_VERSION_STR
-    
+
 def exceptionHook(type, value, tb):
 
     lines = traceback.format_exception(type, value, tb)

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -27,7 +27,7 @@ class IOSRouterDefaults(AbstractDefaults):
     """Abstract class for managing the IOSRouter defaults"""
 
     def __init__(self):
-    
+
         AbstractDefaults.__init__(self)
 
         self.chassis = 'None'
@@ -48,7 +48,7 @@ class IOSRouterDefaults(AbstractDefaults):
         """ Records a hypervisor
             hypervisor: Dynamips object
         """
-    
+
         self.hypervisor = hypervisor
         self.d = self.hypervisor.host + ':' + str(self.hypervisor.port)
         self.config = self.dynagen.defaults_config[self.d]

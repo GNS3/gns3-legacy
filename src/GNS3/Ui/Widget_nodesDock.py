@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -18,7 +18,7 @@
 #
 # Contact: contact@gns3.net
 #
-    
+
 from PyQt4 import QtCore, QtGui
 import GNS3.Ui.svg_resources_rc
 from GNS3.Utils import translate
@@ -30,7 +30,7 @@ class nodesDock(QtGui.QTreeWidget):
     """
 
     def __init__(self, parent):
-    
+
         QtGui.QTreeWidget.__init__(self, parent)
         self.designMode()
         self.header().hide()
@@ -52,10 +52,10 @@ class nodesDock(QtGui.QTreeWidget):
         """ Drag event
         """
 
-        if ((event.buttons() & QtCore.Qt.LeftButton ) == None 
+        if ((event.buttons() & QtCore.Qt.LeftButton ) == None
             or self.currentItem() == None):
             return
-        
+
         item = self.currentItem()
         if not item.type():
             return

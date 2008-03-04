@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import GNS3.Globals as globals 
+import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
 from GNS3.Node.IOSRouter import IOSRouter
@@ -30,7 +30,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
     """
 
     def __init__(self, parent):
-    
+
         QtGui.QTreeWidget.__init__(self, parent)
         self.header().hide()
         self.setRootIsDecorated(True)
@@ -38,7 +38,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
     def refresh(self):
         """ Refresh topology summary
         """
-        
+
         self.clear()
         for node in globals.GApp.topology.nodes.itervalues():
             rootitem = QtGui.QTreeWidgetItem(self)
@@ -52,7 +52,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
                 rootitem.setIcon(0, QtGui.QIcon(':/icons/led_yellow.svg'))
             else:
                 rootitem.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
-    
+
             items = []
             for interface in node.getConnectedInterfaceList():
                 item = QtGui.QTreeWidgetItem()
@@ -72,7 +72,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
     def changeNodeStatus(self, hostname, status):
         """ Change the status of a node
             status: string 'running', 'stopped' or 'suspended'
-        """    
+        """
 
         if type(hostname) != unicode:
             hostname = unicode(hostname,  'utf-8')
@@ -85,7 +85,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
                 item.setIcon(0, QtGui.QIcon(':/icons/led_yellow.svg'))
             else:
                 item.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
-            
+
     def retranslateItem(self, item):
 
         # Translate current item

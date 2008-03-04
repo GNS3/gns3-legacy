@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -26,9 +26,9 @@ class IOSRouter3600Defaults(IOSRouterDefaults):
     """
 
     def __init__(self):
-    
+
         IOSRouterDefaults.__init__(self)
-        
+
         #fill 3600 defaults
         self.default_ram = 128
         self.default_nvram = 128

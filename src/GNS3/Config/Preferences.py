@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -37,8 +37,8 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
         self.__prefsList = [
                         'General',
                         'Dynamips',
-                        'Capture', 
-                        'Pemu', 
+                        'Capture',
+                        'Pemu',
                         ]
 
         QtGui.QDialog.__init__(self)
@@ -110,7 +110,7 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
         for itemName in self.__prefsList:
             cls = self.__loadWidget('Preferences', itemName)
             widget = cls()
-            item = QtGui.QListWidgetItem(translate('PreferencesDialog', itemName), 
+            item = QtGui.QListWidgetItem(translate('PreferencesDialog', itemName),
                     self.listWidget)
             # Insert widget / item into the dialog
             self.listWidget.insertItem(lnum, item)
@@ -120,7 +120,7 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
 
     def __raiseWidgetByNum(self, num):
         self.titleLabel.setText(
-            translate('PreferencesDialog', self.__prefsList[num])) 
+            translate('PreferencesDialog', self.__prefsList[num]))
         # Set stackedWidget minimum size
         widget = self.stackedWidget.widget(num)
         self.stackedWidget.setMinimumSize(widget.size())

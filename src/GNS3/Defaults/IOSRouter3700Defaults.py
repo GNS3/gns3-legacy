@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -26,7 +26,7 @@ class IOSRouter3700Defaults(IOSRouterDefaults):
     """
 
     def __init__(self):
-    
+
         IOSRouterDefaults.__init__(self)
 
         #fill 3700 defaults
@@ -40,7 +40,7 @@ class IOSRouter3700Defaults(IOSRouterDefaults):
             image: string
             model: string
         """
-        
+
         IOSRouterDefaults.set_image(self, image, model)
         # 3745 has a different default nvram
         if model == '3745':

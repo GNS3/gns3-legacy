@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -24,7 +24,7 @@ from PyQt4 import QtCore, QtGui
 
 class  Singleton(object):
     _instance = None
-    
+
     def __new__(cls, *args, **kwargs):
         if not cls._instance:
             cls._instance = super(Singleton, cls).__new__(
@@ -49,7 +49,7 @@ def testOpenFile(path,  flags='r'):
     except IOError:
         return False
     return True
- 
+
 def debug(string):
         """ Print string if debugging is true
         """
@@ -58,7 +58,7 @@ def debug(string):
         if globals.debugLevel >= 4:
             print '* DEBUG: ' + str(string)
             #globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-            
+
 def error(msg):
     """ Print out an error message
     """
@@ -68,9 +68,9 @@ def error(msg):
 class fileBrowser(object):
     """ fileBrowser class
     """
-    
+
     def __init__(self, caption, directory = '.', filter = 'All files (*.*)'):
-        
+
         self.filedialog = QtGui.QFileDialog()
         self.selected = QtCore.QString()
         self.caption = caption
@@ -80,7 +80,7 @@ class fileBrowser(object):
     def getFile(self):
         """ Get a file from the file system
         """
-        
+
         path = QtGui.QFileDialog.getOpenFileName(self.filedialog,
             self.caption, self.directory, self.filter, self.selected)
 
@@ -91,7 +91,7 @@ class fileBrowser(object):
     def getDir(self):
         """ Get a directory from the file system
         """
-        
+
         path = QtGui.QFileDialog.getExistingDirectory(self.filedialog,
             self.caption, self.directory, QtGui.QFileDialog.ShowDirsOnly)
         if path is not None:
@@ -101,11 +101,11 @@ class fileBrowser(object):
     def getSaveFile(self):
         """ Save a file in the file system
         """
-        
+
         path = QtGui.QFileDialog.getSaveFileName(self.filedialog,
             self.caption, self.directory, self.filter, self.selected)
 
         if path is not None:
             path = unicode(path)
         return ([path, str(self.selected)])
-        
+

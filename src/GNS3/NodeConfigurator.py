@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -41,14 +41,14 @@ from GNS3.Node.Hub import Hub
 class ConfigurationPageItem(QtGui.QTreeWidgetItem):
     """ Class implementing a QTreeWidgetItem holding the configuration page data.
     """
-    
+
     def __init__(self, parent, text, pageName,  iconFile):
         """ parent: parent widget of the item (QTreeWidget or QTreeWidgetItem)
             text: text to be displayed (string or QString)
             pageName: name of the configuration page (string or QString)
             iconFile: file name of the icon to be shown (string)
         """
-        
+
         QtGui.QTreeWidgetItem.__init__(self, parent, QtCore.QStringList(text))
         if iconFile:
             self.setIcon(0, QtGui.QIcon(iconFile))
@@ -65,11 +65,11 @@ class ConfigurationPageItem(QtGui.QTreeWidgetItem):
         return self.__pageName
 
     def addID(self,  id):
-    
+
         self.__ids.append(id)
-        
+
     def getIDs(self):
-    
+
         return self.__ids
 
 class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
@@ -82,19 +82,19 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         self.setupUi(self)
 
         self.nodeitems = nodeitems
-        
+
         self.buttonBox.button(QtGui.QDialogButtonBox.Apply).setEnabled(False)
         self.buttonBox.button(QtGui.QDialogButtonBox.Reset).setEnabled(False)
-        
+
         self.treeViewNodes.header().hide()
         self.treeViewNodes.header().setSortIndicator(0, QtCore.Qt.AscendingOrder)
         self.itmDict = {}
         self.previousItem = None
         self.previousPage = None
-        
+
         self.emptyPage = self.configStack.findChildren(QtGui.QWidget, "emptyPage")[0]
         self.configStack.setCurrentWidget(self.emptyPage)
-        
+
         self.configItems = {
             # key : [display string, pixmap name, dialog module name, parent key,
             #        reference to configuration page (must always be last)]
@@ -103,40 +103,40 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             # the settings.
             "Routers (1700)" : \
                 [translate("NodeConfigurator", "Routers c1700"), ":/symbols/rt_standard.normal.svg",
-                 "Page_IOSRouter", None, None], 
+                 "Page_IOSRouter", None, None],
             "Routers (2600)" : \
                 [translate("NodeConfigurator", "Routers c2600"), ":/symbols/rt_standard.normal.svg",
                  "Page_IOSRouter", None, None],
             "Routers (2691)" : \
                 [translate("NodeConfigurator", "Routers c2691"), ":/symbols/rt_standard.normal.svg",
-                 "Page_IOSRouter", None, None], 
+                 "Page_IOSRouter", None, None],
             "Routers (3600)" : \
                 [translate("NodeConfigurator", "Routers c3600"), ":/symbols/rt_standard.normal.svg",
-                 "Page_IOSRouter", None, None], 
+                 "Page_IOSRouter", None, None],
             "Routers (3700)" : \
                 [translate("NodeConfigurator", "Routers c3700"), ":/symbols/rt_standard.normal.svg",
-                 "Page_IOSRouter", None, None], 
+                 "Page_IOSRouter", None, None],
             "Routers (7200)" : \
                 [translate("NodeConfigurator", "Routers c7200"), ":/symbols/rt_standard.normal.svg",
-                 "Page_IOSRouter", None, None], 
+                 "Page_IOSRouter", None, None],
             "FW":
                 [translate("NodeConfigurator", "PIX firewalls"), ":/symbols/PIX_firewall.normal.svg",
-                 "Page_FW", None, None], 
+                 "Page_FW", None, None],
             "FRSW":
                 [translate("NodeConfigurator", "Frame Relay switches"), ":/symbols/sw_frame_relay.normal.svg",
-                 "Page_FRSW", None, None], 
+                 "Page_FRSW", None, None],
             "ETHSW":
                 [translate("NodeConfigurator", "Ethernet switches"), ":/symbols/sw_standard.normal.svg",
                  "Page_ETHSW", None, None],
             "ATMSW":
                 [translate("NodeConfigurator", "ATM switches"), ":/symbols/sw_atm.normal.svg",
-                 "Page_ATMSW", None, None], 
+                 "Page_ATMSW", None, None],
             "ATMBR":
                 [translate("NodeConfigurator", "ATM bridges"), ":/symbols/atm_bridge.normal.svg",
-                 "Page_ATMBR", None, None], 
+                 "Page_ATMBR", None, None],
             "Clouds":
                 [translate("NodeConfigurator", "Clouds"), ":/symbols/cloud.normal.svg",
-                 "Page_Cloud", None, None], 
+                 "Page_Cloud", None, None],
             "Hubs":
                 [translate("NodeConfigurator", "Hubs"), ":/symbols/hub.normal.svg",
                  "Page_Hub", None, None]
@@ -144,17 +144,17 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
 
         self.assocPage = {
                                      IOSRouter1700: "Routers (1700)",
-                                     IOSRouter2600: "Routers (2600)", 
-                                     IOSRouter2691: "Routers (2691)", 
-                                     IOSRouter3600: "Routers (3600)", 
+                                     IOSRouter2600: "Routers (2600)",
+                                     IOSRouter2691: "Routers (2691)",
+                                     IOSRouter3600: "Routers (3600)",
                                      IOSRouter3700: "Routers (3700)",
-                                     IOSRouter7200: "Routers (7200)", 
+                                     IOSRouter7200: "Routers (7200)",
                                      FW: "FW",
                                      FRSW: "FRSW",
                                      ETHSW: "ETHSW",
                                      ATMSW: "ATMSW",
                                      ATMBR: "ATMBR",
-                                     Cloud: "Clouds", 
+                                     Cloud: "Clouds",
                                      Hub: "Hubs"
                                     }
         self.__loadNodeItems()
@@ -166,11 +166,11 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             self.__showConfigurationPage)
         self.connect(self.treeViewNodes, QtCore.SIGNAL("itemSelectionChanged()"),
             self.__slotSelectionChanged)
-            
+
     def __loadNodeItems(self):
         """ Load the nodes in the NodeConfigurator
         """
-    
+
         # create the parent (section) items
         for node in self.nodeitems:
             if not self.assocPage.has_key(type(node)):
@@ -181,7 +181,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                 item = ConfigurationPageItem(self.treeViewNodes, pageData[0], parent,  pageData[1])
                 item.setExpanded(True)
                 self.itmDict[parent] = item
-    
+
         # create the children items 
         for node in self.nodeitems:
             if not self.assocPage.has_key(type(node)):
@@ -197,7 +197,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             if self.itmDict[parent].tmpConfig == None:
                 self.itmDict[parent].tmpConfig = node.get_config()
         self.treeViewNodes.sortByColumn(0, QtCore.Qt.AscendingOrder)
-            
+
     def __slotSelectionChanged(self):
         """ Check and display title in the treeViewNodes
         """
@@ -206,11 +206,11 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         count = len(items)
         if count == 0:
             return
-        
+
         last_item = items[count - 1]
         self.__showConfigurationPage(last_item,  0)
         lasttype =  type(globals.GApp.topology.getNode(last_item.getIDs()[0]))
-        
+
         for item in items:
             itmtype = type(globals.GApp.topology.getNode(item.getIDs()[0]))
             if itmtype != lasttype:
@@ -246,7 +246,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         except ImportError:
             print 'Module ' + modName + ' not found'
             return None
-            
+
     def __showConfigurationPage(self, itm, column):
         """ Private slot to show a selected configuration page.
             itm: reference to the selected item (QTreeWidgetItem)
@@ -268,7 +268,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             self.configStack.addWidget(page)
             pageData[-1] = page
         return page
-        
+
     def showConfigurationPageByName(self, itm):
         """ Public slot to show a named configuration page.
             itm: reference to the selected item (QTreeWidgetItem)
@@ -277,7 +277,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         # if the same item, don't continue
         if self.previousItem and self.previousItem == itm:
             return
-        
+
         pageName = itm.getPageName()
         pageData = self.configItems[pageName]
         pageTitle = translate("NodeConfigurator", "Node configuration")
@@ -290,7 +290,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         if page is None:
             page = self.emptyPage
         else:
-        
+
             if itm.origConfig == None and itm.parent():
                 node = globals.GApp.topology.getNode(itm.getIDs()[0])
                 itm.origConfig = node.get_config()
@@ -299,7 +299,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                 self.previousPage.saveConfig(self.previousItem.getIDs()[0],  self.previousItem.tmpConfig)
                 self.previousItem = itm
                 self.previousPage = page
-                    
+
             if self.previousItem == None:
                 self.previousItem = itm
                 self.previousPage = page

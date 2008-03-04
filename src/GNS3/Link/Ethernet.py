@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -27,7 +27,7 @@ class Ethernet(AbstractEdge):
     """ Ethernet class
         Draw an Ethernet link
     """
-    
+ 
     def __init__(self, sourceNode, sourceIf, destNode, destIf, Fake = False):
         """ sourceNode: MNode instance
             destNode: MNode instance
@@ -77,33 +77,33 @@ class Ethernet(AbstractEdge):
         """
 
         QtGui.QGraphicsPathItem.paint(self, painter, option, widget)
-        
+
         if not self.fake and globals.GApp.systconf['general'].status_points:
 
             # if nodes are too close, points disappears
             if self.length < 80:
                return
-    
+
             if self.src_interface_status == 'up':
                 color = QtCore.Qt.green
             elif self.src_interface_status == 'suspended':
                 color = QtCore.Qt.yellow
             else:
                 color = QtCore.Qt.red
-                
+
             painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
-    
+
             point1 = QtCore.QPointF(self.src + self.edgeOffset)
-            painter.drawPoint(point1) 
-    
+            painter.drawPoint(point1)
+
             if self.dest_interface_status == 'up':
                 color = QtCore.Qt.green
             elif self.dest_interface_status == 'suspended':
                 color = QtCore.Qt.yellow
             else:
                 color = QtCore.Qt.red
-                
+
             painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
-            
+
             point2 = QtCore.QPointF(self.dst -  self.edgeOffset)
             painter.drawPoint(point2)

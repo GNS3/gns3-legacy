@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -20,7 +20,7 @@
 #
 
 import os
-import GNS3.Globals as globals 
+import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_NewProject import Ui_NewProject
 from GNS3.Utils import fileBrowser, translate
@@ -28,18 +28,18 @@ from GNS3.Utils import fileBrowser, translate
 class ProjectDialog(QtGui.QDialog, Ui_NewProject):
     """ ProjectDialog class
     """
-    
+
     def __init__(self):
 
         QtGui.QDialog.__init__(self)
         self.setupUi(self)
         self.connect(self.NewProject_browser, QtCore.SIGNAL('clicked()'), self.__setProjectFIlePath)
-        
+
     def __setProjectFIlePath(self):
         """ Open a file dialog for choosing the location of the project file
         """
 
-        fb = fileBrowser(translate("Workspace", "New Project"), 
+        fb = fileBrowser(translate("Workspace", "New Project"),
                                 filter='NET file (*.net);;All files (*.*)', directory=globals.GApp.systconf['general'].project_path)
         (path, selected) = fb.getSaveFile()
 
@@ -52,7 +52,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
     def saveProjectSettings(self):
         """ Save project settings
         """
-        
+
         projectFile = str(self.ProjectPath.text())
         if not projectFile:
             return (None, None, None)
@@ -62,7 +62,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
             projectname =  os.path.basename(projectFile)
         directory = os.path.dirname(projectFile)
         if self.checkBox_ConfigFiles.checkState() == QtCore.Qt.Checked:
-            projectWorkdir = directory + os.sep + projectname + '_working' 
+            projectWorkdir = directory + os.sep + projectname + '_working'
         else:
             projectWorkdir = None
         if self.checkBox_ConfigFiles.checkState() == QtCore.Qt.Checked:

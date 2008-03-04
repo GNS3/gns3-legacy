@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -34,7 +34,7 @@ from GNS3.Node.ATMBR import ATMBR
 from GNS3.Node.FW import FW
 
 SYMBOLS = (
-        
+
     {'name': "Router c1700", 'object': IOSRouter1700,
     'normal_svg_file': ":/symbols/rt_standard.normal.svg",
     'select_svg_file': ":/symbols/rt_standard.selected.svg"},
@@ -42,19 +42,19 @@ SYMBOLS = (
     {'name': "Router c2600", 'object': IOSRouter2600,
     'normal_svg_file': ":/symbols/rt_standard.normal.svg",
     'select_svg_file': ":/symbols/rt_standard.selected.svg"},
-    
+
     {'name': "Router c2691", 'object': IOSRouter2691,
     'normal_svg_file': ":/symbols/rt_standard.normal.svg",
     'select_svg_file': ":/symbols/rt_standard.selected.svg"},
-    
+
     {'name': "Router c3600", 'object': IOSRouter3600,
     'normal_svg_file': ":/symbols/rt_standard.normal.svg",
     'select_svg_file': ":/symbols/rt_standard.selected.svg"},
-    
+
     {'name': "Router c3700", 'object': IOSRouter3700,
     'normal_svg_file': ":/symbols/rt_standard.normal.svg",
     'select_svg_file': ":/symbols/rt_standard.selected.svg"},
-    
+
     {'name': "Router c7200", 'object': IOSRouter7200,
     'normal_svg_file': ":/symbols/rt_standard.normal.svg",
     'select_svg_file': ":/symbols/rt_standard.selected.svg"},
@@ -62,23 +62,23 @@ SYMBOLS = (
     {'name': "PIX firewall", 'object': FW,
     'normal_svg_file': ":/symbols/PIX_firewall.normal.svg",
     'select_svg_file': ":/symbols/PIX_firewall.selected.svg"},
-    
+
     {'name': "Switch", 'object': ETHSW,
     'normal_svg_file': ":/symbols/sw_standard.normal.svg",
     'select_svg_file': ":/symbols/sw_standard.selected.svg"},
-    
+
     {'name': "ATM bridge", 'object': ATMBR,
     'normal_svg_file': ":/symbols/atm_bridge.normal.svg",
     'select_svg_file': ":/symbols/atm_bridge.selected.svg"},
-     
+
     {'name': "ATM switch", 'object': ATMSW,
     'normal_svg_file': ":/symbols/sw_atm.normal.svg",
-    'select_svg_file': ":/symbols/sw_atm.selected.svg"}, 
-    
+    'select_svg_file': ":/symbols/sw_atm.selected.svg"},
+
     {'name': "Frame Relay switch", 'object': FRSW,
     'normal_svg_file': ":/symbols/sw_frame_relay.normal.svg",
-    'select_svg_file': ":/symbols/sw_frame_relay.selected.svg"} , 
- 
+    'select_svg_file': ":/symbols/sw_frame_relay.selected.svg"} ,
+
     {'name': "Cloud", 'object': Cloud,
     'normal_svg_file': ":/symbols/cloud.normal.svg",
     'select_svg_file': ":/symbols/cloud.selected.svg"},

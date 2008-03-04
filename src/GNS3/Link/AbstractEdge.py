@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -33,7 +33,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
     """ AbstractEdge class
         Base class to create edges between nodes
     """
-  
+
     def __init__(self, sourceNode, sourceIf, destNode, destIf, Fake = False):
 
         QtGui.QGraphicsItem.__init__(self)
@@ -53,26 +53,26 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             self.destIf = destIf
             self.src_interface_status = 'down'
             self.dest_interface_status = 'down'
-            
+
             # capture feature variables
             self.capturing = False
             self.capfile = None
             self.captureInfo = None
-            
+
             # create a unique ID
             self.id = globals.GApp.topology.link_baseid
             globals.GApp.topology.link_baseid += 1
-    
+
             # Set default tooltip
             self.setCustomToolTip()
-    
+
             # record the edge into the nodes
             self.source.addEdge(self)
             self.dest.addEdge(self)
-    
+
             # set item focusable
             self.setFlag(self.ItemIsFocusable)
-            
+
             self.encapsulationTransform = {'ETH': 'EN10MB',
                                                             'FR': 'FRELAY',
                                                             'HDLC': 'C_HDLC',
@@ -96,15 +96,15 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         if not self.fake:
             dst_rect = self.dest.boundingRect()
             self.dst = self.mapFromItem(self.dest, dst_rect.width() / 2.0, dst_rect.height() / 2.0)
-        
+
         # compute vectors
         self.dx = self.dst.x() - self.src.x()
         self.dy = self.dst.y() - self.src.y()
-        
+
         # compute the length of the line
         self.length = math.sqrt(self.dx * self.dx + self.dy * self.dy)
         self.draw = True
-        
+
     def getLocalInterface(self, node):
         """ Returns the local interface of the node
         """
@@ -113,7 +113,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             return self.srcIf
         else:
             return self.destIf
-            
+
     def getConnectedNeighbor(self, node):
         """ Returns the connected neighbor's node and interface
         """
@@ -127,9 +127,9 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
     def setCustomToolTip(self):
         """ Set a custom tool tip
         """
-        
+
         self.setToolTip(unicode(translate("AbstractEdge", "Link: %s (%s) -> %s (%s)")) % (self.source.hostname, self.srcIf, self.dest.hostname, self.destIf))
-        
+
     def keyReleaseEvent(self, event):
         """ Key release handler
         """
@@ -173,7 +173,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
     def __returnCaptureOptions(self, options, hostname, dest, interface):
         """ Returns capture options (source hostname, encapsulation ...)
         """
-        
+
         iftype = interface[0]
         if iftype == 'e' or iftype == 'f' or iftype == 'g':
             options.append(hostname + ' ' +  interface + ' (encapsulation:ETH)')
@@ -183,11 +183,11 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             options.append(hostname + ' ' +  interface + ' (encapsulation:HDLC)')
             options.append(hostname + ' ' +  interface + ' (encapsulation:PPP)')
         else:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),
                                            translate("AbstractEdge", "Packet capture is not supported on this link type"))
             return False
         return True
-    
+
     def __captureAction(self):
         """ Capture frames on the link
         """
@@ -207,19 +207,19 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 return
 
         if len(options):
-            (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), 
+            (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),
                                                           translate("AbstractEdge", "Please choose a source"), options, 0, False)
         else:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  translate("AbstractEdge", "No device available for traffic capture"))
             return
-        
+
         if ok:
 
             (device, interface, encapsulation) = str(selection).split(' ')
             if globals.GApp.dynagen.devices[device].state != 'running':
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s is not running")) % device)
                 return
-            
+
             match_obj = dynagen_namespace.interface_re.search(interface)
             if match_obj:
                 (inttype, slot, port) = match_obj.group(1, 2, 3)
@@ -230,7 +230,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 match_obj = dynagen_namespace.interface_noport_re.search(interface)
                 (inttype, port) = match_obj.group(1, 2)
                 slot = 0
-            
+
             try:
                 encapsulation = encapsulation[1:-1].split(':')[1]
                 encapsulation = self.encapsulationTransform[encapsulation]
@@ -263,7 +263,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Dynamips error"),  str(msg))
             return
-    
+
     def __startWiresharkAction(self):
         """ Start a Wireshark like tool
         """
@@ -280,7 +280,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 sub.Popen(path, shell=True)
             except OSError, (errno, strerror):
                 QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Capture"), unicode(translate("AbstractEdge", "Cannot start %s : %s")) % (path, strerror))
-    
+
     def __deleteAction(self):
         """ Delete the link
         """
@@ -296,7 +296,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
 
         if self.source.id == node_id:
             self.src_interface_status = status
-        else:    
+        else:
             self.dest_interface_status = status
         self.update()
 

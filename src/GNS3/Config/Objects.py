@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -28,7 +28,7 @@ class ConfigObject(object):
 
     def __getPropertiesFunctions(cls, name):
         obj = dir(cls)
-        
+
 
     def __getattr__(self, name):
         if self.__dict__['conf'].has_key(name):
@@ -45,7 +45,7 @@ class ConfigObject(object):
             # In case the attribute is not part of the conf,
             # behave like the normal __getattr__
             super(ConfigObject, self).__getattr__(name)
-    
+
     def __setattr__(self, name, value):
         # We must bypass `conf' and `types' attributes, because we use
         # it in this function !
@@ -84,7 +84,7 @@ class ConfigObject(object):
 class iosImageConf(ConfigObject):
     def __init__(self):
         ConfigObject.__init__(self)
-        self.conf = Defaults.conf_iosImage_defaults.copy() 
+        self.conf = Defaults.conf_iosImage_defaults.copy()
         self.types = Defaults.conf_iosImage_types
 
 class hypervisorConf(ConfigObject):

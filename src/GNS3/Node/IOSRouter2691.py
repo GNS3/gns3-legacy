@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -27,7 +27,7 @@ class IOSRouter2691(IOSRouter, IOSRouter3700Defaults):
     """
 
     def __init__(self, renderer_normal, renderer_select):
-        
+
         IOSRouter.__init__(self, renderer_normal, renderer_select)
         IOSRouter3700Defaults.__init__(self)
         self.platform = 'c2691'
@@ -35,6 +35,6 @@ class IOSRouter2691(IOSRouter, IOSRouter3700Defaults):
     def get_chassis(self):
         """ Returns router model
         """
-    
+
         assert(self.router)
         return ('')

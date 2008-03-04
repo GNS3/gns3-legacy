@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -38,7 +38,7 @@ class Application(QApplication, Singleton):
         Used for containing global app variable,
         windows are other global objects.
     """
-    
+
     def __init__(self):
         """ Initilize the application instance
             and register GApp variable to ourself
@@ -64,7 +64,7 @@ class Application(QApplication, Singleton):
 
         # set global app to ourself
         globals.GApp = self
-        
+
 
     def __setMainWindow(self, mw):
         """ register the MainWindow instance
@@ -97,7 +97,7 @@ class Application(QApplication, Singleton):
         """ register the Scene instance
         """
 
-        self.__scene = scene 
+        self.__scene = scene
 
     def __getScene(self):
         """ return the Scene instance
@@ -118,7 +118,7 @@ class Application(QApplication, Singleton):
         """
 
         return self.__topology
-    
+
     topology = property(__getTopology, __setTopology, doc = 'Topology instance')
 
     def __setSystConf(self, systconf):
@@ -126,27 +126,27 @@ class Application(QApplication, Singleton):
         """
 
         self.__systconf = sytsconf
-    
+
     def __getSystConf(self):
         """ return the systconf instance
         """
 
         return self.__systconf
-    
+
     systconf = property(__getSystConf, __setSystConf, doc = 'System config instance')
 
     def __setIOSImages(self, iosimages):
         """ register the sysconf instance
         """
 
-        self.__iosimages = iosimages 
-    
+        self.__iosimages = iosimages
+
     def __getIOSImages(self):
         """ return the sysconf instance
         """
 
         return self.__iosimages
-    
+
     iosimages = property(__getIOSImages, __setIOSImages, doc = 'IOS images dictionnary')
 
     def __setHypervisors(self, hypervisors):
@@ -154,13 +154,13 @@ class Application(QApplication, Singleton):
         """
 
         self.__hypervisors = hypervisors
-    
+
     def __getHypervisors(self):
         """ return the sysconf instance
         """
 
         return self.__hypervisors
-    
+
     hypervisors = property(__getHypervisors, __setHypervisors, doc = 'Hypervisors dictionnary')
 
     def __setDynagen(self, dynagen):
@@ -168,48 +168,48 @@ class Application(QApplication, Singleton):
         """
 
         self.__dynagen = dynagen
-    
+
     def __getDynagen(self):
         """ return the systconf instance
         """
 
         return self.__dynagen
-    
+
     dynagen = property(__getDynagen, __setDynagen, doc = 'Dynagen instance')
-    
+
     def __setHypervisorManager(self, HypervisorManager):
         """ register the HypervisorManager instance
         """
 
         self.__HypervisorManager = HypervisorManager
-    
+
     def __getHypervisorManager(self):
         """ return the HypervisorManager instance
         """
 
         return self.__HypervisorManager
-    
+
     HypervisorManager = property(__getHypervisorManager, __setHypervisorManager, doc = 'HypervisorManager instance')
-    
+
     def __setPemuManager(self, PemuManager):
         """ register the PemuManager instance
         """
 
         self.__PemuManager = PemuManager
-    
+
     def __getPemuManager(self):
         """ return the PemuManager instance
         """
 
         return self.__PemuManager
-    
+
     PemuManager = property(__getPemuManager, __setPemuManager, doc = 'PemuManager instance')
 
     def run(self, file):
-    
+
         # Instantiation of Dynagen
         self.__dynagen = DynagenSub()
-    
+
         # Workspace create a ` Scene' object,
         # so it also set self.__topology
         self.__workspace = Workspace()
@@ -228,7 +228,7 @@ class Application(QApplication, Singleton):
         ConfDB()
         GNS_Conf().IOS_images()
         GNS_Conf().IOS_hypervisors()
-        
+
         self.systconf['dynamips'] = systemDynamipsConf()
         confo = self.systconf['dynamips']
         confo.path = ConfDB().get('Dynamips/hypervisor_path', unicode('',  'utf-8'))
@@ -240,7 +240,7 @@ class Application(QApplication, Singleton):
         confo.memory_limit =int(ConfDB().get("Dynamips/hypervisor_memory_usage_limit", 512))
         confo.udp_incrementation = int(ConfDB().get("Dynamips/hypervisor_udp_incrementation", 100))
         confo.import_use_HypervisorManager = ConfDB().value("Dynamips/hypervisor_manager_import", QVariant(True)).toBool()
-        
+
         # Pemu config
         self.systconf['pemu'] = systemPemuConf()
         confo = self.systconf['pemu']
@@ -278,10 +278,10 @@ class Application(QApplication, Singleton):
         # HypervisorManager
         if globals.GApp.systconf['dynamips'].path:
             self.__HypervisorManager = HypervisorManager()
-            
+
         # PemuManager
         self.__PemuManager = PemuManager()
-            
+
         # Restore the geometry
         self.mainWindow.restoreGeometry(ConfDB().value("GNS3/geometry").toByteArray())
         self.mainWindow.show()
@@ -289,10 +289,10 @@ class Application(QApplication, Singleton):
         if file:
             self.mainWindow.load_netfile(file)
         retcode = QApplication.exec_()
-        
+
         self.__HypervisorManager = None
         self.__PemuManager = None
-        
+
         # Save the geometry
         ConfDB().set("GNS3/geometry", self.mainWindow.saveGeometry())
         self.syncConf()
@@ -302,7 +302,7 @@ class Application(QApplication, Singleton):
     def syncConf(self):
         """ Sync current application config with config file (gns3.{ini,conf})
         """
-        
+
         c = ConfDB()
 
         # Apply general settings
@@ -315,7 +315,7 @@ class Application(QApplication, Singleton):
         c.set('GNS3/ios_directory', confo.ios_path)
 
         # Dynamips settings
-        confo = self.systconf['dynamips'] 
+        confo = self.systconf['dynamips']
         c.set('Dynamips/hypervisor_path', confo.path)
         c.set('Dynamips/hypervisor_port', confo.port)
         c.set('Dynamips/hypervisor_working_directory', confo.workdir)
@@ -327,18 +327,18 @@ class Application(QApplication, Singleton):
         c.set('Dynamips/hypervisor_manager_import', confo.import_use_HypervisorManager)
 
         # Pemu config
-        confo = self.systconf['pemu'] 
+        confo = self.systconf['pemu']
         c.set('Pemu/pemuwrapper_path', confo.pemuwrapper_path)
         c.set('Pemu/pemuwrapper_working_directory', confo.pemuwrapper_workdir)
         c.set('Pemu/external_host', confo.external_host)
-        c.set('Pemu/enable_PemuManager', confo.enable_PemuManager) 
-        c.set('Pemu/pemu_manager_import', confo.import_use_PemuManager) 
+        c.set('Pemu/enable_PemuManager', confo.enable_PemuManager)
+        c.set('Pemu/pemu_manager_import', confo.import_use_PemuManager)
         c.set('Pemu/default_pix_image', confo.default_pix_image)
         c.set('Pemu/default_pix_key', confo.default_pix_key)
         c.set('Pemu/default_pix_serial', confo.default_pix_serial)
 
         # Capture settings
-        confo = self.systconf['capture'] 
+        confo = self.systconf['capture']
         c.set('Capture/working_directory', confo.workdir)
         c.set('Capture/capture_reader_cmd', confo.cap_cmd)
         c.set('Capture/auto_start_cmd', confo.auto_start)

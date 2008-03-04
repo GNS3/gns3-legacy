@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -35,11 +35,11 @@ class PemuManager(object):
         # port of Pemu
         self.port = 10525
         self.proc = None
-        
+
     def __del__(self):
         """ Kill pemu
         """
-        
+
         self.stopPemu()
 
     def waitPemu(self):
@@ -56,7 +56,7 @@ class PemuManager(object):
             s.setblocking(0)
             s.settimeout(300)
             if nb == 3:
-                progress = QtGui.QProgressDialog(unicode(translate("PemuManager", "Connecting to pemu on port %i ...")) % self.port, 
+                progress = QtGui.QProgressDialog(unicode(translate("PemuManager", "Connecting to pemu on port %i ...")) % self.port,
                                                                                                                                         translate("PemuManager", "Abort"), 0, count, globals.GApp.mainWindow)
                 progress.setMinimum(1)
                 progress.setWindowModality(QtCore.Qt.WindowModal)
@@ -80,7 +80,7 @@ class PemuManager(object):
             s.close()
             time.sleep(0.2)
         else:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Pemu Manager',  
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Pemu Manager',
                                        unicode(translate("PemuManager", "Can't connect to pemu on port %i")) % self.port)
             self.stopPemu()
             return False
@@ -102,15 +102,15 @@ class PemuManager(object):
         if globals.GApp.systconf['pemu'].pemuwrapper_workdir:
             # set the working directory
             self.proc.setWorkingDirectory(globals.GApp.systconf['pemu'].pemuwrapper_workdir)
-            
+
         # test if pemu is already running on this port
         s = socket(AF_INET, SOCK_STREAM)
         s.setblocking(0)
         s.settimeout(300)
         try:
             s.connect(('localhost', self.port))
-            QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Pemu Manager',  
-                                       unicode(translate("PemuManager", "Pemu is already running on port %i, it will not be shutdown after you quit GNS3")) % self.port) 
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Pemu Manager',
+                                       unicode(translate("PemuManager", "Pemu is already running on port %i, it will not be shutdown after you quit GNS3")) % self.port)
             s.close()
             return
         except:
@@ -137,11 +137,11 @@ class PemuManager(object):
         self.waitPemu()
         if self.proc and self.proc.state():
             debug('PemuManager: Pemu has been started with pid ' + str(self.proc.pid()))
-    
+
     def stopPemu(self):
         """ Stop Pemu
         """
-        
+
         for hypervisor in globals.GApp.dynagen.dynamips.values():
             if isinstance(hypervisor, pix.Pemu):
                 try:

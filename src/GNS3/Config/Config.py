@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -15,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Contact: developers@gns3.net
+# Contact: contact@gns3.net
 #
 
 import sys, time
@@ -27,7 +28,6 @@ from GNS3.Link.Serial import Serial
 from GNS3.Link.Ethernet import Ethernet
 from PyQt4 import QtCore
 from GNS3.Utils import Singleton
-from GNS3.Config.Objects import hypervisorConf, iosImageConf
 
 class ConfDB(Singleton, QtCore.QSettings):
 
@@ -162,7 +162,7 @@ class GNS_Conf(object):
 
             img_filename = c.get(cgroup + "/filename", unicode('',  'utf-8'))
             img_hyp_host = c.get(cgroup + "/hypervisor_host", unicode('',  'utf-8'))
-            
+
             if img_filename == '':
                 continue
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -46,7 +46,7 @@ conf_hypervisor_defaults = {
     'host': '',
     'port': 7200,
     'workdir': '',
-    'baseUDP': 10000, 
+    'baseUDP': 10000,
     'baseConsole': 2000
 }
 
@@ -54,7 +54,7 @@ conf_hypervisor_types = {
     'id': int,
     'host': unicode,
     'port': int,
-    'workdir': unicode, 
+    'workdir': unicode,
     'baseUDP': int,
     'baseConsole': int
 }
@@ -63,13 +63,13 @@ conf_systemDynamips_defaults = {
     'path': '',
     'port': 7200,
     'workdir': '',
-    'baseUDP': 10000, 
-    'baseConsole': 2000, 
+    'baseUDP': 10000,
+    'baseConsole': 2000,
     'ghosting': True,
     'sparsemem': False,
-    'mmap': True, 
-    'memory_limit': 512, 
-    'udp_incrementation': 100, 
+    'mmap': True,
+    'memory_limit': 512,
+    'udp_incrementation': 100,
     'import_use_HypervisorManager': True,
 }
 
@@ -78,12 +78,12 @@ conf_systemDynamips_types = {
     'port': int,
     'workdir': unicode,
     'baseUDP': int,
-    'baseConsole': int, 
-    'ghosting': bool, 
+    'baseConsole': int,
+    'ghosting': bool,
     'sparsemem': bool,
     'mmap': bool,
-    'memory_limit': int, 
-    'udp_incrementation': int,  
+    'memory_limit': int,
+    'udp_incrementation': int,
     'import_use_HypervisorManager': bool,
 }
 
@@ -92,7 +92,7 @@ conf_systemGeneral_defaults = {
     'term_cmd': '',
     'project_path': '.',
     'ios_path': '.',
-    'status_points': True, 
+    'status_points': True,
     'manual_connection': False
 }
 
@@ -101,13 +101,13 @@ conf_systemGeneral_types = {
     'term_cmd': unicode,
     'project_path': unicode,
     'ios_path': unicode,
-    'status_points': bool, 
+    'status_points': bool,
     'manual_connection': bool
 }
 
 conf_systemCapture_defaults = {
     'workdir': '',
-    'cap_cmd': '', 
+    'cap_cmd': '',
     'auto_start': True,
 }
 
@@ -117,24 +117,24 @@ conf_systemCapture_types = {
     'auto_start': bool
 }
 
-conf_systemPemu_defaults = { 
-    'pemuwrapper_path':'', 
-    'pemuwrapper_workdir':'', 
-    'external_host':'', 
+conf_systemPemu_defaults = {
+    'pemuwrapper_path':'',
+    'pemuwrapper_workdir':'',
+    'external_host':'',
     'enable_PemuManager': True,
     'import_use_PemuManager': True,
     'default_pix_image': '',
-    'default_pix_key':'', 
-    'default_pix_serial':'', 
+    'default_pix_key':'',
+    'default_pix_serial':'',
 }
 
 conf_systemPemu_types = {
-    'pemuwrapper_path': unicode, 
-    'pemuwrapper_workdir': unicode, 
+    'pemuwrapper_path': unicode,
+    'pemuwrapper_workdir': unicode,
     'external_host': unicode,
     'enable_PemuManager': bool,
     'import_use_PemuManager': bool,
     'default_pix_image': unicode,
-    'default_pix_key': str, 
-    'default_pix_serial': str, 
+    'default_pix_key': str,
+    'default_pix_serial': str,
 }

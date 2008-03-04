@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2008 GNS3 Dev Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -49,16 +49,16 @@ firewall_hostname_re = re.compile(r"""^FW([0-9]+)""")
 class NETFile(object):
     """ NETFile implementing the .net file import/export
     """
-    
+
     def __init__(self):
-    
+
         self.dynagen = globals.GApp.dynagen
         self.connection2cloud = {}
 
     def add_in_connection_list(self, connection_data, connection_list):
         """ Record the connection in connection_list
         """
-    
+
         (source_device, source_interface, destination_device, destination_interface) = connection_data
         # don't want to record bidirectionnal connections
         for connection in connection_list:
@@ -66,7 +66,7 @@ class NETFile(object):
             if source_device == list_destination_device and source_interface == list_destination_interface:
                 return
         connection_list.append(connection_data)
-    
+
     def populate_connection_list_for_router(self, device, connection_list):
         """ Add router connections in connection_list
         """
@@ -100,11 +100,11 @@ class NETFile(object):
                                     connection_list.append((device.name, source_interface, remote_device.name, str(remote_port)))
                                 elif isinstance(remote_device, pix.FW):
                                     connection_list.append((device.name, source_interface, remote_device.name, remote_adapter + str(remote_port)))
-    
+
     def populate_connection_list_for_fw(self, device, connection_list):
         """ Add firewall connections in connection_list
         """
-        
+
         for port in device.nios:
             if device.nios[port] != None:
                 (remote_device, remote_adapter, remote_port) = lib.get_reverse_udp_nio(device.nios[port])
@@ -112,11 +112,11 @@ class NETFile(object):
                     self.add_in_connection_list((device.name, str(port), remote_device.name, str(remote_port)), connection_list)
                 elif isinstance(remote_device, lib.ETHSW):
                     connection_list.append((device.name, str(port), remote_device.name, str(remote_port)))
-    
+
     def create_node(self, device, symbol_name):
         """ Create a new node
         """
-    
+
         for item in SYMBOLS:
             if item['name'] == symbol_name:
                 renders = globals.GApp.scene.renders[symbol_name]
@@ -142,11 +142,11 @@ class NETFile(object):
                 debug("Node created: " + str(node))
                 return node
         return None
-    
+
     def record_image(self, device):
         """ Record an image and all its settings in GNS3
         """
-    
+
         conf_image = iosImageConf()
         conf_image.id = globals.GApp.iosimages_ids
         globals.GApp.iosimages_ids += 1
@@ -204,7 +204,7 @@ class NETFile(object):
 
         debug('Add connection ' + str(connection))
         (source_name, source_interface, destination_name, destination_interface) = connection
-        
+
         srcid = globals.GApp.topology.getNodeID(source_name)
         src_node = globals.GApp.topology.getNode(srcid)
         if  destination_name == 'nio':
@@ -256,7 +256,7 @@ class NETFile(object):
     def apply_gns3_data(self):
         """ Apply specific GNS3 data
         """
-        
+
         max_cloud_id = -1
         gns3data = self.dynagen.getGNS3Data()
         if gns3data:
@@ -290,21 +290,21 @@ class NETFile(object):
                         id = int(match_obj.group(1))
                         if id > max_cloud_id:
                             max_cloud_id = id
-                
+
                 if devtype.lower() == 'note':
                     note_object = Annotation()
                     note_object.setPlainText(gns3data[section]['text'])
                     note_object.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
                     globals.GApp.topology.addItem(note_object)
-        
+
         # update next ID for cloud
         if max_cloud_id != -1:
             init_cloud_id(max_cloud_id + 1)
-        
+
     def import_net_file(self, path):
         """ Import a .net file
         """
-    
+
         if globals.GApp.systconf['dynamips'].import_use_HypervisorManager and globals.GApp.systconf['dynamips'].path == '':
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("NETFile", "Save"), translate("NETFile", "Please configure the path to Dynamips"))
             return
@@ -400,9 +400,9 @@ class NETFile(object):
                     id = int(match_obj.group(1))
                     if id > max_ethsw_id:
                         max_ethsw_id = id
-        
+
             elif isinstance(device, lib.FRSW):
-                
+
                 config = {}
                 config['ports'] = []
                 config['mapping'] = {}
@@ -425,9 +425,9 @@ class NETFile(object):
                     id = int(match_obj.group(1))
                     if id > max_frsw_id:
                         max_frsw_id = id
-                
+
             elif isinstance(device, lib.ATMSW):
-                
+
                 config = {}
                 config['ports'] = []
                 config['mapping'] = {}
@@ -464,7 +464,7 @@ class NETFile(object):
                         max_atmsw_id = id
 
             elif isinstance(device, lib.ATMBR):
-                
+
                 config = {}
                 config['ports'] = []
                 config['mapping'] = {}
@@ -544,7 +544,7 @@ class NETFile(object):
         if config_dir and config_dir[-7:] == 'configs':
             globals.GApp.workspace.projectConfigs = config_dir
             debug("Set configs directory: " + config_dir)
-        
+
         for connection in connection_list:
             self.add_connection(connection)
 
@@ -578,14 +578,14 @@ class NETFile(object):
         except IOError, e:
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, unicode(translate("NETFile", "%s: IO Error: %s")) % (file_path, str(e)))
             return
-        
+
     def export_net_file(self, path):
         """ Export a .net file
         """
 
         self.dynagen.update_running_config()
         debug("Running config: " + str(self.dynagen.running_config))
-        
+
         for device in self.dynagen.devices.values():
             # record router configs
             if isinstance(device, lib.Router) and globals.GApp.workspace.projectConfigs:
@@ -594,7 +594,7 @@ class NETFile(object):
             # record node x & y position
             self.dynagen.running_config[node.d][node.get_running_config_name()]['x'] = node.x()
             self.dynagen.running_config[node.d][node.get_running_config_name()]['y'] = node.y()
-    
+
         note_nb = 1
         for item in globals.GApp.topology.items():
             # record clouds
