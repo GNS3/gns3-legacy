@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="fr">
-<defaultcodec></defaultcodec>
 <context>
     <name>ATMBRPage</name>
     <message>
@@ -489,7 +488,7 @@ p, li { white-space: pre-wrap; }
         <translation>Démarrer Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="282"/>
+        <location filename="../Link/AbstractEdge.py" line="285"/>
         <source>Capture</source>
         <translation>Capture</translation>
     </message>
@@ -534,7 +533,7 @@ p, li { white-space: pre-wrap; }
         <translation>Le noeud %s is not running</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="282"/>
+        <location filename="../Link/AbstractEdge.py" line="285"/>
         <source>Cannot start %s : %s</source>
         <translation>Impossible de démarrer %s : %s</translation>
     </message>
@@ -929,22 +928,17 @@ Entrer le numéro de la valeur a appliquer [1-%i] or ENTRER pour ignorer le chan
 <context>
     <name>FW</name>
     <message>
-        <location filename="../Node/FW.py" line="244"/>
-        <source>Please wait while creating a PIX flash</source>
-        <translation>SVP, patientez pendant la création de la flash PIX</translation>
-    </message>
-    <message>
-        <location filename="../Node/FW.py" line="261"/>
+        <location filename="../Node/FW.py" line="250"/>
         <source>%s: no PIX image</source>
         <translation>%s: pas d&apos;image PIX</translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="315"/>
+        <location filename="../Node/FW.py" line="304"/>
         <source>Connection</source>
         <translation>Connexion</translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="315"/>
+        <location filename="../Node/FW.py" line="304"/>
         <source>No interface available</source>
         <translation>Pas d&apos;interface disponible</translation>
     </message>
@@ -1212,12 +1206,12 @@ Entrer le numéro de la valeur a appliquer [1-%i] or ENTRER pour ignorer le chan
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="538"/>
+        <location filename="../Node/IOSRouter.py" line="539"/>
         <source>Connection</source>
         <translation>Connexion</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="538"/>
+        <location filename="../Node/IOSRouter.py" line="539"/>
         <source>No interface available</source>
         <translation>Pas d&apos;interface disponible</translation>
     </message>
@@ -1958,14 +1952,9 @@ pour afficher sa page de configuration.</translation>
         <translation>Pemu fonctionne déjà sur le port %i, il ne sera pas eteint quand vous quitterez GNS3</translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="140"/>
+        <location filename="../PemuManager.py" line="127"/>
         <source>Can&apos;t start Pemu on port %i</source>
         <translation>Impossible de démarrer Pemu sur le port %i</translation>
-    </message>
-    <message>
-        <location filename="../PemuManager.py" line="125"/>
-        <source>Pemuwrapper need to unpack pemu, please wait and close the window once pemuwrapper is started</source>
-        <translation>Pemuwrapper doit décompresser pemu, SVP attendez et fermez la fênetre une fois que pemuwrapper est démarré</translation>
     </message>
 </context>
 <context>
@@ -2334,7 +2323,7 @@ pour afficher sa page de configuration.</translation>
         <translation>Veuillez enregistrer au moins une image IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="256"/>
+        <location filename="../Topology.py" line="259"/>
         <source>Hypervisor</source>
         <translation>Hyperviseur</translation>
     </message>
@@ -2344,17 +2333,17 @@ pour afficher sa page de configuration.</translation>
         <translation>SVP, configurez le chemin vers Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="437"/>
+        <location filename="../Topology.py" line="440"/>
         <source>Dynamips error</source>
         <translation>Erreur Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="287"/>
+        <location filename="../Topology.py" line="290"/>
         <source>Connection lost</source>
         <translation>Connection perdue</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="352"/>
+        <location filename="../Topology.py" line="355"/>
         <source>Connection</source>
         <translation>Connexion</translation>
     </message>
@@ -2374,24 +2363,29 @@ pour afficher sa page de configuration.</translation>
         <translation>SVP, choissisez une image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="352"/>
+        <location filename="../Topology.py" line="355"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Vous devez relier au moins 1 routeur au commutateur</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="268"/>
+        <location filename="../Topology.py" line="271"/>
         <source>PIX image</source>
         <translation>Image PIX</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="268"/>
+        <location filename="../Topology.py" line="271"/>
         <source>Please configure a default PIX image</source>
         <translation>SVP, configurez une image PIX par défaut</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="339"/>
+        <location filename="../Topology.py" line="342"/>
         <source>Can&apos;t connect these devices</source>
         <translation>Impossible de connecter ces noeuds</translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="259"/>
+        <source>Please test the path to Dynamips in preferences</source>
+        <translation>SVP, testez le chemin vers Dynamips dans les préférences</translation>
     </message>
 </context>
 <context>

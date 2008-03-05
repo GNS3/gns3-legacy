@@ -282,18 +282,19 @@ class IOSRouter(AbstractNode):
         for module in self.router.slot:
             if module:
                 interfaces = module.interfaces
-                type= interfaces.keys()[0]
-                found = False
-                for port in interfaces[type].values():
-                    if self.router.model_string in SLOTLESS_MODELS:
-                        interface_name = type + str(port)
-                    else:
-                        interface_name = type + str(module.slot) + '/' + str(port)
-                    if interface_name in connected_interfaces:
-                        found = True
-                        break
-                if found == False:
-                    self.clean_slot(module)
+                if len(interfaces):
+                    type= interfaces.keys()[0]
+                    found = False
+                    for port in interfaces[type].values():
+                        if self.router.model_string in SLOTLESS_MODELS:
+                            interface_name = type + str(port)
+                        else:
+                            interface_name = type + str(module.slot) + '/' + str(port)
+                        if interface_name in connected_interfaces:
+                            found = True
+                            break
+                    if found == False:
+                        self.clean_slot(module)
 
         # try to automatically asign a WIC ...
         if self.local_config['wics']:

@@ -789,7 +789,7 @@ p, li { white-space: pre-wrap; }
         <translation>Wireshark starten</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="282"/>
+        <location filename="../Link/AbstractEdge.py" line="285"/>
         <source>Capture</source>
         <translation>Mitschneiden</translation>
     </message>
@@ -834,7 +834,7 @@ p, li { white-space: pre-wrap; }
         <translation>Gerät %s läuft nicht</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="282"/>
+        <location filename="../Link/AbstractEdge.py" line="285"/>
         <source>Cannot start %s : %s</source>
         <translation>%s : %s kann nicht gestartet werden</translation>
     </message>
@@ -1229,22 +1229,17 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>FW</name>
     <message>
-        <location filename="../Node/FW.py" line="244"/>
-        <source>Please wait while creating a PIX flash</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Node/FW.py" line="261"/>
+        <location filename="../Node/FW.py" line="250"/>
         <source>%s: no PIX image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="315"/>
+        <location filename="../Node/FW.py" line="304"/>
         <source>Connection</source>
         <translation type="unfinished">Verbindung</translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="315"/>
+        <location filename="../Node/FW.py" line="304"/>
         <source>No interface available</source>
         <translation type="unfinished">Kein Interface verfügbar</translation>
     </message>
@@ -1512,12 +1507,12 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="538"/>
+        <location filename="../Node/IOSRouter.py" line="539"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="538"/>
+        <location filename="../Node/IOSRouter.py" line="539"/>
         <source>No interface available</source>
         <translation>Kein Interface verfügbar</translation>
     </message>
@@ -2257,13 +2252,8 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="140"/>
+        <location filename="../PemuManager.py" line="127"/>
         <source>Can&apos;t start Pemu on port %i</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../PemuManager.py" line="125"/>
-        <source>Pemuwrapper need to unpack pemu, please wait and close the window once pemuwrapper is started</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2633,7 +2623,7 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Bitte mindestens ein IOS-Image angeben</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="256"/>
+        <location filename="../Topology.py" line="259"/>
         <source>Hypervisor</source>
         <translation>Hypervisor</translation>
     </message>
@@ -2643,17 +2633,17 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Bitte den Pfad zu Dyamips konfigurieren</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="437"/>
+        <location filename="../Topology.py" line="440"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="287"/>
+        <location filename="../Topology.py" line="290"/>
         <source>Connection lost</source>
         <translation>Verbindung verloren</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="352"/>
+        <location filename="../Topology.py" line="355"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
@@ -2673,23 +2663,28 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="352"/>
+        <location filename="../Topology.py" line="355"/>
         <source>You have to connect at least one router to the switch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="268"/>
+        <location filename="../Topology.py" line="271"/>
         <source>PIX image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="268"/>
+        <location filename="../Topology.py" line="271"/>
         <source>Please configure a default PIX image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="339"/>
+        <location filename="../Topology.py" line="342"/>
         <source>Can&apos;t connect these devices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="259"/>
+        <source>Please test the path to Dynamips in preferences</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

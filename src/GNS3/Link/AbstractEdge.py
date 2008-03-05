@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import math, time
+import math, time, sys
 import GNS3.Globals as globals
 import subprocess as sub
 import GNS3.Dynagen.dynamips_lib as lib
@@ -239,7 +239,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                     workdir = capture_conf.workdir
                 else:
                     workdir = globals.GApp.dynagen.devices[device].dynamips.workingdir
-                self.capfile = workdir + self.source.hostname + '_to_' + self.dest.hostname + '.cap'
+                self.capfile = '"' + workdir + self.source.hostname + '_to_' + self.dest.hostname + '.cap' + '"'
                 debug("Start capture in " + self.capfile)
                 globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'capture','both', encapsulation + " " + self.capfile)
                 self.captureInfo = (device, slot, inttype, port)
@@ -277,9 +277,12 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 path = capture_conf.cap_cmd.replace("%c", self.capfile)
                 debug("Start Wireshark like application (wait 2 seconds): " + path)
                 time.sleep(2)
-                sub.Popen(path, shell=True)
+                if sys.platform.startswith('win'):
+                     sub.Popen(path)
+                else:
+                    sub.Popen(path, shell=True)
             except OSError, (errno, strerror):
-                QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Capture"), unicode(translate("AbstractEdge", "Cannot start %s : %s")) % (path, strerror))
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), unicode(translate("AbstractEdge", "Cannot start %s : %s")) % (path, strerror))
 
     def __deleteAction(self):
         """ Delete the link

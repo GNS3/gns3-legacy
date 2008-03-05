@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import os, sys, time, glob
+import os, sys, time
 import subprocess as sub
 import GNS3.Globals as globals
 import GNS3.Dynagen.pemu_lib as pix
@@ -119,19 +119,6 @@ class PemuManager(object):
 
         # start pemu, use python on all platform but Windows
         if sys.platform.startswith('win'):
-            res = glob.glob(globals.GApp.systconf['pemu'].pemuwrapper_workdir + '\pemu*')
-            if not len(res):
-                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Pemu Manager',  
-                                          translate("PemuManager", "Pemuwrapper need to unpack pemu, please wait and close the window once pemuwrapper is started"))
-                cwd = os.getcwd()
-                os.chdir(globals.GApp.systconf['pemu'].pemuwrapper_workdir)
-                try:
-                    sub.Popen('"' + globals.GApp.systconf['pemu'].pemuwrapper_path + '"')
-                except:
-                    pass
-                os.chdir(cwd)
-                self.proc = None
-                return False
             self.proc.start('"' + globals.GApp.systconf['pemu'].pemuwrapper_path + '"')
         else:
             self.proc.start('python',  [globals.GApp.systconf['pemu'].pemuwrapper_path])

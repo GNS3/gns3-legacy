@@ -255,6 +255,9 @@ class Topology(QtGui.QGraphicsScene):
                     if globals.GApp.systconf['dynamips'].path == '':
                         QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Hypervisor"), translate("Topology", "Please configure the path to Dynamips"))
                         return
+                    if not globals.GApp.HypervisorManager:
+                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Hypervisor"), translate("Topology", "Please test the path to Dynamips in preferences"))
+                        return
                     if not globals.GApp.HypervisorManager.allocateHypervisor(node):
                         return
                 else:

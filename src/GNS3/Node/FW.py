@@ -233,17 +233,6 @@ class FW(AbstractNode, FWDefaults):
         if devdefaults == False:
             return False
         pemu_name = self.pemu.host + ':10525'
-        try:
-            path = os.path.dirname(self.dynagen.dynamips[pemu_name].workingdir) + os.sep + self.hostname + os.sep + 'FLASH'
-            debug('Check if a flash is present: ' + path)
-            file = open(path)
-            file.close()
-        except IOError:
-            splash = QtGui.QSplashScreen(QtGui.QPixmap(":images/logo_gns3_splash.png"))
-            splash.show()
-            splash.showMessage(translate("FW", "Please wait while creating a PIX flash"))
-            globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-
         self.fw = pix.FW(self.dynagen.dynamips[pemu_name], self.hostname)
         self.dynagen.setdefaults(self.fw, devdefaults[model])
         self.dynagen.devices[self.hostname] = self.fw
