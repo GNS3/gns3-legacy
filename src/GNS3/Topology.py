@@ -178,7 +178,8 @@ class Topology(QtGui.QGraphicsScene):
         """
 
         if globals.GApp.systconf['pemu'].enable_PemuManager:
-            globals.GApp.PemuManager.startPemu()
+            if globals.GApp.PemuManager.startPemu() == False:
+                return False
             host = 'localhost'
             pemu_name = host + ':10525'
         else:
@@ -206,7 +207,7 @@ class Topology(QtGui.QGraphicsScene):
         node.set_image(globals.GApp.systconf['pemu'].default_pix_image,'525')
         node.set_string_option('key', globals.GApp.systconf['pemu'].default_pix_key)
         node.set_string_option('serial', globals.GApp.systconf['pemu'].default_pix_serial)
-
+        return True
 
     def addNode(self, node):
         """ Add node in the topology
@@ -266,7 +267,8 @@ class Topology(QtGui.QGraphicsScene):
                 if not globals.GApp.systconf['pemu'].default_pix_image:
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX image"), translate("Topology", "Please configure a default PIX image"))
                     return
-                self.firewallSetup(node)
+                if self.firewallSetup(node) == False:
+                    return
 
             QtCore.QObject.connect(node, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
             QtCore.QObject.connect(node, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)

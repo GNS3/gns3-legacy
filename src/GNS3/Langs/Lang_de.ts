@@ -895,11 +895,6 @@ p, li { white-space: pre-wrap; }
         <translation>NIO Ethernet</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="29"/>
-        <source>Generic Ethernet NIO (require root access)</source>
-        <translation>Generisches Ethernet NIO (benötigt root Zugang)</translation>
-    </message>
-    <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="606"/>
         <source>&amp;Add</source>
         <translation>&amp;Hinzufügen</translation>
@@ -987,6 +982,11 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="567"/>
         <source>Identifier:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="29"/>
+        <source>Generic Ethernet NIO (require Administrator access)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2237,33 +2237,33 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
 <context>
     <name>PemuManager</name>
     <message>
-        <location filename="../PemuManager.py" line="59"/>
+        <location filename="../PemuManager.py" line="60"/>
         <source>Connecting to pemu on port %i ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="60"/>
+        <location filename="../PemuManager.py" line="61"/>
         <source>Abort</source>
         <translation type="unfinished">Abbrechen</translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="84"/>
+        <location filename="../PemuManager.py" line="85"/>
         <source>Can&apos;t connect to pemu on port %i</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="113"/>
+        <location filename="../PemuManager.py" line="114"/>
         <source>Pemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="134"/>
+        <location filename="../PemuManager.py" line="140"/>
         <source>Can&apos;t start Pemu on port %i</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../PemuManager.py" line="127"/>
-        <source>Please start pemuwrapper manually in order to unpack pemu</source>
+        <location filename="../PemuManager.py" line="125"/>
+        <source>Pemuwrapper need to unpack pemu, please wait and close the window once pemuwrapper is started</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2424,27 +2424,27 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Sprache:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="101"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="111"/>
         <source>GUI settings</source>
         <translation>GUI Einstellungen</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="107"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="117"/>
         <source>Show link status points on the scene</source>
         <translation>Zeige Verbindungsstatuspunkte in der Übersicht</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="62"/>
         <source>Paths</source>
         <translation>Pfade</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="58"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="68"/>
         <source>Project directory:</source>
         <translation>Projektverzeichnis:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="88"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="98"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -2454,13 +2454,18 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation type="unfinished">Terminalemulation:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="78"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="88"/>
         <source>IOS/PIX directory:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="117"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="127"/>
         <source>Always use manual mode when adding links</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
+        <source>Launch this command using the system default shell</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2618,37 +2623,37 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="241"/>
+        <location filename="../Topology.py" line="242"/>
         <source>IOS image</source>
         <translation>IOS-Image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="220"/>
+        <location filename="../Topology.py" line="221"/>
         <source>Please register at least one IOS image</source>
         <translation>Bitte mindestens ein IOS-Image angeben</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="255"/>
+        <location filename="../Topology.py" line="256"/>
         <source>Hypervisor</source>
         <translation>Hypervisor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="255"/>
+        <location filename="../Topology.py" line="256"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Bitte den Pfad zu Dyamips konfigurieren</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="435"/>
+        <location filename="../Topology.py" line="437"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="285"/>
+        <location filename="../Topology.py" line="287"/>
         <source>Connection lost</source>
         <translation>Verbindung verloren</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="350"/>
+        <location filename="../Topology.py" line="352"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
@@ -2658,32 +2663,32 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Kann nicht zu dem externen Hypervisor auf %s verbinden</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="231"/>
+        <location filename="../Topology.py" line="232"/>
         <source>No image for platform %s</source>
         <translation>Kein IOS-Image für Plattform %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="242"/>
+        <location filename="../Topology.py" line="243"/>
         <source>Please choose an image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="350"/>
+        <location filename="../Topology.py" line="352"/>
         <source>You have to connect at least one router to the switch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="267"/>
+        <location filename="../Topology.py" line="268"/>
         <source>PIX image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="267"/>
+        <location filename="../Topology.py" line="268"/>
         <source>Please configure a default PIX image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="337"/>
+        <location filename="../Topology.py" line="339"/>
         <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2814,7 +2819,7 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
 <context>
     <name>connect</name>
     <message>
-        <location filename="../Telnet.py" line="44"/>
+        <location filename="../Telnet.py" line="48"/>
         <source>Console</source>
         <translation>Konsole</translation>
     </message>

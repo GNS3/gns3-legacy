@@ -19,20 +19,24 @@
 import sys, cmd
 import subprocess as sub
 import GNS3.Globals as globals
+from GNS3.Utils import translate, debug
 from PyQt4 import QtCore, QtGui
 
-def connect(host,  port,  name):
+def connect(host, port, name):
         """ Start a telnet console and connect to it
         """
 
-        name = '"' + name + '"'
         try:
             console = globals.GApp.systconf['general'].term_cmd
             if console:
                 console = console.replace('%h', host)
                 console = console.replace('%p', str(port))
                 console = console.replace('%d', name)
-                sub.Popen(console, shell=True)
+                debug('Start console with: ' + console)
+                if globals.GApp.systconf['general'].use_shell:
+                    sub.Popen(console, shell=True)
+                else:
+                    sub.Popen(console)
             else:
                 if sys.platform.startswith('darwin'):
                     sub.Popen("/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet " + host + " " + str(port) +"; exit\"'", shell=True)
@@ -41,6 +45,6 @@ def connect(host,  port,  name):
                 else:
                     sub.Popen("xterm -T " + name + " -e 'telnet " + host + " " + str(port) + "' > /dev/null 2>&1 &", shell=True)
         except OSError, (errno, strerror):
-            QtGui.QMessageBox.critical(self, translate("connect", "Console"),  strerror)
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("connect", "Console"),  strerror)
             return (False)
         return (True)

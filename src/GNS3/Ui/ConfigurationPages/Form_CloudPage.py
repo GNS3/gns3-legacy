@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_CloudPage.ui'
 #
-# Created: Tue Mar  4 14:29:36 2008
+# Created: Wed Mar  5 14:28:29 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -452,7 +452,7 @@ class Ui_CloudPage(object):
 
     def retranslateUi(self, CloudPage):
         CloudPage.setWindowTitle(QtGui.QApplication.translate("CloudPage", "Cloud", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox.setTitle(QtGui.QApplication.translate("CloudPage", "Generic Ethernet NIO (require root access)", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox.setTitle(QtGui.QApplication.translate("CloudPage", "Generic Ethernet NIO (require Administrator access)", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonAddGenericEth.setText(QtGui.QApplication.translate("CloudPage", "&Add", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonDeleteGenericEth.setText(QtGui.QApplication.translate("CloudPage", "&Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setTitle(QtGui.QApplication.translate("CloudPage", "Linux Ethernet NIO (require root access)", None, QtGui.QApplication.UnicodeUTF8))

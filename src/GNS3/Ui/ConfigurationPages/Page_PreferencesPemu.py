@@ -51,13 +51,19 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         if self.conf.pemuwrapper_path == '':
             if sys.platform.startswith('win'):
                 self.conf.pemuwrapper_path = unicode('C:\Program Files\GNS3\pemuwrapper.exe',  'utf-8')
-                if os.environ.has_key("%TEMP%"):
-                    self.conf.pemuwrapper_workdir = unicode(os.environ["%TEMP%"], 'utf-8')
             else:
                 path = os.getcwd() + '/pemu/pemuwrapper.py'
                 self.conf.pemuwrapper_path = unicode(path,  'utf-8')
+        
+        # Default path to working directory
+        if self.conf.pemuwrapper_workdir == '':
+            if os.environ.has_key("TEMP"):
+                self.conf.pemuwrapper_workdir = unicode(os.environ["TEMP"], 'utf-8')
+            elif os.environ.has_key("TMP"):
+                self.conf.pemuwrapper_workdir = unicode(os.environ["TMP"], 'utf-8')
+            else:
                 self.conf.pemuwrapper_workdir = unicode('/tmp', 'utf-8')
-            
+
         # Push default values to GUI
         self.lineEditPemuwrapperPath.setText(self.conf.pemuwrapper_path)
         self.lineEditPemuwrapperWorkdir.setText(self.conf.pemuwrapper_workdir)
@@ -102,7 +108,7 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
             self.conf.import_use_PemuManager = True
         else:
             self.conf.import_use_PemuManager  = False
-        
+
         globals.GApp.systconf['pemu'] = self.conf
         ConfDB().sync()
 

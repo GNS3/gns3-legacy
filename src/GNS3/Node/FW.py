@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import re, shutil
+import os, re, shutil
 import GNS3.Dynagen.dynagen as dynagen
 import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Globals as globals
@@ -234,7 +234,7 @@ class FW(AbstractNode, FWDefaults):
             return False
         pemu_name = self.pemu.host + ':10525'
         try:
-            path = self.dynagen.dynamips[pemu_name].workingdir + self.hostname + '/FLASH'
+            path = os.path.dirname(self.dynagen.dynamips[pemu_name].workingdir) + os.sep + self.hostname + os.sep + 'FLASH'
             debug('Check if a flash is present: ' + path)
             file = open(path)
             file.close()

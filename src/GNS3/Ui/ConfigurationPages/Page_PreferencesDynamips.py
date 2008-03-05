@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import sys
+import sys, os
 from PyQt4 import QtGui, QtCore
 from GNS3.Ui.ConfigurationPages.Form_PreferencesDynamips import Ui_PreferencesDynamips
 from GNS3.Config.Objects import systemDynamipsConf
@@ -53,11 +53,15 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.conf = systemDynamipsConf()
 
         # Default path to dynamips executable
-        if self.conf.path == '':
-            if sys.platform.startswith('win'):
-                self.conf.path = unicode('C:\Program Files\GNS3\Dynamips\dynamips-wxp.exe',  'utf-8')
-                if os.environ.has_key("%TEMP%"):
-                    self.conf.workdir = unicode(os.environ["%TEMP%"], 'utf-8')
+        if self.conf.path == '' and sys.platform.startswith('win'):
+            self.conf.path = unicode('C:\Program Files\GNS3\Dynamips\dynamips-wxp.exe',  'utf-8')
+            
+        # Default path to working directory
+        if self.conf.workdir == '':
+            if os.environ.has_key("TEMP"):
+                self.conf.workdir = unicode(os.environ["TEMP"], 'utf-8')
+            elif os.environ.has_key("TMP"):
+                self.conf.workdir = unicode(os.environ["TMP"], 'utf-8')
             else:
                 self.conf.workdir = unicode('/tmp', 'utf-8')
 

@@ -264,6 +264,7 @@ class Application(QApplication, Singleton):
         self.systconf['general'] = systemGeneralConf()
         confo = self.systconf['general']
         confo.lang = ConfDB().get('GNS3/lang', unicode('en', 'utf-8'))
+        confo.use_shell = ConfDB().value("GNS3/use_shell", QVariant(True)).toBool()
         confo.term_cmd = ConfDB().get('GNS3/console', unicode('',  'utf-8'))
         confo.project_path = ConfDB().get('GNS3/project_directory', unicode('.', 'utf-8'))
         confo.ios_path = ConfDB().get('GNS3/ios_directory', unicode('.', 'utf-8'))
@@ -309,6 +310,7 @@ class Application(QApplication, Singleton):
         confo = self.systconf['general']
         c.set('GNS3/lang', confo.lang)
         c.set('GNS3/console', confo.term_cmd)
+        c.set('GNS3/use_shell', confo.use_shell)
         c.set('GNS3/gui_show_status_points', confo.status_points)
         c.set('GNS3/gui_use_manual_connection', confo.manual_connection)
         c.set('GNS3/project_directory', confo.project_path)

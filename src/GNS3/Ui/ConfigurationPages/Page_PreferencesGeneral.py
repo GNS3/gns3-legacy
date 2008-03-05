@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import sys, platform
+import sys
 import GNS3.Globals as globals
 from PyQt4 import QtGui, QtCore
 from GNS3.Config.Objects import systemGeneralConf
@@ -65,11 +65,15 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             if sys.platform.startswith('darwin'):
                 self.conf.term_cmd = unicode("/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'",  'utf-8')
             elif sys.platform.startswith('win'):
-                # ugly method to detect Vista (Vista doesn't have telnet)
-                if platform.uname()[3][0] == '6':
-                    self.conf.term_cmd = unicode("putty.exe -telnet %h %p",  'utf-8')
-                else:
+                try:
+                    # check if telnet is there
+                    telnet = open('C:\WINDOWS\system32\telnet.exe')
+                    telnet.close()
                     self.conf.term_cmd = unicode("start telnet %h %p",  'utf-8')
+                except IOError:
+                    # else try to use putty
+                    self.conf.term_cmd = unicode('C:\Programs Files\Putty\putty.exe -telnet %h %p',  'utf-8')
+                    self.conf.use_shell = False
             else:
                 self.conf.term_cmd = unicode("xterm -T %d -e 'telnet %h %p' >/dev/null 2>&1 &",  'utf-8')
 
@@ -86,6 +90,10 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.checkBoxManualConnections.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxManualConnections.setCheckState(QtCore.Qt.Unchecked)
+        if self.conf.use_shell == True:
+            self.checkBoxUseShell.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxUseShell.setCheckState(QtCore.Qt.Unchecked)
 
     def saveConf(self):
 
@@ -104,6 +112,10 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.conf.manual_connection = True
         else:
             self.conf.manual_connection = False
+        if self.checkBoxUseShell.checkState() == QtCore.Qt.Checked:
+            self.conf.use_shell = True
+        else:
+            self.conf.use_shell = False
     
         self.conf.project_path = unicode(self.ProjectPath.text(),  'utf-8')
         self.conf.ios_path = unicode(self.IOSPath.text(),  'utf-8')

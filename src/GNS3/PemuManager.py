@@ -19,7 +19,8 @@
 # Contact: contact@gns3.net
 #
 
-import os, sys, time
+import os, sys, time, glob
+import subprocess as sub
 import GNS3.Globals as globals
 import GNS3.Dynagen.pemu_lib as pix
 from socket import socket, timeout, AF_INET, SOCK_STREAM
@@ -96,7 +97,7 @@ class PemuManager(object):
 
         if self.proc and self.proc.state():
             debug('PemuManager: pemu is already started with pid ' + str(self.proc.pid()))
-            return
+            return True
 
         self.proc = QtCore.QProcess(globals.GApp.mainWindow)
         if globals.GApp.systconf['pemu'].pemuwrapper_workdir:
@@ -112,31 +113,37 @@ class PemuManager(object):
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Pemu Manager',
                                        unicode(translate("PemuManager", "Pemu is already running on port %i, it will not be shutdown after you quit GNS3")) % self.port)
             s.close()
-            return
+            return True
         except:
             s.close()
 
         # start pemu, use python on all platform but Windows
         if sys.platform.startswith('win'):
-            try:
-                # ugly test to tell the user to start pemuwrapper manually the first time ...
-                pemu = open(os.path.dirname(globals.GApp.systconf['pemu'].pemuwrapper_path) + "\\pemu_public_win_2007-07-15\\pemu.exe" )
-                pemu.close()
-            except IOError:
-                self.proc  = None
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Pemu Manager',  translate("PemuManager", "Please start pemuwrapper manually in order to unpack pemu"))
-                return
+            res = glob.glob(globals.GApp.systconf['pemu'].pemuwrapper_workdir + '\pemu*')
+            if not len(res):
+                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Pemu Manager',  
+                                          translate("PemuManager", "Pemuwrapper need to unpack pemu, please wait and close the window once pemuwrapper is started"))
+                cwd = os.getcwd()
+                os.chdir(globals.GApp.systconf['pemu'].pemuwrapper_workdir)
+                try:
+                    sub.Popen('"' + globals.GApp.systconf['pemu'].pemuwrapper_path + '"')
+                except:
+                    pass
+                os.chdir(cwd)
+                self.proc = None
+                return False
             self.proc.start('"' + globals.GApp.systconf['pemu'].pemuwrapper_path + '"')
         else:
             self.proc.start('python',  [globals.GApp.systconf['pemu'].pemuwrapper_path])
 
         if self.proc.waitForStarted() == False:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Pemu Manager',  unicode(translate("PemuManager", "Can't start Pemu on port %i")) % self.port)
-            return
+            return False
 
         self.waitPemu()
         if self.proc and self.proc.state():
             debug('PemuManager: Pemu has been started with pid ' + str(self.proc.pid()))
+        return True
 
     def stopPemu(self):
         """ Stop Pemu

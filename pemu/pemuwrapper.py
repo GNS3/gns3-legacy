@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# $Id: pemuwrapper.py 27 2007-10-05 17:17:46Z tpani $
+# $Id: pemuwrapper.py 27 2008-03-04 17:17:46Z tpani $
 #
 # Copyright (c) 2007 Thomas Pani
 #
@@ -48,7 +48,7 @@ import pemubin
 
 
 __author__ = 'Thomas Pani'
-__version__ = '0.2.2'   # TODO: remove RC when done
+__version__ = '0.2.3'   # TODO: remove RC when done
 
 PORT = 10525
 PEMU_INSTANCES = {}
@@ -61,9 +61,9 @@ else:
 
 PEMU_DIR = os.getcwd()
 if platform.system() == 'Windows':
-    PEMU_DIR = os.path.join(PEMU_DIR, 'pemu_public_win_2007-07-15')
+    PEMU_DIR = os.path.join(PEMU_DIR, 'pemu_public_win_2008-03-03')
 else:
-    PEMU_DIR = os.path.join(PEMU_DIR, 'pemu_public_bin2007-07-15')
+    PEMU_DIR = os.path.join(PEMU_DIR, 'pemu_public_bin2008-03-04')
 
 
 class UDPConnection:
@@ -102,23 +102,25 @@ class PEMUInstance:
         self.workdir = os.path.join(os.getcwd(), self.name)
         if not os.path.exists(self.workdir):
             os.makedirs(self.workdir)
-        flashfile = os.path.join(self.workdir, 'FLASH')
-        if not os.path.exists(flashfile):
-            print "Unpacking FLASH..."
-            f = cStringIO.StringIO(base64.decodestring(pemubin.flash))
-            tar = tarfile.open('dummy', 'r:gz', f)
-            for member in tar.getmembers():
-                tar.extract(member, self.workdir)
-            print "Done unpacking FLASH."
+        # Imbedded FLASH no longer needed with pemu 2008-03-03
+        #flashfile = os.path.join(self.workdir, 'FLASH')
+        #if not os.path.exists(flashfile):
+        #    print "Unpacking FLASH..."
+        #    f = cStringIO.StringIO(base64.decodestring(pemubin.flash))
+        #    tar = tarfile.open('dummy', 'r:gz', f)
+        #    for member in tar.getmembers():
+        #        tar.extract(member, self.workdir)
+        #    print "Done unpacking FLASH."
 
     def write_config(self):
         f = open(os.path.join(self.workdir, 'pemu.ini'), 'w')
         f.writelines(('serial=%s\n' % self.serial,
                 'image=%s\n' % self.image,
-                'key=%s\n' % self.key,
-                'bios1=%s\n' % os.path.join(PEMU_DIR, 'mybios_d8000'),
-                'bios2=%s\n' % os.path.join(PEMU_DIR, 'bios.bin'),
-                'bios_checksum=1\n'))
+                'key=%s\n' % self.key))
+                # No longer needed, bios is integrated now
+                #'bios1=%s\n' % os.path.join(PEMU_DIR, 'mybios_d8000'),
+                #'bios2=%s\n' % os.path.join(PEMU_DIR, 'bios.bin'),
+                #'bios_checksum=1\n'))
         f.close()
 
     def start(self):
