@@ -215,17 +215,17 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         else:
             imagekey = 'localhost' + ':' + imagename
 
-        item = QtGui.QTreeWidgetItem(self.treeWidgetIOSimages)
-        # image name column
-        item.setText(0, imagekey)
-        # chassis column
-        item.setText(1, self.comboBoxChassis.currentText())
-
-        # update an already existing IOS image
         if globals.GApp.iosimages.has_key(imagekey):
-            delitem = self.treeWidgetIOSimages.findItems(imagekey,  QtCore.Qt.MatchFixedString)[0]
-            self.treeWidgetIOSimages.setCurrentItem(delitem)
-            self.slotDeleteIOS()
+            # update an already existing IOS image
+            item_to_update = self.treeWidgetIOSimages.findItems(imagekey, QtCore.Qt.MatchFixedString)[0]
+            item_to_update.setText(1, self.comboBoxChassis.currentText())
+        else:
+            # else create a new entry
+            item = QtGui.QTreeWidgetItem(self.treeWidgetIOSimages)
+            # image name column
+            item.setText(0, imagekey)
+            # chassis column
+            item.setText(1, self.comboBoxChassis.currentText())
 
         # save settings
         if globals.GApp.iosimages.has_key(imagekey):
@@ -285,7 +285,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             self.pushButtonEditIOS.setEnabled(False)
             self.pushButtonDeleteIOS.setEnabled(False)
 
-    def slotIOSSelected(self,  item,  column):
+    def slotIOSSelected(self,  item, column):
         """ Load IOS settings into the GUI when selecting an entry in the list of IOS images
         """
 
@@ -344,19 +344,19 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         baseudp = self.spinBoxBaseUDP.value()
 
         if (hypervisor_host != '' and hypervisor_port != ''):
-
             hypervisorkey = hypervisor_host + ':' + hypervisor_port
-            item = QtGui.QTreeWidgetItem(self.treeWidgetHypervisor)
-            # host:port column
-            item.setText(0,  hypervisorkey)
-            # base UDP column
-            item.setText(1, str(baseudp))
-
-            # update an already existing hypervisor
             if globals.GApp.hypervisors.has_key(hypervisorkey):
-                delitem = self.treeWidgetHypervisor.findItems(hypervisorkey,  QtCore.Qt.MatchFixedString)[0]
-                self.treeWidgetHypervisor.setCurrentItem(delitem)
-                self.slotDeleteHypervisor()
+                # update an already existing hypervisor
+                item_to_update = self.treeWidgetHypervisor.findItems(hypervisorkey,  QtCore.Qt.MatchFixedString)[0]
+                item_to_update.setText(1, str(baseudp))
+            else:
+                # else create it
+                item = QtGui.QTreeWidgetItem(self.treeWidgetHypervisor)
+                # host:port column
+                item.setText(0,  hypervisorkey)
+                # base UDP column
+                item.setText(1, str(baseudp))
+                self.listWidgetHypervisors.addItem(hypervisorkey)
 
             # save settings
             if globals.GApp.hypervisors.has_key(hypervisorkey):
@@ -375,10 +375,8 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             self.spinBoxBaseUDP.setValue(conf.baseUDP + 100)
             self.spinBoxBaseConsole.setValue(conf.baseConsole + 10)
             globals.GApp.hypervisors[hypervisorkey] = conf
-            self.treeWidgetHypervisor.addTopLevelItem(item)
             self.treeWidgetHypervisor.resizeColumnToContents(0)
             self.treeWidgetHypervisor.resizeColumnToContents(1)
-            self.listWidgetHypervisors.addItem(hypervisorkey)
 
     def slotDeleteHypervisor(self):
         """ Remove a hypervisor from the hypervisors list

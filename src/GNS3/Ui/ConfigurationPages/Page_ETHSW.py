@@ -79,6 +79,7 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         type = str(self.comboBoxPortType.currentText())
         
         if self.ports.has_key(port):
+            # try to update port
             item = self.treeWidgetPorts.currentItem()
             if (item != None):
                 current_port = int(item.text(0))
@@ -88,13 +89,15 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_ETHSW",  "Add port"),  translate("Page_ETHSW",  "Port already exists"))
                 return
             else:
-                self.slotDeletePort()
-
-        item = QtGui.QTreeWidgetItem(self.treeWidgetPorts)
-        item.setText(0, str(port))
-        item.setText(1, str(vlan))
-        item.setText(2, type)
-        self.treeWidgetPorts.addTopLevelItem(item)
+                item.setText(1, str(vlan))
+                item.setText(2, type)
+        else:
+            # else create a new one
+            item = QtGui.QTreeWidgetItem(self.treeWidgetPorts)
+            item.setText(0, str(port))
+            item.setText(1, str(vlan))
+            item.setText(2, type)
+            self.treeWidgetPorts.addTopLevelItem(item)
         
         self.spinBoxPort.setValue(port + 1)
         self.ports[port] = type
