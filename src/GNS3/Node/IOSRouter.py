@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import os, re, glob
+import os, re
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.dynagen as dynagen_namespace
@@ -123,10 +123,13 @@ class IOSRouter(AbstractNode):
         """
 
         if self.router:
-            if self.router.state != 'stopped':
-                self.router.stop()
-            # don't forget to delete this router in Dynamips
-            self.router.delete()
+            try:
+                if self.router.state != 'stopped':
+                    self.router.stop()
+                # don't forget to delete this router in Dynamips
+                self.router.delete()
+            except lib.DynamipsErrorHandled:
+                pass
             del self.dynagen.devices[self.hostname]
             debug('Router ' + self.hostname + ' deleted')
         self.dynagen.update_running_config()

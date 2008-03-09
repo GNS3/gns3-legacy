@@ -2071,6 +2071,7 @@ class Router(object):
         if wicslot == None:
             wicslot = self.availablewicslot(slot)
             if wicslot == -1:
+                return
                 raise DynamipsError, 'On router %s no available wicslots on slot %i for adapter %s' % (self.name, slot, wic)
 
         #ports = len(WICS[wic])
@@ -2913,7 +2914,11 @@ class C7200(Router):
         # generate the slots for port adapters
         Router.createslots(self, 7)
 
-        self.slot[0] = PA_C7200_IO_FE(self, 0)
+        # Start with the npe-400 and 2FE IO controller
+        # This deviates from the dynamips defaults, but I think it is a
+        # good choice
+        self.npe = 'npe-400'
+        self.slot[0] = PA_C7200_IO_2FE(self, 0)
 
 
 class C2691(Router):

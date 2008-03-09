@@ -412,3 +412,21 @@ Examples:
         """import {/all | router1 [router2] \"directory\"\nimport all or individual configuration files \nEnclose the directory or filename in quotes if there are spaces in the filespec."""
 
         Dynagen_Console.do_import(self, args)
+
+    def do_debug(self, args):
+        """debug [level]\nActivate/Desactivate debugs\nLevel 0: no debugs\nLevel 1: dynamips lib debugs only\nLevel 2: GNS3 debugs only\nLevel 3: GNS3 debugs and dynamips lib debugs"""
+    
+        if len(args) == 1:
+            try:
+                level = int(args[0])
+                if level == 1 or level == 3:
+                    globals.debugLevel = level
+                    lib.setdebug(True)
+                if level == 0 or level == 2:
+                    globals.debugLevel = level
+                    lib.setdebug(False)
+            except:
+                print self.do_debug.__doc__
+        else:
+            print self.do_debug.__doc__
+    

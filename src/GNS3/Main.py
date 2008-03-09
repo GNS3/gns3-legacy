@@ -35,7 +35,8 @@ except SystemExit:
     sys.exit(1)
 
 if options.debug == True:
-    globals.debugLevel = 4
+    globals.debugLevel = 2
+
 file = None
 if len(args) >= 1:
     file = args.pop()

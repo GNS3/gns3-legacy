@@ -293,7 +293,7 @@ class NETFile(object):
 
                 if devtype.lower() == 'note':
                     note_object = Annotation()
-                    note_object.setPlainText(gns3data[section]['text'])
+                    note_object.setPlainText(gns3data[section]['text'].replace("\\n", "\n"))
                     note_object.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
                     globals.GApp.topology.addItem(note_object)
 
@@ -315,6 +315,10 @@ class NETFile(object):
         try:
             dynagen_namespace.FILENAME = path
             self.dynagen.import_config(path)
+            splash = QtGui.QSplashScreen(QtGui.QPixmap(":images/logo_gns3_splash.png"))
+            splash.show()
+            splash.showMessage(translate("NETFile", "Please wait while importing the topology"))
+            self.dynagen.ghosting()
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "Dynamips error"),  str(msg))
             globals.GApp.workspace.projectFile = None
@@ -334,10 +338,6 @@ class NETFile(object):
             globals.GApp.workspace.clear()
             return
 
-        splash = QtGui.QSplashScreen(QtGui.QPixmap(":images/logo_gns3_splash.png"))
-        splash.show()
-        splash.showMessage(translate("NETFile", "Please wait while importing the topology"))
-        self.dynagen.ghosting()
         self.dynagen.apply_idlepc()
         self.dynagen.get_defaults_config()
         self.dynagen.update_running_config()
@@ -568,7 +568,7 @@ class NETFile(object):
             error('Unknown error exporting config for ' + device.name)
             return
         # Write out the config to a file
-        file_path = globals.GApp.workspace.projectConfigs + os.sep + device.name + '.cfg'
+        file_path = os.path.dirname(globals.GApp.workspace.projectConfigs) + os.sep + device.name + '.cfg'
         print unicode(translate("NETFile", "Exporting %s configuration to %s")) % (device.name, file_path)
         try:
             f = open(file_path, 'w')
@@ -576,7 +576,7 @@ class NETFile(object):
             f.close()
             self.dynagen.running_config[device.dynamips.host + ':' + str(device.dynamips.port)]['ROUTER ' + device.name]['cnfg'] = file_path
         except IOError, e:
-            QtGui.QMessageBox.warning(globals.GApp.mainWindow, unicode(translate("NETFile", "%s: IO Error: %s")) % (file_path, str(e)))
+            QtGui.QMessageBox.warning(self,  device.name + ': ' + translate("NETFile", "IOError"), unicode(translate("NETFile", "%s: IO Error: %s")) % (file_path, str(e)))
             return
 
     def export_net_file(self, path):
@@ -618,7 +618,7 @@ class NETFile(object):
                     self.dynagen.running_config['GNS3-DATA'] = {}
                 self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] = {}
                 config = self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] 
-                config['text'] = str(item.toPlainText())
+                config['text'] = str(item.toPlainText()).replace("\n", "\\n")
                 config['x'] = item.x()
                 config['y'] = item.y()
                 note_nb += 1

@@ -59,7 +59,7 @@ class Scene(QtGui.QGraphicsView):
         self.setResizeAnchor(self.AnchorViewCenter)
 
         self.newedge = None
-        self.cleanFlags()
+        self.resetAddingLink()
 
         # Load all renders
         self.renders = {}
@@ -69,8 +69,8 @@ class Scene(QtGui.QGraphicsView):
             self.renders[name]['normal'] = QtSvg.QSvgRenderer(item['normal_svg_file'])
             self.renders[name]['selected'] = QtSvg.QSvgRenderer(item['select_svg_file'])
 
-    def cleanFlags(self):
-        """ Clean flags used when adding links
+    def resetAddingLink(self):
+        """ Reset when drawing a link
         """
 
         self.__isFirstClick = True
@@ -414,7 +414,7 @@ class Scene(QtGui.QGraphicsView):
         elif key == QtCore.Qt.Key_Delete:
             self.slotDeleteNode()
         elif globals.addingLinkFlag and key == QtCore.Qt.Key_Escape:
-            self.cleanFlags()
+            self.resetAddingLink()
         else:
             QtGui.QGraphicsView.keyPressEvent(self, event)
 

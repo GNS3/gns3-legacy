@@ -54,8 +54,8 @@ def debug(string):
         """ Print string if debugging is true
         """
 
-        # Level 4, GNS3 debugs
-        if globals.debugLevel >= 4:
+        # Level 2, GNS3 debugs
+        if globals.debugLevel >= 2:
             print '* DEBUG: ' + str(string)
             #globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
 

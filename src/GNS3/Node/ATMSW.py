@@ -66,7 +66,10 @@ class ATMSW(AbstractNode):
         """
 
         if self.atmsw:
-            self.atmsw.delete()
+            try:
+                self.atmsw.delete()
+            except lib.DynamipsErrorHandled:
+                pass
             del self.dynagen.devices[self.hostname]
             self.atmsw = None
         self.dynagen.update_running_config()

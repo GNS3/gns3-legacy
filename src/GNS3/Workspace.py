@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import os, sys, socket
+import os, sys, socket, glob, shutil
 import GNS3.NETFile as netfile
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Globals as globals
@@ -176,6 +176,15 @@ class Workspace(QMainWindow, Ui_MainWindow):
         for item in globals.GApp.topology.items():
             globals.GApp.topology.removeItem(item)
             
+        # delete dynamips files
+        dynamips_files = glob.glob(os.path.dirname(globals.GApp.systconf['dynamips'].workdir) + os.sep + "c[0-9][0-9][0-9][0-9]*")
+        for file in dynamips_files:
+            try:
+                os.remove(file)
+            except OSError, (errno, strerror):
+                print "Warning: Can't delete " + file + " => " + strerror
+                continue
+
     def __action_Clear(self):
         """ Clear the topology
         """
@@ -185,8 +194,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         if reply == QtGui.QMessageBox.Yes:
             self.clear()
-        #TODO: clean files ?
-            
+
     def __action_AddNote(self):
         """ Add a note to the scene
         """
@@ -207,7 +215,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.action_Add_link.setText(translate('Workspace', 'Add a link'))
             self.action_Add_link.setIcon(QIcon(':/icons/connection.svg'))
             globals.addingLinkFlag = False
-            globals.GApp.scene.cleanFlags()
+            globals.GApp.scene.resetAddingLink()
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
         else:
             if not globals.GApp.systconf['general'].manual_connection:
@@ -433,22 +441,38 @@ class Workspace(QMainWindow, Ui_MainWindow):
             if not self.projectFile:
                 QtGui.QMessageBox.critical(self, translate("Workspace", "New Project"),  translate("Workspace", "Can't create a project"))
                 return
-            try:
-                if self.projectWorkdir:
+            if self.projectWorkdir and not os.access(self.projectWorkdir, os.F_OK):
+                try:
                     os.mkdir(self.projectWorkdir)
-                if self.projectConfigs:
+                except OSError, (errno, strerror):
+                    print "Warning: cannot create directory: " + self.projectWorkdir + ": " + strerror
+            if self.projectConfigs and not os.access(self.projectConfigs, os.F_OK):
+                try:
                     os.mkdir(self.projectConfigs)
-            except OSError, (errno, strerror):
-                pass
+                except :
+                    print "Warning: cannot create directory: " + self.projectConfigs + ": " + strerror
             if len(globals.GApp.dynagen.devices):
                 reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"),
                                                    translate("Workspace", "Do you want to apply the project settings to the current topology?"), QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
                 if reply == QtGui.QMessageBox.Yes:
-                    for node in globals.GApp.topology.nodes.values():
-                        if isinstance(node, IOSRouter):
-                            node.stopNode()
-                    for hypervisor in globals.GApp.dynagen.dynamips.values():
-                        hypervisor.workingdir = self.projectWorkdir
+                    if self.projectWorkdir:
+                        # stop all nodes
+                        for node in globals.GApp.topology.nodes.values():
+                            if isinstance(node, IOSRouter):
+                                node.stopNode()
+                        # move dynamips files
+                        for node in globals.GApp.topology.nodes.values():
+                            if isinstance(node, IOSRouter):
+                                dynamips_files = glob.glob(os.path.dirname(node.hypervisor.workingdir) + os.sep + node.platform + '?' + node.hostname + '*')
+                                for file in dynamips_files:
+                                    try:
+                                        print shutil.move(file, self.projectWorkdir)
+                                    except:
+                                        print "Warning: cannot move " + file + " to " + self.projectWorkdir
+                                        continue
+                        # set the new working directory
+                        for hypervisor in globals.GApp.dynagen.dynamips.values():
+                            hypervisor.workingdir = self.projectWorkdir
                 elif globals.GApp.topology.changed == True:
                     reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the current topology?"),
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)

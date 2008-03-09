@@ -75,11 +75,13 @@ class FW(AbstractNode, FWDefaults):
         """ Delete this FW
         """
         if self.fw:
-            if self.fw.state != 'stopped':
-                self.fw.stop()
-            if self.fw:
-                del self.dynagen.devices[self.hostname]
-                self.fw = None
+            try:
+                if self.fw.state != 'stopped':
+                    self.fw.stop()
+            except lib.DynamipsErrorHandled:
+                pass
+            del self.dynagen.devices[self.hostname]
+            self.fw = None
             self.dynagen.update_running_config()
 
     def set_hostname(self, hostname):

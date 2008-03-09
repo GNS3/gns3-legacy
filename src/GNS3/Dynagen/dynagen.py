@@ -68,6 +68,7 @@ DEVICETUPLE = (  # A tuple of known device names
     '2620',
     '2621',
     '2610XM',
+    '2611XM',
     '2620XM',
     '2621XM',
     '2650XM',

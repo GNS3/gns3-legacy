@@ -66,7 +66,10 @@ class ATMBR(AbstractNode):
         """
 
         if self.atmbr:
-            self.atmbr.delete()
+            try:
+                self.atmbr.delete()
+            except lib.DynamipsErrorHandled:
+                pass
             del self.dynagen.devices[self.hostname]
             self.atmbr = None
         self.dynagen.update_running_config()

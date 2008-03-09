@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import socket
+import os, glob, socket
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.pemu_lib as pix
 import GNS3.Globals as globals
@@ -281,13 +281,19 @@ class Topology(QtGui.QGraphicsScene):
             if node.configNode() == False:
                 self.deleteNode(node.id)
         except (lib.DynamipsVerError, lib.DynamipsError), msg:
-            if self.__nodes.has_key(node.id):
-                self.deleteNode(node.id)
+            if isinstance(node, IOSRouter):
+                # check if dynamips can create its files
+                dynamips_files = glob.glob(os.path.dirname(node.hypervisor.workingdir) + os.sep + node.platform + '?' + node.hostname + '*')
+                for file in dynamips_files:
+                    if not os.access(file, os.W_OK):
+                        print "Warning: " + file + " is not writable because of different rights, please delete this file manually if dynamips was not able to create this router"
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
-        except (lib.DynamipsErrorHandled, socket.error):
             if self.__nodes.has_key(node.id):
                 self.deleteNode(node.id)
+        except (lib.DynamipsErrorHandled, socket.error):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"), translate("Topology", "Connection lost"))
+            if self.__nodes.has_key(node.id):
+                self.deleteNode(node.id)
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
         debug("Running config: " + str(self.dynagen.running_config))
         self.changed = True
@@ -299,11 +305,14 @@ class Topology(QtGui.QGraphicsScene):
 
         node = self.__nodes[id]
         if isinstance(node, IOSRouter):
+            try:
                 router = node.get_dynagen_device()
                 if globals.GApp.iosimages.has_key('localhost:' + router.image):
                     image_conf = globals.GApp.iosimages['localhost:' + router.image]
                     if globals.GApp.HypervisorManager and image_conf.hypervisor_host == '':
                         globals.GApp.HypervisorManager.unallocateHypervisor(node, router.dynamips.port)
+            except:
+                pass
         self.removeItem(node)
         del self.__nodes[id]
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
