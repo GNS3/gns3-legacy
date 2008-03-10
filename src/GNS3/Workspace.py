@@ -177,7 +177,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             globals.GApp.topology.removeItem(item)
             
         # delete dynamips files
-        dynamips_files = glob.glob(os.path.dirname(globals.GApp.systconf['dynamips'].workdir) + os.sep + "c[0-9][0-9][0-9][0-9]*")
+        dynamips_files = glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "c[0-9][0-9][0-9][0-9]*")
         for file in dynamips_files:
             try:
                 os.remove(file)
@@ -463,7 +463,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         # move dynamips files
                         for node in globals.GApp.topology.nodes.values():
                             if isinstance(node, IOSRouter):
-                                dynamips_files = glob.glob(os.path.dirname(node.hypervisor.workingdir) + os.sep + node.platform + '?' + node.hostname + '*')
+                                dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.platform + '?' + node.hostname + '*')
                                 for file in dynamips_files:
                                     try:
                                         print shutil.move(file, self.projectWorkdir)

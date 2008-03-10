@@ -76,8 +76,8 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
                 self.conf.term_cmd = unicode("xterm -T %d -e 'telnet %h %p' >/dev/null 2>&1 &",  'utf-8')
 
         self.lineEditTermCommand.setText(self.conf.term_cmd)
-        self.ProjectPath.setText(self.conf.project_path)
-        self.IOSPath.setText(self.conf.ios_path)
+        self.ProjectPath.setText(os.path.normpath(self.conf.project_path))
+        self.IOSPath.setText(os.path.normpath(self.conf.ios_path))
             
         # GUI settings
         if self.conf.status_points == True:
@@ -115,8 +115,8 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         else:
             self.conf.use_shell = False
     
-        self.conf.project_path = unicode(self.ProjectPath.text(),  'utf-8')
-        self.conf.ios_path = unicode(self.IOSPath.text(),  'utf-8')
+        self.conf.project_path = os.path.normpath(unicode(self.ProjectPath.text(),  'utf-8'))
+        self.conf.ios_path = os.path.normpath(unicode(self.IOSPath.text(),  'utf-8'))
         self.conf.term_cmd = unicode(self.lineEditTermCommand.text(),  'utf-8')
         
         globals.GApp.systconf['general'] = self.conf

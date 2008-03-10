@@ -66,8 +66,9 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Startup-config', unicode(translate("Page_IOSRouter", "Can't open file: %s")) % path[0])
                 return
             self.lineEditStartupConfig.clear()
-            self.lineEditStartupConfig.setText(path[0])
-            configDirectory = os.path.dirname(path[0])
+            config = os.path.normpath(path[0])
+            self.lineEditStartupConfig.setText(config)
+            configDirectory = os.path.dirname(config)
 
     def loadConfig(self,  id,  config = None):
         """ Load the config

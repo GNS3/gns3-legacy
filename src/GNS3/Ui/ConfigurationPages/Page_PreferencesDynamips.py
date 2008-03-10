@@ -66,8 +66,8 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
                 self.conf.workdir = unicode('/tmp', 'utf-8')
 
         # Push default values to GUI
-        self.dynamips_path.setText(self.conf.path)
-        self.dynamips_workdir.setText(self.conf.workdir)
+        self.dynamips_path.setText(os.path.normpath(self.conf.path))
+        self.dynamips_workdir.setText(os.path.normpath(self.conf.workdir))
         self.dynamips_port.setValue(self.conf.port)
         self.dynamips_baseUDP.setValue(self.conf.baseUDP)
         self.dynamips_baseConsole.setValue(self.conf.baseConsole)
@@ -96,10 +96,8 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         """ Save widget settings to syst. config
         """
         
-        working_dir = unicode(self.dynamips_workdir.text(),  'utf-8')
-        exec_path = unicode(self.dynamips_path.text(),  'utf-8')
-        self.conf.path = exec_path
-        self.conf.workdir = working_dir
+        self.conf.workdir = os.path.normpath(unicode(self.dynamips_workdir.text(),  'utf-8'))
+        self.conf.path = os.path.normpath(unicode(self.dynamips_path.text(),  'utf-8'))
         self.conf.port = self.dynamips_port.value()
         self.conf.baseUDP = self.dynamips_baseUDP.value()
         self.conf.baseConsole = self.dynamips_baseConsole.value()

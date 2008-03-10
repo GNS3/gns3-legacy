@@ -283,7 +283,7 @@ class Topology(QtGui.QGraphicsScene):
         except (lib.DynamipsVerError, lib.DynamipsError), msg:
             if isinstance(node, IOSRouter):
                 # check if dynamips can create its files
-                dynamips_files = glob.glob(os.path.dirname(node.hypervisor.workingdir) + os.sep + node.platform + '?' + node.hostname + '*')
+                dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.platform + '?' + node.hostname + '*')
                 for file in dynamips_files:
                     if not os.access(file, os.W_OK):
                         print "Warning: " + file + " is not writable because of different rights, please delete this file manually if dynamips was not able to create this router"

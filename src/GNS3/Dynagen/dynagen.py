@@ -2048,7 +2048,7 @@ class Dynagen:
 
         if device.ghost_status == 2:
             try:
-                ghost_file = open(device.dynamips.workingdir + device.ghost_file)
+                ghost_file = open(os.path.normpath(device.dynamips.workingdir) + os.sep + device.ghost_file)
                 ghost_file.close()
             except IOError:
                 #the ghost file does not exist, let's create it

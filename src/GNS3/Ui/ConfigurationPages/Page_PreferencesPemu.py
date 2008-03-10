@@ -65,10 +65,10 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
                 self.conf.pemuwrapper_workdir = unicode('/tmp', 'utf-8')
 
         # Push default values to GUI
-        self.lineEditPemuwrapperPath.setText(self.conf.pemuwrapper_path)
-        self.lineEditPemuwrapperWorkdir.setText(self.conf.pemuwrapper_workdir)
+        self.lineEditPemuwrapperPath.setText(os.path.normpath(self.conf.pemuwrapper_path))
+        self.lineEditPemuwrapperWorkdir.setText(os.path.normpath(self.conf.pemuwrapper_workdir))
         self.lineEditHostExternalPemu.setText(self.conf.external_host)
-        self.PixImage.setText(self.conf.default_pix_image)
+        self.PixImage.setText(os.path.normpath(self.conf.default_pix_image))
         self.lineEditKey.setText(self.conf.default_pix_key)
         self.lineEditSerial.setText(self.conf.default_pix_serial)
         
@@ -83,10 +83,10 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
 
     def saveConf(self):
 
-        self.conf.pemuwrapper_path = unicode(self.lineEditPemuwrapperPath.text(),  'utf-8')
-        self.conf.pemuwrapper_workdir = unicode(self.lineEditPemuwrapperWorkdir.text(),  'utf-8')
+        self.conf.pemuwrapper_path = os.path.normpath(unicode(self.lineEditPemuwrapperPath.text(),  'utf-8'))
+        self.conf.pemuwrapper_workdir = os.path.normpath(unicode(self.lineEditPemuwrapperWorkdir.text(),  'utf-8'))
         self.conf.external_host = unicode(self.lineEditHostExternalPemu.text(),  'utf-8')
-        self.conf.default_pix_image = unicode(self.PixImage.text(),  'utf-8')
+        self.conf.default_pix_image = os.path.normpath(unicode(self.PixImage.text(),  'utf-8'))
         
         serial = str(self.lineEditSerial.text())
         if not re.search(r"""^0x[0-9a-fA-F]{8}$""", serial):

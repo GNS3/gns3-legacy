@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import sys
+import sys, os
 import GNS3.Globals as globals
 from PyQt4 import QtGui, QtCore
 from GNS3.Ui.ConfigurationPages.Form_PreferencesCapture import Ui_PreferencesCapture
@@ -55,7 +55,7 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
                 self.conf.cap_cmd = unicode("/usr/bin/wireshark %c",  'utf-8')
                 
         # Push default values to GUI
-        self.CaptureWorkingDirectory.setText(self.conf.workdir)
+        self.CaptureWorkingDirectory.setText(os.path.normpath(self.conf.workdir))
         self.CaptureCommand.setText(self.conf.cap_cmd)
         if self.conf.auto_start == True:
             self.checkBoxStartCaptureCommand.setCheckState(QtCore.Qt.Checked)
@@ -64,7 +64,7 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
 
     def saveConf(self):
 
-        self.conf.workdir = unicode(self.CaptureWorkingDirectory.text(),  'utf-8')
+        self.conf.workdir = os.path.normpath(unicode(self.CaptureWorkingDirectory.text(),  'utf-8'))
         self.conf.cap_cmd = unicode(self.CaptureCommand.text(),  'utf-8')
         if self.checkBoxStartCaptureCommand.checkState() == QtCore.Qt.Checked:
             self.conf.auto_start = True

@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import os,  re
+import os, re
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_IOSDialog import Ui_IOSDialog
@@ -190,6 +190,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         if not imagename:
             return
 
+        imagename = os.path.normpath(imagename)
         idlepc = str(self.lineEditIdlePC.text()).strip()
         if idlepc and not re.search(r"""^0x[0-9a-fA-F]{8}$""", idlepc):
             QtGui.QMessageBox.critical(self, 'IOS Configuration', translate("IOSDialog", "IDLE PC not valid (format required: 0xhhhhhhhh)"))
@@ -340,7 +341,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
         hypervisor_host = unicode(self.lineEditHost.text(),  'utf-8')
         hypervisor_port = str(self.spinBoxHypervisorPort.value())
-        working_dir = unicode(self.lineEditWorkingDir.text(),  'utf-8')
+        working_dir = os.path.normpath(unicode(self.lineEditWorkingDir.text(),  'utf-8'))
         baseudp = self.spinBoxBaseUDP.value()
 
         if (hypervisor_host != '' and hypervisor_port != ''):

@@ -568,7 +568,7 @@ class NETFile(object):
             error('Unknown error exporting config for ' + device.name)
             return
         # Write out the config to a file
-        file_path = os.path.dirname(globals.GApp.workspace.projectConfigs) + os.sep + device.name + '.cfg'
+        file_path = os.path.normpath(globals.GApp.workspace.projectConfigs) + os.sep + device.name + '.cfg'
         print unicode(translate("NETFile", "Exporting %s configuration to %s")) % (device.name, file_path)
         try:
             f = open(file_path, 'w')
