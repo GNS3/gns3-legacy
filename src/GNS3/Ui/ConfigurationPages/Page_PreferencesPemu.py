@@ -83,10 +83,10 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
 
     def saveConf(self):
 
-        self.conf.pemuwrapper_path = os.path.normpath(unicode(self.lineEditPemuwrapperPath.text(),  'utf-8'))
-        self.conf.pemuwrapper_workdir = os.path.normpath(unicode(self.lineEditPemuwrapperWorkdir.text(),  'utf-8'))
+        self.conf.pemuwrapper_path = unicode(self.lineEditPemuwrapperPath.text(),  'utf-8')
+        self.conf.pemuwrapper_workdir = unicode(self.lineEditPemuwrapperWorkdir.text(),  'utf-8')
         self.conf.external_host = unicode(self.lineEditHostExternalPemu.text(),  'utf-8')
-        self.conf.default_pix_image = os.path.normpath(unicode(self.PixImage.text(),  'utf-8'))
+        self.conf.default_pix_image = unicode(self.PixImage.text(),  'utf-8')
         
         serial = str(self.lineEditSerial.text())
         if not re.search(r"""^0x[0-9a-fA-F]{8}$""", serial):
@@ -119,7 +119,7 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         path = fileBrowser('PIX image', directory=globals.GApp.systconf['general'].ios_path).getFile()
         if path != None and path[0] != '':
             self.PixImage.clear()
-            self.PixImage.setText(path[0])
+            self.PixImage.setText(os.path.normpath(path[0]))
             
     def slotSelectPath(self):
         """ Get a path to pemuwrapper from the file system
@@ -127,7 +127,7 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
 
         path = fileBrowser('Pemuwrapper', directory='.').getFile()
         if path != None and path[0] != '':
-            self.lineEditPemuwrapperPath.setText(path[0])
+            self.lineEditPemuwrapperPath.setText(os.path.normpath(path[0]))
 
     def slotSelectWorkdir(self):
         """ Get a working directory for pemu from the file system
@@ -137,4 +137,4 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         path = fb.getDir()
 
         if path is not None:
-            self.lineEditPemuwrapperWorkdir.setText(path)
+            self.lineEditPemuwrapperWorkdir.setText(os.path.normpath(path))

@@ -29,7 +29,7 @@ from GNS3.Ui.Form_MainWindow import Ui_MainWindow
 from GNS3.Ui.Form_About import Ui_AboutDialog
 from GNS3.IOSDialog import IOSDialog
 from GNS3.ProjectDialog import ProjectDialog
-from GNS3.Utils import translate, fileBrowser
+from GNS3.Utils import debug, translate, fileBrowser
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Preferences import PreferencesDialog
 from GNS3.Config.Config import ConfDB
@@ -466,9 +466,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                 dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.platform + '?' + node.hostname + '*')
                                 for file in dynamips_files:
                                     try:
-                                        print shutil.move(file, self.projectWorkdir)
+                                        shutil.move(file, self.projectWorkdir)
                                     except:
-                                        print "Warning: cannot move " + file + " to " + self.projectWorkdir
+                                        debug("Warning: cannot move " + file + " to " + self.projectWorkdir)
                                         continue
                         # set the new working directory
                         for hypervisor in globals.GApp.dynagen.dynamips.values():

@@ -166,7 +166,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 return
 
             self.lineEditIOSImage.clear()
-            self.lineEditIOSImage.setText(path)
+            self.lineEditIOSImage.setText(os.path.normpath(path))
             # try to guess the platform
             platform = self._getIOSplatform(os.path.basename(path))
             if (platform != None):
@@ -190,7 +190,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         if not imagename:
             return
 
-        imagename = os.path.normpath(imagename)
+        imagename = imagename
         idlepc = str(self.lineEditIdlePC.text()).strip()
         if idlepc and not re.search(r"""^0x[0-9a-fA-F]{8}$""", idlepc):
             QtGui.QMessageBox.critical(self, 'IOS Configuration', translate("IOSDialog", "IDLE PC not valid (format required: 0xhhhhhhhh)"))
@@ -333,7 +333,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         path = fileBrowser(translate("IOSDialog", "Select a working directory")).getDir()
         if path != None:
             self.lineEditWorkingDir.clear()
-            self.lineEditWorkingDir.setText(path)
+            self.lineEditWorkingDir.setText(os.path.normpath(path))
 
     def slotSaveHypervisor(self):
         """ Save a hypervisor to the hypervisors list
@@ -341,7 +341,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
         hypervisor_host = unicode(self.lineEditHost.text(),  'utf-8')
         hypervisor_port = str(self.spinBoxHypervisorPort.value())
-        working_dir = os.path.normpath(unicode(self.lineEditWorkingDir.text(),  'utf-8'))
+        working_dir = unicode(self.lineEditWorkingDir.text(),  'utf-8')
         baseudp = self.spinBoxBaseUDP.value()
 
         if (hypervisor_host != '' and hypervisor_port != ''):

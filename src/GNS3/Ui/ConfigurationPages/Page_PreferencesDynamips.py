@@ -91,13 +91,12 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         else:
             self.checkBoxMmap.setCheckState(QtCore.Qt.Unchecked)
 
-
     def saveConf(self):
         """ Save widget settings to syst. config
         """
         
-        self.conf.workdir = os.path.normpath(unicode(self.dynamips_workdir.text(),  'utf-8'))
-        self.conf.path = os.path.normpath(unicode(self.dynamips_path.text(),  'utf-8'))
+        self.conf.workdir = unicode(self.dynamips_workdir.text(),  'utf-8')
+        self.conf.path = unicode(self.dynamips_path.text(),  'utf-8')
         self.conf.port = self.dynamips_port.value()
         self.conf.baseUDP = self.dynamips_baseUDP.value()
         self.conf.baseConsole = self.dynamips_baseConsole.value()
@@ -135,7 +134,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Dynamips path', unicode(translate("UiConfig_PreferencesDynamips", "Can't open file: %s")) % path)
                 return
             self.dynamips_path.clear()
-            self.dynamips_path.setText(path)
+            self.dynamips_path.setText(os.path.normpath(path))
 
     def __setDynamipsWorkdir(self):
         """ Open a file dialog for choosing the location of local hypervisor
@@ -145,7 +144,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         path = fb.getDir()
 
         if path is not None:
-            self.dynamips_workdir.setText(path)
+            self.dynamips_workdir.setText(os.path.normpath(path))
 
     def __testDynamips(self):
     

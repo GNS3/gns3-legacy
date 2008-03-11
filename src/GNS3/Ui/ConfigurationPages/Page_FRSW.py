@@ -107,7 +107,8 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
             connected_ports = self.node.getConnectedInterfaceList()
             (port, dlci) = source.split(':')
             if port in connected_ports:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow,  unicode(translate("Page_ATMSW", "Frame Relay switch"), translate("Page_FRSW", "A link is connected in port %i")) % port)
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_ATMSW", "Frame Relay switch"), 
+                                        unicode(translate("Page_FRSW", "A link is connected in port %i")) % int(port))
                 return
             del self.mapping[source]
             self.treeWidgetVCmap.takeTopLevelItem(self.treeWidgetVCmap.indexOfTopLevelItem(item))

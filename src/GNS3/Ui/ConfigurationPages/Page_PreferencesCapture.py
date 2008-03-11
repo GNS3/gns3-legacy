@@ -64,7 +64,7 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
 
     def saveConf(self):
 
-        self.conf.workdir = os.path.normpath(unicode(self.CaptureWorkingDirectory.text(),  'utf-8'))
+        self.conf.workdir = unicode(self.CaptureWorkingDirectory.text(),  'utf-8')
         self.conf.cap_cmd = unicode(self.CaptureCommand.text(),  'utf-8')
         if self.checkBoxStartCaptureCommand.checkState() == QtCore.Qt.Checked:
             self.conf.auto_start = True
@@ -81,4 +81,4 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
         path = fb.getDir()
 
         if path is not None:
-            self.CaptureWorkingDirectory.setText(path)
+            self.CaptureWorkingDirectory.setText(os.path.normpath(path))

@@ -115,8 +115,8 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         else:
             self.conf.use_shell = False
     
-        self.conf.project_path = os.path.normpath(unicode(self.ProjectPath.text(),  'utf-8'))
-        self.conf.ios_path = os.path.normpath(unicode(self.IOSPath.text(),  'utf-8'))
+        self.conf.project_path = unicode(self.ProjectPath.text(),  'utf-8')
+        self.conf.ios_path = unicode(self.IOSPath.text(),  'utf-8')
         self.conf.term_cmd = unicode(self.lineEditTermCommand.text(),  'utf-8')
         
         globals.GApp.systconf['general'] = self.conf
@@ -128,7 +128,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         path = fb.getDir()
 
         if path is not None:
-            self.ProjectPath.setText(path)
+            self.ProjectPath.setText(os.path.normpath(path))
         
     def __setIOSPath(self):
     
@@ -136,5 +136,5 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         path = fb.getDir()
 
         if path is not None:
-            self.IOSPath.setText(path)
+            self.IOSPath.setText(os.path.normpath(path))
 

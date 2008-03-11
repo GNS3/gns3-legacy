@@ -559,10 +559,10 @@ class NETFile(object):
             config = base64.decodestring(device.config_b64)
             config = config.replace('\r', "")
         except lib.DynamipsError, msg:
-            print device.name + ': ' + translate("NETFile", "Dynamips error") + ': ' + str(msg)
+            print unicode(device.name) + ': ' + translate("NETFile", "Dynamips error") + ': ' + str(msg)
             return
         except lib.DynamipsWarning, msg:
-            print device.name + ': ' + translate("NETFile", "Dynamips warning") + ': ' + str(msg)
+            print unicode(device.name) + ': ' + translate("NETFile", "Dynamips warning") + ': ' + str(msg)
             return
         except:
             error('Unknown error exporting config for ' + device.name)
@@ -576,7 +576,7 @@ class NETFile(object):
             f.close()
             self.dynagen.running_config[device.dynamips.host + ':' + str(device.dynamips.port)]['ROUTER ' + device.name]['cnfg'] = file_path
         except IOError, e:
-            QtGui.QMessageBox.warning(self,  device.name + ': ' + translate("NETFile", "IOError"), unicode(translate("NETFile", "%s: IO Error: %s")) % (file_path, str(e)))
+            QtGui.QMessageBox.warning(self, unicode(device.name) + ': ' + translate("NETFile", "IOError"), unicode(translate("NETFile", "%s: IO Error: %s")) % (file_path, str(e)))
             return
 
     def export_net_file(self, path):
@@ -591,9 +591,11 @@ class NETFile(object):
             if isinstance(device, lib.Router) and globals.GApp.workspace.projectConfigs:
                 self.export_router_config(device)
             node = globals.GApp.topology.getNode(globals.GApp.topology.getNodeID(device.name))
-            # record node x & y position
-            self.dynagen.running_config[node.d][node.get_running_config_name()]['x'] = node.x()
-            self.dynagen.running_config[node.d][node.get_running_config_name()]['y'] = node.y()
+            debug("Node is null when recording x&y positions !")
+            if node:
+                # record node x & y position
+                self.dynagen.running_config[node.d][node.get_running_config_name()]['x'] = node.x()
+                self.dynagen.running_config[node.d][node.get_running_config_name()]['y'] = node.y()
 
         note_nb = 1
         for item in globals.GApp.topology.items():
