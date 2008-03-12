@@ -46,7 +46,7 @@ class Page_FW(QtGui.QWidget, Ui_FWPage):
         path = fileBrowser('PIX image',  directory=globals.GApp.systconf['general'].ios_path).getFile()
         if path != None and path[0] != '':
             self.lineEditImage.clear()
-            self.lineEditImage.setText(path[0])
+            self.lineEditImage.setText(os.path.normpath(path[0]))
 
     def loadConfig(self,  id,  config = None):
         """ Load the config

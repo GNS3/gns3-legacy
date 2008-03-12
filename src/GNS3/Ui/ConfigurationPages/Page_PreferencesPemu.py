@@ -68,7 +68,7 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         self.lineEditPemuwrapperPath.setText(os.path.normpath(self.conf.pemuwrapper_path))
         self.lineEditPemuwrapperWorkdir.setText(os.path.normpath(self.conf.pemuwrapper_workdir))
         self.lineEditHostExternalPemu.setText(self.conf.external_host)
-        self.PixImage.setText(os.path.normpath(self.conf.default_pix_image))
+        self.PixImage.setText(self.conf.default_pix_image)
         self.lineEditKey.setText(self.conf.default_pix_key)
         self.lineEditSerial.setText(self.conf.default_pix_serial)
         

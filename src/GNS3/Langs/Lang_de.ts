@@ -5,57 +5,57 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="13"/>
         <source>ATM Bridge</source>
-        <translation type="unfinished"></translation>
+        <translation>ATM-Bridge</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="25"/>
         <source>Ethernet side</source>
-        <translation type="unfinished"></translation>
+        <translation>Ethernet Seite</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="104"/>
         <source>Port:</source>
-        <translation type="unfinished">Port:</translation>
+        <translation>Port:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="60"/>
         <source>Mapping</source>
-        <translation type="unfinished">Zuordnung</translation>
+        <translation>Zuordnung</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="76"/>
         <source>Ethernet Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Ethernetport</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="81"/>
         <source>Port:VCI:VPI</source>
-        <translation type="unfinished">Port:VCI:VPI</translation>
+        <translation>Port:VCI:VPI</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="98"/>
         <source>ATM side</source>
-        <translation type="unfinished"></translation>
+        <translation>ATM Seite</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="130"/>
         <source>VCI:</source>
-        <translation type="unfinished">VCI:</translation>
+        <translation>VCI:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="159"/>
         <source>VPI:</source>
-        <translation type="unfinished">VPI:</translation>
+        <translation>VPI:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="185"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">&amp;Hinzufügen</translation>
+        <translation>&amp;Hinzufügen</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="195"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;Löschen</translation>
+        <translation>&amp;Löschen</translation>
     </message>
 </context>
 <context>
@@ -768,58 +768,58 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aboulgasem Albusaifi from Tarabulus, Libya: Arabic translation&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Marcio de Freitas Minicz from Sao Jose dos Campos, SP, Brazil: Brazilian-Portuguese translation &lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hasan Agirol Aksoy from Antalya, Turkey: Turkish translation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>AbstractEdge</name>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="165"/>
+        <location filename="../Link/AbstractEdge.py" line="168"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="169"/>
+        <location filename="../Link/AbstractEdge.py" line="172"/>
         <source>Stop the capture</source>
         <translation>Mitschneiden beenden</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="171"/>
+        <location filename="../Link/AbstractEdge.py" line="174"/>
         <source>Start Wireshark</source>
         <translation>Wireshark starten</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="285"/>
+        <location filename="../Link/AbstractEdge.py" line="300"/>
         <source>Capture</source>
         <translation>Mitschneiden</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="187"/>
+        <location filename="../Link/AbstractEdge.py" line="190"/>
         <source>Packet capture is not supported on this link type</source>
         <translation>Das Mitschneiden von Paketen wird von dem Verbindungstyp nicht unterstützt</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="211"/>
+        <location filename="../Link/AbstractEdge.py" line="214"/>
         <source>Please choose a source</source>
         <translation>Bitte wähle eine Quelle</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="213"/>
+        <location filename="../Link/AbstractEdge.py" line="216"/>
         <source>No device available for traffic capture</source>
         <translation>Kein Gerät für ein Paketmitschnitt verfügbar</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="264"/>
+        <location filename="../Link/AbstractEdge.py" line="270"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="259"/>
+        <location filename="../Link/AbstractEdge.py" line="265"/>
         <source>Capture stopped</source>
         <translation>Mitschnitt beenden</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="274"/>
+        <location filename="../Link/AbstractEdge.py" line="279"/>
         <source>Please configure capture options</source>
         <translation>Bitte, konfiguriere die Optionen für den Mitschnitt</translation>
     </message>
@@ -829,14 +829,24 @@ p, li { white-space: pre-wrap; }
         <translation>Verbindung: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="220"/>
+        <location filename="../Link/AbstractEdge.py" line="223"/>
         <source>Device %s is not running</source>
         <translation>Gerät %s läuft nicht</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="285"/>
+        <location filename="../Link/AbstractEdge.py" line="300"/>
         <source>Cannot start %s : %s</source>
         <translation>%s : %s kann nicht gestartet werden</translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="286"/>
+        <source>%s is empty, no traffic captured on the link. Try again later</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="289"/>
+        <source>Cannot find %s : %s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -879,7 +889,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="223"/>
         <source>No interface available, please configure this device</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Interface verügbar, bitte das Gerät konfiguieren</translation>
     </message>
 </context>
 <context>
@@ -977,17 +987,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="555"/>
         <source>NIO NULL</source>
-        <translation type="unfinished"></translation>
+        <translation>NIO NULL</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="567"/>
         <source>Identifier:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kennung:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="29"/>
         <source>Generic Ethernet NIO (require Administrator access)</source>
-        <translation type="unfinished"></translation>
+        <translation>Allgemeines Ethernet NIO (benötigt Administratorzugang)</translation>
     </message>
 </context>
 <context>
@@ -1229,19 +1239,19 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>FW</name>
     <message>
-        <location filename="../Node/FW.py" line="250"/>
+        <location filename="../Node/FW.py" line="252"/>
         <source>%s: no PIX image</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: kein PIX-Image</translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="304"/>
+        <location filename="../Node/FW.py" line="306"/>
         <source>Connection</source>
-        <translation type="unfinished">Verbindung</translation>
+        <translation>Verbindung</translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="304"/>
+        <location filename="../Node/FW.py" line="306"/>
         <source>No interface available</source>
-        <translation type="unfinished">Kein Interface verfügbar</translation>
+        <translation>Kein Interface verfügbar</translation>
     </message>
 </context>
 <context>
@@ -1249,37 +1259,37 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="13"/>
         <source>Firewall configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Firewallkonfiguration</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="19"/>
         <source>PIX Image:</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX-Image:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="48"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="55"/>
         <source>RAM size:</source>
-        <translation type="unfinished">RAM-Größe:</translation>
+        <translation>RAM-Größe:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="68"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="84"/>
         <source>Key:</source>
-        <translation type="unfinished"></translation>
+        <translation>Schlüssel:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="101"/>
         <source>Serial:</source>
-        <translation type="unfinished"></translation>
+        <translation>Serien:</translation>
     </message>
 </context>
 <context>
@@ -1333,28 +1343,28 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
     <message>
         <location filename="../HypervisorManager.py" line="73"/>
         <source>A hypervisor is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein Hypervisor läuft bereits auf Port %i. Er wird beim beenden von GNS3 nicht heruntergefahren</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="108"/>
         <source>Connecting to a hypervisor on port %i ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbinde zu einem Hypervisor auf Port %i ...</translation>
     </message>
 </context>
 <context>
     <name>IOSDialog</name>
     <message>
-        <location filename="../IOSDialog.py" line="195"/>
+        <location filename="../IOSDialog.py" line="196"/>
         <source>IDLE PC not valid (format required: 0xhhhhhhhh)</source>
         <translation>IDLE PC nicht zulässig (benötigtes Format: 0xhhhhhhhh)</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="204"/>
+        <location filename="../IOSDialog.py" line="205"/>
         <source>No hypervisor selected, use the local hypervisor</source>
         <translation>Kein Hypervisor ausgewählt, benutze den lokalen Hypervisor</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="332"/>
+        <location filename="../IOSDialog.py" line="333"/>
         <source>Select a working directory</source>
         <translation>Wähle ein Arbeitsverzeichnis</translation>
     </message>
@@ -1494,7 +1504,7 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
         <translation>Standard-Image für diese Plattform</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="250"/>
+        <location filename="../IOSDialog.py" line="251"/>
         <source>There is already a default image for this platform</source>
         <translation>Es gibt bereits ein Standard-Image für diese Plattform</translation>
     </message>
@@ -1507,22 +1517,22 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="539"/>
+        <location filename="../Node/IOSRouter.py" line="542"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="539"/>
+        <location filename="../Node/IOSRouter.py" line="542"/>
         <source>No interface available</source>
         <translation>Kein Interface verfügbar</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="222"/>
+        <location filename="../Node/IOSRouter.py" line="225"/>
         <source>Slots</source>
         <translation>Slots</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="222"/>
+        <location filename="../Node/IOSRouter.py" line="225"/>
         <source>You have to restart this router to use new modules</source>
         <translation>Der Router muss neugestartet werden um die neuen Module benutzen zu können</translation>
     </message>
@@ -2041,49 +2051,54 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="309"/>
+        <location filename="../NETFile.py" line="315"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="309"/>
+        <location filename="../NETFile.py" line="315"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Bitte konfiguriere den Pfad zu Dyamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="562"/>
+        <location filename="../NETFile.py" line="568"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="565"/>
+        <location filename="../NETFile.py" line="571"/>
         <source>Dynamips warning</source>
         <translation>Warnung von Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="331"/>
+        <location filename="../NETFile.py" line="341"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Ausnahmebehandlungentdeckt, stoppe den Import...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="572"/>
+        <location filename="../NETFile.py" line="578"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportiere die Konfiguration von %s nach %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="579"/>
+        <location filename="../NETFile.py" line="585"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: EA Fehler: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="331"/>
+        <location filename="../NETFile.py" line="341"/>
         <source>Importation</source>
-        <translation type="unfinished"></translation>
+        <translation>Importierung</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="339"/>
+        <location filename="../NETFile.py" line="326"/>
         <source>Please wait while importing the topology</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte warten, die Topologie wird importiert</translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="585"/>
+        <source>IOError</source>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -2180,7 +2195,7 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
         <location filename="../Ui/Form_NodeConfigurator.py" line="102"/>
         <source>Please select a node in the list 
 to display the configuration page.</source>
-        <translation>Whäle eine Verbindung aus 
+        <translation>Wähle eine Verbindung aus 
 der Liste aus, um die Konfiguration zu sehen.</translation>
     </message>
     <message>
@@ -2221,12 +2236,12 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
     <message>
         <location filename="../NodeConfigurator.py" line="123"/>
         <source>PIX firewalls</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX Firewalls</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="135"/>
         <source>ATM bridges</source>
-        <translation type="unfinished"></translation>
+        <translation>ATM-Bridges</translation>
     </message>
 </context>
 <context>
@@ -2234,27 +2249,27 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
     <message>
         <location filename="../PemuManager.py" line="60"/>
         <source>Connecting to pemu on port %i ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbinde zu pemu auf Port %i ...</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="61"/>
         <source>Abort</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="85"/>
         <source>Can&apos;t connect to pemu on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Kann nicht zum pemu auf Port %i verbinden</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="114"/>
         <source>Pemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemu läuft bereits auf Port %i. Er wird beim beenden von GNS3 nicht heruntergefahren</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="127"/>
         <source>Can&apos;t start Pemu on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemu kann nicht auf Port %i gestartet werden</translation>
     </message>
 </context>
 <context>
@@ -2398,7 +2413,7 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="258"/>
         <source>Use Hypervisor Manager when importing</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutze den Hypervisor Manager beim Importieren</translation>
     </message>
 </context>
 <context>
@@ -2441,22 +2456,22 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
         <source>Terminal command:</source>
-        <translation type="unfinished">Terminalemulation:</translation>
+        <translation>Terminalemulation:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="88"/>
         <source>IOS/PIX directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>IOS/PIX Verzeichnis:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="127"/>
         <source>Always use manual mode when adding links</source>
-        <translation type="unfinished"></translation>
+        <translation>Beim hinzufügen von Verbindungen immer den manuellen Modus benutzen</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
         <source>Launch this command using the system default shell</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutze die Standard-Shell des System um den Befehl auszuführen</translation>
     </message>
 </context>
 <context>
@@ -2464,62 +2479,62 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="13"/>
         <source>Form</source>
-        <translation type="unfinished">Vordruck</translation>
+        <translation>Vordruck</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="19"/>
         <source>Pemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemuwrapper</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="25"/>
         <source>Path (pemuwrapper.exe on Windows else pemuwrapper.py):</source>
-        <translation type="unfinished"></translation>
+        <translation>Pfad (pemuwrapper auf Windows alles andere pemuwrapper.py):</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="117"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="45"/>
         <source>Working directory:</source>
-        <translation type="unfinished">Arbeitsverzeichnis:</translation>
+        <translation>Arbeitsverzeichnis:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="62"/>
         <source>Enable Pemu Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemu Manager einschalten</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="72"/>
         <source>Use Pemu Manager when importing</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutze den Pemu Manager beim Importieren</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="85"/>
         <source>Host for an external pemuwrapper:</source>
-        <translation type="unfinished"></translation>
+        <translation>Host für einen externen pemuwrapper:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="98"/>
         <source>Defaults PIX settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Zurücksetzen der PIX Einstellungen</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="107"/>
         <source>PIX image:</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX-Image:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="127"/>
         <source>Key:</source>
-        <translation type="unfinished"></translation>
+        <translation>Schlüssel:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="144"/>
         <source>Serial:</source>
-        <translation type="unfinished"></translation>
+        <translation>Serien:</translation>
     </message>
 </context>
 <context>
@@ -2602,12 +2617,12 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
     <message>
         <location filename="../Scene.py" line="104"/>
         <source>Change the hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>Namen des Hosts ändern</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="109"/>
         <source>Show/Hide the hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige/Verberge den Hostnamen</translation>
     </message>
 </context>
 <context>
@@ -2633,17 +2648,17 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Bitte den Pfad zu Dyamips konfigurieren</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="440"/>
+        <location filename="../Topology.py" line="449"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="290"/>
+        <location filename="../Topology.py" line="294"/>
         <source>Connection lost</source>
         <translation>Verbindung verloren</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="355"/>
+        <location filename="../Topology.py" line="364"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
@@ -2660,32 +2675,32 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
     <message>
         <location filename="../Topology.py" line="243"/>
         <source>Please choose an image</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte wähle ein IOS-Image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="355"/>
+        <location filename="../Topology.py" line="364"/>
         <source>You have to connect at least one router to the switch</source>
-        <translation type="unfinished"></translation>
+        <translation>Es muss mindestens ein Router mit dem Switch verbunden sein</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="271"/>
         <source>PIX image</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX-Image</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="271"/>
         <source>Please configure a default PIX image</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte konfiguriere ein Standard PIX-Image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="342"/>
+        <location filename="../Topology.py" line="351"/>
         <source>Can&apos;t connect these devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Kann Geräte nicht verbinden</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="259"/>
         <source>Please test the path to Dynamips in preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Den Pfad zu Dynamips in den Einstellungen überprüfen</translation>
     </message>
 </context>
 <context>
@@ -2696,119 +2711,119 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Docks</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="341"/>
+        <location filename="../Workspace.py" line="349"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="341"/>
+        <location filename="../Workspace.py" line="349"/>
         <source>Connection lost</source>
         <translation>Verbindung verloren</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="338"/>
+        <location filename="../Workspace.py" line="346"/>
         <source>Dynamips warning</source>
         <translation>Warnung von Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="317"/>
+        <location filename="../Workspace.py" line="325"/>
         <source>Abort</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="353"/>
+        <location filename="../Workspace.py" line="361"/>
         <source>Starting nodes ...</source>
         <translation>Starte Einheiten ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="359"/>
+        <location filename="../Workspace.py" line="367"/>
         <source>Stopping nodes ...</source>
         <translation>Beende Einheiten ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="365"/>
+        <location filename="../Workspace.py" line="373"/>
         <source>Suspending nodes ...</source>
         <translation>Suspendiere Einheiten ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="413"/>
+        <location filename="../Workspace.py" line="421"/>
         <source>Loading</source>
         <translation>Lade</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="288"/>
+        <location filename="../Workspace.py" line="296"/>
         <source>Hide hostnames</source>
         <translation>Verstecke Hostnamen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="293"/>
+        <location filename="../Workspace.py" line="301"/>
         <source>Show hostnames</source>
         <translation>Zeige Hostnamen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="474"/>
+        <location filename="../Workspace.py" line="498"/>
         <source>Open a file</source>
         <translation>Öffne eine Datei</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="470"/>
+        <location filename="../Workspace.py" line="494"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Der Pfad zu Dynamips muss konfiguriert sein</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="507"/>
+        <location filename="../Workspace.py" line="531"/>
         <source>Save Project As</source>
         <translation>Speichere Projekt als</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="434"/>
+        <location filename="../Workspace.py" line="442"/>
         <source>New Project</source>
         <translation>Neues Projekt</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="527"/>
+        <location filename="../Workspace.py" line="551"/>
         <source>Message</source>
         <translation>Nachricht</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="183"/>
+        <location filename="../Workspace.py" line="192"/>
         <source>Are you sure to clear the topology?</source>
         <translation>Sicher, dass die Topologie gelöscht werden soll?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="207"/>
+        <location filename="../Workspace.py" line="215"/>
         <source>Add a link</source>
         <translation>Füge einen Link hinzu</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="222"/>
+        <location filename="../Workspace.py" line="230"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="434"/>
+        <location filename="../Workspace.py" line="442"/>
         <source>Can&apos;t create a project</source>
         <translation>Kann ein Projekt nicht anlegen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="413"/>
+        <location filename="../Workspace.py" line="421"/>
         <source>Invalid file %s</source>
         <translation>Unzulässige Datei %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="527"/>
+        <location filename="../Workspace.py" line="551"/>
         <source>Would you like to save the topology before you quit?</source>
-        <translation type="unfinished"></translation>
+        <translation>Soll die Topologie vor dem Beenden gespeichert werden?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="445"/>
+        <location filename="../Workspace.py" line="456"/>
         <source>Do you want to apply the project settings to the current topology?</source>
-        <translation type="unfinished"></translation>
+        <translation>Möchten Sie die Projekteinstellungen auf die aktuelle Topologie anwenden? </translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="453"/>
+        <location filename="../Workspace.py" line="477"/>
         <source>Would you like to save the current topology?</source>
-        <translation type="unfinished"></translation>
+        <translation>Möchten Sie die aktuelle Topologie speichern?</translation>
     </message>
 </context>
 <context>
@@ -2879,7 +2894,7 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
     <message>
         <location filename="DynamicStrings.py" line="40"/>
         <source>PIX firewall</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX-Firewall</translation>
     </message>
 </context>
 <context>

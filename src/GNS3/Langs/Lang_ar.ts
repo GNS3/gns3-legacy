@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="ar_LY">
-<defaultcodec></defaultcodec>
 <context>
     <name>ATMBRPage</name>
     <message>
@@ -474,52 +473,52 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractEdge</name>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="165"/>
+        <location filename="../Link/AbstractEdge.py" line="168"/>
         <source>Delete</source>
         <translation>مسح</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="169"/>
+        <location filename="../Link/AbstractEdge.py" line="172"/>
         <source>Stop the capture</source>
         <translation>أوقف الالتقاط</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="171"/>
+        <location filename="../Link/AbstractEdge.py" line="174"/>
         <source>Start Wireshark</source>
         <translation>بدأ Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="285"/>
+        <location filename="../Link/AbstractEdge.py" line="300"/>
         <source>Capture</source>
         <translation>ألتقاط</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="187"/>
+        <location filename="../Link/AbstractEdge.py" line="190"/>
         <source>Packet capture is not supported on this link type</source>
         <translation>ألتقاط حزمة غير مدعوم علي هذا الوصلة </translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="211"/>
+        <location filename="../Link/AbstractEdge.py" line="214"/>
         <source>Please choose a source</source>
         <translation>أرجوا أختيار المصدر</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="213"/>
+        <location filename="../Link/AbstractEdge.py" line="216"/>
         <source>No device available for traffic capture</source>
         <translation>لايوجد جهاز متوفر لألتقاط زخم البيانات </translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="264"/>
+        <location filename="../Link/AbstractEdge.py" line="270"/>
         <source>Dynamips error</source>
         <translation>خطأ Dynamips </translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="259"/>
+        <location filename="../Link/AbstractEdge.py" line="265"/>
         <source>Capture stopped</source>
         <translation>الالتقاط توقف</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="274"/>
+        <location filename="../Link/AbstractEdge.py" line="279"/>
         <source>Please configure capture options</source>
         <translation>أرجو أعداد خيارات الالتقاط</translation>
     </message>
@@ -529,14 +528,24 @@ p, li { white-space: pre-wrap; }
         <translation>وصلة: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="220"/>
+        <location filename="../Link/AbstractEdge.py" line="223"/>
         <source>Device %s is not running</source>
         <translation>الجهاز %s لا يعمل</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="285"/>
+        <location filename="../Link/AbstractEdge.py" line="300"/>
         <source>Cannot start %s : %s</source>
         <translation>لايمكن البدأ %s : %s</translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="286"/>
+        <source>%s is empty, no traffic captured on the link. Try again later</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="289"/>
+        <source>Cannot find %s : %s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -927,17 +936,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>FW</name>
     <message>
-        <location filename="../Node/FW.py" line="250"/>
+        <location filename="../Node/FW.py" line="252"/>
         <source>%s: no PIX image</source>
         <translation>%s: عدم توفر image</translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="304"/>
+        <location filename="../Node/FW.py" line="306"/>
         <source>Connection</source>
         <translation>توصيل</translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="304"/>
+        <location filename="../Node/FW.py" line="306"/>
         <source>No interface available</source>
         <translation>عدم توفر منفذ بيني</translation>
     </message>
@@ -972,7 +981,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="84"/>
         <source>Key:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Key:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="101"/>
@@ -1042,17 +1051,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>IOSDialog</name>
     <message>
-        <location filename="../IOSDialog.py" line="195"/>
+        <location filename="../IOSDialog.py" line="196"/>
         <source>IDLE PC not valid (format required: 0xhhhhhhhh)</source>
         <translation>قيمة غير صحيحة للIDLE PC  (النسق المطلوب: 0xhhhhhhhh)</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="204"/>
+        <location filename="../IOSDialog.py" line="205"/>
         <source>No hypervisor selected, use the local hypervisor</source>
         <translation> المحلي hypervisor لم يتم أختيار, أستخدم ال </translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="332"/>
+        <location filename="../IOSDialog.py" line="333"/>
         <source>Select a working directory</source>
         <translation>أختار مسار تنفيذ</translation>
     </message>
@@ -1192,7 +1201,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>أفتراضي image لهذه المنصة</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="250"/>
+        <location filename="../IOSDialog.py" line="251"/>
         <source>There is already a default image for this platform</source>
         <translation>توجد IMAGE مسبقا لهذه المنصة</translation>
     </message>
@@ -1205,22 +1214,22 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="539"/>
+        <location filename="../Node/IOSRouter.py" line="542"/>
         <source>Connection</source>
         <translation>توصيل</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="539"/>
+        <location filename="../Node/IOSRouter.py" line="542"/>
         <source>No interface available</source>
         <translation>عدم توفر توصيلة</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="222"/>
+        <location filename="../Node/IOSRouter.py" line="225"/>
         <source>Slots</source>
         <translation>Slots</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="222"/>
+        <location filename="../Node/IOSRouter.py" line="225"/>
         <source>You have to restart this router to use new modules</source>
         <translation>يتوجب اعادة تشغيل الروتر لتتمكن من أستخدام الوحدة الجديدة </translation>
     </message>
@@ -1739,49 +1748,54 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="309"/>
+        <location filename="../NETFile.py" line="315"/>
         <source>Save</source>
         <translation>حفظ</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="309"/>
+        <location filename="../NETFile.py" line="315"/>
         <source>Please configure the path to Dynamips</source>
         <translation>أرجو تهيئة مسار ال Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="562"/>
+        <location filename="../NETFile.py" line="568"/>
         <source>Dynamips error</source>
         <translation>Dynamips خطأ</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="565"/>
+        <location filename="../NETFile.py" line="571"/>
         <source>Dynamips warning</source>
         <translation>Dynamips تحذير</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="331"/>
+        <location filename="../NETFile.py" line="341"/>
         <source>Exception detected, stopping importation...</source>
         <translation type="unfinished">وجود أستثناء,يتم أيقاف الاستيراد</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="572"/>
+        <location filename="../NETFile.py" line="578"/>
         <source>Exporting %s configuration to %s</source>
         <translation>يتم تصدير %s التهيئة ل  %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="579"/>
+        <location filename="../NETFile.py" line="585"/>
         <source>%s: IO Error: %s</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="331"/>
+        <location filename="../NETFile.py" line="341"/>
         <source>Importation</source>
         <translation>أستيراد</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="339"/>
+        <location filename="../NETFile.py" line="326"/>
         <source>Please wait while importing the topology</source>
         <translation>أرجو ا الانتظار حتي يتم أستيراد التوبولوجي</translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="585"/>
+        <source>IOError</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2271,7 +2285,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Scene.py" line="232"/>
         <source>No idlepc values found</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">لم يتم أيجاد قيم idlepc</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="235"/>
@@ -2332,17 +2346,17 @@ to display the configuration page.</source>
         <translation>أرجو تهيئة مسارDynamips </translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="440"/>
+        <location filename="../Topology.py" line="449"/>
         <source>Dynamips error</source>
         <translation>Dynamips خطأ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="290"/>
+        <location filename="../Topology.py" line="294"/>
         <source>Connection lost</source>
         <translation>فقدالاتصال</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="355"/>
+        <location filename="../Topology.py" line="364"/>
         <source>Connection</source>
         <translation>توصيل</translation>
     </message>
@@ -2362,7 +2376,7 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="355"/>
+        <location filename="../Topology.py" line="364"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>يتوجب علي الاقل ربط روتر واحد بسوتش واحد</translation>
     </message>
@@ -2377,7 +2391,7 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="342"/>
+        <location filename="../Topology.py" line="351"/>
         <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2395,117 +2409,117 @@ to display the configuration page.</source>
         <translation>القوائم</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="341"/>
+        <location filename="../Workspace.py" line="349"/>
         <source>Dynamips error</source>
         <translation>Dynamips خطأ</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="341"/>
+        <location filename="../Workspace.py" line="349"/>
         <source>Connection lost</source>
         <translation>فقد الاتصال</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="338"/>
+        <location filename="../Workspace.py" line="346"/>
         <source>Dynamips warning</source>
         <translation>Dynamips تحذير</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="317"/>
+        <location filename="../Workspace.py" line="325"/>
         <source>Abort</source>
         <translation>فشل</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="353"/>
+        <location filename="../Workspace.py" line="361"/>
         <source>Starting nodes ...</source>
         <translation>يتم بدأ النقاط الطرفية ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="359"/>
+        <location filename="../Workspace.py" line="367"/>
         <source>Stopping nodes ...</source>
         <translation>يتم توقف النقاط الطرفية ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="365"/>
+        <location filename="../Workspace.py" line="373"/>
         <source>Suspending nodes ...</source>
         <translation>يتم الوضع المؤقت ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="413"/>
+        <location filename="../Workspace.py" line="421"/>
         <source>Loading</source>
         <translation>تحميل</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="288"/>
+        <location filename="../Workspace.py" line="296"/>
         <source>Hide hostnames</source>
         <translation>عدم أظهار الاسم</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="293"/>
+        <location filename="../Workspace.py" line="301"/>
         <source>Show hostnames</source>
         <translation>أظهر الاسم</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="474"/>
+        <location filename="../Workspace.py" line="498"/>
         <source>Open a file</source>
         <translation>فتح ملف</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="470"/>
+        <location filename="../Workspace.py" line="494"/>
         <source>The path to Dynamips must be configured</source>
         <translation>يجب تهيئة مسارDynamips </translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="507"/>
+        <location filename="../Workspace.py" line="531"/>
         <source>Save Project As</source>
         <translation>احفظ المشروع بأسم</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="434"/>
+        <location filename="../Workspace.py" line="442"/>
         <source>New Project</source>
         <translation>مشروع جديد</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="527"/>
+        <location filename="../Workspace.py" line="551"/>
         <source>Message</source>
         <translation>رسالة</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="183"/>
+        <location filename="../Workspace.py" line="192"/>
         <source>Are you sure to clear the topology?</source>
         <translation>هل انت متأكد من مسح التوبولوجي؟</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="207"/>
+        <location filename="../Workspace.py" line="215"/>
         <source>Add a link</source>
         <translation>أضافة وصلة</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="222"/>
+        <location filename="../Workspace.py" line="230"/>
         <source>Cancel</source>
         <translation>ألغاء</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="434"/>
+        <location filename="../Workspace.py" line="442"/>
         <source>Can&apos;t create a project</source>
         <translation>لايمكن أنشاء مشروع</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="413"/>
+        <location filename="../Workspace.py" line="421"/>
         <source>Invalid file %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="527"/>
+        <location filename="../Workspace.py" line="551"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>هل ترغب بحفظ التوبولوجي قبل الخروج؟</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="445"/>
+        <location filename="../Workspace.py" line="456"/>
         <source>Do you want to apply the project settings to the current topology?</source>
         <translation>هل ترغب بتطبيق اعدادات المشروع لتوبولوجي الحالي؟</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="453"/>
+        <location filename="../Workspace.py" line="477"/>
         <source>Would you like to save the current topology?</source>
         <translation>هل ترغب بحفظ التوبولوجي الحالي؟</translation>
     </message>

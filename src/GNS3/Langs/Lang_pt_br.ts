@@ -473,52 +473,52 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractEdge</name>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="165"/>
+        <location filename="../Link/AbstractEdge.py" line="168"/>
         <source>Delete</source>
         <translation>Apagar</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="169"/>
+        <location filename="../Link/AbstractEdge.py" line="172"/>
         <source>Stop the capture</source>
         <translation>Parar a captura</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="171"/>
+        <location filename="../Link/AbstractEdge.py" line="174"/>
         <source>Start Wireshark</source>
         <translation>Iniciar Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="285"/>
+        <location filename="../Link/AbstractEdge.py" line="300"/>
         <source>Capture</source>
         <translation>Captura</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="187"/>
+        <location filename="../Link/AbstractEdge.py" line="190"/>
         <source>Packet capture is not supported on this link type</source>
         <translation>A captura de pacotes não é suportada neste tipo de enlace</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="211"/>
+        <location filename="../Link/AbstractEdge.py" line="214"/>
         <source>Please choose a source</source>
         <translation>Escolha uma origem</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="213"/>
+        <location filename="../Link/AbstractEdge.py" line="216"/>
         <source>No device available for traffic capture</source>
         <translation>Nenhum dispositivo disponível para captura de tráfego</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="264"/>
+        <location filename="../Link/AbstractEdge.py" line="270"/>
         <source>Dynamips error</source>
         <translation>Erro do Dynamips</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="259"/>
+        <location filename="../Link/AbstractEdge.py" line="265"/>
         <source>Capture stopped</source>
         <translation>Captura parada</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="274"/>
+        <location filename="../Link/AbstractEdge.py" line="279"/>
         <source>Please configure capture options</source>
         <translation>Configure as opções de captura</translation>
     </message>
@@ -528,14 +528,24 @@ p, li { white-space: pre-wrap; }
         <translation>Enlace: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="220"/>
+        <location filename="../Link/AbstractEdge.py" line="223"/>
         <source>Device %s is not running</source>
         <translation>Dispositivo %s não está rodando</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="285"/>
+        <location filename="../Link/AbstractEdge.py" line="300"/>
         <source>Cannot start %s : %s</source>
         <translation>Não consigo iniciar %s : %s</translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="286"/>
+        <source>%s is empty, no traffic captured on the link. Try again later</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="289"/>
+        <source>Cannot find %s : %s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -928,17 +938,17 @@ Entre o número do valor idlepc para aplicar [1-%i] ou ENTRE para não alterar:
 <context>
     <name>FW</name>
     <message>
-        <location filename="../Node/FW.py" line="250"/>
+        <location filename="../Node/FW.py" line="252"/>
         <source>%s: no PIX image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="304"/>
+        <location filename="../Node/FW.py" line="306"/>
         <source>Connection</source>
         <translation type="unfinished">Conexão</translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="304"/>
+        <location filename="../Node/FW.py" line="306"/>
         <source>No interface available</source>
         <translation type="unfinished">Interface indisponível</translation>
     </message>
@@ -1048,17 +1058,17 @@ Entre o número do valor idlepc para aplicar [1-%i] ou ENTRE para não alterar:
         <translation>Selecione uma imagem de IOS</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="195"/>
+        <location filename="../IOSDialog.py" line="196"/>
         <source>IDLE PC not valid (format required: 0xhhhhhhhh)</source>
         <translation>IDLE PC não válido (formato requerido: 0xhhhhhhhh)</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="204"/>
+        <location filename="../IOSDialog.py" line="205"/>
         <source>No hypervisor selected, use the local hypervisor</source>
         <translation>Hypervisor não selecionado, use o hypervisor local</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="332"/>
+        <location filename="../IOSDialog.py" line="333"/>
         <source>Select a working directory</source>
         <translation>Selecione o diretório de trabalho</translation>
     </message>
@@ -1193,7 +1203,7 @@ Entre o número do valor idlepc para aplicar [1-%i] ou ENTRE para não alterar:
         <translation>Imagem padrão para esta plataforma</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="250"/>
+        <location filename="../IOSDialog.py" line="251"/>
         <source>There is already a default image for this platform</source>
         <translation>Já existe uma imagem padrão para esta plataforma</translation>
     </message>
@@ -1206,22 +1216,22 @@ Entre o número do valor idlepc para aplicar [1-%i] ou ENTRE para não alterar:
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="539"/>
+        <location filename="../Node/IOSRouter.py" line="542"/>
         <source>Connection</source>
         <translation>Conexão</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="539"/>
+        <location filename="../Node/IOSRouter.py" line="542"/>
         <source>No interface available</source>
         <translation>Interface indisponível</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="222"/>
+        <location filename="../Node/IOSRouter.py" line="225"/>
         <source>Slots</source>
         <translation>Slots</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="222"/>
+        <location filename="../Node/IOSRouter.py" line="225"/>
         <source>You have to restart this router to use new modules</source>
         <translation>Você tem que reinicializar o roteador para usar o novo módulo</translation>
     </message>
@@ -1740,48 +1750,53 @@ Entre o número do valor idlepc para aplicar [1-%i] ou ENTRE para não alterar:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="309"/>
+        <location filename="../NETFile.py" line="315"/>
         <source>Save</source>
         <translation>Salvar</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="309"/>
+        <location filename="../NETFile.py" line="315"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Por favor configure o caminho para o Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="562"/>
+        <location filename="../NETFile.py" line="568"/>
         <source>Dynamips error</source>
         <translation>Erro no Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="565"/>
+        <location filename="../NETFile.py" line="571"/>
         <source>Dynamips warning</source>
         <translation>Avisos Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="331"/>
+        <location filename="../NETFile.py" line="341"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Detectada excessão, parando a importação...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="572"/>
+        <location filename="../NETFile.py" line="578"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportando a configuração %s para %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="579"/>
+        <location filename="../NETFile.py" line="585"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Erro de IO: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="331"/>
+        <location filename="../NETFile.py" line="341"/>
         <source>Importation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="339"/>
+        <location filename="../NETFile.py" line="326"/>
         <source>Please wait while importing the topology</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="585"/>
+        <source>IOError</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2332,17 +2347,17 @@ para amostrar a página de configuração.</translation>
         <translation>Por favor configure o caminho para o Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="440"/>
+        <location filename="../Topology.py" line="449"/>
         <source>Dynamips error</source>
         <translation>Erro do Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="290"/>
+        <location filename="../Topology.py" line="294"/>
         <source>Connection lost</source>
         <translation>Perda de conexão</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="355"/>
+        <location filename="../Topology.py" line="364"/>
         <source>Connection</source>
         <translation>Conexão</translation>
     </message>
@@ -2372,12 +2387,12 @@ para amostrar a página de configuração.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="342"/>
+        <location filename="../Topology.py" line="351"/>
         <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="355"/>
+        <location filename="../Topology.py" line="364"/>
         <source>You have to connect at least one router to the switch</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2395,117 +2410,117 @@ para amostrar a página de configuração.</translation>
         <translation>Docks</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="341"/>
+        <location filename="../Workspace.py" line="349"/>
         <source>Dynamips error</source>
         <translation>Erro do Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="341"/>
+        <location filename="../Workspace.py" line="349"/>
         <source>Connection lost</source>
         <translation>Perda de conexão</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="288"/>
+        <location filename="../Workspace.py" line="296"/>
         <source>Hide hostnames</source>
         <translation>Esconder os nomes dos hospedeirosHide hostnames</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="293"/>
+        <location filename="../Workspace.py" line="301"/>
         <source>Show hostnames</source>
         <translation>Mostrar os nomes dos hospedeiros</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="338"/>
+        <location filename="../Workspace.py" line="346"/>
         <source>Dynamips warning</source>
         <translation>Avisos do Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="317"/>
+        <location filename="../Workspace.py" line="325"/>
         <source>Abort</source>
         <translation>Abortar</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="353"/>
+        <location filename="../Workspace.py" line="361"/>
         <source>Starting nodes ...</source>
         <translation>Iniciar nós...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="359"/>
+        <location filename="../Workspace.py" line="367"/>
         <source>Stopping nodes ...</source>
         <translation>Parar nós...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="365"/>
+        <location filename="../Workspace.py" line="373"/>
         <source>Suspending nodes ...</source>
         <translation>Suspender nós...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="474"/>
+        <location filename="../Workspace.py" line="498"/>
         <source>Open a file</source>
         <translation>Abrr o arquivo</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="507"/>
+        <location filename="../Workspace.py" line="531"/>
         <source>Save Project As</source>
         <translation>Salvar Projeto Como</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="413"/>
+        <location filename="../Workspace.py" line="421"/>
         <source>Loading</source>
         <translation>Carregando</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="470"/>
+        <location filename="../Workspace.py" line="494"/>
         <source>The path to Dynamips must be configured</source>
         <translation>O caminho para o Dynamips deve ser configurado</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="434"/>
+        <location filename="../Workspace.py" line="442"/>
         <source>New Project</source>
         <translation>Novo Projeto</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="527"/>
+        <location filename="../Workspace.py" line="551"/>
         <source>Message</source>
         <translation>Mensagem</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="183"/>
+        <location filename="../Workspace.py" line="192"/>
         <source>Are you sure to clear the topology?</source>
         <translation>Realmente apagar a topologia?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="207"/>
+        <location filename="../Workspace.py" line="215"/>
         <source>Add a link</source>
         <translation>Adicionar enlace</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="222"/>
+        <location filename="../Workspace.py" line="230"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="434"/>
+        <location filename="../Workspace.py" line="442"/>
         <source>Can&apos;t create a project</source>
         <translation>Não é possível criar um projeto</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="413"/>
+        <location filename="../Workspace.py" line="421"/>
         <source>Invalid file %s</source>
         <translation>Arquivo %s inválido</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="445"/>
+        <location filename="../Workspace.py" line="456"/>
         <source>Do you want to apply the project settings to the current topology?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="453"/>
+        <location filename="../Workspace.py" line="477"/>
         <source>Would you like to save the current topology?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="527"/>
+        <location filename="../Workspace.py" line="551"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation type="unfinished"></translation>
     </message>
