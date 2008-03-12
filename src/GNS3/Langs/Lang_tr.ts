@@ -5,57 +5,57 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="13"/>
         <source>ATM Bridge</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="25"/>
         <source>Ethernet side</source>
-        <translation type="unfinished"></translation>
+        <translation>Ethernet tarafı</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="104"/>
         <source>Port:</source>
-        <translation type="unfinished">Port:</translation>
+        <translation>Port:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="60"/>
         <source>Mapping</source>
-        <translation type="unfinished">Haritalandırma</translation>
+        <translation>Haritalandırma</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="76"/>
         <source>Ethernet Port</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="81"/>
         <source>Port:VCI:VPI</source>
-        <translation type="unfinished">Port:VCI:VPI</translation>
+        <translation>Port:VCI:VPI</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="98"/>
         <source>ATM side</source>
-        <translation type="unfinished"></translation>
+        <translation>ATM tarafı</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="130"/>
         <source>VCI:</source>
-        <translation type="unfinished">VCI:</translation>
+        <translation>VCI:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="159"/>
         <source>VPI:</source>
-        <translation type="unfinished">VPI:</translation>
+        <translation>VPI:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="185"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">&amp;Ekle</translation>
+        <translation>&amp;Ekle</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="195"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;Sil</translation>
+        <translation>&amp;Sil</translation>
     </message>
 </context>
 <context>
@@ -768,7 +768,23 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aboulgasem Albusaifi from Tarabulus, Libya: Arabic translation&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Marcio de Freitas Minicz from Sao Jose dos Campos, SP, Brazil: Brazilian-Portuguese translation &lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hasan Agirol Aksoy from Antalya, Turkey: Turkish translation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;(new line)
+p, li { white-space: pre-wrap; }(new line)
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;(new line)
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alexander H. Hackenberg from Vienna, Austria&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Erik Wenzel from Germany: German translation&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Huan Ji from Wuhan, China: Chinese translation&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jose Sen from Buenos Aires, Argentina: Spanish translation&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mark Soe Min from Tokyo, Japan: Japanese translation&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aboulgasem Albusaifi from Tarabulus, Libya: Arabic translation&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Marcio de Freitas Minicz from Sao Jose dos Campos, SP, Brazil: Brazilian-Portuguese translation &lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hasan &apos;agirol&apos; Aksoy from Antalya, Turkey: Turkish translation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -889,7 +905,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="223"/>
         <source>No interface available, please configure this device</source>
-        <translation type="unfinished"></translation>
+        <translation>Kullanılabilir arabirim yok, lütfen cihazın ayarlamasını yapın</translation>
     </message>
 </context>
 <context>
@@ -987,17 +1003,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="555"/>
         <source>NIO NULL</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="567"/>
         <source>Identifier:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tanımlayıcı:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="29"/>
         <source>Generic Ethernet NIO (require Administrator access)</source>
-        <translation type="unfinished"></translation>
+        <translation>Genel Ethernet NIO (Administrator erişimi gerektirir)</translation>
     </message>
 </context>
 <context>
@@ -1239,17 +1255,17 @@ Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmama
     <message>
         <location filename="../Node/FW.py" line="252"/>
         <source>%s: no PIX image</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: PIX imajı yok</translation>
     </message>
     <message>
         <location filename="../Node/FW.py" line="306"/>
         <source>Connection</source>
-        <translation type="unfinished">Bağlantı</translation>
+        <translation>Bağlantı</translation>
     </message>
     <message>
         <location filename="../Node/FW.py" line="306"/>
         <source>No interface available</source>
-        <translation type="unfinished">Kullanılabilir arabirim yok</translation>
+        <translation>Kullanılabilir arabirim yok</translation>
     </message>
 </context>
 <context>
@@ -1257,37 +1273,37 @@ Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmama
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="13"/>
         <source>Firewall configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Firewall ayarı</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="19"/>
         <source>PIX Image:</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX Imajı:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="48"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="55"/>
         <source>RAM size:</source>
-        <translation type="unfinished">RAM boyutu:</translation>
+        <translation>RAM boyutu:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="68"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="84"/>
         <source>Key:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anahtar:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="101"/>
         <source>Serial:</source>
-        <translation type="unfinished"></translation>
+        <translation>Seri numarası:</translation>
     </message>
 </context>
 <context>
@@ -1341,12 +1357,12 @@ Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmama
     <message>
         <location filename="../HypervisorManager.py" line="73"/>
         <source>A hypervisor is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>Hipervizör %i portunda çalışıyor, GNS3 ü kapatsanız bile kapanmaz</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="108"/>
         <source>Connecting to a hypervisor on port %i ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Hipervizöre %i portundan bağlanılıyor ...</translation>
     </message>
 </context>
 <context>
@@ -2086,17 +2102,17 @@ Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmama
     <message>
         <location filename="../NETFile.py" line="341"/>
         <source>Importation</source>
-        <translation type="unfinished"></translation>
+        <translation>İçe aktarma</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="326"/>
         <source>Please wait while importing the topology</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen bekleyin topoloji içe aktarılıyor</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="585"/>
         <source>IOError</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -2234,12 +2250,12 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../NodeConfigurator.py" line="123"/>
         <source>PIX firewalls</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="135"/>
         <source>ATM bridges</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -2247,27 +2263,27 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../PemuManager.py" line="60"/>
         <source>Connecting to pemu on port %i ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemu&apos;ya %i numaralı porttan bağlanılıyor ...</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="61"/>
         <source>Abort</source>
-        <translation type="unfinished">Yarıda bırak</translation>
+        <translation>Yarıda bırak</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="85"/>
         <source>Can&apos;t connect to pemu on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemu&apos;ya %i numaralı porttan bağlanalılamıyor</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="114"/>
         <source>Pemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemu %i portunda çalışıyor, GNS3 ü kapatsanız bile kapanmaz</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="127"/>
         <source>Can&apos;t start Pemu on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemu %i numaralı porttan başlatılamıyor</translation>
     </message>
 </context>
 <context>
@@ -2411,7 +2427,7 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="258"/>
         <source>Use Hypervisor Manager when importing</source>
-        <translation type="unfinished"></translation>
+        <translation>İçe aktarım için Hipervizör yöneticisini kullan</translation>
     </message>
 </context>
 <context>
@@ -2454,22 +2470,22 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
         <source>Terminal command:</source>
-        <translation type="unfinished">Terminal command:</translation>
+        <translation>Terminal command:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="88"/>
         <source>IOS/PIX directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>IOS/PIX dizini:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="127"/>
         <source>Always use manual mode when adding links</source>
-        <translation type="unfinished"></translation>
+        <translation>Bağlantı eklemesini daima elle yap</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
         <source>Launch this command using the system default shell</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu komutu çalıştırırken varsayılan sistem kabuğunu kullan</translation>
     </message>
 </context>
 <context>
@@ -2477,62 +2493,62 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="13"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="19"/>
         <source>Pemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="25"/>
         <source>Path (pemuwrapper.exe on Windows else pemuwrapper.py):</source>
-        <translation type="unfinished"></translation>
+        <translation>Yol (pemuwrapper.py Windows&apos;ta pemuwrapper.exe olarak geçer ):</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="117"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="45"/>
         <source>Working directory:</source>
-        <translation type="unfinished">Çalışma dizini:</translation>
+        <translation>Çalışma dizini:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="62"/>
         <source>Enable Pemu Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemu Yöneticisini Etkinleştir</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="72"/>
         <source>Use Pemu Manager when importing</source>
-        <translation type="unfinished"></translation>
+        <translation>İçeri aktarım için Pemu Yöneticisini kullan</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="85"/>
         <source>Host for an external pemuwrapper:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dış pemuwrapper için Host ol:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="98"/>
         <source>Defaults PIX settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Varsayılan PIX ayarları</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="107"/>
         <source>PIX image:</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX imajı:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="127"/>
         <source>Key:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anahtar:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="144"/>
         <source>Serial:</source>
-        <translation type="unfinished"></translation>
+        <translation>Seri numarası:</translation>
     </message>
 </context>
 <context>
@@ -2580,7 +2596,7 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../Scene.py" line="191"/>
         <source>Please select only one router</source>
-        <translation type="unfinished">Lütfen tek router seçin</translation>
+        <translation>Lütfen tek router seçin</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="232"/>
@@ -2610,17 +2626,17 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../Scene.py" line="104"/>
         <source>Change the hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>Host adını değiştir</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="109"/>
         <source>Show/Hide the hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>Host adlarını Göster/Gizle</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="180"/>
         <source>Please wait while calculating an IDLE PC</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen bekleyin IDLE PC hesaplanıyor</translation>
     </message>
 </context>
 <context>
@@ -2673,32 +2689,32 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="../Topology.py" line="243"/>
         <source>Please choose an image</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen imajı seçin</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="364"/>
         <source>You have to connect at least one router to the switch</source>
-        <translation type="unfinished"></translation>
+        <translation>Switch&apos;e en az bir Router bağlamalısınız</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="271"/>
         <source>PIX image</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX imaj</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="271"/>
         <source>Please configure a default PIX image</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen varsayılan PIX imajını ayarlayın</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="351"/>
         <source>Can&apos;t connect these devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu cihazlara bağlantı kurulamıyor</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="259"/>
         <source>Please test the path to Dynamips in preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen tercihlerden Dynamips&apos;in çalışma yolunu test edin</translation>
     </message>
 </context>
 <context>
@@ -2709,7 +2725,7 @@ lütfen nod seçin.</translation>
         <translation>Araçlar</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="349"/>
+        <location filename="../Workspace.py" line="478"/>
         <source>Dynamips error</source>
         <translation>Dynamips hatası</translation>
     </message>
@@ -2759,17 +2775,17 @@ lütfen nod seçin.</translation>
         <translation>Host adlarını göster</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="498"/>
+        <location filename="../Workspace.py" line="501"/>
         <source>Open a file</source>
         <translation>Dosya aç</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="494"/>
+        <location filename="../Workspace.py" line="497"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Dynamips&apos;in yolunu ayarlayınız</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="531"/>
+        <location filename="../Workspace.py" line="534"/>
         <source>Save Project As</source>
         <translation>Projeyi Farklı Kaydet</translation>
     </message>
@@ -2779,7 +2795,7 @@ lütfen nod seçin.</translation>
         <translation>Yeni Proje</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="551"/>
+        <location filename="../Workspace.py" line="554"/>
         <source>Message</source>
         <translation>Mesaj</translation>
     </message>
@@ -2809,19 +2825,19 @@ lütfen nod seçin.</translation>
         <translation>%s geçersiz dosya</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="551"/>
+        <location filename="../Workspace.py" line="554"/>
         <source>Would you like to save the topology before you quit?</source>
-        <translation type="unfinished"></translation>
+        <translation>Çıkmadan önce topolojiyi kaydetmek istermisiniz?</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="456"/>
         <source>Do you want to apply the project settings to the current topology?</source>
-        <translation type="unfinished"></translation>
+        <translation>Proje ayarlarını mevcut topolojiye uygulamak istermisiniz?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="477"/>
+        <location filename="../Workspace.py" line="480"/>
         <source>Would you like to save the current topology?</source>
-        <translation type="unfinished"></translation>
+        <translation>Mevcut topolojiyi kaydetmek istermisiniz?</translation>
     </message>
 </context>
 <context>
@@ -2892,7 +2908,7 @@ lütfen nod seçin.</translation>
     <message>
         <location filename="DynamicStrings.py" line="40"/>
         <source>PIX firewall</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>

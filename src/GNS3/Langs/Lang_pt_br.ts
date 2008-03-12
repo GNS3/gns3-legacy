@@ -2410,7 +2410,7 @@ para amostrar a página de configuração.</translation>
         <translation>Docks</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="349"/>
+        <location filename="../Workspace.py" line="478"/>
         <source>Dynamips error</source>
         <translation>Erro do Dynamips</translation>
     </message>
@@ -2455,12 +2455,12 @@ para amostrar a página de configuração.</translation>
         <translation>Suspender nós...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="498"/>
+        <location filename="../Workspace.py" line="501"/>
         <source>Open a file</source>
         <translation>Abrr o arquivo</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="531"/>
+        <location filename="../Workspace.py" line="534"/>
         <source>Save Project As</source>
         <translation>Salvar Projeto Como</translation>
     </message>
@@ -2470,7 +2470,7 @@ para amostrar a página de configuração.</translation>
         <translation>Carregando</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="494"/>
+        <location filename="../Workspace.py" line="497"/>
         <source>The path to Dynamips must be configured</source>
         <translation>O caminho para o Dynamips deve ser configurado</translation>
     </message>
@@ -2480,7 +2480,7 @@ para amostrar a página de configuração.</translation>
         <translation>Novo Projeto</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="551"/>
+        <location filename="../Workspace.py" line="554"/>
         <source>Message</source>
         <translation>Mensagem</translation>
     </message>
@@ -2515,12 +2515,12 @@ para amostrar a página de configuração.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="477"/>
+        <location filename="../Workspace.py" line="480"/>
         <source>Would you like to save the current topology?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="551"/>
+        <location filename="../Workspace.py" line="554"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation type="unfinished"></translation>
     </message>

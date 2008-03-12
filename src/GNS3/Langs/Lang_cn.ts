@@ -2426,7 +2426,7 @@ to display the configuration page.</source>
         <translation>浮动窗口</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="349"/>
+        <location filename="../Workspace.py" line="478"/>
         <source>Dynamips error</source>
         <translation>Dynamips 错误</translation>
     </message>
@@ -2476,17 +2476,17 @@ to display the configuration page.</source>
         <translation>显示设备名</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="498"/>
+        <location filename="../Workspace.py" line="501"/>
         <source>Open a file</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="494"/>
+        <location filename="../Workspace.py" line="497"/>
         <source>The path to Dynamips must be configured</source>
         <translation>必须配置Dynamips路径</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="531"/>
+        <location filename="../Workspace.py" line="534"/>
         <source>Save Project As</source>
         <translation>另存工程为</translation>
     </message>
@@ -2496,7 +2496,7 @@ to display the configuration page.</source>
         <translation>新工程</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="551"/>
+        <location filename="../Workspace.py" line="554"/>
         <source>Message</source>
         <translation>消息</translation>
     </message>
@@ -2526,7 +2526,7 @@ to display the configuration page.</source>
         <translation>无效文件%s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="551"/>
+        <location filename="../Workspace.py" line="554"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>是否在退出之前保存拓扑?</translation>
     </message>
@@ -2536,7 +2536,7 @@ to display the configuration page.</source>
         <translation>是否应用该工程的设置到当前拓扑?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="477"/>
+        <location filename="../Workspace.py" line="480"/>
         <source>Would you like to save the current topology?</source>
         <translation>是否保存当前拓扑?</translation>
     </message>

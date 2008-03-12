@@ -2711,7 +2711,7 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Docks</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="349"/>
+        <location filename="../Workspace.py" line="478"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
@@ -2761,17 +2761,17 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Zeige Hostnamen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="498"/>
+        <location filename="../Workspace.py" line="501"/>
         <source>Open a file</source>
         <translation>Öffne eine Datei</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="494"/>
+        <location filename="../Workspace.py" line="497"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Der Pfad zu Dynamips muss konfiguriert sein</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="531"/>
+        <location filename="../Workspace.py" line="534"/>
         <source>Save Project As</source>
         <translation>Speichere Projekt als</translation>
     </message>
@@ -2781,7 +2781,7 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Neues Projekt</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="551"/>
+        <location filename="../Workspace.py" line="554"/>
         <source>Message</source>
         <translation>Nachricht</translation>
     </message>
@@ -2811,7 +2811,7 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Unzulässige Datei %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="551"/>
+        <location filename="../Workspace.py" line="554"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>Soll die Topologie vor dem Beenden gespeichert werden?</translation>
     </message>
@@ -2821,7 +2821,7 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Möchten Sie die Projekteinstellungen auf die aktuelle Topologie anwenden? </translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="477"/>
+        <location filename="../Workspace.py" line="480"/>
         <source>Would you like to save the current topology?</source>
         <translation>Möchten Sie die aktuelle Topologie speichern?</translation>
     </message>

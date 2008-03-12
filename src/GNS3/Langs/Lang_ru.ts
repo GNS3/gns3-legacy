@@ -2407,7 +2407,7 @@ to display the configuration page.</source>
         <translation>Docks</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="349"/>
+        <location filename="../Workspace.py" line="478"/>
         <source>Dynamips error</source>
         <translation>Dynamips error</translation>
     </message>
@@ -2457,17 +2457,17 @@ to display the configuration page.</source>
         <translation>Показать имена хостов</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="498"/>
+        <location filename="../Workspace.py" line="501"/>
         <source>Open a file</source>
         <translation>Открыть файл</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="494"/>
+        <location filename="../Workspace.py" line="497"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Путь к Dynamips должен быть настроен</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="531"/>
+        <location filename="../Workspace.py" line="534"/>
         <source>Save Project As</source>
         <translation>Сохранить Проект Как</translation>
     </message>
@@ -2477,7 +2477,7 @@ to display the configuration page.</source>
         <translation>Новый Проект</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="551"/>
+        <location filename="../Workspace.py" line="554"/>
         <source>Message</source>
         <translation>Сообщение</translation>
     </message>
@@ -2507,7 +2507,7 @@ to display the configuration page.</source>
         <translation>Неверный файл %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="551"/>
+        <location filename="../Workspace.py" line="554"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>Желаете ли вы сохранить топологию перед выходом?</translation>
     </message>
@@ -2517,7 +2517,7 @@ to display the configuration page.</source>
         <translation>Желате ли вы применить настройки проекта к текущей топологии?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="477"/>
+        <location filename="../Workspace.py" line="480"/>
         <source>Would you like to save the current topology?</source>
         <translation>Желаете ли вы сохранить текущую топологию?</translation>
     </message>

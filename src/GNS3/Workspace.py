@@ -471,8 +471,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                         debug("Warning: cannot move " + file + " to " + self.projectWorkdir)
                                         continue
                         # set the new working directory
-                        for hypervisor in globals.GApp.dynagen.dynamips.values():
-                            hypervisor.workingdir = self.projectWorkdir
+                        try:
+                            for hypervisor in globals.GApp.dynagen.dynamips.values():
+                                hypervisor.workingdir = self.projectWorkdir
+                        except lib.DynamipsError, msg:
+                            QtGui.QMessageBox.critical(self, self.projectWorkdir + ': ' + translate("Workspace", "Dynamips error"),  unicode(msg))
                 elif globals.GApp.topology.changed == True:
                     reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the current topology?"),
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
