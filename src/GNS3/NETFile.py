@@ -299,7 +299,7 @@ class NETFile(object):
 
                 if devtype.lower() == 'note':
                     note_object = Annotation()
-                    note_object.setPlainText(gns3data[section]['text'].replace("\\n", "\n"))
+                    note_object.setPlainText(unicode(gns3data[section]['text'].replace("\\n", "\n")))
                     note_object.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
                     globals.GApp.topology.addItem(note_object)
 

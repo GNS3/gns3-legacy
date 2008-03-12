@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import math, time, sys
+import os, math, time, sys
 import GNS3.Globals as globals
 import subprocess as sub
 import GNS3.Dynagen.dynamips_lib as lib
@@ -242,15 +242,18 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                     workdir = capture_conf.workdir
                 else:
                     workdir = globals.GApp.dynagen.devices[device].dynamips.workingdir
-                self.capfile = '"' + workdir + self.source.hostname + '_to_' + self.dest.hostname + '.cap' + '"'
+                self.capfile = workdir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap'
                 debug("Start capture in " + self.capfile)
-                globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'capture','both', encapsulation + " " + self.capfile)
+                globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'capture','both', encapsulation + " " + '"' + self.capfile + '"')
                 self.captureInfo = (device, slot, inttype, port)
                 self.capturing = True
             except lib.DynamipsError, msg:
                 QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Dynamips error"),  unicode(msg))
                 return
-            self.__startWiresharkAction()
+            capture_conf = globals.GApp.systconf['capture']
+            if capture_conf.auto_start:
+                time.sleep(2)
+                self.__startWiresharkAction()
 
     def __stopCaptureAction(self):
         """ Stop capturing frames on the link
@@ -272,20 +275,29 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         """
 
         capture_conf = globals.GApp.systconf['capture']
-        if capture_conf.auto_start:
-            if capture_conf.cap_cmd == '':
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  translate("AbstractEdge", "Please configure capture options"))
+        if capture_conf.cap_cmd == '':
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  translate("AbstractEdge", "Please configure capture options"))
+            return
+
+        try:
+            statinfo = os.stat(self.capfile)
+            if not statinfo.st_size:
+                QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  
+                                            unicode(translate("AbstractEdge",  "%s is empty, no traffic captured on the link. Try again later")) % self.capfile)
                 return
-            try:
-                path = capture_conf.cap_cmd.replace("%c", self.capfile)
-                debug("Start Wireshark like application (wait 2 seconds): " + path)
-                time.sleep(2)
-                if sys.platform.startswith('win'):
-                     sub.Popen(path)
-                else:
-                    sub.Popen(path, shell=True)
-            except OSError, (errno, strerror):
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), unicode(translate("AbstractEdge", "Cannot start %s : %s")) % (path, strerror))
+        except OSError, (errno, strerror):
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), unicode(translate("AbstractEdge", "Cannot find %s : %s")) % (self.capfile, strerror))
+            return
+
+        try:
+            path = capture_conf.cap_cmd.replace("%c", '"' + self.capfile + '"')
+            debug("Start Wireshark like application: " + path)
+            if sys.platform.startswith('win'):
+                 sub.Popen(path)
+            else:
+                sub.Popen(path, shell=True)
+        except OSError, (errno, strerror):
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), unicode(translate("AbstractEdge", "Cannot start %s : %s")) % (path, strerror))
 
     def __deleteAction(self):
         """ Delete the link
