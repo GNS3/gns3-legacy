@@ -245,7 +245,7 @@ class Scene(QtGui.QGraphicsView):
                             image = globals.GApp.iosimages[dyn_router.dynamips.host + ':' + dyn_router.image]
                             image.idlepc =  idles[index]
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, translate("Scene", "Dynamips error"),  str(msg))
+            QtGui.QMessageBox.critical(self, translate("Scene", "Dynamips error"),  unicode(msg))
             return
 
     def slotConfigNode(self):

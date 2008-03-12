@@ -248,7 +248,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 self.captureInfo = (device, slot, inttype, port)
                 self.capturing = True
             except lib.DynamipsError, msg:
-                QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Dynamips error"),  str(msg))
+                QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Dynamips error"),  unicode(msg))
                 return
             self.__startWiresharkAction()
 
@@ -264,7 +264,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             self.captureInfo = None
             self.capfile = None
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Dynamips error"),  str(msg))
+            QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Dynamips error"),  unicode(msg))
             return
 
     def __startWiresharkAction(self):

@@ -147,9 +147,9 @@ class Console(PyCutExt, Dynagen_Console):
                     node.startupInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'running')
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  str(msg))
+            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  unicode(msg))
         except lib.DynamipsWarning,  msg:
-            QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  str(msg))
+            QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  unicode(msg))
         except (lib.DynamipsErrorHandled,  socket.error):
             QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
 
@@ -164,9 +164,9 @@ class Console(PyCutExt, Dynagen_Console):
                     node.shutdownInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'stopped')
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  str(msg))
+            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  unicode(msg))
         except lib.DynamipsWarning,  msg:
-            QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  str(msg))
+            QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  unicode(msg))
         except (lib.DynamipsErrorHandled,  socket.error):
             QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
 
@@ -181,9 +181,9 @@ class Console(PyCutExt, Dynagen_Console):
                     node.suspendInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'suspended')
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  str(msg))
+            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  unicode(msg))
         except lib.DynamipsWarning,  msg:
-            QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  str(msg))
+            QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  unicode(msg))
         except (lib.DynamipsErrorHandled,  socket.error):
             QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
 
@@ -198,9 +198,9 @@ class Console(PyCutExt, Dynagen_Console):
                     node.startupInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'running')
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  str(msg))
+            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  unicode(msg))
         except lib.DynamipsWarning,  msg:
-            QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  str(msg))
+            QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  unicode(msg))
         except (lib.DynamipsErrorHandled,  socket.error):
             QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
 

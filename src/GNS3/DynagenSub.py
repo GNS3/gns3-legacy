@@ -107,7 +107,7 @@ class DynagenSub(Dynagen):
     def doerror(self, msg):
         """Print out an error message"""
 
-        print '\n*** Error:', str(msg)
+        print '\n*** Error:', unicode(msg)
         Dynagen.handled = True
         self.doreset()
         raise

@@ -393,7 +393,7 @@ class Topology(QtGui.QGraphicsScene):
                     self.dynagen.connect(dstdev, dstif, srcdev.name + ' ' + srcif)
 
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  unicode(msg))
             return False
 
         self.recordLink(srcid, srcif, dstid, dstif)
@@ -409,7 +409,7 @@ class Topology(QtGui.QGraphicsScene):
             elif dst_node.state == 'running':
                 dst_node.startupInterfaces()
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  unicode(msg))
             return False
 
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
@@ -446,7 +446,7 @@ class Topology(QtGui.QGraphicsScene):
                     self.dynagen.disconnect(dstdev, link.destIf, srcdev.name + ' ' + link.srcIf)
                 link.dest.set_config(link.dest.get_config())
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  unicode(msg))
             return False
 
         if isinstance(link.source, IOSRouter):

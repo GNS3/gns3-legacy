@@ -30,6 +30,7 @@ from PyQt4 import QtGui, QtCore
 from Annotation import Annotation
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Objects import iosImageConf, hypervisorConf
+from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Node.IOSRouter import IOSRouter, init_router_id
 from GNS3.Node.ATMSW import ATMSW, init_atmsw_id
 from GNS3.Node.ATMBR import ATMBR, init_atmbr_id
@@ -37,6 +38,7 @@ from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
 from GNS3.Node.FRSW import FRSW, init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
 from GNS3.Node.FW import FW, init_fw_id
+
 
 router_hostname_re = re.compile(r"""^R([0-9]+)""")
 ethsw_hostname_re = re.compile(r"""^SW([0-9]+)""")
@@ -124,9 +126,9 @@ class NETFile(object):
                 node.set_hostname(device.name)
                 node.type = item['name']
                 x = y = None
-                if isinstance(device, pix.FW) and  self.dynagen.globalconfig['pemu ' + str(device.dynamips.host)].has_key(node.get_running_config_name()):
-                    x = self.dynagen.globalconfig['pemu ' + str(device.dynamips.host)][node.get_running_config_name()]['x']
-                    y = self.dynagen.globalconfig['pemu ' + str(device.dynamips.host)][node.get_running_config_name()]['y']
+                if isinstance(device, pix.FW) and  self.dynagen.globalconfig['pemu ' + device.dynamips.host].has_key(node.get_running_config_name()):
+                    x = self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()]['x']
+                    y = self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()]['y']
                 elif self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)].has_key(node.get_running_config_name()):
                     x = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['x']
                     y = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['y']
@@ -260,6 +262,10 @@ class NETFile(object):
         max_cloud_id = -1
         gns3data = self.dynagen.getGNS3Data()
         if gns3data:
+            if gns3data.has_key('configs'):
+                globals.GApp.workspace.projectConfigs = gns3data['configs']
+            if gns3data.has_key('workdir'):
+                globals.GApp.workspace.projectWorkdir = gns3data['workdir'] 
             for section in gns3data:
                 try:
                     (devtype, hostname) = section.split(' ')
@@ -320,13 +326,13 @@ class NETFile(object):
             splash.showMessage(translate("NETFile", "Please wait while importing the topology"))
             self.dynagen.ghosting()
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "Dynamips error"),  str(msg))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "Dynamips error"),  unicode(msg))
             globals.GApp.workspace.projectFile = None
             globals.GApp.workspace.setWindowTitle("GNS3")
             globals.GApp.workspace.clear()
             return
         except lib.DynamipsWarning,  msg:
-            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("NETFile", "Dynamips warning"),  str(msg))
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("NETFile", "Dynamips warning"),  unicode(msg))
             globals.GApp.workspace.projectFile = None
             globals.GApp.workspace.setWindowTitle("GNS3")
             globals.GApp.workspace.clear()
@@ -535,13 +541,13 @@ class NETFile(object):
         debug("set hypervisor base port: " + str(globals.hypervisor_baseport))
         debug("set base UDP: " + str(globals.GApp.dynagen.globaludp))
 
-        # restore project working directory
-        if working_dir and working_dir[-7:] == 'working':
+        # restore project working directory if not found in gns3 data
+        if not globals.GApp.workspace.projectWorkdir and working_dir and working_dir[-7:] == 'working':
             globals.GApp.workspace.projectWorkdir = working_dir
             debug("Set working directory: " + working_dir)
 
-        # restore project configs directory
-        if config_dir and config_dir[-7:] == 'configs':
+        # restore project configs directory if not found in gns3 data
+        if not globals.GApp.workspace.projectConfigs and config_dir and config_dir[-7:] == 'configs':
             globals.GApp.workspace.projectConfigs = config_dir
             debug("Set configs directory: " + config_dir)
 
@@ -559,10 +565,10 @@ class NETFile(object):
             config = base64.decodestring(device.config_b64)
             config = config.replace('\r', "")
         except lib.DynamipsError, msg:
-            print unicode(device.name) + ': ' + translate("NETFile", "Dynamips error") + ': ' + str(msg)
+            print unicode(device.name) + ': ' + translate("NETFile", "Dynamips error") + ': ' + unicode(msg)
             return
         except lib.DynamipsWarning, msg:
-            print unicode(device.name) + ': ' + translate("NETFile", "Dynamips warning") + ': ' + str(msg)
+            print unicode(device.name) + ': ' + translate("NETFile", "Dynamips warning") + ': ' + unicode(msg)
             return
         except:
             error('Unknown error exporting config for ' + device.name)
@@ -576,7 +582,7 @@ class NETFile(object):
             f.close()
             self.dynagen.running_config[device.dynamips.host + ':' + str(device.dynamips.port)]['ROUTER ' + device.name]['cnfg'] = file_path
         except IOError, e:
-            QtGui.QMessageBox.warning(self, unicode(device.name) + ': ' + translate("NETFile", "IOError"), unicode(translate("NETFile", "%s: IO Error: %s")) % (file_path, str(e)))
+            QtGui.QMessageBox.warning(self, unicode(device.name) + ': ' + translate("NETFile", "IOError"), unicode(translate("NETFile", "%s: IO Error: %s")) % (file_path, unicode(e)))
             return
 
     def export_net_file(self, path):
@@ -590,12 +596,6 @@ class NETFile(object):
             # record router configs
             if isinstance(device, lib.Router) and globals.GApp.workspace.projectConfigs:
                 self.export_router_config(device)
-            node = globals.GApp.topology.getNode(globals.GApp.topology.getNodeID(device.name))
-            debug("Node is null when recording x&y positions !")
-            if node:
-                # record node x & y position
-                self.dynagen.running_config[node.d][node.get_running_config_name()]['x'] = node.x()
-                self.dynagen.running_config[node.d][node.get_running_config_name()]['y'] = node.y()
 
         note_nb = 1
         for item in globals.GApp.topology.items():
@@ -615,15 +615,29 @@ class NETFile(object):
                 if connections:
                     config['connections'] = connections
             # record notes
-            if isinstance(item , Annotation):
+            elif isinstance(item, Annotation):
                 if not self.dynagen.running_config.has_key('GNS3-DATA'):
                     self.dynagen.running_config['GNS3-DATA'] = {}
                 self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] = {}
                 config = self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] 
-                config['text'] = str(item.toPlainText()).replace("\n", "\\n")
+                config['text'] = unicode(item.toPlainText()).replace("\n", "\\n")
                 config['x'] = item.x()
                 config['y'] = item.y()
                 note_nb += 1
+            elif isinstance(item, AbstractNode):
+                # record node x & y position
+                self.dynagen.running_config[item.d][item.get_running_config_name()]['x'] = item.x()
+                self.dynagen.running_config[item.d][item.get_running_config_name()]['y'] = item.y()
+
+        # record project settings
+        if globals.GApp.workspace.projectConfigs or globals.GApp.workspace.projectWorkdir:
+            if not self.dynagen.running_config.has_key('GNS3-DATA'):
+                self.dynagen.running_config['GNS3-DATA'] = {}
+            config = self.dynagen.running_config['GNS3-DATA']
+            if globals.GApp.workspace.projectConfigs:
+                config['configs'] = globals.GApp.workspace.projectConfigs
+            if globals.GApp.workspace.projectWorkdir:
+                config['workdir'] = globals.GApp.workspace.projectWorkdir
 
         self.dynagen.running_config.filename = path
         self.dynagen.running_config.write()
