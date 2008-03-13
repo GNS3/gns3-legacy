@@ -224,6 +224,8 @@ class Dynagen:
                 'sparsemem',
                 'image',
                 'cnfg',
+                'key',
+                'serial',
                 ):
                 setattr(device, option, value)
                 return True
