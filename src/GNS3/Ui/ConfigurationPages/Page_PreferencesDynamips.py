@@ -54,16 +54,16 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
 
         # Default path to dynamips executable
         if self.conf.path == '' and sys.platform.startswith('win'):
-            self.conf.path = unicode('C:\Program Files\GNS3\Dynamips\dynamips-wxp.exe',  'utf-8')
+            self.conf.path = unicode('C:\Program Files\GNS3\Dynamips\dynamips-wxp.exe')
             
         # Default path to working directory
         if self.conf.workdir == '':
             if os.environ.has_key("TEMP"):
-                self.conf.workdir = unicode(os.environ["TEMP"], 'utf-8')
+                self.conf.workdir = unicode(os.environ["TEMP"])
             elif os.environ.has_key("TMP"):
-                self.conf.workdir = unicode(os.environ["TMP"], 'utf-8')
+                self.conf.workdir = unicode(os.environ["TMP"])
             else:
-                self.conf.workdir = unicode('/tmp', 'utf-8')
+                self.conf.workdir = unicode('/tmp')
 
         # Push default values to GUI
         self.dynamips_path.setText(os.path.normpath(self.conf.path))
@@ -95,8 +95,8 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         """ Save widget settings to syst. config
         """
         
-        self.conf.workdir = unicode(self.dynamips_workdir.text(),  'utf-8')
-        self.conf.path = unicode(self.dynamips_path.text(),  'utf-8')
+        self.conf.workdir = unicode(self.dynamips_workdir.text())
+        self.conf.path = unicode(self.dynamips_path.text())
         self.conf.port = self.dynamips_port.value()
         self.conf.baseUDP = self.dynamips_baseUDP.value()
         self.conf.baseConsole = self.dynamips_baseConsole.value()

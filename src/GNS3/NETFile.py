@@ -152,7 +152,7 @@ class NETFile(object):
         conf_image = iosImageConf()
         conf_image.id = globals.GApp.iosimages_ids
         globals.GApp.iosimages_ids += 1
-        conf_image.filename = unicode(device.image,  'utf-8')
+        conf_image.filename = unicode(device.image)
         # dynamips lib doesn't return c3700, force platform
         if device.model == 'c3725' or device.model == 'c3745':
             conf_image.platform = 'c3700'
@@ -164,11 +164,11 @@ class NETFile(object):
         conf_image.hypervisor_port = device.dynamips.port
         conf_image.default = False
         if device.dynamips.host == 'localhost' and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
-            conf_image.hypervisor_host = unicode('',  'utf-8')
+            conf_image.hypervisor_host = unicode('')
             globals.GApp.iosimages['localhost' + ':' + device.image] = conf_image
         else:
             # this is an external hypervisor
-            conf_image.hypervisor_host = unicode(device.dynamips.host,  'utf-8')
+            conf_image.hypervisor_host = unicode(device.dynamips.host)
             conf_hypervisor = hypervisorConf()
             conf_hypervisor.id = globals.GApp.hypervisors_ids
             globals.GApp.hypervisors_ids +=1
@@ -274,7 +274,7 @@ class NETFile(object):
                 if devtype.lower() == 'cloud':
                     renders = globals.GApp.scene.renders['Cloud']
                     cloud = Cloud(renders['normal'], renders['selected'])
-                    cloud.hostname = unicode(hostname, 'utf-8')
+                    cloud.hostname = unicode(hostname)
                     if gns3data[section].has_key('x') and gns3data[section].has_key('y'):
                         cloud.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
                     if gns3data[section].has_key('connections'):

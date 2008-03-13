@@ -186,7 +186,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """ Save an IOS image and all his settings
         """
 
-        imagename = unicode(self.lineEditIOSImage.text(),  'utf-8')
+        imagename = unicode(self.lineEditIOSImage.text())
         if not imagename:
             return
 
@@ -195,7 +195,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         if idlepc and not re.search(r"""^0x[0-9a-fA-F]{8}$""", idlepc):
             QtGui.QMessageBox.critical(self, 'IOS Configuration', translate("IOSDialog", "IDLE PC not valid (format required: 0xhhhhhhhh)"))
             return
-        hypervisor_host = unicode('',  'utf-8')
+        hypervisor_host = unicode('')
         hypervisor_port = 0
 
         if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Unchecked:
@@ -207,7 +207,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 imagekey = 'localhost' + ':' + imagename
             else:
                 # get the selected hypervisor
-                selected_hypervisor = unicode(items[0].text(),  'utf-8')
+                selected_hypervisor = unicode(items[0].text())
                 assert(globals.GApp.hypervisors.has_key(selected_hypervisor) != None)
                 hypervisor = globals.GApp.hypervisors[selected_hypervisor]
                 hypervisor_host = hypervisor.host
@@ -292,7 +292,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
         if (item != None):
             # restore image name
-            imagekey = unicode(item.text(0),  'utf-8')
+            imagekey = unicode(item.text(0))
             if globals.GApp.iosimages.has_key(imagekey):
                 conf = globals.GApp.iosimages[imagekey]
                 self.lineEditIOSImage.setText(conf.filename)
@@ -339,9 +339,9 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """ Save a hypervisor to the hypervisors list
         """
 
-        hypervisor_host = unicode(self.lineEditHost.text(),  'utf-8')
+        hypervisor_host = unicode(self.lineEditHost.text())
         hypervisor_port = str(self.spinBoxHypervisorPort.value())
-        working_dir = unicode(self.lineEditWorkingDir.text(),  'utf-8')
+        working_dir = unicode(self.lineEditWorkingDir.text())
         baseudp = self.spinBoxBaseUDP.value()
 
         if (hypervisor_host != '' and hypervisor_port != ''):
@@ -415,7 +415,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """
 
         if (item != None):
-            hypervisor_key = unicode(item.text(0),  'utf-8')
+            hypervisor_key = unicode(item.text(0))
             if globals.GApp.hypervisors.has_key(hypervisor_key):
                 conf = globals.GApp.hypervisors[hypervisor_key]
                 self.lineEditHost.setText(conf.host)

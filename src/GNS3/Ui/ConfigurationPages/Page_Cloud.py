@@ -112,6 +112,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
             outputlines = p.stdout.readlines()
             p.wait()
             for line in outputlines:
+                print line
                 match = re.search(r"""^rpcap://(\\Device\\NPF_{.*}).*""",  line.strip())
                 if match:
                     interfaces.append(match.group(1))
@@ -214,7 +215,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         """
     
         local_port = self.spinBoxLocalPort.value()
-        remote_host = unicode(self.lineEditRemoteHost.text(),  'utf-8')
+        remote_host = unicode(self.lineEditRemoteHost.text())
         remote_port = self.spinBoxRemotePort.value()
         if remote_host:
             nio = 'NIO_udp:' + str(local_port) + ':' + remote_host + ':' + str(remote_port)
@@ -292,8 +293,8 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         """ Add a new UNIX NIO
         """
     
-        local_file = unicode(self.lineEditUNIXLocalFile.text(),  'utf-8')
-        remote_file = unicode(self.lineEditUNIXRemoteFile.text(),  'utf-8')
+        local_file = unicode(self.lineEditUNIXLocalFile.text())
+        remote_file = unicode(self.lineEditUNIXRemoteFile.text())
         if local_file and remote_file:
             nio = 'NIO_unix:' + local_file + ':' + remote_file
             if not nio in self.nios:
@@ -336,8 +337,8 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         """ Add a new VDE NIO
         """
     
-        control_file = unicode(self.lineEditVDEControlFile.text(),  'utf-8')
-        local_file = unicode(self.lineEditVDELocalFile.text(),  'utf-8')
+        control_file = unicode(self.lineEditVDEControlFile.text())
+        local_file = unicode(self.lineEditVDELocalFile.text())
         if local_file and control_file:
             nio = 'NIO_vde:' + control_file + ':' + local_file
             if not nio in self.nios:
@@ -380,7 +381,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         """ Add a new NULL NIO
         """
     
-        identifier = unicode(self.lineEditNullIdentifer.text(),  'utf-8')
+        identifier = unicode(self.lineEditNullIdentifer.text())
         if identifier:
             nio = 'NIO_null:' + identifier
             if not nio in self.nios:

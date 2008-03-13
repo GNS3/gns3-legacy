@@ -231,9 +231,9 @@ class Application(QApplication, Singleton):
 
         self.systconf['dynamips'] = systemDynamipsConf()
         confo = self.systconf['dynamips']
-        confo.path = ConfDB().get('Dynamips/hypervisor_path', unicode('',  'utf-8'))
+        confo.path = ConfDB().get('Dynamips/hypervisor_path', unicode(''))
         confo.port = int(ConfDB().get('Dynamips/hypervisor_port', 7200))
-        confo.workdir = ConfDB().get('Dynamips/hypervisor_working_directory', unicode('',  'utf-8'))
+        confo.workdir = ConfDB().get('Dynamips/hypervisor_working_directory', unicode(''))
         confo.ghosting = ConfDB().value("Dynamips/dynamips_ghosting", QVariant(True)).toBool()
         confo.mmap = ConfDB().value("Dynamips/dynamips_mmap", QVariant(True)).toBool()
         confo.sparsemem = ConfDB().value("Dynamips/dynamips_sparsemem", QVariant(False)).toBool()
@@ -244,30 +244,30 @@ class Application(QApplication, Singleton):
         # Pemu config
         self.systconf['pemu'] = systemPemuConf()
         confo = self.systconf['pemu']
-        confo.pemuwrapper_path = ConfDB().get('Pemu/pemuwrapper_path', unicode('',  'utf-8'))
-        confo.pemuwrapper_workdir = ConfDB().get('Pemu/pemuwrapper_working_directory', unicode('',  'utf-8'))
-        confo.external_host = ConfDB().get('Pemu/external_host', unicode('',  'utf-8'))
+        confo.pemuwrapper_path = ConfDB().get('Pemu/pemuwrapper_path', unicode(''))
+        confo.pemuwrapper_workdir = ConfDB().get('Pemu/pemuwrapper_working_directory', unicode(''))
+        confo.external_host = ConfDB().get('Pemu/external_host', unicode(''))
         confo.enable_PemuManager = ConfDB().value("Pemu/enable_PemuManager", QVariant(True)).toBool()
         confo.import_use_PemuManager = ConfDB().value("Pemu/pemu_manager_import", QVariant(True)).toBool()
-        confo.default_pix_image = ConfDB().get('Pemu/default_pix_image', unicode('',  'utf-8'))
-        confo.default_pix_key = str(ConfDB().get('Pemu/default_pix_key', unicode('0x00000000,0x00000000,0x00000000,0x00000000', 'utf-8')))
-        confo.default_pix_serial = str(ConfDB().get('Pemu/default_pix_serial', unicode('0x12345678', 'utf-8')))
+        confo.default_pix_image = ConfDB().get('Pemu/default_pix_image', unicode(''))
+        confo.default_pix_key = str(ConfDB().get('Pemu/default_pix_key', unicode('0x00000000,0x00000000,0x00000000,0x00000000')))
+        confo.default_pix_serial = str(ConfDB().get('Pemu/default_pix_serial', unicode('0x12345678')))
 
         # Capture config
         self.systconf['capture'] = systemCaptureConf()
         confo = self.systconf['capture']
-        confo.workdir = ConfDB().get('Capture/working_directory', unicode('',  'utf-8'))
-        confo.cap_cmd = ConfDB().get('Capture/capture_reader_cmd', unicode('',  'utf-8'))
+        confo.workdir = ConfDB().get('Capture/working_directory', unicode(''))
+        confo.cap_cmd = ConfDB().get('Capture/capture_reader_cmd', unicode(''))
         confo.auto_start = ConfDB().value('Capture/auto_start_cmd', QVariant(True)).toBool()
 
         # System general config
         self.systconf['general'] = systemGeneralConf()
         confo = self.systconf['general']
-        confo.lang = ConfDB().get('GNS3/lang', unicode('en', 'utf-8'))
+        confo.lang = ConfDB().get('GNS3/lang', unicode('en'))
         confo.use_shell = ConfDB().value("GNS3/use_shell", QVariant(True)).toBool()
-        confo.term_cmd = ConfDB().get('GNS3/console', unicode('',  'utf-8'))
-        confo.project_path = ConfDB().get('GNS3/project_directory', unicode('.', 'utf-8'))
-        confo.ios_path = ConfDB().get('GNS3/ios_directory', unicode('.', 'utf-8'))
+        confo.term_cmd = ConfDB().get('GNS3/console', unicode(''))
+        confo.project_path = ConfDB().get('GNS3/project_directory', unicode('.'))
+        confo.ios_path = ConfDB().get('GNS3/ios_directory', unicode('.'))
         confo.status_points = ConfDB().value("GNS3/gui_show_status_points", QVariant(True)).toBool()
         confo.manual_connection =ConfDB().value("GNS3/gui_use_manual_connection", QVariant(False)).toBool()
 

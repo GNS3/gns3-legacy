@@ -44,7 +44,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
             rootitem = QtGui.QTreeWidgetItem(self)
             hostname = node.hostname
             if type(hostname) != unicode:
-                hostname = unicode(node.hostname,  'utf-8')
+                hostname = unicode(node.hostname)
             rootitem.setText(0, hostname)
             if node.getState() == 'running':
                 rootitem.setIcon(0, QtGui.QIcon(':/icons/led_green.svg'))
@@ -75,7 +75,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
         """
 
         if type(hostname) != unicode:
-            hostname = unicode(hostname,  'utf-8')
+            hostname = unicode(hostname)
         items = self.findItems(hostname, QtCore.Qt.MatchFixedString | QtCore.Qt.MatchCaseSensitive)
         if len(items):
             item = items[0]

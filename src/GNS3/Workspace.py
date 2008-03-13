@@ -148,7 +148,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         path = QtGui.QFileDialog.getSaveFileName(filedialog, 'Export', '.', exports, selected)
         if not path:
             return
-        path = unicode(path,  'utf-8')
+        path = unicode(path)
         if str(selected) == 'PNG File (*.png)' and path[-4:] != '.png':
             path = path + '.png'
         if str(selected) == 'JPG File (*.jpeg *.jpg)' and (path[-4:] != '.jpg' or  path[-5:] != '.jpeg'):
@@ -475,7 +475,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                             for hypervisor in globals.GApp.dynagen.dynamips.values():
                                 hypervisor.workingdir = self.projectWorkdir
                         except lib.DynamipsError, msg:
-                            QtGui.QMessageBox.critical(self, self.projectWorkdir + ': ' + translate("Workspace", "Dynamips error"),  unicode(msg))
+                            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), self.projectWorkdir + ': ' + unicode(msg))
                 elif globals.GApp.topology.changed == True:
                     reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the current topology?"),
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)

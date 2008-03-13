@@ -79,25 +79,14 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         type = str(self.comboBoxPortType.currentText())
         
         if self.ports.has_key(port):
-            # try to update port
-            item = self.treeWidgetPorts.currentItem()
-            if (item != None):
-                current_port = int(item.text(0))
-            else:
-                current_port = -1
-            if current_port != port:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_ETHSW",  "Add port"),  translate("Page_ETHSW",  "Port already exists"))
-                return
-            else:
-                item.setText(1, str(vlan))
-                item.setText(2, type)
-        else:
-            # else create a new one
-            item = QtGui.QTreeWidgetItem(self.treeWidgetPorts)
-            item.setText(0, str(port))
-            item.setText(1, str(vlan))
-            item.setText(2, type)
-            self.treeWidgetPorts.addTopLevelItem(item)
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_ETHSW",  "Add port"),  translate("Page_ETHSW",  "Port already exists"))
+            return
+
+        item = QtGui.QTreeWidgetItem(self.treeWidgetPorts)
+        item.setText(0, str(port))
+        item.setText(1, str(vlan))
+        item.setText(2, type)
+        self.treeWidgetPorts.addTopLevelItem(item)
         
         self.spinBoxPort.setValue(port + 1)
         self.ports[port] = type
@@ -116,6 +105,10 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         if (item != None):
             port = int(item.text(0))
             vlan = int(item.text(1))
+            connected_ports = self.node.getConnectedInterfaceList()
+            if str(port) in connected_ports:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Ports', unicode(translate("Page_ETHSW", "A link is connected in port %i")) % port)
+                return
             del self.ports[port]
             self.vlans[vlan].remove(port)
             if len(self.vlans[vlan]) == 0:
@@ -126,11 +119,11 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         """ Load the config
         """
 
-        node = globals.GApp.topology.getNode(id)
+        self.node = globals.GApp.topology.getNode(id)
         if config:
             ETHSWconfig = config
         else:
-            ETHSWconfig  = node.config
+            ETHSWconfig  = self.node.config
             
         self.treeWidgetPorts.clear()
         self.vlans = {}
@@ -155,17 +148,12 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         """ Save the config
         """
     
-        node = globals.GApp.topology.getNode(id)
+        self.node = globals.GApp.topology.getNode(id)
         if config:
             ETHSWconfig = config
         else:
-            ETHSWconfig  = node.config
+            ETHSWconfig  = self.node.config
 
-        connected_ports = node.getConnectedInterfaceList()
-        for port in ETHSWconfig['ports'].keys():
-            if str(port) in connected_ports and not self.ports.has_key(port):
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Ports', unicode(translate("Page_ETHSW", "A link is connected in port %i")) + port)
-                return ETHSWconfig
         ETHSWconfig['ports'] = self.ports
         ETHSWconfig['vlans'] = self.vlans
         return ETHSWconfig

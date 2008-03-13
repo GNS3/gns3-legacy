@@ -186,17 +186,25 @@ class Topology(QtGui.QGraphicsScene):
             host = globals.GApp.systconf['pemu'].external_host
             pemu_name =  host + ':10525'
 
+        debug('Pemuwrapper: ' + pemu_name)
         if not self.dynagen.dynamips.has_key(pemu_name):
             #create the Pemu instance and add it to global dictionary
             self.dynagen.dynamips[pemu_name] = pix.Pemu(host)
             self.dynagen.dynamips[pemu_name].reset()
             if globals.GApp.workspace.projectWorkdir:
-                self.dynagen.dynamips[pemu_name].workingdir = globals.GApp.workspace.projectWorkdir
+                workdir = globals.GApp.workspace.projectWorkdir
             elif globals.GApp.systconf['pemu'].pemuwrapper_workdir:
-                self.dynagen.dynamips[pemu_name].workingdir = globals.GApp.systconf['pemu'].pemuwrapper_workdir
+                workdir = globals.GApp.systconf['pemu'].pemuwrapper_workdir
             else:
                 realpath = os.path.realpath(self.dynagen.global_filename)
-                self.dynagen.dynamips[pemu_name].workingdir = os.path.dirname(realpath)
+                workdir = os.path.dirname(realpath)
+            try:
+                self.dynagen.dynamips[pemu_name].workingdir = workdir
+            except lib.DynamipsError, msg:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Pemuwrapper error"),  workdir + ': ' + unicode(msg))
+                del self.dynagen.dynamips[pemu_name]
+                return False
+
             self.dynagen.get_defaults_config()
             globals.GApp.dynagen.update_running_config()
             self.dynagen.dynamips[pemu_name].configchange = True
@@ -287,7 +295,7 @@ class Topology(QtGui.QGraphicsScene):
                 for file in dynamips_files:
                     if not os.access(file, os.W_OK):
                         print "Warning: " + file + " is not writable because of different rights, please delete this file manually if dynamips was not able to create this router"
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  str(msg))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  unicode(msg))
             if self.__nodes.has_key(node.id):
                 self.deleteNode(node.id)
         except (lib.DynamipsErrorHandled, socket.error):

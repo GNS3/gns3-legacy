@@ -199,13 +199,13 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         if isinstance(self.source, IOSRouter):
             hostname = self.source.hostname
             if type(hostname) != unicode:
-                hostname = unicode(hostname,  'utf-8')
+                hostname = unicode(hostname)
             if not self.__returnCaptureOptions(options, hostname, self.dest, self.srcIf):
                 return
         if isinstance(self.dest, IOSRouter):
             hostname = self.dest.hostname
             if type(hostname) != unicode:
-                hostname = unicode(hostname,  'utf-8')
+                hostname = unicode(hostname)
             if not self.__returnCaptureOptions(options, hostname, self.source, self.destIf):
                 return
 
@@ -242,7 +242,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                     workdir = capture_conf.workdir
                 else:
                     workdir = globals.GApp.dynagen.devices[device].dynamips.workingdir
-                self.capfile = workdir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap'
+                self.capfile = unicode(workdir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
                 debug("Start capture in " + self.capfile)
                 globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'capture','both', encapsulation + " " + '"' + self.capfile + '"')
                 self.captureInfo = (device, slot, inttype, port)

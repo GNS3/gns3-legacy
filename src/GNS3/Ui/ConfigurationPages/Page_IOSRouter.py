@@ -173,7 +173,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         else:
             router_config = node.get_config()
 
-        cnfg = unicode(self.lineEditStartupConfig.text(),  'utf-8')
+        cnfg = unicode(self.lineEditStartupConfig.text())
         if cnfg:
             router_config['cnfg'] = cnfg
             

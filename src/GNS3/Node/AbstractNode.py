@@ -244,7 +244,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             return
         hostname = self.hostname
         if type(hostname) != unicode:
-            hostname = unicode(hostname,  'utf-8')
+            hostname = unicode(hostname)
         self.textItem = QtGui.QGraphicsTextItem(hostname, self)
         self.textItem.setFont(QtGui.QFont("TypeWriter", 10, QtGui.QFont.Bold))
         self.textItem.setFlag(self.textItem.ItemIsMovable)

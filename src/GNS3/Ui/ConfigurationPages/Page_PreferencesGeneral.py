@@ -63,17 +63,17 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         # Defaults terminal command
         if self.conf.term_cmd == '':
             if sys.platform.startswith('darwin'):
-                self.conf.term_cmd = unicode("/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'",  'utf-8')
+                self.conf.term_cmd = unicode("/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'")
             elif sys.platform.startswith('win'):
                 if os.path.lexists('C:\\WINDOWS\\system32\\telnet.exe'):
                     # check if telnet is there
-                    self.conf.term_cmd = unicode("start telnet %h %p",  'utf-8')
+                    self.conf.term_cmd = unicode("start telnet %h %p")
                 else:
                     # else try to use putty
-                    self.conf.term_cmd = unicode('C:\Program Files\Putty\putty.exe -telnet %h %p',  'utf-8')
+                    self.conf.term_cmd = unicode('C:\Program Files\Putty\putty.exe -telnet %h %p')
                     self.conf.use_shell = False
             else:
-                self.conf.term_cmd = unicode("xterm -T %d -e 'telnet %h %p' >/dev/null 2>&1 &",  'utf-8')
+                self.conf.term_cmd = unicode("xterm -T %d -e 'telnet %h %p' >/dev/null 2>&1 &")
 
         self.lineEditTermCommand.setText(self.conf.term_cmd)
         self.ProjectPath.setText(os.path.normpath(self.conf.project_path))
@@ -98,7 +98,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         new_idx = self.langsBox.currentIndex()
         if new_idx != -1:
             new_lang_code = self.langs[new_idx][0]
-            self.conf.lang = unicode(new_lang_code, 'utf-8')
+            self.conf.lang = unicode(new_lang_code)
             globals.GApp.translator.switchLangTo(new_lang_code)
         
         # GUI settings
@@ -115,9 +115,9 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         else:
             self.conf.use_shell = False
     
-        self.conf.project_path = unicode(self.ProjectPath.text(),  'utf-8')
-        self.conf.ios_path = unicode(self.IOSPath.text(),  'utf-8')
-        self.conf.term_cmd = unicode(self.lineEditTermCommand.text(),  'utf-8')
+        self.conf.project_path = unicode(self.ProjectPath.text())
+        self.conf.ios_path = unicode(self.IOSPath.text())
+        self.conf.term_cmd = unicode(self.lineEditTermCommand.text())
         
         globals.GApp.systconf['general'] = self.conf
         ConfDB().sync()

@@ -50,19 +50,19 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         # Default path to pemuwrapper
         if self.conf.pemuwrapper_path == '':
             if sys.platform.startswith('win'):
-                self.conf.pemuwrapper_path = unicode('C:\Program Files\GNS3\pemuwrapper.exe',  'utf-8')
+                self.conf.pemuwrapper_path = unicode('C:\Program Files\GNS3\pemuwrapper.exe')
             else:
                 path = os.getcwd() + '/pemu/pemuwrapper.py'
-                self.conf.pemuwrapper_path = unicode(path,  'utf-8')
+                self.conf.pemuwrapper_path = unicode(path)
         
         # Default path to working directory
         if self.conf.pemuwrapper_workdir == '':
             if os.environ.has_key("TEMP"):
-                self.conf.pemuwrapper_workdir = unicode(os.environ["TEMP"], 'utf-8')
+                self.conf.pemuwrapper_workdir = unicode(os.environ["TEMP"])
             elif os.environ.has_key("TMP"):
-                self.conf.pemuwrapper_workdir = unicode(os.environ["TMP"], 'utf-8')
+                self.conf.pemuwrapper_workdir = unicode(os.environ["TMP"])
             else:
-                self.conf.pemuwrapper_workdir = unicode('/tmp', 'utf-8')
+                self.conf.pemuwrapper_workdir = unicode('/tmp')
 
         # Push default values to GUI
         self.lineEditPemuwrapperPath.setText(os.path.normpath(self.conf.pemuwrapper_path))
@@ -83,10 +83,10 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
 
     def saveConf(self):
 
-        self.conf.pemuwrapper_path = unicode(self.lineEditPemuwrapperPath.text(),  'utf-8')
-        self.conf.pemuwrapper_workdir = unicode(self.lineEditPemuwrapperWorkdir.text(),  'utf-8')
-        self.conf.external_host = unicode(self.lineEditHostExternalPemu.text(),  'utf-8')
-        self.conf.default_pix_image = unicode(self.PixImage.text(),  'utf-8')
+        self.conf.pemuwrapper_path = unicode(self.lineEditPemuwrapperPath.text())
+        self.conf.pemuwrapper_workdir = unicode(self.lineEditPemuwrapperWorkdir.text())
+        self.conf.external_host = unicode(self.lineEditHostExternalPemu.text())
+        self.conf.default_pix_image = unicode(self.PixImage.text())
         
         serial = str(self.lineEditSerial.text())
         if not re.search(r"""^0x[0-9a-fA-F]{8}$""", serial):

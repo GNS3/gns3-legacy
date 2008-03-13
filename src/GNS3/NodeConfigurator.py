@@ -52,7 +52,7 @@ class ConfigurationPageItem(QtGui.QTreeWidgetItem):
         QtGui.QTreeWidgetItem.__init__(self, parent, QtCore.QStringList(text))
         if iconFile:
             self.setIcon(0, QtGui.QIcon(iconFile))
-        self.__pageName = unicode(pageName,  'utf-8')
+        self.__pageName = unicode(pageName)
         self.__ids = []
         self.tmpConfig = None
         self.origConfig = None
@@ -190,7 +190,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             self.itmDict[parent].addID(node.id)
             hostname = node.hostname
             if type(hostname) != unicode:
-                hostname = unicode(node.hostname,  'utf-8')
+                hostname = unicode(node.hostname)
             item = ConfigurationPageItem(self.itmDict[parent], hostname, parent,  None)
             item.addID(node.id)
             item.tmpConfig = node.get_config()

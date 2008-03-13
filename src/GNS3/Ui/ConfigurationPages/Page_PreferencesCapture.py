@@ -48,11 +48,11 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
         # Defaults capture terminal command
         if self.conf.cap_cmd == '':
             if sys.platform.startswith('darwin'):
-                self.conf.cap_cmd = unicode("/sw/bin/wireshark %c",  'utf-8')
+                self.conf.cap_cmd = unicode("/sw/bin/wireshark %c")
             elif sys.platform.startswith('win'):
-                self.conf.cap_cmd = unicode("C:\Program Files\Wireshark\wireshark.exe %c",  'utf-8')
+                self.conf.cap_cmd = unicode("C:\Program Files\Wireshark\wireshark.exe %c")
             else:
-                self.conf.cap_cmd = unicode("/usr/bin/wireshark %c",  'utf-8')
+                self.conf.cap_cmd = unicode("/usr/bin/wireshark %c")
                 
         # Push default values to GUI
         self.CaptureWorkingDirectory.setText(os.path.normpath(self.conf.workdir))
@@ -64,8 +64,8 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
 
     def saveConf(self):
 
-        self.conf.workdir = unicode(self.CaptureWorkingDirectory.text(),  'utf-8')
-        self.conf.cap_cmd = unicode(self.CaptureCommand.text(),  'utf-8')
+        self.conf.workdir = unicode(self.CaptureWorkingDirectory.text())
+        self.conf.cap_cmd = unicode(self.CaptureCommand.text())
         if self.checkBoxStartCaptureCommand.checkState() == QtCore.Qt.Checked:
             self.conf.auto_start = True
         else:
