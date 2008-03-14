@@ -60,8 +60,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.setCorner(QtCore.Qt.TopRightCorner, QtCore.Qt.RightDockWidgetArea)
         self.setCorner(QtCore.Qt.BottomRightCorner, QtCore.Qt.RightDockWidgetArea)
 
-        # Workspace flags
-        self.flg_showHostname = False
+        # By default show hostnames
+        self.flg_showHostname = True
+        self.action_ShowHostnames.setText(translate('Workspace', 'Hide hostnames'))
+        self.action_ShowHostnames.setChecked(True)
 
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)

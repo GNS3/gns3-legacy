@@ -26,9 +26,6 @@ from Form_IOSRouterPage import Ui_IOSRouterPage
 from GNS3.Utils import fileBrowser, translate, testOpenFile
 import GNS3.Dynagen.dynamips_lib as lib
 
-# where the configs are stored
-configDirectory = '.'
-
 class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
     """ Class implementing the IOS router configuration page.
     """
@@ -58,9 +55,8 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
     def slotSelectStartupConfig(self):
         """ Get startup-config from the file system
         """
-        
-        global configDirectory
-        path = fileBrowser('startup-config',  directory=configDirectory).getFile()
+
+        path = fileBrowser('startup-config',  directory=globals.GApp.systconf['general'].project_path).getFile()
         if path != None and path[0] != '':
             if not testOpenFile(path[0]):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Startup-config', unicode(translate("Page_IOSRouter", "Can't open file: %s")) % path[0])
@@ -68,7 +64,6 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             self.lineEditStartupConfig.clear()
             config = os.path.normpath(path[0])
             self.lineEditStartupConfig.setText(config)
-            configDirectory = os.path.dirname(config)
 
     def loadConfig(self,  id,  config = None):
         """ Load the config
@@ -140,10 +135,14 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
 
         if router_config['cnfg']:
             self.lineEditStartupConfig.setText(router_config['cnfg'])
-        
+        else:
+            self.lineEditStartupConfig.clear()
+
         if router_config['mac']:
             self.lineEditMAC.setText(router_config['mac'])
-        
+        else:
+            self.lineEditMAC.clear()
+
         self.spinBoxRamSize.setValue(router_config['ram'])
         self.spinBoxNvramSize.setValue(router_config['nvram'])
         self.spinBoxPcmciaDisk0Size.setValue(router_config['disk0'])

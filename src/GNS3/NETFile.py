@@ -125,13 +125,17 @@ class NETFile(object):
                 node = item['object'](renders['normal'], renders['selected'])
                 node.set_hostname(device.name)
                 node.type = item['name']
-                x = y = None
+                x = y = hx = hy = None
                 if isinstance(device, pix.FW) and  self.dynagen.globalconfig['pemu ' + device.dynamips.host].has_key(node.get_running_config_name()):
                     x = self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()]['x']
                     y = self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()]['y']
+                    hx = self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()]['hx']
+                    hy = self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()]['hy']
                 elif self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)].has_key(node.get_running_config_name()):
                     x = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['x']
                     y = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['y']
+                    hx = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['hx']
+                    hy = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['hy']
                 else:
                     print 'Cannot find x&y positions for ' + node.get_running_config_name()
                 if x == None:
@@ -139,6 +143,9 @@ class NETFile(object):
                 if y == None:
                     y = random.uniform(-200, 200)
                 node.setPos(float(x), float(y))
+                if hx and hy:
+                    node.hostname_xpos = float(hx)
+                    node.hostname_ypos = float(hy)
                 if globals.GApp.workspace.flg_showHostname == True:
                     node.showHostname()
                 debug("Node created: " + str(node))
@@ -275,8 +282,13 @@ class NETFile(object):
                     renders = globals.GApp.scene.renders['Cloud']
                     cloud = Cloud(renders['normal'], renders['selected'])
                     cloud.hostname = unicode(hostname)
-                    if gns3data[section].has_key('x') and gns3data[section].has_key('y'):
+                    if gns3data[section].has_key('x') and gns3data[section].has_key('y') \
+                        and gns3data[section]['x'] != None and gns3data[section]['y'] != None:
                         cloud.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
+                    if gns3data[section].has_key('hx') and gns3data[section].has_key('hy') \
+                        and gns3data[section]['hx'] != None and gns3data[section]['hy'] != None:
+                        cloud.hostname_xpos = float(gns3data[section]['hx'])
+                        cloud.hostname_ypos = float(gns3data[section]['hy'])
                     if gns3data[section].has_key('connections'):
                         connections = gns3data[section]['connections'].split(' ')
                         nios = []
@@ -601,12 +613,19 @@ class NETFile(object):
         for item in globals.GApp.topology.items():
             # record clouds
             if isinstance(item, Cloud):
+                if globals.GApp.workspace.flg_showHostname:
+                    # ugly but simple method to force to record hostname x&y positions
+                    item.removeHostname()
+                    item.showHostname()
                 if not self.dynagen.running_config.has_key('GNS3-DATA'):
                     self.dynagen.running_config['GNS3-DATA'] = {}
                 self.dynagen.running_config['GNS3-DATA']['Cloud ' + item.hostname] = {}
                 config = self.dynagen.running_config['GNS3-DATA']['Cloud ' + item.hostname]
                 config['x'] = item.x()
                 config['y'] = item.y()
+                if item.hostname_xpos and item.hostname_ypos:
+                    config['hx'] = item.hostname_xpos
+                    config['hy'] = item.hostname_ypos
                 # record connections
                 connections = ''
                 for interface in item.getConnectedInterfaceList():
@@ -625,9 +644,17 @@ class NETFile(object):
                 config['y'] = item.y()
                 note_nb += 1
             elif isinstance(item, AbstractNode):
-                # record node x & y position
+                if globals.GApp.workspace.flg_showHostname:
+                    # ugly but simple method to force to record hostname x&y positions
+                    item.removeHostname()
+                    item.showHostname()
+                # record node x & y positions
                 self.dynagen.running_config[item.d][item.get_running_config_name()]['x'] = item.x()
                 self.dynagen.running_config[item.d][item.get_running_config_name()]['y'] = item.y()
+                # record hostname x & y positions
+                if item.hostname_xpos and item.hostname_ypos:
+                    self.dynagen.running_config[item.d][item.get_running_config_name()]['hx'] = item.hostname_xpos
+                    self.dynagen.running_config[item.d][item.get_running_config_name()]['hy'] = item.hostname_ypos
 
         # record project settings
         if globals.GApp.workspace.projectConfigs or globals.GApp.workspace.projectWorkdir:

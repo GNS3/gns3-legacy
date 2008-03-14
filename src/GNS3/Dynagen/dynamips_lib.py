@@ -2918,7 +2918,7 @@ class C7200(Router):
         # This deviates from the dynamips defaults, but I think it is a
         # good choice
         self.npe = 'npe-400'
-        self.slot[0] = PA_C7200_IO_2FE(self, 0)
+        #self.slot[0] = PA_C7200_IO_2FE(self, 0)
 
 
 class C2691(Router):

@@ -66,6 +66,13 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.setAcceptsHoverEvents(True)
         self.setZValue(1)
         self.setSharedRenderer(self.__render_normal)
+        
+        # x&y position for hostname
+        self.hostname_xpos = None
+        self.hostname_ypos = None
+        
+        self.default_hostname_xpos = None
+        self.default_hostname_ypos = None
 
     def getState(self):
         """ Returns the current node state
@@ -249,11 +256,20 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.textItem.setFont(QtGui.QFont("TypeWriter", 10, QtGui.QFont.Bold))
         self.textItem.setFlag(self.textItem.ItemIsMovable)
         self.textItem.setZValue(2)
-        textrect = self.textItem.boundingRect()
-        textmiddle = textrect.topRight() / 2
-        noderect = self.boundingRect()
-        nodemiddle = noderect.topRight() / 2
-        self.textItem.setPos(nodemiddle.x() - textmiddle.x(), -25)
+        if self.hostname_xpos == None and self.hostname_ypos == None:
+            # use default positions
+            if self.default_hostname_xpos == None and self.default_hostname_ypos == None:
+                # compute default positions once
+                textrect = self.textItem.boundingRect()
+                textmiddle = textrect.topRight() / 2
+                noderect = self.boundingRect()
+                nodemiddle = noderect.topRight() / 2
+                self.default_hostname_xpos = nodemiddle.x() - textmiddle.x()
+                self.default_hostname_ypos = -25
+            self.textItem.setPos(self.default_hostname_xpos, self.default_hostname_ypos)
+        else:
+            # use user defined positions
+            self.textItem.setPos(self.hostname_xpos, self.hostname_ypos)
         self.__flag_hostname = True
 
     def removeHostname(self):
@@ -261,6 +277,10 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """
 
         if self.__flag_hostname == True:
+            if self.textItem.x() != self.default_hostname_xpos or self.textItem.y() != self.default_hostname_ypos:
+                # record user defined positions
+                self.hostname_xpos = self.textItem.x()
+                self.hostname_ypos = self.textItem.y()
             globals.GApp.topology.removeItem(self.textItem)
             self.__flag_hostname = False
 

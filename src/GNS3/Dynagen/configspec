@@ -43,8 +43,10 @@ udp = integer(min=1, max=65535, default=None)
     rom = integer(min=0, default=None)
     x = float(default=None)
     y = float(default=None)
+    hx = float(default=None)
+    hy = float(default=None)
     key = string(default = None)
     serial = string(default = None)
-    
+
 
 

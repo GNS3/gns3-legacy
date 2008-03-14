@@ -1100,7 +1100,7 @@ class Dynagen:
                                     continue
                                 elif subitem.lower() == 'autostart':
                                     self.autostart[name] = device[subitem]
-                                elif subitem.lower() in ['x', 'y']:
+                                elif subitem.lower() in ['x', 'y', 'hx', 'hy']:
                                     continue
                                 elif pemu_int_re.search(subitem):
                                     # Add the tuple to the list of connections to deal with later
@@ -1282,7 +1282,7 @@ class Dynagen:
                                 else:
                                     # Should be either an interface connection or a switch mapping
                                     # is it an interface?
-                                    if subitem in ['model', 'ghostios', 'configuration', 'autostart', 'x', 'y']:
+                                    if subitem in ['model', 'ghostios', 'configuration', 'autostart', 'x', 'y', 'hx', 'hy']:
                                         # These options are already handled elsewhere
                                         continue
                                     elif interface_re.search(subitem):
