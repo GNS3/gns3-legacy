@@ -64,7 +64,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         if not directory:
             directory = globals.GApp.systconf['general'].project_path
             projectFile = directory + os.sep + projectname + '.net'
-        if self.checkBox_ConfigFiles.checkState() == QtCore.Qt.Checked:
+        if self.checkBox_WorkdirFiles.checkState() == QtCore.Qt.Checked:
             projectWorkdir = os.path.normpath(directory + os.sep + projectname + '_working')
         else:
             projectWorkdir = None

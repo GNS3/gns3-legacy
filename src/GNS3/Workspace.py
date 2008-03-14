@@ -489,6 +489,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     globals.GApp.topology.clear()
                     for item in globals.GApp.topology.items():
                         globals.GApp.topology.removeItem(item)
+            self.__action_Save()
             self.setWindowTitle("GNS3 Project - " + self.projectFile)
 
     def __action_OpenFile(self):
