@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import os, re, random, time, base64
+import os, re, random, time, base64, traceback
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Dynagen.dynamips_lib as lib
@@ -349,7 +349,10 @@ class NETFile(object):
             globals.GApp.workspace.setWindowTitle("GNS3")
             globals.GApp.workspace.clear()
             return
-        except:
+        except Exception, ex:
+            logfile = open('dynagen_exception.log','a')
+            traceback.print_exc(file=logfile)
+            logfile.close()
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "Importation"),  translate("NETFile", "Exception detected, stopping importation..."))
             globals.GApp.workspace.projectFile = None
             globals.GApp.workspace.setWindowTitle("GNS3")
