@@ -328,6 +328,7 @@ class NETFile(object):
             return
 
         globals.GApp.workspace.clear()
+        dynagen_namespace.CONFIGSPECPATH = []
         dir = os.path.dirname(dynagen_namespace.__file__)
         dynagen_namespace.CONFIGSPECPATH.append(dir)
         try:

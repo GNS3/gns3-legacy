@@ -42,16 +42,6 @@ class DynagenSub(Dynagen):
         """ Open the config file
         """
 
-#        # look for configspec in CONFIGSPECPATH and the same directory as dynagen
-#        realpath = os.path.realpath(sys.argv[0])
-#        self.debug('realpath ' + realpath)
-#        pathname = os.path.dirname(realpath)
-#        self.debug('pathname -> ' + pathname)
-#        dynagen.CONFIGSPECPATH.append(pathname)
-#        for dir in dynagen.CONFIGSPECPATH:
-#            configspec = dir +'/' + dynagen.CONFIGSPEC
-#            self.debug('configspec -> ' + configspec)
-
         config = Dynagen.open_config(self, FILENAME)
         self.gns3_data = None
         if 'GNS3-DATA' in config.sections:

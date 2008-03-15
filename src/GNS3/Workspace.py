@@ -465,7 +465,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         # move dynamips files
                         for node in globals.GApp.topology.nodes.values():
                             if isinstance(node, IOSRouter):
-                                dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.platform + '?' + node.hostname + '*')
+                                dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '?' + node.hostname + '*')
                                 for file in dynamips_files:
                                     try:
                                         shutil.move(file, self.projectWorkdir)
