@@ -552,8 +552,10 @@ class NETFile(object):
                     base_udp = dynamips.starting_udp
                 if dynamips.port > hypervisor_port:
                     hypervisor_port = dynamips.port
-        globals.GApp.dynagen.globaludp = base_udp + globals.GApp.systconf['dynamips'].udp_incrementation
-        globals.hypervisor_baseport = hypervisor_port + 1
+        if base_udp:
+            globals.GApp.dynagen.globaludp = base_udp + globals.GApp.systconf['dynamips'].udp_incrementation
+        if hypervisor_port:
+            globals.hypervisor_baseport = hypervisor_port + 1
         debug("set hypervisor base port: " + str(globals.hypervisor_baseport))
         debug("set base UDP: " + str(globals.GApp.dynagen.globaludp))
 

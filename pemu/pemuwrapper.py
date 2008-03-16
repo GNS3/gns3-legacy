@@ -342,6 +342,8 @@ class PEMUWrapperRequestHandler(SocketServer.StreamRequestHandler):
         working_dir, = data
         try:
             os.chdir(working_dir)
+            for pemu_name in PEMU_INSTANCES.keys():
+                PEMU_INSTANCES[pemu_name].workdir = os.path.join(os.getcwd(), PEMU_INSTANCES[pemu_name].name)
             self.send_reply(self.HSC_INFO_OK, 1, "OK")
         except OSError, e:
             self.send_reply(self.HSC_ERR_INV_PARAM, 1,

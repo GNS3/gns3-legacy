@@ -173,11 +173,12 @@ class FW(AbstractNode, FWDefaults):
         for link in links:
             globals.GApp.topology.deleteLink(link)
         self.delete_fw()
-        try:
-            pemu_name = self.pemu.host + ':10525'
-            shutil.move(self.dynagen.dynamips[pemu_name].workingdir + self.hostname, self.dynagen.dynamips[pemu_name].workingdir + new_hostname)
-        except:
-            debug("Cannot move FLASH directory")
+        if self.hostname != new_hostname:
+            try:
+                pemu_name = self.pemu.host + ':10525'
+                shutil.move(self.dynagen.dynamips[pemu_name].workingdir + self.hostname, self.dynagen.dynamips[pemu_name].workingdir + new_hostname)
+            except:
+                debug("Cannot move FLASH directory")
         self.hostname = new_hostname
         self.f = 'FW ' + self.hostname
         self.create_firewall()

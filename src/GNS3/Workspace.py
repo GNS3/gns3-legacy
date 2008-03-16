@@ -458,21 +458,30 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                                    translate("Workspace", "Do you want to apply the project settings to the current topology?"), QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
                 if reply == QtGui.QMessageBox.Yes:
                     if self.projectWorkdir:
-                        # stop all nodes
+                        # stop all router and firewall nodes
                         for node in globals.GApp.topology.nodes.values():
-                            if isinstance(node, IOSRouter):
+                            if isinstance(node, IOSRouter) or isinstance(node, FW):
                                 node.stopNode()
-                        # move dynamips files
+                        # move dynamips & pemu files
                         for node in globals.GApp.topology.nodes.values():
-                            if isinstance(node, IOSRouter):
+                            if isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir:
                                 dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '?' + node.hostname + '*')
                                 for file in dynamips_files:
                                     try:
                                         shutil.move(file, self.projectWorkdir)
-                                    except:
-                                        debug("Warning: cannot move " + file + " to " + self.projectWorkdir)
+                                    except OSError, (errno, strerror):
+                                        debug("Warning: cannot move " + file + " to " + self.projectWorkdir + ": " + strerror)
+                                        continue
+                            if isinstance(node, FW) and self.projectWorkdir != node.pemu.workingdir:
+                                pemu_files = glob.glob(os.path.normpath(node.pemu.workingdir) + os.sep + node.hostname)
+                                for file in pemu_files:
+                                    try:
+                                        shutil.move(file, self.projectWorkdir + os.sep + node.hostname)
+                                    except OSError, (errno, strerror):
+                                        debug("Warning: cannot move " + file + " to " + self.projectWorkdir + ": " + strerror)
                                         continue
                         # set the new working directory
+                        import GNS3.Dynagen.pemu_lib as pix
                         try:
                             for hypervisor in globals.GApp.dynagen.dynamips.values():
                                 hypervisor.workingdir = self.projectWorkdir
