@@ -58,5 +58,5 @@ else:
                 'GNS3.Ui',
                 'GNS3.Ui.ConfigurationPages',
                 'GNS3.Langs'],
-            package_data = { 'GNS3': ['Langs/*.qm'] }
+            package_data = { 'GNS3': ['Langs/*.qm', 'Dynagen/configspec'] }
     )
