@@ -19,10 +19,11 @@
 # Contact: contact@gns3.net
 #
 
-import sys, time
+import sys, time, os
 import GNS3.Globals as globals
+import GNS3.Config.Defaults as Defaults
 from PyQt4.QtGui import QApplication
-from PyQt4.QtCore import QVariant
+from PyQt4.QtCore import QVariant, QSettings
 from GNS3.Utils import Singleton
 from GNS3.Workspace import Workspace
 from GNS3.Topology import Topology
@@ -65,6 +66,14 @@ class Application(QApplication, Singleton):
         # set global app to ourself
         globals.GApp = self
 
+        # Force SystemScope init file to Defaults.SysConfigDir
+        if not sys.platform.startswith('win'):
+            QSettings.setPath(QSettings.IniFormat,
+                              QSettings.SystemScope,
+                              Defaults.SysConfigDir)
+            QSettings.setPath(QSettings.IniFormat,
+                              QSettings.UserScope,
+                              os.path.expanduser(Defaults.UsrConfigDir))
 
     def __setMainWindow(self, mw):
         """ register the MainWindow instance

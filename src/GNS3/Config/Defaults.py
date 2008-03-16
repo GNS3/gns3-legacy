@@ -19,6 +19,9 @@
 # Contact: contact@gns3.net
 #
 
+SysConfigDir = "/etc/gns3"
+UsrConfigDir = "~/.gns3"
+
 conf_iosImage_defaults = {
     'id': -1,
     'filename': '',
