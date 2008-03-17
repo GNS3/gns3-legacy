@@ -852,42 +852,42 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractNode</name>
     <message>
-        <location filename="../Node/AbstractNode.py" line="80"/>
+        <location filename="../Node/AbstractNode.py" line="87"/>
         <source>Change hostname</source>
         <translation>Namen des Hosts ändern</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="81"/>
+        <location filename="../Node/AbstractNode.py" line="88"/>
         <source>Hostname:</source>
         <translation>Hostname:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="223"/>
+        <location filename="../Node/AbstractNode.py" line="230"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="190"/>
+        <location filename="../Node/AbstractNode.py" line="197"/>
         <source>Already connected interface</source>
         <translation>Bereits verbundenes Interface</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="88"/>
+        <location filename="../Node/AbstractNode.py" line="95"/>
         <source>Hostname</source>
         <translation>Hostname</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="88"/>
+        <location filename="../Node/AbstractNode.py" line="95"/>
         <source>Hostname already used</source>
         <translation>Hostname wird bereits verwendet</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="167"/>
+        <location filename="../Node/AbstractNode.py" line="174"/>
         <source>Hostname: %s</source>
         <translation>Hostname: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="223"/>
+        <location filename="../Node/AbstractNode.py" line="230"/>
         <source>No interface available, please configure this device</source>
         <translation>Kein Interface verügbar, bitte das Gerät konfiguieren</translation>
     </message>
@@ -1097,12 +1097,12 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>DynagenSub</name>
     <message>
-        <location filename="../DynagenSub.py" line="62"/>
+        <location filename="../DynagenSub.py" line="52"/>
         <source>Starting hypervisors ...</source>
         <translation>Starte Hypervisoren ...</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="62"/>
+        <location filename="../DynagenSub.py" line="52"/>
         <source>Abort</source>
         <translation>Abbrechen</translation>
     </message>
@@ -1239,17 +1239,17 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>FW</name>
     <message>
-        <location filename="../Node/FW.py" line="252"/>
+        <location filename="../Node/FW.py" line="253"/>
         <source>%s: no PIX image</source>
         <translation>%s: kein PIX-Image</translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="306"/>
+        <location filename="../Node/FW.py" line="307"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="306"/>
+        <location filename="../Node/FW.py" line="307"/>
         <source>No interface available</source>
         <translation>Kein Interface verfügbar</translation>
     </message>
@@ -2051,52 +2051,52 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="315"/>
+        <location filename="../NETFile.py" line="327"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="315"/>
+        <location filename="../NETFile.py" line="327"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Bitte konfiguriere den Pfad zu Dyamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="568"/>
+        <location filename="../NETFile.py" line="587"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="571"/>
+        <location filename="../NETFile.py" line="590"/>
         <source>Dynamips warning</source>
         <translation>Warnung von Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="341"/>
+        <location filename="../NETFile.py" line="357"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Ausnahmebehandlungentdeckt, stoppe den Import...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="578"/>
+        <location filename="../NETFile.py" line="597"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportiere die Konfiguration von %s nach %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="585"/>
+        <location filename="../NETFile.py" line="604"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: EA Fehler: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="341"/>
+        <location filename="../NETFile.py" line="357"/>
         <source>Importation</source>
         <translation>Importierung</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="326"/>
+        <location filename="../NETFile.py" line="339"/>
         <source>Please wait while importing the topology</source>
         <translation>Bitte warten, die Topologie wird importiert</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="585"/>
+        <location filename="../NETFile.py" line="604"/>
         <source>IOError</source>
         <translation></translation>
     </message>
@@ -2628,37 +2628,37 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="242"/>
+        <location filename="../Topology.py" line="250"/>
         <source>IOS image</source>
         <translation>IOS-Image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="221"/>
+        <location filename="../Topology.py" line="229"/>
         <source>Please register at least one IOS image</source>
         <translation>Bitte mindestens ein IOS-Image angeben</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="259"/>
+        <location filename="../Topology.py" line="267"/>
         <source>Hypervisor</source>
         <translation>Hypervisor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="256"/>
+        <location filename="../Topology.py" line="264"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Bitte den Pfad zu Dyamips konfigurieren</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="449"/>
+        <location filename="../Topology.py" line="457"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="294"/>
+        <location filename="../Topology.py" line="302"/>
         <source>Connection lost</source>
         <translation>Verbindung verloren</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="364"/>
+        <location filename="../Topology.py" line="372"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
@@ -2668,160 +2668,165 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Kann nicht zu dem externen Hypervisor auf %s verbinden</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="232"/>
+        <location filename="../Topology.py" line="240"/>
         <source>No image for platform %s</source>
         <translation>Kein IOS-Image für Plattform %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="243"/>
+        <location filename="../Topology.py" line="251"/>
         <source>Please choose an image</source>
         <translation>Bitte wähle ein IOS-Image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="364"/>
+        <location filename="../Topology.py" line="372"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Es muss mindestens ein Router mit dem Switch verbunden sein</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="271"/>
+        <location filename="../Topology.py" line="279"/>
         <source>PIX image</source>
         <translation>PIX-Image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="271"/>
+        <location filename="../Topology.py" line="279"/>
         <source>Please configure a default PIX image</source>
         <translation>Bitte konfiguriere ein Standard PIX-Image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="351"/>
+        <location filename="../Topology.py" line="359"/>
         <source>Can&apos;t connect these devices</source>
         <translation>Kann Geräte nicht verbinden</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="259"/>
+        <location filename="../Topology.py" line="267"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation>Den Pfad zu Dynamips in den Einstellungen überprüfen</translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="204"/>
+        <source>Pemuwrapper error</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="108"/>
+        <location filename="../Workspace.py" line="110"/>
         <source>Docks</source>
         <translation>Docks</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="478"/>
+        <location filename="../Workspace.py" line="489"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="349"/>
+        <location filename="../Workspace.py" line="351"/>
         <source>Connection lost</source>
         <translation>Verbindung verloren</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="346"/>
+        <location filename="../Workspace.py" line="348"/>
         <source>Dynamips warning</source>
         <translation>Warnung von Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="325"/>
+        <location filename="../Workspace.py" line="327"/>
         <source>Abort</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="361"/>
+        <location filename="../Workspace.py" line="363"/>
         <source>Starting nodes ...</source>
         <translation>Starte Einheiten ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="367"/>
+        <location filename="../Workspace.py" line="369"/>
         <source>Stopping nodes ...</source>
         <translation>Beende Einheiten ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="373"/>
+        <location filename="../Workspace.py" line="375"/>
         <source>Suspending nodes ...</source>
         <translation>Suspendiere Einheiten ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="421"/>
+        <location filename="../Workspace.py" line="423"/>
         <source>Loading</source>
         <translation>Lade</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="296"/>
+        <location filename="../Workspace.py" line="298"/>
         <source>Hide hostnames</source>
         <translation>Verstecke Hostnamen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="301"/>
+        <location filename="../Workspace.py" line="303"/>
         <source>Show hostnames</source>
         <translation>Zeige Hostnamen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="501"/>
+        <location filename="../Workspace.py" line="513"/>
         <source>Open a file</source>
         <translation>Öffne eine Datei</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="497"/>
+        <location filename="../Workspace.py" line="509"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Der Pfad zu Dynamips muss konfiguriert sein</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="534"/>
+        <location filename="../Workspace.py" line="546"/>
         <source>Save Project As</source>
         <translation>Speichere Projekt als</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="442"/>
+        <location filename="../Workspace.py" line="444"/>
         <source>New Project</source>
         <translation>Neues Projekt</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="554"/>
+        <location filename="../Workspace.py" line="566"/>
         <source>Message</source>
         <translation>Nachricht</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="192"/>
+        <location filename="../Workspace.py" line="194"/>
         <source>Are you sure to clear the topology?</source>
         <translation>Sicher, dass die Topologie gelöscht werden soll?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="215"/>
+        <location filename="../Workspace.py" line="217"/>
         <source>Add a link</source>
         <translation>Füge einen Link hinzu</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="230"/>
+        <location filename="../Workspace.py" line="232"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="442"/>
+        <location filename="../Workspace.py" line="444"/>
         <source>Can&apos;t create a project</source>
         <translation>Kann ein Projekt nicht anlegen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="421"/>
+        <location filename="../Workspace.py" line="423"/>
         <source>Invalid file %s</source>
         <translation>Unzulässige Datei %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="554"/>
+        <location filename="../Workspace.py" line="566"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>Soll die Topologie vor dem Beenden gespeichert werden?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="456"/>
+        <location filename="../Workspace.py" line="458"/>
         <source>Do you want to apply the project settings to the current topology?</source>
         <translation>Möchten Sie die Projekteinstellungen auf die aktuelle Topologie anwenden? </translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="480"/>
+        <location filename="../Workspace.py" line="491"/>
         <source>Would you like to save the current topology?</source>
         <translation>Möchten Sie die aktuelle Topologie speichern?</translation>
     </message>

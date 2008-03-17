@@ -551,42 +551,42 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractNode</name>
     <message>
-        <location filename="../Node/AbstractNode.py" line="80"/>
+        <location filename="../Node/AbstractNode.py" line="87"/>
         <source>Change hostname</source>
         <translation>ホスト名を変更</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="81"/>
+        <location filename="../Node/AbstractNode.py" line="88"/>
         <source>Hostname:</source>
         <translation>ホスト名:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="223"/>
+        <location filename="../Node/AbstractNode.py" line="230"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="190"/>
+        <location filename="../Node/AbstractNode.py" line="197"/>
         <source>Already connected interface</source>
         <translation>使用済みインターフェイス</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="88"/>
+        <location filename="../Node/AbstractNode.py" line="95"/>
         <source>Hostname</source>
         <translation>ホスト名</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="88"/>
+        <location filename="../Node/AbstractNode.py" line="95"/>
         <source>Hostname already used</source>
         <translation>このホスト名は既に使用されています</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="167"/>
+        <location filename="../Node/AbstractNode.py" line="174"/>
         <source>Hostname: %s</source>
         <translation>ホスト名: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="223"/>
+        <location filename="../Node/AbstractNode.py" line="230"/>
         <source>No interface available, please configure this device</source>
         <translation type="unfinished"></translation>
     </message>
@@ -795,12 +795,12 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
 <context>
     <name>DynagenSub</name>
     <message>
-        <location filename="../DynagenSub.py" line="62"/>
+        <location filename="../DynagenSub.py" line="52"/>
         <source>Starting hypervisors ...</source>
         <translation>ハイパーバイザを起動中 ...</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="62"/>
+        <location filename="../DynagenSub.py" line="52"/>
         <source>Abort</source>
         <translation>中止</translation>
     </message>
@@ -937,17 +937,17 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
 <context>
     <name>FW</name>
     <message>
-        <location filename="../Node/FW.py" line="252"/>
+        <location filename="../Node/FW.py" line="253"/>
         <source>%s: no PIX image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="306"/>
+        <location filename="../Node/FW.py" line="307"/>
         <source>Connection</source>
         <translation type="unfinished">接続</translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="306"/>
+        <location filename="../Node/FW.py" line="307"/>
         <source>No interface available</source>
         <translation type="unfinished">インターフェイスが見つかりません</translation>
     </message>
@@ -1749,52 +1749,52 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="315"/>
+        <location filename="../NETFile.py" line="327"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="315"/>
+        <location filename="../NETFile.py" line="327"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Dynamipsのプログラムパスを設定してください</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="568"/>
+        <location filename="../NETFile.py" line="587"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="571"/>
+        <location filename="../NETFile.py" line="590"/>
         <source>Dynamips warning</source>
         <translation>Dynamips 警告</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="341"/>
+        <location filename="../NETFile.py" line="357"/>
         <source>Exception detected, stopping importation...</source>
         <translation>例外エラーでましたためインポートを中止しています...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="578"/>
+        <location filename="../NETFile.py" line="597"/>
         <source>Exporting %s configuration to %s</source>
         <translation>%s のコンフィッグを %s にエクスポート中</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="585"/>
+        <location filename="../NETFile.py" line="604"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO エラー: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="341"/>
+        <location filename="../NETFile.py" line="357"/>
         <source>Importation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="326"/>
+        <location filename="../NETFile.py" line="339"/>
         <source>Please wait while importing the topology</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="585"/>
+        <location filename="../NETFile.py" line="604"/>
         <source>IOError</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2326,37 +2326,37 @@ to display the configuration page.</source>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="242"/>
+        <location filename="../Topology.py" line="250"/>
         <source>IOS image</source>
         <translation>IOSイメージ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="221"/>
+        <location filename="../Topology.py" line="229"/>
         <source>Please register at least one IOS image</source>
         <translation>IOSイメージを登録して下さい</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="259"/>
+        <location filename="../Topology.py" line="267"/>
         <source>Hypervisor</source>
         <translation>ハイパーバイザ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="256"/>
+        <location filename="../Topology.py" line="264"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Dynamipsのプログラムパスを設定してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="449"/>
+        <location filename="../Topology.py" line="457"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="294"/>
+        <location filename="../Topology.py" line="302"/>
         <source>Connection lost</source>
         <translation>接続失敗しました</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="364"/>
+        <location filename="../Topology.py" line="372"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
@@ -2366,160 +2366,165 @@ to display the configuration page.</source>
         <translation>外部スパーバイザ %s に接続できませんでした</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="232"/>
+        <location filename="../Topology.py" line="240"/>
         <source>No image for platform %s</source>
         <translation>このプラットフォーム %s にIOSイメージは設定されていません</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="243"/>
+        <location filename="../Topology.py" line="251"/>
         <source>Please choose an image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="364"/>
+        <location filename="../Topology.py" line="372"/>
         <source>You have to connect at least one router to the switch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="271"/>
+        <location filename="../Topology.py" line="279"/>
         <source>PIX image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="271"/>
+        <location filename="../Topology.py" line="279"/>
         <source>Please configure a default PIX image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="351"/>
+        <location filename="../Topology.py" line="359"/>
         <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="259"/>
+        <location filename="../Topology.py" line="267"/>
         <source>Please test the path to Dynamips in preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="204"/>
+        <source>Pemuwrapper error</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="108"/>
+        <location filename="../Workspace.py" line="110"/>
         <source>Docks</source>
         <translation>ドッキング</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="478"/>
+        <location filename="../Workspace.py" line="489"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="349"/>
+        <location filename="../Workspace.py" line="351"/>
         <source>Connection lost</source>
         <translation>接続失敗しました</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="346"/>
+        <location filename="../Workspace.py" line="348"/>
         <source>Dynamips warning</source>
         <translation>Dynamips 警告</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="325"/>
+        <location filename="../Workspace.py" line="327"/>
         <source>Abort</source>
         <translation>中止</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="361"/>
+        <location filename="../Workspace.py" line="363"/>
         <source>Starting nodes ...</source>
         <translation>ノード開始中 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="367"/>
+        <location filename="../Workspace.py" line="369"/>
         <source>Stopping nodes ...</source>
         <translation>ノード停止中 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="373"/>
+        <location filename="../Workspace.py" line="375"/>
         <source>Suspending nodes ...</source>
         <translation>ノードサスペンド中 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="421"/>
+        <location filename="../Workspace.py" line="423"/>
         <source>Loading</source>
         <translation>読み込み中</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="296"/>
+        <location filename="../Workspace.py" line="298"/>
         <source>Hide hostnames</source>
         <translation>ホスト名を表示しない</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="301"/>
+        <location filename="../Workspace.py" line="303"/>
         <source>Show hostnames</source>
         <translation>ホスト名を表示する</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="501"/>
+        <location filename="../Workspace.py" line="513"/>
         <source>Open a file</source>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="497"/>
+        <location filename="../Workspace.py" line="509"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Dynamipsのプログラムパスを使用する必要があります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="534"/>
+        <location filename="../Workspace.py" line="546"/>
         <source>Save Project As</source>
         <translation>プロジェクトを名前指定して保存</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="442"/>
+        <location filename="../Workspace.py" line="444"/>
         <source>New Project</source>
         <translation>新規プロジェクト</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="554"/>
+        <location filename="../Workspace.py" line="566"/>
         <source>Message</source>
         <translation>メッセージ</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="192"/>
+        <location filename="../Workspace.py" line="194"/>
         <source>Are you sure to clear the topology?</source>
         <translation>トポロジーをクリアします、よろしいですか?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="215"/>
+        <location filename="../Workspace.py" line="217"/>
         <source>Add a link</source>
         <translation>リンクを追加する</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="230"/>
+        <location filename="../Workspace.py" line="232"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="442"/>
+        <location filename="../Workspace.py" line="444"/>
         <source>Can&apos;t create a project</source>
         <translation>プロジェクトを作成できませんでした</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="421"/>
+        <location filename="../Workspace.py" line="423"/>
         <source>Invalid file %s</source>
         <translation>ファイル %s に誤りがあります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="554"/>
+        <location filename="../Workspace.py" line="566"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="456"/>
+        <location filename="../Workspace.py" line="458"/>
         <source>Do you want to apply the project settings to the current topology?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="480"/>
+        <location filename="../Workspace.py" line="491"/>
         <source>Would you like to save the current topology?</source>
         <translation type="unfinished"></translation>
     </message>
