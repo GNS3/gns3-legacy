@@ -111,9 +111,9 @@ class NETFile(object):
             if device.nios[port] != None:
                 (remote_device, remote_adapter, remote_port) = lib.get_reverse_udp_nio(device.nios[port])
                 if isinstance(remote_device, pix.FW):
-                    self.add_in_connection_list((device.name, str(port), remote_device.name, str(remote_port)), connection_list)
+                    self.add_in_connection_list((device.name, 'e' + str(port), remote_device.name, remote_adapter + str(remote_port)), connection_list)
                 elif isinstance(remote_device, lib.ETHSW):
-                    connection_list.append((device.name, str(port), remote_device.name, str(remote_port)))
+                    connection_list.append((device.name, 'e' + str(port), remote_device.name, str(remote_port)))
 
     def create_node(self, device, symbol_name):
         """ Create a new node
@@ -548,10 +548,11 @@ class NETFile(object):
             if isinstance(dynamips, lib.Dynamips):
                 if not working_dir:
                     working_dir = dynamips.workingdir
-                if dynamips.starting_udp > base_udp:
-                    base_udp = dynamips.starting_udp
                 if dynamips.port > hypervisor_port:
                     hypervisor_port = dynamips.port
+                if dynamips.starting_udp > base_udp:
+                    base_udp = dynamips.starting_udp
+
         if base_udp:
             globals.GApp.dynagen.globaludp = base_udp + globals.GApp.systconf['dynamips'].udp_incrementation
         if hypervisor_port:

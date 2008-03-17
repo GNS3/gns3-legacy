@@ -403,11 +403,11 @@ class Scene(QtGui.QGraphicsView):
         """
 
         key = event.key()
-        if key == QtCore.Qt.Key_Plus:
+        if key == QtCore.Qt.Key_Plus and event.modifiers() == QtCore.Qt.Key_Control:
             # Zoom in
             factor_in = pow(2.0, 120 / 240.0)
             self.scaleView(factor_in)
-        elif key == QtCore.Qt.Key_Minus:
+        elif key == QtCore.Qt.Key_Minus and event.modifiers() == QtCore.Qt.Key_Control:
             # Zoom out
             factor_out = pow(2.0, -120 / 240.0)
             self.scaleView(factor_out)
