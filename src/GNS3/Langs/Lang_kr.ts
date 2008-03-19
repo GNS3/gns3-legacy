@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="ru_RU">
+<!DOCTYPE TS><TS version="1.1" language="ja_JP">
 <context>
     <name>ATMBRPage</name>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="13"/>
         <source>ATM Bridge</source>
-        <translation>АТМ Мост</translation>
+        <translation>ATM 브릿지</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="25"/>
         <source>Ethernet side</source>
-        <translation>Сторона Ethernet</translation>
+        <translation>Ethernet side</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="104"/>
         <source>Port:</source>
-        <translation>Порт:</translation>
+        <translation>포트:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="60"/>
         <source>Mapping</source>
-        <translation>Отображение</translation>
+        <translation>매핑</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="76"/>
         <source>Ethernet Port</source>
-        <translation>Порт Ethernet</translation>
+        <translation>이더넷 포트</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="81"/>
         <source>Port:VCI:VPI</source>
-        <translation>Порт:VCI:VPI</translation>
+        <translation>포트:VCI:VPI</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="98"/>
         <source>ATM side</source>
-        <translation>Сторона АТМ</translation>
+        <translation>ATM side</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="130"/>
@@ -50,12 +50,12 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="185"/>
         <source>&amp;Add</source>
-        <translation>&amp;Добавить</translation>
+        <translation>추가(&amp;A)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="195"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Удалить</translation>
+        <translation>삭제(&amp;D)</translation>
     </message>
 </context>
 <context>
@@ -63,32 +63,32 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="13"/>
         <source>ATM Switch</source>
-        <translation>АТМ Коммутатор</translation>
+        <translation>ATM 스위치</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="19"/>
         <source>Use VCI</source>
-        <translation>Использовать VCI</translation>
+        <translation>VCI 사용</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="26"/>
         <source>Mapping</source>
-        <translation>Отображение</translation>
+        <translation>매핑</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="47"/>
         <source>Port:VCI:VPI</source>
-        <translation>Порт:VCI:VPI</translation>
+        <translation>포트:VCI:VPI</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="64"/>
         <source>Source</source>
-        <translation>Источник</translation>
+        <translation>소스</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="160"/>
         <source>Port:</source>
-        <translation>Порт:</translation>
+        <translation>포트:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="186"/>
@@ -103,17 +103,17 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="154"/>
         <source>Destination</source>
-        <translation>Направление</translation>
+        <translation>목적지</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="238"/>
         <source>&amp;Add</source>
-        <translation>&amp;Добавить</translation>
+        <translation>추가(&amp;A)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="248"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Удалить</translation>
+        <translation>삭제(&amp;D)</translation>
     </message>
 </context>
 <context>
@@ -121,22 +121,22 @@
     <message>
         <location filename="../Ui/Form_About.py" line="85"/>
         <source>About</source>
-        <translation>О программе</translation>
+        <translation>About</translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="100"/>
         <source>&amp;About</source>
-        <translation>&amp;О программе</translation>
+        <translation>&amp;About</translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="118"/>
         <source>&amp;Thanks to</source>
-        <translation>&amp;Благодарности</translation>
+        <translation>&amp;Thanks to</translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="405"/>
         <source>&amp;License Agreement</source>
-        <translation>&amp;Лицензионное соглашение</translation>
+        <translation>&amp;License Agreement</translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="117"/>
@@ -157,7 +157,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aboulgasem Albusaifi from Tarabulus, Libya: Arabic translation&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Marcio de Freitas Minicz from Sao Jose dos Campos, SP, Brazil: Brazilian-Portuguese translation &lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hasan Agirol Aksoy from Antalya, Turkey: Turkish translation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="99"/>
@@ -473,77 +473,77 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="168"/>
         <source>Delete</source>
-        <translation>Удалить</translation>
+        <translation>삭제</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="172"/>
         <source>Stop the capture</source>
-        <translation>Остановить захват</translation>
+        <translation>캡쳐 중지</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="174"/>
         <source>Start Wireshark</source>
-        <translation>Запустить Wireshark</translation>
+        <translation>Wireshark를 실행</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="300"/>
         <source>Capture</source>
-        <translation>Захват</translation>
+        <translation>캡쳐</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="190"/>
         <source>Packet capture is not supported on this link type</source>
-        <translation>Захват пакетов не поддерживается на этом типе канала</translation>
+        <translation>이 링크 타입에서는 패킷 캡쳐를 지원하지 않습니다</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="214"/>
         <source>Please choose a source</source>
-        <translation>Пожалуйста выберите источник</translation>
+        <translation>소스를 선택해주세요</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="216"/>
         <source>No device available for traffic capture</source>
-        <translation>Нет устройств для захвата трафика</translation>
+        <translation>트래픽 캡쳐를 할 장치가 없습니다</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="270"/>
         <source>Dynamips error</source>
-        <translation>Ошибка Dynamips</translation>
+        <translation>Dynamips 에러</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="265"/>
         <source>Capture stopped</source>
-        <translation>Захват остановлен</translation>
+        <translation>캡쳐 중지</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="279"/>
         <source>Please configure capture options</source>
-        <translation>Пожалуйства настройте опции захвата</translation>
+        <translation>캡쳐 옵션을 설정해주세요</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="131"/>
         <source>Link: %s (%s) -&gt; %s (%s)</source>
-        <translation>Канал: %s (%s) -&gt; %s (%s)</translation>
+        <translation>링크: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="223"/>
         <source>Device %s is not running</source>
-        <translation>Устройство %s не запущено</translation>
+        <translation>장치 %s 가 실행중이지 않습니다</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="300"/>
         <source>Cannot start %s : %s</source>
-        <translation>Невозможно запустить %s : %s</translation>
+        <translation>%s 를 시작할 수 없습니다 : %s</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="286"/>
         <source>%s is empty, no traffic captured on the link. Try again later</source>
-        <translation type="unfinished"></translation>
+        <translation>%s 가 없기때문에 링크에서 트래픽 캡쳐를 할 수 없습니다. 다시 시도해주세요</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="289"/>
         <source>Cannot find %s : %s</source>
-        <translation type="unfinished"></translation>
+        <translation> %s 를 찾을 수 없습니다 : %s</translation>
     </message>
 </context>
 <context>
@@ -551,42 +551,42 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="87"/>
         <source>Change hostname</source>
-        <translation>Change hostname</translation>
+        <translation>호스트 이름을 변경</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="88"/>
         <source>Hostname:</source>
-        <translation>Hostname:</translation>
+        <translation>호스트 이름:</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="230"/>
         <source>Connection</source>
-        <translation>Connection</translation>
+        <translation>연결</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="197"/>
         <source>Already connected interface</source>
-        <translation>Already connected interface</translation>
+        <translation>이미 인터페이스에 연결되어 있습니다</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="95"/>
         <source>Hostname</source>
-        <translation>Имя хоста</translation>
+        <translation>호스트 이름</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="95"/>
         <source>Hostname already used</source>
-        <translation>Имя хоста уже используется</translation>
+        <translation>호스트 이름이 이미 사용되고 있습니다</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="174"/>
         <source>Hostname: %s</source>
-        <translation>Имя хоста: %s</translation>
+        <translation>호스트 이름: %s</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="230"/>
         <source>No interface available, please configure this device</source>
-        <translation>Интерфейс не существует, пожалуйста настройте устройство</translation>
+        <translation>사용가능한 인터페이스가 존재하지 않습니다, 장비 설정을 해주세요</translation>
     </message>
 </context>
 <context>
@@ -594,27 +594,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="13"/>
         <source>Cloud</source>
-        <translation>Облако</translation>
+        <translation>네트워크 망</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="23"/>
         <source>NIO Ethernet</source>
-        <translation>NIO Ethernet</translation>
+        <translation>NIO 이더넷</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="606"/>
         <source>&amp;Add</source>
-        <translation>&amp;Добавить</translation>
+        <translation>추가(&amp;A)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="616"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Удалить</translation>
+        <translation>삭제(&amp;D)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="77"/>
         <source>Linux Ethernet NIO (require root access)</source>
-        <translation>Linux Ethernet NIO (требуется доступ под рутом)</translation>
+        <translation>리눅스 이더넷 NIO (루트 권한이 필요)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="136"/>
@@ -624,22 +624,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="561"/>
         <source>Settings</source>
-        <translation>Настройки</translation>
+        <translation>설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="148"/>
         <source>Local port:</source>
-        <translation>Локальный порт:</translation>
+        <translation>로컬 포트:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="171"/>
         <source>Remote host:</source>
-        <translation>Хост в удаленном доступе:</translation>
+        <translation>원격 호스트:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="188"/>
         <source>Remote port:</source>
-        <translation>Порт в удаленном доступе:</translation>
+        <translation>원격 포트:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="587"/>
@@ -654,7 +654,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="263"/>
         <source>TAP interface (require root access)</source>
-        <translation>TAP интерфейс (требуется доступ под рутом)</translation>
+        <translation>TAP 인터페이스  (루트 권한이 필요)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="309"/>
@@ -664,12 +664,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="467"/>
         <source>Local file:</source>
-        <translation>Локальный файл:</translation>
+        <translation>로컬 파일:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="344"/>
         <source>Remote file:</source>
-        <translation>Файл в удаленном доступе:</translation>
+        <translation>원격지 파일:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="432"/>
@@ -679,22 +679,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="446"/>
         <source>Control file:</source>
-        <translation>Файл контроля:</translation>
+        <translation>관리 파일:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="555"/>
         <source>NIO NULL</source>
-        <translation>NIO NULL</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="567"/>
         <source>Identifier:</source>
-        <translation>Идентификатор:</translation>
+        <translation>식별자:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="29"/>
         <source>Generic Ethernet NIO (require Administrator access)</source>
-        <translation type="unfinished"></translation>
+        <translation>Generic 이더넷 NIO (관리자 권한이 필요)</translation>
     </message>
 </context>
 <context>
@@ -702,90 +702,92 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Console.py" line="205"/>
         <source>Dynamips error</source>
-        <translation>Ошибка Dynamips</translation>
+        <translation>Dynamips 에러</translation>
     </message>
     <message>
         <location filename="../Console.py" line="203"/>
         <source>Dynamips warning</source>
-        <translation>Предупреждение Dynamips</translation>
+        <translation>Dynamips 경고</translation>
     </message>
     <message>
         <location filename="../Console.py" line="205"/>
         <source>Connection lost</source>
-        <translation>Соединение потеряно</translation>
+        <translation>연결 종료</translation>
     </message>
     <message>
         <location filename="../Console.py" line="270"/>
         <source>Sorry, not implemented in GNS3</source>
-        <translation>Простите, не реализовано в GNS3</translation>
+        <translation>이 기능은 GNS3에서 지원하지 않고 있습니다</translation>
     </message>
     <message>
         <location filename="../Console.py" line="280"/>
         <source>Please wait while gathering statistics...</source>
-        <translation>Пожалуйста подождите идет сбор статистики...</translation>
+        <translation>통계를 수집하고 있습니다. 잠시만 기다려주세요...</translation>
     </message>
     <message>
         <location filename="../Console.py" line="305"/>
         <source>No idlepc values found</source>
-        <translation>Данные idlepc не найдены</translation>
+        <translation>idlepc 값이 설정되어 있지 않습니다</translation>
     </message>
     <message>
         <location filename="../Console.py" line="317"/>
         <source>No changes made</source>
-        <translation>Изменения сделаны не были</translation>
+        <translation>변경 사항 없음</translation>
     </message>
     <message>
         <location filename="../Console.py" line="330"/>
         <source>Can&apos;t apply idlepc value</source>
-        <translation>Невозможно применить значение idlepc</translation>
+        <translation>이 idlepc 값을 적용할 수 없습니다</translation>
     </message>
     <message>
         <location filename="../Console.py" line="335"/>
         <source>Incorrect number of paramaters or invalid parameters</source>
-        <translation>Неправильное число параметров или неправильные параметры</translation>
+        <translation>매개 변수가 잘못되어 있습니다</translation>
     </message>
     <message>
         <location filename="../Console.py" line="348"/>
         <source>You have to save your topology before using save</source>
-        <translation>Вы должны сохранить вашу топологию перед тем как использовать сохранение</translation>
+        <translation>먼저 토폴로지 저장을 해주세요</translation>
     </message>
     <message>
         <location filename="../Console.py" line="356"/>
         <source>You have to save your topology before using push</source>
-        <translation>Вы должны сохранить топологию перед использованием загрузки</translation>
+        <translation>먼저 토폴로지 저장을 해주세요</translation>
     </message>
     <message>
         <location filename="../Console.py" line="398"/>
         <source>Destination directory</source>
-        <translation>Папка назначения</translation>
+        <translation>목적지 디렉토리</translation>
     </message>
     <message>
         <location filename="../Console.py" line="399"/>
         <source>The directory already exists. Ok to overwrite (Y/N)?</source>
-        <translation>Папка уже существует. Перезаписать (Да/Нет)?</translation>
+        <translation>디렉토리가 이미 존재합니다. 덮어씌우겠습니까 (Y/N)?</translation>
     </message>
     <message>
         <location filename="../Console.py" line="276"/>
         <source>%s already has an idlepc value applied.</source>
-        <translation>%s уже имеет значение idlepc.</translation>
+        <translation>%s에 idlepc가 이미 적용되어 있습니다.</translation>
     </message>
     <message>
         <location filename="../Console.py" line="306"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;
 Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 </source>
-        <translation>Потенциально лучшие значения idlepc помечены  &apos;*&apos;Введите номер значени idlepc для использования [1-%i] или нажмите ENTER чтобы не делать изменений:</translation>
+        <translation> &apos;*&apos; 표시가 있는 idlepc 값을 추천합니다
+idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i]　ENTER 키를 누르면 변경되지 않습니다:
+</translation>
     </message>
     <message>
         <location filename="../Console.py" line="321"/>
         <source>Applied idlepc value %s to %s
 </source>
-        <translation>Используемое значение idlepc %s до %s</translation>
+        <translation>idlepc값 %s 를 %s에 적용</translation>
     </message>
     <message>
         <location filename="../Console.py" line="337"/>
         <source>Unknown device: %s</source>
-        <translation>Неизвестное устройство: %s</translation>
+        <translation>알 수 없는 장비: %s</translation>
     </message>
 </context>
 <context>
@@ -793,12 +795,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../DynagenSub.py" line="52"/>
         <source>Starting hypervisors ...</source>
-        <translation>Запуск гипервизоров ...</translation>
+        <translation>하이퍼바이져를 실행중...</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="52"/>
         <source>Abort</source>
-        <translation>Отмена</translation>
+        <translation>중지</translation>
     </message>
 </context>
 <context>
@@ -806,12 +808,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Node/ETHSW.py" line="200"/>
         <source>Connection</source>
-        <translation>Подключение</translation>
+        <translation>연결</translation>
     </message>
     <message>
         <location filename="../Node/ETHSW.py" line="200"/>
         <source>No port available</source>
-        <translation>Нет доступного порта</translation>
+        <translation>사용가능한 포트가 없습니다</translation>
     </message>
 </context>
 <context>
@@ -819,17 +821,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="13"/>
         <source>Ethernet Switch</source>
-        <translation>Ethernet коммутатор</translation>
+        <translation>이더넷 스위치</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="25"/>
         <source>Settings</source>
-        <translation>Настройки</translation>
+        <translation>설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="31"/>
         <source>Port:</source>
-        <translation>Порт:</translation>
+        <translation>포트:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="57"/>
@@ -839,12 +841,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="83"/>
         <source>Type:</source>
-        <translation>Тип:</translation>
+        <translation>타입:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="91"/>
         <source>access</source>
-        <translation>доступ</translation>
+        <translation>access</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="96"/>
@@ -854,12 +856,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="107"/>
         <source>Ports</source>
-        <translation>Порты</translation>
+        <translation>포트</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="123"/>
         <source>Port</source>
-        <translation>Порт</translation>
+        <translation>포트</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="128"/>
@@ -869,17 +871,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="133"/>
         <source>Type</source>
-        <translation>Тип</translation>
+        <translation>타입</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="144"/>
         <source>&amp;Add</source>
-        <translation>&amp;Добавить</translation>
+        <translation>추가(&amp;A)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="154"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Удалить</translation>
+        <translation>삭제(&amp;D)</translation>
     </message>
 </context>
 <context>
@@ -887,17 +889,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="13"/>
         <source>Frame Relay Switch</source>
-        <translation>Frame Relay Коммутатор</translation>
+        <translation>프레임 릴레이 스위치</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="25"/>
         <source>Source</source>
-        <translation>Источник</translation>
+        <translation>소스</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="127"/>
         <source>Port:</source>
-        <translation>Порт:</translation>
+        <translation>포트:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="153"/>
@@ -907,27 +909,27 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="83"/>
         <source>Mapping</source>
-        <translation>Отображение</translation>
+        <translation>매핑</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="104"/>
         <source>Port:DLCI</source>
-        <translation>Порт:DLCI</translation>
+        <translation>포트:DLCI</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="121"/>
         <source>Destination</source>
-        <translation>Назначение</translation>
+        <translation>목적지</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="179"/>
         <source>&amp;Add</source>
-        <translation>&amp;Добавить</translation>
+        <translation>추가(&amp;A)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="189"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Удалить</translation>
+        <translation>삭제(&amp;D)</translation>
     </message>
 </context>
 <context>
@@ -935,17 +937,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Node/FW.py" line="253"/>
         <source>%s: no PIX image</source>
-        <translation>%s: нет образа PIX</translation>
+        <translation>%s: PIX 이미지가 없습니다</translation>
     </message>
     <message>
         <location filename="../Node/FW.py" line="307"/>
         <source>Connection</source>
-        <translation>Подключение</translation>
+        <translation>연결</translation>
     </message>
     <message>
         <location filename="../Node/FW.py" line="307"/>
         <source>No interface available</source>
-        <translation>Нет доступного интерфейса</translation>
+        <translation>사용가능한 인터페이스가 없습니다</translation>
     </message>
 </context>
 <context>
@@ -953,12 +955,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="13"/>
         <source>Firewall configuration</source>
-        <translation>Конфигурация фаерволла</translation>
+        <translation>방화벽 구성</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="19"/>
         <source>PIX Image:</source>
-        <translation>Образ PIX:</translation>
+        <translation>PIX 이미지:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="48"/>
@@ -968,7 +970,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="55"/>
         <source>RAM size:</source>
-        <translation>Размер ОЗУ:</translation>
+        <translation>메모리 사이즈:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="68"/>
@@ -978,12 +980,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="84"/>
         <source>Key:</source>
-        <translation>Ключ:</translation>
+        <translation>Key:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="101"/>
         <source>Serial:</source>
-        <translation>Серийный:</translation>
+        <translation>Serial:</translation>
     </message>
 </context>
 <context>
@@ -991,12 +993,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Node/Hub.py" line="108"/>
         <source>Connection</source>
-        <translation>Подключение</translation>
+        <translation>연결</translation>
     </message>
     <message>
         <location filename="../Node/Hub.py" line="108"/>
         <source>No port available</source>
-        <translation>No port available</translation>
+        <translation>사용가능한 포트가 없습니다</translation>
     </message>
 </context>
 <context>
@@ -1004,17 +1006,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_HubPage.ui" line="13"/>
         <source>Ethernet Hub</source>
-        <translation>Ethernet Hub</translation>
+        <translation>이더넷 허브</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_HubPage.ui" line="25"/>
         <source>Settings</source>
-        <translation>Settings</translation>
+        <translation>설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_HubPage.ui" line="31"/>
         <source>Ports:</source>
-        <translation>Ports:</translation>
+        <translation>포트:</translation>
     </message>
 </context>
 <context>
@@ -1022,27 +1024,27 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../HypervisorManager.py" line="109"/>
         <source>Abort</source>
-        <translation>Abort</translation>
+        <translation>중지</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="84"/>
         <source>Can&apos;t start Dynamips on port %i</source>
-        <translation>Нельзя запустить Dynamips на порту %i</translation>
+        <translation>Dynamips를 포트 %i에서 실작할 수 없음</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="135"/>
         <source>Can&apos;t connect to the hypervisor on port %i</source>
-        <translation>Нельзя подключиться к гипервизору на порту %i</translation>
+        <translation>하이퍼바이져 포트 %i에서 연결할 수 없음</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="73"/>
         <source>A hypervisor is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation>Гипервизо уже запущен на порту %i, он не будет остановлен после закрытия GNS3</translation>
+        <translation>하이퍼바이져가 이미 %i 포트에서 실행되고 있습니다. GNS3를 종료하기 전에는 하이퍼바이져가 종료되지 않습니다</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="108"/>
         <source>Connecting to a hypervisor on port %i ...</source>
-        <translation>Подключается к гипервизору на порту %i ...</translation>
+        <translation>하이퍼바이져 포트 %i에서 연결중...</translation>
     </message>
 </context>
 <context>
@@ -1050,37 +1052,37 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../IOSDialog.py" line="196"/>
         <source>IDLE PC not valid (format required: 0xhhhhhhhh)</source>
-        <translation>Значение IDLE PC неверно (требуемый формат: 0xhhhhhhhh)</translation>
+        <translation>IDLE PC 값이 유효하지 않습니다 (형식: 0xhhhhhhhh)</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="205"/>
         <source>No hypervisor selected, use the local hypervisor</source>
-        <translation>Гипервизор не выбран, используйте локальный гипервизор</translation>
+        <translation>하이퍼바이져가 선택되어있지 않아, 로컬 하이퍼바이져를 사용합니다</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="333"/>
         <source>Select a working directory</source>
-        <translation>Выберите папку для работы</translation>
+        <translation>작업 디렉토리를 선택</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="295"/>
         <source>IOS images and hypervisors</source>
-        <translation>Образы IOS и гипервизоров</translation>
+        <translation>IOS 이미지와 하이퍼바이져</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="311"/>
         <source>IOS Images</source>
-        <translation>Образы IOS</translation>
+        <translation>IOS 이미지</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="312"/>
         <source>Settings</source>
-        <translation>Настройки</translation>
+        <translation>설정</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="300"/>
         <source>Image file :</source>
-        <translation>Файл образа :</translation>
+        <translation>이미지 파일:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="319"/>
@@ -1090,7 +1092,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="302"/>
         <source>Platform:</source>
-        <translation>Платформа:</translation>
+        <translation>플랫폼:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="304"/>
@@ -1100,42 +1102,42 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="296"/>
         <source>Images</source>
-        <translation>Образы</translation>
+        <translation>이미지</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="297"/>
         <source>IOS image</source>
-        <translation>Образ IOS</translation>
+        <translation>IOS 이미지</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="320"/>
         <source>Hypervisors</source>
-        <translation>Гипервизоры</translation>
+        <translation>하이퍼바이져</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="307"/>
         <source>Use the hypervisor manager</source>
-        <translation>Используйте менеджер гипервизоров</translation>
+        <translation>하이퍼바이져 관리자를 사용합니다</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="323"/>
         <source>&amp;Save</source>
-        <translation>&amp;Сохранить</translation>
+        <translation>저장(&amp;S)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="324"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Редактировать</translation>
+        <translation>편집(&amp;E)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="325"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Удалить</translation>
+        <translation>삭제(&amp;D)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="313"/>
         <source>Host:</source>
-        <translation>Хост:</translation>
+        <translation>호스트:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="314"/>
@@ -1145,67 +1147,67 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="315"/>
         <source>Port:</source>
-        <translation>Порт:</translation>
+        <translation>포트:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="316"/>
         <source>Base UDP:</source>
-        <translation>Основной UDP:</translation>
+        <translation>기본 UDP:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="318"/>
         <source>Working directory:</source>
-        <translation>Рабочая папка:</translation>
+        <translation>작업 디렉토리:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="321"/>
         <source>Host:Port</source>
-        <translation>Хост:Порт</translation>
+        <translation>호스트:포트</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="322"/>
         <source>Base UDP</source>
-        <translation>Основной UDP</translation>
+        <translation>기본 UDP</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="317"/>
         <source>Base console:</source>
-        <translation>Основная консоль:</translation>
+        <translation>기본 콘솔:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="326"/>
         <source>External hypervisors</source>
-        <translation>Внешние гипервизоры</translation>
+        <translation>외부 하이퍼바이져</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="159"/>
         <source>Select an IOS image</source>
-        <translation>Выберите образ IOS</translation>
+        <translation>IOS 이미지를 선택해주세요</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="298"/>
         <source>Model/Chassis</source>
-        <translation>Модель/Шасси</translation>
+        <translation>모델/섀시</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="303"/>
         <source>Model:</source>
-        <translation>Модель:</translation>
+        <translation>모델:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="305"/>
         <source>Default image for this platform</source>
-        <translation>Образ по умолчанию для этой платформы</translation>
+        <translation>이 플랫폼에 대한 기본 이미지를 설정</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="251"/>
         <source>There is already a default image for this platform</source>
-        <translation>Это уже образ по умолчанию для этой платформы</translation>
+        <translation>이 플랫폼에는 기본 이미지가 설정되어 있습니다</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="165"/>
         <source>Can&apos;t open file: %s</source>
-        <translation>Нельзя открыть файл: %s</translation>
+        <translation>%s 파일을 열 수 없습니다</translation>
     </message>
 </context>
 <context>
@@ -1213,22 +1215,22 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Node/IOSRouter.py" line="542"/>
         <source>Connection</source>
-        <translation>Подключение</translation>
+        <translation>연결</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="542"/>
         <source>No interface available</source>
-        <translation>Нет доступного интерфейса</translation>
+        <translation>사용가능한 인터페이스가 없습니다</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="225"/>
         <source>Slots</source>
-        <translation>Слоты</translation>
+        <translation>슬롯</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="225"/>
         <source>You have to restart this router to use new modules</source>
-        <translation>Вы должны перезагрузить маршрутизатор чтобы начать использовать новые модули</translation>
+        <translation>새로운 모듈을 사용하기 위해서는 라우터를 재시작해야 합니다</translation>
     </message>
 </context>
 <context>
@@ -1236,22 +1238,22 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="13"/>
         <source>Router configuration</source>
-        <translation>Конфигурация маршрутизатора</translation>
+        <translation>라우터 설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="23"/>
         <source>General</source>
-        <translation>Основное</translation>
+        <translation>일반 설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="57"/>
         <source>IOS image:</source>
-        <translation>Образ IOS:</translation>
+        <translation>IOS 이미지:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="71"/>
         <source>Startup-config:</source>
-        <translation>Загрузочная конфигурация:</translation>
+        <translation>Startup-config:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="100"/>
@@ -1261,7 +1263,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="107"/>
         <source>Midplane:</source>
-        <translation>Плоскость:</translation>
+        <translation>Midplane:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="127"/>
@@ -1271,87 +1273,87 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="161"/>
         <source>Memories and disks</source>
-        <translation>Память и диски</translation>
+        <translation>메모리, 디스크</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="167"/>
         <source>Memories</source>
-        <translation>Память</translation>
+        <translation>메모리</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="173"/>
         <source>RAM size:</source>
-        <translation>Размер ОЗУ:</translation>
+        <translation>메모리 사이즈:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="560"/>
         <source> MB</source>
-        <translation> МБ</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="202"/>
         <source>NVRAM size:</source>
-        <translation>Размер NVRAM:</translation>
+        <translation>NVRAM 사이즈:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="234"/>
         <source>Disks</source>
-        <translation>Диски</translation>
+        <translation>디스크</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="240"/>
         <source>PCMCIA disk0 size:</source>
-        <translation>Размер PCMCIA диск0:</translation>
+        <translation>PCMCIA disk0 사이즈:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="263"/>
         <source>PCMCIA disk1 size:</source>
-        <translation>Размер PCMCIA disk1:</translation>
+        <translation>PCMCIA disk1 사이즈:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="303"/>
         <source>Slots</source>
-        <translation>Слоты</translation>
+        <translation>슬롯</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="321"/>
         <source>slot0:</source>
-        <translation>слот0:</translation>
+        <translation>슬롯0:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="337"/>
         <source>slot1:</source>
-        <translation>слот1:</translation>
+        <translation>슬롯1:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="353"/>
         <source>slot2:</source>
-        <translation>слот2:</translation>
+        <translation>슬롯2:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="369"/>
         <source>slot3:</source>
-        <translation>слот3:</translation>
+        <translation>슬롯3:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="385"/>
         <source>slot4:</source>
-        <translation>слот4:</translation>
+        <translation>슬롯4:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="401"/>
         <source>slot5:</source>
-        <translation>слот5:</translation>
+        <translation>슬롯5:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="417"/>
         <source>slot6:</source>
-        <translation>слот6:</translation>
+        <translation>슬롯6:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="501"/>
         <source>Advanced</source>
-        <translation>Дополнительно</translation>
+        <translation>고급 설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="520"/>
@@ -1361,12 +1363,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="527"/>
         <source>Base MAC :</source>
-        <translation>Основной MAC :</translation>
+        <translation>기본 MAC :</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="547"/>
         <source>exec area:</source>
-        <translation>exec area:</translation>
+        <translation>exec 영역:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="576"/>
@@ -1381,22 +1383,22 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="29"/>
         <source>Platform:</source>
-        <translation>Платформа:</translation>
+        <translation>플랫폼:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="43"/>
         <source>Model:</source>
-        <translation>Модель:</translation>
+        <translation>모델:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="215"/>
         <source>KB</source>
-        <translation>КБ</translation>
+        <translation>KB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="309"/>
         <source>Adapters</source>
-        <translation>Адаптеры</translation>
+        <translation>어댑터</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="430"/>
@@ -1429,7 +1431,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Translations.py" line="96"/>
         <source>English</source>
-        <translation>Русский</translation>
+        <translation>한국어</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="312"/>
@@ -1439,32 +1441,32 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="313"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Редактировать</translation>
+        <translation>편집(&amp;E)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="314"/>
         <source>&amp;File</source>
-        <translation>&amp;Файл</translation>
+        <translation>파일(&amp;F)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="315"/>
         <source>&amp;Help</source>
-        <translation>&amp;Справка</translation>
+        <translation>도움말(&amp;H)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="316"/>
         <source>&amp;View</source>
-        <translation>&amp;Просмотр</translation>
+        <translation>보기(&amp;V)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="317"/>
         <source>General</source>
-        <translation>Основное</translation>
+        <translation>일반 설정</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="318"/>
         <source>Nodes Types</source>
-        <translation>Типы узлов</translation>
+        <translation>노드의 종류</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="323"/>
@@ -1474,32 +1476,32 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="320"/>
         <source>Design</source>
-        <translation>Дизайн</translation>
+        <translation>디자인</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="321"/>
         <source>Simulation</source>
-        <translation>Симуляция</translation>
+        <translation>시뮬레이션</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="322"/>
         <source>Topology Summary</source>
-        <translation>Топология</translation>
+        <translation>토폴로지 요약</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="324"/>
         <source>Console</source>
-        <translation>Консоль</translation>
+        <translation>콘솔</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="326"/>
         <source>&amp;About</source>
-        <translation>&amp;О программе</translation>
+        <translation>GNS3에 대해(&amp;A)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="327"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Выход</translation>
+        <translation>종료(&amp;Q)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="328"/>
@@ -1509,7 +1511,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="329"/>
         <source>&amp;Open</source>
-        <translation>&amp;Открыть</translation>
+        <translation>열기(&amp;O)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="331"/>
@@ -1519,7 +1521,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="332"/>
         <source>&amp;Save</source>
-        <translation>&amp;Сохранить</translation>
+        <translation>저장(&amp;S)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="334"/>
@@ -1529,7 +1531,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="338"/>
         <source>Add a link</source>
-        <translation>Добавить линк</translation>
+        <translation>링크를 추가</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="340"/>
@@ -1539,52 +1541,52 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="341"/>
         <source>&amp;Online Help</source>
-        <translation>&amp;Справка онлайн</translation>
+        <translation>온라인 도움말(&amp;O)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="342"/>
         <source>&amp;Export</source>
-        <translation>&amp;Экспорт</translation>
+        <translation>내보내기(&amp;E)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="343"/>
         <source>Start/Resume all IOS</source>
-        <translation>Запустить/Остановить все IOS</translation>
+        <translation>모든 IOS 를 시작/재시작</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="344"/>
         <source>Start or resume all IOS instances</source>
-        <translation>Запустить или остановить все инстанции IOS</translation>
+        <translation>모든 IOS 인스턴스를 시작/재시작</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="345"/>
         <source>Stop all IOS</source>
-        <translation>Остановить все IOS</translation>
+        <translation>모든 IOS를 중지합니다</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="346"/>
         <source>Stop all IOS instances</source>
-        <translation>Остановить все инстанцииl IOS</translation>
+        <translation>모든 IOS 인스턴스를 중지</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="348"/>
         <source>Show hostnames</source>
-        <translation>Показать имя хоста</translation>
+        <translation>호스트 이름을 보여줍니다</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="350"/>
         <source>Start a console on all running IOS instances</source>
-        <translation>Запустить консоль на всех запущенных инстанциях IOS</translation>
+        <translation>모든 IOS를 실행시키기 위해 콘솔을 시작합니다</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="351"/>
         <source>Save &amp;As</source>
-        <translation>Сохранить &amp;Как</translation>
+        <translation>다른 이름으로 저장 (&amp;A)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="352"/>
         <source>Save As</source>
-        <translation>Сохранить Как</translation>
+        <translation>다른 이름으로 저장</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="378"/>
@@ -1594,12 +1596,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="354"/>
         <source>About &amp;Qt</source>
-        <translation>О &amp;Qt</translation>
+        <translation>&amp;Qt 에 대해</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="355"/>
         <source>Zoom &amp;In</source>
-        <translation>Увеличить &amp;</translation>
+        <translation>확대 (&amp;I)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="356"/>
@@ -1609,7 +1611,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="357"/>
         <source>Zoom &amp;Out</source>
-        <translation>Уменьшить &amp;</translation>
+        <translation>축소(&amp;O)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="358"/>
@@ -1619,7 +1621,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="359"/>
         <source>Zoom &amp;1:1</source>
-        <translation>Масштаб &amp;1:1</translation>
+        <translation>배율 &amp;1:1</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="360"/>
@@ -1629,7 +1631,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="361"/>
         <source>Select &amp;All</source>
-        <translation>Выделить &amp;все</translation>
+        <translation>모두 선택(&amp;A)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="362"/>
@@ -1639,7 +1641,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="363"/>
         <source>Select &amp;None</source>
-        <translation>Отменить &amp;выделение</translation>
+        <translation>선택 취소(&amp;N)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="364"/>
@@ -1649,7 +1651,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="367"/>
         <source>Copy</source>
-        <translation>Копировать</translation>
+        <translation>복사</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="368"/>
@@ -1659,7 +1661,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="369"/>
         <source>&amp;Paste</source>
-        <translation>&amp;Вставить</translation>
+        <translation>붙여넣기(&amp;P)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="370"/>
@@ -1669,77 +1671,77 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="371"/>
         <source>Suspend all IOS</source>
-        <translation>Приостановить все IOS</translation>
+        <translation>모든 IOS를 일시중지</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="372"/>
         <source>Suspend all IOS instances</source>
-        <translation>Приостановить все инстанции IOS</translation>
+        <translation>모든 IOS 인스턴스를 일시중지</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="365"/>
         <source>&amp;Preferences...</source>
-        <translation>&amp;Настройки...</translation>
+        <translation>설정(&amp;P)...</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="366"/>
         <source>Ctrl+Shift+P</source>
-        <translation></translation>
+        <translation>Ctrl+Shift+P</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="339"/>
         <source>IOS images and hypervisors</source>
-        <translation>Образы IOS и гипервизоры</translation>
+        <translation>IOS 이미지와 하이퍼바이져</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="325"/>
         <source>toolBar</source>
-        <translation>Панель инструментов</translation>
+        <translation>툴바</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="330"/>
         <source>Open network file</source>
-        <translation>Открыть сетевой файл</translation>
+        <translation>네트워크 파일을 열기</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="333"/>
         <source>Save network file</source>
-        <translation>Сохранить сетевой файл</translation>
+        <translation>네트워크 파일을 저장</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="347"/>
         <source>Show the hostnames</source>
-        <translation>Показать имена хостов</translation>
+        <translation>호스트 이름을 보여줍니다</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="349"/>
         <source>Telnet to all IOS</source>
-        <translation>Телнет во все IOS</translation>
+        <translation>모든 IOS으로 텔넷</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="353"/>
         <source>Save network file as</source>
-        <translation>Сохранить сетевой файл как</translation>
+        <translation>다른 이름으로 저장</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="373"/>
         <source>Clear the topology</source>
-        <translation>Очистить топологию</translation>
+        <translation>토폴로지 초기화</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="374"/>
         <source>Add a note</source>
-        <translation>Добавить заметку</translation>
+        <translation>메모를 추가</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="375"/>
         <source>&amp;New Project</source>
-        <translation>&amp;Новый проект</translation>
+        <translation>새로운 프로젝트(&amp;N)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="377"/>
         <source>New Project</source>
-        <translation>Новый проект</translation>
+        <translation>새로운 프로젝트</translation>
     </message>
 </context>
 <context>
@@ -1747,52 +1749,52 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../NETFile.py" line="327"/>
         <source>Save</source>
-        <translation>Сохранить</translation>
+        <translation>저장</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="327"/>
         <source>Please configure the path to Dynamips</source>
-        <translation>Пожалуйста настройте путь к Dynamips</translation>
+        <translation>Dynamips의 경로를 설정해주세요</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="587"/>
         <source>Dynamips error</source>
-        <translation>Ошибка Dynamips</translation>
+        <translation>Dynamips 에러</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="590"/>
         <source>Dynamips warning</source>
-        <translation>Предупреждение Dynamips</translation>
+        <translation>Dynamips 경고</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="357"/>
         <source>Exception detected, stopping importation...</source>
-        <translation>Обнаружено исключение, остановка импорта...</translation>
+        <translation>에러가 발생하여 가져오기를 중단합니다...</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="597"/>
         <source>Exporting %s configuration to %s</source>
-        <translation>Экспортирование %s конфигурации в %s</translation>
+        <translation>%s 의 설정을 %s 로 내보내는 중</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="604"/>
         <source>%s: IO Error: %s</source>
-        <translation>%s: Ошибка ввода-вывода: %s</translation>
+        <translation>%s: IO 에러: %s</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="357"/>
         <source>Importation</source>
-        <translation>Импортирование</translation>
+        <translation>가져오기</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="339"/>
         <source>Please wait while importing the topology</source>
-        <translation>Пожалуйста подождите пока импортируется топология</translation>
+        <translation>토폴로지를 가져오는 중입니다. 잠시만 기다려 주세요</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="604"/>
         <source>IOError</source>
-        <translation type="unfinished"></translation>
+        <translation>입출력 관련 에러</translation>
     </message>
 </context>
 <context>
@@ -1800,17 +1802,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_NewProject.py" line="63"/>
         <source>New Project</source>
-        <translation>Новый проект</translation>
+        <translation>새로운 프로젝트</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="64"/>
         <source>Settings</source>
-        <translation>Настройки</translation>
+        <translation>설정</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="65"/>
         <source>Project file:</source>
-        <translation>Файл проекта:</translation>
+        <translation>프로젝트 파일:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="66"/>
@@ -1820,12 +1822,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_NewProject.py" line="67"/>
         <source>Export router configuration files</source>
-        <translation>Экспорт файлов конфигурации маршрутизатора</translation>
+        <translation>라우터 설정 파일 내보내기</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="68"/>
         <source>Keep working directory files</source>
-        <translation>Сохранить файлы рабочих папок</translation>
+        <translation>작업 디렉토리의 파일을 유지</translation>
     </message>
 </context>
 <context>
@@ -1833,109 +1835,109 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../NodeConfigurator.py" line="126"/>
         <source>Frame Relay switches</source>
-        <translation>Frame Relay коммутаторы</translation>
+        <translation>프레임 릴레이 스위치</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="129"/>
         <source>Ethernet switches</source>
-        <translation>Ethernet коммутаторы</translation>
+        <translation>이더넷 스위치</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="132"/>
         <source>ATM switches</source>
-        <translation>ATM коммутаторы</translation>
+        <translation>ATM 스위치</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="138"/>
         <source>Clouds</source>
-        <translation>Облака</translation>
+        <translation>네트워크 망</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="141"/>
         <source>Hubs</source>
-        <translation>Концентраторы</translation>
+        <translation>허브</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="231"/>
         <source>%s node</source>
-        <translation>%s узел</translation>
+        <translation>%s 노드</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="223"/>
         <source>%s group</source>
-        <translation>%s группа</translation>
+        <translation>%s 그룹</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="228"/>
         <source>Group of %d %s</source>
-        <translation>Группа %d %s</translation>
+        <translation>그룹의 %d %s</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NodeConfigurator.py" line="98"/>
         <source>Node configurator</source>
-        <translation>Конфигуратор узла</translation>
+        <translation>노드 설정</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NodeConfigurator.py" line="99"/>
         <source>Nodes</source>
-        <translation>Узлы</translation>
+        <translation>노드</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NodeConfigurator.py" line="100"/>
         <source>Node Configuration</source>
-        <translation>Конфигурация узла</translation>
+        <translation>노드 설정</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NodeConfigurator.py" line="102"/>
         <source>Please select a node in the list 
 to display the configuration page.</source>
-        <translation>Пожалуйста выберите узел в списке 
-чтобы показать страницу конфигурации.</translation>
+        <translation>구성 페이지에서 보이는 리스트 중에서
+노드를 선택 해주세요.</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="285"/>
         <source>Node configuration</source>
-        <translation>Конфигурация узла</translation>
+        <translation>노드 설정</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="105"/>
         <source>Routers c1700</source>
-        <translation>Маршрутизаторы c1700</translation>
+        <translation>라우터 c1700</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="108"/>
         <source>Routers c2600</source>
-        <translation>Маршрутизаторы c2600</translation>
+        <translation>라우터 c2600</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="111"/>
         <source>Routers c2691</source>
-        <translation>Маршрутизаторы c2691</translation>
+        <translation>라우터 c2691</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="114"/>
         <source>Routers c3600</source>
-        <translation>Маршрутизаторы c3600</translation>
+        <translation>라우터 c3600</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="117"/>
         <source>Routers c3700</source>
-        <translation>Маршрутизаторы c3700</translation>
+        <translation>라우터 c3700</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="120"/>
         <source>Routers c7200</source>
-        <translation>Маршрутизаторы c7200</translation>
+        <translation>라우터 c7200</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="123"/>
         <source>PIX firewalls</source>
-        <translation>Фаерволлы PIX</translation>
+        <translation>PIX 방화벽</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="135"/>
         <source>ATM bridges</source>
-        <translation>АТМ мосты</translation>
+        <translation>ATM 브릿지</translation>
     </message>
 </context>
 <context>
@@ -1943,27 +1945,27 @@ to display the configuration page.</source>
     <message>
         <location filename="../PemuManager.py" line="60"/>
         <source>Connecting to pemu on port %i ...</source>
-        <translation>Подключение к pemu на порту %i ...</translation>
+        <translation>Pemu 의 포트 %i 로 연결중...</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="61"/>
         <source>Abort</source>
-        <translation>Отмена</translation>
+        <translation>중지</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="85"/>
         <source>Can&apos;t connect to pemu on port %i</source>
-        <translation>Нельзя подключиться к pemu на порту %i</translation>
+        <translation>Pemu의 포트 %i로 연결 실패</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="114"/>
         <source>Pemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation>Pemu уже запущен на порту %i, он не будет выключен при выходе из GNS3</translation>
+        <translation>Pemu가 이미 %i 포트에서 실행되고 있습니다. GNS3를 종료하기 전에는 Pemu가 종료되지 않습니다</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="127"/>
         <source>Can&apos;t start Pemu on port %i</source>
-        <translation>Нельзя запустить Pemu на порту %i</translation>
+        <translation>Pemu 포트 %i에서 시작할 수 없음</translation>
     </message>
 </context>
 <context>
@@ -1971,17 +1973,17 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="13"/>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>폼</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="19"/>
         <source>Settings</source>
-        <translation>Настройки</translation>
+        <translation>설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="28"/>
         <source>Working directory for capture files:</source>
-        <translation>Рабочяя папка для файлов захвата:</translation>
+        <translation>캡쳐 파일의 작업 디렉토리:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="38"/>
@@ -1991,12 +1993,12 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="51"/>
         <source>Command to launch Wireshark or a capture file reader:</source>
-        <translation>Комманда для запуска Wireshark или просмотрщика файлов захвата:</translation>
+        <translation>Wireshark의 시작이나 캡쳐 파일을 열 수 있는 명령어:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="61"/>
         <source>Automatically start the command when capturing</source>
-        <translation>Автоматически запустить команду когда запущен захват</translation>
+        <translation>캡쳐중 자동시작 명령어</translation>
     </message>
 </context>
 <context>
@@ -2004,22 +2006,22 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/Form_PreferencesDialog.py" line="100"/>
         <source>Preferences</source>
-        <translation>Настройки</translation>
+        <translation>환경 설정</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="30"/>
         <source>General</source>
-        <translation>Основное</translation>
+        <translation>일반 설정</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="33"/>
         <source>Applications</source>
-        <translation>Приложения</translation>
+        <translation>응용 프로그램</translation>
     </message>
     <message>
         <location filename="../Config/Preferences.py" line="37"/>
         <source>Capture</source>
-        <translation>Захват</translation>
+        <translation>캡쳐</translation>
     </message>
 </context>
 <context>
@@ -2027,7 +2029,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="13"/>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>폼</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="23"/>
@@ -2037,12 +2039,12 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="212"/>
         <source>Settings</source>
-        <translation>Настройки</translation>
+        <translation>설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="41"/>
         <source>Executable path:</source>
-        <translation>Путь для запуска:</translation>
+        <translation>실행파일의 경로:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="71"/>
@@ -2052,62 +2054,62 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="61"/>
         <source>Working directory:</source>
-        <translation>Рабочая папка:</translation>
+        <translation>작업 디렉토리:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="78"/>
         <source>Base port:</source>
-        <translation>Основной порт:</translation>
+        <translation>기본 포트:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="85"/>
         <source> Base UDP:</source>
-        <translation> Основной UDP:</translation>
+        <translation>　기본 UDP포트:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="92"/>
         <source>Base console:</source>
-        <translation>Основная консоль:</translation>
+        <translation>기본 콘솔 포트:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="164"/>
         <source>&amp;Test</source>
-        <translation>&amp;Тест</translation>
+        <translation>테스트(&amp;T)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="200"/>
         <source>Hypervisor Manager</source>
-        <translation>Менеджер гипервизора</translation>
+        <translation>하이퍼바이져 관리자</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="218"/>
         <source>Memory usage limit per hypervisor:</source>
-        <translation>Ограничить использование памяти для каждого гипервизора:</translation>
+        <translation>하이퍼바이져의 메모리 사용량:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="238"/>
         <source>UDP incrementation:</source>
-        <translation>Инкрементация UDP:</translation>
+        <translation>UDP 포트 증가량:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="129"/>
         <source>Enable ghost IOS feature</source>
-        <translation>Включить функцию гостевой IOS</translation>
+        <translation>IOS 이미지의 고스트 기능을 사용합니다</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="139"/>
         <source>Enable mmap feature</source>
-        <translation>Включить функцию mmap</translation>
+        <translation>mmap 기능을 사용합니다</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="149"/>
         <source>Enable sparse memory feature</source>
-        <translation>Включить функцию распределенной памяти</translation>
+        <translation>Sparse 메모리 기능을 사용합니다</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="258"/>
         <source>Use Hypervisor Manager when importing</source>
-        <translation>Использовать менеджер гипервизора когда импортируется</translation>
+        <translation>불러오기를 할 때 하이퍼바이져 관리자를 사용</translation>
     </message>
 </context>
 <context>
@@ -2115,32 +2117,32 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="13"/>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>폼</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="22"/>
         <source>Language:</source>
-        <translation>Язык:</translation>
+        <translation>언어:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="111"/>
         <source>GUI settings</source>
-        <translation>Настройки графического интерфейса</translation>
+        <translation>GUI 설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="117"/>
         <source>Show link status points on the scene</source>
-        <translation>Показать статус линков</translation>
+        <translation>링크 상태를 화면에 출력</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="62"/>
         <source>Paths</source>
-        <translation>Пути</translation>
+        <translation>경로</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="68"/>
         <source>Project directory:</source>
-        <translation>Папка проекта:</translation>
+        <translation>프로젝트 디렉토리:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="98"/>
@@ -2150,22 +2152,22 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
         <source>Terminal command:</source>
-        <translation>Команда терминала:</translation>
+        <translation>터미널 커맨드:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="88"/>
         <source>IOS/PIX directory:</source>
-        <translation>Папка IOS/PIX:</translation>
+        <translation>IOS/PIX 디렉토리:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="127"/>
         <source>Always use manual mode when adding links</source>
-        <translation>Всегда использовать ручной режим добавляя каналы</translation>
+        <translation>링크 추가시 언제나 수동으로 설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
         <source>Launch this command using the system default shell</source>
-        <translation type="unfinished"></translation>
+        <translation>시스템 쉘에서 이 명령어를 사용</translation>
     </message>
 </context>
 <context>
@@ -2173,7 +2175,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="13"/>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation>폼</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="19"/>
@@ -2183,7 +2185,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="25"/>
         <source>Path (pemuwrapper.exe on Windows else pemuwrapper.py):</source>
-        <translation>Путь (pemuwrapper.exe на Windows или pemuwrapper.py):</translation>
+        <translation>pemuwrapper.py의 경로 (Windows 에서는 pemuwrapper.exe의 경로):</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="117"/>
@@ -2193,42 +2195,42 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="45"/>
         <source>Working directory:</source>
-        <translation>Рабочая папка:</translation>
+        <translation>작업 디렉토리:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="62"/>
         <source>Enable Pemu Manager</source>
-        <translation>Включить менеджер Pemu</translation>
+        <translation>Pemu 관리자를 활성화</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="72"/>
         <source>Use Pemu Manager when importing</source>
-        <translation>Использовать менеджер Pemu когда импортируется</translation>
+        <translation>불러오기를 할 때 Pemu 관리자를 사용</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="85"/>
         <source>Host for an external pemuwrapper:</source>
-        <translation>Хост на внешнем pemuwrapper:</translation>
+        <translation>외부 pemuwrapper 의 위치 : </translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="98"/>
         <source>Defaults PIX settings</source>
-        <translation>Настройки PIX по умолчанию</translation>
+        <translation>기본 PIX 설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="107"/>
         <source>PIX image:</source>
-        <translation>Образ PIX:</translation>
+        <translation>PIX 이미지: </translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="127"/>
         <source>Key:</source>
-        <translation>Ключ:</translation>
+        <translation>Key:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="144"/>
         <source>Serial:</source>
-        <translation>Серийный:</translation>
+        <translation>Serial:</translation>
     </message>
 </context>
 <context>
@@ -2236,32 +2238,32 @@ to display the configuration page.</source>
     <message>
         <location filename="../Scene.py" line="157"/>
         <source>Delete</source>
-        <translation>Удалить</translation>
+        <translation>삭제</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="99"/>
         <source>Configure</source>
-        <translation>Настроить</translation>
+        <translation>구성</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="122"/>
         <source>Console</source>
-        <translation>Консоль</translation>
+        <translation>콘솔</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="127"/>
         <source>Start</source>
-        <translation>Запуск</translation>
+        <translation>시작</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="132"/>
         <source>Stop</source>
-        <translation>Остановка</translation>
+        <translation>중지</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="149"/>
         <source>Suspend</source>
-        <translation>Приостановка</translation>
+        <translation>일시중지</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="144"/>
@@ -2276,47 +2278,47 @@ to display the configuration page.</source>
     <message>
         <location filename="../Scene.py" line="191"/>
         <source>Please select only one router</source>
-        <translation>Пожалуйста выберите только один маршрутизатор</translation>
+        <translation>하나의 라우터만 선택해주세요</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="232"/>
         <source>No idlepc values found</source>
-        <translation>Данные idlepc не найдены </translation>
+        <translation>idlepc값이 설정되어 있지 않습니다</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="235"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
-        <translation>Потенциально лучшие значения idlepc отмечены &apos;*&apos;</translation>
+        <translation>표시가 있는 idlepc 값을 추천합니다</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="248"/>
         <source>Dynamips error</source>
-        <translation>Ошибка Dynamips</translation>
+        <translation>Dynamips 에러</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="199"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
-        <translation>%s уже имеет значение idlepc, вы желаете подобрать новое?</translation>
+        <translation>%s에 idlepc가 이미 적용되어 있습니다. 새로운 값을 계산하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="240"/>
         <source>Applied idlepc value %s to %s</source>
-        <translation>Используемое значение idlepc %s до %s</translation>
+        <translation>idlepc값 %s를 %s에 적용</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="180"/>
         <source>Please wait while calculating an IDLE PC</source>
-        <translation>Пожалуйста подождите пока подбирается значение IDLE PC</translation>
+        <translation>IDLE PC 값을 계산하는 중입니다. 잠시만 기다려 주세요</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="104"/>
         <source>Change the hostname</source>
-        <translation>Измените имя хоста</translation>
+        <translation>호스트 이름을 변경</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="109"/>
         <source>Show/Hide the hostname</source>
-        <translation>Показать/Скрыть имя хоста</translation>
+        <translation>호스트 이름을 보여주기/감추기</translation>
     </message>
 </context>
 <context>
@@ -2324,82 +2326,82 @@ to display the configuration page.</source>
     <message>
         <location filename="../Topology.py" line="250"/>
         <source>IOS image</source>
-        <translation>Образ IOS</translation>
+        <translation>IOS 이미지</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="229"/>
         <source>Please register at least one IOS image</source>
-        <translation>Пожалуйста зарегистрируйте хотя бы один образ IOS</translation>
+        <translation>적어도 하나의 IOS를 등록시켜 주세요</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="267"/>
         <source>Hypervisor</source>
-        <translation>Гипервизор</translation>
+        <translation>하이퍼바이져</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="264"/>
         <source>Please configure the path to Dynamips</source>
-        <translation>Пожалуйста настройте путь к Dynamips</translation>
+        <translation>Dynamips의 경로를 설정해주세요</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="457"/>
         <source>Dynamips error</source>
-        <translation>Ошибка Dynamips</translation>
+        <translation>Dynamips 에러</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="302"/>
         <source>Connection lost</source>
-        <translation>Соединение потеряно</translation>
+        <translation>연결 종료</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="372"/>
         <source>Connection</source>
-        <translation>Подключение</translation>
+        <translation>연결</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="139"/>
         <source>Can&apos;t connect to the external hypervisor on %s</source>
-        <translation>Нельзя подключиться к внешнему гипервизору на %s</translation>
+        <translation>외부 하이퍼바이져 %s 에서 연결할 수 없습니다</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="240"/>
         <source>No image for platform %s</source>
-        <translation>Нет образа для платформы %s</translation>
+        <translation>%s 플랫폼에 IOS 이미지가 설정되어 있지 않습니다</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="251"/>
         <source>Please choose an image</source>
-        <translation>Пожалуйста выберите образ</translation>
+        <translation>IOS 이미지를 선택해주세요</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="372"/>
         <source>You have to connect at least one router to the switch</source>
-        <translation>Вы должны подключить хотя бы один маршрутизатор к коммутатору</translation>
+        <translation>적어도 하나의 라우터에서 스위치로 연결이 되어야 합니다</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="279"/>
         <source>PIX image</source>
-        <translation>Образ PIX</translation>
+        <translation>PIX 이미지</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="279"/>
         <source>Please configure a default PIX image</source>
-        <translation>Пожалуйста настройте образ PIX по умолчанию</translation>
+        <translation>PIX 이미지를 설정해주세요</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="359"/>
         <source>Can&apos;t connect these devices</source>
-        <translation>Нельзя подключиться к этим устройствам</translation>
+        <translation>이 장치에 연결할 수 없습니다</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="267"/>
         <source>Please test the path to Dynamips in preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Dynamips 경로에 대해 테스트를 부탁 드립니다</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="204"/>
         <source>Pemuwrapper error</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemuwrapper 에러</translation>
     </message>
 </context>
 <context>
@@ -2412,117 +2414,117 @@ to display the configuration page.</source>
     <message>
         <location filename="../Workspace.py" line="488"/>
         <source>Dynamips error</source>
-        <translation>Dynamips error</translation>
+        <translation>Dynamips 에러</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="351"/>
         <source>Connection lost</source>
-        <translation>Connection lost</translation>
+        <translation>연결 종료</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="348"/>
         <source>Dynamips warning</source>
-        <translation>Dynamips warning</translation>
+        <translation>Dynamips 경고</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="327"/>
         <source>Abort</source>
-        <translation>Abort</translation>
+        <translation>중지</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="363"/>
         <source>Starting nodes ...</source>
-        <translation>Starting nodes ...</translation>
+        <translation>노드를 시작 중 ...</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="369"/>
         <source>Stopping nodes ...</source>
-        <translation>Stopping nodes ...</translation>
+        <translation>노드를 중지 중...</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="375"/>
         <source>Suspending nodes ...</source>
-        <translation>Suspending nodes ...</translation>
+        <translation>노드를 일시정지 중 ...</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="423"/>
         <source>Loading</source>
-        <translation>Загружается</translation>
+        <translation>불러오는 중</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="298"/>
         <source>Hide hostnames</source>
-        <translation>Скрыть имена хостов</translation>
+        <translation>호스트 이름을 숨깁니다</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="303"/>
         <source>Show hostnames</source>
-        <translation>Показать имена хостов</translation>
+        <translation>호스트 이름을 보여줍니다</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="512"/>
         <source>Open a file</source>
-        <translation>Открыть файл</translation>
+        <translation>파일 열기</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="508"/>
         <source>The path to Dynamips must be configured</source>
-        <translation>Путь к Dynamips должен быть настроен</translation>
+        <translation>Dynamips의 경로가 반드시 설정되어 있어야 합니다</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="545"/>
         <source>Save Project As</source>
-        <translation>Сохранить Проект Как</translation>
+        <translation>프로젝트를 다른 이름으로 저장</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="444"/>
         <source>New Project</source>
-        <translation>Новый Проект</translation>
+        <translation>새로운 프로젝트</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="565"/>
         <source>Message</source>
-        <translation>Сообщение</translation>
+        <translation>메시지</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="194"/>
         <source>Are you sure to clear the topology?</source>
-        <translation>Вы уверены что хотите очистить топологию?</translation>
+        <translation>토폴로지 초기화를 하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="217"/>
         <source>Add a link</source>
-        <translation>Добавить линк</translation>
+        <translation>링크를 추가</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="232"/>
         <source>Cancel</source>
-        <translation>Отмена</translation>
+        <translation>취소</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="444"/>
         <source>Can&apos;t create a project</source>
-        <translation>Нельзя создать проект</translation>
+        <translation>프로젝트를 만들 수 없습니다</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="423"/>
         <source>Invalid file %s</source>
-        <translation>Неверный файл %s</translation>
+        <translation>%s 파일이 잘못되어 있습니다</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="565"/>
         <source>Would you like to save the topology before you quit?</source>
-        <translation>Желаете ли вы сохранить топологию перед выходом?</translation>
+        <translation>종료하시기 전에 토폴로지를 저장하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="458"/>
         <source>Do you want to apply the project settings to the current topology?</source>
-        <translation>Желате ли вы применить настройки проекта к текущей топологии?</translation>
+        <translation>프로젝트 설정을 현재의 토폴로지에 적용시키겠습니까?</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="490"/>
         <source>Would you like to save the current topology?</source>
-        <translation>Желаете ли вы сохранить текущую топологию?</translation>
+        <translation>현재의 토폴로지를 저장하시겠습니까?</translation>
     </message>
 </context>
 <context>
@@ -2530,7 +2532,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Telnet.py" line="48"/>
         <source>Console</source>
-        <translation>Консоль</translation>
+        <translation>콘솔</translation>
     </message>
 </context>
 <context>
@@ -2538,62 +2540,62 @@ to display the configuration page.</source>
     <message>
         <location filename="DynamicStrings.py" line="41"/>
         <source>Switch</source>
-        <translation>Коммутатор</translation>
+        <translation>스위치</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="42"/>
         <source>Hub</source>
-        <translation>Концентратор</translation>
+        <translation>허브</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="43"/>
         <source>ATM switch</source>
-        <translation>АТМ коммутатор</translation>
+        <translation>ATM 스위치</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="44"/>
         <source>Frame Relay switch</source>
-        <translation>Frame Relay коммутатор</translation>
+        <translation>프레임 릴레이 스위치</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="45"/>
         <source>Cloud</source>
-        <translation>Облако</translation>
+        <translation>네트워크 망</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="34"/>
         <source>Router c1700</source>
-        <translation>Маршрутизатор c1700</translation>
+        <translation>라우터 c1700</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="35"/>
         <source>Router c2600</source>
-        <translation>Маршрутизатор c2600</translation>
+        <translation>라우터 c2600</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="37"/>
         <source>Router c3600</source>
-        <translation>Маршрутизатор c3600</translation>
+        <translation>라우터 c3600</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="38"/>
         <source>Router c3700</source>
-        <translation>Маршрутизатор c3700</translation>
+        <translation>라우터 c3700</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="39"/>
         <source>Router c7200</source>
-        <translation>Маршрутизатор c7200</translation>
+        <translation>라우터 c7200</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="36"/>
         <source>Router c2691</source>
-        <translation>Маршрутизатор c2691</translation>
+        <translation>라우터 c2691</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="40"/>
         <source>PIX firewall</source>
-        <translation>PIX фаерволл</translation>
+        <translation>PIX 방화벽</translation>
     </message>
 </context>
 <context>
@@ -2601,7 +2603,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/Widget_topologySummaryDock.py" line="95"/>
         <source>%s is connected to %s %s</source>
-        <translation>%s подключен к %s %s</translation>
+        <translation>%s 가 %s %s 에 연결되었습니다</translation>
     </message>
 </context>
 </TS>

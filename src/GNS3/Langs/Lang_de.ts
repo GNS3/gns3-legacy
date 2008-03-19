@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="en">
+<defaultcodec></defaultcodec>
 <context>
     <name>ATMBRPage</name>
     <message>
@@ -2705,7 +2706,7 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
     <message>
         <location filename="../Topology.py" line="204"/>
         <source>Pemuwrapper error</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemuwrapper Fehler</translation>
     </message>
 </context>
 <context>

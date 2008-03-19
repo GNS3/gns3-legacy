@@ -183,8 +183,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         for file in dynamips_files:
             try:
                 os.remove(file)
-            except OSError, (errno, strerror):
-                print "Warning: Can't delete " + file + " => " + strerror
+            except (OSError, IOError), e:
+                print "Warning: Can't delete " + file + " => " + e.strerror
                 continue
 
     def __action_Clear(self):
@@ -446,8 +446,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             if self.projectWorkdir and not os.access(self.projectWorkdir, os.F_OK):
                 try:
                     os.mkdir(self.projectWorkdir)
-                except OSError, (errno, strerror):
-                    print "Warning: cannot create directory: " + self.projectWorkdir + ": " + strerror
+                except (OSError, IOError), e:
+                    print "Warning: cannot create directory: " + self.projectWorkdir + ": " + e.strerror
             if self.projectConfigs and not os.access(self.projectConfigs, os.F_OK):
                 try:
                     os.mkdir(self.projectConfigs)
@@ -469,24 +469,23 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                 for file in dynamips_files:
                                     try:
                                         shutil.move(file, self.projectWorkdir)
-                                    except OSError, (errno, strerror):
-                                        debug("Warning: cannot move " + file + " to " + self.projectWorkdir + ": " + strerror)
+                                    except (OSError, IOError), e:
+                                        debug("Warning: cannot move " + file + " to " + self.projectWorkdir + ": " + e.strerror)
                                         continue
                             if isinstance(node, FW) and self.projectWorkdir != node.pemu.workingdir:
                                 pemu_files = glob.glob(os.path.normpath(node.pemu.workingdir) + os.sep + node.hostname)
                                 for file in pemu_files:
                                     try:
                                         shutil.move(file, self.projectWorkdir + os.sep + node.hostname)
-                                    except OSError, (errno, strerror):
-                                        debug("Warning: cannot move " + file + " to " + self.projectWorkdir + ": " + strerror)
+                                    except (OSError, IOError), e:
+                                        debug("Warning: cannot move " + file + " to " + self.projectWorkdir + ": " + e.strerror)
                                         continue
                         # set the new working directory
-                        import GNS3.Dynagen.pemu_lib as pix
                         try:
                             for hypervisor in globals.GApp.dynagen.dynamips.values():
                                 hypervisor.workingdir = self.projectWorkdir
                         except lib.DynamipsError, msg:
-                            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), self.projectWorkdir + ': ' + unicode(msg))
+                            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), unicode(self.projectWorkdir+ ': ' + msg))
                 elif globals.GApp.topology.changed == True:
                     reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the current topology?"),
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)

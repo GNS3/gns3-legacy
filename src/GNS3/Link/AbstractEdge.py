@@ -285,8 +285,8 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  
                                             unicode(translate("AbstractEdge",  "%s is empty, no traffic captured on the link. Try again later")) % self.capfile)
                 return
-        except OSError, (errno, strerror):
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), unicode(translate("AbstractEdge", "Cannot find %s : %s")) % (self.capfile, strerror))
+        except (OSError, IOError), e:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), unicode(translate("AbstractEdge", "Cannot find %s : %s")) % (self.capfile, e.strerror))
             return
 
         try:
@@ -296,8 +296,8 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                  sub.Popen(path)
             else:
                 sub.Popen(path, shell=True)
-        except OSError, (errno, strerror):
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), unicode(translate("AbstractEdge", "Cannot start %s : %s")) % (path, strerror))
+        except (OSError, IOError), e:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), unicode(translate("AbstractEdge", "Cannot start %s : %s")) % (path, e.strerror))
 
     def __deleteAction(self):
         """ Delete the link

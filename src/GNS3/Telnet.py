@@ -44,7 +44,7 @@ def connect(host, port, name):
                     sub.Popen("start telnet " +  host + " " + str(port), shell=True)
                 else:
                     sub.Popen("xterm -T " + name + " -e 'telnet " + host + " " + str(port) + "' > /dev/null 2>&1 &", shell=True)
-        except OSError, (errno, strerror):
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("connect", "Console"),  strerror)
+        except (OSError, IOError), e:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("connect", "Console"), e.strerror)
             return (False)
         return (True)
