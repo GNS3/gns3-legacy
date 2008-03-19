@@ -292,8 +292,9 @@ class Application(QApplication, Singleton):
         # PemuManager
         self.__PemuManager = PemuManager()
 
-        # Restore the geometry
-        self.mainWindow.restoreGeometry(ConfDB().value("GNS3/geometry").toByteArray())
+        # Restore the geometry & state of the GUI
+        self.mainWindow.restoreGeometry(ConfDB().value("GUIState/Geometry").toByteArray())
+        self.mainWindow.restoreState(ConfDB().value("GUIState/State").toByteArray())
         self.mainWindow.show()
 
         if file:
@@ -303,8 +304,9 @@ class Application(QApplication, Singleton):
         self.__HypervisorManager = None
         self.__PemuManager = None
 
-        # Save the geometry
-        ConfDB().set("GNS3/geometry", self.mainWindow.saveGeometry())
+        # Save the geometry & state of the GUI
+        ConfDB().set("GUIState/Geometry", self.mainWindow.saveGeometry())
+        ConfDB().set("GUIState/State", self.mainWindow.saveState())
         self.syncConf()
 
         sys.exit(retcode)

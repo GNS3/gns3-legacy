@@ -362,7 +362,8 @@ class Scene(QtGui.QGraphicsView):
                 self.__sourceNodeID = id
                 self.__sourceInterface = interface
                 self.__isFirstClick = False
-                if interface[0] == 's' or interface[0] == 'a':
+                link_type = globals.linkAbrv[globals.currentLinkType]
+                if link_type == 's' or link_type == 'a':
                     # interface is serial or ATM
                     self.newedge = Serial(self.__topology.getNode(id), interface, self.mapToScene(QtGui.QCursor.pos()), 0, Fake = True)
                 else:

@@ -228,7 +228,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 menu.exec_(QtGui.QCursor.pos())
             else:
                 globals.currentLinkType =  globals.Enum.LinkType.Manual
-            
+
             self.action_Add_link.setText(translate('Workspace', 'Cancel'))
             self.action_Add_link.setIcon(QIcon(':/icons/cancel.svg'))
             globals.addingLinkFlag = True
