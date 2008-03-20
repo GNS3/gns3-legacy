@@ -111,7 +111,8 @@ class IOSRouter(AbstractNode):
             'mac',
             'iomem',
             'npe',
-            'midplane'
+            'midplane', 
+            'console'
             ]
 
     def __del__(self):

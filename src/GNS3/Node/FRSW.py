@@ -132,7 +132,6 @@ class FRSW(AbstractNode):
             self.dynagen.devices[self.hostname] = self.frsw
         if not self.dynagen.running_config[self.d].has_key(self.f):
             self.dynagen.update_running_config()
-            print self.dynagen.running_config[self.d]
             self.running_config = self.dynagen.running_config[self.d][self.f]
         return (self.frsw)
 

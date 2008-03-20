@@ -1785,6 +1785,8 @@ class Dynagen:
             else:
                 self.running_config[h][r]['ghostios'] = True
 
+        self.running_config[h][r]['console'] = router.console
+
         #same thing for all other values
         for option in self.generic_router_options:
             self._set_option_in_config(self.running_config[h][r], defaults, router, option)

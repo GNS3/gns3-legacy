@@ -82,6 +82,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         self.textLabel_Platform.setText(platform)
         self.textLabel_Model.setText(router.model_string)
         self.textLabel_ImageIOS.setText(router_config['image'])
+        self.spinBoxConsolePort.setValue(router_config['console'])
         
         for widget in self.widget_slots.values():
             widget.clear()
@@ -185,6 +186,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         router_config['nvram'] = self.spinBoxNvramSize.value()
         router_config['disk0'] = self.spinBoxPcmciaDisk0Size.value()
         router_config['disk1'] = self.spinBoxPcmciaDisk1Size.value()
+        router_config['console'] = self.spinBoxConsolePort.value()
         router_config['confreg'] = str(self.lineEditConfreg.text())
         exec_area = self.spinBoxExecArea.value()
         
