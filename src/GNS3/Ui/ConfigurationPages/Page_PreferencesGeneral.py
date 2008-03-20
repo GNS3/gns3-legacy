@@ -75,6 +75,22 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             else:
                 self.conf.term_cmd = unicode("xterm -T %d -e 'telnet %h %p' >/dev/null 2>&1 &")
 
+        if self.conf.project_path == '':
+            if os.environ.has_key("TEMP"):
+                self.conf.project_path = unicode(os.environ["TEMP"])
+            elif os.environ.has_key("TMP"):
+                self.conf.project_path = unicode(os.environ["TMP"])
+            else:
+                self.conf.project_path = unicode('/tmp')
+
+        if self.conf.ios_path == '':
+            if os.environ.has_key("TEMP"):
+                self.conf.ios_path = unicode(os.environ["TEMP"])
+            elif os.environ.has_key("TMP"):
+                self.conf.ios_path = unicode(os.environ["TMP"])
+            else:
+                self.conf.ios_path = unicode('/tmp')
+
         self.lineEditTermCommand.setText(self.conf.term_cmd)
         self.ProjectPath.setText(os.path.normpath(self.conf.project_path))
         self.IOSPath.setText(os.path.normpath(self.conf.ios_path))

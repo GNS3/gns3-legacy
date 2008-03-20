@@ -275,8 +275,8 @@ class Application(QApplication, Singleton):
         confo.lang = ConfDB().get('GNS3/lang', unicode('en'))
         confo.use_shell = ConfDB().value("GNS3/use_shell", QVariant(True)).toBool()
         confo.term_cmd = ConfDB().get('GNS3/console', unicode(''))
-        confo.project_path = ConfDB().get('GNS3/project_directory', unicode('.'))
-        confo.ios_path = ConfDB().get('GNS3/ios_directory', unicode('.'))
+        confo.project_path = ConfDB().get('GNS3/project_directory', unicode(''))
+        confo.ios_path = ConfDB().get('GNS3/ios_directory', unicode(''))
         confo.status_points = ConfDB().value("GNS3/gui_show_status_points", QVariant(True)).toBool()
         confo.manual_connection =ConfDB().value("GNS3/gui_use_manual_connection", QVariant(False)).toBool()
 

@@ -175,7 +175,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;contact@gns3.net&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;www.gns3.net&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="404"/>
@@ -1749,52 +1749,52 @@ panier:</translation>
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="327"/>
+        <location filename="../NETFile.py" line="329"/>
         <source>Save</source>
         <translation>Sauver</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="327"/>
+        <location filename="../NETFile.py" line="329"/>
         <source>Please configure the path to Dynamips</source>
         <translation>SVP, configurez le chemin vers Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="587"/>
+        <location filename="../NETFile.py" line="589"/>
         <source>Dynamips error</source>
         <translation>Erreur Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="590"/>
+        <location filename="../NETFile.py" line="592"/>
         <source>Dynamips warning</source>
         <translation>Avertissement Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="357"/>
+        <location filename="../NETFile.py" line="359"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Exception détectée, arrêt de l&apos;importation...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="597"/>
+        <location filename="../NETFile.py" line="599"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportation de la configuration %s vers %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="604"/>
+        <location filename="../NETFile.py" line="606"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Erreur E/S: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="357"/>
+        <location filename="../NETFile.py" line="359"/>
         <source>Importation</source>
         <translation>Importation</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="339"/>
+        <location filename="../NETFile.py" line="341"/>
         <source>Please wait while importing the topology</source>
         <translation>SVP, patientez pendant le chargement de la topologie</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="604"/>
+        <location filename="../NETFile.py" line="606"/>
         <source>IOError</source>
         <translation></translation>
     </message>
@@ -2403,7 +2403,7 @@ pour afficher sa page de configuration.</translation>
     <message>
         <location filename="../Topology.py" line="204"/>
         <source>Pemuwrapper error</source>
-        <translation type="unfinished"></translation>
+        <translation>Error Pemuwrapper</translation>
     </message>
 </context>
 <context>
@@ -2474,7 +2474,7 @@ pour afficher sa page de configuration.</translation>
         <translation>Le chemin vers Dynamips doit être configuré</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="545"/>
+        <location filename="../Workspace.py" line="544"/>
         <source>Save Project As</source>
         <translation>Sauver le projet sous</translation>
     </message>
@@ -2484,7 +2484,7 @@ pour afficher sa page de configuration.</translation>
         <translation>Nouveau Projet</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="565"/>
+        <location filename="../Workspace.py" line="563"/>
         <source>Message</source>
         <translation>Message</translation>
     </message>
@@ -2514,7 +2514,7 @@ pour afficher sa page de configuration.</translation>
         <translation>Fichier invalide %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="565"/>
+        <location filename="../Workspace.py" line="563"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>Voulez vous sauver la topologie avant de quitter ?</translation>
     </message>
@@ -2550,17 +2550,17 @@ pour afficher sa page de configuration.</translation>
         <translation>Concentrateur</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="43"/>
+        <location filename="DynamicStrings.py" line="44"/>
         <source>ATM switch</source>
         <translation>Commutateur ATM</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="44"/>
+        <location filename="DynamicStrings.py" line="45"/>
         <source>Frame Relay switch</source>
         <translation>Commutateur Frame Relay</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="45"/>
+        <location filename="DynamicStrings.py" line="46"/>
         <source>Cloud</source>
         <translation>Nuage</translation>
     </message>
@@ -2598,6 +2598,11 @@ pour afficher sa page de configuration.</translation>
         <location filename="DynamicStrings.py" line="40"/>
         <source>PIX firewall</source>
         <translation>Pare-feu PIX</translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="43"/>
+        <source>ATM bridge</source>
+        <translation>Pont ATM</translation>
     </message>
 </context>
 <context>

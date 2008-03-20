@@ -1749,52 +1749,52 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="327"/>
+        <location filename="../NETFile.py" line="329"/>
         <source>Save</source>
         <translation>Ulož</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="327"/>
+        <location filename="../NETFile.py" line="329"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Nakonfigurujte cestu ku Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="587"/>
+        <location filename="../NETFile.py" line="589"/>
         <source>Dynamips error</source>
         <translation>Chyba Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="590"/>
+        <location filename="../NETFile.py" line="592"/>
         <source>Dynamips warning</source>
         <translation>Varovanie Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="357"/>
+        <location filename="../NETFile.py" line="359"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Zachytil som výnimku, zastavujem importovanie...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="597"/>
+        <location filename="../NETFile.py" line="599"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportujem konfiguráciu zariadenia %s do adresára %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="604"/>
+        <location filename="../NETFile.py" line="606"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Chyba vstupu/výstupu: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="357"/>
+        <location filename="../NETFile.py" line="359"/>
         <source>Importation</source>
         <translation>Importujem</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="339"/>
+        <location filename="../NETFile.py" line="341"/>
         <source>Please wait while importing the topology</source>
         <translation>Čakajte kým sa naimportuje topológia</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="604"/>
+        <location filename="../NETFile.py" line="606"/>
         <source>IOError</source>
         <translation>Vstupno/Výstupná Chyba</translation>
     </message>
@@ -2474,7 +2474,7 @@ na zobrazenie konfiguračnej stránky.</translation>
         <translation>Nastavte cestu ku Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="545"/>
+        <location filename="../Workspace.py" line="544"/>
         <source>Save Project As</source>
         <translation>Uložiť projekt ako</translation>
     </message>
@@ -2484,7 +2484,7 @@ na zobrazenie konfiguračnej stránky.</translation>
         <translation>Nový projekt</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="565"/>
+        <location filename="../Workspace.py" line="563"/>
         <source>Message</source>
         <translation>Správa</translation>
     </message>
@@ -2514,7 +2514,7 @@ na zobrazenie konfiguračnej stránky.</translation>
         <translation>Neplatný súbor %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="565"/>
+        <location filename="../Workspace.py" line="563"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>Chcete uložiť topologiu pred ukončením?</translation>
     </message>
@@ -2550,17 +2550,17 @@ na zobrazenie konfiguračnej stránky.</translation>
         <translation>Rozbočovač</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="43"/>
+        <location filename="DynamicStrings.py" line="44"/>
         <source>ATM switch</source>
         <translation>ATM prepínač</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="44"/>
+        <location filename="DynamicStrings.py" line="45"/>
         <source>Frame Relay switch</source>
         <translation>Frame Relay prepínač</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="45"/>
+        <location filename="DynamicStrings.py" line="46"/>
         <source>Cloud</source>
         <translation>Oblak</translation>
     </message>
@@ -2598,6 +2598,11 @@ na zobrazenie konfiguračnej stránky.</translation>
         <location filename="DynamicStrings.py" line="40"/>
         <source>PIX firewall</source>
         <translation>PIX firewall</translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="43"/>
+        <source>ATM bridge</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

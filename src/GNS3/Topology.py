@@ -50,7 +50,7 @@ class Topology(QtGui.QGraphicsScene):
         self.changed = False
 
         QtGui.QGraphicsScene.__init__(self, parent)
-        self.setSceneRect(-250, -250, 500, 500)
+        self.setSceneRect(-1000, -500, 2000, 1000)
 
     def cleanDynagen(self):
         """ Clean all dynagen data

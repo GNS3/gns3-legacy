@@ -432,13 +432,6 @@ class Scene(QtGui.QGraphicsView):
         if event.mimeData().hasText():
 
             symbolname = str(event.mimeData().text())
-            x = event.pos().x()  / self.matrix().m11()
-            y = event.pos().y()  / self.matrix().m22()
-            repx = (self.width() /2) /  self.matrix().m11()
-            repy = (self.height()/2) / self.matrix().m22()
-            xPos =  x - repx
-            yPos = y - repy
-
             # Get resource corresponding to node type
             object = None
             svgrc = ":/icons/default.svg"
@@ -453,7 +446,8 @@ class Scene(QtGui.QGraphicsView):
                 return
             node = object(renderer_normal, renderer_select)
             node.type = item['name']
-            node.setPos(xPos, yPos)
+            node.type = item['name']
+            node.setPos(self.mapToScene(event.pos()))
 
             if globals.GApp.workspace.flg_showHostname == True:
                 node.showHostname()

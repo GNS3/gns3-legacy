@@ -467,7 +467,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
             Cloudconfig  = node.config
 
         Cloudconfig = self.nios
-        
+
         return Cloudconfig
             
 def create(dlg):

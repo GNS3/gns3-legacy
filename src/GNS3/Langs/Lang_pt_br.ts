@@ -1748,52 +1748,52 @@ Entre o número do valor idlepc para aplicar [1-%i] ou ENTRE para não alterar:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="327"/>
+        <location filename="../NETFile.py" line="329"/>
         <source>Save</source>
         <translation>Salvar</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="327"/>
+        <location filename="../NETFile.py" line="329"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Por favor configure o caminho para o Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="587"/>
+        <location filename="../NETFile.py" line="589"/>
         <source>Dynamips error</source>
         <translation>Erro no Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="590"/>
+        <location filename="../NETFile.py" line="592"/>
         <source>Dynamips warning</source>
         <translation>Avisos Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="357"/>
+        <location filename="../NETFile.py" line="359"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Detectada excessão, parando a importação...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="597"/>
+        <location filename="../NETFile.py" line="599"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportando a configuração %s para %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="604"/>
+        <location filename="../NETFile.py" line="606"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Erro de IO: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="357"/>
+        <location filename="../NETFile.py" line="359"/>
         <source>Importation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="339"/>
+        <location filename="../NETFile.py" line="341"/>
         <source>Please wait while importing the topology</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="604"/>
+        <location filename="../NETFile.py" line="606"/>
         <source>IOError</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2463,7 +2463,7 @@ para amostrar a página de configuração.</translation>
         <translation>Abrr o arquivo</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="545"/>
+        <location filename="../Workspace.py" line="544"/>
         <source>Save Project As</source>
         <translation>Salvar Projeto Como</translation>
     </message>
@@ -2483,7 +2483,7 @@ para amostrar a página de configuração.</translation>
         <translation>Novo Projeto</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="565"/>
+        <location filename="../Workspace.py" line="563"/>
         <source>Message</source>
         <translation>Mensagem</translation>
     </message>
@@ -2523,7 +2523,7 @@ para amostrar a página de configuração.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="565"/>
+        <location filename="../Workspace.py" line="563"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2549,17 +2549,17 @@ para amostrar a página de configuração.</translation>
         <translation>Hub</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="43"/>
+        <location filename="DynamicStrings.py" line="44"/>
         <source>ATM switch</source>
         <translation>Switch ATM</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="44"/>
+        <location filename="DynamicStrings.py" line="45"/>
         <source>Frame Relay switch</source>
         <translation>Switch Frame Relay</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="45"/>
+        <location filename="DynamicStrings.py" line="46"/>
         <source>Cloud</source>
         <translation>Nuvem</translation>
     </message>
@@ -2596,6 +2596,11 @@ para amostrar a página de configuração.</translation>
     <message>
         <location filename="DynamicStrings.py" line="40"/>
         <source>PIX firewall</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="43"/>
+        <source>ATM bridge</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

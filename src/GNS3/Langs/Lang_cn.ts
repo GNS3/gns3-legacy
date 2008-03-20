@@ -1764,52 +1764,52 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="327"/>
+        <location filename="../NETFile.py" line="329"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="327"/>
+        <location filename="../NETFile.py" line="329"/>
         <source>Please configure the path to Dynamips</source>
         <translation>请配置Dynamips路径</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="587"/>
+        <location filename="../NETFile.py" line="589"/>
         <source>Dynamips error</source>
         <translation>Dynamips 错误</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="590"/>
+        <location filename="../NETFile.py" line="592"/>
         <source>Dynamips warning</source>
         <translation>Dynamips 警告</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="357"/>
+        <location filename="../NETFile.py" line="359"/>
         <source>Exception detected, stopping importation...</source>
         <translation>检测到异常,停止导入...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="597"/>
+        <location filename="../NETFile.py" line="599"/>
         <source>Exporting %s configuration to %s</source>
         <translation>输出%s的配置到%s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="604"/>
+        <location filename="../NETFile.py" line="606"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO 错误: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="357"/>
+        <location filename="../NETFile.py" line="359"/>
         <source>Importation</source>
         <translation>导入</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="339"/>
+        <location filename="../NETFile.py" line="341"/>
         <source>Please wait while importing the topology</source>
         <translation>正在导入拓扑,请稍后</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="604"/>
+        <location filename="../NETFile.py" line="606"/>
         <source>IOError</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2489,7 +2489,7 @@ to display the configuration page.</source>
         <translation>必须配置Dynamips路径</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="545"/>
+        <location filename="../Workspace.py" line="544"/>
         <source>Save Project As</source>
         <translation>另存工程为</translation>
     </message>
@@ -2499,7 +2499,7 @@ to display the configuration page.</source>
         <translation>新工程</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="565"/>
+        <location filename="../Workspace.py" line="563"/>
         <source>Message</source>
         <translation>消息</translation>
     </message>
@@ -2529,7 +2529,7 @@ to display the configuration page.</source>
         <translation>无效文件%s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="565"/>
+        <location filename="../Workspace.py" line="563"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>是否在退出之前保存拓扑?</translation>
     </message>
@@ -2565,17 +2565,17 @@ to display the configuration page.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="43"/>
+        <location filename="DynamicStrings.py" line="44"/>
         <source>ATM switch</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="44"/>
+        <location filename="DynamicStrings.py" line="45"/>
         <source>Frame Relay switch</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="45"/>
+        <location filename="DynamicStrings.py" line="46"/>
         <source>Cloud</source>
         <translation></translation>
     </message>
@@ -2613,6 +2613,11 @@ to display the configuration page.</source>
         <location filename="DynamicStrings.py" line="40"/>
         <source>PIX firewall</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="43"/>
+        <source>ATM bridge</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

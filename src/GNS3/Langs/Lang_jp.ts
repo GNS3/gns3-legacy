@@ -1747,52 +1747,52 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="327"/>
+        <location filename="../NETFile.py" line="329"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="327"/>
+        <location filename="../NETFile.py" line="329"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Dynamipsのプログラムパスを設定してください</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="587"/>
+        <location filename="../NETFile.py" line="589"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="590"/>
+        <location filename="../NETFile.py" line="592"/>
         <source>Dynamips warning</source>
         <translation>Dynamips 警告</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="357"/>
+        <location filename="../NETFile.py" line="359"/>
         <source>Exception detected, stopping importation...</source>
         <translation>例外エラーでましたためインポートを中止しています...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="597"/>
+        <location filename="../NETFile.py" line="599"/>
         <source>Exporting %s configuration to %s</source>
         <translation>%s のコンフィッグを %s にエクスポート中</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="604"/>
+        <location filename="../NETFile.py" line="606"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO エラー: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="357"/>
+        <location filename="../NETFile.py" line="359"/>
         <source>Importation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="339"/>
+        <location filename="../NETFile.py" line="341"/>
         <source>Please wait while importing the topology</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="604"/>
+        <location filename="../NETFile.py" line="606"/>
         <source>IOError</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2472,7 +2472,7 @@ to display the configuration page.</source>
         <translation>Dynamipsのプログラムパスを使用する必要があります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="545"/>
+        <location filename="../Workspace.py" line="544"/>
         <source>Save Project As</source>
         <translation>プロジェクトを名前指定して保存</translation>
     </message>
@@ -2482,7 +2482,7 @@ to display the configuration page.</source>
         <translation>新規プロジェクト</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="565"/>
+        <location filename="../Workspace.py" line="563"/>
         <source>Message</source>
         <translation>メッセージ</translation>
     </message>
@@ -2512,7 +2512,7 @@ to display the configuration page.</source>
         <translation>ファイル %s に誤りがあります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="565"/>
+        <location filename="../Workspace.py" line="563"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2548,17 +2548,17 @@ to display the configuration page.</source>
         <translation>ハブ</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="43"/>
+        <location filename="DynamicStrings.py" line="44"/>
         <source>ATM switch</source>
         <translation>ATM スイッチ</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="44"/>
+        <location filename="DynamicStrings.py" line="45"/>
         <source>Frame Relay switch</source>
         <translation>フレームリレースイッチ</translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="45"/>
+        <location filename="DynamicStrings.py" line="46"/>
         <source>Cloud</source>
         <translation>雲</translation>
     </message>
@@ -2595,6 +2595,11 @@ to display the configuration page.</source>
     <message>
         <location filename="DynamicStrings.py" line="40"/>
         <source>PIX firewall</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="43"/>
+        <source>ATM bridge</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

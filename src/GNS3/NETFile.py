@@ -272,7 +272,9 @@ class NETFile(object):
             if gns3data.has_key('configs'):
                 globals.GApp.workspace.projectConfigs = gns3data['configs']
             if gns3data.has_key('workdir'):
-                globals.GApp.workspace.projectWorkdir = gns3data['workdir'] 
+                globals.GApp.workspace.projectWorkdir = gns3data['workdir']
+            if  gns3data.has_key('m11') and  gns3data.has_key('m22'):
+                globals.GApp.scene.setMatrix(QtGui.QMatrix(float(gns3data['m11']), 0.0,  0.0,  float(gns3data['m22']), 0.0,  0.0))
             for section in gns3data:
                 try:
                     (devtype, hostname) = section.split(' ')
@@ -610,6 +612,17 @@ class NETFile(object):
 
         self.dynagen.update_running_config()
         debug("Running config: " + str(self.dynagen.running_config))
+
+        # register matrix data
+        matrix = globals.GApp.scene.matrix()
+        m11 = matrix.m11()
+        m22 = matrix.m22()
+        if m11 != 1.0 or m22 != 1.0:
+            if not self.dynagen.running_config.has_key('GNS3-DATA'):
+                self.dynagen.running_config['GNS3-DATA'] = {}
+            config = self.dynagen.running_config['GNS3-DATA']
+            config['m11'] = m11
+            config['m22'] = m22
 
         for device in self.dynagen.devices.values():
             # record router configs

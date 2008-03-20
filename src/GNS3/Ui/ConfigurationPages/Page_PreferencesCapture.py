@@ -53,7 +53,15 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
                 self.conf.cap_cmd = unicode("C:\Program Files\Wireshark\wireshark.exe %c")
             else:
                 self.conf.cap_cmd = unicode("/usr/bin/wireshark %c")
-                
+
+        if self.conf.workdir == '':
+            if os.environ.has_key("TEMP"):
+                self.conf.workdir = unicode(os.environ["TEMP"])
+            elif os.environ.has_key("TMP"):
+                self.conf.workdir = unicode(os.environ["TMP"])
+            else:
+                self.conf.workdir = unicode('/tmp')
+
         # Push default values to GUI
         self.CaptureWorkingDirectory.setText(os.path.normpath(self.conf.workdir))
         self.CaptureCommand.setText(self.conf.cap_cmd)

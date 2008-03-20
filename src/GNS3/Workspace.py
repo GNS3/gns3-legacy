@@ -532,7 +532,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         try:
             net = netfile.NETFile()
-            globals.GApp.scene.resetMatrix()
             net.export_net_file(self.projectFile)
             globals.GApp.topology.changed = False
         except IOError, (errno, strerror):
@@ -553,7 +552,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 self.projectFile = path
                 self.setWindowTitle("GNS3 - " + self.projectFile)
                 net = netfile.NETFile()
-                globals.GApp.scene.resetMatrix()
                 net.export_net_file(path)
                 globals.GApp.topology.changed = False
 
