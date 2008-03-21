@@ -81,6 +81,7 @@ class FW(AbstractNode, FWDefaults):
             except lib.DynamipsErrorHandled:
                 pass
             del self.dynagen.devices[self.hostname]
+            self.pemu.devices.remove(self.fw)
             self.fw = None
             self.dynagen.update_running_config()
 
@@ -176,7 +177,7 @@ class FW(AbstractNode, FWDefaults):
         if self.hostname != new_hostname:
             try:
                 pemu_name = self.pemu.host + ':10525'
-                shutil.move(self.dynagen.dynamips[pemu_name].workingdir + self.hostname, self.dynagen.dynamips[pemu_name].workingdir + new_hostname)
+                shutil.move(self.dynagen.dynamips[pemu_name].workingdir + os.sep + self.hostname, self.dynagen.dynamips[pemu_name].workingdir + os.sep + new_hostname)
             except:
                 debug("Cannot move FLASH directory")
         self.hostname = new_hostname

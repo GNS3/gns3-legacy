@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import os, re
+import os, re, shutil, glob
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.dynagen as dynagen_namespace
@@ -132,6 +132,7 @@ class IOSRouter(AbstractNode):
             except lib.DynamipsErrorHandled:
                 pass
             del self.dynagen.devices[self.hostname]
+            self.hypervisor.devices.remove(self.router)
             debug('Router ' + self.hostname + ' deleted')
         self.dynagen.update_running_config()
 
@@ -424,6 +425,14 @@ class IOSRouter(AbstractNode):
         for link in links:
             globals.GApp.topology.deleteLink(link)
         self.delete_router()
+        dynamips_files = glob.glob(os.path.normpath(self.hypervisor.workingdir) + os.sep + self.get_platform() + '?' + self.hostname + '*')
+        for file in dynamips_files:
+            try:
+                new_file_name = os.path.basename(file).replace(self.hostname, new_hostname)
+                shutil.move(file, os.path.dirname(file) + os.sep + new_file_name)
+            except (OSError, IOError), e:
+                debug("Warning: cannot move " + file + " to " + os.path.dirname(file) + os.sep + new_file_name)
+                continue
         self.hostname = new_hostname
         self.r = 'ROUTER ' + self.hostname
         self.create_router()

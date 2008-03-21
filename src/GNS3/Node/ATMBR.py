@@ -71,6 +71,7 @@ class ATMBR(AbstractNode):
             except lib.DynamipsErrorHandled:
                 pass
             del self.dynagen.devices[self.hostname]
+            self.hypervisor.devices.remove(self.atmbr)
             self.atmbr = None
         self.dynagen.update_running_config()
 
