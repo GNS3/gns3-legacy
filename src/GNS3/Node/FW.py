@@ -76,8 +76,7 @@ class FW(AbstractNode, FWDefaults):
         """
         if self.fw:
             try:
-                if self.fw.state != 'stopped':
-                    self.fw.stop()
+                self.stopNode()
             except lib.DynamipsErrorHandled:
                 pass
             del self.dynagen.devices[self.hostname]

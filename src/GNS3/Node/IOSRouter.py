@@ -125,8 +125,7 @@ class IOSRouter(AbstractNode):
 
         if self.router:
             try:
-                if self.router.state != 'stopped':
-                    self.router.stop()
+                self.stopNode()
                 # don't forget to delete this router in Dynamips
                 self.router.delete()
             except lib.DynamipsErrorHandled:
