@@ -559,12 +559,12 @@ p, li { white-space: pre-wrap; }
         <translation>الاسم:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="230"/>
+        <location filename="../Node/AbstractNode.py" line="243"/>
         <source>Connection</source>
         <translation>توصيل</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="197"/>
+        <location filename="../Node/AbstractNode.py" line="210"/>
         <source>Already connected interface</source>
         <translation>منفذ متوصل مسبقا</translation>
     </message>
@@ -579,14 +579,29 @@ p, li { white-space: pre-wrap; }
         <translation>أسم مستخدم مسبقا</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="174"/>
+        <location filename="../Node/AbstractNode.py" line="187"/>
         <source>Hostname: %s</source>
         <translation>الأسم: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="230"/>
+        <location filename="../Node/AbstractNode.py" line="243"/>
         <source>No interface available, please configure this device</source>
         <translation>لا تتوفر منافذ بينية,أرجو أعداد هذا الجهاز</translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="113"/>
+        <source>Change console port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="114"/>
+        <source>Console port for %s:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="119"/>
+        <source>Console port</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -805,12 +820,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="200"/>
+        <location filename="../Node/ETHSW.py" line="204"/>
         <source>Connection</source>
         <translation>توصيل</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="200"/>
+        <location filename="../Node/ETHSW.py" line="204"/>
         <source>No port available</source>
         <translation>عدم توفر منفذ</translation>
     </message>
@@ -1212,12 +1227,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="542"/>
+        <location filename="../Node/IOSRouter.py" line="550"/>
         <source>Connection</source>
         <translation>توصيل</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="542"/>
+        <location filename="../Node/IOSRouter.py" line="550"/>
         <source>No interface available</source>
         <translation>عدم توفر توصيلة</translation>
     </message>
@@ -1390,11 +1405,6 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>موديل:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="215"/>
-        <source>KB</source>
-        <translation>KB</translation>
-    </message>
-    <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="309"/>
         <source>Adapters</source>
         <translation>Adapters</translation>
@@ -1422,6 +1432,11 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="507"/>
         <source>Confreg:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="215"/>
+        <source> KB</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1756,12 +1771,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>أرجو تهيئة مسار ال Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="589"/>
+        <location filename="../NETFile.py" line="591"/>
         <source>Dynamips error</source>
         <translation>Dynamips خطأ</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="592"/>
+        <location filename="../NETFile.py" line="594"/>
         <source>Dynamips warning</source>
         <translation>Dynamips تحذير</translation>
     </message>
@@ -1771,12 +1786,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation type="unfinished">وجود أستثناء,يتم أيقاف الاستيراد</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="599"/>
+        <location filename="../NETFile.py" line="601"/>
         <source>Exporting %s configuration to %s</source>
         <translation>يتم تصدير %s التهيئة ل  %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="606"/>
+        <location filename="../NETFile.py" line="608"/>
         <source>%s: IO Error: %s</source>
         <translation></translation>
     </message>
@@ -1791,7 +1806,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>أرجو ا الانتظار حتي يتم أستيراد التوبولوجي</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="606"/>
+        <location filename="../NETFile.py" line="608"/>
         <source>IOError</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2236,7 +2251,7 @@ to display the configuration page.</source>
 <context>
     <name>Scene</name>
     <message>
-        <location filename="../Scene.py" line="157"/>
+        <location filename="../Scene.py" line="163"/>
         <source>Delete</source>
         <translation>مسح</translation>
     </message>
@@ -2246,67 +2261,67 @@ to display the configuration page.</source>
         <translation>تهيئة</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="122"/>
+        <location filename="../Scene.py" line="127"/>
         <source>Console</source>
         <translation>Console</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="127"/>
+        <location filename="../Scene.py" line="132"/>
         <source>Start</source>
         <translation>أبدأ</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="132"/>
+        <location filename="../Scene.py" line="137"/>
         <source>Stop</source>
         <translation>توقف</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="149"/>
+        <location filename="../Scene.py" line="155"/>
         <source>Suspend</source>
         <translation>مؤقت</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="144"/>
+        <location filename="../Scene.py" line="150"/>
         <source>Idle PC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="239"/>
+        <location filename="../Scene.py" line="245"/>
         <source>IDLE PC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="191"/>
+        <location filename="../Scene.py" line="197"/>
         <source>Please select only one router</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="232"/>
+        <location filename="../Scene.py" line="238"/>
         <source>No idlepc values found</source>
         <translation type="unfinished">لم يتم أيجاد قيم idlepc</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="235"/>
+        <location filename="../Scene.py" line="241"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="248"/>
+        <location filename="../Scene.py" line="254"/>
         <source>Dynamips error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="199"/>
+        <location filename="../Scene.py" line="205"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="240"/>
+        <location filename="../Scene.py" line="246"/>
         <source>Applied idlepc value %s to %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="180"/>
+        <location filename="../Scene.py" line="186"/>
         <source>Please wait while calculating an IDLE PC</source>
         <translation>أرجو الانتظار ليتم حساب IDLE PC</translation>
     </message>
@@ -2319,6 +2334,11 @@ to display the configuration page.</source>
         <location filename="../Scene.py" line="109"/>
         <source>Show/Hide the hostname</source>
         <translation>أظهار/أخفاء الاسم</translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="122"/>
+        <source>Change console port</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

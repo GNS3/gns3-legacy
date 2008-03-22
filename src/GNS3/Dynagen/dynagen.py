@@ -1697,6 +1697,8 @@ class Dynagen:
                             device.image = '"None"'
                         self.defaults_config[h][model]['image'] = device.image
                         for option in self.generic_router_options:
+                            if option == 'cnfg':
+                                continue
                             if getattr(device, option) != device.defaults[option]:
                                 self.defaults_config[h][model][option] = getattr(device, option)
 

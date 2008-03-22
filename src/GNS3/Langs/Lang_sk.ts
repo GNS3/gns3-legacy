@@ -560,12 +560,12 @@ p, li { white-space: pre-wrap; }
         <translation>Meno zariadenia:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="230"/>
+        <location filename="../Node/AbstractNode.py" line="243"/>
         <source>Connection</source>
         <translation>Spojenie</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="197"/>
+        <location filename="../Node/AbstractNode.py" line="210"/>
         <source>Already connected interface</source>
         <translation>Interfejs je už pripojený</translation>
     </message>
@@ -580,14 +580,29 @@ p, li { white-space: pre-wrap; }
         <translation>Toto meno zariadenia už existuje</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="174"/>
+        <location filename="../Node/AbstractNode.py" line="187"/>
         <source>Hostname: %s</source>
         <translation>Meno zariadenia: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="230"/>
+        <location filename="../Node/AbstractNode.py" line="243"/>
         <source>No interface available, please configure this device</source>
         <translation>Žiadny interfejs nie je k dispozícii, nakonfigurujte toto zariadenie </translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="113"/>
+        <source>Change console port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="114"/>
+        <source>Console port for %s:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="119"/>
+        <source>Console port</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -808,12 +823,12 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="200"/>
+        <location filename="../Node/ETHSW.py" line="204"/>
         <source>Connection</source>
         <translation>Spojenie</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="200"/>
+        <location filename="../Node/ETHSW.py" line="204"/>
         <source>No port available</source>
         <translation>Žiaden port nie je k dispozícii</translation>
     </message>
@@ -1215,12 +1230,12 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="542"/>
+        <location filename="../Node/IOSRouter.py" line="550"/>
         <source>Connection</source>
         <translation>Spojenie</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="542"/>
+        <location filename="../Node/IOSRouter.py" line="550"/>
         <source>No interface available</source>
         <translation>Žiaden interfejs nie je k dispozícii</translation>
     </message>
@@ -1393,11 +1408,6 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
         <translation>Model:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="215"/>
-        <source>KB</source>
-        <translation>KB</translation>
-    </message>
-    <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="309"/>
         <source>Adapters</source>
         <translation>Adaptéry</translation>
@@ -1426,6 +1436,11 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="507"/>
         <source>Confreg:</source>
         <translation>Konfiguračný register:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="215"/>
+        <source> KB</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1759,12 +1774,12 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
         <translation>Nakonfigurujte cestu ku Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="589"/>
+        <location filename="../NETFile.py" line="591"/>
         <source>Dynamips error</source>
         <translation>Chyba Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="592"/>
+        <location filename="../NETFile.py" line="594"/>
         <source>Dynamips warning</source>
         <translation>Varovanie Dynamipsu</translation>
     </message>
@@ -1774,12 +1789,12 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
         <translation>Zachytil som výnimku, zastavujem importovanie...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="599"/>
+        <location filename="../NETFile.py" line="601"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportujem konfiguráciu zariadenia %s do adresára %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="606"/>
+        <location filename="../NETFile.py" line="608"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Chyba vstupu/výstupu: %s</translation>
     </message>
@@ -1794,7 +1809,7 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
         <translation>Čakajte kým sa naimportuje topológia</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="606"/>
+        <location filename="../NETFile.py" line="608"/>
         <source>IOError</source>
         <translation>Vstupno/Výstupná Chyba</translation>
     </message>
@@ -2238,7 +2253,7 @@ na zobrazenie konfiguračnej stránky.</translation>
 <context>
     <name>Scene</name>
     <message>
-        <location filename="../Scene.py" line="157"/>
+        <location filename="../Scene.py" line="163"/>
         <source>Delete</source>
         <translation>Zmaž</translation>
     </message>
@@ -2248,67 +2263,67 @@ na zobrazenie konfiguračnej stránky.</translation>
         <translation>Nastav</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="122"/>
+        <location filename="../Scene.py" line="127"/>
         <source>Console</source>
         <translation>Konzola</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="127"/>
+        <location filename="../Scene.py" line="132"/>
         <source>Start</source>
         <translation>Spusti</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="132"/>
+        <location filename="../Scene.py" line="137"/>
         <source>Stop</source>
         <translation>Zastav</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="149"/>
+        <location filename="../Scene.py" line="155"/>
         <source>Suspend</source>
         <translation>Pozastav</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="144"/>
+        <location filename="../Scene.py" line="150"/>
         <source>Idle PC</source>
         <translation>Idle PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="239"/>
+        <location filename="../Scene.py" line="245"/>
         <source>IDLE PC</source>
         <translation>IDLE PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="191"/>
+        <location filename="../Scene.py" line="197"/>
         <source>Please select only one router</source>
         <translation>Zvoľte len jeden smerovač</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="232"/>
+        <location filename="../Scene.py" line="238"/>
         <source>No idlepc values found</source>
         <translation>Nenašli sa žiadne idlepc hodnoty</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="235"/>
+        <location filename="../Scene.py" line="241"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
         <translation>Potencionálne dobré idlepc hodnoty sú označené &apos;*&apos;</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="248"/>
+        <location filename="../Scene.py" line="254"/>
         <source>Dynamips error</source>
         <translation>Chyba Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="199"/>
+        <location filename="../Scene.py" line="205"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
         <translation>%s má už nastavenú idlepc hodnotu, chcete zistiť novú?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="240"/>
+        <location filename="../Scene.py" line="246"/>
         <source>Applied idlepc value %s to %s</source>
         <translation>Nastavil som idlepc hodnotu %s na zariadenie %s</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="180"/>
+        <location filename="../Scene.py" line="186"/>
         <source>Please wait while calculating an IDLE PC</source>
         <translation>Počkajte na zistenie IDLEPC hodnoty</translation>
     </message>
@@ -2321,6 +2336,11 @@ na zobrazenie konfiguračnej stránky.</translation>
         <location filename="../Scene.py" line="109"/>
         <source>Show/Hide the hostname</source>
         <translation>Ukáž/Skry meno zariadenia</translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="122"/>
+        <source>Change console port</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

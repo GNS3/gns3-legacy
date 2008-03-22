@@ -559,12 +559,12 @@ p, li { white-space: pre-wrap; }
         <translation>Nom d&apos;hôte:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="230"/>
+        <location filename="../Node/AbstractNode.py" line="243"/>
         <source>Connection</source>
         <translation>Connexion</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="197"/>
+        <location filename="../Node/AbstractNode.py" line="210"/>
         <source>Already connected interface</source>
         <translation>Interface déjà connectée</translation>
     </message>
@@ -579,14 +579,29 @@ p, li { white-space: pre-wrap; }
         <translation>Nom d&apos;hôte déja utilisé</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="174"/>
+        <location filename="../Node/AbstractNode.py" line="187"/>
         <source>Hostname: %s</source>
         <translation>Nom d&apos;hôte: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="230"/>
+        <location filename="../Node/AbstractNode.py" line="243"/>
         <source>No interface available, please configure this device</source>
         <translation>Pas d&apos;interface disponible, SVP configurez le noeud</translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="113"/>
+        <source>Change console port</source>
+        <translation>Changement de port console</translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="114"/>
+        <source>Console port for %s:</source>
+        <translation>Port console pour %s:</translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="119"/>
+        <source>Console port</source>
+        <translation>Port Console</translation>
     </message>
 </context>
 <context>
@@ -807,12 +822,12 @@ Entrer le numéro de la valeur a appliquer [1-%i] or ENTRER pour ignorer le chan
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="200"/>
+        <location filename="../Node/ETHSW.py" line="204"/>
         <source>Connection</source>
         <translation>Connexion</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="200"/>
+        <location filename="../Node/ETHSW.py" line="204"/>
         <source>No port available</source>
         <translation>Pas de port disponible</translation>
     </message>
@@ -1214,12 +1229,12 @@ Entrer le numéro de la valeur a appliquer [1-%i] or ENTRER pour ignorer le chan
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="542"/>
+        <location filename="../Node/IOSRouter.py" line="550"/>
         <source>Connection</source>
         <translation>Connexion</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="542"/>
+        <location filename="../Node/IOSRouter.py" line="550"/>
         <source>No interface available</source>
         <translation>Pas d&apos;interface disponible</translation>
     </message>
@@ -1393,11 +1408,6 @@ panier:</translation>
         <translation>Modéle:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="215"/>
-        <source>KB</source>
-        <translation>KO</translation>
-    </message>
-    <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="309"/>
         <source>Adapters</source>
         <translation>Modules</translation>
@@ -1426,6 +1436,11 @@ panier:</translation>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="507"/>
         <source>Confreg:</source>
         <translation>Confreg:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="215"/>
+        <source> KB</source>
+        <translation> KO</translation>
     </message>
 </context>
 <context>
@@ -1759,12 +1774,12 @@ panier:</translation>
         <translation>SVP, configurez le chemin vers Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="589"/>
+        <location filename="../NETFile.py" line="591"/>
         <source>Dynamips error</source>
         <translation>Erreur Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="592"/>
+        <location filename="../NETFile.py" line="594"/>
         <source>Dynamips warning</source>
         <translation>Avertissement Dynamips</translation>
     </message>
@@ -1774,12 +1789,12 @@ panier:</translation>
         <translation>Exception détectée, arrêt de l&apos;importation...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="599"/>
+        <location filename="../NETFile.py" line="601"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportation de la configuration %s vers %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="606"/>
+        <location filename="../NETFile.py" line="608"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Erreur E/S: %s</translation>
     </message>
@@ -1794,7 +1809,7 @@ panier:</translation>
         <translation>SVP, patientez pendant le chargement de la topologie</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="606"/>
+        <location filename="../NETFile.py" line="608"/>
         <source>IOError</source>
         <translation></translation>
     </message>
@@ -2238,7 +2253,7 @@ pour afficher sa page de configuration.</translation>
 <context>
     <name>Scene</name>
     <message>
-        <location filename="../Scene.py" line="157"/>
+        <location filename="../Scene.py" line="163"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
@@ -2248,67 +2263,67 @@ pour afficher sa page de configuration.</translation>
         <translation>Configurer</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="122"/>
+        <location filename="../Scene.py" line="127"/>
         <source>Console</source>
         <translation>Console</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="127"/>
+        <location filename="../Scene.py" line="132"/>
         <source>Start</source>
         <translation>Démarrer</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="132"/>
+        <location filename="../Scene.py" line="137"/>
         <source>Stop</source>
         <translation>Arrêter</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="149"/>
+        <location filename="../Scene.py" line="155"/>
         <source>Suspend</source>
         <translation>Suspendre</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="144"/>
+        <location filename="../Scene.py" line="150"/>
         <source>Idle PC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="239"/>
+        <location filename="../Scene.py" line="245"/>
         <source>IDLE PC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="191"/>
+        <location filename="../Scene.py" line="197"/>
         <source>Please select only one router</source>
         <translation>SVP, sélectionnez uniquement un routeur</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="232"/>
+        <location filename="../Scene.py" line="238"/>
         <source>No idlepc values found</source>
         <translation>Pas de valeurs idlepc trouvées</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="235"/>
+        <location filename="../Scene.py" line="241"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
         <translation>Meilleures valeurs potentielles marquées par une &apos;*&apos;</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="248"/>
+        <location filename="../Scene.py" line="254"/>
         <source>Dynamips error</source>
         <translation>Erreur Dynamips</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="199"/>
+        <location filename="../Scene.py" line="205"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
         <translation>%s a déjà une valeur idlepc, voulez vous en calculer une nouvelle ?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="240"/>
+        <location filename="../Scene.py" line="246"/>
         <source>Applied idlepc value %s to %s</source>
         <translation>Applique l&apos;idlepc %s à %s</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="180"/>
+        <location filename="../Scene.py" line="186"/>
         <source>Please wait while calculating an IDLE PC</source>
         <translation>SVP, attendez pendant le calcul de l&apos;IDLE PC</translation>
     </message>
@@ -2321,6 +2336,11 @@ pour afficher sa page de configuration.</translation>
         <location filename="../Scene.py" line="109"/>
         <source>Show/Hide the hostname</source>
         <translation>Afficher/Cacher le nom d&apos;hôte</translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="122"/>
+        <source>Change console port</source>
+        <translation>Changement de port console</translation>
     </message>
 </context>
 <context>

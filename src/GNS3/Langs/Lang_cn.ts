@@ -575,12 +575,12 @@ p, li { white-space: pre-wrap; }
         <translation>设备名:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="230"/>
+        <location filename="../Node/AbstractNode.py" line="243"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="197"/>
+        <location filename="../Node/AbstractNode.py" line="210"/>
         <source>Already connected interface</source>
         <translation>端口已被连接</translation>
     </message>
@@ -595,14 +595,29 @@ p, li { white-space: pre-wrap; }
         <translation>设备名已经被使用</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="174"/>
+        <location filename="../Node/AbstractNode.py" line="187"/>
         <source>Hostname: %s</source>
         <translation>设备名: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="230"/>
+        <location filename="../Node/AbstractNode.py" line="243"/>
         <source>No interface available, please configure this device</source>
         <translation>没有端口可用,请配置该设备</translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="113"/>
+        <source>Change console port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="114"/>
+        <source>Console port for %s:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="119"/>
+        <source>Console port</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -823,12 +838,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="200"/>
+        <location filename="../Node/ETHSW.py" line="204"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="200"/>
+        <location filename="../Node/ETHSW.py" line="204"/>
         <source>No port available</source>
         <translation>无可利用的端口</translation>
     </message>
@@ -1230,12 +1245,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="542"/>
+        <location filename="../Node/IOSRouter.py" line="550"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="542"/>
+        <location filename="../Node/IOSRouter.py" line="550"/>
         <source>No interface available</source>
         <translation>无可利用的端口</translation>
     </message>
@@ -1408,11 +1423,6 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>型号:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="215"/>
-        <source>KB</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="309"/>
         <source>Adapters</source>
         <translation>适配卡</translation>
@@ -1441,6 +1451,11 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="507"/>
         <source>Confreg:</source>
         <translation>Confreg:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="215"/>
+        <source> KB</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1774,12 +1789,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>请配置Dynamips路径</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="589"/>
+        <location filename="../NETFile.py" line="591"/>
         <source>Dynamips error</source>
         <translation>Dynamips 错误</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="592"/>
+        <location filename="../NETFile.py" line="594"/>
         <source>Dynamips warning</source>
         <translation>Dynamips 警告</translation>
     </message>
@@ -1789,12 +1804,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>检测到异常,停止导入...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="599"/>
+        <location filename="../NETFile.py" line="601"/>
         <source>Exporting %s configuration to %s</source>
         <translation>输出%s的配置到%s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="606"/>
+        <location filename="../NETFile.py" line="608"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO 错误: %s</translation>
     </message>
@@ -1809,7 +1824,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>正在导入拓扑,请稍后</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="606"/>
+        <location filename="../NETFile.py" line="608"/>
         <source>IOError</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2253,7 +2268,7 @@ to display the configuration page.</source>
 <context>
     <name>Scene</name>
     <message>
-        <location filename="../Scene.py" line="157"/>
+        <location filename="../Scene.py" line="163"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
@@ -2263,67 +2278,67 @@ to display the configuration page.</source>
         <translation>配置</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="122"/>
+        <location filename="../Scene.py" line="127"/>
         <source>Console</source>
         <translation>Console</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="127"/>
+        <location filename="../Scene.py" line="132"/>
         <source>Start</source>
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="132"/>
+        <location filename="../Scene.py" line="137"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="149"/>
+        <location filename="../Scene.py" line="155"/>
         <source>Suspend</source>
         <translation>暂停</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="144"/>
+        <location filename="../Scene.py" line="150"/>
         <source>Idle PC</source>
         <translation>Idle PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="239"/>
+        <location filename="../Scene.py" line="245"/>
         <source>IDLE PC</source>
         <translation>IDLE PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="191"/>
+        <location filename="../Scene.py" line="197"/>
         <source>Please select only one router</source>
         <translation>请只选择一个路由器</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="232"/>
+        <location filename="../Scene.py" line="238"/>
         <source>No idlepc values found</source>
         <translation>无idlepc值被发现</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="235"/>
+        <location filename="../Scene.py" line="241"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
         <translation>可能为最优的idlepc将被值标记 &apos;*&apos;</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="248"/>
+        <location filename="../Scene.py" line="254"/>
         <source>Dynamips error</source>
         <translation>Dynamips 错误</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="199"/>
+        <location filename="../Scene.py" line="205"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
         <translation>%s 已存在一个idlepc值,是否需要重新计算?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="240"/>
+        <location filename="../Scene.py" line="246"/>
         <source>Applied idlepc value %s to %s</source>
         <translation>应用idlepc值 %s到%s</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="180"/>
+        <location filename="../Scene.py" line="186"/>
         <source>Please wait while calculating an IDLE PC</source>
         <translation>IDLE PC正在计算,请稍后</translation>
     </message>
@@ -2336,6 +2351,11 @@ to display the configuration page.</source>
         <location filename="../Scene.py" line="109"/>
         <source>Show/Hide the hostname</source>
         <translation>显示/隐藏设备名</translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="122"/>
+        <source>Change console port</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

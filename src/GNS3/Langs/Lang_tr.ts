@@ -575,12 +575,12 @@ p, li { white-space: pre-wrap; }
         <translation>Host adı:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="230"/>
+        <location filename="../Node/AbstractNode.py" line="243"/>
         <source>Connection</source>
         <translation>Bağlantı</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="197"/>
+        <location filename="../Node/AbstractNode.py" line="210"/>
         <source>Already connected interface</source>
         <translation>Arabirim bağlı</translation>
     </message>
@@ -595,14 +595,29 @@ p, li { white-space: pre-wrap; }
         <translation>Host adı kullanılmakta</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="174"/>
+        <location filename="../Node/AbstractNode.py" line="187"/>
         <source>Hostname: %s</source>
         <translation>Host adı: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="230"/>
+        <location filename="../Node/AbstractNode.py" line="243"/>
         <source>No interface available, please configure this device</source>
         <translation>Kullanılabilir arabirim yok, lütfen cihazın ayarlamasını yapın</translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="113"/>
+        <source>Change console port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="114"/>
+        <source>Console port for %s:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="119"/>
+        <source>Console port</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -821,12 +836,12 @@ Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmama
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="200"/>
+        <location filename="../Node/ETHSW.py" line="204"/>
         <source>Connection</source>
         <translation>Bağlantı</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="200"/>
+        <location filename="../Node/ETHSW.py" line="204"/>
         <source>No port available</source>
         <translation>Kullanılabilir port yok</translation>
     </message>
@@ -1228,12 +1243,12 @@ Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmama
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="542"/>
+        <location filename="../Node/IOSRouter.py" line="550"/>
         <source>Connection</source>
         <translation>Bağlantı</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="542"/>
+        <location filename="../Node/IOSRouter.py" line="550"/>
         <source>No interface available</source>
         <translation>Kullanılabilir arabirim yok</translation>
     </message>
@@ -1406,11 +1421,6 @@ Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmama
         <translation>Model:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="215"/>
-        <source>KB</source>
-        <translation>KB</translation>
-    </message>
-    <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="309"/>
         <source>Adapters</source>
         <translation>Adaptörler</translation>
@@ -1439,6 +1449,11 @@ Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmama
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="507"/>
         <source>Confreg:</source>
         <translation>Confreg:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="215"/>
+        <source> KB</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1772,12 +1787,12 @@ Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmama
         <translation>Lütfen Dynamips&apos;in yolunu ayarlayınız</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="589"/>
+        <location filename="../NETFile.py" line="591"/>
         <source>Dynamips error</source>
         <translation>Dynamips hatası</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="592"/>
+        <location filename="../NETFile.py" line="594"/>
         <source>Dynamips warning</source>
         <translation>Dynamips tehlikesi</translation>
     </message>
@@ -1787,12 +1802,12 @@ Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmama
         <translation>Sorun bulundu, içeri aktarma durdu...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="599"/>
+        <location filename="../NETFile.py" line="601"/>
         <source>Exporting %s configuration to %s</source>
         <translation>%s dışa aktarım ayarları şuraya %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="606"/>
+        <location filename="../NETFile.py" line="608"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO Hata: %s</translation>
     </message>
@@ -1807,7 +1822,7 @@ Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmama
         <translation>Lütfen bekleyin topoloji içe aktarılıyor</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="606"/>
+        <location filename="../NETFile.py" line="608"/>
         <source>IOError</source>
         <translation></translation>
     </message>
@@ -2251,7 +2266,7 @@ lütfen nod seçin.</translation>
 <context>
     <name>Scene</name>
     <message>
-        <location filename="../Scene.py" line="157"/>
+        <location filename="../Scene.py" line="163"/>
         <source>Delete</source>
         <translation>Sil</translation>
     </message>
@@ -2261,62 +2276,62 @@ lütfen nod seçin.</translation>
         <translation>Ayarlar</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="122"/>
+        <location filename="../Scene.py" line="127"/>
         <source>Console</source>
         <translation>Konsol</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="127"/>
+        <location filename="../Scene.py" line="132"/>
         <source>Start</source>
         <translation>Başlat</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="132"/>
+        <location filename="../Scene.py" line="137"/>
         <source>Stop</source>
         <translation>Durdur</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="149"/>
+        <location filename="../Scene.py" line="155"/>
         <source>Suspend</source>
         <translation>Askıya al</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="144"/>
+        <location filename="../Scene.py" line="150"/>
         <source>Idle PC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="239"/>
+        <location filename="../Scene.py" line="245"/>
         <source>IDLE PC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="191"/>
+        <location filename="../Scene.py" line="197"/>
         <source>Please select only one router</source>
         <translation>Lütfen tek router seçin</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="232"/>
+        <location filename="../Scene.py" line="238"/>
         <source>No idlepc values found</source>
         <translation>Idlepc değeri bulunamadı</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="235"/>
+        <location filename="../Scene.py" line="241"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
         <translation>Potansiyel olarak &apos;*&apos; işaretli olanlar daha iyidir</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="248"/>
+        <location filename="../Scene.py" line="254"/>
         <source>Dynamips error</source>
         <translation>Dynamips hatası</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="199"/>
+        <location filename="../Scene.py" line="205"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
         <translation>%s için idlepc değeri zaten var, yeni bir tane istiyormusunuz?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="240"/>
+        <location filename="../Scene.py" line="246"/>
         <source>Applied idlepc value %s to %s</source>
         <translation>%s idlepc değeri %s için uygulandı</translation>
     </message>
@@ -2331,9 +2346,14 @@ lütfen nod seçin.</translation>
         <translation>Host adlarını Göster/Gizle</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="180"/>
+        <location filename="../Scene.py" line="186"/>
         <source>Please wait while calculating an IDLE PC</source>
         <translation>Lütfen bekleyin IDLE PC hesaplanıyor</translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="122"/>
+        <source>Change console port</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

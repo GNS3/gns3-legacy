@@ -119,6 +119,11 @@ class Scene(QtGui.QGraphicsView):
         if True in instances:
 
             # Action: Console (Connect to the node console)
+            consolePortAct = QtGui.QAction(translate('Scene', 'Change console port'), menu)
+            consolePortAct.setIcon(QtGui.QIcon(':/icons/console_port.svg'))
+            self.connect(consolePortAct, QtCore.SIGNAL('triggered()'), self.slotChangeConsolePort)
+        
+            # Action: Console (Connect to the node console)
             consoleAct = QtGui.QAction(translate('Scene', 'Console'), menu)
             consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
             self.connect(consoleAct, QtCore.SIGNAL('triggered()'), self.slotConsole)
@@ -133,6 +138,7 @@ class Scene(QtGui.QGraphicsView):
             stopAct.setIcon(QtGui.QIcon(':/icons/stop.svg'))
             self.connect(stopAct, QtCore.SIGNAL('triggered()'), self.slotStopNode)
 
+            menu.addAction(consolePortAct)
             menu.addAction(consoleAct)
             menu.addAction(startAct)
             menu.addAction(stopAct)
@@ -301,6 +307,14 @@ class Scene(QtGui.QGraphicsView):
         for item in self.__topology.selectedItems():
             if isinstance(item, IOSRouter) or isinstance(item, FW):
                 item.console()
+                
+    def slotChangeConsolePort(self):
+        """ Slot called to change the console port
+        """
+
+        for item in self.__topology.selectedItems():
+            if isinstance(item, IOSRouter) or isinstance(item, FW):
+                item.changeConsolePort()
 
     def slotStartNode(self):
         """ Slot called to start the selected items
@@ -362,13 +376,13 @@ class Scene(QtGui.QGraphicsView):
                 self.__sourceNodeID = id
                 self.__sourceInterface = interface
                 self.__isFirstClick = False
-                link_type = globals.linkAbrv[globals.currentLinkType]
-                if link_type == 's' or link_type == 'a':
+                node = self.__topology.getNode(id)
+                if interface[0] == 's' or interface[0] == 'a' or isinstance(node, ATMSW) or isinstance(node, FRSW):
                     # interface is serial or ATM
-                    self.newedge = Serial(self.__topology.getNode(id), interface, self.mapToScene(QtGui.QCursor.pos()), 0, Fake = True)
+                    self.newedge = Serial(node, interface, self.mapToScene(QtGui.QCursor.pos()), 0, Fake = True)
                 else:
                     # by default use an ethernet link
-                    self.newedge = Ethernet(self.__topology.getNode(id), interface, self.mapToScene(QtGui.QCursor.pos()), 0, Fake = True)
+                    self.newedge = Ethernet(node, interface, self.mapToScene(QtGui.QCursor.pos()), 0, Fake = True)
                 self.__topology.addItem(self.newedge)
             else:
                 # destination node

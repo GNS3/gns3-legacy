@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_IOSRouterPage.ui'
 #
-# Created: Thu Mar 20 19:46:53 2008
+# Created: Sat Mar 22 23:12:53 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -50,18 +50,9 @@ class Ui_IOSRouterPage(object):
         self.textLabel_ImageIOS.setObjectName("textLabel_ImageIOS")
         self.gridlayout.addWidget(self.textLabel_ImageIOS,2,1,1,2)
 
-        self.label_17 = QtGui.QLabel(self.General)
-        self.label_17.setObjectName("label_17")
-        self.gridlayout.addWidget(self.label_17,3,0,1,1)
-
-        self.spinBoxConsolePort = QtGui.QSpinBox(self.General)
-        self.spinBoxConsolePort.setMaximum(65535)
-        self.spinBoxConsolePort.setObjectName("spinBoxConsolePort")
-        self.gridlayout.addWidget(self.spinBoxConsolePort,3,1,1,2)
-
         self.label_18 = QtGui.QLabel(self.General)
         self.label_18.setObjectName("label_18")
-        self.gridlayout.addWidget(self.label_18,4,0,1,1)
+        self.gridlayout.addWidget(self.label_18,3,0,1,1)
 
         self.lineEditStartupConfig = QtGui.QLineEdit(self.General)
 
@@ -71,7 +62,7 @@ class Ui_IOSRouterPage(object):
         sizePolicy.setHeightForWidth(self.lineEditStartupConfig.sizePolicy().hasHeightForWidth())
         self.lineEditStartupConfig.setSizePolicy(sizePolicy)
         self.lineEditStartupConfig.setObjectName("lineEditStartupConfig")
-        self.gridlayout.addWidget(self.lineEditStartupConfig,4,1,1,1)
+        self.gridlayout.addWidget(self.lineEditStartupConfig,3,1,1,1)
 
         self.pushButtonStartupConfig = QtGui.QPushButton(self.General)
 
@@ -82,11 +73,11 @@ class Ui_IOSRouterPage(object):
         self.pushButtonStartupConfig.setSizePolicy(sizePolicy)
         self.pushButtonStartupConfig.setMaximumSize(QtCore.QSize(31,27))
         self.pushButtonStartupConfig.setObjectName("pushButtonStartupConfig")
-        self.gridlayout.addWidget(self.pushButtonStartupConfig,4,2,1,1)
+        self.gridlayout.addWidget(self.pushButtonStartupConfig,3,2,1,1)
 
         self.label = QtGui.QLabel(self.General)
         self.label.setObjectName("label")
-        self.gridlayout.addWidget(self.label,5,0,1,1)
+        self.gridlayout.addWidget(self.label,4,0,1,1)
 
         self.comboBoxMidplane = QtGui.QComboBox(self.General)
         self.comboBoxMidplane.setEnabled(False)
@@ -97,11 +88,11 @@ class Ui_IOSRouterPage(object):
         sizePolicy.setHeightForWidth(self.comboBoxMidplane.sizePolicy().hasHeightForWidth())
         self.comboBoxMidplane.setSizePolicy(sizePolicy)
         self.comboBoxMidplane.setObjectName("comboBoxMidplane")
-        self.gridlayout.addWidget(self.comboBoxMidplane,5,1,1,2)
+        self.gridlayout.addWidget(self.comboBoxMidplane,4,1,1,2)
 
         self.label_2 = QtGui.QLabel(self.General)
         self.label_2.setObjectName("label_2")
-        self.gridlayout.addWidget(self.label_2,6,0,1,1)
+        self.gridlayout.addWidget(self.label_2,5,0,1,1)
 
         self.comboBoxNPE = QtGui.QComboBox(self.General)
         self.comboBoxNPE.setEnabled(False)
@@ -112,10 +103,10 @@ class Ui_IOSRouterPage(object):
         sizePolicy.setHeightForWidth(self.comboBoxNPE.sizePolicy().hasHeightForWidth())
         self.comboBoxNPE.setSizePolicy(sizePolicy)
         self.comboBoxNPE.setObjectName("comboBoxNPE")
-        self.gridlayout.addWidget(self.comboBoxNPE,6,1,1,2)
+        self.gridlayout.addWidget(self.comboBoxNPE,5,1,1,2)
 
         spacerItem = QtGui.QSpacerItem(263,151,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
-        self.gridlayout.addItem(spacerItem,7,1,1,1)
+        self.gridlayout.addItem(spacerItem,6,1,1,1)
         self.tabWidget.addTab(self.General,"")
 
         self.MemoriesDisks = QtGui.QWidget()
@@ -453,7 +444,6 @@ class Ui_IOSRouterPage(object):
         self.label_4.setText(QtGui.QApplication.translate("IOSRouterPage", "Platform:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_8.setText(QtGui.QApplication.translate("IOSRouterPage", "Model:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_5.setText(QtGui.QApplication.translate("IOSRouterPage", "IOS image:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_17.setText(QtGui.QApplication.translate("IOSRouterPage", "Console port:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_18.setText(QtGui.QApplication.translate("IOSRouterPage", "Startup-config:", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonStartupConfig.setText(QtGui.QApplication.translate("IOSRouterPage", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("IOSRouterPage", "Midplane:", None, QtGui.QApplication.UnicodeUTF8))
@@ -463,7 +453,7 @@ class Ui_IOSRouterPage(object):
         self.label_7.setText(QtGui.QApplication.translate("IOSRouterPage", "RAM size:", None, QtGui.QApplication.UnicodeUTF8))
         self.spinBoxRamSize.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MB", None, QtGui.QApplication.UnicodeUTF8))
         self.label_9.setText(QtGui.QApplication.translate("IOSRouterPage", "NVRAM size:", None, QtGui.QApplication.UnicodeUTF8))
-        self.spinBoxNvramSize.setSuffix(QtGui.QApplication.translate("IOSRouterPage", "KB", None, QtGui.QApplication.UnicodeUTF8))
+        self.spinBoxNvramSize.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " KB", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_6.setTitle(QtGui.QApplication.translate("IOSRouterPage", "Disks", None, QtGui.QApplication.UnicodeUTF8))
         self.label_10.setText(QtGui.QApplication.translate("IOSRouterPage", "PCMCIA disk0 size:", None, QtGui.QApplication.UnicodeUTF8))
         self.spinBoxPcmciaDisk0Size.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MB", None, QtGui.QApplication.UnicodeUTF8))

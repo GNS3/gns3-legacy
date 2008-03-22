@@ -104,6 +104,19 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 for edge in self.__edgeList:
                     edge.setCustomToolTip()
             globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
+            
+    def changeConsolePort(self):
+        """ Called to change the console port
+        """
+
+        device = self.get_dynagen_device()
+        (port,  ok) = QtGui.QInputDialog.getInteger(globals.GApp.mainWindow, translate("AbstractNode", "Change console port"),
+                                          unicode(translate("AbstractNode", "Console port for %s:")) % self.hostname, device.console, 1, 65535, 1)
+        if ok and device.console != port:
+            try:
+                device.console = port
+            except lib.DynamipsError, msg:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Console port"), unicode(msg))
 
     def paint(self, painter, option, widget=None):
         """ Don't show the selection rectangle

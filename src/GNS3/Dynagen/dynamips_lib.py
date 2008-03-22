@@ -1984,7 +1984,7 @@ class Router(object):
             'aux': None,
             'image': None,
             'idlepc': None,
-            'exec_area': None,
+            'exec_area': 64,
             'mmap': True,
             'ghost_status': 0,
             'sparsemem': 'False',
@@ -2908,7 +2908,7 @@ class C7200(Router):
         self._defaults['nvram'] = 128
         self._defaults['disk0'] = 64
         self._defaults['disk1'] = 0
-        self._defaults['npe'] = 'npe-200'
+        self._defaults['npe'] = 'npe-400'
         self._defaults['midplane'] = 'vxr'
 
         # generate the slots for port adapters
@@ -3116,7 +3116,7 @@ class C3600(Router):
         self._defaults['nvram'] = 128
         self._defaults['disk0'] = 0
         self._defaults['disk1'] = 0
-        self._defaults['iomem'] = None
+        self._defaults['iomem'] = 5
         self.model_string = self.chassis
 
         # generate the slots for port adapters

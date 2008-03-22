@@ -77,6 +77,8 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         else:
             interfaces = self.getUnixInterfaces()
             self.comboBoxLinuxEth.addItems(interfaces)
+
+        self.comboBoxGenEth.setSizeAdjustPolicy(QtGui.QComboBox.AdjustToContents)
         self.comboBoxGenEth.addItems(interfaces)
 
     def getUnixInterfaces(self):

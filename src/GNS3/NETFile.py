@@ -365,6 +365,7 @@ class NETFile(object):
         self.dynagen.apply_idlepc()
         self.dynagen.get_defaults_config()
         self.dynagen.update_running_config()
+        debug("Running config before importing: " + str(self.dynagen.running_config))
         self.apply_gns3_data()
 
         connection_list = []
@@ -579,6 +580,7 @@ class NETFile(object):
         globals.GApp.dynagen.update_running_config()
         globals.GApp.workspace.projectFile = path
         globals.GApp.workspace.setWindowTitle("GNS3 - " + globals.GApp.workspace.projectFile)
+        debug("Running config after importing: " + str(self.dynagen.running_config))
 
     def export_router_config(self, device):
 
