@@ -588,10 +588,10 @@ class NETFile(object):
             config = base64.decodestring(device.config_b64)
             config = config.replace('\r', "")
         except lib.DynamipsError, msg:
-            print unicode(device.name) + ': ' + translate("NETFile", "Dynamips error") + ': ' + unicode(msg)
+            print unicode(device.name + ': ' + translate("NETFile", "Dynamips error") + ': ') + unicode(msg)
             return
         except lib.DynamipsWarning, msg:
-            print unicode(device.name) + ': ' + translate("NETFile", "Dynamips warning") + ': ' + unicode(msg)
+            print unicode(device.name + ': ' + translate("NETFile", "Dynamips warning") + ': ') + unicode(msg)
             return
         except:
             error('Unknown error exporting config for ' + device.name)

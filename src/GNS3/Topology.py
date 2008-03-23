@@ -201,7 +201,7 @@ class Topology(QtGui.QGraphicsScene):
             try:
                 self.dynagen.dynamips[pemu_name].workingdir = workdir
             except lib.DynamipsError, msg:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Pemuwrapper error"),  unicode(workdir + ': ' + msg))
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, unicode(translate("Topology", "Pemuwrapper error"),  workdir + ': ') + unicode(msg))
                 del self.dynagen.dynamips[pemu_name]
                 return False
 

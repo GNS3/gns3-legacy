@@ -485,7 +485,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                             for hypervisor in globals.GApp.dynagen.dynamips.values():
                                 hypervisor.workingdir = self.projectWorkdir
                         except lib.DynamipsError, msg:
-                            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), unicode(self.projectWorkdir+ ': ' + msg))
+                            QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "Dynamips error"), self.projectWorkdir+ ': ') + unicode(msg))
                 elif globals.GApp.topology.changed == True:
                     reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the current topology?"),
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
