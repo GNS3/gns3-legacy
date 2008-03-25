@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sat Mar 22 23:12:52 2008
+# Created: Tue Mar 25 00:51:50 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -261,6 +261,10 @@ class Ui_MainWindow(object):
         self.action_New = QtGui.QAction(MainWindow)
         self.action_New.setIcon(QtGui.QIcon(":/icons/new.svg"))
         self.action_New.setObjectName("action_New")
+
+        self.action_Extract_config = QtGui.QAction(MainWindow)
+        self.action_Extract_config.setIcon(QtGui.QIcon(":/icons/edit-undo.svg"))
+        self.action_Extract_config.setObjectName("action_Extract_config")
         self.menu_Edit.addAction(self.action_Copy)
         self.menu_Edit.addAction(self.action_Paste)
         self.menu_Edit.addSeparator()
@@ -299,6 +303,7 @@ class Ui_MainWindow(object):
         self.toolBar_General.addAction(self.action_AddNote)
         self.toolBar_General.addAction(self.action_ShowHostnames)
         self.toolBar_Design.addAction(self.action_Add_link)
+        self.toolBar_Emulation.addAction(self.action_Extract_config)
         self.toolBar_Emulation.addAction(self.action_TelnetAll)
         self.toolBar_Emulation.addAction(self.action_StartAll)
         self.toolBar_Emulation.addAction(self.action_SuspendAll)
@@ -376,6 +381,7 @@ class Ui_MainWindow(object):
         self.action_New.setIconText(QtGui.QApplication.translate("MainWindow", "New Project", None, QtGui.QApplication.UnicodeUTF8))
         self.action_New.setToolTip(QtGui.QApplication.translate("MainWindow", "New Project", None, QtGui.QApplication.UnicodeUTF8))
         self.action_New.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+N", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Extract_config.setText(QtGui.QApplication.translate("MainWindow", "&Extract all startup-configs", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.Console import Console
 from GNS3.Ui.Widget_topologySummaryDock import topologySummaryDock

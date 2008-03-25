@@ -214,6 +214,7 @@
    <attribute name="toolBarBreak" >
     <bool>false</bool>
    </attribute>
+   <addaction name="action_Extract_config" />
    <addaction name="action_TelnetAll" />
    <addaction name="action_StartAll" />
    <addaction name="action_SuspendAll" />
@@ -635,6 +636,14 @@
    </property>
    <property name="shortcut" >
     <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="action_Extract_config" >
+   <property name="icon" >
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/edit-undo.svg</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Extract all startup-configs</string>
    </property>
   </action>
  </widget>

@@ -92,6 +92,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_Preferences, QtCore.SIGNAL('triggered()'), self.__action_Preferences)
         self.connect(self.action_AddNote, QtCore.SIGNAL('triggered()'), self.__action_AddNote)
         self.connect(self.action_Clear, QtCore.SIGNAL('triggered()'), self.__action_Clear)
+        self.connect(self.action_Extract_config, QtCore.SIGNAL('triggered()'), self.__action_ExtractConfig)
 
     def __createMenus(self):
         """ Add own menu actions, and create new sub-menu
@@ -178,14 +179,15 @@ class Workspace(QMainWindow, Ui_MainWindow):
         for item in globals.GApp.topology.items():
             globals.GApp.topology.removeItem(item)
             
-        # delete dynamips files
-        dynamips_files = glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "c[0-9][0-9][0-9][0-9]*")
-        for file in dynamips_files:
-            try:
-                os.remove(file)
-            except (OSError, IOError), e:
-                print "Warning: Can't delete " + file + " => " + e.strerror
-                continue
+        if globals.GApp.systconf['dynamips'].clean_workdir:
+            # delete dynamips files
+            dynamips_files = glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "c[0-9][0-9][0-9][0-9]*")
+            for file in dynamips_files:
+                try:
+                    os.remove(file)
+                except (OSError, IOError), e:
+                    print "Warning: Can't delete " + file + " => " + e.strerror
+                    continue
 
     def __action_Clear(self):
         """ Clear the topology
@@ -196,6 +198,19 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         if reply == QtGui.QMessageBox.Yes:
             self.clear()
+
+    def __action_ExtractConfig(self):
+        """ Extract all startup-config
+        """
+        
+        fb = fileBrowser(translate('Workspaces', 'Directory to write startup-configs'))
+        path = fb.getDir()
+        if path is not None:
+            globals.GApp.workspace.projectConfigs = path
+            net = netfile.NETFile()
+            for device in globals.GApp.dynagen.devices.values():
+                if isinstance(device, lib.Router):
+                    net.export_router_config(device)
 
     def __action_AddNote(self):
         """ Add a note to the scene

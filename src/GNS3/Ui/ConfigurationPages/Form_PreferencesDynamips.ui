@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>430</width>
-    <height>411</height>
+    <height>439</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -72,28 +72,38 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="0" >
+          <item row="4" column="0" colspan="4" >
+           <widget class="QCheckBox" name="checkBoxClearWorkdir" >
+            <property name="text" >
+             <string>Automatically clean the working directory</string>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" >
            <widget class="QLabel" name="label_5" >
             <property name="text" >
              <string>Base port:</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="1" >
+          <item row="5" column="1" >
            <widget class="QLabel" name="label_6" >
             <property name="text" >
              <string> Base UDP:</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="2" colspan="2" >
+          <item row="5" column="2" colspan="2" >
            <widget class="QLabel" name="label_7" >
             <property name="text" >
              <string>Base console:</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="0" >
+          <item row="6" column="0" >
            <widget class="QSpinBox" name="dynamips_port" >
             <property name="maximum" >
              <number>65535</number>
@@ -103,7 +113,7 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="1" >
+          <item row="6" column="1" >
            <widget class="QSpinBox" name="dynamips_baseUDP" >
             <property name="maximum" >
              <number>65535</number>
@@ -113,7 +123,7 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="2" >
+          <item row="6" column="2" >
            <widget class="QSpinBox" name="dynamips_baseConsole" >
             <property name="maximum" >
              <number>65535</number>
@@ -123,7 +133,7 @@
             </property>
            </widget>
           </item>
-          <item row="6" column="0" colspan="2" >
+          <item row="7" column="0" colspan="2" >
            <widget class="QCheckBox" name="checkBoxGhosting" >
             <property name="text" >
              <string>Enable ghost IOS feature</string>
@@ -133,7 +143,7 @@
             </property>
            </widget>
           </item>
-          <item row="7" column="0" colspan="2" >
+          <item row="8" column="0" colspan="2" >
            <widget class="QCheckBox" name="checkBoxMmap" >
             <property name="text" >
              <string>Enable mmap feature</string>
@@ -143,7 +153,7 @@
             </property>
            </widget>
           </item>
-          <item row="8" column="0" colspan="2" >
+          <item row="9" column="0" colspan="2" >
            <widget class="QCheckBox" name="checkBoxSparseMem" >
             <property name="text" >
              <string>Enable sparse memory feature</string>

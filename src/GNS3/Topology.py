@@ -138,6 +138,7 @@ class Topology(QtGui.QGraphicsScene):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Hypervisor"),
                                            unicode(translate("Topology", "Can't connect to the external hypervisor on %s")) % external_hypervisor_key)
                 return False
+            self.dynagen.get_defaults_config()
             self.dynagen.update_running_config()
             dynamips_hypervisor.configchange = True
             hypervisor_conf = globals.GApp.hypervisors[external_hypervisor_key]
@@ -157,6 +158,9 @@ class Topology(QtGui.QGraphicsScene):
 
         debug("Set image " + image_conf.filename)
         node.set_image(image_conf.filename, image_conf.chassis)
+        if image_conf.platform == 'c3600':
+            node.set_int_option('iomem', 5)
+        node.set_int_option('exec_area', 64)
         if image_conf.idlepc:
             debug("Set idlepc " + image_conf.idlepc)
             node.set_string_option('idlepc', image_conf.idlepc)
@@ -191,6 +195,9 @@ class Topology(QtGui.QGraphicsScene):
             #create the Pemu instance and add it to global dictionary
             self.dynagen.dynamips[pemu_name] = pix.Pemu(host)
             self.dynagen.dynamips[pemu_name].reset()
+            self.dynagen.get_defaults_config()
+            self.dynagen.update_running_config()
+            self.dynagen.dynamips[pemu_name].configchange = True
             if globals.GApp.workspace.projectWorkdir:
                 workdir = globals.GApp.workspace.projectWorkdir
             elif globals.GApp.systconf['pemu'].pemuwrapper_workdir:
@@ -204,10 +211,6 @@ class Topology(QtGui.QGraphicsScene):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, unicode(translate("Topology", "Pemuwrapper error"),  workdir + ': ') + unicode(msg))
                 del self.dynagen.dynamips[pemu_name]
                 return False
-
-            self.dynagen.get_defaults_config()
-            globals.GApp.dynagen.update_running_config()
-            self.dynagen.dynamips[pemu_name].configchange = True
 
         # set defaults
         node.set_hypervisor(self.dynagen.dynamips[pemu_name])
@@ -291,10 +294,11 @@ class Topology(QtGui.QGraphicsScene):
         except (lib.DynamipsVerError, lib.DynamipsError), msg:
             if isinstance(node, IOSRouter):
                 # check if dynamips can create its files
-                dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.platform + '?' + node.hostname + '*')
-                for file in dynamips_files:
-                    if not os.access(file, os.W_OK):
-                        print "Warning: " + file + " is not writable because of different rights, please delete this file manually if dynamips was not able to create this router"
+                if node.hypervisor:
+                    dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.platform + '?' + node.hostname + '*')
+                    for file in dynamips_files:
+                        if not os.access(file, os.W_OK):
+                            print "Warning: " + file + " is not writable because of different rights, please delete this file manually if dynamips was not able to create this router"
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  unicode(msg))
             if self.__nodes.has_key(node.id):
                 self.deleteNode(node.id)

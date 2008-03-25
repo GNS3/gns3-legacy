@@ -362,6 +362,7 @@ class IOSRouter(AbstractNode):
             devdefaults[key] = {}
 
         config = globals.GApp.dynagen.defaults_config
+
         #go through all section under dynamips server in running config and populate the devdefaults with model defaults
         for r in config[self.d]:
             router_model = config[self.d][r]

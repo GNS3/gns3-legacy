@@ -73,7 +73,11 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         self.dynamips_baseConsole.setValue(self.conf.baseConsole)
         self.spinBoxMemoryLimit.setValue(self.conf.memory_limit)
         self.spinBoxUDPIncrementation.setValue(self.conf.udp_incrementation)
-        
+
+        if self.conf.clean_workdir == True:
+            self.checkBoxClearWorkdir.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxClearWorkdir.setCheckState(QtCore.Qt.Unchecked)
         if self.conf.import_use_HypervisorManager == True:
             self.checkBoxHypervisorManagerImport.setCheckState(QtCore.Qt.Checked)
         else:
@@ -102,6 +106,10 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         self.conf.baseConsole = self.dynamips_baseConsole.value()
         self.conf.memory_limit = self.spinBoxMemoryLimit.value()
         self.conf.udp_incrementation = self.spinBoxUDPIncrementation.value()
+        if self.checkBoxClearWorkdir.checkState() == QtCore.Qt.Checked:
+            self.conf.clean_workdir = True
+        else:
+            self.conf.clean_workdir = False
         if self.checkBoxHypervisorManagerImport.checkState() == QtCore.Qt.Checked:
             self.conf.import_use_HypervisorManager = True
         else:

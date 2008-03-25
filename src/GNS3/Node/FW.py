@@ -169,9 +169,11 @@ class FW(AbstractNode, FWDefaults):
         """ Used when changing the hostname
         """
 
-        links = self.getEdgeList().copy()
-        for link in links:
-            globals.GApp.topology.deleteLink(link)
+        links = self.getEdgeList()
+        if len(links):
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("FW", "New hostname"),
+                                       translate("FW", "Cannot rename a connected firewall because pemuwrapper does not support removal"))
+            return
         self.delete_fw()
         if self.hostname != new_hostname:
             try:
@@ -183,8 +185,6 @@ class FW(AbstractNode, FWDefaults):
         self.f = 'FW ' + self.hostname
         self.create_firewall()
         self.set_config(self.local_config)
-        for link in links:
-            globals.GApp.topology.addLink(link.source.id, link.srcIf, link.dest.id, link.destIf)
 
     def configNode(self):
         """ Node configuration

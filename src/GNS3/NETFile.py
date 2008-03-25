@@ -619,7 +619,7 @@ class NETFile(object):
         matrix = globals.GApp.scene.matrix()
         m11 = matrix.m11()
         m22 = matrix.m22()
-        if m11 != 1.0 or m22 != 1.0:
+        if m11 != float(1.0) or m22 != float(1.0):
             if not self.dynagen.running_config.has_key('GNS3-DATA'):
                 self.dynagen.running_config['GNS3-DATA'] = {}
             config = self.dynagen.running_config['GNS3-DATA']

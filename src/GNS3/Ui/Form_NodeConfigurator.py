@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_NodeConfigurator.ui'
 #
-# Created: Sat Mar 22 23:12:52 2008
+# Created: Tue Mar 25 00:51:50 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
