@@ -40,8 +40,8 @@ class Page_ATMBR(QtGui.QWidget, Ui_ATMBRPage):
         # connect slots
         self.connect(self.pushButtonAdd, QtCore.SIGNAL('clicked()'), self.slotAddMap)
         self.connect(self.pushButtonDelete, QtCore.SIGNAL('clicked()'), self.slotDeleteMap)
-        self.connect(self.treeWidgetMapping,  QtCore.SIGNAL('itemActivated(QTreeWidgetItem *, int)'),  self.slotMapselected)
-        self.connect(self.treeWidgetMapping,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotMapSelectionChanged)
+        self.connect(self.treeWidgetMapping, QtCore.SIGNAL('itemActivated(QTreeWidgetItem *, int)'),  self.slotMapselected)
+        self.connect(self.treeWidgetMapping, QtCore.SIGNAL('itemSelectionChanged()'),  self.slotMapSelectionChanged)
         
         # enable sorting
         self.treeWidgetMapping.sortByColumn(0, QtCore.Qt.AscendingOrder)
@@ -83,14 +83,14 @@ class Page_ATMBR(QtGui.QWidget, Ui_ATMBRPage):
         destvpi = self.spinBoxDestVPI.value()
         
         if srcport == destport:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_ATMBR",  "Add mapping"),  translate("Page_ATMBR",  "Same source and destination ports"))
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_ATMBR",  "Add mapping"),  translate("Page_ATMBR",  "Same source and destination ports"))
             return
 
         source = str(srcport)
         destination = str(destport) + ':' + str(destvci) + ':' + str(destvpi)
 
         if self.mapping.has_key(destination):
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_ATMBR",  "Add mapping"),  translate("Page_ATMBR",  "Mapping already defined"))
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_ATMBR",  "Add mapping"),  translate("Page_ATMBR",  "Mapping already defined"))
             return
 
         item = QtGui.QTreeWidgetItem(self.treeWidgetMapping)
@@ -113,7 +113,7 @@ class Page_ATMBR(QtGui.QWidget, Ui_ATMBRPage):
             connected_ports = self.node.getConnectedInterfaceList()
             port = source
             if port in connected_ports:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_ATMBR", "ATM bridge"), unicode(translate("Page_ATMBR", "A link is connected in port %i")) % int(port))
+                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_ATMBR", "ATM bridge"), unicode(translate("Page_ATMBR", "A link is connected in port %i")) % int(port))
                 return
             del self.mapping[source]
             self.treeWidgetMapping.takeTopLevelItem(self.treeWidgetMapping.indexOfTopLevelItem(item))

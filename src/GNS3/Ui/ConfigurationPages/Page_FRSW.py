@@ -77,14 +77,14 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
         destdlci = self.spinBoxDestDLCI.value()
         
         if srcport == destport:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_FRSW",  "Add virtual channel"),  translate("Page_FRSW",  "Same source and destination ports"))
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_FRSW",  "Add virtual channel"),  translate("Page_FRSW",  "Same source and destination ports"))
             return
 
         source = str(srcport) + ':' + str(srcdlci)
         destination = str(destport) + ':' + str(destdlci)
         
         if self.mapping.has_key(source) or self.mapping.has_key(destination):
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_FRSW",  "Add virtual channel"),  translate("Page_FRSW",  "Mapping already defined"))
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_FRSW",  "Add virtual channel"),  translate("Page_FRSW",  "Mapping already defined"))
             return
 
         item = QtGui.QTreeWidgetItem(self.treeWidgetVCmap)
@@ -107,7 +107,7 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
             connected_ports = self.node.getConnectedInterfaceList()
             (port, dlci) = source.split(':')
             if port in connected_ports:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_ATMSW", "Frame Relay switch"), 
+                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_ATMSW", "Frame Relay switch"), 
                                         unicode(translate("Page_FRSW", "A link is connected in port %i")) % int(port))
                 return
             del self.mapping[source]

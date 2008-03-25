@@ -90,13 +90,13 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         
         serial = str(self.lineEditSerial.text())
         if not re.search(r"""^0x[0-9a-fA-F]{8}$""", serial):
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_PreferencesPemu", "Serial"), 
+            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesPemu", "Serial"), 
                                        translate("Page_PreferencesPemu", "Invalid serial (format required: 0xhhhhhhhh)"))
         self.conf.default_pix_serial = serial
 
         key = str(self.lineEditKey.text())
         if not re.search(r"""^(0x[0-9a-fA-F]{8},){3}0x[0-9a-fA-F]{8}$""", key):
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_PreferencesPemu", "Key"),
+            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesPemu", "Key"),
                                        translate("Page_PreferencesPemu", "Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)"))
         self.conf.default_pix_key  = key
 

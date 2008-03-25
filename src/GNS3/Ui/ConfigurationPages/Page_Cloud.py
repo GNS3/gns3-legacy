@@ -169,7 +169,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
             if sys.platform.startswith('win'):
                 match = re.search(r"""^rpcap://(\\Device\\NPF_{.*}).*""", interface)
                 interface = match.group(1)
-            nio = 'NIO_gen_eth:' + interface
+            nio = 'nio_gen_eth:' + interface.lower()
             if not nio in self.nios:
                 self.listWidgetGenericEth.addItem(nio)
                 self.nios.append(nio)
@@ -200,7 +200,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
     
         interface = str(self.lineEditLinuxEth.text())
         if interface:
-            nio = 'NIO_linux_eth:' + interface
+            nio = 'nio_linux_eth:' + interface.lower()
             if not nio in self.nios:
                 self.listWidgetLinuxEth.addItem(nio)
                 self.nios.append(nio)
@@ -222,7 +222,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         remote_host = unicode(self.lineEditRemoteHost.text())
         remote_port = self.spinBoxRemotePort.value()
         if remote_host:
-            nio = 'NIO_udp:' + str(local_port) + ':' + remote_host + ':' + str(remote_port)
+            nio = 'nio_udp:' + str(local_port) + ':' + remote_host + ':' + str(remote_port)
             if not nio in self.nios:
                 self.listWidgetUDP.addItem(nio)
                 self.nios.append(nio)
@@ -256,7 +256,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         item = self.listWidgetUDP.currentItem()
         if (item != None):
             nio = str(item.text())
-            match = re.search(r"""^NIO_udp:(\d+):(.+):(\d+)$""", nio)
+            match = re.search(r"""^nio_udp:(\d+):(.+):(\d+)$""", nio)
             if match:
                 self.spinBoxLocalPort.setValue(int(match.group(1)))
                 self.lineEditRemoteHost.setText(unicode(match.group(2)))
@@ -268,7 +268,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
     
         tap_interface = str(self.lineEditTAP.text())
         if tap_interface:
-            nio = 'NIO_tap:' + tap_interface
+            nio = 'nio_tap:' + tap_interface.lower()
             if not nio in self.nios:
                 self.listWidgetTAP.addItem(nio)
                 self.nios.append(nio)
@@ -300,7 +300,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         local_file = unicode(self.lineEditUNIXLocalFile.text())
         remote_file = unicode(self.lineEditUNIXRemoteFile.text())
         if local_file and remote_file:
-            nio = 'NIO_unix:' + local_file + ':' + remote_file
+            nio = 'nio_unix:' + local_file + ':' + remote_file
             if not nio in self.nios:
                 self.listWidgetUNIX.addItem(nio)
                 self.nios.append(nio)
@@ -332,7 +332,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         item = self.listWidgetUNIX.currentItem()
         if (item != None):
             nio = str(item.text())
-            match = re.search(r"""^NIO_unix:(.+):(.+)$""", nio)
+            match = re.search(r"""^nio_unix:(.+):(.+)$""", nio)
             if match:
                 self.lineEditUNIXLocalFile.setText(unicode(match.group(1)))
                 self.lineEditUNIXRemoteFile.setText(unicode(match.group(2)))
@@ -344,7 +344,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         control_file = unicode(self.lineEditVDEControlFile.text())
         local_file = unicode(self.lineEditVDELocalFile.text())
         if local_file and control_file:
-            nio = 'NIO_vde:' + control_file + ':' + local_file
+            nio = 'nio_vde:' + control_file + ':' + local_file
             if not nio in self.nios:
                 self.listWidgetVDE.addItem(nio)
                 self.nios.append(nio)
@@ -376,7 +376,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         item = self.listWidgetVDE.currentItem()
         if (item != None):
             nio = str(item.text())
-            match = re.search(r"""^NIO_vde:(.+):(.+)$""", nio)
+            match = re.search(r"""^nio_vde:(.+):(.+)$""", nio)
             if match:
                 self.lineEditVDEControlFile.setText(unicode(match.group(1)))
                 self.lineEditVDELocalFile.setText(unicode(match.group(2)))
@@ -387,7 +387,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
     
         identifier = unicode(self.lineEditNullIdentifer.text())
         if identifier:
-            nio = 'NIO_null:' + identifier
+            nio = 'nio_null:' + identifier
             if not nio in self.nios:
                 self.listWidgetNull.addItem(nio)
                 self.nios.append(nio)
@@ -419,7 +419,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         item = self.listWidgetNull.currentItem()
         if (item != None):
             nio = str(item.text())
-            match = re.search(r"""^NIO_null:(.+)$""", nio)
+            match = re.search(r"""^nio_null:(.+)$""", nio)
             if match:
                 self.lineEditNullIdentifer.setText(unicode(match.group(1)))
 

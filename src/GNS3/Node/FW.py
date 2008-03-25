@@ -297,15 +297,5 @@ class FW(AbstractNode, FWDefaults):
         """ Call when the node is clicked
             event: QtGui.QGraphicsSceneMouseEvent instance
         """
-
-        if globals.addingLinkFlag and globals.currentLinkType != globals.Enum.LinkType.Manual and event.button() == QtCore.Qt.LeftButton:
-            connected_ports = self.getConnectedInterfaceList()
-            for port in self.getInterfaces():
-                if not str(port) in connected_ports:
-                    self.emit(QtCore.SIGNAL("Add link"), self.id, str(port))
-                    return
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("FW", "Connection"),  translate("FW", "No interface available"))
-            # tell the scene to cancel the link addition by sending a None id and None interface
-            self.emit(QtCore.SIGNAL("Add link"), None, None)
-        else:
-            AbstractNode.mousePressEvent(self, event)
+        
+        AbstractNode.mousePressEvent(self, event)

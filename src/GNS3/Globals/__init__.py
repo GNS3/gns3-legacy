@@ -21,6 +21,8 @@
 
 addingLinkFlag = False
 addingNote = False
+nodeConfiguratorWindow = None
+preferencesWindow = None
 hypervisor_baseport = 7200
 debugLevel = 0
 

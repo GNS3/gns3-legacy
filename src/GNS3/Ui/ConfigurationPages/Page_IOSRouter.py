@@ -59,7 +59,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         path = fileBrowser('startup-config',  directory=globals.GApp.systconf['general'].project_path).getFile()
         if path != None and path[0] != '':
             if not testOpenFile(path[0]):
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Startup-config', unicode(translate("Page_IOSRouter", "Can't open file: %s")) % path[0])
+                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'Startup-config', unicode(translate("Page_IOSRouter", "Can't open file: %s")) % path[0])
                 return
             self.lineEditStartupConfig.clear()
             config = os.path.normpath(path[0])
@@ -178,7 +178,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             
         mac = str(self.lineEditMAC.text())
         if mac and not re.search(r"""^([0-9a-fA-F]{2}[:-]){5}[0-9a-fA-F]{2}$""", mac):
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'MAC', translate("Page_IOSRouter", "Invalid MAC address (format required: hh:hh:hh:hh:hh:hh)"))
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'MAC', translate("Page_IOSRouter", "Invalid MAC address (format required: hh:hh:hh:hh:hh:hh)"))
         elif mac != '':
             router_config['mac'] = mac
         router_config['ram'] = self.spinBoxRamSize.value()
@@ -202,9 +202,21 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             router_config['iomem'] = self.spinBoxIomem.value()
 
         router = node.get_dynagen_device()
+        connected_interfaces = node.getConnectedInterfaceList()
         for (slot_number, widget) in self.widget_slots.iteritems():
             module = str(widget.currentText())
             if module:
+                collision = False
+                if router_config['slots'][slot_number] != module:
+                    interfaces = router.slot[slot_number].interfaces
+                    interface_type= interfaces.keys()[0]
+                    for port in interfaces[interface_type].values():
+                        if router.slot[slot_number].connected(interface_type, port):
+                            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'Slots', unicode(translate("Page_IOSRouter", "Links are connected in slot %i")) % slot_number)
+                            collision = True
+                            break
+                if collision:
+                    continue
                 router_config['slots'][slot_number] = module
             else:
                 try:
@@ -219,7 +231,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                     if remove:
                         router_config['slots'][slot_number] = None
                     else:
-                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Slots', unicode(translate("Page_IOSRouter", "Links are connected in slot %i")) % slot_number)
+                        QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'Slots', unicode(translate("Page_IOSRouter", "Links are connected in slot %i")) % slot_number)
                         continue
                 except:
                     pass

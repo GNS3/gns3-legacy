@@ -139,7 +139,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         if path is not None and path != '':
             # test if we can open it
             if not testOpenFile(path):
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Dynamips path', unicode(translate("UiConfig_PreferencesDynamips", "Can't open file: %s")) % path)
+                QtGui.QMessageBox.critical(globals.preferencesWindow, 'Dynamips path', unicode(translate("UiConfig_PreferencesDynamips", "Can't open file: %s")) % path)
                 return
             self.dynamips_path.clear()
             self.dynamips_path.setText(os.path.normpath(path))

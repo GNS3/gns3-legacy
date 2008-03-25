@@ -259,10 +259,11 @@ class Scene(QtGui.QGraphicsView):
         """
 
         items = self.__topology.selectedItems()
-        configurator = NodeConfigurator(items)
-        configurator.setModal(True)
-        configurator.show()
-        configurator.exec_()
+        globals.nodeConfiguratorWindow = NodeConfigurator(items)
+        globals.nodeConfiguratorWindow.setModal(True)
+        globals.nodeConfiguratorWindow.show()
+        globals.nodeConfiguratorWindow.exec_()
+        globals.nodeConfiguratorWindow = None
         for item in items:
             item.setSelected(False)
 

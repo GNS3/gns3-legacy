@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Tue Mar 25 00:51:50 2008
+# Created: Tue Mar 25 03:32:38 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_IOSDialog(object):
     def setupUi(self, IOSDialog):
         IOSDialog.setObjectName("IOSDialog")
-        IOSDialog.resize(QtCore.QSize(QtCore.QRect(0,0,656,461).size()).expandedTo(IOSDialog.minimumSizeHint()))
+        IOSDialog.resize(QtCore.QSize(QtCore.QRect(0,0,837,549).size()).expandedTo(IOSDialog.minimumSizeHint()))
         IOSDialog.setWindowIcon(QtGui.QIcon(":/images/logo_icon.png"))
 
         self.vboxlayout = QtGui.QVBoxLayout(IOSDialog)

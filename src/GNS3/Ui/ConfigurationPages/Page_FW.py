@@ -83,13 +83,13 @@ class Page_FW(QtGui.QWidget, Ui_FWPage):
 
         serial = str(self.lineEditSerial.text())
         if serial and not re.search(r"""^0x[0-9a-fA-F]{8}$""", serial):
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_FW", "Serial"), translate("Page_FW", "Invalid serial (format required: 0xhhhhhhhh)"))
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_FW", "Serial"), translate("Page_FW", "Invalid serial (format required: 0xhhhhhhhh)"))
         elif serial != '':
             fw_config['serial'] = serial
             
         key = str(self.lineEditKey.text())
         if key and not re.search(r"""^(0x[0-9a-fA-F]{8},){3}0x[0-9a-fA-F]{8}$""", key):
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_FW", "Key"),
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_FW", "Key"),
                                        translate("Page_FW", "Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)"))
         elif key != '':
             fw_config['key'] = key

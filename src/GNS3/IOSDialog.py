@@ -249,11 +249,14 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 image_conf = globals.GApp.iosimages[image]
                 if imagekey !=  image and image_conf.platform == conf.platform and image_conf.default:
                     QtGui.QMessageBox.warning(self, 'IOS Configuration', translate("IOSDialog", "There is already a default image for this platform"))
+                    self.checkBoxDefaultImage.setCheckState(QtCore.Qt.Unchecked)
                     default_platform = False
         else:
             default_platform = False
         if default_platform:
             conf.default = True
+        else:
+            conf.default = False
         globals.GApp.iosimages[imagekey] = conf
         self.treeWidgetIOSimages.resizeColumnToContents(0)
 

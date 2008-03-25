@@ -415,17 +415,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Show the preferences dialog
         """
 
-        dialog = PreferencesDialog()
-        dialog.show()
-        dialog.exec_()
-
-    def __action_ProjectPreferences(self):
-        """ Show Project Preferences dialog
-        """
-        dialog = PreferencesDialog('Project')
-    
-        dialog.show()
-        dialog.exec_()
+        globals.preferencesWindow = PreferencesDialog()
+        globals.preferencesWindow.show()
+        globals.preferencesWindow.exec_()
+        globals.preferencesWindow = None
 
     def load_netfile(self, file):
         """ Load a .net file"""

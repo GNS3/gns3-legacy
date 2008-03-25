@@ -116,7 +116,7 @@ class Page_ATMSW(QtGui.QWidget, Ui_ATMSWPage):
         destvpi = self.spinBoxDestVPI.value()
         
         if srcport == destport:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_ATMSW",  "Add virtual channel"),  translate("Page_ATMSW",  "Same source and destination ports"))
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_ATMSW",  "Add virtual channel"),  translate("Page_ATMSW",  "Same source and destination ports"))
             return
 
         if self.checkBoxVCI.checkState() == QtCore.Qt.Checked:
@@ -127,7 +127,7 @@ class Page_ATMSW(QtGui.QWidget, Ui_ATMSWPage):
             destination = str(destport) + ':' + str(destvpi)
             
         if self.mapping.has_key(source) or self.mapping.has_key(destination):
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_ATMSW",  "Add virtual channel"),  translate("Page_ATMSW",  "Mapping already defined"))
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_ATMSW",  "Add virtual channel"),  translate("Page_ATMSW",  "Mapping already defined"))
             return
         
         item = QtGui.QTreeWidgetItem(self.treeWidgetVCmap)
@@ -154,7 +154,7 @@ class Page_ATMSW(QtGui.QWidget, Ui_ATMSWPage):
             vc = source.split(':')
             port = vc[0]
             if port in connected_ports:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Page_ATMSW", "ATM switch"), unicode(translate("Page_ATMSW", "A link is connected in port %i")) % int(port))
+                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_ATMSW", "ATM switch"), unicode(translate("Page_ATMSW", "A link is connected in port %i")) % int(port))
                 return
             del self.mapping[source]
             self.treeWidgetVCmap.takeTopLevelItem(self.treeWidgetVCmap.indexOfTopLevelItem(item))

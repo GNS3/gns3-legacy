@@ -464,20 +464,20 @@ class NETFile(object):
                         (port1, vpi1) = key
                         (port2, vpi2) = device.vpivci_map[key]
                         config['mapping'][str(port1) + ':' + str(vpi1)] = str(port2) + ':' + str(vpi2)
-                    if not port1 in config['ports']:
-                        config['ports'].append(port1)
-                    if not port2 in config['ports']:
-                        config['ports'].append(port2)
+                        if not port1 in config['ports']:
+                            config['ports'].append(port1)
+                        if not port2 in config['ports']:
+                            config['ports'].append(port2)
                 for key in keys:
                     if len(key) == 3:
                         #port1, vpi1, vci1 -> port2, vpi2, vci1
                         (port1, vpi1, vci1) = key
                         (port2, vpi2, vci2) = device.vpivci_map[key]
                         config['mapping'][str(port1) + ':' + str(vpi1) + ':' + str(vci1)] = str(port2) + ':' + str(vpi2) + ':' + str(vci2)
-                    if not port1 in config['ports']:
-                        config['ports'].append(port1)
-                    if not port2 in config['ports']:
-                        config['ports'].append(port2)
+                        if not port1 in config['ports']:
+                            config['ports'].append(port1)
+                        if not port2 in config['ports']:
+                            config['ports'].append(port2)
                 node = self.create_node(device, 'ATM switch')
                 self.configure_node(node, device)
                 node.set_config(config)
@@ -652,7 +652,7 @@ class NETFile(object):
                 connections = ''
                 for interface in item.getConnectedInterfaceList():
                     neighbor = item.getConnectedNeighbor(interface)
-                    connections = connections + neighbor[0].hostname + ':' + neighbor[1] + ':' + interface.lower() + ' '
+                    connections = connections + neighbor[0].hostname + ':' + neighbor[1] + ':' + interface + ' '
                 if connections:
                     config['connections'] = connections
             # record notes
