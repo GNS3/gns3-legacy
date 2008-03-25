@@ -612,6 +612,9 @@ class NETFile(object):
         """ Export a .net file
         """
 
+        for hypervisor in self.dynagen.dynamips.values():
+            hypervisor.configchange = True
+        self.dynagen.defaults_config_ran = False
         self.dynagen.update_running_config()
         debug("Running config: " + str(self.dynagen.running_config))
 

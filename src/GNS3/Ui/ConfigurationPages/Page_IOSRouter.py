@@ -186,10 +186,12 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         router_config['disk0'] = self.spinBoxPcmciaDisk0Size.value()
         router_config['disk1'] = self.spinBoxPcmciaDisk1Size.value()
         router_config['confreg'] = str(self.lineEditConfreg.text())
-        exec_area = self.spinBoxExecArea.value()
         
-        if exec_area:
-            router_config['exec_area'] = exec_area 
+        exec_area = self.spinBoxExecArea.value()
+        if exec_area and exec_area != 64:
+            router_config['exec_area'] = exec_area
+        else:
+            router_config['exec_area'] = None
 
         platform = node.get_platform()
         if platform == 'c7200':
@@ -198,8 +200,11 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             if str(self.comboBoxNPE.currentText()):
                 router_config['npe'] = str(self.comboBoxNPE.currentText())
 
-        if platform == 'c3600':
-            router_config['iomem'] = self.spinBoxIomem.value()
+        iomem = self.spinBoxIomem.value()
+        if platform == 'c3600' and iomem != 5:
+            router_config['iomem'] = iomem
+        else:
+            router_config['iomem'] = None
 
         router = node.get_dynagen_device()
         connected_interfaces = node.getConnectedInterfaceList()

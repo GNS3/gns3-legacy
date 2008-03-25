@@ -158,9 +158,6 @@ class Topology(QtGui.QGraphicsScene):
 
         debug("Set image " + image_conf.filename)
         node.set_image(image_conf.filename, image_conf.chassis)
-        if image_conf.platform == 'c3600':
-            node.set_int_option('iomem', 5)
-        node.set_int_option('exec_area', 64)
         if image_conf.idlepc:
             debug("Set idlepc " + image_conf.idlepc)
             node.set_string_option('idlepc', image_conf.idlepc)
