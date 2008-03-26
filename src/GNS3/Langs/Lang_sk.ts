@@ -716,77 +716,67 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Console</name>
     <message>
-        <location filename="../Console.py" line="205"/>
+        <location filename="../Console.py" line="206"/>
         <source>Dynamips error</source>
         <translation>Chyba v Dynamipse</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="203"/>
+        <location filename="../Console.py" line="204"/>
         <source>Dynamips warning</source>
         <translation>Varovanie Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="205"/>
+        <location filename="../Console.py" line="206"/>
         <source>Connection lost</source>
         <translation>Connection lost</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="270"/>
+        <location filename="../Console.py" line="271"/>
         <source>Sorry, not implemented in GNS3</source>
         <translation>Prepáčte, toto nie je naimplementované v GNS3</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="280"/>
+        <location filename="../Console.py" line="281"/>
         <source>Please wait while gathering statistics...</source>
         <translation>Please wait while gathering statistics...</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="305"/>
+        <location filename="../Console.py" line="306"/>
         <source>No idlepc values found</source>
         <translation>Nenašiel som žiadnu idlepc hodnotu</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="317"/>
+        <location filename="../Console.py" line="318"/>
         <source>No changes made</source>
         <translation>Bez zmien</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="330"/>
+        <location filename="../Console.py" line="331"/>
         <source>Can&apos;t apply idlepc value</source>
         <translation>Nemôžem nastaviť hodnotu idlepc</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="335"/>
+        <location filename="../Console.py" line="336"/>
         <source>Incorrect number of paramaters or invalid parameters</source>
         <translation>Nesprávny počet parametrov alebo neplatné parametre</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="348"/>
+        <location filename="../Console.py" line="349"/>
         <source>You have to save your topology before using save</source>
         <translation>Pred použitím funkcie save najprv uložte topológiu</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="356"/>
+        <location filename="../Console.py" line="357"/>
         <source>You have to save your topology before using push</source>
         <translation>Pred použitím funkcie push najprv uložte topológiu</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="398"/>
-        <source>Destination directory</source>
-        <translation>Cieľový adresár</translation>
-    </message>
-    <message>
-        <location filename="../Console.py" line="399"/>
-        <source>The directory already exists. Ok to overwrite (Y/N)?</source>
-        <translation>Tento adresár už existuje. Môžem ho prepísať (Y/N)?</translation>
-    </message>
-    <message>
-        <location filename="../Console.py" line="276"/>
+        <location filename="../Console.py" line="277"/>
         <source>%s already has an idlepc value applied.</source>
         <translation>%s má už nastavenú idlepc hodnotu.</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="306"/>
+        <location filename="../Console.py" line="307"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;
 Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 </source>
@@ -795,16 +785,21 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
 </translation>
     </message>
     <message>
-        <location filename="../Console.py" line="321"/>
+        <location filename="../Console.py" line="322"/>
         <source>Applied idlepc value %s to %s
 </source>
         <translation>Nastavil som hodnotu idlepc %s na zariadenie %s
 </translation>
     </message>
     <message>
-        <location filename="../Console.py" line="337"/>
+        <location filename="../Console.py" line="338"/>
         <source>Unknown device: %s</source>
         <translation>Neznáme zariadenie: %s</translation>
+    </message>
+    <message>
+        <location filename="../Console.py" line="396"/>
+        <source>Cannot create %s: %s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -952,19 +947,24 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
 <context>
     <name>FW</name>
     <message>
-        <location filename="../Node/FW.py" line="253"/>
+        <location filename="../Node/FW.py" line="259"/>
         <source>%s: no PIX image</source>
         <translation>%s: nie je to PIX image</translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="307"/>
-        <source>Connection</source>
-        <translation>Spojenie</translation>
+        <location filename="../Node/FW.py" line="174"/>
+        <source>New hostname</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="307"/>
-        <source>No interface available</source>
-        <translation>Žiaden interfejs nie je k dispozícii</translation>
+        <location filename="../Node/FW.py" line="175"/>
+        <source>Cannot rename a connected firewall because pemuwrapper does not support removal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/FW.py" line="189"/>
+        <source>Dynamips error</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1067,17 +1067,17 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
 <context>
     <name>IOSDialog</name>
     <message>
-        <location filename="../IOSDialog.py" line="196"/>
+        <location filename="../IOSDialog.py" line="205"/>
         <source>IDLE PC not valid (format required: 0xhhhhhhhh)</source>
         <translation>neplatné IDLEPC  (vyžadovaný formát: 0xhhhhhhhh)</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="205"/>
+        <location filename="../IOSDialog.py" line="214"/>
         <source>No hypervisor selected, use the local hypervisor</source>
         <translation>Nie je zvolený žiaden hypervízor, použi lokálny</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="333"/>
+        <location filename="../IOSDialog.py" line="345"/>
         <source>Select a working directory</source>
         <translation>Zvoľte pracovný adresár</translation>
     </message>
@@ -1217,7 +1217,7 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
         <translation>Štandardný IOS súbor pre túto platformu</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="251"/>
+        <location filename="../IOSDialog.py" line="260"/>
         <source>There is already a default image for this platform</source>
         <translation>Pre túto platformu je už štandardný IOS súbor definovaný</translation>
     </message>
@@ -1230,12 +1230,12 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="550"/>
+        <location filename="../Node/IOSRouter.py" line="557"/>
         <source>Connection</source>
         <translation>Spojenie</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="550"/>
+        <location filename="../Node/IOSRouter.py" line="557"/>
         <source>No interface available</source>
         <translation>Žiaden interfejs nie je k dispozícii</translation>
     </message>
@@ -1248,6 +1248,11 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
         <location filename="../Node/IOSRouter.py" line="225"/>
         <source>You have to restart this router to use new modules</source>
         <translation>Ak chcete použíť nové moduly musíte najprv reštartovať tento smerovač</translation>
+    </message>
+    <message>
+        <location filename="../Node/IOSRouter.py" line="440"/>
+        <source>Dynamips error</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1451,314 +1456,319 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
         <translation>Slovensky</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="312"/>
+        <location filename="../Ui/Form_MainWindow.py" line="317"/>
         <source>GNS3</source>
         <translation>GNS3</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="313"/>
+        <location filename="../Ui/Form_MainWindow.py" line="318"/>
         <source>&amp;Edit</source>
         <translation>&amp;Uprav</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="314"/>
+        <location filename="../Ui/Form_MainWindow.py" line="319"/>
         <source>&amp;File</source>
         <translation>&amp;Súbor</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="315"/>
+        <location filename="../Ui/Form_MainWindow.py" line="320"/>
         <source>&amp;Help</source>
         <translation>&amp;Pomoc</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="316"/>
+        <location filename="../Ui/Form_MainWindow.py" line="321"/>
         <source>&amp;View</source>
         <translation>&amp;Zobraz</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="317"/>
+        <location filename="../Ui/Form_MainWindow.py" line="322"/>
         <source>General</source>
         <translation>Všeobecné</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="318"/>
+        <location filename="../Ui/Form_MainWindow.py" line="323"/>
         <source>Nodes Types</source>
         <translation>Typy uzlov</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="323"/>
+        <location filename="../Ui/Form_MainWindow.py" line="328"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="320"/>
+        <location filename="../Ui/Form_MainWindow.py" line="325"/>
         <source>Design</source>
         <translation>Dizajn</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="321"/>
+        <location filename="../Ui/Form_MainWindow.py" line="326"/>
         <source>Simulation</source>
         <translation>Simulácia</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="322"/>
+        <location filename="../Ui/Form_MainWindow.py" line="327"/>
         <source>Topology Summary</source>
         <translation>Prehľad topológie</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="324"/>
+        <location filename="../Ui/Form_MainWindow.py" line="329"/>
         <source>Console</source>
         <translation>Konzola</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="326"/>
+        <location filename="../Ui/Form_MainWindow.py" line="331"/>
         <source>&amp;About</source>
         <translation>&amp;O tomto programe</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="327"/>
+        <location filename="../Ui/Form_MainWindow.py" line="332"/>
         <source>&amp;Quit</source>
         <translation>&amp;Ukončiť</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="328"/>
+        <location filename="../Ui/Form_MainWindow.py" line="333"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="329"/>
+        <location filename="../Ui/Form_MainWindow.py" line="334"/>
         <source>&amp;Open</source>
         <translation>&amp;Otvoriť</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="331"/>
+        <location filename="../Ui/Form_MainWindow.py" line="336"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="332"/>
+        <location filename="../Ui/Form_MainWindow.py" line="337"/>
         <source>&amp;Save</source>
         <translation>&amp;Uložiť</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="334"/>
+        <location filename="../Ui/Form_MainWindow.py" line="339"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="338"/>
+        <location filename="../Ui/Form_MainWindow.py" line="343"/>
         <source>Add a link</source>
         <translation>Pridaj spojenie</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="340"/>
+        <location filename="../Ui/Form_MainWindow.py" line="345"/>
         <source>Ctrl+Shift+I</source>
         <translation>Ctrl+Shift+I</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="341"/>
+        <location filename="../Ui/Form_MainWindow.py" line="346"/>
         <source>&amp;Online Help</source>
         <translation>&amp;Online pomoc</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="342"/>
+        <location filename="../Ui/Form_MainWindow.py" line="347"/>
         <source>&amp;Export</source>
         <translation>&amp;Export topológie</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="343"/>
+        <location filename="../Ui/Form_MainWindow.py" line="348"/>
         <source>Start/Resume all IOS</source>
         <translation>Spusť/Obnov všetky virtuálne zariadenia</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="344"/>
+        <location filename="../Ui/Form_MainWindow.py" line="349"/>
         <source>Start or resume all IOS instances</source>
         <translation>Spusť/Obnov všetky virtuálne zariadenia</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="345"/>
+        <location filename="../Ui/Form_MainWindow.py" line="350"/>
         <source>Stop all IOS</source>
         <translation>Zastav všetky virtuálne zariadenia</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="346"/>
+        <location filename="../Ui/Form_MainWindow.py" line="351"/>
         <source>Stop all IOS instances</source>
         <translation>Zastav všetky virtuálne zariadenia</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="348"/>
+        <location filename="../Ui/Form_MainWindow.py" line="353"/>
         <source>Show hostnames</source>
         <translation>Ukáž mená zariadení</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="350"/>
+        <location filename="../Ui/Form_MainWindow.py" line="355"/>
         <source>Start a console on all running IOS instances</source>
         <translation>Spusti konzoly všetkých spustených virtuálnych zariadení</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="351"/>
+        <location filename="../Ui/Form_MainWindow.py" line="356"/>
         <source>Save &amp;As</source>
         <translation>Ulož &amp;Ako</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="352"/>
+        <location filename="../Ui/Form_MainWindow.py" line="357"/>
         <source>Save As</source>
         <translation>Ulož ako</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="378"/>
+        <location filename="../Ui/Form_MainWindow.py" line="383"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="354"/>
+        <location filename="../Ui/Form_MainWindow.py" line="359"/>
         <source>About &amp;Qt</source>
         <translation>O programe &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="355"/>
+        <location filename="../Ui/Form_MainWindow.py" line="360"/>
         <source>Zoom &amp;In</source>
         <translation>Pr&amp;iblíž</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="356"/>
+        <location filename="../Ui/Form_MainWindow.py" line="361"/>
         <source>Ctrl++</source>
         <translation>Ctrl++</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="357"/>
+        <location filename="../Ui/Form_MainWindow.py" line="362"/>
         <source>Zoom &amp;Out</source>
         <translation>&amp;Oddiaľ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="358"/>
+        <location filename="../Ui/Form_MainWindow.py" line="363"/>
         <source>Ctrl+-</source>
         <translation>Ctrl+-</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="359"/>
+        <location filename="../Ui/Form_MainWindow.py" line="364"/>
         <source>Zoom &amp;1:1</source>
         <translation>Pohľad &amp;1:1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="360"/>
+        <location filename="../Ui/Form_MainWindow.py" line="365"/>
         <source>Ctrl+/</source>
         <translation>Ctrl+/</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="361"/>
+        <location filename="../Ui/Form_MainWindow.py" line="366"/>
         <source>Select &amp;All</source>
         <translation>Označ vše&amp;tko</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="362"/>
+        <location filename="../Ui/Form_MainWindow.py" line="367"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="363"/>
+        <location filename="../Ui/Form_MainWindow.py" line="368"/>
         <source>Select &amp;None</source>
         <translation>Select &amp;None</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="364"/>
+        <location filename="../Ui/Form_MainWindow.py" line="369"/>
         <source>Ctrl+Shift+A</source>
         <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="367"/>
+        <location filename="../Ui/Form_MainWindow.py" line="372"/>
         <source>Copy</source>
         <translation>Kopíruj</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="368"/>
+        <location filename="../Ui/Form_MainWindow.py" line="373"/>
         <source>Ctrl+C</source>
         <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="369"/>
+        <location filename="../Ui/Form_MainWindow.py" line="374"/>
         <source>&amp;Paste</source>
         <translation>&amp;Vlož</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="370"/>
+        <location filename="../Ui/Form_MainWindow.py" line="375"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="371"/>
+        <location filename="../Ui/Form_MainWindow.py" line="376"/>
         <source>Suspend all IOS</source>
         <translation>Pozastav všetky virtuálne inštancie</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="372"/>
+        <location filename="../Ui/Form_MainWindow.py" line="377"/>
         <source>Suspend all IOS instances</source>
         <translation>Suspend all IOS instances</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="365"/>
+        <location filename="../Ui/Form_MainWindow.py" line="370"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Voľby...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="366"/>
+        <location filename="../Ui/Form_MainWindow.py" line="371"/>
         <source>Ctrl+Shift+P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="339"/>
+        <location filename="../Ui/Form_MainWindow.py" line="344"/>
         <source>IOS images and hypervisors</source>
         <translation>Súbory IOS a hypervízory</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="325"/>
+        <location filename="../Ui/Form_MainWindow.py" line="330"/>
         <source>toolBar</source>
         <translation>toolBar</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="330"/>
+        <location filename="../Ui/Form_MainWindow.py" line="335"/>
         <source>Open network file</source>
         <translation>Otvor súbor s topológiou</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="333"/>
+        <location filename="../Ui/Form_MainWindow.py" line="338"/>
         <source>Save network file</source>
         <translation>Ulož súbor s topológiou</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="347"/>
+        <location filename="../Ui/Form_MainWindow.py" line="352"/>
         <source>Show the hostnames</source>
         <translation>Ukáž mená zariadení</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="349"/>
+        <location filename="../Ui/Form_MainWindow.py" line="354"/>
         <source>Telnet to all IOS</source>
         <translation>Natelnetuj sa ku všetkým virtuálnym zariadeniam</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="353"/>
+        <location filename="../Ui/Form_MainWindow.py" line="358"/>
         <source>Save network file as</source>
         <translation>Ulož súbor topológie ako</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="373"/>
+        <location filename="../Ui/Form_MainWindow.py" line="378"/>
         <source>Clear the topology</source>
         <translation>Vymaž topológiu</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="374"/>
+        <location filename="../Ui/Form_MainWindow.py" line="379"/>
         <source>Add a note</source>
         <translation>Pridaj poznámku</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="375"/>
+        <location filename="../Ui/Form_MainWindow.py" line="380"/>
         <source>&amp;New Project</source>
         <translation>&amp;Nový projekt</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="377"/>
+        <location filename="../Ui/Form_MainWindow.py" line="382"/>
         <source>New Project</source>
         <translation>Nový projekt</translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_MainWindow.py" line="384"/>
+        <source>&amp;Extract all startup-configs</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1794,7 +1804,7 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
         <translation>Exportujem konfiguráciu zariadenia %s do adresára %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="608"/>
+        <location filename="../NETFile.py" line="609"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Chyba vstupu/výstupu: %s</translation>
     </message>
@@ -1809,9 +1819,14 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
         <translation>Čakajte kým sa naimportuje topológia</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="608"/>
+        <location filename="../NETFile.py" line="609"/>
         <source>IOError</source>
         <translation>Vstupno/Výstupná Chyba</translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="223"/>
+        <source>Please wait while copying the base flash</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2054,7 +2069,7 @@ na zobrazenie konfiguračnej stránky.</translation>
         <translation>Dynamips</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="212"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="222"/>
         <source>Settings</source>
         <translation>Nastavenia</translation>
     </message>
@@ -2074,59 +2089,64 @@ na zobrazenie konfiguračnej stránky.</translation>
         <translation>Pracovný adresár:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="78"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="88"/>
         <source>Base port:</source>
         <translation>Začiatočný UDP port:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="85"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="95"/>
         <source> Base UDP:</source>
         <translation> Začiatočný UDP port:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="92"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="102"/>
         <source>Base console:</source>
         <translation>Začiatočný port konzoly:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="164"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="174"/>
         <source>&amp;Test</source>
         <translation>&amp;Test</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="200"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="210"/>
         <source>Hypervisor Manager</source>
         <translation>Manažér hypervízorov</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="218"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="228"/>
         <source>Memory usage limit per hypervisor:</source>
         <translation>Limit pamäte jedného hypervízora: </translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="238"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="248"/>
         <source>UDP incrementation:</source>
         <translation>Inkrementácia UDP portu:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="129"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="139"/>
         <source>Enable ghost IOS feature</source>
         <translation>Zapni ghost IOS funkciu</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="139"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="149"/>
         <source>Enable mmap feature</source>
         <translation>Zapni mmap funkciu</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="149"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="159"/>
         <source>Enable sparse memory feature</source>
         <translation>Zapni sparse pamäť funkciu</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="258"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="268"/>
         <source>Use Hypervisor Manager when importing</source>
         <translation>Použi Manažér Hypervízorov pri importe</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="78"/>
+        <source>Automatically clean the working directory</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2205,7 +2225,7 @@ na zobrazenie konfiguračnej stránky.</translation>
         <translation>Cesta (pemuwrapper.exe na Windows alebo pemuwrapper.py):</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="117"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="171"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -2248,6 +2268,11 @@ na zobrazenie konfiguračnej stránky.</translation>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="144"/>
         <source>Serial:</source>
         <translation>Sériové číslo:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="161"/>
+        <source>Base flash:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2346,207 +2371,222 @@ na zobrazenie konfiguračnej stránky.</translation>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="250"/>
+        <location filename="../Topology.py" line="270"/>
         <source>IOS image</source>
         <translation>IOS súbor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="229"/>
+        <location filename="../Topology.py" line="249"/>
         <source>Please register at least one IOS image</source>
         <translation>Zadajte aspoň jeden IOS súbor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="267"/>
+        <location filename="../Topology.py" line="287"/>
         <source>Hypervisor</source>
         <translation>Hypervízor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="264"/>
+        <location filename="../Topology.py" line="284"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Nakonfigurujte cestu ku Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="457"/>
+        <location filename="../Topology.py" line="478"/>
         <source>Dynamips error</source>
         <translation>Chyba Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="302"/>
+        <location filename="../Topology.py" line="323"/>
         <source>Connection lost</source>
         <translation>Spojenie ku Dynamipsu sa prerušilo</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="372"/>
+        <location filename="../Topology.py" line="393"/>
         <source>Connection</source>
         <translation>Spojenie</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="139"/>
+        <location filename="../Topology.py" line="145"/>
         <source>Can&apos;t connect to the external hypervisor on %s</source>
         <translation>Neviem sa pripojiť ku externému hypervízoru na %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="240"/>
+        <location filename="../Topology.py" line="260"/>
         <source>No image for platform %s</source>
         <translation>Neexistuje IOS súbor pre platformu %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="251"/>
+        <location filename="../Topology.py" line="271"/>
         <source>Please choose an image</source>
         <translation>Zvoľte IOS súbor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="372"/>
+        <location filename="../Topology.py" line="393"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Musíte pripojiť aspoň jeden smerovač ku prepínaču</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="279"/>
+        <location filename="../Topology.py" line="299"/>
         <source>PIX image</source>
         <translation>PIX súbor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="279"/>
+        <location filename="../Topology.py" line="299"/>
         <source>Please configure a default PIX image</source>
         <translation>Nastavte štandardný PIX súbor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="359"/>
+        <location filename="../Topology.py" line="380"/>
         <source>Can&apos;t connect these devices</source>
         <translation>Neviem sa pripojiť ku týmto zariadeniam</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="267"/>
+        <location filename="../Topology.py" line="287"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation>Otestujte cestu ku Dynamipsu vo Voľbách</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="204"/>
+        <location filename="../Topology.py" line="210"/>
         <source>Pemuwrapper error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="229"/>
+        <source>PIX device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="230"/>
+        <source>Cannot copy PIX base flash %s: %s</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="110"/>
+        <location filename="../Workspace.py" line="111"/>
         <source>Docks</source>
         <translation>Doky</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="488"/>
+        <location filename="../Workspace.py" line="496"/>
         <source>Dynamips error</source>
         <translation>Chyba v Dynamipse</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="351"/>
+        <location filename="../Workspace.py" line="366"/>
         <source>Connection lost</source>
         <translation>Spojenie ku Dynamipsu sa prerušilo</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="348"/>
+        <location filename="../Workspace.py" line="363"/>
         <source>Dynamips warning</source>
         <translation>Varovanie Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="327"/>
+        <location filename="../Workspace.py" line="342"/>
         <source>Abort</source>
         <translation>Prerušiť</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="363"/>
+        <location filename="../Workspace.py" line="378"/>
         <source>Starting nodes ...</source>
         <translation>Spúštam uzly...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="369"/>
+        <location filename="../Workspace.py" line="384"/>
         <source>Stopping nodes ...</source>
         <translation>Zastavujem uzly ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="375"/>
+        <location filename="../Workspace.py" line="390"/>
         <source>Suspending nodes ...</source>
         <translation>Pozastavujem uzly ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="423"/>
+        <location filename="../Workspace.py" line="431"/>
         <source>Loading</source>
         <translation>Nahrávam</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="298"/>
+        <location filename="../Workspace.py" line="313"/>
         <source>Hide hostnames</source>
         <translation>Skry mená zariadení</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="303"/>
+        <location filename="../Workspace.py" line="318"/>
         <source>Show hostnames</source>
         <translation>Show hostnames</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="512"/>
+        <location filename="../Workspace.py" line="520"/>
         <source>Open a file</source>
         <translation>Otvor súbor</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="508"/>
+        <location filename="../Workspace.py" line="516"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Nastavte cestu ku Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="544"/>
+        <location filename="../Workspace.py" line="552"/>
         <source>Save Project As</source>
         <translation>Uložiť projekt ako</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="444"/>
+        <location filename="../Workspace.py" line="452"/>
         <source>New Project</source>
         <translation>Nový projekt</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="563"/>
+        <location filename="../Workspace.py" line="571"/>
         <source>Message</source>
         <translation>Správa</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="194"/>
+        <location filename="../Workspace.py" line="196"/>
         <source>Are you sure to clear the topology?</source>
         <translation>Chcete naozaj vymazať topologiu?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="217"/>
+        <location filename="../Workspace.py" line="232"/>
         <source>Add a link</source>
         <translation>Pridaj spojenie</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="232"/>
+        <location filename="../Workspace.py" line="247"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="444"/>
+        <location filename="../Workspace.py" line="452"/>
         <source>Can&apos;t create a project</source>
         <translation>Neviem vytvoriť projekt</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="423"/>
+        <location filename="../Workspace.py" line="431"/>
         <source>Invalid file %s</source>
         <translation>Neplatný súbor %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="563"/>
+        <location filename="../Workspace.py" line="571"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>Chcete uložiť topologiu pred ukončením?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="458"/>
+        <location filename="../Workspace.py" line="466"/>
         <source>Do you want to apply the project settings to the current topology?</source>
         <translation>Chcete preniesť nastavenia projektu na aktuálnu topológiu?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="490"/>
+        <location filename="../Workspace.py" line="498"/>
         <source>Would you like to save the current topology?</source>
         <translation>Chcete uložiť aktuálnu topológiu?</translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="206"/>
+        <source>Directory to write startup-configs</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

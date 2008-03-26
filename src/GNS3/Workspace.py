@@ -203,7 +203,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Extract all startup-config
         """
         
-        fb = fileBrowser(translate('Workspaces', 'Directory to write startup-configs'))
+        fb = fileBrowser(translate('Workspace', 'Directory to write startup-configs'))
         path = fb.getDir()
         if path is not None:
             globals.GApp.workspace.projectConfigs = path

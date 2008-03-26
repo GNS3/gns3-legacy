@@ -715,92 +715,87 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Console</name>
     <message>
-        <location filename="../Console.py" line="205"/>
+        <location filename="../Console.py" line="206"/>
         <source>Dynamips error</source>
         <translation>Ошибка Dynamips</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="203"/>
+        <location filename="../Console.py" line="204"/>
         <source>Dynamips warning</source>
         <translation>Предупреждение Dynamips</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="205"/>
+        <location filename="../Console.py" line="206"/>
         <source>Connection lost</source>
         <translation>Соединение потеряно</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="270"/>
+        <location filename="../Console.py" line="271"/>
         <source>Sorry, not implemented in GNS3</source>
         <translation>Простите, не реализовано в GNS3</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="280"/>
+        <location filename="../Console.py" line="281"/>
         <source>Please wait while gathering statistics...</source>
         <translation>Пожалуйста подождите идет сбор статистики...</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="305"/>
+        <location filename="../Console.py" line="306"/>
         <source>No idlepc values found</source>
         <translation>Данные idlepc не найдены</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="317"/>
+        <location filename="../Console.py" line="318"/>
         <source>No changes made</source>
         <translation>Изменения сделаны не были</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="330"/>
+        <location filename="../Console.py" line="331"/>
         <source>Can&apos;t apply idlepc value</source>
         <translation>Невозможно применить значение idlepc</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="335"/>
+        <location filename="../Console.py" line="336"/>
         <source>Incorrect number of paramaters or invalid parameters</source>
         <translation>Неправильное число параметров или неправильные параметры</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="348"/>
+        <location filename="../Console.py" line="349"/>
         <source>You have to save your topology before using save</source>
         <translation>Вы должны сохранить вашу топологию перед тем как использовать сохранение</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="356"/>
+        <location filename="../Console.py" line="357"/>
         <source>You have to save your topology before using push</source>
         <translation>Вы должны сохранить топологию перед использованием загрузки</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="398"/>
-        <source>Destination directory</source>
-        <translation>Папка назначения</translation>
-    </message>
-    <message>
-        <location filename="../Console.py" line="399"/>
-        <source>The directory already exists. Ok to overwrite (Y/N)?</source>
-        <translation>Папка уже существует. Перезаписать (Да/Нет)?</translation>
-    </message>
-    <message>
-        <location filename="../Console.py" line="276"/>
+        <location filename="../Console.py" line="277"/>
         <source>%s already has an idlepc value applied.</source>
         <translation>%s уже имеет значение idlepc.</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="306"/>
+        <location filename="../Console.py" line="307"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;
 Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 </source>
         <translation>Потенциально лучшие значения idlepc помечены  &apos;*&apos;Введите номер значени idlepc для использования [1-%i] или нажмите ENTER чтобы не делать изменений:</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="321"/>
+        <location filename="../Console.py" line="322"/>
         <source>Applied idlepc value %s to %s
 </source>
         <translation>Используемое значение idlepc %s до %s</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="337"/>
+        <location filename="../Console.py" line="338"/>
         <source>Unknown device: %s</source>
         <translation>Неизвестное устройство: %s</translation>
+    </message>
+    <message>
+        <location filename="../Console.py" line="396"/>
+        <source>Cannot create %s: %s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -948,19 +943,24 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>FW</name>
     <message>
-        <location filename="../Node/FW.py" line="253"/>
+        <location filename="../Node/FW.py" line="259"/>
         <source>%s: no PIX image</source>
         <translation>%s: нет образа PIX</translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="307"/>
-        <source>Connection</source>
-        <translation>Подключение</translation>
+        <location filename="../Node/FW.py" line="174"/>
+        <source>New hostname</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="307"/>
-        <source>No interface available</source>
-        <translation>Нет доступного интерфейса</translation>
+        <location filename="../Node/FW.py" line="175"/>
+        <source>Cannot rename a connected firewall because pemuwrapper does not support removal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/FW.py" line="189"/>
+        <source>Dynamips error</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1063,17 +1063,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>IOSDialog</name>
     <message>
-        <location filename="../IOSDialog.py" line="196"/>
+        <location filename="../IOSDialog.py" line="205"/>
         <source>IDLE PC not valid (format required: 0xhhhhhhhh)</source>
         <translation>Значение IDLE PC неверно (требуемый формат: 0xhhhhhhhh)</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="205"/>
+        <location filename="../IOSDialog.py" line="214"/>
         <source>No hypervisor selected, use the local hypervisor</source>
         <translation>Гипервизор не выбран, используйте локальный гипервизор</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="333"/>
+        <location filename="../IOSDialog.py" line="345"/>
         <source>Select a working directory</source>
         <translation>Выберите папку для работы</translation>
     </message>
@@ -1213,7 +1213,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>Образ по умолчанию для этой платформы</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="251"/>
+        <location filename="../IOSDialog.py" line="260"/>
         <source>There is already a default image for this platform</source>
         <translation>Это уже образ по умолчанию для этой платформы</translation>
     </message>
@@ -1226,12 +1226,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="550"/>
+        <location filename="../Node/IOSRouter.py" line="557"/>
         <source>Connection</source>
         <translation>Подключение</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="550"/>
+        <location filename="../Node/IOSRouter.py" line="557"/>
         <source>No interface available</source>
         <translation>Нет доступного интерфейса</translation>
     </message>
@@ -1244,6 +1244,11 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <location filename="../Node/IOSRouter.py" line="225"/>
         <source>You have to restart this router to use new modules</source>
         <translation>Вы должны перезагрузить маршрутизатор чтобы начать использовать новые модули</translation>
+    </message>
+    <message>
+        <location filename="../Node/IOSRouter.py" line="440"/>
+        <source>Dynamips error</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1447,314 +1452,319 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="312"/>
+        <location filename="../Ui/Form_MainWindow.py" line="317"/>
         <source>GNS3</source>
         <translation>GNS3</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="313"/>
+        <location filename="../Ui/Form_MainWindow.py" line="318"/>
         <source>&amp;Edit</source>
         <translation>&amp;Редактировать</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="314"/>
+        <location filename="../Ui/Form_MainWindow.py" line="319"/>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="315"/>
+        <location filename="../Ui/Form_MainWindow.py" line="320"/>
         <source>&amp;Help</source>
         <translation>&amp;Справка</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="316"/>
+        <location filename="../Ui/Form_MainWindow.py" line="321"/>
         <source>&amp;View</source>
         <translation>&amp;Просмотр</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="317"/>
+        <location filename="../Ui/Form_MainWindow.py" line="322"/>
         <source>General</source>
         <translation>Основное</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="318"/>
+        <location filename="../Ui/Form_MainWindow.py" line="323"/>
         <source>Nodes Types</source>
         <translation>Типы узлов</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="323"/>
+        <location filename="../Ui/Form_MainWindow.py" line="328"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="320"/>
+        <location filename="../Ui/Form_MainWindow.py" line="325"/>
         <source>Design</source>
         <translation>Дизайн</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="321"/>
+        <location filename="../Ui/Form_MainWindow.py" line="326"/>
         <source>Simulation</source>
         <translation>Симуляция</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="322"/>
+        <location filename="../Ui/Form_MainWindow.py" line="327"/>
         <source>Topology Summary</source>
         <translation>Топология</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="324"/>
+        <location filename="../Ui/Form_MainWindow.py" line="329"/>
         <source>Console</source>
         <translation>Консоль</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="326"/>
+        <location filename="../Ui/Form_MainWindow.py" line="331"/>
         <source>&amp;About</source>
         <translation>&amp;О программе</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="327"/>
+        <location filename="../Ui/Form_MainWindow.py" line="332"/>
         <source>&amp;Quit</source>
         <translation>&amp;Выход</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="328"/>
+        <location filename="../Ui/Form_MainWindow.py" line="333"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="329"/>
+        <location filename="../Ui/Form_MainWindow.py" line="334"/>
         <source>&amp;Open</source>
         <translation>&amp;Открыть</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="331"/>
+        <location filename="../Ui/Form_MainWindow.py" line="336"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="332"/>
+        <location filename="../Ui/Form_MainWindow.py" line="337"/>
         <source>&amp;Save</source>
         <translation>&amp;Сохранить</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="334"/>
+        <location filename="../Ui/Form_MainWindow.py" line="339"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="338"/>
+        <location filename="../Ui/Form_MainWindow.py" line="343"/>
         <source>Add a link</source>
         <translation>Добавить линк</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="340"/>
+        <location filename="../Ui/Form_MainWindow.py" line="345"/>
         <source>Ctrl+Shift+I</source>
         <translation>Ctrl+Shift+I</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="341"/>
+        <location filename="../Ui/Form_MainWindow.py" line="346"/>
         <source>&amp;Online Help</source>
         <translation>&amp;Справка онлайн</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="342"/>
+        <location filename="../Ui/Form_MainWindow.py" line="347"/>
         <source>&amp;Export</source>
         <translation>&amp;Экспорт</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="343"/>
+        <location filename="../Ui/Form_MainWindow.py" line="348"/>
         <source>Start/Resume all IOS</source>
         <translation>Запустить/Остановить все IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="344"/>
+        <location filename="../Ui/Form_MainWindow.py" line="349"/>
         <source>Start or resume all IOS instances</source>
         <translation>Запустить или остановить все инстанции IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="345"/>
+        <location filename="../Ui/Form_MainWindow.py" line="350"/>
         <source>Stop all IOS</source>
         <translation>Остановить все IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="346"/>
+        <location filename="../Ui/Form_MainWindow.py" line="351"/>
         <source>Stop all IOS instances</source>
         <translation>Остановить все инстанцииl IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="348"/>
+        <location filename="../Ui/Form_MainWindow.py" line="353"/>
         <source>Show hostnames</source>
         <translation>Показать имя хоста</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="350"/>
+        <location filename="../Ui/Form_MainWindow.py" line="355"/>
         <source>Start a console on all running IOS instances</source>
         <translation>Запустить консоль на всех запущенных инстанциях IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="351"/>
+        <location filename="../Ui/Form_MainWindow.py" line="356"/>
         <source>Save &amp;As</source>
         <translation>Сохранить &amp;Как</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="352"/>
+        <location filename="../Ui/Form_MainWindow.py" line="357"/>
         <source>Save As</source>
         <translation>Сохранить Как</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="378"/>
+        <location filename="../Ui/Form_MainWindow.py" line="383"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="354"/>
+        <location filename="../Ui/Form_MainWindow.py" line="359"/>
         <source>About &amp;Qt</source>
         <translation>О &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="355"/>
+        <location filename="../Ui/Form_MainWindow.py" line="360"/>
         <source>Zoom &amp;In</source>
         <translation>Увеличить &amp;</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="356"/>
+        <location filename="../Ui/Form_MainWindow.py" line="361"/>
         <source>Ctrl++</source>
         <translation>Ctrl++</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="357"/>
+        <location filename="../Ui/Form_MainWindow.py" line="362"/>
         <source>Zoom &amp;Out</source>
         <translation>Уменьшить &amp;</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="358"/>
+        <location filename="../Ui/Form_MainWindow.py" line="363"/>
         <source>Ctrl+-</source>
         <translation>Ctrl+-</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="359"/>
+        <location filename="../Ui/Form_MainWindow.py" line="364"/>
         <source>Zoom &amp;1:1</source>
         <translation>Масштаб &amp;1:1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="360"/>
+        <location filename="../Ui/Form_MainWindow.py" line="365"/>
         <source>Ctrl+/</source>
         <translation>Ctrl+/</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="361"/>
+        <location filename="../Ui/Form_MainWindow.py" line="366"/>
         <source>Select &amp;All</source>
         <translation>Выделить &amp;все</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="362"/>
+        <location filename="../Ui/Form_MainWindow.py" line="367"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="363"/>
+        <location filename="../Ui/Form_MainWindow.py" line="368"/>
         <source>Select &amp;None</source>
         <translation>Отменить &amp;выделение</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="364"/>
+        <location filename="../Ui/Form_MainWindow.py" line="369"/>
         <source>Ctrl+Shift+A</source>
         <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="367"/>
+        <location filename="../Ui/Form_MainWindow.py" line="372"/>
         <source>Copy</source>
         <translation>Копировать</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="368"/>
+        <location filename="../Ui/Form_MainWindow.py" line="373"/>
         <source>Ctrl+C</source>
         <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="369"/>
+        <location filename="../Ui/Form_MainWindow.py" line="374"/>
         <source>&amp;Paste</source>
         <translation>&amp;Вставить</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="370"/>
+        <location filename="../Ui/Form_MainWindow.py" line="375"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="371"/>
+        <location filename="../Ui/Form_MainWindow.py" line="376"/>
         <source>Suspend all IOS</source>
         <translation>Приостановить все IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="372"/>
+        <location filename="../Ui/Form_MainWindow.py" line="377"/>
         <source>Suspend all IOS instances</source>
         <translation>Приостановить все инстанции IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="365"/>
+        <location filename="../Ui/Form_MainWindow.py" line="370"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Настройки...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="366"/>
+        <location filename="../Ui/Form_MainWindow.py" line="371"/>
         <source>Ctrl+Shift+P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="339"/>
+        <location filename="../Ui/Form_MainWindow.py" line="344"/>
         <source>IOS images and hypervisors</source>
         <translation>Образы IOS и гипервизоры</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="325"/>
+        <location filename="../Ui/Form_MainWindow.py" line="330"/>
         <source>toolBar</source>
         <translation>Панель инструментов</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="330"/>
+        <location filename="../Ui/Form_MainWindow.py" line="335"/>
         <source>Open network file</source>
         <translation>Открыть сетевой файл</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="333"/>
+        <location filename="../Ui/Form_MainWindow.py" line="338"/>
         <source>Save network file</source>
         <translation>Сохранить сетевой файл</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="347"/>
+        <location filename="../Ui/Form_MainWindow.py" line="352"/>
         <source>Show the hostnames</source>
         <translation>Показать имена хостов</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="349"/>
+        <location filename="../Ui/Form_MainWindow.py" line="354"/>
         <source>Telnet to all IOS</source>
         <translation>Телнет во все IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="353"/>
+        <location filename="../Ui/Form_MainWindow.py" line="358"/>
         <source>Save network file as</source>
         <translation>Сохранить сетевой файл как</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="373"/>
+        <location filename="../Ui/Form_MainWindow.py" line="378"/>
         <source>Clear the topology</source>
         <translation>Очистить топологию</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="374"/>
+        <location filename="../Ui/Form_MainWindow.py" line="379"/>
         <source>Add a note</source>
         <translation>Добавить заметку</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="375"/>
+        <location filename="../Ui/Form_MainWindow.py" line="380"/>
         <source>&amp;New Project</source>
         <translation>&amp;Новый проект</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="377"/>
+        <location filename="../Ui/Form_MainWindow.py" line="382"/>
         <source>New Project</source>
         <translation>Новый проект</translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_MainWindow.py" line="384"/>
+        <source>&amp;Extract all startup-configs</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1790,7 +1800,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>Экспортирование %s конфигурации в %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="608"/>
+        <location filename="../NETFile.py" line="609"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Ошибка ввода-вывода: %s</translation>
     </message>
@@ -1805,8 +1815,13 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>Пожалуйста подождите пока импортируется топология</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="608"/>
+        <location filename="../NETFile.py" line="609"/>
         <source>IOError</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="223"/>
+        <source>Please wait while copying the base flash</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2050,7 +2065,7 @@ to display the configuration page.</source>
         <translation>Dynamips</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="212"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="222"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
@@ -2070,59 +2085,64 @@ to display the configuration page.</source>
         <translation>Рабочая папка:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="78"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="88"/>
         <source>Base port:</source>
         <translation>Основной порт:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="85"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="95"/>
         <source> Base UDP:</source>
         <translation> Основной UDP:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="92"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="102"/>
         <source>Base console:</source>
         <translation>Основная консоль:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="164"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="174"/>
         <source>&amp;Test</source>
         <translation>&amp;Тест</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="200"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="210"/>
         <source>Hypervisor Manager</source>
         <translation>Менеджер гипервизора</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="218"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="228"/>
         <source>Memory usage limit per hypervisor:</source>
         <translation>Ограничить использование памяти для каждого гипервизора:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="238"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="248"/>
         <source>UDP incrementation:</source>
         <translation>Инкрементация UDP:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="129"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="139"/>
         <source>Enable ghost IOS feature</source>
         <translation>Включить функцию гостевой IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="139"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="149"/>
         <source>Enable mmap feature</source>
         <translation>Включить функцию mmap</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="149"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="159"/>
         <source>Enable sparse memory feature</source>
         <translation>Включить функцию распределенной памяти</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="258"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="268"/>
         <source>Use Hypervisor Manager when importing</source>
         <translation>Использовать менеджер гипервизора когда импортируется</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="78"/>
+        <source>Automatically clean the working directory</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2201,7 +2221,7 @@ to display the configuration page.</source>
         <translation>Путь (pemuwrapper.exe на Windows или pemuwrapper.py):</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="117"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="171"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -2244,6 +2264,11 @@ to display the configuration page.</source>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="144"/>
         <source>Serial:</source>
         <translation>Серийный:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="161"/>
+        <source>Base flash:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2342,207 +2367,222 @@ to display the configuration page.</source>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="250"/>
+        <location filename="../Topology.py" line="270"/>
         <source>IOS image</source>
         <translation>Образ IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="229"/>
+        <location filename="../Topology.py" line="249"/>
         <source>Please register at least one IOS image</source>
         <translation>Пожалуйста зарегистрируйте хотя бы один образ IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="267"/>
+        <location filename="../Topology.py" line="287"/>
         <source>Hypervisor</source>
         <translation>Гипервизор</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="264"/>
+        <location filename="../Topology.py" line="284"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Пожалуйста настройте путь к Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="457"/>
+        <location filename="../Topology.py" line="478"/>
         <source>Dynamips error</source>
         <translation>Ошибка Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="302"/>
+        <location filename="../Topology.py" line="323"/>
         <source>Connection lost</source>
         <translation>Соединение потеряно</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="372"/>
+        <location filename="../Topology.py" line="393"/>
         <source>Connection</source>
         <translation>Подключение</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="139"/>
+        <location filename="../Topology.py" line="145"/>
         <source>Can&apos;t connect to the external hypervisor on %s</source>
         <translation>Нельзя подключиться к внешнему гипервизору на %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="240"/>
+        <location filename="../Topology.py" line="260"/>
         <source>No image for platform %s</source>
         <translation>Нет образа для платформы %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="251"/>
+        <location filename="../Topology.py" line="271"/>
         <source>Please choose an image</source>
         <translation>Пожалуйста выберите образ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="372"/>
+        <location filename="../Topology.py" line="393"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Вы должны подключить хотя бы один маршрутизатор к коммутатору</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="279"/>
+        <location filename="../Topology.py" line="299"/>
         <source>PIX image</source>
         <translation>Образ PIX</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="279"/>
+        <location filename="../Topology.py" line="299"/>
         <source>Please configure a default PIX image</source>
         <translation>Пожалуйста настройте образ PIX по умолчанию</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="359"/>
+        <location filename="../Topology.py" line="380"/>
         <source>Can&apos;t connect these devices</source>
         <translation>Нельзя подключиться к этим устройствам</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="267"/>
+        <location filename="../Topology.py" line="287"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="204"/>
+        <location filename="../Topology.py" line="210"/>
         <source>Pemuwrapper error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="229"/>
+        <source>PIX device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="230"/>
+        <source>Cannot copy PIX base flash %s: %s</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="110"/>
+        <location filename="../Workspace.py" line="111"/>
         <source>Docks</source>
         <translation>Docks</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="488"/>
+        <location filename="../Workspace.py" line="496"/>
         <source>Dynamips error</source>
         <translation>Dynamips error</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="351"/>
+        <location filename="../Workspace.py" line="366"/>
         <source>Connection lost</source>
         <translation>Connection lost</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="348"/>
+        <location filename="../Workspace.py" line="363"/>
         <source>Dynamips warning</source>
         <translation>Dynamips warning</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="327"/>
+        <location filename="../Workspace.py" line="342"/>
         <source>Abort</source>
         <translation>Abort</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="363"/>
+        <location filename="../Workspace.py" line="378"/>
         <source>Starting nodes ...</source>
         <translation>Starting nodes ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="369"/>
+        <location filename="../Workspace.py" line="384"/>
         <source>Stopping nodes ...</source>
         <translation>Stopping nodes ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="375"/>
+        <location filename="../Workspace.py" line="390"/>
         <source>Suspending nodes ...</source>
         <translation>Suspending nodes ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="423"/>
+        <location filename="../Workspace.py" line="431"/>
         <source>Loading</source>
         <translation>Загружается</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="298"/>
+        <location filename="../Workspace.py" line="313"/>
         <source>Hide hostnames</source>
         <translation>Скрыть имена хостов</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="303"/>
+        <location filename="../Workspace.py" line="318"/>
         <source>Show hostnames</source>
         <translation>Показать имена хостов</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="512"/>
+        <location filename="../Workspace.py" line="520"/>
         <source>Open a file</source>
         <translation>Открыть файл</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="508"/>
+        <location filename="../Workspace.py" line="516"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Путь к Dynamips должен быть настроен</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="544"/>
+        <location filename="../Workspace.py" line="552"/>
         <source>Save Project As</source>
         <translation>Сохранить Проект Как</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="444"/>
+        <location filename="../Workspace.py" line="452"/>
         <source>New Project</source>
         <translation>Новый Проект</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="563"/>
+        <location filename="../Workspace.py" line="571"/>
         <source>Message</source>
         <translation>Сообщение</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="194"/>
+        <location filename="../Workspace.py" line="196"/>
         <source>Are you sure to clear the topology?</source>
         <translation>Вы уверены что хотите очистить топологию?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="217"/>
+        <location filename="../Workspace.py" line="232"/>
         <source>Add a link</source>
         <translation>Добавить линк</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="232"/>
+        <location filename="../Workspace.py" line="247"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="444"/>
+        <location filename="../Workspace.py" line="452"/>
         <source>Can&apos;t create a project</source>
         <translation>Нельзя создать проект</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="423"/>
+        <location filename="../Workspace.py" line="431"/>
         <source>Invalid file %s</source>
         <translation>Неверный файл %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="563"/>
+        <location filename="../Workspace.py" line="571"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>Желаете ли вы сохранить топологию перед выходом?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="458"/>
+        <location filename="../Workspace.py" line="466"/>
         <source>Do you want to apply the project settings to the current topology?</source>
         <translation>Желате ли вы применить настройки проекта к текущей топологии?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="490"/>
+        <location filename="../Workspace.py" line="498"/>
         <source>Would you like to save the current topology?</source>
         <translation>Желаете ли вы сохранить текущую топологию?</translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="206"/>
+        <source>Directory to write startup-configs</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
