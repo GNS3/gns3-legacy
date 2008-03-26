@@ -79,10 +79,10 @@ class FW(AbstractNode, FWDefaults):
                 self.stopNode()
                 del self.dynagen.devices[self.hostname]
                 self.pemu.devices.remove(self.fw)
+                self.dynagen.update_running_config()
             except:
                 pass
             self.fw = None
-            self.dynagen.update_running_config()
 
     def set_hostname(self, hostname):
         """ Set a hostname

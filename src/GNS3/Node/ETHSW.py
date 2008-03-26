@@ -68,10 +68,10 @@ class ETHSW(AbstractNode):
                 self.ethsw.delete()
                 del self.dynagen.devices[self.hostname]
                 self.hypervisor.devices.remove(self.ethsw)
+                self.dynagen.update_running_config()
             except lib.DynamipsErrorHandled:
                 pass
             self.ethsw = None
-        self.dynagen.update_running_config()
 
     def set_hostname(self, hostname):
         """ Set a hostname

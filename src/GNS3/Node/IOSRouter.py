@@ -129,10 +129,10 @@ class IOSRouter(AbstractNode):
                 self.router.delete()
                 del self.dynagen.devices[self.hostname]
                 self.hypervisor.devices.remove(self.router)
+                self.dynagen.update_running_config()
             except:
                 pass
             debug('Router ' + self.hostname + ' deleted')
-        self.dynagen.update_running_config()
 
     def set_hostname(self, hostname):
         """ Set a hostname

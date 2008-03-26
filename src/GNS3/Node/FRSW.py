@@ -68,10 +68,10 @@ class FRSW(AbstractNode):
                 self.frsw.delete()
                 del self.dynagen.devices[self.hostname]
                 self.hypervisor.devices.remove(self.frsw)
+                self.dynagen.update_running_config()
             except:
                 pass
             self.frsw = None
-        self.dynagen.update_running_config()
 
     def set_hostname(self, hostname):
         """ Set a hostname

@@ -133,7 +133,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             painter.end()
         else:
             rect = self.graphicsView.viewport().rect()
-            pixmap = QtGui.QPixmap(rect.width(), rect.height())
+            pixmap = QtGui.QPixmap(rect.width() + 5, rect.height() + 5)
             pixmap.fill(QtCore.Qt.white)
             painter = QtGui.QPainter(pixmap)
             painter.setRenderHint(QtGui.QPainter.Antialiasing)

@@ -70,10 +70,10 @@ class ATMSW(AbstractNode):
                 self.atmsw.delete()
                 del self.dynagen.devices[self.hostname]
                 self.hypervisor.devices.remove(self.atmsw)
+                self.dynagen.update_running_config()
             except:
                 pass
             self.atmsw = None
-        self.dynagen.update_running_config()
 
     def set_hostname(self, hostname):
         """ Set a hostname

@@ -15,10 +15,11 @@
 # Contact: contact@gns3.net
 #
 
-import os, sys, cmd, time
+import os, sys, cmd, time, shutil
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as Dynagen_Namespace
 import GNS3.Dynagen.dynamips_lib as lib
+import GNS3.NETFile as netfile
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
 from GNS3.Dynagen.console import Console as Dynagen_Console, getItems
@@ -387,26 +388,34 @@ Examples:
 
          # The last item is the directory (or should be anyway)
         directory = items.pop()
-        try:
-            netdir = os.getcwd()
-            subdir = os.path.dirname(self.dynagen.global_filename)
-            if subdir != '':
-                os.chdir(subdir)
-            if os.path.isdir(directory):
-                # Directory exists
-                print directory
-                (result,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, translate("Console", "Destination directory"),
-                  translate("Console", "The directory already exists. Ok to overwrite (Y/N)?"), QtGui.QLineEdit.Normal)
-                if not ok:
-                    return
-                if str(result).lower() != 'y':
-                    os.chdir(netdir)        # Reset the current working directory
-                else:
-                    os.rmdir(directory)
-        except OSError:
-            return
+        
+        if not os.access(directory, os.F_OK):
+            try:
+                os.mkdir(directory)
+            except (OSError, IOError), e:
+                print translate("Console",  "Cannot create %s: %s") % (directory, e.strerror)
+                return
 
-        Dynagen_Console.do_export(self, args)
+        if '/all' in items:
+            # Set devices to all the devices
+            devices = self.dynagen.devices.values()
+        else:
+            devices = []
+            for device in items:
+                # Create a list of all the device objects
+                try:
+                    devices.append(self.dynagen.devices[device])
+                except KeyError:
+                    error('unknown device: ' + device)
+                    return
+
+        save = globals.GApp.workspace.projectConfigs
+        globals.GApp.workspace.projectConfigs = directory
+        net = netfile.NETFile()
+        for device in devices:
+            if isinstance(device, lib.Router):
+                net.export_router_config(device)
+        globals.GApp.workspace.projectConfigs = save
 
     def do_import(self, args):
         """import {/all | router1 [router2] \"directory\"\nimport all or individual configuration files \nEnclose the directory or filename in quotes if there are spaces in the filespec."""

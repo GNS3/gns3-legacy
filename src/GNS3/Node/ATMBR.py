@@ -70,10 +70,10 @@ class ATMBR(AbstractNode):
                 self.atmbr.delete()
                 del self.dynagen.devices[self.hostname]
                 self.hypervisor.devices.remove(self.atmbr)
+                self.dynagen.update_running_config()
             except:
                 pass
             self.atmbr = None
-        self.dynagen.update_running_config()
 
     def set_hostname(self, hostname):
         """ Set a hostname

@@ -133,22 +133,24 @@ class Topology(QtGui.QGraphicsScene):
             dynamips_hypervisor = self.dynagen.dynamips[external_hypervisor_key]
         else:
             debug("Connection to an external hypervisor: " + external_hypervisor_key)
+            hypervisor_conf = globals.GApp.hypervisors[external_hypervisor_key]
+            # use project workdir in priority
+            if globals.GApp.workspace.projectWorkdir:
+                self.dynagen.defaults_config['workingdir'] =  globals.GApp.workspace.projectWorkdir
+            elif hypervisor_conf.workdir:
+                self.dynagen.defaults_config['workingdir'] =  hypervisor_conf.workdir
             dynamips_hypervisor = self.dynagen.create_dynamips_hypervisor(host, port)
             if not dynamips_hypervisor:
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Hypervisor"),
                                            unicode(translate("Topology", "Can't connect to the external hypervisor on %s")) % external_hypervisor_key)
+                if self.dynagen.dynamips.has_key(external_hypervisor_key):
+                    del self.dynagen.dynamips[external_hypervisor_key]
                 return False
             self.dynagen.get_defaults_config()
             self.dynagen.update_running_config()
             dynamips_hypervisor.configchange = True
-            hypervisor_conf = globals.GApp.hypervisors[external_hypervisor_key]
-            # use project workdir in priority
-            if globals.GApp.workspace.projectWorkdir:
-                dynamips_hypervisor.workingdir = globals.GApp.workspace.projectWorkdir
-            elif hypervisor_conf.workdir:
-                dynamips_hypervisor.workingdir = hypervisor_conf.workdir
-            dynamips_hypervisor.udp =  hypervisor_conf.baseUDP
-            dynamips_hypervisor.baseconsole =  hypervisor_conf.baseConsole
+            dynamips_hypervisor.udp = hypervisor_conf.baseUDP
+            dynamips_hypervisor.baseconsole = hypervisor_conf.baseConsole
         node.set_hypervisor(dynamips_hypervisor)
         return True
 
