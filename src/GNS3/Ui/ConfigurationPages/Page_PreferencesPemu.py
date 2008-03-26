@@ -36,6 +36,7 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         self.connect(self.PixImage_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectImage)
         self.connect(self.PemuwrapperPath_browser, QtCore.SIGNAL('clicked()'),  self.slotSelectPath)
         self.connect(self.PemuwrapperWorkdir_browser, QtCore.SIGNAL('clicked()'),  self.slotSelectWorkdir)
+        self.connect(self.BaseFlash_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectBaseFlash)
         self.loadConf()
 
     def loadConf(self):
@@ -71,7 +72,8 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         self.PixImage.setText(self.conf.default_pix_image)
         self.lineEditKey.setText(self.conf.default_pix_key)
         self.lineEditSerial.setText(self.conf.default_pix_serial)
-        
+        self.lineEditbaseFlash.setText(self.conf.default_base_flash)
+
         if self.conf.enable_PemuManager == True:
             self.checkBoxEnablePemuManager.setCheckState(QtCore.Qt.Checked)
         else:
@@ -87,6 +89,7 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         self.conf.pemuwrapper_workdir = unicode(self.lineEditPemuwrapperWorkdir.text())
         self.conf.external_host = unicode(self.lineEditHostExternalPemu.text())
         self.conf.default_pix_image = unicode(self.PixImage.text())
+        self.conf.default_base_flash = unicode(self.lineEditbaseFlash.text())
         
         serial = str(self.lineEditSerial.text())
         if not re.search(r"""^0x[0-9a-fA-F]{8}$""", serial):
@@ -138,3 +141,12 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
 
         if path is not None:
             self.lineEditPemuwrapperWorkdir.setText(os.path.normpath(path))
+
+    def slotSelectBaseFlash(self):
+        """ Get a default base flash from the file system
+        """
+
+        path = fileBrowser('PIX Flash', directory=globals.GApp.systconf['general'].ios_path).getFile()
+        if path != None and path[0] != '':
+            self.lineEditbaseFlash.clear()
+            self.lineEditbaseFlash.setText(os.path.normpath(path[0]))

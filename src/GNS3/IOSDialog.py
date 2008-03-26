@@ -169,6 +169,15 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             self.lineEditIOSImage.setText(os.path.normpath(path))
             # try to guess the platform
             platform = self._getIOSplatform(os.path.basename(path))
+            if platform == '2600':
+                # force c2600 platform
+                index = self.comboBoxPlatform.findText('c2600')
+                if index != -1:
+                    self.comboBoxPlatform.setCurrentIndex(index)
+                index = self.comboBoxChassis.findText('2621')
+                if index != -1:
+                    self.comboBoxChassis.setCurrentIndex(index)
+                return
             if (platform != None):
                 for platformname in PLATFORMS.keys():
                     # retrieve all chassis for this platform

@@ -212,7 +212,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             module = str(widget.currentText())
             if module:
                 collision = False
-                if router_config['slots'][slot_number] != module:
+                if router.slot[slot_number] and router_config['slots'][slot_number] != module:
                     interfaces = router.slot[slot_number].interfaces
                     interface_type= interfaces.keys()[0]
                     for port in interfaces[interface_type].values():

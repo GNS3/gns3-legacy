@@ -127,10 +127,10 @@ class IOSRouter(AbstractNode):
                 self.stopNode()
                 # don't forget to delete this router in Dynamips
                 self.router.delete()
-            except lib.DynamipsErrorHandled:
+                del self.dynagen.devices[self.hostname]
+                self.hypervisor.devices.remove(self.router)
+            except:
                 pass
-            del self.dynagen.devices[self.hostname]
-            self.hypervisor.devices.remove(self.router)
             debug('Router ' + self.hostname + ' deleted')
         self.dynagen.update_running_config()
 
@@ -434,7 +434,13 @@ class IOSRouter(AbstractNode):
                 continue
         self.hostname = new_hostname
         self.r = 'ROUTER ' + self.hostname
-        self.create_router()
+        try:
+            self.create_router()
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSRouter", "Dynamips error"),  unicode(msg))
+            self.delete_router()
+            globals.GApp.topology.deleteNode(self.id)
+            return
         self.set_config(self.local_config)
         for link in links:
             globals.GApp.topology.addLink(link.source.id, link.srcIf, link.dest.id, link.destIf)

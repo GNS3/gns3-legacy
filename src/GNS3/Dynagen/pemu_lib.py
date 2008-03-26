@@ -111,7 +111,7 @@ class Pemu(object):
         self.name = name
         self.devices = []
         self.baseconsole = 4000
-        self.udp = 30000
+        self.udp = 33000
         self.default_udp = self.udp
         self.starting_udp = self.udp
         self._workingdir = None

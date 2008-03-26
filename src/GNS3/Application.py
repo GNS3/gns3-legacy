@@ -262,6 +262,7 @@ class Application(QApplication, Singleton):
         confo.default_pix_image = ConfDB().get('Pemu/default_pix_image', unicode(''))
         confo.default_pix_key = str(ConfDB().get('Pemu/default_pix_key', unicode('0x00000000,0x00000000,0x00000000,0x00000000')))
         confo.default_pix_serial = str(ConfDB().get('Pemu/default_pix_serial', unicode('0x12345678')))
+        confo.default_base_flash = ConfDB().get('Pemu/default_base_flash', unicode(''))
 
         # Capture config
         self.systconf['capture'] = systemCaptureConf()
@@ -355,6 +356,7 @@ class Application(QApplication, Singleton):
         c.set('Pemu/default_pix_image', confo.default_pix_image)
         c.set('Pemu/default_pix_key', confo.default_pix_key)
         c.set('Pemu/default_pix_serial', confo.default_pix_serial)
+        c.set('Pemu/default_base_flash', confo.default_base_flash)
 
         # Capture settings
         confo = self.systconf['capture']

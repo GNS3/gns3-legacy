@@ -77,10 +77,10 @@ class FW(AbstractNode, FWDefaults):
         if self.fw:
             try:
                 self.stopNode()
-            except lib.DynamipsErrorHandled:
+                del self.dynagen.devices[self.hostname]
+                self.pemu.devices.remove(self.fw)
+            except:
                 pass
-            del self.dynagen.devices[self.hostname]
-            self.pemu.devices.remove(self.fw)
             self.fw = None
             self.dynagen.update_running_config()
 
@@ -183,7 +183,13 @@ class FW(AbstractNode, FWDefaults):
                 debug("Cannot move FLASH directory")
         self.hostname = new_hostname
         self.f = 'FW ' + self.hostname
-        self.create_firewall()
+        try:
+            self.create_firewall()
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("FW", "Dynamips error"),  unicode(msg))
+            self.delete_fw()
+            globals.GApp.topology.deleteNode(self.id)
+            return
         self.set_config(self.local_config)
 
     def configNode(self):

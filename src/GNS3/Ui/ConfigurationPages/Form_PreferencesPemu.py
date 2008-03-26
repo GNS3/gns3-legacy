@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesPemu.ui'
 #
-# Created: Tue Mar 25 03:32:40 2008
+# Created: Wed Mar 26 16:53:02 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -115,9 +115,22 @@ class Ui_PreferencesPemu(object):
         self.lineEditSerial.setSizePolicy(sizePolicy)
         self.lineEditSerial.setObjectName("lineEditSerial")
         self.gridlayout1.addWidget(self.lineEditSerial,2,1,1,2)
+
+        self.label_4 = QtGui.QLabel(self.groupBox)
+        self.label_4.setObjectName("label_4")
+        self.gridlayout1.addWidget(self.label_4,3,0,1,1)
+
+        self.lineEditbaseFlash = QtGui.QLineEdit(self.groupBox)
+        self.lineEditbaseFlash.setObjectName("lineEditbaseFlash")
+        self.gridlayout1.addWidget(self.lineEditbaseFlash,3,1,1,1)
+
+        self.BaseFlash_Browser = QtGui.QToolButton(self.groupBox)
+        self.BaseFlash_Browser.setToolButtonStyle(QtCore.Qt.ToolButtonTextOnly)
+        self.BaseFlash_Browser.setObjectName("BaseFlash_Browser")
+        self.gridlayout1.addWidget(self.BaseFlash_Browser,3,2,1,1)
         self.vboxlayout.addWidget(self.groupBox)
 
-        spacerItem = QtGui.QSpacerItem(20,51,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        spacerItem = QtGui.QSpacerItem(407,20,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
         self.vboxlayout.addItem(spacerItem)
 
         self.retranslateUi(PreferencesPemu)
@@ -138,4 +151,6 @@ class Ui_PreferencesPemu(object):
         self.PixImage_Browser.setText(QtGui.QApplication.translate("PreferencesPemu", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.label_20.setText(QtGui.QApplication.translate("PreferencesPemu", "Key:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_21.setText(QtGui.QApplication.translate("PreferencesPemu", "Serial:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_4.setText(QtGui.QApplication.translate("PreferencesPemu", "Base flash:", None, QtGui.QApplication.UnicodeUTF8))
+        self.BaseFlash_Browser.setText(QtGui.QApplication.translate("PreferencesPemu", "...", None, QtGui.QApplication.UnicodeUTF8))
 

@@ -155,6 +155,26 @@
         </property>
        </widget>
       </item>
+      <item row="3" column="0" >
+       <widget class="QLabel" name="label_4" >
+        <property name="text" >
+         <string>Base flash:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" >
+       <widget class="QLineEdit" name="lineEditbaseFlash" />
+      </item>
+      <item row="3" column="2" >
+       <widget class="QToolButton" name="BaseFlash_Browser" >
+        <property name="text" >
+         <string>...</string>
+        </property>
+        <property name="toolButtonStyle" >
+         <enum>Qt::ToolButtonTextOnly</enum>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -165,8 +185,8 @@
      </property>
      <property name="sizeHint" >
       <size>
-       <width>20</width>
-       <height>51</height>
+       <width>407</width>
+       <height>20</height>
       </size>
      </property>
     </spacer>

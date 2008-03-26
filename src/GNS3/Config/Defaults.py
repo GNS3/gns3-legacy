@@ -133,6 +133,7 @@ conf_systemPemu_defaults = {
     'default_pix_image': '',
     'default_pix_key':'',
     'default_pix_serial':'',
+    'default_base_flash':'',
 }
 
 conf_systemPemu_types = {
@@ -144,4 +145,5 @@ conf_systemPemu_types = {
     'default_pix_image': unicode,
     'default_pix_key': str,
     'default_pix_serial': str,
+    'default_base_flash': unicode,
 }

@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import os, glob, socket
+import os, glob, socket, shutil
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.pemu_lib as pix
 import GNS3.Globals as globals
@@ -205,10 +205,28 @@ class Topology(QtGui.QGraphicsScene):
             try:
                 self.dynagen.dynamips[pemu_name].workingdir = workdir
             except lib.DynamipsError, msg:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, unicode(translate("Topology", "Pemuwrapper error"),  workdir + ': ') + unicode(msg))
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Pemuwrapper error"),  unicode(workdir + ': ') + unicode(msg))
                 del self.dynagen.dynamips[pemu_name]
                 return False
 
+        # copy base flash
+        if globals.GApp.systconf['pemu'].default_base_flash:
+            directory = self.dynagen.dynamips[pemu_name].workingdir + os.sep + node.hostname
+            try:
+                os.mkdir(directory)
+            except:
+                pass
+            splash = QtGui.QSplashScreen(QtGui.QPixmap(":images/logo_gns3_splash.png"))
+            splash.show()
+            splash.showMessage(translate("NETFile", "Please wait while copying the base flash"))
+            try:
+                debug("Copy " + globals.GApp.systconf['pemu'].default_base_flash + " to " + directory + os.sep + 'FLASH')
+                shutil.copy(globals.GApp.systconf['pemu'].default_base_flash,  directory + os.sep + 'FLASH')
+            except (OSError, IOError), e:
+                splash = None
+                QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX device"), 
+                                          unicode(translate("Topology", "Cannot copy PIX base flash %s: %s")) % (e.strerror))
+                
         # set defaults
         node.set_hypervisor(self.dynagen.dynamips[pemu_name])
         debug("Set default image " + globals.GApp.systconf['pemu'].default_pix_image)

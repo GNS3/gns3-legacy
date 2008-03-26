@@ -68,10 +68,10 @@ class ATMSW(AbstractNode):
         if self.atmsw:
             try:
                 self.atmsw.delete()
-            except lib.DynamipsErrorHandled:
+                del self.dynagen.devices[self.hostname]
+                self.hypervisor.devices.remove(self.atmsw)
+            except:
                 pass
-            del self.dynagen.devices[self.hostname]
-            self.hypervisor.devices.remove(self.atmsw)
             self.atmsw = None
         self.dynagen.update_running_config()
 
