@@ -1797,52 +1797,52 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="330"/>
+        <location filename="../NETFile.py" line="338"/>
         <source>Save</source>
         <translation>저장</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="330"/>
+        <location filename="../NETFile.py" line="338"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Dynamips의 경로를 설정해주세요</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="592"/>
+        <location filename="../NETFile.py" line="600"/>
         <source>Dynamips error</source>
         <translation>Dynamips 에러</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="595"/>
+        <location filename="../NETFile.py" line="603"/>
         <source>Dynamips warning</source>
         <translation>Dynamips 경고</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="360"/>
+        <location filename="../NETFile.py" line="368"/>
         <source>Exception detected, stopping importation...</source>
         <translation>에러가 발생하여 가져오기를 중단합니다...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="602"/>
+        <location filename="../NETFile.py" line="610"/>
         <source>Exporting %s configuration to %s</source>
         <translation>%s 의 설정을 %s 로 내보내는 중</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="610"/>
+        <location filename="../NETFile.py" line="618"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO 에러: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="360"/>
+        <location filename="../NETFile.py" line="368"/>
         <source>Importation</source>
         <translation>가져오기</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="342"/>
+        <location filename="../NETFile.py" line="350"/>
         <source>Please wait while importing the topology</source>
         <translation>토폴로지를 가져오는 중입니다. 잠시만 기다려 주세요</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="610"/>
+        <location filename="../NETFile.py" line="618"/>
         <source>IOError</source>
         <translation>입출력 관련 에러</translation>
     </message>

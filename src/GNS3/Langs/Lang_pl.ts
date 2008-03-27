@@ -1798,52 +1798,52 @@ Wprowadź numer wartości idlepc do przypisania [1-%i] lub wciśnij enter żeby 
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="330"/>
+        <location filename="../NETFile.py" line="338"/>
         <source>Save</source>
         <translation>Zapisz</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="330"/>
+        <location filename="../NETFile.py" line="338"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Podaj ścieżkę do Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="592"/>
+        <location filename="../NETFile.py" line="600"/>
         <source>Dynamips error</source>
         <translation>Błąd Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="595"/>
+        <location filename="../NETFile.py" line="603"/>
         <source>Dynamips warning</source>
         <translation>Ostrzeżenie Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="360"/>
+        <location filename="../NETFile.py" line="368"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Znaleziono zastrzeżenia, wstrzymanie importowania...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="602"/>
+        <location filename="../NETFile.py" line="610"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Eksportowanie %s konfiguracji do %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="610"/>
+        <location filename="../NETFile.py" line="618"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Błąd Wejścia/Wyjścia: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="360"/>
+        <location filename="../NETFile.py" line="368"/>
         <source>Importation</source>
         <translation>Importowanie</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="342"/>
+        <location filename="../NETFile.py" line="350"/>
         <source>Please wait while importing the topology</source>
         <translation>Trwa importowanie topologii, proszę czekać</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="610"/>
+        <location filename="../NETFile.py" line="618"/>
         <source>IOError</source>
         <translation>Błąd Wejścia/Wyjścia</translation>
     </message>

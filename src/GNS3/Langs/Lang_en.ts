@@ -1795,52 +1795,52 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="330"/>
+        <location filename="../NETFile.py" line="338"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="330"/>
+        <location filename="../NETFile.py" line="338"/>
         <source>Please configure the path to Dynamips</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="592"/>
+        <location filename="../NETFile.py" line="600"/>
         <source>Dynamips error</source>
         <translation type="unfinished">Dynamips error</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="595"/>
+        <location filename="../NETFile.py" line="603"/>
         <source>Dynamips warning</source>
         <translation type="unfinished">Dynamips warning</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="360"/>
+        <location filename="../NETFile.py" line="368"/>
         <source>Exception detected, stopping importation...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="602"/>
+        <location filename="../NETFile.py" line="610"/>
         <source>Exporting %s configuration to %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="610"/>
+        <location filename="../NETFile.py" line="618"/>
         <source>%s: IO Error: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="360"/>
+        <location filename="../NETFile.py" line="368"/>
         <source>Importation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="342"/>
+        <location filename="../NETFile.py" line="350"/>
         <source>Please wait while importing the topology</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="610"/>
+        <location filename="../NETFile.py" line="618"/>
         <source>IOError</source>
         <translation type="unfinished"></translation>
     </message>

@@ -127,15 +127,23 @@ class NETFile(object):
                 node.type = item['name']
                 x = y = hx = hy = None
                 if isinstance(device, pix.FW) and  self.dynagen.globalconfig['pemu ' + device.dynamips.host].has_key(node.get_running_config_name()):
-                    x = self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()]['x']
-                    y = self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()]['y']
-                    hx = self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()]['hx']
-                    hy = self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()]['hy']
+                    if self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()].has_key('x'):
+                        x = self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()]['x']
+                    if self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()].has_key('y'):
+                        y = self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()]['y']
+                    if self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()].has_key('hx'):
+                        hx = self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()]['hx']
+                    if self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()].has_key('hy'):
+                        hy = self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()]['hy']
                 elif self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)].has_key(node.get_running_config_name()):
-                    x = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['x']
-                    y = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['y']
-                    hx = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['hx']
-                    hy = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['hy']
+                    if self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()].has_key('x'):
+                        x = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['x']
+                    if self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()].has_key('y'):
+                        y = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['y']
+                    if self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()].has_key('hx'):
+                        hx = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['hx']
+                    if self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()].has_key('hy'):
+                        hy = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['hy']
                 else:
                     print 'Cannot find x&y positions for ' + node.get_running_config_name()
                 if x == None:
