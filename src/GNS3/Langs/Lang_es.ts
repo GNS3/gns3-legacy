@@ -1066,164 +1066,189 @@ Ingrese el numero del idlepc que desea aplicar  [1-%i] o ENTER para no efectuar 
 <context>
     <name>IOSDialog</name>
     <message>
-        <location filename="../IOSDialog.py" line="205"/>
+        <location filename="../IOSDialog.py" line="218"/>
         <source>IDLE PC not valid (format required: 0xhhhhhhhh)</source>
         <translation>IDLE PC no valido (formato requerido: 0xhhhhhhhh)</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="214"/>
+        <location filename="../IOSDialog.py" line="227"/>
         <source>No hypervisor selected, use the local hypervisor</source>
         <translation>Hypervisor no seleccionado, utilice el hypervisor local</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="345"/>
+        <location filename="../IOSDialog.py" line="378"/>
         <source>Select a working directory</source>
         <translation>Seleccione un directorio de trabajo</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="295"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="310"/>
         <source>IOS images and hypervisors</source>
         <translation>Imagenes IOS y hypervisors</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="311"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="329"/>
         <source>IOS Images</source>
         <translation>Imagenes IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="312"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="330"/>
         <source>Settings</source>
         <translation>Ajustes</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="300"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="315"/>
         <source>Image file :</source>
         <translation>Archivo de imagen :</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="319"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="337"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="302"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="317"/>
         <source>Platform:</source>
         <translation>Plataforma:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="304"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="319"/>
         <source>IDLE PC:</source>
         <translation>IDLE PC:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="296"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="311"/>
         <source>Images</source>
         <translation>Imagenes</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="297"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="312"/>
         <source>IOS image</source>
         <translation>Imagen IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="320"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="338"/>
         <source>Hypervisors</source>
         <translation>Hypervisors</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="307"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="325"/>
         <source>Use the hypervisor manager</source>
         <translation>Utilice el administrador de hypervisor</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="323"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="341"/>
         <source>&amp;Save</source>
         <translation>&amp;Guardar</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="324"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="342"/>
         <source>&amp;Edit</source>
         <translation>&amp;Editar</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="325"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="343"/>
         <source>&amp;Delete</source>
         <translation>&amp;Eliminar</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="313"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="331"/>
         <source>Host:</source>
         <translation>Host:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="314"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="332"/>
         <source>localhost</source>
         <translation>localhost</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="315"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="333"/>
         <source>Port:</source>
         <translation>Puerto:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="316"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="334"/>
         <source>Base UDP:</source>
         <translation>Base UDP:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="318"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="336"/>
         <source>Working directory:</source>
         <translation>Directorio de trabajo:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="321"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="339"/>
         <source>Host:Port</source>
         <translation>Host:Puerto</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="322"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="340"/>
         <source>Base UDP</source>
         <translation>Base UDP</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="317"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="335"/>
         <source>Base console:</source>
         <translation>Consola base:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="326"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="344"/>
         <source>External hypervisors</source>
         <translation>Hipervisors externos</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="159"/>
+        <location filename="../IOSDialog.py" line="169"/>
         <source>Select an IOS image</source>
         <translation>Seleccione una imagen de IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="298"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="313"/>
         <source>Model/Chassis</source>
         <translation>Modelo/Chasis</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="303"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="318"/>
         <source>Model:</source>
         <translation>Modelo:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="305"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="323"/>
         <source>Default image for this platform</source>
         <translation>Imagen por defecto para esta plataforma</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="260"/>
+        <location filename="../IOSDialog.py" line="278"/>
         <source>There is already a default image for this platform</source>
         <translation>Ya existe una imagen por defecto para esta plataforma</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="165"/>
+        <location filename="../IOSDialog.py" line="175"/>
         <source>Can&apos;t open file: %s</source>
         <translation>No se puede abrir el archivo: %s</translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_IOSDialog.py" line="320"/>
+        <source>Default RAM:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_IOSDialog.py" line="321"/>
+        <source> MB</source>
+        <translation type="unfinished"> MB</translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_IOSDialog.py" line="322"/>
+        <source>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Check for minimum RAM requirement&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../IOSDialog.py" line="354"/>
+        <source>IOS Configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../IOSDialog.py" line="354"/>
+        <source>Image file box is empty</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1773,57 +1798,57 @@ Ingrese el numero del idlepc que desea aplicar  [1-%i] o ENTER para no efectuar 
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="329"/>
+        <location filename="../NETFile.py" line="330"/>
         <source>Save</source>
         <translation>Guardar</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="329"/>
+        <location filename="../NETFile.py" line="330"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Por favor configure el camino para Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="591"/>
+        <location filename="../NETFile.py" line="592"/>
         <source>Dynamips error</source>
         <translation>Error de Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="594"/>
+        <location filename="../NETFile.py" line="595"/>
         <source>Dynamips warning</source>
         <translation>Advertencia Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="359"/>
+        <location filename="../NETFile.py" line="360"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Se detecto una excepcion, deteniendo la importacion...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="601"/>
+        <location filename="../NETFile.py" line="602"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportando la configuracion %s a %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="609"/>
+        <location filename="../NETFile.py" line="610"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Error de IO: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="359"/>
+        <location filename="../NETFile.py" line="360"/>
         <source>Importation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="341"/>
+        <location filename="../NETFile.py" line="342"/>
         <source>Please wait while importing the topology</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="609"/>
+        <location filename="../NETFile.py" line="610"/>
         <source>IOError</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="223"/>
+        <location filename="../Topology.py" line="227"/>
         <source>Please wait while copying the base flash</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2370,37 +2395,37 @@ para ver la pagina de configuracion.</translation>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="270"/>
+        <location filename="../Topology.py" line="274"/>
         <source>IOS image</source>
         <translation>Imagen IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="249"/>
+        <location filename="../Topology.py" line="253"/>
         <source>Please register at least one IOS image</source>
         <translation>Por favor registre como minimo una imagen de IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="287"/>
+        <location filename="../Topology.py" line="294"/>
         <source>Hypervisor</source>
         <translation>Hypervisor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="284"/>
+        <location filename="../Topology.py" line="291"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Por favor configure el camino para Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="478"/>
+        <location filename="../Topology.py" line="485"/>
         <source>Dynamips error</source>
         <translation>Error de Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="323"/>
+        <location filename="../Topology.py" line="330"/>
         <source>Connection lost</source>
         <translation>Perdida de conexion</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="393"/>
+        <location filename="../Topology.py" line="400"/>
         <source>Connection</source>
         <translation>Conexion</translation>
     </message>
@@ -2410,52 +2435,52 @@ para ver la pagina de configuracion.</translation>
         <translation>No se puede conectar con hypervisors externos en %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="260"/>
+        <location filename="../Topology.py" line="264"/>
         <source>No image for platform %s</source>
         <translation>No se encuentra imagen para la plataforma %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="271"/>
+        <location filename="../Topology.py" line="275"/>
         <source>Please choose an image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="393"/>
+        <location filename="../Topology.py" line="400"/>
         <source>You have to connect at least one router to the switch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="299"/>
+        <location filename="../Topology.py" line="306"/>
         <source>PIX image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="299"/>
+        <location filename="../Topology.py" line="306"/>
         <source>Please configure a default PIX image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="380"/>
+        <location filename="../Topology.py" line="387"/>
         <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="287"/>
+        <location filename="../Topology.py" line="294"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="210"/>
+        <location filename="../Topology.py" line="214"/>
         <source>Pemuwrapper error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="229"/>
+        <location filename="../Topology.py" line="233"/>
         <source>PIX device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="230"/>
+        <location filename="../Topology.py" line="234"/>
         <source>Cannot copy PIX base flash %s: %s</source>
         <translation type="unfinished"></translation>
     </message>

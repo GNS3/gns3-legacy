@@ -380,6 +380,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/platform", o.platform)
             c.set(basekey + "/hypervisor_port", o.hypervisor_port)
             c.set(basekey + "/hypervisor_host", o.hypervisor_host)
+            c.set(basekey + "/default_ram", o.default_ram)
             c.set(basekey + "/idlepc", o.idlepc)
             c.set(basekey + "/default",  o.default)
 

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Wed Mar 26 16:53:00 2008
+# Created: Thu Mar 27 15:55:03 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_IOSDialog(object):
     def setupUi(self, IOSDialog):
         IOSDialog.setObjectName("IOSDialog")
-        IOSDialog.resize(QtCore.QSize(QtCore.QRect(0,0,837,549).size()).expandedTo(IOSDialog.minimumSizeHint()))
+        IOSDialog.resize(QtCore.QSize(QtCore.QRect(0,0,865,506).size()).expandedTo(IOSDialog.minimumSizeHint()))
         IOSDialog.setWindowIcon(QtGui.QIcon(":/images/logo_icon.png"))
 
         self.vboxlayout = QtGui.QVBoxLayout(IOSDialog)
@@ -58,12 +58,12 @@ class Ui_IOSDialog(object):
 
         self.lineEditIOSImage = QtGui.QLineEdit(self.groupBox)
         self.lineEditIOSImage.setObjectName("lineEditIOSImage")
-        self.gridlayout1.addWidget(self.lineEditIOSImage,0,1,1,1)
+        self.gridlayout1.addWidget(self.lineEditIOSImage,0,1,1,2)
 
         self.pushButtonSelectIOSImage = QtGui.QPushButton(self.groupBox)
         self.pushButtonSelectIOSImage.setMaximumSize(QtCore.QSize(31,27))
         self.pushButtonSelectIOSImage.setObjectName("pushButtonSelectIOSImage")
-        self.gridlayout1.addWidget(self.pushButtonSelectIOSImage,0,2,1,1)
+        self.gridlayout1.addWidget(self.pushButtonSelectIOSImage,0,3,1,1)
 
         self.label_2 = QtGui.QLabel(self.groupBox)
         self.label_2.setObjectName("label_2")
@@ -77,7 +77,7 @@ class Ui_IOSDialog(object):
         sizePolicy.setHeightForWidth(self.comboBoxPlatform.sizePolicy().hasHeightForWidth())
         self.comboBoxPlatform.setSizePolicy(sizePolicy)
         self.comboBoxPlatform.setObjectName("comboBoxPlatform")
-        self.gridlayout1.addWidget(self.comboBoxPlatform,1,1,1,2)
+        self.gridlayout1.addWidget(self.comboBoxPlatform,1,1,1,3)
 
         self.label_6 = QtGui.QLabel(self.groupBox)
         self.label_6.setObjectName("label_6")
@@ -91,7 +91,7 @@ class Ui_IOSDialog(object):
         sizePolicy.setHeightForWidth(self.comboBoxChassis.sizePolicy().hasHeightForWidth())
         self.comboBoxChassis.setSizePolicy(sizePolicy)
         self.comboBoxChassis.setObjectName("comboBoxChassis")
-        self.gridlayout1.addWidget(self.comboBoxChassis,2,1,1,2)
+        self.gridlayout1.addWidget(self.comboBoxChassis,2,1,1,3)
 
         self.label_12 = QtGui.QLabel(self.groupBox)
         self.label_12.setObjectName("label_12")
@@ -99,12 +99,27 @@ class Ui_IOSDialog(object):
 
         self.lineEditIdlePC = QtGui.QLineEdit(self.groupBox)
         self.lineEditIdlePC.setObjectName("lineEditIdlePC")
-        self.gridlayout1.addWidget(self.lineEditIdlePC,3,1,1,2)
+        self.gridlayout1.addWidget(self.lineEditIdlePC,3,1,1,3)
+
+        self.label_9 = QtGui.QLabel(self.groupBox)
+        self.label_9.setObjectName("label_9")
+        self.gridlayout1.addWidget(self.label_9,4,0,1,1)
+
+        self.spinBoxDefaultRAM = QtGui.QSpinBox(self.groupBox)
+        self.spinBoxDefaultRAM.setMinimum(0)
+        self.spinBoxDefaultRAM.setMaximum(4096)
+        self.spinBoxDefaultRAM.setSingleStep(16)
+        self.spinBoxDefaultRAM.setObjectName("spinBoxDefaultRAM")
+        self.gridlayout1.addWidget(self.spinBoxDefaultRAM,4,1,1,1)
+
+        self.labelCheckRAM = QtGui.QLabel(self.groupBox)
+        self.labelCheckRAM.setObjectName("labelCheckRAM")
+        self.gridlayout1.addWidget(self.labelCheckRAM,4,2,1,2)
 
         self.checkBoxDefaultImage = QtGui.QCheckBox(self.groupBox)
         self.checkBoxDefaultImage.setChecked(True)
         self.checkBoxDefaultImage.setObjectName("checkBoxDefaultImage")
-        self.gridlayout1.addWidget(self.checkBoxDefaultImage,4,0,1,2)
+        self.gridlayout1.addWidget(self.checkBoxDefaultImage,5,0,1,3)
         self.gridlayout.addWidget(self.groupBox,1,0,1,1)
 
         self.groupBox_2 = QtGui.QGroupBox(self.tab_1)
@@ -302,6 +317,9 @@ class Ui_IOSDialog(object):
         self.label_2.setText(QtGui.QApplication.translate("IOSDialog", "Platform:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_6.setText(QtGui.QApplication.translate("IOSDialog", "Model:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_12.setText(QtGui.QApplication.translate("IOSDialog", "IDLE PC:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_9.setText(QtGui.QApplication.translate("IOSDialog", "Default RAM:", None, QtGui.QApplication.UnicodeUTF8))
+        self.spinBoxDefaultRAM.setSuffix(QtGui.QApplication.translate("IOSDialog", " MB", None, QtGui.QApplication.UnicodeUTF8))
+        self.labelCheckRAM.setText(QtGui.QApplication.translate("IOSDialog", "<a href=\"http://www.gns3.net/\">Check for minimum RAM requirement</a>", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxDefaultImage.setText(QtGui.QApplication.translate("IOSDialog", "Default image for this platform", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setTitle(QtGui.QApplication.translate("IOSDialog", "Hypervisors", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxIntegratedHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "Use the hypervisor manager", None, QtGui.QApplication.UnicodeUTF8))

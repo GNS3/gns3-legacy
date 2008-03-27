@@ -160,6 +160,10 @@ class Topology(QtGui.QGraphicsScene):
 
         debug("Set image " + image_conf.filename)
         node.set_image(image_conf.filename, image_conf.chassis)
+        if image_conf.default_ram:
+            # force default ram
+            node.default_ram = 0
+            node.set_int_option('ram', image_conf.default_ram)
         if image_conf.idlepc:
             debug("Set idlepc " + image_conf.idlepc)
             node.set_string_option('idlepc', image_conf.idlepc)
@@ -278,6 +282,9 @@ class Topology(QtGui.QGraphicsScene):
 
                 image_conf = globals.GApp.iosimages[image_to_use]
                 debug("Use image: " + image_to_use)
+                if image_conf.default_ram:
+                    debug("Set default RAM: " + str(image_conf.default_ram))
+                    node.default_ram = image_conf.default_ram
                 if image_conf.hypervisor_host == '':
                     # no hypervisor selected, allocate a new hypervisor for the node
                     if globals.GApp.systconf['dynamips'].path == '':

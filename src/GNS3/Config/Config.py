@@ -177,6 +177,7 @@ class GNS_Conf(object):
             conf.platform = str(c.get(cgroup + "/platform", ''))
             conf.chassis = str(c.get(cgroup + "/chassis", ''))
             conf.idlepc = str(c.get(cgroup + "/idlepc", ''))
+            conf.default_ram = int(c.get(cgroup + "/default_ram", 0))
             conf.hypervisor_host = c.get(cgroup + "/hypervisor_host",  unicode(''))
             conf.hypervisor_port = int(c.get(cgroup + "/hypervisor_port",  0))
             conf.default =  c.value(cgroup + "/default", QtCore.QVariant(False)).toBool()

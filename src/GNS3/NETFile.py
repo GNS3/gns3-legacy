@@ -168,6 +168,7 @@ class NETFile(object):
         conf_image.chassis = device.model_string
         if device.idlepc:
             conf_image.idlepc = device.idlepc
+        conf_image.default_ram = device.ram
         conf_image.hypervisor_port = device.dynamips.port
         conf_image.default = False
         if device.dynamips.host == 'localhost' and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:

@@ -38,6 +38,15 @@ PLATFORMS = {
              'c7200': ['7200']
              }
 
+DEFAULT_RAM = {
+                    'c1700': 64,
+                    'c2600': 64,
+                    'c2691': 128,
+                    'c3600': 128,
+                    'c3700': 128,
+                    'c7200': 256
+                    }
+
 class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
     """ IOSDialog class
         IOS images and hypervisors management
@@ -63,7 +72,8 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         self.connect(self.treeWidgetIOSimages,  QtCore.SIGNAL('itemActivated(QTreeWidgetItem *, int)'),  self.slotIOSSelected)
         self.connect(self.treeWidgetHypervisor, QtCore.SIGNAL('itemSelectionChanged()'),  self.slotHypervisorSelectionChanged)
         self.connect(self.treeWidgetHypervisor,  QtCore.SIGNAL('itemActivated(QTreeWidgetItem *, int)'),  self.slotHypervisorSelected)
-
+        self.connect(self.labelCheckRAM,  QtCore.SIGNAL('linkActivated(const QString &)'), self.slotCheckRAMrequirement)
+        
         # insert known platforms
         self.comboBoxPlatform.insertItems(0, PLATFORMS.keys())
 
@@ -162,7 +172,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             path = path[0]
             # test if we can open it
             if not testOpenFile(path):
-                QtGui.QMessageBox.critical(self, 'IOS Configuration', unicode(translate("IOSDialog", "Can't open file: %s")) % path)
+                QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), unicode(translate("IOSDialog", "Can't open file: %s")) % path)
                 return
 
             self.lineEditIOSImage.clear()
@@ -177,6 +187,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 index = self.comboBoxChassis.findText('2621')
                 if index != -1:
                     self.comboBoxChassis.setCurrentIndex(index)
+                self.spinBoxDefaultRAM.setValue(64)
                 return
             if (platform != None):
                 for platformname in PLATFORMS.keys():
@@ -189,6 +200,8 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                             index = self.comboBoxChassis.findText(chassis)
                             if index != -1:
                                 self.comboBoxChassis.setCurrentIndex(index)
+                            if DEFAULT_RAM.has_key(platformname):
+                                self.spinBoxDefaultRAM.setValue(DEFAULT_RAM[platformname])
                             break
 
     def slotSaveIOS(self):
@@ -202,7 +215,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         imagename = imagename
         idlepc = str(self.lineEditIdlePC.text()).strip()
         if idlepc and not re.search(r"""^0x[0-9a-fA-F]{8}$""", idlepc):
-            QtGui.QMessageBox.critical(self, 'IOS Configuration', translate("IOSDialog", "IDLE PC not valid (format required: 0xhhhhhhhh)"))
+            QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "IDLE PC not valid (format required: 0xhhhhhhhh)"))
             return
         hypervisor_host = unicode('')
         hypervisor_port = 0
@@ -211,7 +224,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             # external hypervisor, don't use the hypervisor manager
             items = self.listWidgetHypervisors.selectedItems()
             if len(items) == 0:
-                QtGui.QMessageBox.warning(self, 'IOS Configuration', translate("IOSDialog", "No hypervisor selected, use the local hypervisor"))
+                QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "No hypervisor selected, use the local hypervisor"))
                 self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
                 imagekey = 'localhost' + ':' + imagename
             else:
@@ -251,13 +264,18 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         conf.idlepc = idlepc
         conf.hypervisor_host = hypervisor_host
         conf.hypervisor_port = int(hypervisor_port)
+        default_ram = self.spinBoxDefaultRAM.value()
+        if default_ram == 0 and DEFAULT_RAM.has_key(conf.platform):
+            conf.default_ram = DEFAULT_RAM[conf.platform]
+        else:
+            conf.default_ram = default_ram
 
         default_platform = True
         if self.checkBoxDefaultImage.checkState() == QtCore.Qt.Checked:
             for image in globals.GApp.iosimages:
                 image_conf = globals.GApp.iosimages[image]
                 if imagekey !=  image and image_conf.platform == conf.platform and image_conf.default:
-                    QtGui.QMessageBox.warning(self, 'IOS Configuration', translate("IOSDialog", "There is already a default image for this platform"))
+                    QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "There is already a default image for this platform"))
                     self.checkBoxDefaultImage.setCheckState(QtCore.Qt.Unchecked)
                     default_platform = False
         else:
@@ -313,6 +331,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 index = self.comboBoxChassis.findText(conf.chassis, QtCore.Qt.MatchFixedString)
                 self.comboBoxChassis.setCurrentIndex(index)
                 self.lineEditIdlePC.setText(conf.idlepc)
+                self.spinBoxDefaultRAM.setValue(conf.default_ram)
                 if conf.default == True:
                     self.checkBoxDefaultImage.setCheckState(QtCore.Qt.Checked)
                 else:
@@ -325,6 +344,20 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                         self.listWidgetHypervisors.setCurrentItem(items[0])
                 else:
                     self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
+
+    def slotCheckRAMrequirement(self, link):
+        """ Check for minimum RAM requirement
+        """
+
+        image_file = str(self.lineEditIOSImage.text())
+        if not image_file:
+            QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "Image file box is empty"))
+            return
+        ios_image = os.path.basename(image_file)
+        ios_image = ios_image.replace(".unzipped", "")
+        ios_image = ios_image.replace(".extracted", "")
+        url = link + "check_ios_ram_requirement.php?image=" + ios_image
+        QtGui.QDesktopServices.openUrl(QtCore.QUrl(url))
 
 ############################## Hypervisors #################################
 

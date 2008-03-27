@@ -28,6 +28,7 @@ conf_iosImage_defaults = {
     'platform': '',
     'chassis': '',
     'idlepc': '',
+    'default_ram': 0,
     'hypervisor_host': '',
     'hypervisor_port': 7200,
     'default': False
@@ -39,6 +40,7 @@ conf_iosImage_types = {
     'platform': str,
     'chassis': str,
     'idlepc': str,
+    'default_ram': int, 
     'hypervisor_host': unicode,
     'hypervisor_port': int,
     'default': bool
