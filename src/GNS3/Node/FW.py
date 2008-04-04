@@ -90,6 +90,7 @@ class FW(AbstractNode, FWDefaults):
 
         self.hostname = hostname
         self.f = 'FW ' + self.hostname
+        self.updateToolTips()
 
     def get_running_config_name(self):
         """ Return node name as stored in the running config

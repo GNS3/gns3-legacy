@@ -24,7 +24,7 @@ import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Topology import Topology
-from GNS3.Utils import translate
+from GNS3.Utils import translate, debug
 from Annotation import Annotation
 from GNS3.NodeConfigurator import NodeConfigurator
 from GNS3.Globals.Symbols import SYMBOLS
@@ -240,7 +240,8 @@ class Scene(QtGui.QGraphicsView):
             (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Scene", "IDLE PC"),
                                                         translate("Scene", "Potentially better idlepc values marked with '*'"), options, 0, False)
             if ok:
-                index = int(selection[2:].split(':')[0])
+                selection = str(selection).split(':')[0].strip('* ')
+                index = int(selection)
                 globals.GApp.dynagen.devices[router.hostname].idleprop(lib.IDLEPROPSET, idles[index])
                 QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("Scene", "IDLE PC"),
                                               unicode(translate("Scene", "Applied idlepc value %s to %s")) % (idles[index], router.hostname))
@@ -249,6 +250,7 @@ class Scene(QtGui.QGraphicsView):
                         dyn_router = node.get_dynagen_device()
                         if globals.GApp.iosimages.has_key(dyn_router.dynamips.host + ':' + dyn_router.image):
                             image = globals.GApp.iosimages[dyn_router.dynamips.host + ':' + dyn_router.image]
+                            debug("Apply IDLE PC " + idles[index] + " for image " + image.filename)
                             image.idlepc =  idles[index]
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, translate("Scene", "Dynamips error"),  unicode(msg))

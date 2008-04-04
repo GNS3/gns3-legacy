@@ -79,6 +79,7 @@ class ETHSW(AbstractNode):
 
         self.hostname = hostname
         self.e = 'ETHSW ' + self.hostname
+        self.updateToolTips()
 
     def get_running_config_name(self):
         """ Return node name as stored in the running config

@@ -140,6 +140,7 @@ class IOSRouter(AbstractNode):
 
         self.hostname = hostname
         self.r = 'ROUTER ' + self.hostname
+        self.updateToolTips()
 
     def get_running_config_name(self):
         """ Return node name as stored in the running config

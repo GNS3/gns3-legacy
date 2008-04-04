@@ -231,7 +231,7 @@ class Topology(QtGui.QGraphicsScene):
             except (OSError, IOError), e:
                 splash = None
                 QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX device"), 
-                                          unicode(translate("Topology", "Cannot copy PIX base flash %s: %s")) % (e.strerror))
+                                          unicode(translate("Topology", "Cannot copy PIX base flash %s: %s")) % (globals.GApp.systconf['pemu'].default_base_flash, e.strerror))
                 
         # set defaults
         node.set_hypervisor(self.dynagen.dynamips[pemu_name])

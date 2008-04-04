@@ -169,14 +169,14 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         path = fileBrowser(translate("IOSDialog", "Select an IOS image"),  directory=globals.GApp.systconf['general'].ios_path).getFile()
 
         if path != None and path[0] != '':
-            path = path[0]
+            path = os.path.normpath(path[0])
             # test if we can open it
             if not testOpenFile(path):
                 QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), unicode(translate("IOSDialog", "Can't open file: %s")) % path)
                 return
 
             self.lineEditIOSImage.clear()
-            self.lineEditIOSImage.setText(os.path.normpath(path))
+            self.lineEditIOSImage.setText(path)
             # try to guess the platform
             platform = self._getIOSplatform(os.path.basename(path))
             if platform == '2600':
@@ -209,10 +209,6 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """
 
         imagename = unicode(self.lineEditIOSImage.text())
-        if not imagename:
-            return
-
-        imagename = imagename
         idlepc = str(self.lineEditIdlePC.text()).strip()
         if idlepc and not re.search(r"""^0x[0-9a-fA-F]{8}$""", idlepc):
             QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "IDLE PC not valid (format required: 0xhhhhhhhh)"))

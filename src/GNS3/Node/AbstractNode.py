@@ -80,6 +80,15 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 
         return (self.state)
 
+    def updateToolTips(self):
+        """ Update node and child links tooltip
+        """
+            
+        self.setCustomToolTip()
+        for edge in self.__edgeList:
+            edge.setCustomToolTip()
+        globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
+        
     def changeHostname(self):
         """ Called to change the hostname
         """
@@ -99,12 +108,8 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 # force to redisplay the hostname
                 self.removeHostname()
                 self.showHostname()
-                # Update node and child links tooltip
-                self.setCustomToolTip()
-                for edge in self.__edgeList:
-                    edge.setCustomToolTip()
-            globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
-            
+            self.updateToolTips()
+
     def changeConsolePort(self):
         """ Called to change the console port
         """
