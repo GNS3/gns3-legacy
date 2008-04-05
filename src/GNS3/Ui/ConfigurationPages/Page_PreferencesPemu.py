@@ -139,7 +139,7 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         fb = fileBrowser(translate('UiConfig_PreferencesPemu', 'Local Pemu working directory'))
         path = fb.getDir()
 
-        if path is not None:
+        if path:
             self.lineEditPemuwrapperWorkdir.setText(os.path.normpath(path))
 
     def slotSelectBaseFlash(self):

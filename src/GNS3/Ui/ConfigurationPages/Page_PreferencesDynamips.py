@@ -20,7 +20,7 @@
 #
 
 import sys, os
-from PyQt4 import QtGui, QtCore
+from PyQt4 import QtGui, QtCore, QtNetwork
 from GNS3.Ui.ConfigurationPages.Form_PreferencesDynamips import Ui_PreferencesDynamips
 from GNS3.Config.Objects import systemDynamipsConf
 from GNS3.HypervisorManager import HypervisorManager
@@ -37,7 +37,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         self.connect(self.dynamips_path_browser, QtCore.SIGNAL('clicked()'), self.__setDynamipsPath)
         self.connect(self.dynamips_workdir_browser, QtCore.SIGNAL('clicked()'), self.__setDynamipsWorkdir)
         self.connect(self.pushButtonTestDynamips, QtCore.SIGNAL('clicked()'),self.__testDynamips)
-            
+        self.comboBoxBinding.addItems(['localhost', QtNetwork.QHostInfo.localHostName()] + map(lambda addr: addr.toString(), QtNetwork.QNetworkInterface.allAddresses()))
         self.loadConf()
 
     def loadConf(self):
@@ -94,6 +94,10 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.checkBoxMmap.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxMmap.setCheckState(QtCore.Qt.Unchecked)
+            
+        index = self.comboBoxBinding.findText(self.conf.HypervisorManager_binding)
+        if index != -1:
+            self.comboBoxBinding.setCurrentIndex(index)
 
     def saveConf(self):
         """ Save widget settings to syst. config
@@ -126,7 +130,17 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.conf.mmap = True
         else:
             self.conf.mmap = False
-            
+        
+        # update IOS images used by the hypervisor manager
+        binding = unicode(self.comboBoxBinding.currentText())
+        if self.conf.HypervisorManager_binding != binding:
+            self.conf.HypervisorManager_binding = binding
+            for name in globals.GApp.iosimages.keys():
+                image_conf = globals.GApp.iosimages[name]
+                if image_conf.hypervisor_host == '':
+                    del globals.GApp.iosimages[name]
+                    globals.GApp.iosimages[binding + ':' + image_conf.filename] = image_conf
+
         globals.GApp.systconf['dynamips'] = self.conf
         ConfDB().sync()
 
@@ -151,7 +165,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         fb = fileBrowser(translate('UiConfig_PreferencesDynamips', 'Local hypervisor working directory'))
         path = fb.getDir()
 
-        if path is not None:
+        if path:
             self.dynamips_workdir.setText(os.path.normpath(path))
 
     def __testDynamips(self):

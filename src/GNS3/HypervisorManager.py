@@ -151,7 +151,7 @@ class HypervisorManager(object):
                 if isinstance(node, IOSRouter):
                     hypervisor['load'] += node.default_ram
                 debug('Hypervisor manager: allocates an already started hypervisor (port: ' + str(hypervisor['port']) + ')')
-                dynamips_hypervisor = globals.GApp.dynagen.dynamips['localhost:' + str(hypervisor['port'])]
+                dynamips_hypervisor = globals.GApp.dynagen.dynamips[globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + str(hypervisor['port'])]
                 node.set_hypervisor(dynamips_hypervisor)
                 return hypervisor
 
@@ -169,7 +169,7 @@ class HypervisorManager(object):
             globals.GApp.dynagen.defaults_config['workingdir'] = globals.GApp.workspace.projectWorkdir
         elif self.hypervisor_wd:
             globals.GApp.dynagen.defaults_config['workingdir'] = self.hypervisor_wd
-        dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor('localhost', hypervisor['port'])
+        dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor(globals.GApp.systconf['dynamips'].HypervisorManager_binding, hypervisor['port'])
         debug("Hypervisor manager: create a new hypervisor on port " + str(hypervisor['port']))
         globals.GApp.dynagen.update_running_config()
         dynamips_hypervisor.configchange = True

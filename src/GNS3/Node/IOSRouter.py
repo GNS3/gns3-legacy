@@ -128,7 +128,8 @@ class IOSRouter(AbstractNode):
                 # don't forget to delete this router in Dynamips
                 self.router.delete()
                 del self.dynagen.devices[self.hostname]
-                self.hypervisor.devices.remove(self.router)
+                if self.router in self.hypervisor.devices:
+                    self.hypervisor.devices.remove(self.router)
                 self.dynagen.update_running_config()
             except:
                 pass

@@ -77,6 +77,7 @@ conf_systemDynamips_defaults = {
     'memory_limit': 512,
     'udp_incrementation': 100,
     'import_use_HypervisorManager': True,
+    'HypervisorManager_binding': u'localhost', 
 }
 
 conf_systemDynamips_types = {
@@ -92,6 +93,7 @@ conf_systemDynamips_types = {
     'memory_limit': int,
     'udp_incrementation': int,
     'import_use_HypervisorManager': bool,
+    'HypervisorManager_binding': unicode, 
 }
 
 conf_systemGeneral_defaults = {

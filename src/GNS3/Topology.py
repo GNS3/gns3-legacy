@@ -343,12 +343,13 @@ class Topology(QtGui.QGraphicsScene):
         if isinstance(node, IOSRouter):
             try:
                 router = node.get_dynagen_device()
-                if globals.GApp.iosimages.has_key('localhost:' + router.image):
-                    image_conf = globals.GApp.iosimages['localhost:' + router.image]
+                if globals.GApp.iosimages.has_key(globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + router.image):
+                    image_conf = globals.GApp.iosimages[globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + router.image]
                     if globals.GApp.HypervisorManager and image_conf.hypervisor_host == '':
                         globals.GApp.HypervisorManager.unallocateHypervisor(node, router.dynamips.port)
             except:
                 pass
+        #TODO: remove unused hypervisors from startup-config
         self.removeItem(node)
         del self.__nodes[id]
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()

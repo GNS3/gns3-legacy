@@ -67,7 +67,8 @@ class FRSW(AbstractNode):
             try:
                 self.frsw.delete()
                 del self.dynagen.devices[self.hostname]
-                self.hypervisor.devices.remove(self.frsw)
+                if self.frsw in self.hypervisor.devices:
+                    self.hypervisor.devices.remove(self.frsw)
                 self.dynagen.update_running_config()
             except:
                 pass

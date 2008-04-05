@@ -387,8 +387,8 @@ Examples:
             return
 
          # The last item is the directory (or should be anyway)
-        directory = items.pop()
-        
+        directory = items.pop().strip('"')
+
         if not os.access(directory, os.F_OK):
             try:
                 os.mkdir(directory)
@@ -406,7 +406,7 @@ Examples:
                 try:
                     devices.append(self.dynagen.devices[device])
                 except KeyError:
-                    error('unknown device: ' + device)
+                    print 'unknown device: ' + device
                     return
 
         save = globals.GApp.workspace.projectConfigs

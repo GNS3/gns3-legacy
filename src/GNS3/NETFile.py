@@ -179,9 +179,9 @@ class NETFile(object):
         conf_image.default_ram = device.ram
         conf_image.hypervisor_port = device.dynamips.port
         conf_image.default = False
-        if device.dynamips.host == 'localhost' and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
+        if device.dynamips.host == globals.GApp.systconf['dynamips'].HypervisorManager_binding and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
             conf_image.hypervisor_host = unicode('')
-            globals.GApp.iosimages['localhost' + ':' + device.image] = conf_image
+            globals.GApp.iosimages[globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + device.image] = conf_image
         else:
             # this is an external hypervisor
             conf_image.hypervisor_host = unicode(device.dynamips.host)
@@ -201,6 +201,7 @@ class NETFile(object):
         """
 
         if isinstance(device, lib.Router):
+            #FIXME: router on remote hypervisor
             if globals.GApp.HypervisorManager and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
                 hypervisor = globals.GApp.HypervisorManager.getHypervisor(device.dynamips.port)
                 hypervisor['load'] += node.default_ram
@@ -596,6 +597,9 @@ class NETFile(object):
         try:
             config = base64.decodestring(device.config_b64)
             config = config.replace('\r', "")
+            # Write out the config to a file
+            file_path = os.path.normpath(globals.GApp.workspace.projectConfigs) + os.sep + device.name + '.cfg'
+            print unicode(translate("NETFile", "Exporting %s configuration to %s")) % (device.name, file_path)
         except lib.DynamipsError, msg:
             print unicode(device.name + ': ' + translate("NETFile", "Dynamips error") + ': ') + unicode(msg)
             return
@@ -605,9 +609,6 @@ class NETFile(object):
         except:
             error('Unknown error exporting config for ' + device.name)
             return
-        # Write out the config to a file
-        file_path = os.path.normpath(globals.GApp.workspace.projectConfigs) + os.sep + device.name + '.cfg'
-        print unicode(translate("NETFile", "Exporting %s configuration to %s")) % (device.name, file_path)
         try:
             f = open(file_path, 'w')
             f.write(config)
@@ -617,6 +618,13 @@ class NETFile(object):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 
                                       unicode(device.name) + ': ' + translate("NETFile", "IOError"), unicode(translate("NETFile", "%s: IO Error: %s")) % (file_path, unicode(e)))
             return
+        # update local config of the router
+        for node in globals.GApp.topology.nodes.itervalues():
+            if isinstance(node, IOSRouter) and node.get_dynagen_device().name == device.name:
+                config = node.get_config()
+                config['cnfg'] = file_path
+                node.set_config(config)
+                return
 
     def export_net_file(self, path):
         """ Export a .net file

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesDynamips.ui'
 #
-# Created: Thu Mar 27 15:55:05 2008
+# Created: Sat Apr  5 14:41:42 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -176,10 +176,19 @@ class Ui_PreferencesDynamips(object):
         self.spinBoxUDPIncrementation.setObjectName("spinBoxUDPIncrementation")
         self.gridlayout1.addWidget(self.spinBoxUDPIncrementation,3,0,1,1)
 
+        self.label_3 = QtGui.QLabel(self.groupBox_2)
+        self.label_3.setObjectName("label_3")
+        self.gridlayout1.addWidget(self.label_3,4,0,1,1)
+
+        self.comboBoxBinding = QtGui.QComboBox(self.groupBox_2)
+        self.comboBoxBinding.setSizeAdjustPolicy(QtGui.QComboBox.AdjustToMinimumContentsLength)
+        self.comboBoxBinding.setObjectName("comboBoxBinding")
+        self.gridlayout1.addWidget(self.comboBoxBinding,5,0,1,1)
+
         self.checkBoxHypervisorManagerImport = QtGui.QCheckBox(self.groupBox_2)
         self.checkBoxHypervisorManagerImport.setChecked(True)
         self.checkBoxHypervisorManagerImport.setObjectName("checkBoxHypervisorManagerImport")
-        self.gridlayout1.addWidget(self.checkBoxHypervisorManagerImport,4,0,1,1)
+        self.gridlayout1.addWidget(self.checkBoxHypervisorManagerImport,6,0,1,1)
         self.vboxlayout2.addWidget(self.groupBox_2)
 
         spacerItem1 = QtGui.QSpacerItem(390,101,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
@@ -210,6 +219,7 @@ class Ui_PreferencesDynamips(object):
         self.groupBox_2.setTitle(QtGui.QApplication.translate("PreferencesDynamips", "Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("PreferencesDynamips", "Memory usage limit per hypervisor:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_8.setText(QtGui.QApplication.translate("PreferencesDynamips", "UDP incrementation:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_3.setText(QtGui.QApplication.translate("PreferencesDynamips", "Bind the Hypervisor Manager with:", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxHypervisorManagerImport.setText(QtGui.QApplication.translate("PreferencesDynamips", "Use Hypervisor Manager when importing", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QtGui.QApplication.translate("PreferencesDynamips", "Hypervisor Manager", None, QtGui.QApplication.UnicodeUTF8))
 

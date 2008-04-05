@@ -21,7 +21,7 @@
 
 import os, re
 import GNS3.Globals as globals
-from PyQt4 import QtCore, QtGui
+from PyQt4 import QtCore, QtGui, QtNetwork
 from GNS3.Ui.Form_IOSDialog import Ui_IOSDialog
 from GNS3.Config.Config import ConfDB
 from GNS3.Utils import fileBrowser, translate, testOpenFile
@@ -222,7 +222,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             if len(items) == 0:
                 QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "No hypervisor selected, use the local hypervisor"))
                 self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
-                imagekey = 'localhost' + ':' + imagename
+                imagekey = globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + imagename
             else:
                 # get the selected hypervisor
                 selected_hypervisor = unicode(items[0].text())
@@ -232,7 +232,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 hypervisor_port = hypervisor.port
                 imagekey = hypervisor_host + ':' + imagename
         else:
-            imagekey = 'localhost' + ':' + imagename
+            imagekey = globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + imagename
 
         if globals.GApp.iosimages.has_key(imagekey):
             # update an already existing IOS image
@@ -372,7 +372,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """
 
         path = fileBrowser(translate("IOSDialog", "Select a working directory")).getDir()
-        if path != None:
+        if path:
             self.lineEditWorkingDir.clear()
             self.lineEditWorkingDir.setText(os.path.normpath(path))
 

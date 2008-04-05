@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Thu Mar 27 15:55:03 2008
+# Created: Sat Apr  5 14:41:41 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -329,7 +329,7 @@ class Ui_IOSDialog(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_1), QtGui.QApplication.translate("IOSDialog", "IOS Images", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_4.setTitle(QtGui.QApplication.translate("IOSDialog", "Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("IOSDialog", "Host:", None, QtGui.QApplication.UnicodeUTF8))
-        self.lineEditHost.setText(QtGui.QApplication.translate("IOSDialog", "localhost", None, QtGui.QApplication.UnicodeUTF8))
+        self.lineEditHost.setText(QtGui.QApplication.translate("IOSDialog", "127.0.0.1", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("IOSDialog", "Port:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_7.setText(QtGui.QApplication.translate("IOSDialog", "Base UDP:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_8.setText(QtGui.QApplication.translate("IOSDialog", "Base console:", None, QtGui.QApplication.UnicodeUTF8))

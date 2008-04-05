@@ -708,7 +708,7 @@ show run <device_name>
             print self.do_export.__doc__
             return
             # The last item is the directory (or should be anyway)
-        directory = items.pop()
+        directory = items.pop().strip('"')
 
         if '/all' in items:
             # Set devices to all the devices
@@ -787,7 +787,7 @@ show run <device_name>
             return
         items = getItems(args)
             # The last item is the directory (or should be anyway)
-        directory = items.pop()
+        directory = items.pop().strip('"')
 
         # Set the current directory to the one that contains our network file
         try:

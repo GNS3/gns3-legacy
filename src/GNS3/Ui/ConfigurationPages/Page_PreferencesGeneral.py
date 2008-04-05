@@ -143,7 +143,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         fb = fileBrowser(translate('UiConfig_PreferencesGeneral', 'Project Directory'))
         path = fb.getDir()
 
-        if path is not None:
+        if path:
             self.ProjectPath.setText(os.path.normpath(path))
         
     def __setIOSPath(self):
@@ -151,6 +151,6 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         fb = fileBrowser(translate('UiConfig_PreferencesGeneral', 'IOS Directory'))
         path = fb.getDir()
 
-        if path is not None:
+        if path:
             self.IOSPath.setText(os.path.normpath(path))
 

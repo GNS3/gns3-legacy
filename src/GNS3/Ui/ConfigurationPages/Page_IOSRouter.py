@@ -65,7 +65,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             config = os.path.normpath(path[0])
             self.lineEditStartupConfig.setText(config)
 
-    def loadConfig(self,  id,  config = None):
+    def loadConfig(self, id, config = None):
         """ Load the config
         """
         
@@ -175,6 +175,8 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         cnfg = unicode(self.lineEditStartupConfig.text())
         if cnfg:
             router_config['cnfg'] = cnfg
+#        else: #FIXME: reset config
+#            router_config['cnfg'] = ''
             
         mac = str(self.lineEditMAC.text())
         if mac and not re.search(r"""^([0-9a-fA-F]{2}[:-]){5}[0-9a-fA-F]{2}$""", mac):

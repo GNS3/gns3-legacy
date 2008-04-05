@@ -232,12 +232,6 @@ class Application(QApplication, Singleton):
         # which handle all this stuff.
         self.__scene = self.__mainWindow.graphicsView
 
-        # Creating default config
-        # and create old ConfDB() object
-        ConfDB()
-        GNS_Conf().IOS_images()
-        GNS_Conf().IOS_hypervisors()
-
         self.systconf['dynamips'] = systemDynamipsConf()
         confo = self.systconf['dynamips']
         confo.path = ConfDB().get('Dynamips/hypervisor_path', unicode(''))
@@ -250,6 +244,7 @@ class Application(QApplication, Singleton):
         confo.memory_limit =int(ConfDB().get("Dynamips/hypervisor_memory_usage_limit", 512))
         confo.udp_incrementation = int(ConfDB().get("Dynamips/hypervisor_udp_incrementation", 100))
         confo.import_use_HypervisorManager = ConfDB().value("Dynamips/hypervisor_manager_import", QVariant(True)).toBool()
+        confo.HypervisorManager_binding = ConfDB().get('Dynamips/hypervisor_manager_binding', unicode('localhost'))
 
         # Pemu config
         self.systconf['pemu'] = systemPemuConf()
@@ -285,6 +280,12 @@ class Application(QApplication, Singleton):
         if not sys.platform.startswith('win') and os.environ.has_key("HOME"):
             confo.project_path = confo.project_path.replace("$HOME", os.environ["HOME"])
             confo.ios_path = confo.ios_path.replace("$HOME", os.environ["HOME"])
+        
+        # Creating default config
+        # and create old ConfDB() object
+        ConfDB()
+        GNS_Conf().IOS_images()
+        GNS_Conf().IOS_hypervisors()
         
         # Now systGeneral settings are loaded, load the translator
         self.translator = Translator()
@@ -345,6 +346,7 @@ class Application(QApplication, Singleton):
         c.set('Dynamips/hypervisor_memory_usage_limit', confo.memory_limit)
         c.set('Dynamips/hypervisor_udp_incrementation', confo.udp_incrementation)
         c.set('Dynamips/hypervisor_manager_import', confo.import_use_HypervisorManager)
+        c.set('Dynamips/hypervisor_manager_binding', confo.HypervisorManager_binding)
 
         # Pemu config
         confo = self.systconf['pemu']

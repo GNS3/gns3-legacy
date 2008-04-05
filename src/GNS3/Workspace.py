@@ -205,7 +205,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         
         fb = fileBrowser(translate('Workspace', 'Directory to write startup-configs'))
         path = fb.getDir()
-        if path is not None:
+        if path:
             globals.GApp.workspace.projectConfigs = path
             net = netfile.NETFile()
             for device in globals.GApp.dynagen.devices.values():

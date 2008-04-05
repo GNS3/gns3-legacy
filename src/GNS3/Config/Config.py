@@ -167,7 +167,7 @@ class GNS_Conf(object):
                 continue
 
             if img_hyp_host == '':
-                img_ref = "localhost:" + img_filename
+                img_ref = globals.GApp.systconf['dynamips'].HypervisorManager_binding + ":" + img_filename
             else:
                 img_ref = img_hyp_host + ":" + img_filename
 

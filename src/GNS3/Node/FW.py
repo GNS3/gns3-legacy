@@ -78,7 +78,8 @@ class FW(AbstractNode, FWDefaults):
             try:
                 self.stopNode()
                 del self.dynagen.devices[self.hostname]
-                self.pemu.devices.remove(self.fw)
+                if self.fw in self.pemu.devices:
+                    self.pemu.devices.remove(self.fw)
                 self.dynagen.update_running_config()
             except:
                 pass

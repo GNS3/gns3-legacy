@@ -69,7 +69,8 @@ class ATMBR(AbstractNode):
             try:
                 self.atmbr.delete()
                 del self.dynagen.devices[self.hostname]
-                self.hypervisor.devices.remove(self.atmbr)
+                if self.atmbr in self.hypervisor.devices:
+                    self.hypervisor.devices.remove(self.atmbr)
                 self.dynagen.update_running_config()
             except:
                 pass

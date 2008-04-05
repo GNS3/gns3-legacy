@@ -88,5 +88,5 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
         fb = fileBrowser(translate('UiConfig_PreferencesCapture', 'Local capture working directory'))
         path = fb.getDir()
 
-        if path is not None:
+        if path:
             self.CaptureWorkingDirectory.setText(os.path.normpath(path))

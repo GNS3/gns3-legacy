@@ -67,7 +67,8 @@ class ETHSW(AbstractNode):
             try:
                 self.ethsw.delete()
                 del self.dynagen.devices[self.hostname]
-                self.hypervisor.devices.remove(self.ethsw)
+                if self.ethsw in self.hypervisor.devices:
+                    self.hypervisor.devices.remove(self.ethsw)
                 self.dynagen.update_running_config()
             except lib.DynamipsErrorHandled:
                 pass

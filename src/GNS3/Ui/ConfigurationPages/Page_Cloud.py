@@ -22,7 +22,7 @@
 import re, sys, string
 import subprocess as sub
 import GNS3.Globals as globals
-from PyQt4 import QtCore,  QtGui
+from PyQt4 import QtCore, QtGui, QtNetwork
 from Form_CloudPage import Ui_CloudPage
 
 class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
@@ -71,37 +71,13 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
             self.comboBoxLinuxEth.setEnabled(False)
             self.lineEditLinuxEth.setEnabled(False)
             self.pushButtonAddLinuxEth.setEnabled(False)
-        elif sys.platform.startswith('darwin'):
-            interfaces = self.getMACOSXInterfaces()
-            self.comboBoxLinuxEth.addItems(interfaces)
         else:
-            interfaces = self.getUnixInterfaces()
+            interfaces = map(lambda interface: interface.name(), QtNetwork.QNetworkInterface.allInterfaces())
             self.comboBoxLinuxEth.addItems(interfaces)
 
         self.comboBoxGenEth.setSizeAdjustPolicy(QtGui.QComboBox.AdjustToContents)
         self.comboBoxGenEth.addItems(interfaces)
 
-    def getUnixInterfaces(self):
-        """ Try to detect all available interfaces on Linux/Unix
-        """
-    
-        interfaces = []
-        fd = 0
-        try:
-            try:
-                fd = open('/proc/net/dev', 'r')
-                fd.readline()
-                for line in fd:
-                    match = re.search(r"""(\w+):.*""",  line)
-                    if match:
-                        interfaces.append(match.group(1))
-            except:
-                return []
-        finally:
-            if fd > 0:
-                fd.close()
-        return interfaces
-        
     def getWindowsInterfaces(self):
         """ Try to detect all available interfaces on Windows
         """
@@ -117,23 +93,6 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
                 match = re.search(r"""^rpcap://(\\Device\\NPF_{.*}).*""",  line.strip())
                 if match:
                     interfaces.append(match.group(0))
-        except:
-            return []
-        return interfaces
-        
-    def getMACOSXInterfaces(self):
-        """ Try to detect all available interfaces on Mac OS X
-        """
-
-        interfaces = []
-        try:
-            p = sub.Popen("ifconfig", stdout=sub.PIPE, stderr=sub.STDOUT)
-            outputlines = p.stdout.readlines()
-            p.wait()
-            for line in outputlines:
-                match = re.search("(^\w+[0-9]+:)", line.strip())
-                if match:
-                    interfaces.append(match.group(0)[:-1])
         except:
             return []
         return interfaces
