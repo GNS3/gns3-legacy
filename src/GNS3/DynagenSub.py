@@ -64,7 +64,7 @@ class DynagenSub(Dynagen):
             server = config[section]
             if ' ' in server.name:
                 (emulator, host) = server.name.split(' ')
-                if emulator == 'pemu' and globals.GApp.systconf['pemu'].enable_PemuManager:
+                if emulator == 'pemu' and (host == globals.GApp.systconf['pemu'].PemuManager_binding or host == 'localhost') and globals.GApp.systconf['pemu'].enable_PemuManager:
                     globals.GApp.PemuManager.startPemu()
             else:
                 server.host = server.name
@@ -77,7 +77,7 @@ class DynagenSub(Dynagen):
                     controlPort = 7200
 
                 # need to start hypervisors
-                if server.host == globals.GApp.systconf['dynamips'].HypervisorManager_binding and \
+                if (server.host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or server.host == 'localhost') and \
                     globals.GApp.HypervisorManager and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
                     debug("Start hypervisor on port: " + str(controlPort))
                     hypervisor = globals.GApp.HypervisorManager.startNewHypervisor(int(controlPort))

@@ -53,7 +53,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         """ Save project settings
         """
 
-        projectFile = str(self.ProjectPath.text())
+        projectFile = unicode(self.ProjectPath.text())
         if not projectFile:
             return (None, None, None)
         if projectFile[-4:] == '.net':

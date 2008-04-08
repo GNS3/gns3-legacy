@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesPemu.ui'
 #
-# Created: Sat Apr  5 14:41:42 2008
+# Created: Sat Apr  5 21:54:52 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_PreferencesPemu(object):
     def setupUi(self, PreferencesPemu):
         PreferencesPemu.setObjectName("PreferencesPemu")
-        PreferencesPemu.resize(QtCore.QSize(QtCore.QRect(0,0,425,436).size()).expandedTo(PreferencesPemu.minimumSizeHint()))
+        PreferencesPemu.resize(QtCore.QSize(QtCore.QRect(0,0,425,489).size()).expandedTo(PreferencesPemu.minimumSizeHint()))
 
         self.vboxlayout = QtGui.QVBoxLayout(PreferencesPemu)
         self.vboxlayout.setObjectName("vboxlayout")
@@ -25,47 +25,56 @@ class Ui_PreferencesPemu(object):
 
         self.label_3 = QtGui.QLabel(self.groupBox_2)
         self.label_3.setObjectName("label_3")
-        self.gridlayout.addWidget(self.label_3,0,0,1,3)
+        self.gridlayout.addWidget(self.label_3,0,0,1,4)
 
         self.lineEditPemuwrapperPath = QtGui.QLineEdit(self.groupBox_2)
         self.lineEditPemuwrapperPath.setObjectName("lineEditPemuwrapperPath")
-        self.gridlayout.addWidget(self.lineEditPemuwrapperPath,1,0,1,2)
+        self.gridlayout.addWidget(self.lineEditPemuwrapperPath,1,0,1,3)
 
         self.PemuwrapperPath_browser = QtGui.QToolButton(self.groupBox_2)
         self.PemuwrapperPath_browser.setToolButtonStyle(QtCore.Qt.ToolButtonTextOnly)
         self.PemuwrapperPath_browser.setObjectName("PemuwrapperPath_browser")
-        self.gridlayout.addWidget(self.PemuwrapperPath_browser,1,2,1,1)
+        self.gridlayout.addWidget(self.PemuwrapperPath_browser,1,3,1,1)
 
         self.label_2 = QtGui.QLabel(self.groupBox_2)
         self.label_2.setObjectName("label_2")
-        self.gridlayout.addWidget(self.label_2,2,0,1,2)
+        self.gridlayout.addWidget(self.label_2,2,0,1,3)
 
         self.lineEditPemuwrapperWorkdir = QtGui.QLineEdit(self.groupBox_2)
         self.lineEditPemuwrapperWorkdir.setObjectName("lineEditPemuwrapperWorkdir")
-        self.gridlayout.addWidget(self.lineEditPemuwrapperWorkdir,3,0,1,2)
+        self.gridlayout.addWidget(self.lineEditPemuwrapperWorkdir,3,0,1,3)
 
         self.PemuwrapperWorkdir_browser = QtGui.QToolButton(self.groupBox_2)
         self.PemuwrapperWorkdir_browser.setObjectName("PemuwrapperWorkdir_browser")
-        self.gridlayout.addWidget(self.PemuwrapperWorkdir_browser,3,2,1,1)
+        self.gridlayout.addWidget(self.PemuwrapperWorkdir_browser,3,3,1,1)
+
+        self.label_6 = QtGui.QLabel(self.groupBox_2)
+        self.label_6.setObjectName("label_6")
+        self.gridlayout.addWidget(self.label_6,4,0,1,1)
+
+        self.comboBoxBinding = QtGui.QComboBox(self.groupBox_2)
+        self.comboBoxBinding.setSizeAdjustPolicy(QtGui.QComboBox.AdjustToMinimumContentsLength)
+        self.comboBoxBinding.setObjectName("comboBoxBinding")
+        self.gridlayout.addWidget(self.comboBoxBinding,5,0,1,4)
 
         self.checkBoxEnablePemuManager = QtGui.QCheckBox(self.groupBox_2)
         self.checkBoxEnablePemuManager.setChecked(True)
         self.checkBoxEnablePemuManager.setObjectName("checkBoxEnablePemuManager")
-        self.gridlayout.addWidget(self.checkBoxEnablePemuManager,4,0,1,3)
+        self.gridlayout.addWidget(self.checkBoxEnablePemuManager,6,0,1,4)
 
         self.checkBoxPemuManagerImport = QtGui.QCheckBox(self.groupBox_2)
         self.checkBoxPemuManagerImport.setChecked(True)
         self.checkBoxPemuManagerImport.setObjectName("checkBoxPemuManagerImport")
-        self.gridlayout.addWidget(self.checkBoxPemuManagerImport,5,0,1,3)
+        self.gridlayout.addWidget(self.checkBoxPemuManagerImport,7,0,1,4)
 
         self.label_5 = QtGui.QLabel(self.groupBox_2)
         self.label_5.setEnabled(True)
         self.label_5.setObjectName("label_5")
-        self.gridlayout.addWidget(self.label_5,6,0,1,1)
+        self.gridlayout.addWidget(self.label_5,8,0,1,2)
 
         self.lineEditHostExternalPemu = QtGui.QLineEdit(self.groupBox_2)
         self.lineEditHostExternalPemu.setObjectName("lineEditHostExternalPemu")
-        self.gridlayout.addWidget(self.lineEditHostExternalPemu,6,1,1,2)
+        self.gridlayout.addWidget(self.lineEditHostExternalPemu,8,2,1,2)
         self.vboxlayout.addWidget(self.groupBox_2)
 
         self.groupBox = QtGui.QGroupBox(PreferencesPemu)
@@ -143,6 +152,7 @@ class Ui_PreferencesPemu(object):
         self.PemuwrapperPath_browser.setText(QtGui.QApplication.translate("PreferencesPemu", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("PreferencesPemu", "Working directory:", None, QtGui.QApplication.UnicodeUTF8))
         self.PemuwrapperWorkdir_browser.setText(QtGui.QApplication.translate("PreferencesPemu", "...", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_6.setText(QtGui.QApplication.translate("PreferencesPemu", "Bind Pemu Manager with:", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxEnablePemuManager.setText(QtGui.QApplication.translate("PreferencesPemu", "Enable Pemu Manager", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxPemuManagerImport.setText(QtGui.QApplication.translate("PreferencesPemu", "Use Pemu Manager when importing", None, QtGui.QApplication.UnicodeUTF8))
         self.label_5.setText(QtGui.QApplication.translate("PreferencesPemu", "Host for an external pemuwrapper:", None, QtGui.QApplication.UnicodeUTF8))

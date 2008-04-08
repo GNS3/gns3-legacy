@@ -39,7 +39,6 @@ from GNS3.Node.FRSW import FRSW, init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
 from GNS3.Node.FW import FW, init_fw_id
 
-
 router_hostname_re = re.compile(r"""^R([0-9]+)""")
 ethsw_hostname_re = re.compile(r"""^SW([0-9]+)""")
 frsw_hostname_re = re.compile(r"""^FR([0-9]+)""")
@@ -630,22 +629,17 @@ class NETFile(object):
         """ Export a .net file
         """
 
+        # remove unused hypervisors
+        hypervisors = self.dynagen.dynamips.copy()
+        for (name, hypervisor) in hypervisors.iteritems():
+            if isinstance(hypervisor, lib.Dynamips) and len(hypervisor.devices) == 0:
+                del self.dynagen.dynamips[name]
+
         for hypervisor in self.dynagen.dynamips.values():
             hypervisor.configchange = True
         self.dynagen.defaults_config_ran = False
         self.dynagen.update_running_config()
         debug("Running config: " + str(self.dynagen.running_config))
-
-        # register matrix data
-        matrix = globals.GApp.scene.matrix()
-        m11 = matrix.m11()
-        m22 = matrix.m22()
-        if m11 != float(1.0) or m22 != float(1.0):
-            if not self.dynagen.running_config.has_key('GNS3-DATA'):
-                self.dynagen.running_config['GNS3-DATA'] = {}
-            config = self.dynagen.running_config['GNS3-DATA']
-            config['m11'] = m11
-            config['m22'] = m22
 
         for device in self.dynagen.devices.values():
             # record router configs
@@ -692,6 +686,9 @@ class NETFile(object):
                     item.removeHostname()
                     item.showHostname()
                 # record node x & y positions
+                if not item.d:
+                    print item.hostname + unicode(' ' + translate("NETFile", "must be connected in order to be registered"))
+                    continue
                 self.dynagen.running_config[item.d][item.get_running_config_name()]['x'] = item.x()
                 self.dynagen.running_config[item.d][item.get_running_config_name()]['y'] = item.y()
                 # record hostname x & y positions
@@ -708,6 +705,16 @@ class NETFile(object):
                 config['configs'] = globals.GApp.workspace.projectConfigs
             if globals.GApp.workspace.projectWorkdir:
                 config['workdir'] = globals.GApp.workspace.projectWorkdir
+
+        # register matrix data
+        matrix = globals.GApp.scene.matrix()
+        m11 = matrix.m11()
+        m22 = matrix.m22()
+        if m11 != 1.0 or m22 != 1.0:
+            if not self.dynagen.running_config.has_key('GNS3-DATA'):
+                self.dynagen.running_config['GNS3-DATA'] = {}
+            self.dynagen.running_config['GNS3-DATA']['m11'] = m11
+            self.dynagen.running_config['GNS3-DATA']['m22'] = m22
 
         self.dynagen.running_config.filename = path
         self.dynagen.running_config.write()

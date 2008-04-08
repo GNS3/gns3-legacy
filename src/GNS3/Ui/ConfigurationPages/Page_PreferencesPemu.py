@@ -21,7 +21,7 @@
 
 import sys, re, os
 import GNS3.Globals as globals
-from PyQt4 import QtGui, QtCore
+from PyQt4 import QtGui, QtCore, QtNetwork
 from GNS3.Ui.ConfigurationPages.Form_PreferencesPemu import Ui_PreferencesPemu
 from GNS3.Config.Objects import systemPemuConf
 from GNS3.Utils import fileBrowser, translate
@@ -37,6 +37,7 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         self.connect(self.PemuwrapperPath_browser, QtCore.SIGNAL('clicked()'),  self.slotSelectPath)
         self.connect(self.PemuwrapperWorkdir_browser, QtCore.SIGNAL('clicked()'),  self.slotSelectWorkdir)
         self.connect(self.BaseFlash_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectBaseFlash)
+        self.comboBoxBinding.addItems(['localhost', QtNetwork.QHostInfo.localHostName()] + map(lambda addr: addr.toString(), QtNetwork.QNetworkInterface.allAddresses()))
         self.loadConf()
 
     def loadConf(self):
@@ -82,6 +83,10 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
             self.checkBoxPemuManagerImport.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxPemuManagerImport.setCheckState(QtCore.Qt.Unchecked)
+            
+        index = self.comboBoxBinding.findText(self.conf.PemuManager_binding)
+        if index != -1:
+            self.comboBoxBinding.setCurrentIndex(index)
 
     def saveConf(self):
 
@@ -90,7 +95,8 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         self.conf.external_host = unicode(self.lineEditHostExternalPemu.text())
         self.conf.default_pix_image = unicode(self.PixImage.text())
         self.conf.default_base_flash = unicode(self.lineEditbaseFlash.text())
-        
+        self.conf.PemuManager_binding = unicode(self.comboBoxBinding.currentText())
+
         serial = str(self.lineEditSerial.text())
         if not re.search(r"""^0x[0-9a-fA-F]{8}$""", serial):
             QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesPemu", "Serial"), 

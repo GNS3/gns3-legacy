@@ -352,6 +352,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         ios_image = os.path.basename(image_file)
         ios_image = ios_image.replace(".unzipped", "")
         ios_image = ios_image.replace(".extracted", "")
+        ios_image = ios_image.replace(".image", "")
         url = "http://www.gns3.net/check_ios_ram_requirement.php?image=" + ios_image
         QtGui.QDesktopServices.openUrl(QtCore.QUrl(url))
 

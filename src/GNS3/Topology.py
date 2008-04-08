@@ -162,8 +162,10 @@ class Topology(QtGui.QGraphicsScene):
         node.set_image(image_conf.filename, image_conf.chassis)
         if image_conf.default_ram:
             # force default ram
+            save = node.default_ram
             node.default_ram = 0
             node.set_int_option('ram', image_conf.default_ram)
+            node.default_ram = save
         if image_conf.idlepc:
             debug("Set idlepc " + image_conf.idlepc)
             node.set_string_option('idlepc', image_conf.idlepc)
@@ -187,7 +189,7 @@ class Topology(QtGui.QGraphicsScene):
         if globals.GApp.systconf['pemu'].enable_PemuManager:
             if globals.GApp.PemuManager.startPemu() == False:
                 return False
-            host = 'localhost'
+            host = globals.GApp.systconf['pemu'].PemuManager_binding
             pemu_name = host + ':10525'
         else:
             host = globals.GApp.systconf['pemu'].external_host
@@ -349,7 +351,7 @@ class Topology(QtGui.QGraphicsScene):
                         globals.GApp.HypervisorManager.unallocateHypervisor(node, router.dynamips.port)
             except:
                 pass
-        #TODO: remove unused hypervisors from startup-config
+
         self.removeItem(node)
         del self.__nodes[id]
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
