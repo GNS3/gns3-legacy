@@ -69,6 +69,7 @@ class Topology(QtGui.QGraphicsScene):
         self.dynagen.ghostsizes.clear()
         self.dynagen.bridges.clear()
         self.dynagen.autostart.clear()
+        self.dynagen.ghosts = []
 
     def clear(self):
         """ Clear the topology

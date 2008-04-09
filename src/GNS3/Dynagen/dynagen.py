@@ -147,6 +147,7 @@ class Dynagen:
         self.autostart = {}  # Dictionary that tracks autostart, indexed by device name
         self.ghostsizes = {}  # A dict of the sizes of the ghosts
         self.ghosteddevices = {}  # A dict of devices that will use ghosted IOS indexed by device name\
+        self.ghosts = [] # ghost files
         self.configurations = {}  # A global copy of all b64 exported configurations from the network file indexed by devicename
         self.globalconfig = {}  # A global copy of the config that console.py can access
         self.global_filename = 'lab.net'
@@ -2053,12 +2054,8 @@ class Dynagen:
         """check whether the ghostfile for this instance exists, if not create it"""
 
         if device.ghost_status == 2:
-            try:
-                ghost_file = open(os.path.normpath(device.dynamips.workingdir) + os.sep + device.ghost_file)
-                ghost_file.close()
-            except IOError:
-                #the ghost file does not exist, let's create it
-                ghostinstance = device.imagename + '-' + device.dynamips.host
+            ghostinstance = device.imagename + '-' + device.dynamips.host
+            if ghostinstance not in self.ghosts:
                 ghost = Router(device.dynamips, device.model, 'ghost-' + ghostinstance, consoleFlag=False)
                 ghost.image = device.image
                 if device.model == 'c7200':
@@ -2069,7 +2066,7 @@ class Dynagen:
                 ghost.start()
                 ghost.stop()
                 ghost.delete()
-
+                self.ghosts.append(ghostinstance)
 
     def debug(self, string):
         """ Print string if debugging is true"""

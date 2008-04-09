@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sat Apr  5 21:54:50 2008
+# Created: Wed Apr  9 22:27:49 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -265,6 +265,10 @@ class Ui_MainWindow(object):
         self.action_Extract_config = QtGui.QAction(MainWindow)
         self.action_Extract_config.setIcon(QtGui.QIcon(":/icons/edit-undo.svg"))
         self.action_Extract_config.setObjectName("action_Extract_config")
+
+        self.action_InsertImage = QtGui.QAction(MainWindow)
+        self.action_InsertImage.setIcon(QtGui.QIcon(":/icons/image.svg"))
+        self.action_InsertImage.setObjectName("action_InsertImage")
         self.menu_Edit.addAction(self.action_Copy)
         self.menu_Edit.addAction(self.action_Paste)
         self.menu_Edit.addSeparator()
@@ -302,6 +306,7 @@ class Ui_MainWindow(object):
         self.toolBar_General.addAction(self.action_Clear)
         self.toolBar_General.addAction(self.action_AddNote)
         self.toolBar_General.addAction(self.action_ShowHostnames)
+        self.toolBar_General.addAction(self.action_InsertImage)
         self.toolBar_Design.addAction(self.action_Add_link)
         self.toolBar_Emulation.addAction(self.action_Extract_config)
         self.toolBar_Emulation.addAction(self.action_TelnetAll)
@@ -382,6 +387,7 @@ class Ui_MainWindow(object):
         self.action_New.setToolTip(QtGui.QApplication.translate("MainWindow", "New Project", None, QtGui.QApplication.UnicodeUTF8))
         self.action_New.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+N", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Extract_config.setText(QtGui.QApplication.translate("MainWindow", "&Extract all startup-configs", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_InsertImage.setText(QtGui.QApplication.translate("MainWindow", "Insert an image", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.Console import Console
 from GNS3.Ui.Widget_topologySummaryDock import topologySummaryDock

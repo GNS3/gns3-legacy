@@ -92,7 +92,7 @@ class Scene(QtGui.QGraphicsView):
 
         menu = QtGui.QMenu()
 
-        instances = map(lambda item: not isinstance(item, Annotation), items)
+        instances = map(lambda item: not isinstance(item, Annotation) and not isinstance(item, QtGui.QGraphicsPixmapItem), items)
         if True in instances:
 
             # Action: Configure (Configure the node)
@@ -292,7 +292,7 @@ class Scene(QtGui.QGraphicsView):
 
         ok_to_delete_node = True
         for item in self.__topology.selectedItems():
-            if not isinstance(item, Annotation):
+            if not isinstance(item, Annotation) and not isinstance(item, QtGui.QGraphicsPixmapItem):
                 for link in item.getEdgeList().copy():
                     if self.__topology.deleteLink(link) == False:
                         if ok_to_delete_node:
@@ -514,7 +514,7 @@ class Scene(QtGui.QGraphicsView):
 
         if not globals.addingLinkFlag:
             item = self.itemAt(event.pos())
-            if isinstance(item, Annotation):
+            if isinstance(item, Annotation) or isinstance(item, QtGui.QGraphicsPixmapItem):
                 QtGui.QGraphicsView.mouseDoubleClickEvent(self, event)
             elif item and not isinstance(item, AbstractEdge):
                 item.setSelected(True)
@@ -525,7 +525,8 @@ class Scene(QtGui.QGraphicsView):
     def mouseMoveEvent(self, event):
 
         # update new edge position
-        if(self.newedge):
+        globals.GApp.workspace.statusbar.showMessage("%d, %d" % (event.pos().x(), event.pos().y()))
+        if (self.newedge):
             self.newedge.setMousePoint(self.mapToScene(event.pos()))
             event.ignore()
         else:

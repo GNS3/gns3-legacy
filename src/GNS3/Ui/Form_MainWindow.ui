@@ -134,6 +134,7 @@
    <addaction name="action_Clear" />
    <addaction name="action_AddNote" />
    <addaction name="action_ShowHostnames" />
+   <addaction name="action_InsertImage" />
   </widget>
   <widget class="QDockWidget" name="dockWidget_NodeTypes" >
    <property name="allowedAreas" >
@@ -644,6 +645,14 @@
    </property>
    <property name="text" >
     <string>&amp;Extract all startup-configs</string>
+   </property>
+  </action>
+  <action name="action_InsertImage" >
+   <property name="icon" >
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/image.svg</iconset>
+   </property>
+   <property name="text" >
+    <string>Insert an image</string>
    </property>
   </action>
  </widget>

@@ -93,6 +93,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_AddNote, QtCore.SIGNAL('triggered()'), self.__action_AddNote)
         self.connect(self.action_Clear, QtCore.SIGNAL('triggered()'), self.__action_Clear)
         self.connect(self.action_Extract_config, QtCore.SIGNAL('triggered()'), self.__action_ExtractConfig)
+        self.connect(self.action_InsertImage, QtCore.SIGNAL('triggered()'), self.__action_InsertImage)
 
     def __createMenus(self):
         """ Add own menu actions, and create new sub-menu
@@ -223,6 +224,27 @@ class Workspace(QMainWindow, Ui_MainWindow):
             globals.addingNote = True
             globals.GApp.scene.setCursor(QtCore.Qt.IBeamCursor)
             
+    def __action_InsertImage(self):
+        """ Insert an image
+        """
+
+        (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  \
+                                        filter = 'PNG File (*.png);;GIF File (*.gif);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm);;PBM File (*.pbm);;PGM File (*.pgm);;PPM File (*.ppm);;All files (*.*)',
+                                        directory='.').getFile()
+        if path != None and path != '':
+            pixmap = QtGui.QPixmap(path)
+            if not pixmap.isNull():
+                item = QtGui.QGraphicsPixmapItem(pixmap)
+                item.setFlags(item.ItemIsMovable | item.ItemIsSelectable)
+                item.setTransformationMode(QtCore.Qt.SmoothTransformation)
+                item.setPos(0, 0)
+                # center the image
+                pos_x = item.pos().x() - (item.boundingRect().width() / 2)
+                pos_y = item.pos().y() - (item.boundingRect().height() / 2)
+                item.setPos(pos_x, pos_y)
+                # add the image to the scene
+                globals.GApp.topology.addItem(item)
+
     def __action_addLink(self):
         """ Implement the QAction `addLink'
         - This function manage the creation of a connection between two nodes.
