@@ -209,13 +209,16 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """
 
         imagename = unicode(self.lineEditIOSImage.text())
+        
+        if not imagename:
+            return
+
         idlepc = str(self.lineEditIdlePC.text()).strip()
         if idlepc and not re.search(r"""^0x[0-9a-fA-F]{8}$""", idlepc):
             QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "IDLE PC not valid (format required: 0xhhhhhhhh)"))
             return
-        hypervisor_host = unicode('')
-        hypervisor_port = 0
-
+        
+        hypervisors = []
         if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Unchecked:
             # external hypervisor, don't use the hypervisor manager
             items = self.listWidgetHypervisors.selectedItems()
@@ -225,12 +228,17 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 imagekey = globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + imagename
             else:
                 # get the selected hypervisor
-                selected_hypervisor = unicode(items[0].text())
-                assert(globals.GApp.hypervisors.has_key(selected_hypervisor) != None)
-                hypervisor = globals.GApp.hypervisors[selected_hypervisor]
-                hypervisor_host = hypervisor.host
-                hypervisor_port = hypervisor.port
-                imagekey = hypervisor_host + ':' + imagename
+                if len(items) > 1:
+                    for item in items:
+                        selected_hypervisor = unicode(item.text())
+                        hypervisor = globals.GApp.hypervisors[selected_hypervisor]
+                        hypervisors.append(hypervisor.host + ':' + str(hypervisor.port))
+                    imagekey = 'load-balanced-on-external-hypervisors:' + imagename
+                else:
+                    selected_hypervisor = unicode(items[0].text())
+                    hypervisor = globals.GApp.hypervisors[selected_hypervisor]
+                    hypervisors.append(hypervisor.host + ':' + str(hypervisor.port))
+                    imagekey = hypervisor.host + ':' + imagename
         else:
             imagekey = globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + imagename
 
@@ -258,8 +266,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         conf.platform = str(self.comboBoxPlatform.currentText())
         conf.chassis = str(self.comboBoxChassis.currentText())
         conf.idlepc = idlepc
-        conf.hypervisor_host = hypervisor_host
-        conf.hypervisor_port = int(hypervisor_port)
+        conf.hypervisors = hypervisors
         default_ram = self.spinBoxDefaultRAM.value()
         if default_ram == 0 and DEFAULT_RAM.has_key(conf.platform):
             conf.default_ram = DEFAULT_RAM[conf.platform]
@@ -333,11 +340,13 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 else:
                     self.checkBoxDefaultImage.setCheckState(QtCore.Qt.Unchecked)
 
-                if conf.hypervisor_host:
+                self.listWidgetHypervisors.clearSelection()
+                if len(conf.hypervisors):
                     self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Unchecked)
-                    items = self.listWidgetHypervisors.findItems(conf.hypervisor_host + ':' + str(conf.hypervisor_port), QtCore.Qt.MatchFixedString)
-                    if items:
-                        self.listWidgetHypervisors.setCurrentItem(items[0])
+                    for hypervisor in conf.hypervisors:
+                        items = self.listWidgetHypervisors.findItems(hypervisor, QtCore.Qt.MatchFixedString)
+                        if items:
+                            items[0].setSelected(True)
                 else:
                     self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
 

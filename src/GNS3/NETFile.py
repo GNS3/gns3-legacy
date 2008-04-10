@@ -179,21 +179,22 @@ class NETFile(object):
         conf_image.hypervisor_port = device.dynamips.port
         conf_image.default = False
         if device.dynamips.host == globals.GApp.systconf['dynamips'].HypervisorManager_binding and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
-            conf_image.hypervisor_host = unicode('')
+            conf_image.hypervisors = []
             globals.GApp.iosimages[globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + device.image] = conf_image
         else:
             # this is an external hypervisor
-            conf_image.hypervisor_host = unicode(device.dynamips.host)
+            host = unicode(device.dynamips.host)
+            conf_image.hypervisors = [host + ':' + str(device.dynamips.port)]
             conf_hypervisor = hypervisorConf()
             conf_hypervisor.id = globals.GApp.hypervisors_ids
             globals.GApp.hypervisors_ids +=1
-            conf_hypervisor.host = conf_image.hypervisor_host
+            conf_hypervisor.host = host
             conf_hypervisor.port = device.dynamips.port
-            conf_hypervisor.workdir = device.dynamips.workdir
+            conf_hypervisor.workdir = unicode(device.dynamips.workingdir)
             conf_hypervisor.baseUDP = device.dynamips.udp
             conf_hypervisor.baseConsole = device.dynamips.baseconsole
-            globals.GApp.hypervisors[conf_hypervisor.host + ':' + str(conf_hypervisor.port)] = conf
-            globals.GApp.iosimages[conf_image.hypervisor_host + ':' + device.image] = conf_image
+            globals.GApp.hypervisors[conf_hypervisor.host + ':' + str(conf_hypervisor.port)] = conf_hypervisor
+            globals.GApp.iosimages[host + ':' + device.image] = conf_image
 
     def configure_node(self, node, device):
         """ Configure a node
@@ -201,7 +202,9 @@ class NETFile(object):
 
         if isinstance(device, lib.Router):
             #FIXME: router on remote hypervisor
-            if globals.GApp.HypervisorManager and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
+            
+            if (device.dynamips.host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or device.dynamips.host == 'localhost') and \
+                globals.GApp.HypervisorManager and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
                 hypervisor = globals.GApp.HypervisorManager.getHypervisor(device.dynamips.port)
                 hypervisor['load'] += node.default_ram
             node.set_hypervisor(device.dynamips)
@@ -710,7 +713,7 @@ class NETFile(object):
         matrix = globals.GApp.scene.matrix()
         m11 = matrix.m11()
         m22 = matrix.m22()
-        if m11 != 1.0 or m22 != 1.0:
+        if float(m11) != 1.0 or float(m22) != 1.0:
             if not self.dynagen.running_config.has_key('GNS3-DATA'):
                 self.dynagen.running_config['GNS3-DATA'] = {}
             self.dynagen.running_config['GNS3-DATA']['m11'] = m11

@@ -29,8 +29,7 @@ conf_iosImage_defaults = {
     'chassis': '',
     'idlepc': '',
     'default_ram': 0,
-    'hypervisor_host': '',
-    'hypervisor_port': 7200,
+    'hypervisors': [], 
     'default': False
 }
 
@@ -41,8 +40,7 @@ conf_iosImage_types = {
     'chassis': str,
     'idlepc': str,
     'default_ram': int, 
-    'hypervisor_host': unicode,
-    'hypervisor_port': int,
+    'hypervisors': list, 
     'default': bool
 }
 
@@ -52,7 +50,8 @@ conf_hypervisor_defaults = {
     'port': 7200,
     'workdir': '',
     'baseUDP': 10000,
-    'baseConsole': 2000
+    'baseConsole': 2000, 
+    'used_ram':0, 
 }
 
 conf_hypervisor_types = {
@@ -61,7 +60,8 @@ conf_hypervisor_types = {
     'port': int,
     'workdir': unicode,
     'baseUDP': int,
-    'baseConsole': int
+    'baseConsole': int, 
+    'used_ram': int, 
 }
 
 conf_systemDynamips_defaults = {

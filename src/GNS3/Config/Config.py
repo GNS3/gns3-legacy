@@ -161,15 +161,19 @@ class GNS_Conf(object):
             cgroup = basegroup + '/' + img_num
 
             img_filename = c.get(cgroup + "/filename", unicode(''))
-            img_hyp_host = c.get(cgroup + "/hypervisor_host", unicode(''))
+            img_hypervisors = c.get(cgroup + "/hypervisors", unicode('')).split()
 
             if img_filename == '':
                 continue
 
-            if img_hyp_host == '':
+            if len(img_hypervisors) == 0:
                 img_ref = globals.GApp.systconf['dynamips'].HypervisorManager_binding + ":" + img_filename
             else:
-                img_ref = img_hyp_host + ":" + img_filename
+                if len(img_hypervisors) > 1:
+                    img_ref = 'load-balanced-on-external-hypervisors:' +   img_filename
+                else:
+                    (host, port) = img_hypervisors[0].rsplit(':',  1)
+                    img_ref = host + ":" + img_filename
 
             conf = iosImageConf()
             conf.id = int(img_num)
@@ -178,9 +182,8 @@ class GNS_Conf(object):
             conf.chassis = str(c.get(cgroup + "/chassis", ''))
             conf.idlepc = str(c.get(cgroup + "/idlepc", ''))
             conf.default_ram = int(c.get(cgroup + "/default_ram", 0))
-            conf.hypervisor_host = c.get(cgroup + "/hypervisor_host",  unicode(''))
-            conf.hypervisor_port = int(c.get(cgroup + "/hypervisor_port",  0))
             conf.default =  c.value(cgroup + "/default", QtCore.QVariant(False)).toBool()
+            conf.hypervisors = img_hypervisors
 
             globals.GApp.iosimages[img_ref] = conf
 

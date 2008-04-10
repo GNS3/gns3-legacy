@@ -137,7 +137,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.conf.HypervisorManager_binding = binding
             for name in globals.GApp.iosimages.keys():
                 image_conf = globals.GApp.iosimages[name]
-                if image_conf.hypervisor_host == '':
+                if len(image_conf.hypervisors) == 0:
                     del globals.GApp.iosimages[name]
                     globals.GApp.iosimages[binding + ':' + image_conf.filename] = image_conf
 

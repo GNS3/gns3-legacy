@@ -124,11 +124,27 @@ class Topology(QtGui.QGraphicsScene):
 
     nodes = property(__getNodes, __setNodes, doc='Property of nodes topology')
 
-    def useExternalHypervisor(self, node, host, port):
+    def useExternalHypervisor(self, node, hypervisors):
         """ Connection to an external hypervisor
         """
 
-        external_hypervisor_key = host + ':' + str(port)
+        # if multiple hypervisors, then load balance
+        if len(hypervisors) > 1:
+            selected_hypervisor = None
+            hypervisor_min_ram = 99999
+            for hypervisor_key in hypervisors:
+                hypervisor_conf = globals.GApp.hypervisors[hypervisor_key]
+                if  hypervisor_conf.used_ram < hypervisor_min_ram:
+                    hypervisor_min_ram = hypervisor_conf.used_ram
+                    selected_hypervisor = hypervisor_key
+            if not selected_hypervisor:
+                debug('No hypervisor found for load-balancing !')
+                selected_hypervisor = hypervisors[0]
+            globals.GApp.hypervisors[selected_hypervisor].used_ram += node.default_ram
+            external_hypervisor_key = selected_hypervisor
+        else:
+            external_hypervisor_key = hypervisors[0]
+        (host, port) = external_hypervisor_key.rsplit(':',  1)
         if self.dynagen.dynamips.has_key(external_hypervisor_key):
             debug("Use an external hypervisor: " + external_hypervisor_key)
             dynamips_hypervisor = self.dynagen.dynamips[external_hypervisor_key]
@@ -140,7 +156,7 @@ class Topology(QtGui.QGraphicsScene):
                 self.dynagen.defaults_config['workingdir'] =  globals.GApp.workspace.projectWorkdir
             elif hypervisor_conf.workdir:
                 self.dynagen.defaults_config['workingdir'] =  hypervisor_conf.workdir
-            dynamips_hypervisor = self.dynagen.create_dynamips_hypervisor(host, port)
+            dynamips_hypervisor = self.dynagen.create_dynamips_hypervisor(host, int(port))
             if not dynamips_hypervisor:
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Hypervisor"),
                                            unicode(translate("Topology", "Can't connect to the external hypervisor on %s")) % external_hypervisor_key)
@@ -151,6 +167,7 @@ class Topology(QtGui.QGraphicsScene):
             self.dynagen.update_running_config()
             dynamips_hypervisor.configchange = True
             dynamips_hypervisor.udp = hypervisor_conf.baseUDP
+            dynamips_hypervisor.starting_udp = hypervisor_conf.baseUDP
             dynamips_hypervisor.baseconsole = hypervisor_conf.baseConsole
         node.set_hypervisor(dynamips_hypervisor)
         return True
@@ -288,7 +305,7 @@ class Topology(QtGui.QGraphicsScene):
                 if image_conf.default_ram:
                     debug("Set default RAM: " + str(image_conf.default_ram))
                     node.default_ram = image_conf.default_ram
-                if image_conf.hypervisor_host == '':
+                if len(image_conf.hypervisors) == 0:
                     # no hypervisor selected, allocate a new hypervisor for the node
                     if globals.GApp.systconf['dynamips'].path == '':
                         QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Hypervisor"), translate("Topology", "Please configure the path to Dynamips"))
@@ -300,7 +317,7 @@ class Topology(QtGui.QGraphicsScene):
                         return
                 else:
                     # use an external hypervisor
-                    if self.useExternalHypervisor(node, image_conf.hypervisor_host, image_conf.hypervisor_port) == False:
+                    if self.useExternalHypervisor(node, image_conf.hypervisors) == False:
                         return
                 self.preConfigureNode(node, image_conf)
 
@@ -348,7 +365,7 @@ class Topology(QtGui.QGraphicsScene):
                 router = node.get_dynagen_device()
                 if globals.GApp.iosimages.has_key(globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + router.image):
                     image_conf = globals.GApp.iosimages[globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + router.image]
-                    if globals.GApp.HypervisorManager and image_conf.hypervisor_host == '':
+                    if globals.GApp.HypervisorManager and len(image_conf.hypervisors) == 0:
                         globals.GApp.HypervisorManager.unallocateHypervisor(node, router.dynamips.port)
             except:
                 pass
