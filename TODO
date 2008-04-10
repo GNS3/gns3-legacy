@@ -1,15 +1,30 @@
 TODO LIST
 
- * Use an IDLE PC database.
- * An all-in-one installer for Mac OS X.
- * Correct minor drawing problems with the status points.
- * Copy/Paste of a node.
+GUI FEATURES:
+
+ * Multilink drawing between 2 routers.
+ * Correct minor drawing problems with the status points (collision with parent node).
  * Show more information about hardware (VLANs for switches ...) using the toolTip feature from Qt or something else.
- * Show a number on the scene when there is more than one link between 2 nodes, ex: 'x3' means 3 links.
- * Improve slot management.
  * A dialog that give users a way to add their own SVG images and to affect a 'behavior' to a symbol.
+ * Paint ovals, rectangle etc. with different colors and resizing support.
+ * Button to show interface names on the scene (without any collision).
+ * Inserted images resizing support.
+ * Provide a way to change text fonts and orientation.
+ * Add a button to clean the configuration of GNS3 (gns3.ini).
  * A setup wizard.
- * Align option for the scene.
- * Paint ovals,rectangle etc. with different colors.
- * Change text fonts.
+ * Align on a grid option for the scene.
+
+CORE FEATURES:
+
+ * Use an IDLE PC database ?
+ * Copy/Paste of a node.
+ * NIO multicast support.
+ * Correct a minor bug when configuring mutiple clouds in the node configurator.
+ * Add an option to clean the startup-config (need to see this with Chris).
+ * A converter to change the paths (to ios images and working dir) in .net files which come from another user.
+ * Move startup-config edit box from the node configurator to the contextual menu (like "change console port").
+ * Simulated host support (based on LWIP).
+ * JunOS olive support.
+ * Add a host symbol which use directly a NIO generic ethernet for its interfaces.
+ * Add GUI options for filters (monitor etc ...).
 

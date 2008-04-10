@@ -248,7 +248,7 @@ conf
                         device.idlepc = self.dynagen.useridledb[device.imagename]
                     else:
                         print 'Warning: Starting %s with no idle-pc value' % device.name
-                    self.dynagen.check_ghost_file(device)
+                self.dynagen.check_ghost_file(device)
                 for line in device.start():
                     print line.strip()
             except IndexError:
@@ -708,7 +708,7 @@ show run <device_name>
             print self.do_export.__doc__
             return
             # The last item is the directory (or should be anyway)
-        directory = items.pop().strip('"')
+        directory = items.pop()
 
         if '/all' in items:
             # Set devices to all the devices
@@ -752,6 +752,7 @@ show run <device_name>
                 config = base64.decodestring(device.config_b64)
                 config = config.replace('\r', "")
             except AttributeError:
+
                 # This device doesn't support export
                 continue
             except DynamipsError, e:
@@ -787,7 +788,7 @@ show run <device_name>
             return
         items = getItems(args)
             # The last item is the directory (or should be anyway)
-        directory = items.pop().strip('"')
+        directory = items.pop()
 
         # Set the current directory to the one that contains our network file
         try:
@@ -840,9 +841,11 @@ show run <device_name>
 \tapplies a connection filter
 \tExamples:
 \tfilter R1 s1/0 freq_drop in 50   -- Drops 1 out of every 50 packets inbound to R1 s1/0
-\tfilter R1 s1/0 none in           -- Removes all inbound filters from R1 s1/0"""
+\tfilter R1 s1/0 none in           -- Removes all inbound filters from R1 s1/0
+\tfilter R1 s1/0 monitor both eth2           -- Span all traffic on s1/0 to eth2"""
+        
 
-        filters = ['freq_drop', 'capture', 'none']  # The known list of filters
+        filters = ['freq_drop', 'capture', 'monitor', 'none']  # The known list of filters
 
         if '?' in args or args.strip() == "":
             print self.do_filter.__doc__
@@ -873,16 +876,14 @@ show run <device_name>
 
         # Parse out the slot and port
         match_obj = self.namespace.interface_re.search(interface)
-        if not match_obj:
-            print 'Error parsing interface descriptor: ' + interface
-            return
-        try:
-            (inttype, slot, port) = match_obj.group(1, 2, 3)
-            slot = int(slot)
-            port = int(port)
-        except ValueError:
-            print 'Error parsing interface descriptor: ' + interface
-            return
+        if match_obj:
+            try:
+                (inttype, slot, port) = match_obj.group(1, 2, 3)
+                slot = int(slot)
+                port = int(port)
+            except ValueError:
+                print 'Error parsing interface descriptor: ' + interface
+                return
         else:
             # Try checking for WIC interface specification (e.g. S1)
             match_obj = self.namespace.interface_noport_re.search(interface)
@@ -1158,9 +1159,14 @@ Examples:
 
             if command == 'get' or command == 'show':
                 device = params[0]
+                if self.dynagen.devices[device].model_string == '525':
+                    print "idlepc is not supported for pemu instances."
+                    return
+
                 if command == 'get':
                     if self.dynagen.devices[device].idlepc != None:
                         print '%s already has an idlepc value applied.' % device
+                        print 'To recalculate idlepc for this device, remove the idlepc value from your lab or from your dynagenidledb.ini'
                         return
                     print 'Please wait while gathering statistics...'
                     result = self.dynagen.devices[device].idleprop(IDLEPROPGET)
@@ -1185,6 +1191,9 @@ Examples:
 
                 # Allow user to choose a value by number
                 if len(idles) == 0:
+                    if self.dynagen.devices[device].idlepc != None:
+                        print '%s has an idlepc value of: %s' % (device, self.dynagen.devices[device].idlepc)
+                        return
                     print 'No idlepc values found\n'
                 else:
                     print 'Potentially better idlepc values marked with "*"'
@@ -1460,12 +1469,13 @@ def error(msg):
 
     print '*** Error:', str(msg)
 
+
 def debug(string):
-    """ Print string if debugging is true
-    """
-    # Debug level 2, console debugs
+    """ Print string if debugging is true"""
+
     if globaldebug >= 2: 
         print '  DEBUG: ' + str(string)
+
 
 if __name__ == '__main__':
     #console = Console()

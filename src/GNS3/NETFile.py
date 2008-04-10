@@ -201,8 +201,6 @@ class NETFile(object):
         """
 
         if isinstance(device, lib.Router):
-            #FIXME: router on remote hypervisor
-            
             if (device.dynamips.host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or device.dynamips.host == 'localhost') and \
                 globals.GApp.HypervisorManager and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
                 hypervisor = globals.GApp.HypervisorManager.getHypervisor(device.dynamips.port)
@@ -390,6 +388,10 @@ class NETFile(object):
         max_fw_id = -1
         for (devicename, device) in  self.dynagen.devices.iteritems():
 
+            if isinstance(device,  lib.Bridge):
+                translate("NETFile", "Warning: GNS3 doesn't yet support lan statements, ignore it")
+                continue
+        
             if isinstance(device, lib.Router):
                 platform = device.model
                 # dynamips lib doesn't return c3700, force platform

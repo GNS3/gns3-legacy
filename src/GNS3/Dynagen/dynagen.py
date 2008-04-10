@@ -40,7 +40,7 @@ from configobj import ConfigObj, flatten_errors
 from optparse import OptionParser
 
 # Constants
-VERSION = '0.11.0.020308'
+VERSION = '0.11.0.100407'
 CONFIGSPECPATH = ['/usr/share/dynagen', '/usr/local/share']
 CONFIGSPEC = 'configspec'
 INIPATH = ['/etc', '/usr/local/etc']
@@ -92,6 +92,7 @@ ADAPTER_TRANSFORM = {
     'PA-FE-TX': PA_FE_TX,
     'PA-2FE-TX': PA_2FE_TX,
     'PA-GE': PA_GE,
+    'PA-4T': PA_4T,
     'PA-4T+': PA_4T,
     'PA-8T': PA_8T,
     'PA-4E': PA_4E,
@@ -147,7 +148,6 @@ class Dynagen:
         self.autostart = {}  # Dictionary that tracks autostart, indexed by device name
         self.ghostsizes = {}  # A dict of the sizes of the ghosts
         self.ghosteddevices = {}  # A dict of devices that will use ghosted IOS indexed by device name\
-        self.ghosts = [] # ghost files
         self.configurations = {}  # A global copy of all b64 exported configurations from the network file indexed by devicename
         self.globalconfig = {}  # A global copy of the config that console.py can access
         self.global_filename = 'lab.net'
@@ -187,7 +187,7 @@ class Dynagen:
             'key',
             'serial',
             ]
-            
+
         self.defaults_config_ran = False
         self.default_workingdir = ''
 
@@ -459,8 +459,11 @@ class Dynagen:
 
             # Look at the interfaces dict to find out what the real port is as
             # as far as dynamips is concerned
-            realPort = local_device.slot[slot1].interfaces[pa1][port1]
-            
+            try:
+                realPort = local_device.slot[slot1].interfaces[pa1][port1]
+            except AttributeError:
+                raise DynamipsError, 'Device does not support this type of NIO. Use an ETHSW to bridge the connection to the NIO instead.'
+
             # Process the netio
             if niotype.lower() == 'nio_linux_eth':
                 self.debug('NIO_linux_eth ' + str(dest))
@@ -710,7 +713,9 @@ class Dynagen:
                                     # just fill it up with WIC-2Ts until I come up a
                                     # better solution
                                     for i in range(0, port / 2 + 1):
-                                        router.installwic(chosenwic, slot)
+                                        # Don't try to reinstall a WIC if there is already one there
+                                        if router.slot[slot].wics[i] != 'WIC-2T':
+                                            router.installwic(chosenwic, slot,i)
                                     return True
                         else:
                             # No WIC can provide the interface we need
@@ -1449,7 +1454,7 @@ class Dynagen:
             except IOError:
                 continue
         else:
-            self.doerror('Cannot open INI file')
+            self.doerror('Cannot open dynagen.ini file')
 
         try:
             config = ConfigObj(inifile, raise_errors=True)
@@ -1517,8 +1522,6 @@ class Dynagen:
     def ghosting(self):
         """ Implement IOS Ghosting"""
 
-
-        ghosts = {}  # a dictionary of ghost instances which will match the image name+hostname+port
         try:
             # If using mmap, create ghost IOS instances and apply it to instances that use them
             for device in self.devices.values():
@@ -1535,9 +1538,15 @@ class Dynagen:
                 if device.imagename == None:
                     raise DynamipsError ('No IOS image specified for device: ' + device.name)
 
-                ghostinstance = device.imagename + '-' + device.dynamips.host
-                ghost_file = device.imagename + '.ghost'
-                if ghostinstance not in ghosts:
+                ghost_instance = device.formatted_ghost_file()
+
+                # Search of an existing ghost instance across all
+                # dynamps servers running on the same host as the device
+                allghosts = []
+                for d in self.dynamips.values():
+                    if isinstance(d, Dynamips):
+                        allghosts.extend(d.ghosts)
+                if ghost_instance not in allghosts:
                     # Only create a ghost if at least two instances on this server use this image
                     ioscount = 0
                     maxram = 0
@@ -1551,30 +1560,17 @@ class Dynagen:
                         except AttributeError:
                             continue
                     if ioscount < 2:
-                        ghosts[ghostinstance] = False
+                        useghost = False
                     else:
                         # Create a new ghost
-                        ghosts[ghostinstance] = True
-                        ghost = Router(device.dynamips, device.model, 'ghost-' + ghostinstance, consoleFlag=False)
-                        ghost.image = device.image
-                        # For 7200s, the NPE must be set when using an NPE-G2.
-                        if device.model == 'c7200':
-                            ghost.npe = device.npe
-                        # test
-                        #ghost.sparsemem = True
-                        ghost.ghost_status = 1
-                        ghost.ghost_file = ghost_file
-                        if self.ghostsizes[device.name] == None:
-                            ghost.ram = maxram
-                        else:
-                            ghost.ram = self.ghostsizes[device.name]
-                        ghost.start()
-                        ghost.stop()
-                        ghost.delete()
+                        self._create_ghost_instance(device, maxram = maxram)
+                        useghost = True
+
                 # Reference the appropriate ghost for the image and dynamips server, if the multiple IOSs flag is true
-                if ghosts[ghostinstance]:
+                if useghost:
                     device.ghost_status = 2
-                    device.ghost_file = ghost_file
+                    device.ghost_file = ghost_instance
+
         except DynamipsError, e:
             self.doerror(e)
 
@@ -1698,8 +1694,8 @@ class Dynagen:
                             device.image = '"None"'
                         self.defaults_config[h][model]['image'] = device.image
                         for option in self.generic_router_options:
-                            if option == 'cnfg':
-                                continue
+#                            if option == 'cnfg':
+#                                continue
                             if getattr(device, option) != device.defaults[option]:
                                 self.defaults_config[h][model][option] = getattr(device, option)
 
@@ -1788,8 +1784,6 @@ class Dynagen:
             else:
                 self.running_config[h][r]['ghostios'] = True
 
-        self.running_config[h][r]['console'] = router.console
-
         #same thing for all other values
         for option in self.generic_router_options:
             self._set_option_in_config(self.running_config[h][r], defaults, router, option)
@@ -1798,7 +1792,7 @@ class Dynagen:
             for option in ['npe', 'midplane']:
                 self._set_option_in_config(self.running_config[h][r], defaults, router, option)
 
-        if router.model == 'c3600':
+        if model in ['3620', '3640', '3660']:
             for option in ['iomem']:
                 self._set_option_in_config(self.running_config[h][r], defaults, router, option)
 
@@ -1893,7 +1887,7 @@ class Dynagen:
         h = 'pemu ' + hypervisor.host
         f = 'FW ' + device.name
         self.running_config[h][f] = {}
-        
+
         #find out the model of the router
         model = device.model_string
 
@@ -2054,19 +2048,38 @@ class Dynagen:
         """check whether the ghostfile for this instance exists, if not create it"""
 
         if device.ghost_status == 2:
-            ghostinstance = device.imagename + '-' + device.dynamips.host
-            if ghostinstance not in self.ghosts:
-                ghost = Router(device.dynamips, device.model, 'ghost-' + ghostinstance, consoleFlag=False)
-                ghost.image = device.image
-                if device.model == 'c7200':
-                    ghost.npe = device.npe
-                ghost.ghost_status = 1
-                ghost.ghost_file = device.ghost_file
+            ghost_instance = device.formatted_ghost_file()
+            # Search of an existing ghost instance across all
+            # dynamps servers running on the same host as the device
+            allghosts = []
+            for d in self.dynamips.values():
+                if isinstance(d, Dynamips):
+                    allghosts.extend(d.ghosts)
+            if ghost_instance not in allghosts:
+                self._create_ghost_instance(device)
+
+    def _create_ghost_instance(self, device, maxram = 0):
+        """ Create a new ghost instance to be used by 'device'
+        """
+        ghost_instance = device.formatted_ghost_file()
+        ghost = Router(device.dynamips, device.model, 'ghost-' + ghost_instance, consoleFlag=False)
+        ghost.image = device.image
+        # For 7200s, the NPE must be set when using an NPE-G2.
+        if device.model == 'c7200':
+            ghost.npe = device.npe
+        ghost.ghost_status = 1
+        ghost.ghost_file = ghost_instance
+        if self.ghostsizes[device.name] == None:
+            if maxram != 0:
+                ghost.ram = maxram
+            else:
                 ghost.ram = device.ram
-                ghost.start()
-                ghost.stop()
-                ghost.delete()
-                self.ghosts.append(ghostinstance)
+        else:
+            ghost.ram = self.ghostsizes[device.name]
+        ghost.start()
+        ghost.stop()
+        ghost.delete()
+
 
     def debug(self, string):
         """ Print string if debugging is true"""

@@ -26,7 +26,7 @@ import os
 import re
 import copy
 
-#version = "0.11.0.010408"
+#version = "0.11.0.080326"
 # Minimum version of dynamips required. Currently 0.2.8-RC1 (due to change to
 # hypervisor commands related to slot/port handling, and the pluggable archtecture
 # that changed model specific commands to "vm")
@@ -250,6 +250,7 @@ class Dynamips(object):
             except:
                 raise DynamipsError, 'Could not connect to server'
         self.__devices = []
+        self.__ghosts = []
         self.__workingdir = ''
         self.__host = host
         self.__port = port
@@ -409,6 +410,22 @@ class Dynamips(object):
 
     default_udp = property(__getdefault_udp, doc='default udp value')
 
+
+    def __setghosts(self, ghostname):
+        """ Add a ghost name to the list of ghosts created on this hypervisor instance
+        """
+
+        self.__ghosts.append(ghostname)
+
+    def __getghosts(self):
+        """ Returns a list of the ghosts hosted by this hypervisor instance
+        """
+
+        return self.__ghosts
+
+    ghosts = property(__getghosts, __setghosts, doc='ghosts hosted by this hypervisor instance')
+
+
     def list(self, subsystem):
         """ Send a generic list command to Dynamips
             subsystem is one of nio, frsw, atmsw
@@ -447,7 +464,7 @@ class Dynamips(object):
         return self.__version
 
     version = property(__getversion, doc='The dynamips version')
-    
+
     def __getintversion(self):
         """ Returns dynamips integer version
         """
@@ -1116,7 +1133,7 @@ class BaseAdapter(object):
             options: a list of options to pass to this filter
         '''
 
-        filters = ['freq_drop', 'capture', 'none']  # a list of the known filters
+        filters = ['freq_drop', 'capture', 'none', 'monitor']  # a list of the known filters
         filterName = filterName.lower()
         if filterName not in filters:
             raise DynamipsError, 'invalid filter'
@@ -2071,7 +2088,6 @@ class Router(object):
         if wicslot == None:
             wicslot = self.availablewicslot(slot)
             if wicslot == -1:
-                return
                 raise DynamipsError, 'On router %s no available wicslots on slot %i for adapter %s' % (self.name, slot, wic)
 
         #ports = len(WICS[wic])
@@ -2501,7 +2517,7 @@ class Router(object):
                 send(self.__d, '%s set_npe %s %s' % (self.__model, self.__name, npe))
                 self.__npe = npe
                 return
-            
+
             if npe in ['npe-g1', 'npe-g2'] and type(self.slot[0]) != PA_C7200_IO_GE_E:
                 #lets change the IO card to the GE one
                 #TODO handle all the connections on the card
@@ -2509,6 +2525,8 @@ class Router(object):
                 self.slot[0] = None
                 send(self.__d, '%s set_npe %s %s' % (self.__model, self.__name, npe))
                 self.slot[0] = PA_C7200_IO_GE_E(self, 0)
+                """
+            # Bad idea to override the IO controller just based on the NPE in this case
             elif npe in [
                 'npe-100',
                 'npe-150',
@@ -2523,6 +2541,7 @@ class Router(object):
                 self.slot[0] = None
                 send(self.__d, '%s set_npe %s %s' % (self.__model, self.__name, npe))
                 self.slot[0] = PA_C7200_IO_2FE(self, 0)
+                """
             else:
                 send(self.__d, '%s set_npe %s %s' % (self.__model, self.__name, npe))
             self.__npe = npe
@@ -2801,11 +2820,16 @@ class Router(object):
 
     def __setghost_file(self, ghost_file):
         """ Set the ghost file for this instance
+            Use a filename of the form "image - host.ghost to ensure uniqueness"
             ghost_file: (string) ghost file name to create (or reference)
         """
 
         send(self.__d, 'vm set_ghost_file %s %s' % (self.__name, str(ghost_file)))
         self.__ghost_file = ghost_file
+
+        # If this is a ghost instance, track this as a hosted ghost instance by this hypervisor
+        if self.ghost_status == 1:
+            self.__d.ghosts = self.ghost_file
 
     def __getghost_file(self):
         """ Returns the ghost_file
@@ -2839,6 +2863,11 @@ class Router(object):
             return 'False'
 
     sparsemem = property(__getsparsemem, __setsparsemem, doc='The sparsemem status of this instance')
+
+    def formatted_ghost_file(self):
+        """ Return a properly formatted ghost_file for use with get/setghostfile"""
+
+        return self.imagename + '-' + self.dynamips.host  + '.ghost'
 
     def __getdynamips(self):
         """ Returns the dynamips server on which this device resides
@@ -3522,7 +3551,7 @@ class FRSW(object):
             nio2 = self.nio(port2).name
         except DynamipsWarning, e:
             raise DynamipsError, e
-              
+
         send(self.__d, 'frsw delete_vc %s %s %i %s %i' % (self.__name, nio1, dlci1, nio2, dlci2))
 
         #untrack the connections
@@ -4623,6 +4652,10 @@ def gen_connect(
         src_ip = src_dynamips.host
         dst_ip = dst_dynamips.host
 
+        #check whether the user did not make a mistake in multi-server .net file
+        if src_ip == 'localhost' or src_ip =='127.0.0.1' or dst_ip =='localhost' or dst_ip == '127.0.0.1':
+            dowarning('Connecting %s slot %s port %s to %s slot %s port %s:\nin case of multi-server operation make sure you do not use "localhost" string in definition of dynamips hypervisor.\n'% (src_adapter.router.name, src_adapter.adapter, src_port, dst_adapter.router.name, dst_adapter.adapter, dst_port))
+
     # Dynagen connect currently always uses UDP NETIO
     # Allocate a UDP port for the local side of the NIO
     src_udp = src_dynamips.udp
@@ -4821,6 +4854,13 @@ def setdebug(flag):
     DEBUG = flag
 
 
+def dowarning(msg):
+    """Print out minor warning messages
+    """
+
+    print '*** Warning: ', str(msg)
+
+
 def debug(string):
     """ Print string if debugging is true
     """
@@ -4832,6 +4872,9 @@ def debug(string):
 
 
 if __name__ == '__main__':
+    import sys
+    sys.exit(0)
+
     # Testing
     DEBUG = True
 

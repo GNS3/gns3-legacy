@@ -128,6 +128,7 @@ class IOSRouter(AbstractNode):
                 # don't forget to delete this router in Dynamips
                 self.router.delete()
                 del self.dynagen.devices[self.hostname]
+                del self.dynagen.ghostsizes[self.hostname]
                 if self.router in self.hypervisor.devices:
                     self.hypervisor.devices.remove(self.router)
                 self.dynagen.update_running_config()
@@ -205,6 +206,8 @@ class IOSRouter(AbstractNode):
             if router_option != config[option]:
                 try:
                     setattr(self.router, option, config[option])
+                    if option == 'ram':
+                        self.dynagen.ghostsizes[self.hostname] = self.router.ram
                 except lib.DynamipsError, e:
                     error(e)
 
@@ -411,6 +414,7 @@ class IOSRouter(AbstractNode):
 
         #add router to frontend
         self.dynagen.devices[self.hostname] = router
+        self.dynagen.ghostsizes[self.hostname] = router.ram
         self.router = router
         debug('Router ' + router.name + ' created')
 
