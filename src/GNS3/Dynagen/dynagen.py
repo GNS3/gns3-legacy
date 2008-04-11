@@ -281,7 +281,7 @@ class Dynagen:
 
         return False
 
-    def disconnect(self, local_device, source, dest):
+    def disconnect(self, local_device, source, dest, automatically_remove_unused_slot=True):
         """ disconnect a local_device from something
         local_device: a local device object
         source: a string specifying the local interface
@@ -326,7 +326,7 @@ class Dynagen:
             local_device.slot[slot1].delete_nio(pa1, port1)
 
             #determine whether this is the last interface on local adapter that was removed
-            if local_device.slot[slot1].is_empty():
+            if local_device.slot[slot1].is_empty() and automatically_remove_unused_slot:
                 #determine whether this is a slot that can be removed (f.e. PA_C7200_IO_FE cannot be removed)
                 if local_device.slot[slot1].can_be_removed():
                     local_device.slot[slot1].remove()
@@ -378,14 +378,14 @@ class Dynagen:
 
 
             #determine whether this is the last interface on local adapter that was removed
-            if local_device.slot[slot1].is_empty():
+            if local_device.slot[slot1].is_empty() and automatically_remove_unused_slot:
                 #determine whether this is a slot that can be removed (f.e. PA_C7200_IO_FE cannot be removed)
                 if local_device.slot[slot1].can_be_removed():
                     local_device.slot[slot1].remove()
                     local_device.slot[slot1] = None
 
             #determine whether this is the last interface on remote adapter that was removed, if yes remove the adapter
-            if remote_device.slot[slot2].is_empty():
+            if remote_device.slot[slot2].is_empty() and automatically_remove_unused_slot:
                 #determine whether this is a slot that can be removed (f.e. PA_C7200_IO_FE cannot be removed)
                 if remote_device.slot[slot2].can_be_removed():
                     remote_device.slot[slot2].remove()
@@ -404,7 +404,7 @@ class Dynagen:
             local_device.slot[slot1].delete_nio(pa1, port1)
 
             #determine whether this is the last interface on local adapter that was removed
-            if local_device.slot[slot1].is_empty():
+            if local_device.slot[slot1].is_empty() and automatically_remove_unused_slot:
                 #determine whether this is a slot that can be removed (f.e. PA_C7200_IO_FE cannot be removed)
                 if local_device.slot[slot1].can_be_removed():
                     local_device.slot[slot1].remove()
@@ -2048,15 +2048,36 @@ class Dynagen:
         """check whether the ghostfile for this instance exists, if not create it"""
 
         if device.ghost_status == 2:
-            ghost_instance = device.formatted_ghost_file()
-            # Search of an existing ghost instance across all
-            # dynamps servers running on the same host as the device
-            allghosts = []
-            for d in self.dynamips.values():
-                if isinstance(d, Dynamips):
-                    allghosts.extend(d.ghosts)
-            if ghost_instance not in allghosts:
-                self._create_ghost_instance(device)
+            try:
+                ghost_file = open(os.path.normpath(device.dynamips.workingdir) + os.sep + device.ghost_file)
+                ghost_file.close()
+            except IOError:
+                #the ghost file does not exist, let's create it
+                ghostinstance = device.imagename + '-' + device.dynamips.host
+                ghost = Router(device.dynamips, device.model, 'ghost-' + ghostinstance, consoleFlag=False)
+                ghost.image = device.image
+                if device.model == 'c7200':
+                    ghost.npe = device.npe
+                ghost.ghost_status = 1
+                ghost.ghost_file = device.ghost_file
+                ghost.ram = device.ram
+                ghost.start()
+                ghost.stop()
+                ghost.delete()
+               
+#    def check_ghost_file(self, device):
+#        """check whether the ghostfile for this instance exists, if not create it"""
+#
+#        if device.ghost_status == 2:
+#            ghost_instance = device.formatted_ghost_file()
+#            # Search of an existing ghost instance across all
+#            # dynamips servers running on the same host as the device
+#            allghosts = []
+#            for d in self.dynamips.values():
+#                if isinstance(d, Dynamips):
+#                    allghosts.extend(d.ghosts)
+#            if ghost_instance not in allghosts:
+#                self._create_ghost_instance(device)
 
     def _create_ghost_instance(self, device, maxram = 0):
         """ Create a new ghost instance to be used by 'device'
@@ -2069,17 +2090,16 @@ class Dynagen:
             ghost.npe = device.npe
         ghost.ghost_status = 1
         ghost.ghost_file = ghost_instance
-        if self.ghostsizes[device.name] == None:
-            if maxram != 0:
-                ghost.ram = maxram
+        if maxram != 0:
+            ghost.ram = maxram
+        else:
+            if self.ghostsizes.has_key(device.name) and self.ghostsizes[device.name] != None:
+                ghost.ram = self.ghostsizes[device.name]
             else:
                 ghost.ram = device.ram
-        else:
-            ghost.ram = self.ghostsizes[device.name]
         ghost.start()
         ghost.stop()
         ghost.delete()
-
 
     def debug(self, string):
         """ Print string if debugging is true"""

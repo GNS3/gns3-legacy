@@ -27,6 +27,7 @@ from PyQt4 import QtGui, QtCore
 from GNS3.Utils import translate, debug
 from GNS3.Link.Ethernet import Ethernet
 from GNS3.Link.Serial import Serial
+from GNS3.Node.DecorativeNode import DecorativeNode,  init_decoration_id
 from GNS3.Node.IOSRouter import IOSRouter, init_router_id
 from GNS3.Node.ATMSW import ATMSW, init_atmsw_id
 from GNS3.Node.ATMBR import ATMBR, init_atmbr_id
@@ -90,6 +91,7 @@ class Topology(QtGui.QGraphicsScene):
         init_frsw_id()
         init_fw_id()
         init_cloud_id()
+        init_decoration_id()
         self.cleanDynagen()
 
     def getNode(self, id):
@@ -144,12 +146,7 @@ class Topology(QtGui.QGraphicsScene):
             external_hypervisor_key = hypervisors[0]
         globals.GApp.hypervisors[external_hypervisor_key].used_ram += node.default_ram
         (host, port) = external_hypervisor_key.rsplit(':',  1)
-        
-        for hypervisor_key in hypervisors:
-            hypervisor_conf = globals.GApp.hypervisors[hypervisor_key]
-            print hypervisor_key + ' ==> ' + str(hypervisor_conf.used_ram)
-        
-        
+
         if self.dynagen.dynamips.has_key(external_hypervisor_key):
             debug("Use an external hypervisor: " + external_hypervisor_key)
             dynamips_hypervisor = self.dynagen.dynamips[external_hypervisor_key]
@@ -393,11 +390,12 @@ class Topology(QtGui.QGraphicsScene):
         QtGui.QPixmapCache.clear()
         self.changed = True
 
-    def recordLink(self, srcid, srcif, dstid, dstif):
+    def recordLink(self, srcid, srcif, dstid, dstif, src_node, dest_node):
         """ Record the link in the topology
         """
-
-        if srcif[0] == 's' or srcif[0] == 'a' or dstif[0] == 's' or dstif[0] == 'a':
+        if (globals.currentLinkType == globals.Enum.LinkType.Serial or globals.currentLinkType == globals.Enum.LinkType.ATM) or \
+            (globals.currentLinkType == globals.Enum.LinkType.Manual and ((srcif[0] == 's' or srcif[0] == 'a' or dstif[0] == 's' or dstif[0] == 'a') or \
+            (isinstance(src_node, ATMSW) or isinstance(src_node, FRSW) or isinstance(dest_node, ATMSW) or isinstance(dest_node, FRSW)))):
             # interface is serial or ATM
             link = Serial(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif)
         else:
@@ -407,15 +405,44 @@ class Topology(QtGui.QGraphicsScene):
         self.__links.add(link)
         self.addItem(link)
 
+    def updateStates(self, src_node, dst_node):
+        """ Start nodes that are always on and update interface states
+        """
+    
+        try:
+            # start nodes that are always on
+            if not isinstance(src_node, IOSRouter) and not isinstance(src_node, FW):
+                src_node.startNode()
+            elif src_node.state == 'running':
+                src_node.startupInterfaces()
+            if not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, FW):
+                dst_node.startNode()
+            elif dst_node.state == 'running':
+                dst_node.startupInterfaces()
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  unicode(msg))
+            return False
+        return True
+        
     def addLink(self, srcid, srcif, dstid, dstif):
         """ Add a link to the topology
         """
 
         src_node = globals.GApp.topology.getNode(srcid)
         dst_node = globals.GApp.topology.getNode(dstid)
-
         # special cases
-        if not isinstance(src_node, IOSRouter) and not isinstance(dst_node, IOSRouter):
+        if isinstance(src_node, DecorativeNode) or isinstance(dst_node, DecorativeNode):
+            self.recordLink(srcid, srcif, dstid, dstif, src_node, dst_node)
+            if isinstance(src_node, DecorativeNode):
+                src_node.startNode()
+            elif src_node.state == 'running':
+                src_node.startupInterfaces()
+            if isinstance(dst_node, DecorativeNode):
+                dst_node.startNode()
+            elif dst_node.state == 'running':
+                dst_node.startupInterfaces()
+            return
+        elif not isinstance(src_node, IOSRouter) and not isinstance(dst_node, IOSRouter):
             if (isinstance(src_node, ETHSW) and not type(dst_node) in (IOSRouter, Cloud, FW)) or (isinstance(dst_node, ETHSW) and not type(src_node) in (IOSRouter, Cloud, FW)) \
                 or (type(src_node) in (ATMSW, FRSW, ATMBR) and not isinstance(dst_node, IOSRouter)) or (type(dst_node) in (ATMSW, FRSW, ATMBR) and not isinstance(src_node, IOSRouter)) \
                 or (isinstance(src_node, FW) and isinstance(dst_node, Cloud)) or (isinstance(dst_node, FW) and isinstance(src_node, Cloud)):
@@ -466,8 +493,11 @@ class Topology(QtGui.QGraphicsScene):
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  unicode(msg))
             return False
+        except (lib.DynamipsErrorHandled, socket.error):
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"), translate("Topology", "Connection lost"))
+            return False
 
-        self.recordLink(srcid, srcif, dstid, dstif)
+        self.recordLink(srcid, srcif, dstid, dstif, src_node, dst_node)
 
         try:
             # start nodes that are always on
@@ -492,38 +522,38 @@ class Topology(QtGui.QGraphicsScene):
         """ Delete a link from the topology
         """
 
-        if (isinstance(link.source, FW) and isinstance(link.dest, ETHSW)) or (isinstance(link.source, ETHSW) and isinstance(link.dest, FW)):
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  'pemuwrapper does not support removal')
-            return False
-        try:
-            if isinstance(link.source, IOSRouter):
-                srcdev = link.source.get_dynagen_device()
-                if type(link.dest) == Cloud:
-                    debug('Disconnect link from ' + srcdev.name + ' ' + link.srcIf +' to ' + link.destIf)
-                    self.dynagen.disconnect(srcdev, link.srcIf, link.destIf)
-                else:
-                    dstdev = link.dest.get_dynagen_device()
-                    debug('Disconnect link from ' + srcdev.name + ' ' + link.srcIf +' to ' + dstdev.name + ' ' + link.destIf)
-                    self.dynagen.disconnect(srcdev, link.srcIf, dstdev.name + ' ' + link.destIf)
-                link.source.set_config(link.source.get_config())
-            elif isinstance(link.dest, IOSRouter):
-                dstdev = link.dest.get_dynagen_device()
-                if type(link.source) == Cloud:
-                    debug('Disconnect link from ' + dstdev.name + ' ' + link.destIf +' to ' + link.srcIf)
-                    self.dynagen.disconnect(dstdev, link.destIf, link.srcIf)
-                else:
+        if not isinstance(link.source, DecorativeNode) and not isinstance(link.dest, DecorativeNode):
+            # not a decorative device
+            if (isinstance(link.source, FW) and isinstance(link.dest, ETHSW)) or (isinstance(link.source, ETHSW) and isinstance(link.dest, FW)):
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  'pemuwrapper does not support removal')
+                return False
+            try:
+                if isinstance(link.source, IOSRouter):
                     srcdev = link.source.get_dynagen_device()
-                    debug('Disconnect link from ' + dstdev.name + ' ' + link.destIf +' to ' + srcdev.name + ' ' + link.srcIf)
-                    self.dynagen.disconnect(dstdev, link.destIf, srcdev.name + ' ' + link.srcIf)
-                link.dest.set_config(link.dest.get_config())
-        except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  unicode(msg))
-            return False
-
-        if isinstance(link.source, IOSRouter):
-            link.source.set_config(link.source.get_config())
-        if isinstance(link.dest, IOSRouter):
-            link.dest.set_config(link.dest.get_config())
+                    if type(link.dest) == Cloud:
+                        debug('Disconnect link from ' + srcdev.name + ' ' + link.srcIf +' to ' + link.destIf)
+                        self.dynagen.disconnect(srcdev, link.srcIf, link.destIf, automatically_remove_unused_slot=False)
+                    else:
+                        dstdev = link.dest.get_dynagen_device()
+                        debug('Disconnect link from ' + srcdev.name + ' ' + link.srcIf +' to ' + dstdev.name + ' ' + link.destIf)
+                        self.dynagen.disconnect(srcdev, link.srcIf, dstdev.name + ' ' + link.destIf, automatically_remove_unused_slot=False)
+                    link.source.set_config(link.source.get_config())
+                elif isinstance(link.dest, IOSRouter):
+                    dstdev = link.dest.get_dynagen_device()
+                    if type(link.source) == Cloud:
+                        debug('Disconnect link from ' + dstdev.name + ' ' + link.destIf +' to ' + link.srcIf)
+                        self.dynagen.disconnect(dstdev, link.destIf, link.srcIf, automatically_remove_unused_slot=False)
+                    else:
+                        srcdev = link.source.get_dynagen_device()
+                        debug('Disconnect link from ' + dstdev.name + ' ' + link.destIf +' to ' + srcdev.name + ' ' + link.srcIf)
+                        self.dynagen.disconnect(dstdev, link.destIf, srcdev.name + ' ' + link.srcIf, automatically_remove_unused_slot=False)
+                    link.dest.set_config(link.dest.get_config())
+            except lib.DynamipsError, msg:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  unicode(msg))
+                return False
+            except (lib.DynamipsErrorHandled, socket.error):
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"), translate("Topology", "Connection lost"))
+                return False
 
         link.source.deleteEdge(link)
         link.dest.deleteEdge(link)

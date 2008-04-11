@@ -27,6 +27,7 @@ from GNS3.Topology import Topology
 from GNS3.Utils import translate, debug
 from Annotation import Annotation
 from GNS3.NodeConfigurator import NodeConfigurator
+from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Globals.Symbols import SYMBOLS
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.FW import FW
@@ -380,13 +381,18 @@ class Scene(QtGui.QGraphicsView):
                 self.__sourceInterface = interface
                 self.__isFirstClick = False
                 node = self.__topology.getNode(id)
-                if interface[0] == 's' or interface[0] == 'a' or isinstance(node, ATMSW) or isinstance(node, FRSW):
+                if (globals.currentLinkType == globals.Enum.LinkType.Serial or globals.currentLinkType == globals.Enum.LinkType.ATM) or \
+                    (globals.currentLinkType == globals.Enum.LinkType.Manual and ((interface[0] == 's' or interface[0] == 'a') or (isinstance(node, ATMSW) or isinstance(node, FRSW)))):
                     # interface is serial or ATM
                     self.newedge = Serial(node, interface, self.mapToScene(QtGui.QCursor.pos()), 0, Fake = True)
                 else:
                     # by default use an ethernet link
                     self.newedge = Ethernet(node, interface, self.mapToScene(QtGui.QCursor.pos()), 0, Fake = True)
                 self.__topology.addItem(self.newedge)
+                
+#                globals.linkAbrv[globals.currentLinkType]
+#                 globals.currentLinkType =  globals.Enum.LinkType.Manual
+                
             else:
                 # destination node
                 self.__destNodeID = id

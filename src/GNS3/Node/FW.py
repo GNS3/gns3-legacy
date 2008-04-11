@@ -183,8 +183,7 @@ class FW(AbstractNode, FWDefaults):
                 shutil.move(self.dynagen.dynamips[pemu_name].workingdir + os.sep + self.hostname, self.dynagen.dynamips[pemu_name].workingdir + os.sep + new_hostname)
             except:
                 debug("Cannot move FLASH directory")
-        self.hostname = new_hostname
-        self.f = 'FW ' + self.hostname
+        self.set_hostname(new_hostname)
         try:
             self.create_firewall()
         except lib.DynamipsError, msg:

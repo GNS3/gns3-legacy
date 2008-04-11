@@ -85,6 +85,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
         # reload saved infos
         self._reloadInfos()
+        self.selectionChanged = True
 
     def __del__(self):
 
@@ -242,6 +243,12 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         else:
             imagekey = globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + imagename
 
+        current_item = self.treeWidgetIOSimages.currentItem()
+        image = unicode(current_item.text(0))
+        if self.selectionChanged == False and globals.GApp.iosimages.has_key(image):
+            del globals.GApp.iosimages[image]
+            self.treeWidgetIOSimages.takeTopLevelItem(self.treeWidgetIOSimages.indexOfTopLevelItem(current_item))
+
         if globals.GApp.iosimages.has_key(imagekey):
             # update an already existing IOS image
             item_to_update = self.treeWidgetIOSimages.findItems(imagekey, QtCore.Qt.MatchFixedString)[0]
@@ -253,6 +260,8 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             item.setText(0, imagekey)
             # chassis column
             item.setText(1, self.comboBoxChassis.currentText())
+            self.treeWidgetIOSimages.setCurrentItem(item)
+            self.selectionChanged = False
 
         # save settings
         if globals.GApp.iosimages.has_key(imagekey):
@@ -311,6 +320,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """ Check if an entry is selected in the list of IOS images
         """
 
+        self.selectionChanged = True
         item = self.treeWidgetIOSimages.currentItem()
         if item != None:
             self.pushButtonEditIOS.setEnabled(True)
@@ -326,6 +336,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         if (item != None):
             # restore image name
             imagekey = unicode(item.text(0))
+            self.selectionChanged = False
             if globals.GApp.iosimages.has_key(imagekey):
                 conf = globals.GApp.iosimages[imagekey]
                 self.lineEditIOSImage.setText(conf.filename)

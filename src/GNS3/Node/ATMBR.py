@@ -154,8 +154,7 @@ class ATMBR(AbstractNode):
         for link in links:
             globals.GApp.topology.deleteLink(link)
         self.delete_atmbr()
-        self.hostname = new_hostname
-        self.a = 'ATMBR ' + self.hostname
+        self.set_hostname(new_hostname)
         if len(links):
             self.get_dynagen_device()
             for link in links:

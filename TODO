@@ -13,6 +13,7 @@ GUI FEATURES:
  * Add a button to clean the configuration of GNS3 (gns3.ini).
  * A setup wizard.
  * Align on a grid option for the scene.
+ * Z value option for inserted images and annotations.
 
 CORE FEATURES:
 
@@ -27,4 +28,5 @@ CORE FEATURES:
  * JunOS olive support.
  * Add a host symbol which use directly a NIO generic ethernet for its interfaces.
  * Add GUI options for filters (monitor etc ...).
+ * Record inserted image paths in .net files.
 

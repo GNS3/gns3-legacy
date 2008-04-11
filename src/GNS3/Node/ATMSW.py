@@ -81,7 +81,7 @@ class ATMSW(AbstractNode):
         """
 
         self.hostname = hostname
-        self.a= 'ATMSW ' + self.hostname
+        self.a = 'ATMSW ' + self.hostname
         self.updateToolTips()
 
     def get_running_config_name(self):
@@ -154,8 +154,7 @@ class ATMSW(AbstractNode):
         for link in links:
             globals.GApp.topology.deleteLink(link)
         self.delete_atmsw()
-        self.hostname = new_hostname
-        self.a = 'ATMSW ' + self.hostname
+        self.set_hostname(new_hostname)
         if len(links):
             self.get_dynagen_device()
             for link in links:

@@ -31,6 +31,7 @@ from Annotation import Annotation
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Objects import iosImageConf, hypervisorConf
 from GNS3.Node.AbstractNode import AbstractNode
+from GNS3.Node.DecorativeNode import DecorativeNode, init_decoration_id
 from GNS3.Node.IOSRouter import IOSRouter, init_router_id
 from GNS3.Node.ATMSW import ATMSW, init_atmsw_id
 from GNS3.Node.ATMBR import ATMBR, init_atmbr_id
@@ -46,6 +47,7 @@ atmsw_hostname_re = re.compile(r"""^ATM([0-9]+)""")
 atmbr_hostname_re = re.compile(r"""^BR([0-9]+)""")
 cloud_hostname_re = re.compile(r"""^C([0-9]+)""")
 firewall_hostname_re = re.compile(r"""^FW([0-9]+)""")
+decorative_hostname_re = re.compile(r"""^D([0-9]+)""")
 
 class NETFile(object):
     """ NETFile implementing the .net file import/export
@@ -234,7 +236,7 @@ class NETFile(object):
             dstid = globals.GApp.topology.getNodeID(destination_name)
             dst_node = globals.GApp.topology.getNode(dstid)
 
-        globals.GApp.topology.recordLink(srcid, source_interface, dstid, destination_interface)
+        globals.GApp.topology.recordLink(srcid, source_interface, dstid, destination_interface, src_node, dst_node)
 
         if not isinstance(src_node, IOSRouter) and not isinstance(src_node, FW):
             if not isinstance(src_node,Cloud) and not src_node.hypervisor:
@@ -430,7 +432,7 @@ class NETFile(object):
                         config['ports'][port] = porttype
                         config['vlans'][vlan].append(port)
                         cloud = self.create_cloud(nio.config_info(), device.name, str(port))
-                        globals.GApp.topology.recordLink(node.id, str(port), cloud.id, nio.config_info())
+                        globals.GApp.topology.recordLink(node.id, str(port), cloud.id, nio.config_info(), node, cloud)
                         cloud.startNode()
                 node.set_config(config)
                 node.set_hypervisor(device.dynamips)

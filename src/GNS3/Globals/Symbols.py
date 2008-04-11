@@ -25,6 +25,7 @@ from GNS3.Node.IOSRouter2691 import IOSRouter2691
 from GNS3.Node.IOSRouter3600 import IOSRouter3600
 from GNS3.Node.IOSRouter3700 import IOSRouter3700
 from GNS3.Node.IOSRouter7200 import IOSRouter7200
+from GNS3.Node.DecorativeNode import DecorativeNode
 from GNS3.Node.Cloud import Cloud
 from GNS3.Node.Hub import Hub
 from GNS3.Node.FRSW import FRSW
@@ -32,6 +33,7 @@ from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ATMBR import ATMBR
 from GNS3.Node.FW import FW
+
 
 SYMBOLS = (
 
@@ -82,4 +84,8 @@ SYMBOLS = (
     {'name': "Cloud", 'object': Cloud,
     'normal_svg_file': ":/symbols/cloud.normal.svg",
     'select_svg_file': ":/symbols/cloud.selected.svg"},
+    
+#    {'name': "Decorative", 'object': DecorativeNode,
+#    'normal_svg_file': ":/symbols/sw_standard.normal.svg",
+#    'select_svg_file': ":/symbols/sw_standard.selected.svg"},
 )
