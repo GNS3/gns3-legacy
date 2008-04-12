@@ -68,6 +68,7 @@
     <addaction name="action_SelectNone" />
     <addaction name="separator" />
     <addaction name="action_IOS_images" />
+    <addaction name="action_Symbol_Manager" />
     <addaction name="action_Preferences" />
    </widget>
    <widget class="QMenu" name="menu_File" >
@@ -653,6 +654,17 @@
    </property>
    <property name="text" >
     <string>Insert an image</string>
+   </property>
+  </action>
+  <action name="action_Symbol_Manager" >
+   <property name="icon" >
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/node_conception.svg</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Symbol Manager</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Shift+S</string>
    </property>
   </action>
  </widget>

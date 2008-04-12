@@ -30,6 +30,7 @@ from GNS3.Node.IOSRouter2691 import IOSRouter2691
 from GNS3.Node.IOSRouter3600 import IOSRouter3600
 from GNS3.Node.IOSRouter3700 import IOSRouter3700
 from GNS3.Node.IOSRouter7200 import IOSRouter7200
+from GNS3.Node.DecorativeNode import DecorativeNode
 from GNS3.Node.FW import FW
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
@@ -102,34 +103,37 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             # the configuration page. This must have the method save to save 
             # the settings.
             "Routers (1700)" : \
-                [translate("NodeConfigurator", "Routers c1700"), ":/symbols/rt_standard.normal.svg",
+                [translate("NodeConfigurator", "Routers c1700"), ":/symbols/router.normal.svg",
                  "Page_IOSRouter", None, None],
             "Routers (2600)" : \
-                [translate("NodeConfigurator", "Routers c2600"), ":/symbols/rt_standard.normal.svg",
+                [translate("NodeConfigurator", "Routers c2600"), ":/symbols/router.normal.svg",
                  "Page_IOSRouter", None, None],
             "Routers (2691)" : \
-                [translate("NodeConfigurator", "Routers c2691"), ":/symbols/rt_standard.normal.svg",
+                [translate("NodeConfigurator", "Routers c2691"), ":/symbols/router.normal.svg",
                  "Page_IOSRouter", None, None],
             "Routers (3600)" : \
-                [translate("NodeConfigurator", "Routers c3600"), ":/symbols/rt_standard.normal.svg",
+                [translate("NodeConfigurator", "Routers c3600"), ":/symbols/router.normal.svg",
                  "Page_IOSRouter", None, None],
             "Routers (3700)" : \
-                [translate("NodeConfigurator", "Routers c3700"), ":/symbols/rt_standard.normal.svg",
+                [translate("NodeConfigurator", "Routers c3700"), ":/symbols/router.normal.svg",
                  "Page_IOSRouter", None, None],
             "Routers (7200)" : \
-                [translate("NodeConfigurator", "Routers c7200"), ":/symbols/rt_standard.normal.svg",
+                [translate("NodeConfigurator", "Routers c7200"), ":/symbols/router.normal.svg",
                  "Page_IOSRouter", None, None],
+            "Decorative Nodes":
+                [translate("NodeConfigurator", "Nodes"), ":/icons/node_conception.svg",
+                 "Page_DecorativeNode", None, None],
             "FW":
                 [translate("NodeConfigurator", "PIX firewalls"), ":/symbols/PIX_firewall.normal.svg",
                  "Page_FW", None, None],
             "FRSW":
-                [translate("NodeConfigurator", "Frame Relay switches"), ":/symbols/sw_frame_relay.normal.svg",
+                [translate("NodeConfigurator", "Frame Relay switches"), ":/symbols/frame_relay_switch.normal.svg",
                  "Page_FRSW", None, None],
             "ETHSW":
-                [translate("NodeConfigurator", "Ethernet switches"), ":/symbols/sw_standard.normal.svg",
+                [translate("NodeConfigurator", "Ethernet switches"), ":/symbols/ethernet_switch.normal.svg",
                  "Page_ETHSW", None, None],
             "ATMSW":
-                [translate("NodeConfigurator", "ATM switches"), ":/symbols/sw_atm.normal.svg",
+                [translate("NodeConfigurator", "ATM switches"), ":/symbols/atm_switch.normal.svg",
                  "Page_ATMSW", None, None],
             "ATMBR":
                 [translate("NodeConfigurator", "ATM bridges"), ":/symbols/atm_bridge.normal.svg",
@@ -149,6 +153,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                                      IOSRouter3600: "Routers (3600)",
                                      IOSRouter3700: "Routers (3700)",
                                      IOSRouter7200: "Routers (7200)",
+                                     DecorativeNode: "Decorative Nodes",
                                      FW: "FW",
                                      FRSW: "FRSW",
                                      ETHSW: "ETHSW",

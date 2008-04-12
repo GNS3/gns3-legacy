@@ -1,0 +1,108 @@
+<ui version="4.0" >
+ <class>DecorativeNodePage</class>
+ <widget class="QWidget" name="DecorativeNodePage" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>433</width>
+    <height>443</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Decorative Node</string>
+  </property>
+  <layout class="QGridLayout" >
+   <item row="0" column="0" colspan="2" >
+    <widget class="QGroupBox" name="groupBox_11" >
+     <property name="title" >
+      <string>Settings</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="0" column="0" >
+       <widget class="QLabel" name="label_9" >
+        <property name="text" >
+         <string>Interface name:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" >
+       <widget class="QLineEdit" name="lineEditInterface" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item rowspan="3" row="0" column="2" >
+    <widget class="QGroupBox" name="groupBox_10" >
+     <property name="title" >
+      <string>Interfaces</string>
+     </property>
+     <layout class="QVBoxLayout" >
+      <item>
+       <widget class="QListWidget" name="listWidgetInterfaces" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" >
+    <widget class="QPushButton" name="pushButtonAddInterface" >
+     <property name="text" >
+      <string>&amp;Add</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1" >
+    <widget class="QPushButton" name="pushButtonDeleteInterface" >
+     <property name="enabled" >
+      <bool>false</bool>
+     </property>
+     <property name="text" >
+      <string>&amp;Delete</string>
+     </property>
+    </widget>
+   </item>
+   <item rowspan="2" row="2" column="0" colspan="2" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>20</width>
+       <height>321</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="3" column="2" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>20</width>
+       <height>221</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

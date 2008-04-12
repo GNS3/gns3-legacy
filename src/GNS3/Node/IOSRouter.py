@@ -405,7 +405,7 @@ class IOSRouter(AbstractNode):
         #use devdefaults to find out whether we have ghostios = True, and simply set the ghostios
         if devdefaults[model].has_key('ghostios'):
             if devdefaults[model]['ghostios']:
-                ghost_file = router.imagename + '.ghost'
+                ghost_file = router.formatted_ghost_file()
                 router.ghost_status = 2
                 router.ghost_file = ghost_file
 

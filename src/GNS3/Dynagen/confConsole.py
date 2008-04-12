@@ -978,7 +978,7 @@ no <option> = <option_value>
         ghostios = self.clean_args(args)
         if ghostios in ('True', 'False'):
             if ghostios == 'True':
-                ghost_file = self.router.imagename + '.ghost'
+                ghost_file = self.router.formatted_ghost_file()
                 try:
                     self.router.ghost_status = 2
                     self.router.ghost_file = ghost_file

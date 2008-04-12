@@ -19,6 +19,8 @@
 # Contact: contact@gns3.net
 #
 
+import GNS3.Ui.svg_resources_rc
+from GNS3.Utils import translate
 from GNS3.Node.IOSRouter1700 import IOSRouter1700
 from GNS3.Node.IOSRouter2600 import IOSRouter2600
 from GNS3.Node.IOSRouter2691 import IOSRouter2691
@@ -34,58 +36,93 @@ from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ATMBR import ATMBR
 from GNS3.Node.FW import FW
 
+SYMBOL_TYPES = {
+                IOSRouter1700: 'Router c1700', 
+                IOSRouter2600: 'Router c2600',
+                IOSRouter2691: 'Router c2691',
+                IOSRouter3600: 'Router c3600',
+                IOSRouter3700: 'Router c3700',
+                IOSRouter7200: 'Router c7200', 
+                FW: 'PIX firewall', 
+                ETHSW: 'Ethernet switch',
+                ATMBR: 'ATM bridge',
+                ATMSW: 'ATM switch', 
+                FRSW: 'Frame Relay switch', 
+                Cloud: 'Cloud', 
+                DecorativeNode: 'Decorative node', 
+                }
 
-SYMBOLS = (
+SYMBOLS = [
 
     {'name': "Router c1700", 'object': IOSRouter1700,
-    'normal_svg_file': ":/symbols/rt_standard.normal.svg",
-    'select_svg_file': ":/symbols/rt_standard.selected.svg"},
+    'normal_svg_file': ":/symbols/router.normal.svg",
+    'select_svg_file': ":/symbols/router.selected.svg", 
+    'translated': True,
+    },
 
     {'name': "Router c2600", 'object': IOSRouter2600,
-    'normal_svg_file': ":/symbols/rt_standard.normal.svg",
-    'select_svg_file': ":/symbols/rt_standard.selected.svg"},
+    'normal_svg_file': ":/symbols/router.normal.svg",
+    'select_svg_file': ":/symbols/router.selected.svg", 
+    'translated': True,
+    },
 
     {'name': "Router c2691", 'object': IOSRouter2691,
-    'normal_svg_file': ":/symbols/rt_standard.normal.svg",
-    'select_svg_file': ":/symbols/rt_standard.selected.svg"},
+    'normal_svg_file': ":/symbols/router.normal.svg",
+    'select_svg_file': ":/symbols/router.selected.svg", 
+    'translated': True,
+    },
 
     {'name': "Router c3600", 'object': IOSRouter3600,
-    'normal_svg_file': ":/symbols/rt_standard.normal.svg",
-    'select_svg_file': ":/symbols/rt_standard.selected.svg"},
+    'normal_svg_file': ":/symbols/router.normal.svg",
+    'select_svg_file': ":/symbols/router.selected.svg", 
+    'translated': True,
+    },
 
     {'name': "Router c3700", 'object': IOSRouter3700,
-    'normal_svg_file': ":/symbols/rt_standard.normal.svg",
-    'select_svg_file': ":/symbols/rt_standard.selected.svg"},
+    'normal_svg_file': ":/symbols/router.normal.svg",
+    'select_svg_file': ":/symbols/router.selected.svg", 
+    'translated': True,
+    },
 
     {'name': "Router c7200", 'object': IOSRouter7200,
-    'normal_svg_file': ":/symbols/rt_standard.normal.svg",
-    'select_svg_file': ":/symbols/rt_standard.selected.svg"},
+    'normal_svg_file': ":/symbols/router.normal.svg",
+    'select_svg_file': ":/symbols/router.selected.svg", 
+    'translated': True,
+    },
 
     {'name': "PIX firewall", 'object': FW,
     'normal_svg_file': ":/symbols/PIX_firewall.normal.svg",
-    'select_svg_file': ":/symbols/PIX_firewall.selected.svg"},
+    'select_svg_file': ":/symbols/PIX_firewall.selected.svg", 
+    'translated': True,
+    },
 
-    {'name': "Switch", 'object': ETHSW,
-    'normal_svg_file': ":/symbols/sw_standard.normal.svg",
-    'select_svg_file': ":/symbols/sw_standard.selected.svg"},
+    {'name': "Ethernet switch", 'object': ETHSW,
+    'normal_svg_file': ":/symbols/ethernet_switch.normal.svg",
+    'select_svg_file': ":/symbols/ethernet_switch.selected.svg", 
+    'translated': True,
+    },
 
     {'name': "ATM bridge", 'object': ATMBR,
     'normal_svg_file': ":/symbols/atm_bridge.normal.svg",
-    'select_svg_file': ":/symbols/atm_bridge.selected.svg"},
+    'select_svg_file': ":/symbols/atm_bridge.selected.svg", 
+    'translated': True,
+    },
 
     {'name': "ATM switch", 'object': ATMSW,
-    'normal_svg_file': ":/symbols/sw_atm.normal.svg",
-    'select_svg_file': ":/symbols/sw_atm.selected.svg"},
+    'normal_svg_file': ":/symbols/atm_switch.normal.svg",
+    'select_svg_file': ":/symbols/atm_switch.selected.svg",
+    'translated': True, 
+    },
 
     {'name': "Frame Relay switch", 'object': FRSW,
-    'normal_svg_file': ":/symbols/sw_frame_relay.normal.svg",
-    'select_svg_file': ":/symbols/sw_frame_relay.selected.svg"} ,
+    'normal_svg_file': ":/symbols/frame_relay_switch.normal.svg",
+    'select_svg_file': ":/symbols/frame_relay_switch.selected.svg", 
+    'translated': True,
+    } ,
 
     {'name': "Cloud", 'object': Cloud,
     'normal_svg_file': ":/symbols/cloud.normal.svg",
-    'select_svg_file': ":/symbols/cloud.selected.svg"},
-    
-#    {'name': "Decorative", 'object': DecorativeNode,
-#    'normal_svg_file': ":/symbols/sw_standard.normal.svg",
-#    'select_svg_file': ":/symbols/sw_standard.selected.svg"},
-)
+    'select_svg_file': ":/symbols/cloud.selected.svg", 
+    'translated': True,
+    },
+]

@@ -40,7 +40,7 @@ class DecorativeNode(AbstractNode):
 
         # assign a new hostname
         global decoration_id
-        self.hostname = 'D' + str(decoration_id)
+        self.hostname = 'N' + str(decoration_id)
         decoration_id = decoration_id + 1
         
         self.setCustomToolTip()
@@ -57,10 +57,11 @@ class DecorativeNode(AbstractNode):
         """ Creates the configuration of this node
         """
 
-        self.config = []
+        self.config = {}
+        self.config['interfaces'] = []
         # 8 interfaces by default 
         for interface in range(1, 9):
-            self.config.append(str(interface))
+            self.config['interfaces'].append(str(interface))
     
     def get_config(self):
         """ Returns the local configuration copy
@@ -79,7 +80,7 @@ class DecorativeNode(AbstractNode):
         """ Returns all interfaces
         """
 
-        return (self.config)
+        return (self.config['interfaces'])
 
 
     def reconfigNode(self, new_hostname):

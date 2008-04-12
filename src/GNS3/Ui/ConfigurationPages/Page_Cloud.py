@@ -399,7 +399,8 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         self.listWidgetTAP.clear()
         self.listWidgetUNIX.clear()
         self.listWidgetVDE.clear()
-        for nio in Cloudconfig:
+        self.listWidgetNull.clear()
+        for nio in Cloudconfig['nios'] :
             (niotype, niostring) = nio.split(':',  1)
             self.nios.append(nio)
             if niotype.lower() == 'nio_gen_eth':
@@ -427,7 +428,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         else:
             Cloudconfig  = node.config
 
-        Cloudconfig = self.nios
+        Cloudconfig['nios']  = self.nios
 
         return Cloudconfig
             

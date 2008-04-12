@@ -14,13 +14,13 @@ GUI FEATURES:
  * A setup wizard.
  * Align on a grid option for the scene.
  * Z value option for inserted images and annotations.
+ * Check TAB order with QtDesigner for every Ui.
 
 CORE FEATURES:
 
  * Use an IDLE PC database ?
  * Copy/Paste of a node.
  * NIO multicast support.
- * Correct a minor bug when configuring mutiple clouds in the node configurator.
  * Add an option to clean the startup-config (need to see this with Chris).
  * A converter to change the paths (to ios images and working dir) in .net files which come from another user.
  * Move startup-config edit box from the node configurator to the contextual menu (like "change console port").
@@ -29,4 +29,5 @@ CORE FEATURES:
  * Add a host symbol which use directly a NIO generic ethernet for its interfaces.
  * Add GUI options for filters (monitor etc ...).
  * Record inserted image paths in .net files.
+ * A standalone server to automatically configure GNS3 clients in order to use remote hypervisors (intended for learning environments, schools/universities, where IOS image cannot be distributed)
 

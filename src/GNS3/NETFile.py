@@ -47,7 +47,7 @@ atmsw_hostname_re = re.compile(r"""^ATM([0-9]+)""")
 atmbr_hostname_re = re.compile(r"""^BR([0-9]+)""")
 cloud_hostname_re = re.compile(r"""^C([0-9]+)""")
 firewall_hostname_re = re.compile(r"""^FW([0-9]+)""")
-decorative_hostname_re = re.compile(r"""^D([0-9]+)""")
+decorative_hostname_re = re.compile(r"""^N([0-9]+)""")
 
 class NETFile(object):
     """ NETFile implementing the .net file import/export

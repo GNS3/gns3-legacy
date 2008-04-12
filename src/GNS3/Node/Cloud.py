@@ -52,7 +52,8 @@ class Cloud(AbstractNode):
         """ Creates the configuration of this cloud
         """
 
-        self.config = []
+        self.config = {}
+        self.config['nios'] = []
 
     def get_config(self):
         """ Returns the local configuration copy
@@ -72,7 +73,7 @@ class Cloud(AbstractNode):
         """ Return all interfaces
         """
 
-        return (self.config)
+        return (self.config['nios'])
 
     def reconfigNode(self, new_hostname):
         """ Used when changing the hostname

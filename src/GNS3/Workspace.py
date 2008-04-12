@@ -28,6 +28,7 @@ from PyQt4.QtGui import QMainWindow, QAction, QActionGroup, QAction, QIcon
 from GNS3.Ui.Form_MainWindow import Ui_MainWindow
 from GNS3.Ui.Form_About import Ui_AboutDialog
 from GNS3.IOSDialog import IOSDialog
+from GNS3.SymbolManager import SymbolManager
 from GNS3.ProjectDialog import ProjectDialog
 from GNS3.Utils import debug, translate, fileBrowser
 from GNS3.HypervisorManager import HypervisorManager
@@ -72,6 +73,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_Export, QtCore.SIGNAL('triggered()'), self.__action_Export)
         self.connect(self.action_Add_link, QtCore.SIGNAL('triggered()'), self.__action_addLink)
         self.connect(self.action_IOS_images, QtCore.SIGNAL('triggered()'), self.__action_IOSImages)
+        self.connect(self.action_Symbol_Manager, QtCore.SIGNAL('triggered()'), self.__action_Symbol_Manager)
         self.connect(self.action_ShowHostnames, QtCore.SIGNAL('triggered()'), self.__action_ShowHostnames)
         self.connect(self.action_ZoomIn, QtCore.SIGNAL('triggered()'), self.__action_ZoomIn)
         self.connect(self.action_ZoomOut, QtCore.SIGNAL('triggered()'), self.__action_ZoomOut)
@@ -153,15 +155,15 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if not path:
             return
         path = unicode(path)
-        if str(selected) == 'PNG File (*.png)' and path[-4:] != '.png':
+        if str(selected) == 'PNG File (*.png)' and not path.endswith(".png"):
             path = path + '.png'
-        if str(selected) == 'JPG File (*.jpeg *.jpg)' and (path[-4:] != '.jpg' or  path[-5:] != '.jpeg'):
+        if str(selected) == 'JPG File (*.jpeg *.jpg)' and (not path.endswith(".jpg") or not path.endswith(".jpeg")):
             path = path + '.jpeg'
-        if str(selected) == 'BMP File (*.bmp)' and path[-4:] != '.bmp':
+        if str(selected) == 'BMP File (*.bmp)' and not path.endswith(".bmp"):
             path = path + '.bmp'
-        if str(selected) == 'BMP File (*.bmp)' and (path[-4:] != '.xpm' or path[-4:] != '.xbm'):
+        if str(selected) == 'BMP File (*.bmp)' and (not path.endswith(".xpm") or not path.endswith(".xbm")):
             path = path + '.xpm'
-        if str(selected) == 'PDF File (*.pdf)' and path[-4:] != '.pdf':
+        if str(selected) == 'PDF File (*.pdf)' and not path.endswith(".pdf"):
             path = path + '.pdf'
         try:
             self.__export(path, str(str(selected)[:3]))
@@ -280,7 +282,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
     def __action_IOSImages(self):
         """ Implement the QAction `IOSImages'
-        - Show a dialog to configure IOSImages
+        - Show a dialog to configure IOSImages and hypervisors
           - Add / Edit / Delete images
           - Add / Edit / Delete hypervisors
         """
@@ -289,6 +291,20 @@ class Workspace(QMainWindow, Ui_MainWindow):
         dialog.setModal(True)
         dialog.show()
         dialog.exec_()
+        
+    def __action_Symbol_Manager(self):
+        """ Implement the QAction `Symbol_Manager'
+        - Show a dialog to configure the symbols
+        """
+
+        dialog = SymbolManager()
+        dialog.setModal(True)
+        dialog.show()
+        dialog.exec_()
+        globals.GApp.scene.reloadRenderers()
+        self.nodesDock.clear()
+        self.nodesDock.populateNodeDock()
+
 
     def __action_SelectAll(self):
         """ Implement the QAction `SelectAll'
@@ -495,7 +511,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         # move dynamips & pemu files
                         for node in globals.GApp.topology.nodes.values():
                             if isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir:
-                                dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '?' + node.hostname + '*')
+                                dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '?' + node.hostname + '*') + \
+                                [os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_dynagen_device().formatted_ghost_file()]
                                 for file in dynamips_files:
                                     try:
                                         shutil.move(file, self.projectWorkdir)
@@ -577,7 +594,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         if path != None and path != '':
             if str(selected) == 'NET file (*.net)':
-                if path[-4:] != '.net':
+                if not path.endswith('.net'):
                     path = path + '.net'
                 self.projectFile = path
                 self.setWindowTitle("GNS3 - " + self.projectFile)

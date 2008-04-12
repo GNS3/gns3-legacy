@@ -26,6 +26,7 @@ if sys.platform.startswith('win'):
                                                           "GNS3.Ui.ConfigurationPages.Page_Hub",
                                                           "GNS3.Ui.ConfigurationPages.Page_IOSRouter",
                                                           "GNS3.Ui.ConfigurationPages.Page_FW",
+                                                          "GNS3.Ui.ConfigurationPages.Page_DecorativeNode",
                                                           "GNS3.Ui.ConfigurationPages.Page_PreferencesDynamips",
                                                           "GNS3.Ui.ConfigurationPages.Page_PreferencesGeneral",
                                                           "GNS3.Ui.ConfigurationPages.Page_PreferencesCapture",

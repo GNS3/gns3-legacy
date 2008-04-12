@@ -45,7 +45,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
 
         if path is not None and path != '':
             if str(selected) == 'NET file (*.net)':
-                if path[-4:] != '.net':
+                if not path.endswith('.net'):
                     path = path + '.net'
                 self.ProjectPath.setText(path)
 
@@ -56,7 +56,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         projectFile = unicode(self.ProjectPath.text())
         if not projectFile:
             return (None, None, None)
-        if projectFile[-4:] == '.net':
+        if projectFile.endswith('.net'):
             projectname =   os.path.basename(projectFile[:-4])
         else:
             projectname =  os.path.basename(projectFile)

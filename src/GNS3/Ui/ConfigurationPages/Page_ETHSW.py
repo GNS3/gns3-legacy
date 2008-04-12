@@ -115,7 +115,7 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
                 del self.vlans[vlan]
             self.treeWidgetPorts.takeTopLevelItem(self.treeWidgetPorts.indexOfTopLevelItem(item))
         
-    def loadConfig(self,  id,  config = None):
+    def loadConfig(self, id, config = None):
         """ Load the config
         """
 

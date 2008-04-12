@@ -1783,7 +1783,9 @@ class Dynagen:
                 self.running_config[h][r]['ghostios'] = False
             else:
                 self.running_config[h][r]['ghostios'] = True
-
+        
+        self.running_config[h][r]['console'] = router.console
+        
         #same thing for all other values
         for option in self.generic_router_options:
             self._set_option_in_config(self.running_config[h][r], defaults, router, option)
@@ -2048,36 +2050,15 @@ class Dynagen:
         """check whether the ghostfile for this instance exists, if not create it"""
 
         if device.ghost_status == 2:
-            try:
-                ghost_file = open(os.path.normpath(device.dynamips.workingdir) + os.sep + device.ghost_file)
-                ghost_file.close()
-            except IOError:
-                #the ghost file does not exist, let's create it
-                ghostinstance = device.imagename + '-' + device.dynamips.host
-                ghost = Router(device.dynamips, device.model, 'ghost-' + ghostinstance, consoleFlag=False)
-                ghost.image = device.image
-                if device.model == 'c7200':
-                    ghost.npe = device.npe
-                ghost.ghost_status = 1
-                ghost.ghost_file = device.ghost_file
-                ghost.ram = device.ram
-                ghost.start()
-                ghost.stop()
-                ghost.delete()
-               
-#    def check_ghost_file(self, device):
-#        """check whether the ghostfile for this instance exists, if not create it"""
-#
-#        if device.ghost_status == 2:
-#            ghost_instance = device.formatted_ghost_file()
-#            # Search of an existing ghost instance across all
-#            # dynamips servers running on the same host as the device
-#            allghosts = []
-#            for d in self.dynamips.values():
-#                if isinstance(d, Dynamips):
-#                    allghosts.extend(d.ghosts)
-#            if ghost_instance not in allghosts:
-#                self._create_ghost_instance(device)
+            ghost_instance = device.formatted_ghost_file()
+            # Search of an existing ghost instance across all
+            # dynamips servers running on the same host as the device
+            allghosts = []
+            for d in self.dynamips.values():
+                if isinstance(d, Dynamips):
+                    allghosts.extend(d.ghosts)
+            if ghost_instance not in allghosts:
+                self._create_ghost_instance(device)
 
     def _create_ghost_instance(self, device, maxram = 0):
         """ Create a new ghost instance to be used by 'device'

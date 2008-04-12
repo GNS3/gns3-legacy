@@ -61,7 +61,12 @@ class Scene(QtGui.QGraphicsView):
 
         self.newedge = None
         self.resetAddingLink()
+        self.reloadRenderers()
 
+    def reloadRenderers(self):
+        """ Load all needed renderers
+        """
+            
         # Load all renders
         self.renders = {}
         for item in SYMBOLS:
@@ -389,10 +394,6 @@ class Scene(QtGui.QGraphicsView):
                     # by default use an ethernet link
                     self.newedge = Ethernet(node, interface, self.mapToScene(QtGui.QCursor.pos()), 0, Fake = True)
                 self.__topology.addItem(self.newedge)
-                
-#                globals.linkAbrv[globals.currentLinkType]
-#                 globals.currentLinkType =  globals.Enum.LinkType.Manual
-                
             else:
                 # destination node
                 self.__destNodeID = id

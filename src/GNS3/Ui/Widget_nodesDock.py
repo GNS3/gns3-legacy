@@ -20,7 +20,6 @@
 #
 
 from PyQt4 import QtCore, QtGui
-import GNS3.Ui.svg_resources_rc
 from GNS3.Utils import translate
 from GNS3.Globals.Symbols import SYMBOLS
 
@@ -32,20 +31,23 @@ class nodesDock(QtGui.QTreeWidget):
     def __init__(self, parent):
 
         QtGui.QTreeWidget.__init__(self, parent)
-        self.designMode()
+        self.populateNodeDock()
         self.header().hide()
 
-    def designMode(self):
-        """ Create items for design mode
+    def populateNodeDock(self):
+        """ Fill the node dock
         """
 
         self.clear()
         count = 0
         for symbol in SYMBOLS:
             item = QtGui.QTreeWidgetItem(self, 1000 + count)
-            item.setText(0, translate("nodesDock", symbol['name']))
-            item.setIcon(0,  QtGui.QIcon(symbol['normal_svg_file']))
-            item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(symbol['name']))
+            if symbol['translated']:
+                item.setText(0, translate("nodesDock", symbol['name']))
+                item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(symbol['name']))
+            else:
+                item.setText(0, symbol['name'])
+            item.setIcon(0, QtGui.QIcon(symbol['normal_svg_file']))
             count += 1
 
     def mouseMoveEvent(self, event):
@@ -76,15 +78,16 @@ class nodesDock(QtGui.QTreeWidget):
 
         # Translate current item
         data = str(item.data(0, QtCore.Qt.UserRole).toString())
-        item.setText(0, translate('nodesDock', data))
+        if data:
+            item.setText(0, translate('nodesDock', data))
 
-        # Recurse for child-items translation
-        childNum = 0
-        childCount = item.childCount()
-        while childNum < childCount:
-            child_item = item.child(childNum)
-            self.retranslateItem(child_item)
-            childNum += 1
+            # Recurse for child-items translation
+            childNum = 0
+            childCount = item.childCount()
+            while childNum < childCount:
+                child_item = item.child(childNum)
+                self.retranslateItem(child_item)
+                childNum += 1
 
     def retranslateUi(self, MainWindow):
 

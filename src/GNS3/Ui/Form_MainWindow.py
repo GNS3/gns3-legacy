@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Wed Apr  9 23:49:11 2008
+# Created: Sat Apr 12 17:18:03 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -269,6 +269,10 @@ class Ui_MainWindow(object):
         self.action_InsertImage = QtGui.QAction(MainWindow)
         self.action_InsertImage.setIcon(QtGui.QIcon(":/icons/image.svg"))
         self.action_InsertImage.setObjectName("action_InsertImage")
+
+        self.action_Symbol_Manager = QtGui.QAction(MainWindow)
+        self.action_Symbol_Manager.setIcon(QtGui.QIcon(":/icons/node_conception.svg"))
+        self.action_Symbol_Manager.setObjectName("action_Symbol_Manager")
         self.menu_Edit.addAction(self.action_Copy)
         self.menu_Edit.addAction(self.action_Paste)
         self.menu_Edit.addSeparator()
@@ -277,6 +281,7 @@ class Ui_MainWindow(object):
         self.menu_Edit.addAction(self.action_SelectNone)
         self.menu_Edit.addSeparator()
         self.menu_Edit.addAction(self.action_IOS_images)
+        self.menu_Edit.addAction(self.action_Symbol_Manager)
         self.menu_Edit.addAction(self.action_Preferences)
         self.menu_File.addAction(self.action_New)
         self.menu_File.addAction(self.action_Open)
@@ -388,6 +393,8 @@ class Ui_MainWindow(object):
         self.action_New.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+N", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Extract_config.setText(QtGui.QApplication.translate("MainWindow", "&Extract all startup-configs", None, QtGui.QApplication.UnicodeUTF8))
         self.action_InsertImage.setText(QtGui.QApplication.translate("MainWindow", "Insert an image", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Symbol_Manager.setText(QtGui.QApplication.translate("MainWindow", "&Symbol Manager", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Symbol_Manager.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+S", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.Console import Console
 from GNS3.Ui.Widget_topologySummaryDock import topologySummaryDock
