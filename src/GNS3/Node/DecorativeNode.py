@@ -110,10 +110,10 @@ class DecorativeNode(AbstractNode):
         """
 
         if globals.addingLinkFlag and globals.currentLinkType != globals.Enum.LinkType.Manual and event.button() == QtCore.Qt.LeftButton:
-            connected_ports = self.getConnectedInterfaceList()
-            for port in self.config:
-                if not str(port) in connected_ports:
-                    self.emit(QtCore.SIGNAL("Add link"), self.id, str(port))
+            connected_interfaces = self.getConnectedInterfaceList()
+            for interface in self.config['interfaces']:
+                if not str(interface) in connected_interfaces:
+                    self.emit(QtCore.SIGNAL("Add link"), self.id, str(interface))
                     return
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("DecorativeNode", "Connection"),  translate("DecorativeNode", "No interface available"))
             # tell the scene to cancel the link addition by sending a None id and None interface

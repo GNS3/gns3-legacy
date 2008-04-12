@@ -82,7 +82,7 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
 
         self.pushButtonAdd.setEnabled(False)
         self.pushButtonRemove.setEnabled(False)
-            
+
     def slotAdd(self):
         """ Add a symbol to the node list
         """
@@ -107,7 +107,7 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
             item.setText(0, name)
             item.setIcon(0, symbol.icon(0))
             item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(translate("nodesDock", "Decorative node")))
-            self.treeWidgetNodes.setCurrentItem(item)
+            item.setSelected(True)
 
     def slotRemove(self):
         """ Remove a symbol from the node list
@@ -120,7 +120,7 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
             symbols = list(SYMBOLS)
             index = 0
             for symbol in SYMBOLS:
-                if symbol['name'] == name:
+                if (symbol['translated'] and name == translate("nodesDock", symbol['name'])) or symbol['name'] == name:
                     del SYMBOLS[index]
                 index += 1
 
@@ -130,8 +130,18 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
 
         current = self.treeWidgetNodes.currentItem()
         if current and self.lineEditNodeName.text():
-            current.setText(0, self.lineEditNodeName.text())
-            current.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(self.comboBoxNodeType.currentText()))
+            name = unicode(self.lineEditNodeName.text())
+            type = str(self.comboBoxNodeType.currentText())
+            for symbol in SYMBOLS:
+                if symbol['name'] == unicode(current.text(0)):
+                    symbol['name'] = name
+                    for (object, type_name) in SYMBOL_TYPES.iteritems():
+                        if type_name == type:
+                            symbol['object'] = object
+                            break
+                    break
+            current.setText(0, name)
+            current.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(type))
                 
     def slotNodeSelectionChanged(self):
         """ Check if an entry is selected in the list of nodes
@@ -179,11 +189,14 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
         path = self.lineEditLibrary.text()
         if not path:
             return
+        library_name = os.path.basename(unicode(path))
+        if len(self.treeWidgetSymbols.findItems(library_name, QtCore.Qt.MatchFixedString)):
+            QtGui.QMessageBox.critical(self, translate("SymbolManager", "Library"), unicode(translate("SymbolManager", "This library is already loaded: %s")) % library_name)
+            return
         if not QtCore.QResource.registerResource(path, ":/dynamic"):
-            QtGui.QMessageBox.critical(self, translate("SymbolManagement", "Library"), unicode(translate("SymbolManagement", "Can't open library: %s")) % path)
+            QtGui.QMessageBox.critical(self, translate("SymbolManager", "Library"), unicode(translate("SymbolManager", "Can't open library: %s")) % path)
             return
 
-        library_name = os.path.basename(unicode(path))
         library = QtGui.QTreeWidgetItem()
         library.setText(0, library_name)
         library.setIcon(0,  QtGui.QIcon(':/icons/package.svg'))
@@ -204,7 +217,7 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
         if not path:
             return
         if not QtCore.QResource.unregisterResource(path, ":/dynamic"):
-            QtGui.QMessageBox.critical(self, translate("SymbolManagement", "Library"), unicode(translate("SymbolManagement", "Can't remove library: %s")) % path)
+            QtGui.QMessageBox.critical(self, translate("SymbolManagement", "Library"), unicode(translate("SymbolManager", "Can't remove library: %s")) % path)
             return
         library_name = os.path.basename(unicode(path))
         library = self.treeWidgetSymbols.findItems(library_name, QtCore.Qt.MatchFixedString)[0]
