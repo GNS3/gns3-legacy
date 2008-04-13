@@ -5,7 +5,6 @@ GUI FEATURES:
  * Multilink drawing between 2 routers.
  * Correct minor drawing problems with the status points (collision with parent node).
  * Show more information about hardware (VLANs for switches ...) using the toolTip feature from Qt or something else.
- * A dialog that give users a way to add their own SVG images and to affect a 'behavior' to a symbol.
  * Paint ovals, rectangle etc. with different colors and resizing support.
  * Button to show interface names on the scene (without any collision).
  * Inserted images resizing support.

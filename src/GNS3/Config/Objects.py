@@ -81,6 +81,12 @@ class ConfigObject(object):
             # silently ignore errors
             pass
 
+class libraryConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_library_defaults.copy()
+        self.types = Defaults.conf_library_types
+            
 class iosImageConf(ConfigObject):
     def __init__(self):
         ConfigObject.__init__(self)

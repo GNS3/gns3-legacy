@@ -470,7 +470,6 @@ class Scene(QtGui.QGraphicsView):
                 return
             node = object(renderer_normal, renderer_select)
             node.type = item['name']
-            node.type = item['name']
             node.setPos(self.mapToScene(event.pos()))
 
             if globals.GApp.workspace.flg_showHostname == True:

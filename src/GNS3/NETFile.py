@@ -57,6 +57,7 @@ class NETFile(object):
 
         self.dynagen = globals.GApp.dynagen
         self.connection2cloud = {}
+        self.decorative_node_connections = {}
 
     def add_in_connection_list(self, connection_data, connection_list):
         """ Record the connection in connection_list
@@ -264,7 +265,8 @@ class NETFile(object):
         x = random.uniform(-200, 200)
         y = random.uniform(-200, 200)
         cloud.setPos(x, y)
-        config = [nio]
+        config = {}
+        config['nios'] = [nio]
         cloud.set_config(config)
         QtCore.QObject.connect(cloud, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
         QtCore.QObject.connect(cloud, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
@@ -279,6 +281,7 @@ class NETFile(object):
         """
 
         max_cloud_id = -1
+        max_decorative_id = -1
         gns3data = self.dynagen.getGNS3Data()
         if gns3data:
             if gns3data.has_key('configs'):
@@ -305,12 +308,13 @@ class NETFile(object):
                         cloud.hostname_ypos = float(gns3data[section]['hy'])
                     if gns3data[section].has_key('connections'):
                         connections = gns3data[section]['connections'].split(' ')
-                        nios = []
+                        config = {}
+                        config['nios'] = []
                         for connection in connections:
                             (device, interface, nio) = connection.split(':', 2)
                             self.connection2cloud[(device, interface, nio)] = cloud
-                            nios.append(nio)
-                        cloud.set_config(nios)
+                            config['nios'].append(nio)
+                        cloud.set_config(config)
                     QtCore.QObject.connect(cloud, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
                     QtCore.QObject.connect(cloud, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
                     globals.GApp.topology.nodes[cloud.id] = cloud
@@ -328,10 +332,55 @@ class NETFile(object):
                     note_object.setPlainText(unicode(gns3data[section]['text'].replace("\\n", "\n")))
                     note_object.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
                     globals.GApp.topology.addItem(note_object)
+                    
+                if devtype.lower() == 'node':
+                    hostname = unicode(hostname)
+                    symbol = unicode(gns3data[section]['symbol'])
+                    if not globals.GApp.scene.renders.has_key(symbol):
+                        print unicode(translate("NETFile", "%s: cannot find %s symbol")) % (hostname, symbol)
+                        continue
+                    renders = globals.GApp.scene.renders[symbol]
+                    decorative_node = DecorativeNode(renders['normal'], renders['selected'])
+                    decorative_node.set_hostname(hostname)
+                    decorative_node.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
+                    QtCore.QObject.connect(decorative_node, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
+                    QtCore.QObject.connect(decorative_node, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
+                    globals.GApp.topology.nodes[decorative_node.id] = decorative_node
+                    if globals.GApp.workspace.flg_showHostname == True:
+                        decorative_node.showHostname()
+                    globals.GApp.topology.addItem(decorative_node)
+                    match_obj = decorative_hostname_re.match(decorative_node.hostname)
+                    if match_obj:
+                        id = int(match_obj.group(1))
+                        if id > max_decorative_id:
+                            max_decorative_id = id
+                    if gns3data[section].has_key('connections'):
+                        connections = gns3data[section]['connections'].split(' ')
+                        config = {}
+                        config['interfaces'] = []
+                        for connection in connections:
+                            (device, remote_interface, local_interface) = connection.split(':', 2)
+                            self.decorative_node_connections[(device, remote_interface, local_interface)] = decorative_node.id
+                            config['interfaces'].append(local_interface)
+                        decorative_node.set_config(config)
 
         # update next ID for cloud
         if max_cloud_id != -1:
             init_cloud_id(max_cloud_id + 1)
+        if max_decorative_id != -1:
+            init_decoration_id(max_decorative_id + 1)
+
+    def apply_decorative_node_connections(self):
+        """ Create GUI connections for decorative nodes
+        """
+        
+        for (connection, local_device) in self.decorative_node_connections.iteritems():
+            (remote_device, remote_interface, local_interface) = connection
+            if isinstance(remote_device, IOSRouter):
+                remote_device.smart_interface(remote_interface[0])
+            srcid = local_device
+            dstid = globals.GApp.topology.getNodeID(remote_device)
+            globals.GApp.topology.addLink(srcid, local_interface, dstid, remote_interface)
 
     def import_net_file(self, path):
         """ Import a .net file
@@ -592,6 +641,8 @@ class NETFile(object):
         for connection in connection_list:
             self.add_connection(connection)
 
+        self.apply_decorative_node_connections()
+        
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
         globals.GApp.dynagen.update_running_config()
         globals.GApp.workspace.projectFile = path
@@ -687,6 +738,24 @@ class NETFile(object):
                 config['x'] = item.x()
                 config['y'] = item.y()
                 note_nb += 1
+            elif isinstance(item, DecorativeNode):
+                if not self.dynagen.running_config.has_key('GNS3-DATA'):
+                    self.dynagen.running_config['GNS3-DATA'] = {}
+                self.dynagen.running_config['GNS3-DATA']['NODE ' + item.hostname] = {}
+                config = self.dynagen.running_config['GNS3-DATA']['NODE ' + item.hostname] 
+                config['symbol'] = item.type
+                config['x'] = item.x()
+                config['y'] = item.y()
+                if item.hostname_xpos and item.hostname_ypos:
+                    config['hx'] = item.hostname_xpos
+                    config['hy'] = item.hostname_ypos
+                # record connections
+                connections = ''
+                for interface in item.getConnectedInterfaceList():
+                    neighbor = item.getConnectedNeighbor(interface)
+                    connections = connections + neighbor[0].hostname + ':' + neighbor[1] + ':' + interface + ' '
+                if connections:
+                    config['connections'] = connections
             elif isinstance(item, AbstractNode):
                 if globals.GApp.workspace.flg_showHostname:
                     # ugly but simple method to force to record hostname x&y positions

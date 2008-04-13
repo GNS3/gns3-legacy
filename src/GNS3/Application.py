@@ -28,6 +28,7 @@ from GNS3.Utils import Singleton
 from GNS3.Workspace import Workspace
 from GNS3.Topology import Topology
 from GNS3.Config.Objects import systemDynamipsConf, systemGeneralConf, systemCaptureConf, systemPemuConf
+from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from GNS3.Config.Config import ConfDB, GNS_Conf
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.PemuManager import PemuManager
@@ -60,6 +61,7 @@ class Application(QApplication, Singleton):
         self.__projconf = {}
         self.__iosimages = {}
         self.__hypervisors = {}
+        self.__libraries = {}
         self.iosimages_ids = 0
         self.hypervisors_ids = 0
 
@@ -157,6 +159,20 @@ class Application(QApplication, Singleton):
         return self.__iosimages
 
     iosimages = property(__getIOSImages, __setIOSImages, doc = 'IOS images dictionnary')
+    
+    def __setLibraries(self, libraries):
+        """ register the sysconf instance
+        """
+
+        self.__libraries = libraries
+
+    def __getLibraries(self):
+        """ return the sysconf instance
+        """
+
+        return self.__libraries
+
+    libraries = property(__getLibraries, __setLibraries, doc = 'Libraries dictionnary')
 
     def __setHypervisors(self, hypervisors):
         """ register the sysconf instance
@@ -219,6 +235,12 @@ class Application(QApplication, Singleton):
         # Instantiation of Dynagen
         self.__dynagen = DynagenSub()
 
+        # Creating default config
+        # and create old ConfDB() object
+        ConfDB()
+        GNS_Conf().Libraries()
+        GNS_Conf().Symbols()
+        
         # Workspace create a ` Scene' object,
         # so it also set self.__topology
         self.__workspace = Workspace()
@@ -281,10 +303,7 @@ class Application(QApplication, Singleton):
         if not sys.platform.startswith('win') and os.environ.has_key("HOME"):
             confo.project_path = confo.project_path.replace("$HOME", os.environ["HOME"])
             confo.ios_path = confo.ios_path.replace("$HOME", os.environ["HOME"])
-        
-        # Creating default config
-        # and create old ConfDB() object
-        ConfDB()
+
         GNS_Conf().IOS_images()
         GNS_Conf().IOS_hypervisors()
         
@@ -372,7 +391,18 @@ class Application(QApplication, Singleton):
         c.beginGroup("IOs.images")
         c.remove("")
         c.endGroup()
+
         c.beginGroup("IOS.hypervisors")
+        c.remove("")
+        c.endGroup()
+        
+        # Clear Symbol.libraries group
+        c.beginGroup("Symbol.libraries")
+        c.remove("")
+        c.endGroup()
+        
+        # Clear Symbol.libraries group
+        c.beginGroup("Symbol.settings")
         c.remove("")
         c.endGroup()
 
@@ -397,5 +427,23 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/port", o.port)
             c.set(basekey + "/working_directory", o.workdir)
             c.set(basekey + "/base_udp", o.baseUDP)
+            
+        # Libraries
+        id = 0
+        for (key, o) in self.__libraries.iteritems():
+            basekey = "Symbol.libraries/" + str(id)
+            c.set(basekey + "/path", o.path)
+            id += 1
+            
+        # Symbols
+        id = 0
+        for symbol in SYMBOLS:
+            if not symbol['translated']:
+                basekey = "Symbol.settings/" + str(id)
+                c.set(basekey + "/name", symbol['name'])
+                c.set(basekey + "/type", SYMBOL_TYPES[symbol['object']])
+                c.set(basekey + "/normal_svg_file", symbol['normal_svg_file'])
+                c.set(basekey + "/selected_svg_file", symbol['select_svg_file'])
+                id += 1
 
         c.sync()

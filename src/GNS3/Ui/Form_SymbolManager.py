@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_SymbolManager.ui'
 #
-# Created: Sat Apr 12 17:18:04 2008
+# Created: Sun Apr 13 03:51:40 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -129,7 +129,7 @@ class Ui_SymbolManager(object):
     def retranslateUi(self, SymbolManager):
         SymbolManager.setWindowTitle(QtGui.QApplication.translate("SymbolManager", "Symbol Manager", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setTitle(QtGui.QApplication.translate("SymbolManager", "Symbol librairies", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_3.setText(QtGui.QApplication.translate("SymbolManager", "LIbrary path:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_3.setText(QtGui.QApplication.translate("SymbolManager", "Library path:", None, QtGui.QApplication.UnicodeUTF8))
         self.toolButtonLibrary.setText(QtGui.QApplication.translate("SymbolManager", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonAddLibrary.setText(QtGui.QApplication.translate("SymbolManager", "&Add", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonRemoveLibrary.setText(QtGui.QApplication.translate("SymbolManager", "&Remove", None, QtGui.QApplication.UnicodeUTF8))

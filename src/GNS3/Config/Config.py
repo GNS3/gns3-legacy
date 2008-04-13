@@ -19,15 +19,17 @@
 # Contact: contact@gns3.net
 #
 
-import sys, time
+import os, sys, time
 import GNS3.Globals as globals
 import GNS3.Config.Defaults as Defaults
-from GNS3.Config.Objects import iosImageConf, hypervisorConf
+from GNS3.Config.Objects import iosImageConf, hypervisorConf, libraryConf
+from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
+from GNS3.Node.DecorativeNode import DecorativeNode
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Link.Serial import Serial
 from GNS3.Link.Ethernet import Ethernet
 from PyQt4 import QtCore
-from GNS3.Utils import Singleton
+from GNS3.Utils import Singleton, translate
 
 class ConfDB(Singleton, QtCore.QSettings):
 
@@ -226,6 +228,63 @@ class GNS_Conf(object):
             if conf.id >= globals.GApp.hypervisors_ids:
                 globals.GApp.hypervisors_ids = conf.id + 1
 
+    def Libraries(self):
+        """ Load libraries settings from config file
+        """
+
+        # Loading libraries conf
+        basegroup = "Symbol.libraries"
+        c = ConfDB()
+        c.beginGroup(basegroup)
+        childGroups = c.childGroups()
+        c.endGroup()
+
+        for id in childGroups:
+
+            cgroup = basegroup + '/' + id
+            path = c.get(cgroup + "/path", unicode(''))
+            
+            library_name = os.path.basename(unicode(path))
+            if not QtCore.QResource.registerResource(path, ":/" + library_name):
+                print unicode(translate("Config", "Can't open library: %s")) % path
+                continue
+    
+            conf = libraryConf()
+            conf.path = path
+            globals.GApp.libraries[library_name] = conf
+            
+    def Symbols(self):
+        """ Load symbols settings from config file
+        """
+
+        # Loading symbols conf
+        basegroup = "Symbol.settings"
+        c = ConfDB()
+        c.beginGroup(basegroup)
+        childGroups = c.childGroups()
+        c.endGroup()
+
+        loaded_symbols = []
+        for id in childGroups:
+
+            cgroup = basegroup + '/' + id
+            name = str(c.get(cgroup + "/name", 'default'))
+            type =  str(c.get(cgroup + "/type", 'DecorativeNode'))
+            object = DecorativeNode
+            for (object_class, type_name) in SYMBOL_TYPES.iteritems():
+                if translate("nodesDock", type_name) == type:
+                    object = object_class
+            normal_svg_file = str(c.get(cgroup + "/normal_svg_file", ':/icons/default.svg'))
+            selected_svg_file = str(c.get(cgroup + "/selected_svg_file", ':/icons/default.svg'))
+
+            SYMBOLS.append(
+                                {'name': name, 'object': object,
+                                'normal_svg_file': normal_svg_file,
+                                'select_svg_file': selected_svg_file, 
+                                'translated': False})
+
     # Static Methods stuffs
     load_IOSimages = classmethod(IOS_images)
     load_IOShypervisors = classmethod(IOS_hypervisors)
+    load_Libraries = classmethod(Libraries)
+    load_Symbols = classmethod(Symbols)

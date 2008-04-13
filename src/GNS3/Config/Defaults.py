@@ -22,6 +22,14 @@
 SysConfigDir = "/etc/gns3"
 UsrConfigDir = "~/.gns3"
 
+conf_library_defaults = {
+    'path': '',
+}
+
+conf_library_types = {
+    'path': unicode,
+}
+
 conf_iosImage_defaults = {
     'id': -1,
     'filename': '',

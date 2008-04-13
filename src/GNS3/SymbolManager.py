@@ -21,6 +21,7 @@
 
 import os
 import GNS3.Globals as globals
+from GNS3.Config.Objects import libraryConf
 from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from PyQt4 import QtCore, QtGui
 from GNS3.Node.DecorativeNode import DecorativeNode
@@ -79,6 +80,10 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
                 item.setText(0, name)
                 item.setIcon(0,  QtGui.QIcon(':/symbols/' + symbol))
                 item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(':/symbols/' + symbol))
+        
+        # load libraries
+        for (library_name, conf) in globals.GApp.libraries.iteritems():
+            self.addLibrarySymbols(library_name, conf.path)
 
         self.pushButtonAdd.setEnabled(False)
         self.pushButtonRemove.setEnabled(False)
@@ -136,7 +141,7 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
                 if symbol['name'] == unicode(current.text(0)):
                     symbol['name'] = name
                     for (object, type_name) in SYMBOL_TYPES.iteritems():
-                        if type_name == type:
+                        if translate("nodesDock", type_name) == type:
                             symbol['object'] = object
                             break
                     break
@@ -182,51 +187,62 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
             path = item.data(0, QtCore.Qt.UserRole).toString()
             self.lineEditLibrary.setText(path)
 
-    def slotAddLibrary(self):
-        """ Add a library
+    def addLibrarySymbols(self, library_name, path):
+        """ Add library symbols in the list
         """
-        
-        path = self.lineEditLibrary.text()
-        if not path:
-            return
-        library_name = os.path.basename(unicode(path))
-        if len(self.treeWidgetSymbols.findItems(library_name, QtCore.Qt.MatchFixedString)):
-            QtGui.QMessageBox.critical(self, translate("SymbolManager", "Library"), unicode(translate("SymbolManager", "This library is already loaded: %s")) % library_name)
-            return
-        if not QtCore.QResource.registerResource(path, ":/dynamic"):
-            QtGui.QMessageBox.critical(self, translate("SymbolManager", "Library"), unicode(translate("SymbolManager", "Can't open library: %s")) % path)
-            return
-
+    
         library = QtGui.QTreeWidgetItem()
         library.setText(0, library_name)
         library.setIcon(0,  QtGui.QIcon(':/icons/package.svg'))
         library.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(path))
         self.treeWidgetSymbols.addTopLevelItem(library)
-        resources = QtCore.QResource(":/dynamic")
+        resources = QtCore.QResource(":/" + library_name)
         for symbol in resources.children():
             item = QtGui.QTreeWidgetItem(library)
             item.setText(0, symbol)
-            item.setIcon(0, QtGui.QIcon(':/dynamic/' + symbol))
-            item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(':/dynamic/' + symbol))
+            item.setIcon(0, QtGui.QIcon(':/' + library_name + '/' + symbol))
+            item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(':/' + library_name + '/' + symbol))
+            
+    def slotAddLibrary(self):
+        """ Add a library
+        """
+        
+        path = unicode(self.lineEditLibrary.text())
+        if not path:
+            return
+        library_name = os.path.basename(path)
+        if len(self.treeWidgetSymbols.findItems(library_name, QtCore.Qt.MatchFixedString)):
+            QtGui.QMessageBox.critical(self, translate("SymbolManager", "Library"), unicode(translate("SymbolManager", "This library is already loaded: %s")) % library_name)
+            return
+        if not QtCore.QResource.registerResource(path, ":/" + library_name):
+            QtGui.QMessageBox.critical(self, translate("SymbolManager", "Library"), unicode(translate("SymbolManager", "Can't open library: %s")) % path)
+            return
+            
+        self.addLibrarySymbols(library_name, path)
+        conf = libraryConf()
+        conf.path = path
+        globals.GApp.libraries[library_name] = conf
 
     def slotRemoveLibrary(self):
         """ Remove a library
         """
 
-        path = self.lineEditLibrary.text()
+        path = unicode(self.lineEditLibrary.text())
         if not path:
             return
-        if not QtCore.QResource.unregisterResource(path, ":/dynamic"):
+        library_name = os.path.basename(path)
+        if not QtCore.QResource.unregisterResource(path, ":/" + library_name):
             QtGui.QMessageBox.critical(self, translate("SymbolManagement", "Library"), unicode(translate("SymbolManager", "Can't remove library: %s")) % path)
             return
-        library_name = os.path.basename(unicode(path))
+
         library = self.treeWidgetSymbols.findItems(library_name, QtCore.Qt.MatchFixedString)[0]
         self.treeWidgetSymbols.takeTopLevelItem(self.treeWidgetSymbols.indexOfTopLevelItem(library))
+        del globals.GApp.libraries[library_name]
 
     def slotCallLibraryBrowser(self):
         """ Call a file system browser to select a library
         """
-        fb = fileBrowser(translate('SymbolManagement', 'Dynamips binary'))
+        fb = fileBrowser(translate('SymbolManagement', 'Library path'))
         (path, selected) = fb.getFile()
 
         if path is not None and path != '':

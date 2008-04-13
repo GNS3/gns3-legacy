@@ -275,7 +275,7 @@ class IOSRouter(AbstractNode):
         self.defaults_config = self.dynagen.defaults_config[self.d][self.router.model_string]
         self.create_config()
 
-    def smart_interface(self,  link_type):
+    def smart_interface(self, link_type):
         """ Pick automatically (if possible) the right interface and adapter for the desired link type
             link_type: an one character string 'g', 'f', 'e', 's', 'a', or 'p'
             chassis: string corresponding to the chassis model
