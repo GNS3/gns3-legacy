@@ -56,13 +56,11 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
         # load current nodes
         self.treeWidgetNodes.clear()
         for symbol in SYMBOLS:
-            item = QtGui.QTreeWidgetItem(self.treeWidgetNodes)
-            if symbol['translated']:
-                item.setText(0, translate("nodesDock", symbol['name']))
-            else:
+            if not symbol['translated']:
+                item = QtGui.QTreeWidgetItem(self.treeWidgetNodes)
                 item.setText(0, symbol['name'])
-            item.setIcon(0,  QtGui.QIcon(symbol['normal_svg_file']))
-            item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(translate("nodesDock", SYMBOL_TYPES[symbol['object']])))
+                item.setIcon(0,  QtGui.QIcon(symbol['normal_svg_file']))
+                item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(translate("nodesDock", SYMBOL_TYPES[symbol['object']])))
 
         # load built-in symbols
         self.treeWidgetSymbols.clear()

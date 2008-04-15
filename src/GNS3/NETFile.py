@@ -117,9 +117,39 @@ class NETFile(object):
                 elif isinstance(remote_device, lib.ETHSW):
                     connection_list.append((device.name, 'e' + str(port), remote_device.name, str(remote_port)))
 
-    def create_node(self, device, symbol_name):
+    def create_node(self, device, default_symbol_name, running_config_name):
         """ Create a new node
         """
+
+        symbol_name = x = y = hx = hy = None
+        if isinstance(device, pix.FW) and  self.dynagen.globalconfig['pemu ' + device.dynamips.host].has_key(running_config_name):
+            pemu_config = self.dynagen.globalconfig['pemu ' + device.dynamips.host][running_config_name]
+            if pemu_config.has_key('x'):
+                x = pemu_config['x']
+            if pemu_config.has_key('y'):
+                y = pemu_config['y']
+            if pemu_config.has_key('hx'):
+                hx = pemu_config['hx']
+            if pemu_config.has_key('hy'):
+                hy = pemu_config['hy']
+            if pemu_config.has_key('symbol'):
+                symbol_name = pemu_config['symbol']
+        elif self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)].has_key(running_config_name):
+            dynamips_config = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][running_config_name]
+            if dynamips_config.has_key('x'):
+                x = dynamips_config['x']
+            if dynamips_config.has_key('y'):
+                y = dynamips_config['y']
+            if dynamips_config.has_key('hx'):
+                hx = dynamips_config['hx']
+            if dynamips_config.has_key('hy'):
+                hy = dynamips_config['hy']
+            if dynamips_config.has_key('symbol'):
+                symbol_name = dynamips_config['symbol']
+
+        # symbol name not found, use default one
+        if not symbol_name or not globals.GApp.scene.renders.has_key(symbol_name):
+            symbol_name = default_symbol_name
 
         for item in SYMBOLS:
             if item['name'] == symbol_name:
@@ -127,27 +157,6 @@ class NETFile(object):
                 node = item['object'](renders['normal'], renders['selected'])
                 node.set_hostname(device.name)
                 node.type = item['name']
-                x = y = hx = hy = None
-                if isinstance(device, pix.FW) and  self.dynagen.globalconfig['pemu ' + device.dynamips.host].has_key(node.get_running_config_name()):
-                    if self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()].has_key('x'):
-                        x = self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()]['x']
-                    if self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()].has_key('y'):
-                        y = self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()]['y']
-                    if self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()].has_key('hx'):
-                        hx = self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()]['hx']
-                    if self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()].has_key('hy'):
-                        hy = self.dynagen.globalconfig['pemu ' + device.dynamips.host][node.get_running_config_name()]['hy']
-                elif self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)].has_key(node.get_running_config_name()):
-                    if self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()].has_key('x'):
-                        x = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['x']
-                    if self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()].has_key('y'):
-                        y = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['y']
-                    if self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()].has_key('hx'):
-                        hx = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['hx']
-                    if self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()].has_key('hy'):
-                        hy = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][node.get_running_config_name()]['hy']
-                else:
-                    print 'Cannot find x&y positions for ' + node.get_running_config_name()
                 if x == None:
                     x = random.uniform(-200, 200)
                 if y == None:
@@ -160,6 +169,7 @@ class NETFile(object):
                     node.showHostname()
                 debug("Node created: " + str(node))
                 return node
+        assert('SYMBOL NAME NOT FOUND: ' + symbol_name)
         return None
 
     def record_image(self, device):
@@ -255,11 +265,9 @@ class NETFile(object):
         """
 
         nio = nio.lower()
-        # try to find a already created cloud
         if self.connection2cloud.has_key((source_device, source_interface, nio)):
             return (self.connection2cloud[(source_device, source_interface, nio)])
 
-        # else create it
         renders = globals.GApp.scene.renders['Cloud']
         cloud = Cloud(renders['normal'], renders['selected'])
         x = random.uniform(-200, 200)
@@ -296,8 +304,13 @@ class NETFile(object):
                 except ValueError:
                     continue
                 if devtype.lower() == 'cloud':
-                    renders = globals.GApp.scene.renders['Cloud']
+                    if gns3data[section].has_key('symbol') and globals.GApp.scene.renders.has_key(gns3data[section]['symbol']):
+                        symbol = gns3data[section]['symbol']
+                    else:
+                        symbol = 'Cloud'
+                    renders = globals.GApp.scene.renders[symbol]
                     cloud = Cloud(renders['normal'], renders['selected'])
+                    cloud.type = symbol
                     cloud.hostname = unicode(hostname)
                     if gns3data[section].has_key('x') and gns3data[section].has_key('y') \
                         and gns3data[section]['x'] != None and gns3data[section]['y'] != None:
@@ -312,7 +325,7 @@ class NETFile(object):
                         config['nios'] = []
                         for connection in connections:
                             (device, interface, nio) = connection.split(':', 2)
-                            self.connection2cloud[(device, interface, nio)] = cloud
+                            self.connection2cloud[(device, interface, nio.lower())] = cloud
                             config['nios'].append(nio)
                         cloud.set_config(config)
                     QtCore.QObject.connect(cloud, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
@@ -343,6 +356,7 @@ class NETFile(object):
                     decorative_node = DecorativeNode(renders['normal'], renders['selected'])
                     decorative_node.set_hostname(hostname)
                     decorative_node.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
+                    decorative_node.type = symbol
                     QtCore.QObject.connect(decorative_node, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
                     QtCore.QObject.connect(decorative_node, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
                     globals.GApp.topology.nodes[decorative_node.id] = decorative_node
@@ -449,7 +463,7 @@ class NETFile(object):
                 if platform == 'c3725' or platform == 'c3745':
                     platform = 'c3700'
                 model = device.model_string
-                node = self.create_node(device, 'Router ' + platform)
+                node = self.create_node(device, 'Router ' + platform, 'ROUTER ' + device.name)
                 assert(node)
                 self.configure_node(node, device)
                 self.populate_connection_list_for_router(device, connection_list)
@@ -463,7 +477,7 @@ class NETFile(object):
 
             elif isinstance(device, lib.ETHSW):
 
-                node = self.create_node(device, 'Switch')
+                node = self.create_node(device, 'Ethernet switch', 'ETHSW ' + device.name)
                 self.configure_node(node, device)
                 config = {}
                 config['vlans'] = {}
@@ -506,7 +520,7 @@ class NETFile(object):
                         config['ports'].append(port2)
                     config['mapping'][str(port1) + ':' + str(dlci1)] = str(port2) + ':' + str(dlci2)
 
-                node = self.create_node(device, 'Frame Relay switch')
+                node = self.create_node(device, 'Frame Relay switch', 'FRSW ' + device.name)
                 self.configure_node(node, device)
                 node.set_config(config)
                 node.set_hypervisor(device.dynamips)
@@ -543,7 +557,7 @@ class NETFile(object):
                             config['ports'].append(port1)
                         if not port2 in config['ports']:
                             config['ports'].append(port2)
-                node = self.create_node(device, 'ATM switch')
+                node = self.create_node(device, 'ATM switch', 'ATMSW ' + device.name)
                 self.configure_node(node, device)
                 node.set_config(config)
                 node.set_hypervisor(device.dynamips)
@@ -567,7 +581,7 @@ class NETFile(object):
                         config['ports'].append(port1)
                     if not port2 in config['ports']:
                         config['ports'].append(port2)
-                node = self.create_node(device, 'ATM bridge')
+                node = self.create_node(device, 'ATM bridge', 'ATMBR ' + device.name)
                 self.configure_node(node, device)
                 node.set_config(config)
                 node.set_hypervisor(device.dynamips)
@@ -579,7 +593,7 @@ class NETFile(object):
 
             elif isinstance(device, pix.FW):
 
-                node = self.create_node(device, 'PIX firewall')
+                node = self.create_node(device, 'PIX firewall', 'FW ' + device.name)
                 assert(node)
                 node.set_hypervisor(device.dynamips)
                 self.configure_node(node, device)
@@ -716,6 +730,8 @@ class NETFile(object):
                     self.dynagen.running_config['GNS3-DATA'] = {}
                 self.dynagen.running_config['GNS3-DATA']['Cloud ' + item.hostname] = {}
                 config = self.dynagen.running_config['GNS3-DATA']['Cloud ' + item.hostname]
+                if not item.default_symbol:
+                    config['symbol'] = item.type
                 config['x'] = item.x()
                 config['y'] = item.y()
                 if item.hostname_xpos and item.hostname_ypos:
@@ -765,6 +781,8 @@ class NETFile(object):
                 if not item.d:
                     print item.hostname + unicode(' ' + translate("NETFile", "must be connected in order to be registered"))
                     continue
+                if not item.default_symbol:
+                    self.dynagen.running_config[item.d][item.get_running_config_name()]['symbol'] = item.type
                 self.dynagen.running_config[item.d][item.get_running_config_name()]['x'] = item.x()
                 self.dynagen.running_config[item.d][item.get_running_config_name()]['y'] = item.y()
                 # record hostname x & y positions

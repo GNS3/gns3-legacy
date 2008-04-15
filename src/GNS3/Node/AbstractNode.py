@@ -44,6 +44,8 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.__selectedInterface = None
         self.__flag_hostname = False
 
+        self.default_symbol = True
+        
         # status used in the topology summary
         self.state = 'stopped'
 

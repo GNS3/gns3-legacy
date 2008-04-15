@@ -47,6 +47,7 @@ udp = integer(min=1, max=65535, default=None)
     hy = float(default=None)
     key = string(default = None)
     serial = string(default = None)
+    symbol = string(default = None)
 
 
 

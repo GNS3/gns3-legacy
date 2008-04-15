@@ -1822,52 +1822,52 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="390"/>
+        <location filename="../NETFile.py" line="403"/>
         <source>Save</source>
         <translation>Ulož</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="390"/>
+        <location filename="../NETFile.py" line="403"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Nakonfigurujte cestu ku Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="661"/>
+        <location filename="../NETFile.py" line="674"/>
         <source>Dynamips error</source>
         <translation>Chyba Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="664"/>
+        <location filename="../NETFile.py" line="677"/>
         <source>Dynamips warning</source>
         <translation>Varovanie Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="420"/>
+        <location filename="../NETFile.py" line="433"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Zachytil som výnimku, zastavujem importovanie...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="659"/>
+        <location filename="../NETFile.py" line="672"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportujem konfiguráciu zariadenia %s do adresára %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="676"/>
+        <location filename="../NETFile.py" line="689"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Chyba vstupu/výstupu: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="420"/>
+        <location filename="../NETFile.py" line="433"/>
         <source>Importation</source>
         <translation>Importujem</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="402"/>
+        <location filename="../NETFile.py" line="415"/>
         <source>Please wait while importing the topology</source>
         <translation>Čakajte kým sa naimportuje topológia</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="676"/>
+        <location filename="../NETFile.py" line="689"/>
         <source>IOError</source>
         <translation>Vstupno/Výstupná Chyba</translation>
     </message>
@@ -1877,17 +1877,17 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="766"/>
+        <location filename="../NETFile.py" line="780"/>
         <source>must be connected in order to be registered</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="340"/>
+        <location filename="../NETFile.py" line="353"/>
         <source>%s: cannot find %s symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="444"/>
+        <location filename="../NETFile.py" line="457"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation type="unfinished"></translation>
     </message>

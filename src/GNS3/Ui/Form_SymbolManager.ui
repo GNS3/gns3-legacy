@@ -116,7 +116,7 @@
    <item row="0" column="2" >
     <widget class="QGroupBox" name="groupBox" >
      <property name="title" >
-      <string>Current node settings</string>
+      <string>Customized node settings</string>
      </property>
      <layout class="QGridLayout" >
       <item row="0" column="0" >
@@ -196,7 +196,7 @@
      </property>
      <column>
       <property name="text" >
-       <string>Current nodes</string>
+       <string>Customized nodes</string>
       </property>
      </column>
     </widget>

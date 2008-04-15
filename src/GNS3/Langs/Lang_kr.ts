@@ -1820,52 +1820,52 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="390"/>
+        <location filename="../NETFile.py" line="403"/>
         <source>Save</source>
         <translation>저장</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="390"/>
+        <location filename="../NETFile.py" line="403"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Dynamips의 경로를 설정해주세요</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="661"/>
+        <location filename="../NETFile.py" line="674"/>
         <source>Dynamips error</source>
         <translation>Dynamips 에러</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="664"/>
+        <location filename="../NETFile.py" line="677"/>
         <source>Dynamips warning</source>
         <translation>Dynamips 경고</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="420"/>
+        <location filename="../NETFile.py" line="433"/>
         <source>Exception detected, stopping importation...</source>
         <translation>에러가 발생하여 가져오기를 중단합니다...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="659"/>
+        <location filename="../NETFile.py" line="672"/>
         <source>Exporting %s configuration to %s</source>
         <translation>%s 의 설정을 %s 로 내보내는 중</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="676"/>
+        <location filename="../NETFile.py" line="689"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO 에러: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="420"/>
+        <location filename="../NETFile.py" line="433"/>
         <source>Importation</source>
         <translation>가져오기</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="402"/>
+        <location filename="../NETFile.py" line="415"/>
         <source>Please wait while importing the topology</source>
         <translation>토폴로지를 가져오는 중입니다. 잠시만 기다려 주세요</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="676"/>
+        <location filename="../NETFile.py" line="689"/>
         <source>IOError</source>
         <translation>입출력 관련 에러</translation>
     </message>
@@ -1875,17 +1875,17 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="766"/>
+        <location filename="../NETFile.py" line="780"/>
         <source>must be connected in order to be registered</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="340"/>
+        <location filename="../NETFile.py" line="353"/>
         <source>%s: cannot find %s symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="444"/>
+        <location filename="../NETFile.py" line="457"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation type="unfinished"></translation>
     </message>

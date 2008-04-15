@@ -1821,52 +1821,52 @@ Entre o número do valor idlepc para aplicar [1-%i] ou ENTRE para não alterar:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="390"/>
+        <location filename="../NETFile.py" line="403"/>
         <source>Save</source>
         <translation>Salvar</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="390"/>
+        <location filename="../NETFile.py" line="403"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Por favor configure o caminho para o Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="661"/>
+        <location filename="../NETFile.py" line="674"/>
         <source>Dynamips error</source>
         <translation>Erro no Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="664"/>
+        <location filename="../NETFile.py" line="677"/>
         <source>Dynamips warning</source>
         <translation>Avisos Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="420"/>
+        <location filename="../NETFile.py" line="433"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Detectada excessão, parando a importação...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="659"/>
+        <location filename="../NETFile.py" line="672"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportando a configuração %s para %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="676"/>
+        <location filename="../NETFile.py" line="689"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Erro de IO: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="420"/>
+        <location filename="../NETFile.py" line="433"/>
         <source>Importation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="402"/>
+        <location filename="../NETFile.py" line="415"/>
         <source>Please wait while importing the topology</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="676"/>
+        <location filename="../NETFile.py" line="689"/>
         <source>IOError</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1876,17 +1876,17 @@ Entre o número do valor idlepc para aplicar [1-%i] ou ENTRE para não alterar:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="766"/>
+        <location filename="../NETFile.py" line="780"/>
         <source>must be connected in order to be registered</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="340"/>
+        <location filename="../NETFile.py" line="353"/>
         <source>%s: cannot find %s symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="444"/>
+        <location filename="../NETFile.py" line="457"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation type="unfinished"></translation>
     </message>

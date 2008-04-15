@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_SymbolManager.ui'
 #
-# Created: Sun Apr 13 03:51:40 2008
+# Created: Tue Apr 15 22:22:38 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -135,11 +135,11 @@ class Ui_SymbolManager(object):
         self.pushButtonRemoveLibrary.setText(QtGui.QApplication.translate("SymbolManager", "&Remove", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonAdd.setText(QtGui.QApplication.translate("SymbolManager", ">", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonRemove.setText(QtGui.QApplication.translate("SymbolManager", "<", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox.setTitle(QtGui.QApplication.translate("SymbolManager", "Current node settings", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox.setTitle(QtGui.QApplication.translate("SymbolManager", "Customized node settings", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("SymbolManager", "Name:", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("SymbolManager", "Type:", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonApply.setText(QtGui.QApplication.translate("SymbolManager", "&Apply", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetSymbols.headerItem().setText(0,QtGui.QApplication.translate("SymbolManager", "Available symbols", None, QtGui.QApplication.UnicodeUTF8))
-        self.treeWidgetNodes.headerItem().setText(0,QtGui.QApplication.translate("SymbolManager", "Current nodes", None, QtGui.QApplication.UnicodeUTF8))
+        self.treeWidgetNodes.headerItem().setText(0,QtGui.QApplication.translate("SymbolManager", "Customized nodes", None, QtGui.QApplication.UnicodeUTF8))
 
 import svg_resources_rc

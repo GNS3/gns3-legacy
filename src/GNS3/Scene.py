@@ -28,7 +28,7 @@ from GNS3.Utils import translate, debug
 from Annotation import Annotation
 from GNS3.NodeConfigurator import NodeConfigurator
 from GNS3.Node.AbstractNode import AbstractNode
-from GNS3.Globals.Symbols import SYMBOLS
+from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.FW import FW
 from GNS3.Node.FRSW import FRSW
@@ -470,6 +470,8 @@ class Scene(QtGui.QGraphicsView):
                 return
             node = object(renderer_normal, renderer_select)
             node.type = item['name']
+            if SYMBOL_TYPES[item['object']] != item['name']:
+                node.default_symbol = False
             node.setPos(self.mapToScene(event.pos()))
 
             if globals.GApp.workspace.flg_showHostname == True:
