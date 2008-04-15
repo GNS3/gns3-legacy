@@ -531,7 +531,7 @@ class Scene(QtGui.QGraphicsView):
     def mouseMoveEvent(self, event):
 
         # update new edge position
-        globals.GApp.workspace.statusbar.showMessage("%d, %d" % (event.pos().x(), event.pos().y()))
+#        globals.GApp.workspace.statusbar.showMessage("%d, %d" % (event.pos().x(), event.pos().y()))
         if (self.newedge):
             self.newedge.setMousePoint(self.mapToScene(event.pos()))
             event.ignore()

@@ -129,6 +129,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 
         _local_option = option
         _local_option.state = QtGui.QStyle.State_None
+
         QtSvg.QGraphicsSvgItem.paint(self, painter, _local_option, widget)
 
     def itemChange(self, change, value):
