@@ -250,7 +250,7 @@ class Dynamips(object):
             except:
                 raise DynamipsError, 'Could not connect to server'
         self.__devices = []
-        self.__ghosts = []
+        self.__ghosts = {}
         self.__workingdir = ''
         self.__host = host
         self.__port = port
@@ -411,11 +411,13 @@ class Dynamips(object):
     default_udp = property(__getdefault_udp, doc='default udp value')
 
 
-    def __setghosts(self, ghostname):
+    def __setghosts(self, ghostdict):
         """ Add a ghost name to the list of ghosts created on this hypervisor instance
+            ghostdict is of the form (imagename, device)
         """
 
-        self.__ghosts.append(ghostname)
+        key, value = ghostdict
+        self.__ghosts[key] = value
 
     def __getghosts(self):
         """ Returns a list of the ghosts hosted by this hypervisor instance
@@ -2829,7 +2831,7 @@ class Router(object):
 
         # If this is a ghost instance, track this as a hosted ghost instance by this hypervisor
         if self.ghost_status == 1:
-            self.__d.ghosts = self.ghost_file
+            self.__d.ghosts = (ghost_file, self)
 
     def __getghost_file(self):
         """ Returns the ghost_file

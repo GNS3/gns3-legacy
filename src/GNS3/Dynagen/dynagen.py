@@ -2060,6 +2060,37 @@ class Dynagen:
             if ghost_instance not in allghosts:
                 self._create_ghost_instance(device)
 
+    def check_ghost_file(self, device):
+        """check whether the ghostfile for this instance exists, if not create it"""
+
+        if device.ghost_status == 2:
+            ghost_instance = device.formatted_ghost_file()
+            # Search of an existing ghost instance across all
+            # dynamps servers running on the same host as the device
+            allghosts = []
+            for d in self.dynamips.values():
+                if isinstance(d, Dynamips):
+                    allghosts.extend(d.ghosts)
+            if ghost_instance not in allghosts:
+                self._create_ghost_instance(device)
+            else:
+                # No need to create a ghost, a usable one already exists
+                # Verify the ram size though
+                # find the ghost we are using
+                for d in self.dynamips.values():
+                    if isinstance(d, Dynamips):
+                        for ghost in d.ghosts:
+                            if ghost_instance == ghost:
+                                hosting_d = d
+                if device.ram > hosting_d.ghosts[ghost_instance].ram:
+                    self.dowarning("ghostsize is to small for device %s. Increase it with the ghostsize option." % device.name)
+                    return False
+                else:
+                    return True
+        else:
+            # No ghosting
+            return True
+                
     def _create_ghost_instance(self, device, maxram = 0):
         """ Create a new ghost instance to be used by 'device'
         """
