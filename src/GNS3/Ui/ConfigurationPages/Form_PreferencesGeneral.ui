@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>432</width>
-    <height>422</height>
+    <height>491</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -128,6 +128,42 @@
         </property>
         <property name="checked" >
          <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_3" >
+     <property name="title" >
+      <string>Configuration file</string>
+     </property>
+     <layout class="QHBoxLayout" >
+      <item>
+       <widget class="QLabel" name="labelConfigurationPath" >
+        <property name="text" >
+         <string>Unknown location</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>16</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_ClearConfiguration" >
+        <property name="text" >
+         <string>&amp;Clear it</string>
         </property>
        </widget>
       </item>

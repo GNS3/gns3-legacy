@@ -40,6 +40,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             lang_displayText = u"%s (%s)" % (lang_name, lang_code)
             self.langsBox.addItem(lang_displayText)
         
+        self.connect(self.pushButton_ClearConfiguration, QtCore.SIGNAL('clicked()'), self.__clearConfiguration)
         self.connect(self.ProjectPath_browser, QtCore.SIGNAL('clicked()'), self.__setProjectPath)
         self.connect(self.IOSPath_browser, QtCore.SIGNAL('clicked()'), self.__setIOSPath)
         self.loadConf()
@@ -108,6 +109,8 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.checkBoxUseShell.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxUseShell.setCheckState(QtCore.Qt.Unchecked)
+            
+        self.labelConfigurationPath.setText(ConfDB().fileName())
 
     def saveConf(self):
 
@@ -154,3 +157,10 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         if path:
             self.IOSPath.setText(os.path.normpath(path))
 
+    def __clearConfiguration(self):
+    
+        ConfDB().clear()
+        QtGui.QMessageBox.information(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Configuration file"),  
+                                      translate("UiConfig_PreferencesGeneral", "Configuration file cleared, default settings will be applied after a restart"))
+        globals.recordConfiguration = False
+                                      

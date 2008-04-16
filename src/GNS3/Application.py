@@ -34,6 +34,7 @@ from GNS3.HypervisorManager import HypervisorManager
 from GNS3.PemuManager import PemuManager
 from GNS3.Translations import Translator
 from GNS3.DynagenSub import DynagenSub
+from GNS3.Wizard import Wizard
 
 class Application(QApplication, Singleton):
     """ GNS3 Application instance
@@ -326,15 +327,24 @@ class Application(QApplication, Singleton):
 
         if file:
             self.mainWindow.load_netfile(file)
+        
+        configFile = unicode(ConfDB().fileName())
+        if not os.access(configFile, os.F_OK):
+            dialog = Wizard()
+            dialog.show()
+            dialog.raise_()
+            dialog.activateWindow()
+
         retcode = QApplication.exec_()
 
         self.__HypervisorManager = None
         self.__PemuManager = None
 
-        # Save the geometry & state of the GUI
-        ConfDB().set("GUIState/Geometry", self.mainWindow.saveGeometry())
-        ConfDB().set("GUIState/State", self.mainWindow.saveState())
-        self.syncConf()
+        if globals.recordConfiguration:
+            # Save the geometry & state of the GUI
+            ConfDB().set("GUIState/Geometry", self.mainWindow.saveGeometry())
+            ConfDB().set("GUIState/State", self.mainWindow.saveState())
+            self.syncConf()
 
         sys.exit(retcode)
 

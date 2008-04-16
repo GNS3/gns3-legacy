@@ -8,6 +8,7 @@ FILES=" Form_MainWindow
 	Form_PreferencesDialog
 	Form_NewProject
 	Form_SymbolManager
+	Form_Wizard
         ./ConfigurationPages/Form_IOSRouterPage
         ./ConfigurationPages/Form_CloudPage
         ./ConfigurationPages/Form_ETHSWPage

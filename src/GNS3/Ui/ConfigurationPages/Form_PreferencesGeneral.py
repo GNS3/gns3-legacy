@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
 #
-# Created: Wed Apr 16 19:10:33 2008
+# Created: Wed Apr 16 23:39:02 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_PreferencesGeneral(object):
     def setupUi(self, PreferencesGeneral):
         PreferencesGeneral.setObjectName("PreferencesGeneral")
-        PreferencesGeneral.resize(QtCore.QSize(QtCore.QRect(0,0,432,422).size()).expandedTo(PreferencesGeneral.minimumSizeHint()))
+        PreferencesGeneral.resize(QtCore.QSize(QtCore.QRect(0,0,432,491).size()).expandedTo(PreferencesGeneral.minimumSizeHint()))
 
         self.vboxlayout = QtGui.QVBoxLayout(PreferencesGeneral)
         self.vboxlayout.setObjectName("vboxlayout")
@@ -96,8 +96,26 @@ class Ui_PreferencesGeneral(object):
         self.vboxlayout1.addWidget(self.checkBoxManualConnections)
         self.vboxlayout.addWidget(self.groupBox)
 
-        spacerItem = QtGui.QSpacerItem(414,16,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
-        self.vboxlayout.addItem(spacerItem)
+        self.groupBox_3 = QtGui.QGroupBox(PreferencesGeneral)
+        self.groupBox_3.setObjectName("groupBox_3")
+
+        self.hboxlayout = QtGui.QHBoxLayout(self.groupBox_3)
+        self.hboxlayout.setObjectName("hboxlayout")
+
+        self.labelConfigurationPath = QtGui.QLabel(self.groupBox_3)
+        self.labelConfigurationPath.setObjectName("labelConfigurationPath")
+        self.hboxlayout.addWidget(self.labelConfigurationPath)
+
+        spacerItem = QtGui.QSpacerItem(16,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        self.hboxlayout.addItem(spacerItem)
+
+        self.pushButton_ClearConfiguration = QtGui.QPushButton(self.groupBox_3)
+        self.pushButton_ClearConfiguration.setObjectName("pushButton_ClearConfiguration")
+        self.hboxlayout.addWidget(self.pushButton_ClearConfiguration)
+        self.vboxlayout.addWidget(self.groupBox_3)
+
+        spacerItem1 = QtGui.QSpacerItem(414,16,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        self.vboxlayout.addItem(spacerItem1)
 
         self.retranslateUi(PreferencesGeneral)
         QtCore.QMetaObject.connectSlotsByName(PreferencesGeneral)
@@ -115,4 +133,7 @@ class Ui_PreferencesGeneral(object):
         self.groupBox.setTitle(QtGui.QApplication.translate("PreferencesGeneral", "GUI settings", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxShowStatusPoints.setText(QtGui.QApplication.translate("PreferencesGeneral", "Show link status points on the scene", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxManualConnections.setText(QtGui.QApplication.translate("PreferencesGeneral", "Always use manual mode when adding links", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox_3.setTitle(QtGui.QApplication.translate("PreferencesGeneral", "Configuration file", None, QtGui.QApplication.UnicodeUTF8))
+        self.labelConfigurationPath.setText(QtGui.QApplication.translate("PreferencesGeneral", "Unknown location", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButton_ClearConfiguration.setText(QtGui.QApplication.translate("PreferencesGeneral", "&Clear it", None, QtGui.QApplication.UnicodeUTF8))
 

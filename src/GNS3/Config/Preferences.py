@@ -50,7 +50,7 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
 
         # Init dialog
         self.__initDialog()
-        # Raise the first element in list
+        # Raise a element in list
         self.__raiseWidgetByNum(0)
 
     def retranslateUi(self, MainWindow):
