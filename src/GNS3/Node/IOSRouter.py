@@ -107,7 +107,6 @@ class IOSRouter(AbstractNode):
             'idlemax',
             'idlesleep',
             'image',
-            'cnfg',
             'mac',
             'iomem',
             'npe',
@@ -275,6 +274,18 @@ class IOSRouter(AbstractNode):
         self.defaults_config = self.dynagen.defaults_config[self.d][self.router.model_string]
         self.create_config()
 
+    def changeStartupConfig(self):
+        """ Called to change the startup-config
+        """
+
+        (startup_config,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, translate("IOSRouter", "Startup-config"),
+                                           unicode(translate("IOSRouter", "Startup-config for %s:")) % self.hostname, QtGui.QLineEdit.Normal, unicode(self.router.cnfg))
+        if ok and startup_config and startup_config != 'None':
+            try:
+                self.router.cnfg = unicode(startup_config)
+            except lib.DynamipsError, msg:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSRouter", "Startup-config"), unicode(msg))
+        
     def smart_interface(self, link_type):
         """ Pick automatically (if possible) the right interface and adapter for the desired link type
             link_type: an one character string 'g', 'f', 'e', 's', 'a', or 'p'

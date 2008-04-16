@@ -23,7 +23,7 @@ import os, re
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_IOSRouterPage import Ui_IOSRouterPage
-from GNS3.Utils import fileBrowser, translate, testOpenFile
+from GNS3.Utils import translate
 import GNS3.Dynagen.dynamips_lib as lib
 
 class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
@@ -37,9 +37,6 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         self.setObjectName("IOSRouter")
         self.currentNodeID = None
 
-        # connect slots
-        self.connect(self.pushButtonStartupConfig, QtCore.SIGNAL('clicked()'), self.slotSelectStartupConfig)
-
         self.widget_slots = {0: self.comboBoxSlot0,
                                         1: self.comboBoxSlot1,
                                         2: self.comboBoxSlot2,
@@ -51,19 +48,6 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         self.widget_wics = {0: self.comboBoxWIC0,
                                         1: self.comboBoxWIC1,
                                         2: self.comboBoxWIC2}
-
-    def slotSelectStartupConfig(self):
-        """ Get startup-config from the file system
-        """
-
-        path = fileBrowser('startup-config',  directory=globals.GApp.systconf['general'].project_path).getFile()
-        if path != None and path[0] != '':
-            if not testOpenFile(path[0]):
-                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'Startup-config', unicode(translate("Page_IOSRouter", "Can't open file: %s")) % path[0])
-                return
-            self.lineEditStartupConfig.clear()
-            config = os.path.normpath(path[0])
-            self.lineEditStartupConfig.setText(config)
 
     def loadConfig(self, id, config = None):
         """ Load the config
@@ -133,10 +117,10 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         else:
             self.spinBoxIomem.setEnabled(False)
 
-        if router_config['cnfg']:
-            self.lineEditStartupConfig.setText(router_config['cnfg'])
+        if router.cnfg:
+            self.textLabel_StartupConfig.setText(unicode(router.cnfg))
         else:
-            self.lineEditStartupConfig.clear()
+            self.textLabel_StartupConfig.setText(translate("Page_IOSRouter", "None"))
 
         if router_config['mac']:
             self.lineEditMAC.setText(router_config['mac'])
@@ -172,12 +156,6 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         else:
             router_config = node.get_config()
 
-        cnfg = unicode(self.lineEditStartupConfig.text())
-        if cnfg:
-            router_config['cnfg'] = cnfg
-#        else: #FIXME: reset config
-#            router_config['cnfg'] = ''
-            
         mac = str(self.lineEditMAC.text())
         if mac and not re.search(r"""^([0-9a-fA-F]{2}[:-]){5}[0-9a-fA-F]{2}$""", mac):
             QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'MAC', translate("Page_IOSRouter", "Invalid MAC address (format required: hh:hh:hh:hh:hh:hh)"))

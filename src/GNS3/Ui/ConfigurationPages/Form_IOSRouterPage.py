@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_IOSRouterPage.ui'
 #
-# Created: Wed Apr 16 14:06:04 2008
+# Created: Wed Apr 16 19:10:32 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -32,7 +32,7 @@ class Ui_IOSRouterPage(object):
 
         self.textLabel_Platform = QtGui.QLabel(self.General)
         self.textLabel_Platform.setObjectName("textLabel_Platform")
-        self.gridlayout.addWidget(self.textLabel_Platform,0,1,1,2)
+        self.gridlayout.addWidget(self.textLabel_Platform,0,1,1,1)
 
         self.label_8 = QtGui.QLabel(self.General)
         self.label_8.setObjectName("label_8")
@@ -40,7 +40,7 @@ class Ui_IOSRouterPage(object):
 
         self.textLabel_Model = QtGui.QLabel(self.General)
         self.textLabel_Model.setObjectName("textLabel_Model")
-        self.gridlayout.addWidget(self.textLabel_Model,1,1,1,2)
+        self.gridlayout.addWidget(self.textLabel_Model,1,1,1,1)
 
         self.label_5 = QtGui.QLabel(self.General)
         self.label_5.setObjectName("label_5")
@@ -48,32 +48,15 @@ class Ui_IOSRouterPage(object):
 
         self.textLabel_ImageIOS = QtGui.QLabel(self.General)
         self.textLabel_ImageIOS.setObjectName("textLabel_ImageIOS")
-        self.gridlayout.addWidget(self.textLabel_ImageIOS,2,1,1,2)
+        self.gridlayout.addWidget(self.textLabel_ImageIOS,2,1,1,1)
 
         self.label_18 = QtGui.QLabel(self.General)
         self.label_18.setObjectName("label_18")
         self.gridlayout.addWidget(self.label_18,3,0,1,1)
 
-        self.lineEditStartupConfig = QtGui.QLineEdit(self.General)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lineEditStartupConfig.sizePolicy().hasHeightForWidth())
-        self.lineEditStartupConfig.setSizePolicy(sizePolicy)
-        self.lineEditStartupConfig.setObjectName("lineEditStartupConfig")
-        self.gridlayout.addWidget(self.lineEditStartupConfig,3,1,1,1)
-
-        self.pushButtonStartupConfig = QtGui.QPushButton(self.General)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButtonStartupConfig.sizePolicy().hasHeightForWidth())
-        self.pushButtonStartupConfig.setSizePolicy(sizePolicy)
-        self.pushButtonStartupConfig.setMaximumSize(QtCore.QSize(31,27))
-        self.pushButtonStartupConfig.setObjectName("pushButtonStartupConfig")
-        self.gridlayout.addWidget(self.pushButtonStartupConfig,3,2,1,1)
+        self.textLabel_StartupConfig = QtGui.QLabel(self.General)
+        self.textLabel_StartupConfig.setObjectName("textLabel_StartupConfig")
+        self.gridlayout.addWidget(self.textLabel_StartupConfig,3,1,1,1)
 
         self.label = QtGui.QLabel(self.General)
         self.label.setObjectName("label")
@@ -88,7 +71,7 @@ class Ui_IOSRouterPage(object):
         sizePolicy.setHeightForWidth(self.comboBoxMidplane.sizePolicy().hasHeightForWidth())
         self.comboBoxMidplane.setSizePolicy(sizePolicy)
         self.comboBoxMidplane.setObjectName("comboBoxMidplane")
-        self.gridlayout.addWidget(self.comboBoxMidplane,4,1,1,2)
+        self.gridlayout.addWidget(self.comboBoxMidplane,4,1,1,1)
 
         self.label_2 = QtGui.QLabel(self.General)
         self.label_2.setObjectName("label_2")
@@ -103,7 +86,7 @@ class Ui_IOSRouterPage(object):
         sizePolicy.setHeightForWidth(self.comboBoxNPE.sizePolicy().hasHeightForWidth())
         self.comboBoxNPE.setSizePolicy(sizePolicy)
         self.comboBoxNPE.setObjectName("comboBoxNPE")
-        self.gridlayout.addWidget(self.comboBoxNPE,5,1,1,2)
+        self.gridlayout.addWidget(self.comboBoxNPE,5,1,1,1)
 
         spacerItem = QtGui.QSpacerItem(263,151,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
         self.gridlayout.addItem(spacerItem,6,1,1,1)
@@ -445,7 +428,6 @@ class Ui_IOSRouterPage(object):
         self.label_8.setText(QtGui.QApplication.translate("IOSRouterPage", "Model:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_5.setText(QtGui.QApplication.translate("IOSRouterPage", "IOS image:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_18.setText(QtGui.QApplication.translate("IOSRouterPage", "Startup-config:", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonStartupConfig.setText(QtGui.QApplication.translate("IOSRouterPage", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("IOSRouterPage", "Midplane:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("IOSRouterPage", "NPE:", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.General), QtGui.QApplication.translate("IOSRouterPage", "General", None, QtGui.QApplication.UnicodeUTF8))

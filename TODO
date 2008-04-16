@@ -13,6 +13,7 @@ GUI FEATURES:
  -----------------------------------------------------
  * A setup wizard.
  * Add a button to clean the configuration of GNS3 (gns3.ini).
+ * Separation between emulated and decorative nodes.
 
 CORE FEATURES:
 
@@ -27,7 +28,4 @@ CORE FEATURES:
  * A standalone server to automatically configure GNS3 clients in order to use remote hypervisors (intended for learning environments, schools/universities, where IOS image cannot be distributed) 
  -----------------------------------------------------
  * Add a host symbol which use directly a NIO generic ethernet for its interfaces.
- * Move startup-config edit box from the node configurator to the contextual menu (like "change console port").
-
-
 

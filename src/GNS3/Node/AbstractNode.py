@@ -24,8 +24,6 @@ from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Utils import translate, debug
 import GNS3.Dynagen.dynamips_lib as lib
 
-error = None
-
 class AbstractNode(QtSvg.QGraphicsSvgItem):
     """ AbstractNode class
         Base class to create Dynamips nodes
@@ -37,7 +35,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """
 
         QtSvg.QGraphicsSvgItem.__init__(self)
-        global error
         self.__render_normal = render_normal
         self.__render_select = render_select
         self.__edgeList = set()
@@ -48,10 +45,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         
         # status used in the topology summary
         self.state = 'stopped'
-
-        if error == None:
-            error = QtGui.QErrorMessage(globals.GApp.mainWindow)
-        self.error = error
 
         # create a unique ID
         self.id = globals.GApp.topology.node_baseid

@@ -30,7 +30,7 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="1" colspan="2" >
+       <item row="0" column="1" >
         <widget class="QLabel" name="textLabel_Platform" >
          <property name="text" >
           <string/>
@@ -44,7 +44,7 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1" colspan="2" >
+       <item row="1" column="1" >
         <widget class="QLabel" name="textLabel_Model" >
          <property name="text" >
           <string/>
@@ -58,7 +58,7 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="1" colspan="2" >
+       <item row="2" column="1" >
         <widget class="QLabel" name="textLabel_ImageIOS" >
          <property name="text" >
           <string/>
@@ -73,31 +73,9 @@
         </widget>
        </item>
        <item row="3" column="1" >
-        <widget class="QLineEdit" name="lineEditStartupConfig" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="2" >
-        <widget class="QPushButton" name="pushButtonStartupConfig" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maximumSize" >
-          <size>
-           <width>31</width>
-           <height>27</height>
-          </size>
-         </property>
+        <widget class="QLabel" name="textLabel_StartupConfig" >
          <property name="text" >
-          <string>...</string>
+          <string/>
          </property>
         </widget>
        </item>
@@ -108,7 +86,7 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="1" colspan="2" >
+       <item row="4" column="1" >
         <widget class="QComboBox" name="comboBoxMidplane" >
          <property name="enabled" >
           <bool>false</bool>
@@ -128,7 +106,7 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="1" colspan="2" >
+       <item row="5" column="1" >
         <widget class="QComboBox" name="comboBoxNPE" >
          <property name="enabled" >
           <bool>false</bool>

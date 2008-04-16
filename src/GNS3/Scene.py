@@ -125,11 +125,11 @@ class Scene(QtGui.QGraphicsView):
         instances = map(lambda item: isinstance(item, IOSRouter) or isinstance(item, FW), items)
         if True in instances:
 
-            # Action: Console (Connect to the node console)
+            # Action: Change the console port
             consolePortAct = QtGui.QAction(translate('Scene', 'Change console port'), menu)
             consolePortAct.setIcon(QtGui.QIcon(':/icons/console_port.svg'))
             self.connect(consolePortAct, QtCore.SIGNAL('triggered()'), self.slotChangeConsolePort)
-        
+
             # Action: Console (Connect to the node console)
             consoleAct = QtGui.QAction(translate('Scene', 'Console'), menu)
             consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
@@ -157,6 +157,11 @@ class Scene(QtGui.QGraphicsView):
             idlepcAct = QtGui.QAction(translate('Scene', 'Idle PC'), menu)
             idlepcAct.setIcon(QtGui.QIcon(':/icons/calculate.svg'))
             self.connect(idlepcAct, QtCore.SIGNAL('triggered()'), self.slotIdlepc)
+            
+            # Action: Change the startup-config
+            StartupConfigAct = QtGui.QAction(translate('Scene', 'Startup-config'), menu)
+            StartupConfigAct.setIcon(QtGui.QIcon(':/icons/startup_config.svg'))
+            self.connect(StartupConfigAct, QtCore.SIGNAL('triggered()'), self.slotStartupConfig)
 
             # Action: Suspend (Suspend IOS on hypervisor)
             suspendAct = QtGui.QAction(translate('Scene', 'Suspend'), menu)
@@ -165,6 +170,7 @@ class Scene(QtGui.QGraphicsView):
 
             menu.addAction(suspendAct)
             menu.addAction(idlepcAct)
+            menu.addAction(StartupConfigAct)
 
         instances = map(lambda item: isinstance(item, Annotation) or isinstance(item, Pixmap), items)
         if True in instances:
@@ -360,6 +366,14 @@ class Scene(QtGui.QGraphicsView):
         for item in self.__topology.selectedItems():
             if isinstance(item, IOSRouter) or isinstance(item, FW):
                 item.changeConsolePort()
+
+    def slotStartupConfig(self):
+        """ Slot called to change the startup-config
+        """
+
+        for item in self.__topology.selectedItems():
+            if isinstance(item, IOSRouter):
+                item.changeStartupConfig()
 
     def slotStartNode(self):
         """ Slot called to start the selected items
