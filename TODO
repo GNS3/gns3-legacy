@@ -26,7 +26,6 @@ CORE FEATURES:
  * Add GUI options for filters (monitor etc ...).
  * A standalone server to automatically configure GNS3 clients in order to use remote hypervisors (intended for learning environments, schools/universities, where IOS image cannot be distributed) 
  -----------------------------------------------------
- * Record inserted image paths in .net files.
  * Add a host symbol which use directly a NIO generic ethernet for its interfaces.
  * Move startup-config edit box from the node configurator to the contextual menu (like "change console port").
 

@@ -37,6 +37,7 @@ from GNS3.Config.Config import ConfDB
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.FW import FW
 from GNS3.Node.Cloud import Cloud
+from GNS3.Pixmap import Pixmap
 
 class Workspace(QMainWindow, Ui_MainWindow):
     """ This class is for managing the whole GUI `Workspace'.
@@ -234,12 +235,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                         filter = 'PNG File (*.png);;GIF File (*.gif);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm);;PBM File (*.pbm);;PGM File (*.pgm);;PPM File (*.ppm);;All files (*.*)',
                                         directory='.').getFile()
         if path != None and path != '':
-            pixmap = QtGui.QPixmap(path)
-            if not pixmap.isNull():
-                item = QtGui.QGraphicsPixmapItem(pixmap)
-                item.setFlags(item.ItemIsMovable | item.ItemIsSelectable)
-                item.setTransformationMode(QtCore.Qt.SmoothTransformation)
-                item.setPos(0, 0)
+            pixmap_image = QtGui.QPixmap(path)
+            if not pixmap_image.isNull():
+                item = Pixmap(pixmap_image, path)
                 # center the image
                 pos_x = item.pos().x() - (item.boundingRect().width() / 2)
                 pos_y = item.pos().y() - (item.boundingRect().height() / 2)

@@ -31,7 +31,6 @@ class Annotation(QtGui.QGraphicsTextItem):
         self.setFont(QtGui.QFont("TypeWriter", 10, QtGui.QFont.Bold))
         self.setFlag(self.ItemIsMovable)
         self.setFlag(self.ItemIsSelectable)
-        self.setZValue(2)
 
     def editText(self):
 

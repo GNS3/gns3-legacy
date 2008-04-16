@@ -27,7 +27,8 @@ import GNS3.Dynagen.pemu_lib as pix
 from GNS3.Globals.Symbols import SYMBOLS
 from GNS3.Utils import translate, debug, error
 from PyQt4 import QtGui, QtCore
-from Annotation import Annotation
+from GNS3.Annotation import Annotation
+from GNS3.Pixmap import Pixmap
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Objects import iosImageConf, hypervisorConf
 from GNS3.Node.AbstractNode import AbstractNode
@@ -348,6 +349,19 @@ class NETFile(object):
                         note_object.setZValue(float(gns3data[section]['z']))
                     globals.GApp.topology.addItem(note_object)
                     
+                if devtype.lower() == 'pixmap':
+                    pixmap_path = unicode(gns3data[section]['path'])
+                    pixmap_image = QtGui.QPixmap(pixmap_path)
+                    if not pixmap_image.isNull():
+                        pixmap_object= Pixmap(pixmap_image, pixmap_path)
+                    else:
+                        print unicode(translate("NETFile", "Cannot load image: %s")) % pixmap_path
+                        continue
+                    pixmap_object.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
+                    if gns3data[section].has_key('z'):
+                        pixmap_object.setZValue(float(gns3data[section]['z']))
+                    globals.GApp.topology.addItem(pixmap_object)
+
                 if devtype.lower() == 'node':
                     hostname = unicode(hostname)
                     symbol = unicode(gns3data[section]['symbol'])
@@ -721,6 +735,7 @@ class NETFile(object):
                 self.export_router_config(device)
 
         note_nb = 1
+        pix_nb = 1
         for item in globals.GApp.topology.items():
             # record clouds
             if isinstance(item, Cloud):
@@ -759,6 +774,19 @@ class NETFile(object):
                 if zvalue > 0:
                     config['z'] = zvalue
                 note_nb += 1
+            # record inserted images
+            elif isinstance(item, Pixmap):
+                if not self.dynagen.running_config.has_key('GNS3-DATA'):
+                    self.dynagen.running_config['GNS3-DATA'] = {}
+                self.dynagen.running_config['GNS3-DATA']['PIXMAP ' + str(pix_nb)] = {}
+                config = self.dynagen.running_config['GNS3-DATA']['PIXMAP ' + str(pix_nb)] 
+                config['path'] = item.pixmap_path
+                config['x'] = item.x()
+                config['y'] = item.y()
+                zvalue = item.zValue()
+                if zvalue > 0:
+                    config['z'] = zvalue
+                pix_nb += 1
             elif isinstance(item, DecorativeNode):
                 if not self.dynagen.running_config.has_key('GNS3-DATA'):
                     self.dynagen.running_config['GNS3-DATA'] = {}

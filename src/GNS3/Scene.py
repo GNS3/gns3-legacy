@@ -25,7 +25,8 @@ import GNS3.Dynagen.dynamips_lib as lib
 from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Topology import Topology
 from GNS3.Utils import translate, debug
-from Annotation import Annotation
+from GNS3.Annotation import Annotation
+from GNS3.Pixmap import Pixmap
 from GNS3.NodeConfigurator import NodeConfigurator
 from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
@@ -98,7 +99,7 @@ class Scene(QtGui.QGraphicsView):
 
         menu = QtGui.QMenu()
 
-        instances = map(lambda item: not isinstance(item, Annotation) and not isinstance(item, QtGui.QGraphicsPixmapItem), items)
+        instances = map(lambda item: not isinstance(item, Annotation) and not isinstance(item, Pixmap), items)
         if True in instances:
 
             # Action: Configure (Configure the node)
@@ -165,7 +166,7 @@ class Scene(QtGui.QGraphicsView):
             menu.addAction(suspendAct)
             menu.addAction(idlepcAct)
 
-        instances = map(lambda item: isinstance(item, Annotation) or isinstance(item, QtGui.QGraphicsPixmapItem), items)
+        instances = map(lambda item: isinstance(item, Annotation) or isinstance(item, Pixmap), items)
         if True in instances:
         
             # Action: Lower Z value
@@ -314,7 +315,7 @@ class Scene(QtGui.QGraphicsView):
 
         ok_to_delete_node = True
         for item in self.__topology.selectedItems():
-            if not isinstance(item, Annotation) and not isinstance(item, QtGui.QGraphicsPixmapItem):
+            if not isinstance(item, Annotation) and not isinstance(item, Pixmap):
                 for link in item.getEdgeList().copy():
                     if self.__topology.deleteLink(link) == False:
                         if ok_to_delete_node:
@@ -330,7 +331,7 @@ class Scene(QtGui.QGraphicsView):
         """
     
         for item in self.__topology.selectedItems():
-            if isinstance(item, Annotation) or isinstance(item, QtGui.QGraphicsPixmapItem):
+            if isinstance(item, Annotation) or isinstance(item, Pixmap):
                 zvalue = item.zValue()
                 if zvalue > 0:
                     item.setZValue(zvalue - 1)
@@ -340,7 +341,7 @@ class Scene(QtGui.QGraphicsView):
         """
     
         for item in self.__topology.selectedItems():
-            if isinstance(item, Annotation) or isinstance(item, QtGui.QGraphicsPixmapItem):
+            if isinstance(item, Annotation) or isinstance(item, Pixmap):
                 zvalue = item.zValue()
                 item.setZValue(zvalue + 1)
 
@@ -557,7 +558,7 @@ class Scene(QtGui.QGraphicsView):
 
         if not globals.addingLinkFlag:
             item = self.itemAt(event.pos())
-            if isinstance(item, Annotation) or isinstance(item, QtGui.QGraphicsPixmapItem):
+            if isinstance(item, Annotation) or isinstance(item, Pixmap):
                 QtGui.QGraphicsView.mouseDoubleClickEvent(self, event)
             elif item and not isinstance(item, AbstractEdge):
                 item.setSelected(True)
