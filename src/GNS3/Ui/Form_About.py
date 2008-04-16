@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_About.ui'
 #
-# Created: Tue Apr 15 22:22:38 2008
+# Created: Wed Apr 16 14:06:04 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -80,6 +80,9 @@ class Ui_AboutDialog(object):
         QtCore.QObject.connect(self.buttonBox,QtCore.SIGNAL("accepted()"),AboutDialog.accept)
         QtCore.QObject.connect(self.buttonBox,QtCore.SIGNAL("rejected()"),AboutDialog.reject)
         QtCore.QMetaObject.connectSlotsByName(AboutDialog)
+        AboutDialog.setTabOrder(self.tabWidget,self.textBrowser)
+        AboutDialog.setTabOrder(self.textBrowser,self.textBrowser_2)
+        AboutDialog.setTabOrder(self.textBrowser_2,self.buttonBox)
 
     def retranslateUi(self, AboutDialog):
         AboutDialog.setWindowTitle(QtGui.QApplication.translate("AboutDialog", "About", None, QtGui.QApplication.UnicodeUTF8))

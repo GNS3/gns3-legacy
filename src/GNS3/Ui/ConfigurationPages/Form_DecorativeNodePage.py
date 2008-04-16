@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_DecorativeNodePage.ui'
 #
-# Created: Tue Apr 15 22:22:39 2008
+# Created: Wed Apr 16 14:06:05 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -72,6 +72,9 @@ class Ui_DecorativeNodePage(object):
 
         self.retranslateUi(DecorativeNodePage)
         QtCore.QMetaObject.connectSlotsByName(DecorativeNodePage)
+        DecorativeNodePage.setTabOrder(self.lineEditInterface,self.pushButtonAddInterface)
+        DecorativeNodePage.setTabOrder(self.pushButtonAddInterface,self.pushButtonDeleteInterface)
+        DecorativeNodePage.setTabOrder(self.pushButtonDeleteInterface,self.listWidgetInterfaces)
 
     def retranslateUi(self, DecorativeNodePage):
         DecorativeNodePage.setWindowTitle(QtGui.QApplication.translate("DecorativeNodePage", "Decorative Node", None, QtGui.QApplication.UnicodeUTF8))

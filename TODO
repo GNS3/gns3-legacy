@@ -9,11 +9,10 @@ GUI FEATURES:
  * Button to show interface names on the scene (without any collision).
  * Inserted images resizing support.
  * Provide a way to change text fonts and orientation.
- * Add a button to clean the configuration of GNS3 (gns3.ini).
- * A setup wizard.
  * Align on a grid option for the scene.
- * Z value option for inserted images and annotations.
- * Check TAB order with QtDesigner for every Ui.
+ -----------------------------------------------------
+ * A setup wizard.
+ * Add a button to clean the configuration of GNS3 (gns3.ini).
 
 CORE FEATURES:
 
@@ -22,11 +21,14 @@ CORE FEATURES:
  * NIO multicast support.
  * Add an option to clean the startup-config (need to see this with Chris).
  * A converter to change the paths (to ios images and working dir) in .net files which come from another user.
- * Move startup-config edit box from the node configurator to the contextual menu (like "change console port").
  * Simulated host support (based on LWIP).
  * JunOS olive support.
- * Add a host symbol which use directly a NIO generic ethernet for its interfaces.
  * Add GUI options for filters (monitor etc ...).
+ * A standalone server to automatically configure GNS3 clients in order to use remote hypervisors (intended for learning environments, schools/universities, where IOS image cannot be distributed) 
+ -----------------------------------------------------
  * Record inserted image paths in .net files.
- * A standalone server to automatically configure GNS3 clients in order to use remote hypervisors (intended for learning environments, schools/universities, where IOS image cannot be distributed)
+ * Add a host symbol which use directly a NIO generic ethernet for its interfaces.
+ * Move startup-config edit box from the node configurator to the contextual menu (like "change console port").
+
+
 

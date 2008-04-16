@@ -264,6 +264,18 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>checkBoxVCI</tabstop>
+  <tabstop>spinBoxSrcPort</tabstop>
+  <tabstop>spinBoxSrcVCI</tabstop>
+  <tabstop>spinBoxSrcVPI</tabstop>
+  <tabstop>spinBoxDestPort</tabstop>
+  <tabstop>spinBoxDestVCI</tabstop>
+  <tabstop>spinBoxDestVPI</tabstop>
+  <tabstop>pushButtonAdd</tabstop>
+  <tabstop>pushButtonDelete</tabstop>
+  <tabstop>treeWidgetVCmap</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

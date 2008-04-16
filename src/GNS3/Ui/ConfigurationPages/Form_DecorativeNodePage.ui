@@ -103,6 +103,12 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>lineEditInterface</tabstop>
+  <tabstop>pushButtonAddInterface</tabstop>
+  <tabstop>pushButtonDeleteInterface</tabstop>
+  <tabstop>listWidgetInterfaces</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

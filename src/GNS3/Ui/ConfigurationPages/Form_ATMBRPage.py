@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_ATMBRPage.ui'
 #
-# Created: Tue Apr 15 22:22:39 2008
+# Created: Wed Apr 16 14:06:05 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -143,6 +143,12 @@ class Ui_ATMBRPage(object):
 
         self.retranslateUi(ATMBRPage)
         QtCore.QMetaObject.connectSlotsByName(ATMBRPage)
+        ATMBRPage.setTabOrder(self.spinBoxSrcPort,self.spinBoxDestPort)
+        ATMBRPage.setTabOrder(self.spinBoxDestPort,self.spinBoxDestVCI)
+        ATMBRPage.setTabOrder(self.spinBoxDestVCI,self.spinBoxDestVPI)
+        ATMBRPage.setTabOrder(self.spinBoxDestVPI,self.pushButtonAdd)
+        ATMBRPage.setTabOrder(self.pushButtonAdd,self.pushButtonDelete)
+        ATMBRPage.setTabOrder(self.pushButtonDelete,self.treeWidgetMapping)
 
     def retranslateUi(self, ATMBRPage):
         ATMBRPage.setWindowTitle(QtGui.QApplication.translate("ATMBRPage", "ATM Bridge", None, QtGui.QApplication.UnicodeUTF8))

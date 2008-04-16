@@ -443,6 +443,12 @@ p, li { white-space: pre-wrap; }
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>textBrowser</tabstop>
+  <tabstop>textBrowser_2</tabstop>
+  <tabstop>buttonBox</tabstop>
+ </tabstops>
  <resources>
   <include location="../../../../gns3-artwork/svg_resources.qrc" />
  </resources>

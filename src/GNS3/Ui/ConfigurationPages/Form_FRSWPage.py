@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_FRSWPage.ui'
 #
-# Created: Tue Apr 15 22:22:38 2008
+# Created: Wed Apr 16 14:06:05 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -141,6 +141,12 @@ class Ui_FRSWPage(object):
 
         self.retranslateUi(FRSWPage)
         QtCore.QMetaObject.connectSlotsByName(FRSWPage)
+        FRSWPage.setTabOrder(self.spinBoxSrcPort,self.spinBoxSrcDLCI)
+        FRSWPage.setTabOrder(self.spinBoxSrcDLCI,self.spinBoxDestPort)
+        FRSWPage.setTabOrder(self.spinBoxDestPort,self.spinBoxDestDLCI)
+        FRSWPage.setTabOrder(self.spinBoxDestDLCI,self.pushButtonAdd)
+        FRSWPage.setTabOrder(self.pushButtonAdd,self.pushButtonDelete)
+        FRSWPage.setTabOrder(self.pushButtonDelete,self.treeWidgetVCmap)
 
     def retranslateUi(self, FRSWPage):
         FRSWPage.setWindowTitle(QtGui.QApplication.translate("FRSWPage", "Frame Relay Switch", None, QtGui.QApplication.UnicodeUTF8))

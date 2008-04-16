@@ -211,6 +211,15 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>spinBoxSrcPort</tabstop>
+  <tabstop>spinBoxDestPort</tabstop>
+  <tabstop>spinBoxDestVCI</tabstop>
+  <tabstop>spinBoxDestVPI</tabstop>
+  <tabstop>pushButtonAdd</tabstop>
+  <tabstop>pushButtonDelete</tabstop>
+  <tabstop>treeWidgetMapping</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

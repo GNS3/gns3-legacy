@@ -165,6 +165,22 @@ class Scene(QtGui.QGraphicsView):
             menu.addAction(suspendAct)
             menu.addAction(idlepcAct)
 
+        instances = map(lambda item: isinstance(item, Annotation) or isinstance(item, QtGui.QGraphicsPixmapItem), items)
+        if True in instances:
+        
+            # Action: Lower Z value
+            lowerZvalueAct = QtGui.QAction(translate('Scene', 'Lower one step'), menu)
+            lowerZvalueAct.setIcon(QtGui.QIcon(':/icons/lower_z_value.svg'))
+            self.connect(lowerZvalueAct, QtCore.SIGNAL('triggered()'), self.slotlowerZValue)
+            
+            # Action: Raise Z value
+            raiseZvalueAct = QtGui.QAction(translate('Scene', 'Raise one step'), menu)
+            raiseZvalueAct.setIcon(QtGui.QIcon(':/icons/raise_z_value.svg'))
+            self.connect(raiseZvalueAct, QtCore.SIGNAL('triggered()'), self.slotraiseZValue)
+
+            menu.addAction(lowerZvalueAct)
+            menu.addAction(raiseZvalueAct)
+            
         # Action: Delete (Delete the node)
         deleteAct = QtGui.QAction(translate('Scene', 'Delete'), menu)
         deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
@@ -308,6 +324,25 @@ class Scene(QtGui.QGraphicsView):
                     self.__topology.deleteNode(item.id)
             else:
                 self.__topology.removeItem(item)
+
+    def slotlowerZValue(self):
+        """ Lower Z value
+        """
+    
+        for item in self.__topology.selectedItems():
+            if isinstance(item, Annotation) or isinstance(item, QtGui.QGraphicsPixmapItem):
+                zvalue = item.zValue()
+                if zvalue > 0:
+                    item.setZValue(zvalue - 1)
+        
+    def slotraiseZValue(self):
+        """ Raise Z value
+        """
+    
+        for item in self.__topology.selectedItems():
+            if isinstance(item, Annotation) or isinstance(item, QtGui.QGraphicsPixmapItem):
+                zvalue = item.zValue()
+                item.setZValue(zvalue + 1)
 
     def slotConsole(self):
         """ Slot called to launch a console on the selected items

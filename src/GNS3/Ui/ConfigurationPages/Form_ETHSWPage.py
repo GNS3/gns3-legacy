@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_ETHSWPage.ui'
 #
-# Created: Tue Apr 15 22:22:38 2008
+# Created: Wed Apr 16 14:06:05 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -107,6 +107,11 @@ class Ui_ETHSWPage(object):
 
         self.retranslateUi(ETHSWPage)
         QtCore.QMetaObject.connectSlotsByName(ETHSWPage)
+        ETHSWPage.setTabOrder(self.spinBoxPort,self.spinBoxVLAN)
+        ETHSWPage.setTabOrder(self.spinBoxVLAN,self.comboBoxPortType)
+        ETHSWPage.setTabOrder(self.comboBoxPortType,self.pushButtonAdd)
+        ETHSWPage.setTabOrder(self.pushButtonAdd,self.pushButtonDelete)
+        ETHSWPage.setTabOrder(self.pushButtonDelete,self.treeWidgetPorts)
 
     def retranslateUi(self, ETHSWPage):
         ETHSWPage.setWindowTitle(QtGui.QApplication.translate("ETHSWPage", "Ethernet Switch", None, QtGui.QApplication.UnicodeUTF8))

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_SymbolManager.ui'
 #
-# Created: Tue Apr 15 22:22:38 2008
+# Created: Wed Apr 16 14:06:04 2008
 #      by: PyQt4 UI code generator 4.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -119,11 +119,16 @@ class Ui_SymbolManager(object):
         QtCore.QObject.connect(self.buttonBox,QtCore.SIGNAL("accepted()"),SymbolManager.accept)
         QtCore.QObject.connect(self.buttonBox,QtCore.SIGNAL("rejected()"),SymbolManager.reject)
         QtCore.QMetaObject.connectSlotsByName(SymbolManager)
+        SymbolManager.setTabOrder(self.lineEditLibrary,self.toolButtonLibrary)
+        SymbolManager.setTabOrder(self.toolButtonLibrary,self.pushButtonAddLibrary)
+        SymbolManager.setTabOrder(self.pushButtonAddLibrary,self.pushButtonRemoveLibrary)
+        SymbolManager.setTabOrder(self.pushButtonRemoveLibrary,self.treeWidgetSymbols)
         SymbolManager.setTabOrder(self.treeWidgetSymbols,self.pushButtonAdd)
         SymbolManager.setTabOrder(self.pushButtonAdd,self.pushButtonRemove)
         SymbolManager.setTabOrder(self.pushButtonRemove,self.lineEditNodeName)
         SymbolManager.setTabOrder(self.lineEditNodeName,self.comboBoxNodeType)
-        SymbolManager.setTabOrder(self.comboBoxNodeType,self.treeWidgetNodes)
+        SymbolManager.setTabOrder(self.comboBoxNodeType,self.pushButtonApply)
+        SymbolManager.setTabOrder(self.pushButtonApply,self.treeWidgetNodes)
         SymbolManager.setTabOrder(self.treeWidgetNodes,self.buttonBox)
 
     def retranslateUi(self, SymbolManager):

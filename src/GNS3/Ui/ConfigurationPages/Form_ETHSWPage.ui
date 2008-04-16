@@ -183,6 +183,14 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>spinBoxPort</tabstop>
+  <tabstop>spinBoxVLAN</tabstop>
+  <tabstop>comboBoxPortType</tabstop>
+  <tabstop>pushButtonAdd</tabstop>
+  <tabstop>pushButtonDelete</tabstop>
+  <tabstop>treeWidgetPorts</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

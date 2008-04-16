@@ -344,6 +344,8 @@ class NETFile(object):
                     note_object = Annotation()
                     note_object.setPlainText(unicode(gns3data[section]['text'].replace("\\n", "\n")))
                     note_object.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
+                    if gns3data[section].has_key('z'):
+                        note_object.setZValue(float(gns3data[section]['z']))
                     globals.GApp.topology.addItem(note_object)
                     
                 if devtype.lower() == 'node':
@@ -753,6 +755,9 @@ class NETFile(object):
                 config['text'] = unicode(item.toPlainText()).replace("\n", "\\n")
                 config['x'] = item.x()
                 config['y'] = item.y()
+                zvalue = item.zValue()
+                if zvalue > 0:
+                    config['z'] = zvalue
                 note_nb += 1
             elif isinstance(item, DecorativeNode):
                 if not self.dynagen.running_config.has_key('GNS3-DATA'):
