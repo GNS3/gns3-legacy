@@ -21,6 +21,7 @@
 
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
+from GNS3.Node.DecorativeNode import DecorativeNode
 from GNS3.Globals.Symbols import SYMBOLS
 
 class nodesDock(QtGui.QTreeWidget):
@@ -39,9 +40,37 @@ class nodesDock(QtGui.QTreeWidget):
         """
 
         self.clear()
+        decorative_symbol_present = False
+        for symbol in SYMBOLS:
+            if symbol['object'] == DecorativeNode:
+                decorative_symbol_present = True
+                break
+        
+        parent_emulated_devices = self
+        parent_decorative_nodes = self
+
+        if decorative_symbol_present:
+        
+            parent_emulated_devices = QtGui.QTreeWidgetItem()
+            parent_emulated_devices.setText(0, translate('nodesDock', 'Emulated devices'))
+            parent_emulated_devices.setIcon(0,  QtGui.QIcon(':/icons/package.svg'))
+            parent_emulated_devices.setFlags(QtCore.Qt.ItemIsEnabled)
+            self.addTopLevelItem(parent_emulated_devices)
+            self.expandItem(parent_emulated_devices)
+            
+            parent_decorative_nodes = QtGui.QTreeWidgetItem()
+            parent_decorative_nodes.setText(0, translate('nodesDock', 'Decorative nodes'))
+            parent_decorative_nodes.setIcon(0,  QtGui.QIcon(':/icons/package.svg'))
+            parent_decorative_nodes.setFlags(QtCore.Qt.ItemIsEnabled)
+            self.addTopLevelItem(parent_decorative_nodes)
+            self.expandItem(parent_decorative_nodes)
+        
         count = 0
         for symbol in SYMBOLS:
-            item = QtGui.QTreeWidgetItem(self, 1000 + count)
+            if symbol['object'] == DecorativeNode:
+                item = QtGui.QTreeWidgetItem(parent_decorative_nodes, 1000 + count)
+            else:
+                item = QtGui.QTreeWidgetItem(parent_emulated_devices, 1000 + count)
             if symbol['translated']:
                 item.setText(0, translate("nodesDock", symbol['name']))
                 item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(symbol['name']))

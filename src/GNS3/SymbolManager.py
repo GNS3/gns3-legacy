@@ -69,6 +69,7 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
         internal_symbols.setIcon(0,  QtGui.QIcon(':/icons/package.svg'))
         internal_symbols.setFlags(QtCore.Qt.ItemIsEnabled)
         self.treeWidgetSymbols.addTopLevelItem(internal_symbols)
+        self.treeWidgetSymbols.expandItem(internal_symbols)
         symbol_resources = QtCore.QResource(":/symbols")
         for symbol in symbol_resources.children():
             symbol = str(symbol)

@@ -13,7 +13,6 @@ GUI FEATURES:
  -----------------------------------------------------
  * A setup wizard.
  * Add a button to clean the configuration of GNS3 (gns3.ini).
- * Separation between emulated and decorative nodes.
 
 CORE FEATURES:
 
