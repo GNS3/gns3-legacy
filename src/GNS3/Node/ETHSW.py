@@ -44,7 +44,7 @@ class ETHSW(AbstractNode):
         global ethsw_id
         self.hostname = 'SW' + str(ethsw_id)
         ethsw_id = ethsw_id + 1
-        self.setCustomToolTip()
+        AbstractNode.setCustomToolTip(self)
 
         self.config = None
         self.dynagen = globals.GApp.dynagen
@@ -81,6 +81,12 @@ class ETHSW(AbstractNode):
         self.hostname = hostname
         self.e = 'ETHSW ' + self.hostname
         self.updateToolTips()
+        
+    def setCustomToolTip(self):
+        """ Set a custom tool tip
+        """
+
+        self.setToolTip(self.ethsw.info())
 
     def get_running_config_name(self):
         """ Return node name as stored in the running config
@@ -190,6 +196,7 @@ class ETHSW(AbstractNode):
         self.startupInterfaces()
         self.state = 'running'
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
+        self.setCustomToolTip()
 
     def mousePressEvent(self, event):
         """ Call when the node is clicked

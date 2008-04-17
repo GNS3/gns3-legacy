@@ -23,7 +23,7 @@ import sys
 import GNS3.Globals as globals
 from optparse import OptionParser
 from GNS3.Application import Application
-VERSION = '0.4-beta'
+from __main__ import VERSION
 
 usage = "usage: %prog <config file>"
 parser = OptionParser(usage=usage, version="%prog " + VERSION)

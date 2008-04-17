@@ -4,6 +4,9 @@ import sys
 sys.path.append('./src')
 from distutils.core import setup, Extension
 
+# current version of GNS3
+VERSION = '0.5'
+
 if sys.platform.startswith('win'):
 
     try:
@@ -40,7 +43,7 @@ else:
 
     setup( # Distribution meta-data
             name = "GNS3",
-            version = "0.4",
+            version = VERSION,
             description = "A graphical network simulator based on Dynamips",
             author = "Jeremy Grossmann, David Ruiz, Romain Lamaison, Aurelien Levesque, Xavier Alt",
             author_email = "contact@gns3.net",

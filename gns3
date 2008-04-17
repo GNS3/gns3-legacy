@@ -21,6 +21,10 @@
 
 import sys, os, traceback
 
+# current version of GNS3
+VERSION = "0.5"
+VERSION_INTEGER = 0x000500
+
 try:
     from PyQt4 import QtCore, QtGui
 except ImportError:

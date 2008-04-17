@@ -53,9 +53,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         # default hostname
         self.hostname = 'Node' + str(self.id)
 
-        # set default tooltip
-        self.setCustomToolTip()
-
         # scene settings
         self.setFlags(self.ItemIsMovable | self.ItemIsSelectable | self.ItemIsFocusable)
         self.setAcceptsHoverEvents(True)

@@ -46,7 +46,7 @@ class ATMBR(AbstractNode):
         global atmbr_id
         self.hostname = 'BR' + str(atmbr_id)
         atmbr_id = atmbr_id + 1
-        self.setCustomToolTip()
+        AbstractNode.setCustomToolTip(self)
 
         self.config = None
         self.dynagen = globals.GApp.dynagen
@@ -83,6 +83,12 @@ class ATMBR(AbstractNode):
         self.hostname = hostname
         self.a= 'ATMBR ' + self.hostname
         self.updateToolTips()
+    
+    def setCustomToolTip(self):
+        """ Set a custom tool tip
+        """
+
+        self.setToolTip(self.atmbr.info())
 
     def get_running_config_name(self):
         """ Return node name as stored in the running config
@@ -184,6 +190,7 @@ class ATMBR(AbstractNode):
         self.startupInterfaces()
         self.state = 'running'
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
+        self.setCustomToolTip()
 
     def mousePressEvent(self, event):
         """ Call when the node is clicked

@@ -50,7 +50,7 @@ class FW(AbstractNode, FWDefaults):
         global fw_id
         self.hostname = 'FW' + str(fw_id)
         fw_id = fw_id + 1
-        self.setCustomToolTip()
+        AbstractNode.setCustomToolTip(self)
 
         self.dynagen = globals.GApp.dynagen
         self.local_config = None
@@ -93,6 +93,12 @@ class FW(AbstractNode, FWDefaults):
         self.f = 'FW ' + self.hostname
         self.updateToolTips()
 
+    def setCustomToolTip(self):
+        """ Set a custom tool tip
+        """
+
+        self.setToolTip(self.fw.info())
+        
     def get_running_config_name(self):
         """ Return node name as stored in the running config
         """
@@ -110,6 +116,7 @@ class FW(AbstractNode, FWDefaults):
                 self.local_config[option] = getattr(self.fw, option)
             except AttributeError:
                 continue
+        self.setCustomToolTip()
         return self.local_config
 
     def get_config(self):
@@ -141,6 +148,7 @@ class FW(AbstractNode, FWDefaults):
         self.running_config =  self.dynagen.running_config[self.d][self.f]
         debug("Node " + self.hostname + ": running config: " + str(self.running_config))
         globals.GApp.topology.changed = True
+        self.setCustomToolTip()
 
     def getInterfaces(self):
         """ Return all interfaces

@@ -52,6 +52,9 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
 
         if not self.fake:
 
+            self.source.setCustomToolTip()
+            self.dest.setCustomToolTip()
+    
             self.srcIf = sourceIf
             self.destIf = destIf
             self.src_interface_status = 'down'

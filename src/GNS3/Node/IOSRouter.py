@@ -61,7 +61,7 @@ class IOSRouter(AbstractNode):
         global router_id
         self.hostname = 'R' + str(router_id)
         router_id = router_id + 1
-        self.setCustomToolTip()
+        AbstractNode.setCustomToolTip(self)
 
         self.dynagen = globals.GApp.dynagen
         self.r = 'ROUTER ' + self.hostname
@@ -142,6 +142,12 @@ class IOSRouter(AbstractNode):
         self.r = 'ROUTER ' + self.hostname
         self.updateToolTips()
 
+    def setCustomToolTip(self):
+        """ Set a custom tool tip
+        """
+
+        self.setToolTip(self.router.info())
+
     def get_running_config_name(self):
         """ Return node name as stored in the running config
         """
@@ -180,6 +186,7 @@ class IOSRouter(AbstractNode):
                 pass
             else:
                 self.local_config['wics'] = list(self.router.slot[0].wics)
+        self.setCustomToolTip()
         return self.local_config
 
     def get_config(self):
@@ -239,6 +246,7 @@ class IOSRouter(AbstractNode):
         self.running_config =  self.dynagen.running_config[self.d][self.r]
         debug("Node " + self.hostname + ": running config: " + str(self.running_config))
         globals.GApp.topology.changed = True
+        self.setCustomToolTip()
 
     def get_platform(self):
         """ Returns router platform

@@ -46,7 +46,7 @@ class ATMSW(AbstractNode):
         global atmsw_id
         self.hostname = 'ATM' + str(atmsw_id)
         atmsw_id = atmsw_id + 1
-        self.setCustomToolTip()
+        AbstractNode.setCustomToolTip(self)
 
         self.config = None
         self.dynagen = globals.GApp.dynagen
@@ -83,6 +83,12 @@ class ATMSW(AbstractNode):
         self.hostname = hostname
         self.a = 'ATMSW ' + self.hostname
         self.updateToolTips()
+        
+    def setCustomToolTip(self):
+        """ Set a custom tool tip
+        """
+
+        self.setToolTip(self.atmsw.info())
 
     def get_running_config_name(self):
         """ Return node name as stored in the running config
@@ -196,6 +202,7 @@ class ATMSW(AbstractNode):
         self.startupInterfaces()
         self.state = 'running'
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
+        self.setCustomToolTip()
 
     def mousePressEvent(self, event):
         """ Call when the node is clicked

@@ -22,7 +22,8 @@
 import sys, time, os
 import GNS3.Globals as globals
 import GNS3.Config.Defaults as Defaults
-from PyQt4.QtGui import QApplication
+from GNS3.Utils import translate
+from PyQt4.QtGui import QApplication, QMessageBox
 from PyQt4.QtCore import QVariant, QSettings
 from GNS3.Utils import Singleton
 from GNS3.Workspace import Workspace
@@ -35,6 +36,7 @@ from GNS3.PemuManager import PemuManager
 from GNS3.Translations import Translator
 from GNS3.DynagenSub import DynagenSub
 from GNS3.Wizard import Wizard
+from __main__ import VERSION_INTEGER
 
 class Application(QApplication, Singleton):
     """ GNS3 Application instance
@@ -255,6 +257,8 @@ class Application(QApplication, Singleton):
         # which handle all this stuff.
         self.__scene = self.__mainWindow.graphicsView
 
+        config_version = int(ConfDB().get('GNS3/version', 0x000402))
+        
         self.systconf['dynamips'] = systemDynamipsConf()
         confo = self.systconf['dynamips']
         confo.path = ConfDB().get('Dynamips/hypervisor_path', unicode(''))
@@ -334,6 +338,19 @@ class Application(QApplication, Singleton):
             dialog.show()
             dialog.raise_()
             dialog.activateWindow()
+        elif globals.recordConfiguration and config_version < VERSION_INTEGER:
+        
+            reply = QMessageBox.question(self.mainWindow, translate("Application", "Configuration file"), 
+                                               translate("Application", "Configuration file is not longer compatible, would you like to reset it? (you will have to restart GNS3)"), 
+                                            QMessageBox.Yes, QMessageBox.No)
+
+            if reply == QMessageBox.Yes:
+                ConfDB().clear()
+                c = ConfDB()
+                c.set('GNS3/version', VERSION_INTEGER)
+                c.sync()
+                QApplication.quit()
+                sys.exit(0)
 
         retcode = QApplication.exec_()
 
@@ -353,6 +370,7 @@ class Application(QApplication, Singleton):
         """
 
         c = ConfDB()
+        c.set('GNS3/version', VERSION_INTEGER)
 
         # Apply general settings
         confo = self.systconf['general']

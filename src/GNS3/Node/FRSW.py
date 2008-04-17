@@ -44,7 +44,7 @@ class FRSW(AbstractNode):
         global frsw_id
         self.hostname = 'FR' + str(frsw_id)
         frsw_id = frsw_id + 1
-        self.setCustomToolTip()
+        AbstractNode.setCustomToolTip(self)
 
         self.config = None
         self.dynagen = globals.GApp.dynagen
@@ -81,6 +81,12 @@ class FRSW(AbstractNode):
         self.hostname = hostname
         self.f = 'FRSW ' + self.hostname
         self.updateToolTips()
+        
+    def setCustomToolTip(self):
+        """ Set a custom tool tip
+        """
+
+        self.setToolTip(self.frsw.info())
 
     def get_running_config_name(self):
         """ Return node name as stored in the running config
@@ -182,6 +188,7 @@ class FRSW(AbstractNode):
         self.startupInterfaces()
         self.state = 'running'
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
+        self.setCustomToolTip()
 
     def mousePressEvent(self, event):
         """ Call when the node is clicked

@@ -26,6 +26,7 @@ from GNS3.Config.Objects import systemGeneralConf
 from GNS3.Ui.ConfigurationPages.Form_PreferencesGeneral import Ui_PreferencesGeneral
 from GNS3.Utils import translate, fileBrowser
 from GNS3.Config.Config import ConfDB
+from __main__ import VERSION_INTEGER
 
 class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
 
@@ -160,6 +161,9 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
     def __clearConfiguration(self):
     
         ConfDB().clear()
+        c = ConfDB()
+        c.set('GNS3/version', VERSION_INTEGER)
+        c.sync()
         QtGui.QMessageBox.information(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Configuration file"),  
                                       translate("UiConfig_PreferencesGeneral", "Configuration file cleared, default settings will be applied after a restart"))
         globals.recordConfiguration = False
