@@ -428,7 +428,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_Help(self):
         """ Launch a browser for the pointing to the documentation page
         """
-        
+
         QtGui.QDesktopServices.openUrl(QtCore.QUrl("http://www.gns3.net/documentation"))
 
     def __action_About(self):

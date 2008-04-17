@@ -294,9 +294,11 @@ class NETFile(object):
         gns3data = self.dynagen.getGNS3Data()
         if gns3data:
             if gns3data.has_key('configs'):
-                globals.GApp.workspace.projectConfigs = gns3data['configs']
+                projectConfigsDir = gns3data['configs']
+                globals.GApp.workspace.projectConfigs = os.path.abspath(projectConfigsDir)
             if gns3data.has_key('workdir'):
-                globals.GApp.workspace.projectWorkdir = gns3data['workdir']
+                projectWorkdir = gns3data['workdir']
+                globals.GApp.workspace.projectWorkdir = os.path.abspath(projectWorkdir)
             if  gns3data.has_key('m11') and  gns3data.has_key('m22'):
                 globals.GApp.scene.setMatrix(QtGui.QMatrix(float(gns3data['m11']), 0.0,  0.0,  float(gns3data['m22']), 0.0,  0.0))
             for section in gns3data:
@@ -660,13 +662,13 @@ class NETFile(object):
 
         # restore project working directory if not found in gns3 data
         if not globals.GApp.workspace.projectWorkdir and working_dir and working_dir[-7:] == 'working':
-            globals.GApp.workspace.projectWorkdir = working_dir
-            debug("Set working directory: " + working_dir)
+            globals.GApp.workspace.projectWorkdir = os.path.abspath(working_dir)
+            debug("Set working directory: " + os.path.abspath(working_dir))
 
         # restore project configs directory if not found in gns3 data
         if not globals.GApp.workspace.projectConfigs and config_dir and config_dir[-7:] == 'configs':
-            globals.GApp.workspace.projectConfigs = config_dir
-            debug("Set configs directory: " + config_dir)
+            globals.GApp.workspace.projectConfigs = os.path.abspath(config_dir)
+            debug("Set configs directory: " + os.path.abspath(config_dir))
 
         for connection in connection_list:
             self.add_connection(connection)

@@ -48,7 +48,6 @@ class Ethernet(AbstractEdge):
         self.setPath(self.path)
 
         # offset on the line for status points
-        #FIXME: compute the offset dynamically with height and width of the nodes
         if self.length == 0:
            self.edgeOffset = QtCore.QPointF(0, 0)
         else:
@@ -61,12 +60,20 @@ class Ethernet(AbstractEdge):
         path = QtGui.QGraphicsPathItem.shape(self)
         offset = self.pointSize / 2
         if not self.fake:
-            point = self.src + self.edgeOffset
+            if self.length:
+                collisionOffset = QtCore.QPointF((self.dx * self.srcCollisionOffset) / self.length, (self.dy * self.srcCollisionOffset) / self.length)
+            else:
+                collisionOffset = QtCore.QPointF(0, 0)
+            point = self.src + (self.edgeOffset + collisionOffset)
         else:
             point = self.src
         path.addEllipse(point.x() - offset, point.y() - offset, self.pointSize, self.pointSize)
         if not self.fake:
-            point = self.dst -  self.edgeOffset
+            if self.length:
+                collisionOffset = QtCore.QPointF((self.dx * self.dstCollisionOffset) / self.length, (self.dy * self.dstCollisionOffset) / self.length)
+            else:
+                collisionOffset = QtCore.QPointF(0, 0)
+            point = self.dst -  (self.edgeOffset + collisionOffset)
         else:
             point = self.dst
         path.addEllipse(point.x() - offset, point.y() - offset, self.pointSize, self.pointSize)
@@ -81,7 +88,7 @@ class Ethernet(AbstractEdge):
         if not self.fake and globals.GApp.systconf['general'].status_points:
 
             # if nodes are too close, points disappears
-            if self.length < 80:
+            if self.length < 100:
                return
 
             if self.src_interface_status == 'up':
@@ -92,8 +99,19 @@ class Ethernet(AbstractEdge):
                 color = QtCore.Qt.red
 
             painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
+            point1 = QtCore.QPointF(self.src + self.edgeOffset) + QtCore.QPointF((self.dx * self.srcCollisionOffset) / self.length, (self.dy * self.srcCollisionOffset) / self.length)
+            
+            # avoid any collision of the status point with the source node
+            while self.source.contains(self.mapFromScene(self.mapToItem(self.source, point1))):
+                self.srcCollisionOffset += 10
+                point1 = QtCore.QPointF(self.src + self.edgeOffset) + QtCore.QPointF((self.dx * self.srcCollisionOffset) / self.length, (self.dy * self.srcCollisionOffset) / self.length)
+            
+            # check with we can paint the status point more closely of the source node
+            if not self.source.contains(self.mapFromScene(self.mapToItem(self.source, point1))):
+                check_point = QtCore.QPointF(self.src + self.edgeOffset) + QtCore.QPointF((self.dx * (self.srcCollisionOffset - 20)) / self.length, (self.dy * (self.srcCollisionOffset - 20)) / self.length)
+                if not self.source.contains(self.mapFromScene(self.mapToItem(self.source, check_point))) and self.srcCollisionOffset > 0:
+                    self.srcCollisionOffset -= 10
 
-            point1 = QtCore.QPointF(self.src + self.edgeOffset)
             painter.drawPoint(point1)
 
             if self.dest_interface_status == 'up':
@@ -104,6 +122,17 @@ class Ethernet(AbstractEdge):
                 color = QtCore.Qt.red
 
             painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
+            point2 = QtCore.QPointF(self.dst -  self.edgeOffset) - QtCore.QPointF((self.dx * self.dstCollisionOffset) / self.length, (self.dy * self.dstCollisionOffset) / self.length)
+            
+            # avoid any collision of the status point with the destination node
+            while self.dest.contains(self.mapFromScene(self.mapToItem(self.dest, point2))):
+                self.dstCollisionOffset += 10
+                point2 = QtCore.QPointF(self.dst - self.edgeOffset) - QtCore.QPointF((self.dx * self.dstCollisionOffset) / self.length, (self.dy * self.dstCollisionOffset) / self.length)
 
-            point2 = QtCore.QPointF(self.dst -  self.edgeOffset)
+            # check with we can paint the status point more closely of the destination node
+            if not self.dest.contains(self.mapFromScene(self.mapToItem(self.dest, point2))):
+                check_point = QtCore.QPointF(self.dst - self.edgeOffset) - QtCore.QPointF((self.dx * (self.dstCollisionOffset - 20)) / self.length, (self.dy * (self.dstCollisionOffset - 20)) / self.length)
+                if not self.dest.contains(self.mapFromScene(self.mapToItem(self.dest,  check_point))) and self.dstCollisionOffset > 0:
+                    self.dstCollisionOffset -= 10
+
             painter.drawPoint(point2)

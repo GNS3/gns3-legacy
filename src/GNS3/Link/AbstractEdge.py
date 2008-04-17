@@ -43,6 +43,9 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         # default pen size
         self.penWidth = 2.0
 
+        self.srcCollisionOffset = 0.0
+        self.dstCollisionOffset = 0.0
+                
         self.source = sourceNode
         self.dest = destNode
         self.fake = Fake

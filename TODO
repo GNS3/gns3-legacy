@@ -2,25 +2,26 @@ TODO LIST
 
 GUI FEATURES:
 
- * Multilink drawing between 2 routers.
- * Correct minor drawing problems with the status points (collision with parent node).
  * Show more information about hardware (VLANs for switches ...) using the toolTip feature from Qt or something else.
- * Paint ovals, rectangle etc. with different colors and resizing support.
  * Button to show interface names on the scene (without any collision).
+ * Multilink drawing between 2 routers.
+ * Avoid collision of the status points with parent nodes (only for serial links).
+ * Paint ovals, rectangle etc. with different colors and resizing support.
  * Inserted images resizing support.
  * Provide a way to change text fonts and orientation.
  * Align on a grid option for the scene.
 
+
 CORE FEATURES:
 
- * Use an IDLE PC database ?
- * Copy/Paste of a node.
- * NIO multicast support.
- * Add an option to clean the startup-config (need to see this with Chris).
- * A converter to change the paths (to ios images and working dir) in .net files which come from another user.
+ * Add a host symbol which directly use a NIO generic ethernet for its interfaces.
  * Simulated host support (based on LWIP).
- * JunOS olive support.
+ * Copy/Paste of a node.
  * Add GUI options for filters (monitor etc ...).
  * A standalone server to automatically configure GNS3 clients in order to use remote hypervisors (intended for learning environments, schools/universities, where IOS image cannot be distributed) 
- * Add a host symbol which directly use a NIO generic ethernet for its interfaces.
+ * JunOS olive support.
+ * NIO multicast support.
+ * Add an option to clean the startup-config (need to see this with Chris).
+
+
 

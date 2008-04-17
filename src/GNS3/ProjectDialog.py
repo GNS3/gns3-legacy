@@ -39,10 +39,10 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         """ Open a file dialog for choosing the location of the project file
         """
 
-        fb = fileBrowser(translate("Workspace", "New Project"),
+        fb = fileBrowser(translate("ProjectDialog", "New Project"),
                                 filter='NET file (*.net);;All files (*.*)', directory=globals.GApp.systconf['general'].project_path)
         (path, selected) = fb.getSaveFile()
-
+        
         if path is not None and path != '':
             if str(selected) == 'NET file (*.net)':
                 if not path.endswith('.net'):
