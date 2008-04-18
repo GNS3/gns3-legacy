@@ -119,27 +119,27 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../Ui/Form_About.py" line="85"/>
+        <location filename="../Ui/Form_About.py" line="88"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="100"/>
+        <location filename="../Ui/Form_About.py" line="103"/>
         <source>&amp;About</source>
         <translation>关于(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="118"/>
+        <location filename="../Ui/Form_About.py" line="121"/>
         <source>&amp;Thanks to</source>
         <translation>致谢(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="405"/>
+        <location filename="../Ui/Form_About.py" line="408"/>
         <source>&amp;License Agreement</source>
         <translation>授权协议书(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="117"/>
+        <location filename="../Ui/Form_About.py" line="120"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -176,25 +176,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hasan Agirol Aksoy from Antalya, Turkey: Turkish translation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="99"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;GNS3 0.4 beta&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;Under GPL v2 license&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;Jeremy Grossmann (PL)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Xavier Alt&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Romain Lamaison&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aurelien Levesque&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;David Ruiz&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;contact@gns3.net&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;www.gns3.net&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_About.py" line="404"/>
+        <location filename="../Ui/Form_About.py" line="407"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -483,81 +465,99 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;END OF TERMS AND CONDITIONS&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Ui/Form_About.py" line="102"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;GNS3 0.5 beta&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;Under GPL v2 license&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;&quot;&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;Jeremy Grossmann (PL)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Xavier Alt&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Romain Lamaison&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aurelien Levesque&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;David Ruiz&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;contact@gns3.net&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;www.gns3.net&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AbstractEdge</name>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="168"/>
+        <location filename="../Link/AbstractEdge.py" line="174"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="172"/>
+        <location filename="../Link/AbstractEdge.py" line="178"/>
         <source>Stop the capture</source>
         <translation>停止capture</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="174"/>
+        <location filename="../Link/AbstractEdge.py" line="180"/>
         <source>Start Wireshark</source>
         <translation>启动Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="300"/>
+        <location filename="../Link/AbstractEdge.py" line="306"/>
         <source>Capture</source>
         <translation>Capture</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="190"/>
+        <location filename="../Link/AbstractEdge.py" line="196"/>
         <source>Packet capture is not supported on this link type</source>
         <translation>该链路类型不支持包抓取</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="214"/>
+        <location filename="../Link/AbstractEdge.py" line="220"/>
         <source>Please choose a source</source>
         <translation>请选择一个源</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="216"/>
+        <location filename="../Link/AbstractEdge.py" line="222"/>
         <source>No device available for traffic capture</source>
         <translation>没有设备可供流量Capture</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="270"/>
+        <location filename="../Link/AbstractEdge.py" line="276"/>
         <source>Dynamips error</source>
         <translation>Dynamips 错误</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="265"/>
+        <location filename="../Link/AbstractEdge.py" line="271"/>
         <source>Capture stopped</source>
         <translation>Capture已停止</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="279"/>
+        <location filename="../Link/AbstractEdge.py" line="285"/>
         <source>Please configure capture options</source>
         <translation>请配置Captuer选项</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="131"/>
+        <location filename="../Link/AbstractEdge.py" line="137"/>
         <source>Link: %s (%s) -&gt; %s (%s)</source>
         <translation>链路: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="223"/>
+        <location filename="../Link/AbstractEdge.py" line="229"/>
         <source>Device %s is not running</source>
         <translation>设备 %s 没有运行</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="300"/>
+        <location filename="../Link/AbstractEdge.py" line="306"/>
         <source>Cannot start %s : %s</source>
         <translation>无法开始 %s : %s</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="286"/>
+        <location filename="../Link/AbstractEdge.py" line="292"/>
         <source>%s is empty, no traffic captured on the link. Try again later</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="289"/>
+        <location filename="../Link/AbstractEdge.py" line="295"/>
         <source>Cannot find %s : %s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -565,58 +565,71 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractNode</name>
     <message>
-        <location filename="../Node/AbstractNode.py" line="96"/>
+        <location filename="../Node/AbstractNode.py" line="88"/>
         <source>Change hostname</source>
         <translation>修改设备名</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="97"/>
+        <location filename="../Node/AbstractNode.py" line="89"/>
         <source>Hostname:</source>
         <translation>设备名:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="249"/>
+        <location filename="../Node/AbstractNode.py" line="242"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="216"/>
+        <location filename="../Node/AbstractNode.py" line="209"/>
         <source>Already connected interface</source>
         <translation>端口已被连接</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="104"/>
+        <location filename="../Node/AbstractNode.py" line="96"/>
         <source>Hostname</source>
         <translation>设备名</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="104"/>
+        <location filename="../Node/AbstractNode.py" line="96"/>
         <source>Hostname already used</source>
         <translation>设备名已经被使用</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="193"/>
+        <location filename="../Node/AbstractNode.py" line="186"/>
         <source>Hostname: %s</source>
         <translation>设备名: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="249"/>
+        <location filename="../Node/AbstractNode.py" line="242"/>
         <source>No interface available, please configure this device</source>
         <translation>没有端口可用,请配置该设备</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="118"/>
+        <location filename="../Node/AbstractNode.py" line="110"/>
         <source>Change console port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="119"/>
+        <location filename="../Node/AbstractNode.py" line="111"/>
         <source>Console port for %s:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="124"/>
+        <location filename="../Node/AbstractNode.py" line="117"/>
         <source>Console port</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Application</name>
+    <message>
+        <location filename="../Application.py" line="338"/>
+        <source>Configuration file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Application.py" line="339"/>
+        <source>Configuration file is not longer compatible, would you like to reset it? (you will have to restart GNS3)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -828,25 +841,55 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>DynagenSub</name>
     <message>
-        <location filename="../DynagenSub.py" line="52"/>
+        <location filename="../DynagenSub.py" line="64"/>
         <source>Starting hypervisors ...</source>
         <translation>开始 Hypervisors ... </translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="52"/>
+        <location filename="../DynagenSub.py" line="64"/>
         <source>Abort</source>
         <translation>结束</translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="88"/>
+        <source>PIX image %s cannot be found and cannot find an alternative image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="92"/>
+        <source>Local PIX image %s cannot be found, use image %s instead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="118"/>
+        <source>Local workding directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="133"/>
+        <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative image for chassis %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="145"/>
+        <source>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="154"/>
+        <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="205"/>
+        <location filename="../Node/ETHSW.py" line="215"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="205"/>
+        <location filename="../Node/ETHSW.py" line="215"/>
         <source>No port available</source>
         <translation>无可利用的端口</translation>
     </message>
@@ -970,22 +1013,22 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>FW</name>
     <message>
-        <location filename="../Node/FW.py" line="260"/>
+        <location filename="../Node/FW.py" line="271"/>
         <source>%s: no PIX image</source>
         <translation>%s:无PIXOS文件</translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="176"/>
+        <location filename="../Node/FW.py" line="186"/>
         <source>New hostname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="177"/>
+        <location filename="../Node/FW.py" line="187"/>
         <source>Cannot rename a connected firewall because pemuwrapper does not support removal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/FW.py" line="190"/>
+        <location filename="../Node/FW.py" line="200"/>
         <source>Dynamips error</source>
         <translation type="unfinished">Dynamips 错误</translation>
     </message>
@@ -1062,7 +1105,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="../HypervisorManager.py" line="109"/>
+        <location filename="../HypervisorManager.py" line="110"/>
         <source>Abort</source>
         <translation>结束</translation>
     </message>
@@ -1072,7 +1115,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>无法开始Dynamips于端口 %i</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="135"/>
+        <location filename="../HypervisorManager.py" line="139"/>
         <source>Can&apos;t connect to the hypervisor on port %i</source>
         <translation>无法连接到Hypervisor于端口%i</translation>
     </message>
@@ -1082,7 +1125,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>已存在一个hypervisor运行于端口%i,它将在退出GNS3后被关闭</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="108"/>
+        <location filename="../HypervisorManager.py" line="109"/>
         <source>Connecting to a hypervisor on port %i ...</source>
         <translation>正在连接到hypervisor于端口%i ...</translation>
     </message>
@@ -1278,29 +1321,39 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="558"/>
+        <location filename="../Node/IOSRouter.py" line="580"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="558"/>
+        <location filename="../Node/IOSRouter.py" line="580"/>
         <source>No interface available</source>
         <translation>无可利用的端口</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="227"/>
+        <location filename="../Node/IOSRouter.py" line="235"/>
         <source>Slots</source>
         <translation>插槽</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="227"/>
+        <location filename="../Node/IOSRouter.py" line="235"/>
         <source>You have to restart this router to use new modules</source>
         <translation>使用新的模块必须重新启动路由器</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="441"/>
+        <location filename="../Node/IOSRouter.py" line="463"/>
         <source>Dynamips error</source>
         <translation type="unfinished">Dynamips 错误</translation>
+    </message>
+    <message>
+        <location filename="../Node/IOSRouter.py" line="297"/>
+        <source>Startup-config</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/IOSRouter.py" line="292"/>
+        <source>Startup-config for %s:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1326,127 +1379,122 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>启动配置文件:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="100"/>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="107"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="85"/>
         <source>Midplane:</source>
         <translation>面板:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="127"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="105"/>
         <source>NPE:</source>
         <translation>NPE:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="161"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="139"/>
         <source>Memories and disks</source>
         <translation>内存磁盘</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="167"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="145"/>
         <source>Memories</source>
         <translation>内存</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="173"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="151"/>
         <source>RAM size:</source>
         <translation>RAM 大小:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="560"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="538"/>
         <source> MB</source>
         <translation> MB</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="202"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="180"/>
         <source>NVRAM size:</source>
         <translation>NVRAM 大小:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="234"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="212"/>
         <source>Disks</source>
         <translation>磁盘</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="240"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="218"/>
         <source>PCMCIA disk0 size:</source>
         <translation>PCMCIA disk0 大小:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="263"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="241"/>
         <source>PCMCIA disk1 size:</source>
         <translation>PCMCIA disk1 大小:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="303"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="281"/>
         <source>Slots</source>
         <translation>插槽</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="321"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="299"/>
         <source>slot0:</source>
         <translation>插槽0:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="337"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="315"/>
         <source>slot1:</source>
         <translation>插槽1:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="353"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="331"/>
         <source>slot2:</source>
         <translation>插槽2:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="369"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="347"/>
         <source>slot3:</source>
         <translation>插槽3:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="385"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="363"/>
         <source>slot4:</source>
         <translation>插槽4:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="401"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="379"/>
         <source>slot5:</source>
         <translation>插槽5:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="417"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="395"/>
         <source>slot6:</source>
         <translation>插槽6:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="501"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="479"/>
         <source>Advanced</source>
         <translation>高级</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="520"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="498"/>
         <source>0x2102</source>
         <translation>0x2102</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="527"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="505"/>
         <source>Base MAC :</source>
         <translation>MAC :</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="547"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="525"/>
         <source>exec area:</source>
         <translation>exec区域:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="576"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="554"/>
         <source>iomem :</source>
         <translation>iomem :</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="592"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="570"/>
         <source> %</source>
         <translation> %</translation>
     </message>
@@ -1461,37 +1509,37 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>型号:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="309"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="287"/>
         <source>Adapters</source>
         <translation>适配卡</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="430"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="408"/>
         <source>WICs</source>
         <translation>广域网接口卡(WIC)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="442"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="420"/>
         <source>wic0:</source>
         <translation>wic0:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="458"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="436"/>
         <source>wic1:</source>
         <translation>wic1:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="474"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="452"/>
         <source>wic2:</source>
         <translation>wic2:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="507"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="485"/>
         <source>Confreg:</source>
         <translation>Confreg:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="215"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="193"/>
         <source> KB</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1837,73 +1885,78 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="403"/>
+        <location filename="../NETFile.py" line="416"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="403"/>
+        <location filename="../NETFile.py" line="416"/>
         <source>Please configure the path to Dynamips</source>
         <translation>请配置Dynamips路径</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="674"/>
+        <location filename="../NETFile.py" line="687"/>
         <source>Dynamips error</source>
         <translation>Dynamips 错误</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="677"/>
+        <location filename="../NETFile.py" line="690"/>
         <source>Dynamips warning</source>
         <translation>Dynamips 警告</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="433"/>
+        <location filename="../NETFile.py" line="446"/>
         <source>Exception detected, stopping importation...</source>
         <translation>检测到异常,停止导入...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="672"/>
+        <location filename="../NETFile.py" line="685"/>
         <source>Exporting %s configuration to %s</source>
         <translation>输出%s的配置到%s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="689"/>
+        <location filename="../NETFile.py" line="703"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO 错误: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="433"/>
+        <location filename="../NETFile.py" line="446"/>
         <source>Importation</source>
         <translation>导入</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="415"/>
+        <location filename="../NETFile.py" line="428"/>
         <source>Please wait while importing the topology</source>
         <translation>正在导入拓扑,请稍后</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="689"/>
+        <location filename="../NETFile.py" line="703"/>
         <source>IOError</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="249"/>
+        <location filename="../Topology.py" line="257"/>
         <source>Please wait while copying the base flash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="780"/>
+        <location filename="../NETFile.py" line="805"/>
         <source>must be connected in order to be registered</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="353"/>
+        <location filename="../NETFile.py" line="365"/>
         <source>%s: cannot find %s symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="457"/>
+        <location filename="../NETFile.py" line="470"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="354"/>
+        <source>Cannot load image: %s</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2289,6 +2342,21 @@ to display the configuration page.</source>
         <source>Launch this command using the system default shell</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="140"/>
+        <source>Configuration file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="146"/>
+        <source>Unknown location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="166"/>
+        <source>&amp;Clear it</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreferencesPemu</name>
@@ -2364,187 +2432,210 @@ to display the configuration page.</source>
     </message>
 </context>
 <context>
+    <name>ProjectDialog</name>
+    <message>
+        <location filename="../ProjectDialog.py" line="42"/>
+        <source>New Project</source>
+        <translation type="unfinished">新工程</translation>
+    </message>
+</context>
+<context>
     <name>Scene</name>
     <message>
-        <location filename="../Scene.py" line="169"/>
+        <location filename="../Scene.py" line="192"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="105"/>
+        <location filename="../Scene.py" line="106"/>
         <source>Configure</source>
         <translation>配置</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="133"/>
+        <location filename="../Scene.py" line="134"/>
         <source>Console</source>
         <translation>Console</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="138"/>
+        <location filename="../Scene.py" line="139"/>
         <source>Start</source>
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="143"/>
+        <location filename="../Scene.py" line="144"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="161"/>
+        <location filename="../Scene.py" line="167"/>
         <source>Suspend</source>
         <translation>暂停</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="156"/>
+        <location filename="../Scene.py" line="157"/>
         <source>Idle PC</source>
         <translation>Idle PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="252"/>
+        <location filename="../Scene.py" line="275"/>
         <source>IDLE PC</source>
         <translation>IDLE PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="203"/>
+        <location filename="../Scene.py" line="226"/>
         <source>Please select only one router</source>
         <translation>请只选择一个路由器</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="244"/>
+        <location filename="../Scene.py" line="267"/>
         <source>No idlepc values found</source>
         <translation>无idlepc值被发现</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="247"/>
+        <location filename="../Scene.py" line="270"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
         <translation>可能为最优的idlepc将被值标记 &apos;*&apos;</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="262"/>
+        <location filename="../Scene.py" line="289"/>
         <source>Dynamips error</source>
         <translation>Dynamips 错误</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="211"/>
+        <location filename="../Scene.py" line="234"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
         <translation>%s 已存在一个idlepc值,是否需要重新计算?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="253"/>
+        <location filename="../Scene.py" line="276"/>
         <source>Applied idlepc value %s to %s</source>
         <translation>应用idlepc值 %s到%s</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="192"/>
+        <location filename="../Scene.py" line="215"/>
         <source>Please wait while calculating an IDLE PC</source>
         <translation>IDLE PC正在计算,请稍后</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="110"/>
+        <location filename="../Scene.py" line="111"/>
         <source>Change the hostname</source>
         <translation>修改设备名</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="115"/>
+        <location filename="../Scene.py" line="116"/>
         <source>Show/Hide the hostname</source>
         <translation>显示/隐藏设备名</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="128"/>
+        <location filename="../Scene.py" line="129"/>
         <source>Change console port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="162"/>
+        <source>Startup-config</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="179"/>
+        <source>Lower one step</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="184"/>
+        <source>Raise one step</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="296"/>
+        <location filename="../Topology.py" line="304"/>
         <source>IOS image</source>
         <translation>IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="275"/>
+        <location filename="../Topology.py" line="283"/>
         <source>Please register at least one IOS image</source>
         <translation>请至少配置一个IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="316"/>
+        <location filename="../Topology.py" line="324"/>
         <source>Hypervisor</source>
         <translation>Hypervisor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="313"/>
+        <location filename="../Topology.py" line="321"/>
         <source>Please configure the path to Dynamips</source>
         <translation>请配置Dynamips路径</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="555"/>
+        <location filename="../Topology.py" line="563"/>
         <source>Dynamips error</source>
         <translation>Dynamips 错误</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="555"/>
+        <location filename="../Topology.py" line="563"/>
         <source>Connection lost</source>
         <translation>丢失连接</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="462"/>
+        <location filename="../Topology.py" line="470"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="164"/>
+        <location filename="../Topology.py" line="172"/>
         <source>Can&apos;t connect to the external hypervisor on %s</source>
         <translation>无法连接到外部Hypervisor于端口%s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="286"/>
+        <location filename="../Topology.py" line="294"/>
         <source>No image for platform %s</source>
         <translation>%s 平台没有配置IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="297"/>
+        <location filename="../Topology.py" line="305"/>
         <source>Please choose an image</source>
         <translation>请选择一个IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="462"/>
+        <location filename="../Topology.py" line="470"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>至少连接一个路由器到虚拟交换机</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="328"/>
+        <location filename="../Topology.py" line="336"/>
         <source>PIX image</source>
         <translation> PIX OS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="328"/>
+        <location filename="../Topology.py" line="336"/>
         <source>Please configure a default PIX image</source>
         <translation>请配置一个默认的PIX OS文件</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="449"/>
+        <location filename="../Topology.py" line="457"/>
         <source>Can&apos;t connect these devices</source>
         <translation>无法连接这些设备</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="316"/>
+        <location filename="../Topology.py" line="324"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="236"/>
+        <location filename="../Topology.py" line="244"/>
         <source>Pemuwrapper error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="255"/>
+        <location filename="../Topology.py" line="263"/>
         <source>PIX device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="256"/>
+        <location filename="../Topology.py" line="264"/>
         <source>Cannot copy PIX base flash %s: %s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2552,127 +2643,127 @@ to display the configuration page.</source>
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="114"/>
+        <location filename="../Workspace.py" line="115"/>
         <source>Docks</source>
         <translation>浮动窗口</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="535"/>
+        <location filename="../Workspace.py" line="533"/>
         <source>Dynamips error</source>
         <translation>Dynamips 错误</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="404"/>
+        <location filename="../Workspace.py" line="402"/>
         <source>Connection lost</source>
         <translation>丢失连接</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="401"/>
+        <location filename="../Workspace.py" line="399"/>
         <source>Dynamips warning</source>
         <translation>Dynamips 警告</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="380"/>
+        <location filename="../Workspace.py" line="378"/>
         <source>Abort</source>
         <translation>结束</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="416"/>
+        <location filename="../Workspace.py" line="414"/>
         <source>Starting nodes ...</source>
         <translation>开始节点 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="422"/>
+        <location filename="../Workspace.py" line="420"/>
         <source>Stopping nodes ...</source>
         <translation>停止节点 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="428"/>
+        <location filename="../Workspace.py" line="426"/>
         <source>Suspending nodes ...</source>
         <translation>暂停节点 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="469"/>
+        <location filename="../Workspace.py" line="467"/>
         <source>Loading</source>
         <translation>载入</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="351"/>
+        <location filename="../Workspace.py" line="349"/>
         <source>Hide hostnames</source>
         <translation>隐藏设备名</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="356"/>
+        <location filename="../Workspace.py" line="354"/>
         <source>Show hostnames</source>
         <translation>显示设备名</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="559"/>
+        <location filename="../Workspace.py" line="557"/>
         <source>Open a file</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="555"/>
+        <location filename="../Workspace.py" line="553"/>
         <source>The path to Dynamips must be configured</source>
         <translation>必须配置Dynamips路径</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="591"/>
+        <location filename="../Workspace.py" line="589"/>
         <source>Save Project As</source>
         <translation>另存工程为</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="490"/>
+        <location filename="../Workspace.py" line="488"/>
         <source>New Project</source>
         <translation>新工程</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="610"/>
+        <location filename="../Workspace.py" line="608"/>
         <source>Message</source>
         <translation>消息</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="199"/>
+        <location filename="../Workspace.py" line="200"/>
         <source>Are you sure to clear the topology?</source>
         <translation>是否确定清空拓扑?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="256"/>
+        <location filename="../Workspace.py" line="254"/>
         <source>Add a link</source>
         <translation>添加链接</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="271"/>
+        <location filename="../Workspace.py" line="269"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="490"/>
+        <location filename="../Workspace.py" line="488"/>
         <source>Can&apos;t create a project</source>
         <translation>无法创建工程</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="469"/>
+        <location filename="../Workspace.py" line="467"/>
         <source>Invalid file %s</source>
         <translation>无效文件%s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="610"/>
+        <location filename="../Workspace.py" line="608"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>是否在退出之前保存拓扑?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="504"/>
+        <location filename="../Workspace.py" line="502"/>
         <source>Do you want to apply the project settings to the current topology?</source>
         <translation>是否应用该工程的设置到当前拓扑?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="537"/>
+        <location filename="../Workspace.py" line="535"/>
         <source>Would you like to save the current topology?</source>
         <translation>是否保存当前拓扑?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="209"/>
+        <location filename="../Workspace.py" line="210"/>
         <source>Directory to write startup-configs</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2755,6 +2846,16 @@ to display the configuration page.</source>
     <message>
         <location filename="DynamicStrings.py" line="47"/>
         <source>Decorative node</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Widget_nodesDock.py" line="54"/>
+        <source>Emulated devices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Widget_nodesDock.py" line="61"/>
+        <source>Decorative nodes</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
