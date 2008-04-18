@@ -244,10 +244,11 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             imagekey = globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + imagename
 
         current_item = self.treeWidgetIOSimages.currentItem()
-        image = unicode(current_item.text(0))
-        if self.selectionChanged == False and globals.GApp.iosimages.has_key(image):
-            del globals.GApp.iosimages[image]
-            self.treeWidgetIOSimages.takeTopLevelItem(self.treeWidgetIOSimages.indexOfTopLevelItem(current_item))
+        if current_item:
+            image = unicode(current_item.text(0))
+            if self.selectionChanged == False and globals.GApp.iosimages.has_key(image):
+                del globals.GApp.iosimages[image]
+                self.treeWidgetIOSimages.takeTopLevelItem(self.treeWidgetIOSimages.indexOfTopLevelItem(current_item))
 
         if globals.GApp.iosimages.has_key(imagekey):
             # update an already existing IOS image

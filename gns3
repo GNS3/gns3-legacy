@@ -49,8 +49,8 @@ def exceptionHook(type, value, tb):
 
 # catch exceptions to write them in a file
 sys.excepthook=exceptionHook
-
-source_path = os.path.dirname(os.path.abspath(__file__)) + os.sep + 'src'
-if os.access(source_path, os.F_OK):
-    sys.path.append(source_path)
+if __name__ == '__main__' and not hasattr(sys, "frozen"):
+    source_path = os.path.dirname(os.path.abspath(__file__)) + os.sep + 'src'
+    if os.access(source_path, os.F_OK):
+        sys.path.append(source_path)
 import GNS3.Main

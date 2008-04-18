@@ -48,7 +48,7 @@ class DynagenSub(Dynagen):
             self.gns3_data = config['GNS3-DATA'].copy()
             if self.gns3_data.has_key('configs'):
                 if os.path.exists(self.gns3_data['configs']):
-                    projectConfigsDir = self.gns_3data['configs']
+                    projectConfigsDir = self.gns3_data['configs']
                 else:
                     projectConfigsDir = os.path.dirname(FILENAME) + os.sep + self.gns3_data['configs']
                 globals.GApp.workspace.projectConfigs = os.path.abspath(projectConfigsDir)
