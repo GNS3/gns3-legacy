@@ -281,6 +281,10 @@ class Scene(QtGui.QGraphicsView):
                             image = globals.GApp.iosimages[dyn_router.dynamips.host + ':' + dyn_router.image]
                             debug("Apply IDLE PC " + idles[index] + " for image " + image.filename)
                             image.idlepc =  idles[index]
+                config = router.get_config()
+                config['idlepc'] = idles[index]
+                router.set_config(config)
+                router.setCustomToolTip()
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, translate("Scene", "Dynamips error"),  unicode(msg))
             return

@@ -86,7 +86,10 @@ class ETHSW(AbstractNode):
         """ Set a custom tool tip
         """
 
-        self.setToolTip(self.ethsw.info())
+        if self.ethsw:
+            self.setToolTip(self.ethsw.info())
+        else:
+            AbstractNode.setCustomToolTip(self)
 
     def get_running_config_name(self):
         """ Return node name as stored in the running config

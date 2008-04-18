@@ -9,7 +9,6 @@ GUI FEATURES:
  * Inserted images resizing support.
  * Provide a way to change text fonts and orientation.
  * Align on a grid option for the scene.
- * Correct bugs with hide status points option
 
 CORE FEATURES:
 
@@ -21,5 +20,4 @@ CORE FEATURES:
  * JunOS olive support.
  * NIO multicast support.
  * Add an option to clean the startup-config (need to see this with Chris).
-
 

@@ -238,25 +238,6 @@ class Application(QApplication, Singleton):
         # Instantiation of Dynagen
         self.__dynagen = DynagenSub()
 
-        # Creating default config
-        # and create old ConfDB() object
-        ConfDB()
-        GNS_Conf().Libraries()
-        GNS_Conf().Symbols()
-        
-        # Workspace create a ` Scene' object,
-        # so it also set self.__topology
-        self.__workspace = Workspace()
-
-        # seems strange to have mainWindow = Workspace, but actually,
-        # we don't use MDI style, so there not so much difference.
-        self.__mainWindow = self.__workspace
-
-        # In GNS3, the `scene' represent the widget where all graphical stuff
-        # are done (drawing Node, Animation), and in Qt, it's the QGraphicsView
-        # which handle all this stuff.
-        self.__scene = self.__mainWindow.graphicsView
-
         config_version = int(ConfDB().get('GNS3/version', 0x000402))
         
         self.systconf['dynamips'] = systemDynamipsConf()
@@ -309,13 +290,9 @@ class Application(QApplication, Singleton):
         confo.project_path = os.path.expanduser(confo.project_path)
         confo.ios_path = os.path.expanduser(confo.ios_path)
 
-        GNS_Conf().IOS_images()
-        GNS_Conf().IOS_hypervisors()
-        
         # Now systGeneral settings are loaded, load the translator
         self.translator = Translator()
         self.translator.switchLangTo(self.systconf['general'].lang)
-        #self.translator.loadByLangEnv(self.systconf['general'].lang)
 
         # HypervisorManager
         if globals.GApp.systconf['dynamips'].path:
@@ -323,6 +300,24 @@ class Application(QApplication, Singleton):
 
         # PemuManager
         self.__PemuManager = PemuManager()
+
+        GNS_Conf().IOS_images()
+        GNS_Conf().IOS_hypervisors()
+        GNS_Conf().Libraries()
+        GNS_Conf().Symbols()
+        
+        # Workspace create a ` Scene' object,
+        # so it also set self.__topology
+        self.__workspace = Workspace()
+
+        # seems strange to have mainWindow = Workspace, but actually,
+        # we don't use MDI style, so there not so much difference.
+        self.__mainWindow = self.__workspace
+
+        # In GNS3, the `scene' represent the widget where all graphical stuff
+        # are done (drawing Node, Animation), and in Qt, it's the QGraphicsView
+        # which handle all this stuff.
+        self.__scene = self.__mainWindow.graphicsView
 
         # Restore the geometry & state of the GUI
         self.mainWindow.restoreGeometry(ConfDB().value("GUIState/Geometry").toByteArray())

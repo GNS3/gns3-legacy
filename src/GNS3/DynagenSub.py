@@ -25,7 +25,7 @@ import GNS3.Dynagen.pemu_lib as pix
 from GNS3.Dynagen.validate import Validator
 from GNS3.Dynagen.configobj import ConfigObj, flatten_errors
 from GNS3.Config.Objects import hypervisorConf
-from GNS3.Dynagen.dynagen import Dynagen
+from GNS3.Dynagen.dynagen import Dynagen, DEVICETUPLE
 from GNS3.Utils import translate, debug
 from PyQt4 import QtCore, QtGui
 
@@ -46,6 +46,18 @@ class DynagenSub(Dynagen):
         self.gns3_data = None
         if 'GNS3-DATA' in config.sections:
             self.gns3_data = config['GNS3-DATA'].copy()
+            if self.gns3_data.has_key('configs'):
+                if os.path.exists(self.gns3_data['configs']):
+                    projectConfigsDir = self.gns_3data['configs']
+                else:
+                    projectConfigsDir = os.path.dirname(FILENAME) + os.sep + self.gns3_data['configs']
+                globals.GApp.workspace.projectConfigs = os.path.abspath(projectConfigsDir)
+            if self.gns3_data.has_key('workdir'):
+                if os.path.exists(self.gns3_data['workdir']):
+                    projectWorkdir = self.gns3_data['workdir']
+                else:
+                    projectWorkdir = os.path.dirname(FILENAME) + os.sep + self.gns3_data['workdir']
+                globals.GApp.workspace.projectWorkdir = os.path.abspath(projectWorkdir)
             config.sections.remove('GNS3-DATA')
 
         count = len(config.sections)
@@ -66,6 +78,20 @@ class DynagenSub(Dynagen):
                 (emulator, host) = server.name.split(' ')
                 if emulator == 'pemu' and (host == globals.GApp.systconf['pemu'].PemuManager_binding or host == 'localhost') and globals.GApp.systconf['pemu'].enable_PemuManager:
                     globals.GApp.PemuManager.startPemu()
+                    for subsection in server.sections:
+                        device = server[subsection]
+                        # check if the PIX image is accessible, if not find an alternative image
+                        if device.name in DEVICETUPLE:
+                            if globals.GApp.systconf['pemu'].default_pix_image:
+                                image_name = globals.GApp.systconf['pemu'].default_pix_image
+                            else:
+                                print unicode(translate("DynagenSub", "PIX image %s cannot be found and cannot find an alternative image")) \
+                                % (globals.GApp.systconf['pemu'].default_pix_image)
+                                continue
+
+                            print unicode(translate("DynagenSub", "Local PIX image %s cannot be found, use image %s instead")) \
+                            % (unicode(device['image']), image_name)
+                            device['image'] = image_name
             else:
                 server.host = server.name
                 controlPort = None
@@ -76,12 +102,59 @@ class DynagenSub(Dynagen):
                 if controlPort == None:
                     controlPort = 7200
 
-                # need to start hypervisors
+                # need to start local hypervisors
                 if (server.host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or server.host == 'localhost') and \
                     globals.GApp.HypervisorManager and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
                     debug("Start hypervisor on port: " + str(controlPort))
                     hypervisor = globals.GApp.HypervisorManager.startNewHypervisor(int(controlPort))
                     globals.GApp.HypervisorManager.waitHypervisor(hypervisor)
+                    
+                    # check if the working directory is accessible, if not find an alternative working directory
+                    if not os.access(server['workingdir'], os.F_OK):
+                        if globals.GApp.workspace.projectWorkdir and os.access(globals.GApp.workspace.projectWorkdir, os.F_OK):
+                            workdir = globals.GApp.workspace.projectWorkdir
+                        else:
+                            workdir = globals.GApp.systconf['dynamips'].workdir
+                        print unicode(translate("DynagenSub", "Local workding directory %s cannot be found for hypervisor %s, use working directory %s instead")) \
+                        % (unicode(server['workingdir']), unicode(server.host) + ':' + controlPort, workdir)
+                        server['workingdir'] = workdir
+                        
+                    for subsection in server.sections:
+                        device = server[subsection]
+                        # check if the IOS image is accessible, if not find an alternative image
+                        if device.name in DEVICETUPLE:
+                            if not os.access(device['image'], os.F_OK):
+                                selected_images = []
+                                image_to_use = None
+                                for (image, conf) in globals.GApp.iosimages.iteritems():
+                                    if conf.chassis == device.name:
+                                        selected_images.append(image)
+                                if len(selected_images) == 0:
+                                    print unicode(translate("DynagenSub", "IOS image %s cannot be found for hypervisor %s and cannot find an alternative image for chassis %s")) \
+                                    % (unicode(device['image']), unicode(server.host) + ':' + controlPort, device.name)
+                                    continue
+                                if len(selected_images) > 1:
+                                    for image in selected_images:
+                                        conf = globals.GApp.iosimages[image]
+                                        if conf.default:
+                                            image_to_use = image
+                                            break
+                                if not image_to_use:
+                                    image_to_use = selected_images[0]
+                                image_name = globals.GApp.iosimages[image_to_use].filename
+                                print unicode(translate("DynagenSub", "Local IOS image %s cannot be found for hypervisor %s, use image %s instead")) \
+                                % (unicode(device['image']), unicode(server.host) + ':' + controlPort, image_name)
+                                device['image'] = image_name
+
+                        # check if the config file is accessible, if not find an alternative config
+                        elif device.has_key('cnfg') and device['cnfg']:
+                            if not os.access(device['cnfg'], os.F_OK):
+                                if globals.GApp.workspace.projectConfigs:
+                                    new_config_path = globals.GApp.workspace.projectConfigs + os.sep + os.path.basename(device['cnfg'])
+                                    print unicode(translate("DynagenSub", "Local configuration %s cannot be found for router %s, use configuration %s instead")) \
+                                    % (unicode(device['cnfg']), unicode(device.name), new_config_path)
+                                    device['cnfg'] = new_config_path
+
                 current += 1
 
         progress.setValue(count)

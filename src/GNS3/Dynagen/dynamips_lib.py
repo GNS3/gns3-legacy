@@ -883,6 +883,11 @@ class NIO_null(NIO):
 
         return self.__name
 
+    def info(self):
+        """return info string about this NIO"""
+
+        return ' is connected to ' + self.__name + ' interface'
+        
     def delete(self):
         send(self.__d, 'nio delete %s' % self.__name)
 

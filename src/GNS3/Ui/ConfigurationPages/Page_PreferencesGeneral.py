@@ -123,8 +123,14 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         
         # GUI settings
         if self.checkBoxShowStatusPoints.checkState() == QtCore.Qt.Checked:
-            self.confstatus_points = True
+            if self.conf.status_points == False:
+                for link in globals.GApp.topology.links:
+                    link.adjust()
+            self.conf.status_points = True
         else:
+            if self.conf.status_points == True:
+                for link in globals.GApp.topology.links:
+                    link.adjust()
             self.conf.status_points = False
         if self.checkBoxManualConnections.checkState() == QtCore.Qt.Checked:
             self.conf.manual_connection = True
@@ -167,4 +173,5 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         QtGui.QMessageBox.information(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Configuration file"),  
                                       translate("UiConfig_PreferencesGeneral", "Configuration file cleared, default settings will be applied after a restart"))
         globals.recordConfiguration = False
-                                      
+
+

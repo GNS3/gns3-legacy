@@ -146,7 +146,10 @@ class IOSRouter(AbstractNode):
         """ Set a custom tool tip
         """
 
-        self.setToolTip(self.router.info())
+        if self.router:
+            self.setToolTip(self.router.info())
+        else:
+            AbstractNode.setCustomToolTip(self)
 
     def get_running_config_name(self):
         """ Return node name as stored in the running config
@@ -186,7 +189,6 @@ class IOSRouter(AbstractNode):
                 pass
             else:
                 self.local_config['wics'] = list(self.router.slot[0].wics)
-        self.setCustomToolTip()
         return self.local_config
 
     def get_config(self):
@@ -436,6 +438,7 @@ class IOSRouter(AbstractNode):
         self.dynagen.update_running_config()
         self.running_config = self.dynagen.running_config[self.d][self.r]
         self.defaults_config = self.dynagen.defaults_config[self.d][self.router.model_string]
+        self.setCustomToolTip()
 
     def reconfigNode(self, new_hostname):
         """ Used when changing the hostname

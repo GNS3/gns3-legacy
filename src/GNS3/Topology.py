@@ -124,6 +124,14 @@ class Topology(QtGui.QGraphicsScene):
         self.__nodes = value
 
     nodes = property(__getNodes, __setNodes, doc='Property of nodes topology')
+    
+    def __getLinks(self):
+        """ Return topology links
+        """
+
+        return self.__links
+
+    links = property(__getLinks, doc='Property of links topology')
 
     def useExternalHypervisor(self, node, hypervisors):
         """ Connection to an external hypervisor

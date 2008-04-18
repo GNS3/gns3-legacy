@@ -32,7 +32,6 @@ class nodesDock(QtGui.QTreeWidget):
     def __init__(self, parent):
 
         QtGui.QTreeWidget.__init__(self, parent)
-        self.populateNodeDock()
         self.header().hide()
 
     def populateNodeDock(self):
@@ -120,9 +119,5 @@ class nodesDock(QtGui.QTreeWidget):
 
     def retranslateUi(self, MainWindow):
 
-        topItemNum = 0
-        topItemsCount = self.topLevelItemCount()
-        while topItemNum < topItemsCount:
-            topItem = self.topLevelItem(topItemNum)
-            self.retranslateItem(topItem)
-            topItemNum += 1
+        self.populateNodeDock()
+

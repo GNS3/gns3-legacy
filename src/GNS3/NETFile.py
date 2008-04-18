@@ -25,7 +25,7 @@ import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.pemu_lib as pix
 from GNS3.Globals.Symbols import SYMBOLS
-from GNS3.Utils import translate, debug, error
+from GNS3.Utils import translate, debug, error, relpath
 from PyQt4 import QtGui, QtCore
 from GNS3.Annotation import Annotation
 from GNS3.Pixmap import Pixmap
@@ -293,12 +293,6 @@ class NETFile(object):
         max_decorative_id = -1
         gns3data = self.dynagen.getGNS3Data()
         if gns3data:
-            if gns3data.has_key('configs'):
-                projectConfigsDir = gns3data['configs']
-                globals.GApp.workspace.projectConfigs = os.path.abspath(projectConfigsDir)
-            if gns3data.has_key('workdir'):
-                projectWorkdir = gns3data['workdir']
-                globals.GApp.workspace.projectWorkdir = os.path.abspath(projectWorkdir)
             if  gns3data.has_key('m11') and  gns3data.has_key('m22'):
                 globals.GApp.scene.setMatrix(QtGui.QMatrix(float(gns3data['m11']), 0.0,  0.0,  float(gns3data['m22']), 0.0,  0.0))
             for section in gns3data:
@@ -702,18 +696,12 @@ class NETFile(object):
             f = open(file_path, 'w')
             f.write(config)
             f.close()
+            device.cnfg = file_path
             self.dynagen.running_config[device.dynamips.host + ':' + str(device.dynamips.port)]['ROUTER ' + device.name]['cnfg'] = file_path
         except IOError, e:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 
                                       unicode(device.name) + ': ' + translate("NETFile", "IOError"), unicode(translate("NETFile", "%s: IO Error: %s")) % (file_path, unicode(e)))
             return
-        # update local config of the router
-        for node in globals.GApp.topology.nodes.itervalues():
-            if isinstance(node, IOSRouter) and node.get_dynagen_device().name == device.name:
-                config = node.get_config()
-                config['cnfg'] = file_path
-                node.set_config(config)
-                return
 
     def export_net_file(self, path):
         """ Export a .net file
@@ -831,15 +819,21 @@ class NETFile(object):
                 self.dynagen.running_config['GNS3-DATA'] = {}
             config = self.dynagen.running_config['GNS3-DATA']
             if globals.GApp.workspace.projectConfigs:
-                config['configs'] = globals.GApp.workspace.projectConfigs
+                try:
+                    config['configs'] = relpath(globals.GApp.workspace.projectConfigs, os.path.dirname(path))
+                except OSError:
+                    config['configs'] = globals.GApp.workspace.projectConfigs
             if globals.GApp.workspace.projectWorkdir:
-                config['workdir'] = globals.GApp.workspace.projectWorkdir
+                try:
+                    config['workdir'] = relpath(globals.GApp.workspace.projectWorkdir, os.path.dirname(path))
+                except OSError:
+                    config['workdir'] = globals.GApp.workspace.projectWorkdir
 
         # register matrix data
         matrix = globals.GApp.scene.matrix()
         m11 = matrix.m11()
         m22 = matrix.m22()
-        if float(m11) != 1.0 or float(m22) != 1.0:
+        if m11 != '1.0' or m22 != '1.0':
             if not self.dynagen.running_config.has_key('GNS3-DATA'):
                 self.dynagen.running_config['GNS3-DATA'] = {}
             self.dynagen.running_config['GNS3-DATA']['m11'] = m11

@@ -95,6 +95,7 @@ class HypervisorManager(object):
         """ Wait the hypervisor until it accepts connections
         """
 
+        last_exception = None
         # give 15 seconds to the hypervisor to accept connections
         count = 15
         progress = None
@@ -118,9 +119,10 @@ class HypervisorManager(object):
                     break
             try:
                 s.connect(('localhost', hypervisor['port']))
-            except:
+            except Exception, ex:
                 s.close()
                 time.sleep(1)
+                last_exception = ex
                 continue
             debug("Hypervisor manager: hypervisor on port " +  str(hypervisor['port']) + " started")
             connection_success = True
@@ -131,6 +133,8 @@ class HypervisorManager(object):
             globals.hypervisor_baseport += 1
             time.sleep(0.2)
         else:
+            if last_exception:
+                debug("Hypervisor manager: last exception raised by socket: " + unicode(last_exception))
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',
                                        unicode(translate("HypervisorManager", "Can't connect to the hypervisor on port %i")) % hypervisor['port'])
             hypervisor['proc_instance'].close()

@@ -112,6 +112,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         if ok and device.console != port:
             try:
                 device.console = port
+                self.setCustomToolTip()
             except lib.DynamipsError, msg:
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Console port"), unicode(msg))
 

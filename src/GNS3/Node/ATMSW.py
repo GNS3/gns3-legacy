@@ -88,7 +88,10 @@ class ATMSW(AbstractNode):
         """ Set a custom tool tip
         """
 
-        self.setToolTip(self.atmsw.info())
+        if self.atmsw:
+            self.setToolTip(self.atmsw.info())
+        else:
+            AbstractNode.setCustomToolTip(self)
 
     def get_running_config_name(self):
         """ Return node name as stored in the running config

@@ -97,7 +97,10 @@ class FW(AbstractNode, FWDefaults):
         """ Set a custom tool tip
         """
 
-        self.setToolTip(self.fw.info())
+        if self.fw:
+            self.setToolTip(self.fw.info())
+        else:
+            AbstractNode.setCustomToolTip(self)
         
     def get_running_config_name(self):
         """ Return node name as stored in the running config
@@ -116,7 +119,6 @@ class FW(AbstractNode, FWDefaults):
                 self.local_config[option] = getattr(self.fw, option)
             except AttributeError:
                 continue
-        self.setCustomToolTip()
         return self.local_config
 
     def get_config(self):
@@ -259,6 +261,7 @@ class FW(AbstractNode, FWDefaults):
         self.dynagen.update_running_config()
         self.running_config = self.dynagen.running_config[self.d][self.f]
         self.defaults_config = self.dynagen.defaults_config[self.d][model]
+        self.setCustomToolTip()
 
     def startNode(self, progress=False):
         """ Start the node
