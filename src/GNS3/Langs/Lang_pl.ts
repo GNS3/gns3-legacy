@@ -1127,7 +1127,7 @@ Wprowadź numer wartości idlepc do przypisania [1-%i] lub wciśnij enter żeby 
         <translation>Nie wybrano hypervisora, skorzystaj z hipervisora lokalnego</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="395"/>
+        <location filename="../IOSDialog.py" line="396"/>
         <source>Select a working directory</source>
         <translation>Wybierz katalog roboczy</translation>
     </message>
@@ -1262,7 +1262,7 @@ Wprowadź numer wartości idlepc do przypisania [1-%i] lub wciśnij enter żeby 
         <translation>Obraz domyślny dla tej platformy</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="290"/>
+        <location filename="../IOSDialog.py" line="291"/>
         <source>There is already a default image for this platform</source>
         <translation>Dla tej platformy istnieje już obraz domyślny</translation>
     </message>
@@ -1287,12 +1287,12 @@ Wprowadź numer wartości idlepc do przypisania [1-%i] lub wciśnij enter żeby 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="370"/>
+        <location filename="../IOSDialog.py" line="371"/>
         <source>IOS Configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="370"/>
+        <location filename="../IOSDialog.py" line="371"/>
         <source>Image file box is empty</source>
         <translation type="unfinished"></translation>
     </message>

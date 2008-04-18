@@ -1126,7 +1126,7 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
         <translation>ハイパーバイザ設定されていないためローカルのを使用する</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="395"/>
+        <location filename="../IOSDialog.py" line="396"/>
         <source>Select a working directory</source>
         <translation>作業ディレクトリを選択して下さい</translation>
     </message>
@@ -1261,7 +1261,7 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
         <translation>このイメージをプラットフォームのデフォルト設定にする</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="290"/>
+        <location filename="../IOSDialog.py" line="291"/>
         <source>There is already a default image for this platform</source>
         <translation>このプラットフォームにデフォルトイメージは既に設定されています</translation>
     </message>
@@ -1286,12 +1286,12 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="370"/>
+        <location filename="../IOSDialog.py" line="371"/>
         <source>IOS Configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="370"/>
+        <location filename="../IOSDialog.py" line="371"/>
         <source>Image file box is empty</source>
         <translation type="unfinished"></translation>
     </message>

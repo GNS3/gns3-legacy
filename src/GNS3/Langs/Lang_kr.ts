@@ -1126,7 +1126,7 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
         <translation>하이퍼바이져가 선택되어있지 않아, 로컬 하이퍼바이져를 사용합니다</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="395"/>
+        <location filename="../IOSDialog.py" line="396"/>
         <source>Select a working directory</source>
         <translation>작업 디렉토리를 선택</translation>
     </message>
@@ -1261,7 +1261,7 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
         <translation>이 플랫폼에 대한 기본 이미지를 설정</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="290"/>
+        <location filename="../IOSDialog.py" line="291"/>
         <source>There is already a default image for this platform</source>
         <translation>이 플랫폼에는 기본 이미지가 설정되어 있습니다</translation>
     </message>
@@ -1286,12 +1286,12 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="370"/>
+        <location filename="../IOSDialog.py" line="371"/>
         <source>IOS Configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="370"/>
+        <location filename="../IOSDialog.py" line="371"/>
         <source>Image file box is empty</source>
         <translation type="unfinished"></translation>
     </message>

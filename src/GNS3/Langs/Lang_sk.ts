@@ -592,17 +592,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="110"/>
         <source>Change console port</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmeň konzolový port</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="111"/>
         <source>Console port for %s:</source>
-        <translation type="unfinished"></translation>
+        <translation>Konzolový port pre %s:</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="117"/>
         <source>Console port</source>
-        <translation type="unfinished"></translation>
+        <translation>Konzolový port</translation>
     </message>
 </context>
 <context>
@@ -610,12 +610,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Application.py" line="338"/>
         <source>Configuration file</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguračný súbor</translation>
     </message>
     <message>
         <location filename="../Application.py" line="339"/>
         <source>Configuration file is not longer compatible, would you like to reset it? (you will have to restart GNS3)</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguračný súbor nie je kompatibilný s touto verziou GNS3, môžem ho prepísať? (bude potrebný reštart GNS3)</translation>
     </message>
 </context>
 <context>
@@ -731,7 +731,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Config/Config.py" line="249"/>
         <source>Can&apos;t open library: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem otvoriť knižnicu: %s</translation>
     </message>
 </context>
 <context>
@@ -820,7 +820,7 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
     <message>
         <location filename="../Console.py" line="396"/>
         <source>Cannot create %s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem vytvoriť %s: %s</translation>
     </message>
 </context>
 <context>
@@ -838,32 +838,32 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
     <message>
         <location filename="../DynagenSub.py" line="88"/>
         <source>PIX image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem nájsť PIX image %s ani alternatívny image</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="92"/>
         <source>Local PIX image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem nájst PIX image %s, použite image %s namiesto neho</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="118"/>
         <source>Local workding directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem nájsť lokálny pracovný adresár %s pre hypervízor %s, použite namiesto neho adresár %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="133"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative image for chassis %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem nájsť IOS image %s pre hypervízor %s ani alternatívny image pre šasi %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="145"/>
         <source>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem nájst IOS image %s pre hypervízor %s, použite image %s namiesto neho</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="154"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem nájsť konfiguráciu pre smerovač %s, namiesto toho použite túto konfiguraciu: %s</translation>
     </message>
 </context>
 <context>
@@ -1005,17 +1005,17 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
     <message>
         <location filename="../Node/FW.py" line="186"/>
         <source>New hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>Nové meno zariadenia</translation>
     </message>
     <message>
         <location filename="../Node/FW.py" line="187"/>
         <source>Cannot rename a connected firewall because pemuwrapper does not support removal</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem premenovať firewall lebo pemuwrapper nepodporuje odstránenie</translation>
     </message>
     <message>
         <location filename="../Node/FW.py" line="200"/>
         <source>Dynamips error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba Dynamipsu</translation>
     </message>
 </context>
 <context>
@@ -1128,7 +1128,7 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
         <translation>Nie je zvolený žiaden hypervízor, použi lokálny</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="395"/>
+        <location filename="../IOSDialog.py" line="396"/>
         <source>Select a working directory</source>
         <translation>Zvoľte pracovný adresár</translation>
     </message>
@@ -1263,7 +1263,7 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
         <translation>Štandardný IOS súbor pre túto platformu</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="290"/>
+        <location filename="../IOSDialog.py" line="291"/>
         <source>There is already a default image for this platform</source>
         <translation>Pre túto platformu je už štandardný IOS súbor definovaný</translation>
     </message>
@@ -1275,32 +1275,32 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="321"/>
         <source>Default RAM:</source>
-        <translation type="unfinished"></translation>
+        <translation>Štandardné nastavenie RAM:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="322"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="323"/>
         <source>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Check for minimum RAM requirement&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Overte si minimálne požiadavky na RAM&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="370"/>
+        <location filename="../IOSDialog.py" line="371"/>
         <source>IOS Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>IOS konfigurácia</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="370"/>
+        <location filename="../IOSDialog.py" line="371"/>
         <source>Image file box is empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Položka pre image je prázdna</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="333"/>
         <source>127.0.0.1</source>
-        <translation type="unfinished">127.0.0.1</translation>
+        <translation>127.0.0.1</translation>
     </message>
 </context>
 <context>
@@ -1328,17 +1328,17 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
     <message>
         <location filename="../Node/IOSRouter.py" line="463"/>
         <source>Dynamips error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba Dynamipsu</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="297"/>
         <source>Startup-config</source>
-        <translation type="unfinished"></translation>
+        <translation>Štartovacia konfigurácia</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="292"/>
         <source>Startup-config for %s:</source>
-        <translation type="unfinished"></translation>
+        <translation>Štartovacia konfigurácia pre %s:</translation>
     </message>
 </context>
 <context>
@@ -1526,7 +1526,7 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="193"/>
         <source> KB</source>
-        <translation type="unfinished"></translation>
+        <translation> KB</translation>
     </message>
 </context>
 <context>
@@ -1849,22 +1849,22 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="394"/>
         <source>&amp;Extract all startup-configs</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Exportuj štartovacie konfigurácie všetkých zariadení</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="395"/>
         <source>Insert an image</source>
-        <translation type="unfinished"></translation>
+        <translation>Vlož image</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="396"/>
         <source>&amp;Symbol Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Manažér symbolov</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="397"/>
         <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+S</translation>
     </message>
 </context>
 <context>
@@ -1922,27 +1922,27 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
     <message>
         <location filename="../Topology.py" line="257"/>
         <source>Please wait while copying the base flash</source>
-        <translation type="unfinished"></translation>
+        <translation>Počkajte kým sa skopíruje základný flash</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="805"/>
         <source>must be connected in order to be registered</source>
-        <translation type="unfinished"></translation>
+        <translation>musí byť pripojený nato aby mohol by zaregistrovaný</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="365"/>
         <source>%s: cannot find %s symbol</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: neviem nájsť symbol %s</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="470"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
-        <translation type="unfinished"></translation>
+        <translation>Varovanie: GNS3 momentálne nepodporuje spojenia typu LAN, ignorujem</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="354"/>
         <source>Cannot load image: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem zaviesť image: %s</translation>
     </message>
 </context>
 <context>
@@ -2262,12 +2262,12 @@ na zobrazenie konfiguračnej stránky.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="78"/>
         <source>Automatically clean the working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Automaticky vyčistiť pracovný adresár</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="268"/>
         <source>Bind Hypervisor Manager with:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zviaž manažér hypervízorov s:</translation>
     </message>
 </context>
 <context>
@@ -2330,17 +2330,17 @@ na zobrazenie konfiguračnej stránky.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="140"/>
         <source>Configuration file</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguračný súbor</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="146"/>
         <source>Unknown location</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznáme umiestnenie</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="166"/>
         <source>&amp;Clear it</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vyčisti</translation>
     </message>
 </context>
 <context>
@@ -2408,12 +2408,12 @@ na zobrazenie konfiguračnej stránky.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="175"/>
         <source>Base flash:</source>
-        <translation type="unfinished"></translation>
+        <translation>Základný flash:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="62"/>
         <source>Bind Pemu Manager with:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zviaž Pemu manažér s: </translation>
     </message>
 </context>
 <context>
@@ -2421,7 +2421,7 @@ na zobrazenie konfiguračnej stránky.</translation>
     <message>
         <location filename="../ProjectDialog.py" line="42"/>
         <source>New Project</source>
-        <translation type="unfinished">Nový projekt</translation>
+        <translation>Nový projekt</translation>
     </message>
 </context>
 <context>
@@ -2514,22 +2514,22 @@ na zobrazenie konfiguračnej stránky.</translation>
     <message>
         <location filename="../Scene.py" line="129"/>
         <source>Change console port</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmeň konzolový port</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="162"/>
         <source>Startup-config</source>
-        <translation type="unfinished"></translation>
+        <translation>Štartovacia konfigurácia</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="179"/>
         <source>Lower one step</source>
-        <translation type="unfinished"></translation>
+        <translation>Zníž o jeden krok</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="184"/>
         <source>Raise one step</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvýš o jeden krok</translation>
     </message>
 </context>
 <context>
@@ -2612,17 +2612,17 @@ na zobrazenie konfiguračnej stránky.</translation>
     <message>
         <location filename="../Topology.py" line="244"/>
         <source>Pemuwrapper error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba pemuwrappera</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="263"/>
         <source>PIX device</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX zariadenie</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="264"/>
         <source>Cannot copy PIX base flash %s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem skopírovať základný flash PIXu %s: %s</translation>
     </message>
 </context>
 <context>
@@ -2750,7 +2750,7 @@ na zobrazenie konfiguračnej stránky.</translation>
     <message>
         <location filename="../Workspace.py" line="210"/>
         <source>Directory to write startup-configs</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresár do ktorého zapísať štartovaciu konfiguráciu</translation>
     </message>
 </context>
 <context>
@@ -2821,27 +2821,27 @@ na zobrazenie konfiguračnej stránky.</translation>
     <message>
         <location filename="DynamicStrings.py" line="43"/>
         <source>ATM bridge</source>
-        <translation type="unfinished"></translation>
+        <translation>ATM sieťový most</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="41"/>
         <source>Ethernet switch</source>
-        <translation type="unfinished"></translation>
+        <translation>Ethernet prepínač</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="47"/>
         <source>Decorative node</source>
-        <translation type="unfinished"></translation>
+        <translation>Dekoratívny uzol</translation>
     </message>
     <message>
         <location filename="../Ui/Widget_nodesDock.py" line="54"/>
         <source>Emulated devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Emulované zariadenia</translation>
     </message>
     <message>
         <location filename="../Ui/Widget_nodesDock.py" line="61"/>
         <source>Decorative nodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Dekoratívne uzly</translation>
     </message>
 </context>
 <context>

@@ -1132,7 +1132,7 @@ Entre o número do valor idlepc para aplicar [1-%i] ou ENTRE para não alterar:
         <translation>Hypervisor não selecionado, use o hypervisor local</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="395"/>
+        <location filename="../IOSDialog.py" line="396"/>
         <source>Select a working directory</source>
         <translation>Selecione o diretório de trabalho</translation>
     </message>
@@ -1262,7 +1262,7 @@ Entre o número do valor idlepc para aplicar [1-%i] ou ENTRE para não alterar:
         <translation>Imagem padrão para esta plataforma</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="290"/>
+        <location filename="../IOSDialog.py" line="291"/>
         <source>There is already a default image for this platform</source>
         <translation>Já existe uma imagem padrão para esta plataforma</translation>
     </message>
@@ -1287,12 +1287,12 @@ Entre o número do valor idlepc para aplicar [1-%i] ou ENTRE para não alterar:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="370"/>
+        <location filename="../IOSDialog.py" line="371"/>
         <source>IOS Configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="370"/>
+        <location filename="../IOSDialog.py" line="371"/>
         <source>Image file box is empty</source>
         <translation type="unfinished"></translation>
     </message>

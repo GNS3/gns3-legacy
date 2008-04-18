@@ -609,12 +609,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Application.py" line="338"/>
         <source>Configuration file</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichier de configuration</translation>
     </message>
     <message>
         <location filename="../Application.py" line="339"/>
         <source>Configuration file is not longer compatible, would you like to reset it? (you will have to restart GNS3)</source>
-        <translation type="unfinished"></translation>
+        <translation>Le fichier de configuration n&apos;est plus compatible, voulez-vous le réinitialiser ? (vous allez devoir rédémarrer GNS3)</translation>
     </message>
 </context>
 <context>
@@ -730,7 +730,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Config/Config.py" line="249"/>
         <source>Can&apos;t open library: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;ouvrir la librairie: %s</translation>
     </message>
 </context>
 <context>
@@ -837,32 +837,32 @@ Entrer le numéro de la valeur a appliquer [1-%i] or ENTRER pour ignorer le chan
     <message>
         <location filename="../DynagenSub.py" line="88"/>
         <source>PIX image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;image PIX %s n&apos;a pas été trouvée et impossible de trouver une image alternative</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="92"/>
         <source>Local PIX image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;image PIX locale %s n&apos;a pas été trouvée, utilise l&apos;image %s à la place</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="118"/>
         <source>Local workding directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Le répertoire de travail local %s n&apos;a pas été trouvé pour l&apos;hyperviseur %s, utilise le répertoire de travail %s à la place</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="133"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative image for chassis %s</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;image IOS %s n&apos;a pas été trouvée pour l&apos;hypersiveur %s et impossible de trouver une image alternative pour le chassis %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="145"/>
         <source>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;image IOS locale %s n&apos;a pas été trouvée pour l&apos;hyperviseur %s, utilise l&apos;image %s à la place</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="154"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>La configuration locale %s n&apos;a pas été trouvée pour le routeur %s, utilise la configuration %s à la place</translation>
     </message>
 </context>
 <context>
@@ -1127,7 +1127,7 @@ Entrer le numéro de la valeur a appliquer [1-%i] or ENTRER pour ignorer le chan
         <translation>Pas d&apos;hyperviseur selectionné, utiliser l&apos;hyperviseur local</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="395"/>
+        <location filename="../IOSDialog.py" line="396"/>
         <source>Select a working directory</source>
         <translation>Sélectionner un répertoire de travail</translation>
     </message>
@@ -1262,7 +1262,7 @@ Entrer le numéro de la valeur a appliquer [1-%i] or ENTRER pour ignorer le chan
         <translation>Image par défaut pour cette platforme</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="290"/>
+        <location filename="../IOSDialog.py" line="291"/>
         <source>There is already a default image for this platform</source>
         <translation>Il y à déjà une image par défaut pour cette platforme</translation>
     </message>
@@ -1287,19 +1287,19 @@ Entrer le numéro de la valeur a appliquer [1-%i] or ENTRER pour ignorer le chan
         <translation>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Vérifier le minimum de RAM requis&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="370"/>
+        <location filename="../IOSDialog.py" line="371"/>
         <source>IOS Configuration</source>
         <translation>Configuration de l&apos;IOS</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="370"/>
+        <location filename="../IOSDialog.py" line="371"/>
         <source>Image file box is empty</source>
         <translation>Fichier image est vide</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="333"/>
         <source>127.0.0.1</source>
-        <translation type="unfinished">127.0.0.1</translation>
+        <translation>127.0.0.1</translation>
     </message>
 </context>
 <context>
@@ -1332,12 +1332,12 @@ Entrer le numéro de la valeur a appliquer [1-%i] or ENTRER pour ignorer le chan
     <message>
         <location filename="../Node/IOSRouter.py" line="297"/>
         <source>Startup-config</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="292"/>
         <source>Startup-config for %s:</source>
-        <translation type="unfinished"></translation>
+        <translation>Startup-config pour %s:</translation>
     </message>
 </context>
 <context>
@@ -1854,17 +1854,17 @@ panier:</translation>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="395"/>
         <source>Insert an image</source>
-        <translation type="unfinished"></translation>
+        <translation>Insérer une image</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="396"/>
         <source>&amp;Symbol Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Gestionnaire de symboles</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="397"/>
         <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1927,22 +1927,22 @@ panier:</translation>
     <message>
         <location filename="../NETFile.py" line="805"/>
         <source>must be connected in order to be registered</source>
-        <translation type="unfinished"></translation>
+        <translation>doit être connecté pour être enregistré</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="365"/>
         <source>%s: cannot find %s symbol</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: impossible de trouver le symbole %s</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="470"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
-        <translation type="unfinished"></translation>
+        <translation>Warning: GNS3 ne supporte pas les entrées &quot;lan&quot;</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="354"/>
         <source>Cannot load image: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de charger l&apos;image: %s</translation>
     </message>
 </context>
 <context>
@@ -2267,7 +2267,7 @@ pour afficher sa page de configuration.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="268"/>
         <source>Bind Hypervisor Manager with:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lier l&apos;Hypervisor Manager avec:</translation>
     </message>
 </context>
 <context>
@@ -2330,17 +2330,17 @@ pour afficher sa page de configuration.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="140"/>
         <source>Configuration file</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichier de configuration</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="146"/>
         <source>Unknown location</source>
-        <translation type="unfinished"></translation>
+        <translation>Emplacement inconnu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="166"/>
         <source>&amp;Clear it</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Effacer le</translation>
     </message>
 </context>
 <context>
@@ -2413,7 +2413,7 @@ pour afficher sa page de configuration.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="62"/>
         <source>Bind Pemu Manager with:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lier Pemu Manager avec:</translation>
     </message>
 </context>
 <context>
@@ -2421,7 +2421,7 @@ pour afficher sa page de configuration.</translation>
     <message>
         <location filename="../ProjectDialog.py" line="42"/>
         <source>New Project</source>
-        <translation type="unfinished">Nouveau Projet</translation>
+        <translation>Nouveau Projet</translation>
     </message>
 </context>
 <context>
@@ -2519,17 +2519,17 @@ pour afficher sa page de configuration.</translation>
     <message>
         <location filename="../Scene.py" line="162"/>
         <source>Startup-config</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Scene.py" line="179"/>
         <source>Lower one step</source>
-        <translation type="unfinished"></translation>
+        <translation>Réduire d&apos;un niveau</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="184"/>
         <source>Raise one step</source>
-        <translation type="unfinished"></translation>
+        <translation>Augmenter d&apos;un niveau</translation>
     </message>
 </context>
 <context>
@@ -2826,22 +2826,22 @@ pour afficher sa page de configuration.</translation>
     <message>
         <location filename="DynamicStrings.py" line="41"/>
         <source>Ethernet switch</source>
-        <translation type="unfinished"></translation>
+        <translation>Commutateur Ethernet</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="47"/>
         <source>Decorative node</source>
-        <translation type="unfinished"></translation>
+        <translation>Noeud decoratif</translation>
     </message>
     <message>
         <location filename="../Ui/Widget_nodesDock.py" line="54"/>
         <source>Emulated devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Equipements émulés</translation>
     </message>
     <message>
         <location filename="../Ui/Widget_nodesDock.py" line="61"/>
         <source>Decorative nodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Noeuds décoratifs</translation>
     </message>
 </context>
 <context>

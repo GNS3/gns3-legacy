@@ -1125,7 +1125,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation> المحلي hypervisor لم يتم أختيار, أستخدم ال </translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="395"/>
+        <location filename="../IOSDialog.py" line="396"/>
         <source>Select a working directory</source>
         <translation>أختار مسار تنفيذ</translation>
     </message>
@@ -1260,7 +1260,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>أفتراضي image لهذه المنصة</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="290"/>
+        <location filename="../IOSDialog.py" line="291"/>
         <source>There is already a default image for this platform</source>
         <translation>توجد IMAGE مسبقا لهذه المنصة</translation>
     </message>
@@ -1285,12 +1285,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="370"/>
+        <location filename="../IOSDialog.py" line="371"/>
         <source>IOS Configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="370"/>
+        <location filename="../IOSDialog.py" line="371"/>
         <source>Image file box is empty</source>
         <translation type="unfinished"></translation>
     </message>
