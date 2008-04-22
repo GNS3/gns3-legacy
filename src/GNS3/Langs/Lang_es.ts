@@ -5,57 +5,57 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="13"/>
         <source>ATM Bridge</source>
-        <translation type="unfinished"></translation>
+        <translation>Bridge ATM</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="25"/>
         <source>Ethernet side</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="104"/>
         <source>Port:</source>
-        <translation type="unfinished">Puerto:</translation>
+        <translation>Puerto:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="60"/>
         <source>Mapping</source>
-        <translation type="unfinished">Asignaciones</translation>
+        <translation>Asignaciones</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="76"/>
         <source>Ethernet Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouerto Ethernet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="81"/>
         <source>Port:VCI:VPI</source>
-        <translation type="unfinished">Puerto:VCI:VPI</translation>
+        <translation>Puerto:VCI:VPI</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="98"/>
         <source>ATM side</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="130"/>
         <source>VCI:</source>
-        <translation type="unfinished">VCI:</translation>
+        <translation>VCI:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="159"/>
         <source>VPI:</source>
-        <translation type="unfinished">VPI:</translation>
+        <translation>VPI:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="185"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">&amp;Agregar</translation>
+        <translation>&amp;Agregar</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="195"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;Eliminar</translation>
+        <translation>&amp;Eliminar</translation>
     </message>
 </context>
 <context>
@@ -129,38 +129,17 @@
         <translation>&amp;Acerca de</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="121"/>
+        <location filename="../Ui/Form_About.py" line="135"/>
         <source>&amp;Thanks to</source>
         <translation>&amp;Gracias a</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="408"/>
+        <location filename="../Ui/Form_About.py" line="422"/>
         <source>&amp;License Agreement</source>
         <translation>&amp;Licenciamiento</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="120"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alexander H. Hackenberg from Vienna, Austria&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Erik Wenzel from Germany: German translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Huan Ji from Wuhan, China: Chinese translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jose Sen from Buenos Aires, Argentina: Spanish translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mark Soe Min from Tokyo, Japan: Japanese translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aboulgasem Albusaifi from Tarabulus, Libya: Arabic translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Marcio de Freitas Minicz from Sao Jose dos Campos, SP, Brazil: Brazilian-Portuguese translation &lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hasan Agirol Aksoy from Antalya, Turkey: Turkish translation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_About.py" line="407"/>
+        <location filename="../Ui/Form_About.py" line="421"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -447,7 +426,32 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;POSSIBILITY OF SUCH DAMAGES.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;END OF TERMS AND CONDITIONS&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright (c) 2007 GNS3 Team&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;lt;contact@gns3.net&amp;gt;&lt;/p&gt;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;LICENCIA PUBLICA GENERAL DE GNU&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Version 3, Julio 2007&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright (C) 1989, 1991 Free Software Foundation, Inc.&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;675 Mass Ave, Cambridge, MA 02139, USA&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Se autoriza la reproduccion y distribucion de las copias del presente documento de licencia, pero se prohibe la modificacion de cualquiera de sus partes.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Preambulo&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;La Licencia Pública General de GNU (GNU GPL, por sus siglas en inglés)es una licencia libre y gratuita con derecho de copia para software y otros tipos de obras.Las licencias para la mayoría del software y otras obras de índole práctica están diseñadas para privarle de la libertad para distribuir y modificar las obras. Por el contrario, la Licencia Pública General de GNU garantiza la libre distribución y modificación de todas las versiones de un programa, a fin de asegurarle dicha libertad a todos los usuarios. En la Fundación para el Software Libre utilizamos la Licencia Pública General de GNU para la mayoría de nuestro software; también se aplica a cualquier otra obra publicada de esta manera por sus autores. Usted también puede aplicarla a sus programas.Cuando hablamos de software libre, nos referimos a la libertad, no al precio. Nuestras Licencias Públicas Generales están diseñadas para garantizar le a usted la libertad de distribuir copias de software libre (y cobrar por ellas,si así lo desea), obtener el código fuente, o tener la posibilidad de obtenerlo, modificar el software o utilizar partes del mismo en nuevos programas libres, y saber que puede hacer estas cosas.Para proteger sus derechos, necesitamos evitar que otros le nieguen estos derechos o le pidan que renuncie a los mismos. Por lo tanto, en el caso de que usted distribuya o modifique este software, tendrá ciertas responsabilidades a fin de garantizar la libertad de los demás.Por ejemplo, si usted distribuye copias de un programa de esta naturaleza, ya sea en forma gratuita o a cambio de dinero, debe extender a los destinatarios del software las mismas libertades que le fueron otorgadas a usted. Debe asegurarse de que ellos también reciban o tengan la posibilidad de obtener el código fuente. Y debe mostrarles los presentes términos a fin de que conozcan sus derechos.Los desarrolladores que utilizan la GNU GPL siguen dos pasos para proteger los derechos que usted recibe: (1) declarar los derechos de autor del software, y (2) ofrecerle esta Licencia para que usted pueda copiar, distribuir y/o modificar el software legalmente.A fin de proteger a los desarrolladores y autores, la GPL explicaclaramente que nos se ofrecen garantías por este software libre. Por el bien de los usuarios y de los autores, la GPL exige que las versiones modificadas se identifiquen como tales, de modo que los problemas que puedan contener estas versiones no se atribuyan erróneamente a los autores de versiones anteriores.Existen algunos dispositivos diseñados para negarles a los usuarios el acceso para instalar o ejecutar versiones modificadas del software que contienen, aunque el fabricante pueda hacerlo. Esto es esencialmente incompatible con el objetivo de proteger la libertad de los usuarios para modificar el software. El patrón sistemático de tal abuso se da en el área de productos para el uso por parte de individuos, precisamente un área en la cual se vuelve más inaceptable. Por lo tanto, hemos diseñado esta versión de la GPL a fin de prohibir la práctica para dichos productos. En el caso de que dichos problemas surgieran en otras esferas, hemos tomado los recaudos necesarios para extender esta disposición a dichas esferas en futuras versiones de la GPL,según se requiera para proteger la libertad de los usuarios.Por último, todos los programas se ven amenazados constantemente por patentes de software. Los Estados no deberían permitirles a las patentes restringir el desarrollo y el uso de software en computadoras para fines generales, pero, en el caso de que esto suceda, deseamos evitar el riesgo especial de que las patentes que se apliquen a un programa libre efectivamente otorguen tal exclusividad. Para lograrlo, la GPL garantiza la imposibilidad deluso de las patentes para apropiarse de un programa y restringir dicha libertad.A continuación, se incluyen los términos y condiciones particulares parala reproducción, distribución y modificación del software.&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;TÉRMINOS Y CONDICIONES&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;0. Definiciones.&lt;/p&gt;Por “esta Licencia” se entiende la versión 3 de la Licencia Pública General de GNU.El término “copyright” también se extiende a las leyes que protegen los derechos de autor para otros tipos de obras, tales como diseños de circuitos integrados sobre substrato semiconductor.Por “el Programa” se entiende cualquier obra incluida en esta Licencia sobre la que se puedan ejercer derechos de autor. Para referirnos a cada licenciatario, utilizamos el término “usted”. Los “licenciatarios” y“destinatarios” pueden ser individuos u organizaciones.Por “modificar” una obra se entiende el proceso de copiar o adaptar una obra en forma parcial o total de un modo que requiera autorización de copyright y que no sea la reproducción de una copia exacta. La obra resultante es una“versión modificada” de la obra anterior o una obra “basada en” la obra anterior.Por “obra amparada” se entiende el Programa sin modificaciones o una obra basada en el Programa.Por “propagar” una obra se entiende cualquier acción sobre la misma que,en el caso de no tener autorización, pudiera hacerlo responsable, ya sea en forma directa o indirecta, de infringir las leyes de derechos de autor aplicables, salvo que dicha acción se realice en una computadora o se modifique una copia privada. La propagación incluye la reproducción, distribución (con osin modificaciones), divulgación y, en algunos países, otras actividades también.Por “transmitir” una obra se entiende cualquier tipo de propagación quele permita a un tercero hacer o recibir copias. La mera interacción con un usuario a través de una red informática, cuando no se transfiere una copia, no se considera una transmisión.Una interfaz de usuario interactiva muestra “avisos legales apropiados”en la medida en que, de un modo práctico y bien visible, (1) muestre un aviso de copyright apropiado y (2) le informe al usuario que no se ofrecen garantías por la obra (salvo que efectivamente se ofrezcan garantías) y que los licenciatarios pueden transmitir la obra conforme a las disposiciones de esta Licencia, además de mostrar la forma en que se puede consultar una copia de esta Licencia. Si la interfaz presenta una lista de comandos del usuario u opciones, tales como un menú, dicha lista debe incluir un ítem visible que cumpla con este criterio.
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;1. Código fuente.&lt;/p&gt;El “código fuente” de una obra es el formato preferido de la obra para realizar modificaciones en la misma. Por “código objeto” se entiende cualquier formato de una obra que no sea código fuente.Una “interfaz estándar” es una interfaz que puede ser una norma oficial,según lo defina un organismo de normas reconocido, o bien, en el caso de interfaces específicas para un lenguaje de programación particular, unainterfaz de uso generalizado entre los desarrolladores que trabajan con dicho lenguaje.Las “bibliotecas de sistemas” de una obra ejecutable comprenden cualquier cosa, salvo la obra en su totalidad, que (a) se incluya en la forma normal de empaquetamiento de un Componente Importante, pero que no forme parte del Componente Importante, y (b) sirva únicamente para permitir el uso de la obra con dicho Componente Importante o para implementar una Interfaz Estándar para la cual haya a disposición del público una implementación en forma de código fuente. Un “Componente Importante”, en este contexto, es un componente fundamental (núcleo, sistema de ventanas, etc.) del sistema operativo específico (si hubiera) en el que funcione la obra ejecutable, o un compilador utilizado para producir la obra, o un intérprete de código objeto utilizado para ejecutarlo.La “Fuente Correspondiente” para una obra en código objeto refiere atodo el código fuente necesario para generar, instalar y (para una obra ejecutable) ejecutar el código objeto y modificar la obra, incluidas las secuencias de comandos para controlar dichas actividades. Sin embargo, no incluye las Bibliotecas de Sistemas de la obra, así como tampoco herramientas de aplicación general o programas libres generalmente disponibles que se utilicen sin modificaciones para realizar dichas actividades pero que no formen parte de la obra. Por ejemplo, la Fuente Correspondiente incluye los archivos de definición de interfaz asociados a los archivos fuente para la obra, asícomo el código fuente para las bibliotecas compartidas y los subprogramas vinculados en forma dinámica requeridos específicamente conforme a su diseño,por ejemplo, mediante la comunicación de datos intrínseca o el control de flujo entre esos subprogramas y otras partes de la obra.La Fuente Correspondiente no necesita incluir nada que los usuarios puedan regenerar automáticamente de otras partes de la Fuente Correspondiente.La Fuente Correspondiente para una obra en código fuente es esa misma obra.
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;2. Permisos básicos.&lt;/p&gt;Todos los derechos que se otorgan conforme a esta Licencia se otorgan por el término del copyright que ampara al Programa y son irrevocables siempre y cuando se cumplan las condiciones establecidas. Esta Licencia lo autoriza enforma expresa e ilimitada a ejecutar el Programa sin modificaciones. El producto obtenido a partir de la ejecución de una obra amparada está cubierto por esta Licencia únicamente si el producto, dado su contenido, constituye una obra amparada. Esta Licencia reconoce sus derechos de uso razonable y otros equivalentes, conforme a las leyes de copyright.Usted puede crear, ejecutar y propagar obras amparadas que no transmita,sin condiciones en la medida en que su licencia siga vigente de alguna otra manera. Usted puede transmitir obras amparadas a terceros con el único fin deque éstos realicen modificaciones exclusivamente para usted, o que le proporcionen los medios para ejecutar dichas obras, siempre y cuando usted cumpla con los términos de esta Licencia en lo que respecta a la transmisión decualquier material que exceda su control del copyright. Aquéllos que de estamanera creen o ejecuten las obras aparadas para usted deben hacerloexclusivamente en su nombre, bajo su dirección y control y sobre la base detérminos que les prohíban hacer copias de su material protegido por derechos deautor fuera de la relación que mantienen con usted.La transmisión bajo cualquier otra circunstancia se permite únicamenteconforme a las condiciones que se describen a continuación. Se prohíbe sublicenciar; la sección 10 hace que sea innecesario.
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;3. Protección de losderechos legales de los usuarios frente a la Ley Anti-Evasión.&lt;/p&gt;Ninguna obra amparada se considerará parte de una medida tecnológica efectiva conforme a cualquier ley aplicable que cumpla las obligaciones del artículo 11 del tratado de copyright WIPO adoptado el 20 de diciembre de 1996 oa leyes similares que prohíban o restrinjan la evasión de dichas medidas.Cuando usted transmite una obra amparada, renuncia a cualquier facultad legal de prohibir la evasión de medidas tecnológicas en la medida en que dicha evasión se realice al hacer uso de los derechos que se otorgan conforme a esta Licencia con respecto a la obra amparada, y niega cualquier intención de restringir el uso o la modificación de la obra como una forma de hacer valer,en contra de los usuarios de la obra, sus derechos legales o los derechos legales de terceros para prohibir la evasión de medidas tecnológicas.
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;4. Transmisión de copiasexactas.&lt;/p&gt;Usted puede transmitir copias exactas del código fuente del Programa tal cual lo reciba, en cualquier medio, siempre y cuando publique de un modo llamativo y adecuado un aviso de copyright apropiado en cada copia; mantenga intactos todos los avisos que establecen que esta Licencia y cualquier término no-permisivo que se agregue conforme a la sección 7 se aplican al código;mantenga intactos todos los avisos mediante los cuales se niega cualquier tipo de garantía; y les proporcione a todos los destinatarios una copia de esta Licencia junto con el Programa.Usted puede cobrar el precio que usted desee o no cobrar nada por cada copia que transmita, y puede ofrecer soporte o protección de garantía a cambio de una tarifa.
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;5. Transmisión deversiones modificadas del código fuente.&lt;/p&gt;
+Usted puede transmitir una obra basada en el Programa, o las modificaciones para producirlo a partir del Programa, en forma de código fuente conforme a los términos de la sección 4, siempre y cuando también cumpla contodas las condiciones que se incluyen a continuación:a) La obra debe conservar avisos llamativos que establezcan que usted la ha modificado e incluyan la fecha correspondiente.  b) La obra debe conservar avisos llamativos que establezcan que la misma se realiza conforme a esta Licencia y a todas las condiciones que se agreguen bajo la sección 7. Este requerimiento modifica el requerimiento de la sección 4 que establece que  se deben “mantener intactos todos los avisos”.  c) Usted debe otorgar una licencia por la obra completa, en forma íntegra, conforme a esta Licencia, a cualquier  tercero que adquiera una copia. Por lo tanto, esta Licencia, junto con cualquier término adicional aplicable de la sección 7, se aplica a la obra en su totalidad y a todas sus partes, independientemente del modo en que se las empaquete. Esta Licencia no lo autoriza a otorgar licencias para la obra de ningún otro modo, pero no invalida dicha autorización si usted la ha recibido por separado.  d) Si la obra tuviera interfaces de usuario interactivas, cada una de ellas deberá mostrar Avisos Legales Apropiados. No obstante, si el Programa tuviera interfaces interactivas que no mostraran Avisos Legales Apropiados, usted no necesita incluirlos. Se denomina “conjunto” a la compilación de una obra amparada con otrasobras diferentes e independientes que por su naturaleza no sean extensiones de la obra amparada ni se combinen con ella para formar un programa más grande enun volumen de un medio de distribución o almacenamiento, si la compilación y el copyright consiguiente no se utilizan para restringir el acceso o los derechos legales de los usuarios de la compilación más allá de lo que permitan las obras individuales. La inclusión de una obra amparada en un conjunto no implica que esta Licencia se aplique a las otras partes del conjunto.
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;6. Transmisión de códigosque no son códigos fuente.&lt;/p&gt;
+Usted puede transmitir una obra amparada en código objeto conforme a los términos de las secciones 4 y 5, siempre y cuando también transmita la Fuente Correspondiente legible por máquina conforme a los términos de esta Licencia,de alguna de las siguientes maneras:a) Transmisión del código objeto dentro de un producto físico (incluidos medios físicos de distribución) o incorporado a éste, acompañado de la Fuente Correspondiente en un medio físico duradero habitual para el intercambio de software.  b) Transmisión del código objeto dentro de un producto físico (incluidos medios físicos de distribución) o incorporado a éste, acompañado de una oferta escrita, que sea válida por un plazo mínimo de tres años y por el tiempo que usted ofrezca repuestos o soporte técnico para ese modelo del producto, para proporcionarle a cualquier persona que posea el código objeto (1) una copia de la Fuente Correspondiente para todo el software del producto que esté amparado por esta Licencia, en un medio físico duradero habitual para el intercambio de software, a cambio de un precio que no exceda el costo razonable de la acción física de transmitir esta fuente, o (2) acceso para la copia de la Fuente Correspondiente desde un servidor de red sin costo alguno.  c) Transmisión de copias individuales del código objeto junto con una copia de la oferta escrita para proporcionar la Fuente Correspondiente. Esta opción se permite únicamente en ocasiones y para fines no comerciales, y sólo en la medida en que usted haya recibido el código objeto con una oferta de esta naturaleza, conforme a la subsección 6b.  d) Transmisión del código objeto ofreciendo acceso desde un lugar determinado (en forma gratuita u onerosa) y ofreciendo un acceso equivalente a la Fuente Correspondiente del mismo modo y desde el mismo lugar sin costo adicional. No es necesario que les exija a los destinatarios que copien la Fuente Correspondiente junto con el código objeto. Si el lugar ofrecido para copiar el código objeto fuera un servidor de red, la Fuente Correspondiente podrá estar en un servidor diferente (operado por usted o un tercero) que ofrezca posibilidades de reproducción equivalentes, siempre y cuando se incluyan, junto al código objeto, instrucciones claras para localizar la Fuente Correspondiente. Independientemente de qué servidor albergue la Fuente Correspondiente, usted mantiene la obligación de asegurarse de que el mismo esté disponible  por el tiempo que sea necesario para satisfacer estos requerimientos.  e) Transmisión del código objeto mediante transferencia entre usuarios (peer to peer), siempre y cuando les informe a los usuarios la ubicación del código objeto y la Fuente Correspondiente de la obra para el público en general sin costo alguno conforme a la subsección 6d. No se necesita incluir una parte separable del código objeto, cuyo código fuente se excluya de la Fuente Correspondiente como una biblioteca desistemas, para transmitir el código objeto de la obra.Por “producto de usuario” se entiende (1) un “producto de consumo”, que es cualquier bien personal tangible que se utilice habitualmente para fines personales, familiares o domésticos, o (2) cualquier cosa que se diseñe o comercialice para su incorporación en una vivienda. Al determinar si un producto es un producto de consumo, los casos dudosos deberán resolverse a favordel amparo. Para un producto específico que recibe un usuario particular, un“uso habitual” es el uso común o típico que se le suele dar a ese tipo de producto, independientemente de la condición del usuario particular o de la forma en que el usuario particular utilice el producto o de las expectativas propias o de terceros con respecto al uso del producto. Un producto se considera un producto de consumo independientemente de que que se le pueda dar usos sustanciales de índole comercial, industrial o ajena al consumo, salvo que dichos usos representen el único modo significativo de utilizar el producto.Por “información de instalación” de un producto de usuario se entiende cualquier método, procedimiento, clave de autorización u otro tipo de información requerida para instalar y ejecutar versiones modificadas de una obra amparada en dicho producto de usuario a partir de una versión modificada de su Fuente Correspondiente. La información debe ser suficiente para garantizar que el funcionamiento continuo del código objeto modificado no se vea afectado o imposibilitado por el solo hecho de haberse realizado la modificación.En el caso de que usted transmita el código objeto de una obra conformea esta sección en un producto de usuario, junto con un producto de usuario o específicamente para su uso en un producto de usuario, y la transmisión se produzca como parte de una transacción mediante la cual los derechos de posesión y uso del producto de usuario se transfieran al destinatario por unplazo limitado o ilimitado (independientemente de las particularidades de la transacción), la Fuente Correspondiente transmitida conforme a esta sección deberá ir acompañada de la información de instalación. Sin embargo, este requerimiento no se aplicará en el caso de que ni usted ni un tercero conserven la capacidad para instalar el código objeto modificado en el producto de usuario (por ejemplo, que la obra se haya instalado en memoria ROM).El requerimiento de proporcionar información de instalación no implicala necesidad de seguir proveyendo soporte técnico, garantías o actualizaciones para una obra que haya sido modificada o instalada por el destinatario o parael producto de usuario en el cual se la haya modificado o instalado. Podrá negarse el acceso a una red cuando la modificación en sí misma pueda afectar deun modo adverso y sustancial el funcionamiento de la red o infrinja las normasy los protocolos de comunicación a través de la red.La Fuente correspondiente que se transmita y la información deinstalación que se proporcione conforme a esta sección deberán presentarse enun formato sobre el cual exista documentación pública (y con una implementacióndisponible para el público en código fuente) y no deberán requerir ninguna clave o contraseña especial para su desempaquetamiento, lectura o reproducción.
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;7. Términos adicionales.&lt;/p&gt;
+Los “permisos adicionales” son términos que complementan los términos deesta Licencia al permitir excepciones a una o más condiciones. Los permisos adicionales que se aplican al Programa en su totalidad deberán tratarse como si formaran parte de esta Licencia, en la medida en que sean válidos conforme a las leyes aplicables. En el caso de que los permisos adicionales se apliquen únicamente a una parte del Programa, esta parte podrá utilizarse por separado conforme a dichos permisos, pero el Programa en su totalidad seguirá rigiéndosede acuerdo a esta Licencia independientemente de los permisos adicionales.Cuando usted transmita una copia de una obra amparada, podrá optar por eliminar cualquier permiso adicional de dicha copia o de cualquier parte de la misma (en ciertos casos, cuando usted modifique la obra, podrán establecerse permisos adicionales para requerir la eliminación de los mismos). Tiene autorización para incluir permisos adicionales en un material que usted haya agregado a una obra amparada y sobre el cual usted posea o pueda otorgar permisos de copyright adecuados.Independientemente de cualquier otra disposición de esta Licencia, con respecto al material que usted agregue a una obra amparada, usted podrá (en la medida en que lo autoricen los titulares de los derechos de copyright de dicho material) complementar los términos de esta Licencia con los siguientes términos:a) Ausencia de garantías o limitación de la responsabilidad más allá de los términos de las secciones 15 y 16 de esta Licencia; o  b) Obligación de conservación de atribuciones de autoría o avisos legales razonables específicos en dicho material o en los avisos legales apropiados que se muestren en las obras que lo contengan; o  c) Prohibición de tergiversación del origen del material, o requerimiento de que en las versiones modificadas de dicho material se indique de un modo razonable que son diferentes de la versión original; o  d) Limitación del uso de los nombres de los licenciantes o autores del material para fines publicitarios; o  e) Negativa con respecto al otorgamiento de derechos conforme a las leyes de marcas para el uso de ciertos nombres comerciales, marcas de productos o marcas de servicios; o  f) Requerimiento de indemnización de los licenciantes o autores de dicho material por parte de cualquier persona que transmita el material (o versiones modificadas del mismo) bajo presunciones contractuales de responsabilidad del destinatario por cualquier responsabilidad que dichas presunciones contractuales impongan directamente sobre los licenciantes y autores del material. Cualquier otro término adicional no permisivo se considerará una“restricción adicional” en el contexto de la sección 10. En el caso de que el Programa,tal cual usted lo recibió, o cualquier parte del mismo contengan un aviso queindique que el mismo se rige según esta Licencia junto con un término que constituya una restricción adicional, podrá eliminar dicho término. En el caso de que un documento de licencia contenga una restricción adicional pero permita la extensión de la licencia o la transmisión del programa conforme a esta Licencia, usted podrá agregar a la obra amparada cualquier material conforme alos términos de dicho documento de licencia, siempre y cuando la restricción adicional no se mantenga tras la extensión de la licencia o la transmisión delprograma.En el caso de que usted agregue términos a una obra amparada conforme aesta sección, deberá incluir en los archivos fuente correspondientes una declaración de los términos adicionales que se aplican a dichos archivos o unaviso que indique la ubicación de los términos aplicables.Se podrán establecer términos adicionales, sean éstos permisivos o no permisivos, en una licencia escrita independiente, o a modo de excepciones; sea como fuere, se aplicarán los requerimientos mencionados anteriormente.
+8. Cancelación.Usted no está autorizado a propagar o modificar una obra amparada de ningún otro modo que no se estipule en esta Licencia. Cualquier intento no autorizado por propagarla o modificarla se considerará nulo y con llevará lacancelación automática de los derechos que le haya otorgado esta Licencia (incluida cualquier licencia de patente otorgada conforme al párrafo tercero dela sección 11).No obstante, en el caso de que deje de violar las cláusulas de esta Licencia, un titular de derechos de copyright particular podrá restituirle la licencia (a) en forma provisoria, hasta tanto dicho titular dé por finalizada su licencia en forma expresa y definitiva, y (b) en forma permanente, si dichotitular no lo notificara de la infracción por algún medio razonable antes delos 60 días posteriores a la cancelación.Asimismo, la licencia que le otorgue un titular de derechos de copyright particular se le restituirá en forma permanente si dicho titular lo notificarade la infracción por algún medio razonable, ésta fuera la primera vez que usted hubiese recibido una notificación de violación de esta Licencia (por cualquier obra) emitida por dicho titular, y usted subsanara la infracción en un plazo de 30 días a partir de la recepción de la notificación.La extinción de sus derechos conforme a esta sección no cancela las licencias de aquellos terceros a los que usted les haya otorgado copias o derechos conforme a esta Licencia. En el caso de que sus derechos se cancelen y no se le restituyan en forma permanente, usted no estará capacitado para recibir nuevas licencias para el mismo material conforme a la sección 10.
+9. Aceptación innecesariapara la posesión de copias.Usted no está obligado a aceptar esta Licencia para poder recibir o ejecutar una copia del Programa. De modo similar, la propagación secundaria de una obra amparada que se produzca únicamente como consecuencia de una transferencia entre usuarios (peer to peer) a fin de recibir una copia tampoco requiere aceptación. No obstante, esta Licencia es lo único que lo autoriza a propagar o modificar cualquier obra amparada. En el caso de que usted no acepte esta Licencia, los actos anteriores representarán una violación de las leyes de copyright. Por lo tanto, al modificar o propagar una obra amparada, usted expresa su aceptación de esta Licencia para hacerlo.
+10. Traspaso automático delicencia a destinatarios subsiguientes.Cada vez que usted transmite una obra amparada, el destinatario recibe automáticamente de los licenciantes originales una licencia para ejecutar,modificar y propagar la obra conforme a esta Licencia. Usted no es responsablede asegurar el cumplimiento de esta Licencia por parte de terceros.Una “transacción entre entidades” es una transacción mediante la cual se transfiere el control de una organización o de todo el patrimonio de una organización, se subdivide una organización o se fusionan dos o más organizaciones. En el caso de que la propagación de una obra amparada se deba a una transacción entre entidades, cada parte de la transacción que reciba una copia de la obra también recibirá todas las licencias para la obra que el predecesor de la parte tuviera o pudiera otorgar conforme al párrafo anterior,más el derecho de recibir de su predecesor la Fuente Correspondiente de la obra, si el predecesor la tuviera en su poder o pudiera obtenerla con unesfuerzo razonable.Usted no puede imponer restricciones adicionales para el ejercicio de los derechos que se otorgan o consolidan conforme a esta Licencia. Por ejemplo,usted no puede imponer tarifas, regalías u otros cargos a cambio del ejerciciode los derechos que se otorgan conforme a esta Licencia, así como tampoco puede iniciar acciones legales (incluidas demandas y contrademandas en un pleito)sobre la base de una infracción de patentes por crear, usar, comercializar,ofrecer para la venta o importar el Programa o cualquier parte del mismo.
+11. Patentes.Un “colaborador” es un titular de derechos de copyright que autoriza eluso conforme a esta Licencia del Programa o de una obra sobre la cual se base el Programa. La obra cuya licencia se otorgue de esta manera se denomina“versión en colaboración” del colaborador.Los “derechos de patente fundamentales” de un colaborador son todos los derechos de patente bajo la titularidad o el control del colaborador, ya sea que se los hubiese adquirido previo al otorgamiento de esta Licencia o a partir del mismo, que puedan infringirse de algún modo permitido por esta Licencia para crear, usar o vender su versión en colaboración, pero no incluyen derechos que se podrían infringir únicamente como consecuencia de modificaciones posteriores a la versión en colaboración. A los efectos de esta definición, el“control” incluye el derecho de otorgar sublicencias de patente de un modo acorde a los requerimientos de esta Licencia.Cada colaborador le otorga a usted una licencia de patente internacionalno-exclusiva libre de regalías conforme a los derechos de patente fundamentales del colaborador para crear, usar, comercializar, ofrecer para la venta,importar y ejecutar, modificar y propagar de algún otro modo el contenido de suversión en colaboración.En los tres párrafos que se incluyen a continuación, una “licencia depatente” es cualquier contrato o acuerdo expreso, independientemente de su denominación, mediante el cual se convenga no ejercer derechos de patente(como, por ejemplo, una autorización expresa para hacer uso de una patente ouna cláusula que establezca que no se iniciarán acciones legales por infringirlos derechos de patente). Por “otorgar” una licencia de patente de esta naturaleza a otra parte se entiende el acto de celebrar un contrato o acuerdo mediante el cual se conviene no ejercer derechos de patente en contra de dicha parte.En el caso de que usted transmita una obra amparada, a sabiendas de que está sujeta a una licencia de patente, y la Fuente Correspondiente de la obrano estuviera disponible para su reproducción, en forma gratuita y conforme alos términos de esta Licencia, a través de un servidor de red de acceso público u otro medio igualmente accesible, usted deberá (1) poner la Fuente Correspondiente a disposición del destinatario subsiguiente, (2) renunciar al beneficio de la licencia de patente para esta obra en particular, o bien (3)tomar las medidas necesarias para extender la licencia de patente a los destinatarios subsiguientes de un modo acorde a los requerimientos de estaLicencia. La frase “a sabiendas de que está sujeta a una licencia de patente”significa que usted efectivamente sabe que, de no ser por la licencia depatente, su transmisión de la obra amparada en un país o el uso que pudiera darle el destinatario a la obra amparada en un país infringirían una o más patentes identificables en dicho país que usted considera válidas por diversas razones.En el caso de que, en relación con una transacción o contrato individual, usted transmitiera una obra amparada o la propagara consiguiendo su transmisión y otorgara a algunas de las partes que reciban la obra amparada una licencia de patente que las autorizara a usar, propagar, modificar o trasmitir una copia específica de la obra amparada, la licencia de patente que usted otorgue se extenderá automáticamente a todos los destinatarios de la obra amparada y a las obras que se basen en ella.Una licencia de patente se considera “discriminatoria” cuando no incluyedentro de su ámbito de cobertura uno o más de los derechos que se otorgan específicamente conforme a esta Licencia, prohíbe el uso de dichos derechos ose otorga como condición de que no se usen dichos derechos. Usted no debe transmitir una obra amparada si fuese una de las partes de un contrato con un tercero que se dedicara a la distribución de software, conforme al cual usted debiera pagarle al tercero por la actividad que usted realice con respecto a la transmisión de la obra y el tercero le otorgara a cualquiera de las partes que reciban de usted la obra amparada una licencia de patente discriminatoria (a)en relación con las copias de la obra amparada transmitidas por usted (o las copias que se hagan de esas copias), o (b) principalmente para compilaciones o productos específicos que contengan la obra amparada y en relación con éstos, amenos que usted hubiese celebrado dicho contrato o que la patente se hubiese otorgado antes del 28 de marzo de 2007.Ninguna disposición de esta Licencia deberá interpretarse como excluyente o limitativa de ninguna licencia implícita u otras defensas legales contra infracciones a las que, de otro modo, usted pudiese tener derecho conforme a la ley de propiedad intelectual vigente.
+12. Protección de lalibertad de terceros.En el caso de que le fueran impuestas condiciones (ya sea por una orden judicial, un contrato o de algún otro modo) que contradijeran las condiciones de esta Licencia, usted no quedará eximido de cumplir las condiciones de esta Licencia. En el caso de que no pueda transmitir una obra amparada de un modo que le permita cumplir simultáneamente con las obligaciones establecidas poresta Licencia y cualquier otra obligación pertinente, no podrá transmitirla deningún modo. Por ejemplo, en el caso de que usted acepte términos que lo obliguen a cobrar regalías por retransmisión de aquéllos a los que usted transmita el Programa, la única forma de satisfacer tanto dichos requerimientos como esta Licencia será abstenerse de transmitir el Programa.
+13. Uso conjunto con laLicencia Pública General Affero de GNU.Independientemente de cualquier otra disposición de esta Licencia, usted tiene permiso para vincular o combinar cualquier obra amparada con una obra cuya licencia se otorgue conforme a la versión 3 de la Licencia Pública General Affero de GNU en una única obra combinada y transmitir la obra resultante. Los términos de esta Licencia seguirán aplicándose a la parte que corresponda a laobra amparada, pero los requerimientos especiales de la sección 13 de la Licencia Pública General Affero de GNU sobre la interacción a través de una redse aplicarán a la combinación como tal.
+14. Revisiones de estaLicencia.La Fundación para el Software Libre podrá publicar revisiones y/o versiones nuevas de la Licencia Pública General de GNU de vez en cuando. Tales versiones serán de naturaleza similar a la versión actual, pero podrán diferiren cuanto a los detalles para afrontar nuevos problemas o inquietudes.Cada versión recibirá un número de versión que la distinga. En el caso de que el Programa especifique que se rige por una versión determinada de la Licencia Pública General de GNU “o cualquier versión posterior”, usted podrá optar por adoptar los términos y condiciones de dicha versión específica o de cualquier versión posterior que publique la Fundación para el Software Libre.En el caso de que el Programa no especifique un número de versión de la Licencia Pública General de GNU, usted podrá regirse por cualquier versión que haya publicado la Fundación para el Software Libre.Si el Programa especificara que un apoderado puede decidir qué versiones de la Licencia Pública General de GNU pueden aplicarse en el futuro, la declaración pública del apoderado sobre la aceptación de una versión determinada lo autorizará a usted, en forma permanente, a optar por dicha versión para el Programa.Puede que las versiones posteriores de la licencia le otorguen permisosadicionales o diferentes. No obstante, no se les impondrán obligaciones adicionales a ningún autor o titular de derechos de copyright como resultado dela adopción de la versión posterior que usted elija.
+15. Ausencia de garantías.EL PROGRAMA SE OFRECE SIN NINGÚN TIPO DE GARANTÍAS, EN LA MEDIDA EN QUELO PERMITAN LAS LEYES APLICABLES. SALVO DISPOSICIÓN CONTRARIA POR ESCRITO, LOSTITULARES DE DERECHOS DE COPYRIGHT Y/U OTRAS PARTES PROVEEN EL PROGRAMA&quot;TAL CUAL&quot; SIN GARANTÍAS DE NINGÚN TIPO, YA SEAN EXPRESAS OIMPLÍCITAS, INCLUIDAS, AUNQUE NO EN FORMA TAXATIVA, LAS GARANTÍAS IMPLÍCITAS DECOMERCIABILIDAD Y APTITUD PARA UN PROPÓSITO DETERMINADO. USTED ASUME TODOS LOSRIESGOS CON RESPECTO A LA CALIDAD Y EL DESEMPEÑO DEL PROGRAMA. EN EL CASO DEQUE EL PROGRAMA TUVIERA DEFECTOS, USTED ASUME EL COSTO DE TODAS LAS ACTIVIDADESDE MANTENIMIENTO, REPARACIÓN O CORRECCIÓN.16. Limitación de laresponsabilidad.EN NINGÚN CASO, SALVO QUE ASÍ LO DISPONGAN LAS LEYES APLICABLES O UNCONTRATO POR ESCRITO, UN TITULAR DE DERECHOS DE COPYRIGHT O UN TERCERO QUEMODIFIQUE Y/O TRANSMITA EL PROGRAMA SEGÚN SE AUTORIZA ANTERIORMENTE SERÁRESPONSABLE ANTE USTED DE CUALQUIER DAÑO, INCLUIDOS DAÑOS GENERALES,ESPECIALES, FORTUITOS O DERIVADOS, QUE PUEDA SURGIR DEL USO O LA INCAPACIDAD DEUSO DEL PROGRAMA (INCLUIDOS, AUNQUE NO TAXATIVAMENTE, LA PÉRDIDA DEINFORMACIÓN, EL SUMINISTRO DE INFORMACIÓN IMPRECISA O LAS PÉRDIDAS QUE PUEDANSUFRIR USTED O UN TERCERO O LA INCAPACIDAD DEL PROGRAMA PARA INTERACTUAR CONOTROS PROGRAMAS), AUN CUANDO DICHO TITULAR O TERCERO HUBIESE SIDO ADVERTIDO DELA POSIBILIDAD DE TALES DAÑOS.17. Interpretación de lassecciones 15 y 16.En el caso de que las cláusulas de ausencia de garantías y limitación de la responsabilidad anteriores carecieran de validez legal a nivel local conforme a sus términos, los juzgados deberán aplicar las leyes locales que más se asimilen a una exención absoluta de cualquier responsabilidad civil en relación con el Programa, salvo que una copia del Programa estuviera acompañada de una garantía o presunción de responsabilidad a cambio de una tarifa.
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;FIN DE TÉRMINOS Y CONDICIONES&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="102"/>
@@ -465,6 +469,41 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;contact@gns3.net&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;www.gns3.net&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="../Ui/Form_About.py" line="134"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alexander H. Hackenberg from Vienna, Austria&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Erik Wenzel from Germany: German translation (code: de) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Huan Ji from Wuhan, China: Chinese translation (code: cn) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jose Sen from Buenos Aires, Argentina: Spanish translation (code: es) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mark Soe Min from Tokyo, Japan: Japanese translation (code: jp) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aboulgasem Albusaifi from Tarabulus, Libya: Arabic translation (code: ar) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Marcio de Freitas Minicz from Sao Jose dos Campos, SP, Brazil: Brazilian-Portuguese translation (code: pt_br) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hasan Agirol Aksoy from Antalya, Turkey: Turkish translation (code: tr) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ivakin Dmitriy from Moscow, Russia: Russian translation (code: ru) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hyeonjin Kim from Seoul, Korea: Korean translation (code: kr) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pavel Skovajsa from Slovakia: Slovak translation (code: sk) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Michał Zieliński from Plock, Poland: Polish translation (code: pl)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -538,12 +577,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="292"/>
         <source>%s is empty, no traffic captured on the link. Try again later</source>
-        <translation type="unfinished"></translation>
+        <translation>%s esta vacio, no se capturo trafico en el enlace. Intente mas tarde</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="295"/>
         <source>Cannot find %s : %s</source>
-        <translation type="unfinished"></translation>
+        <translation>No se encuentra %s : %s</translation>
     </message>
 </context>
 <context>
@@ -586,22 +625,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="242"/>
         <source>No interface available, please configure this device</source>
-        <translation type="unfinished"></translation>
+        <translation>No existe unainterfaz disponible, por favor configure este  dispositivo</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="110"/>
         <source>Change console port</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar puerto de consola</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="111"/>
         <source>Console port for %s:</source>
-        <translation type="unfinished"></translation>
+        <translation>Puerto de consola para %s:</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="117"/>
         <source>Console port</source>
-        <translation type="unfinished"></translation>
+        <translation>Puerto de consola</translation>
     </message>
 </context>
 <context>
@@ -609,12 +648,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Application.py" line="338"/>
         <source>Configuration file</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de configuracion</translation>
     </message>
     <message>
         <location filename="../Application.py" line="339"/>
         <source>Configuration file is not longer compatible, would you like to reset it? (you will have to restart GNS3)</source>
-        <translation type="unfinished"></translation>
+        <translation>El archivo de configuracion no es compatible, desea reiniciar?(debe reiniciar GNS3)</translation>
     </message>
 </context>
 <context>
@@ -712,17 +751,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="555"/>
         <source>NIO NULL</source>
-        <translation type="unfinished"></translation>
+        <translation>NIO NULL</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="567"/>
         <source>Identifier:</source>
-        <translation type="unfinished"></translation>
+        <translation>Identificador:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="29"/>
         <source>Generic Ethernet NIO (require Administrator access)</source>
-        <translation type="unfinished"></translation>
+        <translation>NIO Ethernet Generico (requiere accseso de Administrador)</translation>
     </message>
 </context>
 <context>
@@ -730,7 +769,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Config/Config.py" line="249"/>
         <source>Can&apos;t open library: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>No se puede abrir la libreria: %s</translation>
     </message>
 </context>
 <context>
@@ -819,7 +858,7 @@ Ingrese el numero del idlepc que desea aplicar  [1-%i] o ENTER para no efectuar 
     <message>
         <location filename="../Console.py" line="396"/>
         <source>Cannot create %s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>No se puede crear %s: %s</translation>
     </message>
 </context>
 <context>
@@ -837,32 +876,32 @@ Ingrese el numero del idlepc que desea aplicar  [1-%i] o ENTER para no efectuar 
     <message>
         <location filename="../DynagenSub.py" line="88"/>
         <source>PIX image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>La imagen PIX no se encuentra y no hay imagen alternativa</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="92"/>
         <source>Local PIX image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagen PIX local %s no se puede encontrar, utilice la imagen %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="118"/>
         <source>Local workding directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Directorio de trabajo %s no se puede encontrar para el hypervisor %s, utilice el directorio %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="133"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative image for chassis %s</source>
-        <translation type="unfinished"></translation>
+        <translation>La imagen de IOS %s no se encuentra para el hypervisor %s y no hay una imagen alternativa para el chassis %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="145"/>
         <source>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>La imagen local de IOS %s no se encuentra para el hypervisor %s, utilice la imagen %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="154"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuracion local %s para el router %s, utilice la configuracion %s</translation>
     </message>
 </context>
 <context>
@@ -999,22 +1038,22 @@ Ingrese el numero del idlepc que desea aplicar  [1-%i] o ENTER para no efectuar 
     <message>
         <location filename="../Node/FW.py" line="271"/>
         <source>%s: no PIX image</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: no hay imagen PIX</translation>
     </message>
     <message>
         <location filename="../Node/FW.py" line="186"/>
         <source>New hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuevo nombre de host</translation>
     </message>
     <message>
         <location filename="../Node/FW.py" line="187"/>
         <source>Cannot rename a connected firewall because pemuwrapper does not support removal</source>
-        <translation type="unfinished"></translation>
+        <translation>No se puede renombrar el firewall conectado porque pemuwrapper no lo soporta</translation>
     </message>
     <message>
         <location filename="../Node/FW.py" line="200"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Error de Dynamips</translation>
+        <translation>Error de Dynamips</translation>
     </message>
 </context>
 <context>
@@ -1022,37 +1061,37 @@ Ingrese el numero del idlepc que desea aplicar  [1-%i] o ENTER para no efectuar 
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="13"/>
         <source>Firewall configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuracion del Firewall</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="19"/>
         <source>PIX Image:</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagen PIX:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="48"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="55"/>
         <source>RAM size:</source>
-        <translation type="unfinished">Tamaño de RAM:</translation>
+        <translation>Tamaño de RAM:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="68"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="84"/>
         <source>Key:</source>
-        <translation type="unfinished"></translation>
+        <translation>Clave:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="101"/>
         <source>Serial:</source>
-        <translation type="unfinished"></translation>
+        <translation>Serial:</translation>
     </message>
 </context>
 <context>
@@ -1106,12 +1145,12 @@ Ingrese el numero del idlepc que desea aplicar  [1-%i] o ENTER para no efectuar 
     <message>
         <location filename="../HypervisorManager.py" line="73"/>
         <source>A hypervisor is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>Un hypervisor se esta ejcutando en el puerto %i, no sera desactivado despues que salga de GNS3</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="109"/>
         <source>Connecting to a hypervisor on port %i ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectando a un hypervisor en el puerto %i ...</translation>
     </message>
 </context>
 <context>
@@ -1274,32 +1313,32 @@ Ingrese el numero del idlepc que desea aplicar  [1-%i] o ENTER para no efectuar 
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="321"/>
         <source>Default RAM:</source>
-        <translation type="unfinished"></translation>
+        <translation>RAM por defecto:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="322"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="323"/>
         <source>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Check for minimum RAM requirement&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Verificacion de requerimientos minimos de RAM &lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="371"/>
         <source>IOS Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuracion de IOS</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="371"/>
         <source>Image file box is empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuadro de imagen vacio</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="333"/>
         <source>127.0.0.1</source>
-        <translation type="unfinished">127.0.0.1</translation>
+        <translation>127.0.0.1</translation>
     </message>
 </context>
 <context>
@@ -1327,17 +1366,17 @@ Ingrese el numero del idlepc que desea aplicar  [1-%i] o ENTER para no efectuar 
     <message>
         <location filename="../Node/IOSRouter.py" line="463"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Error de Dynamips</translation>
+        <translation>Error de Dynamips</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="297"/>
         <source>Startup-config</source>
-        <translation type="unfinished"></translation>
+        <translation>Startup-config</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="292"/>
         <source>Startup-config for %s:</source>
-        <translation type="unfinished"></translation>
+        <translation>Startup-config para %s:</translation>
     </message>
 </context>
 <context>
@@ -1525,7 +1564,7 @@ Ingrese el numero del idlepc que desea aplicar  [1-%i] o ENTER para no efectuar 
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="193"/>
         <source> KB</source>
-        <translation type="unfinished"></translation>
+        <translation>  KB</translation>
     </message>
 </context>
 <context>
@@ -1848,22 +1887,22 @@ Ingrese el numero del idlepc que desea aplicar  [1-%i] o ENTER para no efectuar 
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="394"/>
         <source>&amp;Extract all startup-configs</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Extraer todos los startup-config</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="395"/>
         <source>Insert an image</source>
-        <translation type="unfinished"></translation>
+        <translation>Insertar una imagen</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="396"/>
         <source>&amp;Symbol Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Administrador de simbolos</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="397"/>
         <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+S</translation>
     </message>
 </context>
 <context>
@@ -1906,42 +1945,42 @@ Ingrese el numero del idlepc que desea aplicar  [1-%i] o ENTER para no efectuar 
     <message>
         <location filename="../NETFile.py" line="446"/>
         <source>Importation</source>
-        <translation type="unfinished"></translation>
+        <translation>Importacion</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="428"/>
         <source>Please wait while importing the topology</source>
-        <translation type="unfinished"></translation>
+        <translation>Espere mientras se importa la topologia</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="703"/>
         <source>IOError</source>
-        <translation type="unfinished"></translation>
+        <translation>ErrorIO</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="257"/>
         <source>Please wait while copying the base flash</source>
-        <translation type="unfinished"></translation>
+        <translation>Espere mientras se copia la base flash</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="805"/>
         <source>must be connected in order to be registered</source>
-        <translation type="unfinished"></translation>
+        <translation>debe estar conectado para poder registrar</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="365"/>
         <source>%s: cannot find %s symbol</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: no se encuentra el simbolo %s</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="470"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
-        <translation type="unfinished"></translation>
+        <translation>Advertencia: GNS3 todavia no soporta sentencias de lan, ignore</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="354"/>
         <source>Cannot load image: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>No se puede cargar la imagen: %s</translation>
     </message>
 </context>
 <context>
@@ -2079,12 +2118,12 @@ para ver la pagina de configuracion.</translation>
     <message>
         <location filename="../NodeConfigurator.py" line="127"/>
         <source>PIX firewalls</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX firewalls</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="139"/>
         <source>ATM bridges</source>
-        <translation type="unfinished"></translation>
+        <translation>ATM bridges</translation>
     </message>
 </context>
 <context>
@@ -2092,7 +2131,7 @@ para ver la pagina de configuracion.</translation>
     <message>
         <location filename="../PemuManager.py" line="60"/>
         <source>Connecting to pemu on port %i ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectando a pemu en puerto %i ...</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="61"/>
@@ -2102,17 +2141,17 @@ para ver la pagina de configuracion.</translation>
     <message>
         <location filename="../PemuManager.py" line="85"/>
         <source>Can&apos;t connect to pemu on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>No es posible conectar al puerto %i pemu</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="114"/>
         <source>Pemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemu se esta ejcutando en el puerto %i, no sera desactivado despues que salga de GNS3</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="127"/>
         <source>Can&apos;t start Pemu on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>No es posible iniciar pemuen el puerto %i </translation>
     </message>
 </context>
 <context>
@@ -2168,7 +2207,7 @@ para ver la pagina de configuracion.</translation>
     <message>
         <location filename="../Config/Preferences.py" line="37"/>
         <source>Capture</source>
-        <translation type="unfinished">Capturar</translation>
+        <translation>Capturar</translation>
     </message>
 </context>
 <context>
@@ -2256,17 +2295,17 @@ para ver la pagina de configuracion.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="282"/>
         <source>Use Hypervisor Manager when importing</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilice el administrador de Hypervisor cuando se importa</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="78"/>
         <source>Automatically clean the working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpiar automaticamente el directorio de trabajo</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="268"/>
         <source>Bind Hypervisor Manager with:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ligar el Administrador de Hypervisor a:</translation>
     </message>
 </context>
 <context>
@@ -2309,37 +2348,37 @@ para ver la pagina de configuracion.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
         <source>Terminal command:</source>
-        <translation type="unfinished">Comando de terminal:</translation>
+        <translation>Comando de terminal:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="88"/>
         <source>IOS/PIX directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Directorio IOS/PIX:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="127"/>
         <source>Always use manual mode when adding links</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilizar siempre el modo manual cuando se agregan vinculos</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
         <source>Launch this command using the system default shell</source>
-        <translation type="unfinished"></translation>
+        <translation>Ejecutar este comando utilizando el shell por defecto del sistema</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="140"/>
         <source>Configuration file</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo de configuracion</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="146"/>
         <source>Unknown location</source>
-        <translation type="unfinished"></translation>
+        <translation>Ubicacion desconocida</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="166"/>
         <source>&amp;Clear it</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Limpiarlo</translation>
     </message>
 </context>
 <context>
@@ -2347,72 +2386,72 @@ para ver la pagina de configuracion.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="13"/>
         <source>Form</source>
-        <translation type="unfinished">Formulario</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="19"/>
         <source>Pemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemuwrapper</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="25"/>
         <source>Path (pemuwrapper.exe on Windows else pemuwrapper.py):</source>
-        <translation type="unfinished"></translation>
+        <translation>Camino (pemuwrapper.exe en Windows otros pemuwrapper.py):</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="185"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="45"/>
         <source>Working directory:</source>
-        <translation type="unfinished">Directorio de trabajo:</translation>
+        <translation>Directorio de trabajo:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="76"/>
         <source>Enable Pemu Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar el Administrador de Pemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="86"/>
         <source>Use Pemu Manager when importing</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilizar el Administrador de Pemu cuando se importa</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="99"/>
         <source>Host for an external pemuwrapper:</source>
-        <translation type="unfinished"></translation>
+        <translation>Host para un pemuwrapper externo:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="112"/>
         <source>Defaults PIX settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustes por defecto de PIX</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="121"/>
         <source>PIX image:</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagen PIX:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="141"/>
         <source>Key:</source>
-        <translation type="unfinished"></translation>
+        <translation>Clave:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="158"/>
         <source>Serial:</source>
-        <translation type="unfinished"></translation>
+        <translation>Serial:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="175"/>
         <source>Base flash:</source>
-        <translation type="unfinished"></translation>
+        <translation>Base flash:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="62"/>
         <source>Bind Pemu Manager with:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ligar el  Administrador de Pemu con:</translation>
     </message>
 </context>
 <context>
@@ -2420,7 +2459,7 @@ para ver la pagina de configuracion.</translation>
     <message>
         <location filename="../ProjectDialog.py" line="42"/>
         <source>New Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Proyecto Nuevo</translation>
     </message>
 </context>
 <context>
@@ -2498,37 +2537,37 @@ para ver la pagina de configuracion.</translation>
     <message>
         <location filename="../Scene.py" line="111"/>
         <source>Change the hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar el nombre de host</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="116"/>
         <source>Show/Hide the hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver/Ocultar el nombre de host</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="215"/>
         <source>Please wait while calculating an IDLE PC</source>
-        <translation type="unfinished"></translation>
+        <translation>Espere mientras de calcula el IDLE PC</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="129"/>
         <source>Change console port</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar el puerto de la consola</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="162"/>
         <source>Startup-config</source>
-        <translation type="unfinished"></translation>
+        <translation>Startup-config</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="179"/>
         <source>Lower one step</source>
-        <translation type="unfinished"></translation>
+        <translation>Disminuya un paso</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="184"/>
         <source>Raise one step</source>
-        <translation type="unfinished"></translation>
+        <translation>Incremente un paso</translation>
     </message>
 </context>
 <context>
@@ -2581,47 +2620,47 @@ para ver la pagina de configuracion.</translation>
     <message>
         <location filename="../Topology.py" line="305"/>
         <source>Please choose an image</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccione una imagen</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="470"/>
         <source>You have to connect at least one router to the switch</source>
-        <translation type="unfinished"></translation>
+        <translation>Debe conectar al menos un router al switch</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="336"/>
         <source>PIX image</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagen PIX</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="336"/>
         <source>Please configure a default PIX image</source>
-        <translation type="unfinished"></translation>
+        <translation>Configure la imagen PIX por defecto</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="457"/>
         <source>Can&apos;t connect these devices</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pueden conectar estos dispositivos </translation>
     </message>
     <message>
         <location filename="../Topology.py" line="324"/>
         <source>Please test the path to Dynamips in preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Verifique el camino hacia Dynamips en las Preferencias</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="244"/>
         <source>Pemuwrapper error</source>
-        <translation type="unfinished"></translation>
+        <translation>Error de Pemuwrapper</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="263"/>
         <source>PIX device</source>
-        <translation type="unfinished"></translation>
+        <translation>Dispositivo PIX</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="264"/>
         <source>Cannot copy PIX base flash %s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>No se puede copiar el PIX base flash %s: %s</translation>
     </message>
 </context>
 <context>
@@ -2734,22 +2773,22 @@ para ver la pagina de configuracion.</translation>
     <message>
         <location filename="../Workspace.py" line="502"/>
         <source>Do you want to apply the project settings to the current topology?</source>
-        <translation type="unfinished"></translation>
+        <translation>Desea aplicar los ajustes del proyecto a la topologia actual?</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="608"/>
         <source>Would you like to save the topology before you quit?</source>
-        <translation type="unfinished"></translation>
+        <translation>Desea guardar la topologia antes de salir?</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="535"/>
         <source>Would you like to save the current topology?</source>
-        <translation type="unfinished"></translation>
+        <translation>Desea guardar la topologia actual?</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="210"/>
         <source>Directory to write startup-configs</source>
-        <translation type="unfinished"></translation>
+        <translation>Directorio donde se graban los startup-config</translation>
     </message>
 </context>
 <context>
@@ -2815,32 +2854,32 @@ para ver la pagina de configuracion.</translation>
     <message>
         <location filename="DynamicStrings.py" line="40"/>
         <source>PIX firewall</source>
-        <translation type="unfinished"></translation>
+        <translation>Firewall PIX</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="43"/>
         <source>ATM bridge</source>
-        <translation type="unfinished"></translation>
+        <translation>ATM bridge</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="41"/>
         <source>Ethernet switch</source>
-        <translation type="unfinished"></translation>
+        <translation>Switch Ethernet</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="47"/>
         <source>Decorative node</source>
-        <translation type="unfinished"></translation>
+        <translation>Nodo decorativo</translation>
     </message>
     <message>
         <location filename="../Ui/Widget_nodesDock.py" line="54"/>
         <source>Emulated devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Dispositivos Emulados</translation>
     </message>
     <message>
         <location filename="../Ui/Widget_nodesDock.py" line="61"/>
         <source>Decorative nodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Nodos Decorativos</translation>
     </message>
 </context>
 <context>

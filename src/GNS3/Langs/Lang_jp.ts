@@ -5,57 +5,57 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="13"/>
         <source>ATM Bridge</source>
-        <translation type="unfinished"></translation>
+        <translation>ATM ブリッジ</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="25"/>
         <source>Ethernet side</source>
-        <translation type="unfinished"></translation>
+        <translation>イーサネット側</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="104"/>
         <source>Port:</source>
-        <translation type="unfinished">ポート:</translation>
+        <translation>ポート:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="60"/>
         <source>Mapping</source>
-        <translation type="unfinished">マッピング</translation>
+        <translation>マッピング</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="76"/>
         <source>Ethernet Port</source>
-        <translation type="unfinished"></translation>
+        <translation>イーサネットポート</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="81"/>
         <source>Port:VCI:VPI</source>
-        <translation type="unfinished">ポート:VCI:VPI</translation>
+        <translation>ポート:VCI:VPI</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="98"/>
         <source>ATM side</source>
-        <translation type="unfinished"></translation>
+        <translation>ATM側</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="130"/>
         <source>VCI:</source>
-        <translation type="unfinished">VCI:</translation>
+        <translation>VCI:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="159"/>
         <source>VPI:</source>
-        <translation type="unfinished">VPI:</translation>
+        <translation>VPI:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="185"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>追加(&amp;A)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="195"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>削除(&amp;D)</translation>
     </message>
 </context>
 <context>
@@ -103,7 +103,7 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="154"/>
         <source>Destination</source>
-        <translation>目的</translation>
+        <translation>接続先</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="238"/>
@@ -121,46 +121,25 @@
     <message>
         <location filename="../Ui/Form_About.py" line="88"/>
         <source>About</source>
-        <translation>GNS3について</translation>
+        <translation>GNS3 について</translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="103"/>
         <source>&amp;About</source>
-        <translation>GNS3について(&amp;A)</translation>
+        <translation>GNS3 について(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="121"/>
+        <location filename="../Ui/Form_About.py" line="135"/>
         <source>&amp;Thanks to</source>
         <translation>謝辞(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="408"/>
+        <location filename="../Ui/Form_About.py" line="422"/>
         <source>&amp;License Agreement</source>
         <translation>ライセンス契約(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="120"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alexander H. Hackenberg from Vienna, Austria&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Erik Wenzel from Germany: German translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Huan Ji from Wuhan, China: Chinese translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jose Sen from Buenos Aires, Argentina: Spanish translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mark Soe Min from Tokyo, Japan: Japanese translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aboulgasem Albusaifi from Tarabulus, Libya: Arabic translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Marcio de Freitas Minicz from Sao Jose dos Campos, SP, Brazil: Brazilian-Portuguese translation &lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hasan Agirol Aksoy from Antalya, Turkey: Turkish translation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_About.py" line="407"/>
+        <location filename="../Ui/Form_About.py" line="421"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -467,6 +446,41 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;www.gns3.net&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message encoding="UTF-8">
+        <location filename="../Ui/Form_About.py" line="134"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alexander H. Hackenberg from Vienna, Austria&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Erik Wenzel from Germany: German translation (code: de) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Huan Ji from Wuhan, China: Chinese translation (code: cn) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jose Sen from Buenos Aires, Argentina: Spanish translation (code: es) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mark Soe Min from Tokyo, Japan: Japanese translation (code: jp) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aboulgasem Albusaifi from Tarabulus, Libya: Arabic translation (code: ar) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Marcio de Freitas Minicz from Sao Jose dos Campos, SP, Brazil: Brazilian-Portuguese translation (code: pt_br) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hasan Agirol Aksoy from Antalya, Turkey: Turkish translation (code: tr) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ivakin Dmitriy from Moscow, Russia: Russian translation (code: ru) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hyeonjin Kim from Seoul, Korea: Korean translation (code: kr) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pavel Skovajsa from Slovakia: Slovak translation (code: sk) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Michał Zieliński from Plock, Poland: Polish translation (code: pl)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AbstractEdge</name>
@@ -538,12 +552,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="292"/>
         <source>%s is empty, no traffic captured on the link. Try again later</source>
-        <translation type="unfinished"></translation>
+        <translation>%s にトラフィックは流れていません。もう一度試してください</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="295"/>
         <source>Cannot find %s : %s</source>
-        <translation type="unfinished"></translation>
+        <translation>見つかりません %s : %s</translation>
     </message>
 </context>
 <context>
@@ -586,22 +600,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="242"/>
         <source>No interface available, please configure this device</source>
-        <translation type="unfinished"></translation>
+        <translation>インタフェースはありません、このデバイスを設定してください</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="110"/>
         <source>Change console port</source>
-        <translation type="unfinished"></translation>
+        <translation>コンソールポートを変更</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="111"/>
         <source>Console port for %s:</source>
-        <translation type="unfinished"></translation>
+        <translation>コンソールポート %s:</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="117"/>
         <source>Console port</source>
-        <translation type="unfinished"></translation>
+        <translation>コンソールポート</translation>
     </message>
 </context>
 <context>
@@ -609,12 +623,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Application.py" line="338"/>
         <source>Configuration file</source>
-        <translation type="unfinished"></translation>
+        <translation>コンフィッグファイル</translation>
     </message>
     <message>
         <location filename="../Application.py" line="339"/>
         <source>Configuration file is not longer compatible, would you like to reset it? (you will have to restart GNS3)</source>
-        <translation type="unfinished"></translation>
+        <translation>このコンフィッグファイルは対応外です、リセットしますか？（GNS3を再起動する必要あります）</translation>
     </message>
 </context>
 <context>
@@ -642,7 +656,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="77"/>
         <source>Linux Ethernet NIO (require root access)</source>
-        <translation>リナックス イーサネット  NIO (ルートアクセス必要)</translation>
+        <translation>リナックス イーサネット  NIO (ルート権限が必要)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="136"/>
@@ -712,17 +726,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="555"/>
         <source>NIO NULL</source>
-        <translation type="unfinished"></translation>
+        <translation>NIO　ヌル</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="567"/>
         <source>Identifier:</source>
-        <translation type="unfinished"></translation>
+        <translation>識別子:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="29"/>
         <source>Generic Ethernet NIO (require Administrator access)</source>
-        <translation type="unfinished"></translation>
+        <translation>ジェネリックイーサネット NIO(アドミン権限が必要）</translation>
     </message>
 </context>
 <context>
@@ -730,7 +744,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Config/Config.py" line="249"/>
         <source>Can&apos;t open library: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>ライブラリを開くことができません: %s</translation>
     </message>
 </context>
 <context>
@@ -800,7 +814,7 @@ p, li { white-space: pre-wrap; }
         <source>Potentially better idlepc values marked with &apos;*&apos;
 Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 </source>
-        <translation> &apos;*&apos;マークのあるidlepc値はお勧めです
+        <translation> &apos;*&apos; マークのある idlepc値はお勧めです
 idlepc値の前にある番号を入力してください [1-%i]　またはENTERキーを押せば変更しません:
 </translation>
     </message>
@@ -818,7 +832,7 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
     <message>
         <location filename="../Console.py" line="396"/>
         <source>Cannot create %s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>作成できません %s : %s</translation>
     </message>
 </context>
 <context>
@@ -836,32 +850,32 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
     <message>
         <location filename="../DynagenSub.py" line="88"/>
         <source>PIX image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>PIXイメージ %s を見つかりませんでした。同様のイメージも見つかりませんでした</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="92"/>
         <source>Local PIX image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>ローカル PIX イメージ %s を見つかりませんでした、イメージ %s　を使ってください</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="118"/>
         <source>Local workding directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>ローカル作業フォルダ %s を見つかりませんでした、ハイパーバイザ %s。作業フォルダ %s を使ってください</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="133"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative image for chassis %s</source>
-        <translation type="unfinished"></translation>
+        <translation>のIOSイメージ %s は見つかりませんでした、ハイパーバイザ %s。シャシ %s に使えるイメージも見つかりませんでした</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="145"/>
         <source>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>のローカルIOSイメージ %s は見つかりませんでした、ハイパーバイザ %s。イメージ %s　を使ってください</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="154"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>ローカルコンフィッグ %s は見つかりませんでした、ルータ %s 。イメージ %s　を使ってください</translation>
     </message>
 </context>
 <context>
@@ -882,7 +896,7 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="13"/>
         <source>Ethernet Switch</source>
-        <translation>イーサネット スイッチ</translation>
+        <translation>イーサネットスイッチ</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="25"/>
@@ -980,7 +994,7 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="121"/>
         <source>Destination</source>
-        <translation>目的</translation>
+        <translation>接続先</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="179"/>
@@ -998,22 +1012,22 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
     <message>
         <location filename="../Node/FW.py" line="271"/>
         <source>%s: no PIX image</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: PIX イメージはありません</translation>
     </message>
     <message>
         <location filename="../Node/FW.py" line="186"/>
         <source>New hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>新規のホスト名</translation>
     </message>
     <message>
         <location filename="../Node/FW.py" line="187"/>
         <source>Cannot rename a connected firewall because pemuwrapper does not support removal</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemuwrapper を削除できないため接続中のファイアウォール名を変更できません</translation>
     </message>
     <message>
         <location filename="../Node/FW.py" line="200"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips エラー</translation>
+        <translation>Dynamips エラー</translation>
     </message>
 </context>
 <context>
@@ -1021,37 +1035,37 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="13"/>
         <source>Firewall configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイアウォールのコンフィッグ</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="19"/>
         <source>PIX Image:</source>
-        <translation type="unfinished"></translation>
+        <translation>PIXイメージ:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="48"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="55"/>
         <source>RAM size:</source>
-        <translation type="unfinished">メモリー サイズ:</translation>
+        <translation>メモリー サイズ:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="68"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="84"/>
         <source>Key:</source>
-        <translation type="unfinished"></translation>
+        <translation>キー:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="101"/>
         <source>Serial:</source>
-        <translation type="unfinished"></translation>
+        <translation>シリアル:</translation>
     </message>
 </context>
 <context>
@@ -1095,7 +1109,7 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
     <message>
         <location filename="../HypervisorManager.py" line="84"/>
         <source>Can&apos;t start Dynamips on port %i</source>
-        <translation>Dynamipsをポート　%i に起動できませんでした</translation>
+        <translation>Dynamipsをポート %i に起動できませんでした</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="139"/>
@@ -1105,12 +1119,12 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
     <message>
         <location filename="../HypervisorManager.py" line="73"/>
         <source>A hypervisor is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>ハイパーバイザ既にポート %i に起動中です、GSN3が閉じるまでシャットダウンできません</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="109"/>
         <source>Connecting to a hypervisor on port %i ...</source>
-        <translation type="unfinished"></translation>
+        <translation>ポート %i  のハイパーバイザに接続中...</translation>
     </message>
 </context>
 <context>
@@ -1273,32 +1287,32 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="321"/>
         <source>Default RAM:</source>
-        <translation type="unfinished"></translation>
+        <translation>デフォルトメモリー:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="322"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="323"/>
         <source>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Check for minimum RAM requirement&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;必要な最低限のRAMを確認&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="371"/>
         <source>IOS Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>IOS コンフィギュレーション</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="371"/>
         <source>Image file box is empty</source>
-        <translation type="unfinished"></translation>
+        <translation>イメージファイルに指定はありません</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="333"/>
         <source>127.0.0.1</source>
-        <translation type="unfinished">127.0.0.1</translation>
+        <translation>127.0.0.1</translation>
     </message>
 </context>
 <context>
@@ -1326,17 +1340,17 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
     <message>
         <location filename="../Node/IOSRouter.py" line="463"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips エラー</translation>
+        <translation>Dynamips エラー</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="297"/>
         <source>Startup-config</source>
-        <translation type="unfinished"></translation>
+        <translation>スタートアップコンフィッグ</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="292"/>
         <source>Startup-config for %s:</source>
-        <translation type="unfinished"></translation>
+        <translation>%s のスタートアップコンフィッグ:</translation>
     </message>
 </context>
 <context>
@@ -1524,7 +1538,7 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="193"/>
         <source> KB</source>
-        <translation type="unfinished"></translation>
+        <translation> KB</translation>
     </message>
 </context>
 <context>
@@ -1597,7 +1611,7 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="341"/>
         <source>&amp;About</source>
-        <translation>GNS3について(&amp;A)</translation>
+        <translation>GNS3 について(&amp;A)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="342"/>
@@ -1652,22 +1666,22 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="358"/>
         <source>Start/Resume all IOS</source>
-        <translation>IOSをロードする</translation>
+        <translation>IOS をロードする</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="359"/>
         <source>Start or resume all IOS instances</source>
-        <translation>IOSを再ロードする</translation>
+        <translation>IOS を再ロードする</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="360"/>
         <source>Stop all IOS</source>
-        <translation>IOSを停止する</translation>
+        <translation>IOS を停止する</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="361"/>
         <source>Stop all IOS instances</source>
-        <translation>IOSを停止する</translation>
+        <translation>全 IOS を停止する</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="363"/>
@@ -1772,12 +1786,12 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="386"/>
         <source>Suspend all IOS</source>
-        <translation> IOSをサスペンドする</translation>
+        <translation> IOS をサスペンドする</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="387"/>
         <source>Suspend all IOS instances</source>
-        <translation> IOSをサスペンドする</translation>
+        <translation> IOS をサスペンドする</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="380"/>
@@ -1817,7 +1831,7 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="364"/>
         <source>Telnet to all IOS</source>
-        <translation>全IOSにログインする</translation>
+        <translation>全 IOS にログインする</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="368"/>
@@ -1847,22 +1861,22 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="394"/>
         <source>&amp;Extract all startup-configs</source>
-        <translation type="unfinished"></translation>
+        <translation>スタートコンフィッグファイルを抽出(&amp;E)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="395"/>
         <source>Insert an image</source>
-        <translation type="unfinished"></translation>
+        <translation>イメージを追加</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="396"/>
         <source>&amp;Symbol Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>シンボル管理(&amp;S)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="397"/>
         <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+S</translation>
     </message>
 </context>
 <context>
@@ -1875,7 +1889,7 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
     <message>
         <location filename="../NETFile.py" line="416"/>
         <source>Please configure the path to Dynamips</source>
-        <translation>Dynamipsのプログラムパスを設定してください</translation>
+        <translation>Dynamips のプログラムパスを設定してください</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="687"/>
@@ -1890,7 +1904,7 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
     <message>
         <location filename="../NETFile.py" line="446"/>
         <source>Exception detected, stopping importation...</source>
-        <translation>例外エラーでましたためインポートを中止しています...</translation>
+        <translation>例外エラーでたためインポートを中止しています...</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="685"/>
@@ -1905,42 +1919,42 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
     <message>
         <location filename="../NETFile.py" line="446"/>
         <source>Importation</source>
-        <translation type="unfinished"></translation>
+        <translation>インポート</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="428"/>
         <source>Please wait while importing the topology</source>
-        <translation type="unfinished"></translation>
+        <translation>トポロジーのインポート完了するまでお待ちください</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="703"/>
         <source>IOError</source>
-        <translation type="unfinished"></translation>
+        <translation>IO エラー</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="257"/>
         <source>Please wait while copying the base flash</source>
-        <translation type="unfinished"></translation>
+        <translation>フラッシュメモリーのコピー完了するまでお待ちください</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="805"/>
         <source>must be connected in order to be registered</source>
-        <translation type="unfinished"></translation>
+        <translation>登録するてめにあらかじめ接続して置く必要あります</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="365"/>
         <source>%s: cannot find %s symbol</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: %s シンボルを見つかりません</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="470"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
-        <translation type="unfinished"></translation>
+        <translation>警告: GNS3 はまだ LAN 側を対応していないため、無視しています</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="354"/>
         <source>Cannot load image: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>イメージをロードできません: %s </translation>
     </message>
 </context>
 <context>
@@ -2078,12 +2092,12 @@ to display the configuration page.</source>
     <message>
         <location filename="../NodeConfigurator.py" line="127"/>
         <source>PIX firewalls</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX ファイアウォール</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="139"/>
         <source>ATM bridges</source>
-        <translation type="unfinished"></translation>
+        <translation>ATM ブリッジ</translation>
     </message>
 </context>
 <context>
@@ -2091,27 +2105,27 @@ to display the configuration page.</source>
     <message>
         <location filename="../PemuManager.py" line="60"/>
         <source>Connecting to pemu on port %i ...</source>
-        <translation type="unfinished"></translation>
+        <translation>ポート %i  に Pemu を接続中...</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="61"/>
         <source>Abort</source>
-        <translation type="unfinished">中止</translation>
+        <translation>中止</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="85"/>
         <source>Can&apos;t connect to pemu on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemu をポート %i に接続できませんでした</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="114"/>
         <source>Pemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemu は既にポート %i に起動中です、GSN3が閉じるまでシャットダウンできません</translation>
     </message>
     <message>
         <location filename="../PemuManager.py" line="127"/>
         <source>Can&apos;t start Pemu on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemu をポート %i に起動できませんでした</translation>
     </message>
 </context>
 <context>
@@ -2139,7 +2153,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="51"/>
         <source>Command to launch Wireshark or a capture file reader:</source>
-        <translation>Wiresharkの起動コマンド、またはキャプチャファイルを開くコマンド:</translation>
+        <translation>Wireshark の起動コマンド、またはキャプチャファイルを開くコマンド:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="61"/>
@@ -2167,7 +2181,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Config/Preferences.py" line="37"/>
         <source>Capture</source>
-        <translation type="unfinished">キャプチャする</translation>
+        <translation>キャプチャ</translation>
     </message>
 </context>
 <context>
@@ -2245,7 +2259,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="149"/>
         <source>Enable mmap feature</source>
-        <translation>mmap機能を使用する</translation>
+        <translation>mmap 機能を使用する</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="159"/>
@@ -2255,17 +2269,17 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="282"/>
         <source>Use Hypervisor Manager when importing</source>
-        <translation type="unfinished"></translation>
+        <translation>インポートするときハイパーバイザを使用する</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="78"/>
         <source>Automatically clean the working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>作業フォルダを自動クリア</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="268"/>
         <source>Bind Hypervisor Manager with:</source>
-        <translation type="unfinished"></translation>
+        <translation>ハイパーバイザ管理と関連させる:</translation>
     </message>
 </context>
 <context>
@@ -2308,37 +2322,37 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
         <source>Terminal command:</source>
-        <translation type="unfinished">ターミナルコマンド:</translation>
+        <translation>ターミナルコマンド:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="88"/>
         <source>IOS/PIX directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>IOS/PIX ディレクトリ:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="127"/>
         <source>Always use manual mode when adding links</source>
-        <translation type="unfinished"></translation>
+        <translation>リンク追加するとき手動モードにする</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
         <source>Launch this command using the system default shell</source>
-        <translation type="unfinished"></translation>
+        <translation>このコマンドをシステムのデフォルトシェルで起動する</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="140"/>
         <source>Configuration file</source>
-        <translation type="unfinished"></translation>
+        <translation>コンフィッグファイル</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="146"/>
         <source>Unknown location</source>
-        <translation type="unfinished"></translation>
+        <translation>不明な場所</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="166"/>
         <source>&amp;Clear it</source>
-        <translation type="unfinished"></translation>
+        <translation>クリア(&amp;C)</translation>
     </message>
 </context>
 <context>
@@ -2346,72 +2360,72 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="13"/>
         <source>Form</source>
-        <translation type="unfinished">フォーム</translation>
+        <translation>フォーム</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="19"/>
         <source>Pemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemuwrapper</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="25"/>
         <source>Path (pemuwrapper.exe on Windows else pemuwrapper.py):</source>
-        <translation type="unfinished"></translation>
+        <translation>パス (ウィンドウズ用の pemuwrapper.exe または pemuwrapper.py):</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="185"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="45"/>
         <source>Working directory:</source>
-        <translation type="unfinished">作業ディレクトリ:</translation>
+        <translation>作業ディレクトリ:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="76"/>
         <source>Enable Pemu Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemu マネージャを有効する</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="86"/>
         <source>Use Pemu Manager when importing</source>
-        <translation type="unfinished"></translation>
+        <translation>インポートするとき Pemu マネージャを使用する</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="99"/>
         <source>Host for an external pemuwrapper:</source>
-        <translation type="unfinished"></translation>
+        <translation>外部 Pemuwrapper のホスト:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="112"/>
         <source>Defaults PIX settings</source>
-        <translation type="unfinished"></translation>
+        <translation>デフォルト PIX  設定</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="121"/>
         <source>PIX image:</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX イメージ:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="141"/>
         <source>Key:</source>
-        <translation type="unfinished"></translation>
+        <translation>キー:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="158"/>
         <source>Serial:</source>
-        <translation type="unfinished"></translation>
+        <translation>シリアル:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="175"/>
         <source>Base flash:</source>
-        <translation type="unfinished"></translation>
+        <translation>ベース フラッシュ :</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="62"/>
         <source>Bind Pemu Manager with:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemu マネージャと関連させる:</translation>
     </message>
 </context>
 <context>
@@ -2419,7 +2433,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../ProjectDialog.py" line="42"/>
         <source>New Project</source>
-        <translation type="unfinished"></translation>
+        <translation>新規のプロジェクト</translation>
     </message>
 </context>
 <context>
@@ -2477,7 +2491,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Scene.py" line="270"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
-        <translation> &apos;*&apos;マークのあるidlepc値はお勧めです</translation>
+        <translation> &apos;*&apos;マークのある idlepc 値はお勧めです</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="289"/>
@@ -2487,47 +2501,47 @@ to display the configuration page.</source>
     <message>
         <location filename="../Scene.py" line="234"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
-        <translation>%s　にidlepc値が既に指定されています。新しい値を発行しますか?</translation>
+        <translation>%s　に idlepc 値が既に指定されています。新しい値を発行しますか?</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="276"/>
         <source>Applied idlepc value %s to %s</source>
-        <translation>idlepc値　%s を %s　に設定しました</translation>
+        <translation>idlepc 値　%s を %s　に設定しました</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="215"/>
         <source>Please wait while calculating an IDLE PC</source>
-        <translation type="unfinished"></translation>
+        <translation>IDLE PC の計算完了するまでお待ちください</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="111"/>
         <source>Change the hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>ホスト名を変更</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="116"/>
         <source>Show/Hide the hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>ホスト名を表示．非表示する</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="129"/>
         <source>Change console port</source>
-        <translation type="unfinished"></translation>
+        <translation>コンソールポートを変更</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="162"/>
         <source>Startup-config</source>
-        <translation type="unfinished"></translation>
+        <translation>スタートアップコンフィッグ</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="179"/>
         <source>Lower one step</source>
-        <translation type="unfinished"></translation>
+        <translation>一個下げる</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="184"/>
         <source>Raise one step</source>
-        <translation type="unfinished"></translation>
+        <translation>一個上げる</translation>
     </message>
 </context>
 <context>
@@ -2535,12 +2549,12 @@ to display the configuration page.</source>
     <message>
         <location filename="../Topology.py" line="304"/>
         <source>IOS image</source>
-        <translation>IOSイメージ</translation>
+        <translation>IOS イメージ</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="283"/>
         <source>Please register at least one IOS image</source>
-        <translation>IOSイメージを登録して下さい</translation>
+        <translation>IOS イメージを登録して下さい</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="324"/>
@@ -2550,7 +2564,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Topology.py" line="321"/>
         <source>Please configure the path to Dynamips</source>
-        <translation>Dynamipsのプログラムパスを設定してください</translation>
+        <translation>Dynamips のプログラムパスを設定してください</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="563"/>
@@ -2580,47 +2594,47 @@ to display the configuration page.</source>
     <message>
         <location filename="../Topology.py" line="305"/>
         <source>Please choose an image</source>
-        <translation type="unfinished"></translation>
+        <translation>イメージを選択して下さい</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="470"/>
         <source>You have to connect at least one router to the switch</source>
-        <translation type="unfinished"></translation>
+        <translation>スイッチに少なくとも1つのルータに接続する必要あります</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="336"/>
         <source>PIX image</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX イメージ</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="336"/>
         <source>Please configure a default PIX image</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX イメージを設定して下さい</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="457"/>
         <source>Can&apos;t connect these devices</source>
-        <translation type="unfinished"></translation>
+        <translation>このデバイスは接続できませんでした</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="324"/>
         <source>Please test the path to Dynamips in preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>設定画面にて Dynamips のプログラムパスをテストしてください</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="244"/>
         <source>Pemuwrapper error</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemuwrapper　エラー</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="263"/>
         <source>PIX device</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX デバイス</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="264"/>
         <source>Cannot copy PIX base flash %s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX　ベースフラッシュをコピーできません %s: %s</translation>
     </message>
 </context>
 <context>
@@ -2688,7 +2702,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Workspace.py" line="553"/>
         <source>The path to Dynamips must be configured</source>
-        <translation>Dynamipsのプログラムパスを使用する必要があります</translation>
+        <translation>Dynamips のプログラムパスを使用する必要があります</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="589"/>
@@ -2733,22 +2747,22 @@ to display the configuration page.</source>
     <message>
         <location filename="../Workspace.py" line="608"/>
         <source>Would you like to save the topology before you quit?</source>
-        <translation type="unfinished"></translation>
+        <translation>閉じる前にトポロジーの保存しますか?</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="502"/>
         <source>Do you want to apply the project settings to the current topology?</source>
-        <translation type="unfinished"></translation>
+        <translation>現在のトポロジーに設定を適用しますか?</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="535"/>
         <source>Would you like to save the current topology?</source>
-        <translation type="unfinished"></translation>
+        <translation>現在のトポロジーを保存しますか?</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="210"/>
         <source>Directory to write startup-configs</source>
-        <translation type="unfinished"></translation>
+        <translation>スタートコンフィッグを書き込みするディレクトリ</translation>
     </message>
 </context>
 <context>
@@ -2814,32 +2828,32 @@ to display the configuration page.</source>
     <message>
         <location filename="DynamicStrings.py" line="40"/>
         <source>PIX firewall</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX ファイアウォール</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="43"/>
         <source>ATM bridge</source>
-        <translation type="unfinished"></translation>
+        <translation>ATM ブリッジ</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="41"/>
         <source>Ethernet switch</source>
-        <translation type="unfinished"></translation>
+        <translation>イーサネットスイッチ</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="47"/>
         <source>Decorative node</source>
-        <translation type="unfinished"></translation>
+        <translation>装飾ノード</translation>
     </message>
     <message>
         <location filename="../Ui/Widget_nodesDock.py" line="54"/>
         <source>Emulated devices</source>
-        <translation type="unfinished"></translation>
+        <translation>エミュレートデバイス</translation>
     </message>
     <message>
         <location filename="../Ui/Widget_nodesDock.py" line="61"/>
         <source>Decorative nodes</source>
-        <translation type="unfinished"></translation>
+        <translation>装飾ノード</translation>
     </message>
 </context>
 <context>

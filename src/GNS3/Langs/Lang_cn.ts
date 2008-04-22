@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="en">
+<!DOCTYPE TS><TS version="1.1" language="zh_CN">
 <context>
     <name>ATMBRPage</name>
     <message>
@@ -129,54 +129,17 @@
         <translation>关于(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="121"/>
+        <location filename="../Ui/Form_About.py" line="135"/>
         <source>&amp;Thanks to</source>
         <translation>致谢(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="408"/>
+        <location filename="../Ui/Form_About.py" line="422"/>
         <source>&amp;License Agreement</source>
         <translation>授权协议书(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="120"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alexander H. Hackenberg from Vienna, Austria&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Erik Wenzel from Germany: German translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Huan Ji from Wuhan, China: Chinese translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jose Sen from Buenos Aires, Argentina: Spanish translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mark Soe Min from Tokyo, Japan: Japanese translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aboulgasem Albusaifi from Tarabulus, Libya: Arabic translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Marcio de Freitas Minicz from Sao Jose dos Campos, SP, Brazil: Brazilian-Portuguese translation &lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hasan Agirol Aksoy from Antalya, Turkey: Turkish translation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; fontstyle:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-blockindent:0; text-indent:0px;&quot;&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alexander H. Hackenberg from Vienna, Austria&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Erik Wenzel from Germany: German translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;JI HUAN from Wuhan, China: Chinese translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jose Sen from Buenos Aires, Argentina: Spanish translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mark Soe Min from Tokyo, Japan: Japanese translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aboulgasem Albusaifi from Tarabulus, Libya: Arabic translation&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Marcio de Freitas Minicz from Sao Jose dos Campos, SP, Brazil: Brazilian-Portuguese translation &lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hasan Agirol Aksoy from Antalya, Turkey: Turkish translation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_About.py" line="407"/>
+        <location filename="../Ui/Form_About.py" line="421"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -481,6 +444,41 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;contact@gns3.net&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;www.gns3.net&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="../Ui/Form_About.py" line="134"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alexander H. Hackenberg from Vienna, Austria&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Erik Wenzel from Germany: German translation (code: de) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Huan Ji from Wuhan, China: Chinese translation (code: cn) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jose Sen from Buenos Aires, Argentina: Spanish translation (code: es) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mark Soe Min from Tokyo, Japan: Japanese translation (code: jp) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aboulgasem Albusaifi from Tarabulus, Libya: Arabic translation (code: ar) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Marcio de Freitas Minicz from Sao Jose dos Campos, SP, Brazil: Brazilian-Portuguese translation (code: pt_br) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hasan Agirol Aksoy from Antalya, Turkey: Turkish translation (code: tr) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ivakin Dmitriy from Moscow, Russia: Russian translation (code: ru) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hyeonjin Kim from Seoul, Korea: Korean translation (code: kr) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pavel Skovajsa from Slovakia: Slovak translation (code: sk) &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Michał Zieliński from Plock, Poland: Polish translation (code: pl)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -534,7 +532,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="285"/>
         <source>Please configure capture options</source>
-        <translation>请配置Captuer选项</translation>
+        <translation>请配置Capture选项</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="137"/>
@@ -554,12 +552,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="292"/>
         <source>%s is empty, no traffic captured on the link. Try again later</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="295"/>
         <source>Cannot find %s : %s</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -607,17 +605,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="110"/>
         <source>Change console port</source>
-        <translation type="unfinished"></translation>
+        <translation>修改console端口</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="111"/>
         <source>Console port for %s:</source>
-        <translation type="unfinished"></translation>
+        <translation>修改Console端口 %s:</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="117"/>
         <source>Console port</source>
-        <translation type="unfinished"></translation>
+        <translation>Console端口</translation>
     </message>
 </context>
 <context>
@@ -625,12 +623,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Application.py" line="338"/>
         <source>Configuration file</source>
-        <translation type="unfinished"></translation>
+        <translation>配置文件</translation>
     </message>
     <message>
         <location filename="../Application.py" line="339"/>
         <source>Configuration file is not longer compatible, would you like to reset it? (you will have to restart GNS3)</source>
-        <translation type="unfinished"></translation>
+        <translation>新的配置文件不再与之前兼容,是否需要重新设置?(需要重新启动GNS3)</translation>
     </message>
 </context>
 <context>
@@ -713,7 +711,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="344"/>
         <source>Remote file:</source>
-        <translation>远程:</translation>
+        <translation>远程文件:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="432"/>
@@ -738,7 +736,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="29"/>
         <source>Generic Ethernet NIO (require Administrator access)</source>
-        <translation type="unfinished"></translation>
+        <translation>普通以太网NIO(需要管理员权限)</translation>
     </message>
 </context>
 <context>
@@ -746,7 +744,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Config/Config.py" line="249"/>
         <source>Can&apos;t open library: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>无法打开库: %s</translation>
     </message>
 </context>
 <context>
@@ -835,7 +833,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Console.py" line="396"/>
         <source>Cannot create %s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -853,32 +851,32 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../DynagenSub.py" line="88"/>
         <source>PIX image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>PIXOS文件没有被发现,无法找到可选择的OS文件</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="92"/>
         <source>Local PIX image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>本地PIXOS文件%s没有被发现,使用%s文件替代</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="118"/>
         <source>Local workding directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>本地工作目录%s没有被hypervisor %s发现,使用工作目录%s替代</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="133"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative image for chassis %s</source>
-        <translation type="unfinished"></translation>
+        <translation>IOS文件%s没有被hypervisor %s发现,型号%s无法找到一个可选择的IOS文件</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="145"/>
         <source>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>本地IOS文件%s没有被hypervisor %s发现,使用%s文件替代</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="154"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>本地配置%s没有被router %s发现,使用配置%s替代</translation>
     </message>
 </context>
 <context>
@@ -1020,17 +1018,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Node/FW.py" line="186"/>
         <source>New hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>新设备名</translation>
     </message>
     <message>
         <location filename="../Node/FW.py" line="187"/>
         <source>Cannot rename a connected firewall because pemuwrapper does not support removal</source>
-        <translation type="unfinished"></translation>
+        <translation>无法重命名一个正在使用的firewall,因为pemuwrapper不支持移除</translation>
     </message>
     <message>
         <location filename="../Node/FW.py" line="200"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips 错误</translation>
+        <translation>Dynamips 错误</translation>
     </message>
 </context>
 <context>
@@ -1063,12 +1061,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="84"/>
         <source>Key:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Key:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="101"/>
         <source>Serial:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Serial:</translation>
     </message>
 </context>
 <context>
@@ -1290,32 +1288,32 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="321"/>
         <source>Default RAM:</source>
-        <translation type="unfinished"></translation>
+        <translation>默认RAM:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="322"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="323"/>
         <source>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Check for minimum RAM requirement&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="371"/>
         <source>IOS Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>IOS 配置</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="371"/>
         <source>Image file box is empty</source>
-        <translation type="unfinished"></translation>
+        <translation>IOS文件项为空</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="333"/>
         <source>127.0.0.1</source>
-        <translation type="unfinished">127.0.0.1</translation>
+        <translation>127.0.0.1</translation>
     </message>
 </context>
 <context>
@@ -1343,17 +1341,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Node/IOSRouter.py" line="463"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips 错误</translation>
+        <translation>Dynamips 错误</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="297"/>
         <source>Startup-config</source>
-        <translation type="unfinished"></translation>
+        <translation>Startup-config</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="292"/>
         <source>Startup-config for %s:</source>
-        <translation type="unfinished"></translation>
+        <translation>Startup-config for %s:</translation>
     </message>
 </context>
 <context>
@@ -1541,7 +1539,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="193"/>
         <source> KB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1864,22 +1862,22 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="394"/>
         <source>&amp;Extract all startup-configs</source>
-        <translation type="unfinished"></translation>
+        <translation>解压所有startup_configs(&amp;E)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="395"/>
         <source>Insert an image</source>
-        <translation type="unfinished"></translation>
+        <translation>插入一个OS文件</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="396"/>
         <source>&amp;Symbol Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>图标管理(&amp;S)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="397"/>
         <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1932,32 +1930,32 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../NETFile.py" line="703"/>
         <source>IOError</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Topology.py" line="257"/>
         <source>Please wait while copying the base flash</source>
-        <translation type="unfinished"></translation>
+        <translation>正在复制flash,请稍后</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="805"/>
         <source>must be connected in order to be registered</source>
-        <translation type="unfinished"></translation>
+        <translation>必须是连接的才可被注册</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="365"/>
         <source>%s: cannot find %s symbol</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: 无法找到%s标记</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="470"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="354"/>
         <source>Cannot load image: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>无法加载:%s</translation>
     </message>
 </context>
 <context>
@@ -2277,12 +2275,12 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="78"/>
         <source>Automatically clean the working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>自动清空工作目录</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="268"/>
         <source>Bind Hypervisor Manager with:</source>
-        <translation type="unfinished"></translation>
+        <translation>帮定Hypervisor管理到 :</translation>
     </message>
 </context>
 <context>
@@ -2340,22 +2338,22 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
         <source>Launch this command using the system default shell</source>
-        <translation type="unfinished"></translation>
+        <translation>使用系统默认的shell执行该命令</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="140"/>
         <source>Configuration file</source>
-        <translation type="unfinished"></translation>
+        <translation>配置文件</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="146"/>
         <source>Unknown location</source>
-        <translation type="unfinished"></translation>
+        <translation>未知位置</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="166"/>
         <source>&amp;Clear it</source>
-        <translation type="unfinished"></translation>
+        <translation>清除(&amp;C)</translation>
     </message>
 </context>
 <context>
@@ -2413,22 +2411,22 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="141"/>
         <source>Key:</source>
-        <translation type="unfinished"></translation>
+        <translation>Key:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="158"/>
         <source>Serial:</source>
-        <translation type="unfinished"></translation>
+        <translation>Serial:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="175"/>
         <source>Base flash:</source>
-        <translation type="unfinished"></translation>
+        <translation>flash:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="62"/>
         <source>Bind Pemu Manager with:</source>
-        <translation type="unfinished"></translation>
+        <translation>帮定Pemu管理器到:</translation>
     </message>
 </context>
 <context>
@@ -2436,7 +2434,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../ProjectDialog.py" line="42"/>
         <source>New Project</source>
-        <translation type="unfinished">新工程</translation>
+        <translation>新工程</translation>
     </message>
 </context>
 <context>
@@ -2529,22 +2527,22 @@ to display the configuration page.</source>
     <message>
         <location filename="../Scene.py" line="129"/>
         <source>Change console port</source>
-        <translation type="unfinished"></translation>
+        <translation>修改console端口</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="162"/>
         <source>Startup-config</source>
-        <translation type="unfinished"></translation>
+        <translation>Startup-config</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="179"/>
         <source>Lower one step</source>
-        <translation type="unfinished"></translation>
+        <translation>降低一个步骤</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="184"/>
         <source>Raise one step</source>
-        <translation type="unfinished"></translation>
+        <translation>提升一个步骤</translation>
     </message>
 </context>
 <context>
@@ -2622,22 +2620,22 @@ to display the configuration page.</source>
     <message>
         <location filename="../Topology.py" line="324"/>
         <source>Please test the path to Dynamips in preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>请在首选项中测试Dynamips路径 </translation>
     </message>
     <message>
         <location filename="../Topology.py" line="244"/>
         <source>Pemuwrapper error</source>
-        <translation type="unfinished"></translation>
+        <translation>Pemuwrapper 错误</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="263"/>
         <source>PIX device</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX device</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="264"/>
         <source>Cannot copy PIX base flash %s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>无法复制pix flash %s: %s</translation>
     </message>
 </context>
 <context>
@@ -2765,7 +2763,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Workspace.py" line="210"/>
         <source>Directory to write startup-configs</source>
-        <translation type="unfinished"></translation>
+        <translation>写入startup-configs到目录</translation>
     </message>
 </context>
 <context>
@@ -2836,27 +2834,27 @@ to display the configuration page.</source>
     <message>
         <location filename="DynamicStrings.py" line="43"/>
         <source>ATM bridge</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="41"/>
         <source>Ethernet switch</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="47"/>
         <source>Decorative node</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Widget_nodesDock.py" line="54"/>
         <source>Emulated devices</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Widget_nodesDock.py" line="61"/>
         <source>Decorative nodes</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
