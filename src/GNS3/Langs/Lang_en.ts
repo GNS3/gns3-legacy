@@ -1862,11 +1862,6 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="395"/>
-        <source>Insert an image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Ui/Form_MainWindow.py" line="396"/>
         <source>&amp;Symbol Manager</source>
         <translation type="unfinished"></translation>
@@ -1874,6 +1869,11 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="397"/>
         <source>Ctrl+Shift+S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_MainWindow.py" line="395"/>
+        <source>Insert a picture</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1930,7 +1930,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="257"/>
+        <location filename="../Topology.py" line="262"/>
         <source>Please wait while copying the base flash</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2545,92 +2545,92 @@ to display the configuration page.</translation>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="304"/>
+        <location filename="../Topology.py" line="309"/>
         <source>IOS image</source>
         <translation type="unfinished">IOS image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="283"/>
+        <location filename="../Topology.py" line="288"/>
         <source>Please register at least one IOS image</source>
         <translation type="unfinished">Please register at least one IOS image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="324"/>
+        <location filename="../Topology.py" line="329"/>
         <source>Hypervisor</source>
         <translation type="unfinished">Hypervisor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="321"/>
+        <location filename="../Topology.py" line="326"/>
         <source>Please configure the path to Dynamips</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="563"/>
+        <location filename="../Topology.py" line="568"/>
         <source>Dynamips error</source>
         <translation type="unfinished">Dynamips error</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="563"/>
+        <location filename="../Topology.py" line="568"/>
         <source>Connection lost</source>
         <translation type="unfinished">Connection lost</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="470"/>
+        <location filename="../Topology.py" line="475"/>
         <source>Connection</source>
         <translation type="unfinished">Connection</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="172"/>
+        <location filename="../Topology.py" line="177"/>
         <source>Can&apos;t connect to the external hypervisor on %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="294"/>
+        <location filename="../Topology.py" line="299"/>
         <source>No image for platform %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="305"/>
+        <location filename="../Topology.py" line="310"/>
         <source>Please choose an image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="470"/>
+        <location filename="../Topology.py" line="475"/>
         <source>You have to connect at least one router to the switch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="336"/>
+        <location filename="../Topology.py" line="341"/>
         <source>PIX image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="336"/>
+        <location filename="../Topology.py" line="341"/>
         <source>Please configure a default PIX image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="457"/>
+        <location filename="../Topology.py" line="462"/>
         <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="324"/>
+        <location filename="../Topology.py" line="329"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="244"/>
+        <location filename="../Topology.py" line="249"/>
         <source>Pemuwrapper error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="263"/>
+        <location filename="../Topology.py" line="268"/>
         <source>PIX device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="264"/>
+        <location filename="../Topology.py" line="269"/>
         <source>Cannot copy PIX base flash %s: %s</source>
         <translation type="unfinished"></translation>
     </message>

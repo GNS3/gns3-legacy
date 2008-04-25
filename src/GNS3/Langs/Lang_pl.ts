@@ -444,7 +444,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;contact@gns3.net&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;www.gns3.net&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message encoding="UTF-8">
         <location filename="../Ui/Form_About.py" line="134"/>
@@ -623,12 +623,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Application.py" line="338"/>
         <source>Configuration file</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik konfiguracyjny</translation>
     </message>
     <message>
         <location filename="../Application.py" line="339"/>
         <source>Configuration file is not longer compatible, would you like to reset it? (you will have to restart GNS3)</source>
-        <translation type="unfinished"></translation>
+        <translation>Znaleziony plik konfiguracyjny nie jest kompatybliny z aktualną wersją programu, czy chcesz utworzyć nowy? (Wymagane ponowne uruchomienie GNS3)</translation>
     </message>
 </context>
 <context>
@@ -744,7 +744,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Config/Config.py" line="249"/>
         <source>Can&apos;t open library: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można otworzyć biblioteki: %s</translation>
     </message>
 </context>
 <context>
@@ -833,7 +833,7 @@ Wprowadź numer wartości idlepc do przypisania [1-%i] lub wciśnij enter żeby 
     <message>
         <location filename="../Console.py" line="396"/>
         <source>Cannot create %s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można utworzyć %s: %s</translation>
     </message>
 </context>
 <context>
@@ -851,32 +851,32 @@ Wprowadź numer wartości idlepc do przypisania [1-%i] lub wciśnij enter żeby 
     <message>
         <location filename="../DynagenSub.py" line="88"/>
         <source>PIX image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz PIX&apos;a %s nie został znaleziony, nie można znaleźć obrazu alternatynego</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="92"/>
         <source>Local PIX image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokalny obraz PIX&apos;a %s nie może zostać odnaleziony, można wykorzystać obraz zamienny: %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="118"/>
         <source>Local workding directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokalny katalog roboczy %s dla hypervisora %s nie może zostać znaleziony, używam zamiast niego katalogu  %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="133"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative image for chassis %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik obrazu %s dla hypervisora %s nie może zostać odnaleziony, nie można odnaleźć obrazu alternatywnego dla chassis %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="145"/>
         <source>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokalny plik obrazu %s dla hypervisora %s nie może zostać znaleziony, używam zamiast niego obrazu %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="154"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokalny plik konfiguracyjny %s dla routera %s nie może zostać odnaleziony, używam zamiast niego pliku konfiguracyjnego %s</translation>
     </message>
 </context>
 <context>
@@ -1018,17 +1018,17 @@ Wprowadź numer wartości idlepc do przypisania [1-%i] lub wciśnij enter żeby 
     <message>
         <location filename="../Node/FW.py" line="186"/>
         <source>New hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>Nowa nazwa hosta</translation>
     </message>
     <message>
         <location filename="../Node/FW.py" line="187"/>
         <source>Cannot rename a connected firewall because pemuwrapper does not support removal</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można zmienić nazwy podłączonego firewalla ponieważ pemuwrapper uniemożliwia wykonanie takiej operacji</translation>
     </message>
     <message>
         <location filename="../Node/FW.py" line="200"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Błąd Dynamips</translation>
+        <translation>Błąd Dynamips</translation>
     </message>
 </context>
 <context>
@@ -1120,7 +1120,7 @@ Wprowadź numer wartości idlepc do przypisania [1-%i] lub wciśnij enter żeby 
     <message>
         <location filename="../HypervisorManager.py" line="73"/>
         <source>A hypervisor is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation>Hypervisor pracuje na porcie %i, nie zostanie zamknięty dopóki nie wyjdziesz z GNS3</translation>
+        <translation>Hypervisor jest już uruchomiony na porcie %i, nie zostanie zamknięty po wyłączeniu tej instancji GNS3</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="109"/>
@@ -1288,32 +1288,32 @@ Wprowadź numer wartości idlepc do przypisania [1-%i] lub wciśnij enter żeby 
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="321"/>
         <source>Default RAM:</source>
-        <translation type="unfinished"></translation>
+        <translation>Domyślna ilość pamięci RAM:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="322"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="323"/>
         <source>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Check for minimum RAM requirement&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Sprawdź wymagane minimum pamięci RAM&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="371"/>
         <source>IOS Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguracja IOS</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="371"/>
         <source>Image file box is empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Pole pliku obrazu jest puste</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="333"/>
         <source>127.0.0.1</source>
-        <translation type="unfinished">127.0.0.1</translation>
+        <translation>127.0.0.1</translation>
     </message>
 </context>
 <context>
@@ -1341,17 +1341,17 @@ Wprowadź numer wartości idlepc do przypisania [1-%i] lub wciśnij enter żeby 
     <message>
         <location filename="../Node/IOSRouter.py" line="463"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Błąd Dynamips</translation>
+        <translation>Błąd Dynamips</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="297"/>
         <source>Startup-config</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="292"/>
         <source>Startup-config for %s:</source>
-        <translation type="unfinished"></translation>
+        <translation>Startup-config dla %s:</translation>
     </message>
 </context>
 <context>
@@ -1862,21 +1862,21 @@ Wprowadź numer wartości idlepc do przypisania [1-%i] lub wciśnij enter żeby 
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="394"/>
         <source>&amp;Extract all startup-configs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_MainWindow.py" line="395"/>
-        <source>Insert an image</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Wyodrębnij wszystkie pliki startup-config</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="396"/>
         <source>&amp;Symbol Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Manager Symboli</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="397"/>
         <source>Ctrl+Shift+S</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_MainWindow.py" line="395"/>
+        <source>Insert a picture</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1933,9 +1933,9 @@ Wprowadź numer wartości idlepc do przypisania [1-%i] lub wciśnij enter żeby 
         <translation>Błąd Wejścia/Wyjścia</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="257"/>
+        <location filename="../Topology.py" line="262"/>
         <source>Please wait while copying the base flash</source>
-        <translation type="unfinished"></translation>
+        <translation>Proszę czekać, kopiowanie podstawowego flasha</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="805"/>
@@ -1945,7 +1945,7 @@ Wprowadź numer wartości idlepc do przypisania [1-%i] lub wciśnij enter żeby 
     <message>
         <location filename="../NETFile.py" line="365"/>
         <source>%s: cannot find %s symbol</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: nie można znaleźć symbolu %s</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="470"/>
@@ -1955,7 +1955,7 @@ Wprowadź numer wartości idlepc do przypisania [1-%i] lub wciśnij enter żeby 
     <message>
         <location filename="../NETFile.py" line="354"/>
         <source>Cannot load image: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można załadować obrazu: %s</translation>
     </message>
 </context>
 <context>
@@ -2275,12 +2275,12 @@ wybierz urządzenie z listy.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="78"/>
         <source>Automatically clean the working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatycznie czyść katalog roboczy</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="268"/>
         <source>Bind Hypervisor Manager with:</source>
-        <translation type="unfinished"></translation>
+        <translation>Przyłącz Managera Hypervisorów do:</translation>
     </message>
 </context>
 <context>
@@ -2343,17 +2343,17 @@ wybierz urządzenie z listy.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="140"/>
         <source>Configuration file</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik konfiguracyjny</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="146"/>
         <source>Unknown location</source>
-        <translation type="unfinished"></translation>
+        <translation>Położenie nieznane</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="166"/>
         <source>&amp;Clear it</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Wyczyść</translation>
     </message>
 </context>
 <context>
@@ -2421,12 +2421,12 @@ wybierz urządzenie z listy.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="175"/>
         <source>Base flash:</source>
-        <translation type="unfinished"></translation>
+        <translation>Podstawowy flash:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="62"/>
         <source>Bind Pemu Manager with:</source>
-        <translation type="unfinished"></translation>
+        <translation>Przyłącz Managera Pemu do:</translation>
     </message>
 </context>
 <context>
@@ -2434,7 +2434,7 @@ wybierz urządzenie z listy.</translation>
     <message>
         <location filename="../ProjectDialog.py" line="42"/>
         <source>New Project</source>
-        <translation type="unfinished">Nowy Projekt</translation>
+        <translation>Nowy Projekt</translation>
     </message>
 </context>
 <context>
@@ -2532,110 +2532,110 @@ wybierz urządzenie z listy.</translation>
     <message>
         <location filename="../Scene.py" line="162"/>
         <source>Startup-config</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Scene.py" line="179"/>
         <source>Lower one step</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełóż wartswę w górę</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="184"/>
         <source>Raise one step</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełóż wartswę w dół</translation>
     </message>
 </context>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="304"/>
+        <location filename="../Topology.py" line="309"/>
         <source>IOS image</source>
         <translation>Obraz IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="283"/>
+        <location filename="../Topology.py" line="288"/>
         <source>Please register at least one IOS image</source>
         <translation>Wprowadź co najmniej jeden obraz IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="324"/>
+        <location filename="../Topology.py" line="329"/>
         <source>Hypervisor</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="321"/>
+        <location filename="../Topology.py" line="326"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Podaj ścieżkę do Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="563"/>
+        <location filename="../Topology.py" line="568"/>
         <source>Dynamips error</source>
         <translation>Błąd Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="563"/>
+        <location filename="../Topology.py" line="568"/>
         <source>Connection lost</source>
         <translation>Utracono połączenie</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="470"/>
+        <location filename="../Topology.py" line="475"/>
         <source>Connection</source>
         <translation>Połączenie</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="172"/>
+        <location filename="../Topology.py" line="177"/>
         <source>Can&apos;t connect to the external hypervisor on %s</source>
         <translation>Nie można połączyć się z zewnętrznym hypervisorem na %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="294"/>
+        <location filename="../Topology.py" line="299"/>
         <source>No image for platform %s</source>
         <translation>Brak obrazu IOS dla platformy %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="305"/>
+        <location filename="../Topology.py" line="310"/>
         <source>Please choose an image</source>
         <translation>Wybierz obraz</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="470"/>
+        <location filename="../Topology.py" line="475"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Musisz podłączyć co najmniej jeden router do switcha</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="336"/>
+        <location filename="../Topology.py" line="341"/>
         <source>PIX image</source>
         <translation>Obraz PIX&apos;a</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="336"/>
+        <location filename="../Topology.py" line="341"/>
         <source>Please configure a default PIX image</source>
         <translation>Skonfiguruj domyślny obraz dla PIX&apos;a</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="457"/>
+        <location filename="../Topology.py" line="462"/>
         <source>Can&apos;t connect these devices</source>
         <translation>Nie można połączyć tych urządzeń</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="324"/>
+        <location filename="../Topology.py" line="329"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation>Sprawdź w preferencjach ścieżkę do Dynampis</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="244"/>
+        <location filename="../Topology.py" line="249"/>
         <source>Pemuwrapper error</source>
         <translation>Błąd pemuwrapper</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="263"/>
+        <location filename="../Topology.py" line="268"/>
         <source>PIX device</source>
-        <translation type="unfinished"></translation>
+        <translation>Urządzenie PIX</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="264"/>
+        <location filename="../Topology.py" line="269"/>
         <source>Cannot copy PIX base flash %s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można skopiować podstawowego obrazu PIX&apos;a %s: %s</translation>
     </message>
 </context>
 <context>
@@ -2763,7 +2763,7 @@ wybierz urządzenie z listy.</translation>
     <message>
         <location filename="../Workspace.py" line="210"/>
         <source>Directory to write startup-configs</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog przeznaczony do zapisu plików startup-config</translation>
     </message>
 </context>
 <context>
@@ -2839,22 +2839,22 @@ wybierz urządzenie z listy.</translation>
     <message>
         <location filename="DynamicStrings.py" line="41"/>
         <source>Ethernet switch</source>
-        <translation type="unfinished"></translation>
+        <translation>Ethernet</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="47"/>
         <source>Decorative node</source>
-        <translation type="unfinished"></translation>
+        <translation>Urządzenie dodatkowe (dekoracyjne)</translation>
     </message>
     <message>
         <location filename="../Ui/Widget_nodesDock.py" line="54"/>
         <source>Emulated devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Urządzenia emulowane</translation>
     </message>
     <message>
         <location filename="../Ui/Widget_nodesDock.py" line="61"/>
         <source>Decorative nodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Urządzenia dodatkowe (dekoracyjne)</translation>
     </message>
 </context>
 <context>

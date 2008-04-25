@@ -57,6 +57,11 @@ class Topology(QtGui.QGraphicsScene):
         """ Clean all dynagen data
         """
 
+        for dynamips in globals.GApp.dynagen.dynamips.values():
+            try:
+                dynamips.reset()
+            except:
+                continue
         if globals.GApp.HypervisorManager:
             globals.GApp.HypervisorManager.stopProcHypervisors()
         if globals.GApp.PemuManager:

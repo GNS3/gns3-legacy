@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Tue Apr 22 10:41:13 2008
-#      by: PyQt4 UI code generator 4.3
+# Created: Fri Apr 25 16:21:28 2008
+#      by: PyQt4 UI code generator 4.3.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -35,7 +35,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,840,29))
+        self.menubar.setGeometry(QtCore.QRect(0,0,840,30))
         self.menubar.setObjectName("menubar")
 
         self.menu_Edit = QtGui.QMenu(self.menubar)
@@ -58,7 +58,7 @@ class Ui_MainWindow(object):
         self.toolBar_General = QtGui.QToolBar(MainWindow)
         self.toolBar_General.setOrientation(QtCore.Qt.Horizontal)
         self.toolBar_General.setObjectName("toolBar_General")
-        MainWindow.addToolBar(self.toolBar_General)
+        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea,self.toolBar_General)
 
         self.dockWidget_NodeTypes = QtGui.QDockWidget(MainWindow)
         self.dockWidget_NodeTypes.setAllowedAreas(QtCore.Qt.LeftDockWidgetArea|QtCore.Qt.NoDockWidgetArea|QtCore.Qt.RightDockWidgetArea)
@@ -88,12 +88,12 @@ class Ui_MainWindow(object):
 
         self.toolBar_Design = QtGui.QToolBar(MainWindow)
         self.toolBar_Design.setObjectName("toolBar_Design")
-        MainWindow.addToolBar(self.toolBar_Design)
+        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea,self.toolBar_Design)
 
         self.toolBar_Emulation = QtGui.QToolBar(MainWindow)
         self.toolBar_Emulation.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
         self.toolBar_Emulation.setObjectName("toolBar_Emulation")
-        MainWindow.addToolBar(self.toolBar_Emulation)
+        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea,self.toolBar_Emulation)
 
         self.dockWidget_TopoSum = QtGui.QDockWidget(MainWindow)
 
@@ -153,7 +153,7 @@ class Ui_MainWindow(object):
 
         self.toolBar = QtGui.QToolBar(MainWindow)
         self.toolBar.setObjectName("toolBar")
-        MainWindow.addToolBar(self.toolBar)
+        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea,self.toolBar)
 
         self.action_About = QtGui.QAction(MainWindow)
         self.action_About.setMenuRole(QtGui.QAction.AboutRole)
@@ -392,7 +392,7 @@ class Ui_MainWindow(object):
         self.action_New.setToolTip(QtGui.QApplication.translate("MainWindow", "New Project", None, QtGui.QApplication.UnicodeUTF8))
         self.action_New.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+N", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Extract_config.setText(QtGui.QApplication.translate("MainWindow", "&Extract all startup-configs", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_InsertImage.setText(QtGui.QApplication.translate("MainWindow", "Insert an image", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_InsertImage.setText(QtGui.QApplication.translate("MainWindow", "Insert a picture", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Symbol_Manager.setText(QtGui.QApplication.translate("MainWindow", "&Symbol Manager", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Symbol_Manager.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+S", None, QtGui.QApplication.UnicodeUTF8))
 

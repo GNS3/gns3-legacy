@@ -246,7 +246,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         current_item = self.treeWidgetIOSimages.currentItem()
         if current_item:
             image = unicode(current_item.text(0))
-            if self.selectionChanged == False and globals.GApp.iosimages.has_key(image):
+            if self.selectionChanged == False and globals.GApp.iosimages.has_key(image) and image.rsplit(':', 1)[1] == imagename:
                 del globals.GApp.iosimages[image]
                 self.treeWidgetIOSimages.takeTopLevelItem(self.treeWidgetIOSimages.indexOfTopLevelItem(current_item))
 
