@@ -147,7 +147,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
     def __setDynamipsPath(self):
         """ Open a file dialog for choosing the location of dynamips executable
         """
-        fb = fileBrowser(translate('UiConfig_PreferencesDynamips', 'Dynamips binary'))
+        fb = fileBrowser(translate('UiConfig_PreferencesDynamips', 'Dynamips binary'), parent=globals.preferencesWindow)
         (path, selected) = fb.getFile()
 
         if path is not None and path != '':
@@ -162,7 +162,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         """ Open a file dialog for choosing the location of local hypervisor
         working directory
         """
-        fb = fileBrowser(translate('UiConfig_PreferencesDynamips', 'Local hypervisor working directory'))
+        fb = fileBrowser(translate('UiConfig_PreferencesDynamips', 'Local hypervisor working directory'), parent=globals.preferencesWindow)
         path = fb.getDir()
 
         if path:

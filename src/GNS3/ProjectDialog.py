@@ -40,7 +40,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         """
 
         fb = fileBrowser(translate("ProjectDialog", "New Project"),
-                                filter='NET file (*.net);;All files (*.*)', directory=globals.GApp.systconf['general'].project_path)
+                                filter='NET file (*.net);;All files (*.*)', directory=globals.GApp.systconf['general'].project_path, parent=self)
         (path, selected) = fb.getSaveFile()
         
         if path is not None and path != '':

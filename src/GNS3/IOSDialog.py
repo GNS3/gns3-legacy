@@ -167,7 +167,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """
 
         # get the path to the ios image
-        path = fileBrowser(translate("IOSDialog", "Select an IOS image"),  directory=globals.GApp.systconf['general'].ios_path).getFile()
+        path = fileBrowser(translate("IOSDialog", "Select an IOS image"),  directory=globals.GApp.systconf['general'].ios_path, parent=self).getFile()
 
         if path != None and path[0] != '':
             path = os.path.normpath(path[0])
@@ -393,7 +393,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """ Get a working directory from the file system
         """
 
-        path = fileBrowser(translate("IOSDialog", "Select a working directory")).getDir()
+        path = fileBrowser(translate("IOSDialog", "Select a working directory"), parent=self).getDir()
         if path:
             self.lineEditWorkingDir.clear()
             self.lineEditWorkingDir.setText(os.path.normpath(path))

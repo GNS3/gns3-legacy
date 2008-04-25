@@ -125,7 +125,7 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         """ Get a PIX image from the file system
         """
 
-        path = fileBrowser('PIX image', directory=globals.GApp.systconf['general'].ios_path).getFile()
+        path = fileBrowser('PIX image', directory=globals.GApp.systconf['general'].ios_path, parent=globals.preferencesWindow).getFile()
         if path != None and path[0] != '':
             self.PixImage.clear()
             self.PixImage.setText(os.path.normpath(path[0]))
@@ -134,7 +134,7 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         """ Get a path to pemuwrapper from the file system
         """
 
-        path = fileBrowser('Pemuwrapper', directory='.').getFile()
+        path = fileBrowser('Pemuwrapper', directory='.', parent=globals.preferencesWindow).getFile()
         if path != None and path[0] != '':
             self.lineEditPemuwrapperPath.setText(os.path.normpath(path[0]))
 
@@ -142,7 +142,7 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         """ Get a working directory for pemu from the file system
         """
         
-        fb = fileBrowser(translate('UiConfig_PreferencesPemu', 'Local Pemu working directory'))
+        fb = fileBrowser(translate('UiConfig_PreferencesPemu', 'Local Pemu working directory'), parent=globals.preferencesWindow)
         path = fb.getDir()
 
         if path:
@@ -152,7 +152,7 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         """ Get a default base flash from the file system
         """
 
-        path = fileBrowser('PIX Flash', directory=globals.GApp.systconf['general'].ios_path).getFile()
+        path = fileBrowser('PIX Flash', directory=globals.GApp.systconf['general'].ios_path, parent=globals.preferencesWindow).getFile()
         if path != None and path[0] != '':
             self.lineEditbaseFlash.clear()
             self.lineEditbaseFlash.setText(os.path.normpath(path[0]))

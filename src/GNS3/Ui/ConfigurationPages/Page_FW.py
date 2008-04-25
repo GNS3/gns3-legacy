@@ -43,7 +43,7 @@ class Page_FW(QtGui.QWidget, Ui_FWPage):
         """ Get a PIX image from the file system
         """
 
-        path = fileBrowser('PIX image',  directory=globals.GApp.systconf['general'].ios_path).getFile()
+        path = fileBrowser('PIX image',  directory=globals.GApp.systconf['general'].ios_path, parent=globals.nodeConfiguratorWindow).getFile()
         if path != None and path[0] != '':
             self.lineEditImage.clear()
             self.lineEditImage.setText(os.path.normpath(path[0]))

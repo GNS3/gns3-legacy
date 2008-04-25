@@ -104,9 +104,9 @@ class fileBrowser(object):
     """ fileBrowser class
     """
 
-    def __init__(self, caption, directory = '.', filter = 'All files (*.*)'):
+    def __init__(self, caption, directory = '.', filter = 'All files (*.*)', parent = None):
 
-        self.filedialog = QtGui.QFileDialog()
+        self.filedialog = QtGui.QFileDialog(parent)
         self.selected = QtCore.QString()
         self.caption = caption
         self.directory = directory

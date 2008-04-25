@@ -85,7 +85,7 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
         """ Open a file dialog for choosing the location of local hypervisor
         working directory
         """
-        fb = fileBrowser(translate('UiConfig_PreferencesCapture', 'Local capture working directory'))
+        fb = fileBrowser(translate('UiConfig_PreferencesCapture', 'Local capture working directory'), parent=globals.preferencesWindow)
         path = fb.getDir()
 
         if path:

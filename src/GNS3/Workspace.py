@@ -207,7 +207,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Extract all startup-config
         """
         
-        fb = fileBrowser(translate('Workspace', 'Directory to write startup-configs'))
+        fb = fileBrowser(translate('Workspace', 'Directory to write startup-configs'), parent=self)
         path = fb.getDir()
         if path:
             globals.GApp.workspace.projectConfigs = path
@@ -233,7 +233,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  \
                                         filter = 'PNG File (*.png);;GIF File (*.gif);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm);;PBM File (*.pbm);;PGM File (*.pgm);;PPM File (*.ppm);;All files (*.*)',
-                                        directory='.').getFile()
+                                        directory='.', parent=self).getFile()
         if path != None and path != '':
             pixmap_image = QtGui.QPixmap(path)
             if not pixmap_image.isNull():
@@ -555,7 +555,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             return
 
         (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter = 'NET file (*.net);;All files (*.*)',
-                                       directory=globals.GApp.systconf['general'].project_path).getFile()
+                                       directory=globals.GApp.systconf['general'].project_path, parent=self).getFile()
         if path != None:
             try:
                 if str(selected) == 'NET file (*.net)':
@@ -587,7 +587,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         fb = fileBrowser(translate("Workspace", "Save Project As"),
-                                filter='NET file (*.net);;All files (*.*)', directory=globals.GApp.systconf['general'].project_path)
+                                filter='NET file (*.net);;All files (*.*)', directory=globals.GApp.systconf['general'].project_path, parent=self)
         (path, selected) = fb.getSaveFile()
 
         if path != None and path != '':
