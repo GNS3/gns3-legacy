@@ -1,5 +1,18 @@
 CHANGELOG
 
+GNS3 0.5:
+
+ * Possibility to load .net files of other users (provided that there is a registered IOS image with the same model as the one used in the NET file).
+ * New detailed tooltips for nodes. 
+ * A minimalist wizard raised when the configuration file is empty.
+ * A button to insert a picture on the scene.
+ * Decorative node support for creating network diagrams.
+ * Ghostios is now supported on remote hypervisors.
+ * A symbol manager with library support (a howto to create a symbol library will be released).
+ * Z values can be changed for annotations and inserted pictures.
+ * Automatic load-balancing on external hypervisors (choose multiple external hypervisors when recording an IOS image).
+ * New option to bind the hypervisor manager with an address/name other than 'localhost': useful for labs which use local and remote hypervisors.
+
 GNS3 0.4:
 
  * Dynamic mode (no design/emulation modes).

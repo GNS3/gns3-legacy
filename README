@@ -21,9 +21,15 @@ on http://gpl.code.de/oswiki/GplcodedeApt and install "gns3" package.
 
 * MacOS X users:
 
+Method 1.
+
 1. Install the Apple Devs Tools (on your Mac OS X DvD or download it on ADC account).
 2. Download python 2.5.1 (or higher) for MacOS X on http://www.python.org/download/ and install it.
-3. Download qt-mac-opensource-4.3.3.dmg on http://trolltech.com/developer/downloads/qt/mac and install it.
+3. Download qt-mac-opensource-4.3.4.dmg on http://trolltech.com/developer/downloads/qt/mac and install it.
 4. Download SIP http://www.riverbankcomputing.com/Downloads/sip4/sip-4.7.tar.gz, compile and install it.
 5. Download PyQt hhttp://www.riverbankcomputing.com/Downloads/PyQt4/GPL/PyQt-mac-gpl-4.3.tar.gz, compile and install it.
 6. Start GNS3.
+
+Method 2.
+Download the DMG package, it includes two binary versions of Dynamips: one for OSX Tiger and the other for OSX Leopard.
+

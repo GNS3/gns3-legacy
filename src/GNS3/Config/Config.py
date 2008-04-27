@@ -272,8 +272,10 @@ class GNS_Conf(object):
             type =  str(c.get(cgroup + "/type", 'DecorativeNode'))
             object = DecorativeNode
             for (object_class, type_name) in SYMBOL_TYPES.iteritems():
-                if translate("nodesDock", type_name) == type:
+                if type_name == type:
                     object = object_class
+                    break
+
             normal_svg_file = str(c.get(cgroup + "/normal_svg_file", ':/icons/default.svg'))
             selected_svg_file = str(c.get(cgroup + "/selected_svg_file", ':/icons/default.svg'))
 

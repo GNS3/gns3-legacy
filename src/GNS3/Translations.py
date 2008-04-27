@@ -24,6 +24,7 @@ import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import debug
 import GNS3.Langs
+import __main__
 
 class Translator(object):
 
@@ -39,7 +40,7 @@ class Translator(object):
 
         # Add i18n dirs depending on platform.
         if sys.platform[:3] == "win":
-            self.__i18n_dirs = [os.path.dirname(os.path.abspath(GNS3.Langs.__file__))]
+            self.__i18n_dirs = [os.path.dirname(os.path.abspath(GNS3.Langs.__file__)), os.path.dirname(os.path.abspath(__main__.__file__))]
             if os.environ.has_key("APPDATA"):
                 self.__i18n_dirs.append(os.environ["APPDATA"] + "\\gns3\\Langs")
             else:
@@ -55,8 +56,8 @@ class Translator(object):
                 pass
 
         else:
-            
-            self.__i18n_dirs = [os.path.dirname(os.path.abspath(GNS3.Langs.__file__))]
+
+            self.__i18n_dirs = [os.path.dirname(os.path.abspath(GNS3.Langs.__file__)), os.path.dirname(os.path.abspath(__main__.__file__))]
             if os.environ.has_key("HOME"):
                 self.__i18n_dirs.append(os.environ["HOME"] + "/.gns3/Langs")
             else:

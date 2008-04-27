@@ -19,5 +19,7 @@ CORE FEATURES:
  * A standalone server to automatically configure GNS3 clients in order to use remote hypervisors (intended for learning environments, schools/universities, where IOS image cannot be distributed) 
  * JunOS olive support.
  * NIO multicast support.
+ * Show NIO activity
+ * Dynamips QinQ integration.
  * Add an option to clean the startup-config (need to see this with Chris).
 

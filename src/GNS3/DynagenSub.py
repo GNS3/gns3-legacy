@@ -82,16 +82,17 @@ class DynagenSub(Dynagen):
                         device = server[subsection]
                         # check if the PIX image is accessible, if not find an alternative image
                         if device.name in DEVICETUPLE:
-                            if globals.GApp.systconf['pemu'].default_pix_image:
-                                image_name = globals.GApp.systconf['pemu'].default_pix_image
-                            else:
-                                print unicode(translate("DynagenSub", "PIX image %s cannot be found and cannot find an alternative image")) \
-                                % (globals.GApp.systconf['pemu'].default_pix_image)
-                                continue
-
-                            print unicode(translate("DynagenSub", "Local PIX image %s cannot be found, use image %s instead")) \
-                            % (unicode(device['image']), image_name)
-                            device['image'] = image_name
+                            if not os.access(device['image'], os.F_OK):
+                                if globals.GApp.systconf['pemu'].default_pix_image:
+                                    image_name = globals.GApp.systconf['pemu'].default_pix_image
+                                else:
+                                    print unicode(translate("DynagenSub", "PIX image %s cannot be found and cannot find an alternative image")) \
+                                    % (globals.GApp.systconf['pemu'].default_pix_image)
+                                    continue
+    
+                                print unicode(translate("DynagenSub", "Local PIX image %s cannot be found, use image %s instead")) \
+                                % (unicode(device['image']), image_name)
+                                device['image'] = image_name
             else:
                 server.host = server.name
                 controlPort = None
