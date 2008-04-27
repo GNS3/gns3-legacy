@@ -40,7 +40,7 @@ class Translator(object):
 
         # Add i18n dirs depending on platform.
         if sys.platform[:3] == "win":
-            self.__i18n_dirs = [os.path.dirname(os.path.abspath(GNS3.Langs.__file__)), os.path.dirname(os.path.abspath(__main__.__file__))]
+            self.__i18n_dirs = [os.path.dirname(os.path.abspath(GNS3.Langs.__file__))]
             if os.environ.has_key("APPDATA"):
                 self.__i18n_dirs.append(os.environ["APPDATA"] + "\\gns3\\Langs")
             else:
