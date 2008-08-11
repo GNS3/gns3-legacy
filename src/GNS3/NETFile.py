@@ -149,8 +149,10 @@ class NETFile(object):
                 symbol_name = dynamips_config['symbol']
 
         # symbol name not found, use default one
+        default_symbol = False
         if not symbol_name or not globals.GApp.scene.renders.has_key(symbol_name):
             symbol_name = default_symbol_name
+            default_symbol = True
 
         for item in SYMBOLS:
             if item['name'] == symbol_name:
@@ -158,6 +160,8 @@ class NETFile(object):
                 node = item['object'](renders['normal'], renders['selected'])
                 node.set_hostname(device.name)
                 node.type = item['name']
+                if not default_symbol:
+                    node.default_symbol = False
                 if x == None:
                     x = random.uniform(-200, 200)
                 if y == None:
@@ -301,13 +305,17 @@ class NETFile(object):
                 except ValueError:
                     continue
                 if devtype.lower() == 'cloud':
+                    default_symbol = True
                     if gns3data[section].has_key('symbol') and globals.GApp.scene.renders.has_key(gns3data[section]['symbol']):
                         symbol = gns3data[section]['symbol']
+                        default_symbol = False
                     else:
                         symbol = 'Cloud'
                     renders = globals.GApp.scene.renders[symbol]
                     cloud = Cloud(renders['normal'], renders['selected'])
                     cloud.type = symbol
+                    if not default_symbol:
+                        cloud.default_symbol = False
                     cloud.hostname = unicode(hostname)
                     if gns3data[section].has_key('x') and gns3data[section].has_key('y') \
                         and gns3data[section]['x'] != None and gns3data[section]['y'] != None:
@@ -821,12 +829,12 @@ class NETFile(object):
             if globals.GApp.workspace.projectConfigs:
                 try:
                     config['configs'] = relpath(globals.GApp.workspace.projectConfigs, os.path.dirname(path))
-                except OSError:
+                except:
                     config['configs'] = globals.GApp.workspace.projectConfigs
             if globals.GApp.workspace.projectWorkdir:
                 try:
                     config['workdir'] = relpath(globals.GApp.workspace.projectWorkdir, os.path.dirname(path))
-                except OSError:
+                except:
                     config['workdir'] = globals.GApp.workspace.projectWorkdir
 
         # register matrix data

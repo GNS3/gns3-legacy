@@ -60,9 +60,9 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
         # Default path to working directory
         if self.conf.pemuwrapper_workdir == '':
             if os.environ.has_key("TEMP"):
-                self.conf.pemuwrapper_workdir = unicode(os.environ["TEMP"])
+                self.conf.pemuwrapper_workdir = unicode(os.environ["TEMP"], errors='replace')
             elif os.environ.has_key("TMP"):
-                self.conf.pemuwrapper_workdir = unicode(os.environ["TMP"])
+                self.conf.pemuwrapper_workdir = unicode(os.environ["TMP"], errors='replace')
             else:
                 self.conf.pemuwrapper_workdir = unicode('/tmp')
 

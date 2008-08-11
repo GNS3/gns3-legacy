@@ -4,22 +4,20 @@ GUI FEATURES:
 
  * Button to show interface names on the scene (without any collision).
  * Multilink drawing between 2 routers.
- * Avoid collision of the status points with parent nodes (only for serial links).
  * Paint ovals, rectangle etc. with different colors and resizing support.
  * Inserted images resizing support.
  * Provide a way to change text fonts and orientation.
- * Align on a grid option for the scene.
+ * Snapshot button.
 
 CORE FEATURES:
 
  * Add a host symbol which directly use a NIO generic ethernet for its interfaces.
  * Simulated host support (based on LWIP).
- * Copy/Paste of a node.
  * Add GUI options for filters (monitor etc ...).
- * A standalone server to automatically configure GNS3 clients in order to use remote hypervisors (intended for learning environments, schools/universities, where IOS image cannot be distributed) 
- * JunOS olive support.
+ * A standalone server to automatically configure GNS3 clients in order to use remote hypervisors (intended for learning environments, schools/universities, where IOS images cannot be distributed) 
  * NIO multicast support.
- * Show NIO activity
+ * Show NIO activity.
  * Dynamips QinQ integration.
- * Add an option to clean the startup-config (need to see this with Chris).
+
+
 

@@ -79,17 +79,17 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
 
         if self.conf.project_path == '':
             if os.environ.has_key("TEMP"):
-                self.conf.project_path = unicode(os.environ["TEMP"])
+                self.conf.project_path = unicode(os.environ["TEMP"], errors='replace')
             elif os.environ.has_key("TMP"):
-                self.conf.project_path = unicode(os.environ["TMP"])
+                self.conf.project_path = unicode(os.environ["TMP"],  errors='replace')
             else:
                 self.conf.project_path = unicode('/tmp')
 
         if self.conf.ios_path == '':
             if os.environ.has_key("TEMP"):
-                self.conf.ios_path = unicode(os.environ["TEMP"])
+                self.conf.ios_path = unicode(os.environ["TEMP"], errors='replace')
             elif os.environ.has_key("TMP"):
-                self.conf.ios_path = unicode(os.environ["TMP"])
+                self.conf.ios_path = unicode(os.environ["TMP"],  errors='replace')
             else:
                 self.conf.ios_path = unicode('/tmp')
 
