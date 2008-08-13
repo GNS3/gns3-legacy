@@ -97,6 +97,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_Clear, QtCore.SIGNAL('triggered()'), self.__action_Clear)
         self.connect(self.action_Extract_config, QtCore.SIGNAL('triggered()'), self.__action_ExtractConfig)
         self.connect(self.action_InsertImage, QtCore.SIGNAL('triggered()'), self.__action_InsertImage)
+        self.connect(self.action_DrawRectangle, QtCore.SIGNAL('triggered()'), self.__action_DrawRectangle)
+        self.connect(self.action_DrawEllipse, QtCore.SIGNAL('triggered()'), self.__action_DrawEllipse)
 
     def __createMenus(self):
         """ Add own menu actions, and create new sub-menu
@@ -431,6 +433,28 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         QtGui.QDesktopServices.openUrl(QtCore.QUrl("http://www.gns3.net/documentation"))
 
+    def __action_DrawRectangle(self):
+        """ Draw a rectangle on the scene
+        """
+        
+        if not self.action_DrawRectangle.isChecked():
+            globals.drawingRectangle = False
+            globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
+        else:
+            globals.drawingRectangle = True
+            globals.GApp.scene.setCursor(QtCore.Qt.PointingHandCursor)
+
+    def __action_DrawEllipse(self):
+        """ Draw an ellipse on the scene
+        """
+        
+        if not self.action_DrawEllipse.isChecked():
+            globals.drawingEllipse = False
+            globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
+        else:
+            globals.drawingEllipse = True
+            globals.GApp.scene.setCursor(QtCore.Qt.PointingHandCursor)
+
     def __action_About(self):
         """ Show GNS3 about dialog
         """
@@ -495,8 +519,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             if self.projectConfigs and not os.access(self.projectConfigs, os.F_OK):
                 try:
                     os.mkdir(self.projectConfigs)
-                except :
-                    print "Warning: cannot create directory: " + self.projectConfigs + ": " + strerror
+                except (OSError, IOError), e:
+                    print "Warning: cannot create directory: " + self.projectConfigs + ": " + e.strerror
             if len(globals.GApp.dynagen.devices):
                 reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"),
                                                    translate("Workspace", "Do you want to apply the project settings to the current topology?"), QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)

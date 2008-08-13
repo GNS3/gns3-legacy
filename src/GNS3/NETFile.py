@@ -29,6 +29,9 @@ from GNS3.Utils import translate, debug, error, relpath
 from PyQt4 import QtGui, QtCore
 from GNS3.Annotation import Annotation
 from GNS3.Pixmap import Pixmap
+from GNS3.ShapeItem import AbstractShapeItem
+from GNS3.ShapeItem import Rectangle
+from GNS3.ShapeItem import Ellipse
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Objects import iosImageConf, hypervisorConf
 from GNS3.Node.AbstractNode import AbstractNode
@@ -351,7 +354,46 @@ class NETFile(object):
                     note_object.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
                     if gns3data[section].has_key('z'):
                         note_object.setZValue(float(gns3data[section]['z']))
+                    if gns3data[section].has_key('font'):
+                        font = QtGui.QFont()
+                        if font.fromString(gns3data[section]['font']):
+                            note_object.setFont(font)
+                        else:
+                            print unicode(translate("NETFile", "Cannot load font: %s")) % gns3data[section]['font']
+                    if gns3data[section].has_key('rotate'):
+                        note_object.rotation = int(gns3data[section]['rotate'])
+                        note_object.rotate(note_object.rotation)
+                    if gns3data[section].has_key('color'):
+                        note_object.setDefaultTextColor(QtGui.QColor(gns3data[section]['color'][1:-1]))
                     globals.GApp.topology.addItem(note_object)
+                    
+                if devtype.lower() == 'shape':
+                    if gns3data[section]['type'] == 'rectangle':
+                        size = QtCore.QSizeF(float(gns3data[section]['width']), float(gns3data[section]['height']))
+                        pos = QtCore.QPointF(float(gns3data[section]['x']), float(gns3data[section]['y']))
+                        shape_object = Rectangle(pos, size)
+                    else:
+                        size = QtCore.QSizeF(float(gns3data[section]['width']), float(gns3data[section]['height']))
+                        pos = QtCore.QPointF(float(gns3data[section]['x']), float(gns3data[section]['y']))
+                        shape_object = Ellipse(pos, size)
+    
+                    if gns3data[section].has_key('z'):
+                        shape_object.setZValue(float(gns3data[section]['z']))
+                    if gns3data[section].has_key('rotate'):
+                        shape_object.rotation = int(gns3data[section]['rotate'])
+                        shape_object.rotate(shape_object.rotation)
+                    if gns3data[section].has_key('fill_color'):
+                        brush = QtGui.QBrush(QtGui.QColor(gns3data[section]['fill_color'][1:-1]))
+                        shape_object.setBrush(brush)
+                    pen = QtGui.QPen(QtCore.Qt.black, 2, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin)
+                    if gns3data[section].has_key('border_color'):
+                        pen.setColor(QtGui.QColor(gns3data[section]['border_color'][1:-1]))
+                    if gns3data[section].has_key('border_width'):
+                        pen.setWidth(int(gns3data[section]['border_width']))
+                    if gns3data[section].has_key('border_style'):
+                        pen.setStyle(QtCore.Qt.PenStyle(int(gns3data[section]['border_style'])))
+                    shape_object.setPen(pen)
+                    globals.GApp.topology.addItem(shape_object)
                     
                 if devtype.lower() == 'pixmap':
                     pixmap_path = unicode(gns3data[section]['path'])
@@ -733,6 +775,7 @@ class NETFile(object):
                 self.export_router_config(device)
 
         note_nb = 1
+        shape_nb = 1
         pix_nb = 1
         for item in globals.GApp.topology.items():
             # record clouds
@@ -768,10 +811,53 @@ class NETFile(object):
                 config['text'] = unicode(item.toPlainText()).replace("\n", "\\n")
                 config['x'] = item.x()
                 config['y'] = item.y()
+                
+                if item.font() != QtGui.QFont("TypeWriter", 10, QtGui.QFont.Bold):
+                    config['font'] = str(item.font().toString())
+                if item.rotate:
+                    config['rotate'] = item.rotation
+                if item.defaultTextColor() != QtCore.Qt.black:
+                    config['color'] = '"' + str(item.defaultTextColor().name()) + '"'
+
                 zvalue = item.zValue()
                 if zvalue > 0:
                     config['z'] = zvalue
                 note_nb += 1
+                
+            # record shape items
+            elif isinstance(item, AbstractShapeItem):
+                if not self.dynagen.running_config.has_key('GNS3-DATA'):
+                    self.dynagen.running_config['GNS3-DATA'] = {}
+                self.dynagen.running_config['GNS3-DATA']['SHAPE ' + str(shape_nb)] = {}
+                config = self.dynagen.running_config['GNS3-DATA']['SHAPE ' + str(shape_nb)] 
+                if isinstance(item, QtGui.QGraphicsRectItem):
+                    config['type'] = 'rectangle'
+                else:
+                    config['type'] = 'ellipse'
+
+                config['x'] = item.x()
+                config['y'] = item.y()
+                rect = item.rect()
+                config['width'] = rect.width()
+                config['height'] = rect.height()
+
+                brush = item.brush()
+                if brush.style() != QtCore.Qt.NoBrush:
+                    config['fill_color'] = '"' + str(brush.color().name()) + '"'
+                if item.rotate:
+                    config['rotate'] = item.rotation
+                pen = item.pen()
+                if pen.color() != QtCore.Qt.black:
+                    config['border_color'] = '"' + str(pen.color().name()) + '"'
+                if pen.width() != 2:
+                   config['border_width'] = pen.width()
+                if pen.style() != QtCore.Qt.SolidLine:
+                    config['border_style'] = pen.style()
+                zvalue = item.zValue()
+                if zvalue > 0:
+                    config['z'] = zvalue
+                shape_nb += 1
+
             # record inserted images
             elif isinstance(item, Pixmap):
                 if not self.dynagen.running_config.has_key('GNS3-DATA'):

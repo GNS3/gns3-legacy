@@ -21,6 +21,8 @@
 
 addingLinkFlag = False
 addingNote = False
+drawingRectangle = False
+drawingEllipse = False
 nodeConfiguratorWindow = None
 preferencesWindow = None
 hypervisor_baseport = 7200

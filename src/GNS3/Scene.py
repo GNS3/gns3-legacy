@@ -26,6 +26,10 @@ from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Topology import Topology
 from GNS3.Utils import translate, debug
 from GNS3.Annotation import Annotation
+from GNS3.ShapeItem import AbstractShapeItem
+from GNS3.ShapeItem import Rectangle
+from GNS3.ShapeItem import Ellipse
+from GNS3.StyleDialog import StyleDialog
 from GNS3.Pixmap import Pixmap
 from GNS3.NodeConfigurator import NodeConfigurator
 from GNS3.Node.AbstractNode import AbstractNode
@@ -99,7 +103,7 @@ class Scene(QtGui.QGraphicsView):
 
         menu = QtGui.QMenu()
 
-        instances = map(lambda item: not isinstance(item, Annotation) and not isinstance(item, Pixmap), items)
+        instances = map(lambda item: not isinstance(item, Annotation) and not isinstance(item, Pixmap) and not  isinstance(item, AbstractShapeItem), items)
         if True in instances:
 
             # Action: Configure (Configure the node)
@@ -172,7 +176,7 @@ class Scene(QtGui.QGraphicsView):
             menu.addAction(idlepcAct)
             menu.addAction(StartupConfigAct)
 
-        instances = map(lambda item: isinstance(item, Annotation) or isinstance(item, Pixmap), items)
+        instances = map(lambda item: isinstance(item, Annotation) or isinstance(item, Pixmap) or isinstance(item, AbstractShapeItem), items)
         if True in instances:
         
             # Action: Lower Z value
@@ -187,6 +191,16 @@ class Scene(QtGui.QGraphicsView):
 
             menu.addAction(lowerZvalueAct)
             menu.addAction(raiseZvalueAct)
+
+        instances = map(lambda item: isinstance(item, Annotation) or isinstance(item, AbstractShapeItem), items)
+        if True in instances:
+        
+            # Action: Style
+            styleAct = QtGui.QAction(translate('Scene', 'Style'), menu)
+            styleAct.setIcon(QtGui.QIcon(':/icons/drawing.svg'))
+            self.connect(styleAct, QtCore.SIGNAL('triggered()'), self.slotStyle)
+
+            menu.addAction(styleAct)
             
         # Action: Delete (Delete the node)
         deleteAct = QtGui.QAction(translate('Scene', 'Delete'), menu)
@@ -216,6 +230,46 @@ class Scene(QtGui.QGraphicsView):
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
         result = globals.GApp.dynagen.devices[router.hostname].idleprop(lib.IDLEPROPGET)
         return result
+
+    def slotStyle(self):
+        """ Change the style of an annotation or a shape item
+        """
+        
+        style = StyleDialog()
+        style.setModal(True)
+        if self.__topology.selectedItems():
+            firstItem = self.__topology.selectedItems()[0]
+            if isinstance(firstItem, Annotation):
+                style.loadFontValues(firstItem.defaultTextColor(), firstItem.font(), firstItem.rotation)
+            elif isinstance(firstItem, AbstractShapeItem):
+                pen = firstItem.pen()
+                brush = firstItem.brush()
+                if brush.style() == QtCore.Qt.NoBrush:
+                    color = QtCore.Qt.transparent
+                else:
+                    color = brush.color()
+                style.loadShapeItemValues(color, pen.color(), pen.width(), pen.style(), firstItem.rotation)
+        style.show()
+        if style.exec_():
+            for item in self.__topology.selectedItems():
+                if isinstance(item, Annotation):
+                    item.setDefaultTextColor(style.color)
+                    item.setFont(style.font)
+                    # reinitialize the rotation
+                    if item.rotation:
+                        item.rotate(-item.rotation)
+                    item.rotation = style.rotation
+                    item.rotate(item.rotation)
+                elif isinstance(item, AbstractShapeItem):
+                    pen = QtGui.QPen(style.borderColor, style.borderWidth, style.borderStyle, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin)
+                    item.setPen(pen)
+                    brush = QtGui.QBrush(style.color)
+                    item.setBrush(brush)
+                    # reinitialize the rotation
+                    if item.rotation:
+                        item.rotate(-item.rotation)
+                    item.rotation = style.rotation
+                    item.rotate(item.rotation)
 
     def slotIdlepc(self):
         """ Compute an IDLE PC
@@ -325,7 +379,7 @@ class Scene(QtGui.QGraphicsView):
 
         ok_to_delete_node = True
         for item in self.__topology.selectedItems():
-            if not isinstance(item, Annotation) and not isinstance(item, Pixmap):
+            if not isinstance(item, Annotation) and not isinstance(item, Pixmap) and not isinstance(item, AbstractShapeItem):
                 for link in item.getEdgeList().copy():
                     if self.__topology.deleteLink(link) == False:
                         if ok_to_delete_node:
@@ -341,7 +395,7 @@ class Scene(QtGui.QGraphicsView):
         """
     
         for item in self.__topology.selectedItems():
-            if isinstance(item, Annotation) or isinstance(item, Pixmap):
+            if isinstance(item, Annotation) or isinstance(item, Pixmap) or isinstance(item, AbstractShapeItem):
                 zvalue = item.zValue()
                 if zvalue > 0:
                     item.setZValue(zvalue - 1)
@@ -351,7 +405,7 @@ class Scene(QtGui.QGraphicsView):
         """
     
         for item in self.__topology.selectedItems():
-            if isinstance(item, Annotation) or isinstance(item, Pixmap):
+            if isinstance(item, Annotation) or isinstance(item, Pixmap) or isinstance(item, AbstractShapeItem):
                 zvalue = item.zValue()
                 item.setZValue(zvalue + 1)
 
@@ -569,6 +623,20 @@ class Scene(QtGui.QGraphicsView):
             globals.GApp.workspace.action_AddNote.setChecked(False)
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
             globals.addingNote = False
+        elif event.button() == QtCore.Qt.LeftButton and globals.drawingRectangle:
+            size = QtCore.QSizeF(200, 100)
+            item = Rectangle(self.mapToScene(event.pos()),  size)
+            globals.GApp.topology.addItem(item)
+            globals.GApp.workspace.action_DrawRectangle.setChecked(False)
+            globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
+            globals.drawingRectangle = False
+        elif event.button() == QtCore.Qt.LeftButton and globals.drawingEllipse:
+            size = QtCore.QSizeF(200, 200)
+            item = Ellipse(self.mapToScene(event.pos()),  size)
+            globals.GApp.topology.addItem(item)
+            globals.GApp.workspace.action_DrawEllipse.setChecked(False)
+            globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
+            globals.drawingEllipse = False
         else:
             QtGui.QGraphicsView.mousePressEvent(self, event)
 

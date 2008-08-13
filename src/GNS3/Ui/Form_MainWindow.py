@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Fri Apr 25 16:21:28 2008
+# Created: Wed Aug 13 16:32:09 2008
 #      by: PyQt4 UI code generator 4.3.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -155,6 +155,10 @@ class Ui_MainWindow(object):
         self.toolBar.setObjectName("toolBar")
         MainWindow.addToolBar(QtCore.Qt.TopToolBarArea,self.toolBar)
 
+        self.toolBar_2 = QtGui.QToolBar(MainWindow)
+        self.toolBar_2.setObjectName("toolBar_2")
+        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea,self.toolBar_2)
+
         self.action_About = QtGui.QAction(MainWindow)
         self.action_About.setMenuRole(QtGui.QAction.AboutRole)
         self.action_About.setObjectName("action_About")
@@ -273,6 +277,16 @@ class Ui_MainWindow(object):
         self.action_Symbol_Manager = QtGui.QAction(MainWindow)
         self.action_Symbol_Manager.setIcon(QtGui.QIcon(":/icons/node_conception.svg"))
         self.action_Symbol_Manager.setObjectName("action_Symbol_Manager")
+
+        self.action_DrawRectangle = QtGui.QAction(MainWindow)
+        self.action_DrawRectangle.setCheckable(True)
+        self.action_DrawRectangle.setIcon(QtGui.QIcon(":/icons/rectangle.svg"))
+        self.action_DrawRectangle.setObjectName("action_DrawRectangle")
+
+        self.action_DrawEllipse = QtGui.QAction(MainWindow)
+        self.action_DrawEllipse.setCheckable(True)
+        self.action_DrawEllipse.setIcon(QtGui.QIcon(":/icons/ellipse.svg"))
+        self.action_DrawEllipse.setObjectName("action_DrawEllipse")
         self.menu_Edit.addAction(self.action_Copy)
         self.menu_Edit.addAction(self.action_Paste)
         self.menu_Edit.addSeparator()
@@ -312,6 +326,8 @@ class Ui_MainWindow(object):
         self.toolBar_General.addAction(self.action_AddNote)
         self.toolBar_General.addAction(self.action_ShowHostnames)
         self.toolBar_General.addAction(self.action_InsertImage)
+        self.toolBar_General.addAction(self.action_DrawRectangle)
+        self.toolBar_General.addAction(self.action_DrawEllipse)
         self.toolBar_Design.addAction(self.action_Add_link)
         self.toolBar_Emulation.addAction(self.action_Extract_config)
         self.toolBar_Emulation.addAction(self.action_TelnetAll)
@@ -338,6 +354,7 @@ class Ui_MainWindow(object):
         self.treeWidget_TopologySummary.headerItem().setText(0,QtGui.QApplication.translate("MainWindow", "1", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidget_Console.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Console", None, QtGui.QApplication.UnicodeUTF8))
         self.toolBar.setWindowTitle(QtGui.QApplication.translate("MainWindow", "toolBar", None, QtGui.QApplication.UnicodeUTF8))
+        self.toolBar_2.setWindowTitle(QtGui.QApplication.translate("MainWindow", "toolBar_2", None, QtGui.QApplication.UnicodeUTF8))
         self.action_About.setText(QtGui.QApplication.translate("MainWindow", "&About", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setText(QtGui.QApplication.translate("MainWindow", "&Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))
@@ -395,6 +412,8 @@ class Ui_MainWindow(object):
         self.action_InsertImage.setText(QtGui.QApplication.translate("MainWindow", "Insert a picture", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Symbol_Manager.setText(QtGui.QApplication.translate("MainWindow", "&Symbol Manager", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Symbol_Manager.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+S", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_DrawRectangle.setText(QtGui.QApplication.translate("MainWindow", "Draw a rectangle", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_DrawEllipse.setText(QtGui.QApplication.translate("MainWindow", "Draw an ellipse", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.Console import Console
 from GNS3.Ui.Widget_topologySummaryDock import topologySummaryDock

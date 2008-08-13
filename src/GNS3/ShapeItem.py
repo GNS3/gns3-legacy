@@ -1,0 +1,157 @@
+# -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4:
+#
+# Copyright (C) 2007-2008 GNS3 Dev Team
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 2 as
+# published by the Free Software Foundation;
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+#
+# Contact: contact@gns3.net
+#
+
+from PyQt4 import QtGui, QtCore
+import GNS3.Globals as globals
+
+class AbstractShapeItem(object):
+    """ Abstract class to draw shapes on the scene
+    """
+
+    def __init__(self):
+
+        self.setFlags(QtGui.QGraphicsItem.ItemIsMovable |  QtGui.QGraphicsItem.ItemIsFocusable | QtGui.QGraphicsItem.ItemIsSelectable)
+        self.setAcceptsHoverEvents(True)
+        self.setZValue(0)
+        self.border = 5
+        self.rotation = 0
+
+    def mousePressEvent(self, event):
+        
+        self.update()
+        if event.pos().x() > (self.rect().right() - self.border) :
+            self.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
+            self.edge = 'right'
+
+        elif event.pos().x() < (self.rect().left() + self.border) :
+            self.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
+            self.edge = 'left'
+
+        elif event.pos().y() < (self.rect().top() + self.border) :
+            self.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
+            self.edge = 'top'
+
+        elif event.pos().y() > (self.rect().bottom() - self.border) :
+            self.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
+            self.edge = 'bottom'
+
+        QtGui.QGraphicsItem.mousePressEvent(self, event)
+        
+    def mouseReleaseEvent(self, event):
+    
+        self.update()
+        self.setFlag(QtGui.QGraphicsItem.ItemIsMovable)
+        self.edge = None
+        QtGui.QGraphicsItem.mouseReleaseEvent(self, event)
+        
+    def mouseMoveEvent(self, event):
+        
+        self.update()
+        if hasattr(self, 'edge') and self.edge:
+            r = self.rect()
+            scenePos = event.scenePos()
+
+            if self.edge == 'top':
+                diff = self.y() - scenePos.y()
+                if r.height() - diff > 0:
+                    self.setPos(self.x(), scenePos.y())
+                    self.setRect(0, 0, self.rect().width(), self.rect().height() + diff)
+                else:
+                    self.edge = 'bottom'
+                    self.setPos(self.x(), self.y() + self.rect().height())
+                    self.setRect(0, 0, self.rect().width(), diff - self.rect().height())
+
+            elif self.edge == 'left':
+                diff = self.x() - scenePos.x()
+                if r.width() - diff > 0:
+                    self.setPos(scenePos.x(), self.y())
+                    self.setRect(0, 0, r.width() + diff, self.rect().height())
+                else:
+                    self.edge = "right"
+                    self.setPos(self.x() + self.rect().width(), self.y())
+                    self.setRect(0, 0, diff - self.rect().width(), self.rect().height())
+
+            elif self.edge == 'bottom':
+                if r.height() > 0:
+                    pos = self.mapFromScene(scenePos)
+                    self.setRect(0, 0, self.rect().width(), pos.y())
+                else:
+                    self.setRect(0, 0, self.rect().width(), abs(scenePos.y() - self.y()))
+                    self.setPos(self.x(), scenePos.y())
+                    self.edge = 'top'
+            elif self.edge == 'right':
+                if r.width() > 0:
+                    pos = self.mapFromScene(scenePos)
+                    self.setRect(0, 0, pos.x(), self.rect().height())
+                else:
+                    self.setRect(0,0, abs(scenePos.x() - self.x()), self.rect().height())
+                    self.setPos(scenePos.x(), self.y())
+                    self.edge = 'left'
+
+        QtGui.QGraphicsItem.mouseMoveEvent(self, event)
+        
+    def hoverMoveEvent(self, event):
+
+
+        if event.pos().x() > (self.rect().right() - self.border) :
+            globals.GApp.scene.setCursor(QtCore.Qt.SizeHorCursor)
+
+        elif event.pos().x() < (self.rect().left() + self.border) :
+            globals.GApp.scene.setCursor(QtCore.Qt.SizeHorCursor)
+
+        elif event.pos().y() < (self.rect().top() + self.border) :
+            globals.GApp.scene.setCursor(QtCore.Qt.SizeVerCursor)
+
+        elif event.pos().y() > (self.rect().bottom() - self.border) :
+            globals.GApp.scene.setCursor(QtCore.Qt.SizeVerCursor)
+
+        else:
+            globals.GApp.scene.setCursor(QtCore.Qt.SizeAllCursor)
+
+    def hoverLeaveEvent(self, event):
+    
+        globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
+            
+class Rectangle(AbstractShapeItem, QtGui.QGraphicsRectItem):
+    """ Class to draw a rectangle on the scene
+    """
+    
+    def __init__(self, pos, size):
+
+        QtGui.QGraphicsRectItem.__init__(self, 0, 0, size.width(), size.height())
+        AbstractShapeItem.__init__(self)
+        self.setPos(pos)
+        pen = QtGui.QPen(QtCore.Qt.black, 2, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin)
+        self.setPen(pen)
+        
+class Ellipse(AbstractShapeItem, QtGui.QGraphicsEllipseItem):
+    """ Class to draw an ellipse on the scene
+    """
+    
+    def __init__(self, pos, size):
+
+        QtGui.QGraphicsEllipseItem.__init__(self, 0, 0, size.width(), size.height())
+        AbstractShapeItem.__init__(self)
+        self.setPos(pos)
+        pen = QtGui.QPen(QtCore.Qt.black, 2, QtCore.Qt.DashLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin)
+        self.setPen(pen)
+
+

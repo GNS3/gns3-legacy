@@ -4,9 +4,6 @@ GUI FEATURES:
 
  * Button to show interface names on the scene (without any collision).
  * Multilink drawing between 2 routers.
- * Paint ovals, rectangle etc. with different colors and resizing support.
- * Inserted images resizing support.
- * Provide a way to change text fonts and orientation.
  * Snapshot button.
 
 CORE FEATURES:
