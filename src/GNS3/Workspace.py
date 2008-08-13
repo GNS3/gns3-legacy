@@ -66,6 +66,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.flg_showHostname = True
         self.action_ShowHostnames.setText(translate('Workspace', 'Hide hostnames'))
         self.action_ShowHostnames.setChecked(True)
+        
+        # By default don't show interface names
+        self.flg_showInterfaceNames = False
 
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)
@@ -76,6 +79,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_IOS_images, QtCore.SIGNAL('triggered()'), self.__action_IOSImages)
         self.connect(self.action_Symbol_Manager, QtCore.SIGNAL('triggered()'), self.__action_Symbol_Manager)
         self.connect(self.action_ShowHostnames, QtCore.SIGNAL('triggered()'), self.__action_ShowHostnames)
+        self.connect(self.action_ShowinterfaceNames, QtCore.SIGNAL('triggered()'), self.__action_ShowInterfaceNames)
         self.connect(self.action_ZoomIn, QtCore.SIGNAL('triggered()'), self.__action_ZoomIn)
         self.connect(self.action_ZoomOut, QtCore.SIGNAL('triggered()'), self.__action_ZoomOut)
         self.connect(self.action_ZoomReset, QtCore.SIGNAL('triggered()'), self.__action_ZoomReset)
@@ -356,6 +360,21 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.action_ShowHostnames.setText(translate('Workspace', 'Show hostnames'))
             for node in globals.GApp.topology.nodes.itervalues():
                 node.removeHostname()
+                
+    def __action_ShowInterfaceNames(self):
+        """ Display/Hide interface names for all the nodes on the scene
+        """
+    
+        if self.flg_showInterfaceNames == False:
+            self.flg_showInterfaceNames = True
+            self.action_ShowinterfaceNames.setText(translate('Workspace', 'Hide interface names'))
+            for link in globals.GApp.topology.links:
+                link.adjust()
+        else:
+            self.flg_showInterfaceNames = False
+            self.action_ShowinterfaceNames.setText(translate('Workspace', 'Show interface names'))
+            for link in globals.GApp.topology.links:
+                link.adjust()
         
     def __action_TelnetAll(self):
         """ Telnet to all started IOS routers

@@ -25,9 +25,9 @@ class Annotation(QtGui.QGraphicsTextItem):
     """ Text annotation for the topology
     """
 
-    def __init__(self):
+    def __init__(self, parent=None):
 
-        QtGui.QGraphicsTextItem.__init__(self)
+        QtGui.QGraphicsTextItem.__init__(self, parent)
         self.setFont(QtGui.QFont("TypeWriter", 10, QtGui.QFont.Bold))
         self.setFlag(self.ItemIsMovable)
         self.setFlag(self.ItemIsSelectable)

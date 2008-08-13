@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
 #
-# Created: Wed Aug 13 16:32:10 2008
+# Created: Wed Aug 13 20:04:41 2008
 #      by: PyQt4 UI code generator 4.3.3
 #
 # WARNING! All changes made in this file will be lost!

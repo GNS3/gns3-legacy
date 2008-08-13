@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Wed Aug 13 16:32:09 2008
+# Created: Wed Aug 13 20:04:40 2008
 #      by: PyQt4 UI code generator 4.3.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -287,6 +287,11 @@ class Ui_MainWindow(object):
         self.action_DrawEllipse.setCheckable(True)
         self.action_DrawEllipse.setIcon(QtGui.QIcon(":/icons/ellipse.svg"))
         self.action_DrawEllipse.setObjectName("action_DrawEllipse")
+
+        self.action_ShowinterfaceNames = QtGui.QAction(MainWindow)
+        self.action_ShowinterfaceNames.setCheckable(True)
+        self.action_ShowinterfaceNames.setIcon(QtGui.QIcon(":/icons/show-interface-names.svg"))
+        self.action_ShowinterfaceNames.setObjectName("action_ShowinterfaceNames")
         self.menu_Edit.addAction(self.action_Copy)
         self.menu_Edit.addAction(self.action_Paste)
         self.menu_Edit.addSeparator()
@@ -325,6 +330,7 @@ class Ui_MainWindow(object):
         self.toolBar_General.addAction(self.action_Clear)
         self.toolBar_General.addAction(self.action_AddNote)
         self.toolBar_General.addAction(self.action_ShowHostnames)
+        self.toolBar_General.addAction(self.action_ShowinterfaceNames)
         self.toolBar_General.addAction(self.action_InsertImage)
         self.toolBar_General.addAction(self.action_DrawRectangle)
         self.toolBar_General.addAction(self.action_DrawEllipse)
@@ -414,6 +420,7 @@ class Ui_MainWindow(object):
         self.action_Symbol_Manager.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+S", None, QtGui.QApplication.UnicodeUTF8))
         self.action_DrawRectangle.setText(QtGui.QApplication.translate("MainWindow", "Draw a rectangle", None, QtGui.QApplication.UnicodeUTF8))
         self.action_DrawEllipse.setText(QtGui.QApplication.translate("MainWindow", "Draw an ellipse", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ShowinterfaceNames.setText(QtGui.QApplication.translate("MainWindow", "Show interface names", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.Console import Console
 from GNS3.Ui.Widget_topologySummaryDock import topologySummaryDock

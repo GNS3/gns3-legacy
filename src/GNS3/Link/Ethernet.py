@@ -21,6 +21,7 @@
 
 from PyQt4 import QtCore, QtGui
 from GNS3.Link.AbstractEdge import AbstractEdge
+from GNS3.Annotation import Annotation
 import GNS3.Globals as globals
 
 class Ethernet(AbstractEdge):
@@ -35,6 +36,8 @@ class Ethernet(AbstractEdge):
 
         AbstractEdge.__init__(self, sourceNode, sourceIf, destNode, destIf, Fake)
         self.setPen(QtGui.QPen(QtCore.Qt.black, self.penWidth, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
+        self.labelSouceIf = None
+        self.labelDestIf = None
 
     def adjust(self):
         """ Draw a line and compute offsets for status points
@@ -112,6 +115,19 @@ class Ethernet(AbstractEdge):
                 if not self.source.contains(self.mapFromScene(self.mapToItem(self.source, check_point))) and self.srcCollisionOffset > 0:
                     self.srcCollisionOffset -= 10
 
+            if globals.GApp.workspace.flg_showInterfaceNames:
+                if self.labelSouceIf == None:
+                    self.labelSouceIf = Annotation()
+                    self.labelSouceIf.setPlainText(self.srcIf)
+                    self.labelSouceIf.setPos(point1)
+                    self.labelSouceIf.setZValue(2)
+                    globals.GApp.topology.addItem(self.labelSouceIf)
+                if not self.labelSouceIf.isVisible():
+                    self.labelSouceIf.setPos(point1)
+                    self.labelSouceIf.show()
+            elif self.labelSouceIf and globals.GApp.workspace.flg_showInterfaceNames == False:
+                self.labelSouceIf.hide()
+
             painter.drawPoint(point1)
 
             if self.dest_interface_status == 'up':
@@ -134,5 +150,18 @@ class Ethernet(AbstractEdge):
                 check_point = QtCore.QPointF(self.dst - self.edgeOffset) - QtCore.QPointF((self.dx * (self.dstCollisionOffset - 20)) / self.length, (self.dy * (self.dstCollisionOffset - 20)) / self.length)
                 if not self.dest.contains(self.mapFromScene(self.mapToItem(self.dest,  check_point))) and self.dstCollisionOffset > 0:
                     self.dstCollisionOffset -= 10
+
+            if globals.GApp.workspace.flg_showInterfaceNames:
+                if self.labelDestIf  == None:
+                    self.labelDestIf = Annotation()
+                    self.labelDestIf.setPlainText(self.destIf)
+                    self.labelDestIf.setPos(point2)
+                    self.labelDestIf.setZValue(2)
+                    globals.GApp.topology.addItem(self.labelDestIf)
+                if not self.labelDestIf.isVisible():
+                    self.labelDestIf.setPos(point2)
+                    self.labelDestIf.show()
+            elif self.labelDestIf and globals.GApp.workspace.flg_showInterfaceNames == False:
+                self.labelDestIf.hide()
 
             painter.drawPoint(point2)

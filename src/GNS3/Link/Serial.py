@@ -22,6 +22,7 @@
 import math
 from PyQt4 import QtCore, QtGui
 from GNS3.Link.AbstractEdge import AbstractEdge
+from GNS3.Annotation import Annotation
 import GNS3.Globals as globals
 
 class Serial(AbstractEdge):
@@ -36,6 +37,8 @@ class Serial(AbstractEdge):
 
         AbstractEdge.__init__(self, sourceNode, sourceIf, destNode, destIf, Fake)
         self.setPen(QtGui.QPen(QtCore.Qt.red, self.penWidth, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
+        self.labelSouceIf = None
+        self.labelDestIf = None
 
     def adjust(self):
         """ Draw a serial link
@@ -104,6 +107,20 @@ class Serial(AbstractEdge):
                 color = QtCore.Qt.red
 
             painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
+            
+            if globals.GApp.workspace.flg_showInterfaceNames:
+                if self.labelSouceIf == None:
+                    self.labelSouceIf = Annotation()
+                    self.labelSouceIf.setPlainText(self.srcIf)
+                    self.labelSouceIf.setPos(self.src)
+                    self.labelSouceIf.setZValue(2)
+                    globals.GApp.topology.addItem(self.labelSouceIf)
+                if not self.labelSouceIf.isVisible():
+                    self.labelSouceIf.setPos(self.src)
+                    self.labelSouceIf.show()
+            elif self.labelSouceIf and globals.GApp.workspace.flg_showInterfaceNames == False:
+                self.labelSouceIf.hide()
+            
             painter.drawPoint(self.src)
 
             # destination point
@@ -115,4 +132,18 @@ class Serial(AbstractEdge):
                 color = QtCore.Qt.red
 
             painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
+            
+            if globals.GApp.workspace.flg_showInterfaceNames:
+                if self.labelDestIf  == None:
+                    self.labelDestIf = Annotation()
+                    self.labelDestIf.setPlainText(self.destIf)
+                    self.labelDestIf.setPos(self.dst)
+                    self.labelDestIf.setZValue(2)
+                    globals.GApp.topology.addItem(self.labelDestIf)
+                if not self.labelDestIf.isVisible():
+                    self.labelDestIf.setPos(self.dst)
+                    self.labelDestIf.show()
+            elif self.labelDestIf and globals.GApp.workspace.flg_showInterfaceNames == False:
+                self.labelDestIf.hide()
+            
             painter.drawPoint(self.dst)

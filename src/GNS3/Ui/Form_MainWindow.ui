@@ -135,6 +135,7 @@
    <addaction name="action_Clear" />
    <addaction name="action_AddNote" />
    <addaction name="action_ShowHostnames" />
+   <addaction name="action_ShowinterfaceNames" />
    <addaction name="action_InsertImage" />
    <addaction name="action_DrawRectangle" />
    <addaction name="action_DrawEllipse" />
@@ -700,6 +701,17 @@
    </property>
    <property name="text" >
     <string>Draw an ellipse</string>
+   </property>
+  </action>
+  <action name="action_ShowinterfaceNames" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/show-interface-names.svg</iconset>
+   </property>
+   <property name="text" >
+    <string>Show interface names</string>
    </property>
   </action>
  </widget>
