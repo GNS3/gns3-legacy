@@ -45,6 +45,8 @@ class DecorativeNode(AbstractNode):
         
         self.setCustomToolTip()
         self.config = None
+        
+        self.setZValue(2)
 
     def set_hostname(self, hostname):
         """ Set a hostname

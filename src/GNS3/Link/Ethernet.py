@@ -29,12 +29,12 @@ class Ethernet(AbstractEdge):
         Draw an Ethernet link
     """
  
-    def __init__(self, sourceNode, sourceIf, destNode, destIf, Fake = False):
+    def __init__(self, sourceNode, sourceIf, destNode, destIf, Fake = False, Multi = 0):
         """ sourceNode: MNode instance
             destNode: MNode instance
         """
 
-        AbstractEdge.__init__(self, sourceNode, sourceIf, destNode, destIf, Fake)
+        AbstractEdge.__init__(self, sourceNode, sourceIf, destNode, destIf, Fake, Multi)
         self.setPen(QtGui.QPen(QtCore.Qt.black, self.penWidth, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
         self.labelSouceIf = None
         self.labelDestIf = None

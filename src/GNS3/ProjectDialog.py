@@ -56,6 +56,10 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         projectFile = unicode(self.ProjectPath.text())
         if not projectFile:
             return (None, None, None)
+        
+        if os.environ.has_key("HOME"):
+            projectFile = projectFile.replace('$HOME', os.environ["HOME"])
+
         if projectFile.endswith('.net'):
             projectname =   os.path.basename(projectFile[:-4])
         else:

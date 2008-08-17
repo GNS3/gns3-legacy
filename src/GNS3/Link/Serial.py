@@ -30,12 +30,12 @@ class Serial(AbstractEdge):
         Draw a serial link
     """
 
-    def __init__(self, sourceNode, sourceIf, destNode, destIf, Fake = False):
+    def __init__(self, sourceNode, sourceIf, destNode, destIf, Fake = False, Multi = 0):
         """ sourceNode: Node instance
             destNode: Node instance
         """
 
-        AbstractEdge.__init__(self, sourceNode, sourceIf, destNode, destIf, Fake)
+        AbstractEdge.__init__(self, sourceNode, sourceIf, destNode, destIf, Fake, Multi)
         self.setPen(QtGui.QPen(QtCore.Qt.red, self.penWidth, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
         self.labelSouceIf = None
         self.labelDestIf = None
@@ -46,18 +46,17 @@ class Serial(AbstractEdge):
 
         AbstractEdge.adjust(self)
 
-        # get src->dest vector, and it angle
-        vector = QtCore.QPointF(self.dst.x() - self.src.x(), self.dst.y() - self.src.y())
-        vector_angle = math.atan2(vector.y(), vector.x())
+        # get src->dest angle
+        vector_angle = math.atan2(self.dy, self.dx)
 
-        # get mini-vector, and it angle
+        # get mini-vector, and its angle
         rot_angle = - math.pi / 4.0
         vectrot = QtCore.QPointF(math.cos(vector_angle + rot_angle), math.sin(vector_angle + rot_angle))
         vectrot_angle = math.atan2(vectrot.y(), vectrot.x())
 
         # get the rotated points position
-        angle_srcPt = QtCore.QPointF(self.src.x() + vector.x() / 2.0 + 15 * vectrot.x(), self.src.y() + vector.y() / 2.0 + 15 * vectrot.y())
-        angle_dstPt = QtCore.QPointF(self.dst.x() - vector.x() / 2.0 - 15 * vectrot.x(), self.dst.y() - vector.y() / 2.0 - 15 * vectrot.y())
+        angle_srcPt = QtCore.QPointF(self.src.x() + self.dx / 2.0 + 15 * vectrot.x(), self.src.y() + self.dy / 2.0 + 15 * vectrot.y())
+        angle_dstPt = QtCore.QPointF(self.dst.x() - self.dx / 2.0 - 15 * vectrot.x(), self.dst.y() - self.dy / 2.0 - 15 * vectrot.y())
 
         # draw the path
         self.path = QtGui.QPainterPath(self.src)

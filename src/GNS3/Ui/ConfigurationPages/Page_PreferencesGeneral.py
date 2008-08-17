@@ -144,7 +144,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         self.conf.project_path = unicode(self.ProjectPath.text())
         self.conf.ios_path = unicode(self.IOSPath.text())
         self.conf.term_cmd = unicode(self.lineEditTermCommand.text())
-        
+
         globals.GApp.systconf['general'] = self.conf
         ConfDB().sync()
 

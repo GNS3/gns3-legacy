@@ -406,14 +406,38 @@ class Topology(QtGui.QGraphicsScene):
     def recordLink(self, srcid, srcif, dstid, dstif, src_node, dest_node):
         """ Record the link in the topology
         """
+
+        multi = 0
+        d1 = 0
+        d2 = 1
+        edges = src_node.getEdgeList()
+        for edge in edges:
+            if edge.dest.hostname == dest_node.hostname:
+                d1 += 1
+            if edge.source.hostname == dest_node.hostname:
+                d2 += 1
+
+        if len(edges) > 0:
+            if d1 >= d2:
+                srcid, dstid = dstid, srcid
+                srcif, dstif = dstif, srcif
+                src_node, dest_node = dest_node, src_node
+                multi = d2
+            else:
+                multi = d1
+
+        # MAX 7 links on the scene between 2 nodes
+        if multi > 3:
+            multi = 0
+
         if (globals.currentLinkType == globals.Enum.LinkType.Serial or globals.currentLinkType == globals.Enum.LinkType.ATM) or \
             (globals.currentLinkType == globals.Enum.LinkType.Manual and ((srcif[0] == 's' or srcif[0] == 'a' or dstif[0] == 's' or dstif[0] == 'a') or \
             (isinstance(src_node, ATMSW) or isinstance(src_node, FRSW) or isinstance(dest_node, ATMSW) or isinstance(dest_node, FRSW)))):
             # interface is serial or ATM
-            link = Serial(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif)
+            link = Serial(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif, Multi=multi)
         else:
             # by default use an ethernet link
-            link = Ethernet(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif)
+            link = Ethernet(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif, Multi=multi)
 
         self.__links.add(link)
         self.addItem(link)

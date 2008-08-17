@@ -56,7 +56,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         # scene settings
         self.setFlags(self.ItemIsMovable | self.ItemIsSelectable | self.ItemIsFocusable)
         self.setAcceptsHoverEvents(True)
-        self.setZValue(1)
+        self.setZValue(2)
         self.setSharedRenderer(self.__render_normal)
         
         # x&y position for hostname

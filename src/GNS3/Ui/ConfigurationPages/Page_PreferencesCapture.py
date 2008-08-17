@@ -74,6 +74,7 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
 
         self.conf.workdir = unicode(self.CaptureWorkingDirectory.text())
         self.conf.cap_cmd = unicode(self.CaptureCommand.text())
+
         if self.checkBoxStartCaptureCommand.checkState() == QtCore.Qt.Checked:
             self.conf.auto_start = True
         else:

@@ -34,7 +34,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         Base class to create edges between nodes
     """
 
-    def __init__(self, sourceNode, sourceIf, destNode, destIf, Fake = False):
+    def __init__(self, sourceNode, sourceIf, destNode, destIf, Fake = False, Multi = 0):
 
         QtGui.QGraphicsItem.__init__(self)
 
@@ -49,6 +49,9 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         self.source = sourceNode
         self.dest = destNode
         self.fake = Fake
+        self.multi = Multi
+
+        self.setZValue(1)
 
         if not self.fake:
 
@@ -100,6 +103,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
 
         # if source point is not a mouse point
         if not self.fake:
+
             dst_rect = self.dest.boundingRect()
             self.dst = self.mapFromItem(self.dest, dst_rect.width() / 2.0, dst_rect.height() / 2.0)
 
@@ -109,6 +113,16 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
 
         # compute the length of the line
         self.length = math.sqrt(self.dx * self.dx + self.dy * self.dy)
+        
+        # multi-links management
+        if not self.fake and self.multi:
+            angle = math.radians(90)
+            self.dxrot = math.cos(angle) * self.dx - math.sin(angle) *  self.dy
+            self.dyrot = math.sin(angle) * self.dx + math.cos(angle) * self.dy
+            offset = QtCore.QPointF((self.dxrot * (self.multi * 5)) / self.length, (self.dyrot * (self.multi * 5)) / self.length)
+            self.src = QtCore.QPointF(self.src + offset)
+            self.dst = QtCore.QPointF(self.dst + offset)
+
         self.draw = True
 
     def getLocalInterface(self, node):

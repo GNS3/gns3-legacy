@@ -239,7 +239,7 @@ class Application(QApplication, Singleton):
         self.__dynagen = DynagenSub()
 
         config_version = int(ConfDB().get('GNS3/version', 0x000402))
-        
+
         self.systconf['dynamips'] = systemDynamipsConf()
         confo = self.systconf['dynamips']
         confo.path = ConfDB().get('Dynamips/hypervisor_path', unicode(''))
@@ -253,6 +253,13 @@ class Application(QApplication, Singleton):
         confo.udp_incrementation = int(ConfDB().get("Dynamips/hypervisor_udp_incrementation", 100))
         confo.import_use_HypervisorManager = ConfDB().value("Dynamips/hypervisor_manager_import", QVariant(True)).toBool()
         confo.HypervisorManager_binding = ConfDB().get('Dynamips/hypervisor_manager_binding', unicode('localhost'))
+
+        # replace ~user and $HOME by home directory
+        if os.environ.has_key("HOME"):
+            confo.path = confo.path.replace('$HOME', os.environ["HOME"])
+            confo.workdir =  confo.workdir.replace('$HOME', os.environ["HOME"])
+        confo.path = os.path.expanduser(confo.path)
+        confo.workdir = os.path.expanduser(confo.workdir)
 
         # Pemu config
         self.systconf['pemu'] = systemPemuConf()
@@ -268,12 +275,30 @@ class Application(QApplication, Singleton):
         confo.default_base_flash = ConfDB().get('Pemu/default_base_flash', unicode(''))
         confo.PemuManager_binding = ConfDB().get('Pemu/pemu_manager_binding', unicode('localhost'))
 
+        # replace ~user and $HOME by home directory
+        if os.environ.has_key("HOME"):
+            confo.pemuwrapper_path = confo.pemuwrapper_path.replace('$HOME', os.environ["HOME"])
+            confo.pemuwrapper_workdir =  confo.pemuwrapper_workdir.replace('$HOME', os.environ["HOME"])
+            confo.default_pix_image = confo.default_pix_image.replace('$HOME', os.environ["HOME"])
+            confo.default_base_flash =  confo.default_base_flash.replace('$HOME', os.environ["HOME"])
+        confo.pemuwrapper_path = os.path.expanduser(confo.pemuwrapper_path)
+        confo.pemuwrapper_workdir = os.path.expanduser(confo.pemuwrapper_workdir)
+        confo.default_pix_image = os.path.expanduser(confo.default_pix_image)
+        confo.default_base_flash = os.path.expanduser(confo.default_base_flash)
+        
         # Capture config
         self.systconf['capture'] = systemCaptureConf()
         confo = self.systconf['capture']
         confo.workdir = ConfDB().get('Capture/working_directory', unicode(''))
         confo.cap_cmd = ConfDB().get('Capture/capture_reader_cmd', unicode(''))
         confo.auto_start = ConfDB().value('Capture/auto_start_cmd', QVariant(True)).toBool()
+        
+        # replace ~user and $HOME by home directory
+        if os.environ.has_key("HOME"):
+            confo.cap_cmd = confo.cap_cmd.replace('$HOME', os.environ["HOME"])
+            confo.workdir =  confo.workdir.replace('$HOME', os.environ["HOME"])
+        confo.cap_cmd = os.path.expanduser(confo.cap_cmd)
+        confo.workdir = os.path.expanduser(confo.workdir)
 
         # System general config
         self.systconf['general'] = systemGeneralConf()
@@ -286,7 +311,12 @@ class Application(QApplication, Singleton):
         confo.status_points = ConfDB().value("GNS3/gui_show_status_points", QVariant(True)).toBool()
         confo.manual_connection =ConfDB().value("GNS3/gui_use_manual_connection", QVariant(False)).toBool()
         
-        # replace ~user by home directory
+        # replace ~user and $HOME by home directory
+        if os.environ.has_key("HOME"):
+            confo.term_cmd = confo.term_cmd.replace('$HOME', os.environ["HOME"])
+            confo.project_path = confo.project_path.replace('$HOME', os.environ["HOME"])
+            confo.ios_path =  confo.ios_path.replace('$HOME', os.environ["HOME"])
+        confo.term_cmd = os.path.expanduser(confo.term_cmd)
         confo.project_path = os.path.expanduser(confo.project_path)
         confo.ios_path = os.path.expanduser(confo.ios_path)
 
