@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import os, sys, socket, glob, shutil
+import os, sys, socket, glob, shutil, time
 import GNS3.NETFile as netfile
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Globals as globals
@@ -103,6 +103,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_InsertImage, QtCore.SIGNAL('triggered()'), self.__action_InsertImage)
         self.connect(self.action_DrawRectangle, QtCore.SIGNAL('triggered()'), self.__action_DrawRectangle)
         self.connect(self.action_DrawEllipse, QtCore.SIGNAL('triggered()'), self.__action_DrawEllipse)
+        self.connect(self.action_Snapshot, QtCore.SIGNAL('triggered()'), self.__action_Snapshot)
 
     def __createMenus(self):
         """ Add own menu actions, and create new sub-menu
@@ -587,6 +588,70 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         globals.GApp.topology.removeItem(item)
             self.__action_Save()
             self.setWindowTitle("GNS3 Project - " + self.projectFile)
+
+    def __action_Snapshot(self):
+        """ Create a snapshot
+        """
+
+        if not globals.GApp.systconf['general'].project_path:
+            QtGui.QMessageBox.warning(self, translate("Workspace", "Snapshot"), translate("Workspace", "The project working directory must be set in the preferences"))
+            return
+
+        snapshot_dir = globals.GApp.systconf['general'].project_path + os.sep + 'snapshot_' + time.strftime("%d%m%y_%H%M%S")
+
+        try:
+            os.mkdir(snapshot_dir)
+        except (OSError, IOError), e:
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Snapshot"), unicode(translate("Workspace", "Cannot create directory %s: %s")) % (snapshot_dir, e.strerror))
+            return
+        
+        splash = QtGui.QSplashScreen(QtGui.QPixmap(":images/logo_gns3_splash.png"))
+        splash.show()
+        splash.showMessage(translate("Workspace", "Please wait while creating a snapshot"))
+        globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+        
+        # copy dynamips & pemu files
+        for node in globals.GApp.topology.nodes.values():
+            if isinstance(node, IOSRouter):
+                dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '?' + node.hostname + '*') + \
+                [os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_dynagen_device().formatted_ghost_file()]
+                for file in dynamips_files:
+                    try:
+                        shutil.copy(file, snapshot_dir)
+                    except (OSError, IOError), e:
+                        debug("Warning: cannot copy " + file + " to " + snapshot_dir + ": " + e.strerror)
+                        continue
+            if isinstance(node, FW):
+                pemu_files = glob.glob(os.path.normpath(node.pemu.workingdir) + os.sep + node.hostname)
+                for file in pemu_files:
+                    try:
+                        shutil.copytree(file, snapshot_dir + os.sep + node.hostname)
+                    except (OSError, IOError), e:
+                        debug("Warning: cannot copy " + file + " to " + snapshot_dir + ": " + e.strerror)
+                        continue
+                        
+        try:
+            for hypervisor in globals.GApp.dynagen.dynamips.values():
+                hypervisor.workingdir = snapshot_dir
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "Dynamips error"), snapshot_dir + ': ') + unicode(msg))
+
+        save_wd = self.projectWorkdir
+        save_cfg = self.projectConfigs
+        save_projectFile = self.projectFile
+        self.projectConfigs = None
+        self.projectWorkdir = snapshot_dir
+        self.projectFile = snapshot_dir + os.sep + 'snapshot.net'
+        self.__action_Save()
+        self.projectWorkdir = save_wd
+        self.projectFile = save_projectFile
+        self.projectConfigs = save_cfg
+
+        try:
+            for hypervisor in globals.GApp.dynagen.dynamips.values():
+                hypervisor.workingdir = globals.GApp.systconf['dynamips'].workdir
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "Dynamips error"), snapshot_dir + ': ') + unicode(msg))
 
     def __action_OpenFile(self):
         """ Open a file

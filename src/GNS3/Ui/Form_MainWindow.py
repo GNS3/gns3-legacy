@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Wed Aug 13 20:04:40 2008
+# Created: Sun Aug 17 18:43:19 2008
 #      by: PyQt4 UI code generator 4.3.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -86,10 +86,6 @@ class Ui_MainWindow(object):
         self.dockWidget_NodeTypes.setWidget(self.dockWidgetContents_NodeTypes)
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(1),self.dockWidget_NodeTypes)
 
-        self.toolBar_Design = QtGui.QToolBar(MainWindow)
-        self.toolBar_Design.setObjectName("toolBar_Design")
-        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea,self.toolBar_Design)
-
         self.toolBar_Emulation = QtGui.QToolBar(MainWindow)
         self.toolBar_Emulation.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
         self.toolBar_Emulation.setObjectName("toolBar_Emulation")
@@ -151,13 +147,9 @@ class Ui_MainWindow(object):
         self.dockWidget_Console.setWidget(self.dockWidgetContents_5)
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(8),self.dockWidget_Console)
 
-        self.toolBar = QtGui.QToolBar(MainWindow)
-        self.toolBar.setObjectName("toolBar")
-        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea,self.toolBar)
-
-        self.toolBar_2 = QtGui.QToolBar(MainWindow)
-        self.toolBar_2.setObjectName("toolBar_2")
-        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea,self.toolBar_2)
+        self.toolBar_drawing = QtGui.QToolBar(MainWindow)
+        self.toolBar_drawing.setObjectName("toolBar_drawing")
+        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea,self.toolBar_drawing)
 
         self.action_About = QtGui.QAction(MainWindow)
         self.action_About.setMenuRole(QtGui.QAction.AboutRole)
@@ -292,6 +284,10 @@ class Ui_MainWindow(object):
         self.action_ShowinterfaceNames.setCheckable(True)
         self.action_ShowinterfaceNames.setIcon(QtGui.QIcon(":/icons/show-interface-names.svg"))
         self.action_ShowinterfaceNames.setObjectName("action_ShowinterfaceNames")
+
+        self.action_Snapshot = QtGui.QAction(MainWindow)
+        self.action_Snapshot.setIcon(QtGui.QIcon(":/icons/snapshot.svg"))
+        self.action_Snapshot.setObjectName("action_Snapshot")
         self.menu_Edit.addAction(self.action_Copy)
         self.menu_Edit.addAction(self.action_Paste)
         self.menu_Edit.addSeparator()
@@ -331,15 +327,16 @@ class Ui_MainWindow(object):
         self.toolBar_General.addAction(self.action_AddNote)
         self.toolBar_General.addAction(self.action_ShowHostnames)
         self.toolBar_General.addAction(self.action_ShowinterfaceNames)
-        self.toolBar_General.addAction(self.action_InsertImage)
-        self.toolBar_General.addAction(self.action_DrawRectangle)
-        self.toolBar_General.addAction(self.action_DrawEllipse)
-        self.toolBar_Design.addAction(self.action_Add_link)
+        self.toolBar_General.addAction(self.action_Add_link)
+        self.toolBar_Emulation.addAction(self.action_Snapshot)
         self.toolBar_Emulation.addAction(self.action_Extract_config)
         self.toolBar_Emulation.addAction(self.action_TelnetAll)
         self.toolBar_Emulation.addAction(self.action_StartAll)
         self.toolBar_Emulation.addAction(self.action_SuspendAll)
         self.toolBar_Emulation.addAction(self.action_StopAll)
+        self.toolBar_drawing.addAction(self.action_InsertImage)
+        self.toolBar_drawing.addAction(self.action_DrawRectangle)
+        self.toolBar_drawing.addAction(self.action_DrawEllipse)
 
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.action_Quit,QtCore.SIGNAL("triggered()"),MainWindow.close)
@@ -354,13 +351,11 @@ class Ui_MainWindow(object):
         self.toolBar_General.setWindowTitle(QtGui.QApplication.translate("MainWindow", "General", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidget_NodeTypes.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Nodes Types", None, QtGui.QApplication.UnicodeUTF8))
         self.nodesDock.headerItem().setText(0,QtGui.QApplication.translate("MainWindow", "1", None, QtGui.QApplication.UnicodeUTF8))
-        self.toolBar_Design.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Design", None, QtGui.QApplication.UnicodeUTF8))
-        self.toolBar_Emulation.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Simulation", None, QtGui.QApplication.UnicodeUTF8))
+        self.toolBar_Emulation.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Emulation", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidget_TopoSum.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Topology Summary", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidget_TopologySummary.headerItem().setText(0,QtGui.QApplication.translate("MainWindow", "1", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidget_Console.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Console", None, QtGui.QApplication.UnicodeUTF8))
-        self.toolBar.setWindowTitle(QtGui.QApplication.translate("MainWindow", "toolBar", None, QtGui.QApplication.UnicodeUTF8))
-        self.toolBar_2.setWindowTitle(QtGui.QApplication.translate("MainWindow", "toolBar_2", None, QtGui.QApplication.UnicodeUTF8))
+        self.toolBar_drawing.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Drawing", None, QtGui.QApplication.UnicodeUTF8))
         self.action_About.setText(QtGui.QApplication.translate("MainWindow", "&About", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setText(QtGui.QApplication.translate("MainWindow", "&Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))
@@ -421,6 +416,7 @@ class Ui_MainWindow(object):
         self.action_DrawRectangle.setText(QtGui.QApplication.translate("MainWindow", "Draw a rectangle", None, QtGui.QApplication.UnicodeUTF8))
         self.action_DrawEllipse.setText(QtGui.QApplication.translate("MainWindow", "Draw an ellipse", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ShowinterfaceNames.setText(QtGui.QApplication.translate("MainWindow", "Show interface names", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Snapshot.setText(QtGui.QApplication.translate("MainWindow", "Snapshot", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.Console import Console
 from GNS3.Ui.Widget_topologySummaryDock import topologySummaryDock
