@@ -416,9 +416,14 @@ class Topology(QtGui.QGraphicsScene):
                 d1 += 1
             if edge.source.hostname == dest_node.hostname:
                 d2 += 1
-
+        
         if len(edges) > 0:
-            if d1 >= d2:
+            if d2 - d1 == 2:
+                srcid, dstid = dstid, srcid
+                srcif, dstif = dstif, srcif
+                src_node, dest_node = dest_node, src_node
+                multi = d1 + 1
+            elif d1 >= d2:
                 srcid, dstid = dstid, srcid
                 srcif, dstif = dstif, srcif
                 src_node, dest_node = dest_node, src_node
