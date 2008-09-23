@@ -161,3 +161,17 @@ conf_systemPemu_types = {
     'default_pix_serial': str,
     'default_base_flash': unicode,
 }
+
+conf_systemSimhost_defaults = {
+    'path': '',
+    'workdir': '',
+    'basePort': 8000,
+    'baseUDP': 40000,
+}
+
+conf_systemSimhost_types = {
+    'path': unicode,
+    'workdir': unicode,
+    'basePort': int,
+    'baseUDP': int,
+}

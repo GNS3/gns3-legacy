@@ -122,3 +122,10 @@ class systemPemuConf(ConfigObject):
         ConfigObject.__init__(self)
         self.conf = Defaults.conf_systemPemu_defaults.copy()
         self.types = Defaults.conf_systemPemu_types
+        
+class systemSimhostConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_systemSimhost_defaults.copy()
+        self.types = Defaults.conf_systemSimhost_types
+

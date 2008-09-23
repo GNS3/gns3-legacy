@@ -22,6 +22,7 @@
 import sys, os
 import GNS3.Globals as globals
 import GNS3.Dynagen.pemu_lib as pix
+import GNS3.Dynagen.simhost_lib as lwip
 from GNS3.Dynagen.validate import Validator
 from GNS3.Dynagen.configobj import ConfigObj, flatten_errors
 from GNS3.Config.Objects import hypervisorConf
@@ -93,6 +94,13 @@ class DynagenSub(Dynagen):
                                 print unicode(translate("DynagenSub", "Local PIX image %s cannot be found, use image %s instead")) \
                                 % (unicode(device['image']), image_name)
                                 device['image'] = image_name
+                                
+                if emulator == 'lwip':
+                    (host, port) = host.rsplit(':', 1)
+                    debug("Start lwip hypervisor on port: " + port)
+                    hypervisor =  globals.GApp.SimhostManager.startNewHypervisor(int(port))
+                    globals.GApp.SimhostManager.waitHypervisor(hypervisor)
+    
             else:
                 server.host = server.name
                 controlPort = None

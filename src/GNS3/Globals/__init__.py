@@ -26,6 +26,8 @@ drawingEllipse = False
 nodeConfiguratorWindow = None
 preferencesWindow = None
 hypervisor_baseport = 7200
+simhost_hypervisor_baseport = 9000
+simhost_hypervisor_baseudp = 35000
 recordConfiguration = True
 debugLevel = 0
 

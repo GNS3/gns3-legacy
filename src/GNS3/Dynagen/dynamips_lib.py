@@ -529,6 +529,7 @@ class NIO_udp(NIO):
         """return an info string for .net file config"""
         (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self)
         from pemu_lib import FW
+        from simhost_lib import SIMHOST
         if isinstance(remote_device, Router):
             (rem_int_name, rem_dynagen_port) = remote_adapter.interfaces_mips2dyn[remote_port]
             if remote_device.model_string in ['1710', '1720', '1721', '1750']:
@@ -542,12 +543,15 @@ class NIO_udp(NIO):
             return remote_device.name + " " + str(remote_port)
         elif isinstance(remote_device, FW):
             return remote_device.name + ' ' + remote_adapter + str(remote_port)
+        elif isinstance(remote_device, SIMHOST):
+            return remote_device.name + ' ' + remote_adapter + str(remote_port)
 
     def info(self):
         """return info string about this NIO"""
 
         (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self)
         from pemu_lib import FW
+        from simhost_lib import SIMHOST
         if isinstance(remote_device, Router):
             (rem_int_name, rem_dynagen_port) = remote_adapter.interfaces_mips2dyn[remote_port]
             if remote_device.model_string in ['1710', '1720', '1721', '1750']:
@@ -575,6 +579,8 @@ class NIO_udp(NIO):
             return ' is connected to ATM bridge ' + remote_device.name + ' port ' + str(remote_port)
         elif isinstance(remote_device, FW):
             return ' is connected to firewall ' + remote_device.name + ' Ethernet' + str(remote_port)
+        elif isinstance(remote_device, SIMHOST):
+            return ' is connected to host ' + remote_device.name + ' Ethernet' + str(remote_port)
 
     def __getreverse_nio(self):
         return self.__reverse_nio
@@ -4799,8 +4805,11 @@ def get_reverse_udp_nio(remote_nio):
 
     #if the local_nio is UDPConnection of FW
     from pemu_lib import FW
+    from simhost_lib import SIMHOST
     if isinstance(local_nio.adapter, FW):
         return [local_nio.fw, 'e', local_nio.port]
+    if isinstance(local_nio.adapter, SIMHOST):
+        return [local_nio.sim, 'e', local_nio.port]
     if isinstance(local_nio.adapter, FRSW) or isinstance(local_nio.adapter, ATMSW) or isinstance(local_nio.adapter, ETHSW) or isinstance(local_nio.adapter, ATMBR):
         return [local_nio.adapter, 'nothing', local_nio.port]
 

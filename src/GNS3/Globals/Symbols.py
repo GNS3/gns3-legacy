@@ -35,6 +35,7 @@ from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ATMBR import ATMBR
 from GNS3.Node.FW import FW
+from GNS3.Node.SIMHOST import SIMHOST
 
 SYMBOL_TYPES = {
                 IOSRouter1700: 'Router c1700', 
@@ -43,6 +44,7 @@ SYMBOL_TYPES = {
                 IOSRouter3600: 'Router c3600',
                 IOSRouter3700: 'Router c3700',
                 IOSRouter7200: 'Router c7200', 
+                SIMHOST: 'Host', 
                 FW: 'PIX firewall', 
                 ETHSW: 'Ethernet switch',
                 ATMBR: 'ATM bridge',
@@ -119,6 +121,12 @@ SYMBOLS = [
     'select_svg_file': ":/symbols/frame_relay_switch.selected.svg", 
     'translated': True,
     } ,
+    
+    {'name': "Host", 'object': SIMHOST,
+    'normal_svg_file': ":/symbols/computer.normal.svg",
+    'select_svg_file': ":/symbols/computer.selected.svg", 
+    'translated': True,
+    },
 
     {'name': "Cloud", 'object': Cloud,
     'normal_svg_file': ":/symbols/cloud.normal.svg",

@@ -35,6 +35,7 @@ from dynamips_lib import Dynamips, PA_C7200_IO_FE, PA_A1, PA_FE_TX, PA_4T, PA_8T
      PA_GE, PA_C7200_IO_2FE, PA_C7200_IO_GE_E, C1700, CISCO1710_MB_1FE_1E, C1700_MB_1ETH, \
      DEVICETUPLE, DynamipsVerError, DynamipsErrorHandled, NM_CIDS, NM_NAM, get_reverse_udp_nio
 from pemu_lib import Pemu, FW, nosend_pemu
+from simhost_lib import LWIP, SIMHOST, nosend_simhost
 from validate import Validator
 from configobj import ConfigObj, flatten_errors
 from optparse import OptionParser
@@ -121,6 +122,7 @@ telnetstring = ''  # global telnet string value for telneting onto consoles
 interface_re = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po|i|id|IDS-Sensor|an|Analysis-Module)([0-9]+)\/([0-9]+)""", re.IGNORECASE)  # Regex matching intefaces
 interface_noport_re = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)""", re.IGNORECASE)  # Regex matching intefaces with out a port (e.g. "f0")
 pemu_int_re = re.compile(r"""^(e|et|eth)([0-9])""", re.IGNORECASE)
+simhost_int_re = re.compile(r"""^(e|et|eth)([0-9])""", re.IGNORECASE)
 number_re = re.compile(r"""^[0-9]*$""")  # Regex matching numbers
 mapint_re = re.compile(r"""^([0-9]*):([0-9]*)$""")  # Regex matching Frame Relay mappings or ATM vpi mappings
 mapvci_re = re.compile(r"""^([0-9]*):([0-9]*):([0-9]*)$""")  # Regex matching ATM vci mappings
@@ -529,9 +531,9 @@ class Dynagen:
             # If interfaces don't exist, create them
             self.smartslot(local_device, pa1, slot1, port1)
             self.smartslot(remote_device, pa2, slot2, port2)
-
+            
             #perform the connection
-            if isinstance(local_device, FW) and isinstance(remote_device, Router):
+            if (isinstance(local_device, FW) or isinstance(local_device, SIMHOST)) and isinstance(remote_device, Router):
                 local_device.connect_to_dynamips(
                     port1,
                     remote_device.dynamips,
@@ -541,7 +543,7 @@ class Dynagen:
                     )
             elif isinstance(local_device, FW) and isinstance(remote_device, FW):
                 local_device.connect_to_fw(port1, remote_device, port2)
-            elif isinstance(local_device, Router) and isinstance(remote_device, FW):
+            elif isinstance(local_device, Router) and (isinstance(remote_device, FW) or isinstance(remote_device, SIMHOST)):
                 remote_device.connect_to_dynamips(
                     port2,
                     local_device.dynamips,
@@ -610,8 +612,8 @@ class Dynagen:
                 pa2 = 'a'
             else:
                 return False
-
-            if isinstance(local_device, FW):
+                
+            if isinstance(local_device, FW) or isinstance(local_device, SIMHOST):
                 local_device.connect_to_dynamips(
                     port1,
                     remote_device.dynamips,
@@ -647,6 +649,10 @@ class Dynagen:
             port: port number
         """
 
+        # ignore simhost devices
+        if isinstance(router, SIMHOST):
+            return
+        
         if pa[:2].lower() == 'an':
             # Need to handle the Analysis-Module with two chars, because 'a' is an
             pa = pa[:2].lower()
@@ -1019,9 +1025,71 @@ class Dynagen:
         for section in config.sections:
             server = config[section]
             if ' ' in server.name:
-                #create pemu or vlc
+                #create pemu or simhost
                 (emulator, host) = server.name.split(' ')
-                if emulator == 'pemu':
+                if emulator == 'lwip':
+                    #connect to the LWIP hypervisor
+                    try:
+                        lwip_name = host
+                        #create the LWIP instance and add it to global dictionary
+                        (host, port) = lwip_name.rsplit(':', 1)
+                        self.dynamips[lwip_name] = LWIP(host, int(port))
+                        self.dynamips[lwip_name].reset()
+                    except DynamipsError:
+                        self.dowarning('Could not connect to lwip server %s' % server.name)
+                        self.import_error = True
+                        continue
+
+                    if server['workingdir'] == None:
+                        # If workingdir is not specified, set it to the same directory
+                        # as the network file
+                        realpath = os.path.realpath(FILENAME)
+                        workingdir = os.path.dirname(realpath)
+                    else:
+                        workingdir = server['workingdir']
+                    try:
+                        self.dynamips[lwip_name].workingdir = workingdir
+                    except DynamipsError:
+                        self.dowarning('Could not set working directory to %s on server %s' % (workingdir, server.name))
+                        self.import_error = True
+
+                    for subsection in server.sections:
+                        device = server[subsection]
+                        # Create the device
+                        try:
+                            (devtype, name) = device.name.split(' ')
+                        except ValueError:
+                            self.dowarning ('Unable to interpret line: "[[' + device.name + ']]"')
+                            self.import_error = True
+                            continue
+
+                        if devtype.lower() == 'simhost':
+                            dev = SIMHOST(self.dynamips[lwip_name], name=name)
+                        else:
+                            self.dowarning('Unable to identify the type of device ' + device.name)
+                            self.import_error = True
+                            continue
+
+                        #add the whole SIMHOST into global dictionary
+                        self.devices[name] = dev
+
+                        #set the special device options
+                        for subitem in device.scalars:
+                            if device[subitem] != None:
+                                self.debug('  ' + subitem + ' = ' + str(device[subitem]))
+                                if simhost_int_re.search(subitem) and subitem.find('params'):
+                                    print '==>' + subitem
+#                                    self.dynamips[lwip_name]
+                                    continue
+                                elif subitem.lower() in ['x', 'y', 'hx', 'hy', 'symbol']:
+                                    continue
+                                elif simhost_int_re.search(subitem):
+                                    # Add the tuple to the list of connections to deal with later
+                                    connectionlist.append((dev, subitem, device[subitem]))
+                                else:
+                                    self.dowarning( 'ignoring unknown config item: %s = %s' % (str(subitem), str(device[subitem])))
+                                    self.import_error = True
+                elif emulator == 'pemu':
                     #connect to the PEMU Wrapper
                     try:
                         #add ':10525' string to the name so that it does not conflict with name of dynamips server
@@ -1120,7 +1188,6 @@ class Dynagen:
                             self.autostart[name] = config['autostart']
                         else:
                             self.autostart[name] = device['autostart']
-
                 else:
                     self.dowarning('Bad emulator definition format: %s' % server.name)
                     self.import_error = True
@@ -1662,6 +1729,8 @@ class Dynagen:
         for hypervisor in self.dynamips.values():
             if isinstance(hypervisor, Pemu):
                 h = 'pemu ' + hypervisor.host
+            elif  isinstance(hypervisor, LWIP):
+                h = 'lwip ' + hypervisor.host + ":" + str(hypervisor.port)
             else:
                 h = hypervisor.host + ":" + str(hypervisor.port)
 
@@ -1669,7 +1738,7 @@ class Dynagen:
             #go thought all routers configs in this hypervisor
             for device in self.devices.values():
                 #skip non-routers
-                if isinstance(device, FRSW) or isinstance(device, ATMSW) or isinstance(device, ETHSW) or isinstance(device, ATMBR):
+                if isinstance(device, FRSW) or isinstance(device, ATMSW) or isinstance(device, ETHSW) or isinstance(device, ATMBR) or isinstance(device, SIMHOST):
                     #TODO FW, FRSW, ATMSW, ETHSW support
                     continue
                 if device.dynamips == hypervisor:
@@ -1908,6 +1977,28 @@ class Dynagen:
                     self.running_config[h][f][con] = self._translate_interface_connection(remote_adapter, remote_router, remote_port)
                 elif isinstance(remote_router, FRSW) or isinstance(remote_router, ATMSW) or isinstance(remote_router, ETHSW):
                     self.running_config[h][f][con] = remote_router.name + " " + str(remote_port)
+                    
+    def _update_running_config_for_simhost(self, hypervisor, device, need_active_config):
+        """parse the all data structures associated with this simhost and update the running_config properly"""
+
+        h = 'lwip ' + hypervisor.host + ':' + str(hypervisor.port)
+        sm = 'SIMHOST ' + device.name
+        self.running_config[h][sm] = {}
+
+        for (interface, params) in device.interfaces.iteritems():
+            self.running_config[h][sm][interface + '_params'] = {}
+            self.running_config[h][sm][interface + '_params'] = params['ip'] + ' ' + params['mask'] + ' ' + params['gw']
+        
+        for port in device.nios:
+            if device.nios[port] != None:
+                con = 'et' + str(port)
+                (remote_router, remote_adapter, remote_port) = get_reverse_udp_nio(device.nios[port])
+                if isinstance(remote_router, FW):
+                    self.running_config[h][sm][con] = remote_router.name + ' ' + remote_adapter + str(remote_port)
+                elif isinstance(remote_router, Router):
+                    self.running_config[h][sm][con] = self._translate_interface_connection(remote_adapter, remote_router, remote_port)
+                elif isinstance(remote_router, FRSW) or isinstance(remote_router, ATMSW) or isinstance(remote_router, ETHSW):
+                    self.running_config[h][sm][con] = remote_router.name + " " + str(remote_port)
 
     def _translate_interface_connection(self, remote_adapter, remote_router, remote_port):
         """translate the dynamips port values into dynagen port values"""
@@ -1960,6 +2051,8 @@ class Dynagen:
         for hypervisor in self.dynamips.values():
             if isinstance(hypervisor, Pemu):
                 h = 'pemu ' + hypervisor.host
+            elif isinstance(hypervisor, LWIP):
+                h = 'lwip ' + hypervisor.host + ":" + str(hypervisor.port)
             else:
                 h = hypervisor.host + ":" + str(hypervisor.port)
             self.running_config[h] = {}
@@ -1994,6 +2087,8 @@ class Dynagen:
                         self._update_running_config_for_router(hypervisor, device, need_active_config)
                     elif isinstance(device, FW):
                         self._update_running_config_for_fw(hypervisor, device, need_active_config)
+                    elif isinstance(device, SIMHOST):
+                        self._update_running_config_for_simhost(hypervisor, device, need_active_config)
 
         #after everything is done merge this config with defaults_config
         temp_config = ConfigObj(self.defaults_config)

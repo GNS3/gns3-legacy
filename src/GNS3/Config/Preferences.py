@@ -39,6 +39,7 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
                         'Dynamips',
                         'Capture',
                         'Pemu',
+                        'Simhost', 
                         ]
 
         QtGui.QDialog.__init__(self)

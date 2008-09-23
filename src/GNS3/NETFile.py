@@ -24,6 +24,7 @@ import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.pemu_lib as pix
+import GNS3.Dynagen.simhost_lib as lwip
 from GNS3.Globals.Symbols import SYMBOLS
 from GNS3.Utils import translate, debug, error, relpath
 from PyQt4 import QtGui, QtCore
@@ -51,6 +52,7 @@ atmsw_hostname_re = re.compile(r"""^ATM([0-9]+)""")
 atmbr_hostname_re = re.compile(r"""^BR([0-9]+)""")
 cloud_hostname_re = re.compile(r"""^C([0-9]+)""")
 firewall_hostname_re = re.compile(r"""^FW([0-9]+)""")
+simhost_hostname_re = re.compile(r"""^SIMHOST([0-9]+)""")
 decorative_hostname_re = re.compile(r"""^N([0-9]+)""")
 
 class NETFile(object):
@@ -126,30 +128,25 @@ class NETFile(object):
         """
 
         symbol_name = x = y = hx = hy = None
+        config = None
         if isinstance(device, pix.FW) and  self.dynagen.globalconfig['pemu ' + device.dynamips.host].has_key(running_config_name):
-            pemu_config = self.dynagen.globalconfig['pemu ' + device.dynamips.host][running_config_name]
-            if pemu_config.has_key('x'):
-                x = pemu_config['x']
-            if pemu_config.has_key('y'):
-                y = pemu_config['y']
-            if pemu_config.has_key('hx'):
-                hx = pemu_config['hx']
-            if pemu_config.has_key('hy'):
-                hy = pemu_config['hy']
-            if pemu_config.has_key('symbol'):
-                symbol_name = pemu_config['symbol']
+            config = self.dynagen.globalconfig['pemu ' + device.dynamips.host][running_config_name]
+        elif isinstance(device, lwip.SIMHOST) and  self.dynagen.globalconfig['lwip ' + device.dynamips.host + ':' + str(device.dynamips.port)].has_key(running_config_name):
+            config = self.dynagen.globalconfig['lwip ' + device.dynamips.host + ':' + str(device.dynamips.port)][running_config_name]
         elif self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)].has_key(running_config_name):
-            dynamips_config = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][running_config_name]
-            if dynamips_config.has_key('x'):
-                x = dynamips_config['x']
-            if dynamips_config.has_key('y'):
-                y = dynamips_config['y']
-            if dynamips_config.has_key('hx'):
-                hx = dynamips_config['hx']
-            if dynamips_config.has_key('hy'):
-                hy = dynamips_config['hy']
-            if dynamips_config.has_key('symbol'):
-                symbol_name = dynamips_config['symbol']
+            config = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][running_config_name]
+
+        if config:
+            if config.has_key('x'):
+                x = config['x']
+            if config.has_key('y'):
+                y = config['y']
+            if config.has_key('hx'):
+                hx = config['hx']
+            if config.has_key('hy'):
+                hy = config['hy']
+            if config.has_key('symbol'):
+                symbol_name = config['symbol']
 
         # symbol name not found, use default one
         default_symbol = False
@@ -513,6 +510,7 @@ class NETFile(object):
         max_atmsw_id = -1
         max_atmbr_id = -1
         max_fw_id = -1
+        max_simhost_id = -1
         for (devicename, device) in  self.dynagen.devices.iteritems():
 
             if isinstance(device,  lib.Bridge):
@@ -666,6 +664,20 @@ class NETFile(object):
                     id = int(match_obj.group(1))
                     if id > max_fw_id:
                         max_fw_id = id
+                        
+            elif isinstance(device, lwip.SIMHOST):
+
+                node = self.create_node(device, 'Host', 'SIMHOST ' + device.name)
+                assert(node)
+                node.set_hypervisor(device.dynamips)
+                self.configure_node(node, device)
+                node.create_config()
+#                self.populate_connection_list_for_fw(device, connection_list)
+                match_obj = simhost_hostname_re.match(node.hostname)
+                if match_obj:
+                    id = int(match_obj.group(1))
+                    if id > max_simhost_id:
+                        max_simhost_id = id
 
             globals.GApp.topology.addItem(node)
 
@@ -682,6 +694,8 @@ class NETFile(object):
             init_atmbr_id(max_atmbr_id + 1)
         if max_fw_id != -1:
             init_fw_id(max_fw_id + 1)
+        if max_simhost_id != -1:
+            init_simhost_id(max_simhost_id + 1)
 
         # update current hypervisor base port and base UDP
         base_udp = 0
