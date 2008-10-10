@@ -1080,6 +1080,7 @@ class Dynagen:
                                 if simhost_int_re.search(subitem) and subitem.find('params'):
                                     print '==>' + subitem
 #                                    self.dynamips[lwip_name]
+#### HERE
                                     continue
                                 elif subitem.lower() in ['x', 'y', 'hx', 'hy', 'symbol']:
                                     continue

@@ -52,6 +52,7 @@ class Translator(object):
                 key = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, Translator.gns3_regkey,  _winreg.KEY_READ)
                 (value, typevalue) = _winreg.QueryValueEx(key, '')
                 self.__i18n_dirs.append(os.path.dirname(value) + "\\Langs")
+                _winreg.CloseKey(key)
             except:
                 pass
 

@@ -183,6 +183,7 @@ class SIMHOST(AbstractNode):
         """ Apply the configuration of simhost interfaces
         """
         
+        print 'configInterfaces'
         connected_interfaces = self.getConnectedInterfaceList()
         for (interface, params) in self.config['interfaces'].iteritems():
             if interface in connected_interfaces:

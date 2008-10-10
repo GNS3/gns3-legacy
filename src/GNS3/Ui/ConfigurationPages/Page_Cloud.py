@@ -81,6 +81,12 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
     def getWindowsInterfaces(self):
         """ Try to detect all available interfaces on Windows
         """
+
+        try:
+            import _winreg
+        except:
+            pass
+        
         interfaces = []
         dynamips = globals.GApp.systconf['dynamips']
         if dynamips == '':
@@ -90,9 +96,19 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
             outputlines = p.stdout.readlines()
             p.wait()
             for line in outputlines:
-                match = re.search(r"""^rpcap://(\\Device\\NPF_{.*}).*""",  line.strip())
+                match = re.search(r"""^rpcap://\\Device\\NPF_({.*}).*""",  line.strip())
                 if match:
-                    interfaces.append(match.group(0))
+                    interface_name = ': '
+                    try:
+                        reg_key = "SYSTEM\\CurrentControlSet\\Control\\Network\\{4D36E972-E325-11CE-BFC1-08002BE10318}\\%s\\Connection" % match.group(1)
+                        key = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, reg_key, _winreg.KEY_READ)
+                        (value, typevalue) = _winreg.QueryValueEx(key, 'Name')
+                        _winreg.CloseKey(key)
+                        interface_name += value
+                    except:
+                        interface_name += "unknown name"
+                        pass
+                    interfaces.append(match.group(0) + interface_name)
         except:
             return []
         return interfaces
