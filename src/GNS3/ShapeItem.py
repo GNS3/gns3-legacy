@@ -33,6 +33,22 @@ class AbstractShapeItem(object):
         self.setZValue(0)
         self.border = 5
         self.rotation = 0
+        
+    def keyPressEvent(self, event):
+    
+        key = event.key()
+        if key == QtCore.Qt.Key_Minus and self.rotation > -360:
+            if self.rotation:
+                self.rotate(-self.rotation)
+            self.rotation -= 1
+            self.rotate(self.rotation)
+        elif key == QtCore.Qt.Key_Plus and self.rotation < 360:
+            if self.rotation:
+                self.rotate(-self.rotation)
+            self.rotation += 1
+            self.rotate(self.rotation)
+        else:
+            QtGui.QGraphicsItem.keyPressEvent(self, event)
 
     def mousePressEvent(self, event):
         

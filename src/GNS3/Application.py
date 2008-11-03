@@ -516,6 +516,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/port", o.port)
             c.set(basekey + "/working_directory", o.workdir)
             c.set(basekey + "/base_udp", o.baseUDP)
+            c.set(basekey + "/base_console", o.baseConsole)
             
         # Libraries
         id = 0

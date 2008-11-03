@@ -69,6 +69,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
         
         # By default don't show interface names
         self.flg_showInterfaceNames = False
+        
+        # by default, don't enable the view. Users must create a project first
+        self.graphicsView.setEnabled(False)
+        self.graphicsView.setBackgroundBrush(QtGui.QBrush(QtGui.QColor(0xEA, 0xEA, 0xEA)))
 
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)
@@ -143,12 +147,42 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.graphicsView.render(painter)
             painter.end()
         else:
-            rect = self.graphicsView.viewport().rect()
-            pixmap = QtGui.QPixmap(rect.width() + 5, rect.height() + 5)
+
+            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Yes - Export all the scene\nNo - Export only what I see"), 
+                                            QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+
+            if reply == QtGui.QMessageBox.Yes:
+
+                items = self.graphicsView.scene().items()
+                max_x = max_y = min_x = min_y = 0
+                for item in items:
+                    if item.x() > max_x:
+                        max_x = item.x()
+                    if item.y() > max_y:
+                        max_y = item.y()
+                    if item.x() < min_x:
+                        min_x = item.x()
+                    if item.y() < min_y:
+                        min_y = item.y()
+                x = min_x - 30
+                y = min_y - 30
+                width = abs(x) + max_x + 90
+                height = abs(y) + max_y + 80
+    
+            else:
+
+                rect = self.graphicsView.viewport().rect()
+                width = rect.width() + 10
+                height = rect.height() + 10
+    
+            pixmap = QtGui.QPixmap(width, height)
             pixmap.fill(QtCore.Qt.white)
             painter = QtGui.QPainter(pixmap)
             painter.setRenderHint(QtGui.QPainter.Antialiasing)
-            self.graphicsView.render(painter)
+            if reply == QtGui.QMessageBox.Yes:
+                self.graphicsView.scene().render(painter, QtCore.QRectF(0,0,pixmap.width(),pixmap.height()), QtCore.QRectF(x, y, width, height))
+            else:
+                self.graphicsView.render(painter)
             painter.end()
             pixmap.save(name, format)
 
@@ -183,6 +217,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
         
         globals.GApp.workspace.setWindowTitle("GNS3")
+        projectWorkdir = self.projectWorkdir
         self.projectFile = None
         self.projectWorkdir = None
         self.projectConfigs = None
@@ -193,6 +228,15 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if globals.GApp.systconf['dynamips'].clean_workdir:
             # delete dynamips files
             dynamips_files = glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "c[0-9][0-9][0-9][0-9]*")
+            if projectWorkdir:
+                # delete useless project files
+                dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "*ghost*")
+                dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "*log.txt")
+                dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "*bootflash")
+                dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "*rommon_vars")
+                dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "*ssa")
+
+            print dynamips_files
             for file in dynamips_files:
                 try:
                     os.remove(file)
@@ -506,6 +550,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if file == None:
             return
 
+        self.graphicsView.setBackgroundBrush(QtGui.QBrush(QtCore.Qt.NoBrush))
+        self.graphicsView.setEnabled(True)
+
         path = os.path.abspath(file)
         if not os.path.isfile(path):
             QtGui.QMessageBox.critical(self, translate("Workspace", "Loading"), unicode(translate("Workspace", "Invalid file %s")) % file)
@@ -543,7 +590,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     print "Warning: cannot create directory: " + self.projectConfigs + ": " + e.strerror
             if len(globals.GApp.dynagen.devices):
                 reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"),
-                                                   translate("Workspace", "Do you want to apply the project settings to the current topology?"), QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+                                                   translate("Workspace", "Do you want to apply the project settings to the current topology? (can take some time)"), QtGui.QMessageBox.Yes, \
+                                                   QtGui.QMessageBox.No)
                 if reply == QtGui.QMessageBox.Yes:
                     if self.projectWorkdir:
                         # stop all router and firewall nodes
@@ -587,7 +635,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     for item in globals.GApp.topology.items():
                         globals.GApp.topology.removeItem(item)
             self.__action_Save()
-            self.setWindowTitle("GNS3 Project - " + self.projectFile)
+            self.setWindowTitle("GNS3 Project - " + self.projectFile) 
+        self.graphicsView.setBackgroundBrush(QtGui.QBrush(QtCore.Qt.NoBrush))
+        self.graphicsView.setEnabled(True)
 
     def __action_Snapshot(self):
         """ Create a snapshot

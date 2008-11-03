@@ -210,6 +210,7 @@ class GNS_Conf(object):
             hyp_host = c.get(cgroup + "/host", unicode(''))
             hyp_wdir = c.get(cgroup + "/working_directory", unicode(''))
             hyp_baseUDP = c.get(cgroup + "/base_udp", '')
+            hyp_baseConsole = c.get(cgroup + "/base_console", '')
 
             # We need at least `hyp_host' and `hyp_port' to be set
             if hyp_host == '' or hyp_port == '':
@@ -223,6 +224,7 @@ class GNS_Conf(object):
             conf.port = int(hyp_port)
             conf.workdir = hyp_wdir
             conf.baseUDP = int(hyp_baseUDP)
+            conf.baseConsole = int(hyp_baseConsole)
             globals.GApp.hypervisors[img_ref] = conf
 
             if conf.id >= globals.GApp.hypervisors_ids:

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Tue Sep  2 19:30:48 2008
+# Created: Mon Nov  3 03:27:17 2008
 #      by: PyQt4 UI code generator 4.3.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -186,12 +186,12 @@ class Ui_MainWindow(object):
 
         self.action_StartAll = QtGui.QAction(MainWindow)
         self.action_StartAll.setEnabled(True)
-        self.action_StartAll.setIcon(QtGui.QIcon(":/icons/start_metal.svg"))
+        self.action_StartAll.setIcon(QtGui.QIcon(":/icons/play.svg"))
         self.action_StartAll.setObjectName("action_StartAll")
 
         self.action_StopAll = QtGui.QAction(MainWindow)
         self.action_StopAll.setEnabled(True)
-        self.action_StopAll.setIcon(QtGui.QIcon(":/icons/stop_metal.svg"))
+        self.action_StopAll.setIcon(QtGui.QIcon(":/icons/stop.svg"))
         self.action_StopAll.setObjectName("action_StopAll")
 
         self.action_ShowHostnames = QtGui.QAction(MainWindow)
@@ -242,7 +242,7 @@ class Ui_MainWindow(object):
         self.action_Paste.setObjectName("action_Paste")
 
         self.action_SuspendAll = QtGui.QAction(MainWindow)
-        self.action_SuspendAll.setIcon(QtGui.QIcon(":/icons/pause_metal.svg"))
+        self.action_SuspendAll.setIcon(QtGui.QIcon(":/icons/pause.svg"))
         self.action_SuspendAll.setObjectName("action_SuspendAll")
 
         self.action_Clear = QtGui.QAction(MainWindow)

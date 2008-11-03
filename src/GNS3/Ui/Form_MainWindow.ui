@@ -434,7 +434,7 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/start_metal.svg</iconset>
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/play.svg</iconset>
    </property>
    <property name="text" >
     <string>Start/Resume all IOS</string>
@@ -448,7 +448,7 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/stop_metal.svg</iconset>
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/stop.svg</iconset>
    </property>
    <property name="text" >
     <string>Stop all IOS</string>
@@ -588,7 +588,7 @@
   </action>
   <action name="action_SuspendAll" >
    <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/pause_metal.svg</iconset>
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/pause.svg</iconset>
    </property>
    <property name="text" >
     <string>Suspend all IOS</string>

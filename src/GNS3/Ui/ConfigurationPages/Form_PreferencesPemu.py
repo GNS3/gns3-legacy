@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesPemu.ui'
 #
-# Created: Tue Sep  2 19:30:49 2008
+# Created: Mon Nov  3 03:27:19 2008
 #      by: PyQt4 UI code generator 4.3.3
 #
 # WARNING! All changes made in this file will be lost!

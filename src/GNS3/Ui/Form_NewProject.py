@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_NewProject.ui'
 #
-# Created: Tue Sep  2 19:30:48 2008
+# Created: Mon Nov  3 03:27:18 2008
 #      by: PyQt4 UI code generator 4.3.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -37,15 +37,14 @@ class Ui_NewProject(object):
         self.NewProject_browser.setObjectName("NewProject_browser")
         self.gridlayout.addWidget(self.NewProject_browser,1,1,1,1)
 
-        self.checkBox_ConfigFiles = QtGui.QCheckBox(self.groupBox)
-        self.checkBox_ConfigFiles.setChecked(True)
-        self.checkBox_ConfigFiles.setObjectName("checkBox_ConfigFiles")
-        self.gridlayout.addWidget(self.checkBox_ConfigFiles,2,0,1,2)
-
         self.checkBox_WorkdirFiles = QtGui.QCheckBox(self.groupBox)
         self.checkBox_WorkdirFiles.setChecked(True)
         self.checkBox_WorkdirFiles.setObjectName("checkBox_WorkdirFiles")
-        self.gridlayout.addWidget(self.checkBox_WorkdirFiles,3,0,1,2)
+        self.gridlayout.addWidget(self.checkBox_WorkdirFiles,2,0,1,2)
+
+        self.checkBox_ConfigFiles = QtGui.QCheckBox(self.groupBox)
+        self.checkBox_ConfigFiles.setObjectName("checkBox_ConfigFiles")
+        self.gridlayout.addWidget(self.checkBox_ConfigFiles,3,0,1,2)
         self.vboxlayout.addWidget(self.groupBox)
 
         self.buttonBox = QtGui.QDialogButtonBox(NewProject)
@@ -64,7 +63,7 @@ class Ui_NewProject(object):
         self.groupBox.setTitle(QtGui.QApplication.translate("NewProject", "Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("NewProject", "Project file:", None, QtGui.QApplication.UnicodeUTF8))
         self.NewProject_browser.setText(QtGui.QApplication.translate("NewProject", "...", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBox_WorkdirFiles.setText(QtGui.QApplication.translate("NewProject", "Save nvrams and other disk files (recommended)", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBox_ConfigFiles.setText(QtGui.QApplication.translate("NewProject", "Export router configuration files", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBox_WorkdirFiles.setText(QtGui.QApplication.translate("NewProject", "Keep working directory files", None, QtGui.QApplication.UnicodeUTF8))
 
 import svg_resources_rc

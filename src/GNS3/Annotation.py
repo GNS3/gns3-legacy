@@ -32,6 +32,22 @@ class Annotation(QtGui.QGraphicsTextItem):
         self.setFlag(self.ItemIsMovable)
         self.setFlag(self.ItemIsSelectable)
         self.rotation = 0
+        
+    def keyPressEvent(self, event):
+    
+        key = event.key()
+        if key == QtCore.Qt.Key_Minus and self.rotation > -360:
+            if self.rotation:
+                self.rotate(-self.rotation)
+            self.rotation -= 1
+            self.rotate(self.rotation)
+        elif key == QtCore.Qt.Key_Plus and self.rotation < 360:
+            if self.rotation:
+                self.rotate(-self.rotation)
+            self.rotation += 1
+            self.rotate(self.rotation)
+        else:
+            QtGui.QGraphicsTextItem.keyPressEvent(self, event)
 
     def editText(self):
 

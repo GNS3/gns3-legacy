@@ -43,9 +43,9 @@
        </widget>
       </item>
       <item row="2" column="0" colspan="2" >
-       <widget class="QCheckBox" name="checkBox_ConfigFiles" >
+       <widget class="QCheckBox" name="checkBox_WorkdirFiles" >
         <property name="text" >
-         <string>Export router configuration files</string>
+         <string>Save nvrams and other disk files (recommended)</string>
         </property>
         <property name="checked" >
          <bool>true</bool>
@@ -53,12 +53,9 @@
        </widget>
       </item>
       <item row="3" column="0" colspan="2" >
-       <widget class="QCheckBox" name="checkBox_WorkdirFiles" >
+       <widget class="QCheckBox" name="checkBox_ConfigFiles" >
         <property name="text" >
-         <string>Keep working directory files</string>
-        </property>
-        <property name="checked" >
-         <bool>true</bool>
+         <string>Export router configuration files</string>
         </property>
        </widget>
       </item>
