@@ -223,6 +223,7 @@ class SIMHOST(object):
         #create the simhost side of UDP connection
         macaddr = self.__create_mac_addr(local_port)
         udp_tunnel = '%s:%i:%s:%i' % ('0.0.0.0', src_udp,  dst_ip, dst_udp)
+        print udp_tunnel
         send(self.sim, 'simhost add_interface %s %s %s %s' % (self.name, 'et' + str(local_port),  macaddr, udp_tunnel))
         self.nios[local_port] = UDPConnection(src_udp, dst_ip, dst_udp, self, local_port)
 
@@ -238,6 +239,14 @@ class SIMHOST(object):
         #set reverse nios
         remote_nio.reverse_nio = self.nios[local_port]
         self.nios[local_port].reverse_nio = remote_nio
+        
+        print 'Connect to dynamips'
+        interface = 'et' + str(local_port)
+        print interface
+        if  self.interfaces.has_key(interface):
+            params = self.interfaces[interface]
+            self.interface_setaddr(interface, params['ip'], params['mask'], params['gw'])
+            self.start_interface(interface)
         
     def connect_to_fw(self, local_port, remote_fw, remote_port):
         (src_udp, dst_udp) = self.__allocate_udp_port(remote_fw.p)

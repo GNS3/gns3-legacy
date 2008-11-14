@@ -37,12 +37,12 @@ class AbstractShapeItem(object):
     def keyPressEvent(self, event):
     
         key = event.key()
-        if key == QtCore.Qt.Key_Minus and self.rotation > -360:
+        if key == QtCore.Qt.Key_Left and event.modifiers() == QtCore.Qt.AltModifier and self.rotation > -360:
             if self.rotation:
                 self.rotate(-self.rotation)
             self.rotation -= 1
             self.rotate(self.rotation)
-        elif key == QtCore.Qt.Key_Plus and self.rotation < 360:
+        elif key == QtCore.Qt.Key_Right and event.modifiers() == QtCore.Qt.AltModifier and self.rotation < 360:
             if self.rotation:
                 self.rotate(-self.rotation)
             self.rotation += 1

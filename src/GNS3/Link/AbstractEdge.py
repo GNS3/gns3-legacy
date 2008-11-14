@@ -169,6 +169,8 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             if globals.addingLinkFlag:
                 globals.GApp.scene.resetAddingLink()
                 return
+            if self.fake:
+                return
             menu = QtGui.QMenu()
             menu.addAction(QtGui.QIcon(':/icons/delete.svg'), translate("AbstractEdge", "Delete"))
             if self.capturing == True:

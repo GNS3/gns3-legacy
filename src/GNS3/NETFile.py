@@ -667,12 +667,19 @@ class NETFile(object):
                         
             elif isinstance(device, lwip.SIMHOST):
 
+                config = {}
+                config['interfaces'] = {}
+                for (interface, params) in device.interfaces.iteritems():
+                    config['interfaces'][interface] = {'ip': params['ip'], 
+                                                                        'mask': params['mask'], 
+                                                                        'gw': params['gw'], 
+                                                                        }
                 node = self.create_node(device, 'Host', 'SIMHOST ' + device.name)
                 assert(node)
                 node.set_hypervisor(device.dynamips)
                 self.configure_node(node, device)
-                node.create_config()
-#                self.populate_connection_list_for_fw(device, connection_list)
+                node.set_config(config)
+                self.populate_connection_list_for_fw(device, connection_list)
                 match_obj = simhost_hostname_re.match(node.hostname)
                 if match_obj:
                     id = int(match_obj.group(1))

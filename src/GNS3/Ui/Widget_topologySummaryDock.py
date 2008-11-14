@@ -112,3 +112,31 @@ class topologySummaryDock(QtGui.QTreeWidget):
             topItem = self.topLevelItem(topItemNum)
             self.retranslateItem(topItem)
             topItemNum += 1
+            
+    def mousePressEvent(self, event):
+    
+        item = self.itemAt(event.pos())
+        if event.button() == QtCore.Qt.RightButton:
+            self.showContextualMenu()
+        else:
+            QtGui.QTreeWidget.mousePressEvent(self, event)
+
+    def showContextualMenu(self):
+
+        menu = QtGui.QMenu()
+        expandAll = QtGui.QAction(translate('topologySummaryDock', 'Expand all'), menu)
+        expandAll.setIcon(QtGui.QIcon(":/icons/plus.svg"))
+        self.connect(expandAll, QtCore.SIGNAL('triggered()'), self.slotExpandAll)
+        collapseAll = QtGui.QAction(translate('topologySummaryDock', 'Collapse all'), menu)
+        collapseAll.setIcon(QtGui.QIcon(":/icons/minus.svg"))
+        self.connect(collapseAll, QtCore.SIGNAL('triggered()'), self.slotCollapseAll)
+        menu.addAction(expandAll)
+        menu.addAction(collapseAll)
+        menu.exec_(QtGui.QCursor.pos())
+
+    def slotExpandAll(self):
+        self.expandAll()
+
+    def slotCollapseAll(self):
+        self.collapseAll()
+            

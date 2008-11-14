@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.0.dtd">
 <!-- eric4 project file for project GNS3 -->
-<!-- Saved: 2008-09-02, 18:50:38 -->
+<!-- Saved: 2008-11-03, 21:31:02 -->
 <!-- Copyright (C) 2008 ,  -->
 <Project version="4.0">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -719,6 +719,11 @@
       <Dir>Ui</Dir>
       <Dir>ConfigurationPages</Dir>
       <Name>Form_SIMHOSTPage.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Name>Unpack.py</Name>
     </Source>
   </Sources>
   <Forms>

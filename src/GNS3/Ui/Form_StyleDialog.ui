@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>314</height>
+    <width>369</width>
+    <height>332</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -93,7 +93,8 @@
       <item row="6" column="0" colspan="2" >
        <widget class="QLabel" name="label_4" >
         <property name="text" >
-         <string>Rotation can be ajusted on the scene for a selected item with + or -</string>
+         <string>Rotation can be ajusted on the scene for a selected item with
+ALT + LEFT or RIGHT</string>
         </property>
        </widget>
       </item>

@@ -154,6 +154,7 @@ class SimhostManager(object):
         if not self.waitHypervisor(hypervisor):
             return None
 
+        globals.simhost_hypervisor_baseudp += globals.GApp.systconf['dynamips'].udp_incrementation
         return hypervisor
 
     def unallocateHypervisor(self, port):

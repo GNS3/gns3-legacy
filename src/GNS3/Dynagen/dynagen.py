@@ -652,7 +652,7 @@ class Dynagen:
         # ignore simhost devices
         if isinstance(router, SIMHOST):
             return
-        
+
         if pa[:2].lower() == 'an':
             # Need to handle the Analysis-Module with two chars, because 'a' is an
             pa = pa[:2].lower()
@@ -1077,16 +1077,24 @@ class Dynagen:
                         for subitem in device.scalars:
                             if device[subitem] != None:
                                 self.debug('  ' + subitem + ' = ' + str(device[subitem]))
-                                if simhost_int_re.search(subitem) and subitem.find('params'):
-                                    print '==>' + subitem
-#                                    self.dynamips[lwip_name]
-#### HERE
+                                if simhost_int_re.search(subitem) and subitem[-6:] == 'params':
+                                    interface = subitem[:3]
+                                    (ip, mask, gw) = device[subitem].split(' ')
+                                    
+                                    dev.interfaces [interface] = {'ip': ip, 
+                                                                                'mask': mask, 
+                                                                                'gw': gw}
+                                    
+#                                    print dev.interface_setaddr(interface, ip, mask, gw)
+#                                    print dev.start_interface(interface)
+### HERE
                                     continue
                                 elif subitem.lower() in ['x', 'y', 'hx', 'hy', 'symbol']:
                                     continue
                                 elif simhost_int_re.search(subitem):
                                     # Add the tuple to the list of connections to deal with later
-                                    connectionlist.append((dev, subitem, device[subitem]))
+#                                    connectionlist.append((dev, subitem, device[subitem]))
+                                    pass
                                 else:
                                     self.dowarning( 'ignoring unknown config item: %s = %s' % (str(subitem), str(device[subitem])))
                                     self.import_error = True
