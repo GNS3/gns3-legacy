@@ -2077,8 +2077,7 @@ class Dynagen:
             if hypervisor.workingdir != default_workingdir:
                 self.running_config[h]['workingdir'] = hypervisor.workingdir
 
-            if hypervisor.starting_udp != hypervisor.default_udp:
-                self.running_config[h]['udp'] = hypervisor.starting_udp
+            self.running_config[h]['udp'] = hypervisor.starting_udp
 
             #go thought all routers for this hypervisor
             for device in self.devices.values():

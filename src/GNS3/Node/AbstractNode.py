@@ -236,6 +236,8 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             node: node instance
         """
 
+        # must do this to avoid a bug on Linux (kernel >= 2.6.26)
+        globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
         menu = QtGui.QMenu()
         interfaces_list = self.getInterfaces()
         if len(interfaces_list) == 0:
