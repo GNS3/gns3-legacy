@@ -245,6 +245,8 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s is not running")) % device)
                 return
 
+            host = globals.GApp.dynagen.devices[device].dynamips.host
+            
             match_obj = dynagen_namespace.interface_re.search(interface)
             if match_obj:
                 (inttype, slot, port) = match_obj.group(1, 2, 3)
@@ -260,20 +262,26 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 encapsulation = encapsulation[1:-1].split(':')[1]
                 encapsulation = self.encapsulationTransform[encapsulation]
                 capture_conf = globals.GApp.systconf['capture']
-                if capture_conf.workdir:
+
+                if capture_conf.workdir and (host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or host == 'localhost'):
                     workdir = capture_conf.workdir
                 else:
                     workdir = globals.GApp.dynagen.devices[device].dynamips.workingdir
-                self.capfile = unicode(workdir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
-                debug("Start capture in " + self.capfile)
+                if '/' in workdir:
+                    sep = '/'
+                else:
+                    sep = '\\'
+                self.capfile = unicode(workdir + sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+                debug("Start capture to " + self.capfile)
                 globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'capture','both', encapsulation + " " + '"' + self.capfile + '"')
                 self.captureInfo = (device, slot, inttype, port)
                 self.capturing = True
+                print "Capturing to " + self.capfile
             except lib.DynamipsError, msg:
                 QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Dynamips error"),  unicode(msg))
                 return
             capture_conf = globals.GApp.systconf['capture']
-            if capture_conf.auto_start:
+            if capture_conf.auto_start and (host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or host == 'localhost'):
                 time.sleep(2)
                 self.__startWiresharkAction()
 

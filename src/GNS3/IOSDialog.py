@@ -178,8 +178,15 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
             self.lineEditIOSImage.clear()
             self.lineEditIOSImage.setText(path)
+            
+            # basename doesn't work on Unix with Windows paths, so let's use this little trick
+            image = path
+            if not sys.platform.startswith('win') and image[1] == ":":
+                image = image[2:]
+                image = image.replace("\\", "/")
+                
             # try to guess the platform
-            platform = self._getIOSplatform(os.path.basename(path))
+            platform = self._getIOSplatform(os.path.basename(image))
             if platform == '2600':
                 # force c2600 platform
                 index = self.comboBoxPlatform.findText('c2600')

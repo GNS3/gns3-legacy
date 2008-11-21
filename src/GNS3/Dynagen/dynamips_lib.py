@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 
 from socket import socket, timeout, AF_INET, SOCK_STREAM
+import sys
 import os
 import re
 import copy
@@ -2630,7 +2631,12 @@ class Router(object):
 
         if self.__image == None:
             return None
-        image = os.path.basename(self.__image)
+        # basename doesn't work on Unix with Windows paths, so let's use this little trick
+        image = self.__image
+        if not sys.platform.startswith('win') and image[1] == ":":
+            image = image[2:]
+            image = image.replace("\\", "/")
+        image = os.path.basename(image)
         return image
 
     imagename = property(__getimagename, doc='The name of the IOS image file for this router')

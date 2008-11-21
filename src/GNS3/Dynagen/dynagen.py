@@ -2149,19 +2149,19 @@ class Dynagen:
         else:
             return ('invalid show run command', )
 
-    def check_ghost_file(self, device):
-        """check whether the ghostfile for this instance exists, if not create it"""
-
-        if device.ghost_status == 2:
-            ghost_instance = device.formatted_ghost_file()
-            # Search of an existing ghost instance across all
-            # dynamips servers running on the same host as the device
-            allghosts = []
-            for d in self.dynamips.values():
-                if isinstance(d, Dynamips):
-                    allghosts.extend(d.ghosts)
-            if ghost_instance not in allghosts:
-                self._create_ghost_instance(device)
+#    def check_ghost_file(self, device):
+#        """check whether the ghostfile for this instance exists, if not create it"""
+#
+#        if device.ghost_status == 2:
+#            ghost_instance = device.formatted_ghost_file()
+#            # Search of an existing ghost instance across all
+#            # dynamips servers running on the same host as the device
+#            allghosts = []
+#            for d in self.dynamips.values():
+#                if isinstance(d, Dynamips):
+#                    allghosts.extend(d.ghosts)
+#            if ghost_instance not in allghosts:
+#                self._create_ghost_instance(device)
 
     def check_ghost_file(self, device):
         """check whether the ghostfile for this instance exists, if not create it"""
@@ -2198,7 +2198,7 @@ class Dynagen:
         """ Create a new ghost instance to be used by 'device'
         """
         ghost_instance = device.formatted_ghost_file()
-        ghost = Router(device.dynamips, device.model, 'ghost-' + ghost_instance, consoleFlag=False)
+        ghost = Router(device.dynamips, device.model, '"' + 'ghost-' + ghost_instance + '"', consoleFlag=False)
         ghost.image = device.image
         # For 7200s, the NPE must be set when using an NPE-G2.
         if device.model == 'c7200':

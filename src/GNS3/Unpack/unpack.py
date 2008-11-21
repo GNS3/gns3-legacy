@@ -132,10 +132,13 @@ def unpackASA8(path, output):
         f.seek(seek_offset)
         gzipfile_fd.write(f.read())
         gzipfile_fd.close()
+        tmpdir = tempfile.mkdtemp()
+        if sys.platform.startswith('win'):
+            for file in ['cpio.exe', 'libiconv2.dll', 'libintl3.dll']:
+                shutil.copy(file, tmpdir)
         os.chdir(tempdir)
         if executeCommand("gzip -fd %s" % gzipfile_path) == False:
             return
-        tmpdir = tempfile.mkdtemp()
         os.chdir(tmpdir)
         if executeCommand("cpio -i --no-absolute-filenames --make-directories < %s" % gzipfile_path[:-3]) == False:
             return

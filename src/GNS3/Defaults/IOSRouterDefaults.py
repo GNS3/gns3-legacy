@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import os
+import sys, os
 import GNS3.Globals as globals
 from GNS3.Defaults.AbstractDefaults import AbstractDefaults
 
@@ -71,8 +71,12 @@ class IOSRouterDefaults(AbstractDefaults):
                 del self.config['image']
         else:
             self.config['image'] = image
-            #try to find idlepc value for this image in idlepc db
+            # basename doesn't work on Unix with Windows paths, so let's use this little trick
+            if not sys.platform.startswith('win') and image[1] == ":":
+                image = image[2:]
+                image = image.replace("\\", "/")
             imagename = os.path.basename(image)
+            #try to find idlepc value for this image in idlepc db
             if self.dynagen.useridledb:
                 if imagename in self.dynagen.useridledb:
                     print imagename + ' found in user idlepc database\nSetting idlepc value to ' + self.dynagen.useridledb[imagename]

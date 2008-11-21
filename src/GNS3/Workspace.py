@@ -236,7 +236,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "*rommon_vars")
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "*ssa")
 
-            print dynamips_files
             for file in dynamips_files:
                 try:
                     os.remove(file)

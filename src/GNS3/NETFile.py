@@ -782,7 +782,13 @@ class NETFile(object):
         hypervisors = self.dynagen.dynamips.copy()
         for (name, hypervisor) in hypervisors.iteritems():
             if isinstance(hypervisor, lib.Dynamips) and len(hypervisor.devices) == 0:
-                del self.dynagen.dynamips[name]
+                has_ethsw = False
+                for item in globals.GApp.topology.items():
+                    if isinstance(item, ETHSW) and item.hypervisor and item.hypervisor == hypervisor:
+                        has_ethsw = True
+                        break
+                if not has_ethsw:
+                    del self.dynagen.dynamips[name]
 
         for hypervisor in self.dynagen.dynamips.values():
             hypervisor.configchange = True

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.0.dtd">
 <!-- eric4 project file for project GNS3 -->
-<!-- Saved: 2008-11-18, 19:23:20 -->
+<!-- Saved: 2008-11-20, 02:21:14 -->
 <!-- Copyright (C) 2008 ,  -->
 <Project version="4.0">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -731,6 +731,12 @@
       <Dir>GNS3</Dir>
       <Dir>Unpack</Dir>
       <Name>setup.py</Name>
+    </Source>
+    <Source>
+      <Dir>src</Dir>
+      <Dir>GNS3</Dir>
+      <Dir>Unpack</Dir>
+      <Name>README.txt</Name>
     </Source>
   </Sources>
   <Forms>

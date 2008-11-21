@@ -428,7 +428,7 @@ class IOSRouter(AbstractNode):
             if devdefaults[model]['ghostios']:
                 ghost_file = router.formatted_ghost_file()
                 router.ghost_status = 2
-                router.ghost_file = ghost_file
+                router.ghost_file = '"' + ghost_file + '"'
 
         #add router to frontend
         self.dynagen.devices[self.hostname] = router

@@ -14,9 +14,18 @@ How to unpack ASA version 7 and early images?
 
 Images tested: asa722-k8.bin asa724-k8.bin
 
+[Linux]
+
 $ python unpack.py --format ASA7 asa724-k8.bin 
 Archive:  /tmp/asa724-k8.bin.zip
 inflating: /tmp/pix
+ASA7 binary image successfully unpacked in asa724-k8.bin.unpacked
+
+[Windows]
+
+C:\Unpack>unpack.exe --format ASA7 asa724-k8.bin
+Archive:  c:/docume~1/admini~1/locals~1/temp/asa724-k8.bin.zip
+inflating: c:/docume~1/admini~1/locals~1/temp/pix
 ASA7 binary image successfully unpacked in asa724-k8.bin.unpacked
 
 Then you just need to use asa724-k8.bin.unpacked in GNS3 or Pemu as a PIX image.
@@ -26,6 +35,8 @@ How to unpack ASA version 8 images?
 ===================================
 
 Image tested: asa802-k8.bin
+
+[Linux]
 
 $ python unpack.py --format ASA8 asa802-k8.bin
 gzip: /tmp/asa802-k8.bin.gz: decompression OK, trailing garbage ignored
@@ -51,6 +62,18 @@ cpio: dev/net/tun: Cannot mknod: Operation not permitted
 ASA8 initrd successfully unpacked in asa802-k8.bin.unpacked.initrd
 ASA8 kernel successfully unpacked in asa802-k8.bin.unpacked.vmlinuz
 
+[Windows]
+
+C:\Unpack>unpack.exe --format ASA8 asa802-k8.bin
+
+gzip: c:\docume~1\admini~1\locals~1\temp\asa802-k8.bin.gz: decompression OK, trailing garbage ignored
+cpio: Removing leading `/' from member names
+cpio: vmlinuz: Function not implemented
+...
+61039 blocks
+ASA8 initrd successfully unpacked in asa802-k8.bin.unpacked.initrd
+ASA8 kernel successfully unpacked in asa802-k8.bin.unpacked.vmlinuz
+
 Create a FLASH file with the follwing command: "qemu-img create FLASH 256M"
 
 Then you can use Qemu to launch ASA:
@@ -60,7 +83,7 @@ $qemu -hda FLASH -hdachs 980,16,32 -kernel asa802-k8.bin.unpacked.vmlinuz -initr
 
 Finally start telnet to connect on port 15000:
 
-$ telnet localhost 15000
+$telnet localhost 15000
 Trying 127.0.0.1...
 Connected to localhost.
 Escape character is '^]'.
@@ -104,8 +127,17 @@ ciscoasa>
 How to unpack IOS images?
 =========================
 
+[Linux]
+
 $ python unpack.py --format IOS 
 c2600-is-mz.122-46.bin 
+warning [c2600-is-mz.122-46.bin]:  17732 extra bytes at beginning or within zipfile
+(attempting to process anyway)
+IOS binary image successfully unpacked in c2600-is-mz.122-46.bin.unpacked
+
+[Windows]
+
+C:\Unpack>unpack.exe --format IOS c2600-is-mz.122-46.bin
 warning [c2600-is-mz.122-46.bin]:  17732 extra bytes at beginning or within zipfile
 (attempting to process anyway)
 IOS binary image successfully unpacked in c2600-is-mz.122-46.bin.unpacked

@@ -611,6 +611,7 @@ class Topology(QtGui.QGraphicsScene):
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
         self.dynagen.update_running_config()
         self.changed = True
+
         return True
 
     def deleteLink(self, link):
