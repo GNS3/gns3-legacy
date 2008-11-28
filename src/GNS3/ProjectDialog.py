@@ -77,5 +77,10 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         else:
             projectConfigs = None
         return (projectFile, projectWorkdir, projectConfigs)
+        
+    def accept(self):
 
+        settings = self.saveProjectSettings()
+        globals.GApp.mainWindow.createProject(settings)
+        QtGui.QDialog.accept(self)
 

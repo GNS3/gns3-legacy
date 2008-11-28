@@ -36,6 +36,7 @@ from GNS3.PemuManager import PemuManager
 from GNS3.SimhostManager import SimhostManager
 from GNS3.Translations import Translator
 from GNS3.DynagenSub import DynagenSub
+from GNS3.ProjectDialog import ProjectDialog
 from GNS3.Wizard import Wizard
 from __main__ import VERSION_INTEGER
 
@@ -386,7 +387,13 @@ class Application(QApplication, Singleton):
 
         if file:
             self.mainWindow.load_netfile(file)
-        
+        else:
+            dialog = ProjectDialog()
+            dialog.show()
+            self.mainWindow.centerDialog(dialog)
+            dialog.raise_()
+            dialog.activateWindow()
+    
         configFile = unicode(ConfDB().fileName())
         if not os.access(configFile, os.F_OK):
             dialog = Wizard()

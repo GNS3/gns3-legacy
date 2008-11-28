@@ -1,9 +1,12 @@
 TODO LIST
 
- * Simulated host support (based on LWIP).
- * A standalone server to automatically configure GNS3 clients in order to use remote hypervisors (intended for learning environments, schools/universities, where IOS images cannot be distributed) 
+ * Simulated host support (inspirated from LWIP).
+ * A standalone server to automatically configure GNS3 clients in order to use remote hypervisors (intended for learning environments, schools/universities, where IOS images cannot be distributed)
  * NIO multicast support.
  * Show NIO activity.
  * Dynamips QinQ integration.
  * Daisy chaining for switches.
+ * Qemu integration.
+ * ASA8 support (need to merge Pemu and Qemu).
+ * Scene size option.
 
