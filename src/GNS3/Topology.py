@@ -38,6 +38,7 @@ from GNS3.Node.Cloud import Cloud, init_cloud_id
 from GNS3.Node.FW import FW, init_fw_id
 from GNS3.Node.SIMHOST import SIMHOST, init_simhost_id
 from GNS3.SimhostManager import SimhostManager
+from GNS3.Node.AbstractNode import AbstractNode
 
 class Topology(QtGui.QGraphicsScene):
     """ Topology class
@@ -55,6 +56,18 @@ class Topology(QtGui.QGraphicsScene):
 
         QtGui.QGraphicsScene.__init__(self, parent)
         self.setSceneRect(-1000, -500, 2000, 1000)
+
+    def mousePressEvent(self, event):
+        item = self.itemAt(event.scenePos())
+        if item and isinstance(item, AbstractNode):
+            # In few circumstances, QtGui.QGraphicsScene.mousePressEvent()
+            # send the mousePressEvent to the wrong item; we need to
+            # correct this behaviour for 'Manual Link' mode. We force the 
+            # event to be send to the right item and activate workaround
+            # so that the false recipiend ignore it.
+            item.mousePressEvent(event)
+            globals.workaround_ManualLink = True
+        QtGui.QGraphicsScene.mousePressEvent(self, event)
 
     def cleanDynagen(self):
         """ Clean all dynagen data

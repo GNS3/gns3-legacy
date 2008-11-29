@@ -200,6 +200,12 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             event: QtGui.QGraphicsSceneMouseEvent instance
         """
 
+        if globals.workaround_ManualLink == True:
+            # We're not the right recipient of this event,
+            # so acknownledge the workaround and return
+            globals.workaround_ManualLink = False
+            return
+
         if globals.addingLinkFlag and event.button() == QtCore.Qt.LeftButton:
 
             self.__selectedInterface = None
