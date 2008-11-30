@@ -58,8 +58,9 @@ class Topology(QtGui.QGraphicsScene):
         self.setSceneRect(-1000, -500, 2000, 1000)
 
     def mousePressEvent(self, event):
+
         item = self.itemAt(event.scenePos())
-        if item and isinstance(item, AbstractNode):
+        if item and isinstance(item, AbstractNode) and globals.currentLinkType == globals.Enum.LinkType.Manual:
             # In few circumstances, QtGui.QGraphicsScene.mousePressEvent()
             # send the mousePressEvent to the wrong item; we need to
             # correct this behaviour for 'Manual Link' mode. We force the 

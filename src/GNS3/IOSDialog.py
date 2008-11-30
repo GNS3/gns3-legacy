@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import os, re
+import sys, os, re
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui, QtNetwork
 from GNS3.Ui.Form_IOSDialog import Ui_IOSDialog
