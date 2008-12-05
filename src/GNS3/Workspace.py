@@ -156,7 +156,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             painter.end()
         else:
 
-            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Yes - Export all the scene\nNo - Export only what I see"), 
+            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Yes - Export all the workspace\nNo - Export only what I see"), 
                                             QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
             if reply == QtGui.QMessageBox.Yes:

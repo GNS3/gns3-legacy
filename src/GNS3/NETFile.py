@@ -297,6 +297,10 @@ class NETFile(object):
         max_decorative_id = -1
         gns3data = self.dynagen.getGNS3Data()
         if gns3data:
+            if  gns3data.has_key('width') and  gns3data.has_key('height'):
+                width = int(gns3data['width'])
+                height = int(gns3data['height'])
+                globals.GApp.topology.setSceneRect(-(width / 2), -(height / 2), width, height)
             if  gns3data.has_key('m11') and  gns3data.has_key('m22'):
                 globals.GApp.scene.setMatrix(QtGui.QMatrix(float(gns3data['m11']), 0.0,  0.0,  float(gns3data['m22']), 0.0,  0.0))
             for section in gns3data:
@@ -960,6 +964,15 @@ class NETFile(object):
             self.dynagen.running_config['GNS3-DATA']['m11'] = m11
             self.dynagen.running_config['GNS3-DATA']['m22'] = m22
 
+        # register scene size
+        scene_width = int(globals.GApp.topology.width())
+        scene_height = int(globals.GApp.topology.height())
+        if scene_width != 2000 or scene_height != 1000:
+            if not self.dynagen.running_config.has_key('GNS3-DATA'):
+                self.dynagen.running_config['GNS3-DATA'] = {}
+            self.dynagen.running_config['GNS3-DATA']['width'] = scene_width
+            self.dynagen.running_config['GNS3-DATA']['height'] = scene_height
+            
         self.dynagen.running_config.filename = path
         self.dynagen.running_config.write()
         self.dynagen.running_config.filename = None

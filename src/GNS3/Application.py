@@ -337,6 +337,8 @@ class Application(QApplication, Singleton):
         confo.ios_path = ConfDB().get('GNS3/ios_directory', unicode(''))
         confo.status_points = ConfDB().value("GNS3/gui_show_status_points", QVariant(True)).toBool()
         confo.manual_connection =ConfDB().value("GNS3/gui_use_manual_connection", QVariant(False)).toBool()
+        confo.scene_width = int(ConfDB().get('GNS3/scene_width', 2000))
+        confo.scene_height = int(ConfDB().get('GNS3/scene_height', 1000))
         
         # replace ~user and $HOME by home directory
         if os.environ.has_key("HOME"):
@@ -444,6 +446,8 @@ class Application(QApplication, Singleton):
         c.set('GNS3/gui_use_manual_connection', confo.manual_connection)
         c.set('GNS3/project_directory', confo.project_path)
         c.set('GNS3/ios_directory', confo.ios_path)
+        c.set('GNS3/scene_width', confo.scene_width)
+        c.set('GNS3/scene_height', confo.scene_height)
 
         # Dynamips settings
         confo = self.systconf['dynamips']

@@ -54,8 +54,11 @@ class Topology(QtGui.QGraphicsScene):
         self.dynagen = globals.GApp.dynagen
         self.changed = False
 
+        width = globals.GApp.systconf['general'].scene_width
+        height = globals.GApp.systconf['general'].scene_height
+        
         QtGui.QGraphicsScene.__init__(self, parent)
-        self.setSceneRect(-1000, -500, 2000, 1000)
+        self.setSceneRect(-(width / 2), -(height / 2), width, height)
 
     def mousePressEvent(self, event):
 

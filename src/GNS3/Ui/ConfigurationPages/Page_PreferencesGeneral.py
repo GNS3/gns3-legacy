@@ -96,6 +96,8 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         self.lineEditTermCommand.setText(self.conf.term_cmd)
         self.ProjectPath.setText(os.path.normpath(self.conf.project_path))
         self.IOSPath.setText(os.path.normpath(self.conf.ios_path))
+        self.workspaceWidth.setValue(self.conf.scene_width)
+        self.workspaceHeight.setValue(self.conf.scene_height)
             
         # GUI settings
         if self.conf.status_points == True:
@@ -144,6 +146,11 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         self.conf.project_path = unicode(self.ProjectPath.text())
         self.conf.ios_path = unicode(self.IOSPath.text())
         self.conf.term_cmd = unicode(self.lineEditTermCommand.text())
+        self.conf.scene_width = self.workspaceWidth.value()
+        self.conf.scene_height = self.workspaceHeight.value()
+        
+        # Apply scene size
+        globals.GApp.topology.setSceneRect(-(self.conf.scene_width / 2), -(self.conf.scene_height / 2), self.conf.scene_width, self.conf.scene_height)
 
         globals.GApp.systconf['general'] = self.conf
         ConfDB().sync()

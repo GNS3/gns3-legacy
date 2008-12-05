@@ -1,4 +1,17 @@
+
 CHANGELOG
+
+GNS3 0.6
+
+ * Users can change the workspace size.
+ * Possibility to draw rectangles and ellipses.
+ * Feature to automatically create labels of interface names.
+ * Multi-links drawing (no overlaps).
+ * Snapshot feature.
+ * Interface names are included in the Generic Ethernet NIO list on Windows.
+ * New export to images (JPEG, PNG ...) that allows to export all the workspace (and not only what you see).
+ * "Expand all" and "collapse all" features for the topology summary panel (contribution by beduev).
+ * Annotations, rectangles and ellipses can be rotated.
 
 GNS3 0.5:
 
