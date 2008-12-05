@@ -1999,7 +1999,7 @@ Entre o número do valor idlepc para aplicar [1-%i] ou ENTRE para não alterar:
         <translation>Favor esperar enquanto é copiado a flash base</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="930"/>
+        <location filename="../NETFile.py" line="931"/>
         <source>must be connected in order to be registered</source>
         <translation>É necessário estar conectado para ser registrado</translation>
     </message>

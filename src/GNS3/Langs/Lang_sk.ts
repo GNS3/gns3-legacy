@@ -2000,7 +2000,7 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
         <translation>Počkajte kým sa skopíruje základný flash</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="930"/>
+        <location filename="../NETFile.py" line="931"/>
         <source>must be connected in order to be registered</source>
         <translation>musí byť pripojený nato aby mohol by zaregistrovaný</translation>
     </message>

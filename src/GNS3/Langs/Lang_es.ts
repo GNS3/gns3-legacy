@@ -2024,7 +2024,7 @@ Ingrese el numero del idlepc que desea aplicar  [1-%i] o ENTER para no efectuar 
         <translation>Espere mientras se copia la base flash</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="930"/>
+        <location filename="../NETFile.py" line="931"/>
         <source>must be connected in order to be registered</source>
         <translation>debe estar conectado para poder registrar</translation>
     </message>

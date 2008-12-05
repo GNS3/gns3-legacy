@@ -1999,7 +1999,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>正在复制flash,请稍后</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="930"/>
+        <location filename="../NETFile.py" line="931"/>
         <source>must be connected in order to be registered</source>
         <translation>必须是连接的才可被注册</translation>
     </message>

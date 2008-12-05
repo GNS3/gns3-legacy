@@ -1999,7 +1999,7 @@ Wprowadź numer wartości idlepc do przypisania [1-%i] lub wciśnij enter żeby 
         <translation>Proszę czekać, kopiowanie podstawowego flasha</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="930"/>
+        <location filename="../NETFile.py" line="931"/>
         <source>must be connected in order to be registered</source>
         <translation type="unfinished"></translation>
     </message>

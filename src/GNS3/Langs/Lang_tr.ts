@@ -1997,7 +1997,7 @@ Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmama
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="930"/>
+        <location filename="../NETFile.py" line="931"/>
         <source>must be connected in order to be registered</source>
         <translation type="unfinished"></translation>
     </message>

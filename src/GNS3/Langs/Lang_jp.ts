@@ -1998,7 +1998,7 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
         <translation>フラッシュメモリーのコピー完了するまでお待ちください</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="930"/>
+        <location filename="../NETFile.py" line="931"/>
         <source>must be connected in order to be registered</source>
         <translation>登録するてめにあらかじめ接続して置く必要あります</translation>
     </message>

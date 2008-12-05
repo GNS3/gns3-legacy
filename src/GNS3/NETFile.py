@@ -839,7 +839,8 @@ class NETFile(object):
                     self.dynagen.running_config['GNS3-DATA'] = {}
                 self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] = {}
                 config = self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] 
-                config['text'] = unicode(item.toPlainText()).replace("\n", "\\n")
+
+                config['text'] = unicode(item.toPlainText(), 'utf8', errors='replace').replace("\n", "\\n")#.encode('utf-16', 'replace')
                 config['x'] = item.x()
                 config['y'] = item.y()
                 

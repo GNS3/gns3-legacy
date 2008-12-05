@@ -1996,7 +1996,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>Подождите пока копируется на основную флеш-память</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="930"/>
+        <location filename="../NETFile.py" line="931"/>
         <source>must be connected in order to be registered</source>
         <translation>должен быть подключен чтобы зарегистрироваться</translation>
     </message>
