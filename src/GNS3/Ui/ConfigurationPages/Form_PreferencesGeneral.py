@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
 #
-# Created: Fri Dec  5 18:21:45 2008
+# Created: Sat Dec  6 20:36:13 2008
 #      by: PyQt4 UI code generator 4.3.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_PreferencesGeneral(object):
     def setupUi(self, PreferencesGeneral):
         PreferencesGeneral.setObjectName("PreferencesGeneral")
-        PreferencesGeneral.resize(QtCore.QSize(QtCore.QRect(0,0,437,531).size()).expandedTo(PreferencesGeneral.minimumSizeHint()))
+        PreferencesGeneral.resize(QtCore.QSize(QtCore.QRect(0,0,437,561).size()).expandedTo(PreferencesGeneral.minimumSizeHint()))
 
         self.vboxlayout = QtGui.QVBoxLayout(PreferencesGeneral)
         self.vboxlayout.setObjectName("vboxlayout")
@@ -32,6 +32,11 @@ class Ui_PreferencesGeneral(object):
         self.langsBox.setSizePolicy(sizePolicy)
         self.langsBox.setObjectName("langsBox")
         self.vboxlayout.addWidget(self.langsBox)
+
+        self.checkBoxProjectDialog = QtGui.QCheckBox(PreferencesGeneral)
+        self.checkBoxProjectDialog.setChecked(True)
+        self.checkBoxProjectDialog.setObjectName("checkBoxProjectDialog")
+        self.vboxlayout.addWidget(self.checkBoxProjectDialog)
 
         self.label_4 = QtGui.QLabel(PreferencesGeneral)
         self.label_4.setObjectName("label_4")
@@ -138,7 +143,7 @@ class Ui_PreferencesGeneral(object):
         self.hboxlayout.addWidget(self.pushButton_ClearConfiguration)
         self.vboxlayout.addWidget(self.groupBox_3)
 
-        spacerItem1 = QtGui.QSpacerItem(414,20,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        spacerItem1 = QtGui.QSpacerItem(419,16,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
         self.vboxlayout.addItem(spacerItem1)
 
         self.retranslateUi(PreferencesGeneral)
@@ -147,6 +152,7 @@ class Ui_PreferencesGeneral(object):
     def retranslateUi(self, PreferencesGeneral):
         PreferencesGeneral.setWindowTitle(QtGui.QApplication.translate("PreferencesGeneral", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("PreferencesGeneral", "Language:", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxProjectDialog.setText(QtGui.QApplication.translate("PreferencesGeneral", "Launch the project dialog at startup", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("PreferencesGeneral", "Terminal command:", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxUseShell.setText(QtGui.QApplication.translate("PreferencesGeneral", "Launch this command using the system default shell", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setTitle(QtGui.QApplication.translate("PreferencesGeneral", "Paths", None, QtGui.QApplication.UnicodeUTF8))

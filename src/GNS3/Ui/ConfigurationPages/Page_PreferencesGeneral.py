@@ -112,6 +112,10 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.checkBoxUseShell.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxUseShell.setCheckState(QtCore.Qt.Unchecked)
+        if self.conf.project_startup == True:
+            self.checkBoxProjectDialog.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxProjectDialog.setCheckState(QtCore.Qt.Unchecked)
             
         self.labelConfigurationPath.setText(ConfDB().fileName())
 
@@ -142,6 +146,10 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.conf.use_shell = True
         else:
             self.conf.use_shell = False
+        if self.checkBoxProjectDialog.checkState() == QtCore.Qt.Checked:
+            self.conf.project_startup = True
+        else:
+            self.conf.project_startup = False
     
         self.conf.project_path = unicode(self.ProjectPath.text())
         self.conf.ios_path = unicode(self.IOSPath.text())

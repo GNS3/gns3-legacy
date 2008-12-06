@@ -2366,78 +2366,83 @@ to display the configuration page.</source>
         <translation>اللغة:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="111"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="121"/>
         <source>GUI settings</source>
         <translation>أعدادات الواجهة الرسومية</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="62"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="72"/>
         <source>Paths</source>
         <translation>مسارات</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="68"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="78"/>
         <source>Project directory:</source>
         <translation>مسار المشروع:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="98"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="108"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
         <source>Terminal command:</source>
         <translation>أمر طرفي:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="88"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="98"/>
         <source>IOS/PIX directory:</source>
         <translation>IOS/PIX directory:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="127"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="137"/>
         <source>Always use manual mode when adding links</source>
         <translation>دائما أستخدم النمط اليدوي لأضافة وصلات</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="62"/>
         <source>Launch this command using the system default shell</source>
         <translation>Launch this command using the system default shell</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="192"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="202"/>
         <source>Configuration file</source>
         <translation>ملف التهيئة</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="198"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="208"/>
         <source>Unknown location</source>
         <translation>مكان غير معروف</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="218"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="228"/>
         <source>&amp;Clear it</source>
         <translation>&amp;أمسحها</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="117"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="127"/>
         <source>Show link status points on the workspace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="137"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="147"/>
         <source>Workspace width:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="170"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="180"/>
         <source> px</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="163"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="173"/>
         <source>Workspace height:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
+        <source>Launch the project dialog at startup</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3137,11 +3142,6 @@ p, li { white-space: pre-wrap; }
         <translation>فقد الاتصال</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="472"/>
-        <source>Dynamips warning</source>
-        <translation>Dynamips تحذير</translation>
-    </message>
-    <message>
         <location filename="../Workspace.py" line="451"/>
         <source>Abort</source>
         <translation>فشل</translation>
@@ -3280,6 +3280,16 @@ No - Export only what I see</source>
     <message>
         <location filename="../Workspace.py" line="669"/>
         <source>Please wait while creating a snapshot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="475"/>
+        <source>%s: Dynamips error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="472"/>
+        <source>%s: Dynamips warning</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

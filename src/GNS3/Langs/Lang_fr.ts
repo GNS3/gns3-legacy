@@ -2368,79 +2368,84 @@ pour afficher sa page de configuration.</translation>
         <translation>Langage:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="111"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="121"/>
         <source>GUI settings</source>
         <translation>Réglages graphiques</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="62"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="72"/>
         <source>Paths</source>
         <translation>Chemins</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="68"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="78"/>
         <source>Project directory:</source>
         <translation>Répertoire des projets:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="98"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="108"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
         <source>Terminal command:</source>
         <translation>Commande pour le terminal:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="88"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="98"/>
         <source>IOS/PIX directory:</source>
         <translation>Répertoire des images IOS/PIX:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="127"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="137"/>
         <source>Always use manual mode when adding links</source>
         <translation>Toujours utiliser le mode manuel lors de l&apos;ajout de liens</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="62"/>
         <source>Launch this command using the system default shell</source>
         <translation>Démarrer cette commande en utilisant le shell du système</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="192"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="202"/>
         <source>Configuration file</source>
         <translation>Fichier de configuration</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="198"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="208"/>
         <source>Unknown location</source>
         <translation>Emplacement inconnu</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="218"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="228"/>
         <source>&amp;Clear it</source>
         <translation>&amp;Effacer le</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="117"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="127"/>
         <source>Show link status points on the workspace</source>
         <translation>Montrer les points de status des liens</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="137"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="147"/>
         <source>Workspace width:</source>
         <translation>Largeur de l&apos;espace de dessin:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="170"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="180"/>
         <source> px</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="163"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="173"/>
         <source>Workspace height:</source>
         <translation>Hauteur de l&apos;espace de dessin:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
+        <source>Launch the project dialog at startup</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3140,11 +3145,6 @@ p, li { white-space: pre-wrap; }
         <translation>Connection perdue</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="472"/>
-        <source>Dynamips warning</source>
-        <translation>Avertissement Dynamips</translation>
-    </message>
-    <message>
         <location filename="../Workspace.py" line="451"/>
         <source>Abort</source>
         <translation>Annuler</translation>
@@ -3285,6 +3285,16 @@ Non - Exporter uniquement ce que je vois</translation>
         <location filename="../Workspace.py" line="669"/>
         <source>Please wait while creating a snapshot</source>
         <translation>SVP, attendez pendant la création de la snapshot</translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="475"/>
+        <source>%s: Dynamips error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="472"/>
+        <source>%s: Dynamips warning</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -331,6 +331,7 @@ class Application(QApplication, Singleton):
         self.systconf['general'] = systemGeneralConf()
         confo = self.systconf['general']
         confo.lang = ConfDB().get('GNS3/lang', unicode('en'))
+        confo.project_startup = ConfDB().value("GNS3/project_startup", QVariant(True)).toBool()
         confo.use_shell = ConfDB().value("GNS3/use_shell", QVariant(True)).toBool()
         confo.term_cmd = ConfDB().get('GNS3/console', unicode(''))
         confo.project_path = ConfDB().get('GNS3/project_directory', unicode(''))
@@ -389,7 +390,7 @@ class Application(QApplication, Singleton):
 
         if file:
             self.mainWindow.load_netfile(file)
-        else:
+        elif confo.project_startup:
             dialog = ProjectDialog()
             dialog.show()
             self.mainWindow.centerDialog(dialog)
@@ -440,6 +441,7 @@ class Application(QApplication, Singleton):
         # Apply general settings
         confo = self.systconf['general']
         c.set('GNS3/lang', confo.lang)
+        c.set('GNS3/project_startup', confo.project_startup)
         c.set('GNS3/console', confo.term_cmd)
         c.set('GNS3/use_shell', confo.use_shell)
         c.set('GNS3/gui_show_status_points', confo.status_points)

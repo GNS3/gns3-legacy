@@ -106,6 +106,7 @@ conf_systemDynamips_types = {
 
 conf_systemGeneral_defaults = {
     'lang': 'en',
+    'project_startup': True, 
     'term_cmd': '',
     'use_shell': True,
     'project_path': '.',
@@ -118,6 +119,7 @@ conf_systemGeneral_defaults = {
 
 conf_systemGeneral_types = {
     'lang': unicode,
+    'project_startup': bool, 
     'use_shell': bool,
     'term_cmd': unicode,
     'project_path': unicode,
