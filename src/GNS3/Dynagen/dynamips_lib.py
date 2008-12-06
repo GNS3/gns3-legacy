@@ -3320,25 +3320,42 @@ class C1700(Router):
 
     iomem = property(__getiomem, __setiomem, doc='The iomem size of this router')
 
+class UnicodeException(Exception):
+    
+    def __init__(self, message):
+        if isinstance(message, unicode):
+            self.unicode_message = message
+            message = message.encode('ASCII', 'replace')
+        else:
+            message = str(message)
+            try:
+                self.unicode_message = unicode(message, "utf8")
+            except UnicodeEncodeError:
+                self.unicode_message = unicode(message, "ISO-8859-1")
+        Exception.__init__(self, message)
+    
+    def __unicode__(self):
+        return self.unicode_message
 
-class DynamipsError(Exception):
+class DynamipsError(UnicodeException):
 
-    pass
-
+    def __init__(self, message):
+        UnicodeException.__init__(self, message)
 
 class DynamipsErrorHandled(Exception):
 
-    pass
-
+    def __init__(self, message):
+        UnicodeException.__init__(self, message)
 
 class DynamipsVerError(Exception):
 
-    pass
-
+    def __init__(self, message):
+        UnicodeException.__init__(self, message)
 
 class DynamipsWarning(Exception):
 
-    pass
+    def __init__(self, message):
+        UnicodeException.__init__(self, message)
 
 
 ###############################################################################
@@ -4880,7 +4897,7 @@ def dowarning(msg):
     """Print out minor warning messages
     """
 
-    print '*** Warning: ', str(msg)
+    print '*** Warning: ', unicode(msg)
 
 
 def debug(string):
@@ -4890,7 +4907,7 @@ def debug(string):
     global DEBUG
 
     if DEBUG:
-        print '  DEBUG: ' + str(string)
+        print '  DEBUG: ' + unicode(string)
 
 
 if __name__ == '__main__':

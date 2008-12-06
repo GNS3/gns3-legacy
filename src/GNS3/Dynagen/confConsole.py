@@ -42,7 +42,7 @@ else:
 def error(msg):
     """Print out an error message"""
 
-    print '*** Error:', str(msg)
+    print '*** Error:', unicode(msg)
 
 
 def debug(string):
@@ -51,7 +51,7 @@ def debug(string):
     import __main__
     # Debug level 2, console debugs
     if __main__.dynagen.debuglevel >= 2:
-        print '  DEBUG: ' + str(string)
+        print '  DEBUG: ' + unicode(string)
 
 
 ##############end of some functions from console.py##################

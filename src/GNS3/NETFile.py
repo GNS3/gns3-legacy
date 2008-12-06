@@ -351,7 +351,7 @@ class NETFile(object):
 
                 if devtype.lower() == 'note':
                     note_object = Annotation()
-                    note_object.setPlainText(unicode(gns3data[section]['text'].replace("\\n", "\n")))
+                    note_object.setPlainText(gns3data[section]['text'].replace("\\n", "\n"))
                     note_object.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
                     if gns3data[section].has_key('z'):
                         note_object.setZValue(float(gns3data[section]['z']))
@@ -840,7 +840,7 @@ class NETFile(object):
                 self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] = {}
                 config = self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] 
 
-                config['text'] = unicode(item.toPlainText(), 'utf8', errors='replace').replace("\n", "\\n")#.encode('utf-16', 'replace')
+                config['text'] = unicode(item.toPlainText()).replace("\n", "\\n")
                 config['x'] = item.x()
                 config['y'] = item.y()
                 

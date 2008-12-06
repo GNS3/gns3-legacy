@@ -467,12 +467,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 if action == 'suspend':
                     node.suspendNode(progress=True)
             except lib.DynamipsError, msg:
-                QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Workspace", "Dynamips error"),  unicode(msg))
+                QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "%s: Dynamips error")) % node.hostname,  unicode(msg))
             except lib.DynamipsWarning,  msg:
-                QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Workspace", "Dynamips warning"),  unicode(msg))
+                QtGui.QMessageBox.warning(self, unicode(translate("Workspace", "%s: Dynamips warning")) % node.hostname,  unicode(msg))
                 continue
             except (lib.DynamipsErrorHandled,  socket.error):
-                QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost"))
+                QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "%s: Dynamips error")) % node.hostname, translate("Workspace", "Connection lost"))
                 progress.reset()
                 return
             current += 1

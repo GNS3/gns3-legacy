@@ -163,9 +163,9 @@ class Dynagen:
         self.import_error = False  #True if errors during import
 
         #confdynagen stuff
-        self.running_config = ConfigObj(list_values=False)
+        self.running_config = ConfigObj(list_values=False, encoding='utf-8')
         self.running_config.indent_type = '    '
-        self.defaults_config = ConfigObj()
+        self.defaults_config = ConfigObj(encoding='utf-8')
         self.defaults_config.indent_type = '    '
         self.generic_router_options = [
             'ram',
@@ -968,7 +968,7 @@ class Dynagen:
                 h = open(FILENAME)
                 h.close()
                 try:
-                    config = ConfigObj(FILENAME, configspec=configspec, raise_errors=True, list_values=False)
+                    config = ConfigObj(FILENAME, configspec=configspec, raise_errors=True, list_values=False, encoding='utf-8')
                 except SyntaxError, e:
                     print '\nError in loading .net file:'
                     print e
@@ -1076,7 +1076,7 @@ class Dynagen:
                         #set the special device options
                         for subitem in device.scalars:
                             if device[subitem] != None:
-                                self.debug('  ' + subitem + ' = ' + str(device[subitem]))
+                                self.debug('  ' + subitem + ' = ' + unicode(device[subitem]))
                                 if simhost_int_re.search(subitem) and subitem[-6:] == 'params':
                                     interface = subitem[:3]
                                     (ip, mask, gw) = device[subitem].split(' ')
@@ -1171,7 +1171,7 @@ class Dynagen:
                         #set the special device options
                         for subitem in device.scalars:
                             if device[subitem] != None:
-                                self.debug('  ' + subitem + ' = ' + str(device[subitem]))
+                                self.debug('  ' + subitem + ' = ' + unicode(device[subitem]))
                                 if subitem in (
                                     'console',
                                     'key',
@@ -1210,7 +1210,7 @@ class Dynagen:
                 if self.debuglevel >= 3:
                     self.debug('Server = ' + server.name)
                     for item in server.scalars:
-                        self.debug('  ' + str(item) + ' = ' + str(server[item]))
+                        self.debug('  ' + str(item) + ' = ' + unicode(server[item]))
                 try:
                     if server['port'] != None:
                         controlPort = server['port']
@@ -1357,7 +1357,7 @@ class Dynagen:
 
                         for subitem in device.scalars:
                             if device[subitem] != None:
-                                self.debug('  ' + subitem + ' = ' + str(device[subitem]))
+                                self.debug('  ' + subitem + ' = ' + unicode(device[subitem]))
                                 if self.setproperty(dev, subitem, device[subitem]):
                                     # This was a property that was set.
                                     continue
@@ -1373,7 +1373,7 @@ class Dynagen:
                                     elif interface_noport_re.search(subitem):
                                     # is it an interface with no port? (e.g. "f0")
                                         connectionlist.append((dev, subitem, device[subitem]))
-                                    elif mapint_re.search(subitem) or mapvci_re.search(subitem) or mapvci_re.search(str(device[subitem])):
+                                    elif mapint_re.search(subitem) or mapvci_re.search(subitem) or mapvci_re.search(unicode(device[subitem])):
                                     # is it a frame relay or ATM vpi mapping?
                                         # Add the tupple to the list of mappings to deal with later
                                         maplist.append((dev, subitem, device[subitem]))
@@ -1397,7 +1397,7 @@ class Dynagen:
 
         # Establish the connections we collected earlier
         for connection in connectionlist:
-            self.debug('connection: ' + str(connection))
+            self.debug('connection: ' + unicode(connection))
             (router, source, dest) = connection
             try:
                 result = self.connect(router, source, dest)
@@ -1533,7 +1533,7 @@ class Dynagen:
             self.doerror('Cannot open dynagen.ini file')
 
         try:
-            config = ConfigObj(inifile, raise_errors=True)
+            config = ConfigObj(inifile, raise_errors=True, encoding='utf-8')
         except SyntaxError, e:
             print '\nError:'
             print e
@@ -1573,7 +1573,7 @@ class Dynagen:
             return None
 
         try:
-            config = ConfigObj(inifile, raise_errors=True)
+            config = ConfigObj(inifile, raise_errors=True, encoding='utf-8')
         except SyntaxError, e:
             print '\nError in user idlepc database:'
             print e
@@ -1716,7 +1716,7 @@ class Dynagen:
         """read the config file on disk and return a tuple of lines"""
 
         #read the file
-        startup_config = ConfigObj(self.global_filename)
+        startup_config = ConfigObj(self.global_filename, encoding='utf-8')
         startup_config.filename = None  #so that we will return lines, not write into file
         startup_config.indent_type = '    '
         startup_config_tuple = startup_config.write()
@@ -2032,7 +2032,7 @@ class Dynagen:
             default_option = defaults[option]
         else:
             default_option = device.defaults[option]
-        if str(getattr(device, option)) != str(default_option):
+        if unicode(getattr(device, option)) != unicode(default_option):
             running[option] = getattr(device, option)
 
 
@@ -2099,7 +2099,7 @@ class Dynagen:
                         self._update_running_config_for_simhost(hypervisor, device, need_active_config)
 
         #after everything is done merge this config with defaults_config
-        temp_config = ConfigObj(self.defaults_config)
+        temp_config = ConfigObj(self.defaults_config, encoding='utf-8')
         temp_config.merge(self.running_config)
         self.running_config = temp_config
 
@@ -2221,12 +2221,12 @@ class Dynagen:
 
         # Level 3, dynagen debugs.
         if self.debuglevel >= 3:
-            print '  DEBUG: ' + str(string)
+            print '  DEBUG: ' + unicode(string)
 
     def doerror(self, msg):
         """Print out an error message"""
 
-        print '\n*** Error: ', str(msg)
+        print '\n*** Error: ', unicode(msg)
         self.doreset()
         if not options.qa:
             raw_input('Press ENTER to continue')
@@ -2235,7 +2235,7 @@ class Dynagen:
     def dowarning(self, msg):
         """Print out minor warning messages"""
 
-        print '*** Warning: ', str(msg)
+        print '*** Warning: ', unicode(msg)
 
     def doreset(self):
         """reset all hypervisors"""

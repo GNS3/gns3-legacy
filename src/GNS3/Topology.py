@@ -371,7 +371,7 @@ class Topology(QtGui.QGraphicsScene):
                         (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "IOS image"),
                                                                       translate("Topology", "Please choose an image"), selected_images, 0, False)
                         if ok:
-                            image_to_use = str(selection)
+                            image_to_use = unicode(selection)
                         else:
                             return
                 else:
