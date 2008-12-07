@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sat Dec  6 20:36:12 2008
+# Created: Sun Dec  7 02:50:44 2008
 #      by: PyQt4 UI code generator 4.3.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -35,7 +35,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,840,30))
+        self.menubar.setGeometry(QtCore.QRect(0,0,840,26))
         self.menubar.setObjectName("menubar")
 
         self.menu_Edit = QtGui.QMenu(self.menubar)
@@ -258,9 +258,9 @@ class Ui_MainWindow(object):
         self.action_New.setIcon(QtGui.QIcon(":/icons/new.svg"))
         self.action_New.setObjectName("action_New")
 
-        self.action_Extract_config = QtGui.QAction(MainWindow)
-        self.action_Extract_config.setIcon(QtGui.QIcon(":/icons/edit-undo.svg"))
-        self.action_Extract_config.setObjectName("action_Extract_config")
+        self.action_config = QtGui.QAction(MainWindow)
+        self.action_config.setIcon(QtGui.QIcon(":/icons/edit-undo.svg"))
+        self.action_config.setObjectName("action_config")
 
         self.action_InsertImage = QtGui.QAction(MainWindow)
         self.action_InsertImage.setIcon(QtGui.QIcon(":/icons/image.svg"))
@@ -329,7 +329,7 @@ class Ui_MainWindow(object):
         self.toolBar_General.addAction(self.action_ShowinterfaceNames)
         self.toolBar_General.addAction(self.action_Add_link)
         self.toolBar_Emulation.addAction(self.action_Snapshot)
-        self.toolBar_Emulation.addAction(self.action_Extract_config)
+        self.toolBar_Emulation.addAction(self.action_config)
         self.toolBar_Emulation.addAction(self.action_TelnetAll)
         self.toolBar_Emulation.addAction(self.action_StartAll)
         self.toolBar_Emulation.addAction(self.action_SuspendAll)
@@ -409,7 +409,7 @@ class Ui_MainWindow(object):
         self.action_New.setIconText(QtGui.QApplication.translate("MainWindow", "New Project", None, QtGui.QApplication.UnicodeUTF8))
         self.action_New.setToolTip(QtGui.QApplication.translate("MainWindow", "New Project", None, QtGui.QApplication.UnicodeUTF8))
         self.action_New.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+N", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_Extract_config.setText(QtGui.QApplication.translate("MainWindow", "&Extract all startup-configs", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_config.setText(QtGui.QApplication.translate("MainWindow", "&Extract/Import all startup-configs", None, QtGui.QApplication.UnicodeUTF8))
         self.action_InsertImage.setText(QtGui.QApplication.translate("MainWindow", "Insert a picture", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Symbol_Manager.setText(QtGui.QApplication.translate("MainWindow", "&Symbol Manager", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Symbol_Manager.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+S", None, QtGui.QApplication.UnicodeUTF8))

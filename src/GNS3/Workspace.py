@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import os, sys, socket, glob, shutil, time
+import os, sys, socket, glob, shutil, time, base64
 import GNS3.NETFile as netfile
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Globals as globals
@@ -99,7 +99,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_Preferences, QtCore.SIGNAL('triggered()'), self.__action_Preferences)
         self.connect(self.action_AddNote, QtCore.SIGNAL('triggered()'), self.__action_AddNote)
         self.connect(self.action_Clear, QtCore.SIGNAL('triggered()'), self.__action_Clear)
-        self.connect(self.action_Extract_config, QtCore.SIGNAL('triggered()'), self.__action_ExtractConfig)
+        self.connect(self.action_config, QtCore.SIGNAL('triggered()'), self.__action_Config)
         self.connect(self.action_InsertImage, QtCore.SIGNAL('triggered()'), self.__action_InsertImage)
         self.connect(self.action_DrawRectangle, QtCore.SIGNAL('triggered()'), self.__action_DrawRectangle)
         self.connect(self.action_DrawEllipse, QtCore.SIGNAL('triggered()'), self.__action_DrawEllipse)
@@ -261,7 +261,21 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if reply == QtGui.QMessageBox.Yes:
             self.clear()
 
-    def __action_ExtractConfig(self):
+    def __action_Config(self):
+        """ Choose between extracting or importing configs
+        """
+
+        options = [translate("Workspace", "Extracting to a directory"), translate("Workspace", "Importing from a directory")]
+        (selection,  ok) = QtGui.QInputDialog.getItem(self, translate("Workspace", "Configs"),
+                                              translate("Workspace", "Please choose an option"), options, 0, False)
+        if ok:
+            selection = unicode(selection)
+            if selection == translate("Workspace", "Extracting to a directory"):
+                self.extractConfigs()
+            elif selection == translate("Workspace", "Importing from a directory"):
+                self.importConfigs()
+
+    def extractConfigs(self):
         """ Extract all startup-config
         """
         
@@ -273,6 +287,42 @@ class Workspace(QMainWindow, Ui_MainWindow):
             for device in globals.GApp.dynagen.devices.values():
                 if isinstance(device, lib.Router):
                     net.export_router_config(device)
+                    
+    def importConfigs(self):
+        """ Import all startup-config
+        """
+        
+        fb = fileBrowser(translate('Workspace', 'Directory to read startup-configs'), parent=self)
+        path = fb.getDir()
+        if path:
+            try:
+                contents = os.listdir(path)
+            except OSError, e:
+                QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "IO Error")),  unicode(e))
+                return
+            for file in contents:
+                if file[-4:].lower() == '.cfg':
+                    device = file[:-4]
+                    print unicode(translate("Workspace", "Importing %s from %s")) % (device, file)
+                    try:
+                        f = open(path + os.sep + file, 'r')
+                        config = f.read()
+                        config = '\n!\n' + config
+                        f.close()
+                        # Encodestring puts in a bunch of newlines. Split them out then join them back together
+                        encoded = ("").join(base64.encodestring(config).split())
+                        globals.GApp.dynagen.devices[device].config_b64 = encoded
+                    except IOError, e:
+                        QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "IO Error")),  unicode(e))
+                        return
+                    except KeyError:
+                        print unicode(translate("Workspace", "Ignoring unknown device %s")) % device
+                    except lib.DynamipsError, e:
+                        print unicode(translate("Workspace", "Dynamips Error: %s")) % e
+                    except lib.DynamipsWarning, e:
+                        print unicode(translate("Workspace", "Dynamips Warning: %s")) % e
+                    except (lib.DynamipsErrorHandled,  socket.error):
+                        QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "%s: Dynamips error")) % node.hostname, translate("Workspace", "Connection lost"))
 
     def __action_AddNote(self):
         """ Add a note to the scene

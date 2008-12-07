@@ -53,7 +53,7 @@
      <x>0</x>
      <y>0</y>
      <width>840</width>
-     <height>30</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit" >
@@ -206,7 +206,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="action_Snapshot" />
-   <addaction name="action_Extract_config" />
+   <addaction name="action_config" />
    <addaction name="action_TelnetAll" />
    <addaction name="action_StartAll" />
    <addaction name="action_SuspendAll" />
@@ -633,12 +633,12 @@
     <string>Ctrl+N</string>
    </property>
   </action>
-  <action name="action_Extract_config" >
+  <action name="action_config" >
    <property name="icon" >
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/edit-undo.svg</iconset>
    </property>
    <property name="text" >
-    <string>&amp;Extract all startup-configs</string>
+    <string>&amp;Extract/Import all startup-configs</string>
    </property>
   </action>
   <action name="action_InsertImage" >

@@ -621,12 +621,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Application</name>
     <message>
-        <location filename="../Application.py" line="407"/>
+        <location filename="../Application.py" line="408"/>
         <source>Configuration file</source>
         <translation>配置文件</translation>
     </message>
     <message>
-        <location filename="../Application.py" line="408"/>
+        <location filename="../Application.py" line="409"/>
         <source>Configuration file is not longer compatible, would you like to reset it? (you will have to restart GNS3)</source>
         <translation>新的配置文件不再与之前兼容,是否需要重新设置?(需要重新启动GNS3)</translation>
     </message>
@@ -1891,11 +1891,6 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>新工程</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="412"/>
-        <source>&amp;Extract all startup-configs</source>
-        <translation>解压所有startup_configs(&amp;E)</translation>
-    </message>
-    <message>
         <location filename="../Ui/Form_MainWindow.py" line="414"/>
         <source>&amp;Symbol Manager</source>
         <translation>图标管理(&amp;S)</translation>
@@ -1938,6 +1933,11 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="419"/>
         <source>Snapshot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_MainWindow.py" line="412"/>
+        <source>&amp;Extract/Import all startup-configs</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3133,72 +3133,72 @@ p, li { white-space: pre-wrap; }
         <translation>浮动窗口</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="713"/>
+        <location filename="../Workspace.py" line="763"/>
         <source>Dynamips error</source>
         <translation>Dynamips 错误</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="475"/>
+        <location filename="../Workspace.py" line="525"/>
         <source>Connection lost</source>
         <translation>丢失连接</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="451"/>
+        <location filename="../Workspace.py" line="501"/>
         <source>Abort</source>
         <translation>结束</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="487"/>
+        <location filename="../Workspace.py" line="537"/>
         <source>Starting nodes ...</source>
         <translation>开始节点 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="493"/>
+        <location filename="../Workspace.py" line="543"/>
         <source>Stopping nodes ...</source>
         <translation>停止节点 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="499"/>
+        <location filename="../Workspace.py" line="549"/>
         <source>Suspending nodes ...</source>
         <translation>暂停节点 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="563"/>
+        <location filename="../Workspace.py" line="613"/>
         <source>Loading</source>
         <translation>载入</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="407"/>
+        <location filename="../Workspace.py" line="457"/>
         <source>Hide hostnames</source>
         <translation>隐藏设备名</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="412"/>
+        <location filename="../Workspace.py" line="462"/>
         <source>Show hostnames</source>
         <translation>显示设备名</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="724"/>
+        <location filename="../Workspace.py" line="774"/>
         <source>Open a file</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="720"/>
+        <location filename="../Workspace.py" line="770"/>
         <source>The path to Dynamips must be configured</source>
         <translation>必须配置Dynamips路径</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="756"/>
+        <location filename="../Workspace.py" line="806"/>
         <source>Save Project As</source>
         <translation>另存工程为</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="590"/>
+        <location filename="../Workspace.py" line="640"/>
         <source>New Project</source>
         <translation>新工程</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="775"/>
+        <location filename="../Workspace.py" line="825"/>
         <source>Message</source>
         <translation>消息</translation>
     </message>
@@ -3208,37 +3208,37 @@ p, li { white-space: pre-wrap; }
         <translation>是否确定清空拓扑?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="312"/>
+        <location filename="../Workspace.py" line="362"/>
         <source>Add a link</source>
         <translation>添加链接</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="327"/>
+        <location filename="../Workspace.py" line="377"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="590"/>
+        <location filename="../Workspace.py" line="640"/>
         <source>Can&apos;t create a project</source>
         <translation>无法创建工程</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="563"/>
+        <location filename="../Workspace.py" line="613"/>
         <source>Invalid file %s</source>
         <translation>无效文件%s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="775"/>
+        <location filename="../Workspace.py" line="825"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>是否在退出之前保存拓扑?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="638"/>
+        <location filename="../Workspace.py" line="688"/>
         <source>Would you like to save the current topology?</source>
         <translation>是否保存当前拓扑?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="268"/>
+        <location filename="../Workspace.py" line="282"/>
         <source>Directory to write startup-configs</source>
         <translation>写入startup-configs到目录</translation>
     </message>
@@ -3249,48 +3249,98 @@ No - Export only what I see</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="422"/>
+        <location filename="../Workspace.py" line="472"/>
         <source>Hide interface names</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="427"/>
+        <location filename="../Workspace.py" line="477"/>
         <source>Show interface names</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="604"/>
+        <location filename="../Workspace.py" line="654"/>
         <source>Do you want to apply the project settings to the current topology? (can take some time)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="664"/>
+        <location filename="../Workspace.py" line="714"/>
         <source>Snapshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="656"/>
+        <location filename="../Workspace.py" line="706"/>
         <source>The project working directory must be set in the preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="664"/>
+        <location filename="../Workspace.py" line="714"/>
         <source>Cannot create directory %s: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="669"/>
+        <location filename="../Workspace.py" line="719"/>
         <source>Please wait while creating a snapshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="475"/>
+        <location filename="../Workspace.py" line="525"/>
         <source>%s: Dynamips error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="472"/>
+        <location filename="../Workspace.py" line="522"/>
         <source>%s: Dynamips warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="274"/>
+        <source>Extracting to a directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="276"/>
+        <source>Importing from a directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="269"/>
+        <source>Configs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="270"/>
+        <source>Please choose an option</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="295"/>
+        <source>Directory to read startup-configs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="316"/>
+        <source>IO Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="306"/>
+        <source>Importing %s from %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="319"/>
+        <source>Ignoring unknown device %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="321"/>
+        <source>Dynamips Error: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="323"/>
+        <source>Dynamips Warning: %s</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

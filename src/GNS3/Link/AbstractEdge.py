@@ -240,7 +240,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
 
         if ok:
 
-            (device, interface, encapsulation) = str(selection).split(' ')
+            (device, interface, encapsulation) = unicode(selection).split(' ')
             if globals.GApp.dynagen.devices[device].state != 'running':
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s is not running")) % device)
                 return
