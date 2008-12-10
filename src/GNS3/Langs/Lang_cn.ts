@@ -905,11 +905,6 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>本地PIXOS文件%s没有被发现,使用%s文件替代</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="127"/>
-        <source>Local workding directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
-        <translation>本地工作目录%s没有被hypervisor %s发现,使用工作目录%s替代</translation>
-    </message>
-    <message>
         <location filename="../DynagenSub.py" line="142"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative image for chassis %s</source>
         <translation>IOS文件%s没有被hypervisor %s发现,型号%s无法找到一个可选择的IOS文件</translation>
@@ -923,6 +918,11 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <location filename="../DynagenSub.py" line="163"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
         <translation>本地配置%s没有被router %s发现,使用配置%s替代</translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="127"/>
+        <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

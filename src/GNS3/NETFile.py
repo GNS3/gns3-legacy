@@ -849,7 +849,7 @@ class NETFile(object):
                 if item.rotate:
                     config['rotate'] = item.rotation
                 if item.defaultTextColor() != QtCore.Qt.black:
-                    config['color'] = '"' + str(item.defaultTextColor().name()) + '"'
+                    config['color'] = str(item.defaultTextColor().name())
 
                 zvalue = item.zValue()
                 if zvalue > 0:
@@ -875,12 +875,12 @@ class NETFile(object):
 
                 brush = item.brush()
                 if brush.style() != QtCore.Qt.NoBrush:
-                    config['fill_color'] = '"' + str(brush.color().name()) + '"'
+                    config['fill_color'] = str(brush.color().name())
                 if item.rotate:
                     config['rotate'] = item.rotation
                 pen = item.pen()
                 if pen.color() != QtCore.Qt.black:
-                    config['border_color'] = '"' + str(pen.color().name()) + '"'
+                    config['border_color'] = str(pen.color().name())
                 if pen.width() != 2:
                    config['border_width'] = pen.width()
                 if pen.style() != QtCore.Qt.SolidLine:

@@ -841,12 +841,12 @@ Entre o número do valor idlepc para aplicar [1-%i] ou ENTRE para não alterar:
     <message>
         <location filename="../Node/DecorativeNode.py" line="120"/>
         <source>Connection</source>
-        <translation type="unfinished">Conexão</translation>
+        <translation>Conexão</translation>
     </message>
     <message>
         <location filename="../Node/DecorativeNode.py" line="120"/>
         <source>No interface available</source>
-        <translation type="unfinished">Interface indisponível</translation>
+        <translation>Interface indisponível</translation>
     </message>
 </context>
 <context>
@@ -854,32 +854,32 @@ Entre o número do valor idlepc para aplicar [1-%i] ou ENTRE para não alterar:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_DecorativeNodePage.ui" line="13"/>
         <source>Decorative Node</source>
-        <translation type="unfinished"></translation>
+        <translation>Nó decorativo</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_DecorativeNodePage.ui" line="19"/>
         <source>Settings</source>
-        <translation type="unfinished">Configurações</translation>
+        <translation>Configurações</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_DecorativeNodePage.ui" line="25"/>
         <source>Interface name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome da interface:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_DecorativeNodePage.ui" line="45"/>
         <source>Interfaces</source>
-        <translation type="unfinished"></translation>
+        <translation>Interfaces</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_DecorativeNodePage.ui" line="64"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">&amp;Adicionar</translation>
+        <translation>&amp;Adicionar</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_DecorativeNodePage.ui" line="74"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>A&amp;pagar</translation>
     </message>
 </context>
 <context>
@@ -905,11 +905,6 @@ Entre o número do valor idlepc para aplicar [1-%i] ou ENTRE para não alterar:
         <translation>Imagem PIX local %s não pode ser encontrada, use imagem %s</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="127"/>
-        <source>Local workding directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
-        <translation>O diretório local de trabalho%s não pode ser encontrado pelo hypervisor %s, use diretório de trabalho %s</translation>
-    </message>
-    <message>
         <location filename="../DynagenSub.py" line="142"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative image for chassis %s</source>
         <translation>A imagem IOS %s não pode ser encontrada pelo hypervisor %s e não existe imagem alternativa para o chassis %s</translation>
@@ -923,6 +918,11 @@ Entre o número do valor idlepc para aplicar [1-%i] ou ENTRE para não alterar:
         <location filename="../DynagenSub.py" line="163"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
         <translation>A configuração local %s não pode ser encontrada pelo roteador %s, use a configuração %s</translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="127"/>
+        <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1903,37 +1903,37 @@ Entre o número do valor idlepc para aplicar [1-%i] ou ENTRE para não alterar:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="413"/>
         <source>Insert a picture</source>
-        <translation type="unfinished"></translation>
+        <translation>Insere figura</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="354"/>
         <source>Emulation</source>
-        <translation type="unfinished"></translation>
+        <translation>emulação</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="358"/>
         <source>Drawing</source>
-        <translation type="unfinished"></translation>
+        <translation>Desenhando</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="416"/>
         <source>Draw a rectangle</source>
-        <translation type="unfinished"></translation>
+        <translation>Desenha um retângulo</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="417"/>
         <source>Draw an ellipse</source>
-        <translation type="unfinished"></translation>
+        <translation>Desenha uma elipse</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="418"/>
         <source>Show interface names</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra os nomes das interfaces</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="419"/>
         <source>Snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Instantâneo</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="412"/>
@@ -2021,7 +2021,7 @@ Entre o número do valor idlepc para aplicar [1-%i] ou ENTRE para não alterar:
     <message>
         <location filename="../NETFile.py" line="363"/>
         <source>Cannot load font: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Não pode carregar a fonte: %s</translation>
     </message>
 </context>
 <context>
@@ -2054,7 +2054,7 @@ Entre o número do valor idlepc para aplicar [1-%i] ou ENTRE para não alterar:
     <message>
         <location filename="../Ui/Form_NewProject.py" line="66"/>
         <source>Save nvrams and other disk files (recommended)</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva nvrmas e outros arquivos (recomendado)</translation>
     </message>
 </context>
 <context>
@@ -2169,7 +2169,7 @@ para amostrar a página de configuração.</translation>
     <message>
         <location filename="../NodeConfigurator.py" line="131"/>
         <source>Hosts</source>
-        <translation type="unfinished"></translation>
+        <translation>Hospedeiros</translation>
     </message>
 </context>
 <context>
@@ -2205,7 +2205,7 @@ para amostrar a página de configuração.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="13"/>
         <source>Form</source>
-        <translation>Forma</translation>
+        <translation>Formulário</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="19"/>
@@ -2261,7 +2261,7 @@ para amostrar a página de configuração.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="13"/>
         <source>Form</source>
-        <translation>Forma</translation>
+        <translation>Formulário</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="23"/>
@@ -2424,27 +2424,27 @@ para amostrar a página de configuração.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="127"/>
         <source>Show link status points on the workspace</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra o estado do enlace na área de trabalho</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="147"/>
         <source>Workspace width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Largura da área de trabalho:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="180"/>
         <source> px</source>
-        <translation type="unfinished"></translation>
+        <translation> px</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="173"/>
         <source>Workspace height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Altura da área de trabalho:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
         <source>Launch the project dialog at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar o diálogo de projeto ao iniciar</translation>
     </message>
 </context>
 <context>
@@ -2525,47 +2525,47 @@ para amostrar a página de configuração.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesSimhost.ui" line="13"/>
         <source>Form</source>
-        <translation type="unfinished">Forma</translation>
+        <translation>Formulário</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesSimhost.ui" line="23"/>
         <source>Simhost hypervisor</source>
-        <translation type="unfinished"></translation>
+        <translation>Hypervisor simhost</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesSimhost.ui" line="35"/>
         <source>Settings</source>
-        <translation type="unfinished">Configurações</translation>
+        <translation>Configurações</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesSimhost.ui" line="41"/>
         <source>Executable path:</source>
-        <translation type="unfinished">Caminho do executável:</translation>
+        <translation>Caminho do executável:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesSimhost.ui" line="71"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesSimhost.ui" line="61"/>
         <source>Working directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório de trabalho:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesSimhost.ui" line="78"/>
         <source>Base port:</source>
-        <translation type="unfinished">Porta base:</translation>
+        <translation>Porta base:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesSimhost.ui" line="85"/>
         <source> Base UDP:</source>
-        <translation type="unfinished">UDP base:</translation>
+        <translation>UDP base:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesSimhost.ui" line="117"/>
         <source>&amp;Test</source>
-        <translation type="unfinished">&amp;Teste</translation>
+        <translation>&amp;Teste</translation>
     </message>
 </context>
 <context>
@@ -2581,82 +2581,82 @@ para amostrar a página de configuração.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="13"/>
         <source>Ethernet Switch</source>
-        <translation type="unfinished">Switch Ethernet</translation>
+        <translation>Switch Ethernet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="25"/>
         <source>Settings</source>
-        <translation type="unfinished">Configurações</translation>
+        <translation>Configurações</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="31"/>
         <source>Interface ID:</source>
-        <translation type="unfinished"></translation>
+        <translation>ID da interface:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="57"/>
         <source>IP address:</source>
-        <translation type="unfinished"></translation>
+        <translation>Endereço IP:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="64"/>
         <source>192.168.1.1</source>
-        <translation type="unfinished">192.168.1.1</translation>
+        <translation>192.168.1.1</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="71"/>
         <source>Mask:</source>
-        <translation type="unfinished"></translation>
+        <translation>Máscara:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="78"/>
         <source>255.255.255.0</source>
-        <translation type="unfinished">255.255.255.0</translation>
+        <translation>255.255.255.0</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="85"/>
         <source>Gateway:</source>
-        <translation type="unfinished"></translation>
+        <translation>Roteador Padrão:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="92"/>
         <source>192.168.1.254</source>
-        <translation type="unfinished">192.168.1.254</translation>
+        <translation>192.168.1.254</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="102"/>
         <source>Interfaces</source>
-        <translation type="unfinished"></translation>
+        <translation>Interfaces</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="118"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="123"/>
         <source>IP address</source>
-        <translation type="unfinished"></translation>
+        <translation>Endereço IP</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="128"/>
         <source>Mask</source>
-        <translation type="unfinished"></translation>
+        <translation>Máscara</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="133"/>
         <source>Gateway</source>
-        <translation type="unfinished"></translation>
+        <translation>Roteador Padrão</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="144"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">&amp;Adicionar</translation>
+        <translation>&amp;Adicionar</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="154"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>A&amp;pagar</translation>
     </message>
 </context>
 <context>
@@ -2769,7 +2769,7 @@ para amostrar a página de configuração.</translation>
     <message>
         <location filename="../Scene.py" line="199"/>
         <source>Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Estilo</translation>
     </message>
 </context>
 <context>
@@ -2777,27 +2777,27 @@ para amostrar a página de configuração.</translation>
     <message>
         <location filename="../SimhostManager.py" line="71"/>
         <source>A simhost hypervisor is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>Um hypervisor simhost já está executando na porta %i, ele não parará antes de você sair do GNS3</translation>
     </message>
     <message>
         <location filename="../SimhostManager.py" line="82"/>
         <source>Can&apos;t start simhost hypervisor on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossível iniciar o hypervisor simhost porta %i</translation>
     </message>
     <message>
         <location filename="../SimhostManager.py" line="106"/>
         <source>Connecting to a simhost hypervisor on port %i ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectando ao hypervisor simhost na porta %i ...</translation>
     </message>
     <message>
         <location filename="../SimhostManager.py" line="107"/>
         <source>Abort</source>
-        <translation type="unfinished">Abortar</translation>
+        <translation>Abortar</translation>
     </message>
     <message>
         <location filename="../SimhostManager.py" line="136"/>
         <source>Can&apos;t connect to the simhost hypervisor on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossível conectar ao hypervisor simhost na porta %i</translation>
     </message>
 </context>
 <context>
@@ -2805,83 +2805,84 @@ para amostrar a página de configuração.</translation>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="84"/>
         <source>Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Estilo</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="85"/>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opções</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="86"/>
         <source>&amp;Select color</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Selecinar cor</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="87"/>
         <source>&amp;Select font</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Selecinar fonte</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="88"/>
         <source>&amp;Select border color</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Selecinar cor da borda</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="89"/>
         <source>Border width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Largura da borda:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="90"/>
         <source>Border style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Estilo da borda:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="91"/>
         <source>Rotation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rotação:</translation>
     </message>
     <message encoding="UTF-8">
         <location filename="../Ui/Form_StyleDialog.py" line="92"/>
         <source>°</source>
-        <translation type="unfinished"></translation>
+        <translation>°</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="94"/>
         <source>Rotation can be ajusted on the scene for a selected item with
 ALT + LEFT or RIGHT</source>
-        <translation type="unfinished"></translation>
+        <translation>A rotação pode ser ajustada na cena para um item selecionado com
+ALT + LEFT ou RIGHT</translation>
     </message>
     <message>
         <location filename="../StyleDialog.py" line="47"/>
         <source>Solid</source>
-        <translation type="unfinished"></translation>
+        <translation>Sólido</translation>
     </message>
     <message>
         <location filename="../StyleDialog.py" line="48"/>
         <source>Dash</source>
-        <translation type="unfinished"></translation>
+        <translation>Traço</translation>
     </message>
     <message>
         <location filename="../StyleDialog.py" line="49"/>
         <source>Dot</source>
-        <translation type="unfinished"></translation>
+        <translation>Ponto</translation>
     </message>
     <message>
         <location filename="../StyleDialog.py" line="50"/>
         <source>Dash Dot</source>
-        <translation type="unfinished"></translation>
+        <translation>Traço Ponto</translation>
     </message>
     <message>
         <location filename="../StyleDialog.py" line="51"/>
         <source>Dash Dot Dot</source>
-        <translation type="unfinished"></translation>
+        <translation>Traço Ponto Ponto</translation>
     </message>
     <message>
         <location filename="../StyleDialog.py" line="52"/>
         <source>No border</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem borda</translation>
     </message>
 </context>
 <context>
@@ -2889,12 +2890,12 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../SymbolManager.py" line="234"/>
         <source>Library</source>
-        <translation type="unfinished"></translation>
+        <translation>Biblioteca</translation>
     </message>
     <message>
         <location filename="../SymbolManager.py" line="244"/>
         <source>Library path</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho da biblioteca</translation>
     </message>
 </context>
 <context>
@@ -2902,92 +2903,92 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="135"/>
         <source>Symbol Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Gerenciador de Símbolos</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="136"/>
         <source>Symbol librairies</source>
-        <translation type="unfinished"></translation>
+        <translation>Gerenciador de Símbolos</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="137"/>
         <source>Library path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho da biblioteca:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="138"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="139"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">&amp;Adicionar</translation>
+        <translation>&amp;Adicionar</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="140"/>
         <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>A&amp;pagar</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="141"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&gt;</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="142"/>
         <source>&lt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="143"/>
         <source>Customized node settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuração do nó customizado</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="144"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="145"/>
         <source>Type:</source>
-        <translation type="unfinished">Tipo:</translation>
+        <translation>Tipo:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="146"/>
         <source>&amp;Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aplicar</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="147"/>
         <source>Available symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Símbolos disponíveis</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="148"/>
         <source>Customized nodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Nó customizado</translation>
     </message>
     <message>
         <location filename="../SymbolManager.py" line="217"/>
         <source>Library</source>
-        <translation type="unfinished"></translation>
+        <translation>Biblioteca</translation>
     </message>
     <message>
         <location filename="../SymbolManager.py" line="214"/>
         <source>This library is already loaded: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Está biblioteca já está carregada: %s</translation>
     </message>
     <message>
         <location filename="../SymbolManager.py" line="217"/>
         <source>Can&apos;t open library: %s</source>
-        <translation type="unfinished">Não pode abrir: %s</translation>
+        <translation>Não pode abrir: %s</translation>
     </message>
     <message>
         <location filename="../SymbolManager.py" line="234"/>
         <source>Can&apos;t remove library: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Não pode remover a biblioteca: %s</translation>
     </message>
 </context>
 <context>
@@ -3086,7 +3087,7 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Topology.py" line="334"/>
         <source>Simhost error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro no simhost</translation>
     </message>
 </context>
 <context>
@@ -3094,12 +3095,12 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="81"/>
         <source>Setup Wizard</source>
-        <translation type="unfinished"></translation>
+        <translation>Assistente de Configuração</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="82"/>
         <source>Step 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Passo 1</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="88"/>
@@ -3114,7 +3115,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/Form_Wizard.py" line="89"/>
         <source>Step 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Passo 2</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="94"/>
@@ -3247,52 +3248,53 @@ p, li { white-space: pre-wrap; }
         <location filename="../Workspace.py" line="159"/>
         <source>Yes - Export all the workspace
 No - Export only what I see</source>
-        <translation type="unfinished"></translation>
+        <translation>Sim - Exporta toda a área de trabalho
+Não - Exporta somente o que eu vejo</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="472"/>
         <source>Hide interface names</source>
-        <translation type="unfinished"></translation>
+        <translation>Esconde os nomes das interfaces</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="477"/>
         <source>Show interface names</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra Mostra os nomes das interfaces</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="654"/>
         <source>Do you want to apply the project settings to the current topology? (can take some time)</source>
-        <translation type="unfinished"></translation>
+        <translation>Você deseja aplicar as configurações de projeto para a topologia atual? (pode levar algum tempo)</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="714"/>
         <source>Snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Instantâneo</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="706"/>
         <source>The project working directory must be set in the preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>O diretório de trabalho do projeto deve ser configurado em preferẽncias</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="714"/>
         <source>Cannot create directory %s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Não é possível criar o diretório %s: %s</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="719"/>
         <source>Please wait while creating a snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Favor esperar enquanto é criado um instantâneo</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="525"/>
         <source>%s: Dynamips error</source>
-        <translation type="unfinished"></translation>
+        <translation>$s: Erro no Dynamips</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="522"/>
         <source>%s: Dynamips warning</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: Aviso do Dynamips</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="274"/>
@@ -3446,12 +3448,12 @@ No - Export only what I see</source>
     <message>
         <location filename="../Ui/Widget_topologySummaryDock.py" line="127"/>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation>Expandir tudo</translation>
     </message>
     <message>
         <location filename="../Ui/Widget_topologySummaryDock.py" line="130"/>
         <source>Collapse all</source>
-        <translation type="unfinished"></translation>
+        <translation>Colapsar tudo</translation>
     </message>
 </context>
 </TS>

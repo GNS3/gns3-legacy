@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sun Dec  7 02:50:44 2008
+# Created: Wed Dec 10 22:38:02 2008
 #      by: PyQt4 UI code generator 4.3.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -35,7 +35,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,840,26))
+        self.menubar.setGeometry(QtCore.QRect(0,0,840,30))
         self.menubar.setObjectName("menubar")
 
         self.menu_Edit = QtGui.QMenu(self.menubar)
@@ -324,9 +324,8 @@ class Ui_MainWindow(object):
         self.toolBar_General.addAction(self.action_SaveAs)
         self.toolBar_General.addSeparator()
         self.toolBar_General.addAction(self.action_Clear)
-        self.toolBar_General.addAction(self.action_AddNote)
-        self.toolBar_General.addAction(self.action_ShowHostnames)
         self.toolBar_General.addAction(self.action_ShowinterfaceNames)
+        self.toolBar_General.addAction(self.action_ShowHostnames)
         self.toolBar_General.addAction(self.action_Add_link)
         self.toolBar_Emulation.addAction(self.action_Snapshot)
         self.toolBar_Emulation.addAction(self.action_config)
@@ -334,6 +333,7 @@ class Ui_MainWindow(object):
         self.toolBar_Emulation.addAction(self.action_StartAll)
         self.toolBar_Emulation.addAction(self.action_SuspendAll)
         self.toolBar_Emulation.addAction(self.action_StopAll)
+        self.toolBar_drawing.addAction(self.action_AddNote)
         self.toolBar_drawing.addAction(self.action_InsertImage)
         self.toolBar_drawing.addAction(self.action_DrawRectangle)
         self.toolBar_drawing.addAction(self.action_DrawEllipse)

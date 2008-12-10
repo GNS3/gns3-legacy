@@ -706,7 +706,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
             QtGui.QMessageBox.warning(self, translate("Workspace", "Snapshot"), translate("Workspace", "The project working directory must be set in the preferences"))
             return
 
-        snapshot_dir = globals.GApp.systconf['general'].project_path + os.sep + 'snapshot_' + time.strftime("%d%m%y_%H%M%S")
+        if self.projectFile is None:
+            return self.__action_SaveAs()
+
+        projectName = os.path.basename(self.projectFile)
+        snapshot_dir = globals.GApp.systconf['general'].project_path + os.sep + projectName + '_snapshot_' + time.strftime("%d%m%y_%H%M%S")
 
         try:
             os.mkdir(snapshot_dir)
@@ -750,7 +754,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         save_projectFile = self.projectFile
         self.projectConfigs = None
         self.projectWorkdir = snapshot_dir
-        self.projectFile = snapshot_dir + os.sep + 'snapshot.net'
+        self.projectFile = snapshot_dir + os.sep + projectName
         self.__action_Save()
         self.projectWorkdir = save_wd
         self.projectFile = save_projectFile
@@ -766,6 +770,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Open a file
         """
 
+        self.openFile()
+
+    def openFile(self):
+    
         if globals.GApp.systconf['dynamips'].path == '':
             QtGui.QMessageBox.warning(self, translate("Workspace", "Open a file"), translate("Workspace", "The path to Dynamips must be configured"))
             self.__action_Preferences()

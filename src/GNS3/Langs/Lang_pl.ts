@@ -905,11 +905,6 @@ Wprowadź numer wartości idlepc do przypisania [1-%i] lub wciśnij enter żeby 
         <translation>Lokalny obraz PIX&apos;a %s nie może zostać odnaleziony, można wykorzystać obraz zamienny: %s</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="127"/>
-        <source>Local workding directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
-        <translation>Lokalny katalog roboczy %s dla hypervisora %s nie może zostać znaleziony, używam zamiast niego katalogu  %s</translation>
-    </message>
-    <message>
         <location filename="../DynagenSub.py" line="142"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative image for chassis %s</source>
         <translation>Plik obrazu %s dla hypervisora %s nie może zostać odnaleziony, nie można odnaleźć obrazu alternatywnego dla chassis %s</translation>
@@ -923,6 +918,11 @@ Wprowadź numer wartości idlepc do przypisania [1-%i] lub wciśnij enter żeby 
         <location filename="../DynagenSub.py" line="163"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
         <translation>Lokalny plik konfiguracyjny %s dla routera %s nie może zostać odnaleziony, używam zamiast niego pliku konfiguracyjnego %s</translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="127"/>
+        <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

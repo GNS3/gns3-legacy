@@ -15,8 +15,8 @@
   <property name="windowIcon" >
    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/images/logo_icon.png</iconset>
   </property>
-  <layout class="QVBoxLayout" >
-   <item>
+  <layout class="QGridLayout" >
+   <item row="0" column="0" colspan="2" >
     <widget class="QGroupBox" name="groupBox" >
      <property name="title" >
       <string>Settings</string>
@@ -62,7 +62,14 @@
      </layout>
     </widget>
    </item>
-   <item>
+   <item row="1" column="0" >
+    <widget class="QPushButton" name="pushButtonOpenProject" >
+     <property name="text" >
+      <string>&amp;Open a project</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1" >
     <widget class="QDialogButtonBox" name="buttonBox" >
      <property name="orientation" >
       <enum>Qt::Horizontal</enum>

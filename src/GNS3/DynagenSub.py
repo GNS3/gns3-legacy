@@ -124,7 +124,7 @@ class DynagenSub(Dynagen):
                             workdir = globals.GApp.workspace.projectWorkdir
                         else:
                             workdir = globals.GApp.systconf['dynamips'].workdir
-                        print unicode(translate("DynagenSub", "Local workding directory %s cannot be found for hypervisor %s, use working directory %s instead")) \
+                        print unicode(translate("DynagenSub", "Local working directory %s cannot be found for hypervisor %s, use working directory %s instead")) \
                         % (unicode(server['workingdir']), unicode(server.host) + ':' + controlPort, workdir)
                         server['workingdir'] = workdir
                         

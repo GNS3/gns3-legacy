@@ -930,11 +930,6 @@ Ingrese el numero del idlepc que desea aplicar  [1-%i] o ENTER para no efectuar 
         <translation>Imagen PIX local %s no se puede encontrar, utilice la imagen %s</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="127"/>
-        <source>Local workding directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
-        <translation>Directorio de trabajo %s no se puede encontrar para el hypervisor %s, utilice el directorio %s</translation>
-    </message>
-    <message>
         <location filename="../DynagenSub.py" line="142"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative image for chassis %s</source>
         <translation>La imagen de IOS %s no se encuentra para el hypervisor %s y no hay una imagen alternativa para el chassis %s</translation>
@@ -948,6 +943,11 @@ Ingrese el numero del idlepc que desea aplicar  [1-%i] o ENTER para no efectuar 
         <location filename="../DynagenSub.py" line="163"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
         <translation>Configuracion local %s para el router %s, utilice la configuracion %s</translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="127"/>
+        <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

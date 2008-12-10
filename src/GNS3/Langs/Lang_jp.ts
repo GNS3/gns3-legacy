@@ -904,11 +904,6 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
         <translation>ローカル PIX イメージ %s を見つかりませんでした、イメージ %s　を使ってください</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="127"/>
-        <source>Local workding directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
-        <translation>ローカル作業フォルダ %s を見つかりませんでした、ハイパーバイザ %s。作業フォルダ %s を使ってください</translation>
-    </message>
-    <message>
         <location filename="../DynagenSub.py" line="142"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative image for chassis %s</source>
         <translation>のIOSイメージ %s は見つかりませんでした、ハイパーバイザ %s。シャシ %s に使えるイメージも見つかりませんでした</translation>
@@ -922,6 +917,11 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
         <location filename="../DynagenSub.py" line="163"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
         <translation>ローカルコンフィッグ %s は見つかりませんでした、ルータ %s 。イメージ %s　を使ってください</translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="127"/>
+        <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

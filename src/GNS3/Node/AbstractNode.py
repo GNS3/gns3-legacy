@@ -19,6 +19,7 @@
 # Contact: contact@gns3.net
 #
 
+import re
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Utils import translate, debug
@@ -89,12 +90,15 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                                           translate("AbstractNode", "Hostname:"), QtGui.QLineEdit.Normal,
                                           self.hostname)
         if ok and text:
-            text = unicode(text).replace(' ', '')
-            text = text.replace(':', '.')
+            text = unicode(text)
+            if not re.search(r"""^[\w,.]*$""", text, re.UNICODE):
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hostname"), 
+                                           translate("AbstractNode", "Please use only alphanumeric characters"))
+                self.changeHostname()
+                return
             for node in globals.GApp.topology.nodes.itervalues():
                 if text == node.hostname:
                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hostname"),  translate("AbstractNode", "Hostname already used"))
-                    return
             self.reconfigNode(text)
             if self.__flag_hostname:
                 # force to redisplay the hostname

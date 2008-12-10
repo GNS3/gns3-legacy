@@ -905,11 +905,6 @@ Entrer le numéro de la valeur a appliquer [1-%i] or ENTRER pour ignorer le chan
         <translation>L&apos;image PIX locale %s n&apos;a pas été trouvée, utilise l&apos;image %s à la place</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="127"/>
-        <source>Local workding directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
-        <translation>Le répertoire de travail local %s n&apos;a pas été trouvé pour l&apos;hyperviseur %s, utilise le répertoire de travail %s à la place</translation>
-    </message>
-    <message>
         <location filename="../DynagenSub.py" line="142"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative image for chassis %s</source>
         <translation>L&apos;image IOS %s n&apos;a pas été trouvée pour l&apos;hypersiveur %s et impossible de trouver une image alternative pour le chassis %s</translation>
@@ -923,6 +918,11 @@ Entrer le numéro de la valeur a appliquer [1-%i] or ENTRER pour ignorer le chan
         <location filename="../DynagenSub.py" line="163"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
         <translation>La configuration locale %s n&apos;a pas été trouvée pour le routeur %s, utilise la configuration %s à la place</translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="127"/>
+        <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

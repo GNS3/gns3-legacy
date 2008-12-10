@@ -2387,7 +2387,7 @@ class Router(object):
             mac: (string) MAC address
         """
 
-        if type(mac) != str:
+        if type(mac) not in [str, unicode]:
             raise DynamipsError, 'invalid MAC address'
         if not re.search(r"""^([0-9a-f][0-9a-f]\:){5}[0-9a-f][0-9a-f]$""", mac, re.IGNORECASE):
             raise DynamipsError, 'Invalid MAC address. Format is "xx:xx:xx:xx:xx:xx".'
@@ -2506,7 +2506,7 @@ class Router(object):
             npe: (string) Set the NPE type
         """
 
-        if type(npe) != str or npe not in [
+        if type(npe) not in [str, unicode] or npe not in [
             'npe-100',
             'npe-150',
             'npe-175',
@@ -2575,7 +2575,7 @@ class Router(object):
             midplane: (string) Set the midplane type
         """
 
-        if type(midplane) != str or midplane not in ['std', 'vxr']:
+        if type(midplane) not in [str, unicode] or midplane not in ['std', 'vxr']:
             raise DynamipsError, 'invalid midplane type'
 
         send(self.__d, '%s set_midplane %s %s' % (self.__model, self.__name, midplane))

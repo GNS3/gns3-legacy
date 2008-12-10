@@ -206,11 +206,11 @@ class GNS_Conf(object):
         for img_num in childGroups:
             cgroup = basegroup + '/' + img_num
 
-            hyp_port = c.get(cgroup + "/port", '')
+            hyp_port = c.get(cgroup + "/port",  '7200')
             hyp_host = c.get(cgroup + "/host", unicode(''))
             hyp_wdir = c.get(cgroup + "/working_directory", unicode(''))
-            hyp_baseUDP = c.get(cgroup + "/base_udp", '')
-            hyp_baseConsole = c.get(cgroup + "/base_console", '')
+            hyp_baseUDP = c.get(cgroup + "/base_udp", '10000')
+            hyp_baseConsole = c.get(cgroup + "/base_console", '2000')
 
             # We need at least `hyp_host' and `hyp_port' to be set
             if hyp_host == '' or hyp_port == '':

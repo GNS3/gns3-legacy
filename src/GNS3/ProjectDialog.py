@@ -34,6 +34,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         QtGui.QDialog.__init__(self)
         self.setupUi(self)
         self.connect(self.NewProject_browser, QtCore.SIGNAL('clicked()'), self.__setProjectFIlePath)
+        self.connect(self.pushButtonOpenProject, QtCore.SIGNAL('clicked()'), self.__openProject)
 
     def __setProjectFIlePath(self):
         """ Open a file dialog for choosing the location of the project file
@@ -82,5 +83,10 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
 
         settings = self.saveProjectSettings()
         globals.GApp.mainWindow.createProject(settings)
+        QtGui.QDialog.accept(self)
+        
+    def __openProject(self):
+    
+        globals.GApp.mainWindow.openFile()
         QtGui.QDialog.accept(self)
 

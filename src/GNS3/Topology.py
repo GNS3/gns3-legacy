@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import os, glob, socket, shutil
+import sys, os, glob, socket, shutil
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.pemu_lib as pix
 import GNS3.Dynagen.simhost_lib as lwip
@@ -63,7 +63,8 @@ class Topology(QtGui.QGraphicsScene):
     def mousePressEvent(self, event):
 
         item = self.itemAt(event.scenePos())
-        if item and isinstance(item, AbstractNode) and globals.currentLinkType == globals.Enum.LinkType.Manual:
+        if item and isinstance(item, AbstractNode) and \
+        globals.currentLinkType == globals.Enum.LinkType.Manual and not sys.platform.startswith('win'):
             # In few circumstances, QtGui.QGraphicsScene.mousePressEvent()
             # send the mousePressEvent to the wrong item; we need to
             # correct this behaviour for 'Manual Link' mode. We force the 

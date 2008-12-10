@@ -902,11 +902,6 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="127"/>
-        <source>Local workding directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../DynagenSub.py" line="142"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative image for chassis %s</source>
         <translation type="unfinished"></translation>
@@ -919,6 +914,11 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../DynagenSub.py" line="163"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="127"/>
+        <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2995,11 +2995,6 @@ ALT + LEFT or RIGHT</source>
         <translation type="unfinished">IOS image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="350"/>
-        <source>Please register at least one IOS image</source>
-        <translation type="unfinished">Please register at least one IOS image</translation>
-    </message>
-    <message>
         <location filename="../Topology.py" line="391"/>
         <source>Hypervisor</source>
         <translation type="unfinished">Hypervisor</translation>
@@ -3082,6 +3077,11 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Topology.py" line="334"/>
         <source>Simhost error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="350"/>
+        <source>Please register at least one IOS image</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
