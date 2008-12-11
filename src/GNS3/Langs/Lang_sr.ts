@@ -573,12 +573,12 @@ p, li { white-space: pre-wrap; }
         <translation>Име хоста:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="254"/>
+        <location filename="../Node/AbstractNode.py" line="255"/>
         <source>Connection</source>
         <translation>Веза</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="219"/>
+        <location filename="../Node/AbstractNode.py" line="220"/>
         <source>Already connected interface</source>
         <translation>Интерфејс већ повезан</translation>
     </message>
@@ -593,12 +593,12 @@ p, li { white-space: pre-wrap; }
         <translation>Име хоста већ у употреби</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="190"/>
+        <location filename="../Node/AbstractNode.py" line="191"/>
         <source>Hostname: %s</source>
         <translation>Име хоста: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="254"/>
+        <location filename="../Node/AbstractNode.py" line="255"/>
         <source>No interface available, please configure this device</source>
         <translation>Нема доступних интерфејса, прво подесите уређај</translation>
     </message>
@@ -621,19 +621,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../Node/AbstractNode.py" line="96"/>
         <source>Please use only alphanumeric characters</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Application</name>
-    <message>
-        <location filename="../Application.py" line="408"/>
-        <source>Configuration file</source>
-        <translation>Конфигурациона датотека</translation>
-    </message>
-    <message>
-        <location filename="../Application.py" line="409"/>
-        <source>Configuration file is not longer compatible, would you like to reset it? (you will have to restart GNS3)</source>
-        <translation>Конфигурациона датотека није више компатибилна, желите ли да је ресетујете? (биће потребан ресет GNS3 програма)</translation>
     </message>
 </context>
 <context>
@@ -1593,6 +1580,14 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     </message>
 </context>
 <context>
+    <name>Main</name>
+    <message>
+        <location filename="../Main.py" line="49"/>
+        <source>On Unix you can choose the config directory by setting the XDG_CONFIG_HOME environment variable</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="../Translations.py" line="98"/>
@@ -2371,88 +2366,98 @@ to display the configuration page.</source>
         <translation>Форма</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="22"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="32"/>
         <source>Language:</source>
         <translation>Језик:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="121"/>
-        <source>GUI settings</source>
-        <translation>Подешавања графичког интерфејса</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="72"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="82"/>
         <source>Paths</source>
         <translation>Путање</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="78"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="88"/>
         <source>Project directory:</source>
         <translation>Директоријум пројекта:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="108"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="118"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="62"/>
         <source>Terminal command:</source>
         <translation>Команда за терминал:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="98"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="108"/>
         <source>IOS/PIX directory:</source>
         <translation>Директоријум IOS/PIX бинарних датотека:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="137"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="261"/>
         <source>Always use manual mode when adding links</source>
         <translation>Увек ручно додај везе</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="62"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="72"/>
         <source>Launch this command using the system default shell</source>
         <translation>Покрени ову команду користећу командну линију система</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="202"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="131"/>
         <source>Configuration file</source>
         <translation>Датотека GNS3 конфигурације</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="208"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="137"/>
         <source>Unknown location</source>
         <translation>Непозната локација</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="228"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="157"/>
         <source>&amp;Clear it</source>
         <translation>&amp;Обриши</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="147"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="187"/>
         <source>Workspace width:</source>
         <translation>Ширина радног простора:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="180"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="232"/>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="173"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="219"/>
         <source>Workspace height:</source>
         <translation>Висина радног простора:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
         <source>Launch the project dialog at startup</source>
         <translation>Покрени прозор за пројекте при покретању програма</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="127"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="271"/>
         <source>Show link status points on the workspace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="23"/>
+        <source>General Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="181"/>
+        <source>GUI Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="251"/>
+        <source>Draw a rectangle when an item is selected</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2519,14 +2524,14 @@ to display the configuration page.</source>
         <translation>Серијски:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="175"/>
-        <source>Base flash:</source>
-        <translation>Основни FLASH:</translation>
-    </message>
-    <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="62"/>
         <source>Bind Pemu Manager with:</source>
         <translation>Повежи Pemu Менаџер са:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="175"/>
+        <source>Base flash (optionnal):</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2812,52 +2817,52 @@ to display the configuration page.</source>
 <context>
     <name>StyleDialog</name>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="84"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="85"/>
         <source>Style</source>
         <translation>Стил</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="85"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="86"/>
         <source>Options</source>
         <translation>Опције</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="86"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="87"/>
         <source>&amp;Select color</source>
         <translation>Изавери &amp;боју</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="87"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="88"/>
         <source>&amp;Select font</source>
         <translation>Изавери &amp;писмо</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="88"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="89"/>
         <source>&amp;Select border color</source>
         <translation>Изабери боју &amp;оквира</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="89"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="90"/>
         <source>Border width:</source>
         <translation>Дебљина оквира:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="90"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="91"/>
         <source>Border style:</source>
         <translation>Стил оквира:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="91"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="92"/>
         <source>Rotation:</source>
         <translation>Ротација:</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../Ui/Form_StyleDialog.py" line="92"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="93"/>
         <source>°</source>
         <translation>°</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="94"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="95"/>
         <source>Rotation can be ajusted on the scene for a selected item with
 ALT + LEFT or RIGHT</source>
         <translation>Ротација се може подесити на сцени за изабрани објекат са
@@ -3353,6 +3358,21 @@ No - Export only what I see</source>
         <location filename="../Workspace.py" line="323"/>
         <source>Dynamips Warning: %s</source>
         <translation>Dynamips упозорење: %s</translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="221"/>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="221"/>
+        <source>I/O Error: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="251"/>
+        <source>Warning: Can&apos;t delete %s =&gt; %s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_StyleDialog.ui'
 #
-# Created: Thu Dec 11 01:40:50 2008
+# Created: Thu Dec 11 23:13:43 2008
 #      by: PyQt4 UI code generator 4.3.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -60,6 +60,7 @@ class Ui_StyleDialog(object):
         self.gridlayout.addWidget(self.label_3,5,0,1,1)
 
         self.spinBox_Rotation = QtGui.QSpinBox(self.groupBox)
+        self.spinBox_Rotation.setMinimum(-360)
         self.spinBox_Rotation.setMaximum(360)
         self.spinBox_Rotation.setObjectName("spinBox_Rotation")
         self.gridlayout.addWidget(self.spinBox_Rotation,5,1,1,1)

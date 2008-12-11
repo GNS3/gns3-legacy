@@ -338,6 +338,7 @@ class Application(QApplication, Singleton):
         confo.ios_path = ConfDB().get('GNS3/ios_directory', unicode(''))
         confo.status_points = ConfDB().value("GNS3/gui_show_status_points", QVariant(True)).toBool()
         confo.manual_connection =ConfDB().value("GNS3/gui_use_manual_connection", QVariant(False)).toBool()
+        confo.draw_selected_rectangle = ConfDB().value("GNS3/gui_draw_selected_rectangle", QVariant(False)).toBool()
         confo.scene_width = int(ConfDB().get('GNS3/scene_width', 2000))
         confo.scene_height = int(ConfDB().get('GNS3/scene_height', 1000))
         
@@ -403,19 +404,19 @@ class Application(QApplication, Singleton):
             dialog.show()
             dialog.raise_()
             dialog.activateWindow()
-        elif globals.recordConfiguration and config_version < VERSION_INTEGER:
-        
-            reply = QMessageBox.question(self.mainWindow, translate("Application", "Configuration file"), 
-                                               translate("Application", "Configuration file is not longer compatible, would you like to reset it? (you will have to restart GNS3)"), 
-                                            QMessageBox.Yes, QMessageBox.No)
+#        elif globals.recordConfiguration and config_version < VERSION_INTEGER:
+#        
+#            reply = QMessageBox.question(self.mainWindow, translate("Application", "Configuration file"), 
+#                                               translate("Application", "Configuration file is not longer compatible, would you like to reset it? (you will have to restart GNS3)"), 
+#                                            QMessageBox.Yes, QMessageBox.No)
 
-            if reply == QMessageBox.Yes:
-                ConfDB().clear()
-                c = ConfDB()
-                c.set('GNS3/version', VERSION_INTEGER)
-                c.sync()
-                QApplication.quit()
-                sys.exit(0)
+#            if reply == QMessageBox.Yes:
+#                ConfDB().clear()
+#                c = ConfDB()
+#                c.set('GNS3/version', VERSION_INTEGER)
+#                c.sync()
+#                QApplication.quit()
+#                sys.exit(0)
 
         retcode = QApplication.exec_()
 
@@ -446,6 +447,7 @@ class Application(QApplication, Singleton):
         c.set('GNS3/use_shell', confo.use_shell)
         c.set('GNS3/gui_show_status_points', confo.status_points)
         c.set('GNS3/gui_use_manual_connection', confo.manual_connection)
+        c.set('GNS3/gui_draw_selected_rectangle', confo.draw_selected_rectangle)
         c.set('GNS3/project_directory', confo.project_path)
         c.set('GNS3/ios_directory', confo.ios_path)
         c.set('GNS3/scene_width', confo.scene_width)

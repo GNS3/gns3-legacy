@@ -218,7 +218,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         try:
             self.__export(path, str(str(selected)[:3]))
         except IOError, (errno, strerror):
-            QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
+            QtGui.QMessageBox.critical(self, translate("Workspace", "I/O Error"),  unicode(translate("Workspace", "I/O Error: %s")) % strerror)
 
     def clear(self):
         """ Clear all the workspace
@@ -248,7 +248,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 try:
                     os.remove(file)
                 except (OSError, IOError), e:
-                    print unicode("Warning: Can't delete %s => %s") % (file, e.strerror)
+                    print unicode(translate("Workspace", "Warning: Can't delete %s => %s")) % (file, e.strerror)
                     continue
 
     def __action_Clear(self):

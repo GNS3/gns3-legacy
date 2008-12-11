@@ -125,7 +125,8 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """
 
         _local_option = option
-        _local_option.state = QtGui.QStyle.State_None
+        if globals.GApp.systconf['general'].draw_selected_rectangle == False:
+            _local_option.state = QtGui.QStyle.State_None
 
         QtSvg.QGraphicsSvgItem.paint(self, painter, _local_option, widget)
 

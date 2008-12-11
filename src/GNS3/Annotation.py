@@ -34,7 +34,7 @@ class Annotation(QtGui.QGraphicsTextItem):
         self.rotation = 0
         
     def keyPressEvent(self, event):
-    
+
         key = event.key()
         if key == QtCore.Qt.Key_Left and event.modifiers() == QtCore.Qt.AltModifier and self.rotation > -360:
             if self.rotation:

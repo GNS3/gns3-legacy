@@ -116,6 +116,11 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.checkBoxProjectDialog.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxProjectDialog.setCheckState(QtCore.Qt.Unchecked)
+
+        if self.conf.draw_selected_rectangle == True:
+            self.checkBoxDrawRectangle.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxDrawRectangle.setCheckState(QtCore.Qt.Unchecked)
             
         self.labelConfigurationPath.setText(ConfDB().fileName())
 
@@ -150,7 +155,12 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.conf.project_startup = True
         else:
             self.conf.project_startup = False
-    
+            
+        if self.checkBoxDrawRectangle.checkState() == QtCore.Qt.Checked:
+            self.conf.draw_selected_rectangle = True
+        else:
+            self.conf.draw_selected_rectangle = False
+
         self.conf.project_path = unicode(self.ProjectPath.text())
         self.conf.ios_path = unicode(self.IOSPath.text())
         self.conf.term_cmd = unicode(self.lineEditTermCommand.text())

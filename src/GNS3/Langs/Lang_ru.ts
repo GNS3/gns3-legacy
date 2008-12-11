@@ -573,12 +573,12 @@ p, li { white-space: pre-wrap; }
         <translation>Hostname:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="254"/>
+        <location filename="../Node/AbstractNode.py" line="255"/>
         <source>Connection</source>
         <translation>Connection</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="219"/>
+        <location filename="../Node/AbstractNode.py" line="220"/>
         <source>Already connected interface</source>
         <translation>Already connected interface</translation>
     </message>
@@ -593,12 +593,12 @@ p, li { white-space: pre-wrap; }
         <translation>Имя хоста уже используется</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="190"/>
+        <location filename="../Node/AbstractNode.py" line="191"/>
         <source>Hostname: %s</source>
         <translation>Имя хоста: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="254"/>
+        <location filename="../Node/AbstractNode.py" line="255"/>
         <source>No interface available, please configure this device</source>
         <translation>Интерфейс не существует, пожалуйста настройте устройство</translation>
     </message>
@@ -621,19 +621,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../Node/AbstractNode.py" line="96"/>
         <source>Please use only alphanumeric characters</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Application</name>
-    <message>
-        <location filename="../Application.py" line="408"/>
-        <source>Configuration file</source>
-        <translation>Файл конфигурации</translation>
-    </message>
-    <message>
-        <location filename="../Application.py" line="409"/>
-        <source>Configuration file is not longer compatible, would you like to reset it? (you will have to restart GNS3)</source>
-        <translation>Файл конфигурации более несовместим, хотите очистить его? (потребуется перезагрузка GNS3)</translation>
     </message>
 </context>
 <context>
@@ -1591,6 +1578,14 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     </message>
 </context>
 <context>
+    <name>Main</name>
+    <message>
+        <location filename="../Main.py" line="49"/>
+        <source>On Unix you can choose the config directory by setting the XDG_CONFIG_HOME environment variable</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="../Translations.py" line="98"/>
@@ -2369,89 +2364,99 @@ to display the configuration page.</source>
         <translation>Форма</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="22"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="32"/>
         <source>Language:</source>
         <translation>Язык:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="121"/>
-        <source>GUI settings</source>
-        <translation>Настройки графического интерфейса</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="72"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="82"/>
         <source>Paths</source>
         <translation>Пути</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="78"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="88"/>
         <source>Project directory:</source>
         <translation>Папка проекта:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="108"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="118"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="62"/>
         <source>Terminal command:</source>
         <translation>Команда терминала:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="98"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="108"/>
         <source>IOS/PIX directory:</source>
         <translation>Папка IOS/PIX:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="137"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="261"/>
         <source>Always use manual mode when adding links</source>
         <translation>Всегда использовать ручной режим добавляя каналы</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="62"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="72"/>
         <source>Launch this command using the system default shell</source>
         <translation>Запустить эту команду используя системную оболочку по умолчанию</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="202"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="131"/>
         <source>Configuration file</source>
         <translation>Файл конфигурации</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="208"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="137"/>
         <source>Unknown location</source>
         <translation>Неизвестное расположение</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="228"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="157"/>
         <source>&amp;Clear it</source>
         <translation>&amp;Стереть это</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="127"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="271"/>
         <source>Show link status points on the workspace</source>
         <translation>Показать статус состояния линков в рабочей среде</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="147"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="187"/>
         <source>Workspace width:</source>
         <translation>Ширина рабочей среды:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="180"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="232"/>
         <source> px</source>
         <translation>px</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="173"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="219"/>
         <source>Workspace height:</source>
         <translation>Высота рабочей среды:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
         <source>Launch the project dialog at startup</source>
         <translation>Запросить открытие проектов при загрузке программы</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="23"/>
+        <source>General Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="181"/>
+        <source>GUI Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="251"/>
+        <source>Draw a rectangle when an item is selected</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2517,14 +2522,14 @@ to display the configuration page.</source>
         <translation>Серийный:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="175"/>
-        <source>Base flash:</source>
-        <translation>Основная флеш-память:</translation>
-    </message>
-    <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="62"/>
         <source>Bind Pemu Manager with:</source>
         <translation>Менеджер Pemu привязан к:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="175"/>
+        <source>Base flash (optionnal):</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2810,52 +2815,52 @@ to display the configuration page.</source>
 <context>
     <name>StyleDialog</name>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="84"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="85"/>
         <source>Style</source>
         <translation>Стиль</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="85"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="86"/>
         <source>Options</source>
         <translation>Варианты настройки</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="86"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="87"/>
         <source>&amp;Select color</source>
         <translation>&amp;Выбрать цвет</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="87"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="88"/>
         <source>&amp;Select font</source>
         <translation>&amp;Выбрать шрифт</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="88"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="89"/>
         <source>&amp;Select border color</source>
         <translation>&amp;Выбрать цвет рамки</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="89"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="90"/>
         <source>Border width:</source>
         <translation>Ширина рамки:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="90"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="91"/>
         <source>Border style:</source>
         <translation>Стиль рамки:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="91"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="92"/>
         <source>Rotation:</source>
         <translation>Вращение:</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../Ui/Form_StyleDialog.py" line="92"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="93"/>
         <source>°</source>
         <translation>°</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="94"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="95"/>
         <source>Rotation can be ajusted on the scene for a selected item with
 ALT + LEFT or RIGHT</source>
         <translation>Вращение может быть выполнено на выбранном объекте с помощью
@@ -3350,6 +3355,21 @@ No - Export only what I see</source>
     <message>
         <location filename="../Workspace.py" line="323"/>
         <source>Dynamips Warning: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="221"/>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="221"/>
+        <source>I/O Error: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="251"/>
+        <source>Warning: Can&apos;t delete %s =&gt; %s</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

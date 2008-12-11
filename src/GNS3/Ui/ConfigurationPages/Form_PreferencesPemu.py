@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesPemu.ui'
 #
-# Created: Thu Dec 11 01:40:55 2008
+# Created: Thu Dec 11 23:13:44 2008
 #      by: PyQt4 UI code generator 4.3.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -161,6 +161,6 @@ class Ui_PreferencesPemu(object):
         self.PixImage_Browser.setText(QtGui.QApplication.translate("PreferencesPemu", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.label_20.setText(QtGui.QApplication.translate("PreferencesPemu", "Key:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_21.setText(QtGui.QApplication.translate("PreferencesPemu", "Serial:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_4.setText(QtGui.QApplication.translate("PreferencesPemu", "Base flash:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_4.setText(QtGui.QApplication.translate("PreferencesPemu", "Base flash (optionnal):", None, QtGui.QApplication.UnicodeUTF8))
         self.BaseFlash_Browser.setText(QtGui.QApplication.translate("PreferencesPemu", "...", None, QtGui.QApplication.UnicodeUTF8))
 

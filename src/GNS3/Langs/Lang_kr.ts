@@ -573,12 +573,12 @@ p, li { white-space: pre-wrap; }
         <translation>호스트 이름:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="254"/>
+        <location filename="../Node/AbstractNode.py" line="255"/>
         <source>Connection</source>
         <translation>연결</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="219"/>
+        <location filename="../Node/AbstractNode.py" line="220"/>
         <source>Already connected interface</source>
         <translation>이미 인터페이스에 연결되어 있습니다</translation>
     </message>
@@ -593,12 +593,12 @@ p, li { white-space: pre-wrap; }
         <translation>호스트 이름이 이미 사용되고 있습니다</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="190"/>
+        <location filename="../Node/AbstractNode.py" line="191"/>
         <source>Hostname: %s</source>
         <translation>호스트 이름: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="254"/>
+        <location filename="../Node/AbstractNode.py" line="255"/>
         <source>No interface available, please configure this device</source>
         <translation>사용가능한 인터페이스가 존재하지 않습니다, 장비를 설정해주세요</translation>
     </message>
@@ -621,19 +621,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../Node/AbstractNode.py" line="96"/>
         <source>Please use only alphanumeric characters</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Application</name>
-    <message>
-        <location filename="../Application.py" line="408"/>
-        <source>Configuration file</source>
-        <translation>Configuration 파일</translation>
-    </message>
-    <message>
-        <location filename="../Application.py" line="409"/>
-        <source>Configuration file is not longer compatible, would you like to reset it? (you will have to restart GNS3)</source>
-        <translation>이 Configuration 파일은 더이상 호환성이 없기 때문에 호환성에 맞춰 초기화를 해야 합니다. 파일을 초기화 하시겠습니까? (GNS3를 리스타트 해야 합니다.)</translation>
     </message>
 </context>
 <context>
@@ -1593,6 +1580,14 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
     </message>
 </context>
 <context>
+    <name>Main</name>
+    <message>
+        <location filename="../Main.py" line="49"/>
+        <source>On Unix you can choose the config directory by setting the XDG_CONFIG_HOME environment variable</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="../Translations.py" line="98"/>
@@ -2371,89 +2366,99 @@ to display the configuration page.</source>
         <translation>폼</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="22"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="32"/>
         <source>Language:</source>
         <translation>언어:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="121"/>
-        <source>GUI settings</source>
-        <translation>GUI 설정</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="72"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="82"/>
         <source>Paths</source>
         <translation>경로</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="78"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="88"/>
         <source>Project directory:</source>
         <translation>프로젝트 디렉터리:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="108"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="118"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="62"/>
         <source>Terminal command:</source>
         <translation>터미널 커맨드:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="98"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="108"/>
         <source>IOS/PIX directory:</source>
         <translation>IOS/PIX 디렉터리:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="137"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="261"/>
         <source>Always use manual mode when adding links</source>
         <translation>링크 추가시 언제나 수동으로 설정</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="62"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="72"/>
         <source>Launch this command using the system default shell</source>
         <translation>시스템 쉘에서 이 명령어를 사용</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="202"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="131"/>
         <source>Configuration file</source>
         <translation>Configuration 파일</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="208"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="137"/>
         <source>Unknown location</source>
         <translation>위치를 알 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="228"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="157"/>
         <source>&amp;Clear it</source>
         <translation>삭제(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="127"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="271"/>
         <source>Show link status points on the workspace</source>
         <translation>링크 상태를 작업 공간에 보여주기</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="147"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="187"/>
         <source>Workspace width:</source>
         <translation>작업 공간의 폭:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="180"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="232"/>
         <source> px</source>
         <translation>픽셀</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="173"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="219"/>
         <source>Workspace height:</source>
         <translation>작업 공간의 높이:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
         <source>Launch the project dialog at startup</source>
         <translation>시작시 프로젝트 창 보여주기</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="23"/>
+        <source>General Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="181"/>
+        <source>GUI Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="251"/>
+        <source>Draw a rectangle when an item is selected</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2519,14 +2524,14 @@ to display the configuration page.</source>
         <translation>Serial:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="175"/>
-        <source>Base flash:</source>
-        <translation>Base flash:</translation>
-    </message>
-    <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="62"/>
         <source>Bind Pemu Manager with:</source>
         <translation>Bind Pemu Manager with:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="175"/>
+        <source>Base flash (optionnal):</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2812,52 +2817,52 @@ to display the configuration page.</source>
 <context>
     <name>StyleDialog</name>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="84"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="85"/>
         <source>Style</source>
         <translation>스타일</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="85"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="86"/>
         <source>Options</source>
         <translation>옵션</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="86"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="87"/>
         <source>&amp;Select color</source>
         <translation>색상 선택(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="87"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="88"/>
         <source>&amp;Select font</source>
         <translation>폰트 선택(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="88"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="89"/>
         <source>&amp;Select border color</source>
         <translation>테두리 색상 선택(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="89"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="90"/>
         <source>Border width:</source>
         <translation>테두리 폭:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="90"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="91"/>
         <source>Border style:</source>
         <translation>테두리 스타일:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="91"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="92"/>
         <source>Rotation:</source>
         <translation>회전 각도:</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../Ui/Form_StyleDialog.py" line="92"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="93"/>
         <source>°</source>
         <translation>°</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="94"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="95"/>
         <source>Rotation can be ajusted on the scene for a selected item with
 ALT + LEFT or RIGHT</source>
         <translation>ALT + 왼쪽/오른쪽 버튼으로 각도를 조정할 수 있습니다</translation>
@@ -3352,6 +3357,21 @@ No - Export only what I see</source>
         <location filename="../Workspace.py" line="323"/>
         <source>Dynamips Warning: %s</source>
         <translation>Dynamips 경고: %s</translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="221"/>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="221"/>
+        <source>I/O Error: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="251"/>
+        <source>Warning: Can&apos;t delete %s =&gt; %s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

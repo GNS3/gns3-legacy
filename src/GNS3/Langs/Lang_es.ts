@@ -598,12 +598,12 @@ p, li { white-space: pre-wrap; }
         <translation>Nombre de host:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="254"/>
+        <location filename="../Node/AbstractNode.py" line="255"/>
         <source>Connection</source>
         <translation>Conexion</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="219"/>
+        <location filename="../Node/AbstractNode.py" line="220"/>
         <source>Already connected interface</source>
         <translation>Interfaz ya conectada</translation>
     </message>
@@ -618,12 +618,12 @@ p, li { white-space: pre-wrap; }
         <translation>Nombre de host ya utilizado</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="190"/>
+        <location filename="../Node/AbstractNode.py" line="191"/>
         <source>Hostname: %s</source>
         <translation>Nombre de host: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="254"/>
+        <location filename="../Node/AbstractNode.py" line="255"/>
         <source>No interface available, please configure this device</source>
         <translation>No existe unainterfaz disponible, por favor configure este  dispositivo</translation>
     </message>
@@ -646,19 +646,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../Node/AbstractNode.py" line="96"/>
         <source>Please use only alphanumeric characters</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Application</name>
-    <message>
-        <location filename="../Application.py" line="408"/>
-        <source>Configuration file</source>
-        <translation>Archivo de configuracion</translation>
-    </message>
-    <message>
-        <location filename="../Application.py" line="409"/>
-        <source>Configuration file is not longer compatible, would you like to reset it? (you will have to restart GNS3)</source>
-        <translation>El archivo de configuracion no es compatible, desea reiniciar?(debe reiniciar GNS3)</translation>
     </message>
 </context>
 <context>
@@ -1619,6 +1606,14 @@ Ingrese el numero del idlepc que desea aplicar  [1-%i] o ENTER para no efectuar 
     </message>
 </context>
 <context>
+    <name>Main</name>
+    <message>
+        <location filename="../Main.py" line="49"/>
+        <source>On Unix you can choose the config directory by setting the XDG_CONFIG_HOME environment variable</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="../Translations.py" line="98"/>
@@ -2397,88 +2392,98 @@ para ver la pagina de configuracion.</translation>
         <translation>Formulario</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="22"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="32"/>
         <source>Language:</source>
         <translation>Lenguaje:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="121"/>
-        <source>GUI settings</source>
-        <translation>Ajustes de interfaz grafica</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="72"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="82"/>
         <source>Paths</source>
         <translation>Caminos</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="78"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="88"/>
         <source>Project directory:</source>
         <translation>Directorio del Proyecto:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="108"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="118"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="62"/>
         <source>Terminal command:</source>
         <translation>Comando de terminal:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="98"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="108"/>
         <source>IOS/PIX directory:</source>
         <translation>Directorio IOS/PIX:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="137"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="261"/>
         <source>Always use manual mode when adding links</source>
         <translation>Utilizar siempre el modo manual cuando se agregan vinculos</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="62"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="72"/>
         <source>Launch this command using the system default shell</source>
         <translation>Ejecutar este comando utilizando el shell por defecto del sistema</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="202"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="131"/>
         <source>Configuration file</source>
         <translation>Archivo de configuracion</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="208"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="137"/>
         <source>Unknown location</source>
         <translation>Ubicacion desconocida</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="228"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="157"/>
         <source>&amp;Clear it</source>
         <translation>&amp;Limpiarlo</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="127"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="271"/>
         <source>Show link status points on the workspace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="147"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="187"/>
         <source>Workspace width:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="180"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="232"/>
         <source> px</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="173"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="219"/>
         <source>Workspace height:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="42"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="52"/>
         <source>Launch the project dialog at startup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="23"/>
+        <source>General Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="181"/>
+        <source>GUI Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="251"/>
+        <source>Draw a rectangle when an item is selected</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2545,14 +2550,14 @@ para ver la pagina de configuracion.</translation>
         <translation>Serial:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="175"/>
-        <source>Base flash:</source>
-        <translation>Base flash:</translation>
-    </message>
-    <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="62"/>
         <source>Bind Pemu Manager with:</source>
         <translation>Ligar el  Administrador de Pemu con:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesPemu.ui" line="175"/>
+        <source>Base flash (optionnal):</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2838,52 +2843,52 @@ para ver la pagina de configuracion.</translation>
 <context>
     <name>StyleDialog</name>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="84"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="85"/>
         <source>Style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="85"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="86"/>
         <source>Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="86"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="87"/>
         <source>&amp;Select color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="87"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="88"/>
         <source>&amp;Select font</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="88"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="89"/>
         <source>&amp;Select border color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="89"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="90"/>
         <source>Border width:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="90"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="91"/>
         <source>Border style:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="91"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="92"/>
         <source>Rotation:</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../Ui/Form_StyleDialog.py" line="92"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="93"/>
         <source>°</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="94"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="95"/>
         <source>Rotation can be ajusted on the scene for a selected item with
 ALT + LEFT or RIGHT</source>
         <translation type="unfinished"></translation>
@@ -3376,6 +3381,21 @@ No - Export only what I see</source>
     <message>
         <location filename="../Workspace.py" line="323"/>
         <source>Dynamips Warning: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="221"/>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="221"/>
+        <source>I/O Error: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="251"/>
+        <source>Warning: Can&apos;t delete %s =&gt; %s</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

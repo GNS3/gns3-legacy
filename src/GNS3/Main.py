@@ -23,13 +23,14 @@ import sys
 import GNS3.Globals as globals
 from optparse import OptionParser
 from GNS3.Application import Application
+from GNS3.Utils import translate
 from PyQt4 import QtCore
 from __main__ import VERSION
 
 usage = "usage: %prog [--debug] [--config <config_file>] <net_file>"
 parser = OptionParser(usage, version="%prog " + VERSION)
 parser.add_option("-d", "--debug", action="store_true", help="display debug messages")
-parser.add_option("-c", "--config", action="store_true", dest="config_dir", help="directory where is stored gns3.ini")
+parser.add_option("-c", "--configdir", action="store_true", dest="config_dir", help="directory where is stored gns3.ini")
 
 try:
     (options, args) = parser.parse_args()
@@ -42,8 +43,11 @@ if options.debug == True:
 if options.config_dir == True:
     if len(args) >= 1:
         config_dir = args.pop()
-        print "load config " + config_dir
-        QtCore.QSettings.setPath(QtCore.QSettings.IniFormat, QtCore.QSettings.UserScope, config_dir)
+        if sys.platform.startswith('win'):
+            QtCore.QSettings.setPath(QtCore.QSettings.IniFormat, QtCore.QSettings.UserScope, config_dir)
+        else:
+            print unicode(translate("Main", "On Unix you can choose the config directory by setting the XDG_CONFIG_HOME environment variable"))
+            sys.exit(1)
     else:
         print usage
         sys.exit(1)
