@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import sys, os, glob, socket, shutil
+import os, glob, socket, shutil
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.pemu_lib as pix
 import GNS3.Dynagen.simhost_lib as lwip
@@ -39,6 +39,7 @@ from GNS3.Node.FW import FW, init_fw_id
 from GNS3.Node.SIMHOST import SIMHOST, init_simhost_id
 from GNS3.SimhostManager import SimhostManager
 from GNS3.Node.AbstractNode import AbstractNode
+from GNS3.Annotation import Annotation
 
 class Topology(QtGui.QGraphicsScene):
     """ Topology class
@@ -64,7 +65,7 @@ class Topology(QtGui.QGraphicsScene):
 
         item = self.itemAt(event.scenePos())
         if item and isinstance(item, AbstractNode) and \
-        globals.currentLinkType == globals.Enum.LinkType.Manual and not sys.platform.startswith('win'):
+        globals.currentLinkType == globals.Enum.LinkType.Manual:
             # In few circumstances, QtGui.QGraphicsScene.mousePressEvent()
             # send the mousePressEvent to the wrong item; we need to
             # correct this behaviour for 'Manual Link' mode. We force the 
@@ -72,6 +73,8 @@ class Topology(QtGui.QGraphicsScene):
             # so that the false recipiend ignore it.
             item.mousePressEvent(event)
             globals.workaround_ManualLink = True
+        elif item and isinstance(item, Annotation):
+            item.mousePressEvent(event)
         QtGui.QGraphicsScene.mousePressEvent(self, event)
 
     def cleanDynagen(self):

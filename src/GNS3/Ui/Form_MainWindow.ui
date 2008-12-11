@@ -207,6 +207,7 @@
    <addaction name="action_Snapshot" />
    <addaction name="action_config" />
    <addaction name="action_TelnetAll" />
+   <addaction name="separator" />
    <addaction name="action_StartAll" />
    <addaction name="action_SuspendAll" />
    <addaction name="action_StopAll" />
