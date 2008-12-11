@@ -563,59 +563,64 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractNode</name>
     <message>
-        <location filename="../Node/AbstractNode.py" line="88"/>
+        <location filename="../Node/AbstractNode.py" line="89"/>
         <source>Change hostname</source>
         <translation>修改设备名</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="89"/>
+        <location filename="../Node/AbstractNode.py" line="90"/>
         <source>Hostname:</source>
         <translation>设备名:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="250"/>
+        <location filename="../Node/AbstractNode.py" line="254"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="215"/>
+        <location filename="../Node/AbstractNode.py" line="219"/>
         <source>Already connected interface</source>
         <translation>端口已被连接</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="96"/>
+        <location filename="../Node/AbstractNode.py" line="101"/>
         <source>Hostname</source>
         <translation>设备名</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="96"/>
+        <location filename="../Node/AbstractNode.py" line="101"/>
         <source>Hostname already used</source>
         <translation>设备名已经被使用</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="186"/>
+        <location filename="../Node/AbstractNode.py" line="190"/>
         <source>Hostname: %s</source>
         <translation>设备名: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="250"/>
+        <location filename="../Node/AbstractNode.py" line="254"/>
         <source>No interface available, please configure this device</source>
         <translation>没有端口可用,请配置该设备</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="110"/>
+        <location filename="../Node/AbstractNode.py" line="114"/>
         <source>Change console port</source>
         <translation>修改console端口</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="111"/>
+        <location filename="../Node/AbstractNode.py" line="115"/>
         <source>Console port for %s:</source>
         <translation>修改Console端口 %s:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="117"/>
+        <location filename="../Node/AbstractNode.py" line="121"/>
         <source>Console port</source>
         <translation>Console端口</translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="96"/>
+        <source>Please use only alphanumeric characters</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1596,347 +1601,347 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>简体中文</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="346"/>
+        <location filename="../Ui/Form_MainWindow.py" line="347"/>
         <source>GNS3</source>
         <translation>GNS3</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="347"/>
+        <location filename="../Ui/Form_MainWindow.py" line="348"/>
         <source>&amp;Edit</source>
         <translation>编辑(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="348"/>
+        <location filename="../Ui/Form_MainWindow.py" line="349"/>
         <source>&amp;File</source>
         <translation>文件(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="349"/>
+        <location filename="../Ui/Form_MainWindow.py" line="350"/>
         <source>&amp;Help</source>
         <translation>帮助(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="350"/>
+        <location filename="../Ui/Form_MainWindow.py" line="351"/>
         <source>&amp;View</source>
         <translation>查看(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="351"/>
+        <location filename="../Ui/Form_MainWindow.py" line="352"/>
         <source>General</source>
         <translation>一般</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="352"/>
+        <location filename="../Ui/Form_MainWindow.py" line="353"/>
         <source>Nodes Types</source>
         <translation>节点类型</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="356"/>
+        <location filename="../Ui/Form_MainWindow.py" line="357"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="355"/>
+        <location filename="../Ui/Form_MainWindow.py" line="356"/>
         <source>Topology Summary</source>
         <translation>拓扑汇总</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="357"/>
+        <location filename="../Ui/Form_MainWindow.py" line="358"/>
         <source>Console</source>
         <translation>控制台</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="359"/>
+        <location filename="../Ui/Form_MainWindow.py" line="360"/>
         <source>&amp;About</source>
         <translation>关于(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="360"/>
+        <location filename="../Ui/Form_MainWindow.py" line="361"/>
         <source>&amp;Quit</source>
         <translation>退出(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="361"/>
+        <location filename="../Ui/Form_MainWindow.py" line="362"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="362"/>
+        <location filename="../Ui/Form_MainWindow.py" line="363"/>
         <source>&amp;Open</source>
         <translation>打开(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="364"/>
+        <location filename="../Ui/Form_MainWindow.py" line="365"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="365"/>
+        <location filename="../Ui/Form_MainWindow.py" line="366"/>
         <source>&amp;Save</source>
         <translation>保存(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="367"/>
+        <location filename="../Ui/Form_MainWindow.py" line="368"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="371"/>
+        <location filename="../Ui/Form_MainWindow.py" line="372"/>
         <source>Add a link</source>
         <translation>添加链接</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="373"/>
+        <location filename="../Ui/Form_MainWindow.py" line="374"/>
         <source>Ctrl+Shift+I</source>
         <translation>Ctrl+Shift+I</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="374"/>
+        <location filename="../Ui/Form_MainWindow.py" line="375"/>
         <source>&amp;Online Help</source>
         <translation>在线帮助(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="375"/>
+        <location filename="../Ui/Form_MainWindow.py" line="376"/>
         <source>&amp;Export</source>
         <translation>输出(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="376"/>
+        <location filename="../Ui/Form_MainWindow.py" line="377"/>
         <source>Start/Resume all IOS</source>
         <translation>开始/继续 所有IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="377"/>
+        <location filename="../Ui/Form_MainWindow.py" line="378"/>
         <source>Start or resume all IOS instances</source>
         <translation>开始或继续执行所有IOS事件</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="378"/>
+        <location filename="../Ui/Form_MainWindow.py" line="379"/>
         <source>Stop all IOS</source>
         <translation>停止所有IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="379"/>
+        <location filename="../Ui/Form_MainWindow.py" line="380"/>
         <source>Stop all IOS instances</source>
         <translation>停止所有IOS事件</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="381"/>
+        <location filename="../Ui/Form_MainWindow.py" line="382"/>
         <source>Show hostnames</source>
         <translation>显示设备名</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="383"/>
+        <location filename="../Ui/Form_MainWindow.py" line="384"/>
         <source>Start a console on all running IOS instances</source>
         <translation>为所有已运行的IOS事件启动console</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="384"/>
+        <location filename="../Ui/Form_MainWindow.py" line="385"/>
         <source>Save &amp;As</source>
         <translation>另存为(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="385"/>
+        <location filename="../Ui/Form_MainWindow.py" line="386"/>
         <source>Save As</source>
         <translation>另存为</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="411"/>
+        <location filename="../Ui/Form_MainWindow.py" line="412"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="387"/>
+        <location filename="../Ui/Form_MainWindow.py" line="388"/>
         <source>About &amp;Qt</source>
         <translation>关于QT(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="388"/>
+        <location filename="../Ui/Form_MainWindow.py" line="389"/>
         <source>Zoom &amp;In</source>
         <translation>放大(&amp;I)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="389"/>
+        <location filename="../Ui/Form_MainWindow.py" line="390"/>
         <source>Ctrl++</source>
         <translation>Ctrl++</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="390"/>
+        <location filename="../Ui/Form_MainWindow.py" line="391"/>
         <source>Zoom &amp;Out</source>
         <translation>缩小(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="391"/>
+        <location filename="../Ui/Form_MainWindow.py" line="392"/>
         <source>Ctrl+-</source>
         <translation>Ctrl+-</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="392"/>
+        <location filename="../Ui/Form_MainWindow.py" line="393"/>
         <source>Zoom &amp;1:1</source>
         <translation>等比例(&amp;1)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="393"/>
+        <location filename="../Ui/Form_MainWindow.py" line="394"/>
         <source>Ctrl+/</source>
         <translation>Ctrl+/</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="394"/>
+        <location filename="../Ui/Form_MainWindow.py" line="395"/>
         <source>Select &amp;All</source>
         <translation>选择所有(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="395"/>
+        <location filename="../Ui/Form_MainWindow.py" line="396"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="396"/>
+        <location filename="../Ui/Form_MainWindow.py" line="397"/>
         <source>Select &amp;None</source>
         <translation>取消选择(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="397"/>
+        <location filename="../Ui/Form_MainWindow.py" line="398"/>
         <source>Ctrl+Shift+A</source>
         <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="400"/>
+        <location filename="../Ui/Form_MainWindow.py" line="401"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="401"/>
+        <location filename="../Ui/Form_MainWindow.py" line="402"/>
         <source>Ctrl+C</source>
         <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="402"/>
+        <location filename="../Ui/Form_MainWindow.py" line="403"/>
         <source>&amp;Paste</source>
         <translation>粘贴(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="403"/>
+        <location filename="../Ui/Form_MainWindow.py" line="404"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="404"/>
+        <location filename="../Ui/Form_MainWindow.py" line="405"/>
         <source>Suspend all IOS</source>
         <translation>暂停所有IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="405"/>
+        <location filename="../Ui/Form_MainWindow.py" line="406"/>
         <source>Suspend all IOS instances</source>
         <translation>暂停所有IOS事件</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="398"/>
+        <location filename="../Ui/Form_MainWindow.py" line="399"/>
         <source>&amp;Preferences...</source>
         <translation>首选项(&amp;P)...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="399"/>
+        <location filename="../Ui/Form_MainWindow.py" line="400"/>
         <source>Ctrl+Shift+P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="372"/>
+        <location filename="../Ui/Form_MainWindow.py" line="373"/>
         <source>IOS images and hypervisors</source>
         <translation>IOS和Hypervisors</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="363"/>
+        <location filename="../Ui/Form_MainWindow.py" line="364"/>
         <source>Open network file</source>
         <translation>打开net文件</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="366"/>
+        <location filename="../Ui/Form_MainWindow.py" line="367"/>
         <source>Save network file</source>
         <translation>保存net文件</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="380"/>
+        <location filename="../Ui/Form_MainWindow.py" line="381"/>
         <source>Show the hostnames</source>
         <translation>显示设备名</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="382"/>
+        <location filename="../Ui/Form_MainWindow.py" line="383"/>
         <source>Telnet to all IOS</source>
         <translation>telnet到所有IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="386"/>
+        <location filename="../Ui/Form_MainWindow.py" line="387"/>
         <source>Save network file as</source>
         <translation>另存net文件为</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="406"/>
+        <location filename="../Ui/Form_MainWindow.py" line="407"/>
         <source>Clear the topology</source>
         <translation>清空拓扑</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="407"/>
+        <location filename="../Ui/Form_MainWindow.py" line="408"/>
         <source>Add a note</source>
         <translation>添加注释</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="408"/>
+        <location filename="../Ui/Form_MainWindow.py" line="409"/>
         <source>&amp;New Project</source>
         <translation>新建工程(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="410"/>
+        <location filename="../Ui/Form_MainWindow.py" line="411"/>
         <source>New Project</source>
         <translation>新工程</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="414"/>
+        <location filename="../Ui/Form_MainWindow.py" line="415"/>
         <source>&amp;Symbol Manager</source>
         <translation>图标管理(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="415"/>
+        <location filename="../Ui/Form_MainWindow.py" line="416"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="413"/>
+        <location filename="../Ui/Form_MainWindow.py" line="414"/>
         <source>Insert a picture</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="354"/>
+        <location filename="../Ui/Form_MainWindow.py" line="355"/>
         <source>Emulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="358"/>
+        <location filename="../Ui/Form_MainWindow.py" line="359"/>
         <source>Drawing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="416"/>
+        <location filename="../Ui/Form_MainWindow.py" line="417"/>
         <source>Draw a rectangle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="417"/>
+        <location filename="../Ui/Form_MainWindow.py" line="418"/>
         <source>Draw an ellipse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="418"/>
+        <location filename="../Ui/Form_MainWindow.py" line="419"/>
         <source>Show interface names</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="419"/>
+        <location filename="../Ui/Form_MainWindow.py" line="420"/>
         <source>Snapshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="412"/>
+        <location filename="../Ui/Form_MainWindow.py" line="413"/>
         <source>&amp;Extract/Import all startup-configs</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1994,7 +1999,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="285"/>
+        <location filename="../Topology.py" line="289"/>
         <source>Please wait while copying the base flash</source>
         <translation>正在复制flash,请稍后</translation>
     </message>
@@ -2027,33 +2032,38 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>NewProject</name>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="62"/>
+        <location filename="../Ui/Form_NewProject.py" line="66"/>
         <source>New Project</source>
         <translation>新工程</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="63"/>
+        <location filename="../Ui/Form_NewProject.py" line="67"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="64"/>
+        <location filename="../Ui/Form_NewProject.py" line="68"/>
         <source>Project file:</source>
         <translation>工程文件:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="65"/>
+        <location filename="../Ui/Form_NewProject.py" line="69"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="67"/>
+        <location filename="../Ui/Form_NewProject.py" line="71"/>
         <source>Export router configuration files</source>
         <translation>导入路由器配置文件</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="66"/>
+        <location filename="../Ui/Form_NewProject.py" line="70"/>
         <source>Save nvrams and other disk files (recommended)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_NewProject.py" line="72"/>
+        <source>&amp;Open a project</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2571,7 +2581,7 @@ to display the configuration page.</source>
 <context>
     <name>ProjectDialog</name>
     <message>
-        <location filename="../ProjectDialog.py" line="42"/>
+        <location filename="../ProjectDialog.py" line="43"/>
         <source>New Project</source>
         <translation>新工程</translation>
     </message>
@@ -2993,97 +3003,97 @@ ALT + LEFT or RIGHT</source>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="371"/>
+        <location filename="../Topology.py" line="375"/>
         <source>IOS image</source>
         <translation>IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="350"/>
+        <location filename="../Topology.py" line="354"/>
         <source>Please register at least one IOS image</source>
         <translation>请至少配置一个IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="391"/>
+        <location filename="../Topology.py" line="395"/>
         <source>Hypervisor</source>
         <translation>Hypervisor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="388"/>
+        <location filename="../Topology.py" line="392"/>
         <source>Please configure the path to Dynamips</source>
         <translation>请配置Dynamips路径</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="668"/>
+        <location filename="../Topology.py" line="672"/>
         <source>Dynamips error</source>
         <translation>Dynamips 错误</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="668"/>
+        <location filename="../Topology.py" line="672"/>
         <source>Connection lost</source>
         <translation>丢失连接</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="570"/>
+        <location filename="../Topology.py" line="574"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="200"/>
+        <location filename="../Topology.py" line="204"/>
         <source>Can&apos;t connect to the external hypervisor on %s</source>
         <translation>无法连接到外部Hypervisor于端口%s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="361"/>
+        <location filename="../Topology.py" line="365"/>
         <source>No image for platform %s</source>
         <translation>%s 平台没有配置IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="372"/>
+        <location filename="../Topology.py" line="376"/>
         <source>Please choose an image</source>
         <translation>请选择一个IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="570"/>
+        <location filename="../Topology.py" line="574"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>至少连接一个路由器到虚拟交换机</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="403"/>
+        <location filename="../Topology.py" line="407"/>
         <source>PIX image</source>
         <translation> PIX OS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="403"/>
+        <location filename="../Topology.py" line="407"/>
         <source>Please configure a default PIX image</source>
         <translation>请配置一个默认的PIX OS文件</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="557"/>
+        <location filename="../Topology.py" line="561"/>
         <source>Can&apos;t connect these devices</source>
         <translation>无法连接这些设备</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="391"/>
+        <location filename="../Topology.py" line="395"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation>请在首选项中测试Dynamips路径 </translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="272"/>
+        <location filename="../Topology.py" line="276"/>
         <source>Pemuwrapper error</source>
         <translation>Pemuwrapper 错误</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="291"/>
+        <location filename="../Topology.py" line="295"/>
         <source>PIX device</source>
         <translation>PIX device</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="292"/>
+        <location filename="../Topology.py" line="296"/>
         <source>Cannot copy PIX base flash %s: %s</source>
         <translation>无法复制pix flash %s: %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="334"/>
+        <location filename="../Topology.py" line="338"/>
         <source>Simhost error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3133,7 +3143,7 @@ p, li { white-space: pre-wrap; }
         <translation>浮动窗口</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="763"/>
+        <location filename="../Workspace.py" line="767"/>
         <source>Dynamips error</source>
         <translation>Dynamips 错误</translation>
     </message>
@@ -3178,17 +3188,17 @@ p, li { white-space: pre-wrap; }
         <translation>显示设备名</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="774"/>
+        <location filename="../Workspace.py" line="782"/>
         <source>Open a file</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="770"/>
+        <location filename="../Workspace.py" line="778"/>
         <source>The path to Dynamips must be configured</source>
         <translation>必须配置Dynamips路径</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="806"/>
+        <location filename="../Workspace.py" line="814"/>
         <source>Save Project As</source>
         <translation>另存工程为</translation>
     </message>
@@ -3198,7 +3208,7 @@ p, li { white-space: pre-wrap; }
         <translation>新工程</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="825"/>
+        <location filename="../Workspace.py" line="833"/>
         <source>Message</source>
         <translation>消息</translation>
     </message>
@@ -3228,7 +3238,7 @@ p, li { white-space: pre-wrap; }
         <translation>无效文件%s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="825"/>
+        <location filename="../Workspace.py" line="833"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>是否在退出之前保存拓扑?</translation>
     </message>
@@ -3264,7 +3274,7 @@ No - Export only what I see</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="714"/>
+        <location filename="../Workspace.py" line="718"/>
         <source>Snapshot</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3274,12 +3284,12 @@ No - Export only what I see</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="714"/>
+        <location filename="../Workspace.py" line="718"/>
         <source>Cannot create directory %s: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="719"/>
+        <location filename="../Workspace.py" line="723"/>
         <source>Please wait while creating a snapshot</source>
         <translation type="unfinished"></translation>
     </message>

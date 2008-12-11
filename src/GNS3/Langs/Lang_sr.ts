@@ -563,59 +563,64 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractNode</name>
     <message>
-        <location filename="../Node/AbstractNode.py" line="88"/>
+        <location filename="../Node/AbstractNode.py" line="89"/>
         <source>Change hostname</source>
         <translation>Промени име хоста</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="89"/>
+        <location filename="../Node/AbstractNode.py" line="90"/>
         <source>Hostname:</source>
         <translation>Име хоста:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="250"/>
+        <location filename="../Node/AbstractNode.py" line="254"/>
         <source>Connection</source>
         <translation>Веза</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="215"/>
+        <location filename="../Node/AbstractNode.py" line="219"/>
         <source>Already connected interface</source>
         <translation>Интерфејс већ повезан</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="96"/>
+        <location filename="../Node/AbstractNode.py" line="101"/>
         <source>Hostname</source>
         <translation>Име хоста</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="96"/>
+        <location filename="../Node/AbstractNode.py" line="101"/>
         <source>Hostname already used</source>
         <translation>Име хоста већ у употреби</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="186"/>
+        <location filename="../Node/AbstractNode.py" line="190"/>
         <source>Hostname: %s</source>
         <translation>Име хоста: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="250"/>
+        <location filename="../Node/AbstractNode.py" line="254"/>
         <source>No interface available, please configure this device</source>
         <translation>Нема доступних интерфејса, прво подесите уређај</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="110"/>
+        <location filename="../Node/AbstractNode.py" line="114"/>
         <source>Change console port</source>
         <translation>Промени порт конзоле</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="111"/>
+        <location filename="../Node/AbstractNode.py" line="115"/>
         <source>Console port for %s:</source>
         <translation>Порт конзоле за %s:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="117"/>
+        <location filename="../Node/AbstractNode.py" line="121"/>
         <source>Console port</source>
         <translation>Порт конзоле</translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="96"/>
+        <source>Please use only alphanumeric characters</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1595,347 +1600,347 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>Српски</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="346"/>
+        <location filename="../Ui/Form_MainWindow.py" line="347"/>
         <source>GNS3</source>
         <translation>GNS3</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="347"/>
+        <location filename="../Ui/Form_MainWindow.py" line="348"/>
         <source>&amp;Edit</source>
         <translation>&amp;Уређивање</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="348"/>
+        <location filename="../Ui/Form_MainWindow.py" line="349"/>
         <source>&amp;File</source>
         <translation>&amp;Датотека</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="349"/>
+        <location filename="../Ui/Form_MainWindow.py" line="350"/>
         <source>&amp;Help</source>
         <translation>&amp;Помоћ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="350"/>
+        <location filename="../Ui/Form_MainWindow.py" line="351"/>
         <source>&amp;View</source>
         <translation>П&amp;риказ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="351"/>
+        <location filename="../Ui/Form_MainWindow.py" line="352"/>
         <source>General</source>
         <translation>Основно</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="352"/>
+        <location filename="../Ui/Form_MainWindow.py" line="353"/>
         <source>Nodes Types</source>
         <translation>Типови уређаја</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="356"/>
+        <location filename="../Ui/Form_MainWindow.py" line="357"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="355"/>
+        <location filename="../Ui/Form_MainWindow.py" line="356"/>
         <source>Topology Summary</source>
         <translation>Топологија</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="357"/>
+        <location filename="../Ui/Form_MainWindow.py" line="358"/>
         <source>Console</source>
         <translation>Конзола</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="359"/>
+        <location filename="../Ui/Form_MainWindow.py" line="360"/>
         <source>&amp;About</source>
         <translation>&amp;О програму</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="360"/>
+        <location filename="../Ui/Form_MainWindow.py" line="361"/>
         <source>&amp;Quit</source>
         <translation>&amp;Изађи</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="361"/>
+        <location filename="../Ui/Form_MainWindow.py" line="362"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="362"/>
+        <location filename="../Ui/Form_MainWindow.py" line="363"/>
         <source>&amp;Open</source>
         <translation>&amp;Отвори</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="364"/>
+        <location filename="../Ui/Form_MainWindow.py" line="365"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="365"/>
+        <location filename="../Ui/Form_MainWindow.py" line="366"/>
         <source>&amp;Save</source>
         <translation>&amp;Сачувај</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="367"/>
+        <location filename="../Ui/Form_MainWindow.py" line="368"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="371"/>
+        <location filename="../Ui/Form_MainWindow.py" line="372"/>
         <source>Add a link</source>
         <translation>Додај везу</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="373"/>
+        <location filename="../Ui/Form_MainWindow.py" line="374"/>
         <source>Ctrl+Shift+I</source>
         <translation>Ctrl+Shift+I</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="374"/>
+        <location filename="../Ui/Form_MainWindow.py" line="375"/>
         <source>&amp;Online Help</source>
         <translation>Он&amp;лајн помоћ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="375"/>
+        <location filename="../Ui/Form_MainWindow.py" line="376"/>
         <source>&amp;Export</source>
         <translation>&amp;Експортуј</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="376"/>
+        <location filename="../Ui/Form_MainWindow.py" line="377"/>
         <source>Start/Resume all IOS</source>
         <translation>Покрени/Настави све IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="377"/>
+        <location filename="../Ui/Form_MainWindow.py" line="378"/>
         <source>Start or resume all IOS instances</source>
         <translation>Покрени или настави све IOS инстанце</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="378"/>
+        <location filename="../Ui/Form_MainWindow.py" line="379"/>
         <source>Stop all IOS</source>
         <translation>Заустави све IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="379"/>
+        <location filename="../Ui/Form_MainWindow.py" line="380"/>
         <source>Stop all IOS instances</source>
         <translation>Заустави све IOS инстанце</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="381"/>
+        <location filename="../Ui/Form_MainWindow.py" line="382"/>
         <source>Show hostnames</source>
         <translation>Прикажи имена хостова</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="383"/>
+        <location filename="../Ui/Form_MainWindow.py" line="384"/>
         <source>Start a console on all running IOS instances</source>
         <translation>Отвори конзолу за сваку покренуту IOS инстанцу</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="384"/>
+        <location filename="../Ui/Form_MainWindow.py" line="385"/>
         <source>Save &amp;As</source>
         <translation>Сачувај &amp;под</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="385"/>
+        <location filename="../Ui/Form_MainWindow.py" line="386"/>
         <source>Save As</source>
         <translation>Сачувај под</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="411"/>
+        <location filename="../Ui/Form_MainWindow.py" line="412"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="387"/>
+        <location filename="../Ui/Form_MainWindow.py" line="388"/>
         <source>About &amp;Qt</source>
         <translation>О програму &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="388"/>
+        <location filename="../Ui/Form_MainWindow.py" line="389"/>
         <source>Zoom &amp;In</source>
         <translation>У&amp;већај</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="389"/>
+        <location filename="../Ui/Form_MainWindow.py" line="390"/>
         <source>Ctrl++</source>
         <translation>Ctrl++</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="390"/>
+        <location filename="../Ui/Form_MainWindow.py" line="391"/>
         <source>Zoom &amp;Out</source>
         <translation>У&amp;мањи</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="391"/>
+        <location filename="../Ui/Form_MainWindow.py" line="392"/>
         <source>Ctrl+-</source>
         <translation>Ctrl+-</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="392"/>
+        <location filename="../Ui/Form_MainWindow.py" line="393"/>
         <source>Zoom &amp;1:1</source>
         <translation>Увећање &amp;1:1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="393"/>
+        <location filename="../Ui/Form_MainWindow.py" line="394"/>
         <source>Ctrl+/</source>
         <translation>Ctrl+/</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="394"/>
+        <location filename="../Ui/Form_MainWindow.py" line="395"/>
         <source>Select &amp;All</source>
         <translation>Изабери &amp;све</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="395"/>
+        <location filename="../Ui/Form_MainWindow.py" line="396"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="396"/>
+        <location filename="../Ui/Form_MainWindow.py" line="397"/>
         <source>Select &amp;None</source>
         <translation>&amp;Поништи изабрано</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="397"/>
+        <location filename="../Ui/Form_MainWindow.py" line="398"/>
         <source>Ctrl+Shift+A</source>
         <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="400"/>
+        <location filename="../Ui/Form_MainWindow.py" line="401"/>
         <source>Copy</source>
         <translation>Умножи</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="401"/>
+        <location filename="../Ui/Form_MainWindow.py" line="402"/>
         <source>Ctrl+C</source>
         <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="402"/>
+        <location filename="../Ui/Form_MainWindow.py" line="403"/>
         <source>&amp;Paste</source>
         <translation>&amp;Убаци</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="403"/>
+        <location filename="../Ui/Form_MainWindow.py" line="404"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="404"/>
+        <location filename="../Ui/Form_MainWindow.py" line="405"/>
         <source>Suspend all IOS</source>
         <translation>Обустави све IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="405"/>
+        <location filename="../Ui/Form_MainWindow.py" line="406"/>
         <source>Suspend all IOS instances</source>
         <translation>Обустави све IOS инстанце</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="398"/>
+        <location filename="../Ui/Form_MainWindow.py" line="399"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Подешавања...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="399"/>
+        <location filename="../Ui/Form_MainWindow.py" line="400"/>
         <source>Ctrl+Shift+P</source>
         <translation>Ctrl+Shift+P</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="372"/>
+        <location filename="../Ui/Form_MainWindow.py" line="373"/>
         <source>IOS images and hypervisors</source>
         <translation>IOS бинарне датотеке и хипервизори</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="363"/>
+        <location filename="../Ui/Form_MainWindow.py" line="364"/>
         <source>Open network file</source>
         <translation>Отвори мрежну топологију</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="366"/>
+        <location filename="../Ui/Form_MainWindow.py" line="367"/>
         <source>Save network file</source>
         <translation>Сачувај топологију</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="380"/>
+        <location filename="../Ui/Form_MainWindow.py" line="381"/>
         <source>Show the hostnames</source>
         <translation>Прикажи имена хостова</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="382"/>
+        <location filename="../Ui/Form_MainWindow.py" line="383"/>
         <source>Telnet to all IOS</source>
         <translation>Покрени Telnet ка свим IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="386"/>
+        <location filename="../Ui/Form_MainWindow.py" line="387"/>
         <source>Save network file as</source>
         <translation>Сачувај топологију под</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="406"/>
+        <location filename="../Ui/Form_MainWindow.py" line="407"/>
         <source>Clear the topology</source>
         <translation>Очисти топологију</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="407"/>
+        <location filename="../Ui/Form_MainWindow.py" line="408"/>
         <source>Add a note</source>
         <translation>Додај белешку</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="408"/>
+        <location filename="../Ui/Form_MainWindow.py" line="409"/>
         <source>&amp;New Project</source>
         <translation>&amp;Нови пројекат</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="410"/>
+        <location filename="../Ui/Form_MainWindow.py" line="411"/>
         <source>New Project</source>
         <translation>Нови пројекат</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="414"/>
+        <location filename="../Ui/Form_MainWindow.py" line="415"/>
         <source>&amp;Symbol Manager</source>
         <translation>&amp;Менаџер симбола</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="415"/>
+        <location filename="../Ui/Form_MainWindow.py" line="416"/>
         <source>Ctrl+Shift+S</source>
         <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="413"/>
+        <location filename="../Ui/Form_MainWindow.py" line="414"/>
         <source>Insert a picture</source>
         <translation>Убаци слику</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="354"/>
+        <location filename="../Ui/Form_MainWindow.py" line="355"/>
         <source>Emulation</source>
         <translation>Емулација</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="358"/>
+        <location filename="../Ui/Form_MainWindow.py" line="359"/>
         <source>Drawing</source>
         <translation>Дизајн</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="416"/>
+        <location filename="../Ui/Form_MainWindow.py" line="417"/>
         <source>Draw a rectangle</source>
         <translation>Нацртај правоугаоник</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="417"/>
+        <location filename="../Ui/Form_MainWindow.py" line="418"/>
         <source>Draw an ellipse</source>
         <translation>Нацртај елипсу</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="418"/>
+        <location filename="../Ui/Form_MainWindow.py" line="419"/>
         <source>Show interface names</source>
         <translation>Прикажи имена интерфејса</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="419"/>
+        <location filename="../Ui/Form_MainWindow.py" line="420"/>
         <source>Snapshot</source>
         <translation>Брзи снимак</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="412"/>
+        <location filename="../Ui/Form_MainWindow.py" line="413"/>
         <source>&amp;Extract/Import all startup-configs</source>
         <translation>&amp;Извуци/Убаци све startup-config датотеке</translation>
     </message>
@@ -1993,7 +1998,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>Грешка Улаза/Излаза</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="285"/>
+        <location filename="../Topology.py" line="289"/>
         <source>Please wait while copying the base flash</source>
         <translation>Молим Вас, сачекајте док се копира базни FLASH</translation>
     </message>
@@ -2026,34 +2031,39 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>NewProject</name>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="62"/>
+        <location filename="../Ui/Form_NewProject.py" line="66"/>
         <source>New Project</source>
         <translation>Нови пројекат</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="63"/>
+        <location filename="../Ui/Form_NewProject.py" line="67"/>
         <source>Settings</source>
         <translation>Подешавања</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="64"/>
+        <location filename="../Ui/Form_NewProject.py" line="68"/>
         <source>Project file:</source>
         <translation>Датотека пројекта:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="65"/>
+        <location filename="../Ui/Form_NewProject.py" line="69"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="67"/>
+        <location filename="../Ui/Form_NewProject.py" line="71"/>
         <source>Export router configuration files</source>
         <translation>Експорт датотека конфигурације рутера</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="66"/>
+        <location filename="../Ui/Form_NewProject.py" line="70"/>
         <source>Save nvrams and other disk files (recommended)</source>
         <translation>Сачувај nvram и друге диск датотеке (препручено)</translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_NewProject.py" line="72"/>
+        <source>&amp;Open a project</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2570,7 +2580,7 @@ to display the configuration page.</source>
 <context>
     <name>ProjectDialog</name>
     <message>
-        <location filename="../ProjectDialog.py" line="42"/>
+        <location filename="../ProjectDialog.py" line="43"/>
         <source>New Project</source>
         <translation>Нови пројекат</translation>
     </message>
@@ -2993,97 +3003,97 @@ ALT + ЛЕВО или ДЕСНО</translation>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="371"/>
+        <location filename="../Topology.py" line="375"/>
         <source>IOS image</source>
         <translation>IOS бинарна датотека</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="350"/>
+        <location filename="../Topology.py" line="354"/>
         <source>Please register at least one IOS image</source>
         <translation type="unfinished">Молимо вас да снимите бар једну IOS бинарну датотеку</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="391"/>
+        <location filename="../Topology.py" line="395"/>
         <source>Hypervisor</source>
         <translation>Хипервизор</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="388"/>
+        <location filename="../Topology.py" line="392"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Унесите путању до Dynamips програма</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="668"/>
+        <location filename="../Topology.py" line="672"/>
         <source>Dynamips error</source>
         <translation>Dynamips грешка</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="668"/>
+        <location filename="../Topology.py" line="672"/>
         <source>Connection lost</source>
         <translation>Изгубљена веза</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="570"/>
+        <location filename="../Topology.py" line="574"/>
         <source>Connection</source>
         <translation>Веза</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="200"/>
+        <location filename="../Topology.py" line="204"/>
         <source>Can&apos;t connect to the external hypervisor on %s</source>
         <translation>Немогуће повезати се ка спољашњем хипервизору на %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="361"/>
+        <location filename="../Topology.py" line="365"/>
         <source>No image for platform %s</source>
         <translation>Нема бинарне датотеке за платформу %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="372"/>
+        <location filename="../Topology.py" line="376"/>
         <source>Please choose an image</source>
         <translation>Изаберите бинарну датотеку</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="570"/>
+        <location filename="../Topology.py" line="574"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Морате повезати бар један рутер на свич</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="403"/>
+        <location filename="../Topology.py" line="407"/>
         <source>PIX image</source>
         <translation>PIX бинарна датотека</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="403"/>
+        <location filename="../Topology.py" line="407"/>
         <source>Please configure a default PIX image</source>
         <translation>Унесите подразумевану PIX бинарну датотеку</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="557"/>
+        <location filename="../Topology.py" line="561"/>
         <source>Can&apos;t connect these devices</source>
         <translation>Немогуће повезати oве уређаје</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="391"/>
+        <location filename="../Topology.py" line="395"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation>Проверите путању до Dynamips програма у мениу подешавања</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="272"/>
+        <location filename="../Topology.py" line="276"/>
         <source>Pemuwrapper error</source>
         <translation>Pemuwrapper грешка</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="291"/>
+        <location filename="../Topology.py" line="295"/>
         <source>PIX device</source>
         <translation>PIX уређај</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="292"/>
+        <location filename="../Topology.py" line="296"/>
         <source>Cannot copy PIX base flash %s: %s</source>
         <translation>Немогуће ископирати основни PIX FLASH  %s: %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="334"/>
+        <location filename="../Topology.py" line="338"/>
         <source>Simhost error</source>
         <translation>Simhost грешка</translation>
     </message>
@@ -3133,7 +3143,7 @@ p, li { white-space: pre-wrap; }
         <translation>Докови</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="763"/>
+        <location filename="../Workspace.py" line="767"/>
         <source>Dynamips error</source>
         <translation>Dynamips грешка</translation>
     </message>
@@ -3178,17 +3188,17 @@ p, li { white-space: pre-wrap; }
         <translation>Прикажи имена хостова</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="774"/>
+        <location filename="../Workspace.py" line="782"/>
         <source>Open a file</source>
         <translation>Отвори датотеку</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="770"/>
+        <location filename="../Workspace.py" line="778"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Путања до Dynamips програма мора бити унешена</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="806"/>
+        <location filename="../Workspace.py" line="814"/>
         <source>Save Project As</source>
         <translation>Сачувај пројекат под</translation>
     </message>
@@ -3198,7 +3208,7 @@ p, li { white-space: pre-wrap; }
         <translation>Нови пројекат</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="825"/>
+        <location filename="../Workspace.py" line="833"/>
         <source>Message</source>
         <translation>Порука</translation>
     </message>
@@ -3228,7 +3238,7 @@ p, li { white-space: pre-wrap; }
         <translation>Неправилна датотека %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="825"/>
+        <location filename="../Workspace.py" line="833"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>Да ли желите да запамтите топологију пре него напустите програм?</translation>
     </message>
@@ -3265,7 +3275,7 @@ No - Export only what I see</source>
         <translation>Да ли желите да примените подешавања пројекта на тренутну топологију? (ово може бити дуго)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="714"/>
+        <location filename="../Workspace.py" line="718"/>
         <source>Snapshot</source>
         <translation>Брзи снимак</translation>
     </message>
@@ -3275,12 +3285,12 @@ No - Export only what I see</source>
         <translation>Радни директоријум пројекта мора бити унешен у менију за подешавања</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="714"/>
+        <location filename="../Workspace.py" line="718"/>
         <source>Cannot create directory %s: %s</source>
         <translation>Немогуће направити директоријум %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="719"/>
+        <location filename="../Workspace.py" line="723"/>
         <source>Please wait while creating a snapshot</source>
         <translation>Сачекајте док се прави снимак</translation>
     </message>

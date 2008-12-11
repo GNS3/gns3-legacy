@@ -304,7 +304,7 @@ class FW(object):
         serial: serial number of this fw
         """
 
-        if type(serial) != str:
+        if type(serial) not in [str, unicode]:
             raise DynamipsError, 'invalid serial'
         #TODO verify serial
         send(self.p, 'pemu set_serial %s %s' % (self.name, serial))
@@ -323,7 +323,7 @@ class FW(object):
         key: key number of this fw
         """
 
-        if type(key) != str:
+        if type(key) not in [str, unicode]:
             raise DynamipsError, 'invalid key'
         #TODO verify key
         send(self.p, 'pemu set_key %s %s' % (self.name, key))

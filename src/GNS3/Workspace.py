@@ -248,7 +248,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 try:
                     os.remove(file)
                 except (OSError, IOError), e:
-                    print "Warning: Can't delete " + file + " => " + e.strerror
+                    print unicode("Warning: Can't delete %s => %s") % (file, e.strerror)
                     continue
 
     def __action_Clear(self):
