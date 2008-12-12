@@ -389,21 +389,22 @@ class Application(QApplication, Singleton):
         self.mainWindow.restoreState(ConfDB().value("GUIState/State").toByteArray())
         self.mainWindow.show()
 
-        if file:
-            self.mainWindow.load_netfile(file)
-        elif confo.project_startup:
-            dialog = ProjectDialog()
-            dialog.show()
-            self.mainWindow.centerDialog(dialog)
-            dialog.raise_()
-            dialog.activateWindow()
-    
         configFile = unicode(ConfDB().fileName())
         if not os.access(configFile, os.F_OK):
             dialog = Wizard()
             dialog.show()
             dialog.raise_()
             dialog.activateWindow()
+        
+        if file:
+            self.mainWindow.load_netfile(file)
+        elif confo.project_startup and os.access(configFile, os.F_OK):
+            dialog = ProjectDialog()
+            dialog.show()
+            self.mainWindow.centerDialog(dialog)
+            dialog.raise_()
+            dialog.activateWindow()
+
 #        elif globals.recordConfiguration and config_version < VERSION_INTEGER:
 #        
 #            reply = QMessageBox.question(self.mainWindow, translate("Application", "Configuration file"), 

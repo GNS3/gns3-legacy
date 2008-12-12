@@ -3341,22 +3341,19 @@ class DynamipsError(UnicodeException):
 
     def __init__(self, message):
         UnicodeException.__init__(self, message)
+        
+class DynamipsWarning(UnicodeException):
+
+    def __init__(self, message):
+        UnicodeException.__init__(self, message)
 
 class DynamipsErrorHandled(Exception):
 
-    def __init__(self, message):
-        UnicodeException.__init__(self, message)
+    pass
 
 class DynamipsVerError(Exception):
 
-    def __init__(self, message):
-        UnicodeException.__init__(self, message)
-
-class DynamipsWarning(Exception):
-
-    def __init__(self, message):
-        UnicodeException.__init__(self, message)
-
+    pass
 
 ###############################################################################
 
