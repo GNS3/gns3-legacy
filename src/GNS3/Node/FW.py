@@ -315,5 +315,6 @@ class FW(AbstractNode, FWDefaults):
         """ Call when the node is clicked
             event: QtGui.QGraphicsSceneMouseEvent instance
         """
-        
+
         AbstractNode.mousePressEvent(self, event)
+

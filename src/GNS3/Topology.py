@@ -63,9 +63,12 @@ class Topology(QtGui.QGraphicsScene):
 
     def mousePressEvent(self, event):
 
+        srcnode = globals.GApp.scene.getSourceNode()
         item = self.itemAt(event.scenePos())
-        if item and isinstance(item, AbstractNode) and \
-        globals.currentLinkType == globals.Enum.LinkType.Manual:
+        if item and ((isinstance(item, AbstractNode) and \
+        globals.currentLinkType == globals.Enum.LinkType.Manual) or \
+        isinstance(srcnode, FW) or isinstance(srcnode, FRSW) or \
+        isinstance(srcnode, ATMBR) or isinstance(srcnode, ATMSW) or isinstance(srcnode, Cloud)):
             # In few circumstances, QtGui.QGraphicsScene.mousePressEvent()
             # send the mousePressEvent to the wrong item; we need to
             # correct this behaviour for 'Manual Link' mode. We force the 

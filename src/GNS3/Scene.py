@@ -456,6 +456,14 @@ class Scene(QtGui.QGraphicsView):
         for item in self.__topology.selectedItems():
             if  isinstance(item, IOSRouter):
                 item.suspendNode()
+                
+    def getSourceNode(self):
+    
+        return globals.GApp.topology.getNode(self.__sourceNodeID)
+        
+    def getDestNode(self):
+    
+        return globals.GApp.topology.getNode(self.__destNodeID)
 
     def __addLink(self):
         """ Add a new link between two nodes
@@ -465,8 +473,8 @@ class Scene(QtGui.QGraphicsView):
             self.__isFirstClick = True
             return
 
-        srcnode = globals.GApp.topology.getNode(self.__sourceNodeID)
-        destnode = globals.GApp.topology.getNode(self.__destNodeID)
+        srcnode = self.getSourceNode()
+        destnode = self.getDestNode()
 
         if srcnode == None or destnode == None:
             self.__isFirstClick = True
@@ -475,6 +483,9 @@ class Scene(QtGui.QGraphicsView):
         # add the link into the topology
         if self.__topology.addLink(self.__sourceNodeID, self.__sourceInterface, self.__destNodeID, self.__destInterface) == False:
             self.__isFirstClick = True
+        
+        self.__sourceNodeID = None
+        self.__destNodeID = None
 
     def slotAddLink(self, id, interface):
         """ Called when a node wants to add a link
@@ -604,6 +615,7 @@ class Scene(QtGui.QGraphicsView):
 
         show = True
         item = self.itemAt(event.pos())
+
         if item:
             item_type = type(item)
             if item_type == Ethernet or item_type == Serial:
