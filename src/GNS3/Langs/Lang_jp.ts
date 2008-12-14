@@ -1993,7 +1993,7 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
         <translation>IO エラー</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="289"/>
+        <location filename="../Topology.py" line="292"/>
         <source>Please wait while copying the base flash</source>
         <translation>フラッシュメモリーのコピー完了するまでお待ちください</translation>
     </message>
@@ -3007,97 +3007,97 @@ ALT + LEFT or RIGHT</source>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="375"/>
+        <location filename="../Topology.py" line="378"/>
         <source>IOS image</source>
         <translation>IOS イメージ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="354"/>
+        <location filename="../Topology.py" line="357"/>
         <source>Please register at least one IOS image</source>
         <translation>IOS イメージを登録して下さい</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="395"/>
+        <location filename="../Topology.py" line="398"/>
         <source>Hypervisor</source>
         <translation>ハイパーバイザ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="392"/>
+        <location filename="../Topology.py" line="395"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Dynamips のプログラムパスを設定してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="672"/>
+        <location filename="../Topology.py" line="675"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="672"/>
+        <location filename="../Topology.py" line="675"/>
         <source>Connection lost</source>
         <translation>接続失敗しました</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="574"/>
+        <location filename="../Topology.py" line="577"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="204"/>
+        <location filename="../Topology.py" line="207"/>
         <source>Can&apos;t connect to the external hypervisor on %s</source>
         <translation>外部スパーバイザ %s に接続できませんでした</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="365"/>
+        <location filename="../Topology.py" line="368"/>
         <source>No image for platform %s</source>
         <translation>このプラットフォーム %s にIOSイメージは設定されていません</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="376"/>
+        <location filename="../Topology.py" line="379"/>
         <source>Please choose an image</source>
         <translation>イメージを選択して下さい</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="574"/>
+        <location filename="../Topology.py" line="577"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>スイッチに少なくとも1つのルータに接続する必要あります</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="407"/>
+        <location filename="../Topology.py" line="410"/>
         <source>PIX image</source>
         <translation>PIX イメージ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="407"/>
+        <location filename="../Topology.py" line="410"/>
         <source>Please configure a default PIX image</source>
         <translation>PIX イメージを設定して下さい</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="561"/>
+        <location filename="../Topology.py" line="564"/>
         <source>Can&apos;t connect these devices</source>
         <translation>このデバイスは接続できませんでした</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="395"/>
+        <location filename="../Topology.py" line="398"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation>設定画面にて Dynamips のプログラムパスをテストしてください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="276"/>
+        <location filename="../Topology.py" line="279"/>
         <source>Pemuwrapper error</source>
         <translation>Pemuwrapper　エラー</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="295"/>
+        <location filename="../Topology.py" line="298"/>
         <source>PIX device</source>
         <translation>PIX デバイス</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="296"/>
+        <location filename="../Topology.py" line="299"/>
         <source>Cannot copy PIX base flash %s: %s</source>
         <translation>PIX　ベースフラッシュをコピーできません %s: %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="338"/>
+        <location filename="../Topology.py" line="341"/>
         <source>Simhost error</source>
         <translation type="unfinished"></translation>
     </message>

@@ -12,6 +12,7 @@ GNS3 0.6
  * New export to images (JPEG, PNG ...) that allows to export all the workspace (and not only what you see).
  * "Expand all" and "collapse all" features for the topology summary panel (contribution by beduev).
  * Annotations, rectangles and ellipses can be rotated.
+ * On Windows, users can load an alternative gns3.ini by setting a path on command line, example: gns3.exe --configdir <path_to_dir_containing_gns3.ini>
 
 GNS3 0.5:
 

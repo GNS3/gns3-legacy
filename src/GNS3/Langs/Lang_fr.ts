@@ -1995,7 +1995,7 @@ panier:</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="289"/>
+        <location filename="../Topology.py" line="292"/>
         <source>Please wait while copying the base flash</source>
         <translation>SVP, attendez pendand la copie de la FLASH de base</translation>
     </message>
@@ -3010,97 +3010,97 @@ avec les touches ALT + GAUCHE ou DROIT</translation>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="375"/>
+        <location filename="../Topology.py" line="378"/>
         <source>IOS image</source>
         <translation>Image IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="354"/>
+        <location filename="../Topology.py" line="357"/>
         <source>Please register at least one IOS image</source>
         <translation>Veuillez enregistrer au moins une image IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="395"/>
+        <location filename="../Topology.py" line="398"/>
         <source>Hypervisor</source>
         <translation>Hyperviseur</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="392"/>
+        <location filename="../Topology.py" line="395"/>
         <source>Please configure the path to Dynamips</source>
         <translation>SVP, configurez le chemin vers Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="672"/>
+        <location filename="../Topology.py" line="675"/>
         <source>Dynamips error</source>
         <translation>Erreur Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="672"/>
+        <location filename="../Topology.py" line="675"/>
         <source>Connection lost</source>
         <translation>Connection perdue</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="574"/>
+        <location filename="../Topology.py" line="577"/>
         <source>Connection</source>
         <translation>Connexion</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="204"/>
+        <location filename="../Topology.py" line="207"/>
         <source>Can&apos;t connect to the external hypervisor on %s</source>
         <translation>Impossible de se connecter à l&apos;hypervisor externe sur le port %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="365"/>
+        <location filename="../Topology.py" line="368"/>
         <source>No image for platform %s</source>
         <translation>Pas d&apos;image pour le platforme %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="376"/>
+        <location filename="../Topology.py" line="379"/>
         <source>Please choose an image</source>
         <translation>SVP, choissisez une image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="574"/>
+        <location filename="../Topology.py" line="577"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Vous devez relier au moins 1 routeur au commutateur</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="407"/>
+        <location filename="../Topology.py" line="410"/>
         <source>PIX image</source>
         <translation>Image PIX</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="407"/>
+        <location filename="../Topology.py" line="410"/>
         <source>Please configure a default PIX image</source>
         <translation>SVP, configurez une image PIX par défaut</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="561"/>
+        <location filename="../Topology.py" line="564"/>
         <source>Can&apos;t connect these devices</source>
         <translation>Impossible de connecter ces noeuds</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="395"/>
+        <location filename="../Topology.py" line="398"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation>SVP, testez le chemin vers Dynamips dans les préférences</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="276"/>
+        <location filename="../Topology.py" line="279"/>
         <source>Pemuwrapper error</source>
         <translation>Error Pemuwrapper</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="295"/>
+        <location filename="../Topology.py" line="298"/>
         <source>PIX device</source>
         <translation>PIX</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="296"/>
+        <location filename="../Topology.py" line="299"/>
         <source>Cannot copy PIX base flash %s: %s</source>
         <translation>Impossible de copier la FLASH PIX de base %s: %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="338"/>
+        <location filename="../Topology.py" line="341"/>
         <source>Simhost error</source>
         <translation>Erreur du simhost</translation>
     </message>

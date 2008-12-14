@@ -1992,7 +1992,7 @@ Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmama
         <translation></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="289"/>
+        <location filename="../Topology.py" line="292"/>
         <source>Please wait while copying the base flash</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3006,97 +3006,97 @@ ALT + LEFT or RIGHT</source>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="375"/>
+        <location filename="../Topology.py" line="378"/>
         <source>IOS image</source>
         <translation>IOS imajı</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="354"/>
+        <location filename="../Topology.py" line="357"/>
         <source>Please register at least one IOS image</source>
         <translation>Lütfen en az bir IOS imajını kaydedin</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="395"/>
+        <location filename="../Topology.py" line="398"/>
         <source>Hypervisor</source>
         <translation>Hipervizör</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="392"/>
+        <location filename="../Topology.py" line="395"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Lütfen Dynamips&apos;in yolunu ayarlayın</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="672"/>
+        <location filename="../Topology.py" line="675"/>
         <source>Dynamips error</source>
         <translation>Dynamips hatası</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="672"/>
+        <location filename="../Topology.py" line="675"/>
         <source>Connection lost</source>
         <translation>Bağlantı koptu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="574"/>
+        <location filename="../Topology.py" line="577"/>
         <source>Connection</source>
         <translation>Bağlantı</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="204"/>
+        <location filename="../Topology.py" line="207"/>
         <source>Can&apos;t connect to the external hypervisor on %s</source>
         <translation>Dış hipervizörden %s cihazına bağlanılamıyor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="365"/>
+        <location filename="../Topology.py" line="368"/>
         <source>No image for platform %s</source>
         <translation>%s için platform imajı yok</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="376"/>
+        <location filename="../Topology.py" line="379"/>
         <source>Please choose an image</source>
         <translation>Lütfen imajı seçin</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="574"/>
+        <location filename="../Topology.py" line="577"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Switch&apos;e en az bir Router bağlamalısınız</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="407"/>
+        <location filename="../Topology.py" line="410"/>
         <source>PIX image</source>
         <translation>PIX imaj</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="407"/>
+        <location filename="../Topology.py" line="410"/>
         <source>Please configure a default PIX image</source>
         <translation>Lütfen varsayılan PIX imajını ayarlayın</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="561"/>
+        <location filename="../Topology.py" line="564"/>
         <source>Can&apos;t connect these devices</source>
         <translation>Bu cihazlara bağlantı kurulamıyor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="395"/>
+        <location filename="../Topology.py" line="398"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation>Lütfen tercihlerden Dynamips&apos;in çalışma yolunu test edin</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="276"/>
+        <location filename="../Topology.py" line="279"/>
         <source>Pemuwrapper error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="295"/>
+        <location filename="../Topology.py" line="298"/>
         <source>PIX device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="296"/>
+        <location filename="../Topology.py" line="299"/>
         <source>Cannot copy PIX base flash %s: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="338"/>
+        <location filename="../Topology.py" line="341"/>
         <source>Simhost error</source>
         <translation type="unfinished"></translation>
     </message>

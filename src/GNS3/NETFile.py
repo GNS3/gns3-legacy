@@ -832,7 +832,7 @@ class NETFile(object):
                     neighbor = item.getConnectedNeighbor(interface)
                     connections = connections + neighbor[0].hostname + ':' + neighbor[1] + ':' + interface + ' '
                 if connections:
-                    config['connections'] = connections
+                    config['connections'] = connections.strip()
             # record notes
             elif isinstance(item, Annotation):
                 if not self.dynagen.running_config.has_key('GNS3-DATA'):
@@ -920,7 +920,7 @@ class NETFile(object):
                     neighbor = item.getConnectedNeighbor(interface)
                     connections = connections + neighbor[0].hostname + ':' + neighbor[1] + ':' + interface + ' '
                 if connections:
-                    config['connections'] = connections
+                    config['connections'] = connections.strip()
             elif isinstance(item, AbstractNode):
                 if globals.GApp.workspace.flg_showHostname:
                     # ugly but simple method to force to record hostname x&y positions
