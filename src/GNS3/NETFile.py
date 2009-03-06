@@ -189,10 +189,10 @@ class NETFile(object):
         if device.model == 'c3725' or device.model == 'c3745':
             conf_image.platform = 'c3700'
         else:
-            conf_image.platform = device.model
-        conf_image.chassis = device.model_string
+            conf_image.platform = str(device.model)
+        conf_image.chassis = str(device.model_string)
         if device.idlepc:
-            conf_image.idlepc = device.idlepc
+            conf_image.idlepc = str(device.idlepc)
         conf_image.default_ram = device.ram
         conf_image.hypervisor_port = device.dynamips.port
         conf_image.default = False
