@@ -59,11 +59,11 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         # Default path to working directory
         if self.conf.workdir == '':
             if os.environ.has_key("TEMP"):
-                self.conf.workdir = unicode(os.environ["TEMP"])
+                self.conf.workdir = unicode(os.environ["TEMP"], errors='replace')
             elif os.environ.has_key("TMP"):
-                self.conf.workdir = unicode(os.environ["TMP"])
+                self.conf.workdir = unicode(os.environ["TMP"], errors='replace')
             else:
-                self.conf.workdir = unicode('/tmp')
+                self.conf.workdir = unicode('/tmp', errors='replace')
 
         # Push default values to GUI
         self.dynamips_path.setText(os.path.normpath(self.conf.path))
