@@ -16,7 +16,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget" >
      <property name="currentIndex" >
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="General" >
       <attribute name="title" >
@@ -124,7 +124,7 @@
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>263</width>
            <height>151</height>
@@ -230,6 +230,9 @@
             <property name="suffix" >
              <string> MB</string>
             </property>
+            <property name="maximum" >
+             <number>99999</number>
+            </property>
             <property name="singleStep" >
              <number>4</number>
             </property>
@@ -253,6 +256,9 @@
             <property name="suffix" >
              <string> MB</string>
             </property>
+            <property name="maximum" >
+             <number>99999</number>
+            </property>
             <property name="singleStep" >
              <number>4</number>
             </property>
@@ -266,7 +272,7 @@
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>20</width>
            <height>21</height>
@@ -464,7 +470,7 @@
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>325</width>
            <height>31</height>
@@ -585,7 +591,7 @@
          <property name="orientation" >
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0" >
           <size>
            <width>304</width>
            <height>251</height>

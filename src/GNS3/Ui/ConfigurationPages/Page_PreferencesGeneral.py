@@ -83,7 +83,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             elif os.environ.has_key("TMP"):
                 self.conf.project_path = unicode(os.environ["TMP"],  errors='replace')
             else:
-                self.conf.project_path = unicode('/tmp')
+                self.conf.project_path = unicode('/tmp', errors='replace')
 
         if self.conf.ios_path == '':
             if os.environ.has_key("TEMP"):
@@ -91,7 +91,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             elif os.environ.has_key("TMP"):
                 self.conf.ios_path = unicode(os.environ["TMP"],  errors='replace')
             else:
-                self.conf.ios_path = unicode('/tmp')
+                self.conf.ios_path = unicode('/tmp', errors='replace')
 
         self.lineEditTermCommand.setText(self.conf.term_cmd)
         self.ProjectPath.setText(os.path.normpath(self.conf.project_path))

@@ -5,7 +5,7 @@ sys.path.append('./src')
 from distutils.core import setup, Extension
 
 # current version of GNS3
-VERSION = '0.5'
+VERSION = '0.6'
 
 if sys.platform.startswith('win'):
 

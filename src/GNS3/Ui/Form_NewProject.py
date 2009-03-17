@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_NewProject.ui'
 #
-# Created: Thu Dec 11 23:13:42 2008
-#      by: PyQt4 UI code generator 4.3.3
+# Created: Tue Mar 17 15:35:16 2009
+#      by: PyQt4 UI code generator 4.4.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,54 +12,46 @@ from PyQt4 import QtCore, QtGui
 class Ui_NewProject(object):
     def setupUi(self, NewProject):
         NewProject.setObjectName("NewProject")
-        NewProject.resize(QtCore.QSize(QtCore.QRect(0,0,466,210).size()).expandedTo(NewProject.minimumSizeHint()))
-        NewProject.setWindowIcon(QtGui.QIcon(":/images/logo_icon.png"))
-
+        NewProject.resize(466, 210)
+        icon = QtGui.QIcon()
+        icon.addFile(":/images/logo_icon.png")
+        NewProject.setWindowIcon(icon)
         self.gridlayout = QtGui.QGridLayout(NewProject)
         self.gridlayout.setObjectName("gridlayout")
-
         self.groupBox = QtGui.QGroupBox(NewProject)
         self.groupBox.setObjectName("groupBox")
-
         self.gridlayout1 = QtGui.QGridLayout(self.groupBox)
         self.gridlayout1.setObjectName("gridlayout1")
-
         self.label = QtGui.QLabel(self.groupBox)
         self.label.setObjectName("label")
-        self.gridlayout1.addWidget(self.label,0,0,1,1)
-
+        self.gridlayout1.addWidget(self.label, 0, 0, 1, 1)
         self.ProjectPath = QtGui.QLineEdit(self.groupBox)
         self.ProjectPath.setObjectName("ProjectPath")
-        self.gridlayout1.addWidget(self.ProjectPath,1,0,1,1)
-
+        self.gridlayout1.addWidget(self.ProjectPath, 1, 0, 1, 1)
         self.NewProject_browser = QtGui.QToolButton(self.groupBox)
         self.NewProject_browser.setToolButtonStyle(QtCore.Qt.ToolButtonTextOnly)
         self.NewProject_browser.setObjectName("NewProject_browser")
-        self.gridlayout1.addWidget(self.NewProject_browser,1,1,1,1)
-
+        self.gridlayout1.addWidget(self.NewProject_browser, 1, 1, 1, 1)
         self.checkBox_WorkdirFiles = QtGui.QCheckBox(self.groupBox)
         self.checkBox_WorkdirFiles.setChecked(True)
         self.checkBox_WorkdirFiles.setObjectName("checkBox_WorkdirFiles")
-        self.gridlayout1.addWidget(self.checkBox_WorkdirFiles,2,0,1,2)
-
+        self.gridlayout1.addWidget(self.checkBox_WorkdirFiles, 2, 0, 1, 2)
         self.checkBox_ConfigFiles = QtGui.QCheckBox(self.groupBox)
         self.checkBox_ConfigFiles.setObjectName("checkBox_ConfigFiles")
-        self.gridlayout1.addWidget(self.checkBox_ConfigFiles,3,0,1,2)
-        self.gridlayout.addWidget(self.groupBox,0,0,1,2)
-
+        self.gridlayout1.addWidget(self.checkBox_ConfigFiles, 3, 0, 1, 2)
+        self.gridlayout.addWidget(self.groupBox, 0, 0, 1, 2)
         self.pushButtonOpenProject = QtGui.QPushButton(NewProject)
         self.pushButtonOpenProject.setObjectName("pushButtonOpenProject")
-        self.gridlayout.addWidget(self.pushButtonOpenProject,1,0,1,1)
-
+        self.gridlayout.addWidget(self.pushButtonOpenProject, 1, 0, 1, 1)
         self.buttonBox = QtGui.QDialogButtonBox(NewProject)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.NoButton|QtGui.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
-        self.gridlayout.addWidget(self.buttonBox,1,1,1,1)
+        self.gridlayout.addWidget(self.buttonBox, 1, 1, 1, 1)
 
         self.retranslateUi(NewProject)
-        QtCore.QObject.connect(self.buttonBox,QtCore.SIGNAL("accepted()"),NewProject.accept)
-        QtCore.QObject.connect(self.buttonBox,QtCore.SIGNAL("rejected()"),NewProject.reject)
+        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("accepted()"), NewProject.accept)
+        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("rejected()"), NewProject.reject)
         QtCore.QMetaObject.connectSlotsByName(NewProject)
 
     def retranslateUi(self, NewProject):

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesPemu.ui'
 #
-# Created: Thu Dec 11 23:13:44 2008
-#      by: PyQt4 UI code generator 4.3.3
+# Created: Tue Mar 17 15:35:19 2009
+#      by: PyQt4 UI code generator 4.4.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,134 +12,104 @@ from PyQt4 import QtCore, QtGui
 class Ui_PreferencesPemu(object):
     def setupUi(self, PreferencesPemu):
         PreferencesPemu.setObjectName("PreferencesPemu")
-        PreferencesPemu.resize(QtCore.QSize(QtCore.QRect(0,0,425,489).size()).expandedTo(PreferencesPemu.minimumSizeHint()))
-
+        PreferencesPemu.resize(425, 489)
         self.vboxlayout = QtGui.QVBoxLayout(PreferencesPemu)
         self.vboxlayout.setObjectName("vboxlayout")
-
         self.groupBox_2 = QtGui.QGroupBox(PreferencesPemu)
         self.groupBox_2.setObjectName("groupBox_2")
-
         self.gridlayout = QtGui.QGridLayout(self.groupBox_2)
         self.gridlayout.setObjectName("gridlayout")
-
         self.label_3 = QtGui.QLabel(self.groupBox_2)
         self.label_3.setObjectName("label_3")
-        self.gridlayout.addWidget(self.label_3,0,0,1,4)
-
+        self.gridlayout.addWidget(self.label_3, 0, 0, 1, 4)
         self.lineEditPemuwrapperPath = QtGui.QLineEdit(self.groupBox_2)
         self.lineEditPemuwrapperPath.setObjectName("lineEditPemuwrapperPath")
-        self.gridlayout.addWidget(self.lineEditPemuwrapperPath,1,0,1,3)
-
+        self.gridlayout.addWidget(self.lineEditPemuwrapperPath, 1, 0, 1, 3)
         self.PemuwrapperPath_browser = QtGui.QToolButton(self.groupBox_2)
         self.PemuwrapperPath_browser.setToolButtonStyle(QtCore.Qt.ToolButtonTextOnly)
         self.PemuwrapperPath_browser.setObjectName("PemuwrapperPath_browser")
-        self.gridlayout.addWidget(self.PemuwrapperPath_browser,1,3,1,1)
-
+        self.gridlayout.addWidget(self.PemuwrapperPath_browser, 1, 3, 1, 1)
         self.label_2 = QtGui.QLabel(self.groupBox_2)
         self.label_2.setObjectName("label_2")
-        self.gridlayout.addWidget(self.label_2,2,0,1,3)
-
+        self.gridlayout.addWidget(self.label_2, 2, 0, 1, 3)
         self.lineEditPemuwrapperWorkdir = QtGui.QLineEdit(self.groupBox_2)
         self.lineEditPemuwrapperWorkdir.setObjectName("lineEditPemuwrapperWorkdir")
-        self.gridlayout.addWidget(self.lineEditPemuwrapperWorkdir,3,0,1,3)
-
+        self.gridlayout.addWidget(self.lineEditPemuwrapperWorkdir, 3, 0, 1, 3)
         self.PemuwrapperWorkdir_browser = QtGui.QToolButton(self.groupBox_2)
         self.PemuwrapperWorkdir_browser.setObjectName("PemuwrapperWorkdir_browser")
-        self.gridlayout.addWidget(self.PemuwrapperWorkdir_browser,3,3,1,1)
-
+        self.gridlayout.addWidget(self.PemuwrapperWorkdir_browser, 3, 3, 1, 1)
         self.label_6 = QtGui.QLabel(self.groupBox_2)
         self.label_6.setObjectName("label_6")
-        self.gridlayout.addWidget(self.label_6,4,0,1,1)
-
+        self.gridlayout.addWidget(self.label_6, 4, 0, 1, 1)
         self.comboBoxBinding = QtGui.QComboBox(self.groupBox_2)
         self.comboBoxBinding.setSizeAdjustPolicy(QtGui.QComboBox.AdjustToMinimumContentsLength)
         self.comboBoxBinding.setObjectName("comboBoxBinding")
-        self.gridlayout.addWidget(self.comboBoxBinding,5,0,1,4)
-
+        self.gridlayout.addWidget(self.comboBoxBinding, 5, 0, 1, 4)
         self.checkBoxEnablePemuManager = QtGui.QCheckBox(self.groupBox_2)
         self.checkBoxEnablePemuManager.setChecked(True)
         self.checkBoxEnablePemuManager.setObjectName("checkBoxEnablePemuManager")
-        self.gridlayout.addWidget(self.checkBoxEnablePemuManager,6,0,1,4)
-
+        self.gridlayout.addWidget(self.checkBoxEnablePemuManager, 6, 0, 1, 4)
         self.checkBoxPemuManagerImport = QtGui.QCheckBox(self.groupBox_2)
         self.checkBoxPemuManagerImport.setChecked(True)
         self.checkBoxPemuManagerImport.setObjectName("checkBoxPemuManagerImport")
-        self.gridlayout.addWidget(self.checkBoxPemuManagerImport,7,0,1,4)
-
+        self.gridlayout.addWidget(self.checkBoxPemuManagerImport, 7, 0, 1, 4)
         self.label_5 = QtGui.QLabel(self.groupBox_2)
         self.label_5.setEnabled(True)
         self.label_5.setObjectName("label_5")
-        self.gridlayout.addWidget(self.label_5,8,0,1,2)
-
+        self.gridlayout.addWidget(self.label_5, 8, 0, 1, 2)
         self.lineEditHostExternalPemu = QtGui.QLineEdit(self.groupBox_2)
         self.lineEditHostExternalPemu.setObjectName("lineEditHostExternalPemu")
-        self.gridlayout.addWidget(self.lineEditHostExternalPemu,8,2,1,2)
+        self.gridlayout.addWidget(self.lineEditHostExternalPemu, 8, 2, 1, 2)
         self.vboxlayout.addWidget(self.groupBox_2)
-
         self.groupBox = QtGui.QGroupBox(PreferencesPemu)
         self.groupBox.setObjectName("groupBox")
-
         self.gridlayout1 = QtGui.QGridLayout(self.groupBox)
         self.gridlayout1.setObjectName("gridlayout1")
-
         self.label = QtGui.QLabel(self.groupBox)
         self.label.setEnabled(True)
         self.label.setObjectName("label")
-        self.gridlayout1.addWidget(self.label,0,0,1,1)
-
+        self.gridlayout1.addWidget(self.label, 0, 0, 1, 1)
         self.PixImage = QtGui.QLineEdit(self.groupBox)
         self.PixImage.setObjectName("PixImage")
-        self.gridlayout1.addWidget(self.PixImage,0,1,1,1)
-
+        self.gridlayout1.addWidget(self.PixImage, 0, 1, 1, 1)
         self.PixImage_Browser = QtGui.QToolButton(self.groupBox)
         self.PixImage_Browser.setToolButtonStyle(QtCore.Qt.ToolButtonTextOnly)
         self.PixImage_Browser.setObjectName("PixImage_Browser")
-        self.gridlayout1.addWidget(self.PixImage_Browser,0,2,1,1)
-
+        self.gridlayout1.addWidget(self.PixImage_Browser, 0, 2, 1, 1)
         self.label_20 = QtGui.QLabel(self.groupBox)
         self.label_20.setObjectName("label_20")
-        self.gridlayout1.addWidget(self.label_20,1,0,1,1)
-
+        self.gridlayout1.addWidget(self.label_20, 1, 0, 1, 1)
         self.lineEditKey = QtGui.QLineEdit(self.groupBox)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lineEditKey.sizePolicy().hasHeightForWidth())
         self.lineEditKey.setSizePolicy(sizePolicy)
         self.lineEditKey.setObjectName("lineEditKey")
-        self.gridlayout1.addWidget(self.lineEditKey,1,1,1,2)
-
+        self.gridlayout1.addWidget(self.lineEditKey, 1, 1, 1, 2)
         self.label_21 = QtGui.QLabel(self.groupBox)
         self.label_21.setObjectName("label_21")
-        self.gridlayout1.addWidget(self.label_21,2,0,1,1)
-
+        self.gridlayout1.addWidget(self.label_21, 2, 0, 1, 1)
         self.lineEditSerial = QtGui.QLineEdit(self.groupBox)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lineEditSerial.sizePolicy().hasHeightForWidth())
         self.lineEditSerial.setSizePolicy(sizePolicy)
         self.lineEditSerial.setObjectName("lineEditSerial")
-        self.gridlayout1.addWidget(self.lineEditSerial,2,1,1,2)
-
+        self.gridlayout1.addWidget(self.lineEditSerial, 2, 1, 1, 2)
         self.label_4 = QtGui.QLabel(self.groupBox)
         self.label_4.setObjectName("label_4")
-        self.gridlayout1.addWidget(self.label_4,3,0,1,1)
-
+        self.gridlayout1.addWidget(self.label_4, 3, 0, 1, 1)
         self.lineEditbaseFlash = QtGui.QLineEdit(self.groupBox)
         self.lineEditbaseFlash.setObjectName("lineEditbaseFlash")
-        self.gridlayout1.addWidget(self.lineEditbaseFlash,3,1,1,1)
-
+        self.gridlayout1.addWidget(self.lineEditbaseFlash, 3, 1, 1, 1)
         self.BaseFlash_Browser = QtGui.QToolButton(self.groupBox)
         self.BaseFlash_Browser.setToolButtonStyle(QtCore.Qt.ToolButtonTextOnly)
         self.BaseFlash_Browser.setObjectName("BaseFlash_Browser")
-        self.gridlayout1.addWidget(self.BaseFlash_Browser,3,2,1,1)
+        self.gridlayout1.addWidget(self.BaseFlash_Browser, 3, 2, 1, 1)
         self.vboxlayout.addWidget(self.groupBox)
-
-        spacerItem = QtGui.QSpacerItem(407,20,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        spacerItem = QtGui.QSpacerItem(407, 20, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.vboxlayout.addItem(spacerItem)
 
         self.retranslateUi(PreferencesPemu)
