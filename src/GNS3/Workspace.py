@@ -145,7 +145,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Export the view to an image
         """
 
+        print format
         if format == 'PDF':
+            #FIXME: seems PDF export doesn't work since Qt version 4.5
             printer = QtGui.QPrinter(QtGui.QPrinter.HighResolution)
             printer.setOutputFormat(QtGui.QPrinter.PdfFormat)
             printer.setOrientation(QtGui.QPrinter.Landscape)
@@ -205,6 +207,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if not path:
             return
         path = unicode(path)
+        #FIXME: bug with Qt 4.5, selected always empty! Temporary work-around, users have to specify the extension:
+        if selected == '':
+            format = path[-3:]
+        else:
+            format = str(str(selected)[:3])
+
         if str(selected) == 'PNG File (*.png)' and not path.endswith(".png"):
             path = path + '.png'
         if str(selected) == 'JPG File (*.jpeg *.jpg)' and (not path.endswith(".jpg") or not path.endswith(".jpeg")):
@@ -216,7 +224,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if str(selected) == 'PDF File (*.pdf)' and not path.endswith(".pdf"):
             path = path + '.pdf'
         try:
-            self.__export(path, str(str(selected)[:3]))
+            self.__export(path, format.upper())
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, translate("Workspace", "I/O Error"),  unicode(translate("Workspace", "I/O Error: %s")) % strerror)
 
@@ -783,7 +791,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                        directory=globals.GApp.systconf['general'].project_path, parent=self).getFile()
         if path != None:
             try:
-                if str(selected) == 'NET file (*.net)':
+                if selected == 'NET file (*.net)' or selected == '':
                     # here the loading
                     self.projectWorkdir = None
                     self.projectConfigs = None
@@ -816,7 +824,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         (path, selected) = fb.getSaveFile()
 
         if path != None and path != '':
-            if str(selected) == 'NET file (*.net)':
+            if str(selected) == 'NET file (*.net)' or selected == '':
                 if not path.endswith('.net'):
                     path = path + '.net'
                 self.projectFile = path
