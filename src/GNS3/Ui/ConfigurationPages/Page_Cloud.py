@@ -67,10 +67,6 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         self.nios = []
         if sys.platform.startswith('win'):
             interfaces = self.getWindowsInterfaces()
-            # hide linux ethernet
-            self.comboBoxLinuxEth.setEnabled(False)
-            self.lineEditLinuxEth.setEnabled(False)
-            self.pushButtonAddLinuxEth.setEnabled(False)
         else:
             interfaces = map(lambda interface: interface.name(), QtNetwork.QNetworkInterface.allInterfaces())
             self.comboBoxLinuxEth.addItems(interfaces)

@@ -159,6 +159,7 @@ class DynagenSub(Dynagen):
                         elif device.has_key('cnfg') and device['cnfg']:
                             if not os.access(device['cnfg'], os.F_OK):
                                 if globals.GApp.workspace.projectConfigs:
+                                    #FIXME: doesn't work for inter-OSes .net
                                     new_config_path = globals.GApp.workspace.projectConfigs + os.sep + os.path.basename(device['cnfg'])
                                     print unicode(translate("DynagenSub", "Local configuration %s cannot be found for router %s, use configuration %s instead")) \
                                     % (unicode(device['cnfg']), unicode(device.name), new_config_path)

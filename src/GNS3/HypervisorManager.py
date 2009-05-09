@@ -176,6 +176,19 @@ class HypervisorManager(object):
         elif self.hypervisor_wd:
             globals.GApp.dynagen.defaults_config['workingdir'] = self.hypervisor_wd
         dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor(globals.GApp.systconf['dynamips'].HypervisorManager_binding, hypervisor['port'])
+        if not dynamips_hypervisor:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',
+                                        unicode(translate("HypervisorManager", "Can't set up hypervisor on port %i, please check the settings (writable working directory ...)")) % hypervisor['port'])
+            del globals.GApp.dynagen.dynamips[globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + str(hypervisor['port'])]
+            hypervisor['proc_instance'].close()
+            hypervisor['proc_instance'] = None
+            count = 0
+            for hyp in self.hypervisors:
+                if hyp['port'] == hypervisor['port']:
+                    del self.hypervisors[count]
+                    break
+                count += 1
+            return None
         debug("Hypervisor manager: create a new hypervisor on port " + str(hypervisor['port']))
         globals.GApp.dynagen.update_running_config()
         dynamips_hypervisor.configchange = True

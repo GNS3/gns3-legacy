@@ -145,7 +145,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Export the view to an image
         """
 
-        print format
         if format == 'PDF':
             #FIXME: seems PDF export doesn't work since Qt version 4.5
             printer = QtGui.QPrinter(QtGui.QPrinter.HighResolution)
@@ -353,6 +352,15 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if path != None and path != '':
             pixmap_image = QtGui.QPixmap(path)
             if not pixmap_image.isNull():
+            
+                # copy the image in the project directory
+                if self.projectWorkdir:
+                    try:
+                        shutil.copy(path, self.projectWorkdir)
+                        path = self.projectWorkdir + os.sep + os.path.basename(path)
+                    except (OSError, IOError), e:
+                        debug("Warning: cannot copy " + path + " to " + self.projectWorkdir + ": " + e.strerror)
+
                 item = Pixmap(pixmap_image, path)
                 # center the image
                 pos_x = item.pos().x() - (item.boundingRect().width() / 2)

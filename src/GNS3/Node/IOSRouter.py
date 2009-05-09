@@ -530,6 +530,7 @@ class IOSRouter(AbstractNode):
                 return
         self.startupInterfaces()
         self.state = self.router.state
+        self.updateToolTips()
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.router.state)
 
     def stopNode(self, progress=False):
@@ -544,6 +545,7 @@ class IOSRouter(AbstractNode):
                     raise
             self.shutdownInterfaces()
             self.state = self.router.state
+            self.updateToolTips()
             globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.router.state)
 
     def suspendNode(self, progress=False):
@@ -558,6 +560,7 @@ class IOSRouter(AbstractNode):
                     raise
             self.suspendInterfaces()
             self.state = self.router.state
+            self.updateToolTips()
             globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.router.state)
 
     def console(self):

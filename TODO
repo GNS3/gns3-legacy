@@ -7,5 +7,21 @@ TODO LIST
  * Dynamips QinQ integration.
  * Daisy chaining for switches.
  * Qemu integration.
+ * Improving snapshot feature.
  * ASA8 support (need to merge Pemu and Qemu).
-
+ * Decorative node for Voice labs (gateway, gatekeeper, ip phones, sip servers, call managers).
+ * Bug with # in hostnames (.net loading) + IOS paths
+ * Bug when unpacking asa803-k8.bin
+ * Bug with NM-16ESW module and automatic linking
+ * Bug with auto-generated labels for interfaces
+ * Bug check saves on MacOS X
+ * Maybe increase DPI when exporting to images (dpi value to be chosen from a menu)
+ * Bug on Windows with 'connections' including a return key?
+ * Strange bug with MPLSv2.5 VPN RSVP-TE configs.
+ * Bug when using delete key inside a text-box. 
+ * Bug, checking of hostnames should be performed so that GNS3 doesn't try to use hostnames already used.
+ * Close project button?
+ * Put correct path for putty on Windows 64 bits
+ * Check idle value save on Windows
+ * Update description of GNS3 in the APT package for Debian/Ubuntu.
+ * Insert path in textbox when selecting a .net file in create a new project window.
