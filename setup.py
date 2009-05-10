@@ -5,7 +5,7 @@ sys.path.append('./src')
 from distutils.core import setup, Extension
 
 # current version of GNS3
-VERSION = '0.6'
+VERSION = '0.6.1'
 
 if sys.platform.startswith('win'):
 
@@ -44,7 +44,7 @@ else:
     setup( # Distribution meta-data
             name = "GNS3",
             version = VERSION,
-            description = "A graphical network simulator based on Dynamips",
+            description = "GNS3 is a graphical network simulator based on Dynamips, an IOS emulator which allows users to run IOS binary images from Cisco Systems and Qemu/Pemu for emulating PIX firewalls (binary images are not part of this package).",
             author = "Jeremy Grossmann, David Ruiz, Romain Lamaison, Aurelien Levesque, Xavier Alt",
             author_email = "contact@gns3.net",
             url = "http://www.gns3.net/",

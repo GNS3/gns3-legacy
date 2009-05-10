@@ -1,6 +1,6 @@
 TODO LIST
 
- * Simulated host support (inspirated from LWIP).
+ * Simulated host support (inspirated from/using LWIP).
  * A standalone server to automatically configure GNS3 clients in order to use remote hypervisors (intended for learning environments, schools/universities, where IOS images cannot be distributed)
  * NIO multicast support.
  * Show NIO activity.
@@ -10,18 +10,9 @@ TODO LIST
  * Improving snapshot feature.
  * ASA8 support (need to merge Pemu and Qemu).
  * Decorative node for Voice labs (gateway, gatekeeper, ip phones, sip servers, call managers).
- * Bug with # in hostnames (.net loading) + IOS paths
- * Bug when unpacking asa803-k8.bin
- * Bug with NM-16ESW module and automatic linking
- * Bug with auto-generated labels for interfaces
+ * Check unpacking of asa803-k8.bin
+ * Bug with # and . (unix) in hostnames (.net loading) + IOS paths
  * Bug check saves on MacOS X
- * Maybe increase DPI when exporting to images (dpi value to be chosen from a menu)
  * Bug on Windows with 'connections' including a return key?
  * Strange bug with MPLSv2.5 VPN RSVP-TE configs.
- * Bug when using delete key inside a text-box. 
- * Bug, checking of hostnames should be performed so that GNS3 doesn't try to use hostnames already used.
- * Close project button?
- * Put correct path for putty on Windows 64 bits
  * Check idle value save on Windows
- * Update description of GNS3 in the APT package for Debian/Ubuntu.
- * Insert path in textbox when selecting a .net file in create a new project window.

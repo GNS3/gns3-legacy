@@ -44,6 +44,13 @@ class ATMBR(AbstractNode):
 
         # assign a new hostname
         global atmbr_id
+        
+        # check if hostname has already been assigned
+        for node in globals.GApp.topology.nodes.itervalues():
+            if 'BR' + str(atmbr_id) == node.hostname:
+                atmbr_id = atmbr_id + 1
+                break
+        
         self.hostname = 'BR' + str(atmbr_id)
         atmbr_id = atmbr_id + 1
         AbstractNode.setCustomToolTip(self)

@@ -41,6 +41,13 @@ class Cloud(AbstractNode):
 
         # assign a new hostname
         global cloud_id
+        
+        # check if hostname has already been assigned
+        for node in globals.GApp.topology.nodes.itervalues():
+            if 'C' + str(cloud_id) == node.hostname:
+                cloud_id = cloud_id + 1
+                break
+        
         self.hostname = 'C' + str(cloud_id)
         cloud_id = cloud_id + 1
         self.setCustomToolTip()

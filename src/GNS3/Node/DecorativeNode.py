@@ -40,6 +40,13 @@ class DecorativeNode(AbstractNode):
 
         # assign a new hostname
         global decoration_id
+        
+        # check if hostname has already been assigned
+        for node in globals.GApp.topology.nodes.itervalues():
+            if 'N' + str(decoration_id) == node.hostname:
+                decoration_id = decoration_id + 1
+                break
+        
         self.hostname = 'N' + str(decoration_id)
         decoration_id = decoration_id + 1
         

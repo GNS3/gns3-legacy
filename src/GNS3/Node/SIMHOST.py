@@ -43,6 +43,12 @@ class SIMHOST(AbstractNode):
 
         # assign a new hostname
         global simhost_id
+        
+        # check if hostname has already been assigned
+        for node in globals.GApp.topology.nodes.itervalues():
+            if 'HOST' + str(simhost_id) == node.hostname:
+                simhost_id = simhost_id + 1
+        
         self.hostname = 'HOST' + str(simhost_id)
         simhost_id = simhost_id + 1
         AbstractNode.setCustomToolTip(self)

@@ -48,6 +48,13 @@ class FW(AbstractNode, FWDefaults):
 
         # assign a new hostname
         global fw_id
+        
+        # check if hostname has already been assigned
+        for node in globals.GApp.topology.nodes.itervalues():
+            if 'FW' + str(fw_id) == node.hostname:
+                fw_id = fw_id + 1
+                break
+        
         self.hostname = 'FW' + str(fw_id)
         fw_id = fw_id + 1
         AbstractNode.setCustomToolTip(self)

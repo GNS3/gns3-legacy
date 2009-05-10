@@ -1,130 +1,131 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>IOSRouterPage</class>
- <widget class="QWidget" name="IOSRouterPage" >
-  <property name="geometry" >
+ <widget class="QWidget" name="IOSRouterPage">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>439</width>
-    <height>462</height>
+    <height>472</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Router configuration</string>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QVBoxLayout">
    <item>
-    <widget class="QTabWidget" name="tabWidget" >
-     <property name="currentIndex" >
-      <number>1</number>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
      </property>
-     <widget class="QWidget" name="General" >
-      <attribute name="title" >
+     <widget class="QWidget" name="General">
+      <attribute name="title">
        <string>General</string>
       </attribute>
-      <layout class="QGridLayout" >
-       <item row="0" column="0" >
-        <widget class="QLabel" name="label_4" >
-         <property name="text" >
+      <layout class="QGridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
           <string>Platform:</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1" >
-        <widget class="QLabel" name="textLabel_Platform" >
-         <property name="text" >
+       <item row="0" column="1">
+        <widget class="QLabel" name="textLabel_Platform">
+         <property name="text">
           <string/>
          </property>
         </widget>
        </item>
-       <item row="1" column="0" >
-        <widget class="QLabel" name="label_8" >
-         <property name="text" >
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
           <string>Model:</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1" >
-        <widget class="QLabel" name="textLabel_Model" >
-         <property name="text" >
+       <item row="1" column="1">
+        <widget class="QLabel" name="textLabel_Model">
+         <property name="text">
           <string/>
          </property>
         </widget>
        </item>
-       <item row="2" column="0" >
-        <widget class="QLabel" name="label_5" >
-         <property name="text" >
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
           <string>IOS image:</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="1" >
-        <widget class="QLabel" name="textLabel_ImageIOS" >
-         <property name="text" >
+       <item row="2" column="1">
+        <widget class="QLabel" name="textLabel_ImageIOS">
+         <property name="text">
           <string/>
          </property>
         </widget>
        </item>
-       <item row="3" column="0" >
-        <widget class="QLabel" name="label_18" >
-         <property name="text" >
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_18">
+         <property name="text">
           <string>Startup-config:</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="1" >
-        <widget class="QLabel" name="textLabel_StartupConfig" >
-         <property name="text" >
+       <item row="3" column="1">
+        <widget class="QLabel" name="textLabel_StartupConfig">
+         <property name="text">
           <string/>
          </property>
         </widget>
        </item>
-       <item row="4" column="0" >
-        <widget class="QLabel" name="label" >
-         <property name="text" >
+       <item row="4" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
           <string>Midplane:</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="1" >
-        <widget class="QComboBox" name="comboBoxMidplane" >
-         <property name="enabled" >
+       <item row="4" column="1">
+        <widget class="QComboBox" name="comboBoxMidplane">
+         <property name="enabled">
           <bool>false</bool>
          </property>
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="5" column="0" >
-        <widget class="QLabel" name="label_2" >
-         <property name="text" >
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
           <string>NPE:</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="1" >
-        <widget class="QComboBox" name="comboBoxNPE" >
-         <property name="enabled" >
+       <item row="5" column="1">
+        <widget class="QComboBox" name="comboBoxNPE">
+         <property name="enabled">
           <bool>false</bool>
          </property>
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="6" column="1" >
+       <item row="6" column="1">
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>263</width>
            <height>151</height>
@@ -134,71 +135,71 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="MemoriesDisks" >
-      <attribute name="title" >
+     <widget class="QWidget" name="MemoriesDisks">
+      <attribute name="title">
        <string>Memories and disks</string>
       </attribute>
-      <layout class="QVBoxLayout" >
+      <layout class="QVBoxLayout">
        <item>
-        <widget class="QGroupBox" name="groupBox_2" >
-         <property name="title" >
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
           <string>Memories</string>
          </property>
-         <layout class="QGridLayout" >
-          <item row="0" column="0" >
-           <widget class="QLabel" name="label_7" >
-            <property name="text" >
+         <layout class="QGridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
              <string>RAM size:</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" >
-           <widget class="QSpinBox" name="spinBoxRamSize" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxRamSize">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="suffix" >
+            <property name="suffix">
              <string> MB</string>
             </property>
-            <property name="maximum" >
+            <property name="maximum">
              <number>4096</number>
             </property>
-            <property name="singleStep" >
+            <property name="singleStep">
              <number>4</number>
             </property>
-            <property name="value" >
+            <property name="value">
              <number>128</number>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" >
-           <widget class="QLabel" name="label_9" >
-            <property name="text" >
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_9">
+            <property name="text">
              <string>NVRAM size:</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" >
-           <widget class="QSpinBox" name="spinBoxNvramSize" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="spinBoxNvramSize">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="suffix" >
+            <property name="suffix">
              <string> KB</string>
             </property>
-            <property name="maximum" >
+            <property name="maximum">
              <number>4096</number>
             </property>
-            <property name="singleStep" >
+            <property name="singleStep">
              <number>4</number>
             </property>
-            <property name="value" >
+            <property name="value">
              <number>128</number>
             </property>
            </widget>
@@ -207,59 +208,59 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_6" >
-         <property name="title" >
+        <widget class="QGroupBox" name="groupBox_6">
+         <property name="title">
           <string>Disks</string>
          </property>
-         <layout class="QGridLayout" >
-          <item row="0" column="0" >
-           <widget class="QLabel" name="label_10" >
-            <property name="text" >
+         <layout class="QGridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_10">
+            <property name="text">
              <string>PCMCIA disk0 size:</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" >
-           <widget class="QSpinBox" name="spinBoxPcmciaDisk0Size" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxPcmciaDisk0Size">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="suffix" >
+            <property name="suffix">
              <string> MB</string>
             </property>
-            <property name="maximum" >
+            <property name="maximum">
              <number>99999</number>
             </property>
-            <property name="singleStep" >
+            <property name="singleStep">
              <number>4</number>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" >
-           <widget class="QLabel" name="label_11" >
-            <property name="text" >
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
              <string>PCMCIA disk1 size:</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" >
-           <widget class="QSpinBox" name="spinBoxPcmciaDisk1Size" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="spinBoxPcmciaDisk1Size">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="suffix" >
+            <property name="suffix">
              <string> MB</string>
             </property>
-            <property name="maximum" >
+            <property name="maximum">
              <number>99999</number>
             </property>
-            <property name="singleStep" >
+            <property name="singleStep">
              <number>4</number>
             </property>
            </widget>
@@ -269,10 +270,10 @@
        </item>
        <item>
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>21</height>
@@ -282,195 +283,195 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="Slots" >
-      <attribute name="title" >
+     <widget class="QWidget" name="Slots">
+      <attribute name="title">
        <string>Slots</string>
       </attribute>
-      <layout class="QVBoxLayout" >
+      <layout class="QVBoxLayout">
        <item>
-        <widget class="QGroupBox" name="groupBox_3" >
-         <property name="title" >
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
           <string>Adapters</string>
          </property>
-         <layout class="QGridLayout" >
-          <item row="0" column="0" >
-           <widget class="QLabel" name="label_6" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+         <layout class="QGridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>slot0:</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" >
-           <widget class="QComboBox" name="comboBoxSlot0" />
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxSlot0"/>
           </item>
-          <item row="1" column="0" >
-           <widget class="QLabel" name="label_12" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_12">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>slot1:</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" >
-           <widget class="QComboBox" name="comboBoxSlot1" />
+          <item row="1" column="1">
+           <widget class="QComboBox" name="comboBoxSlot1"/>
           </item>
-          <item row="2" column="0" >
-           <widget class="QLabel" name="label_15" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_15">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>slot2:</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1" >
-           <widget class="QComboBox" name="comboBoxSlot2" />
+          <item row="2" column="1">
+           <widget class="QComboBox" name="comboBoxSlot2"/>
           </item>
-          <item row="3" column="0" >
-           <widget class="QLabel" name="label_19" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_19">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>slot3:</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1" >
-           <widget class="QComboBox" name="comboBoxSlot3" />
+          <item row="3" column="1">
+           <widget class="QComboBox" name="comboBoxSlot3"/>
           </item>
-          <item row="4" column="0" >
-           <widget class="QLabel" name="label_23" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_23">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>slot4:</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="1" >
-           <widget class="QComboBox" name="comboBoxSlot4" />
+          <item row="4" column="1">
+           <widget class="QComboBox" name="comboBoxSlot4"/>
           </item>
-          <item row="5" column="0" >
-           <widget class="QLabel" name="label_26" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_26">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>slot5:</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="1" >
-           <widget class="QComboBox" name="comboBoxSlot5" />
+          <item row="5" column="1">
+           <widget class="QComboBox" name="comboBoxSlot5"/>
           </item>
-          <item row="6" column="0" >
-           <widget class="QLabel" name="label_28" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_28">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>slot6:</string>
             </property>
            </widget>
           </item>
-          <item row="6" column="1" >
-           <widget class="QComboBox" name="comboBoxSlot6" />
+          <item row="6" column="1">
+           <widget class="QComboBox" name="comboBoxSlot6"/>
           </item>
          </layout>
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox" >
-         <property name="title" >
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
           <string>WICs</string>
          </property>
-         <layout class="QGridLayout" >
-          <item row="0" column="0" >
-           <widget class="QLabel" name="label_13" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+         <layout class="QGridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_13">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>wic0:</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" >
-           <widget class="QComboBox" name="comboBoxWIC0" />
+          <item row="0" column="1">
+           <widget class="QComboBox" name="comboBoxWIC0"/>
           </item>
-          <item row="1" column="0" >
-           <widget class="QLabel" name="label_14" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_14">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>wic1:</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" >
-           <widget class="QComboBox" name="comboBoxWIC1" />
+          <item row="1" column="1">
+           <widget class="QComboBox" name="comboBoxWIC1"/>
           </item>
-          <item row="2" column="0" >
-           <widget class="QLabel" name="label_16" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_16">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>wic2:</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1" >
-           <widget class="QComboBox" name="comboBoxWIC2" />
+          <item row="2" column="1">
+           <widget class="QComboBox" name="comboBoxWIC2"/>
           </item>
          </layout>
         </widget>
        </item>
        <item>
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>325</width>
            <height>31</height>
@@ -480,118 +481,118 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="Advanced" >
-      <attribute name="title" >
+     <widget class="QWidget" name="Advanced">
+      <attribute name="title">
        <string>Advanced</string>
       </attribute>
-      <layout class="QGridLayout" >
-       <item row="0" column="0" >
-        <widget class="QLabel" name="label_25" >
-         <property name="text" >
+      <layout class="QGridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_25">
+         <property name="text">
           <string>Confreg:</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1" >
-        <widget class="QLineEdit" name="lineEditConfreg" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineEditConfreg">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="text" >
+         <property name="text">
           <string>0x2102</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0" >
-        <widget class="QLabel" name="label_3" >
-         <property name="text" >
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
           <string>Base MAC :</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1" >
-        <widget class="QLineEdit" name="lineEditMAC" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="lineEditMAC">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="text" >
+         <property name="text">
           <string/>
          </property>
         </widget>
        </item>
-       <item row="2" column="0" >
-        <widget class="QLabel" name="label_31" >
-         <property name="text" >
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_31">
+         <property name="text">
           <string>exec area:</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="1" >
-        <widget class="QSpinBox" name="spinBoxExecArea" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+       <item row="2" column="1">
+        <widget class="QSpinBox" name="spinBoxExecArea">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="suffix" >
+         <property name="suffix">
           <string> MB</string>
          </property>
-         <property name="maximum" >
+         <property name="maximum">
           <number>4096</number>
          </property>
-         <property name="singleStep" >
+         <property name="singleStep">
           <number>4</number>
          </property>
-         <property name="value" >
+         <property name="value">
           <number>64</number>
          </property>
         </widget>
        </item>
-       <item row="3" column="0" >
-        <widget class="QLabel" name="label_22" >
-         <property name="text" >
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_22">
+         <property name="text">
           <string>iomem :</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="1" >
-        <widget class="QSpinBox" name="spinBoxIomem" >
-         <property name="enabled" >
+       <item row="3" column="1">
+        <widget class="QSpinBox" name="spinBoxIomem">
+         <property name="enabled">
           <bool>false</bool>
          </property>
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="suffix" >
+         <property name="suffix">
           <string> %</string>
          </property>
-         <property name="maximum" >
+         <property name="maximum">
           <number>100</number>
          </property>
-         <property name="singleStep" >
+         <property name="singleStep">
           <number>5</number>
          </property>
-         <property name="value" >
+         <property name="value">
           <number>5</number>
          </property>
         </widget>
        </item>
-       <item row="4" column="0" colspan="2" >
+       <item row="4" column="0" colspan="2">
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>304</width>
            <height>251</height>

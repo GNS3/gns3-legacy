@@ -45,7 +45,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         (path, selected) = fb.getSaveFile()
         
         if path is not None and path != '':
-            if str(selected) == 'NET file (*.net)':
+            if str(selected) == 'NET file (*.net)' or str(selected) == '':
                 if not path.endswith('.net'):
                     path = path + '.net'
                 self.ProjectPath.setText(path)

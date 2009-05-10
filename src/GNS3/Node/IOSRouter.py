@@ -59,6 +59,13 @@ class IOSRouter(AbstractNode):
 
         # assign a new hostname
         global router_id
+
+        # check if hostname has already been assigned
+        for node in globals.GApp.topology.nodes.itervalues():
+            if 'R' + str(router_id) == node.hostname:
+                router_id = router_id + 1
+                break
+
         self.hostname = 'R' + str(router_id)
         router_id = router_id + 1
         AbstractNode.setCustomToolTip(self)
@@ -306,7 +313,7 @@ class IOSRouter(AbstractNode):
 
         # remove unused module from the slots
         for module in self.router.slot:
-            if module:
+            if module and module.adapter != 'NM-16ESW':
                 interfaces = module.interfaces
                 if len(interfaces):
                     type= interfaces.keys()[0]
@@ -342,7 +349,7 @@ class IOSRouter(AbstractNode):
 
         # try to find an empty interface in an occupied slot
         for module in self.router.slot:
-            if module:
+            if module and module.adapter != 'NM-16ESW':
                 interfaces = module.interfaces
                 for interface_type in interfaces.keys():
                     if interface_type == link_type:

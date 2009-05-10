@@ -71,9 +71,25 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
                     # check if telnet is there
                     self.conf.term_cmd = unicode("start telnet %h %p")
                 else:
-                    # else try to use putty
-                    self.conf.term_cmd = unicode('C:\Program Files\Putty\putty.exe -telnet %h %p')
+                
+                    try:
+                        # try to detect Windows 64 bits
+                        import ctypes, sys
+                        i = ctypes.c_int()
+                        kernel32 = ctypes.windll.kernel32
+                        process = kernel32.GetCurrentProcess()
+                        kernel32.IsWow64Process(process, ctypes.byref(i))
+                        is64bit = (i.value != 0)
+                        if is64bit:
+                            # if 64 bits use Putty 32 bits
+                            self.conf.term_cmd = unicode('C:\Program Files (x86)\Putty\putty.exe -telnet %h %p')
+                        else:
+                            # else use the normal path
+                            self.conf.term_cmd = unicode('C:\Program Files\Putty\putty.exe -telnet %h %p')
+                    except:
+                        self.conf.term_cmd = unicode('C:\Program Files\Putty\putty.exe -telnet %h %p')
                     self.conf.use_shell = False
+
             else:
                 self.conf.term_cmd = unicode("xterm -T %d -e 'telnet %h %p' >/dev/null 2>&1 &")
 

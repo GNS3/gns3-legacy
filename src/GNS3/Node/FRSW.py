@@ -42,6 +42,13 @@ class FRSW(AbstractNode):
 
         # assign a new hostname
         global frsw_id
+        
+        # check if hostname has already been assigned
+        for node in globals.GApp.topology.nodes.itervalues():
+            if 'FR' + str(frsw_id) == node.hostname:
+                frsw_id = frsw_id + 1
+                break
+        
         self.hostname = 'FR' + str(frsw_id)
         frsw_id = frsw_id + 1
         AbstractNode.setCustomToolTip(self)

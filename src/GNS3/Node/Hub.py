@@ -38,6 +38,13 @@ class Hub(AbstractNode):
 
         # assign a new hostname
         global hub_id
+        
+        # check if hostname has already been assigned
+        for node in globals.GApp.topology.nodes.itervalues():
+            if 'H' + str(hub_id) == node.hostname:
+                hub_id = hub_id + 1
+                break
+        
         self.hostname = 'H' + str(hub_id)
         hub_id = hub_id + 1
         self.setCustomToolTip()

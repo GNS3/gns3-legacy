@@ -42,6 +42,13 @@ class ETHSW(AbstractNode):
 
         # assign a new hostname
         global ethsw_id
+        
+        # check if hostname has already been assigned
+        for node in globals.GApp.topology.nodes.itervalues():
+            if 'SW' + str(ethsw_id) == node.hostname:
+                ethsw_id = ethsw_id + 1
+                break
+        
         self.hostname = 'SW' + str(ethsw_id)
         ethsw_id = ethsw_id + 1
         AbstractNode.setCustomToolTip(self)

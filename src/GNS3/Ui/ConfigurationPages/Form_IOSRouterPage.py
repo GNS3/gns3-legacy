@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_IOSRouterPage.ui'
 #
-# Created: Tue Mar 17 15:35:17 2009
-#      by: PyQt4 UI code generator 4.4.3
+# Created: Sun May 10 18:19:29 2009
+#      by: PyQt4 UI code generator 4.4.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_IOSRouterPage(object):
     def setupUi(self, IOSRouterPage):
         IOSRouterPage.setObjectName("IOSRouterPage")
-        IOSRouterPage.resize(439, 462)
+        IOSRouterPage.resize(439, 472)
         self.vboxlayout = QtGui.QVBoxLayout(IOSRouterPage)
         self.vboxlayout.setObjectName("vboxlayout")
         self.tabWidget = QtGui.QTabWidget(IOSRouterPage)
@@ -331,7 +331,7 @@ class Ui_IOSRouterPage(object):
         self.vboxlayout.addWidget(self.tabWidget)
 
         self.retranslateUi(IOSRouterPage)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(IOSRouterPage)
 
     def retranslateUi(self, IOSRouterPage):

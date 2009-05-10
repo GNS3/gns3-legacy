@@ -556,6 +556,11 @@ class Scene(QtGui.QGraphicsView):
             factor_out = pow(2.0, -120 / 240.0)
             self.scaleView(factor_out)
         elif key == QtCore.Qt.Key_Delete:
+            # check if we are editing an Annotation object, then send the Delete event to it
+            for item in self.__topology.selectedItems():
+                if isinstance(item, Annotation) and item.hasFocus():
+                    QtGui.QGraphicsView.keyPressEvent(self, event)
+                    return
             self.slotDeleteNode()
         elif globals.addingLinkFlag and key == QtCore.Qt.Key_Escape:
             self.resetAddingLink()

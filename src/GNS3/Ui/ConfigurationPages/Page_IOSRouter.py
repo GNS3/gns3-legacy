@@ -36,6 +36,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         self.setupUi(self)
         self.setObjectName("IOSRouter")
         self.currentNodeID = None
+        self.NM_16ESW_warning = True
 
         self.widget_slots = {0: self.comboBoxSlot0,
                                         1: self.comboBoxSlot1,
@@ -191,6 +192,10 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         for (slot_number, widget) in self.widget_slots.iteritems():
             module = str(widget.currentText())
             if module:
+                # Give an information (only once): users must use manual connections with NM-16ESW
+                if module == 'NM-16ESW' and self.NM_16ESW_warning:
+                    self.NM_16ESW_warning = False
+                    QtGui.QMessageBox.information(globals.nodeConfiguratorWindow, 'NM-16ESW', translate("Page_IOSRouter", "You must use manual mode when adding a link in NM-16ESW modules"))
                 collision = False
                 if router.slot[slot_number] and router_config['slots'][slot_number] != module:
                     interfaces = router.slot[slot_number].interfaces
