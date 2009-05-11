@@ -399,6 +399,9 @@ class Topology(QtGui.QGraphicsScene):
                         return
                     if not globals.GApp.HypervisorManager.allocateHypervisor(node):
                         return
+                    # give a warning if the IOS path is not accessible
+                    if not os.access(image_conf.filename, os.F_OK):
+                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), unicode(translate("Topology", "%s seems to not exist, please check")) % image_conf.filename)
                 else:
                     # use an external hypervisor
                     if self.useExternalHypervisor(node, image_conf.hypervisors) == False:
@@ -409,6 +412,10 @@ class Topology(QtGui.QGraphicsScene):
                 if not globals.GApp.systconf['pemu'].default_pix_image:
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX image"), translate("Topology", "Please configure a default PIX image"))
                     return
+                    
+                # give a warning if the PIX image path is not accessible
+                    if not os.access(globals.GApp.systconf['pemu'].default_pix_image, os.F_OK):
+                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX image"), unicode(translate("Topology", "%s seems to not exist, please check")) % globals.GApp.systconf['pemu'].default_pix_image)
                 if self.firewallSetup(node) == False:
                     return
                     

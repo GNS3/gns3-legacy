@@ -413,7 +413,7 @@ class NETFile(object):
                     hostname = unicode(hostname)
                     symbol = unicode(gns3data[section]['symbol'])
                     if not globals.GApp.scene.renders.has_key(symbol):
-                        print unicode(translate("NETFile", "%s: cannot find %s symbol")) % (hostname, symbol)
+                        print unicode(translate("NETFile", "%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file")) % (hostname, symbol)
                         continue
                     renders = globals.GApp.scene.renders[symbol]
                     decorative_node = DecorativeNode(renders['normal'], renders['selected'])

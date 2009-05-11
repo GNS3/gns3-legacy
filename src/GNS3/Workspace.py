@@ -146,7 +146,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         if format == 'PDF':
-            #FIXME: seems PDF export doesn't work since Qt version 4.5
+            #FIXME: seems PDF export doesn't work since Qt version 4.5.0 (on Linux)
             printer = QtGui.QPrinter(QtGui.QPrinter.HighResolution)
             printer.setOutputFormat(QtGui.QPrinter.PdfFormat)
             printer.setOrientation(QtGui.QPrinter.Landscape)

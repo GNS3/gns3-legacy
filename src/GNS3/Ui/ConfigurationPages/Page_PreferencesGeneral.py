@@ -19,7 +19,8 @@
 # Contact: contact@gns3.net
 #
 
-import sys, os
+import sys
+import os
 import GNS3.Globals as globals
 from PyQt4 import QtGui, QtCore
 from GNS3.Config.Objects import systemGeneralConf
@@ -47,6 +48,8 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         self.loadConf()
 
     def loadConf(self):
+
+        import sys
 
         if globals.GApp.systconf.has_key('general'):
             self.conf = globals.GApp.systconf['general']

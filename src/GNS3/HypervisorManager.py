@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import time
+import time, os
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 from socket import socket, timeout, AF_INET, SOCK_STREAM
@@ -172,8 +172,14 @@ class HypervisorManager(object):
             hypervisor['load'] = node.default_ram
         # use project workdir in priority
         if globals.GApp.workspace.projectWorkdir:
+            if not os.access(globals.GApp.workspace.projectWorkdir, os.F_OK | os.W_OK):
+                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'HypervisorManager', 
+                                          unicode(translate("HypervisorManager", "Working directory %s seems to not exist or be writable, please check")) % globals.GApp.workspace.projectWorkdir)
             globals.GApp.dynagen.defaults_config['workingdir'] = globals.GApp.workspace.projectWorkdir
         elif self.hypervisor_wd:
+            if not os.access(self.hypervisor_wd, os.F_OK | os.W_OK):
+                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'HypervisorManager', 
+                                          unicode(translate("HypervisorManager", "Working directory %s seems to not exist or be writable, please check")) % self.hypervisor_wd)
             globals.GApp.dynagen.defaults_config['workingdir'] = self.hypervisor_wd
         dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor(globals.GApp.systconf['dynamips'].HypervisorManager_binding, hypervisor['port'])
         if not dynamips_hypervisor:

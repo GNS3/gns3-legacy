@@ -11,8 +11,4 @@ TODO LIST
  * ASA8 support (need to merge Pemu and Qemu).
  * Decorative node for Voice labs (gateway, gatekeeper, ip phones, sip servers, call managers).
  * Check unpacking of asa803-k8.bin
- * Bug with # and . (unix) in hostnames (.net loading) + IOS paths
- * Bug check saves on MacOS X
- * Bug on Windows with 'connections' including a return key?
- * Strange bug with MPLSv2.5 VPN RSVP-TE configs.
- * Check idle value save on Windows
+ * Create DMG for MacOSX + check everything.

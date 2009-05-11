@@ -87,10 +87,9 @@ class DynagenSub(Dynagen):
                                 if globals.GApp.systconf['pemu'].default_pix_image:
                                     image_name = globals.GApp.systconf['pemu'].default_pix_image
                                 else:
-                                    print unicode(translate("DynagenSub", "PIX image %s cannot be found and cannot find an alternative image")) \
-                                    % (globals.GApp.systconf['pemu'].default_pix_image)
+                                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
+                                      unicode(translate("PIX image", "PIX image %s cannot be found and cannot find an alternative image")) % globals.GApp.systconf['pemu'].default_pix_image)
                                     continue
-    
                                 print unicode(translate("DynagenSub", "Local PIX image %s cannot be found, use image %s instead")) \
                                 % (unicode(device['image']), image_name)
                                 device['image'] = image_name
@@ -139,8 +138,9 @@ class DynagenSub(Dynagen):
                                     if conf.chassis == device.name:
                                         selected_images.append(image)
                                 if len(selected_images) == 0:
-                                    print unicode(translate("DynagenSub", "IOS image %s cannot be found for hypervisor %s and cannot find an alternative image for chassis %s")) \
-                                    % (unicode(device['image']), unicode(server.host) + ':' + controlPort, device.name)
+                                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub', 
+                                                               unicode(translate("IOS image", "IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image")) 
+                                                                % (device['image'], unicode(server.host) + ':' + controlPort, device.name))
                                     continue
                                 if len(selected_images) > 1:
                                     for image in selected_images:
@@ -159,8 +159,19 @@ class DynagenSub(Dynagen):
                         elif device.has_key('cnfg') and device['cnfg']:
                             if not os.access(device['cnfg'], os.F_OK):
                                 if globals.GApp.workspace.projectConfigs:
-                                    #FIXME: doesn't work for inter-OSes .net
-                                    new_config_path = globals.GApp.workspace.projectConfigs + os.sep + os.path.basename(device['cnfg'])
+                                    
+                                    basename =  os.path.basename(device['cnfg'])
+                                    if sys.platform.startswith('win') and basename == device['cnfg']:
+                                        # basename is the same as the original path, maybe it's an unix/posix path
+                                        import posixpath
+                                        basename = posixpath.basename(device['cnfg'])
+                                    elif basename == device['cnfg']:
+                                        # basename is the same as the original path, maybe it's a Windows path
+                                        import ntpath
+                                        basename = ntpath.basename(device['cnfg'])
+                                    
+                                    new_config_path = globals.GApp.workspace.projectConfigs + os.sep + basename
+                                    
                                     print unicode(translate("DynagenSub", "Local configuration %s cannot be found for router %s, use configuration %s instead")) \
                                     % (unicode(device['cnfg']), unicode(device.name), new_config_path)
                                     device['cnfg'] = new_config_path

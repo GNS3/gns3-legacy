@@ -19,7 +19,9 @@
 # Contact: contact@gns3.net
 #
 
-import os, sys, time
+import os
+import sys
+import time
 import subprocess as sub
 import GNS3.Globals as globals
 import GNS3.Dynagen.pemu_lib as pix
@@ -101,6 +103,9 @@ class PemuManager(object):
 
         self.proc = QtCore.QProcess(globals.GApp.mainWindow)
         if globals.GApp.systconf['pemu'].pemuwrapper_workdir:
+            if not os.access(globals.GApp.systconf['pemu'].pemuwrapper_workdir, os.F_OK | os.W_OK):
+                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Pemu Manager', 
+                                          unicode(translate("PemuManager", "Working directory %s seems to not exist or be writable, please check")) % globals.GApp.systconf['pemu'].pemuwrapper_workdir)
             # set the working directory
             self.proc.setWorkingDirectory(globals.GApp.systconf['pemu'].pemuwrapper_workdir)
 
