@@ -93,6 +93,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_About,  QtCore.SIGNAL('triggered()'), self.__action_About)
         self.connect(self.action_AboutQt,  QtCore.SIGNAL('triggered()'), self.__action_AboutQt)
         self.connect(self.action_New,  QtCore.SIGNAL('triggered()'), self.__action_NewProject)
+        self.connect(self.action_EditProject,  QtCore.SIGNAL('triggered()'), self.__action_EditProject)
         self.connect(self.action_Open,  QtCore.SIGNAL('triggered()'), self.__action_OpenFile)
         self.connect(self.action_Save,  QtCore.SIGNAL('triggered()'), self.__action_Save)
         self.connect(self.action_SaveAs,  QtCore.SIGNAL('triggered()'), self.__action_SaveAs)
@@ -639,6 +640,23 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         projectDialog = ProjectDialog()
+        projectDialog.pushButtonOpenProject.hide()
+        self.projectWorkdir
+        self.projectConfigs
+        projectDialog.show()
+        self.centerDialog(projectDialog)
+        projectDialog.exec_()
+        
+    def __action_EditProject(self):
+        """ Edit a project
+        """
+        
+        if not self.projectFile:
+            QtGui.QMessageBox.information(self, translate("Workspace", "Project"),  translate("Workspace", "Please create a new project first"))
+            return
+        projectDialog = ProjectDialog(self.projectFile,  self.projectWorkdir, self.projectConfigs)
+        projectDialog.pushButtonOpenProject.hide()
+        projectDialog.setWindowTitle("Edit Project")
         projectDialog.show()
         self.centerDialog(projectDialog)
         projectDialog.exec_()

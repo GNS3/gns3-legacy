@@ -55,7 +55,7 @@ class UiConfig_PreferencesPemu(QtGui.QWidget, Ui_PreferencesPemu):
                 self.conf.pemuwrapper_path = unicode('C:\Program Files\GNS3\pemuwrapper.exe')
             else:
                 path = os.getcwd() + '/pemu/pemuwrapper.py'
-                self.conf.pemuwrapper_path = unicode(path)
+                self.conf.pemuwrapper_path = unicode(path, errors='replace')
         
         # Default path to working directory
         if self.conf.pemuwrapper_workdir == '':

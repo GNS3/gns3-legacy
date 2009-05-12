@@ -29,12 +29,22 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
     """ ProjectDialog class
     """
 
-    def __init__(self):
+    def __init__(self, projectFile=None, projectWorkdir=None, projectConfigs=None):
 
         QtGui.QDialog.__init__(self)
         self.setupUi(self)
         self.connect(self.NewProject_browser, QtCore.SIGNAL('clicked()'), self.__setProjectFIlePath)
         self.connect(self.pushButtonOpenProject, QtCore.SIGNAL('clicked()'), self.__openProject)
+        if projectFile:
+            self.ProjectPath.setText(projectFile)
+        if projectWorkdir:
+            self.checkBox_WorkdirFiles.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBox_WorkdirFiles.setCheckState(QtCore.Qt.Unchecked)
+        if projectConfigs:
+            self.checkBox_ConfigFiles.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBox_ConfigFiles.setCheckState(QtCore.Qt.Unchecked)
 
     def __setProjectFIlePath(self):
         """ Open a file dialog for choosing the location of the project file

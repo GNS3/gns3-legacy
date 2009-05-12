@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,36 +10,25 @@
     <height>600</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>GNS3</string>
   </property>
-  <property name="windowIcon" >
-   <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/images/logo_icon.png</iconset>
+  <property name="windowIcon">
+   <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <normaloff>:/images/logo_icon.png</normaloff>:/images/logo_icon.png</iconset>
   </property>
-  <widget class="QWidget" name="centralwidget" >
-   <layout class="QGridLayout" >
-    <property name="leftMargin" >
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout">
+    <property name="margin">
      <number>0</number>
     </property>
-    <property name="topMargin" >
+    <property name="spacing">
      <number>0</number>
     </property>
-    <property name="rightMargin" >
-     <number>0</number>
-    </property>
-    <property name="bottomMargin" >
-     <number>0</number>
-    </property>
-    <property name="horizontalSpacing" >
-     <number>0</number>
-    </property>
-    <property name="verticalSpacing" >
-     <number>0</number>
-    </property>
-    <item row="0" column="0" >
-     <widget class="Scene" name="graphicsView" >
-      <property name="sizePolicy" >
-       <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+    <item row="0" column="0">
+     <widget class="Scene" name="graphicsView">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
@@ -47,142 +37,134 @@
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar" >
-   <property name="geometry" >
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>840</width>
-     <height>30</height>
+     <height>25</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_Edit" >
-    <property name="title" >
+   <widget class="QMenu" name="menu_Edit">
+    <property name="title">
      <string>&amp;Edit</string>
     </property>
-    <addaction name="action_Copy" />
-    <addaction name="action_Paste" />
-    <addaction name="separator" />
-    <addaction name="separator" />
-    <addaction name="action_SelectAll" />
-    <addaction name="action_SelectNone" />
-    <addaction name="separator" />
-    <addaction name="action_IOS_images" />
-    <addaction name="action_Symbol_Manager" />
-    <addaction name="action_Preferences" />
+    <addaction name="action_Copy"/>
+    <addaction name="action_Paste"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="action_SelectAll"/>
+    <addaction name="action_SelectNone"/>
+    <addaction name="separator"/>
+    <addaction name="action_IOS_images"/>
+    <addaction name="action_Symbol_Manager"/>
+    <addaction name="action_Preferences"/>
    </widget>
-   <widget class="QMenu" name="menu_File" >
-    <property name="title" >
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="action_New" />
-    <addaction name="action_Open" />
-    <addaction name="action_Save" />
-    <addaction name="action_SaveAs" />
-    <addaction name="separator" />
-    <addaction name="action_Export" />
-    <addaction name="separator" />
-    <addaction name="action_Quit" />
+    <addaction name="action_New"/>
+    <addaction name="action_Open"/>
+    <addaction name="action_Save"/>
+    <addaction name="action_SaveAs"/>
+    <addaction name="separator"/>
+    <addaction name="action_Export"/>
+    <addaction name="separator"/>
+    <addaction name="action_Quit"/>
    </widget>
-   <widget class="QMenu" name="menu_About" >
-    <property name="title" >
+   <widget class="QMenu" name="menu_About">
+    <property name="title">
      <string>&amp;Help</string>
     </property>
-    <addaction name="action_OnlineHelp" />
-    <addaction name="action_AboutQt" />
-    <addaction name="action_About" />
+    <addaction name="action_OnlineHelp"/>
+    <addaction name="action_AboutQt"/>
+    <addaction name="action_About"/>
    </widget>
-   <widget class="QMenu" name="menu_View" >
-    <property name="title" >
+   <widget class="QMenu" name="menu_View">
+    <property name="title">
      <string>&amp;View</string>
     </property>
-    <addaction name="action_ZoomIn" />
-    <addaction name="action_ZoomOut" />
-    <addaction name="action_ZoomReset" />
-    <addaction name="separator" />
-    <addaction name="separator" />
+    <addaction name="action_ZoomIn"/>
+    <addaction name="action_ZoomOut"/>
+    <addaction name="action_ZoomReset"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
    </widget>
-   <addaction name="menu_File" />
-   <addaction name="menu_Edit" />
-   <addaction name="menu_View" />
-   <addaction name="menu_About" />
+   <addaction name="menu_File"/>
+   <addaction name="menu_Edit"/>
+   <addaction name="menu_View"/>
+   <addaction name="menu_About"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar" />
-  <widget class="QToolBar" name="toolBar_General" >
-   <property name="windowTitle" >
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar_General">
+   <property name="windowTitle">
     <string>General</string>
    </property>
-   <property name="toolTip" >
+   <property name="toolTip">
     <string/>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string/>
    </property>
-   <property name="orientation" >
+   <property name="orientation">
     <enum>Qt::Horizontal</enum>
    </property>
-   <attribute name="toolBarArea" >
+   <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
-   <attribute name="toolBarBreak" >
+   <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action_New" />
-   <addaction name="action_Open" />
-   <addaction name="action_Save" />
-   <addaction name="action_SaveAs" />
-   <addaction name="separator" />
-   <addaction name="action_Clear" />
-   <addaction name="action_ShowinterfaceNames" />
-   <addaction name="action_ShowHostnames" />
-   <addaction name="action_Add_link" />
+   <addaction name="action_New"/>
+   <addaction name="action_EditProject"/>
+   <addaction name="action_Open"/>
+   <addaction name="action_Save"/>
+   <addaction name="action_SaveAs"/>
+   <addaction name="separator"/>
+   <addaction name="action_Clear"/>
+   <addaction name="action_ShowinterfaceNames"/>
+   <addaction name="action_ShowHostnames"/>
+   <addaction name="action_Add_link"/>
   </widget>
-  <widget class="QDockWidget" name="dockWidget_NodeTypes" >
-   <property name="allowedAreas" >
-    <set>Qt::LeftDockWidgetArea|Qt::NoDockWidgetArea|Qt::RightDockWidgetArea</set>
+  <widget class="QDockWidget" name="dockWidget_NodeTypes">
+   <property name="allowedAreas">
+    <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
    </property>
-   <property name="windowTitle" >
+   <property name="windowTitle">
     <string>Nodes Types</string>
    </property>
-   <attribute name="dockWidgetArea" >
+   <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents_NodeTypes" >
-    <layout class="QVBoxLayout" >
-     <property name="spacing" >
+   <widget class="QWidget" name="dockWidgetContents_NodeTypes">
+    <layout class="QVBoxLayout">
+     <property name="spacing">
       <number>0</number>
      </property>
-     <property name="leftMargin" >
-      <number>0</number>
-     </property>
-     <property name="topMargin" >
-      <number>0</number>
-     </property>
-     <property name="rightMargin" >
-      <number>0</number>
-     </property>
-     <property name="bottomMargin" >
+     <property name="margin">
       <number>0</number>
      </property>
      <item>
-      <widget class="nodesDock" name="nodesDock" >
-       <property name="sizePolicy" >
-        <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+      <widget class="nodesDock" name="nodesDock">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="iconSize" >
+       <property name="iconSize">
         <size>
          <width>24</width>
          <height>24</height>
         </size>
        </property>
-       <property name="rootIsDecorated" >
+       <property name="rootIsDecorated">
         <bool>false</bool>
        </property>
        <column>
-        <property name="text" >
+        <property name="text">
          <string>1</string>
         </property>
        </column>
@@ -191,79 +173,67 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QToolBar" name="toolBar_Emulation" >
-   <property name="windowTitle" >
+  <widget class="QToolBar" name="toolBar_Emulation">
+   <property name="windowTitle">
     <string>Emulation</string>
    </property>
-   <property name="toolButtonStyle" >
+   <property name="toolButtonStyle">
     <enum>Qt::ToolButtonIconOnly</enum>
    </property>
-   <attribute name="toolBarArea" >
+   <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
-   <attribute name="toolBarBreak" >
+   <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action_Snapshot" />
-   <addaction name="action_config" />
-   <addaction name="action_TelnetAll" />
-   <addaction name="separator" />
-   <addaction name="action_StartAll" />
-   <addaction name="action_SuspendAll" />
-   <addaction name="action_StopAll" />
+   <addaction name="action_Snapshot"/>
+   <addaction name="action_config"/>
+   <addaction name="action_TelnetAll"/>
+   <addaction name="separator"/>
+   <addaction name="action_StartAll"/>
+   <addaction name="action_SuspendAll"/>
+   <addaction name="action_StopAll"/>
   </widget>
-  <widget class="QDockWidget" name="dockWidget_TopoSum" >
-   <property name="sizePolicy" >
-    <sizepolicy vsizetype="Expanding" hsizetype="Preferred" >
+  <widget class="QDockWidget" name="dockWidget_TopoSum">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
      <horstretch>0</horstretch>
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <property name="minimumSize" >
+   <property name="minimumSize">
     <size>
-     <width>50</width>
-     <height>0</height>
+     <width>83</width>
+     <height>108</height>
     </size>
    </property>
-   <property name="allowedAreas" >
-    <set>Qt::LeftDockWidgetArea|Qt::NoDockWidgetArea|Qt::RightDockWidgetArea</set>
+   <property name="allowedAreas">
+    <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
    </property>
-   <property name="windowTitle" >
+   <property name="windowTitle">
     <string>Topology Summary</string>
    </property>
-   <attribute name="dockWidgetArea" >
+   <attribute name="dockWidgetArea">
     <number>2</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents_7" >
-    <layout class="QGridLayout" >
-     <property name="leftMargin" >
+   <widget class="QWidget" name="dockWidgetContents_7">
+    <layout class="QGridLayout">
+     <property name="margin">
       <number>0</number>
      </property>
-     <property name="topMargin" >
+     <property name="spacing">
       <number>0</number>
      </property>
-     <property name="rightMargin" >
-      <number>0</number>
-     </property>
-     <property name="bottomMargin" >
-      <number>0</number>
-     </property>
-     <property name="horizontalSpacing" >
-      <number>0</number>
-     </property>
-     <property name="verticalSpacing" >
-      <number>0</number>
-     </property>
-     <item row="0" column="0" >
-      <widget class="topologySummaryDock" name="treeWidget_TopologySummary" >
-       <property name="sizePolicy" >
-        <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+     <item row="0" column="0">
+      <widget class="topologySummaryDock" name="treeWidget_TopologySummary">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
        <column>
-        <property name="text" >
+        <property name="text">
          <string>1</string>
         </property>
        </column>
@@ -272,43 +242,34 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QDockWidget" name="dockWidget_Console" >
-   <property name="maximumSize" >
+  <widget class="QDockWidget" name="dockWidget_Console">
+   <property name="maximumSize">
     <size>
-     <width>16777215</width>
-     <height>16777215</height>
+     <width>524287</width>
+     <height>524287</height>
     </size>
    </property>
-   <property name="allowedAreas" >
+   <property name="allowedAreas">
     <set>Qt::AllDockWidgetAreas</set>
    </property>
-   <property name="windowTitle" >
+   <property name="windowTitle">
     <string>Console</string>
    </property>
-   <attribute name="dockWidgetArea" >
+   <attribute name="dockWidgetArea">
     <number>8</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents_5" >
-    <layout class="QVBoxLayout" >
-     <property name="spacing" >
+   <widget class="QWidget" name="dockWidgetContents_5">
+    <layout class="QVBoxLayout">
+     <property name="spacing">
       <number>0</number>
      </property>
-     <property name="leftMargin" >
-      <number>0</number>
-     </property>
-     <property name="topMargin" >
-      <number>0</number>
-     </property>
-     <property name="rightMargin" >
-      <number>0</number>
-     </property>
-     <property name="bottomMargin" >
+     <property name="margin">
       <number>0</number>
      </property>
      <item>
-      <widget class="Console" name="textEditConsole" >
-       <property name="sizePolicy" >
-        <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+      <widget class="Console" name="textEditConsole">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -318,388 +279,423 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QToolBar" name="toolBar_drawing" >
-   <property name="windowTitle" >
+  <widget class="QToolBar" name="toolBar_drawing">
+   <property name="windowTitle">
     <string>Drawing</string>
    </property>
-   <attribute name="toolBarArea" >
+   <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
-   <attribute name="toolBarBreak" >
+   <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action_AddNote" />
-   <addaction name="action_InsertImage" />
-   <addaction name="action_DrawRectangle" />
-   <addaction name="action_DrawEllipse" />
+   <addaction name="action_AddNote"/>
+   <addaction name="action_InsertImage"/>
+   <addaction name="action_DrawRectangle"/>
+   <addaction name="action_DrawEllipse"/>
   </widget>
-  <action name="action_About" >
-   <property name="text" >
+  <action name="action_About">
+   <property name="text">
     <string>&amp;About</string>
    </property>
-   <property name="menuRole" >
+   <property name="menuRole">
     <enum>QAction::AboutRole</enum>
    </property>
   </action>
-  <action name="action_Quit" >
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/quit.svg</iconset>
+  <action name="action_Quit">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/quit.svg</normaloff>:/icons/quit.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>&amp;Quit</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string/>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+Q</string>
    </property>
   </action>
-  <action name="action_Open" >
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/open.svg</iconset>
+  <action name="action_Open">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/open.svg</normaloff>:/icons/open.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>&amp;Open</string>
    </property>
-   <property name="toolTip" >
+   <property name="toolTip">
     <string>Open network file</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+O</string>
    </property>
   </action>
-  <action name="action_Save" >
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/save.svg</iconset>
+  <action name="action_Save">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/save.svg</normaloff>:/icons/save.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>&amp;Save</string>
    </property>
-   <property name="toolTip" >
+   <property name="toolTip">
     <string>Save network file</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+S</string>
    </property>
   </action>
-  <action name="action_Add_link" >
-   <property name="checkable" >
+  <action name="action_Add_link">
+   <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/connection.svg</iconset>
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/connection.svg</normaloff>:/icons/connection.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Add a link</string>
    </property>
-   <property name="iconText" >
+   <property name="iconText">
     <string>Add a link</string>
    </property>
-   <property name="toolTip" >
+   <property name="toolTip">
     <string>Add a link</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string>Add a link</string>
    </property>
   </action>
-  <action name="action_IOS_images" >
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/binary.svg</iconset>
+  <action name="action_IOS_images">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/binary.svg</normaloff>:/icons/binary.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>IOS images and hypervisors</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+Shift+I</string>
    </property>
   </action>
-  <action name="action_OnlineHelp" >
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/help.svg</iconset>
+  <action name="action_OnlineHelp">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/help.svg</normaloff>:/icons/help.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>&amp;Online Help</string>
    </property>
   </action>
-  <action name="action_Export" >
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/edit-redo.svg</iconset>
+  <action name="action_Export">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/edit-redo.svg</normaloff>:/icons/edit-redo.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>&amp;Export</string>
    </property>
   </action>
-  <action name="action_StartAll" >
-   <property name="enabled" >
+  <action name="action_StartAll">
+   <property name="enabled">
     <bool>true</bool>
    </property>
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/play.svg</iconset>
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/play.svg</normaloff>:/icons/play.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Start/Resume all IOS</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string>Start or resume all IOS instances</string>
    </property>
   </action>
-  <action name="action_StopAll" >
-   <property name="enabled" >
+  <action name="action_StopAll">
+   <property name="enabled">
     <bool>true</bool>
    </property>
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/stop.svg</iconset>
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/stop.svg</normaloff>:/icons/stop.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Stop all IOS</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string>Stop all IOS instances</string>
    </property>
   </action>
-  <action name="action_ShowHostnames" >
-   <property name="checkable" >
+  <action name="action_ShowHostnames">
+   <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/show-hostname.svg</iconset>
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/show-hostname.svg</normaloff>:/icons/show-hostname.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Show the hostnames</string>
    </property>
-   <property name="toolTip" >
+   <property name="toolTip">
     <string>Show hostnames</string>
    </property>
   </action>
-  <action name="action_TelnetAll" >
-   <property name="enabled" >
+  <action name="action_TelnetAll">
+   <property name="enabled">
     <bool>true</bool>
    </property>
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/console.svg</iconset>
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/console.svg</normaloff>:/icons/console.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Telnet to all IOS</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string>Start a console on all running IOS instances</string>
    </property>
   </action>
-  <action name="action_SaveAs" >
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/save-as.svg</iconset>
+  <action name="action_SaveAs">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/save-as.svg</normaloff>:/icons/save-as.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Save &amp;As</string>
    </property>
-   <property name="iconText" >
+   <property name="iconText">
     <string>Save As</string>
    </property>
-   <property name="toolTip" >
+   <property name="toolTip">
     <string>Save network file as</string>
    </property>
   </action>
-  <action name="action_AboutQt" >
-   <property name="text" >
+  <action name="action_AboutQt">
+   <property name="text">
     <string>About &amp;Qt</string>
    </property>
-   <property name="menuRole" >
+   <property name="menuRole">
     <enum>QAction::AboutQtRole</enum>
    </property>
   </action>
-  <action name="action_ZoomIn" >
-   <property name="text" >
+  <action name="action_ZoomIn">
+   <property name="text">
     <string>Zoom &amp;In</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl++</string>
    </property>
   </action>
-  <action name="action_ZoomOut" >
-   <property name="text" >
+  <action name="action_ZoomOut">
+   <property name="text">
     <string>Zoom &amp;Out</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+-</string>
    </property>
   </action>
-  <action name="action_ZoomReset" >
-   <property name="text" >
+  <action name="action_ZoomReset">
+   <property name="text">
     <string>Zoom &amp;1:1</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+/</string>
    </property>
   </action>
-  <action name="action_SelectAll" >
-   <property name="text" >
+  <action name="action_SelectAll">
+   <property name="text">
     <string>Select &amp;All</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+A</string>
    </property>
   </action>
-  <action name="action_SelectNone" >
-   <property name="text" >
+  <action name="action_SelectNone">
+   <property name="text">
     <string>Select &amp;None</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+Shift+A</string>
    </property>
   </action>
-  <action name="action_Preferences" >
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/applications.svg</iconset>
+  <action name="action_Preferences">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/applications.svg</normaloff>:/icons/applications.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>&amp;Preferences...</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+Shift+P</string>
    </property>
   </action>
-  <action name="action_Copy" >
-   <property name="enabled" >
+  <action name="action_Copy">
+   <property name="enabled">
     <bool>false</bool>
    </property>
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/edit-copy.svg</iconset>
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/edit-copy.svg</normaloff>:/icons/edit-copy.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Copy</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+C</string>
    </property>
   </action>
-  <action name="action_Paste" >
-   <property name="enabled" >
+  <action name="action_Paste">
+   <property name="enabled">
     <bool>false</bool>
    </property>
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/edit-paste.svg</iconset>
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/edit-paste.svg</normaloff>:/icons/edit-paste.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>&amp;Paste</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+V</string>
    </property>
   </action>
-  <action name="action_SuspendAll" >
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/pause.svg</iconset>
+  <action name="action_SuspendAll">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/pause.svg</normaloff>:/icons/pause.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Suspend all IOS</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string>Suspend all IOS instances</string>
    </property>
   </action>
-  <action name="action_Clear" >
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/edit-clear.svg</iconset>
+  <action name="action_Clear">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/edit-clear.svg</normaloff>:/icons/edit-clear.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Clear the topology</string>
    </property>
   </action>
-  <action name="action_AddNote" >
-   <property name="checkable" >
+  <action name="action_AddNote">
+   <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/add-note.svg</iconset>
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/add-note.svg</normaloff>:/icons/add-note.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Add a note</string>
    </property>
   </action>
-  <action name="action_New" >
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/new.svg</iconset>
+  <action name="action_New">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/new.svg</normaloff>:/icons/new.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>&amp;New Project</string>
    </property>
-   <property name="iconText" >
+   <property name="iconText">
     <string>New Project</string>
    </property>
-   <property name="toolTip" >
+   <property name="toolTip">
     <string>New Project</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+N</string>
    </property>
   </action>
-  <action name="action_config" >
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/edit-undo.svg</iconset>
+  <action name="action_config">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/edit-undo.svg</normaloff>:/icons/edit-undo.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>&amp;Extract/Import all startup-configs</string>
    </property>
   </action>
-  <action name="action_InsertImage" >
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/image.svg</iconset>
+  <action name="action_InsertImage">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/image.svg</normaloff>:/icons/image.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Insert a picture</string>
    </property>
   </action>
-  <action name="action_Symbol_Manager" >
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/node_conception.svg</iconset>
+  <action name="action_Symbol_Manager">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/node_conception.svg</normaloff>:/icons/node_conception.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>&amp;Symbol Manager</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+Shift+S</string>
    </property>
   </action>
-  <action name="action_DrawRectangle" >
-   <property name="checkable" >
+  <action name="action_DrawRectangle">
+   <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/rectangle.svg</iconset>
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/rectangle.svg</normaloff>:/icons/rectangle.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Draw a rectangle</string>
    </property>
   </action>
-  <action name="action_DrawEllipse" >
-   <property name="checkable" >
+  <action name="action_DrawEllipse">
+   <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/ellipse.svg</iconset>
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/ellipse.svg</normaloff>:/icons/ellipse.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Draw an ellipse</string>
    </property>
   </action>
-  <action name="action_ShowinterfaceNames" >
-   <property name="checkable" >
+  <action name="action_ShowinterfaceNames">
+   <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/show-interface-names.svg</iconset>
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/show-interface-names.svg</normaloff>:/icons/show-interface-names.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Show interface names</string>
    </property>
   </action>
-  <action name="action_Snapshot" >
-   <property name="icon" >
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/icons/snapshot.svg</iconset>
+  <action name="action_Snapshot">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/snapshot.svg</normaloff>:/icons/snapshot.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Snapshot</string>
+   </property>
+  </action>
+  <action name="action_EditProject">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/edit-project.svg</normaloff>:/icons/edit-project.svg</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Edit project</string>
    </property>
   </action>
  </widget>
@@ -726,7 +722,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../../../gns3-artwork/svg_resources.qrc" />
+  <include location="../../../../gns3-artwork/svg_resources.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -735,11 +731,11 @@
    <receiver>MainWindow</receiver>
    <slot>close()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>398</x>
      <y>302</y>
     </hint>
