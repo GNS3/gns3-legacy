@@ -1,5 +1,28 @@
-
 CHANGELOG
+
+GNS3 0.6.1
+
+Improvements:
+
+ * Copy an inserted image in the project's working directory and update its path in the .net file.
+ * Prevent auto-generated interface notes to be recorded in the .net file.
+ * Display an error msg box if a working directory can't be used by an hypervisor. 
+ * Check if a hostname has already been used when creating a new node.
+ * Warn to use manual links when a user select a NM-16ESW module.
+ * Check if GNS3 is running on a Windows 64 bits OS in order to choose the correct path to Putty. 
+ * Check IOS and working directories paths when creating new nodes and throw a warning to the user if something is wrong.
+ * Button to edit project settings.
+
+Fixes:
+
+ * Prevent notes to be deleted when typing the delete key while editing.
+ * Prevent NM-16ESW modules to be removed from routers when using Ethernet/FastEthernet links.
+ * Tooltips update when starting/stopping/suspending routers.
+ * Bug with Qt 4.5 on selected filter when openning a project (getOpenFileName) 
+ * 99MB limit for pcmcia disks. 
+ * Unicode errors with TMP env variable on Windows. 
+ * AttributeError: value of `chassis' must be of type string.
+ * Merge correct config paths when loading a .net create on a different platform.
 
 GNS3 0.6
 
