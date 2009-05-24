@@ -199,12 +199,20 @@ class IOSRouter(AbstractNode):
         return self.local_config
 
     def get_config(self):
-        """ Returns the local configuration copy
+        """ Returns the local configuration
         """
 
         assert(self.router and self.local_config)
         return self.local_config
 
+    def duplicate_config(self):
+        """ Returns a copy of the local configuration
+        """
+
+        config =  self.local_config.copy()
+        config['slots'] = list(self.local_config['slots'])
+        return config
+        
     def set_config(self, config):
         """ Set a configuration in Dynamips
             config: dict
@@ -226,7 +234,7 @@ class IOSRouter(AbstractNode):
         # configure the slots
         slot_number = 0
         slot_changed = False
-        for module_name in self.local_config['slots']:
+        for module_name in config['slots']:
             if module_name and self.router.slot[slot_number] == None:
                 self.set_slot(slot_number, module_name)
                 slot_changed = True
@@ -242,15 +250,17 @@ class IOSRouter(AbstractNode):
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("IOSRouter", "Slots"), translate("IOSRouter", "You have to restart this router to use new modules"))
 
         # configure wics if available
-        if self.local_config['wics']:
+        if config['wics']:
             wic_number = 0
-            for wic_name in self.local_config['wics']:
+            for wic_name in config['wics']:
                 if wic_name and not self.router.slot[0].wics[wic_number]:
                     # consider that all wics are in slot 0
                     debug('Install ' + wic_name + ' in wic port ' + str(wic_number))
                     self.router.installwic(wic_name, 0, wic_number)
                 wic_number += 1
 
+        self.local_config = config.copy()
+        self.local_config['slots'] = list(config['slots'])
         self.dynagen.update_running_config()
         self.running_config =  self.dynagen.running_config[self.d][self.r]
         debug("Node " + self.hostname + ": running config: " + str(self.running_config))
@@ -310,6 +320,7 @@ class IOSRouter(AbstractNode):
         """
 
         connected_interfaces = self.getConnectedInterfaceList()
+        previousConfig = self.duplicate_config()
 
         # remove unused module from the slots
         for module in self.router.slot:
@@ -374,7 +385,8 @@ class IOSRouter(AbstractNode):
                     (int_type, number_of_interfaces) = MODULES_INTERFACES[module_name][0:2]
                     if int_type == link_type:
                         self.local_config['slots'][slot_number] = module_name
-                        self.set_config(self.local_config)
+                        config = self.duplicate_config()
+                        self.setUndoConfig(config, previousConfig)
                         interfaces = self.router.slot[slot_number].interfaces
                         port = interfaces[int_type][0]
                         interface_name = int_type + str(slot_number) + '/' + str(port)

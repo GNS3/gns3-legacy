@@ -218,7 +218,7 @@ class Scene(QtGui.QGraphicsView):
         """ Overloaded function that add the node into the topology
         """
 
-        self.__topology.addNode(node)
+        self.__topology.addNodeFromScene(node)
 
     def calculateIDLEPC(self, router):
         """ Show a splash screen
@@ -325,20 +325,25 @@ class Scene(QtGui.QGraphicsView):
             if ok:
                 selection = str(selection).split(':')[0].strip('* ')
                 index = int(selection)
-                globals.GApp.dynagen.devices[router.hostname].idleprop(lib.IDLEPROPSET, idles[index])
-                QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("Scene", "IDLE PC"),
-                                              unicode(translate("Scene", "Applied idlepc value %s to %s")) % (idles[index], router.hostname))
                 for node in globals.GApp.topology.nodes.values():
                     if isinstance(node, IOSRouter) and node.hostname == router.hostname:
                         dyn_router = node.get_dynagen_device()
                         if globals.GApp.iosimages.has_key(dyn_router.dynamips.host + ':' + dyn_router.image):
                             image = globals.GApp.iosimages[dyn_router.dynamips.host + ':' + dyn_router.image]
-                            debug("Apply IDLE PC " + idles[index] + " for image " + image.filename)
+                            debug("Register IDLE PC " + idles[index] + " for image " + image.filename)
                             image.idlepc =  idles[index]
-                config = router.get_config()
-                config['idlepc'] = idles[index]
-                router.set_config(config)
-                router.setCustomToolTip()
+                            # Apply idle pc to devices with the same IOS image
+                            for device in globals.GApp.topology.nodes.values():
+                                if isinstance(device, IOSRouter) and device.config['image'] == image.filename:
+                                    debug("Apply IDLE PC " + idles[index] + " to " + device.hostname)
+                                    device.get_dynagen_device().idlepc = idles[index]
+                                    config = device.get_config()
+                                    config['idlepc'] = idles[index]
+                                    device.set_config(config)
+                                    device.setCustomToolTip()
+                            break
+                QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("Scene", "IDLE PC"),
+                                              unicode(translate("Scene", "Applied idlepc value %s to %s")) % (idles[index], router.hostname))
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, translate("Scene", "Dynamips error"),  unicode(msg))
             return
@@ -381,12 +386,12 @@ class Scene(QtGui.QGraphicsView):
         for item in self.__topology.selectedItems():
             if not isinstance(item, Annotation) and not isinstance(item, Pixmap) and not isinstance(item, AbstractShapeItem):
                 for link in item.getEdgeList().copy():
-                    if self.__topology.deleteLink(link) == False:
+                    if self.__topology.deleteLinkFromScene(link) == False:
                         if ok_to_delete_node:
                             ok_to_delete_node = False
                         continue
                 if ok_to_delete_node:
-                    self.__topology.deleteNode(item.id)
+                    self.__topology.deleteNodeFromScene(item.id)
             else:
                 self.__topology.removeItem(item)
 
@@ -481,7 +486,7 @@ class Scene(QtGui.QGraphicsView):
             return
 
         # add the link into the topology
-        if self.__topology.addLink(self.__sourceNodeID, self.__sourceInterface, self.__destNodeID, self.__destInterface) == False:
+        if self.__topology.addLinkFromScene(self.__sourceNodeID, self.__sourceInterface, self.__destNodeID, self.__destInterface) == False:
             self.__isFirstClick = True
         
         self.__sourceNodeID = None
@@ -526,7 +531,7 @@ class Scene(QtGui.QGraphicsView):
         """ Delete an edge from the topology
         """
 
-        self.__topology.deleteLink(edge)
+        self.__topology.deleteLinkFromScene(edge)
 
     def scaleView(self, scale_factor):
         """ Zoom in and out
@@ -601,7 +606,7 @@ class Scene(QtGui.QGraphicsView):
             if globals.GApp.workspace.flg_showHostname == True:
                 node.showHostname()
 
-            self.__topology.addNode(node)
+            self.__topology.addNodeFromScene(node)
 
             # Center the node
             pos_x = node.pos().x() - (node.boundingRect().width() / 2)
@@ -659,20 +664,15 @@ class Scene(QtGui.QGraphicsView):
 
     def mouseDoubleClickEvent(self, event):
 
-        if not globals.addingLinkFlag:
-            item = self.itemAt(event.pos())
-            if isinstance(item, Annotation) or isinstance(item, Pixmap):
-                QtGui.QGraphicsView.mouseDoubleClickEvent(self, event)
-            elif item and not isinstance(item, AbstractEdge):
-                item.setSelected(True)
-                self.slotConfigNode()
+        item = self.itemAt(event.pos())
+        if not globals.addingLinkFlag and isinstance(item, AbstractNode):
+            item.setSelected(True)
+            self.slotConfigNode()
         else:
             QtGui.QGraphicsView.mouseDoubleClickEvent(self, event)
 
     def mouseMoveEvent(self, event):
 
-        # update new edge position
-#        globals.GApp.workspace.statusbar.showMessage("%d, %d" % (event.pos().x(), event.pos().y()))
         if (self.newedge):
             self.newedge.setMousePoint(self.mapToScene(event.pos()))
             event.ignore()

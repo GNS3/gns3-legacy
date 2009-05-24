@@ -181,6 +181,7 @@ class confDefaultsConsole(AbstractConsole):
         self.chassis = 'None'
         self.default_image = 'None'
         self.default_ghostios = 'False'
+        self.default_jitsharing = 'False'
         self.default_cnfg = 'None'
         self.default_conf = 'None'
         self.default_confreg = '0x2102'
@@ -372,6 +373,29 @@ class confDefaultsConsole(AbstractConsole):
                     error('specify first the IOS image and AFTER that turn on IOS ghosting')
         else:
             #implement IOS ghosting and port all other instances into it
+            error('the only possible options are True or False, not: ' + args)
+        self.dynamips_server.configchange = True
+    
+    def do_jitsharing(self, args):
+        """jitsharing = {True|False}
+\tenable or disable JIT blocks sharing"""
+
+        if '?' in args or args.strip() == '':
+            print self.do_jitsharing.__doc__
+            return
+
+        jitsharing = self.clean_args(args)
+        if jitsharing in ('True', 'False'):
+            if self.default_jitsharing == jitsharing:
+                if self.config.has_key('jitsharing'):
+                    del self.config['jitsharing']
+            else:
+                if self.config.has_key('image'):
+                    self.config['jitsharing'] = bool(jitsharing)
+                else:
+                    error('specify first the IOS image and AFTER that turn on JIT sharing')
+        else:
+            #implement JIT sharing and port all other instances into it
             error('the only possible options are True or False, not: ' + args)
         self.dynamips_server.configchange = True
 
@@ -902,6 +926,13 @@ no <option> = <option_value>
                     else:
                         error('Bad ' + lside + 'value: ' + rside)
                     return
+                if lside == 'jitsharing':
+                    if rside in ['True', 'False']:
+                        if bool(rside) == jitsharing:
+                            self.onecmd('jitsharing = ' + str(not jitsharing))
+                    else:
+                        error('Bad ' + lside + 'value: ' + rside)
+                    return
                 if str(getattr(self.router, lside)) == rside:
                     #emit the command lside = default_option, this will effective make the command not visible in config
                     if self.defaults_config.has_key(lside):
@@ -989,6 +1020,24 @@ no <option> = <option_value>
         else:
             error('the only possible options are True or False, not: ' + args)
 
+    def do_jitsharing(self, args):
+        """jitsharing = {True|False}
+\tEnable or disable JIT blocks sharing"""
+
+        if '?' in args or args.strip() == '':
+            print self.do_jitsharing.__doc__
+            return
+
+        jitsharing = self.clean_args(args)
+        if jitsharing in ('True', 'False'):
+            try:
+                self.dynagen.jitshareddevices[self.router.name] = jitsharing
+                self.dynagen.jitsharing()
+            except DynamipsError, e:
+                error(e)
+        else:
+            error('the only possible options are True or False, not: ' + args)
+            
     def do_slot(self, args):
         if '?' in args or args.strip() == '':
             print self.do_slot.__doc__
@@ -1800,6 +1849,12 @@ router <new_router_name>
                 if devdefaults[model]['ghostios']:
                     router.ghost_status = 2
                     router.ghost_file =  router.formatted_ghost_file()
+                    
+            #implement JIT blocks sharing when creating the router from configConsole
+            #use devdefaults to find out whether we have jitsharing = True, and simply set the jitsharing_group
+            if devdefaults[model].has_key('jitsharing'):
+                if devdefaults[model]['jitsharing']:
+                    self.dynagen.jitshareddevices [router.name] = True
 
             #add router to frontend
             self.dynagen.devices[params[0]] = router

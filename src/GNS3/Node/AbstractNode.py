@@ -24,6 +24,7 @@ import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Utils import translate, debug
 import GNS3.Dynagen.dynamips_lib as lib
+import GNS3.UndoFramework as undo 
 
 class AbstractNode(QtSvg.QGraphicsSvgItem):
     """ AbstractNode class
@@ -82,6 +83,13 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             edge.setCustomToolTip()
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
         
+    def setUndoConfig(self, config,  prevConfig):
+        """ Set a new config to be put on the undo stack
+        """
+        
+        command = undo.AddConfig(self, config, prevConfig)
+        globals.GApp.topology.undoStack.push(command)
+
     def changeHostname(self):
         """ Called to change the hostname
         """
@@ -190,15 +198,15 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 
         self.setToolTip(unicode(translate("AbstractNode", "Hostname: %s")) % self.hostname)
 
-    def keyReleaseEvent(self, event):
-        """ Key release handler
+    def keyPressEvent(self, event):
+        """ Key press handler
         """
 
         key = event.key()
         if key == QtCore.Qt.Key_Delete:
             self.__deleteAction()
         else:
-            QtGui.QGraphicsItem.keyReleaseEvent(self, event)
+            QtGui.QGraphicsItem.keyPressEvent(self, event)
 
     def mousePressEvent(self, event):
         """ Call when the node is clicked

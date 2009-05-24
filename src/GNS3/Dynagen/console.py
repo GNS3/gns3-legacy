@@ -33,8 +33,6 @@ from dynamips_lib import DynamipsError, DynamipsWarning, IDLEPROPGET, IDLEPROPSH
 from configobj import ConfigObj
 from confConsole import AbstractConsole, confHypervisorConsole, confConsole
 
-globaldebug = 0
-
 # determine if we are in the debugger
 try:
     DBGPHideChildren
@@ -223,6 +221,7 @@ conf
                         else:
                             print 'Warning: Starting %s with no idle-pc value' % device.name
                     self.dynagen.check_ghost_file(device)
+                    self.dynagen.jitsharing()
                     for line in device.start():
                         print line.strip()
                     if delay != 0 and device != self.dynagen.devices.values()[-1]:
@@ -249,6 +248,7 @@ conf
                     else:
                         print 'Warning: Starting %s with no idle-pc value' % device.name
                 self.dynagen.check_ghost_file(device)
+                self.dynagen.jitsharing()
                 for line in device.start():
                     print line.strip()
             except IndexError:
@@ -391,7 +391,7 @@ Pemuwrapper: Thomas Pani
 Pemu: Milen Svobodnikov
 Thanks to the authors of the ConfObj library
 
-And big thanks of course to Chris Filot as the author of Dynamips.
+And big thanks of course to Christophe Fillot as the author of Dynamips.
 """
 
     def do_shell(self, args):
@@ -1473,7 +1473,9 @@ def error(msg):
 def debug(string):
     """ Print string if debugging is true"""
 
-    if globaldebug >= 2: 
+    import __main__
+    # Debug level 2, console debugs
+    if __main__.dynagen.debuglevel >= 2:
         print '  DEBUG: ' + str(string)
 
 

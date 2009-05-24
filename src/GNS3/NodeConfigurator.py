@@ -345,10 +345,10 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             self.on_cancelButton_clicked()
             QtGui.QDialog.reject(self)
         else:
-            self.on_applyButton_clicked()
+            self.on_applyButton_clicked(close=True)
             QtGui.QDialog.accept(self)
 
-    def on_applyButton_clicked(self):
+    def on_applyButton_clicked(self, close=False):
         """ Private slot called to apply the settings
         """
 
@@ -359,13 +359,19 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                 if item.parent():
                         config = page.saveConfig(item.getIDs()[0])
                         node = globals.GApp.topology.getNode(item.getIDs()[0])
-                        node.set_config(config)
+                        if close:
+                            node.setUndoConfig(config, node.duplicate_config())
+                        else:
+                            node.set_config(config)
                 else:
                     children = item.getIDs()
                     for child in children:
                         config = page.saveConfig(child)
                         node = globals.GApp.topology.getNode(child)
-                        node.set_config(config)
+                        if close:
+                            node.setUndoConfig(config, node.duplicate_config())
+                        else:
+                            node.set_config(config)
 
     def on_cancelButton_clicked(self):
         """ Private slot called to cancel the settings

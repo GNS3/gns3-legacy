@@ -40,6 +40,7 @@ from GNS3.Node.SIMHOST import SIMHOST, init_simhost_id
 from GNS3.SimhostManager import SimhostManager
 from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Annotation import Annotation
+import GNS3.UndoFramework as undo 
 
 class Topology(QtGui.QGraphicsScene):
     """ Topology class
@@ -60,6 +61,10 @@ class Topology(QtGui.QGraphicsScene):
         
         QtGui.QGraphicsScene.__init__(self, parent)
         self.setSceneRect(-(width / 2), -(height / 2), width, height)
+
+        self.undoStack = QtGui.QUndoStack(self)
+        self.undoStack.setUndoLimit (20)
+        self.lastAddedLink = None
 
     def mousePressEvent(self, event):
 
@@ -108,6 +113,9 @@ class Topology(QtGui.QGraphicsScene):
     def clear(self):
         """ Clear the topology
         """
+
+        # Clear Undo Stack first
+        self.undoStack.clear()
 
         for n_key in self.__nodes.copy().iterkeys():
             self.deleteNode(n_key)
@@ -182,7 +190,7 @@ class Topology(QtGui.QGraphicsScene):
                     hypervisor_min_ram = hypervisor_conf.used_ram
                     selected_hypervisor = hypervisor_key
             if not selected_hypervisor:
-                debug('No hypervisor found for load-balancing !')
+                debug('No hypervisor found for load-balancing!')
                 selected_hypervisor = hypervisors[0]
             external_hypervisor_key = selected_hypervisor
         else:
@@ -345,6 +353,14 @@ class Topology(QtGui.QGraphicsScene):
         node.set_hypervisor(self.dynagen.dynamips[simhost_name])
         return True
         
+    def addNodeFromScene(self, node):
+        """ Add node in the topology, called from Scene
+            node: object
+        """
+        
+        command = undo.AddItem(self, node, "New node %s" % node.hostname)
+        self.undoStack.push(command)
+        
     def addNode(self, node):
         """ Add node in the topology
             node: object
@@ -427,6 +443,7 @@ class Topology(QtGui.QGraphicsScene):
 
             self.__nodes[node.id] = node
             self.addItem(node)
+
             if node.configNode() == False:
                 self.deleteNode(node.id)
         except (lib.DynamipsVerError, lib.DynamipsError), msg:
@@ -449,6 +466,14 @@ class Topology(QtGui.QGraphicsScene):
         self.changed = True
         return
 
+    def deleteNodeFromScene(self, id):
+        """ Delete a node from the topology, called from Scene
+        """
+        
+        node = self.__nodes[id]
+        command = undo.DeleteItem(self, node, "Node %s deleted" % node.hostname)
+        self.undoStack.push(command)
+        
     def deleteNode(self, id):
         """ Delete a node from the topology
         """
@@ -525,6 +550,7 @@ class Topology(QtGui.QGraphicsScene):
 
         self.__links.add(link)
         self.addItem(link)
+        self.lastAddedLink = link
 
     def updateStates(self, src_node, dst_node):
         """ Start nodes that are always on and update interface states
@@ -545,7 +571,21 @@ class Topology(QtGui.QGraphicsScene):
             return False
         return True
         
-    def addLink(self, srcid, srcif, dstid, dstif):
+    def addLinkFromScene(self, srcid, srcif, dstid, dstif):
+        """ Add a link to the topology, called from Scene
+        """
+        
+#        self.undoStack.beginMacro("Adding link")
+        command = undo.AddLink(self, srcid, srcif, dstid, dstif)
+        self.undoStack.push(command)
+#        self.undoStack.endMacro()
+        if command.getStatus() == False:
+            print 'UNDO'
+            self.undoStack.undo()
+            return False
+        return True
+        
+    def addLink(self, srcid, srcif, dstid, dstif, draw=True):
         """ Add a link to the topology
         """
 
@@ -619,7 +659,8 @@ class Topology(QtGui.QGraphicsScene):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"), translate("Topology", "Connection lost"))
             return False
 
-        self.recordLink(srcid, srcif, dstid, dstif, src_node, dst_node)
+        if draw:
+            self.recordLink(srcid, srcif, dstid, dstif, src_node, dst_node)
 
         try:
             # start nodes that are always on
@@ -645,6 +686,13 @@ class Topology(QtGui.QGraphicsScene):
 
         return True
 
+    def deleteLinkFromScene(self, link):
+        """ Delete a link from the topology, called from Scene
+        """
+        
+        command = undo.DeleteLink(self, link)
+        self.undoStack.push(command)
+        
     def deleteLink(self, link):
         """ Delete a link from the topology
         """

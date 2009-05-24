@@ -152,7 +152,7 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         if config:
             ETHSWconfig = config
         else:
-            ETHSWconfig  = self.node.config
+            ETHSWconfig  = self.node.duplicate_config()
 
         ETHSWconfig['ports'] = self.ports
         ETHSWconfig['vlans'] = self.vlans

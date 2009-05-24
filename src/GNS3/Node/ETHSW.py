@@ -117,6 +117,15 @@ class ETHSW(AbstractNode):
             self.config['ports'][port] = 'access'
             self.config['vlans'][1].append(port)
 
+    def duplicate_config(self):
+        """ Returns a copy of the configuration
+        """
+        
+        config = self.config.copy()
+        config['vlans'] = self.config['vlans'].copy()
+        config['ports'] = self.config['ports'].copy()
+        return (config)
+            
     def get_config(self):
         """ Returns the local configuration copy
         """
@@ -128,7 +137,9 @@ class ETHSW(AbstractNode):
             config: dict
         """
 
-        self.config = config
+        self.config = config.copy()
+        self.config['vlans'] = config['vlans'].copy()
+        self.config['ports'] = config['ports'].copy()
         globals.GApp.topology.changed = True
 
     def set_hypervisor(self,  hypervisor):

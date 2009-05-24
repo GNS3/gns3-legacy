@@ -77,13 +77,22 @@ class DecorativeNode(AbstractNode):
         """
 
         return self.config
+        
+    def duplicate_config(self):
+        """ Returns a copy of the configuration
+        """
+        
+        config = self.config.copy()
+        config['interfaces'] = list(self.config['interfaces'])
+        return (config)
 
     def set_config(self, config):
         """ Set a configuration
             config: dict
         """
-
-        self.config = config
+        
+        self.config = config.copy()
+        self.config['interfaces'] = list(config['interfaces'])
 
     def getInterfaces(self):
         """ Returns all interfaces

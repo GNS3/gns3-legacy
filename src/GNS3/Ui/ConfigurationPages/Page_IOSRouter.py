@@ -155,7 +155,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         if config:
             router_config = config
         else:
-            router_config = node.get_config()
+            router_config = node.duplicate_config()
 
         mac = str(self.lineEditMAC.text())
         if mac and not re.search(r"""^([0-9a-fA-F]{2}[:-]){5}[0-9a-fA-F]{2}$""", mac):

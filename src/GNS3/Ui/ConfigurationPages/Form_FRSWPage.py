@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_FRSWPage.ui'
 #
-# Created: Tue May 12 17:08:18 2009
+# Created: Fri May 22 13:44:09 2009
 #      by: PyQt4 UI code generator 4.4.4
 #
 # WARNING! All changes made in this file will be lost!

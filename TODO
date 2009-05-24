@@ -12,3 +12,10 @@ TODO LIST
  * Decorative node for Voice labs (gateway, gatekeeper, ip phones, sip servers, call managers).
  * Check unpacking of asa803-k8.bin
  * Create DMG for MacOSX + check everything.
+ * Slow start-all
+ * Generated labels for interfaces should follow a moving node
+ * cpulimit integration
+ * Clean router option (config + nvram)
+ * Reload router option
+ * A view of z values of the objects
+ * Pre-recorded terminal config

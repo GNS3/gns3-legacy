@@ -147,7 +147,7 @@ class Page_ATMBR(QtGui.QWidget, Ui_ATMBRPage):
         if config:
             ATMBRconfig = config
         else:
-            ATMBRconfig  = self.node.config
+            ATMBRconfig  = self.node.duplicate_config()
 
         ATMBRconfig['mapping'] = self.mapping
         ATMBRconfig['ports'] = []

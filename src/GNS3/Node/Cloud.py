@@ -67,13 +67,22 @@ class Cloud(AbstractNode):
         """
 
         return self.config
+        
+    def duplicate_config(self):
+        """ Returns a copy of the configuration
+        """
+        
+        config = self.config.copy()
+        config['nios'] = list(self.config['nios'])
+        return (config)
 
     def set_config(self, config):
         """ Set a configuration in Dynamips
             config: dict
         """
 
-        self.config = config
+        self.config = config.copy()
+        self.config['nios'] = list(config['nios'])
         globals.GApp.topology.changed = True
 
     def getInterfaces(self):

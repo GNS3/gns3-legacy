@@ -134,6 +134,12 @@ class FW(AbstractNode, FWDefaults):
 
         assert(self.fw)
         return self.local_config
+        
+    def duplicate_config(self):
+        """ Returns a copy of the local configuration
+        """
+
+        return self.local_config.copy()
 
     def set_config(self, config):
         """ Set a configuration in Pemu
@@ -153,6 +159,7 @@ class FW(AbstractNode, FWDefaults):
                 except lib.DynamipsError, e:
                     error(e)
 
+        self.local_config = config.copy()
         self.dynagen.update_running_config()
         self.running_config =  self.dynagen.running_config[self.d][self.f]
         debug("Node " + self.hostname + ": running config: " + str(self.running_config))

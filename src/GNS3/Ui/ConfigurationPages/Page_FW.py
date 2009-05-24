@@ -75,7 +75,7 @@ class Page_FW(QtGui.QWidget, Ui_FWPage):
         if config:
             fw_config = config
         else:
-            fw_config = node.get_config()
+            fw_config = node.duplicate_config()
 
         image = unicode(self.lineEditImage.text())
         if image:

@@ -35,13 +35,12 @@ from dynamips_lib import Dynamips, PA_C7200_IO_FE, PA_A1, PA_FE_TX, PA_4T, PA_8T
      PA_GE, PA_C7200_IO_2FE, PA_C7200_IO_GE_E, C1700, CISCO1710_MB_1FE_1E, C1700_MB_1ETH, \
      DEVICETUPLE, DynamipsVerError, DynamipsErrorHandled, NM_CIDS, NM_NAM, get_reverse_udp_nio
 from pemu_lib import Pemu, FW, nosend_pemu
-from simhost_lib import LWIP, SIMHOST, nosend_simhost
 from validate import Validator
 from configobj import ConfigObj, flatten_errors
 from optparse import OptionParser
 
 # Constants
-VERSION = '0.11.0.100407'
+VERSION = '0.11.0.090518'
 CONFIGSPECPATH = ['/usr/share/dynagen', '/usr/local/share']
 CONFIGSPEC = 'configspec'
 INIPATH = ['/etc', '/usr/local/etc']
@@ -122,7 +121,6 @@ telnetstring = ''  # global telnet string value for telneting onto consoles
 interface_re = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po|i|id|IDS-Sensor|an|Analysis-Module)([0-9]+)\/([0-9]+)""", re.IGNORECASE)  # Regex matching intefaces
 interface_noport_re = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)""", re.IGNORECASE)  # Regex matching intefaces with out a port (e.g. "f0")
 pemu_int_re = re.compile(r"""^(e|et|eth)([0-9])""", re.IGNORECASE)
-simhost_int_re = re.compile(r"""^(e|et|eth)([0-9])""", re.IGNORECASE)
 number_re = re.compile(r"""^[0-9]*$""")  # Regex matching numbers
 mapint_re = re.compile(r"""^([0-9]*):([0-9]*)$""")  # Regex matching Frame Relay mappings or ATM vpi mappings
 mapvci_re = re.compile(r"""^([0-9]*):([0-9]*):([0-9]*)$""")  # Regex matching ATM vci mappings
@@ -149,7 +147,8 @@ class Dynagen:
         self.bridges = {}  # Dictionary of bridge objects, indexed by name
         self.autostart = {}  # Dictionary that tracks autostart, indexed by device name
         self.ghostsizes = {}  # A dict of the sizes of the ghosts
-        self.ghosteddevices = {}  # A dict of devices that will use ghosted IOS indexed by device name\
+        self.ghosteddevices = {}  # A dict of devices that will use ghosted IOS indexed by device name
+        self.jitsharedevices= {}  # A dict of devices that will use JIT blocks sharring indexed by device name
         self.configurations = {}  # A global copy of all b64 exported configurations from the network file indexed by devicename
         self.globalconfig = {}  # A global copy of the config that console.py can access
         self.global_filename = 'lab.net'
@@ -238,6 +237,9 @@ class Dynagen:
 
             if option == 'ghostios':
                 self.ghosteddevices[device.name] = value
+                
+            if option == 'jitsharing':
+                self.jitshareddevices[device.name] = value
 
             if option == 'ghostsize':
                 self.ghostsizes[device.name] = value
@@ -533,7 +535,7 @@ class Dynagen:
             self.smartslot(remote_device, pa2, slot2, port2)
             
             #perform the connection
-            if (isinstance(local_device, FW) or isinstance(local_device, SIMHOST)) and isinstance(remote_device, Router):
+            if isinstance(local_device, FW) and isinstance(remote_device, Router):
                 local_device.connect_to_dynamips(
                     port1,
                     remote_device.dynamips,
@@ -543,7 +545,7 @@ class Dynagen:
                     )
             elif isinstance(local_device, FW) and isinstance(remote_device, FW):
                 local_device.connect_to_fw(port1, remote_device, port2)
-            elif isinstance(local_device, Router) and (isinstance(remote_device, FW) or isinstance(remote_device, SIMHOST)):
+            elif isinstance(local_device, Router) and isinstance(remote_device, FW):
                 remote_device.connect_to_dynamips(
                     port2,
                     local_device.dynamips,
@@ -613,7 +615,7 @@ class Dynagen:
             else:
                 return False
                 
-            if isinstance(local_device, FW) or isinstance(local_device, SIMHOST):
+            if isinstance(local_device, FW):
                 local_device.connect_to_dynamips(
                     port1,
                     remote_device.dynamips,
@@ -648,10 +650,6 @@ class Dynagen:
             slot: slot number
             port: port number
         """
-
-        # ignore simhost devices
-        if isinstance(router, SIMHOST):
-            return
 
         if pa[:2].lower() == 'an':
             # Need to handle the Analysis-Module with two chars, because 'a' is an
@@ -1025,80 +1023,9 @@ class Dynagen:
         for section in config.sections:
             server = config[section]
             if ' ' in server.name:
-                #create pemu or simhost
+                #create pemu
                 (emulator, host) = server.name.split(' ')
-                if emulator == 'lwip':
-                    #connect to the LWIP hypervisor
-                    try:
-                        lwip_name = host
-                        #create the LWIP instance and add it to global dictionary
-                        (host, port) = lwip_name.rsplit(':', 1)
-                        self.dynamips[lwip_name] = LWIP(host, int(port))
-                        self.dynamips[lwip_name].reset()
-                    except DynamipsError:
-                        self.dowarning('Could not connect to lwip server %s' % server.name)
-                        self.import_error = True
-                        continue
-
-                    if server['workingdir'] == None:
-                        # If workingdir is not specified, set it to the same directory
-                        # as the network file
-                        realpath = os.path.realpath(FILENAME)
-                        workingdir = os.path.dirname(realpath)
-                    else:
-                        workingdir = server['workingdir']
-                    try:
-                        self.dynamips[lwip_name].workingdir = workingdir
-                    except DynamipsError:
-                        self.dowarning('Could not set working directory to %s on server %s' % (workingdir, server.name))
-                        self.import_error = True
-
-                    for subsection in server.sections:
-                        device = server[subsection]
-                        # Create the device
-                        try:
-                            (devtype, name) = device.name.split(' ')
-                        except ValueError:
-                            self.dowarning ('Unable to interpret line: "[[' + device.name + ']]"')
-                            self.import_error = True
-                            continue
-
-                        if devtype.lower() == 'simhost':
-                            dev = SIMHOST(self.dynamips[lwip_name], name=name)
-                        else:
-                            self.dowarning('Unable to identify the type of device ' + device.name)
-                            self.import_error = True
-                            continue
-
-                        #add the whole SIMHOST into global dictionary
-                        self.devices[name] = dev
-
-                        #set the special device options
-                        for subitem in device.scalars:
-                            if device[subitem] != None:
-                                self.debug('  ' + subitem + ' = ' + unicode(device[subitem]))
-                                if simhost_int_re.search(subitem) and subitem[-6:] == 'params':
-                                    interface = subitem[:3]
-                                    (ip, mask, gw) = device[subitem].split(' ')
-                                    
-                                    dev.interfaces [interface] = {'ip': ip, 
-                                                                                'mask': mask, 
-                                                                                'gw': gw}
-                                    
-#                                    print dev.interface_setaddr(interface, ip, mask, gw)
-#                                    print dev.start_interface(interface)
-### HERE
-                                    continue
-                                elif subitem.lower() in ['x', 'y', 'hx', 'hy', 'symbol']:
-                                    continue
-                                elif simhost_int_re.search(subitem):
-                                    # Add the tuple to the list of connections to deal with later
-#                                    connectionlist.append((dev, subitem, device[subitem]))
-                                    pass
-                                else:
-                                    self.dowarning( 'ignoring unknown config item: %s = %s' % (str(subitem), str(device[subitem])))
-                                    self.import_error = True
-                elif emulator == 'pemu':
+                if emulator == 'pemu':
                     #connect to the PEMU Wrapper
                     try:
                         #add ':10525' string to the name so that it does not conflict with name of dynamips server
@@ -1200,6 +1127,11 @@ class Dynagen:
                 else:
                     self.dowarning('Bad emulator definition format: %s' % server.name)
                     self.import_error = True
+            elif server.name.upper() == 'GNS3-DATA':
+                # Silently ignore anything in this section
+                # However, a "copy run start" will obliterate the section too
+                # Code a way to preserve this
+                continue
             else:
                 #this is dynamips hypervisor
                 server.host = server.name
@@ -1649,6 +1581,41 @@ class Dynagen:
 
         except DynamipsError, e:
             self.doerror(e)
+            
+    def jitsharing(self):
+        """ Implement JIT blocks sharing"""
+
+        try:
+            for device in self.devices.values():
+
+                if not self.jitshareddevices[device.name]:
+                    continue
+
+                if device.imagename == None:
+                    raise DynamipsError ('No IOS image specified for device: ' + device.name)
+
+                # Search of an existing JIT sharing groups across all
+                # dynamps servers running on the same host as the device
+                allgroups = []
+                for d in self.dynamips.values():
+                    if isinstance(d, Dynamips):
+                        allgroups.extend(d.jitsharing_groups)
+                if device.imagename not in allgroups:
+                    # Only create a JIT sharing group if at least two instances on this server use this image
+                    jitshared_devices = []
+                    for router in self.devices.values():
+                        try:
+                            if router.dynamips.host == device.dynamips.host and router.imagename == device.imagename:
+                                if self.jitshareddevices[router.name]:
+                                    jitshared_devices.append(router)
+                        except AttributeError:
+                            continue
+                    if len(jitshared_devices) > 1:
+                        # Create a new JIT sharing group
+                        self._create_jitsharing_group(jitshared_devices)
+
+        except DynamipsError, e:
+            self.doerror(e)
 
     def apply_idlepc(self):
         """  Apply idlepc values from the database"""
@@ -1738,8 +1705,6 @@ class Dynagen:
         for hypervisor in self.dynamips.values():
             if isinstance(hypervisor, Pemu):
                 h = 'pemu ' + hypervisor.host
-            elif  isinstance(hypervisor, LWIP):
-                h = 'lwip ' + hypervisor.host + ":" + str(hypervisor.port)
             else:
                 h = hypervisor.host + ":" + str(hypervisor.port)
 
@@ -1747,7 +1712,7 @@ class Dynagen:
             #go thought all routers configs in this hypervisor
             for device in self.devices.values():
                 #skip non-routers
-                if isinstance(device, FRSW) or isinstance(device, ATMSW) or isinstance(device, ETHSW) or isinstance(device, ATMBR) or isinstance(device, SIMHOST):
+                if isinstance(device, FRSW) or isinstance(device, ATMSW) or isinstance(device, ETHSW) or isinstance(device, ATMBR):
                     #TODO FW, FRSW, ATMSW, ETHSW support
                     continue
                 if device.dynamips == hypervisor:
@@ -1986,28 +1951,6 @@ class Dynagen:
                     self.running_config[h][f][con] = self._translate_interface_connection(remote_adapter, remote_router, remote_port)
                 elif isinstance(remote_router, FRSW) or isinstance(remote_router, ATMSW) or isinstance(remote_router, ETHSW):
                     self.running_config[h][f][con] = remote_router.name + " " + str(remote_port)
-                    
-    def _update_running_config_for_simhost(self, hypervisor, device, need_active_config):
-        """parse the all data structures associated with this simhost and update the running_config properly"""
-
-        h = 'lwip ' + hypervisor.host + ':' + str(hypervisor.port)
-        sm = 'SIMHOST ' + device.name
-        self.running_config[h][sm] = {}
-
-        for (interface, params) in device.interfaces.iteritems():
-            self.running_config[h][sm][interface + '_params'] = {}
-            self.running_config[h][sm][interface + '_params'] = params['ip'] + ' ' + params['mask'] + ' ' + params['gw']
-        
-        for port in device.nios:
-            if device.nios[port] != None:
-                con = 'et' + str(port)
-                (remote_router, remote_adapter, remote_port) = get_reverse_udp_nio(device.nios[port])
-                if isinstance(remote_router, FW):
-                    self.running_config[h][sm][con] = remote_router.name + ' ' + remote_adapter + str(remote_port)
-                elif isinstance(remote_router, Router):
-                    self.running_config[h][sm][con] = self._translate_interface_connection(remote_adapter, remote_router, remote_port)
-                elif isinstance(remote_router, FRSW) or isinstance(remote_router, ATMSW) or isinstance(remote_router, ETHSW):
-                    self.running_config[h][sm][con] = remote_router.name + " " + str(remote_port)
 
     def _translate_interface_connection(self, remote_adapter, remote_router, remote_port):
         """translate the dynamips port values into dynagen port values"""
@@ -2060,8 +2003,6 @@ class Dynagen:
         for hypervisor in self.dynamips.values():
             if isinstance(hypervisor, Pemu):
                 h = 'pemu ' + hypervisor.host
-            elif isinstance(hypervisor, LWIP):
-                h = 'lwip ' + hypervisor.host + ":" + str(hypervisor.port)
             else:
                 h = hypervisor.host + ":" + str(hypervisor.port)
             self.running_config[h] = {}
@@ -2095,8 +2036,6 @@ class Dynagen:
                         self._update_running_config_for_router(hypervisor, device, need_active_config)
                     elif isinstance(device, FW):
                         self._update_running_config_for_fw(hypervisor, device, need_active_config)
-                    elif isinstance(device, SIMHOST):
-                        self._update_running_config_for_simhost(hypervisor, device, need_active_config)
 
         #after everything is done merge this config with defaults_config
         temp_config = ConfigObj(self.defaults_config, encoding='utf-8')
@@ -2148,20 +2087,6 @@ class Dynagen:
                 return ('unknown device: ' + params[1], )
         else:
             return ('invalid show run command', )
-
-#    def check_ghost_file(self, device):
-#        """check whether the ghostfile for this instance exists, if not create it"""
-#
-#        if device.ghost_status == 2:
-#            ghost_instance = device.formatted_ghost_file()
-#            # Search of an existing ghost instance across all
-#            # dynamips servers running on the same host as the device
-#            allghosts = []
-#            for d in self.dynamips.values():
-#                if isinstance(d, Dynamips):
-#                    allghosts.extend(d.ghosts)
-#            if ghost_instance not in allghosts:
-#                self._create_ghost_instance(device)
 
     def check_ghost_file(self, device):
         """check whether the ghostfile for this instance exists, if not create it"""
@@ -2215,6 +2140,26 @@ class Dynagen:
         ghost.start()
         ghost.stop()
         ghost.delete()
+
+    def _create_jitsharing_group(self, devices):
+        """ Create a new JIT sharing group to be used by 'devices'
+        """
+
+        # use first device in the list to get the dynamips server which gives us the allocated JIT sharing groups
+        allocated_groups = devices[0].dynamips.jitsharing_groups
+        
+        # find an unallocated group number
+        new_allocated_number = None
+        for new_number in range(0, 127):
+            if new_number in allocated_groups.values():
+                continue
+            new_allocated_number = new_number
+                
+        if not new_allocated_number:
+            raise DynamipsError('All JIT sharing groups are allocated!')
+
+        for router in jitshared_devices:
+            router.jitsharing_group = new_allocated_number
 
     def debug(self, string):
         """ Print string if debugging is true"""
@@ -2339,6 +2284,7 @@ if __name__ == '__main__':
 
             dynagen.push_embedded_configurations()
             dynagen.ghosting()
+            dynagen.jitsharing()
             dynagen.apply_idlepc()
             dynagen.autostart_instances()
 

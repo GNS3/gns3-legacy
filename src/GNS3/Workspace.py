@@ -69,6 +69,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
         
         # By default don't show interface names
         self.flg_showInterfaceNames = False
+    
+        # Load UndoView with the Undo Stack
+        self.UndoViewDock.setStack(globals.GApp.topology.undoStack)
+
+        # By default, don't show the UndoView
+        self.dockWidget_UndoView.hide()
 
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)
@@ -105,7 +111,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_DrawRectangle, QtCore.SIGNAL('triggered()'), self.__action_DrawRectangle)
         self.connect(self.action_DrawEllipse, QtCore.SIGNAL('triggered()'), self.__action_DrawEllipse)
         self.connect(self.action_Snapshot, QtCore.SIGNAL('triggered()'), self.__action_Snapshot)
-
+        self.connect(self.action_Undo, QtCore.SIGNAL('triggered()'), self.__action_Undo)
+        self.connect(self.action_Redo, QtCore.SIGNAL('triggered()'), self.__action_Redo)
+        
     def __createMenus(self):
         """ Add own menu actions, and create new sub-menu
         """
@@ -114,6 +122,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.subm.addAction(self.dockWidget_NodeTypes.toggleViewAction())
         self.subm.addAction(self.dockWidget_TopoSum.toggleViewAction())
         self.subm.addAction(self.dockWidget_Console.toggleViewAction())
+        self.subm.addAction(self.dockWidget_UndoView.toggleViewAction())
         self.menu_View.addSeparator().setText(translate("Workspace", "Docks"))
         self.menu_View.addMenu(self.subm)
 
@@ -427,7 +436,20 @@ class Workspace(QMainWindow, Ui_MainWindow):
         globals.GApp.scene.reloadRenderers()
         self.nodesDock.clear()
         self.nodesDock.populateNodeDock()
+    
+    def __action_Undo(self):
+        """ Implement the QAction `Undo'
+        - Undo a action
+        """
+        
+        globals.GApp.topology.undoStack.undo()
 
+    def __action_Redo(self):
+        """ Implement the QAction `Undo'
+        - Redo a action
+        """
+
+        globals.GApp.topology.undoStack.redo()
 
     def __action_SelectAll(self):
         """ Implement the QAction `SelectAll'

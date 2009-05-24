@@ -143,7 +143,7 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
         if config:
             FRSWconfig = config
         else:
-            FRSWconfig  = self.node.config
+            FRSWconfig  = self.node.duplicate_config()
 
         FRSWconfig['mapping'] = self.mapping
         FRSWconfig['ports'] = []

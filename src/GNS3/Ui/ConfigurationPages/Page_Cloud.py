@@ -438,7 +438,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         if config:
             Cloudconfig = config
         else:
-            Cloudconfig  = node.config
+            Cloudconfig  = node.duplicate_config()
 
         Cloudconfig['nios']  = self.nios
 

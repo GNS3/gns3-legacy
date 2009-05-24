@@ -27,7 +27,7 @@ import os
 import re
 import copy
 
-#version = "0.11.0.080326"
+#version = "0.11.0.090518"
 # Minimum version of dynamips required. Currently 0.2.8-RC1 (due to change to
 # hypervisor commands related to slot/port handling, and the pluggable archtecture
 # that changed model specific commands to "vm")
@@ -252,6 +252,7 @@ class Dynamips(object):
                 raise DynamipsError, 'Could not connect to server'
         self.__devices = []
         self.__ghosts = {}
+        self.__jitsharing_groups = {}
         self.__workingdir = ''
         self.__host = host
         self.__port = port
@@ -427,6 +428,22 @@ class Dynamips(object):
         return self.__ghosts
 
     ghosts = property(__getghosts, __setghosts, doc='ghosts hosted by this hypervisor instance')
+    
+    def __setjitsharing_groups(self, jitsharingdict):
+        """ Add a JIT blocks sharing group name to the list of groups created on this hypervisor instance
+            jitsharingdict is of the form (imagename, groupnumber)
+        """
+
+        key, value = jitsharingdict
+        self.__jitsharing_groups[key] = value
+
+    def __getjitsharing_groups(self):
+        """ Returns a list of the JIT blocks sharing groups hosted by this hypervisor instance
+        """
+
+        return self.__jitsharing_groups
+
+    jitsharing_groups = property(__getjitsharing_groups, __setjitsharing_groups, doc='JIT blocks sharing groups hosted by this hypervisor instance')
 
 
     def list(self, subsystem):
@@ -530,7 +547,6 @@ class NIO_udp(NIO):
         """return an info string for .net file config"""
         (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self)
         from pemu_lib import FW
-        from simhost_lib import SIMHOST
         if isinstance(remote_device, Router):
             (rem_int_name, rem_dynagen_port) = remote_adapter.interfaces_mips2dyn[remote_port]
             if remote_device.model_string in ['1710', '1720', '1721', '1750']:
@@ -544,15 +560,12 @@ class NIO_udp(NIO):
             return remote_device.name + " " + str(remote_port)
         elif isinstance(remote_device, FW):
             return remote_device.name + ' ' + remote_adapter + str(remote_port)
-        elif isinstance(remote_device, SIMHOST):
-            return remote_device.name + ' ' + remote_adapter + str(remote_port)
 
     def info(self):
         """return info string about this NIO"""
 
         (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self)
         from pemu_lib import FW
-        from simhost_lib import SIMHOST
         if isinstance(remote_device, Router):
             (rem_int_name, rem_dynagen_port) = remote_adapter.interfaces_mips2dyn[remote_port]
             if remote_device.model_string in ['1710', '1720', '1721', '1750']:
@@ -580,8 +593,6 @@ class NIO_udp(NIO):
             return ' is connected to ATM bridge ' + remote_device.name + ' port ' + str(remote_port)
         elif isinstance(remote_device, FW):
             return ' is connected to firewall ' + remote_device.name + ' Ethernet' + str(remote_port)
-        elif isinstance(remote_device, SIMHOST):
-            return ' is connected to host ' + remote_device.name + ' Ethernet' + str(remote_port)
 
     def __getreverse_nio(self):
         return self.__reverse_nio
@@ -2002,6 +2013,8 @@ class Router(object):
         self.__mmap = True
         self.__state = 'stopped'
         self.__ghost_status = 0
+        self.__ghost_file = None
+        self.__jitsharing_group = None
         self.__sparsemem = 0
         self.__idlemax = 1500
         self.__idlesleep = 30
@@ -2018,6 +2031,8 @@ class Router(object):
             'exec_area': None,
             'mmap': True,
             'ghost_status': 0,
+            'ghost_file': None, 
+            'jitsharing_group': None, 
             'sparsemem': 'False',
             'idlemax': 1500,
             'idlesleep': 30,
@@ -2300,6 +2315,12 @@ class Router(object):
             image_info = image_info + 'shared ' + self.ghost_file
         else:
             image_info = image_info + self.image
+            
+        jitsharing_group_info = '  JIT blocks sharing group is '
+        if self.jitsharing_group:
+            jitsharing_group_info=  jitsharing_group_info + str(self.jitsharing_group)
+        else:
+            jitsharing_group_info=  '  No JIT blocks sharing enabled'
 
         #get info about idlepc value
         idlepc_info = ""
@@ -2316,7 +2337,7 @@ class Router(object):
         #create final output, with proper indentation
         return 'Router ' + self.name + ' is ' + self.state + '\n' + '  Hardware is dynamips emulated Cisco ' + model + router_specific_info + ' with ' + \
                str(self.ram) + ' MB RAM\n' + '  Router\'s hypervisor runs on ' + self.dynamips.host + ":" + str(self.dynamips.port) + \
-               ', console is on port ' + str(self.console) + image_info + idlepc_info + '\n  ' + str(self.nvram) + ' KB NVRAM, ' + str(self.disk0) + \
+               ', console is on port ' + str(self.console) + image_info + idlepc_info + '\n' + jitsharing_group_info  + '\n  ' + str(self.nvram) + ' KB NVRAM, ' + str(self.disk0) + \
                ' MB disk0 size, ' + str(self.disk1) + ' MB disk1 size' + '\n' + slot_info
 
     def idleprop(self, function, value=None):
@@ -2631,12 +2652,15 @@ class Router(object):
 
         if self.__image == None:
             return None
-        # basename doesn't work on Unix with Windows paths, so let's use this little trick
+
         image = self.__image
+        # basename doesn't work on Unix with Windows paths, let's use ntpath module
         if not sys.platform.startswith('win') and image[1] == ":":
-            image = image[2:]
-            image = image.replace("\\", "/")
-        image = os.path.basename(image)
+            import ntpath
+            image = ntpath.basename(image)
+        else:
+            image = os.path.basename(image)
+
         return image
 
     imagename = property(__getimagename, doc='The name of the IOS image file for this router')
@@ -2857,6 +2881,28 @@ class Router(object):
         return self.__ghost_file
 
     ghost_file = property(__getghost_file, __setghost_file, doc='The ghost file associated with this instance')
+    
+    def __setjitsharing_group(self, jitsharing_group):
+        """ Set the JIT blocks sharing group for this instance
+            Use a number from 0 to 127
+            jitsharing_group: (int) JIT blocks sharing group number
+        """
+
+        if not self.imagename:
+            raise DynamipsError, 'Register an image first'
+        
+        send(self.__d, 'vm set_tsg %s %s' % (self.__name, str(jitsharing_group)))
+        self.__jitsharing_group = jitsharing_group
+
+        self.__d.jitsharing_groups = (self.imagename, jitsharing_group)
+
+    def __getjitsharing_group(self):
+        """ Returns the JIT blocks sharing group number
+        """
+
+        return self.__jitsharing_group
+
+    jitsharing_group = property(__getjitsharing_group, __setjitsharing_group, doc='The JIT blocks sharing group associated with this instance')
 
     def __setsparsemem(self, status):
         """ Set the sparsemem of this instance
@@ -4825,11 +4871,8 @@ def get_reverse_udp_nio(remote_nio):
 
     #if the local_nio is UDPConnection of FW
     from pemu_lib import FW
-    from simhost_lib import SIMHOST
     if isinstance(local_nio.adapter, FW):
         return [local_nio.fw, 'e', local_nio.port]
-    if isinstance(local_nio.adapter, SIMHOST):
-        return [local_nio.sim, 'e', local_nio.port]
     if isinstance(local_nio.adapter, FRSW) or isinstance(local_nio.adapter, ATMSW) or isinstance(local_nio.adapter, ETHSW) or isinstance(local_nio.adapter, ATMBR):
         return [local_nio.adapter, 'nothing', local_nio.port]
 

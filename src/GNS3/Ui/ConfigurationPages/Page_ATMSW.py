@@ -188,7 +188,7 @@ class Page_ATMSW(QtGui.QWidget, Ui_ATMSWPage):
         if config:
             ATMSWconfig = config
         else:
-            ATMSWconfig  = self.node.config
+            ATMSWconfig  = self.node.duplicate_config()
 
         ATMSWconfig['mapping'] = self.mapping
         ATMSWconfig['ports'] = []

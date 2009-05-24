@@ -118,12 +118,23 @@ class FRSW(AbstractNode):
 
         return self.config
 
+    def duplicate_config(self):
+        """ Returns a copy of the configuration
+        """
+        
+        config = self.config.copy()
+        config['ports'] = list(self.config['ports'])
+        config['mapping'] = self.config['mapping'].copy()
+        return (config)
+        
     def set_config(self, config):
         """ Set a configuration in Dynamips
             config: dict
         """
 
-        self.config = config
+        self.config = config.copy()
+        self.config['ports'] = list(config['ports'])
+        self.config['mapping'] = config['mapping'].copy()
         globals.GApp.topology.changed = True
 
     def set_hypervisor(self,  hypervisor):

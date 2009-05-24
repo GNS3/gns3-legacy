@@ -50,9 +50,8 @@
     <property name="title">
      <string>&amp;Edit</string>
     </property>
-    <addaction name="action_Copy"/>
-    <addaction name="action_Paste"/>
-    <addaction name="separator"/>
+    <addaction name="action_Undo"/>
+    <addaction name="action_Redo"/>
     <addaction name="separator"/>
     <addaction name="action_SelectAll"/>
     <addaction name="action_SelectNone"/>
@@ -294,6 +293,30 @@
    <addaction name="action_DrawRectangle"/>
    <addaction name="action_DrawEllipse"/>
   </widget>
+  <widget class="QDockWidget" name="dockWidget_UndoView">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="windowTitle">
+    <string>Undo Stack</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="margin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="UndoView" name="UndoViewDock"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
   <action name="action_About">
    <property name="text">
     <string>&amp;About</string>
@@ -533,34 +556,34 @@
     <string>Ctrl+Shift+P</string>
    </property>
   </action>
-  <action name="action_Copy">
+  <action name="action_Undo">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/edit-copy.svg</normaloff>:/icons/edit-copy.svg</iconset>
+     <normaloff>:/icons/edit-undo.svg</normaloff>:/icons/edit-undo.svg</iconset>
    </property>
    <property name="text">
-    <string>Copy</string>
+    <string>&amp;Undo</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+C</string>
+    <string>Ctrl+Z</string>
    </property>
   </action>
-  <action name="action_Paste">
+  <action name="action_Redo">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/edit-paste.svg</normaloff>:/icons/edit-paste.svg</iconset>
+     <normaloff>:/icons/edit-redo.svg</normaloff>:/icons/edit-redo.svg</iconset>
    </property>
    <property name="text">
-    <string>&amp;Paste</string>
+    <string>&amp;Redo</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+V</string>
+    <string>Ctrl+Y</string>
    </property>
   </action>
   <action name="action_SuspendAll">
@@ -719,6 +742,11 @@
    <class>Console</class>
    <extends>QTextEdit</extends>
    <header>GNS3.Console.h</header>
+  </customwidget>
+  <customwidget>
+   <class>UndoView</class>
+   <extends>QListView</extends>
+   <header>GNS3.UndoFramework</header>
   </customwidget>
  </customwidgets>
  <resources>

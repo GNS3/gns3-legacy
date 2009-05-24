@@ -21,10 +21,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 
 from socket import socket, AF_INET, SOCK_STREAM
-from dynamips_lib import NIO_udp, send, debug, DynamipsError, validate_connect, Bridge, DynamipsVerError, get_reverse_udp_nio, Router, FRSW, ATMSW, ETHSW, DynamipsWarning
+from dynamips_lib import NIO_udp, send, dowarning, debug, DynamipsError, validate_connect, Bridge, DynamipsVerError, get_reverse_udp_nio, Router, FRSW, ATMSW, ETHSW, DynamipsWarning
 import random
 
-#version = "0.11.0.110207"
+#version = "0.11.0.090518"
 (MAJOR, MINOR, SUB, RCVER) = (0, 2, 1, .1)
 INTVER = MAJOR * 10000 + MINOR * 100 + SUB + RCVER
 STRVER = '0.2.1-RC1'
@@ -386,6 +386,10 @@ class FW(object):
             # source and dest are on different dynamips servers
             src_ip = self.p.name
             dst_ip = dynamips.host
+
+            #check whether the user did not make a mistake in multi-server .net file
+            if src_ip == 'localhost' or src_ip =='127.0.0.1' or dst_ip =='localhost' or dst_ip == '127.0.0.1':
+                dowarning('Connecting %s port %s to %s slot %s port %s:\nin case of multi-server operation make sure you do not use "localhost" string in definition of dynamips hypervisor.\n'% (self.name, local_port, remote_slot.router.name, remote_slot.adapter, remote_port))
 
         #create the fw side of UDP connection
         send(self.p, 'pemu create_udp %s %i %i %s %i' % (self.name, local_port, src_udp, dst_ip, dst_udp))
