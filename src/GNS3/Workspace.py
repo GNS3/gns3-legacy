@@ -76,6 +76,20 @@ class Workspace(QMainWindow, Ui_MainWindow):
         # By default, don't show the UndoView
         self.dockWidget_UndoView.hide()
 
+        # Add Undo & Redo actions to Edit menu
+        action = globals.GApp.topology.undoStack.createUndoAction(self)
+        action.setIcon(QIcon(':/icons/edit-undo.svg'))
+        action.setShortcut(translate("Workspace", "Ctrl+Z"))
+        self.menu_Edit.addAction(action)
+        self.menu_Edit.insertAction(self.action_SelectAll, action)
+        
+        action = globals.GApp.topology.undoStack.createRedoAction(self)
+        action.setShortcut(translate("Workspace", "Ctrl+Y"))
+        action.setIcon(QIcon(':/icons/edit-redo.svg'))
+        self.menu_Edit.insertAction(self.action_SelectAll, action)
+
+        self.menu_Edit.insertAction(self.action_SelectAll, self.menu_Edit.addSeparator())
+
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)
         """

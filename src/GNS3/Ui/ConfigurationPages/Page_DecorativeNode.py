@@ -105,7 +105,7 @@ class Page_DecorativeNode(QtGui.QWidget, Ui_DecorativeNodePage):
         if config:
             DecorativeNodeconfig = config
         else:
-            DecorativeNodeconfig  = node.config.duplicate_config()
+            DecorativeNodeconfig  = node.duplicate_config()
 
         DecorativeNodeconfig['interfaces'] = self.interfaces
 

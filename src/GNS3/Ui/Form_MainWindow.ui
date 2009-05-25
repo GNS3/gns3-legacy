@@ -50,9 +50,6 @@
     <property name="title">
      <string>&amp;Edit</string>
     </property>
-    <addaction name="action_Undo"/>
-    <addaction name="action_Redo"/>
-    <addaction name="separator"/>
     <addaction name="action_SelectAll"/>
     <addaction name="action_SelectNone"/>
     <addaction name="separator"/>
@@ -415,7 +412,7 @@
   <action name="action_Export">
    <property name="icon">
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/edit-redo.svg</normaloff>:/icons/edit-redo.svg</iconset>
+     <normaloff>:/icons/export.svg</normaloff>:/icons/export.svg</iconset>
    </property>
    <property name="text">
     <string>&amp;Export</string>
@@ -640,7 +637,7 @@
   <action name="action_config">
    <property name="icon">
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/edit-undo.svg</normaloff>:/icons/edit-undo.svg</iconset>
+     <normaloff>:/icons/import_export_configs.svg</normaloff>:/icons/import_export_configs.svg</iconset>
    </property>
    <property name="text">
     <string>&amp;Extract/Import all startup-configs</string>

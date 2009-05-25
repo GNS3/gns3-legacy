@@ -418,6 +418,7 @@ class NETFile(object):
                     renders = globals.GApp.scene.renders[symbol]
                     decorative_node = DecorativeNode(renders['normal'], renders['selected'])
                     decorative_node.set_hostname(hostname)
+                    decorative_node.create_config()
                     decorative_node.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
                     decorative_node.type = symbol
                     QtCore.QObject.connect(decorative_node, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
@@ -433,13 +434,12 @@ class NETFile(object):
                             max_decorative_id = id
                     if gns3data[section].has_key('connections'):
                         connections = gns3data[section]['connections'].split(' ')
-                        config = {}
-                        config['interfaces'] = []
+                        config = decorative_node.get_config()
                         for connection in connections:
                             (device, remote_interface, local_interface) = connection.split(':', 2)
                             self.decorative_node_connections[(device, remote_interface, local_interface)] = decorative_node.id
-                            config['interfaces'].append(local_interface)
-                        decorative_node.set_config(config)
+                            if local_interface not in config['interfaces']:
+                                config['interfaces'].append(local_interface)
 
         # update next ID for cloud
         if max_cloud_id != -1:
