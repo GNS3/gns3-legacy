@@ -633,6 +633,7 @@ class NIO_udp(NIO):
     def __getname(self):
         return self.__name
     name = property(__getname)
+
 class NIO_linux_eth(NIO):
 
     """ Create a nio_linux_eth object
@@ -2317,7 +2318,7 @@ class Router(object):
             image_info = image_info + self.image
             
         jitsharing_group_info = '  JIT blocks sharing group is '
-        if self.jitsharing_group:
+        if self.jitsharing_group != None:
             jitsharing_group_info=  jitsharing_group_info + str(self.jitsharing_group)
         else:
             jitsharing_group_info=  '  No JIT blocks sharing enabled'

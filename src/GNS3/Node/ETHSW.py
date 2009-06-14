@@ -26,9 +26,9 @@ import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Globals as globals
 
-ethsw_id = 0
+ethsw_id = 1
 
-def init_ethsw_id(id = 0):
+def init_ethsw_id(id = 1):
     global ethsw_id
     ethsw_id = id
 

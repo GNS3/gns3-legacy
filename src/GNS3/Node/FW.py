@@ -31,9 +31,9 @@ from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Defaults.FWDefaults import FWDefaults
 from GNS3.Utils import translate, debug, error
 
-fw_id = 0
+fw_id = 1
 
-def init_fw_id(id = 0):
+def init_fw_id(id = 1):
     global fw_id
     fw_id = id
 

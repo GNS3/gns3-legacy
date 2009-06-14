@@ -19,7 +19,7 @@
 # Contact: contact@gns3.net
 #
 
-import os, glob, socket, shutil
+import os, glob, socket, shutil, sys
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.pemu_lib as pix
 import GNS3.Dynagen.simhost_lib as lwip
@@ -252,6 +252,9 @@ class Topology(QtGui.QGraphicsScene):
         if globals.GApp.systconf['dynamips'].ghosting:
             debug("Enable Ghost IOS")
             node.set_ghostios(True)
+        if globals.GApp.systconf['dynamips'].jitsharing:
+            debug("Enable JIT blocks sharing")
+            node.set_jitsharing(True)
 
     def firewallSetup(self, node):
         """ Start a connection to Pemu & set defaults
@@ -361,7 +364,7 @@ class Topology(QtGui.QGraphicsScene):
         command = undo.AddItem(self, node, "New node %s" % node.hostname)
         self.undoStack.push(command)
         
-    def addNode(self, node):
+    def addNode(self, node, fromScene=False):
         """ Add node in the topology
             node: object
         """
@@ -445,7 +448,11 @@ class Topology(QtGui.QGraphicsScene):
             self.addItem(node)
 
             if node.configNode() == False:
-                self.deleteNode(node.id)
+                if fromScene:
+                    self.deleteNodeFromScene(node.id)
+                else:
+                    self.deleteNode(node.id)
+
         except (lib.DynamipsVerError, lib.DynamipsError), msg:
             if isinstance(node, IOSRouter):
                 # check if dynamips can create its files
@@ -481,6 +488,7 @@ class Topology(QtGui.QGraphicsScene):
         node = self.__nodes[id]
         if isinstance(node, IOSRouter):
             try:
+
                 router = node.get_dynagen_device()
                 if globals.GApp.systconf['dynamips'].HypervisorManager_binding == router.dynamips.host and \
                     globals.GApp.iosimages.has_key(globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + router.image):
@@ -495,6 +503,22 @@ class Topology(QtGui.QGraphicsScene):
                         globals.GApp.hypervisors[external_hypervisor_key].used_ram -= node.default_ram
                         if globals.GApp.hypervisors[external_hypervisor_key].used_ram < 0:
                             globals.GApp.hypervisors[external_hypervisor_key].used_ram = 0
+                    
+                if router.jitsharing_group != None:
+                    last_jitgroup_number = True
+                    for device in router.dynamips.devices:
+                        if device.jitsharing_group != None and router.jitsharing_group == device.jitsharing_group and device.name != router.name:
+                            last_jitgroup_number = False
+                            break
+                    if last_jitgroup_number:
+                        # basename doesn't work on Unix with Windows paths, so let's use this little trick
+                        image = router.image
+                        if not sys.platform.startswith('win') and image[1] == ":":
+                            image = image[2:]
+                            image = image.replace("\\", "/")
+                        imagename = os.path.basename(image)
+                        del router.dynamips.jitsharing_groups[imagename]
+                        
             except:
                 pass
 

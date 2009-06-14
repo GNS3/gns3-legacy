@@ -20,3 +20,6 @@ TODO LIST
  * A view of z values of the objects
  * Pre-recorded terminal config
  * Check wics and tooltips info about wics 
+ * Check allocated ports.
+ * Generic Ethernet NIO is blank on Vista
+ * Change IOS for a router?

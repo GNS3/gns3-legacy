@@ -24,9 +24,9 @@ from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate, debug
 import GNS3.Globals as globals
 
-decoration_id = 0
+decoration_id = 1
 
-def init_decoration_id(id = 0):
+def init_decoration_id(id = 1):
     global decoration_id
     decoration_id = id
 
@@ -54,6 +54,10 @@ class DecorativeNode(AbstractNode):
         self.config = None
         
         self.setZValue(2)
+        
+    def __del__(self):
+    
+        pass
 
     def set_hostname(self, hostname):
         """ Set a hostname

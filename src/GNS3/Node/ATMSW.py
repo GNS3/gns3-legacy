@@ -27,10 +27,10 @@ from GNS3.Node.AbstractNode import AbstractNode
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
 
-atmsw_id = 0
+atmsw_id = 1
 MAPVCI = re.compile(r"""^([0-9]*):([0-9]*):([0-9]*)$""")
 
-def init_atmsw_id(id = 0):
+def init_atmsw_id(id = 1):
     global atmsw_id
     atmsw_id = id
 

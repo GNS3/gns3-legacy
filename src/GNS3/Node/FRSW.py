@@ -26,9 +26,9 @@ import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.dynagen as dynagen
 import GNS3.Globals as globals
 
-frsw_id = 0
+frsw_id = 1
 
-def init_frsw_id(id = 0):
+def init_frsw_id(id = 1):
     global frsw_id
     frsw_id = id
 

@@ -40,7 +40,7 @@ from configobj import ConfigObj, flatten_errors
 from optparse import OptionParser
 
 # Constants
-VERSION = '0.11.0.090518'
+VERSION = '0.11.0.090615'
 CONFIGSPECPATH = ['/usr/share/dynagen', '/usr/local/share']
 CONFIGSPEC = 'configspec'
 INIPATH = ['/etc', '/usr/local/etc']
@@ -148,7 +148,7 @@ class Dynagen:
         self.autostart = {}  # Dictionary that tracks autostart, indexed by device name
         self.ghostsizes = {}  # A dict of the sizes of the ghosts
         self.ghosteddevices = {}  # A dict of devices that will use ghosted IOS indexed by device name
-        self.jitsharedevices= {}  # A dict of devices that will use JIT blocks sharring indexed by device name
+        self.jitshareddevices = {}  # A dict of devices that will use JIT blocks sharring indexed by device name
         self.configurations = {}  # A global copy of all b64 exported configurations from the network file indexed by devicename
         self.globalconfig = {}  # A global copy of the config that console.py can access
         self.global_filename = 'lab.net'
@@ -1200,6 +1200,7 @@ class Dynagen:
                 # Apply lab global defaults to device defaults
                 for model in devdefaults:
                     devdefaults[model]['ghostios'] = config['ghostios']
+                    devdefaults[model]['jitsharing'] = config['jitsharing']
                     devdefaults[model]['ghostsize'] = config['ghostsize']
                     devdefaults[model]['sparsemem'] = config['sparsemem']
                     devdefaults[model]['oldidle'] = config['oldidle']
@@ -1296,7 +1297,7 @@ class Dynagen:
                                 else:
                                     # Should be either an interface connection or a switch mapping
                                     # is it an interface?
-                                    if subitem in ['model', 'ghostios', 'configuration', 'autostart', 'x', 'y', 'hx', 'hy', 'symbol']:
+                                    if subitem in ['model', 'ghostios', 'jitsharing', 'configuration', 'autostart', 'x', 'y', 'hx', 'hy', 'symbol']:
                                         # These options are already handled elsewhere
                                         continue
                                     elif interface_re.search(subitem):
@@ -1601,7 +1602,7 @@ class Dynagen:
                     if isinstance(d, Dynamips):
                         allgroups.extend(d.jitsharing_groups)
                 if device.imagename not in allgroups:
-                    # Only create a JIT sharing group if at least two instances on this server use this image
+                    # Only create a JIT sharing group if at least two instances on this server using the same IOS image
                     jitshared_devices = []
                     for router in self.devices.values():
                         try:
@@ -1613,7 +1614,8 @@ class Dynagen:
                     if len(jitshared_devices) > 1:
                         # Create a new JIT sharing group
                         self._create_jitsharing_group(jitshared_devices)
-
+                        return True
+            return False
         except DynamipsError, e:
             self.doerror(e)
 
@@ -2147,18 +2149,18 @@ class Dynagen:
 
         # use first device in the list to get the dynamips server which gives us the allocated JIT sharing groups
         allocated_groups = devices[0].dynamips.jitsharing_groups
-        
+
         # find an unallocated group number
         new_allocated_number = None
         for new_number in range(0, 127):
-            if new_number in allocated_groups.values():
-                continue
-            new_allocated_number = new_number
+            if new_number not in allocated_groups.values():
+                new_allocated_number = new_number
+                break
                 
-        if not new_allocated_number:
-            raise DynamipsError('All JIT sharing groups are allocated!')
+        if new_allocated_number == None:
+            self.dowarning('All JIT sharing groups are allocated!')
 
-        for router in jitshared_devices:
+        for router in devices:
             router.jitsharing_group = new_allocated_number
 
     def debug(self, string):

@@ -33,6 +33,7 @@ class IOSRouterDefaults(AbstractDefaults):
         self.chassis = 'None'
         self.default_image = 'None'
         self.default_ghostios = 'False'
+        self.default_jitsharing = 'False'
         self.default_cnfg = 'None'
         self.default_conf = 'None'
         self.default_confreg = '0x2102'
@@ -91,3 +92,13 @@ class IOSRouterDefaults(AbstractDefaults):
                 del self.config['ghostios']
         else:
             self.config['ghostios'] = bool(ghostios)
+            
+    def set_jitsharing(self, jitsharing):
+        """ Enable or disable JIT blocks sharing feature
+        """
+
+        if self.default_jitsharing == jitsharing:
+            if self.config.has_key('jitsharing'):
+                del self.config['jitsharing']
+        else:
+            self.config['jitsharing'] = bool(jitsharing)
