@@ -455,8 +455,8 @@ And big thanks of course to Christophe Fillot as the author of Dynamips.
         if len(params) == 1:  #if this is only 'show device' command print info about all devices
             output = []
             for device in self.dynagen.devices.values():
-                #if it is a router or FW
-                if isinstance(device, self.namespace.Router) or isinstance(device, self.namespace.FW) or isinstance(device, self.namespace.FRSW) or isinstance(device, self.namespace.ATMBR) or isinstance(device, self.namespace.ATMSW) or isinstance(device, self.namespace.ETHSW):
+                #if it is a router or other emulated device
+                if isinstance(device, (self.namespace.Router, self.namespace.AnyEmuDev, self.namespace.FRSW, self.namespace.ATMBR, self.namespace.ATMSW, self.namespace.ETHSW)):
                     output.append(device.info())
             output.sort()
             for devinfo in output:
@@ -465,7 +465,7 @@ And big thanks of course to Christophe Fillot as the author of Dynamips.
             #if this is 'show device {something}' command print info about specific device
             try:
                 device = self.dynagen.devices[params[1]]
-                if isinstance(device, self.namespace.Router) or isinstance(device, self.namespace.FW) or isinstance(device, self.namespace.FRSW) or isinstance(device, self.namespace.ATMBR) or isinstance(device, self.namespace.ATMSW) or isinstance(device, self.namespace.ETHSW):
+                if isinstance(device, (self.namespace.Router, self.namespace.AnyEmuDev, self.namespace.FRSW, self.namespace.ATMBR, self.namespace.ATMSW, self.namespace.ETHSW)):
                     print device.info()
             except KeyError:
                 error('unknown device: ' + params[1])

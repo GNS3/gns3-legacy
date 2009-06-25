@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.6.dtd">
 <!-- eric4 project file for project GNS3 -->
-<!-- Saved: 2009-05-22, 13:11:34 -->
+<!-- Saved: 2009-06-19, 00:35:49 -->
 <!-- Copyright (C) 2009 ,  -->
 <Project version="4.6">
   <Language>en</Language>
@@ -104,13 +104,11 @@
     <Source>src/GNS3/Ui/ConfigurationPages/Page_ATMBR.py</Source>
     <Source>src/GNS3/Ui/ConfigurationPages/Form_ATMBRPage.py</Source>
     <Source>src/GNS3/Node/ATMBR.py</Source>
-    <Source>src/GNS3/Node/FW.py</Source>
     <Source>src/GNS3/Ui/ConfigurationPages/Form_FWPage.py</Source>
     <Source>src/GNS3/Ui/ConfigurationPages/Page_FW.py</Source>
     <Source>src/GNS3/PemuManager.py</Source>
     <Source>src/GNS3/Ui/ConfigurationPages/Page_PreferencesPemu.py</Source>
     <Source>src/GNS3/Ui/ConfigurationPages/Form_PreferencesPemu.py</Source>
-    <Source>src/GNS3/Defaults/FWDefaults.py</Source>
     <Source>src/GNS3/Defaults/IOSRouterDefaults.py</Source>
     <Source>gns3</Source>
     <Source>src/GNS3/Ui/ConfigurationPages/Page_DecorativeNode.py</Source>
@@ -134,6 +132,8 @@
     <Source>src/GNS3/Unpack/setup.py</Source>
     <Source>src/GNS3/Unpack/README.txt</Source>
     <Source>src/GNS3/UndoFramework.py</Source>
+    <Source>src/GNS3/Node/AnyEmuDevice.py</Source>
+    <Source>src/GNS3/Defaults/AnyEmuDefaults.py</Source>
   </Sources>
   <Forms>
     <Form>src/GNS3/Ui/Form_NodeConfigurator.ui</Form>

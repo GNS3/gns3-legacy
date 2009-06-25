@@ -28,84 +28,83 @@ import GNS3.Dynagen.pemu_lib as pix
 import GNS3.Telnet as console
 from PyQt4 import QtCore, QtGui
 from GNS3.Node.AbstractNode import AbstractNode
-from GNS3.Defaults.FWDefaults import FWDefaults
+from GNS3.Defaults.AnyEmuDefaults import AnyEmuDefaults, FWDefaults, ASADefaults
 from GNS3.Utils import translate, debug, error
 
-fw_id = 1
+emu_id = 1
 
-def init_fw_id(id = 1):
-    global fw_id
-    fw_id = id
+def init_emu_id(id = 1):
+    global emu_id
+    emu_id = id
 
-class FW(AbstractNode, FWDefaults):
-    """ FW class implementing a PIX firewall
+class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
+    """ AnyEmuDevice class implementing a Emulated devices
     """
 
+    model = 'AbstractAnyEmuDevice'
+    
     def __init__(self, renderer_normal, renderer_select):
 
         AbstractNode.__init__(self, renderer_normal, renderer_select)
-        FWDefaults.__init__(self)
+        AnyEmuDefaults.__init__(self)
 
         # assign a new hostname
-        global fw_id
+        global emu_id
         
         # check if hostname has already been assigned
         for node in globals.GApp.topology.nodes.itervalues():
-            if 'FW' + str(fw_id) == node.hostname:
-                fw_id = fw_id + 1
+            if self.basehostname + str(emu_id) == node.hostname:
+                emu_id = emu_id + 1
                 break
         
-        self.hostname = 'FW' + str(fw_id)
-        fw_id = fw_id + 1
+        self.hostname = self.basehostname + str(emu_id)
+        emu_id = emu_id + 1
         AbstractNode.setCustomToolTip(self)
 
         self.dynagen = globals.GApp.dynagen
         self.local_config = None
-        self.f = 'FW ' + self.hostname
+        self.f = '%s %s' %(self.basehostname, self.hostname)
         self.running_config = None
         self.defaults_config = None
-        self.fw = None
-        self.model = '525'
+        self.emudev = None
 
-        self.fw_options = [
+        self.emudev_options = [
             'ram',
-            'key',
-            'serial',
             'image'
             ]
 
     def __del__(self):
 
-        self.delete_fw()
+        self.delete_emudev()
 
-    def delete_fw(self):
-        """ Delete this FW
+    def delete_emudev(self):
+        """ Delete this emulated device
         """
-        if self.fw:
+        if self.emudev:
             try:
                 self.stopNode()
                 del self.dynagen.devices[self.hostname]
-                if self.fw in self.pemu.devices:
-                    self.pemu.devices.remove(self.fw)
+                if self.emudev in self.pemu.devices:
+                    self.pemu.devices.remove(self.emudev)
                 self.dynagen.update_running_config()
             except:
                 pass
-            self.fw = None
+            self.emudev = None
 
     def set_hostname(self, hostname):
         """ Set a hostname
         """
 
         self.hostname = hostname
-        self.f = 'FW ' + self.hostname
+        self.f = '%s %s' % (self.basehostname, self.hostname)
         self.updateToolTips()
 
     def setCustomToolTip(self):
         """ Set a custom tool tip
         """
 
-        if self.fw:
-            self.setToolTip(self.fw.info())
+        if self.emudev:
+            self.setToolTip(self.emudev.info())
         else:
             AbstractNode.setCustomToolTip(self)
         
@@ -119,11 +118,11 @@ class FW(AbstractNode, FWDefaults):
         """ Creates the configuration of this firewall
         """
 
-        assert(self.fw)
+        assert(self.emudev)
         self.local_config = {}
-        for option in self.fw_options:
+        for option in self.emudev_options:
             try:
-                self.local_config[option] = getattr(self.fw, option)
+                self.local_config[option] = getattr(self.emudev, option)
             except AttributeError:
                 continue
         return self.local_config
@@ -132,7 +131,7 @@ class FW(AbstractNode, FWDefaults):
         """ Returns the local configuration copy
         """
 
-        assert(self.fw)
+        assert(self.emudev)
         return self.local_config
         
     def duplicate_config(self):
@@ -146,16 +145,16 @@ class FW(AbstractNode, FWDefaults):
             config: dict
         """
 
-        assert(self.fw)
+        assert(self.emudev)
         # apply the options
-        for option in self.fw_options:
+        for option in self.emudev_options:
             try:
-                fw_option = getattr(self.fw, option)
+                emu_option = getattr(self.emudev, option)
             except AttributeError:
                 continue
-            if fw_option != config[option]:
+            if emu_option != config[option]:
                 try:
-                    setattr(self.fw, option, config[option])
+                    setattr(self.emudev, option, config[option])
                 except lib.DynamipsError, e:
                     error(e)
 
@@ -177,16 +176,15 @@ class FW(AbstractNode, FWDefaults):
         """ Returns the dynagen device corresponding to this bridge
         """
 
-        assert(self.fw)
-        return (self.fw)
+        assert(self.emudev)
+        return (self.emudev)
 
-    def set_dynagen_device(self, fw):
+    def set_dynagen_device(self, emudev):
         """ Set a dynagen device in this node, used for .net import
         """
 
         model = self.model
-        self.fw = fw
-        #self.dynagen.update_running_config()
+        self.emudev = emudev
         self.running_config = self.dynagen.running_config[self.d][self.f]
         self.defaults_config = self.dynagen.defaults_config[self.d][model]
         self.create_config()
@@ -197,22 +195,22 @@ class FW(AbstractNode, FWDefaults):
 
         links = self.getEdgeList()
         if len(links):
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("FW", "New hostname"),
-                                       translate("FW", "Cannot rename a connected firewall because pemuwrapper does not support removal"))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AnyEmuDevice", "New hostname"),
+                                       translate("AnyEmuDevice", "Cannot rename a connected emulated device because qemuwrapper does not support removal"))
             return
-        self.delete_fw()
+        self.delete_emudev()
         if self.hostname != new_hostname:
             try:
                 pemu_name = self.pemu.host + ':10525'
                 shutil.move(self.dynagen.dynamips[pemu_name].workingdir + os.sep + self.hostname, self.dynagen.dynamips[pemu_name].workingdir + os.sep + new_hostname)
             except:
-                debug("Cannot move FLASH directory")
+                debug("Cannot move emulator's working directory")
         self.set_hostname(new_hostname)
         try:
-            self.create_firewall()
+            self.create_emudev()
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("FW", "Dynamips error"),  unicode(msg))
-            self.delete_fw()
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AnyEmuDevice", "Dynamips error"),  unicode(msg))
+            self.delete_emudev()
             globals.GApp.topology.deleteNode(self.id)
             return
         self.set_config(self.local_config)
@@ -221,7 +219,7 @@ class FW(AbstractNode, FWDefaults):
         """ Node configuration
         """
 
-        self.create_firewall()
+        self.create_emudev()
         self.create_config()
         return True
 
@@ -259,7 +257,7 @@ class FW(AbstractNode, FWDefaults):
             return False
         return devdefaults
 
-    def create_firewall(self):
+    def create_emudev(self):
 
         model = self.model
         self.dynagen.update_running_config()
@@ -267,10 +265,10 @@ class FW(AbstractNode, FWDefaults):
         if devdefaults == False:
             return False
         pemu_name = self.pemu.host + ':10525'
-        self.fw = pix.FW(self.dynagen.dynamips[pemu_name], self.hostname)
-        self.dynagen.setdefaults(self.fw, devdefaults[model])
-        self.dynagen.devices[self.hostname] = self.fw
-        debug('Firewall ' + self.fw.name + ' created')
+        self.emudev = self._make_devinstance(pemu_name)
+        self.dynagen.setdefaults(self.emudev, devdefaults[model])
+        self.dynagen.devices[self.hostname] = self.emudev
+        debug('%s %s created' % (self.friendly_name, self.emudev.name))
 
         self.dynagen.update_running_config()
         self.running_config = self.dynagen.running_config[self.d][self.f]
@@ -281,12 +279,12 @@ class FW(AbstractNode, FWDefaults):
         """ Start the node
         """
 
-        if not self.fw.image:
-            print unicode(translate("FW", "%s: no PIX image")) % self.hostname
+        if not self.emudev.image:
+            print unicode(translate(self.basehostname, "%s: no device image")) % self.hostname
             return
         try:
-            if self.fw.state == 'stopped':
-                self.fw.start()
+            if self.emudev.state == 'stopped':
+                self.emudev.start()
         except:
             if progress:
                 raise
@@ -301,16 +299,16 @@ class FW(AbstractNode, FWDefaults):
         """ Stop this node
         """
 
-        if self.fw.state != 'stopped':
+        if self.emudev.state != 'stopped':
             try:
-                self.fw.stop()
+                self.emudev.stop()
             except:
                 if progress:
                     raise
 
             self.shutdownInterfaces()
-            self.state = self.fw.state
-            globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.fw.state)
+            self.state = self.emudev.state
+            globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.emudev.state)
 
     def suspendNode(self, progress=False):
         """ Suspend this node
@@ -322,8 +320,8 @@ class FW(AbstractNode, FWDefaults):
         """ Start a telnet console and connect it to this router
         """
 
-        if self.fw and self.fw.state == 'running' and self.fw.console:
-            console.connect(self.fw.dynamips.host, self.fw.console, self.hostname)
+        if self.emudev and self.emudev.state == 'running' and self.emudev.console:
+            console.connect(self.emudev.dynamips.host, self.emudev.console, self.hostname)
 
     def mousePressEvent(self, event):
         """ Call when the node is clicked
@@ -332,3 +330,51 @@ class FW(AbstractNode, FWDefaults):
 
         AbstractNode.mousePressEvent(self, event)
 
+class FW(AnyEmuDevice, FWDefaults):
+    instance_counter = 0
+    model = '525'
+    basehostname = 'FW'
+    friendly_name = 'Firewall'
+    
+    def __init__(self, *args, **kwargs):
+        AnyEmuDevice.__init__(self, *args, **kwargs)
+        FWDefaults.__init__(self)
+        self.emudev_options.extend([
+            'key',
+            'serial',
+            ])
+        
+    def _make_devinstance(self, pemu_name):
+        from GNS3.Dynagen import pemu_lib
+        return pemu_lib.FW(self.dynagen.dynamips[pemu_name], self.hostname)
+
+class ASA(AnyEmuDevice, ASADefaults):
+    instance_counter = 0
+    model = '5520'
+    basehostname = 'ASA'
+    friendly_name ='ASAFirewall'
+    
+    def __init__(self, *args, **kwargs):
+        AnyEmuDevice.__init__(self, *args, **kwargs)
+        ASADefaults.__init__(self)
+        debug('Hello, I have initialized and my model is %s' % self.model)
+    
+    def _make_devinstance(self, pemu_name):
+        from GNS3.Dynagen import pemu_lib
+        return pemu_lib.ASA(self.dynagen.dynamips[pemu_name], self.hostname)
+
+class Olive(AnyEmuDevice, ASADefaults):
+
+    instance_counter = 0
+    model = 'O-series'
+    basehostname = 'OLIVE'
+    friendly_name ='OliveRouter'
+
+    def __init__(self, *args, **kwargs):
+        AnyEmuDevice.__init__(self, *args, **kwargs)
+        ASADefaults.__init__(self)
+        debug('Hello, I have initialized and my model is %s' % self.model)
+
+    def _make_devinstance(self, pemu_name):
+        from GNS3.Dynagen import pemu_lib
+        return pemu_lib.Olive(self.dynagen.dynamips[pemu_name], self.hostname)

@@ -35,7 +35,7 @@ from GNS3.Node.ATMBR import ATMBR, init_atmbr_id
 from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
 from GNS3.Node.FRSW import FRSW, init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
-from GNS3.Node.FW import FW, init_fw_id
+from GNS3.Node.AnyEmuDevice import FW, AnyEmuDevice, init_emu_id
 from GNS3.Node.SIMHOST import SIMHOST, init_simhost_id
 from GNS3.SimhostManager import SimhostManager
 from GNS3.Node.AbstractNode import AbstractNode
@@ -72,7 +72,7 @@ class Topology(QtGui.QGraphicsScene):
         item = self.itemAt(event.scenePos())
         if item and ((isinstance(item, AbstractNode) and \
         globals.currentLinkType == globals.Enum.LinkType.Manual) or \
-        isinstance(srcnode, FW) or isinstance(srcnode, FRSW) or \
+        isinstance(srcnode, AnyEmuDevice) or isinstance(srcnode, FRSW) or \
         isinstance(srcnode, ATMBR) or isinstance(srcnode, ATMSW) or isinstance(srcnode, Cloud)):
             # In few circumstances, QtGui.QGraphicsScene.mousePressEvent()
             # send the mousePressEvent to the wrong item; we need to
@@ -131,7 +131,7 @@ class Topology(QtGui.QGraphicsScene):
         init_atmbr_id()
         init_ethsw_id()
         init_frsw_id()
-        init_fw_id()
+        init_emu_id()
         init_cloud_id()
         init_decoration_id()
         init_simhost_id()
@@ -311,10 +311,12 @@ class Topology(QtGui.QGraphicsScene):
                 
         # set defaults
         node.set_hypervisor(self.dynagen.dynamips[pemu_name])
-        debug("Set default image " + globals.GApp.systconf['pemu'].default_pix_image)
-        node.set_image(globals.GApp.systconf['pemu'].default_pix_image,'525')
-        node.set_string_option('key', globals.GApp.systconf['pemu'].default_pix_key)
-        node.set_string_option('serial', globals.GApp.systconf['pemu'].default_pix_serial)
+        debug("Set default image " + globals.GApp.systconf['pemu'].default_pix_image
+            + " for node type %s, model %r" % (type(node), node.model))
+        node.set_image(globals.GApp.systconf['pemu'].default_pix_image, node.model)
+        if isinstance(node, FW):
+            node.set_string_option('key', globals.GApp.systconf['pemu'].default_pix_key)
+            node.set_string_option('serial', globals.GApp.systconf['pemu'].default_pix_serial)
         return True
 
     def simhostSetup(self, node):
@@ -374,7 +376,7 @@ class Topology(QtGui.QGraphicsScene):
                 if len(globals.GApp.iosimages.keys()) == 0:
                     # no IOS images configured, users have to register an IOS
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), translate("Topology", "Please register at least one IOS image"))
-                    return
+                    return False
 
                 image_to_use = None
                 selected_images = []
@@ -399,7 +401,7 @@ class Topology(QtGui.QGraphicsScene):
                         if ok:
                             image_to_use = unicode(selection)
                         else:
-                            return
+                            return False
                 else:
                     image_to_use = selected_images[0]
 
@@ -412,34 +414,34 @@ class Topology(QtGui.QGraphicsScene):
                     # no hypervisor selected, allocate a new hypervisor for the node
                     if globals.GApp.systconf['dynamips'].path == '':
                         QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Hypervisor"), translate("Topology", "Please configure the path to Dynamips"))
-                        return
+                        return False
                     if not globals.GApp.HypervisorManager:
                         QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Hypervisor"), translate("Topology", "Please test the path to Dynamips in preferences"))
-                        return
+                        return False
                     if not globals.GApp.HypervisorManager.allocateHypervisor(node):
-                        return
+                        return False
                     # give a warning if the IOS path is not accessible
                     if not os.access(image_conf.filename, os.F_OK):
                         QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), unicode(translate("Topology", "%s seems to not exist, please check")) % image_conf.filename)
                 else:
                     # use an external hypervisor
                     if self.useExternalHypervisor(node, image_conf.hypervisors) == False:
-                        return
+                        return False
                 self.preConfigureNode(node, image_conf)
 
-            if isinstance(node, FW):
+            if isinstance(node, AnyEmuDevice):
                 if not globals.GApp.systconf['pemu'].default_pix_image:
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX image"), translate("Topology", "Please configure a default PIX image"))
-                    return
+                    return False
                     
                 # give a warning if the PIX image path is not accessible
                     if not os.access(globals.GApp.systconf['pemu'].default_pix_image, os.F_OK):
                         QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX image"), unicode(translate("Topology", "%s seems to not exist, please check")) % globals.GApp.systconf['pemu'].default_pix_image)
                 if self.firewallSetup(node) == False:
-                    return
+                    return False
                     
             if isinstance(node, SIMHOST) and self.simhostSetup(node) == False:
-                return
+                return False
 
             QtCore.QObject.connect(node, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
             QtCore.QObject.connect(node, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
@@ -448,10 +450,7 @@ class Topology(QtGui.QGraphicsScene):
             self.addItem(node)
 
             if node.configNode() == False:
-                if fromScene:
-                    self.deleteNodeFromScene(node.id)
-                else:
-                    self.deleteNode(node.id)
+                self.deleteNode(node.id)
 
         except (lib.DynamipsVerError, lib.DynamipsError), msg:
             if isinstance(node, IOSRouter):
@@ -462,16 +461,17 @@ class Topology(QtGui.QGraphicsScene):
                         if not os.access(file, os.W_OK):
                             print "Warning: " + file + " is not writable because of different rights, please delete this file manually if dynamips was not able to create this router"
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  unicode(msg))
-            if self.__nodes.has_key(node.id):
-                self.deleteNode(node.id)
+            self.deleteNode(node.id)
+            return False
         except (lib.DynamipsErrorHandled, socket.error):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"), translate("Topology", "Connection lost"))
-            if self.__nodes.has_key(node.id):
-                self.deleteNode(node.id)
+            self.deleteNode(node.id)
+            return False
+
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
         debug("Running config: " + str(self.dynagen.running_config))
         self.changed = True
-        return
+        return True
 
     def deleteNodeFromScene(self, id):
         """ Delete a node from the topology, called from Scene
@@ -484,6 +484,9 @@ class Topology(QtGui.QGraphicsScene):
     def deleteNode(self, id):
         """ Delete a node from the topology
         """
+
+        if not self.__nodes.has_key(id):
+            return
 
         node = self.__nodes[id]
         if isinstance(node, IOSRouter):
@@ -582,11 +585,11 @@ class Topology(QtGui.QGraphicsScene):
     
         try:
             # start nodes that are always on
-            if not isinstance(src_node, IOSRouter) and not isinstance(src_node, FW):
+            if not isinstance(src_node, IOSRouter) and not isinstance(src_node, AnyEmuDevice):
                 src_node.startNode()
             elif src_node.state == 'running':
                 src_node.startupInterfaces()
-            if not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, FW):
+            if not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, AnyEmuDevice):
                 dst_node.startNode()
             elif dst_node.state == 'running':
                 dst_node.startupInterfaces()
@@ -628,20 +631,20 @@ class Topology(QtGui.QGraphicsScene):
                 dst_node.startupInterfaces()
             return
         elif not isinstance(src_node, IOSRouter) and not isinstance(dst_node, IOSRouter):
-            if (isinstance(src_node, ETHSW) and not type(dst_node) in (IOSRouter, Cloud, FW)) or (isinstance(dst_node, ETHSW) and not type(src_node) in (IOSRouter, Cloud, FW)) \
+            if (isinstance(src_node, ETHSW) and not type(dst_node) in (IOSRouter, Cloud, AnyEmuDevice)) or (isinstance(dst_node, ETHSW) and not type(src_node) in (IOSRouter, Cloud, AnyEmuDevice)) \
                 or (type(src_node) in (ATMSW, FRSW, ATMBR) and not isinstance(dst_node, IOSRouter)) or (type(dst_node) in (ATMSW, FRSW, ATMBR) and not isinstance(src_node, IOSRouter)) \
-                or (isinstance(src_node, FW) and isinstance(dst_node, Cloud)) or (isinstance(dst_node, FW) and isinstance(src_node, Cloud)) \
+                or (isinstance(src_node, AnyEmuDevice) and isinstance(dst_node, Cloud)) or (isinstance(dst_node, AnyEmuDevice) and isinstance(src_node, Cloud)) \
                 or (isinstance(src_node, SIMHOST) and isinstance(dst_node, Cloud)) or (isinstance(dst_node, SIMHOST) and isinstance(src_node, Cloud)):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "Can't connect these devices"))
                 return False
-            elif (isinstance(dst_node, Cloud) or isinstance(dst_node,FW) or isinstance(dst_node,SIMHOST)) and isinstance(src_node, ETHSW):
+            elif (isinstance(dst_node, Cloud) or isinstance(dst_node,AnyEmuDevice) or isinstance(dst_node,SIMHOST)) and isinstance(src_node, ETHSW):
                 if not src_node.hypervisor:
                     debug('Allocate a hypervisor for ethsw ' + src_node.hostname)
                     if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(src_node):
                         QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "You have to connect at least one router to the switch"))
                         return False
                     src_node.get_dynagen_device()
-            elif (isinstance(src_node, Cloud) or isinstance(src_node, FW) or isinstance(src_node, SIMHOST)) and isinstance(dst_node, ETHSW):
+            elif (isinstance(src_node, Cloud) or isinstance(src_node, AnyEmuDevice) or isinstance(src_node, SIMHOST)) and isinstance(dst_node, ETHSW):
                 if not dst_node.hypervisor:
                     debug('Allocate a hypervisor for ethsw ' + dst_node.hostname)
                     if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(dst_node):
@@ -649,15 +652,15 @@ class Topology(QtGui.QGraphicsScene):
                         return False
                     dst_node.get_dynagen_device()
         else:
-            if not isinstance(src_node, IOSRouter) and not isinstance(src_node, Cloud) and not isinstance(src_node, FW) and not isinstance(src_node, SIMHOST) and not src_node.hypervisor:
+            if not isinstance(src_node, IOSRouter) and not isinstance(src_node, Cloud) and not isinstance(src_node, AnyEmuDevice) and not isinstance(src_node, SIMHOST) and not src_node.hypervisor:
                 debug('Set hypervisor ' + dst_node.hypervisor.host + ':' + str(dst_node.hypervisor.port) + ' to ' + src_node.hostname)
                 src_node.set_hypervisor(dst_node.hypervisor)
-            elif not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, Cloud) and not isinstance(dst_node, FW) and not isinstance(dst_node, SIMHOST) and not dst_node.hypervisor:
+            elif not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, Cloud) and not isinstance(dst_node, AnyEmuDevice) and not isinstance(dst_node, SIMHOST) and not dst_node.hypervisor:
                 debug('Set hypervisor ' + src_node.hypervisor.host + ':' + str(src_node.hypervisor.port) + ' to ' + dst_node.hostname)
                 dst_node.set_hypervisor(src_node.hypervisor)
 
         try:
-            if isinstance(src_node, IOSRouter) or isinstance(src_node, FW) or isinstance(src_node, SIMHOST) :
+            if isinstance(src_node, IOSRouter) or isinstance(src_node, AnyEmuDevice) or isinstance(src_node, SIMHOST) :
                 srcdev = self.__nodes[srcid].get_dynagen_device()
                 if type(dst_node) == Cloud:
                     debug('Connect link from ' + srcdev.name + ' ' + srcif +' to ' + dstif)
@@ -666,7 +669,7 @@ class Topology(QtGui.QGraphicsScene):
                     dstdev = dst_node.get_dynagen_device()
                     debug('Connect link from ' + srcdev.name + ' ' + srcif +' to ' + dstdev.name + ' ' + dstif)
                     self.dynagen.connect(srcdev, srcif, dstdev.name + ' ' + dstif)
-            elif isinstance(dst_node, IOSRouter) or isinstance(dst_node, FW) or isinstance(dst_node, SIMHOST):
+            elif isinstance(dst_node, IOSRouter) or isinstance(dst_node, AnyEmuDevice) or isinstance(dst_node, SIMHOST):
                 dstdev = dst_node.get_dynagen_device()
                 if type(src_node) == Cloud:
                     debug('Connect link from ' + dstdev.name + ' ' + srcif +' to ' + dstif)
@@ -688,13 +691,13 @@ class Topology(QtGui.QGraphicsScene):
 
         try:
             # start nodes that are always on
-            if not isinstance(src_node, IOSRouter) and not isinstance(src_node, FW):
+            if not isinstance(src_node, IOSRouter) and not isinstance(src_node, AnyEmuDevice):
                 src_node.startNode()
             elif src_node.state == 'running':
                 if isinstance(src_node, SIMHOST):
                     src_node.configureInterfaces()
                 src_node.startupInterfaces()
-            if not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, FW):
+            if not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, AnyEmuDevice):
                 dst_node.startNode()
             elif dst_node.state == 'running':
                 if isinstance(dst_node, SIMHOST):
@@ -723,7 +726,7 @@ class Topology(QtGui.QGraphicsScene):
 
         if not isinstance(link.source, DecorativeNode) and not isinstance(link.dest, DecorativeNode):
             # not a decorative device
-            if (isinstance(link.source, FW) and isinstance(link.dest, ETHSW)) or (isinstance(link.source, ETHSW) and isinstance(link.dest, FW)):
+            if (isinstance(link.source, AnyEmuDevice) and isinstance(link.dest, ETHSW)) or (isinstance(link.source, ETHSW) and isinstance(link.dest, AnyEmuDevice)):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  'pemuwrapper does not support removal')
                 return False
             try:

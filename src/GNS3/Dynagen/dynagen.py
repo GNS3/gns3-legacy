@@ -34,7 +34,7 @@ from dynamips_lib import Dynamips, PA_C7200_IO_FE, PA_A1, PA_FE_TX, PA_4T, PA_8T
      CISCO2600_MB_1E, CISCO2600_MB_2E, CISCO2600_MB_1FE, CISCO2600_MB_2FE, PA_2FE_TX, \
      PA_GE, PA_C7200_IO_2FE, PA_C7200_IO_GE_E, C1700, CISCO1710_MB_1FE_1E, C1700_MB_1ETH, \
      DEVICETUPLE, DynamipsVerError, DynamipsErrorHandled, NM_CIDS, NM_NAM, get_reverse_udp_nio
-from pemu_lib import Pemu, FW, nosend_pemu
+from pemu_lib import Pemu, AnyEmuHandler, FW, ASA, Olive, nosend_pemu
 from validate import Validator
 from configobj import ConfigObj, flatten_errors
 from optparse import OptionParser
@@ -53,10 +53,14 @@ MODELTUPLE = (  # A tuple of known model objects
     C3745,
     C3600,
     C7200,
+    ASA, 
     FW,
+    Olive, 
     )
 DEVICETUPLE = (  # A tuple of known device names
     '525',
+    '5520', 
+    'O-series', 
     '1710',
     '1720',
     '1721',
@@ -180,13 +184,6 @@ class Dynagen:
             'sparsemem',
             'image',
             'cnfg',
-            ]
-
-        self.generic_fw_options = [
-            'image',
-            'ram',
-            'key',
-            'serial',
             ]
 
         self.defaults_config_ran = False
@@ -364,8 +361,8 @@ class Dynagen:
             slot2 = int(slot2)
             port2 = int(port2)
 
-            #TODO add removal for FW
-            if isinstance(remote_device, FW):
+            #TODO add removal for emulated devices
+            if isinstance(remote_device, AnyEmuHandler):
                 raise DynamipsError, 'pemuwrapper does not support removal'
             #disconnect local from remote
             local_device.slot[slot1].disconnect(pa1, port1)
@@ -535,7 +532,7 @@ class Dynagen:
             self.smartslot(remote_device, pa2, slot2, port2)
             
             #perform the connection
-            if isinstance(local_device, FW) and isinstance(remote_device, Router):
+            if isinstance(local_device, AnyEmuHandler) and isinstance(remote_device, Router):
                 local_device.connect_to_dynamips(
                     port1,
                     remote_device.dynamips,
@@ -543,9 +540,9 @@ class Dynagen:
                     pa2,
                     port2,
                     )
-            elif isinstance(local_device, FW) and isinstance(remote_device, FW):
-                local_device.connect_to_fw(port1, remote_device, port2)
-            elif isinstance(local_device, Router) and isinstance(remote_device, FW):
+            elif isinstance(local_device, AnyEmuHandler) and isinstance(remote_device, AnyEmuHandler):
+                local_device.connect_to_emulated_device(port1, remote_device, port2)
+            elif isinstance(local_device, Router) and isinstance(remote_device, AnyEmuHandler):
                 remote_device.connect_to_dynamips(
                     port2,
                     local_device.dynamips,
@@ -574,7 +571,7 @@ class Dynagen:
                 # If this LAN doesn't already exist, create it
                 self.bridges[interface] = Bridge(local_device.dynamips, name=interface)
             #perform the connection
-            if isinstance(local_device, FW):
+            if isinstance(local_device, AnyEmuHandler):
                 local_device.connect_to_dynamips(
                     port1,
                     self.bridges[interface].dynamips,
@@ -615,7 +612,7 @@ class Dynagen:
             else:
                 return False
                 
-            if isinstance(local_device, FW):
+            if isinstance(local_device, AnyEmuHandler):
                 local_device.connect_to_dynamips(
                     port1,
                     remote_device.dynamips,
@@ -657,13 +654,13 @@ class Dynagen:
         else:
             pa = pa[0].lower()
 
-        if isinstance(router, FW):
+        if isinstance(router, AnyEmuHandler):
             #TODO, apparently there is only support in pemu for e0-4. Talked to mmm123 about this, he is aware of that, but does not consider this a showstopper
             if pa == 'e' and port >= 0 and port < 5:
                 router.add_interface(pa, port)
                 return
             else:
-                raise DynamipsError, 'FW on pemuwrapper only supports e0-4'
+                raise DynamipsError, 'Emulated device on pemuwrapper only supports e0-4'
 
         try:
             if router.slot[slot] != None:
@@ -1055,15 +1052,15 @@ class Dynagen:
                     for key in DEVICETUPLE:
                         devdefaults[key] = {}
 
-                    #handle the FW
+                    #handle the emulated devices
                     for subsection in server.sections:
                         device = server[subsection]
 
-                        if device.name in ['525']:
+                        if device.name in ['525', '5520', 'O-series']:
                             # Populate the appropriate dictionary
                             for scalar in device.scalars:
                                 if device[scalar] != None:
-                                    devdefaults['525'][scalar] = device[scalar]
+                                    devdefaults[device.name][scalar] = device[scalar]
                             continue
 
                         # Create the device
@@ -1076,13 +1073,17 @@ class Dynagen:
 
                         if devtype.lower() == 'fw':
                             dev = FW(self.dynamips[pemu_name], name=name)
+                        elif devtype.lower() == 'asa':
+                            dev = ASA(self.dynamips[pemu_name], name=name)
+                        elif devtype.lower() == 'olive':
+                            dev = Olive(self.dynamips[pemu_name], name=name)
                         else:
                             self.dowarning('Unable to identify the type of device ' + device.name)
                             self.import_error = True
                             continue
 
                         #set the defaults
-                        for option in devdefaults['525']:
+                        for option in devdefaults[dev.model_string]:
                             if option in (
                                 'console',
                                 'key',
@@ -1090,9 +1091,9 @@ class Dynagen:
                                 'ram',
                                 'image',
                                 ):
-                                setattr(dev, option, devdefaults['525'][option])
+                                setattr(dev, option, devdefaults[dev.model_string][option])
 
-                        #add the whole FW into global dictionary
+                        #add the whole device into global dictionary
                         self.devices[name] = dev
 
                         #set the special device options
@@ -1119,7 +1120,7 @@ class Dynagen:
                                     self.dowarning( 'ignoring unknown config item: %s = %s' % (str(subitem), str(device[subitem])))
                                     self.import_error = True
 
-                        # Set default autostart flag for this fw if not already set
+                        # Set default autostart flag for this emulated device if not already set
                         if device['autostart'] == None:
                             self.autostart[name] = config['autostart']
                         else:
@@ -1715,17 +1716,17 @@ class Dynagen:
             for device in self.devices.values():
                 #skip non-routers
                 if isinstance(device, FRSW) or isinstance(device, ATMSW) or isinstance(device, ETHSW) or isinstance(device, ATMBR):
-                    #TODO FW, FRSW, ATMSW, ETHSW support
+                    #TODO FRSW, ATMSW, ATMBR, ETHSW support
                     continue
                 if device.dynamips == hypervisor:
-                    if isinstance(device, FW):
+                    if isinstance(device, AnyEmuHandler):
                         model = device.model_string
                         self.defaults_config[h][model] = {}
                         if device.image == None:
                             self.error('specify at least image file for device ' + device.name)
                             device.image = '"None"'
                         self.defaults_config[h][model]['image'] = device.image
-                        for option in self.generic_fw_options:
+                        for option in device.available_options:
                             if getattr(device, option) != device.defaults[option]:
                                 self.defaults_config[h][model][option] = getattr(device, option)
                     else:
@@ -1928,11 +1929,11 @@ class Dynagen:
             else:
                 self.running_config[h][e][str(port1)] = porttype + ' ' + str(vlan) + ' ' + nio.config_info()
 
-    def _update_running_config_for_fw(self, hypervisor, device, need_active_config):
-        """parse the all data structures associated with this fw and update the running_config properly"""
+    def _update_running_config_for_emulated_device(self, hypervisor, device, need_active_config):
+        """parse the all data structures associated with this emulated device and update the running_config properly"""
 
         h = 'pemu ' + hypervisor.host
-        f = 'FW ' + device.name
+        f = '%s %s' % (device.basehostname, device.name)
         self.running_config[h][f] = {}
 
         #find out the model of the router
@@ -1940,14 +1941,14 @@ class Dynagen:
 
         #populate with non-default router information
         defaults = self.defaults_config[h][model]
-        for option in self.generic_fw_options:
+        for option in device.available_options:
             self._set_option_in_config(self.running_config[h][f], defaults, device, option)
 
         for port in device.nios:
             if device.nios[port] != None:
                 con = 'e' + str(port)
                 (remote_router, remote_adapter, remote_port) = get_reverse_udp_nio(device.nios[port])
-                if isinstance(remote_router, FW):
+                if isinstance(remote_router, AnyEmuHandler):
                     self.running_config[h][f][con] = remote_router.name + ' ' + remote_adapter + str(remote_port)
                 elif isinstance(remote_router, Router):
                     self.running_config[h][f][con] = self._translate_interface_connection(remote_adapter, remote_router, remote_port)
@@ -2036,8 +2037,8 @@ class Dynagen:
                     elif isinstance(device, Router):
                         #for routers - create the router running config by going throught all variables in dynamips_lib
                         self._update_running_config_for_router(hypervisor, device, need_active_config)
-                    elif isinstance(device, FW):
-                        self._update_running_config_for_fw(hypervisor, device, need_active_config)
+                    elif isinstance(device, AnyEmuHandler):
+                        self._update_running_config_for_emulated_device(hypervisor, device, need_active_config)
 
         #after everything is done merge this config with defaults_config
         temp_config = ConfigObj(self.defaults_config, encoding='utf-8')
@@ -2067,8 +2068,8 @@ class Dynagen:
                 if isinstance(device, Router):
                     device_section = self.running_config[hypervisor_name]['ROUTER ' + device.name]
                     print '\t' + '[[ROUTER ' + device.name + ']]'
-                if isinstance(device, FW):
-                    device_section = self.running_config[hypervisor_name]['FW ' + device.name]
+                if isinstance(device, AnyEmuHandler):
+                    device_section = self.running_config[hypervisor_name]['%s %s' % (device.basehostname, device.name)]
                     print '\t' + '[[ROUTER ' + device.name + ']]'
                 elif isinstance(device, FRSW):
                     device_section = self.running_config[hypervisor_name]['FRSW ' + device.name]

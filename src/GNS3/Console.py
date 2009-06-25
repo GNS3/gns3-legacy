@@ -273,8 +273,9 @@ Examples:
             if command == 'get' or command == 'show':
                 device = params[0]
                 if command == 'get':
-                    if self.dynagen.devices[device].idlepc != None:
-                        print unicode(translate("Console", "%s already has an idlepc value applied.")) % device
+                    current_idlepc = self.dynagen.devices[device].idlepc
+                    if len(params) < 2 or params[1] != 'force' and current_idlepc != None:
+                        print unicode(translate("Console", "%s already has an idlepc value applied (%s).")) % (device, current_idlepc)
                         return
 
                     print translate("Console", "Please wait while gathering statistics...")

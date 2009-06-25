@@ -48,7 +48,7 @@ import pemubin
 
 
 __author__ = 'Thomas Pani'
-__version__ = '0.2.3'   # TODO: remove RC when done
+__version__ = '0.2.3'
 
 PORT = 10525
 PEMU_INSTANCES = {}

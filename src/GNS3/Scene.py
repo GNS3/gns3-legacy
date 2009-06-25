@@ -35,7 +35,7 @@ from GNS3.NodeConfigurator import NodeConfigurator
 from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from GNS3.Node.IOSRouter import IOSRouter
-from GNS3.Node.FW import FW
+from GNS3.Node.AnyEmuDevice import AnyEmuDevice
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
@@ -126,7 +126,7 @@ class Scene(QtGui.QGraphicsView):
             menu.addAction(showHostnameAct)
             menu.addAction(changeHostnameAct)
 
-        instances = map(lambda item: isinstance(item, IOSRouter) or isinstance(item, FW), items)
+        instances = map(lambda item: isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice), items)
         if True in instances:
 
             # Action: Change the console port
@@ -419,7 +419,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            if isinstance(item, IOSRouter) or isinstance(item, FW):
+            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice):
                 item.console()
                 
     def slotChangeConsolePort(self):
@@ -427,7 +427,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            if isinstance(item, IOSRouter) or isinstance(item, FW):
+            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice):
                 item.changeConsolePort()
 
     def slotStartupConfig(self):
@@ -443,7 +443,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            if isinstance(item, IOSRouter) or isinstance(item, FW):
+            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice):
                 item.startNode()
 
     def slotStopNode(self):
@@ -451,7 +451,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            if isinstance(item, IOSRouter) or isinstance(item, FW):
+            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice):
                 item.stopNode()
 
     def slotSuspendNode(self):

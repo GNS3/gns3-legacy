@@ -38,7 +38,8 @@ class AddItem(QtGui.QUndoCommand):
 
     def redo(self):
 
-        self.topology.addNode(self.item, fromScene=True)
+        if self.topology.addNode(self.item, fromScene=True) == False:
+            self.undo()
 
     def undo(self):
 

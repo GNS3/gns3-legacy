@@ -34,7 +34,7 @@ from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ATMBR import ATMBR
-from GNS3.Node.FW import FW
+from GNS3.Node.AnyEmuDevice import FW, ASA, Olive
 from GNS3.Node.SIMHOST import SIMHOST
 
 SYMBOL_TYPES = {
@@ -46,6 +46,8 @@ SYMBOL_TYPES = {
                 IOSRouter7200: 'Router c7200', 
 #                SIMHOST: 'Host', 
                 FW: 'PIX firewall', 
+                ASA: 'ASA firewall',
+                Olive: 'Juniper router',
                 ETHSW: 'Ethernet switch',
                 ATMBR: 'ATM bridge',
                 ATMSW: 'ATM switch', 
@@ -98,6 +100,18 @@ SYMBOLS = [
     'translated': True,
     },
 
+    {'name': "ASA firewall", 'object': ASA,
+    'normal_svg_file': ":/symbols/PIX_firewall.normal.svg",
+    'select_svg_file': ":/symbols/PIX_firewall.selected.svg", 
+    'translated': True,
+    },
+
+    {'name': "Juniper router", 'object': Olive,
+    'normal_svg_file': ":/symbols/router.normal.svg",
+    'select_svg_file': ":/symbols/router.selected.svg", 
+    'translated': True,
+    },
+    
     {'name': "Ethernet switch", 'object': ETHSW,
     'normal_svg_file': ":/symbols/ethernet_switch.normal.svg",
     'select_svg_file': ":/symbols/ethernet_switch.selected.svg", 

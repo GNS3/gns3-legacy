@@ -546,7 +546,7 @@ class NIO_udp(NIO):
     def config_info(self):
         """return an info string for .net file config"""
         (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self)
-        from pemu_lib import FW
+        from pemu_lib import AnyEmuHandler
         if isinstance(remote_device, Router):
             (rem_int_name, rem_dynagen_port) = remote_adapter.interfaces_mips2dyn[remote_port]
             if remote_device.model_string in ['1710', '1720', '1721', '1750']:
@@ -558,14 +558,14 @@ class NIO_udp(NIO):
             return 'NIO_udp:' + str(self.udplocal) + ":" + self.remotehost + ":" + str(self.udpremote)
         elif isinstance(remote_device, FRSW) or isinstance(remote_device, ATMSW) or isinstance(remote_device, ETHSW) or isinstance(remote_device, ATMBR):
             return remote_device.name + " " + str(remote_port)
-        elif isinstance(remote_device, FW):
+        elif isinstance(remote_device, AnyEmuHandler):
             return remote_device.name + ' ' + remote_adapter + str(remote_port)
 
     def info(self):
         """return info string about this NIO"""
 
         (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self)
-        from pemu_lib import FW
+        from pemu_lib import AnyEmuHandler
         if isinstance(remote_device, Router):
             (rem_int_name, rem_dynagen_port) = remote_adapter.interfaces_mips2dyn[remote_port]
             if remote_device.model_string in ['1710', '1720', '1721', '1750']:
@@ -591,8 +591,8 @@ class NIO_udp(NIO):
             return ' is connected to ethernet switch ' + remote_device.name + ' port ' + str(remote_port)
         elif isinstance(remote_device, ATMBR):
             return ' is connected to ATM bridge ' + remote_device.name + ' port ' + str(remote_port)
-        elif isinstance(remote_device, FW):
-            return ' is connected to firewall ' + remote_device.name + ' Ethernet' + str(remote_port)
+        elif isinstance(remote_device, AnyEmuHandler):
+            return ' is connected to emulated device ' + remote_device.name + ' Ethernet' + str(remote_port)
 
     def __getreverse_nio(self):
         return self.__reverse_nio
@@ -627,6 +627,12 @@ class NIO_udp(NIO):
 
     udpremote = property(__getudpremote)
 
+    def get_stats(self):
+        return send(self.__d, 'nio get_stats %s' % self.__name)
+        
+    def reset_stats(self):
+        send(self.__d, 'nio reset_stats %s' % self.__name)
+        
     def delete(self):
         send(self.__d, 'nio delete %s' % self.__name)
 
@@ -4837,7 +4843,7 @@ def validate_connect(
                         raise DynamipsError, 'source and destination ports are already occupied by a different connection'
                 else:  #both occupied and NOT a UDP connection
                     raise DynamipsError, 'source and destination ports are already occupied by a different connection'
-    elif isinstance(dst_adapter, BaseAdapter):  #src_adapter is pemu, so this is fw -> router connection
+    elif isinstance(dst_adapter, BaseAdapter):  #src_adapter is pemu, so this is emulated device -> router connection
         remote_nio = dst_adapter.nio(dst_port)
         if src_adapter.nios.has_key(src_port):
             local_nio = src_adapter.nios[src_port]
@@ -4870,10 +4876,10 @@ def get_reverse_udp_nio(remote_nio):
     if local_nio == None:
         return ['nothing', 'nothing', 'nothing']
 
-    #if the local_nio is UDPConnection of FW
-    from pemu_lib import FW
-    if isinstance(local_nio.adapter, FW):
-        return [local_nio.fw, 'e', local_nio.port]
+    #if the local_nio is UDPConnection of AnyEmuHandler
+    from pemu_lib import AnyEmuHandler
+    if isinstance(local_nio.adapter, AnyEmuHandler):
+        return [local_nio.dev, 'e', local_nio.port]
     if isinstance(local_nio.adapter, FRSW) or isinstance(local_nio.adapter, ATMSW) or isinstance(local_nio.adapter, ETHSW) or isinstance(local_nio.adapter, ATMBR):
         return [local_nio.adapter, 'nothing', local_nio.port]
 

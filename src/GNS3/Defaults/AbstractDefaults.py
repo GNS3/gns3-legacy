@@ -25,11 +25,12 @@ import GNS3.Globals as globals
 class AbstractDefaults(object):
     """ Abstract class for managing the device defaults """
 
+    model = None
+    
     def __init__(self):
  
         self.dynagen = globals.GApp.dynagen
         self.config = None
-        self.model = None
 
     def set_int_option(self, option, argument):
         """ Set integer type option in config

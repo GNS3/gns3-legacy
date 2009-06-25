@@ -43,7 +43,7 @@ from GNS3.Node.ATMBR import ATMBR, init_atmbr_id
 from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
 from GNS3.Node.FRSW import FRSW, init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
-from GNS3.Node.FW import FW, init_fw_id
+from GNS3.Node.AnyEmuDevice import FW, init_emu_id, AnyEmuDevice
 
 router_hostname_re = re.compile(r"""^R([0-9]+)""")
 ethsw_hostname_re = re.compile(r"""^SW([0-9]+)""")
@@ -52,6 +52,9 @@ atmsw_hostname_re = re.compile(r"""^ATM([0-9]+)""")
 atmbr_hostname_re = re.compile(r"""^BR([0-9]+)""")
 cloud_hostname_re = re.compile(r"""^C([0-9]+)""")
 firewall_hostname_re = re.compile(r"""^FW([0-9]+)""")
+#TODO complete support for olive + ASA
+olive_hostname_re = re.compile(r"""^OLIVE([0-9]+)""")
+asa_hostname_re = re.compile(r"""^ASA([0-9]+)""")
 simhost_hostname_re = re.compile(r"""^SIMHOST([0-9]+)""")
 decorative_hostname_re = re.compile(r"""^N([0-9]+)""")
 
@@ -108,17 +111,17 @@ class NETFile(object):
                                                                                                                                                                             connection_list)
                                 elif isinstance(remote_device, lib.FRSW) or isinstance(remote_device, lib.ATMSW) or isinstance(remote_device, lib.ETHSW) or isinstance(remote_device, lib.ATMBR):
                                     connection_list.append((device.name, source_interface, remote_device.name, str(remote_port)))
-                                elif isinstance(remote_device, pix.FW):
+                                elif isinstance(remote_device, pix.AnyEmuDevice):
                                     connection_list.append((device.name, source_interface, remote_device.name, remote_adapter + str(remote_port)))
 
-    def populate_connection_list_for_fw(self, device, connection_list):
-        """ Add firewall connections in connection_list
+    def populate_connection_list_for_emulated_device(self, device, connection_list):
+        """ Add emulated device connections in connection_list
         """
 
         for port in device.nios:
             if device.nios[port] != None:
                 (remote_device, remote_adapter, remote_port) = lib.get_reverse_udp_nio(device.nios[port])
-                if isinstance(remote_device, pix.FW):
+                if isinstance(remote_device, pix.AnyEmuDevice):
                     self.add_in_connection_list((device.name, 'e' + str(port), remote_device.name, remote_adapter + str(remote_port)), connection_list)
                 elif isinstance(remote_device, lib.ETHSW):
                     connection_list.append((device.name, 'e' + str(port), remote_device.name, str(remote_port)))
@@ -129,7 +132,7 @@ class NETFile(object):
 
         symbol_name = x = y = hx = hy = None
         config = None
-        if isinstance(device, pix.FW) and  self.dynagen.globalconfig['pemu ' + device.dynamips.host].has_key(running_config_name):
+        if isinstance(device, pix.AnyEmuDevice) and  self.dynagen.globalconfig['pemu ' + device.dynamips.host].has_key(running_config_name):
             config = self.dynagen.globalconfig['pemu ' + device.dynamips.host][running_config_name]
         elif isinstance(device, lwip.SIMHOST) and  self.dynagen.globalconfig['lwip ' + device.dynamips.host + ':' + str(device.dynamips.port)].has_key(running_config_name):
             config = self.dynagen.globalconfig['lwip ' + device.dynamips.host + ':' + str(device.dynamips.port)][running_config_name]
@@ -254,12 +257,12 @@ class NETFile(object):
 
         globals.GApp.topology.recordLink(srcid, source_interface, dstid, destination_interface, src_node, dst_node)
 
-        if not isinstance(src_node, IOSRouter) and not isinstance(src_node, FW):
+        if not isinstance(src_node, IOSRouter) and not isinstance(src_node, AnyEmuDevice):
             if not isinstance(src_node,Cloud) and not src_node.hypervisor:
                 src_node.get_dynagen_device()
             src_node.startupInterfaces()
             src_node.state = 'running'
-        if not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, FW):
+        if not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, AnyEmuDevice):
             if not isinstance(dst_node,Cloud) and not dst_node.hypervisor:
                 dst_node.get_dynagen_device()
             dst_node.startupInterfaces()
@@ -514,7 +517,7 @@ class NETFile(object):
         max_frsw_id = -1
         max_atmsw_id = -1
         max_atmbr_id = -1
-        max_fw_id = -1
+        max_emu_id = -1
         max_simhost_id = -1
         for (devicename, device) in  self.dynagen.devices.iteritems():
 
@@ -656,19 +659,19 @@ class NETFile(object):
                     if id > max_atmbr_id:
                         max_atmbr_id = id
 
-            elif isinstance(device, pix.FW):
+            elif isinstance(device, pix.AnyEmuDevice):
 
-                node = self.create_node(device, 'PIX firewall', 'FW ' + device.name)
+                node = self.create_node(device, device._ufd_machine, device.gen_cfg_name())
                 assert(node)
                 node.set_hypervisor(device.dynamips)
                 self.configure_node(node, device)
                 node.create_config()
-                self.populate_connection_list_for_fw(device, connection_list)
+                self.populate_connection_list_for_emulated_device(device, connection_list)
                 match_obj = firewall_hostname_re.match(node.hostname)
                 if match_obj:
                     id = int(match_obj.group(1))
-                    if id > max_fw_id:
-                        max_fw_id = id
+                    if id > max_emu_id:
+                        max_emu_id = id
                         
             elif isinstance(device, lwip.SIMHOST):
 
@@ -684,7 +687,7 @@ class NETFile(object):
                 node.set_hypervisor(device.dynamips)
                 self.configure_node(node, device)
                 node.set_config(config)
-                self.populate_connection_list_for_fw(device, connection_list)
+                self.populate_connection_list_for_emulated_device(device, connection_list)
                 match_obj = simhost_hostname_re.match(node.hostname)
                 if match_obj:
                     id = int(match_obj.group(1))
@@ -704,8 +707,8 @@ class NETFile(object):
             init_atmsw_id(max_atmsw_id + 1)
         if max_atmbr_id != -1:
             init_atmbr_id(max_atmbr_id + 1)
-        if max_fw_id != -1:
-            init_fw_id(max_fw_id + 1)
+        if max_emu_id != -1:
+            init_emu_id(max_emu_id + 1)
         if max_simhost_id != -1:
             init_simhost_id(max_simhost_id + 1)
 

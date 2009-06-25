@@ -32,19 +32,19 @@ NOSEND = False  # Disable sending any commands to the back end for debugging
 
 class UDPConnection:
 
-    def __init__(self, sport, daddr, dport, fw, port):
+    def __init__(self, sport, daddr, dport, dev, port):
         self.sport = sport
         self.daddr = daddr
         self.dport = dport
-        self.fw = fw
-        self.adapter = self.fw
+        self.dev = dev
+        self.adapter = self.dev
         self.port = port
         self.reverse_nio = None
         
     def info(self):
         (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self)
-        if isinstance(remote_device, FW):
-            return ' is connected to firewall ' + remote_device.name + ' Ethernet' + str(remote_port) + '\n'
+        if isinstance(remote_device, AnyEmuHandler):
+            return ' is connected to emulated device ' + remote_device.name + ' Ethernet' + str(remote_port) + '\n'
         elif isinstance(remote_device, Router):
             (rem_int_name, rem_dynagen_port) = remote_adapter.interfaces_mips2dyn[remote_port]
             if remote_device.model_string in ['1710', '1720', '1721', '1750']:
@@ -161,23 +161,22 @@ class Pemu(object):
     version = property(_getversion, doc='The pemuwrapper version')
         
 
-class FW(object):
+class AnyEmuHandler(object):
 
     _instance_count = 0
+    isrouter = 1
 
     def __init__(self, pemu, name):
         self.p = pemu
         #create a twin variable to self.p but with name self.dynamips to keep things working elsewhere
         self.dynamips = pemu
-        self.model_string = '525'
-        self._instance = FW._instance_count
-        FW._instance_count += 1
+        self._instance = self._instance_count
+        self._instance_count += 1
         if name == None:
             self.name = 'fw' + str(self._instance)
         else:
             self.name = name
-            
-        self.isrouter = 1
+
         self.nios = {}
         for i in range(6):
             self.nios[i] = None
@@ -190,12 +189,8 @@ class FW(object):
         self.fourth_mac_number = random.choice('abcdef123456789')
         self.defaults = {
             'image': None,
-            'serial': '0x12345678',
-            'key': '0x00000000,0x00000000,0x00000000,0x00000000',
             'ram': 128,
             }
-        self._serial = self.defaults['serial']
-        self._key = self.defaults['key']
         self._ram = self.defaults['ram']
 
         self.idlepc = '0'
@@ -205,38 +200,38 @@ class FW(object):
         self.disk0 = 16
         self.disk1 = 0
         self.ghost_status = 0
-        send(self.p, 'pemu create %s' % self.name)
+        send(self.p, 'pemu create %s %s' % (self.pemu_dev_type, self.name))
         self.p.devices.append(self)
         #set the console to PEMU baseconsole
         self.console = self.p.baseconsole
         self.p.baseconsole += 1
 
     def start(self):
-        """starts the fw instance in pemu"""
+        """starts the emulated device instance in pemu"""
 
         if self.state == 'running':
-            raise DynamipsWarning, 'firewall %s is already running' % self.name
+            raise DynamipsWarning, 'emulated device %s is already running' % self.name
 
         r = send(self.p, 'pemu start %s' % self.name)
         self.state = 'running'
         return r
 
     def stop(self):
-        """stops the fw instance in pemu"""
+        """stops the emulated device instance in pemu"""
 
         if self.state == 'stopped':
-            raise DynamipsWarning, 'firewall %s is already stopped' % self.name
+            raise DynamipsWarning, 'emulated device %s is already stopped' % self.name
         r = send(self.p, 'pemu stop %s' % self.name)
         self.state = 'stopped'
         return r
 
     def suspend(self):
-        """suspends the fw instance in pemu"""
+        """suspends the emulated device instance in pemu"""
 
         return [self.name + ' does not support suspending']
 
     def resume(self):
-        """resumes the fw instance in pemu"""
+        """resumes the emulated device instance in pemu"""
 
         return self.name + ' does not support resuming'
 
@@ -248,7 +243,7 @@ class FW(object):
         if type(console) != int or console < 1 or console > 65535:
             raise DynamipsError, 'invalid console port'
 
-        send(self.p, 'pemu set_con_tcp %s %i' % (self.name, console))
+        send(self.p, 'pemu setattr %s console %i' % (self.name, console))
         self._console = console
 
     def _getconsole(self):
@@ -257,17 +252,17 @@ class FW(object):
 
         return self._console
 
-    console = property(_getconsole, _setconsole, doc='The fw console port')
+    console = property(_getconsole, _setconsole, doc='The emulated device console port')
 
     def _setram(self, ram):
-        """ Set amount of RAM allocated to this fw
+        """ Set amount of RAM allocated to this emulated device
         ram: (int) amount of RAM in MB
         """
 
         if type(ram) != int or ram < 1:
             raise DynamipsError, 'invalid ram size'
 
-        send(self.p, 'pemu set_ram %s %i' % (self.name, ram))
+        send(self.p, 'pemu setattr %s ram %i' % (self.name, ram))
         self._ram = ram
 
     def _getram(self):
@@ -276,10 +271,10 @@ class FW(object):
 
         return self._ram
 
-    ram = property(_getram, _setram, doc='The amount of RAM allocated to this fw')
+    ram = property(_getram, _setram, doc='The amount of RAM allocated to this emulated device')
 
     def _setimage(self, image):
-        """ Set the IOS image for this fw
+        """ Set the IOS image for this emulated device
         image: path to IOS image file
         """
 
@@ -288,54 +283,16 @@ class FW(object):
 
         # Can't verify existance of image because path is relative to backend
         #send the image filename enclosed in quotes to protect it
-        send(self.p, 'pemu set_image %s %s' % (self.name, '"' + image + '"'))
+        send(self.p, 'pemu setattr %s image %s' % (self.name, '"' + image + '"'))
         self._image = image
 
     def _getimage(self):
-        """ Returns path of the image being used by this fw
+        """ Returns path of the image being used by this emulated device
         """
 
         return self._image
 
-    image = property(_getimage, _setimage, doc='The IOS image file for this fw')
-
-    def _setserial(self, serial):
-        """ Set the serial for this fw
-        serial: serial number of this fw
-        """
-
-        if type(serial) not in [str, unicode]:
-            raise DynamipsError, 'invalid serial'
-        #TODO verify serial
-        send(self.p, 'pemu set_serial %s %s' % (self.name, serial))
-        self._serial = serial
-
-    def _getserial(self):
-        """ Returns path of the serial being used by this fw
-        """
-
-        return self._serial
-
-    serial = property(_getserial, _setserial, doc='The serial for this fw')
-
-    def _setkey(self, key):
-        """ Set the key for this fw
-        key: key number of this fw
-        """
-
-        if type(key) not in [str, unicode]:
-            raise DynamipsError, 'invalid key'
-        #TODO verify key
-        send(self.p, 'pemu set_key %s %s' % (self.name, key))
-        self._key = key
-
-    def _getkey(self):
-        """ Returns path of the key being used by this fw
-        """
-
-        return self._key
-
-    key = property(_getkey, _setkey, doc='The key for this fw')
+    image = property(_getimage, _setimage, doc='The image file for this device')
 
     def idleprop(self,prop):
         """Returns nothing so that all function in console.py recognize that there are no idlepc value
@@ -343,7 +300,10 @@ class FW(object):
         return ['100-OK']
         
     def add_interface(self, pa1, port1):
-        send(self.p, 'pemu create_nic %s %i 00:00:ab:%s%s:%s%s:0%i' % (self.name, port1, self.first_mac_number, self.second_mac_number, self.third_mac_number, self.fourth_mac_number, port1))
+        # Some guest drivers won't accept non-standard MAC addresses
+        # burned in the EEPROM! Watch for overlap with real NICs;
+        # it's unlikely, but possible.
+        send(self.p, 'pemu create_nic %s %i 00:aa:00:%s%s:%s%s:0%i' % (self.name, port1, self.first_mac_number, self.second_mac_number, self.third_mac_number, self.fourth_mac_number, port1))
 
     def __allocate_udp_port(self, remote_hypervisor):
         """allocate a new src and dst udp port from hypervisors"""
@@ -391,7 +351,7 @@ class FW(object):
             if src_ip == 'localhost' or src_ip =='127.0.0.1' or dst_ip =='localhost' or dst_ip == '127.0.0.1':
                 dowarning('Connecting %s port %s to %s slot %s port %s:\nin case of multi-server operation make sure you do not use "localhost" string in definition of dynamips hypervisor.\n'% (self.name, local_port, remote_slot.router.name, remote_slot.adapter, remote_port))
 
-        #create the fw side of UDP connection
+        #create the emulated device side of UDP connection
         send(self.p, 'pemu create_udp %s %i %i %s %i' % (self.name, local_port, src_udp, dst_ip, dst_udp))
         self.nios[local_port] = UDPConnection(src_udp, dst_ip, dst_udp, self, local_port)
 
@@ -408,29 +368,29 @@ class FW(object):
         remote_nio.reverse_nio = self.nios[local_port]
         self.nios[local_port].reverse_nio = remote_nio
         
-    def connect_to_fw(self, local_port, remote_fw, remote_port):
-        (src_udp, dst_udp) = self.__allocate_udp_port(remote_fw.p)
+    def connect_to_emulated_device(self, local_port, remote_emulated_device, remote_port):
+        (src_udp, dst_udp) = self.__allocate_udp_port(remote_emulated_device.p)
 
-        if self.p.host == remote_fw.p.host:
+        if self.p.host == remote_emulated_device.p.host:
             # source and dest adapters are on the same dynamips server, perform loopback binding optimization
             src_ip = '127.0.0.1'
             dst_ip = '127.0.0.1'
         else:
             # source and dest are on different dynamips servers
             src_ip = self.p.name
-            dst_ip = remote_fw.p.host
+            dst_ip = remote_emulated_device.p.host
 
-        #create the local fw side of UDP connection
+        #create the local emulated device side of UDP connection
         send(self.p, 'pemu create_udp %s %i %i %s %i' % (self.name, local_port, src_udp, dst_ip, dst_udp))
         self.nios[local_port] = UDPConnection(src_udp, dst_ip, dst_udp, self, local_port)
 
-        #create the remote fw side of UDP connection
-        send(remote_fw.p, 'pemu create_udp %s %i %i %s %i' % (remote_fw.name, remote_port, dst_udp, src_ip, src_udp))
-        remote_fw.nios[remote_port] = UDPConnection(dst_udp, src_ip, src_udp, remote_fw, remote_port)
+        #create the remote emulated device side of UDP connection
+        send(remote_emulated_device.p, 'pemu create_udp %s %i %i %s %i' % (remote_emulated_device.name, remote_port, dst_udp, src_ip, src_udp))
+        remote_emulated_device.nios[remote_port] = UDPConnection(dst_udp, src_ip, src_udp, remote_emulated_device, remote_port)
         
         #set reverse nios
-        self.nios[local_port].reverse_nio = remote_fw.nios[remote_port]
-        remote_fw.nios[remote_port].reverse_nio = self.nios[local_port]
+        self.nios[local_port].reverse_nio = remote_emulated_device.nios[remote_port]
+        remote_emulated_device.nios[remote_port].reverse_nio = self.nios[local_port]
 
     def slot_info(self):
         #gather information about interfaces and connections
@@ -439,8 +399,8 @@ class FW(object):
             slot_info = slot_info + "      Ethernet" + str(port)
             if self.nios[port] != None:
                 (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self.nios[port])
-                if isinstance(remote_device, FW):
-                    slot_info = slot_info + ' is connected to firewall ' + remote_device.name + ' Ethernet' + str(remote_port) + '\n'
+                if isinstance(remote_device, AnyEmuHandler):
+                    slot_info = slot_info + ' is connected to emulated device ' + remote_device.name + ' Ethernet' + str(remote_port) + '\n'
                 elif isinstance(remote_device, Router):
                     slot_info = slot_info + ' is connected to router ' + remote_device.name + " " + remote_adapter.interface_name + str(remote_adapter.slot) + "/" + str(remote_port) + '\n'
                 elif isinstance(remote_device, FRSW):
@@ -458,14 +418,98 @@ class FW(object):
     def info(self):
         """prints information about specific device"""
        
-        #gather information about PA, their interfaces and connections
-        slot_info = self.slot_info()
+        info = '\n'.join([
+            '%s %s is %s' % (self._ufd_machine, self.name, self.state),
+            '  Hardware is %s %s with %s MB RAM' % (self._ufd_hardware, self.model_string, self._ram),
+            '  %s\'s wrapper runs on %s:%s, console is on port %s' % (self._ufd_machine, self.dynamips.host, self.dynamips.port, self.console),
+            '  Image is %s' % self.image,
+            '  %s KB NVRAM, %s MB flash size' % (self.nvram, self.disk0)
+        ])
 
-        #create final output, with proper indentation
-        return 'Firewall ' + self.name + ' is ' + self.state + '\n' + '  Hardware is pemu emulated Cisco PIX ' + self.model_string + ' with ' + \
-                str(self._ram) + ' MB RAM\n' + '  Firewall\'s pemuwrapper runs on ' + self.dynamips.host + ":" + str(self.dynamips.port) + \
-                ', console is on port ' + str(self.console) + '\n  Image is ' + self.image + '\n  ' + str(self.nvram) + ' KB NVRAM, ' + str(self.disk0) + \
-                ' MB flash size, with serial number '  + self._serial + '\n' '  Activation key ' + self._key + '\n' + slot_info
+        if hasattr(self, 'extended_info'):
+            info += '\n' + self.extended_info()
+
+        info += '\n' + self.slot_info()
+
+        return info
+        
+    def gen_cfg_name(self, name=None):
+        if not name:
+            name = self.name
+        return '%s %s' % (self.basehostname, name)
+
+class Olive(AnyEmuHandler):
+    model_string = 'O-series'
+    pemu_dev_type = 'olive'
+    basehostname = 'OLIVE'
+    _ufd_machine = 'Juniper router'
+    _ufd_hardware = 'Juniper Olive router'
+    available_options = ['image', 'ram']
+
+class ASA(AnyEmuHandler):
+    model_string = '5520'
+    pemu_dev_type = 'asa'
+    basehostname = 'ASA'
+    _ufd_machine = 'ASA firewall'
+    _ufd_hardware = 'qemu-emulated Cisco ASA'
+    available_options = ['image', 'ram']
+
+class FW(AnyEmuHandler):
+    model_string = '525'
+    pemu_dev_type = 'pix'
+    basehostname = 'FW'
+    available_options = ['image', 'ram', 'serial', 'key']
+    _ufd_machine = 'PIX firewall'
+    _ufd_hardware = 'pemu-emulated Cisco PIX'
+    def __init__(self, *args, **kwargs):
+        super(FW, self).__init__(*args, **kwargs)
+        self.defaults.update({
+            'serial': '0x12345678',
+            'key': '0x00000000,0x00000000,0x00000000,0x00000000',
+        })
+        self._serial = self.defaults['serial']
+        self._key = self.defaults['key']
+        
+    def _setserial(self, serial):
+        """ Set the serial for this fw
+        serial: serial number of this fw
+        """
+
+        if type(serial) not in [str, unicode]:
+            raise DynamipsError, 'invalid serial'
+        #TODO verify serial
+        send(self.p, 'pemu setattr %s serial %s' % (self.name, serial))
+        self._serial = serial
+
+    def _getserial(self):
+        """ Returns path of the serial being used by this fw
+        """
+
+        return self._serial
+
+    serial = property(_getserial, _setserial, doc='The serial for this fw')
+
+    def _setkey(self, key):
+        """ Set the key for this fw
+        key: key number of this fw
+        """
+
+        if type(key) not in [str, unicode]:
+            raise DynamipsError, 'invalid key'
+        #TODO verify key
+        send(self.p, 'pemu setattr %s key %s' % (self.name, key))
+        self._key = key
+
+    def _getkey(self):
+        """ Returns path of the key being used by this fw
+        """
+
+        return self._key
+
+    key = property(_getkey, _setkey, doc='The key for this fw')
+
+    def extended_info(self):
+        return '  Serial number %s\n  Activation key %s' % (self._serial, self._key)
 
 def nosend_pemu(flag):
     """ If true, don't actually send any commands to the back end.

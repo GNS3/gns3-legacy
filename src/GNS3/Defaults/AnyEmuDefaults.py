@@ -23,7 +23,7 @@ import os
 import GNS3.Globals as globals
 from GNS3.Defaults.AbstractDefaults import AbstractDefaults
 
-class FWDefaults(AbstractDefaults):
+class AnyEmuDefaults(AbstractDefaults):
     """Abstract class for managing the FW defaults"""
 
     def __init__(self):
@@ -31,8 +31,6 @@ class FWDefaults(AbstractDefaults):
         AbstractDefaults.__init__(self)
 
         self.default_image = 'None'
-        self.default_serial = '0x12345678'
-        self.default_key = '0x00000000,0x00000000,0x00000000,0x00000000'
         self.default_ram = 128
         self.pemu = None
         self.d = None
@@ -64,3 +62,15 @@ class FWDefaults(AbstractDefaults):
                 del self.config['image']
         else:
             self.config['image'] = image
+
+class FWDefaults(AnyEmuDefaults):
+    def __init__(self):
+        AnyEmuDefaults.__init__(self)
+        self.default_serial = '0x12345678'
+        self.default_key = '0x00000000,0x00000000,0x00000000,0x00000000'
+
+class ASADefaults(AnyEmuDefaults):
+    pass
+    
+class OliveDefaults(AnyEmuDefaults):
+    pass

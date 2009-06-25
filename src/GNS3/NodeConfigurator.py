@@ -32,7 +32,7 @@ from GNS3.Node.IOSRouter3700 import IOSRouter3700
 from GNS3.Node.IOSRouter7200 import IOSRouter7200
 from GNS3.Node.DecorativeNode import DecorativeNode
 from GNS3.Node.SIMHOST import SIMHOST
-from GNS3.Node.FW import FW
+from GNS3.Node.AnyEmuDevice import FW, ASA, Olive
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
@@ -127,6 +127,12 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             "FW":
                 [translate("NodeConfigurator", "PIX firewalls"), ":/symbols/PIX_firewall.normal.svg",
                  "Page_FW", None, None],
+            "ASA":
+                 [translate("NodeConfigurator", "ASA firewalls"), ":/symbols/PIX_firewall.normal.svg",
+                  "Page_ASA", None, None],
+            "Olive":
+                  [translate("NodeConfigurator", "Juniper routers"), ":/symbols/router.normal.svg",
+                   "Page_Olive", None, None],
             "HOST":
                 [translate("NodeConfigurator", "Hosts"), ":/symbols/computer.normal.svg",
                  "Page_SIMHOST", None, None],
@@ -159,6 +165,8 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                                      IOSRouter7200: "Routers (7200)",
                                      DecorativeNode: "Decorative Nodes",
                                      FW: "FW",
+                                     ASA: "ASA",
+                                     Olive: "Olive",
                                      SIMHOST: "HOST",
                                      FRSW: "FRSW",
                                      ETHSW: "ETHSW",
