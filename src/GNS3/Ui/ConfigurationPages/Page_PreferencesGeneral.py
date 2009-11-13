@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Contact: contact@gns3.net
+# code@gns3.net
 #
 
 import sys
@@ -49,8 +49,6 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
 
     def loadConf(self):
 
-        import sys
-
         if globals.GApp.systconf.has_key('general'):
             self.conf = globals.GApp.systconf['general']
         else:
@@ -77,7 +75,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
                 
                     try:
                         # try to detect Windows 64 bits
-                        import ctypes, sys
+                        import ctypes
                         i = ctypes.c_int()
                         kernel32 = ctypes.windll.kernel32
                         process = kernel32.GetCurrentProcess()

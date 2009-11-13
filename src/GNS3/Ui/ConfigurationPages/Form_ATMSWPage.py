@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_ATMSWPage.ui'
 #
-# Created: Sun May 24 15:51:30 2009
-#      by: PyQt4 UI code generator 4.4.4
+# Created: Fri Nov 13 21:41:06 2009
+#      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -52,7 +52,7 @@ class Ui_ATMSWPage(object):
         self.spinBoxSrcPort.setSizePolicy(sizePolicy)
         self.spinBoxSrcPort.setMinimum(0)
         self.spinBoxSrcPort.setMaximum(65535)
-        self.spinBoxSrcPort.setProperty("value", QtCore.QVariant(1))
+        self.spinBoxSrcPort.setProperty("value", 1)
         self.spinBoxSrcPort.setObjectName("spinBoxSrcPort")
         self.gridlayout1.addWidget(self.spinBoxSrcPort, 0, 1, 1, 1)
         self.label_5 = QtGui.QLabel(self.groupBox)
@@ -66,7 +66,7 @@ class Ui_ATMSWPage(object):
         sizePolicy.setHeightForWidth(self.spinBoxSrcVCI.sizePolicy().hasHeightForWidth())
         self.spinBoxSrcVCI.setSizePolicy(sizePolicy)
         self.spinBoxSrcVCI.setMaximum(65535)
-        self.spinBoxSrcVCI.setProperty("value", QtCore.QVariant(0))
+        self.spinBoxSrcVCI.setProperty("value", 0)
         self.spinBoxSrcVCI.setObjectName("spinBoxSrcVCI")
         self.gridlayout1.addWidget(self.spinBoxSrcVCI, 1, 1, 1, 1)
         self.label_2 = QtGui.QLabel(self.groupBox)
@@ -79,7 +79,7 @@ class Ui_ATMSWPage(object):
         sizePolicy.setHeightForWidth(self.spinBoxSrcVPI.sizePolicy().hasHeightForWidth())
         self.spinBoxSrcVPI.setSizePolicy(sizePolicy)
         self.spinBoxSrcVPI.setMaximum(65535)
-        self.spinBoxSrcVPI.setProperty("value", QtCore.QVariant(101))
+        self.spinBoxSrcVPI.setProperty("value", 101)
         self.spinBoxSrcVPI.setObjectName("spinBoxSrcVPI")
         self.gridlayout1.addWidget(self.spinBoxSrcVPI, 2, 1, 1, 1)
         self.gridlayout.addWidget(self.groupBox, 1, 0, 1, 2)
@@ -103,7 +103,7 @@ class Ui_ATMSWPage(object):
         self.spinBoxDestPort.setSizePolicy(sizePolicy)
         self.spinBoxDestPort.setMinimum(0)
         self.spinBoxDestPort.setMaximum(65535)
-        self.spinBoxDestPort.setProperty("value", QtCore.QVariant(10))
+        self.spinBoxDestPort.setProperty("value", 10)
         self.spinBoxDestPort.setObjectName("spinBoxDestPort")
         self.gridlayout2.addWidget(self.spinBoxDestPort, 0, 1, 1, 1)
         self.label_6 = QtGui.QLabel(self.groupBox_3)
@@ -117,7 +117,7 @@ class Ui_ATMSWPage(object):
         sizePolicy.setHeightForWidth(self.spinBoxDestVCI.sizePolicy().hasHeightForWidth())
         self.spinBoxDestVCI.setSizePolicy(sizePolicy)
         self.spinBoxDestVCI.setMaximum(65535)
-        self.spinBoxDestVCI.setProperty("value", QtCore.QVariant(0))
+        self.spinBoxDestVCI.setProperty("value", 0)
         self.spinBoxDestVCI.setObjectName("spinBoxDestVCI")
         self.gridlayout2.addWidget(self.spinBoxDestVCI, 1, 1, 1, 1)
         self.label_4 = QtGui.QLabel(self.groupBox_3)
@@ -130,7 +130,7 @@ class Ui_ATMSWPage(object):
         sizePolicy.setHeightForWidth(self.spinBoxDestVPI.sizePolicy().hasHeightForWidth())
         self.spinBoxDestVPI.setSizePolicy(sizePolicy)
         self.spinBoxDestVPI.setMaximum(65535)
-        self.spinBoxDestVPI.setProperty("value", QtCore.QVariant(202))
+        self.spinBoxDestVPI.setProperty("value", 202)
         self.spinBoxDestVPI.setObjectName("spinBoxDestVPI")
         self.gridlayout2.addWidget(self.spinBoxDestVPI, 2, 1, 1, 1)
         self.gridlayout.addWidget(self.groupBox_3, 2, 0, 1, 2)

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007-2008 GNS3 Dev Team
+# Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -16,23 +16,21 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Contact: contact@gns3.net
+# code@gns3.net
 #
 
-import sys, time, os
+import sys, os
 import GNS3.Globals as globals
 import GNS3.Config.Defaults as Defaults
-from GNS3.Utils import translate
-from PyQt4.QtGui import QApplication, QMessageBox
+from PyQt4.QtGui import QApplication
 from PyQt4.QtCore import QVariant, QSettings
 from GNS3.Utils import Singleton
 from GNS3.Workspace import Workspace
-from GNS3.Topology import Topology
-from GNS3.Config.Objects import systemDynamipsConf, systemGeneralConf, systemCaptureConf, systemPemuConf, systemSimhostConf
+from GNS3.Config.Objects import systemDynamipsConf, systemGeneralConf, systemCaptureConf, systemQemuConf, systemSimhostConf
 from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from GNS3.Config.Config import ConfDB, GNS_Conf
 from GNS3.HypervisorManager import HypervisorManager
-from GNS3.PemuManager import PemuManager
+from GNS3.QemuManager import QemuManager
 from GNS3.SimhostManager import SimhostManager
 from GNS3.Translations import Translator
 from GNS3.DynagenSub import DynagenSub
@@ -59,7 +57,7 @@ class Application(QApplication, Singleton):
         self.__topology = None
         self.__dynagen = None
         self.__HypervisorManager = None
-        self.__PemuManager = None
+        self.__QemuManager = None
         self.__SimhostManager = None
 
         # Dict for storing config
@@ -142,7 +140,7 @@ class Application(QApplication, Singleton):
         """ register the systconf instance
         """
 
-        self.__systconf = sytsconf
+        self.__systconf = systconf
 
     def __getSystConf(self):
         """ return the systconf instance
@@ -222,19 +220,19 @@ class Application(QApplication, Singleton):
 
     HypervisorManager = property(__getHypervisorManager, __setHypervisorManager, doc = 'HypervisorManager instance')
 
-    def __setPemuManager(self, PemuManager):
-        """ register the PemuManager instance
+    def __setQemuManager(self, QemuManager):
+        """ register the QemuManager instance
         """
 
-        self.__PemuManager = PemuManager
+        self.__QemuManager = QemuManager
 
-    def __getPemuManager(self):
-        """ return the PemuManager instance
+    def __getQemuManager(self):
+        """ return the QemuManager instance
         """
 
-        return self.__PemuManager
+        return self.__QemuManager
 
-    PemuManager = property(__getPemuManager, __setPemuManager, doc = 'PemuManager instance')
+    QemuManager = property(__getQemuManager, __setQemuManager, doc = 'QemuManager instance')
     
     def __setSimhostManager(self, SimhostManager):
         """ register the SimhostManager instance
@@ -254,8 +252,6 @@ class Application(QApplication, Singleton):
 
         # Instantiation of Dynagen
         self.__dynagen = DynagenSub()
-
-        config_version = int(ConfDB().get('GNS3/version', 0x000402))
 
         self.systconf['dynamips'] = systemDynamipsConf()
         confo = self.systconf['dynamips']
@@ -280,31 +276,66 @@ class Application(QApplication, Singleton):
         confo.path = os.path.expanduser(confo.path)
         confo.workdir = os.path.expanduser(confo.workdir)
 
-        # Pemu config
-        self.systconf['pemu'] = systemPemuConf()
-        confo = self.systconf['pemu']
-        confo.pemuwrapper_path = ConfDB().get('Pemu/pemuwrapper_path', unicode(''))
-        confo.pemuwrapper_workdir = ConfDB().get('Pemu/pemuwrapper_working_directory', unicode(''))
-        confo.external_host = ConfDB().get('Pemu/external_host', unicode(''))
-        confo.enable_PemuManager = ConfDB().value("Pemu/enable_PemuManager", QVariant(True)).toBool()
-        confo.import_use_PemuManager = ConfDB().value("Pemu/pemu_manager_import", QVariant(True)).toBool()
-        confo.default_pix_image = ConfDB().get('Pemu/default_pix_image', unicode(''))
-        confo.default_pix_key = str(ConfDB().get('Pemu/default_pix_key', unicode('0x00000000,0x00000000,0x00000000,0x00000000')))
-        confo.default_pix_serial = str(ConfDB().get('Pemu/default_pix_serial', unicode('0x12345678')))
-        confo.default_base_flash = ConfDB().get('Pemu/default_base_flash', unicode(''))
-        confo.PemuManager_binding = ConfDB().get('Pemu/pemu_manager_binding', unicode('localhost'))
+        # Qemu config
+        self.systconf['qemu'] = systemQemuConf()
+        confo = self.systconf['qemu']
+        confo.qemuwrapper_path = ConfDB().get('Qemu/qemuwrapper_path', unicode(''))
+        confo.qemuwrapper_workdir = ConfDB().get('Qemu/qemuwrapper_working_directory', unicode(''))
+        confo.external_host = ConfDB().get('Qemu/external_host', unicode(''))
+        confo.enable_QemuManager = ConfDB().value("Qemu/enable_QemuManager", QVariant(True)).toBool()
+        confo.import_use_QemuManager = ConfDB().value("Qemu/qemu_manager_import", QVariant(True)).toBool()
+        confo.QemuManager_binding = ConfDB().get('Qemu/qemu_manager_binding', unicode('localhost'))
+        confo.qemuwrapper_baseUDP = int(ConfDB().get('Qemu/qemuwrapper_baseUDP', 20000))
+        confo.qemuwrapper_baseConsole = int(ConfDB().get('Qemu/qemuwrapper_baseConsole', 3000))
+        confo.default_qemu_image = ConfDB().get('Qemu/default_qemu_image', unicode(''))
+        confo.default_qemu_memory = int(ConfDB().get('Qemu/default_qemu_memory', 128))
+        confo.default_qemu_nic = str(ConfDB().get('Qemu/default_qemu_nic', unicode('e1000')))
+        confo.default_qemu_options = str(ConfDB().get('Qemu/default_qemu_options', unicode('')))
+        confo.default_qemu_kqemu = ConfDB().value("Qemu/default_qemu_kqemu", QVariant(False)).toBool()
+        confo.default_qemu_kvm = ConfDB().value("Qemu/default_qemu_kvm", QVariant(False)).toBool()
+        confo.default_pix_image = ConfDB().get('Qemu/default_pix_image', unicode(''))
+        confo.default_pix_memory = int(ConfDB().get('Qemu/default_pix_memory', 128))
+        confo.default_pix_nic = str(ConfDB().get('Qemu/default_pix_nic', unicode('e1000')))
+        confo.default_pix_kqemu = ConfDB().value("Qemu/default_pix_kqemu", QVariant(False)).toBool()
+        confo.default_pix_key = str(ConfDB().get('Qemu/default_pix_key', unicode('0x00000000,0x00000000,0x00000000,0x00000000')))
+        confo.default_pix_serial = str(ConfDB().get('Qemu/default_pix_serial', unicode('0x12345678')))
+        confo.default_junos_image = ConfDB().get('Qemu/default_junos_image', unicode(''))
+        confo.default_junos_memory = int(ConfDB().get('Qemu/default_junos_memory', 96))
+        confo.default_junos_nic = str(ConfDB().get('Qemu/default_junos_nic', unicode('e1000')))
+        confo.default_junos_kqemu = ConfDB().value("Qemu/default_junos_kqemu", QVariant(False)).toBool()
+        confo.default_junos_kvm = ConfDB().value("Qemu/default_junis_kvm", QVariant(False)).toBool()
+        confo.default_asa_image = ConfDB().get('Qemu/default_asa_image', unicode(''))
+        confo.default_asa_memory = int(ConfDB().get('Qemu/default_asa_memory', 256))
+        confo.default_asa_nic = str(ConfDB().get('Qemu/default_asa_nic', unicode('e1000')))
+        confo.default_asa_baseUDP = int(ConfDB().get('Qemu/default_asa_baseUDP', 22000))
+        confo.default_asa_baseConsole = int(ConfDB().get('Qemu/default_asa_baseConsole', 7000))
+        confo.default_asa_kqemu = ConfDB().value("Qemu/default_asa_kqemu", QVariant(False)).toBool()
+        confo.default_asa_kvm = ConfDB().value("Qemu/default_asa_kvm", QVariant(False)).toBool()       
+        confo.default_asa_kernel = ConfDB().get('Qemu/default_asa_kernel', unicode(''))
+        confo.default_asa_initrd = ConfDB().get('Qemu/default_asa_initrd', unicode(''))
+        confo.default_asa_kernel_cmdline = str(ConfDB().get('Qemu/default_asa_kernel_cmdline', unicode('')))
 
         # replace ~user and $HOME by home directory
         if os.environ.has_key("HOME"):
-            confo.pemuwrapper_path = confo.pemuwrapper_path.replace('$HOME', os.environ["HOME"])
-            confo.pemuwrapper_workdir =  confo.pemuwrapper_workdir.replace('$HOME', os.environ["HOME"])
+            confo.qemuwrapper_path = confo.qemuwrapper_path.replace('$HOME', os.environ["HOME"])
+            confo.qemuwrapper_workdir =  confo.qemuwrapper_workdir.replace('$HOME', os.environ["HOME"])
+            confo.default_qemu_image = confo.default_qemu_image.replace('$HOME', os.environ["HOME"])
             confo.default_pix_image = confo.default_pix_image.replace('$HOME', os.environ["HOME"])
-            confo.default_base_flash =  confo.default_base_flash.replace('$HOME', os.environ["HOME"])
-        confo.pemuwrapper_path = os.path.expanduser(confo.pemuwrapper_path)
-        confo.pemuwrapper_workdir = os.path.expanduser(confo.pemuwrapper_workdir)
+            confo.default_junos_image = confo.default_junos_image.replace('$HOME', os.environ["HOME"])
+            confo.default_asa_image = confo.default_asa_image.replace('$HOME', os.environ["HOME"])
+            confo.default_asa_kernel = confo.default_asa_kernel.replace('$HOME', os.environ["HOME"])
+            confo.default_asa_initrd = confo.default_asa_initrd.replace('$HOME', os.environ["HOME"])
+
+        confo.qemuwrapper_path = os.path.expanduser(confo.qemuwrapper_path)
+        confo.qemuwrapper_workdir = os.path.expanduser(confo.qemuwrapper_workdir)
+        confo.default_qemu_image = os.path.expanduser(confo.default_qemu_image)
         confo.default_pix_image = os.path.expanduser(confo.default_pix_image)
-        confo.default_base_flash = os.path.expanduser(confo.default_base_flash)
-        
+        confo.default_junos_image = os.path.expanduser(confo.default_junos_image)
+        confo.default_asa_image = os.path.expanduser(confo.default_asa_image)
+        confo.default_asa_kernel = os.path.expanduser(confo.default_asa_kernel)
+        confo.default_asa_initrd = os.path.expanduser(confo.default_asa_initrd)
+
+
         # Simhost config
         self.systconf['simhost'] = systemSimhostConf()
         confo = self.systconf['simhost']
@@ -359,8 +390,8 @@ class Application(QApplication, Singleton):
         if globals.GApp.systconf['dynamips'].path:
             self.__HypervisorManager = HypervisorManager()
 
-        # PemuManager
-        self.__PemuManager = PemuManager()
+        # QemuManager
+        self.__QemuManager = QemuManager()
         
         # SimhostManager
         if globals.GApp.systconf['simhost'].path:
@@ -405,24 +436,10 @@ class Application(QApplication, Singleton):
             dialog.raise_()
             dialog.activateWindow()
 
-#        elif globals.recordConfiguration and config_version < VERSION_INTEGER:
-#        
-#            reply = QMessageBox.question(self.mainWindow, translate("Application", "Configuration file"), 
-#                                               translate("Application", "Configuration file is not longer compatible, would you like to reset it? (you will have to restart GNS3)"), 
-#                                            QMessageBox.Yes, QMessageBox.No)
-
-#            if reply == QMessageBox.Yes:
-#                ConfDB().clear()
-#                c = ConfDB()
-#                c.set('GNS3/version', VERSION_INTEGER)
-#                c.sync()
-#                QApplication.quit()
-#                sys.exit(0)
-
         retcode = QApplication.exec_()
 
         self.__HypervisorManager = None
-        self.__PemuManager = None
+        self.__QemuManager = None
         self.__SimhostManager = None
 
         if globals.recordConfiguration:
@@ -469,19 +486,42 @@ class Application(QApplication, Singleton):
         c.set('Dynamips/hypervisor_udp_incrementation', confo.udp_incrementation)
         c.set('Dynamips/hypervisor_manager_import', confo.import_use_HypervisorManager)
         c.set('Dynamips/hypervisor_manager_binding', confo.HypervisorManager_binding)
-
-        # Pemu config
-        confo = self.systconf['pemu']
-        c.set('Pemu/pemuwrapper_path', confo.pemuwrapper_path)
-        c.set('Pemu/pemuwrapper_working_directory', confo.pemuwrapper_workdir)
-        c.set('Pemu/external_host', confo.external_host)
-        c.set('Pemu/enable_PemuManager', confo.enable_PemuManager)
-        c.set('Pemu/pemu_manager_import', confo.import_use_PemuManager)
-        c.set('Pemu/default_pix_image', confo.default_pix_image)
-        c.set('Pemu/default_pix_key', confo.default_pix_key)
-        c.set('Pemu/default_pix_serial', confo.default_pix_serial)
-        c.set('Pemu/default_base_flash', confo.default_base_flash)
-        c.set('Pemu/pemu_manager_binding', confo.PemuManager_binding)
+        
+        # Qemu config
+        confo = self.systconf['qemu']
+        c.set('Qemu/qemuwrapper_path', confo.qemuwrapper_path)
+        c.set('Qemu/qemuwrapper_working_directory', confo.qemuwrapper_workdir)
+        c.set('Qemu/external_host', confo.external_host)
+        c.set('Qemu/enable_QemuManager', confo.enable_QemuManager)
+        c.set('Qemu/qemu_manager_import', confo.import_use_QemuManager)
+        c.set('Qemu/qemu_manager_binding', confo.QemuManager_binding)
+        c.set('Qemu/qemuwrapper_baseUDP', confo.qemuwrapper_baseUDP)
+        c.set('Qemu/qemuwrapper_baseConsole', confo.qemuwrapper_baseConsole)
+        c.set('Qemu/default_qemu_image', confo.default_qemu_image)
+        c.set('Qemu/default_qemu_memory', confo.default_qemu_memory)
+        c.set('Qemu/default_qemu_nic', confo.default_qemu_nic)
+        c.set('Qemu/default_qemu_options', confo.default_qemu_options)
+        c.set('Qemu/default_qemu_kqemu', confo.default_qemu_kqemu)
+        c.set('Qemu/default_qemu_kvm', confo.default_qemu_kvm)
+        c.set('Qemu/default_pix_image', confo.default_pix_image)
+        c.set('Qemu/default_pix_memory', confo.default_pix_memory)
+        c.set('Qemu/default_pix_nic', confo.default_pix_nic)
+        c.set('Qemu/default_pix_kqemu', confo.default_pix_kqemu)
+        c.set('Qemu/default_pix_key', confo.default_pix_key)
+        c.set('Qemu/default_pix_serial', confo.default_pix_serial)
+        c.set('Qemu/default_junos_image', confo.default_junos_image)
+        c.set('Qemu/default_junos_memory', confo.default_junos_memory)
+        c.set('Qemu/default_junos_nic', confo.default_junos_nic)
+        c.set('Qemu/default_junos_kqemu', confo.default_junos_kqemu)
+        c.set('Qemu/default_junos_kvm', confo.default_junos_kvm)
+        c.set('Qemu/default_asa_image', confo.default_asa_image)
+        c.set('Qemu/default_asa_memory', confo.default_asa_memory)
+        c.set('Qemu/default_asa_nic', confo.default_asa_nic)
+        c.set('Qemu/default_asa_kqemu', confo.default_asa_kqemu)
+        c.set('Qemu/default_asa_kvm', confo.default_asa_kvm)
+        c.set('Qemu/default_asa_kernel', confo.default_asa_kernel)
+        c.set('Qemu/default_asa_initrd', confo.default_asa_initrd)
+        c.set('Qemu/default_asa_kernel_cmdline', confo.default_asa_kernel_cmdline)
 
         # Simhost config
         confo = self.systconf['simhost']

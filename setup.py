@@ -33,7 +33,7 @@ if sys.platform.startswith('win'):
                                                           "GNS3.Ui.ConfigurationPages.Page_PreferencesDynamips",
                                                           "GNS3.Ui.ConfigurationPages.Page_PreferencesGeneral",
                                                           "GNS3.Ui.ConfigurationPages.Page_PreferencesCapture",
-                                                          "GNS3.Ui.ConfigurationPages.Page_PreferencesPemu",
+                                                          "GNS3.Ui.ConfigurationPages.Page_PreferencesQemu",
                                                      ]
                                         }
                              }
@@ -44,9 +44,9 @@ else:
     setup( # Distribution meta-data
             name = "GNS3",
             version = VERSION,
-            description = "GNS3 is a graphical network simulator based on Dynamips, an IOS emulator which allows users to run IOS binary images from Cisco Systems and Qemu/Pemu for emulating PIX firewalls (binary images are not part of this package).",
+            description = "GNS3 is a graphical network simulator based on Dynamips, an IOS emulator which allows users to run IOS binary images from Cisco Systems and Qemu for emulating PIX & ASA firewalls as well as Juniper routers (binary images are not part of this package).",
             author = "Jeremy Grossmann, David Ruiz, Romain Lamaison, Aurelien Levesque, Xavier Alt",
-            author_email = "contact@gns3.net",
+            author_email = "code@gns3.net",
             url = "http://www.gns3.net/",
             scripts = [ 'gns3' ],
             package_dir = { '': 'src' },

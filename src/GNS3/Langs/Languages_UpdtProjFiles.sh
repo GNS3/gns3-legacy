@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LANGUAGES="en fr de cn jp es ar pt_br tr ru sk kr pl sr"
+LANGUAGES="en fr de cn jp es ar pt_br tr ru sk kr pl sr it"
 
 PROJ_FILE="Languages.pro"
 QRC_FILE="Languages.qrc"
@@ -19,8 +19,8 @@ UI_SRC="../Ui/*.ui	\
 
 #----------------------------------------------------------------------
 
-EXPAND_PY_SRC=`ls -1N $PY_SRC | tr '\n' ' '`
-EXPAND_UI_SRC=`ls -1N $UI_SRC | tr '\n' ' '`
+EXPAND_PY_SRC=`ls -1 $PY_SRC | tr '\n' ' '`
+EXPAND_UI_SRC=`ls -1 $UI_SRC | tr '\n' ' '`
 EXPAND_LANGUAGES=""
 EXPAND_QRC_RES=""
 

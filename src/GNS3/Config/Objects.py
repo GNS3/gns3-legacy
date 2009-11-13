@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007-2008 GNS3 Dev Team
+# Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Contact: contact@gns3.net
+# code@gns3.net
 #
 
 from GNS3.Config import Defaults
@@ -26,7 +26,7 @@ class ConfigObject(object):
         self.conf = {}
         self.types = {}
 
-    def __getPropertiesFunctions(cls, name):
+    def __getPropertiesFunctions(self, cls, name):
         obj = dir(cls)
 
 
@@ -116,12 +116,12 @@ class systemCaptureConf(ConfigObject):
         ConfigObject.__init__(self)
         self.conf = Defaults.conf_systemCapture_defaults.copy()
         self.types = Defaults.conf_systemCapture_types
-
-class systemPemuConf(ConfigObject):
+        
+class systemQemuConf(ConfigObject):
     def __init__(self):
         ConfigObject.__init__(self)
-        self.conf = Defaults.conf_systemPemu_defaults.copy()
-        self.types = Defaults.conf_systemPemu_types
+        self.conf = Defaults.conf_systemQemu_defaults.copy()
+        self.types = Defaults.conf_systemQemu_types
         
 class systemSimhostConf(ConfigObject):
     def __init__(self):

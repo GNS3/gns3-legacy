@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_ETHSWPage.ui'
 #
-# Created: Sun May 24 15:51:30 2009
-#      by: PyQt4 UI code generator 4.4.4
+# Created: Fri Nov 13 21:41:06 2009
+#      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -35,7 +35,7 @@ class Ui_ETHSWPage(object):
         self.spinBoxPort.setSizePolicy(sizePolicy)
         self.spinBoxPort.setMinimum(0)
         self.spinBoxPort.setMaximum(65535)
-        self.spinBoxPort.setProperty("value", QtCore.QVariant(1))
+        self.spinBoxPort.setProperty("value", 1)
         self.spinBoxPort.setObjectName("spinBoxPort")
         self.gridlayout1.addWidget(self.spinBoxPort, 0, 1, 1, 1)
         self.label_3 = QtGui.QLabel(self.groupBox)
@@ -49,7 +49,7 @@ class Ui_ETHSWPage(object):
         self.spinBoxVLAN.setSizePolicy(sizePolicy)
         self.spinBoxVLAN.setMinimum(0)
         self.spinBoxVLAN.setMaximum(65535)
-        self.spinBoxVLAN.setProperty("value", QtCore.QVariant(1))
+        self.spinBoxVLAN.setProperty("value", 1)
         self.spinBoxVLAN.setObjectName("spinBoxVLAN")
         self.gridlayout1.addWidget(self.spinBoxVLAN, 1, 1, 1, 1)
         self.label_2 = QtGui.QLabel(self.groupBox)
@@ -57,8 +57,8 @@ class Ui_ETHSWPage(object):
         self.gridlayout1.addWidget(self.label_2, 2, 0, 1, 1)
         self.comboBoxPortType = QtGui.QComboBox(self.groupBox)
         self.comboBoxPortType.setObjectName("comboBoxPortType")
-        self.comboBoxPortType.addItem(QtCore.QString())
-        self.comboBoxPortType.addItem(QtCore.QString())
+        self.comboBoxPortType.addItem("")
+        self.comboBoxPortType.addItem("")
         self.gridlayout1.addWidget(self.comboBoxPortType, 2, 1, 1, 1)
         self.gridlayout.addWidget(self.groupBox, 0, 0, 1, 2)
         self.groupBox_2 = QtGui.QGroupBox(ETHSWPage)

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesDynamips.ui'
 #
-# Created: Sun May 24 15:51:31 2009
-#      by: PyQt4 UI code generator 4.4.4
+# Created: Fri Nov 13 21:41:07 2009
+#      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -64,17 +64,17 @@ class Ui_PreferencesDynamips(object):
         self.gridlayout.addWidget(self.label_7, 5, 2, 1, 2)
         self.dynamips_port = QtGui.QSpinBox(self.groupBox)
         self.dynamips_port.setMaximum(65535)
-        self.dynamips_port.setProperty("value", QtCore.QVariant(7200))
+        self.dynamips_port.setProperty("value", 7200)
         self.dynamips_port.setObjectName("dynamips_port")
         self.gridlayout.addWidget(self.dynamips_port, 6, 0, 1, 1)
         self.dynamips_baseUDP = QtGui.QSpinBox(self.groupBox)
         self.dynamips_baseUDP.setMaximum(65535)
-        self.dynamips_baseUDP.setProperty("value", QtCore.QVariant(10000))
+        self.dynamips_baseUDP.setProperty("value", 10000)
         self.dynamips_baseUDP.setObjectName("dynamips_baseUDP")
         self.gridlayout.addWidget(self.dynamips_baseUDP, 6, 1, 1, 1)
         self.dynamips_baseConsole = QtGui.QSpinBox(self.groupBox)
         self.dynamips_baseConsole.setMaximum(65535)
-        self.dynamips_baseConsole.setProperty("value", QtCore.QVariant(2000))
+        self.dynamips_baseConsole.setProperty("value", 2000)
         self.dynamips_baseConsole.setObjectName("dynamips_baseConsole")
         self.gridlayout.addWidget(self.dynamips_baseConsole, 6, 2, 1, 1)
         self.checkBoxGhosting = QtGui.QCheckBox(self.groupBox)
@@ -126,7 +126,7 @@ class Ui_PreferencesDynamips(object):
         self.spinBoxMemoryLimit = QtGui.QSpinBox(self.groupBox_2)
         self.spinBoxMemoryLimit.setMaximum(1000000)
         self.spinBoxMemoryLimit.setSingleStep(128)
-        self.spinBoxMemoryLimit.setProperty("value", QtCore.QVariant(512))
+        self.spinBoxMemoryLimit.setProperty("value", 512)
         self.spinBoxMemoryLimit.setObjectName("spinBoxMemoryLimit")
         self.gridlayout1.addWidget(self.spinBoxMemoryLimit, 1, 0, 1, 1)
         self.label_8 = QtGui.QLabel(self.groupBox_2)
@@ -135,7 +135,7 @@ class Ui_PreferencesDynamips(object):
         self.spinBoxUDPIncrementation = QtGui.QSpinBox(self.groupBox_2)
         self.spinBoxUDPIncrementation.setMaximum(100000)
         self.spinBoxUDPIncrementation.setSingleStep(10)
-        self.spinBoxUDPIncrementation.setProperty("value", QtCore.QVariant(100))
+        self.spinBoxUDPIncrementation.setProperty("value", 100)
         self.spinBoxUDPIncrementation.setObjectName("spinBoxUDPIncrementation")
         self.gridlayout1.addWidget(self.spinBoxUDPIncrementation, 3, 0, 1, 1)
         self.label_3 = QtGui.QLabel(self.groupBox_2)

@@ -24,12 +24,12 @@ FILES=" Form_MainWindow
         ./ConfigurationPages/Form_PreferencesDynamips
         ./ConfigurationPages/Form_PreferencesCapture
         ./ConfigurationPages/Form_PreferencesPemu
-        ./ConfigurationPages/Form_PreferencesSimhost
+        ./ConfigurationPages/Form_PreferencesQemu
 "
 
 # Update files...
 for file in $FILES;
 do
     echo "Generating $file"
-    pyuic4 "$file.ui" > "$file.py"
+    pyuic4-2.6 "$file.ui" > "$file.py"
 done

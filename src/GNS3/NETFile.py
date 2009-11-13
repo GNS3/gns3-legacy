@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007-2008 GNS3 Dev Team
+# Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -16,14 +16,14 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Contact: contact@gns3.net
+# code@gns3.net
 #
 
-import os, re, random, time, base64, traceback
+import os, re, random, base64, traceback
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Dynagen.dynamips_lib as lib
-import GNS3.Dynagen.pemu_lib as pix
+import GNS3.Dynagen.qemu_lib as qlib
 import GNS3.Dynagen.simhost_lib as lwip
 from GNS3.Globals.Symbols import SYMBOLS
 from GNS3.Utils import translate, debug, error, relpath
@@ -33,17 +33,16 @@ from GNS3.Pixmap import Pixmap
 from GNS3.ShapeItem import AbstractShapeItem
 from GNS3.ShapeItem import Rectangle
 from GNS3.ShapeItem import Ellipse
-from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Objects import iosImageConf, hypervisorConf
 from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Node.DecorativeNode import DecorativeNode, init_decoration_id
 from GNS3.Node.IOSRouter import IOSRouter, init_router_id
-from GNS3.Node.ATMSW import ATMSW, init_atmsw_id
-from GNS3.Node.ATMBR import ATMBR, init_atmbr_id
+from GNS3.Node.ATMSW import init_atmsw_id
+from GNS3.Node.ATMBR import init_atmbr_id
 from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
-from GNS3.Node.FRSW import FRSW, init_frsw_id
+from GNS3.Node.FRSW import init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
-from GNS3.Node.AnyEmuDevice import FW, init_emu_id, AnyEmuDevice
+from GNS3.Node.AnyEmuDevice import init_emu_id, AnyEmuDevice
 
 router_hostname_re = re.compile(r"""^R([0-9]+)""")
 ethsw_hostname_re = re.compile(r"""^SW([0-9]+)""")
@@ -52,8 +51,7 @@ atmsw_hostname_re = re.compile(r"""^ATM([0-9]+)""")
 atmbr_hostname_re = re.compile(r"""^BR([0-9]+)""")
 cloud_hostname_re = re.compile(r"""^C([0-9]+)""")
 firewall_hostname_re = re.compile(r"""^FW([0-9]+)""")
-#TODO complete support for olive + ASA
-olive_hostname_re = re.compile(r"""^OLIVE([0-9]+)""")
+junos_hostname_re = re.compile(r"""^JUNOS([0-9]+)""")
 asa_hostname_re = re.compile(r"""^ASA([0-9]+)""")
 simhost_hostname_re = re.compile(r"""^SIMHOST([0-9]+)""")
 decorative_hostname_re = re.compile(r"""^N([0-9]+)""")
@@ -111,7 +109,7 @@ class NETFile(object):
                                                                                                                                                                             connection_list)
                                 elif isinstance(remote_device, lib.FRSW) or isinstance(remote_device, lib.ATMSW) or isinstance(remote_device, lib.ETHSW) or isinstance(remote_device, lib.ATMBR):
                                     connection_list.append((device.name, source_interface, remote_device.name, str(remote_port)))
-                                elif isinstance(remote_device, pix.AnyEmuDevice):
+                                elif isinstance(remote_device, qlib.AnyEmuDevice):
                                     connection_list.append((device.name, source_interface, remote_device.name, remote_adapter + str(remote_port)))
 
     def populate_connection_list_for_emulated_device(self, device, connection_list):
@@ -121,7 +119,7 @@ class NETFile(object):
         for port in device.nios:
             if device.nios[port] != None:
                 (remote_device, remote_adapter, remote_port) = lib.get_reverse_udp_nio(device.nios[port])
-                if isinstance(remote_device, pix.AnyEmuDevice):
+                if isinstance(remote_device, qlib.AnyEmuDevice):
                     self.add_in_connection_list((device.name, 'e' + str(port), remote_device.name, remote_adapter + str(remote_port)), connection_list)
                 elif isinstance(remote_device, lib.ETHSW):
                     connection_list.append((device.name, 'e' + str(port), remote_device.name, str(remote_port)))
@@ -132,8 +130,8 @@ class NETFile(object):
 
         symbol_name = x = y = hx = hy = None
         config = None
-        if isinstance(device, pix.AnyEmuDevice) and  self.dynagen.globalconfig['pemu ' + device.dynamips.host].has_key(running_config_name):
-            config = self.dynagen.globalconfig['pemu ' + device.dynamips.host][running_config_name]
+        if isinstance(device, qlib.AnyEmuDevice) and  self.dynagen.globalconfig['qemu ' + device.dynamips.host].has_key(running_config_name):
+            config = self.dynagen.globalconfig['qemu ' + device.dynamips.host][running_config_name]
         elif isinstance(device, lwip.SIMHOST) and  self.dynagen.globalconfig['lwip ' + device.dynamips.host + ':' + str(device.dynamips.port)].has_key(running_config_name):
             config = self.dynagen.globalconfig['lwip ' + device.dynamips.host + ':' + str(device.dynamips.port)][running_config_name]
         elif self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)].has_key(running_config_name):
@@ -659,7 +657,7 @@ class NETFile(object):
                     if id > max_atmbr_id:
                         max_atmbr_id = id
 
-            elif isinstance(device, pix.AnyEmuDevice):
+            elif isinstance(device, qlib.AnyEmuDevice):
 
                 node = self.create_node(device, device._ufd_machine, device.gen_cfg_name())
                 assert(node)
@@ -709,8 +707,6 @@ class NETFile(object):
             init_atmbr_id(max_atmbr_id + 1)
         if max_emu_id != -1:
             init_emu_id(max_emu_id + 1)
-        if max_simhost_id != -1:
-            init_simhost_id(max_simhost_id + 1)
 
         # update current hypervisor base port and base UDP
         base_udp = 0

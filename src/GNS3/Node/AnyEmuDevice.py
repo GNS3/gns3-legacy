@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007-2008 GNS3 Dev Team
+# Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -16,19 +16,17 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Contact: contact@gns3.net
+# code@gns3.net
 #
 
-import os, re, shutil
-import GNS3.Dynagen.dynagen as dynagen
+import os, shutil
 import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
-import GNS3.Dynagen.pemu_lib as pix
 import GNS3.Telnet as console
-from PyQt4 import QtCore, QtGui
+from PyQt4 import QtGui
 from GNS3.Node.AbstractNode import AbstractNode
-from GNS3.Defaults.AnyEmuDefaults import AnyEmuDefaults, FWDefaults, ASADefaults
+from GNS3.Defaults.AnyEmuDefaults import AnyEmuDefaults, FWDefaults, ASADefaults, JunOSDefaults
 from GNS3.Utils import translate, debug, error
 
 emu_id = 1
@@ -84,8 +82,8 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
             try:
                 self.stopNode()
                 del self.dynagen.devices[self.hostname]
-                if self.emudev in self.pemu.devices:
-                    self.pemu.devices.remove(self.emudev)
+                if self.emudev in self.qemu.devices:
+                    self.qemu.devices.remove(self.emudev)
                 self.dynagen.update_running_config()
             except:
                 pass
@@ -141,7 +139,7 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         return self.local_config.copy()
 
     def set_config(self, config):
-        """ Set a configuration in Pemu
+        """ Set a configuration in Qemu
             config: dict
         """
 
@@ -201,8 +199,8 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         self.delete_emudev()
         if self.hostname != new_hostname:
             try:
-                pemu_name = self.pemu.host + ':10525'
-                shutil.move(self.dynagen.dynamips[pemu_name].workingdir + os.sep + self.hostname, self.dynagen.dynamips[pemu_name].workingdir + os.sep + new_hostname)
+                qemu_name = self.qemu.host + ':10525'
+                shutil.move(self.dynagen.dynamips[qemu_name].workingdir + os.sep + self.hostname, self.dynagen.dynamips[qemu_name].workingdir + os.sep + new_hostname)
             except:
                 debug("Cannot move emulator's working directory")
         self.set_hostname(new_hostname)
@@ -264,8 +262,8 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         devdefaults = self.get_devdefaults()
         if devdefaults == False:
             return False
-        pemu_name = self.pemu.host + ':10525'
-        self.emudev = self._make_devinstance(pemu_name)
+        qemu_name = self.qemu.host + ':10525'
+        self.emudev = self._make_devinstance(qemu_name)
         self.dynagen.setdefaults(self.emudev, devdefaults[model])
         self.dynagen.devices[self.hostname] = self.emudev
         debug('%s %s created' % (self.friendly_name, self.emudev.name))
@@ -344,9 +342,9 @@ class FW(AnyEmuDevice, FWDefaults):
             'serial',
             ])
         
-    def _make_devinstance(self, pemu_name):
-        from GNS3.Dynagen import pemu_lib
-        return pemu_lib.FW(self.dynagen.dynamips[pemu_name], self.hostname)
+    def _make_devinstance(self, qemu_name):
+        from GNS3.Dynagen import qemu_lib
+        return qemu_lib.FW(self.dynagen.dynamips[qemu_name], self.hostname)
 
 class ASA(AnyEmuDevice, ASADefaults):
     instance_counter = 0
@@ -359,22 +357,22 @@ class ASA(AnyEmuDevice, ASADefaults):
         ASADefaults.__init__(self)
         debug('Hello, I have initialized and my model is %s' % self.model)
     
-    def _make_devinstance(self, pemu_name):
-        from GNS3.Dynagen import pemu_lib
-        return pemu_lib.ASA(self.dynagen.dynamips[pemu_name], self.hostname)
+    def _make_devinstance(self, qemu_name):
+        from GNS3.Dynagen import qemu_lib
+        return qemu_lib.ASA(self.dynagen.dynamips[qemu_name], self.hostname)
 
-class Olive(AnyEmuDevice, ASADefaults):
+class JunOS(AnyEmuDevice, JunOSDefaults):
 
     instance_counter = 0
     model = 'O-series'
-    basehostname = 'OLIVE'
-    friendly_name ='OliveRouter'
+    basehostname = 'JUNOS'
+    friendly_name ='Juniper Router'
 
     def __init__(self, *args, **kwargs):
         AnyEmuDevice.__init__(self, *args, **kwargs)
-        ASADefaults.__init__(self)
+        JunOSDefaults.__init__(self)
         debug('Hello, I have initialized and my model is %s' % self.model)
 
-    def _make_devinstance(self, pemu_name):
-        from GNS3.Dynagen import pemu_lib
-        return pemu_lib.Olive(self.dynagen.dynamips[pemu_name], self.hostname)
+    def _make_devinstance(self, qemu_name):
+        from GNS3.Dynagen import qemu_lib
+        return qemu_lib.JunOS(self.dynagen.dynamips[qemu_name], self.hostname)

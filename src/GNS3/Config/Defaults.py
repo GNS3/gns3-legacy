@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007-2008 GNS3 Dev Team
+# Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Contact: contact@gns3.net
+# code@gns3.net
 #
 
 SysConfigDir = "/etc/gns3"
@@ -144,30 +144,76 @@ conf_systemCapture_types = {
     'auto_start': bool
 }
 
-conf_systemPemu_defaults = {
-    'pemuwrapper_path':'',
-    'pemuwrapper_workdir':'',
+conf_systemQemu_defaults = {
+    'qemuwrapper_path':'',
+    'qemuwrapper_workdir':'',
     'external_host':'',
-    'enable_PemuManager': True,
-    'import_use_PemuManager': True,
-    'PemuManager_binding': u'localhost', 
+    'enable_QemuManager': True,
+    'import_use_QemuManager': True,
+    'QemuManager_binding': u'localhost',
+    'qemuwrapper_baseUDP': 20000,
+    'qemuwrapper_baseConsole': 3000,
+    'default_qemu_image': '',
+    'default_qemu_memory': 256,
+    'default_qemu_nic': 'e1000',
+    'default_qemu_options': '',
+    'default_qemu_kqemu': False,
+    'default_qemu_kvm': False,
     'default_pix_image': '',
-    'default_pix_key':'',
-    'default_pix_serial':'',
-    'default_base_flash':'',
+    'default_pix_memory': 128,
+    'default_pix_nic': 'e1000',
+    'default_pix_kqemu': False,
+    'default_pix_key': '',
+    'default_pix_serial': '',
+    'default_junos_image': '',
+    'default_junos_memory': 96,
+    'default_junos_nic': 'e1000',
+    'default_junos_kqemu': False,
+    'default_junos_kvm': False,
+    'default_asa_image': '',
+    'default_asa_memory': 256,
+    'default_asa_nic': 'e1000',
+    'default_asa_kqemu': False,
+    'default_asa_kvm': False,
+    'default_asa_kernel': '',
+    'default_asa_initrd': '',
+    'default_asa_kernel_cmdline': '',
 }
 
-conf_systemPemu_types = {
-    'pemuwrapper_path': unicode,
-    'pemuwrapper_workdir': unicode,
+conf_systemQemu_types = {
+    'qemuwrapper_path': unicode,
+    'qemuwrapper_workdir': unicode,
     'external_host': unicode,
-    'enable_PemuManager': bool,
-    'import_use_PemuManager': bool,
-    'PemuManager_binding': unicode,
+    'enable_QemuManager': bool,
+    'import_use_QemuManager': bool,
+    'QemuManager_binding': unicode,
+    'qemuwrapper_baseUDP': int,
+    'qemuwrapper_baseConsole': int,
+    'default_qemu_image': unicode,
+    'default_qemu_memory': int,
+    'default_qemu_nic': str,
+    'default_qemu_options': str,
+    'default_qemu_kqemu': bool,
+    'default_qemu_kvm': bool,
     'default_pix_image': unicode,
+    'default_pix_memory': int,
+    'default_pix_nic': str,
+    'default_pix_kqemu': bool,
     'default_pix_key': str,
     'default_pix_serial': str,
-    'default_base_flash': unicode,
+    'default_junos_image': unicode,
+    'default_junos_memory': int,
+    'default_junos_nic': str,
+    'default_junos_kqemu': bool,
+    'default_junos_kvm': bool,
+    'default_asa_image': unicode,
+    'default_asa_memory': int,
+    'default_asa_nic': str,
+    'default_asa_kqemu': bool,
+    'default_asa_kvm': bool,
+    'default_asa_kernel': unicode,
+    'default_asa_initrd': unicode,
+    'default_asa_kernel_cmdline': str,
 }
 
 conf_systemSimhost_defaults = {

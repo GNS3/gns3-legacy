@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_StyleDialog.ui'
 #
-# Created: Sun May 24 15:51:29 2009
-#      by: PyQt4 UI code generator 4.4.4
+# Created: Fri Nov 13 21:41:05 2009
+#      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -37,7 +37,7 @@ class Ui_StyleDialog(object):
         self.spinBox_borderWidth = QtGui.QSpinBox(self.groupBox)
         self.spinBox_borderWidth.setMinimum(1)
         self.spinBox_borderWidth.setMaximum(100)
-        self.spinBox_borderWidth.setProperty("value", QtCore.QVariant(2))
+        self.spinBox_borderWidth.setProperty("value", 2)
         self.spinBox_borderWidth.setObjectName("spinBox_borderWidth")
         self.gridlayout.addWidget(self.spinBox_borderWidth, 3, 1, 1, 1)
         self.label = QtGui.QLabel(self.groupBox)

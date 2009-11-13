@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2007-2008 GNS3 Dev Team
+# Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Contact: contact@gns3.net
+# code@gns3.net
 #
 
 from socket import socket, AF_INET, SOCK_STREAM
@@ -80,7 +80,7 @@ class LWIP(object):
 
         if type(directory) not in [str, unicode]:
             raise DynamipsError, 'invalid directory'
-        # send to pemuwrapper encased in quotes to protect spaces
+        # send to qemuwrapper encased in quotes to protect spaces
         send(self, 'hypervisor working_dir %s' % '"' + directory + '"')
         self._workingdir = directory
 
@@ -261,11 +261,11 @@ class SIMHOST(object):
             dst_ip = remote_fw.p.host
 
         #create the local fw side of UDP connection
-        send(self.p, 'pemu create_udp %s %i %i %s %i' % (self.name, local_port, src_udp, dst_ip, dst_udp))
+        send(self.p, 'qemu create_udp %s %i %i %s %i' % (self.name, local_port, src_udp, dst_ip, dst_udp))
         self.nios[local_port] = UDPConnection(src_udp, dst_ip, dst_udp, self, local_port)
 
         #create the remote fw side of UDP connection
-        send(remote_fw.p, 'pemu create_udp %s %i %i %s %i' % (remote_fw.name, remote_port, dst_udp, src_ip, src_udp))
+        send(remote_fw.p, 'qemu create_udp %s %i %i %s %i' % (remote_fw.name, remote_port, dst_udp, src_ip, src_udp))
         remote_fw.nios[remote_port] = UDPConnection(dst_udp, src_ip, src_udp, remote_fw, remote_port)
         
         #set reverse nios

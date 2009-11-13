@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_FRSWPage.ui'
 #
-# Created: Sun May 24 15:51:30 2009
-#      by: PyQt4 UI code generator 4.4.4
+# Created: Fri Nov 13 21:41:06 2009
+#      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -35,7 +35,7 @@ class Ui_FRSWPage(object):
         self.spinBoxSrcPort.setSizePolicy(sizePolicy)
         self.spinBoxSrcPort.setMinimum(0)
         self.spinBoxSrcPort.setMaximum(65535)
-        self.spinBoxSrcPort.setProperty("value", QtCore.QVariant(1))
+        self.spinBoxSrcPort.setProperty("value", 1)
         self.spinBoxSrcPort.setObjectName("spinBoxSrcPort")
         self.gridlayout1.addWidget(self.spinBoxSrcPort, 0, 1, 1, 1)
         self.label_2 = QtGui.QLabel(self.groupBox)
@@ -48,7 +48,7 @@ class Ui_FRSWPage(object):
         sizePolicy.setHeightForWidth(self.spinBoxSrcDLCI.sizePolicy().hasHeightForWidth())
         self.spinBoxSrcDLCI.setSizePolicy(sizePolicy)
         self.spinBoxSrcDLCI.setMaximum(65535)
-        self.spinBoxSrcDLCI.setProperty("value", QtCore.QVariant(101))
+        self.spinBoxSrcDLCI.setProperty("value", 101)
         self.spinBoxSrcDLCI.setObjectName("spinBoxSrcDLCI")
         self.gridlayout1.addWidget(self.spinBoxSrcDLCI, 1, 1, 1, 1)
         self.gridlayout.addWidget(self.groupBox, 0, 0, 1, 2)
@@ -86,7 +86,7 @@ class Ui_FRSWPage(object):
         self.spinBoxDestPort.setSizePolicy(sizePolicy)
         self.spinBoxDestPort.setMinimum(0)
         self.spinBoxDestPort.setMaximum(65535)
-        self.spinBoxDestPort.setProperty("value", QtCore.QVariant(10))
+        self.spinBoxDestPort.setProperty("value", 10)
         self.spinBoxDestPort.setObjectName("spinBoxDestPort")
         self.gridlayout2.addWidget(self.spinBoxDestPort, 0, 1, 1, 1)
         self.label_4 = QtGui.QLabel(self.groupBox_3)
@@ -99,7 +99,7 @@ class Ui_FRSWPage(object):
         sizePolicy.setHeightForWidth(self.spinBoxDestDLCI.sizePolicy().hasHeightForWidth())
         self.spinBoxDestDLCI.setSizePolicy(sizePolicy)
         self.spinBoxDestDLCI.setMaximum(65535)
-        self.spinBoxDestDLCI.setProperty("value", QtCore.QVariant(202))
+        self.spinBoxDestDLCI.setProperty("value", 202)
         self.spinBoxDestDLCI.setObjectName("spinBoxDestDLCI")
         self.gridlayout2.addWidget(self.spinBoxDestDLCI, 1, 1, 1, 1)
         self.gridlayout.addWidget(self.groupBox_3, 1, 0, 1, 2)

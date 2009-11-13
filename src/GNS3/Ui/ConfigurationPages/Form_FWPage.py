@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_FWPage.ui'
 #
-# Created: Sun May 24 15:51:31 2009
-#      by: PyQt4 UI code generator 4.4.4
+# Created: Fri Nov 13 21:41:07 2009
+#      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -46,7 +46,7 @@ class Ui_FWPage(object):
         self.spinBoxRamSize.setSizePolicy(sizePolicy)
         self.spinBoxRamSize.setMaximum(4096)
         self.spinBoxRamSize.setSingleStep(4)
-        self.spinBoxRamSize.setProperty("value", QtCore.QVariant(128))
+        self.spinBoxRamSize.setProperty("value", 128)
         self.spinBoxRamSize.setObjectName("spinBoxRamSize")
         self.gridlayout.addWidget(self.spinBoxRamSize, 1, 1, 1, 2)
         self.label_20 = QtGui.QLabel(FWPage)

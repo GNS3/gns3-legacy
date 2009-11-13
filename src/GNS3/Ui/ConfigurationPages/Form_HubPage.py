@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_HubPage.ui'
 #
-# Created: Sun May 24 15:51:30 2009
-#      by: PyQt4 UI code generator 4.4.4
+# Created: Fri Nov 13 21:41:06 2009
+#      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -36,7 +36,7 @@ class Ui_HubPage(object):
         self.spinBoxNbPorts.setMinimum(0)
         self.spinBoxNbPorts.setMaximum(32)
         self.spinBoxNbPorts.setSingleStep(8)
-        self.spinBoxNbPorts.setProperty("value", QtCore.QVariant(8))
+        self.spinBoxNbPorts.setProperty("value", 8)
         self.spinBoxNbPorts.setObjectName("spinBoxNbPorts")
         self.gridlayout1.addWidget(self.spinBoxNbPorts, 0, 1, 1, 1)
         self.gridlayout.addWidget(self.groupBox, 0, 0, 1, 1)

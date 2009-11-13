@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007-2008 GNS3 Dev Team
+# Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -16,11 +16,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Contact: contact@gns3.net
+# code@gns3.net
 #
 
 import GNS3.Globals as globals
-import GNS3.Ui.svg_resources_rc
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
 from GNS3.Ui.Form_NodeConfigurator import Ui_NodeConfigurator
@@ -32,7 +31,7 @@ from GNS3.Node.IOSRouter3700 import IOSRouter3700
 from GNS3.Node.IOSRouter7200 import IOSRouter7200
 from GNS3.Node.DecorativeNode import DecorativeNode
 from GNS3.Node.SIMHOST import SIMHOST
-from GNS3.Node.AnyEmuDevice import FW, ASA, Olive
+from GNS3.Node.AnyEmuDevice import FW, ASA, JunOS
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
@@ -130,9 +129,9 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             "ASA":
                  [translate("NodeConfigurator", "ASA firewalls"), ":/symbols/PIX_firewall.normal.svg",
                   "Page_ASA", None, None],
-            "Olive":
+            "JunOS":
                   [translate("NodeConfigurator", "Juniper routers"), ":/symbols/router.normal.svg",
-                   "Page_Olive", None, None],
+                   "Page_JunOS", None, None],
             "HOST":
                 [translate("NodeConfigurator", "Hosts"), ":/symbols/computer.normal.svg",
                  "Page_SIMHOST", None, None],
@@ -166,7 +165,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                                      DecorativeNode: "Decorative Nodes",
                                      FW: "FW",
                                      ASA: "ASA",
-                                     Olive: "Olive",
+                                     JunOS: "JunOS",
                                      SIMHOST: "HOST",
                                      FRSW: "FRSW",
                                      ETHSW: "ETHSW",

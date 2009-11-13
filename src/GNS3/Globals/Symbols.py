@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007-2008 GNS3 Dev Team
+# Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Contact: contact@gns3.net
+# code@gns3.net
 #
 
 import GNS3.Ui.svg_resources_rc
@@ -34,7 +34,7 @@ from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ATMBR import ATMBR
-from GNS3.Node.AnyEmuDevice import FW, ASA, Olive
+from GNS3.Node.AnyEmuDevice import FW, ASA, JunOS
 from GNS3.Node.SIMHOST import SIMHOST
 
 SYMBOL_TYPES = {
@@ -47,7 +47,7 @@ SYMBOL_TYPES = {
 #                SIMHOST: 'Host', 
                 FW: 'PIX firewall', 
                 ASA: 'ASA firewall',
-                Olive: 'Juniper router',
+                JunOS: 'Juniper router',
                 ETHSW: 'Ethernet switch',
                 ATMBR: 'ATM bridge',
                 ATMSW: 'ATM switch', 
@@ -106,7 +106,7 @@ SYMBOLS = [
     'translated': True,
     },
 
-    {'name': "Juniper router", 'object': Olive,
+    {'name': "Juniper router", 'object': JunOS,
     'normal_svg_file': ":/symbols/router.normal.svg",
     'select_svg_file': ":/symbols/router.selected.svg", 
     'translated': True,

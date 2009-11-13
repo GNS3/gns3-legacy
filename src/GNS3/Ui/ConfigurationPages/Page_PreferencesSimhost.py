@@ -16,11 +16,11 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Contact: contact@gns3.net
+# code@gns3.net
 #
 
 import sys, os
-from PyQt4 import QtGui, QtCore, QtNetwork
+from PyQt4 import QtGui, QtCore
 from GNS3.Ui.ConfigurationPages.Form_PreferencesSimhost import Ui_PreferencesSimhost
 from GNS3.Config.Objects import systemDynamipsConf
 from GNS3.SimhostManager import SimhostManager

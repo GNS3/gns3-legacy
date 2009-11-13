@@ -34,7 +34,7 @@ from dynamips_lib import Dynamips, PA_C7200_IO_FE, PA_A1, PA_FE_TX, PA_4T, PA_8T
      CISCO2600_MB_1E, CISCO2600_MB_2E, CISCO2600_MB_1FE, CISCO2600_MB_2FE, PA_2FE_TX, \
      PA_GE, PA_C7200_IO_2FE, PA_C7200_IO_GE_E, C1700, CISCO1710_MB_1FE_1E, C1700_MB_1ETH, \
      DEVICETUPLE, DynamipsVerError, DynamipsErrorHandled, NM_CIDS, NM_NAM, get_reverse_udp_nio
-from pemu_lib import Pemu, AnyEmuHandler, FW, ASA, Olive, nosend_pemu
+from qemu_lib import Qemu, AnyEmuDevice, FW, ASA, JunOS, nosend_qemu
 from validate import Validator
 from configobj import ConfigObj, flatten_errors
 from optparse import OptionParser
@@ -55,7 +55,7 @@ MODELTUPLE = (  # A tuple of known model objects
     C7200,
     ASA, 
     FW,
-    Olive, 
+    JunOS, 
     )
 DEVICETUPLE = (  # A tuple of known device names
     '525',
@@ -124,7 +124,7 @@ notelnet = False  # Flag to disable telnet (for gDynagen)
 telnetstring = ''  # global telnet string value for telneting onto consoles
 interface_re = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po|i|id|IDS-Sensor|an|Analysis-Module)([0-9]+)\/([0-9]+)""", re.IGNORECASE)  # Regex matching intefaces
 interface_noport_re = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)""", re.IGNORECASE)  # Regex matching intefaces with out a port (e.g. "f0")
-pemu_int_re = re.compile(r"""^(e|et|eth)([0-9])""", re.IGNORECASE)
+qemu_int_re = re.compile(r"""^(e|et|eth)([0-9])""", re.IGNORECASE)
 number_re = re.compile(r"""^[0-9]*$""")  # Regex matching numbers
 mapint_re = re.compile(r"""^([0-9]*):([0-9]*)$""")  # Regex matching Frame Relay mappings or ATM vpi mappings
 mapvci_re = re.compile(r"""^([0-9]*):([0-9]*):([0-9]*)$""")  # Regex matching ATM vci mappings
@@ -362,8 +362,8 @@ class Dynagen:
             port2 = int(port2)
 
             #TODO add removal for emulated devices
-            if isinstance(remote_device, AnyEmuHandler):
-                raise DynamipsError, 'pemuwrapper does not support removal'
+            if isinstance(remote_device, AnyEmuDevice):
+                raise DynamipsError, 'qemuwrapper does not support removal'
             #disconnect local from remote
             local_device.slot[slot1].disconnect(pa1, port1)
 
@@ -532,7 +532,7 @@ class Dynagen:
             self.smartslot(remote_device, pa2, slot2, port2)
             
             #perform the connection
-            if isinstance(local_device, AnyEmuHandler) and isinstance(remote_device, Router):
+            if isinstance(local_device, AnyEmuDevice) and isinstance(remote_device, Router):
                 local_device.connect_to_dynamips(
                     port1,
                     remote_device.dynamips,
@@ -540,9 +540,9 @@ class Dynagen:
                     pa2,
                     port2,
                     )
-            elif isinstance(local_device, AnyEmuHandler) and isinstance(remote_device, AnyEmuHandler):
+            elif isinstance(local_device, AnyEmuDevice) and isinstance(remote_device, AnyEmuDevice):
                 local_device.connect_to_emulated_device(port1, remote_device, port2)
-            elif isinstance(local_device, Router) and isinstance(remote_device, AnyEmuHandler):
+            elif isinstance(local_device, Router) and isinstance(remote_device, AnyEmuDevice):
                 remote_device.connect_to_dynamips(
                     port2,
                     local_device.dynamips,
@@ -571,7 +571,7 @@ class Dynagen:
                 # If this LAN doesn't already exist, create it
                 self.bridges[interface] = Bridge(local_device.dynamips, name=interface)
             #perform the connection
-            if isinstance(local_device, AnyEmuHandler):
+            if isinstance(local_device, AnyEmuDevice):
                 local_device.connect_to_dynamips(
                     port1,
                     self.bridges[interface].dynamips,
@@ -612,7 +612,7 @@ class Dynagen:
             else:
                 return False
                 
-            if isinstance(local_device, AnyEmuHandler):
+            if isinstance(local_device, AnyEmuDevice):
                 local_device.connect_to_dynamips(
                     port1,
                     remote_device.dynamips,
@@ -654,13 +654,13 @@ class Dynagen:
         else:
             pa = pa[0].lower()
 
-        if isinstance(router, AnyEmuHandler):
-            #TODO, apparently there is only support in pemu for e0-4. Talked to mmm123 about this, he is aware of that, but does not consider this a showstopper
+        if isinstance(router, AnyEmuDevice):
+            #TODO, apparently there is only support in qemu for e0-4. Talked to mmm123 about this, he is aware of that, but does not consider this a showstopper
             if pa == 'e' and port >= 0 and port < 5:
                 router.add_interface(pa, port)
                 return
             else:
-                raise DynamipsError, 'Emulated device on pemuwrapper only supports e0-4'
+                raise DynamipsError, 'Emulated device on qemuwrapper only supports e0-4'
 
         try:
             if router.slot[slot] != None:
@@ -1016,22 +1016,22 @@ class Dynagen:
             for item in config.scalars:
                 self.debug(item + ' = ' + str(config[item]))
 
-        self.debug('Dynamips/PemuWrapper Servers:')
+        self.debug('Dynamips/QemuWrapper Servers:')
         for section in config.sections:
             server = config[section]
             if ' ' in server.name:
-                #create pemu
+                #create Qemu
                 (emulator, host) = server.name.split(' ')
-                if emulator == 'pemu':
-                    #connect to the PEMU Wrapper
+                if emulator == 'qemu':
+                    #connect to the Qemu Wrapper
                     try:
                         #add ':10525' string to the name so that it does not conflict with name of dynamips server
-                        pemu_name = host + ':10525'
-                        #create the Pemu instance and add it to global dictionary
-                        self.dynamips[pemu_name] = Pemu(host)
-                        self.dynamips[pemu_name].reset()
+                        qemu_name = host + ':10525'
+                        #create the Qemu instance and add it to global dictionary
+                        self.dynamips[qemu_name] = Qemu(host)
+                        self.dynamips[qemu_name].reset()
                     except DynamipsError:
-                        self.dowarning('Could not connect to pemuwrapper server %s' % server.name)
+                        self.dowarning('Could not connect to qemuwrapper server %s' % server.name)
                         self.import_error = True
                         continue
 
@@ -1043,7 +1043,7 @@ class Dynagen:
                     else:
                         workingdir = server['workingdir']
                     try:
-                        self.dynamips[pemu_name].workingdir = workingdir
+                        self.dynamips[qemu_name].workingdir = workingdir
                     except DynamipsError:
                         self.dowarning('Could not set working directory to %s on server %s' % (workingdir, server.name))
                         self.import_error = True
@@ -1072,11 +1072,11 @@ class Dynagen:
                             continue
 
                         if devtype.lower() == 'fw':
-                            dev = FW(self.dynamips[pemu_name], name=name)
+                            dev = FW(self.dynamips[qemu_name], name=name)
                         elif devtype.lower() == 'asa':
-                            dev = ASA(self.dynamips[pemu_name], name=name)
-                        elif devtype.lower() == 'olive':
-                            dev = Olive(self.dynamips[pemu_name], name=name)
+                            dev = ASA(self.dynamips[qemu_name], name=name)
+                        elif devtype.lower() == 'junos':
+                            dev = JunOS(self.dynamips[qemu_name], name=name)
                         else:
                             self.dowarning('Unable to identify the type of device ' + device.name)
                             self.import_error = True
@@ -1113,7 +1113,7 @@ class Dynagen:
                                     self.autostart[name] = device[subitem]
                                 elif subitem.lower() in ['x', 'y', 'hx', 'hy', 'symbol']:
                                     continue
-                                elif pemu_int_re.search(subitem):
+                                elif qemu_int_re.search(subitem):
                                     # Add the tuple to the list of connections to deal with later
                                     connectionlist.append((dev, subitem, device[subitem]))
                                 else:
@@ -1706,8 +1706,8 @@ class Dynagen:
             self.defaults_config['autostart'] = self.autostart_value
 
         for hypervisor in self.dynamips.values():
-            if isinstance(hypervisor, Pemu):
-                h = 'pemu ' + hypervisor.host
+            if isinstance(hypervisor, Qemu):
+                h = 'qemu ' + hypervisor.host
             else:
                 h = hypervisor.host + ":" + str(hypervisor.port)
 
@@ -1719,7 +1719,7 @@ class Dynagen:
                     #TODO FRSW, ATMSW, ATMBR, ETHSW support
                     continue
                 if device.dynamips == hypervisor:
-                    if isinstance(device, AnyEmuHandler):
+                    if isinstance(device, AnyEmuDevice):
                         model = device.model_string
                         self.defaults_config[h][model] = {}
                         if device.image == None:
@@ -1932,7 +1932,7 @@ class Dynagen:
     def _update_running_config_for_emulated_device(self, hypervisor, device, need_active_config):
         """parse the all data structures associated with this emulated device and update the running_config properly"""
 
-        h = 'pemu ' + hypervisor.host
+        h = 'qemu ' + hypervisor.host
         f = '%s %s' % (device.basehostname, device.name)
         self.running_config[h][f] = {}
 
@@ -1948,7 +1948,7 @@ class Dynagen:
             if device.nios[port] != None:
                 con = 'e' + str(port)
                 (remote_router, remote_adapter, remote_port) = get_reverse_udp_nio(device.nios[port])
-                if isinstance(remote_router, AnyEmuHandler):
+                if isinstance(remote_router, AnyEmuDevice):
                     self.running_config[h][f][con] = remote_router.name + ' ' + remote_adapter + str(remote_port)
                 elif isinstance(remote_router, Router):
                     self.running_config[h][f][con] = self._translate_interface_connection(remote_adapter, remote_router, remote_port)
@@ -2004,8 +2004,8 @@ class Dynagen:
 
         #go throught all hypervisor instances
         for hypervisor in self.dynamips.values():
-            if isinstance(hypervisor, Pemu):
-                h = 'pemu ' + hypervisor.host
+            if isinstance(hypervisor, Qemu):
+                h = 'qemu ' + hypervisor.host
             else:
                 h = hypervisor.host + ":" + str(hypervisor.port)
             self.running_config[h] = {}
@@ -2037,7 +2037,7 @@ class Dynagen:
                     elif isinstance(device, Router):
                         #for routers - create the router running config by going throught all variables in dynamips_lib
                         self._update_running_config_for_router(hypervisor, device, need_active_config)
-                    elif isinstance(device, AnyEmuHandler):
+                    elif isinstance(device, AnyEmuDevice):
                         self._update_running_config_for_emulated_device(hypervisor, device, need_active_config)
 
         #after everything is done merge this config with defaults_config
@@ -2068,7 +2068,7 @@ class Dynagen:
                 if isinstance(device, Router):
                     device_section = self.running_config[hypervisor_name]['ROUTER ' + device.name]
                     print '\t' + '[[ROUTER ' + device.name + ']]'
-                if isinstance(device, AnyEmuHandler):
+                if isinstance(device, AnyEmuDevice):
                     device_section = self.running_config[hypervisor_name]['%s %s' % (device.basehostname, device.name)]
                     print '\t' + '[[ROUTER ' + device.name + ']]'
                 elif isinstance(device, FRSW):
@@ -2210,7 +2210,7 @@ if __name__ == '__main__':
             '--nosend',
             action='store_true',
             dest='nosend',
-            help='do not send any command to dynamips/pemuwrapper',
+            help='do not send any command to dynamips/qemuwrapper',
             )
         parser.add_option('--notelnet', action='store_true', dest='notelnet', help='ignore telnet commands (for use with gDynagen)')
         parser.add_option(
@@ -2234,7 +2234,7 @@ if __name__ == '__main__':
             print '\nPython version: %s' % sys.version
         if options.nosend:
             nosend(True)
-            nosend_pemu(True)
+            nosend_qemu(True)
         if options.notelnet:
             notelnet = True
 

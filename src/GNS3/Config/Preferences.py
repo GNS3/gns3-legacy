@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007-2008 GNS3 Dev Team
+# Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -16,14 +16,12 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Contact: contact@gns3.net
+# code@gns3.net
 #
 
 from PyQt4 import QtGui, QtCore
 from GNS3.Ui.Form_PreferencesDialog import Ui_PreferencesDialog
-from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Utils import translate
-import GNS3.Globals as globals
 
 class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
 
@@ -38,8 +36,7 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
                         'General',
                         'Dynamips',
                         'Capture',
-                        'Pemu',
-#                        'Simhost', 
+                        'Qemu',
                         ]
 
         QtGui.QDialog.__init__(self)
@@ -70,7 +67,7 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
                 widget = self.stackedWidget.widget(lnum)
                 widget.retranslateUi(widget)
                 self.listWidget.item(lnum).setText(translate('PreferencesDialog', self.__prefsList[lnum]))
-            except Exception,e:
+            except Exception:
                 # In case widgets don't have restranslateUi method
                 pass
             lnum += 1

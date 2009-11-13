@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Sun May 24 15:51:27 2009
-#      by: PyQt4 UI code generator 4.4.4
+# Created: Fri Nov 13 21:41:05 2009
+#      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -169,7 +169,7 @@ class Ui_IOSDialog(object):
         self.spinBoxHypervisorPort = QtGui.QSpinBox(self.groupBox_4)
         self.spinBoxHypervisorPort.setMinimum(1)
         self.spinBoxHypervisorPort.setMaximum(65535)
-        self.spinBoxHypervisorPort.setProperty("value", QtCore.QVariant(7200))
+        self.spinBoxHypervisorPort.setProperty("value", 7200)
         self.spinBoxHypervisorPort.setObjectName("spinBoxHypervisorPort")
         self.gridlayout4.addWidget(self.spinBoxHypervisorPort, 1, 3, 1, 2)
         self.label_7 = QtGui.QLabel(self.groupBox_4)
@@ -180,7 +180,7 @@ class Ui_IOSDialog(object):
         self.spinBoxBaseUDP = QtGui.QSpinBox(self.groupBox_4)
         self.spinBoxBaseUDP.setMinimum(1)
         self.spinBoxBaseUDP.setMaximum(65535)
-        self.spinBoxBaseUDP.setProperty("value", QtCore.QVariant(10000))
+        self.spinBoxBaseUDP.setProperty("value", 10000)
         self.spinBoxBaseUDP.setObjectName("spinBoxBaseUDP")
         self.gridlayout4.addWidget(self.spinBoxBaseUDP, 2, 3, 1, 2)
         self.label_8 = QtGui.QLabel(self.groupBox_4)
@@ -189,7 +189,7 @@ class Ui_IOSDialog(object):
         self.spinBoxBaseConsole = QtGui.QSpinBox(self.groupBox_4)
         self.spinBoxBaseConsole.setMinimum(1)
         self.spinBoxBaseConsole.setMaximum(65535)
-        self.spinBoxBaseConsole.setProperty("value", QtCore.QVariant(2000))
+        self.spinBoxBaseConsole.setProperty("value", 2000)
         self.spinBoxBaseConsole.setObjectName("spinBoxBaseConsole")
         self.gridlayout4.addWidget(self.spinBoxBaseConsole, 3, 3, 1, 2)
         self.label_5 = QtGui.QLabel(self.groupBox_4)

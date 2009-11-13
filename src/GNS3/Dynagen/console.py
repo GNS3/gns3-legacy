@@ -55,7 +55,7 @@ class Console(AbstractConsole):
     def __init__(self, dynagen):
         AbstractConsole.__init__(self)
         self.prompt = '=> '
-        self.intro  = 'Dynagen management console for Dynamips and Pemuwrapper ' + self.namespace.VERSION + '\nCopyright (c) 2005-2007 Greg Anuzelli, contributions Pavel Skovajsa\n'
+        self.intro  = 'Dynagen management console for Dynamips and Qemuwrapper ' + self.namespace.VERSION + '\nCopyright (c) 2005-2007 Greg Anuzelli, contributions Pavel Skovajsa\n'
         self.dynagen = dynagen
     ## Command definitions ##
 
@@ -387,7 +387,7 @@ conf
 Credits:
 Dynagen is written and maintained by Greg Anuzelli
 Contributing developer: Pavel Skovajsa
-Pemuwrapper: Thomas Pani
+Qemuwrapper: Thomas Pani & Jeremy Grossmann
 Pemu: Milen Svobodnikov
 Thanks to the authors of the ConfObj library
 
@@ -1160,7 +1160,7 @@ Examples:
             if command == 'get' or command == 'show':
                 device = params[0]
                 if self.dynagen.devices[device].model_string == '525':
-                    print "idlepc is not supported for pemu instances."
+                    print "idlepc is not supported for qemu instances."
                     return
 
                 if command == 'get':

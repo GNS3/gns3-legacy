@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_SIMHOSTPage.ui'
 #
-# Created: Sun May 24 15:51:31 2009
-#      by: PyQt4 UI code generator 4.4.4
+# Created: Fri Nov 13 21:41:07 2009
+#      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -35,7 +35,7 @@ class Ui_SIMHOSTPage(object):
         self.spinBoxID.setSizePolicy(sizePolicy)
         self.spinBoxID.setMinimum(0)
         self.spinBoxID.setMaximum(255)
-        self.spinBoxID.setProperty("value", QtCore.QVariant(0))
+        self.spinBoxID.setProperty("value", 0)
         self.spinBoxID.setObjectName("spinBoxID")
         self.gridlayout1.addWidget(self.spinBoxID, 0, 1, 1, 1)
         self.label_3 = QtGui.QLabel(self.groupBox)

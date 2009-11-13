@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
 #
-# Created: Sun May 24 15:51:31 2009
-#      by: PyQt4 UI code generator 4.4.4
+# Created: Fri Nov 13 21:41:07 2009
+#      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -105,7 +105,7 @@ class Ui_PreferencesGeneral(object):
         self.workspaceWidth.setMinimum(500)
         self.workspaceWidth.setMaximum(1000000)
         self.workspaceWidth.setSingleStep(100)
-        self.workspaceWidth.setProperty("value", QtCore.QVariant(2000))
+        self.workspaceWidth.setProperty("value", 2000)
         self.workspaceWidth.setObjectName("workspaceWidth")
         self.gridlayout2.addWidget(self.workspaceWidth, 0, 1, 1, 1)
         self.label_6 = QtGui.QLabel(self.tab_2)
@@ -120,7 +120,7 @@ class Ui_PreferencesGeneral(object):
         self.workspaceHeight.setMinimum(500)
         self.workspaceHeight.setMaximum(1000000)
         self.workspaceHeight.setSingleStep(100)
-        self.workspaceHeight.setProperty("value", QtCore.QVariant(1000))
+        self.workspaceHeight.setProperty("value", 1000)
         self.workspaceHeight.setObjectName("workspaceHeight")
         self.gridlayout2.addWidget(self.workspaceHeight, 1, 1, 1, 1)
         self.checkBoxDrawRectangle = QtGui.QCheckBox(self.tab_2)

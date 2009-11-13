@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 """
-pemu_lib.py
-Copyright (C) 2007  Pavel Skovajsa
+qemu_lib.py
+Copyright (C) 2007-2009  Pavel Skovajsa & Jeremy Grossmann
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -43,7 +43,7 @@ class UDPConnection:
         
     def info(self):
         (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self)
-        if isinstance(remote_device, AnyEmuHandler):
+        if isinstance(remote_device, AnyEmuDevice):
             return ' is connected to emulated device ' + remote_device.name + ' Ethernet' + str(remote_port) + '\n'
         elif isinstance(remote_device, Router):
             (rem_int_name, rem_dynagen_port) = remote_adapter.interfaces_mips2dyn[remote_port]
@@ -67,25 +67,25 @@ class UDPConnection:
             return ' is connected to UDP NIO, with source port ' + str(self.sport) + ' and remote port ' + str(self.dport) + ' on ' + self.daddr + '\n'
 
 
-class Pemu(object):
+class Qemu(object):
 
     def __init__(self, name):
         self.port = 10525
         self.host = name
 
-        #connect to PEMU Wrapper
+        #connect to Qemu Wrapper
         self.s = socket(AF_INET, SOCK_STREAM)
         self.s.setblocking(0)
         self.s.settimeout(300)
-        self._type = 'pemuwrapper'
+        self._type = 'qemuwrapper'
         if not NOSEND:
             try:
                 self.s.connect((self.host, self.port))
             except:
-                raise DynamipsError, 'Could not connect to pemuwrapper at %s:%i' % (self.host, self.port)
+                raise DynamipsError, 'Could not connect to qemuwrapper at %s:%i' % (self.host, self.port)
         #version checking
         try:
-            version = send(self, 'pemuwrapper version')[0][4:]
+            version = send(self, 'qemuwrapper version')[0][4:]
         except IndexError:
             # Probably because NOSEND is set
             version = 'N/A'
@@ -100,11 +100,11 @@ class Pemu(object):
                 rcver = .999
             intver = int(major) * 10000 + int(minor) * 100 + int(sub) + rcver
         except:
-            #print 'Warning: problem determing pemuwrapper server version on host: %s. Skipping version check' % self.host
+            #print 'Warning: problem determing qemuwrapper server version on host: %s. Skipping version check' % self.host
             intver = 999999
 
         if intver < INTVER:
-            raise DynamipsVerError, 'This version of Dynagen requires at least version %s of pemuwrapper. \n Server %s is runnning version %s. \n Get the latest version from http://gdynagen.sourceforge.net/pemuwrapper/' % (STRVER, self.host, version)
+            raise DynamipsVerError, 'This version of Dynagen requires at least version %s of qemuwrapper. \n Server %s is runnning version %s. \n Get the latest version from http://gdynagen.sourceforge.net/qemuwrapper/' % (STRVER, self.host, version)
         self._version = version
 
         #all other needed variables
@@ -118,14 +118,14 @@ class Pemu(object):
         self.configchange = False
 
     def close(self):
-        """ Close the connection to the Pemuwrapper (but leave it running)"""
+        """ Close the connection to the Qemuwrapper (but leave it running)"""
 
         self.s.close()
 
     def reset(self):
-        """ Reset the Pemuwrapper (but leave it running)"""
+        """ Reset the Qemuwrapper (but leave it running)"""
 
-        send(self, 'pemuwrapper reset')
+        send(self, 'qemuwrapper reset')
 
     def _setworkingdir(self, directory):
         """ Set the working directory for this network
@@ -134,8 +134,8 @@ class Pemu(object):
 
         if type(directory) not in [str, unicode]:
             raise DynamipsError, 'invalid directory'
-        # send to pemuwrapper encased in quotes to protect spaces
-        send(self, 'pemuwrapper working_dir %s' % '"' + directory + '"')
+        # send to qemuwrapper encased in quotes to protect spaces
+        send(self, 'qemuwrapper working_dir %s' % '"' + directory + '"')
         self._workingdir = directory
 
     def _getworkingdir(self):
@@ -152,24 +152,24 @@ class Pemu(object):
 
         return self._type
 
-    type = property(_gettype, doc='The pemuwrapper type')
+    type = property(_gettype, doc='The qemuwrapper type')
 
     def _getversion(self):
-        """ Return the version of pemuwrapper"""
+        """ Return the version of qemuwrapper"""
         return self._version
     
-    version = property(_getversion, doc='The pemuwrapper version')
+    version = property(_getversion, doc='The qemuwrapper version')
         
 
-class AnyEmuHandler(object):
+class AnyEmuDevice(object):
 
     _instance_count = 0
     isrouter = 1
 
-    def __init__(self, pemu, name):
-        self.p = pemu
+    def __init__(self, qemu, name):
+        self.p = qemu
         #create a twin variable to self.p but with name self.dynamips to keep things working elsewhere
-        self.dynamips = pemu
+        self.dynamips = qemu
         self._instance = self._instance_count
         self._instance_count += 1
         if name == None:
@@ -200,38 +200,38 @@ class AnyEmuHandler(object):
         self.disk0 = 16
         self.disk1 = 0
         self.ghost_status = 0
-        send(self.p, 'pemu create %s %s' % (self.pemu_dev_type, self.name))
+        send(self.p, 'qemu create %s %s' % (self.qemu_dev_type, self.name))
         self.p.devices.append(self)
-        #set the console to PEMU baseconsole
+        #set the console to Qemu baseconsole
         self.console = self.p.baseconsole
         self.p.baseconsole += 1
 
     def start(self):
-        """starts the emulated device instance in pemu"""
+        """starts the emulated device instance in Qemu"""
 
         if self.state == 'running':
             raise DynamipsWarning, 'emulated device %s is already running' % self.name
 
-        r = send(self.p, 'pemu start %s' % self.name)
+        r = send(self.p, 'qemu start %s' % self.name)
         self.state = 'running'
         return r
 
     def stop(self):
-        """stops the emulated device instance in pemu"""
+        """stops the emulated device instance in Qemu"""
 
         if self.state == 'stopped':
             raise DynamipsWarning, 'emulated device %s is already stopped' % self.name
-        r = send(self.p, 'pemu stop %s' % self.name)
+        r = send(self.p, 'qemu stop %s' % self.name)
         self.state = 'stopped'
         return r
 
     def suspend(self):
-        """suspends the emulated device instance in pemu"""
+        """suspends the emulated device instance in Qemu"""
 
         return [self.name + ' does not support suspending']
 
     def resume(self):
-        """resumes the emulated device instance in pemu"""
+        """resumes the emulated device instance in Qemu"""
 
         return self.name + ' does not support resuming'
 
@@ -243,7 +243,7 @@ class AnyEmuHandler(object):
         if type(console) != int or console < 1 or console > 65535:
             raise DynamipsError, 'invalid console port'
 
-        send(self.p, 'pemu setattr %s console %i' % (self.name, console))
+        send(self.p, 'qemu setattr %s console %i' % (self.name, console))
         self._console = console
 
     def _getconsole(self):
@@ -262,7 +262,7 @@ class AnyEmuHandler(object):
         if type(ram) != int or ram < 1:
             raise DynamipsError, 'invalid ram size'
 
-        send(self.p, 'pemu setattr %s ram %i' % (self.name, ram))
+        send(self.p, 'qemu setattr %s ram %i' % (self.name, ram))
         self._ram = ram
 
     def _getram(self):
@@ -283,7 +283,7 @@ class AnyEmuHandler(object):
 
         # Can't verify existance of image because path is relative to backend
         #send the image filename enclosed in quotes to protect it
-        send(self.p, 'pemu setattr %s image %s' % (self.name, '"' + image + '"'))
+        send(self.p, 'qemu setattr %s image %s' % (self.name, '"' + image + '"'))
         self._image = image
 
     def _getimage(self):
@@ -303,7 +303,7 @@ class AnyEmuHandler(object):
         # Some guest drivers won't accept non-standard MAC addresses
         # burned in the EEPROM! Watch for overlap with real NICs;
         # it's unlikely, but possible.
-        send(self.p, 'pemu create_nic %s %i 00:aa:00:%s%s:%s%s:0%i' % (self.name, port1, self.first_mac_number, self.second_mac_number, self.third_mac_number, self.fourth_mac_number, port1))
+        send(self.p, 'qemu create_nic %s %i 00:aa:00:%s%s:%s%s:0%i' % (self.name, port1, self.first_mac_number, self.second_mac_number, self.third_mac_number, self.fourth_mac_number, port1))
 
     def __allocate_udp_port(self, remote_hypervisor):
         """allocate a new src and dst udp port from hypervisors"""
@@ -311,7 +311,7 @@ class AnyEmuHandler(object):
         # Allocate a UDP port for the local side of the NIO
         src_udp = self.p.udp
         self.p.udp = self.p.udp + 1
-        debug('new base UDP port for pemuwrapper at ' + self.p.name + ':' + str(self.p.port) + ' is now: ' + str(self.p.udp))
+        debug('new base UDP port for qemuwrapper at ' + self.p.name + ':' + str(self.p.port) + ' is now: ' + str(self.p.udp))
 
         # Now allocate one for the destination side
         dst_udp = remote_hypervisor.udp
@@ -352,7 +352,7 @@ class AnyEmuHandler(object):
                 dowarning('Connecting %s port %s to %s slot %s port %s:\nin case of multi-server operation make sure you do not use "localhost" string in definition of dynamips hypervisor.\n'% (self.name, local_port, remote_slot.router.name, remote_slot.adapter, remote_port))
 
         #create the emulated device side of UDP connection
-        send(self.p, 'pemu create_udp %s %i %i %s %i' % (self.name, local_port, src_udp, dst_ip, dst_udp))
+        send(self.p, 'qemu create_udp %s %i %i %s %i' % (self.name, local_port, src_udp, dst_ip, dst_udp))
         self.nios[local_port] = UDPConnection(src_udp, dst_ip, dst_udp, self, local_port)
 
         #create the dynamips side of UDP connection - the NIO and connect it to the router
@@ -381,11 +381,11 @@ class AnyEmuHandler(object):
             dst_ip = remote_emulated_device.p.host
 
         #create the local emulated device side of UDP connection
-        send(self.p, 'pemu create_udp %s %i %i %s %i' % (self.name, local_port, src_udp, dst_ip, dst_udp))
+        send(self.p, 'qemu create_udp %s %i %i %s %i' % (self.name, local_port, src_udp, dst_ip, dst_udp))
         self.nios[local_port] = UDPConnection(src_udp, dst_ip, dst_udp, self, local_port)
 
         #create the remote emulated device side of UDP connection
-        send(remote_emulated_device.p, 'pemu create_udp %s %i %i %s %i' % (remote_emulated_device.name, remote_port, dst_udp, src_ip, src_udp))
+        send(remote_emulated_device.p, 'qemu create_udp %s %i %i %s %i' % (remote_emulated_device.name, remote_port, dst_udp, src_ip, src_udp))
         remote_emulated_device.nios[remote_port] = UDPConnection(dst_udp, src_ip, src_udp, remote_emulated_device, remote_port)
         
         #set reverse nios
@@ -399,7 +399,7 @@ class AnyEmuHandler(object):
             slot_info = slot_info + "      Ethernet" + str(port)
             if self.nios[port] != None:
                 (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self.nios[port])
-                if isinstance(remote_device, AnyEmuHandler):
+                if isinstance(remote_device, AnyEmuDevice):
                     slot_info = slot_info + ' is connected to emulated device ' + remote_device.name + ' Ethernet' + str(remote_port) + '\n'
                 elif isinstance(remote_device, Router):
                     slot_info = slot_info + ' is connected to router ' + remote_device.name + " " + remote_adapter.interface_name + str(remote_adapter.slot) + "/" + str(remote_port) + '\n'
@@ -438,29 +438,29 @@ class AnyEmuHandler(object):
             name = self.name
         return '%s %s' % (self.basehostname, name)
 
-class Olive(AnyEmuHandler):
+class JunOS(AnyEmuDevice):
     model_string = 'O-series'
-    pemu_dev_type = 'olive'
-    basehostname = 'OLIVE'
+    qemu_dev_type = 'junos'
+    basehostname = 'JUNOS'
     _ufd_machine = 'Juniper router'
     _ufd_hardware = 'Juniper Olive router'
     available_options = ['image', 'ram']
 
-class ASA(AnyEmuHandler):
+class ASA(AnyEmuDevice):
     model_string = '5520'
-    pemu_dev_type = 'asa'
+    qemu_dev_type = 'asa'
     basehostname = 'ASA'
     _ufd_machine = 'ASA firewall'
     _ufd_hardware = 'qemu-emulated Cisco ASA'
     available_options = ['image', 'ram']
 
-class FW(AnyEmuHandler):
+class FW(AnyEmuDevice):
     model_string = '525'
-    pemu_dev_type = 'pix'
+    qemu_dev_type = 'pix'
     basehostname = 'FW'
     available_options = ['image', 'ram', 'serial', 'key']
     _ufd_machine = 'PIX firewall'
-    _ufd_hardware = 'pemu-emulated Cisco PIX'
+    _ufd_hardware = 'qemu-emulated Cisco PIX'
     def __init__(self, *args, **kwargs):
         super(FW, self).__init__(*args, **kwargs)
         self.defaults.update({
@@ -478,7 +478,7 @@ class FW(AnyEmuHandler):
         if type(serial) not in [str, unicode]:
             raise DynamipsError, 'invalid serial'
         #TODO verify serial
-        send(self.p, 'pemu setattr %s serial %s' % (self.name, serial))
+        send(self.p, 'qemu setattr %s serial %s' % (self.name, serial))
         self._serial = serial
 
     def _getserial(self):
@@ -497,7 +497,7 @@ class FW(AnyEmuHandler):
         if type(key) not in [str, unicode]:
             raise DynamipsError, 'invalid key'
         #TODO verify key
-        send(self.p, 'pemu setattr %s key %s' % (self.name, key))
+        send(self.p, 'qemu setattr %s key %s' % (self.name, key))
         self._key = key
 
     def _getkey(self):
@@ -511,7 +511,7 @@ class FW(AnyEmuHandler):
     def extended_info(self):
         return '  Serial number %s\n  Activation key %s' % (self._serial, self._key)
 
-def nosend_pemu(flag):
+def nosend_qemu(flag):
     """ If true, don't actually send any commands to the back end.
     """
 

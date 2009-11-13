@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007-2008 GNS3 Dev Team
+# Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -16,27 +16,24 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Contact: contact@gns3.net
+# code@gns3.net
 #
 
-import os, sys, socket, glob, shutil, time, base64
+import os, socket, glob, shutil, time, base64
 import GNS3.NETFile as netfile
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Globals as globals
-from PyQt4 import QtSvg, QtGui, QtCore
-from PyQt4.QtGui import QMainWindow, QAction, QActionGroup, QAction, QIcon
+from PyQt4 import QtGui, QtCore
+from PyQt4.QtGui import QMainWindow, QIcon
 from GNS3.Ui.Form_MainWindow import Ui_MainWindow
 from GNS3.Ui.Form_About import Ui_AboutDialog
 from GNS3.IOSDialog import IOSDialog
 from GNS3.SymbolManager import SymbolManager
 from GNS3.ProjectDialog import ProjectDialog
 from GNS3.Utils import debug, translate, fileBrowser
-from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Preferences import PreferencesDialog
-from GNS3.Config.Config import ConfDB
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.AnyEmuDevice import AnyEmuDevice
-from GNS3.Node.Cloud import Cloud
 from GNS3.Pixmap import Pixmap
 
 class Workspace(QMainWindow, Ui_MainWindow):
@@ -149,7 +146,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         try:
             self.nodesDock.retranslateUi(self.nodesDock)
             self.treeWidget_TopologySummary.retranslateUi(self.treeWidget_TopologySummary)
-        except Exception,e:
+        except Exception:
             # Ignore if not implemented
             pass
 
@@ -353,7 +350,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     except lib.DynamipsWarning, e:
                         print unicode(translate("Workspace", "Dynamips Warning: %s")) % e
                     except (lib.DynamipsErrorHandled,  socket.error):
-                        QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "%s: Dynamips error")) % node.hostname, translate("Workspace", "Connection lost"))
+                        QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "%s: Dynamips error")) % device, translate("Workspace", "Connection lost"))
 
     def __action_AddNote(self):
         """ Add a note to the scene
@@ -729,7 +726,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     for node in globals.GApp.topology.nodes.values():
                         if isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice):
                             node.stopNode()
-                    # move dynamips & pemu files
+                    # move dynamips & Qemu files
                     for node in globals.GApp.topology.nodes.values():
                         if isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir:
                             dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '?' + node.hostname + '*') + \
@@ -740,9 +737,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                 except (OSError, IOError), e:
                                     debug("Warning: cannot move " + file + " to " + self.projectWorkdir + ": " + e.strerror)
                                     continue
-                        if isinstance(node, AnyEmuDevice) and self.projectWorkdir != node.pemu.workingdir:
-                            pemu_files = glob.glob(os.path.normpath(node.pemu.workingdir) + os.sep + node.hostname)
-                            for file in pemu_files:
+                        if isinstance(node, AnyEmuDevice) and self.projectWorkdir != node.qemu.workingdir:
+                            qemu_files = glob.glob(os.path.normpath(node.qemu.workingdir) + os.sep + node.hostname)
+                            for file in qemu_files:
                                 try:
                                     shutil.move(file, self.projectWorkdir + os.sep + node.hostname)
                                 except (OSError, IOError), e:
@@ -793,7 +790,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         splash.showMessage(translate("Workspace", "Please wait while creating a snapshot"))
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
         
-        # copy dynamips & pemu files
+        # copy dynamips & Qemu files
         for node in globals.GApp.topology.nodes.values():
             if isinstance(node, IOSRouter):
                 dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '?' + node.hostname + '*') + \
@@ -805,8 +802,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         debug("Warning: cannot copy " + file + " to " + snapshot_dir + ": " + e.strerror)
                         continue
             if isinstance(node, AnyEmuDevice):
-                pemu_files = glob.glob(os.path.normpath(node.pemu.workingdir) + os.sep + node.hostname)
-                for file in pemu_files:
+                qemu_files = glob.glob(os.path.normpath(node.qemu.workingdir) + os.sep + node.hostname)
+                for file in qemu_files:
                     try:
                         shutil.copytree(file, snapshot_dir + os.sep + node.hostname)
                     except (OSError, IOError), e:

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007-2008 GNS3 Dev Team
+# Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -16,16 +16,11 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Contact: contact@gns3.net
+# code@gns3.net
 #
 
 import sys, os
 import GNS3.Globals as globals
-import GNS3.Dynagen.pemu_lib as pix
-import GNS3.Dynagen.simhost_lib as lwip
-from GNS3.Dynagen.validate import Validator
-from GNS3.Dynagen.configobj import ConfigObj, flatten_errors
-from GNS3.Config.Objects import hypervisorConf
 from GNS3.Dynagen.dynagen import Dynagen, DEVICETUPLE
 from GNS3.Utils import translate, debug
 from PyQt4 import QtCore, QtGui
@@ -77,18 +72,18 @@ class DynagenSub(Dynagen):
             server = config[section]
             if ' ' in server.name:
                 (emulator, host) = server.name.split(' ')
-                if emulator == 'pemu' and (host == globals.GApp.systconf['pemu'].PemuManager_binding or host == 'localhost') and globals.GApp.systconf['pemu'].enable_PemuManager:
-                    globals.GApp.PemuManager.startPemu()
+                if emulator == 'qemu' and (host == globals.GApp.systconf['qemu'].QemuManager_binding or host == 'localhost') and globals.GApp.systconf['qemu'].enable_QemuManager:
+                    globals.GApp.QemuManager.startQemu()
                     for subsection in server.sections:
                         device = server[subsection]
                         # check if the PIX image is accessible, if not find an alternative image
                         if device.name in DEVICETUPLE:
                             if not os.access(device['image'], os.F_OK):
-                                if globals.GApp.systconf['pemu'].default_pix_image:
-                                    image_name = globals.GApp.systconf['pemu'].default_pix_image
+                                if globals.GApp.systconf['qemu'].default_pix_image:
+                                    image_name = globals.GApp.systconf['qemu'].default_pix_image
                                 else:
                                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
-                                      unicode(translate("PIX image", "PIX image %s cannot be found and cannot find an alternative image")) % globals.GApp.systconf['pemu'].default_pix_image)
+                                      unicode(translate("PIX image", "PIX image %s cannot be found and cannot find an alternative image")) % globals.GApp.systconf['qemu'].default_pix_image)
                                     continue
                                 print unicode(translate("DynagenSub", "Local PIX image %s cannot be found, use image %s instead")) \
                                 % (unicode(device['image']), image_name)

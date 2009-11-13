@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007-2008 GNS3 Dev Team
+# Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -16,18 +16,14 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Contact: contact@gns3.net
+# code@gns3.net
 #
 
-import os, sys, time
+import os
 import GNS3.Globals as globals
-import GNS3.Config.Defaults as Defaults
 from GNS3.Config.Objects import iosImageConf, hypervisorConf, libraryConf
 from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from GNS3.Node.DecorativeNode import DecorativeNode
-from GNS3.Node.IOSRouter import IOSRouter
-from GNS3.Link.Serial import Serial
-from GNS3.Link.Ethernet import Ethernet
 from PyQt4 import QtCore
 from GNS3.Utils import Singleton, translate
 
@@ -64,7 +60,7 @@ class ConfDB(Singleton, QtCore.QSettings):
             if default_value is not None:
                 return default_value
             # or return the app default if it exist
-            if _ConfigDefaults.has_key(key):
+            if ConfigDefaults.has_key(key):
                 return _ConfigDefaults[key]
             # or finally, return None
             return None

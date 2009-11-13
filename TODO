@@ -1,14 +1,13 @@
 TODO LIST
 
  * Simulated host support (inspirated from/using LWIP).
- * A standalone server to automatically configure GNS3 clients in order to use remote hypervisors (intended for learning environments, schools/universities, where IOS images cannot be distributed)
  * NIO multicast support.
  * Show NIO activity.
  * Dynamips QinQ integration.
  * Daisy chaining for switches.
  * Qemu integration.
  * Improving snapshot feature.
- * ASA8 support (need to merge Pemu and Qemu).
+ * Merge Pemu & Qemu
  * Decorative node for Voice labs (gateway, gatekeeper, ip phones, sip servers, call managers).
  * Check unpacking of asa803-k8.bin
  * Create DMG for MacOSX + check everything.
@@ -22,4 +21,6 @@ TODO LIST
  * Check wics and tooltips info about wics 
  * Check allocated ports.
  * Generic Ethernet NIO is blank on Vista
- * Change IOS for a router?
+ * Browse option for startup-config
+ * Automatic start of routers
+ 

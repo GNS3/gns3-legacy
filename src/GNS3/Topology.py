@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007-2008 GNS3 Dev Team
+# Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -16,12 +16,12 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# Contact: contact@gns3.net
+# code@gns3.net
 #
 
-import os, glob, socket, shutil, sys
+import os, glob, socket, sys
 import GNS3.Dynagen.dynamips_lib as lib
-import GNS3.Dynagen.pemu_lib as pix
+import GNS3.Dynagen.qemu_lib as qlib
 import GNS3.Dynagen.simhost_lib as lwip
 import GNS3.Globals as globals
 from PyQt4 import QtGui, QtCore
@@ -35,9 +35,8 @@ from GNS3.Node.ATMBR import ATMBR, init_atmbr_id
 from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
 from GNS3.Node.FRSW import FRSW, init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
-from GNS3.Node.AnyEmuDevice import FW, AnyEmuDevice, init_emu_id
+from GNS3.Node.AnyEmuDevice import FW, ASA, AnyEmuDevice, JunOS, init_emu_id
 from GNS3.Node.SIMHOST import SIMHOST, init_simhost_id
-from GNS3.SimhostManager import SimhostManager
 from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Annotation import Annotation
 import GNS3.UndoFramework as undo 
@@ -98,8 +97,8 @@ class Topology(QtGui.QGraphicsScene):
             globals.GApp.HypervisorManager.stopProcHypervisors()
         if globals.GApp.SimhostManager:
             globals.GApp.SimhostManager.stopProcHypervisors()
-        if globals.GApp.PemuManager:
-            globals.GApp.PemuManager.stopPemu()
+        if globals.GApp.QemuManager:
+            globals.GApp.QemuManager.stopQemu()
         self.dynagen.dynamips.clear()
         self.dynagen.handled = False
         self.dynagen.devices.clear()
@@ -256,67 +255,83 @@ class Topology(QtGui.QGraphicsScene):
             debug("Enable JIT blocks sharing")
             node.set_jitsharing(True)
 
-    def firewallSetup(self, node):
-        """ Start a connection to Pemu & set defaults
+    def emuDeviceSetup(self, node):
+        """ Start a connection to Qemu & set defaults
         """
 
-        if globals.GApp.systconf['pemu'].enable_PemuManager:
-            if globals.GApp.PemuManager.startPemu() == False:
+        if globals.GApp.systconf['qemu'].enable_QemuManager:
+            if globals.GApp.QemuManager.startQemu() == False:
                 return False
-            host = globals.GApp.systconf['pemu'].PemuManager_binding
-            pemu_name = host + ':10525'
+            host = globals.GApp.systconf['qemu'].QemuManager_binding
+            qemu_name = host + ':10525'
         else:
-            host = globals.GApp.systconf['pemu'].external_host
-            pemu_name =  host + ':10525'
+            host = globals.GApp.systconf['qemu'].external_host
+            qemu_name =  host + ':10525'
 
-        debug('Pemuwrapper: ' + pemu_name)
-        if not self.dynagen.dynamips.has_key(pemu_name):
-            #create the Pemu instance and add it to global dictionary
-            self.dynagen.dynamips[pemu_name] = pix.Pemu(host)
-            self.dynagen.dynamips[pemu_name].reset()
+        debug('Qemuwrapper: ' + qemu_name)
+        if not self.dynagen.dynamips.has_key(qemu_name):
+            #create the Qemu instance and add it to global dictionary
+            self.dynagen.dynamips[qemu_name] = qlib.Qemu(host)
+            self.dynagen.dynamips[qemu_name].reset()
             self.dynagen.get_defaults_config()
             self.dynagen.update_running_config()
-            self.dynagen.dynamips[pemu_name].configchange = True
+            self.dynagen.dynamips[qemu_name].configchange = True
+
             if globals.GApp.workspace.projectWorkdir:
                 workdir = globals.GApp.workspace.projectWorkdir
-            elif globals.GApp.systconf['pemu'].pemuwrapper_workdir:
-                workdir = globals.GApp.systconf['pemu'].pemuwrapper_workdir
+            elif globals.GApp.systconf['qemu'].qemuwrapper_workdir:
+                workdir = globals.GApp.systconf['qemu'].qemuwrapper_workdir
             else:
                 realpath = os.path.realpath(self.dynagen.global_filename)
                 workdir = os.path.dirname(realpath)
             try:
-                self.dynagen.dynamips[pemu_name].workingdir = workdir
+                self.dynagen.dynamips[qemu_name].workingdir = workdir
             except lib.DynamipsError, msg:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Pemuwrapper error"),  unicode(workdir + ': ') + unicode(msg))
-                del self.dynagen.dynamips[pemu_name]
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Qemuwrapper error"),  unicode(workdir + ': ') + unicode(msg))
+                del self.dynagen.dynamips[qemu_name]
                 return False
 
-        # copy base flash
-        if globals.GApp.systconf['pemu'].default_base_flash:
-            directory = self.dynagen.dynamips[pemu_name].workingdir + os.sep + node.hostname
-            try:
-                os.mkdir(directory)
-            except:
-                pass
-            splash = QtGui.QSplashScreen(QtGui.QPixmap(":images/logo_gns3_splash.png"))
-            splash.show()
-            splash.showMessage(translate("NETFile", "Please wait while copying the base flash"))
-            try:
-                debug("Copy " + globals.GApp.systconf['pemu'].default_base_flash + " to " + directory + os.sep + 'FLASH')
-                shutil.copy(globals.GApp.systconf['pemu'].default_base_flash,  directory + os.sep + 'FLASH')
-            except (OSError, IOError), e:
-                splash = None
-                QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX device"), 
-                                          unicode(translate("Topology", "Cannot copy PIX base flash %s: %s")) % (globals.GApp.systconf['pemu'].default_base_flash, e.strerror))
-                
         # set defaults
-        node.set_hypervisor(self.dynagen.dynamips[pemu_name])
-        debug("Set default image " + globals.GApp.systconf['pemu'].default_pix_image
-            + " for node type %s, model %r" % (type(node), node.model))
-        node.set_image(globals.GApp.systconf['pemu'].default_pix_image, node.model)
-        if isinstance(node, FW):
-            node.set_string_option('key', globals.GApp.systconf['pemu'].default_pix_key)
-            node.set_string_option('serial', globals.GApp.systconf['pemu'].default_pix_serial)
+        node.set_hypervisor(self.dynagen.dynamips[qemu_name])
+        return True
+
+    def QemuDeviceSetup(self, node):
+        """ Start a connection to Qemu & set defaults
+        """
+
+        if globals.GApp.systconf['qemu'].enable_QemuManager:
+            if globals.GApp.QemuManager.startQemu() == False:
+                return False
+            host = globals.GApp.systconf['qemu'].QemuManager_binding
+            qemu_name = host + ':10525'
+        else:
+            host = globals.GApp.systconf['qemu'].external_host
+            qemu_name =  host + ':10525'
+
+        debug('Qemuwrapper: ' + qemu_name)
+        if not self.dynagen.dynamips.has_key(qemu_name):
+            #create the Qemu instance and add it to global dictionary
+            self.dynagen.dynamips[qemu_name] = qlib.Qemu(host)
+            self.dynagen.dynamips[qemu_name].reset()
+            self.dynagen.get_defaults_config()
+            self.dynagen.update_running_config()
+            self.dynagen.dynamips[qemu_name].configchange = True
+            if globals.GApp.workspace.projectWorkdir:
+                workdir = globals.GApp.workspace.projectWorkdir
+            elif globals.GApp.systconf['qemu'].qemuwrapper_workdir:
+                workdir = globals.GApp.systconf['qemu'].qemuwrapper_workdir
+            else:
+                realpath = os.path.realpath(self.dynagen.global_filename)
+                workdir = os.path.dirname(realpath)
+            try:
+                self.dynagen.dynamips[qemu_name].workingdir = workdir
+            except lib.DynamipsError, msg:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Qemuwrapper error"),  unicode(workdir + ': ') + unicode(msg))
+                del self.dynagen.dynamips[qemu_name]
+                return False
+
+        node.set_hypervisor(self.dynagen.dynamips[qemu_name])
+
         return True
 
     def simhostSetup(self, node):
@@ -429,16 +444,55 @@ class Topology(QtGui.QGraphicsScene):
                         return False
                 self.preConfigureNode(node, image_conf)
 
-            if isinstance(node, AnyEmuDevice):
-                if not globals.GApp.systconf['pemu'].default_pix_image:
+            if isinstance(node, JunOS):
+
+                if not globals.GApp.systconf['qemu'].default_junos_image:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "JunOS image"), translate("Topology", "Please configure a default JunOS image"))
+                    return False
+                
+                # give a warning if the JunOS image path is not accessible
+                if not os.access(globals.GApp.systconf['qemu'].default_junos_image, os.F_OK):
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "JunOS image"), unicode(translate("Topology", "%s seems to not exist, please check")) % globals.GApp.systconf['qemu'].default_junos_image)
+                
+                if self.QemuDeviceSetup(node) == False:
+                    return False
+                
+                debug("Set default image " + globals.GApp.systconf['qemu'].default_junos_image + " for node type %s, model %r" % (type(node), node.model))
+                node.set_image(globals.GApp.systconf['qemu'].default_junos_image, node.model)
+                
+            if isinstance(node, ASA):
+
+                if not globals.GApp.systconf['qemu'].default_asa_image:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA image"), translate("Topology", "Please configure a default ASA image"))
+                    return False
+                
+                # give a warning if the ASA image path is not accessible
+                if not os.access(globals.GApp.systconf['qemu'].default_asa_image, os.F_OK):
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA image"), unicode(translate("Topology", "%s seems to not exist, please check")) % globals.GApp.systconf['qemu'].default_asa_image)
+                
+                if self.QemuDeviceSetup(node) == False:
+                    return False
+                
+                debug("Set default image " + globals.GApp.systconf['qemu'].default_asa_image + " for node type %s, model %r" % (type(node), node.model))
+                node.set_image(globals.GApp.systconf['qemu'].default_asa_image, node.model)
+                #TODO: set special options for ASA
+
+            if isinstance(node, FW):
+                
+                if not globals.GApp.systconf['qemu'].default_pix_image:
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX image"), translate("Topology", "Please configure a default PIX image"))
                     return False
                     
                 # give a warning if the PIX image path is not accessible
-                    if not os.access(globals.GApp.systconf['pemu'].default_pix_image, os.F_OK):
-                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX image"), unicode(translate("Topology", "%s seems to not exist, please check")) % globals.GApp.systconf['pemu'].default_pix_image)
-                if self.firewallSetup(node) == False:
+                    if not os.access(globals.GApp.systconf['qemu'].default_pix_image, os.F_OK):
+                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX image"), unicode(translate("Topology", "%s seems to not exist, please check")) % globals.GApp.systconf['qemu'].default_pix_image)
+                if self.QemuDeviceSetup(node) == False:
                     return False
+                
+                debug("Set default image " + globals.GApp.systconf['qemu'].default_pix_image + " for node type %s, model %r" % (type(node), node.model))
+                node.set_image(globals.GApp.systconf['qemu'].default_pix_image, node.model)
+                node.set_string_option('key', globals.GApp.systconf['qemu'].default_pix_key)
+                node.set_string_option('serial', globals.GApp.systconf['qemu'].default_pix_serial)
                     
             if isinstance(node, SIMHOST) and self.simhostSetup(node) == False:
                 return False
@@ -727,7 +781,7 @@ class Topology(QtGui.QGraphicsScene):
         if not isinstance(link.source, DecorativeNode) and not isinstance(link.dest, DecorativeNode):
             # not a decorative device
             if (isinstance(link.source, AnyEmuDevice) and isinstance(link.dest, ETHSW)) or (isinstance(link.source, ETHSW) and isinstance(link.dest, AnyEmuDevice)):
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  'pemuwrapper does not support removal')
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  'qemuwrapper does not support removal')
                 return False
             try:
                 if isinstance(link.source, IOSRouter):
