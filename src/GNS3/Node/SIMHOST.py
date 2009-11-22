@@ -20,11 +20,9 @@
 #
 
 from GNS3.Node.AbstractNode import AbstractNode
-from PyQt4 import QtCore, QtGui
-from GNS3.Utils import translate, debug
+from GNS3.Utils import debug
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.simhost_lib as lwip
-import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Globals as globals
 
 simhost_id = 0

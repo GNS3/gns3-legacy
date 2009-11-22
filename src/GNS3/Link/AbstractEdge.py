@@ -323,7 +323,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             path = capture_conf.cap_cmd.replace("%c", '"' + self.capfile + '"')
             debug("Start Wireshark like application: " + path)
             if sys.platform.startswith('win'):
-                 sub.Popen(path)
+                sub.Popen(path)
             else:
                 sub.Popen(path, shell=True)
         except (OSError, IOError), e:

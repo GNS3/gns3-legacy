@@ -26,7 +26,6 @@ if sys.platform.startswith('win'):
                                                           "GNS3.Ui.ConfigurationPages.Page_Cloud",
                                                           "GNS3.Ui.ConfigurationPages.Page_ETHSW",
                                                           "GNS3.Ui.ConfigurationPages.Page_FRSW",
-                                                          "GNS3.Ui.ConfigurationPages.Page_Hub",
                                                           "GNS3.Ui.ConfigurationPages.Page_IOSRouter",
                                                           "GNS3.Ui.ConfigurationPages.Page_FW",
                                                           "GNS3.Ui.ConfigurationPages.Page_DecorativeNode",

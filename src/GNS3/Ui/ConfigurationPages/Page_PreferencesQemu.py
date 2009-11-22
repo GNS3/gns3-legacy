@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -37,6 +37,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         # Qemuwrapper
         self.connect(self.QemuwrapperPath_browser, QtCore.SIGNAL('clicked()'),  self.slotSelectQemuWrapperPath)
         self.connect(self.QemuwrapperWorkdir_browser, QtCore.SIGNAL('clicked()'),  self.slotSelectQemuWrapperWorkdir)
+        self.connect(self.QemuPath_browser, QtCore.SIGNAL('clicked()'),  self.slotSelectQemuPath)
         self.comboBoxBinding.addItems(['localhost', QtNetwork.QHostInfo.localHostName()] + map(lambda addr: addr.toString(), QtNetwork.QNetworkInterface.allAddresses()))
 
         # Qemu settings
@@ -44,17 +45,13 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         
         # PIX settings
         self.connect(self.PIXImage_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectPIXImage)
-        self.connect(self.PIXcheckBoxQemuDefaults, QtCore.SIGNAL('stateChanged(int)'), self.slotPIXUseQemuDefaults)
 
         # JunOS settings
         self.connect(self.JunOSImage_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectJunOSImage)
-        self.connect(self.JunOScheckBoxQemuDefaults, QtCore.SIGNAL('stateChanged(int)'), self.slotJunOSUseQemuDefaults)
         
         # ASA settings
-        self.connect(self.ASAImage_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectASAImage)
         self.connect(self.ASAInitrd_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectASAInitrd)
         self.connect(self.ASAKernel_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectASAKernel)
-        self.connect(self.ASAcheckBoxQemuDefaults, QtCore.SIGNAL('stateChanged(int)'), self.slotASAUseQemuDefaults)
 
         self.loadConf()
 
@@ -89,6 +86,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         # Qemuwrapper
         self.lineEditQemuwrapperPath.setText(os.path.normpath(self.conf.qemuwrapper_path))
         self.lineEditQemuwrapperWorkdir.setText(os.path.normpath(self.conf.qemuwrapper_workdir))
+        self.lineEditQemuPath.setText(os.path.normpath(self.conf.qemu_path))
         self.lineEditHostExternalQemu.setText(self.conf.external_host)
         
         if self.conf.enable_QemuManager == True:
@@ -127,111 +125,58 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             self.QemucheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
         
         # PIX settings
-        if self.PIXcheckBoxQemuDefaults.checkState() == QtCore.Qt.Checked:
-            
-            self.PIXImage.setText(self.conf.default_qemu_image)
-            self.PIXMemory.setValue(self.conf.default_qemu_memory)
-            
-            index = self.PIXNIC.findText(self.conf.default_qemu_nic)
-            if index != -1:
-                self.PIXNIC.setCurrentIndex(index)
+        self.PIXImage.setText(self.conf.default_pix_image)
+        self.PIXMemory.setValue(self.conf.default_pix_memory)
+        self.PIXOptions.setText(self.conf.default_pix_options)
 
-            if self.conf.default_qemu_kqemu == True:
-                self.PIXcheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.PIXcheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
-            
-        else:
-            self.PIXImage.setText(self.conf.default_pix_image)
-            self.PIXMemory.setValue(self.conf.default_pix_memory)
-
-            index = self.PIXNIC.findText(self.conf.default_pix_nic)
-            if index != -1:
-                self.PIXNIC.setCurrentIndex(index)
+        index = self.PIXNIC.findText(self.conf.default_pix_nic)
+        if index != -1:
+            self.PIXNIC.setCurrentIndex(index)
                 
-            if self.conf.default_pix_kqemu == True:
-                self.PIXcheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.PIXcheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
+        if self.conf.default_pix_kqemu == True:
+            self.PIXcheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.PIXcheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
                 
         self.PIXKey.setText(self.conf.default_pix_key)
         self.PIXSerial.setText(self.conf.default_pix_serial)
         
         # JunOS settings
-        if self.JunOScheckBoxQemuDefaults.checkState() == QtCore.Qt.Checked:
-            
-            self.JunOSImage.setText(self.conf.default_qemu_image)
-            self.JunOSMemory.setValue(self.conf.default_qemu_memory)
-            
-            index = self.JunOSNIC.findText(self.conf.default_qemu_nic)
-            if index != -1:
-                self.JunOSNIC.setCurrentIndex(index)
+        self.JunOSImage.setText(self.conf.default_junos_image)
+        self.JunOSMemory.setValue(self.conf.default_junos_memory)
+        self.JunOSOptions.setText(self.conf.default_junos_options)
 
-            if self.conf.default_qemu_kqemu == True:
-                self.JunOScheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.JunOScheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
+        index = self.JunOSNIC.findText(self.conf.default_junos_nic)
+        if index != -1:
+            self.JunOSNIC.setCurrentIndex(index)
                 
-            if self.conf.default_qemu_kvm == True:
-                self.JunOScheckBoxKVM.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.JunOScheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
-            
+        if self.conf.default_junos_kqemu == True:
+            self.JunOScheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
         else:
-            self.JunOSImage.setText(self.conf.default_junos_image)
-            self.JunOSMemory.setValue(self.conf.default_junos_memory)
-
-            index = self.JunOSNIC.findText(self.conf.default_junos_nic)
-            if index != -1:
-                self.JunOSNIC.setCurrentIndex(index)
+            self.JunOScheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
                 
-            if self.conf.default_junos_kqemu == True:
-                self.JunOScheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.JunOScheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
-                
-            if self.conf.default_junos_kvm == True:
-                self.JunOScheckBoxKVM.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.JunOScheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+        if self.conf.default_junos_kvm == True:
+            self.JunOScheckBoxKVM.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.JunOScheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
         
         # ASA settings
-        if self.ASAcheckBoxQemuDefaults.checkState() == QtCore.Qt.Checked:
-            
-            self.ASAImage.setText(self.conf.default_qemu_image)
-            self.ASAMemory.setValue(self.conf.default_qemu_memory)
-            
-            index = self.ASANIC.findText(self.conf.default_qemu_nic)
-            if index != -1:
-                self.ASANIC.setCurrentIndex(index)
-                
-            if self.conf.default_qemu_kqemu == True:
-                self.ASAcheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.ASAcheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
-                
-            if self.conf.default_qemu_kvm == True:
-                self.ASAcheckBoxKVM.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.ASAcheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
-            
-        else:
-            self.ASAImage.setText(self.conf.default_asa_image)
-            self.ASAMemory.setValue(self.conf.default_asa_memory)
+        self.ASAMemory.setValue(self.conf.default_asa_memory)
+        self.ASAOptions.setText(self.conf.default_asa_options)
 
-            index = self.ASANIC.findText(self.conf.default_asa_nic)
-            if index != -1:
-                self.ASANIC.setCurrentIndex(index)
+        index = self.ASANIC.findText(self.conf.default_asa_nic)
+        if index != -1:
+            self.ASANIC.setCurrentIndex(index)
                 
-            if self.conf.default_asa_kqemu == True:
-                self.ASAcheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.ASAcheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
+        if self.conf.default_asa_kqemu == True:
+            self.ASAcheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.ASAcheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
                 
-            if self.conf.default_asa_kvm == True:
-                self.ASAcheckBoxKVM.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.ASAcheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+        if self.conf.default_asa_kvm == True:
+            self.ASAcheckBoxKVM.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.ASAcheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
 
         self.ASAKernel.setText(self.conf.default_asa_kernel)
         self.ASAInitrd.setText(self.conf.default_asa_initrd)
@@ -242,6 +187,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         # Qemuwrapper
         self.conf.qemuwrapper_path = unicode(self.lineEditQemuwrapperPath.text())
         self.conf.qemuwrapper_workdir = unicode(self.lineEditQemuwrapperWorkdir.text())
+        self.conf.qemu_path = unicode(self.lineEditQemuPath.text())
         self.conf.external_host = unicode(self.lineEditHostExternalQemu.text())
         self.conf.QemuManager_binding = unicode(self.comboBoxBinding.currentText())
         
@@ -273,27 +219,15 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             self.conf.default_qemu_kvm  = False
 
         # PIX settings
-        if self.PIXcheckBoxQemuDefaults.checkState() == QtCore.Qt.Checked:
-
-            self.conf.default_pix_image = unicode(self.QemuImage.text())
-            self.conf.default_pix_memory = self.QemuMemory.value()
-            self.conf.default_pix_nic = str(self.QemuNIC.currentText())
+        self.conf.default_pix_image = unicode(self.PIXImage.text())
+        self.conf.default_pix_memory = self.PIXMemory.value()
+        self.conf.default_pix_nic = str(self.PIXNIC.currentText())
+        self.conf.default_pix_options = str(self.PIXOptions.text())
     
-            if self.QemucheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-                self.conf.default_pix_kqemu = True
-            else:
-                self.conf.default_pix_kqemu  = False
-
+        if self.PIXcheckBoxKqemu.checkState() == QtCore.Qt.Checked:
+            self.conf.default_pix_kqemu = True
         else:
-            
-            self.conf.default_pix_image = unicode(self.PIXImage.text())
-            self.conf.default_pix_memory = self.PIXMemory.value()
-            self.conf.default_pix_nic = str(self.PIXNIC.currentText())
-    
-            if self.PIXcheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-                self.conf.default_pix_kqemu = True
-            else:
-                self.conf.default_pix_kqemu  = False
+            self.conf.default_pix_kqemu  = False
                 
         serial = str(self.PIXSerial.text())
         if not re.search(r"""^0x[0-9a-fA-F]{8}$""", serial):
@@ -308,71 +242,38 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         self.conf.default_pix_key  = key
 
         # JunOS settings
-        if self.JunOScheckBoxQemuDefaults.checkState() == QtCore.Qt.Checked:
-
-            self.conf.default_junos_image = unicode(self.QemuImage.text())
-            self.conf.default_junos_memory = self.QemuMemory.value()
-            self.conf.default_junos_nic = str(self.QemuNIC.currentText())
+        self.conf.default_junos_image = unicode(self.JunOSImage.text())
+        self.conf.default_junos_memory = self.JunOSMemory.value()
+        self.conf.default_junos_nic = str(self.JunOSNIC.currentText())
+        self.conf.default_junos_options = str(self.JunOSOptions.text())
     
-            if self.QemucheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-                self.conf.default_junos_kqemu = True
-            else:
-                self.conf.default_junos_kqemu  = False
-            if self.QemucheckBoxKVM.checkState() == QtCore.Qt.Checked:
-                self.conf.default_junos_kvm = True
-            else:
-                self.conf.default_junos_kvm  = False
-
+        if self.JunOScheckBoxKqemu.checkState() == QtCore.Qt.Checked:
+            self.conf.default_junos_kqemu = True
         else:
-            
-            self.conf.default_junos_image = unicode(self.JunOSImage.text())
-            self.conf.default_junos_memory = self.JunOSMemory.value()
-            self.conf.default_junos_nic = str(self.JunOSNIC.currentText())
-    
-            if self.JunOScheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-                self.conf.default_junos_kqemu = True
-            else:
-                self.conf.default_junos_kqemu  = False
-            if self.JunOScheckBoxKVM.checkState() == QtCore.Qt.Checked:
-                self.conf.default_junos_kvm = True
-            else:
-                self.conf.default_junos_kvm  = False
+            self.conf.default_junos_kqemu  = False
+        if self.JunOScheckBoxKVM.checkState() == QtCore.Qt.Checked:
+            self.conf.default_junos_kvm = True
+        else:
+            self.conf.default_junos_kvm  = False
             
         # ASA settings
         
         self.conf.default_asa_kernel = unicode(self.ASAKernel.text())
         self.conf.default_asa_initrd = unicode(self.ASAInitrd.text())
-        self.conf.default_asa_kernel_cmdline = str(self.ASAKernelCmdLine.text())
+        self.conf.default_asa_kernel_cmdline = unicode(self.ASAKernelCmdLine.text())
         
-        if self.ASAcheckBoxQemuDefaults.checkState() == QtCore.Qt.Checked:
-
-            self.conf.default_asa_image = unicode(self.QemuImage.text())
-            self.conf.default_asa_memory = self.QemuMemory.value()
-            self.conf.default_asa_nic = str(self.QemuNIC.currentText())
+        self.conf.default_asa_memory = self.ASAMemory.value()
+        self.conf.default_asa_nic = str(self.ASANIC.currentText())
+        self.conf.default_asa_options = str(self.ASAOptions.text())
     
-            if self.QemucheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-                self.conf.default_asa_kqemu = True
-            else:
-                self.conf.default_asa_kqemu  = False
-            if self.QemucheckBoxKVM.checkState() == QtCore.Qt.Checked:
-                self.conf.default_asa_kvm = True
-            else:
-                self.conf.default_asa_kvm  = False
-
+        if self.ASAcheckBoxKqemu.checkState() == QtCore.Qt.Checked:
+            self.conf.default_asa_kqemu = True
         else:
-            
-            self.conf.default_asa_image = unicode(self.ASAImage.text())
-            self.conf.default_asa_memory = self.ASAMemory.value()
-            self.conf.default_asa_nic = str(self.ASANIC.currentText())
-    
-            if self.ASAcheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-                self.conf.default_asa_kqemu = True
-            else:
-                self.conf.default_asa_kqemu  = False
-            if self.ASAcheckBoxKVM.checkState() == QtCore.Qt.Checked:
-                self.conf.default_asa_kvm = True
-            else:
-                self.conf.default_asa_kvm  = False
+            self.conf.default_asa_kqemu  = False
+        if self.ASAcheckBoxKVM.checkState() == QtCore.Qt.Checked:
+            self.conf.default_asa_kvm = True
+        else:
+            self.conf.default_asa_kvm  = False
 
         globals.GApp.systconf['qemu'] = self.conf
         ConfDB().sync()
@@ -394,6 +295,14 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
 
         if path:
             self.lineEditQemuwrapperWorkdir.setText(os.path.normpath(path))
+            
+    def slotSelectQemuPath(self):
+        """ Get a path to Qemu from the file system
+        """
+
+        path = fileBrowser('Qemu', directory='.', parent=globals.preferencesWindow).getFile()
+        if path != None and path[0] != '':
+            self.lineEditQemuPath.setText(os.path.normpath(path[0]))
             
     def slotSelectQemuImage(self):
         """ Get a Qemu image from the file system
@@ -422,15 +331,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             self.JunOSImage.clear()
             self.JunOSImage.setText(os.path.normpath(path[0]))
             
-    def slotSelectASAImage(self):
-        """ Get an ASA image from the file system
-        """
-
-        path = fileBrowser('ASA image', directory=globals.GApp.systconf['general'].ios_path, parent=globals.preferencesWindow).getFile()
-        if path != None and path[0] != '':
-            self.ASAImage.clear()
-            self.ASAImage.setText(os.path.normpath(path[0]))
-            
     def slotSelectASAKernel(self):
         """ Get an ASA kernel from the file system
         """
@@ -448,61 +348,4 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         if path != None and path[0] != '':
             self.ASAInitrd.clear()
             self.ASAInitrd.setText(os.path.normpath(path[0]))
-
-    def slotPIXUseQemuDefaults(self, state):
-        """ Enable or disable GUI components for PIX
-        """
-    
-        if state == QtCore.Qt.Checked:
-            enable = False
-        else:
-            enable = True
-        
-        self.PIXImage.setEnabled(enable)
-        self.PIXImage_Browser.setEnabled(enable)
-        self.PIXMemory.setEnabled(enable)
-        self.PIXNIC.setEnabled(enable)
-        self.PIXcheckBoxKqemu.setEnabled(enable)
-        
-        # reload the widgets with correct values
-        self.loadConf()
-
-    def slotJunOSUseQemuDefaults(self, state):
-        """ Enable or disable GUI components for JunOS
-        """
-    
-        if state == QtCore.Qt.Checked:
-            enable = False
-        else:
-            enable = True
-        
-        self.JunOSImage.setEnabled(enable)
-        self.JunOSImage_Browser.setEnabled(enable)
-        self.JunOSMemory.setEnabled(enable)
-        self.JunOSNIC.setEnabled(enable)
-        self.JunOScheckBoxKqemu.setEnabled(enable)
-        self.JunOScheckBoxKVM.setEnabled(enable)
-        
-        # reload the widgets with correct values
-        self.loadConf()
-
-        
-    def slotASAUseQemuDefaults(self, state):
-        """
-        """
-    
-        if state == QtCore.Qt.Checked:
-            enable = False
-        else:
-            enable = True
-        
-        self.ASAImage.setEnabled(enable)
-        self.ASAImage_Browser.setEnabled(enable)
-        self.ASAMemory.setEnabled(enable)
-        self.ASANIC.setEnabled(enable)
-        self.ASAcheckBoxKqemu.setEnabled(enable)
-        self.ASAcheckBoxKVM.setEnabled(enable)
-        
-        # reload the widgets with correct values
-        self.loadConf()
 

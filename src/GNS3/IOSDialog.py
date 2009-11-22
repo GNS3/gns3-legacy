@@ -21,9 +21,8 @@
 
 import sys, os, re
 import GNS3.Globals as globals
-from PyQt4 import QtCore, QtGui, QtNetwork
+from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_IOSDialog import Ui_IOSDialog
-from GNS3.Config.Config import ConfDB
 from GNS3.Utils import fileBrowser, translate, testOpenFile
 from GNS3.Config.Objects import iosImageConf, hypervisorConf
 from GNS3.Node.IOSRouter import IOSRouter
@@ -455,11 +454,11 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
         item = self.treeWidgetHypervisor.currentItem()
         if (item != None):
-           self.treeWidgetHypervisor.takeTopLevelItem(self.treeWidgetHypervisor.indexOfTopLevelItem(item))
-           hypervisorkey = str(item.text(0))
-           items = self.listWidgetHypervisors.findItems(hypervisorkey, QtCore.Qt.MatchFixedString)
-           self.listWidgetHypervisors.takeItem(self.listWidgetHypervisors.row(items[0]))
-           del globals.GApp.hypervisors[hypervisorkey]
+            self.treeWidgetHypervisor.takeTopLevelItem(self.treeWidgetHypervisor.indexOfTopLevelItem(item))
+            hypervisorkey = str(item.text(0))
+            items = self.listWidgetHypervisors.findItems(hypervisorkey, QtCore.Qt.MatchFixedString)
+            self.listWidgetHypervisors.takeItem(self.listWidgetHypervisors.row(items[0]))
+            del globals.GApp.hypervisors[hypervisorkey]
 
     def slotEditHypervisor(self):
         """ Edit the selected line from the list of hypervisors

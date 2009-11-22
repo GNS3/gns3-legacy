@@ -19,7 +19,6 @@
 # code@gns3.net
 #
 
-import re
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 from PyQt4 import QtCore, QtGui, QtSvg
@@ -37,10 +36,7 @@ from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.AnyEmuDevice import AnyEmuDevice
 from GNS3.Node.FRSW import FRSW
-from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
-from GNS3.Node.Hub import Hub
-from GNS3.Link.AbstractEdge import AbstractEdge
 from GNS3.Link.Ethernet import Ethernet
 from GNS3.Link.Serial import Serial
 

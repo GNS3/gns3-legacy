@@ -19,11 +19,10 @@
 # code@gns3.net
 #
 
-import os, sys, time
-import subprocess as sub
+import time
 import GNS3.Globals as globals
 import GNS3.Dynagen.simhost_lib as lwip
-from socket import socket, timeout, AF_INET, SOCK_STREAM
+from socket import socket, AF_INET, SOCK_STREAM
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate, debug
 

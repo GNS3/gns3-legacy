@@ -19,7 +19,6 @@
 # code@gns3.net
 #
 
-import os
 import GNS3.Globals as globals
 
 class AbstractDefaults(object):

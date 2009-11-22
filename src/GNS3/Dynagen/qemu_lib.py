@@ -24,10 +24,10 @@ from socket import socket, AF_INET, SOCK_STREAM
 from dynamips_lib import NIO_udp, send, dowarning, debug, DynamipsError, validate_connect, Bridge, DynamipsVerError, get_reverse_udp_nio, Router, FRSW, ATMSW, ETHSW, DynamipsWarning
 import random
 
-#version = "0.11.0.090518"
+#version = "0.11.0.091411"
 (MAJOR, MINOR, SUB, RCVER) = (0, 2, 1, .1)
 INTVER = MAJOR * 10000 + MINOR * 100 + SUB + RCVER
-STRVER = '0.2.1-RC1'
+STRVER = '0.2.2-RC1'
 NOSEND = False  # Disable sending any commands to the back end for debugging
 
 class UDPConnection:
@@ -110,11 +110,12 @@ class Qemu(object):
         #all other needed variables
         self.name = name
         self.devices = []
-        self.baseconsole = 4000
-        self.udp = 33000
+        self._baseconsole = 3000
+        self.udp = 20000
         self.default_udp = self.udp
         self.starting_udp = self.udp
         self._workingdir = None
+        self._qemupath = None
         self.configchange = False
 
     def close(self):
@@ -126,6 +127,57 @@ class Qemu(object):
         """ Reset the Qemuwrapper (but leave it running)"""
 
         send(self, 'qemuwrapper reset')
+        
+    def _setbaseconsole(self, baseconsole):
+        """ Set the baseconsole
+        baseconsole: (int) the base console port
+        """
+
+        self._baseconsole = baseconsole
+        
+    def _getbaseconsole(self):
+        """ Returns the base console port
+        """
+
+        return self._baseconsole
+    
+    baseconsole = property(_getbaseconsole, _setbaseconsole, doc='The base console port')
+        
+    def _setbaseudp(self, baseudp):
+        """ Set the baseudp
+        baseudp: (int) the base UDP port
+        """
+
+        self.udp = baseudp
+        self.default_udp = self.udp
+        self.starting_udp = self.udp
+        
+    def _getbaseudp(self):
+        """ Returns the base UDP port
+        """
+
+        return self.starting_udp
+    
+    baseudp = property(_getbaseudp, _setbaseudp, doc='The base UDP port')
+
+    def _setqemupath(self, qemupath):
+        """ Set the path to Qemu for this network
+        qemupath: (string) path
+        """
+
+        if type(qemupath) not in [str, unicode]:
+            raise DynamipsError, 'invalid Qemu path'
+        # send to qemuwrapper encased in quotes to protect spaces
+        send(self, 'qemuwrapper qemu_path %s' % '"' + qemupath + '"')
+        self._qemupath = qemupath
+
+    def _getqemupath(self):
+        """ Returns the Qemu path
+        """
+
+        return self._qemupath
+
+    qemupath = property(_getqemupath, _setqemupath, doc='The Qemu path')
 
     def _setworkingdir(self, directory):
         """ Set the working directory for this network
@@ -173,7 +225,7 @@ class AnyEmuDevice(object):
         self._instance = self._instance_count
         self._instance_count += 1
         if name == None:
-            self.name = 'fw' + str(self._instance)
+            self.name = 'emu' + str(self._instance)
         else:
             self.name = name
 
@@ -190,8 +242,16 @@ class AnyEmuDevice(object):
         self.defaults = {
             'image': None,
             'ram': 128,
+            'netcard': 'pcnet',
+            'kqemu': False,
+            'kvm': False,
+            'options': None,
             }
         self._ram = self.defaults['ram']
+        self._netcard = self.defaults['netcard']
+        self._kqemu = self.defaults['kqemu']
+        self._kvm = self.defaults['kvm']
+        self._options = self.defaults['options']
 
         self.idlepc = '0'
         self.idlemax = 0
@@ -272,6 +332,83 @@ class AnyEmuDevice(object):
         return self._ram
 
     ram = property(_getram, _setram, doc='The amount of RAM allocated to this emulated device')
+    
+    def _setnetcard(self, netcard):
+        """ Set the netcard to be used by this emulated device
+        netcard: (str) netcard name
+        """
+
+        if type(netcard) not in [str, unicode]:
+            raise DynamipsError, 'invalid netcard'
+
+        send(self.p, 'qemu setattr %s netcard %s' % (self.name, netcard))
+        self._netcard = netcard
+
+    def _getnetcard(self):
+        """ Returns the netcard used by this emulated device
+        """
+
+        return self._netcard
+
+    netcard = property(_getnetcard, _setnetcard, doc='The netcard used by this emulated device')
+    
+    def _setkqemu(self, kqemu):
+        """ Set the kqemu option to be used by this emulated device
+        kqemu: (bool) kqemu activation
+        """
+
+        if type(kqemu) != bool:
+            raise DynamipsError, 'invalid kqemu option'
+
+        send(self.p, 'qemu setattr %s kqemu %s' % (self.name, str(kqemu)))
+        self._kqemu = kqemu
+
+    def _getkqemu(self):
+        """ Returns the kqemu option used by this emulated device
+        """
+
+        return self._kqemu
+
+    kqemu = property(_getkqemu, _setkqemu, doc='The kqemu option used by this emulated device')
+
+    def _setkvm(self, kvm):
+        """ Set the kvm option to be used by this emulated device
+        kvm: (bool) kvm activation
+        """
+
+        if type(kvm) != bool:
+            raise DynamipsError, 'invalid kvm option'
+
+        send(self.p, 'qemu setattr %s kvm %s' % (self.name, str(kvm)))
+        self._kvm = kvm
+
+    def _getkvm(self):
+        """ Returns the kvm option used by this emulated device
+        """
+
+        return self._kvm
+
+    kvm = property(_getkvm, _setkvm, doc='The kvm option used by this emulated device')
+
+    def _setoptions(self, options):
+        """ Set the Qemu options for this emulated device
+        options: Qemu options
+        """
+
+        if type(options) not in [str, unicode]:
+            raise DynamipsError, 'invalid options'
+
+        #send the options enclosed in quotes to protect them
+        send(self.p, 'qemu setattr %s options %s' % (self.name, '"' + options + '"'))
+        self._options = options
+
+    def _getoptions(self):
+        """ Returns the Qemu options being used by this emulated device
+        """
+
+        return self._options
+
+    options = property(_getoptions, _setoptions, doc='The Qemu options for this device')
 
     def _setimage(self, image):
         """ Set the IOS image for this emulated device
@@ -394,7 +531,7 @@ class AnyEmuDevice(object):
 
     def slot_info(self):
         #gather information about interfaces and connections
-        slot_info = '   Slot 0 hardware is Intel 82559 with 6 Ethernet interfaces\n'
+        slot_info = '   Slot 0 hardware is ' + self._netcard + ' with 6 Ethernet interfaces\n'
         for port in self.nios:
             slot_info = slot_info + "      Ethernet" + str(port)
             if self.nios[port] != None:
@@ -444,7 +581,7 @@ class JunOS(AnyEmuDevice):
     basehostname = 'JUNOS'
     _ufd_machine = 'Juniper router'
     _ufd_hardware = 'Juniper Olive router'
-    available_options = ['image', 'ram']
+    available_options = ['image', 'ram', 'netcard', 'kqemu', 'kvm', 'options']
 
 class ASA(AnyEmuDevice):
     model_string = '5520'
@@ -452,13 +589,89 @@ class ASA(AnyEmuDevice):
     basehostname = 'ASA'
     _ufd_machine = 'ASA firewall'
     _ufd_hardware = 'qemu-emulated Cisco ASA'
-    available_options = ['image', 'ram']
+    available_options = ['ram', 'netcard', 'kqemu', 'kvm', 'options', 'initrd', 'kernel', 'kernel_cmdline']
+    
+    def __init__(self, *args, **kwargs):
+        super(ASA, self).__init__(*args, **kwargs)
+        self.defaults.update({
+            'initrd': None,
+            'kernel': None,
+            'kernel_cmdline': None,
+        })
+        self._initrd = self.defaults['initrd']
+        self._kernel = self.defaults['kernel']
+        self._kernel_cmdline = self.defaults['kernel_cmdline']
+        
+    def _setinitrd(self, initrd):
+        """ Set the initrd for this emulated device
+        initrd: path to initrd file
+        """
+
+        if type(initrd) not in [str, unicode]:
+            raise DynamipsError, 'invalid initrd'
+
+        # Can't verify existance of image because path is relative to backend
+        #send the initrd filename enclosed in quotes to protect it
+        send(self.p, 'qemu setattr %s initrd %s' % (self.name, '"' + initrd + '"'))
+        self._initrd = initrd
+
+    def _getinitrd(self):
+        """ Returns path of the initrd being used by this emulated device
+        """
+
+        return self._initrd
+
+    initrd = property(_getinitrd, _setinitrd, doc='The initrd file for this device')
+    
+    def _setkernel(self, kernel):
+        """ Set the kernel for this emulated device
+        kernel: path to kernel file
+        """
+
+        if type(kernel) not in [str, unicode]:
+            raise DynamipsError, 'invalid kernel'
+
+        # Can't verify existance of image because path is relative to backend
+        #send the kernel filename enclosed in quotes to protect it
+        send(self.p, 'qemu setattr %s kernel %s' % (self.name, '"' + kernel + '"'))
+        self._kernel = kernel
+
+    def _getkernel(self):
+        """ Returns path of the kernel being used by this emulated device
+        """
+
+        return self._kernel
+
+    kernel = property(_getkernel, _setkernel, doc='The kernel file for this device')
+    
+    def _setkernel_cmdline(self, kernel_cmdline):
+        """ Set the kernel command line for this emulated device
+        kernel_cmdline: kernel command line
+        """
+
+        if type(kernel_cmdline) not in [str, unicode]:
+            raise DynamipsError, 'invalid kernel command line'
+
+        #send the kernel command line enclosed in quotes to protect it
+        send(self.p, 'qemu setattr %s kernel_cmdline %s' % (self.name, '"' + kernel_cmdline + '"'))
+        self._kernel_cmdline = kernel_cmdline
+
+    def _getkernel_cmdline(self):
+        """ Returns the kernel command line being used by this emulated device
+        """
+
+        return self._kernel_cmdline
+
+    kernel_cmdline = property(_getkernel_cmdline, _setkernel_cmdline, doc='The kernel command line for this device')
+
+    def extended_info(self):
+        return '  Initrd path %s\n  Kernel path %s\n  Kernel cmd line %s' % (self._initrd, self._kernel, self._kernel_cmdline)
 
 class FW(AnyEmuDevice):
     model_string = '525'
     qemu_dev_type = 'pix'
     basehostname = 'FW'
-    available_options = ['image', 'ram', 'serial', 'key']
+    available_options = ['image', 'ram', 'netcard', 'kqemu', 'options', 'serial', 'key']
     _ufd_machine = 'PIX firewall'
     _ufd_hardware = 'qemu-emulated Cisco PIX'
     def __init__(self, *args, **kwargs):

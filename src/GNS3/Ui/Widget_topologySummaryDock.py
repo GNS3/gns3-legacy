@@ -22,7 +22,6 @@
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
-from GNS3.Node.IOSRouter import IOSRouter
 
 class topologySummaryDock(QtGui.QTreeWidget):
     """ Class for displaying the topology

@@ -37,7 +37,6 @@ from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ATMBR import ATMBR
 from GNS3.Node.Cloud import Cloud
-from GNS3.Node.Hub import Hub
 
 class ConfigurationPageItem(QtGui.QTreeWidgetItem):
     """ Class implementing a QTreeWidgetItem holding the configuration page data.
@@ -149,11 +148,8 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                  "Page_ATMBR", None, None],
             "Clouds":
                 [translate("NodeConfigurator", "Clouds"), ":/symbols/cloud.normal.svg",
-                 "Page_Cloud", None, None],
-            "Hubs":
-                [translate("NodeConfigurator", "Hubs"), ":/symbols/hub.normal.svg",
-                 "Page_Hub", None, None]
-                 }
+                 "Page_Cloud", None, None]
+                }
 
         self.assocPage = {
                                      IOSRouter1700: "Routers (1700)",
@@ -172,7 +168,6 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                                      ATMSW: "ATMSW",
                                      ATMBR: "ATMBR",
                                      Cloud: "Clouds",
-                                     Hub: "Hubs"
                                     }
         self.__loadNodeItems()
 

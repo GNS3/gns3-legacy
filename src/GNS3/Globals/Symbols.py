@@ -19,8 +19,6 @@
 # code@gns3.net
 #
 
-import GNS3.Ui.svg_resources_rc
-from GNS3.Utils import translate
 from GNS3.Node.IOSRouter1700 import IOSRouter1700
 from GNS3.Node.IOSRouter2600 import IOSRouter2600
 from GNS3.Node.IOSRouter2691 import IOSRouter2691
@@ -29,13 +27,11 @@ from GNS3.Node.IOSRouter3700 import IOSRouter3700
 from GNS3.Node.IOSRouter7200 import IOSRouter7200
 from GNS3.Node.DecorativeNode import DecorativeNode
 from GNS3.Node.Cloud import Cloud
-from GNS3.Node.Hub import Hub
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ATMBR import ATMBR
 from GNS3.Node.AnyEmuDevice import FW, ASA, JunOS
-from GNS3.Node.SIMHOST import SIMHOST
 
 SYMBOL_TYPES = {
                 IOSRouter1700: 'Router c1700', 

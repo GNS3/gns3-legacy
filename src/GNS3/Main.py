@@ -27,7 +27,7 @@ from GNS3.Utils import translate
 from PyQt4 import QtCore
 from __main__ import VERSION
 
-usage = "usage: %prog [--debug] [--config <config_file>] <net_file>"
+usage = "usage: %prog [--debug] [--configdir <config_dir>] <net_file>"
 parser = OptionParser(usage, version="%prog " + VERSION)
 parser.add_option("-d", "--debug", action="store_true", help="display debug messages")
 parser.add_option("-c", "--configdir", action="store_true", dest="config_dir", help="directory where is stored gns3.ini")

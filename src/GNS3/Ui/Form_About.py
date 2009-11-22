@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_About.ui'
 #
-# Created: Fri Nov 13 21:41:05 2009
+# Created: Sun Nov 22 15:49:45 2009
 #      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_AboutDialog(object):
     def setupUi(self, AboutDialog):
         AboutDialog.setObjectName("AboutDialog")
-        AboutDialog.resize(509, 403)
+        AboutDialog.resize(525, 414)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/images/logo_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         AboutDialog.setWindowIcon(icon)
@@ -22,21 +22,32 @@ class Ui_AboutDialog(object):
         self.tabWidget.setObjectName("tabWidget")
         self.tab = QtGui.QWidget()
         self.tab.setObjectName("tab")
-        self.gridlayout = QtGui.QGridLayout(self.tab)
-        self.gridlayout.setObjectName("gridlayout")
-        spacerItem = QtGui.QSpacerItem(261, 31, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridlayout.addItem(spacerItem, 0, 0, 1, 2)
-        self.label_2 = QtGui.QLabel(self.tab)
-        self.label_2.setObjectName("label_2")
-        self.gridlayout.addWidget(self.label_2, 0, 2, 3, 1)
+        self.gridLayout = QtGui.QGridLayout(self.tab)
+        self.gridLayout.setObjectName("gridLayout")
+        spacerItem = QtGui.QSpacerItem(258, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem, 0, 0, 1, 2)
+        spacerItem1 = QtGui.QSpacerItem(299, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem1, 5, 0, 1, 3)
+        spacerItem2 = QtGui.QSpacerItem(44, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem2, 5, 4, 1, 3)
         self.label = QtGui.QLabel(self.tab)
         self.label.setPixmap(QtGui.QPixmap(":/images/logo_gns3_small.png"))
         self.label.setObjectName("label")
-        self.gridlayout.addWidget(self.label, 1, 0, 1, 1)
-        spacerItem1 = QtGui.QSpacerItem(21, 211, QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Minimum)
-        self.gridlayout.addItem(spacerItem1, 1, 1, 2, 1)
-        spacerItem2 = QtGui.QSpacerItem(20, 21, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridlayout.addItem(spacerItem2, 2, 0, 1, 1)
+        self.gridLayout.addWidget(self.label, 2, 1, 1, 1)
+        self.label_2 = QtGui.QLabel(self.tab)
+        self.label_2.setObjectName("label_2")
+        self.gridLayout.addWidget(self.label_2, 0, 3, 4, 3)
+        spacerItem3 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem3, 0, 2, 1, 1)
+        self.label_3 = QtGui.QLabel(self.tab)
+        self.label_3.setPixmap(QtGui.QPixmap(":/images/project-support.jpg"))
+        self.label_3.setOpenExternalLinks(True)
+        self.label_3.setObjectName("label_3")
+        self.gridLayout.addWidget(self.label_3, 4, 3, 1, 1)
+        self.label_4 = QtGui.QLabel(self.tab)
+        self.label_4.setOpenExternalLinks(True)
+        self.label_4.setObjectName("label_4")
+        self.gridLayout.addWidget(self.label_4, 5, 3, 1, 1)
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName("tab_2")
@@ -66,9 +77,7 @@ class Ui_AboutDialog(object):
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("accepted()"), AboutDialog.accept)
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("rejected()"), AboutDialog.reject)
         QtCore.QMetaObject.connectSlotsByName(AboutDialog)
-        AboutDialog.setTabOrder(self.tabWidget, self.textBrowser)
         AboutDialog.setTabOrder(self.textBrowser, self.textBrowser_2)
-        AboutDialog.setTabOrder(self.textBrowser_2, self.buttonBox)
 
     def retranslateUi(self, AboutDialog):
         AboutDialog.setWindowTitle(QtGui.QApplication.translate("AboutDialog", "About", None, QtGui.QApplication.UnicodeUTF8))
@@ -76,17 +85,18 @@ class Ui_AboutDialog(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Lucida Grande\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:12pt; font-weight:600;\">GNS3 0.7 RC1</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:9pt; font-weight:600;\">Under GPL v2 license</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:14pt; font-weight:600;\">GNS3 0.7 RC1</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:10pt; font-weight:600;\">Under GPL v2 license</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\'; font-size:9pt; font-weight:600;\"></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:9pt;\">Jeremy Grossmann (PL)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:9pt;\">Xavier Alt</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:9pt;\">Romain Lamaison</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:9pt;\">Aurelien Levesque</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:9pt;\">David Ruiz</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\'; font-size:9pt;\"></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:9pt;\">code@gns3.net</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:9pt;\">www.gns3.net</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:12pt;\">Jeremy Grossmann (PL)</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:12pt;\">Xavier Alt</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:12pt;\">Romain Lamaison</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:12pt;\">Aurelien Levesque</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:12pt;\">David Ruiz</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\'; font-size:12pt;\"></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"mailto:code@gns3.net\"><span style=\" text-decoration: underline; color:#0000ff;\">code@gns3.net</span></a></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"http://www.gns3.net\"><span style=\" text-decoration: underline; color:#0000ff;\">http://www.gns3.net</span></a></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_4.setText(QtGui.QApplication.translate("AboutDialog", "<div align=center><a href=\"http://sourceforge.net/donate/index.php?group_id=198152\">Donate</a></div>", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QtGui.QApplication.translate("AboutDialog", "&About", None, QtGui.QApplication.UnicodeUTF8))
         self.textBrowser.setHtml(QtGui.QApplication.translate("AboutDialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

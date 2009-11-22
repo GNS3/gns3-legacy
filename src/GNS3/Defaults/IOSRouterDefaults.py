@@ -20,7 +20,6 @@
 #
 
 import sys, os
-import GNS3.Globals as globals
 from GNS3.Defaults.AbstractDefaults import AbstractDefaults
 
 class IOSRouterDefaults(AbstractDefaults):

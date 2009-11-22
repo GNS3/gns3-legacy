@@ -33,7 +33,7 @@ from dynamips_lib import Dynamips, PA_C7200_IO_FE, PA_A1, PA_FE_TX, PA_4T, PA_8T
      C2691, C3725, C3745, GT96100_FE, C2600, \
      CISCO2600_MB_1E, CISCO2600_MB_2E, CISCO2600_MB_1FE, CISCO2600_MB_2FE, PA_2FE_TX, \
      PA_GE, PA_C7200_IO_2FE, PA_C7200_IO_GE_E, C1700, CISCO1710_MB_1FE_1E, C1700_MB_1ETH, \
-     DEVICETUPLE, DynamipsVerError, DynamipsErrorHandled, NM_CIDS, NM_NAM, get_reverse_udp_nio
+     DynamipsVerError, DynamipsErrorHandled, NM_CIDS, NM_NAM, get_reverse_udp_nio
 from qemu_lib import Qemu, AnyEmuDevice, FW, ASA, JunOS, nosend_qemu
 from validate import Validator
 from configobj import ConfigObj, flatten_errors
@@ -225,6 +225,13 @@ class Dynagen:
                 'cnfg',
                 'key',
                 'serial',
+                'netcard',
+                'kqemu',
+                'kvm',
+                'options',
+                'initrd',
+                'kernel',
+                'kernel_cmdline',
                 ):
                 setattr(device, option, value)
                 return True
@@ -1088,6 +1095,13 @@ class Dynagen:
                                 'console',
                                 'key',
                                 'serial',
+                                'netcard',
+                                'kqemu',
+                                'kvm',
+                                'options',
+                                'initrd',
+                                'kernel',
+                                'kernel_cmdline',
                                 'ram',
                                 'image',
                                 ):
@@ -1104,6 +1118,13 @@ class Dynagen:
                                     'console',
                                     'key',
                                     'serial',
+                                    'netcard',
+                                    'kqemu',
+                                    'kvm',
+                                    'options',
+                                    'initrd',
+                                    'kernel',
+                                    'kernel_cmdline',
                                     'ram',
                                     'image',
                                     ):
@@ -1722,10 +1743,12 @@ class Dynagen:
                     if isinstance(device, AnyEmuDevice):
                         model = device.model_string
                         self.defaults_config[h][model] = {}
-                        if device.image == None:
-                            self.error('specify at least image file for device ' + device.name)
-                            device.image = '"None"'
-                        self.defaults_config[h][model]['image'] = device.image
+                        # ASA has no image
+                        if model != '5520':
+                            if device.image == None:
+                                self.error('specify at least image file for device ' + device.name)
+                                device.image = '"None"'
+                            self.defaults_config[h][model]['image'] = device.image
                         for option in device.available_options:
                             if getattr(device, option) != device.defaults[option]:
                                 self.defaults_config[h][model][option] = getattr(device, option)
@@ -1936,11 +1959,12 @@ class Dynagen:
         f = '%s %s' % (device.basehostname, device.name)
         self.running_config[h][f] = {}
 
-        #find out the model of the router
+        #find out the model of the device
         model = device.model_string
 
-        #populate with non-default router information
+        #populate with non-default device information
         defaults = self.defaults_config[h][model]
+
         for option in device.available_options:
             self._set_option_in_config(self.running_config[h][f], defaults, device, option)
 
@@ -1954,6 +1978,7 @@ class Dynagen:
                     self.running_config[h][f][con] = self._translate_interface_connection(remote_adapter, remote_router, remote_port)
                 elif isinstance(remote_router, FRSW) or isinstance(remote_router, ATMSW) or isinstance(remote_router, ETHSW):
                     self.running_config[h][f][con] = remote_router.name + " " + str(remote_port)
+
 
     def _translate_interface_connection(self, remote_adapter, remote_router, remote_port):
         """translate the dynamips port values into dynagen port values"""

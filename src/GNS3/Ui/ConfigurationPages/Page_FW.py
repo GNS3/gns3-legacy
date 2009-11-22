@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -33,7 +33,7 @@ class Page_FW(QtGui.QWidget, Ui_FWPage):
     
         QtGui.QWidget.__init__(self)
         self.setupUi(self)
-        self.setObjectName("Firewall")
+        self.setObjectName("PIX firewall")
         self.currentNodeID = None
 
         # connect slot
@@ -65,7 +65,21 @@ class Page_FW(QtGui.QWidget, Ui_FWPage):
             self.lineEditKey.setText(fw_config['key'])
         if fw_config['serial']:
             self.lineEditSerial.setText(fw_config['serial'])
+
         self.spinBoxRamSize.setValue(fw_config['ram'])
+      
+        index = self.comboBoxNIC.findText(fw_config['netcard'])
+        if index != -1:
+            self.comboBoxNIC.setCurrentIndex(index)
+            
+        if fw_config['options']:
+            self.lineEditOptions.setText(fw_config['options'])
+            
+        if fw_config['kqemu'] == True:
+            self.checkBoxKqemu.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
+        
         
     def saveConfig(self, id, config = None):
         """ Save the config
@@ -93,7 +107,19 @@ class Page_FW(QtGui.QWidget, Ui_FWPage):
                                        translate("Page_FW", "Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)"))
         elif key != '':
             fw_config['key'] = key
+
         fw_config['ram'] = self.spinBoxRamSize.value()
+        
+        fw_config['netcard'] = str(self.comboBoxNIC.currentText())
+            
+        options = str(self.lineEditOptions.text())
+        if options:
+            fw_config['options'] = options
+
+        if self.checkBoxKqemu.checkState() == QtCore.Qt.Checked:
+            fw_config['kqemu'] = True
+        else:
+            fw_config['kqemu']  = False
 
         return fw_config
 

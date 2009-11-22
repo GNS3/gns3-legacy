@@ -4876,9 +4876,9 @@ def get_reverse_udp_nio(remote_nio):
     if local_nio == None:
         return ['nothing', 'nothing', 'nothing']
 
-    #if the local_nio is UDPConnection of AnyEmuHandler
+    #if the local_nio is UDPConnection of AnyEmuDevice
     from qemu_lib import AnyEmuDevice
-    if isinstance(local_nio.adapter, AnyEmuHandler):
+    if isinstance(local_nio.adapter, AnyEmuDevice):
         return [local_nio.dev, 'e', local_nio.port]
     if isinstance(local_nio.adapter, FRSW) or isinstance(local_nio.adapter, ATMSW) or isinstance(local_nio.adapter, ETHSW) or isinstance(local_nio.adapter, ATMBR):
         return [local_nio.adapter, 'nothing', local_nio.port]
@@ -4958,7 +4958,7 @@ def debug(string):
 
 
 if __name__ == '__main__':
-    import sys
+
     sys.exit(0)
 
     # Testing

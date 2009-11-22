@@ -95,7 +95,7 @@ class Serial(AbstractEdge):
 
             # if nodes are too close, points disappears
             if self.length < 80:
-               return
+                return
 
             # source point
             if self.src_interface_status == 'up':

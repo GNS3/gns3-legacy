@@ -14,16 +14,15 @@ FILES=" Form_MainWindow
         ./ConfigurationPages/Form_CloudPage
         ./ConfigurationPages/Form_ETHSWPage
         ./ConfigurationPages/Form_FRSWPage
-        ./ConfigurationPages/Form_HubPage
         ./ConfigurationPages/Form_ATMSWPage
         ./ConfigurationPages/Form_ATMBRPage
         ./ConfigurationPages/Form_FWPage
-        ./ConfigurationPages/Form_SIMHOSTPage
+        ./ConfigurationPages/Form_ASAPage
+        ./ConfigurationPages/Form_JunOSPage
         ./ConfigurationPages/Form_DecorativeNodePage
         ./ConfigurationPages/Form_PreferencesGeneral
         ./ConfigurationPages/Form_PreferencesDynamips
         ./ConfigurationPages/Form_PreferencesCapture
-        ./ConfigurationPages/Form_PreferencesPemu
         ./ConfigurationPages/Form_PreferencesQemu
 "
 

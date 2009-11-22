@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
 #
-# Created: Fri Nov 13 21:41:07 2009
+# Created: Sun Nov 22 15:49:48 2009
 #      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_PreferencesGeneral(object):
     def setupUi(self, PreferencesGeneral):
         PreferencesGeneral.setObjectName("PreferencesGeneral")
-        PreferencesGeneral.resize(511, 480)
+        PreferencesGeneral.resize(539, 480)
         self.vboxlayout = QtGui.QVBoxLayout(PreferencesGeneral)
         self.vboxlayout.setObjectName("vboxlayout")
         self.tabWidget = QtGui.QTabWidget(PreferencesGeneral)
@@ -153,7 +153,7 @@ class Ui_PreferencesGeneral(object):
         self.groupBox_2.setTitle(QtGui.QApplication.translate("PreferencesGeneral", "Paths", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("PreferencesGeneral", "Project directory:", None, QtGui.QApplication.UnicodeUTF8))
         self.ProjectPath_browser.setText(QtGui.QApplication.translate("PreferencesGeneral", "...", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_3.setText(QtGui.QApplication.translate("PreferencesGeneral", "IOS/PIX directory:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_3.setText(QtGui.QApplication.translate("PreferencesGeneral", "Image directory:", None, QtGui.QApplication.UnicodeUTF8))
         self.IOSPath_browser.setText(QtGui.QApplication.translate("PreferencesGeneral", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_3.setTitle(QtGui.QApplication.translate("PreferencesGeneral", "Configuration file", None, QtGui.QApplication.UnicodeUTF8))
         self.labelConfigurationPath.setText(QtGui.QApplication.translate("PreferencesGeneral", "Unknown location", None, QtGui.QApplication.UnicodeUTF8))

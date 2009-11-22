@@ -52,9 +52,9 @@ class Ethernet(AbstractEdge):
 
         # offset on the line for status points
         if self.length == 0:
-           self.edgeOffset = QtCore.QPointF(0, 0)
+            self.edgeOffset = QtCore.QPointF(0, 0)
         else:
-           self.edgeOffset = QtCore.QPointF((self.dx * 40) / self.length, (self.dy * 40) / self.length)
+            self.edgeOffset = QtCore.QPointF((self.dx * 40) / self.length, (self.dy * 40) / self.length)
 
     def shape(self):
         """ Return the shape of the item to the scene renderer
@@ -92,7 +92,7 @@ class Ethernet(AbstractEdge):
 
             # if nodes are too close, points disappears
             if self.length < 100:
-               return
+                return
 
             if self.src_interface_status == 'up':
                 color = QtCore.Qt.green

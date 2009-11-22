@@ -1,123 +1,124 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>PreferencesGeneral</class>
- <widget class="QWidget" name="PreferencesGeneral" >
-  <property name="geometry" >
+ <widget class="QWidget" name="PreferencesGeneral">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>511</width>
+    <width>539</width>
     <height>480</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QVBoxLayout">
    <item>
-    <widget class="QTabWidget" name="tabWidget" >
-     <property name="currentIndex" >
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tab" >
-      <attribute name="title" >
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
        <string>General Settings</string>
       </attribute>
-      <layout class="QGridLayout" >
-       <item row="0" column="0" >
-        <widget class="QLabel" name="label" >
-         <property name="enabled" >
+      <layout class="QGridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label">
+         <property name="enabled">
           <bool>true</bool>
          </property>
-         <property name="text" >
+         <property name="text">
           <string>Language:</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0" >
-        <widget class="QComboBox" name="langsBox" >
-         <property name="enabled" >
+       <item row="1" column="0">
+        <widget class="QComboBox" name="langsBox">
+         <property name="enabled">
           <bool>true</bool>
          </property>
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
         </widget>
        </item>
-       <item row="2" column="0" >
-        <widget class="QCheckBox" name="checkBoxProjectDialog" >
-         <property name="text" >
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="checkBoxProjectDialog">
+         <property name="text">
           <string>Launch the project dialog at startup</string>
          </property>
-         <property name="checked" >
+         <property name="checked">
           <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="3" column="0" >
-        <widget class="QLabel" name="label_4" >
-         <property name="text" >
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
           <string>Terminal command:</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="0" >
-        <widget class="QLineEdit" name="lineEditTermCommand" />
+       <item row="4" column="0">
+        <widget class="QLineEdit" name="lineEditTermCommand"/>
        </item>
-       <item row="5" column="0" >
-        <widget class="QCheckBox" name="checkBoxUseShell" >
-         <property name="text" >
+       <item row="5" column="0">
+        <widget class="QCheckBox" name="checkBoxUseShell">
+         <property name="text">
           <string>Launch this command using the system default shell</string>
          </property>
-         <property name="checked" >
+         <property name="checked">
           <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="6" column="0" >
-        <widget class="QGroupBox" name="groupBox_2" >
-         <property name="title" >
+       <item row="6" column="0">
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
           <string>Paths</string>
          </property>
-         <layout class="QGridLayout" >
-          <item row="0" column="0" >
-           <widget class="QLabel" name="label_2" >
-            <property name="text" >
+         <layout class="QGridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
              <string>Project directory:</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" >
-           <widget class="QLineEdit" name="ProjectPath" />
+          <item row="1" column="0">
+           <widget class="QLineEdit" name="ProjectPath"/>
           </item>
-          <item row="1" column="1" >
-           <widget class="QToolButton" name="ProjectPath_browser" >
-            <property name="text" >
+          <item row="1" column="1">
+           <widget class="QToolButton" name="ProjectPath_browser">
+            <property name="text">
              <string>...</string>
             </property>
-            <property name="toolButtonStyle" >
+            <property name="toolButtonStyle">
              <enum>Qt::ToolButtonTextOnly</enum>
             </property>
            </widget>
           </item>
-          <item row="2" column="0" >
-           <widget class="QLabel" name="label_3" >
-            <property name="text" >
-             <string>IOS/PIX directory:</string>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Image directory:</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0" >
-           <widget class="QLineEdit" name="IOSPath" />
+          <item row="3" column="0">
+           <widget class="QLineEdit" name="IOSPath"/>
           </item>
-          <item row="3" column="1" >
-           <widget class="QToolButton" name="IOSPath_browser" >
-            <property name="text" >
+          <item row="3" column="1">
+           <widget class="QToolButton" name="IOSPath_browser">
+            <property name="text">
              <string>...</string>
             </property>
-            <property name="toolButtonStyle" >
+            <property name="toolButtonStyle">
              <enum>Qt::ToolButtonTextOnly</enum>
             </property>
            </widget>
@@ -125,25 +126,25 @@
          </layout>
         </widget>
        </item>
-       <item row="7" column="0" >
-        <widget class="QGroupBox" name="groupBox_3" >
-         <property name="title" >
+       <item row="7" column="0">
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
           <string>Configuration file</string>
          </property>
-         <layout class="QHBoxLayout" >
+         <layout class="QHBoxLayout">
           <item>
-           <widget class="QLabel" name="labelConfigurationPath" >
-            <property name="text" >
+           <widget class="QLabel" name="labelConfigurationPath">
+            <property name="text">
              <string>Unknown location</string>
             </property>
            </widget>
           </item>
           <item>
            <spacer>
-            <property name="orientation" >
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>16</width>
               <height>20</height>
@@ -152,8 +153,8 @@
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_ClearConfiguration" >
-            <property name="text" >
+           <widget class="QPushButton" name="pushButton_ClearConfiguration">
+            <property name="text">
              <string>&amp;Clear it</string>
             </property>
            </widget>
@@ -161,12 +162,12 @@
          </layout>
         </widget>
        </item>
-       <item row="8" column="0" >
+       <item row="8" column="0">
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>471</width>
            <height>21</height>
@@ -176,111 +177,111 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_2" >
-      <attribute name="title" >
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
        <string>GUI Settings</string>
       </attribute>
-      <layout class="QGridLayout" >
-       <item row="0" column="0" >
-        <widget class="QLabel" name="label_5" >
-         <property name="text" >
+      <layout class="QGridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
           <string>Workspace width:</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1" >
-        <widget class="QSpinBox" name="workspaceWidth" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+       <item row="0" column="1">
+        <widget class="QSpinBox" name="workspaceWidth">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="suffix" >
+         <property name="suffix">
           <string> px</string>
          </property>
-         <property name="minimum" >
+         <property name="minimum">
           <number>500</number>
          </property>
-         <property name="maximum" >
+         <property name="maximum">
           <number>1000000</number>
          </property>
-         <property name="singleStep" >
+         <property name="singleStep">
           <number>100</number>
          </property>
-         <property name="value" >
+         <property name="value">
           <number>2000</number>
          </property>
         </widget>
        </item>
-       <item row="1" column="0" >
-        <widget class="QLabel" name="label_6" >
-         <property name="text" >
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
           <string>Workspace height:</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1" >
-        <widget class="QSpinBox" name="workspaceHeight" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+       <item row="1" column="1">
+        <widget class="QSpinBox" name="workspaceHeight">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="suffix" >
+         <property name="suffix">
           <string> px</string>
          </property>
-         <property name="minimum" >
+         <property name="minimum">
           <number>500</number>
          </property>
-         <property name="maximum" >
+         <property name="maximum">
           <number>1000000</number>
          </property>
-         <property name="singleStep" >
+         <property name="singleStep">
           <number>100</number>
          </property>
-         <property name="value" >
+         <property name="value">
           <number>1000</number>
          </property>
         </widget>
        </item>
-       <item row="2" column="0" colspan="2" >
-        <widget class="QCheckBox" name="checkBoxDrawRectangle" >
-         <property name="text" >
+       <item row="2" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkBoxDrawRectangle">
+         <property name="text">
           <string>Draw a rectangle when an item is selected</string>
          </property>
-         <property name="checked" >
+         <property name="checked">
           <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="3" column="0" colspan="2" >
-        <widget class="QCheckBox" name="checkBoxManualConnections" >
-         <property name="text" >
+       <item row="3" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkBoxManualConnections">
+         <property name="text">
           <string>Always use manual mode when adding links</string>
          </property>
-         <property name="checked" >
+         <property name="checked">
           <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="4" column="0" colspan="2" >
-        <widget class="QCheckBox" name="checkBoxShowStatusPoints" >
-         <property name="text" >
+       <item row="4" column="0" colspan="2">
+        <widget class="QCheckBox" name="checkBoxShowStatusPoints">
+         <property name="text">
           <string>Show link status points on the workspace</string>
          </property>
-         <property name="checked" >
+         <property name="checked">
           <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="5" column="1" >
+       <item row="5" column="1">
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>251</height>

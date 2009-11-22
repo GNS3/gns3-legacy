@@ -20,7 +20,7 @@
 #
 
 from socket import socket, AF_INET, SOCK_STREAM
-from dynamips_lib import NIO_udp, send, debug, DynamipsError, validate_connect, Bridge, DynamipsVerError, get_reverse_udp_nio, Router, FRSW, ATMSW, ETHSW, DynamipsWarning
+from dynamips_lib import NIO_udp, send, debug, DynamipsError, Bridge, DynamipsWarning
 import random
 
 NOSEND = False  # Disable sending any commands to the back end for debugging

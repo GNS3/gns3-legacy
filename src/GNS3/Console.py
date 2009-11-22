@@ -15,7 +15,7 @@
 # code@gns3.net
 #
 
-import os, sys, cmd, time, shutil
+import os, sys, cmd
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as Dynagen_Namespace
 import GNS3.Dynagen.dynamips_lib as lib
@@ -387,7 +387,7 @@ Examples:
             print Dynagen_Console.do_export.__doc__
             return
 
-         # The last item is the directory (or should be anyway)
+        # The last item is the directory (or should be anyway)
         directory = items.pop().strip('"')
 
         if not os.access(directory, os.F_OK):

@@ -65,7 +65,7 @@ class StyleDialog(QtGui.QDialog, Ui_StyleDialog):
         self.borderStyle = borderStyle
         index = self.comboBox_borderStyle.findData(QtCore.QVariant(self.borderStyle), QtCore.Qt.UserRole)
         if (index != -1):
-           self.comboBox_borderStyle.setCurrentIndex(index)
+            self.comboBox_borderStyle.setCurrentIndex(index)
         self.spinBox_borderWidth.setValue(self.borderWidth)
         self.spinBox_Rotation.setValue(rotation)
         

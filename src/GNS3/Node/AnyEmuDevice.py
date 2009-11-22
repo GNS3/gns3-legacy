@@ -68,7 +68,11 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
 
         self.emudev_options = [
             'ram',
-            'image'
+            'image',
+            'netcard',
+            'kqemu',
+            'kvm',
+            'options',
             ]
 
     def __del__(self):
@@ -113,7 +117,7 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         return (self.f)
 
     def create_config(self):
-        """ Creates the configuration of this firewall
+        """ Creates the configuration of this emulated device
         """
 
         assert(self.emudev)
@@ -167,7 +171,7 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         """ Return all interfaces
         """
 
-        # 5 ethernet interfaces per default
+        # 5 Ethernet interfaces per default
         return (['e0', 'e1', 'e2', 'e3', 'e4'])
 
     def get_dynagen_device(self):
@@ -233,22 +237,23 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         config = globals.GApp.dynagen.defaults_config
         #go through all section under dynamips server in running config and populate the devdefaults with model defaults
         for f in config[self.d]:
-            firewall_model = config[self.d][f]
+            device_model = config[self.d][f]
 
             # compare whether this is defaults section
-            if firewall_model.name in dynagen_namespace.DEVICETUPLE and firewall_model.name == model:
+            if device_model.name in dynagen_namespace.DEVICETUPLE and device_model.name == model:
                 # Populate the appropriate dictionary
-                for scalar in firewall_model.scalars:
-                    if firewall_model[scalar] != None:
-                        devdefaults[firewall_model.name][scalar] = firewall_model[scalar]
+                for scalar in device_model.scalars:
+                    if device_model[scalar] != None:
+                        devdefaults[device_model.name][scalar] = device_model[scalar]
 
         #check whether a defaults section for this router type exists
         if model in dynagen_namespace.DEVICETUPLE:
             if devdefaults[model] == {} and not devdefaults[model].has_key('image'):
                 error('Create a defaults section for ' + model + ' first! Minimum setting is image name')
                 return False
-            elif not devdefaults[model].has_key('image'):
-                error('Specify image name for ' + model + ' routers first!')
+            # check if an image has been configured first (not for ASA)
+            elif not devdefaults[model].has_key('image') and model != '5520':
+                error('Specify image name for ' + model + ' device first!')
                 return False
         else:
             error('Bad model: ' + model)
@@ -355,11 +360,36 @@ class ASA(AnyEmuDevice, ASADefaults):
     def __init__(self, *args, **kwargs):
         AnyEmuDevice.__init__(self, *args, **kwargs)
         ASADefaults.__init__(self)
+        self.emudev_options.extend([
+            'initrd',
+            'kernel',
+            'kernel_cmdline',
+            ])
         debug('Hello, I have initialized and my model is %s' % self.model)
     
     def _make_devinstance(self, qemu_name):
         from GNS3.Dynagen import qemu_lib
         return qemu_lib.ASA(self.dynagen.dynamips[qemu_name], self.hostname)
+    
+    def startNode(self, progress=False):
+        """ Start the node
+        """
+
+        if not self.emudev.initrd or not self.emudev.kernel:
+            print unicode(translate(self.basehostname, "%s: no device initrd or kernel")) % self.hostname
+            return
+        try:
+            if self.emudev.state == 'stopped':
+                self.emudev.start()
+        except:
+            if progress:
+                raise
+            else:
+                return
+
+        self.startupInterfaces()
+        self.state = 'running'
+        globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
 
 class JunOS(AnyEmuDevice, JunOSDefaults):
 

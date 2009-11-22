@@ -313,6 +313,9 @@ class Topology(QtGui.QGraphicsScene):
             #create the Qemu instance and add it to global dictionary
             self.dynagen.dynamips[qemu_name] = qlib.Qemu(host)
             self.dynagen.dynamips[qemu_name].reset()
+            self.dynagen.dynamips[qemu_name].qemupath = globals.GApp.systconf['qemu'].qemu_path
+            self.dynagen.dynamips[qemu_name].baseconsole = globals.GApp.systconf['qemu'].qemuwrapper_baseConsole
+            self.dynagen.dynamips[qemu_name].baseudp = globals.GApp.systconf['qemu'].qemuwrapper_baseUDP
             self.dynagen.get_defaults_config()
             self.dynagen.update_running_config()
             self.dynagen.dynamips[qemu_name].configchange = True
@@ -459,23 +462,46 @@ class Topology(QtGui.QGraphicsScene):
                 
                 debug("Set default image " + globals.GApp.systconf['qemu'].default_junos_image + " for node type %s, model %r" % (type(node), node.model))
                 node.set_image(globals.GApp.systconf['qemu'].default_junos_image, node.model)
-                
+                node.set_int_option('ram', globals.GApp.systconf['qemu'].default_junos_memory)
+                node.set_string_option('netcard', globals.GApp.systconf['qemu'].default_junos_nic)
+                node.set_string_option('kqemu', globals.GApp.systconf['qemu'].default_junos_kqemu)
+                node.set_string_option('kvm', globals.GApp.systconf['qemu'].default_junos_kvm)                
+                node.set_string_option('options', globals.GApp.systconf['qemu'].default_junos_options)
+
             if isinstance(node, ASA):
 
-                if not globals.GApp.systconf['qemu'].default_asa_image:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA image"), translate("Topology", "Please configure a default ASA image"))
+                if not globals.GApp.systconf['qemu'].default_asa_kernel:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA kernel"), translate("Topology", "Please configure a default ASA kernel"))
                     return False
                 
-                # give a warning if the ASA image path is not accessible
-                if not os.access(globals.GApp.systconf['qemu'].default_asa_image, os.F_OK):
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA image"), unicode(translate("Topology", "%s seems to not exist, please check")) % globals.GApp.systconf['qemu'].default_asa_image)
+                if not globals.GApp.systconf['qemu'].default_asa_initrd:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA initrd"), translate("Topology", "Please configure a default ASA initrd"))
+                    return False
                 
+                # give a warning if the ASA initrd path is not accessible
+                if not os.access(globals.GApp.systconf['qemu'].default_asa_initrd, os.F_OK):
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA initrd"), unicode(translate("Topology", "%s seems to not exist, please check")) % globals.GApp.systconf['qemu'].default_asa_initrd)
+             
+                # give a warning if the ASA kernel path is not accessible
+                if not os.access(globals.GApp.systconf['qemu'].default_asa_kernel, os.F_OK):
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA kernel"), unicode(translate("Topology", "%s seems to not exist, please check")) % globals.GApp.systconf['qemu'].default_asa_kernel)
+   
                 if self.QemuDeviceSetup(node) == False:
                     return False
                 
-                debug("Set default image " + globals.GApp.systconf['qemu'].default_asa_image + " for node type %s, model %r" % (type(node), node.model))
-                node.set_image(globals.GApp.systconf['qemu'].default_asa_image, node.model)
-                #TODO: set special options for ASA
+                debug("Set default initrd " + globals.GApp.systconf['qemu'].default_asa_initrd + " for node type %s, model %r" % (type(node), node.model))
+                debug("Set default kernel " + globals.GApp.systconf['qemu'].default_asa_kernel + " for node type %s, model %r" % (type(node), node.model))
+                
+                # No image for ASA
+                node.set_image('None', node.model)
+                node.set_int_option('ram', globals.GApp.systconf['qemu'].default_asa_memory)
+                node.set_string_option('netcard', globals.GApp.systconf['qemu'].default_asa_nic)
+                node.set_string_option('kqemu', globals.GApp.systconf['qemu'].default_asa_kqemu)
+                node.set_string_option('kvm', globals.GApp.systconf['qemu'].default_asa_kvm)     
+                node.set_string_option('initrd', globals.GApp.systconf['qemu'].default_asa_initrd)
+                node.set_string_option('kernel', globals.GApp.systconf['qemu'].default_asa_kernel)
+                node.set_string_option('kernel_cmdline', globals.GApp.systconf['qemu'].default_asa_kernel_cmdline)
+                node.set_string_option('options', globals.GApp.systconf['qemu'].default_asa_options)
 
             if isinstance(node, FW):
                 
@@ -491,8 +517,13 @@ class Topology(QtGui.QGraphicsScene):
                 
                 debug("Set default image " + globals.GApp.systconf['qemu'].default_pix_image + " for node type %s, model %r" % (type(node), node.model))
                 node.set_image(globals.GApp.systconf['qemu'].default_pix_image, node.model)
+                node.set_int_option('ram', globals.GApp.systconf['qemu'].default_pix_memory)
+                node.set_string_option('netcard', globals.GApp.systconf['qemu'].default_pix_nic)
                 node.set_string_option('key', globals.GApp.systconf['qemu'].default_pix_key)
                 node.set_string_option('serial', globals.GApp.systconf['qemu'].default_pix_serial)
+                node.set_string_option('kqemu', globals.GApp.systconf['qemu'].default_pix_kqemu)
+                node.set_string_option('options', globals.GApp.systconf['qemu'].default_pix_options)
+
                     
             if isinstance(node, SIMHOST) and self.simhostSetup(node) == False:
                 return False

@@ -130,7 +130,7 @@ class NETFile(object):
 
         symbol_name = x = y = hx = hy = None
         config = None
-        if isinstance(device, qlib.AnyEmuDevice) and  self.dynagen.globalconfig['qemu ' + device.dynamips.host].has_key(running_config_name):
+        if isinstance(device, qlib.AnyEmuDevice) and self.dynagen.globalconfig['qemu ' + device.dynamips.host].has_key(running_config_name):
             config = self.dynagen.globalconfig['qemu ' + device.dynamips.host][running_config_name]
         elif isinstance(device, lwip.SIMHOST) and  self.dynagen.globalconfig['lwip ' + device.dynamips.host + ':' + str(device.dynamips.port)].has_key(running_config_name):
             config = self.dynagen.globalconfig['lwip ' + device.dynamips.host + ':' + str(device.dynamips.port)][running_config_name]
@@ -882,7 +882,7 @@ class NETFile(object):
                 if pen.color() != QtCore.Qt.black:
                     config['border_color'] = str(pen.color().name())
                 if pen.width() != 2:
-                   config['border_width'] = pen.width()
+                    config['border_width'] = pen.width()
                 if pen.style() != QtCore.Qt.SolidLine:
                     config['border_style'] = pen.style()
                 zvalue = item.zValue()

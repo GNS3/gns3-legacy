@@ -22,13 +22,17 @@
 from GNS3.Defaults.AbstractDefaults import AbstractDefaults
 
 class AnyEmuDefaults(AbstractDefaults):
-    """Abstract class for managing the FW defaults"""
+    """Abstract class for managing the emulated device defaults"""
 
     def __init__(self):
 
         AbstractDefaults.__init__(self)
 
         self.default_image = 'None'
+        self.default_netcard = 'pcnet'
+        self.default_kqemu = False
+        self.default_kvm = False
+        self.default_options = 'None'
         self.default_ram = 128
         self.qemu = None
         self.d = None
@@ -61,6 +65,9 @@ class AnyEmuDefaults(AbstractDefaults):
         else:
             self.config['image'] = image
 
+class QemuDefaults(AnyEmuDefaults):
+    pass
+
 class FWDefaults(AnyEmuDefaults):
     def __init__(self):
         AnyEmuDefaults.__init__(self)
@@ -68,7 +75,11 @@ class FWDefaults(AnyEmuDefaults):
         self.default_key = '0x00000000,0x00000000,0x00000000,0x00000000'
 
 class ASADefaults(AnyEmuDefaults):
-    pass
+    def __init__(self):
+        AnyEmuDefaults.__init__(self)
+        self.default_initrd = 'None'
+        self.default_kernel = 'None'
+        self.default_kernel_cmdline = 'None'
     
 class JunOSDefaults(AnyEmuDefaults):
     pass

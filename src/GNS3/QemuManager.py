@@ -121,7 +121,7 @@ class QemuManager(object):
         except:
             s.close()
 
-        # start Qemu, use python on all platform but Windows
+        # start Qemuwrapper, use python on all platform but Windows
         if sys.platform.startswith('win'):
             self.proc.start('"' + globals.GApp.systconf['qemu'].qemuwrapper_path + '"')
         else:

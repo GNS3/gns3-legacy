@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007 GNS-3 Dev Team
+# Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
