@@ -478,9 +478,10 @@ class Topology(QtGui.QGraphicsScene):
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA initrd"), translate("Topology", "Please configure a default ASA initrd"))
                     return False
                 
+                #FIXME: uncomment
                 # give a warning if the ASA initrd path is not accessible
-                if not os.access(globals.GApp.systconf['qemu'].default_asa_initrd, os.F_OK):
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA initrd"), unicode(translate("Topology", "%s seems to not exist, please check")) % globals.GApp.systconf['qemu'].default_asa_initrd)
+                #if not os.access(globals.GApp.systconf['qemu'].default_asa_initrd, os.F_OK):
+                #    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA initrd"), unicode(translate("Topology", "%s seems to not exist, please check")) % globals.GApp.systconf['qemu'].default_asa_initrd)
              
                 # give a warning if the ASA kernel path is not accessible
                 if not os.access(globals.GApp.systconf['qemu'].default_asa_kernel, os.F_OK):

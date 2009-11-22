@@ -168,7 +168,7 @@ class Dynagen:
         #confdynagen stuff
         self.running_config = ConfigObj(list_values=False, encoding='utf-8')
         self.running_config.indent_type = '    '
-        self.defaults_config = ConfigObj(encoding='utf-8')
+        self.defaults_config = ConfigObj(list_values=False, encoding='utf-8')
         self.defaults_config.indent_type = '    '
         self.generic_router_options = [
             'ram',
@@ -1488,7 +1488,7 @@ class Dynagen:
             self.doerror('Cannot open dynagen.ini file')
 
         try:
-            config = ConfigObj(inifile, raise_errors=True, encoding='utf-8')
+            config = ConfigObj(inifile, list_values=False, raise_errors=True, encoding='utf-8')
         except SyntaxError, e:
             print '\nError:'
             print e
@@ -1528,7 +1528,7 @@ class Dynagen:
             return None
 
         try:
-            config = ConfigObj(inifile, raise_errors=True, encoding='utf-8')
+            config = ConfigObj(inifile, list_values=False, raise_errors=True, encoding='utf-8')
         except SyntaxError, e:
             print '\nError in user idlepc database:'
             print e
@@ -1611,7 +1611,7 @@ class Dynagen:
         try:
             for device in self.devices.values():
 
-                if not self.jitshareddevices[device.name]:
+                if not self.jitshareddevices.has_key(device.name):
                     continue
 
                 if device.imagename == None:
@@ -1707,7 +1707,7 @@ class Dynagen:
         """read the config file on disk and return a tuple of lines"""
 
         #read the file
-        startup_config = ConfigObj(self.global_filename, encoding='utf-8')
+        startup_config = ConfigObj(self.global_filename, list_values=False, encoding='utf-8')
         startup_config.filename = None  #so that we will return lines, not write into file
         startup_config.indent_type = '    '
         startup_config_tuple = startup_config.write()
@@ -2066,7 +2066,7 @@ class Dynagen:
                         self._update_running_config_for_emulated_device(hypervisor, device, need_active_config)
 
         #after everything is done merge this config with defaults_config
-        temp_config = ConfigObj(self.defaults_config, encoding='utf-8')
+        temp_config = ConfigObj(self.defaults_config, list_values=False, encoding='utf-8')
         temp_config.merge(self.running_config)
         self.running_config = temp_config
 
