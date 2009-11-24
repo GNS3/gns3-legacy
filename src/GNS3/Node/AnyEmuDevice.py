@@ -26,7 +26,7 @@ import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Telnet as console
 from PyQt4 import QtGui
 from GNS3.Node.AbstractNode import AbstractNode
-from GNS3.Defaults.AnyEmuDefaults import AnyEmuDefaults, FWDefaults, ASADefaults, JunOSDefaults
+from GNS3.Defaults.AnyEmuDefaults import AnyEmuDefaults, FWDefaults, ASADefaults, JunOSDefaults, QemuDefaults
 from GNS3.Utils import translate, debug, error
 
 emu_id = 1
@@ -171,8 +171,8 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         """ Return all interfaces
         """
 
-        # 5 Ethernet interfaces per default
-        return (['e0', 'e1', 'e2', 'e3', 'e4'])
+        # 6 Ethernet interfaces per default
+        return (['e0', 'e1', 'e2', 'e3', 'e4', 'e5'])
 
     def get_dynagen_device(self):
         """ Returns the dynagen device corresponding to this bridge
@@ -406,3 +406,20 @@ class JunOS(AnyEmuDevice, JunOSDefaults):
     def _make_devinstance(self, qemu_name):
         from GNS3.Dynagen import qemu_lib
         return qemu_lib.JunOS(self.dynagen.dynamips[qemu_name], self.hostname)
+    
+class QemuDevice(AnyEmuDevice, QemuDefaults):
+
+    instance_counter = 0
+    model = 'QemuDevice'
+    basehostname = 'QEMU'
+    friendly_name ='Qemu Emulated System'
+
+    def __init__(self, *args, **kwargs):
+        AnyEmuDevice.__init__(self, *args, **kwargs)
+        QemuDefaults.__init__(self)
+        debug('Hello, I have initialized and my model is %s' % self.model)
+
+    def _make_devinstance(self, qemu_name):
+        from GNS3.Dynagen import qemu_lib
+        return qemu_lib.QemuDevice(self.dynagen.dynamips[qemu_name], self.hostname)
+

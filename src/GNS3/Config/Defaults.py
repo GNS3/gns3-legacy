@@ -80,7 +80,7 @@ conf_systemDynamips_defaults = {
     'baseUDP': 10000,
     'baseConsole': 2000,
     'ghosting': True,
-    'jitsharing': True,
+    'jitsharing': False,
     'sparsemem': False,
     'mmap': True,
     'memory_limit': 512,

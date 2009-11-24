@@ -32,7 +32,7 @@ class AnyEmuDefaults(AbstractDefaults):
         self.default_netcard = 'pcnet'
         self.default_kqemu = False
         self.default_kvm = False
-        self.default_options = 'None'
+        self.default_options = ''
         self.default_ram = 128
         self.qemu = None
         self.d = None

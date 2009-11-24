@@ -31,7 +31,7 @@ from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ATMBR import ATMBR
-from GNS3.Node.AnyEmuDevice import FW, ASA, JunOS
+from GNS3.Node.AnyEmuDevice import FW, ASA, JunOS, QemuDevice
 
 SYMBOL_TYPES = {
                 IOSRouter1700: 'Router c1700', 
@@ -39,15 +39,15 @@ SYMBOL_TYPES = {
                 IOSRouter2691: 'Router c2691',
                 IOSRouter3600: 'Router c3600',
                 IOSRouter3700: 'Router c3700',
-                IOSRouter7200: 'Router c7200', 
-#                SIMHOST: 'Host', 
+                IOSRouter7200: 'Router c7200',
                 FW: 'PIX firewall', 
                 ASA: 'ASA firewall',
                 JunOS: 'Juniper router',
                 ETHSW: 'Ethernet switch',
                 ATMBR: 'ATM bridge',
                 ATMSW: 'ATM switch', 
-                FRSW: 'Frame Relay switch', 
+                FRSW: 'Frame Relay switch',
+                QemuDevice: 'Qemu host',
                 Cloud: 'Cloud', 
                 DecorativeNode: 'Decorative node', 
                 }
@@ -132,11 +132,11 @@ SYMBOLS = [
     'translated': True,
     } ,
     
-#    {'name': "Host", 'object': SIMHOST,
-#    'normal_svg_file': ":/symbols/computer.normal.svg",
-#    'select_svg_file': ":/symbols/computer.selected.svg", 
-#    'translated': True,
-#    },
+    {'name': "Qemu host", 'object': QemuDevice,
+    'normal_svg_file': ":/symbols/computer.normal.svg",
+    'select_svg_file': ":/symbols/computer.selected.svg", 
+    'translated': True,
+    },
 
     {'name': "Cloud", 'object': Cloud,
     'normal_svg_file': ":/symbols/cloud.normal.svg",

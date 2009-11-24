@@ -973,7 +973,11 @@ class NETFile(object):
                 self.dynagen.running_config['GNS3-DATA'] = {}
             self.dynagen.running_config['GNS3-DATA']['width'] = scene_width
             self.dynagen.running_config['GNS3-DATA']['height'] = scene_height
-            
+
+        # autostart
+        if len(self.dynagen.autostart) > 0:
+            self.dynagen.running_config['autostart'] = True
+        
         self.dynagen.running_config.filename = path
         self.dynagen.running_config.write()
         self.dynagen.running_config.filename = None

@@ -34,7 +34,7 @@ from dynamips_lib import Dynamips, PA_C7200_IO_FE, PA_A1, PA_FE_TX, PA_4T, PA_8T
      CISCO2600_MB_1E, CISCO2600_MB_2E, CISCO2600_MB_1FE, CISCO2600_MB_2FE, PA_2FE_TX, \
      PA_GE, PA_C7200_IO_2FE, PA_C7200_IO_GE_E, C1700, CISCO1710_MB_1FE_1E, C1700_MB_1ETH, \
      DynamipsVerError, DynamipsErrorHandled, NM_CIDS, NM_NAM, get_reverse_udp_nio
-from qemu_lib import Qemu, AnyEmuDevice, FW, ASA, JunOS, nosend_qemu
+from qemu_lib import Qemu, QemuDevice, AnyEmuDevice, FW, ASA, JunOS, nosend_qemu
 from validate import Validator
 from configobj import ConfigObj, flatten_errors
 from optparse import OptionParser
@@ -55,12 +55,14 @@ MODELTUPLE = (  # A tuple of known model objects
     C7200,
     ASA, 
     FW,
-    JunOS, 
+    JunOS,
+    QemuDevice,
     )
 DEVICETUPLE = (  # A tuple of known device names
     '525',
     '5520', 
-    'O-series', 
+    'O-series',
+    'QemuDevice',
     '1710',
     '1720',
     '1721',
@@ -1063,7 +1065,7 @@ class Dynagen:
                     for subsection in server.sections:
                         device = server[subsection]
 
-                        if device.name in ['525', '5520', 'O-series']:
+                        if device.name in ['525', '5520', 'O-series', 'QemuDevice']:
                             # Populate the appropriate dictionary
                             for scalar in device.scalars:
                                 if device[scalar] != None:
@@ -1084,6 +1086,8 @@ class Dynagen:
                             dev = ASA(self.dynamips[qemu_name], name=name)
                         elif devtype.lower() == 'junos':
                             dev = JunOS(self.dynamips[qemu_name], name=name)
+                        elif devtype.lower() == 'qemu':
+                            dev = QemuDevice(self.dynamips[qemu_name], name=name)
                         else:
                             self.dowarning('Unable to identify the type of device ' + device.name)
                             self.import_error = True

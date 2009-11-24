@@ -582,6 +582,14 @@ class JunOS(AnyEmuDevice):
     _ufd_machine = 'Juniper router'
     _ufd_hardware = 'Juniper Olive router'
     available_options = ['image', 'ram', 'netcard', 'kqemu', 'kvm', 'options']
+    
+class QemuDevice(AnyEmuDevice):
+    model_string = 'QemuDevice'
+    qemu_dev_type = 'qemu'
+    basehostname = 'QEMU'
+    _ufd_machine = 'Qemu host'
+    _ufd_hardware = 'Qemu Emulated System'
+    available_options = ['image', 'ram', 'netcard', 'kqemu', 'kvm', 'options']
 
 class ASA(AnyEmuDevice):
     model_string = '5520'

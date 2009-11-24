@@ -22,5 +22,3 @@ TODO LIST
  * Check allocated ports.
  * Generic Ethernet NIO is blank on Vista
  * Browse option for startup-config
- * Automatic start of routers
- 

@@ -536,18 +536,26 @@ class Workspace(QMainWindow, Ui_MainWindow):
             if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice)) and node.get_dynagen_device().state == 'running':
                 node.console()
 
-    def __launchProgressDialog(self,  action,  text):
+    def __launchProgressDialog(self, action, text, autostart=False):
         """ Launch a progress dialog and do a action
             action: string
             text: string
         """
     
         node_list = []
-        for node in globals.GApp.topology.nodes.values():
-            if isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice):
-                node_list.append(node)
+        if autostart == True:
+            for (hostname,value) in globals.GApp.dynagen.autostart.iteritems():
+                if value == True:
+                    node = globals.GApp.topology.getNode(globals.GApp.topology.getNodeID(hostname))
+                    node_list.append(node)
+        else:
+            for node in globals.GApp.topology.nodes.values():
+                if isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice):
+                    node_list.append(node)
                 
         count = len(node_list)
+        if count == 0:
+            return
         progress = QtGui.QProgressDialog(text, translate("Workspace", "Abort"), 0, count, globals.GApp.mainWindow)
         progress.setMinimum(1)
         progress.setWindowModality(QtCore.Qt.WindowModal)
@@ -667,6 +675,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         net = netfile.NETFile()
         globals.GApp.scene.resetMatrix()
         net.import_net_file(path)
+        self.__launchProgressDialog('start', translate("Workspace", "Starting nodes ..."), autostart=True)
 
     def __action_NewProject(self):
         """ Create a new project
