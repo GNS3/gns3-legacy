@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LANGUAGES="en fr de cn jp es ar pt_br tr ru sk kr pl sr it"
+LANGUAGES="en fr de cn jp es ar pt_br tr ru sk kr pl sr it fa"
 
 PROJ_FILE="Languages.pro"
 QRC_FILE="Languages.qrc"

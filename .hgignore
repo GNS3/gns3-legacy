@@ -3,6 +3,7 @@ syntax: glob
 .settings/*
 *.pyc
 *.swp
+.DS_Store
 gns3.conf
 
 syntax: regexp

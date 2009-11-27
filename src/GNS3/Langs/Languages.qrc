@@ -16,5 +16,6 @@
       <file alias="pl">Lang_pl.qm</file>
       <file alias="sr">Lang_sr.qm</file>
       <file alias="it">Lang_it.qm</file>
+      <file alias="fa">Lang_fa.qm</file>
    </qresource>
 </RCC>

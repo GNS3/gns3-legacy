@@ -1,7 +1,6 @@
 #!/usr/bin/env python
-# $Id: pemuwrapper.py 27 2008-03-04 17:17:46Z tpani $
 #
-# Copyright (c) 2007 Thomas Pani
+# Copyright (c) 2007-2009 Thomas Pani & Jeremy Grossmann
 #
 # Contributions by Pavel Skovajsa
 #
@@ -43,21 +42,17 @@ import sys
 import tarfile
 import threading
 import SocketServer
+import time
 
 import pemubin
 
 
-__author__ = 'Thomas Pani'
-__version__ = '0.2.3'
+__author__ = 'Thomas Pani and Jeremy Grossmann'
+__version__ = '0.2.5'
 
+QEMU_PATH = "qemu"
 PORT = 10525
-PEMU_INSTANCES = {}
-
-PEMU_BIN = 'pemu'
-if platform.system() == 'Windows':
-    PEMU_BIN = 'pemu.exe'
-else:
-    PEMU_BIN = 'pemu'
+QEMU_INSTANCES = {}
 
 PEMU_DIR = os.getcwd()
 if platform.system() == 'Windows':
@@ -84,72 +79,44 @@ class UDPConnection:
             print >> sys.stderr, e
 
 
-class PEMUInstance:
+class xEMUInstance(object):
+
     def __init__(self, name):
         self.name = name
-        self.ram = '128'
+        self.ram = '256'
         self.console = ''
-        self.serial = '0x12345678'
-        self.key = '0x00000000,0x00000000,0x00000000,0x00000000'
         self.image = ''
         self.nic = {}
         self.udp = {}
+        self.netcard = 'pcnet'
+        self.kqemu = False
+        self.kvm = False
+        self.options = ''
         self.process = None
         self.workdir = None
-
+        self.valid_attr_names = ['image', 'ram', 'console', 'netcard', 'kqemu', 'kvm', 'options']
 
     def create(self):
         self.workdir = os.path.join(os.getcwd(), self.name)
         if not os.path.exists(self.workdir):
             os.makedirs(self.workdir)
-        # Imbedded FLASH no longer needed with pemu 2008-03-03
-        #flashfile = os.path.join(self.workdir, 'FLASH')
-        #if not os.path.exists(flashfile):
-        #    print "Unpacking FLASH..."
-        #    f = cStringIO.StringIO(base64.decodestring(pemubin.flash))
-        #    tar = tarfile.open('dummy', 'r:gz', f)
-        #    for member in tar.getmembers():
-        #        tar.extract(member, self.workdir)
-        #    print "Done unpacking FLASH."
-
-    def write_config(self):
-        f = open(os.path.join(self.workdir, 'pemu.ini'), 'w')
-        f.writelines(('serial=%s\n' % self.serial,
-                'image=%s\n' % self.image,
-                'key=%s\n' % self.key))
-                # No longer needed, bios is integrated now
-                #'bios1=%s\n' % os.path.join(PEMU_DIR, 'mybios_d8000'),
-                #'bios2=%s\n' % os.path.join(PEMU_DIR, 'bios.bin'),
-                #'bios_checksum=1\n'))
-        f.close()
 
     def start(self):
-        command = os.path.join(PEMU_DIR, PEMU_BIN)
+        command = self._build_command()
 
-        for vlan in range(6):
-            if vlan in self.nic:
-                command += ' -net nic,vlan=%d,macaddr=%s' % (vlan, self.nic[vlan])
-            else:
-                # add a default NIC for pemu (we always add 4 NICs)
-                command += ' -net nic,vlan=%d,macaddr=00:00:ab:cd:ef:%02d' % (vlan, vlan)
-            if vlan in self.udp:
-                command += ' -net udp,vlan=%s,sport=%s,dport=%s,daddr=%s' % \
-                        (vlan, self.udp[vlan].sport,
-                         self.udp[vlan].dport,
-                         self.udp[vlan].daddr)
-
-        if self.console:
-            command += ' -serial telnet::%s,server,nowait' % self.console
-        command += ' -m %s FLASH' % self.ram
         print "    command:", command
         try:
-            self.process = subprocess.Popen(command.split(),
+            self.process = subprocess.Popen(command,
                                             stdin=subprocess.PIPE,
                                             cwd=self.workdir)
         except OSError, e:
-            print >> sys.stderr, "Unable to start PEMU instance", self.name
+            print >> sys.stderr, "Unable to start instance", self.name, "of", self.__class__
             print >> sys.stderr, e
             return False
+
+        # give us some time to wait for Qemu to start
+        time.sleep(1)
+        
         print "    pid:", self.process.pid
 
         if platform.system() == 'Windows':
@@ -160,12 +127,14 @@ class PEMUInstance:
                     win32process.BELOW_NORMAL_PRIORITY_CLASS)
             if returncode:
                 print "   failed."
+                return False
 
         else:
             print "Renicing to 19"
             returncode = subprocess.call(['renice', '+19', str(self.process.pid)])
             if returncode:
                 print "    failed."
+                return False
 
         return True
 
@@ -176,7 +145,7 @@ class PEMUInstance:
                 if win32api.TerminateProcess(handle, 0):
                     return False
             except pywintypes.error, e:
-                print >> sys.stderr, "Unable to stop PEMU instance", self.name
+                print >> sys.stderr, "Unable to stop Qemu instance", self.name
                 print >> sys.stderr, e[2]
                 return False
         else:
@@ -184,43 +153,202 @@ class PEMUInstance:
             try:
                 os.kill(self.process.pid, signal.SIGINT)
             except OSError, e:
-                print >> sys.stderr, "Unable to stop PEMU instance", self.name
+                print >> sys.stderr, "Unable to stop Qemu instance", self.name
                 print >> sys.stderr, e
                 return False
         self.process = None
 
         return True
 
+    def _net_options(self):
+        options = []
+        for vlan in range(6):
+            options.append('-net')
+            if vlan in self.nic:
+                options.append('nic,vlan=%d,macaddr=%s,model=%s' % (vlan, self.nic[vlan], self.netcard))
+            else:
+                # add a default NIC for Qemu (we always add 6 NICs)
+                options.append('nic,vlan=%d,macaddr=00:00:ab:cd:ef:%02d,model=%s' % (vlan, vlan, self.netcard))
+            if vlan in self.udp:
+                options.extend(['-net', 'udp,vlan=%s,sport=%s,dport=%s,daddr=%s' %
+                        (vlan, self.udp[vlan].sport,
+                         self.udp[vlan].dport,
+                         self.udp[vlan].daddr)])
+        return options
+        
+    def _ser_options(self):
+        if self.console:
+            return ['-serial', 'telnet::%s,server,nowait' % self.console]
+        else:
+            return []
 
-class PEMUWrapperRequestHandler(SocketServer.StreamRequestHandler):
+class PEMUInstance(xEMUInstance):
+    def __init__(self, name):
+        super(PEMUInstance, self).__init__(name)
+        if platform.system() == 'Windows':
+            self.bin = 'pemu.exe'
+        else:
+            self.bin = 'pemu'
+        self.serial = '0x12345678'
+        self.key = '0x00000000,0x00000000,0x00000000,0x00000000'
+        self.valid_attr_names += ['serial', 'key']
+
+    def _build_command(self):
+        "Builds the command as a list of shell arguments."
+        command = [os.path.join(PEMU_DIR, self.bin)]
+        command.extend(self._net_options())
+        command.extend(['-m', str(self.ram), 'FLASH'])
+        command.extend(self._ser_options())
+        return command
+
+    def _write_config(self):
+        f = open(os.path.join(self.workdir, 'pemu.ini'), 'w')
+        f.writelines(''.join(['%s=%s\n' % (attr, getattr(self, attr))
+            for attr in ('serial', 'key', 'image')]))
+        f.close()
+      
+    def start(self):
+        self._write_config()
+        return super(PEMUInstance, self).start()
+
+class PIXInstance(PEMUInstance):
+    pass
+    
+class QEMUInstance(xEMUInstance):
+
+    def __init__(self, name):
+        super(QEMUInstance, self).__init__(name)
+        self.bin = QEMU_PATH
+        self.valid_attr_names.extend(('flash_size', 'flash_name'))
+        self.flash_size = '256M'
+        self.flash_name = 'FLASH'
+        
+    def _build_command(self):
+        "Builds the command as a list of shell arguments."
+        command = [self.bin]
+        command.extend(['-m', str(self.ram)])
+        command.extend(self._disk_options())
+        command.extend(self._image_options())
+        command.extend(self._kernel_options())
+        if bool(self.kqemu) == True:
+            command.extend(['-kernel-kqemu'])
+        if bool(self.kvm) == True:
+            command.extend(['-enable-kvm'])
+        command.extend(['-nographic'])
+        command.extend(self._net_options())
+        command.extend(self._ser_options())
+        if self.options:
+            command.extend(self.options.split())
+        return command
+
+    def _disk_options(self):
+        return []
+        
+    def _kernel_options(self):
+        return []
+        
+    def _image_options(self):
+        return []
+        
+        
+class ASAInstance(QEMUInstance):
+
+    def __init__(self, *args, **kwargs):
+        super(ASAInstance, self).__init__(*args, **kwargs)
+        self.netcard = 'e1000'
+        self.initrd = ''
+        self.kernel = ''
+        self.kernel_cmdline = ''
+        self.valid_attr_names += ['initrd', 'kernel', 'kernel_cmdline']
+        
+    def _disk_options(self):
+        flash = os.path.join(self.workdir, self.flash_name)
+        if not os.path.exists(flash):
+            os.spawnlp(os.P_WAIT, 'qemu-img', 'qemu-img', 'create',
+                '-f', 'qcow2', flash, self.flash_size)
+        return ('-hda', flash)
+    
+    def _image_options(self):
+        return ('-kernel', self.kernel, '-initrd', self.initrd)
+        
+    def _kernel_options(self):
+        return  ('-append', self.kernel_cmdline)
+
+class JunOSInstance(QEMUInstance):
+
+
+    def __init__(self, *args, **kwargs):
+        super(JunOSInstance, self).__init__(*args, **kwargs)
+        self.flash_size = '3G'
+        self.swap_name= 'SWAP'
+        self.swap_size = '1G'
+        self.netcard = 'e1000'
+    
+    def _disk_options(self):
+        flash = os.path.join(self.workdir, self.flash_name)
+        if not os.path.exists(flash):
+            os.spawnlp(os.P_WAIT, 'qemu-img', 'qemu-img', 'create',
+                '-b', self.image, '-f', 'qcow2', flash, self.flash_size)
+        swap = os.path.join(self.workdir, self.swap_name)
+        if not os.path.exists(swap):
+            os.spawnlp(os.P_WAIT, 'qemu-img', 'qemu-img', 'create',
+                '-f', 'qcow2', '-c', swap, self.swap_size)
+        return (flash, '-hdb', swap)
+    
+class QemuDeviceInstance(QEMUInstance):
+
+
+    def __init__(self, *args, **kwargs):
+        super(QemuDeviceInstance, self).__init__(*args, **kwargs)
+        self.flash_size = '4G'
+        self.swap_name= 'SWAP'
+        self.swap_size = '1G'
+        self.netcard = 'e1000'
+    
+    def _disk_options(self):
+        flash = os.path.join(self.workdir, self.flash_name)
+        if not os.path.exists(flash):
+            os.spawnlp(os.P_WAIT, 'qemu-img', 'qemu-img', 'create',
+                '-b', self.image, '-f', 'qcow2', flash, self.flash_size)
+        swap = os.path.join(self.workdir, self.swap_name)
+        if not os.path.exists(swap):
+            os.spawnlp(os.P_WAIT, 'qemu-img', 'qemu-img', 'create',
+                '-f', 'qcow2', '-c', swap, self.swap_size)
+        return (flash, '-hdb', swap)
+
+class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
 
     modules = {
-        'pemuwrapper' : {
+        'qemuwrapper' : {
             'version' : (0, 0),
             'parser_test' : (0, 10),
             'module_list' : (0, 0),
             'cmd_list' : (1, 1),
+            'qemu_path' : (1, 1),
             'working_dir' : (1, 1),
             'reset' : (0, 0),
             'close' : (0, 0),
             'stop' : (0, 0),
             },
-        'pemu' : {
+        'qemu' : {
             'version' : (0, 0),
-            'create' : (1, 1),
+            'create' : (2, 2),
             'delete' : (1, 1),
-            'set_image' : (2, 2),
-            'set_serial' : (2, 2),
-            'set_key' : (2, 2),
+            'setattr' : (3, 3),
             'create_nic' : (3, 3),
             'create_udp' : (5, 5),
-            'set_ram' : (2, 2),
-            'set_con_tcp' : (2, 2),
             'start' : (1, 1),
             'stop' : (1, 1),
             }
         }
 
+    qemu_classes = {
+        'qemu': QemuDeviceInstance,
+        'pix': PIXInstance,
+        'asa': ASAInstance,
+        'junos': JunOSInstance,
+        }
+    
     # dynamips style status codes
     HSC_INFO_OK         = 100  #  ok
     HSC_INFO_MSG        = 101  #  informative message
@@ -304,10 +432,10 @@ class PEMUWrapperRequestHandler(SocketServer.StreamRequestHandler):
         method = getattr(self, mname)
         method(data)
 
-    def do_pemuwrapper_version(self, data):
+    def do_qemuwrapper_version(self, data):
         self.send_reply(self.HSC_INFO_OK, 1, __version__)
 
-    def do_pemuwrapper_parser_test(self, data):
+    def do_qemuwrapper_parser_test(self, data):
         for i in range(len(data)):
             self.send_reply(self.HSC_INFO_MSG, 0,
                             "arg %d (len %u): \"%s\"" % \
@@ -315,12 +443,12 @@ class PEMUWrapperRequestHandler(SocketServer.StreamRequestHandler):
                             )
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
-    def do_pemuwrapper_module_list(self, data):
+    def do_qemuwrapper_module_list(self, data):
         for module in self.modules.keys():
             self.send_reply(self.HSC_INFO_MSG, 0, module)
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
-    def do_pemuwrapper_cmd_list(self, data):
+    def do_qemuwrapper_cmd_list(self, data):
         module, = data
 
         if not module in self.modules.keys():
@@ -338,171 +466,160 @@ class PEMUWrapperRequestHandler(SocketServer.StreamRequestHandler):
 
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
-    def do_pemuwrapper_working_dir(self, data):
+    def do_qemuwrapper_qemu_path(self, data):
+        qemu_path, = data
+        try:
+            os.access(qemu_path, os.F_OK)
+            global QEMU_PATH
+            QEMU_PATH = qemu_path
+            print "Qemu path is now %s" % QEMU_PATH
+            for qemu_name in QEMU_INSTANCES.keys():
+                QEMU_INSTANCES[qemu_name].bin = os.path.join(os.getcwd(), QEMU_INSTANCES[qemu_name].name)
+            self.send_reply(self.HSC_INFO_OK, 1, "OK")
+        except OSError, e:
+            self.send_reply(self.HSC_ERR_INV_PARAM, 1,
+                            "access: %s" % e.strerror)
+
+    def do_qemuwrapper_working_dir(self, data):
         working_dir, = data
         try:
             os.chdir(working_dir)
-            for pemu_name in PEMU_INSTANCES.keys():
-                PEMU_INSTANCES[pemu_name].workdir = os.path.join(os.getcwd(), PEMU_INSTANCES[pemu_name].name)
+            for qemu_name in QEMU_INSTANCES.keys():
+                QEMU_INSTANCES[qemu_name].workdir = os.path.join(os.getcwd(), QEMU_INSTANCES[qemu_name].name)
             self.send_reply(self.HSC_INFO_OK, 1, "OK")
         except OSError, e:
             self.send_reply(self.HSC_ERR_INV_PARAM, 1,
                             "chdir: %s" % e.strerror)
 
-    def do_pemuwrapper_reset(self, data):
+    def do_qemuwrapper_reset(self, data):
         cleanup()
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
-    def do_pemuwrapper_close(self, data):
+    def do_qemuwrapper_close(self, data):
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
         self.close_connection = 1
 
-    def do_pemuwrapper_stop(self, data):
+    def do_qemuwrapper_stop(self, data):
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
         self.close_connection = 1
         self.server.stop()
 
-    def do_pemu_version(self, data):
-        self.send_reply(self.HSC_INFO_OK, 1, pemubin.__version__)
+    def do_qemu_version(self, data):
+        self.send_reply(self.HSC_INFO_OK, 1, __version__)
 
-    def __pemu_create(self, name):
-        if name in PEMU_INSTANCES.keys():
-            print >> sys.stderr, "Unable to create PEMU instance", name
+    def __qemu_create(self, dev_type, name):
+        try:
+            devclass = self.qemu_classes[dev_type]
+        except KeyError:
+            print >> sys.stderr, "No device type %s" % dev_type
+            return 1
+        if name in QEMU_INSTANCES.keys():
+            print >> sys.stderr, "Unable to create Qemu instance", name
             print >> sys.stderr, "%s already exists" % name
             return 1
-        pemu_instance = PEMUInstance(name)
+        qemu_instance = devclass(name)
 
         try:
-            pemu_instance.create()
+            qemu_instance.create()
         except OSError, e:
-            print >> sys.stderr, "Unable to create PEMU instance", name
+            print >> sys.stderr, "Unable to create Qemu instance", name
             print >> sys.stderr, e
             return 1
 
-        PEMU_INSTANCES[name] = pemu_instance
+        QEMU_INSTANCES[name] = qemu_instance
         return 0
 
-    def do_pemu_create(self, data):
-        name, = data
-        if self.__pemu_create(name) == 0:
-            self.send_reply(self.HSC_INFO_OK, 1, "PEMU '%s' created" % name)
+    def do_qemu_create(self, data):
+        dev_type, name = data
+        if self.__qemu_create(dev_type, name) == 0:
+            self.send_reply(self.HSC_INFO_OK, 1, "Qemu '%s' created" % name)
         else:
             self.send_reply(self.HSC_ERR_CREATE, 1,
-                            "unable to create PEMU instance '%s'" % name)
+                            "unable to create Qemu instance '%s'" % name)
 
-    def __pemu_delete(self, name):
-        if not name in PEMU_INSTANCES.keys():
+    def __qemu_delete(self, name):
+        if not name in QEMU_INSTANCES.keys():
             return 1
-        if PEMU_INSTANCES[name].process and \
-        not PEMU_INSTANCES[name].stop():
+        if QEMU_INSTANCES[name].process and \
+        not QEMU_INSTANCES[name].stop():
             return 1
-        del PEMU_INSTANCES[name]
+        del QEMU_INSTANCES[name]
         return 0
 
-    def do_pemu_delete(self, data):
+    def do_qemu_delete(self, data):
         name, = data
-        if self.__pemu_delete(name) == 0:
-            self.send_reply(self.HSC_INFO_OK, 1, "PEMU '%s' deleted" % name)
+        if self.__qemu_delete(name) == 0:
+            self.send_reply(self.HSC_INFO_OK, 1, "Qemu '%s' deleted" % name)
         else:
             self.send_reply(self.HSC_ERR_DELETE, 1,
-                            "unable to delete PEMU instance '%s'" % name)
+                            "unable to delete Qemu instance '%s'" % name)
 
-    def do_pemu_set_image(self, data):
-        name, image = data
-        if not name in PEMU_INSTANCES.keys():
+    def do_qemu_setattr(self, data):
+        name, attr, value = data
+        try:
+            instance = QEMU_INSTANCES[name]
+        except KeyError:
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
-                            "unable to find PEMU '%s'" % name)
+                             "unable to find Qemu '%s'" % name)
             return
-        PEMU_INSTANCES[name].image = image
-        self.send_reply(self.HSC_INFO_OK, 1, "Image set for '%s'" % name)
-
-    def do_pemu_set_serial(self, data):
-        name, serial = data
-        if not name in PEMU_INSTANCES.keys():
+        if not attr in instance.valid_attr_names:
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
-                            "unable to find PEMU '%s'" % name)
+                            "Cannot set attribute '%s' for '%s" % (attr, name))
             return
-        PEMU_INSTANCES[name].serial = serial
-        self.send_reply(self.HSC_INFO_OK, 1, "OK")
+        print >> sys.stderr, '!! %s.%s = %s' % (name, attr, value)
+        setattr(QEMU_INSTANCES[name], attr, value)
+        self.send_reply(self.HSC_INFO_OK, 1, "%s set for '%s'" % (attr, name))
 
-    def do_pemu_set_key(self, data):
-        name, key = data
-        if not name in PEMU_INSTANCES.keys():
-            self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
-                            "unable to find PEMU '%s'" % name)
-            return
-        PEMU_INSTANCES[name].key = key
-        self.send_reply(self.HSC_INFO_OK, 1, "OK")
-
-    def do_pemu_create_nic(self, data):
+    def do_qemu_create_nic(self, data):
         name, vlan, mac = data
-        if not name in PEMU_INSTANCES.keys():
+        if not name in QEMU_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
-                            "unable to find PEMU '%s'" % name)
+                            "unable to find Qemu '%s'" % name)
             return
-        PEMU_INSTANCES[name].nic[int(vlan)] = mac
+        QEMU_INSTANCES[name].nic[int(vlan)] = mac
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
-    def do_pemu_create_udp(self, data):
+    def do_qemu_create_udp(self, data):
         name, vlan, sport, daddr, dport = data
-        if not name in PEMU_INSTANCES.keys():
+        if not name in QEMU_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
-                            "unable to find PEMU '%s'" % name)
+                            "unable to find Qemu '%s'" % name)
             return
         udp_connection = UDPConnection(sport, daddr, dport)
         udp_connection.resolve_names()
-        PEMU_INSTANCES[name].udp[int(vlan)] = udp_connection
+        QEMU_INSTANCES[name].udp[int(vlan)] = udp_connection
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
-    def do_pemu_set_ram(self, data):
-        name, ram = data
-        if not name in PEMU_INSTANCES.keys():
-            self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
-                            "unable to find PEMU '%s'" % name)
-            return
-        PEMU_INSTANCES[name].ram = ram
-        self.send_reply(self.HSC_INFO_OK, 1, "OK")
-
-    def do_pemu_set_con_tcp(self, data):
-        name, console = data
-        if not name in PEMU_INSTANCES.keys():
-            self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
-                            "unable to find PEMU '%s'" % name)
-            return
-        PEMU_INSTANCES[name].console = console
-        self.send_reply(self.HSC_INFO_OK, 1, "OK")
-
-    def do_pemu_start(self, data):
+    def do_qemu_start(self, data):
         name, = data
-        if not name in PEMU_INSTANCES.keys():
+        if not name in QEMU_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
-                            "unable to find PEMU '%s'" % name)
+                            "unable to find Qemu '%s'" % name)
             return
-        PEMU_INSTANCES[name].write_config()
-        if not PEMU_INSTANCES[name].start():
+        if not QEMU_INSTANCES[name].start():
             self.send_reply(self.HSC_ERR_START, 1,
                             "unable to start instance '%s'" % name)
         else:
-            self.send_reply(self.HSC_INFO_OK, 1, "PEMU '%s' started" % name)
+            self.send_reply(self.HSC_INFO_OK, 1, "Qemu '%s' started" % name)
 
-    def do_pemu_stop(self, data):
+    def do_qemu_stop(self, data):
         name, = data
-        if not PEMU_INSTANCES[name].process:
+        if not QEMU_INSTANCES[name].process:
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
-                            "unable to find PEMU '%s'" % name)
+                            "unable to find Qemu '%s'" % name)
             return
-        if not PEMU_INSTANCES[name].stop():
+        if not QEMU_INSTANCES[name].stop():
             self.send_reply(self.HSC_ERR_STOP, 1,
                             "unable to stop instance '%s'" % name)
         else:
-            self.send_reply(self.HSC_INFO_OK, 1, "PEMU '%s' stopped" % name)
+            self.send_reply(self.HSC_INFO_OK, 1, "Qemu '%s' stopped" % name)
 
 
 class DaemonThreadingMixIn(SocketServer.ThreadingMixIn):
     daemon_threads = True
 
 
-class PEMUWrapperServer(DaemonThreadingMixIn, SocketServer.TCPServer):
+class QemuWrapperServer(DaemonThreadingMixIn, SocketServer.TCPServer):
     allow_reuse_address = True
 
     def __init__(self, server_address, RequestHandlerClass):
@@ -523,10 +640,10 @@ class PEMUWrapperServer(DaemonThreadingMixIn, SocketServer.TCPServer):
 
 def cleanup():
     print "Shutdown in progress..."
-    for name in PEMU_INSTANCES.keys():
-        if PEMU_INSTANCES[name].process:
-            PEMU_INSTANCES[name].stop()
-        del PEMU_INSTANCES[name]
+    for name in QEMU_INSTANCES.keys():
+        if QEMU_INSTANCES[name].process:
+            QEMU_INSTANCES[name].stop()
+        del QEMU_INSTANCES[name]
     print "Shutdown completed."
 
 
@@ -538,9 +655,9 @@ def main():
         for member in tar.getmembers():
             tar.extract(member)
 
-    server = PEMUWrapperServer(("", PORT), PEMUWrapperRequestHandler)
+    server = QemuWrapperServer(("", PORT), QemuWrapperRequestHandler)
 
-    print "PEMU TCP control server started (port %d)." % PORT
+    print "Qemu TCP control server started (port %d)." % PORT
     try:
         server.serve_forever()
     except KeyboardInterrupt:
@@ -548,15 +665,15 @@ def main():
 
 
 if __name__ == '__main__':
-    print "PIX Emulator Wrapper (version %s)" % __version__
-    print "Copyright (c) 2007 Thomas Pani."
+    print "Qemu Emulator Wrapper (version %s)" % __version__
+    print "Copyright (c) 2007-2009 Thomas Pani & Jeremy Grossmann"
     print
 
     if platform.system() == 'Windows':
         try:
             import pywintypes, win32api, win32con, win32process
         except ImportError:
-            print >> sys.stderr, "You need pywin32 installed to run pemuwrapper!"
+            print >> sys.stderr, "You need pywin32 installed to run qemuwrapper!"
             sys.exit(1)
 
     main()
