@@ -16,7 +16,7 @@
 
 __doc__="""
 This module implements a QT4 python interpreter widget.
-It is inspired bu PyCute : http://gerard.vermeulen.free.fr
+It is inspired by PyCute : http://gerard.vermeulen.free.fr
 
 Modified by GNS3 Team for the GNS3 project (www.gns3.net)
  => Rename functions starting with '__' so that they can be overloaded.
@@ -27,7 +27,7 @@ __license__= "CeCILL V2"
 __revision__=" $Id: pycutext.py 579 2007-06-13 10:27:57Z dufourko $"
 
 
-import os, sys
+import sys
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtGui import QTextEdit, QTextCursor
 from PyQt4.QtCore import Qt
@@ -75,6 +75,7 @@ class PyCutExt(QTextEdit):
         """
 
         QTextEdit.__init__(self, parent)
+
         self.interpreter = interpreter
         self.colorizer = SyntaxColor()
 
