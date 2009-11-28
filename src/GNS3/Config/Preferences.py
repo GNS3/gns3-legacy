@@ -97,8 +97,8 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
             # Finally, get the class
             mod = getattr(mod, 'UiConfig_' + widgetPrefix + widgetName)
             return mod
-        except ImportError:
-            print 'Module ' + modName + ' not found'
+        except ImportError, err:
+            print "Error while importing %s: %s" % (modName, err)
             return None
 
     def __initDialog(self):
