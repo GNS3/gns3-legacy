@@ -51,7 +51,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         self.fake = Fake
         self.multi = Multi
 
-        self.setZValue(1)
+        self.setZValue(-1)
 
         if not self.fake:
 

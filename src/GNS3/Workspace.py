@@ -66,6 +66,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         
         # By default don't show interface names
         self.flg_showInterfaceNames = False
+        
+        # By default don't show layer positioning
+        self.flg_showLayerPos = False
     
         # Load UndoView with the Undo Stack
         self.UndoViewDock.setStack(globals.GApp.topology.undoStack)
@@ -124,6 +127,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_Snapshot, QtCore.SIGNAL('triggered()'), self.__action_Snapshot)
         self.connect(self.action_Undo, QtCore.SIGNAL('triggered()'), self.__action_Undo)
         self.connect(self.action_Redo, QtCore.SIGNAL('triggered()'), self.__action_Redo)
+        self.connect(self.action_ShowLayers, QtCore.SIGNAL('triggered()'), self.__action_ShowLayers)
         
     def __createMenus(self):
         """ Add own menu actions, and create new sub-menu
@@ -461,6 +465,18 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         globals.GApp.topology.undoStack.redo()
+        
+    def __action_ShowLayers(self):
+        """ Implement the QAction `Show layers'
+        - Show layer positioning for every items
+        """
+
+        if self.flg_showLayerPos == False:
+            self.flg_showLayerPos = True
+        else:
+            self.flg_showLayerPos = False
+        for item in globals.GApp.topology.items():
+            item.update()
 
     def __action_SelectAll(self):
         """ Implement the QAction `SelectAll'
@@ -517,16 +533,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Display/Hide interface names for all the nodes on the scene
         """
     
-        if self.flg_showInterfaceNames == False:
-            self.flg_showInterfaceNames = True
-            self.action_ShowinterfaceNames.setText(translate('Workspace', 'Hide interface names'))
-            for link in globals.GApp.topology.links:
-                link.adjust()
-        else:
-            self.flg_showInterfaceNames = False
-            self.action_ShowinterfaceNames.setText(translate('Workspace', 'Show interface names'))
-            for link in globals.GApp.topology.links:
-                link.adjust()
+
         
     def __action_TelnetAll(self):
         """ Telnet to all started IOS routers

@@ -53,8 +53,6 @@ class DecorativeNode(AbstractNode):
         self.setCustomToolTip()
         self.config = None
         
-        self.setZValue(2)
-        
     def __del__(self):
     
         pass

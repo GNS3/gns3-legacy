@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Mon Nov 23 21:34:02 2009
-#      by: PyQt4 UI code generator 4.6
+# Created: Fri Feb  5 18:22:12 2010
+#      by: PyQt4 UI code generator 4.6.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -32,7 +32,7 @@ class Ui_MainWindow(object):
         self.gridlayout.addWidget(self.graphicsView, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 840, 25))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 840, 22))
         self.menubar.setObjectName("menubar")
         self.menu_Edit = QtGui.QMenu(self.menubar)
         self.menu_Edit.setObjectName("menu_Edit")
@@ -299,6 +299,9 @@ class Ui_MainWindow(object):
         icon27.addPixmap(QtGui.QPixmap(":/icons/edit-project.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_EditProject.setIcon(icon27)
         self.action_EditProject.setObjectName("action_EditProject")
+        self.action_ShowLayers = QtGui.QAction(MainWindow)
+        self.action_ShowLayers.setCheckable(True)
+        self.action_ShowLayers.setObjectName("action_ShowLayers")
         self.menu_Edit.addAction(self.action_SelectAll)
         self.menu_Edit.addAction(self.action_SelectNone)
         self.menu_Edit.addSeparator()
@@ -320,7 +323,7 @@ class Ui_MainWindow(object):
         self.menu_View.addAction(self.action_ZoomOut)
         self.menu_View.addAction(self.action_ZoomReset)
         self.menu_View.addSeparator()
-        self.menu_View.addSeparator()
+        self.menu_View.addAction(self.action_ShowLayers)
         self.menubar.addAction(self.menu_File.menuAction())
         self.menubar.addAction(self.menu_Edit.menuAction())
         self.menubar.addAction(self.menu_View.menuAction())
@@ -428,6 +431,7 @@ class Ui_MainWindow(object):
         self.action_ShowinterfaceNames.setText(QtGui.QApplication.translate("MainWindow", "Show interface names", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Snapshot.setText(QtGui.QApplication.translate("MainWindow", "Snapshot", None, QtGui.QApplication.UnicodeUTF8))
         self.action_EditProject.setText(QtGui.QApplication.translate("MainWindow", "&Edit project", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ShowLayers.setText(QtGui.QApplication.translate("MainWindow", "Show layers", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.Console import Console
 from GNS3.UndoFramework import UndoView

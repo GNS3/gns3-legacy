@@ -43,7 +43,7 @@
      <x>0</x>
      <y>0</y>
      <width>840</width>
-     <height>25</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit">
@@ -86,7 +86,7 @@
     <addaction name="action_ZoomOut"/>
     <addaction name="action_ZoomReset"/>
     <addaction name="separator"/>
-    <addaction name="separator"/>
+    <addaction name="action_ShowLayers"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
@@ -716,6 +716,14 @@
    </property>
    <property name="text">
     <string>&amp;Edit project</string>
+   </property>
+  </action>
+  <action name="action_ShowLayers">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show layers</string>
    </property>
   </action>
  </widget>

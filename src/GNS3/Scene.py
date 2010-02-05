@@ -172,22 +172,6 @@ class Scene(QtGui.QGraphicsView):
             menu.addAction(idlepcAct)
             menu.addAction(StartupConfigAct)
 
-        instances = map(lambda item: isinstance(item, Annotation) or isinstance(item, Pixmap) or isinstance(item, AbstractShapeItem), items)
-        if True in instances:
-        
-            # Action: Lower Z value
-            lowerZvalueAct = QtGui.QAction(translate('Scene', 'Lower one step'), menu)
-            lowerZvalueAct.setIcon(QtGui.QIcon(':/icons/lower_z_value.svg'))
-            self.connect(lowerZvalueAct, QtCore.SIGNAL('triggered()'), self.slotlowerZValue)
-            
-            # Action: Raise Z value
-            raiseZvalueAct = QtGui.QAction(translate('Scene', 'Raise one step'), menu)
-            raiseZvalueAct.setIcon(QtGui.QIcon(':/icons/raise_z_value.svg'))
-            self.connect(raiseZvalueAct, QtCore.SIGNAL('triggered()'), self.slotraiseZValue)
-
-            menu.addAction(lowerZvalueAct)
-            menu.addAction(raiseZvalueAct)
-
         instances = map(lambda item: isinstance(item, Annotation) or isinstance(item, AbstractShapeItem), items)
         if True in instances:
         
@@ -203,6 +187,19 @@ class Scene(QtGui.QGraphicsView):
         deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
         self.connect(deleteAct, QtCore.SIGNAL('triggered()'), self.slotDeleteNode)
         menu.addAction(deleteAct)
+        
+        # Action: Lower Z value
+        lowerZvalueAct = QtGui.QAction(translate('Scene', 'Lower one step'), menu)
+        lowerZvalueAct.setIcon(QtGui.QIcon(':/icons/lower_z_value.svg'))
+        self.connect(lowerZvalueAct, QtCore.SIGNAL('triggered()'), self.slotlowerZValue)
+            
+        # Action: Raise Z value
+        raiseZvalueAct = QtGui.QAction(translate('Scene', 'Raise one step'), menu)
+        raiseZvalueAct.setIcon(QtGui.QIcon(':/icons/raise_z_value.svg'))
+        self.connect(raiseZvalueAct, QtCore.SIGNAL('triggered()'), self.slotraiseZValue)
+
+        menu.addAction(raiseZvalueAct)
+        menu.addAction(lowerZvalueAct)
 
         menu.exec_(QtGui.QCursor.pos())
 
@@ -396,19 +393,19 @@ class Scene(QtGui.QGraphicsView):
         """
     
         for item in self.__topology.selectedItems():
-            if isinstance(item, Annotation) or isinstance(item, Pixmap) or isinstance(item, AbstractShapeItem):
-                zvalue = item.zValue()
-                if zvalue > 0:
-                    item.setZValue(zvalue - 1)
+            zvalue = item.zValue()
+            if zvalue > 0:
+                item.setZValue(zvalue - 1)
+                item.update()
         
     def slotraiseZValue(self):
         """ Raise Z value
         """
     
         for item in self.__topology.selectedItems():
-            if isinstance(item, Annotation) or isinstance(item, Pixmap) or isinstance(item, AbstractShapeItem):
-                zvalue = item.zValue()
-                item.setZValue(zvalue + 1)
+            zvalue = item.zValue()
+            item.setZValue(zvalue + 1)
+            item.update()
 
     def slotConsole(self):
         """ Slot called to launch a console on the selected items
@@ -628,8 +625,12 @@ class Scene(QtGui.QGraphicsView):
                 show = False
         if show and event.button() == QtCore.Qt.RightButton and not globals.addingLinkFlag:
             if item:
+                for it in globals.GApp.topology.items():
+                    it.setSelected(False)
                 item.setSelected(True)
-            self.showContextualMenu()
+                self.showContextualMenu()
+            elif len(self.__topology.selectedItems()) > 1:
+                self.showContextualMenu()
         elif event.button() == QtCore.Qt.LeftButton and globals.addingNote:
             note = Annotation()
             note.setPos(self.mapToScene(event.pos()))

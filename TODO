@@ -2,11 +2,6 @@ TODO LIST
 
  * Simulated host support (inspirated from/using LWIP).
  * cpulimit integration
- * NIO multicast support (next release of Dynamips)
- * Show NIO activity (next release of Dynamips)
- * Dynamips QinQ integration (next release of Dynamips)
- * Daisy chaining for switches
- * Improving the snapshot system (http://www.gns3.net/phpBB/topic290.html)
  * Merge Pemu with Qemu (provide a patch)
  * Symbols for Voice labs (gateway, gatekeeper, ip phones, sip servers, call managers)
  * Create DMG for MacOSX (http://www.gns3.net/phpBB/topic307.html)
@@ -16,20 +11,29 @@ TODO LIST
  * Reload router option
  * A view of object z values
  * Pre-recorded terminal config
+ * Browse option for startup-config (http://www.gns3.net/phpBB/topic1267.html)
+ * Possibility to select the hypervisor for Ethernet/ATM/FR/ATMBR (http://www.gns3.net/phpBB/topic1315.html)
+ * Change IOS (same platform, http://www.gns3.net/phpBB/topic721.html)
+ * Relative paths (http://www.gns3.net/phpBB/topic361.html)
+ 
+Low priority features:
+ 
+ * NIO multicast support (next release of Dynamips)
+ * Show NIO activity (next release of Dynamips)
+ * Dynamips QinQ integration (next release of Dynamips)
+ * Daisy chaining for switches
+ * Improving the snapshot system (http://www.gns3.net/phpBB/topic290.html)
+ * Vmware integration (http://www.gns3.net/phpBB/topic1162.html)
+ 
+Debugging:
+
  * Check wics (http://www.gns3.net/phpBB/topic871.html http://www.gns3.net/phpBB/topic324.html http://www.gns3.net/phpBB/topic1087.html) and tooltips info about wics (http://www.gns3.net/phpBB/topic1205.html)
  * Check allocated ports (tooltips).
  * Generic Ethernet NIO is blank on Vista (http://www.gns3.net/phpBB/topic885.html)
- * Browse option for startup-config (http://www.gns3.net/phpBB/topic1267.html)
  * Check ghostios (http://www.gns3.net/phpBB/topic999.html)
  * Check GNS3 on Windows 7 (e.g. http://www.gns3.net/phpBB/topic1355.html http://www.gns3.net/phpBB/topic1007.html)
- * Possibility to select the hypervisor for Ethernet/ATM/FR/ATMBR (http://www.gns3.net/phpBB/topic1315.html)
  * Save interface label? (http://www.gns3.net/phpBB/topic1271.html)
  * Save GUI space? (http://www.gns3.net/phpBB/topic1268.html)
- * Change IOS (same platform, http://www.gns3.net/phpBB/topic721.html)
- * Compressing projects? (http://www.gns3.net/phpBB/topic362.html)
  * Check save on Mac OS X (http://www.gns3.net/phpBB/topic6.html)
  * Selecting device logically (http://www.gns3.net/phpBB/topic247.html)
- * Relative paths (http://www.gns3.net/phpBB/topic361.html)
  * Bug with Cloud (http://www.gns3.net/phpBB/topic1030.html)
- * Vmware integration (http://www.gns3.net/phpBB/topic1162.html)
- * Focus position with GUI elements

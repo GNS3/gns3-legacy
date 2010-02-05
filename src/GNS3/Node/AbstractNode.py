@@ -58,7 +58,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         # scene settings
         self.setFlags(self.ItemIsMovable | self.ItemIsSelectable | self.ItemIsFocusable)
         self.setAcceptsHoverEvents(True)
-        self.setZValue(2)
         self.setSharedRenderer(self.__render_normal)
         
         # x&y position for hostname
@@ -137,6 +136,22 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             _local_option.state = QtGui.QStyle.State_None
 
         QtSvg.QGraphicsSvgItem.paint(self, painter, _local_option, widget)
+        
+        # Don't draw if not activated
+        if globals.GApp.workspace.flg_showLayerPos == False:
+            return
+        
+        # Show layer level of this node
+        brect = self.boundingRect()
+        center = self.mapFromItem(self, brect.width() / 2.0, brect.height() / 2.0)
+        
+        painter.setBrush(QtCore.Qt.red)
+        painter.setPen(QtCore.Qt.red)
+        painter.drawRect((brect.width() / 2.0) - 10, (brect.height() / 2.0) - 10, 20,20)
+        painter.setPen(QtCore.Qt.black)
+        painter.setFont(QtGui.QFont("TypeWriter", 14, QtGui.QFont.Bold))
+        zval = str(int(self.zValue()))
+        painter.drawText(QtCore.QPointF(center.x() - 4, center.y() + 4), zval)
 
     def itemChange(self, change, value):
         """ do some action when item is changed...
@@ -288,7 +303,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.textItem = QtGui.QGraphicsTextItem(hostname, self)
         self.textItem.setFont(QtGui.QFont("TypeWriter", 10, QtGui.QFont.Bold))
         self.textItem.setFlag(self.textItem.ItemIsMovable)
-        self.textItem.setZValue(2)
         if self.hostname_xpos == None and self.hostname_ypos == None:
             # use default positions
             if self.default_hostname_xpos == None and self.default_hostname_ypos == None:
@@ -328,7 +342,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             ifname: string
         """
 
-        interface_list = set()
         for edge in self.__edgeList.copy():
             interface = edge.getLocalInterface(self)
             if ifname == interface:

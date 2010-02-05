@@ -30,7 +30,6 @@ class AbstractShapeItem(object):
 
         self.setFlags(QtGui.QGraphicsItem.ItemIsMovable |  QtGui.QGraphicsItem.ItemIsFocusable | QtGui.QGraphicsItem.ItemIsSelectable)
         self.setAcceptsHoverEvents(True)
-        self.setZValue(0)
         self.border = 5
         self.rotation = 0
         
@@ -145,6 +144,30 @@ class AbstractShapeItem(object):
     def hoverLeaveEvent(self, event):
     
         globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
+        
+
+    def drawLayerInfo(self, painter):
+
+        # Don't draw if not activated
+        if globals.GApp.workspace.flg_showLayerPos == False:
+            return
+
+        # Show layer level of this node
+        brect = self.boundingRect()
+        
+        # Don't draw if the object is too small ...
+        if brect.width() < 20 or brect.height() < 20:
+            return
+        
+        center = self.mapFromItem(self, brect.width() / 2.0, brect.height() / 2.0)
+        
+        painter.setBrush(QtCore.Qt.red)
+        painter.setPen(QtCore.Qt.red)
+        painter.drawRect((brect.width() / 2.0) - 10, (brect.height() / 2.0) - 10, 20,20)
+        painter.setPen(QtCore.Qt.black)
+        painter.setFont(QtGui.QFont("TypeWriter", 14, QtGui.QFont.Bold))
+        zval = str(int(self.zValue()))
+        painter.drawText(QtCore.QPointF(center.x() - 4, center.y() + 4), zval)
             
 class Rectangle(AbstractShapeItem, QtGui.QGraphicsRectItem):
     """ Class to draw a rectangle on the scene
@@ -158,6 +181,11 @@ class Rectangle(AbstractShapeItem, QtGui.QGraphicsRectItem):
         pen = QtGui.QPen(QtCore.Qt.black, 2, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin)
         self.setPen(pen)
         
+    def paint(self, painter, option, widget=None):
+        
+        QtGui.QGraphicsRectItem.paint(self, painter, option, widget)
+        self.drawLayerInfo(painter)
+        
 class Ellipse(AbstractShapeItem, QtGui.QGraphicsEllipseItem):
     """ Class to draw an ellipse on the scene
     """
@@ -169,5 +197,8 @@ class Ellipse(AbstractShapeItem, QtGui.QGraphicsEllipseItem):
         self.setPos(pos)
         pen = QtGui.QPen(QtCore.Qt.black, 2, QtCore.Qt.DashLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin)
         self.setPen(pen)
+        
+    def paint(self, painter, option, widget=None):
 
-
+        QtGui.QGraphicsEllipseItem.paint(self, painter, option, widget)
+        self.drawLayerInfo(painter)
