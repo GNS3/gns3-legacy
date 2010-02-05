@@ -6,10 +6,8 @@ TODO LIST
  * Symbols for Voice labs (gateway, gatekeeper, ip phones, sip servers, call managers)
  * Create DMG for MacOSX (http://www.gns3.net/phpBB/topic307.html)
  * Slow start-all
- * Generated labels for interfaces should follow a moving node
  * Clean router option (config + nvram)
  * Reload router option
- * A view of object z values
  * Pre-recorded terminal config
  * Browse option for startup-config (http://www.gns3.net/phpBB/topic1267.html)
  * Possibility to select the hypervisor for Ethernet/ATM/FR/ATMBR (http://www.gns3.net/phpBB/topic1315.html)

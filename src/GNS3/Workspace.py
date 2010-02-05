@@ -532,8 +532,17 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_ShowInterfaceNames(self):
         """ Display/Hide interface names for all the nodes on the scene
         """
-    
-
+        
+        if self.flg_showInterfaceNames == False:
+            self.flg_showInterfaceNames = True
+            self.action_ShowinterfaceNames.setText(translate('Workspace', 'Hide interface names'))
+            for link in globals.GApp.topology.links:
+                link.adjust()
+        else:
+            self.flg_showInterfaceNames = False
+            self.action_ShowinterfaceNames.setText(translate('Workspace', 'Show interface names'))
+            for link in globals.GApp.topology.links:
+                link.adjust()
         
     def __action_TelnetAll(self):
         """ Telnet to all started IOS routers
