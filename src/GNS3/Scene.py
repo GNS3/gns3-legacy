@@ -167,8 +167,13 @@ class Scene(QtGui.QGraphicsView):
             suspendAct = QtGui.QAction(translate('Scene', 'Suspend'), menu)
             suspendAct.setIcon(QtGui.QIcon(':/icons/pause.svg'))
             self.connect(suspendAct, QtCore.SIGNAL('triggered()'), self.slotSuspendNode)
+            
+            reloadAct = QtGui.QAction(translate('Scene', 'Reload'), menu)
+            reloadAct.setIcon(QtGui.QIcon(':/icons/pause.svg'))
+            self.connect(reloadAct, QtCore.SIGNAL('triggered()'), self.slotReloadNode)
 
             menu.addAction(suspendAct)
+            menu.addAction(reloadAct)
             menu.addAction(idlepcAct)
             menu.addAction(StartupConfigAct)
 
@@ -455,6 +460,14 @@ class Scene(QtGui.QGraphicsView):
             if  isinstance(item, IOSRouter):
                 item.suspendNode()
                 
+    def slotReloadNode(self):
+        """ Slot called to reload the selected items
+        """
+
+        for item in self.__topology.selectedItems():
+            if  isinstance(item, IOSRouter):
+                item.reloadNode()
+                
     def getSourceNode(self):
     
         return globals.GApp.topology.getNode(self.__sourceNodeID)
@@ -580,7 +593,6 @@ class Scene(QtGui.QGraphicsView):
             symbolname = str(event.mimeData().text())
             # Get resource corresponding to node type
             object = None
-            svgrc = ":/icons/default.svg"
             for item in SYMBOLS:
                 if item['name'] == symbolname:
                     renderer_normal = self.renders[symbolname]['normal']

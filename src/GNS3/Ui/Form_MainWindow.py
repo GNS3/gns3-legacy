@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Fri Feb  5 18:22:12 2010
+# Created: Sat Feb  6 14:52:17 2010
 #      by: PyQt4 UI code generator 4.6.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -302,6 +302,8 @@ class Ui_MainWindow(object):
         self.action_ShowLayers = QtGui.QAction(MainWindow)
         self.action_ShowLayers.setCheckable(True)
         self.action_ShowLayers.setObjectName("action_ShowLayers")
+        self.action_ReloadAll = QtGui.QAction(MainWindow)
+        self.action_ReloadAll.setObjectName("action_ReloadAll")
         self.menu_Edit.addAction(self.action_SelectAll)
         self.menu_Edit.addAction(self.action_SelectNone)
         self.menu_Edit.addSeparator()
@@ -386,9 +388,11 @@ class Ui_MainWindow(object):
         self.action_IOS_images.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+I", None, QtGui.QApplication.UnicodeUTF8))
         self.action_OnlineHelp.setText(QtGui.QApplication.translate("MainWindow", "&Online Help", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Export.setText(QtGui.QApplication.translate("MainWindow", "&Export", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_StartAll.setText(QtGui.QApplication.translate("MainWindow", "Start/Resume all IOS", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_StartAll.setText(QtGui.QApplication.translate("MainWindow", "Start/Resume every devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_StartAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Start/Resume every devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StartAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Start or resume all IOS instances", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_StopAll.setText(QtGui.QApplication.translate("MainWindow", "Stop all IOS", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_StopAll.setText(QtGui.QApplication.translate("MainWindow", "Stop every devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_StopAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Stop every devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StopAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Stop all IOS instances", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ShowHostnames.setText(QtGui.QApplication.translate("MainWindow", "Show the hostnames", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ShowHostnames.setToolTip(QtGui.QApplication.translate("MainWindow", "Show hostnames", None, QtGui.QApplication.UnicodeUTF8))
@@ -414,7 +418,8 @@ class Ui_MainWindow(object):
         self.action_Undo.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Z", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Redo.setText(QtGui.QApplication.translate("MainWindow", "&Redo", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Redo.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Y", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_SuspendAll.setText(QtGui.QApplication.translate("MainWindow", "Suspend all IOS", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_SuspendAll.setText(QtGui.QApplication.translate("MainWindow", "Suspend every devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_SuspendAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Suspend every devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SuspendAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Suspend all IOS instances", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Clear.setText(QtGui.QApplication.translate("MainWindow", "Clear the topology", None, QtGui.QApplication.UnicodeUTF8))
         self.action_AddNote.setText(QtGui.QApplication.translate("MainWindow", "Add a note", None, QtGui.QApplication.UnicodeUTF8))
@@ -432,6 +437,7 @@ class Ui_MainWindow(object):
         self.action_Snapshot.setText(QtGui.QApplication.translate("MainWindow", "Snapshot", None, QtGui.QApplication.UnicodeUTF8))
         self.action_EditProject.setText(QtGui.QApplication.translate("MainWindow", "&Edit project", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ShowLayers.setText(QtGui.QApplication.translate("MainWindow", "Show layers", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ReloadAll.setText(QtGui.QApplication.translate("MainWindow", "ReloadAll", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.Console import Console
 from GNS3.UndoFramework import UndoView

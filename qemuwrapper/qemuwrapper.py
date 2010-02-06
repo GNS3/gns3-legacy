@@ -51,6 +51,7 @@ __author__ = 'Thomas Pani and Jeremy Grossmann'
 __version__ = '0.2.5'
 
 QEMU_PATH = "qemu"
+QEMU_IMG_PATH = "qemu-img"
 PORT = 10525
 QEMU_INSTANCES = {}
 
@@ -219,6 +220,7 @@ class QEMUInstance(xEMUInstance):
     def __init__(self, name):
         super(QEMUInstance, self).__init__(name)
         self.bin = QEMU_PATH
+        self.img_bin = QEMU_IMG_PATH
         self.valid_attr_names.extend(('flash_size', 'flash_name'))
         self.flash_size = '256M'
         self.flash_name = 'FLASH'
@@ -264,7 +266,7 @@ class ASAInstance(QEMUInstance):
     def _disk_options(self):
         flash = os.path.join(self.workdir, self.flash_name)
         if not os.path.exists(flash):
-            os.spawnlp(os.P_WAIT, 'qemu-img', 'qemu-img', 'create',
+            os.spawnlp(os.P_WAIT, self.img_bin, self.img_bin, 'create',
                 '-f', 'qcow2', flash, self.flash_size)
         return ('-hda', flash)
     
@@ -287,11 +289,11 @@ class JunOSInstance(QEMUInstance):
     def _disk_options(self):
         flash = os.path.join(self.workdir, self.flash_name)
         if not os.path.exists(flash):
-            os.spawnlp(os.P_WAIT, 'qemu-img', 'qemu-img', 'create',
+            os.spawnlp(os.P_WAIT, self.img_bin, self.img_bin, 'create',
                 '-b', self.image, '-f', 'qcow2', flash, self.flash_size)
         swap = os.path.join(self.workdir, self.swap_name)
         if not os.path.exists(swap):
-            os.spawnlp(os.P_WAIT, 'qemu-img', 'qemu-img', 'create',
+            os.spawnlp(os.P_WAIT, self.img_bin, self.img_bin, 'create',
                 '-f', 'qcow2', '-c', swap, self.swap_size)
         return (flash, '-hdb', swap)
     
@@ -308,11 +310,11 @@ class QemuDeviceInstance(QEMUInstance):
     def _disk_options(self):
         flash = os.path.join(self.workdir, self.flash_name)
         if not os.path.exists(flash):
-            os.spawnlp(os.P_WAIT, 'qemu-img', 'qemu-img', 'create',
+            os.spawnlp(os.P_WAIT, self.img_bin, self.img_bin, 'create',
                 '-b', self.image, '-f', 'qcow2', flash, self.flash_size)
         swap = os.path.join(self.workdir, self.swap_name)
         if not os.path.exists(swap):
-            os.spawnlp(os.P_WAIT, 'qemu-img', 'qemu-img', 'create',
+            os.spawnlp(os.P_WAIT, self.img_bin, self.img_bin, 'create',
                 '-f', 'qcow2', '-c', swap, self.swap_size)
         return (flash, '-hdb', swap)
 
@@ -325,6 +327,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             'module_list' : (0, 0),
             'cmd_list' : (1, 1),
             'qemu_path' : (1, 1),
+            'qemu_img_path' : (1, 1),
             'working_dir' : (1, 1),
             'reset' : (0, 0),
             'close' : (0, 0),
@@ -475,6 +478,20 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             print "Qemu path is now %s" % QEMU_PATH
             for qemu_name in QEMU_INSTANCES.keys():
                 QEMU_INSTANCES[qemu_name].bin = os.path.join(os.getcwd(), QEMU_INSTANCES[qemu_name].name)
+            self.send_reply(self.HSC_INFO_OK, 1, "OK")
+        except OSError, e:
+            self.send_reply(self.HSC_ERR_INV_PARAM, 1,
+                            "access: %s" % e.strerror)
+
+    def do_qemuwrapper_qemu_img_path(self, data):
+        qemu_img_path, = data
+        try:
+            os.access(qemu_img_path, os.F_OK)
+            global QEMU_IMG_PATH
+            QEMU_IMG_PATH = qemu_img_path
+            print "Qemu-img path is now %s" % QEMU_IMG_PATH
+            for qemu_name in QEMU_INSTANCES.keys():
+                QEMU_INSTANCES[qemu_name].img_bin = os.path.join(os.getcwd(), QEMU_INSTANCES[qemu_name].name)
             self.send_reply(self.HSC_INFO_OK, 1, "OK")
         except OSError, e:
             self.send_reply(self.HSC_ERR_INV_PARAM, 1,

@@ -427,7 +427,10 @@
      <normaloff>:/icons/play.svg</normaloff>:/icons/play.svg</iconset>
    </property>
    <property name="text">
-    <string>Start/Resume all IOS</string>
+    <string>Start/Resume every devices</string>
+   </property>
+   <property name="toolTip">
+    <string>Start/Resume every devices</string>
    </property>
    <property name="statusTip">
     <string>Start or resume all IOS instances</string>
@@ -442,7 +445,10 @@
      <normaloff>:/icons/stop.svg</normaloff>:/icons/stop.svg</iconset>
    </property>
    <property name="text">
-    <string>Stop all IOS</string>
+    <string>Stop every devices</string>
+   </property>
+   <property name="toolTip">
+    <string>Stop every devices</string>
    </property>
    <property name="statusTip">
     <string>Stop all IOS instances</string>
@@ -589,7 +595,10 @@
      <normaloff>:/icons/pause.svg</normaloff>:/icons/pause.svg</iconset>
    </property>
    <property name="text">
-    <string>Suspend all IOS</string>
+    <string>Suspend every devices</string>
+   </property>
+   <property name="toolTip">
+    <string>Suspend every devices</string>
    </property>
    <property name="statusTip">
     <string>Suspend all IOS instances</string>
@@ -724,6 +733,11 @@
    </property>
    <property name="text">
     <string>Show layers</string>
+   </property>
+  </action>
+  <action name="action_ReloadAll">
+   <property name="text">
+    <string>ReloadAll</string>
    </property>
   </action>
  </widget>

@@ -274,6 +274,7 @@ class Topology(QtGui.QGraphicsScene):
             self.dynagen.dynamips[qemu_name] = qlib.Qemu(host)
             self.dynagen.dynamips[qemu_name].reset()
             self.dynagen.dynamips[qemu_name].qemupath = globals.GApp.systconf['qemu'].qemu_path
+            self.dynagen.dynamips[qemu_name].qemuimgpath = globals.GApp.systconf['qemu'].qemu_img_path
             self.dynagen.dynamips[qemu_name].baseconsole = globals.GApp.systconf['qemu'].qemuwrapper_baseConsole
             self.dynagen.dynamips[qemu_name].baseudp = globals.GApp.systconf['qemu'].qemuwrapper_baseUDP
             self.dynagen.get_defaults_config()

@@ -38,6 +38,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         self.connect(self.QemuwrapperPath_browser, QtCore.SIGNAL('clicked()'),  self.slotSelectQemuWrapperPath)
         self.connect(self.QemuwrapperWorkdir_browser, QtCore.SIGNAL('clicked()'),  self.slotSelectQemuWrapperWorkdir)
         self.connect(self.QemuPath_browser, QtCore.SIGNAL('clicked()'),  self.slotSelectQemuPath)
+        self.connect(self.QemuImgPath_browser, QtCore.SIGNAL('clicked()'),  self.slotSelectQemuImgPath)
         self.comboBoxBinding.addItems(['localhost', QtNetwork.QHostInfo.localHostName()] + map(lambda addr: addr.toString(), QtNetwork.QNetworkInterface.allAddresses()))
 
         # Qemu settings
@@ -87,6 +88,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         self.lineEditQemuwrapperPath.setText(os.path.normpath(self.conf.qemuwrapper_path))
         self.lineEditQemuwrapperWorkdir.setText(os.path.normpath(self.conf.qemuwrapper_workdir))
         self.lineEditQemuPath.setText(os.path.normpath(self.conf.qemu_path))
+        self.lineEditQemuImgPath.setText(os.path.normpath(self.conf.qemu_img_path))
         self.lineEditHostExternalQemu.setText(self.conf.external_host)
         
         if self.conf.enable_QemuManager == True:
@@ -188,6 +190,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         self.conf.qemuwrapper_path = unicode(self.lineEditQemuwrapperPath.text())
         self.conf.qemuwrapper_workdir = unicode(self.lineEditQemuwrapperWorkdir.text())
         self.conf.qemu_path = unicode(self.lineEditQemuPath.text())
+        self.conf.qemu_img_path = unicode(self.lineEditQemuImgPath.text())
         self.conf.external_host = unicode(self.lineEditHostExternalQemu.text())
         self.conf.QemuManager_binding = unicode(self.comboBoxBinding.currentText())
         
@@ -303,6 +306,14 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         path = fileBrowser('Qemu', directory='.', parent=globals.preferencesWindow).getFile()
         if path != None and path[0] != '':
             self.lineEditQemuPath.setText(os.path.normpath(path[0]))
+            
+    def slotSelectQemuImgPath(self):
+        """ Get a path to Qemu-img from the file system
+        """
+
+        path = fileBrowser('Qemu-img', directory='.', parent=globals.preferencesWindow).getFile()
+        if path != None and path[0] != '':
+            self.lineEditQemuImgPath.setText(os.path.normpath(path[0]))
             
     def slotSelectQemuImage(self):
         """ Get a Qemu image from the file system

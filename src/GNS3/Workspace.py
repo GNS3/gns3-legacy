@@ -109,6 +109,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_StartAll,  QtCore.SIGNAL('triggered()'), self.__action_StartAll)
         self.connect(self.action_StopAll,  QtCore.SIGNAL('triggered()'), self.__action_StopAll)
         self.connect(self.action_SuspendAll,  QtCore.SIGNAL('triggered()'), self.__action_SuspendAll)
+        self.connect(self.action_ReloadAll,  QtCore.SIGNAL('triggered()'), self.__action_ReloadAll)
         self.connect(self.action_OnlineHelp,  QtCore.SIGNAL('triggered()'), self.__action_Help)
         self.connect(self.action_About,  QtCore.SIGNAL('triggered()'), self.__action_About)
         self.connect(self.action_AboutQt,  QtCore.SIGNAL('triggered()'), self.__action_AboutQt)
@@ -586,10 +587,17 @@ class Workspace(QMainWindow, Ui_MainWindow):
             try:
                 if action == 'start':
                     node.startNode(progress=True)
+                    # Slow start feature
+                    seconds = globals.GApp.systconf['general'].slow_start
+                    if seconds > 0:
+                        globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+                        time.sleep(seconds)
                 if action == 'stop':
                     node.stopNode(progress=True)
                 if action == 'suspend':
                     node.suspendNode(progress=True)
+                if action == 'reload':
+                    node.reloadNode(progress=True)
             except lib.DynamipsError, msg:
                 QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "%s: Dynamips error")) % node.hostname,  unicode(msg))
             except lib.DynamipsWarning,  msg:
@@ -621,6 +629,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
         
         self.__launchProgressDialog('suspend', translate("Workspace", "Suspending nodes ..."))
+        
+    def __action_ReloadAll(self):
+        """ Reload all nodes
+        """
+        
+        self.__launchProgressDialog('reload', translate("Workspace", "Reloading nodes ..."))
         
     def __action_Help(self):
         """ Launch a browser for the pointing to the documentation page

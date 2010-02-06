@@ -587,6 +587,15 @@ class IOSRouter(AbstractNode):
             self.state = self.router.state
             self.updateToolTips()
             globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.router.state)
+            
+    def reloadNode(self, progress=False):
+        """ Reload this node
+        """
+ 
+        if self.router.state != 'running':
+            return
+        self.stopNode(progress)
+        self.startNode(progress)
 
     def suspendNode(self, progress=False):
         """ Suspend this node

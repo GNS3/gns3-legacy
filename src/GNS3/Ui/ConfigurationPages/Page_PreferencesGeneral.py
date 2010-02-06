@@ -63,6 +63,9 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
                 self.langsBox.setCurrentIndex(idx)
             idx += 1
                 
+        # Slow start when starting every devices
+        self.slowStartAll.setValue(self.conf.slow_start)
+                
         # Defaults terminal command
         if self.conf.term_cmd == '':
             if sys.platform.startswith('darwin'):
@@ -113,10 +116,11 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         self.lineEditTermCommand.setText(self.conf.term_cmd)
         self.ProjectPath.setText(os.path.normpath(self.conf.project_path))
         self.IOSPath.setText(os.path.normpath(self.conf.ios_path))
+
+        # GUI settings        
         self.workspaceWidth.setValue(self.conf.scene_width)
         self.workspaceHeight.setValue(self.conf.scene_height)
-            
-        # GUI settings
+        
         if self.conf.status_points == True:
             self.checkBoxShowStatusPoints.setCheckState(QtCore.Qt.Checked)
         else:
@@ -183,6 +187,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         self.conf.term_cmd = unicode(self.lineEditTermCommand.text())
         self.conf.scene_width = self.workspaceWidth.value()
         self.conf.scene_height = self.workspaceHeight.value()
+        self.conf.slow_start = self.slowStartAll.value()
         
         # Apply scene size
         globals.GApp.topology.setSceneRect(-(self.conf.scene_width / 2), -(self.conf.scene_height / 2), self.conf.scene_width, self.conf.scene_height)

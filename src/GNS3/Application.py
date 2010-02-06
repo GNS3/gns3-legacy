@@ -282,6 +282,7 @@ class Application(QApplication, Singleton):
         confo.qemuwrapper_path = ConfDB().get('Qemu/qemuwrapper_path', unicode(''))
         confo.qemuwrapper_workdir = ConfDB().get('Qemu/qemuwrapper_working_directory', unicode(''))
         confo.qemu_path = ConfDB().get('Qemu/qemu_path', unicode(''))
+        confo.qemu_img_path = ConfDB().get('Qemu/qemu_img_path', unicode(''))
         confo.external_host = ConfDB().get('Qemu/external_host', unicode(''))
         confo.enable_QemuManager = ConfDB().value("Qemu/enable_QemuManager", QVariant(True)).toBool()
         confo.import_use_QemuManager = ConfDB().value("Qemu/qemu_manager_import", QVariant(True)).toBool()
@@ -363,6 +364,7 @@ class Application(QApplication, Singleton):
         self.systconf['general'] = systemGeneralConf()
         confo = self.systconf['general']
         confo.lang = ConfDB().get('GNS3/lang', unicode('en'))
+        confo.slow_start = int(ConfDB().get('GNS3/slow_start', 0))
         confo.project_startup = ConfDB().value("GNS3/project_startup", QVariant(True)).toBool()
         confo.use_shell = ConfDB().value("GNS3/use_shell", QVariant(True)).toBool()
         confo.term_cmd = ConfDB().get('GNS3/console', unicode(''))
@@ -462,6 +464,7 @@ class Application(QApplication, Singleton):
         confo = self.systconf['general']
         c.set('GNS3/lang', confo.lang)
         c.set('GNS3/project_startup', confo.project_startup)
+        c.set('GNS3/slow_start', confo.slow_start)
         c.set('GNS3/console', confo.term_cmd)
         c.set('GNS3/use_shell', confo.use_shell)
         c.set('GNS3/gui_show_status_points', confo.status_points)
@@ -493,6 +496,7 @@ class Application(QApplication, Singleton):
         c.set('Qemu/qemuwrapper_path', confo.qemuwrapper_path)
         c.set('Qemu/qemuwrapper_working_directory', confo.qemuwrapper_workdir)
         c.set('Qemu/qemu_path', confo.qemu_path)
+        c.set('Qemu/qemu_img_path', confo.qemu_img_path)
         c.set('Qemu/external_host', confo.external_host)
         c.set('Qemu/enable_QemuManager', confo.enable_QemuManager)
         c.set('Qemu/qemu_manager_import', confo.import_use_QemuManager)

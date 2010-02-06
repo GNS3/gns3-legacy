@@ -108,7 +108,8 @@ conf_systemDynamips_types = {
 
 conf_systemGeneral_defaults = {
     'lang': 'en',
-    'project_startup': True, 
+    'project_startup': True,
+    'slow_start': 0,
     'term_cmd': '',
     'use_shell': True,
     'project_path': '.',
@@ -121,7 +122,8 @@ conf_systemGeneral_defaults = {
 
 conf_systemGeneral_types = {
     'lang': unicode,
-    'project_startup': bool, 
+    'project_startup': bool,
+    'slow_start': int,
     'use_shell': bool,
     'term_cmd': unicode,
     'project_path': unicode,
@@ -148,6 +150,7 @@ conf_systemQemu_defaults = {
     'qemuwrapper_path':'',
     'qemuwrapper_workdir':'',
     'qemu_path':'',
+    'qemu_img_path':'',
     'external_host':'',
     'enable_QemuManager': True,
     'import_use_QemuManager': True,
@@ -187,6 +190,7 @@ conf_systemQemu_types = {
     'qemuwrapper_path': unicode,
     'qemuwrapper_workdir': unicode,
     'qemu_path': unicode,
+    'qemu_img_path': unicode,
     'external_host': unicode,
     'enable_QemuManager': bool,
     'import_use_QemuManager': bool,

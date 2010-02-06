@@ -1,18 +1,21 @@
 TODO LIST
 
- * Simulated host support (inspirated from/using LWIP).
+ * Simulated host support
  * cpulimit integration
- * Merge Pemu with Qemu (provide a patch)
- * Symbols for Voice labs (gateway, gatekeeper, ip phones, sip servers, call managers)
+ * Symbols for Voice labs (gateway, gatekeeper, ip phones, sip servers, call managers) ==> need DIA + Inkscape
  * Create DMG for MacOSX (http://www.gns3.net/phpBB/topic307.html)
- * Slow start-all
+ * Hypervisor mode for Qemu
+
+ * Reload router option ==> Almost completed, icon missing.
+ 
+ * Slow start-all ==> Done
  * Clean router option (config + nvram)
- * Reload router option
  * Pre-recorded terminal config
  * Browse option for startup-config (http://www.gns3.net/phpBB/topic1267.html)
  * Possibility to select the hypervisor for Ethernet/ATM/FR/ATMBR (http://www.gns3.net/phpBB/topic1315.html)
- * Change IOS (same platform, http://www.gns3.net/phpBB/topic721.html)
- * Relative paths (http://www.gns3.net/phpBB/topic361.html)
+ 
+ * Change IOS (same platform, http://www.gns3.net/phpBB/topic721.html) ==> too complicated and bug prone !!
+ * Relative paths (http://www.gns3.net/phpBB/topic361.html) ==> too complicated and bug prone !!
  
 Low priority features:
  

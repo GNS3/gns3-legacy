@@ -116,6 +116,7 @@ class Qemu(object):
         self.starting_udp = self.udp
         self._workingdir = None
         self._qemupath = None
+        self._qemuimgpath = None
         self.configchange = False
 
     def close(self):
@@ -178,6 +179,25 @@ class Qemu(object):
         return self._qemupath
 
     qemupath = property(_getqemupath, _setqemupath, doc='The Qemu path')
+    
+    def _setqemuimgpath(self, qemuimgpath):
+        """ Set the path to Qemu-img for this network
+        qemuimgpath: (string) path
+        """
+
+        if type(qemuimgpath) not in [str, unicode]:
+            raise DynamipsError, 'invalid Qemu-img path'
+        # send to qemuwrapper encased in quotes to protect spaces
+        send(self, 'qemuwrapper qemu_img_path %s' % '"' + qemuimgpath + '"')
+        self._qemuimgpath = qemuimgpath
+
+    def _getqemuimgpath(self):
+        """ Returns the Qemu-img path
+        """
+
+        return self._qemuimgpath
+
+    qemuimgpath = property(_getqemuimgpath, _setqemuimgpath, doc='The Qemu-img path')
 
     def _setworkingdir(self, directory):
         """ Set the working directory for this network
