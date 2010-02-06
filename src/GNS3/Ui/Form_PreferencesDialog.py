@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_PreferencesDialog.ui'
 #
-# Created: Sat Feb  6 14:52:17 2010
+# Created: Sat Feb  6 15:26:21 2010
 #      by: PyQt4 UI code generator 4.6.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_PreferencesDialog(object):
     def setupUi(self, PreferencesDialog):
         PreferencesDialog.setObjectName("PreferencesDialog")
-        PreferencesDialog.resize(673, 645)
+        PreferencesDialog.resize(673, 658)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(2)
         sizePolicy.setVerticalStretch(2)

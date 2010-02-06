@@ -225,17 +225,3 @@ conf_systemQemu_types = {
     'default_asa_initrd': unicode,
     'default_asa_kernel_cmdline': unicode,
 }
-
-conf_systemSimhost_defaults = {
-    'path': '',
-    'workdir': '',
-    'basePort': 8000,
-    'baseUDP': 40000,
-}
-
-conf_systemSimhost_types = {
-    'path': unicode,
-    'workdir': unicode,
-    'basePort': int,
-    'baseUDP': int,
-}

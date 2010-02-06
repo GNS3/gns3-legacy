@@ -45,7 +45,20 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         self.connect(self.pushButton_ClearConfiguration, QtCore.SIGNAL('clicked()'), self.__clearConfiguration)
         self.connect(self.ProjectPath_browser, QtCore.SIGNAL('clicked()'), self.__setProjectPath)
         self.connect(self.IOSPath_browser, QtCore.SIGNAL('clicked()'), self.__setIOSPath)
+        self.connect(self.pushButtonUseTerminalCommand, QtCore.SIGNAL('clicked()'), self.__setTerminalCmd)
         self.loadConf()
+        
+        # Preconfigurated terminal commands
+        terminal_cmds = ['C:\Program Files (x86)\Putty\putty.exe -telnet %h %p',
+                         'C:\Program Files\Putty\putty.exe -telnet %h %p',
+                         'C:\TTERMPRO\ttssh.exe %h %p /W=%d /T=1',
+                         'start telnet %h %p',
+                         'xterm -T %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
+                         '/usr/lib/kde4/bin/konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &',
+                         "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'",
+                         ]
+        
+        self.comboBoxPreconfigTerminalCommands.addItems(terminal_cmds)
 
     def loadConf(self):
 
@@ -210,6 +223,11 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
 
         if path:
             self.IOSPath.setText(os.path.normpath(path))
+            
+    def __setTerminalCmd(self):
+    
+        self.lineEditTermCommand.clear()
+        self.lineEditTermCommand.setText(self.comboBoxPreconfigTerminalCommands.currentText())
 
     def __clearConfiguration(self):
     

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>539</width>
-    <height>460</height>
+    <width>478</width>
+    <height>484</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,7 +34,7 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0" colspan="2">
+       <item row="1" column="0">
         <widget class="QComboBox" name="langsBox">
          <property name="enabled">
           <bool>true</bool>
@@ -47,7 +47,7 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="0" colspan="2">
+       <item row="2" column="0">
         <widget class="QCheckBox" name="checkBoxProjectDialog">
          <property name="text">
           <string>Launch the project dialog at startup</string>
@@ -64,7 +64,17 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="0" colspan="2">
+       <item row="4" column="0">
+        <widget class="QSpinBox" name="slowStartAll">
+         <property name="suffix">
+          <string> seconds</string>
+         </property>
+         <property name="maximum">
+          <number>10000</number>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
           <string>Paths</string>
@@ -113,7 +123,7 @@
          </layout>
         </widget>
        </item>
-       <item row="6" column="0" colspan="2">
+       <item row="6" column="0">
         <widget class="QGroupBox" name="groupBox_3">
          <property name="title">
           <string>Configuration file</string>
@@ -149,7 +159,7 @@
          </layout>
         </widget>
        </item>
-       <item row="7" column="0" colspan="2">
+       <item row="7" column="0">
         <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -161,16 +171,6 @@
           </size>
          </property>
         </spacer>
-       </item>
-       <item row="4" column="0" colspan="2">
-        <widget class="QSpinBox" name="slowStartAll">
-         <property name="suffix">
-          <string> seconds</string>
-         </property>
-         <property name="maximum">
-          <number>10000</number>
-         </property>
-        </widget>
        </item>
       </layout>
      </widget>
@@ -188,6 +188,19 @@
        </item>
        <item row="1" column="0">
         <widget class="QComboBox" name="comboBoxPreconfigTerminalCommands"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="pushButtonUseTerminalCommand">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>&amp;Use</string>
+         </property>
+        </widget>
        </item>
        <item row="2" column="0">
         <widget class="QLabel" name="label_4">
@@ -209,7 +222,17 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="0" colspan="2">
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>Terminal command magic strings:
+%h = device server 
+%p = device port
+%d = device hostname</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0" colspan="2">
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -221,19 +244,6 @@
           </size>
          </property>
         </spacer>
-       </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="pushButtonUseTerminalCommand">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>&amp;Use</string>
-         </property>
-        </widget>
        </item>
       </layout>
      </widget>

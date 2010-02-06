@@ -30,7 +30,6 @@ from GNS3.Node.IOSRouter3600 import IOSRouter3600
 from GNS3.Node.IOSRouter3700 import IOSRouter3700
 from GNS3.Node.IOSRouter7200 import IOSRouter7200
 from GNS3.Node.DecorativeNode import DecorativeNode
-from GNS3.Node.SIMHOST import SIMHOST
 from GNS3.Node.AnyEmuDevice import FW, ASA, JunOS, QemuDevice
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
@@ -163,7 +162,6 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                                      ASA: "ASA",
                                      JunOS: "JunOS",
                                      QemuDevice: "Qemu",
-                                     SIMHOST: "HOST",
                                      FRSW: "FRSW",
                                      ETHSW: "ETHSW",
                                      ATMSW: "ATMSW",

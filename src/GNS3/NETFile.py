@@ -24,7 +24,6 @@ import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.qemu_lib as qlib
-import GNS3.Dynagen.simhost_lib as lwip
 from GNS3.Globals.Symbols import SYMBOLS
 from GNS3.Utils import translate, debug, error, relpath
 from PyQt4 import QtGui, QtCore
@@ -53,7 +52,6 @@ cloud_hostname_re = re.compile(r"""^C([0-9]+)""")
 firewall_hostname_re = re.compile(r"""^FW([0-9]+)""")
 junos_hostname_re = re.compile(r"""^JUNOS([0-9]+)""")
 asa_hostname_re = re.compile(r"""^ASA([0-9]+)""")
-simhost_hostname_re = re.compile(r"""^SIMHOST([0-9]+)""")
 decorative_hostname_re = re.compile(r"""^N([0-9]+)""")
 
 class NETFile(object):
@@ -132,8 +130,6 @@ class NETFile(object):
         config = None
         if isinstance(device, qlib.AnyEmuDevice) and self.dynagen.globalconfig['qemu ' + device.dynamips.host].has_key(running_config_name):
             config = self.dynagen.globalconfig['qemu ' + device.dynamips.host][running_config_name]
-        elif isinstance(device, lwip.SIMHOST) and  self.dynagen.globalconfig['lwip ' + device.dynamips.host + ':' + str(device.dynamips.port)].has_key(running_config_name):
-            config = self.dynagen.globalconfig['lwip ' + device.dynamips.host + ':' + str(device.dynamips.port)][running_config_name]
         elif self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)].has_key(running_config_name):
             config = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][running_config_name]
 
@@ -516,7 +512,6 @@ class NETFile(object):
         max_atmsw_id = -1
         max_atmbr_id = -1
         max_emu_id = -1
-        max_simhost_id = -1
         for (devicename, device) in  self.dynagen.devices.iteritems():
 
             if isinstance(device,  lib.Bridge):
@@ -670,27 +665,6 @@ class NETFile(object):
                     id = int(match_obj.group(1))
                     if id > max_emu_id:
                         max_emu_id = id
-                        
-            elif isinstance(device, lwip.SIMHOST):
-
-                config = {}
-                config['interfaces'] = {}
-                for (interface, params) in device.interfaces.iteritems():
-                    config['interfaces'][interface] = {'ip': params['ip'], 
-                                                                        'mask': params['mask'], 
-                                                                        'gw': params['gw'], 
-                                                                        }
-                node = self.create_node(device, 'Host', 'SIMHOST ' + device.name)
-                assert(node)
-                node.set_hypervisor(device.dynamips)
-                self.configure_node(node, device)
-                node.set_config(config)
-                self.populate_connection_list_for_emulated_device(device, connection_list)
-                match_obj = simhost_hostname_re.match(node.hostname)
-                if match_obj:
-                    id = int(match_obj.group(1))
-                    if id > max_simhost_id:
-                        max_simhost_id = id
 
             globals.GApp.topology.addItem(node)
 

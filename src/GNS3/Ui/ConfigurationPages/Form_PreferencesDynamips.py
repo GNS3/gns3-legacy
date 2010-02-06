@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesDynamips.ui'
 #
-# Created: Sat Feb  6 14:52:20 2010
+# Created: Sat Feb  6 15:26:23 2010
 #      by: PyQt4 UI code generator 4.6.2
 #
 # WARNING! All changes made in this file will be lost!

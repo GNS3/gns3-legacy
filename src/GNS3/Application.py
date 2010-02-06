@@ -26,12 +26,11 @@ from PyQt4.QtGui import QApplication
 from PyQt4.QtCore import QVariant, QSettings
 from GNS3.Utils import Singleton
 from GNS3.Workspace import Workspace
-from GNS3.Config.Objects import systemDynamipsConf, systemGeneralConf, systemCaptureConf, systemQemuConf, systemSimhostConf
+from GNS3.Config.Objects import systemDynamipsConf, systemGeneralConf, systemCaptureConf, systemQemuConf
 from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from GNS3.Config.Config import ConfDB, GNS_Conf
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.QemuManager import QemuManager
-from GNS3.SimhostManager import SimhostManager
 from GNS3.Translations import Translator
 from GNS3.DynagenSub import DynagenSub
 from GNS3.ProjectDialog import ProjectDialog
@@ -58,7 +57,6 @@ class Application(QApplication, Singleton):
         self.__dynagen = None
         self.__HypervisorManager = None
         self.__QemuManager = None
-        self.__SimhostManager = None
 
         # Dict for storing config
         self.__systconf = {}
@@ -233,20 +231,6 @@ class Application(QApplication, Singleton):
         return self.__QemuManager
 
     QemuManager = property(__getQemuManager, __setQemuManager, doc = 'QemuManager instance')
-    
-    def __setSimhostManager(self, SimhostManager):
-        """ register the SimhostManager instance
-        """
-
-        self.__SimhostManager = SimhostManager
-
-    def __getSimhostManager(self):
-        """ return the SimhostManager instance
-        """
-
-        return self.__SimhostManager
-
-    SimhostManager = property(__getSimhostManager, __setSimhostManager, doc = 'SimhostManager instance')
 
     def run(self, file):
 
@@ -336,15 +320,6 @@ class Application(QApplication, Singleton):
         confo.default_junos_image = os.path.expanduser(confo.default_junos_image)
         confo.default_asa_kernel = os.path.expanduser(confo.default_asa_kernel)
         confo.default_asa_initrd = os.path.expanduser(confo.default_asa_initrd)
-
-
-        # Simhost config
-        self.systconf['simhost'] = systemSimhostConf()
-        confo = self.systconf['simhost']
-        confo.path = ConfDB().get('Simhost/hypervisor_path', unicode(''))
-        confo.basePort = int(ConfDB().get('Simhost/hypervisor_basePort', 9000))
-        confo.baseUDP = int(ConfDB().get('Simhost/hypervisor_baseUDP', 35000))
-        confo.workdir = ConfDB().get('Simhost/hypervisor_working_directory', unicode(''))
         
         # Capture config
         self.systconf['capture'] = systemCaptureConf()
@@ -395,10 +370,6 @@ class Application(QApplication, Singleton):
 
         # QemuManager
         self.__QemuManager = QemuManager()
-        
-        # SimhostManager
-        if globals.GApp.systconf['simhost'].path:
-            self.__SimhostManager = SimhostManager()
 
         GNS_Conf().IOS_images()
         GNS_Conf().IOS_hypervisors()
@@ -443,7 +414,6 @@ class Application(QApplication, Singleton):
 
         self.__HypervisorManager = None
         self.__QemuManager = None
-        self.__SimhostManager = None
 
         if globals.recordConfiguration:
             # Save the geometry & state of the GUI
@@ -530,13 +500,6 @@ class Application(QApplication, Singleton):
         c.set('Qemu/default_asa_kernel', confo.default_asa_kernel)
         c.set('Qemu/default_asa_initrd', confo.default_asa_initrd)
         c.set('Qemu/default_asa_kernel_cmdline', confo.default_asa_kernel_cmdline)
-
-        # Simhost config
-        confo = self.systconf['simhost']
-        c.set('Simhost/hypervisor_path', confo.path)
-        c.set('Simhost/hypervisor_basePort', confo.basePort)
-        c.set('Simhost/hypervisor_baseUDP', confo.baseUDP)
-        c.set('Simhost/hypervisor_working_directory', confo.workdir)
         
         # Capture settings
         confo = self.systconf['capture']

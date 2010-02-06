@@ -669,62 +669,62 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractNode</name>
     <message>
-        <location filename="../Node/AbstractNode.py" line="97"/>
+        <location filename="../Node/AbstractNode.py" line="96"/>
         <source>Change hostname</source>
         <translation>تغيير الاسم  </translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="97"/>
+        <location filename="../Node/AbstractNode.py" line="96"/>
         <source>Hostname:</source>
         <translation>الاسم:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="263"/>
+        <location filename="../Node/AbstractNode.py" line="278"/>
         <source>Connection</source>
         <translation>توصيل</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="228"/>
+        <location filename="../Node/AbstractNode.py" line="243"/>
         <source>Already connected interface</source>
         <translation>منفذ متوصل مسبقا</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="109"/>
+        <location filename="../Node/AbstractNode.py" line="108"/>
         <source>Hostname</source>
         <translation>الاسم</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="109"/>
+        <location filename="../Node/AbstractNode.py" line="108"/>
         <source>Hostname already used</source>
         <translation>أسم مستخدم مسبقا</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="199"/>
+        <location filename="../Node/AbstractNode.py" line="214"/>
         <source>Hostname: %s</source>
         <translation>الأسم: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="263"/>
+        <location filename="../Node/AbstractNode.py" line="278"/>
         <source>No interface available, please configure this device</source>
         <translation>لا تتوفر منافذ بينية,أرجو أعداد هذا الجهاز</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="122"/>
+        <location filename="../Node/AbstractNode.py" line="121"/>
         <source>Change console port</source>
         <translation>قم بتغيير البورت لمنفذ البرمجة المحلي</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="122"/>
+        <location filename="../Node/AbstractNode.py" line="121"/>
         <source>Console port for %s:</source>
         <translation>بورت منفذ البرمجة المحلي ل %s:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="129"/>
+        <location filename="../Node/AbstractNode.py" line="128"/>
         <source>Console port</source>
         <translation>بورت منفذ البرمجة المحلي</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="103"/>
+        <location filename="../Node/AbstractNode.py" line="102"/>
         <source>Please use only alphanumeric characters</source>
         <translation type="unfinished"></translation>
     </message>
@@ -953,12 +953,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>DecorativeNode</name>
     <message>
-        <location filename="../Node/DecorativeNode.py" line="140"/>
+        <location filename="../Node/DecorativeNode.py" line="138"/>
         <source>Connection</source>
         <translation type="unfinished">توصيل</translation>
     </message>
     <message>
-        <location filename="../Node/DecorativeNode.py" line="140"/>
+        <location filename="../Node/DecorativeNode.py" line="138"/>
         <source>No interface available</source>
         <translation type="unfinished">عدم توفر توصيلة</translation>
     </message>
@@ -1014,17 +1014,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>أستخدم بديل %s,Local PIX image %s لايمكن أيجاد</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="149"/>
+        <location filename="../DynagenSub.py" line="143"/>
         <source>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</source>
         <translation>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="170"/>
+        <location filename="../DynagenSub.py" line="164"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
         <translation>التهيئة المحلية %s للروتر %s ,أستخدم تهيئة بديلة</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="121"/>
+        <location filename="../DynagenSub.py" line="115"/>
         <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1292,7 +1292,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>IOS image</name>
     <message>
-        <location filename="../DynagenSub.py" line="136"/>
+        <location filename="../DynagenSub.py" line="130"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1488,12 +1488,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="623"/>
+        <location filename="../Node/IOSRouter.py" line="632"/>
         <source>Connection</source>
         <translation>توصيل</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="623"/>
+        <location filename="../Node/IOSRouter.py" line="632"/>
         <source>No interface available</source>
         <translation>عدم توفر توصيلة</translation>
     </message>
@@ -1815,435 +1815,445 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>عربي</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="355"/>
+        <location filename="../Ui/Form_MainWindow.py" line="360"/>
         <source>GNS3</source>
         <translation>GNS3</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="356"/>
+        <location filename="../Ui/Form_MainWindow.py" line="361"/>
         <source>&amp;Edit</source>
         <translation>&amp;تعديل</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="357"/>
+        <location filename="../Ui/Form_MainWindow.py" line="362"/>
         <source>&amp;File</source>
         <translation>&amp;ملف</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="358"/>
+        <location filename="../Ui/Form_MainWindow.py" line="363"/>
         <source>&amp;Help</source>
         <translation>&amp;مساعدة</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="359"/>
+        <location filename="../Ui/Form_MainWindow.py" line="364"/>
         <source>&amp;View</source>
         <translation>&amp;مشاهدة</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="360"/>
+        <location filename="../Ui/Form_MainWindow.py" line="365"/>
         <source>General</source>
         <translation>عام</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="361"/>
+        <location filename="../Ui/Form_MainWindow.py" line="366"/>
         <source>Nodes Types</source>
         <translation>تصنيف النقاط</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="365"/>
+        <location filename="../Ui/Form_MainWindow.py" line="370"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="364"/>
+        <location filename="../Ui/Form_MainWindow.py" line="369"/>
         <source>Topology Summary</source>
         <translation>ملخص التوبولوجي</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="366"/>
+        <location filename="../Ui/Form_MainWindow.py" line="371"/>
         <source>Console</source>
         <translation>منفذ برمجة محلي</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="369"/>
+        <location filename="../Ui/Form_MainWindow.py" line="374"/>
         <source>&amp;About</source>
         <translation>&amp;حول</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="370"/>
+        <location filename="../Ui/Form_MainWindow.py" line="375"/>
         <source>&amp;Quit</source>
         <translation>&amp;خروج</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="371"/>
+        <location filename="../Ui/Form_MainWindow.py" line="376"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="372"/>
+        <location filename="../Ui/Form_MainWindow.py" line="377"/>
         <source>&amp;Open</source>
         <translation>&amp;فتح</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="374"/>
+        <location filename="../Ui/Form_MainWindow.py" line="379"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="375"/>
+        <location filename="../Ui/Form_MainWindow.py" line="380"/>
         <source>&amp;Save</source>
         <translation>&amp;حفظ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="377"/>
+        <location filename="../Ui/Form_MainWindow.py" line="382"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="381"/>
+        <location filename="../Ui/Form_MainWindow.py" line="386"/>
         <source>Add a link</source>
         <translation>أضف وصلة</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="383"/>
+        <location filename="../Ui/Form_MainWindow.py" line="388"/>
         <source>Ctrl+Shift+I</source>
         <translation>Ctrl+Shift+I</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="384"/>
+        <location filename="../Ui/Form_MainWindow.py" line="389"/>
         <source>&amp;Online Help</source>
         <translation>&amp;مساعدة من الموقع</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="385"/>
+        <location filename="../Ui/Form_MainWindow.py" line="390"/>
         <source>&amp;Export</source>
         <translation>&amp;تصدير</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="386"/>
-        <source>Start/Resume all IOS</source>
-        <translation>بدأ/أستأناف جميع ال IOS</translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_MainWindow.py" line="387"/>
+        <location filename="../Ui/Form_MainWindow.py" line="393"/>
         <source>Start or resume all IOS instances</source>
         <translation>بدأ أو أستاناف جميع طلبات  IOS </translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="388"/>
-        <source>Stop all IOS</source>
-        <translation>أوقف جميع  IOS</translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_MainWindow.py" line="389"/>
+        <location filename="../Ui/Form_MainWindow.py" line="396"/>
         <source>Stop all IOS instances</source>
         <translation>أوقف جميع طلبات IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="391"/>
+        <location filename="../Ui/Form_MainWindow.py" line="398"/>
         <source>Show hostnames</source>
         <translation>أظهار الاسم</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="393"/>
+        <location filename="../Ui/Form_MainWindow.py" line="400"/>
         <source>Start a console on all running IOS instances</source>
         <translation>بدأ دخول لجميع الطلبات المفتوحة </translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="394"/>
+        <location filename="../Ui/Form_MainWindow.py" line="401"/>
         <source>Save &amp;As</source>
         <translation>حفظ  &amp;بأسم</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="395"/>
+        <location filename="../Ui/Form_MainWindow.py" line="402"/>
         <source>Save As</source>
         <translation>حفظ بأسم</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="421"/>
+        <location filename="../Ui/Form_MainWindow.py" line="429"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="397"/>
+        <location filename="../Ui/Form_MainWindow.py" line="404"/>
         <source>About &amp;Qt</source>
         <translation>حول &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="398"/>
+        <location filename="../Ui/Form_MainWindow.py" line="405"/>
         <source>Zoom &amp;In</source>
         <translation>تكبير &amp;In</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="399"/>
+        <location filename="../Ui/Form_MainWindow.py" line="406"/>
         <source>Ctrl++</source>
         <translation>Ctrl++</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="400"/>
+        <location filename="../Ui/Form_MainWindow.py" line="407"/>
         <source>Zoom &amp;Out</source>
         <translation>تصغيير &amp;Out</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="401"/>
+        <location filename="../Ui/Form_MainWindow.py" line="408"/>
         <source>Ctrl+-</source>
         <translation>Ctrl+-</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="402"/>
+        <location filename="../Ui/Form_MainWindow.py" line="409"/>
         <source>Zoom &amp;1:1</source>
         <translation>Zoom &amp;1:1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="403"/>
+        <location filename="../Ui/Form_MainWindow.py" line="410"/>
         <source>Ctrl+/</source>
         <translation>Ctrl+/</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="404"/>
+        <location filename="../Ui/Form_MainWindow.py" line="411"/>
         <source>Select &amp;All</source>
         <translation>أختيار &amp;الكل</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="405"/>
+        <location filename="../Ui/Form_MainWindow.py" line="412"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="406"/>
+        <location filename="../Ui/Form_MainWindow.py" line="413"/>
         <source>Select &amp;None</source>
         <translation>أختيار &amp;لا شئ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="407"/>
+        <location filename="../Ui/Form_MainWindow.py" line="414"/>
         <source>Ctrl+Shift+A</source>
         <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="414"/>
-        <source>Suspend all IOS</source>
-        <translation>وضع مؤقتIOS</translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_MainWindow.py" line="415"/>
+        <location filename="../Ui/Form_MainWindow.py" line="423"/>
         <source>Suspend all IOS instances</source>
         <translation>وضع مؤقت  IOS جميع</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="408"/>
+        <location filename="../Ui/Form_MainWindow.py" line="415"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;تفضيلات...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="409"/>
+        <location filename="../Ui/Form_MainWindow.py" line="416"/>
         <source>Ctrl+Shift+P</source>
         <translation>Ctrl+Shift+P</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="382"/>
+        <location filename="../Ui/Form_MainWindow.py" line="387"/>
         <source>IOS images and hypervisors</source>
         <translation>IOS images and hypervisors</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="373"/>
+        <location filename="../Ui/Form_MainWindow.py" line="378"/>
         <source>Open network file</source>
         <translation>فتح ملف الشبكة</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="376"/>
+        <location filename="../Ui/Form_MainWindow.py" line="381"/>
         <source>Save network file</source>
         <translation>حفظ ملف الشبكة</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="390"/>
+        <location filename="../Ui/Form_MainWindow.py" line="397"/>
         <source>Show the hostnames</source>
         <translation>أظهار الاسم</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="392"/>
+        <location filename="../Ui/Form_MainWindow.py" line="399"/>
         <source>Telnet to all IOS</source>
         <translation>تلنت لجميع ال IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="396"/>
+        <location filename="../Ui/Form_MainWindow.py" line="403"/>
         <source>Save network file as</source>
         <translation>حفظ ملف الشبكة بأسم</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="416"/>
+        <location filename="../Ui/Form_MainWindow.py" line="424"/>
         <source>Clear the topology</source>
         <translation>مسح التوبولوجي</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="417"/>
+        <location filename="../Ui/Form_MainWindow.py" line="425"/>
         <source>Add a note</source>
         <translation>أضافة ملاحظة</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="418"/>
+        <location filename="../Ui/Form_MainWindow.py" line="426"/>
         <source>&amp;New Project</source>
         <translation>&amp;مشروع جديد</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="420"/>
+        <location filename="../Ui/Form_MainWindow.py" line="428"/>
         <source>New Project</source>
         <translation>مشروع جديد</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="424"/>
+        <location filename="../Ui/Form_MainWindow.py" line="432"/>
         <source>&amp;Symbol Manager</source>
         <translation>&amp;Symbol Manager</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="425"/>
+        <location filename="../Ui/Form_MainWindow.py" line="433"/>
         <source>Ctrl+Shift+S</source>
         <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="423"/>
+        <location filename="../Ui/Form_MainWindow.py" line="431"/>
         <source>Insert a picture</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="363"/>
+        <location filename="../Ui/Form_MainWindow.py" line="368"/>
         <source>Emulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="367"/>
+        <location filename="../Ui/Form_MainWindow.py" line="372"/>
         <source>Drawing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="426"/>
+        <location filename="../Ui/Form_MainWindow.py" line="434"/>
         <source>Draw a rectangle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="427"/>
+        <location filename="../Ui/Form_MainWindow.py" line="435"/>
         <source>Draw an ellipse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="428"/>
+        <location filename="../Ui/Form_MainWindow.py" line="436"/>
         <source>Show interface names</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="429"/>
+        <location filename="../Ui/Form_MainWindow.py" line="437"/>
         <source>Snapshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="422"/>
+        <location filename="../Ui/Form_MainWindow.py" line="430"/>
         <source>&amp;Extract/Import all startup-configs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="368"/>
+        <location filename="../Ui/Form_MainWindow.py" line="373"/>
         <source>Undo Stack</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="410"/>
+        <location filename="../Ui/Form_MainWindow.py" line="417"/>
         <source>&amp;Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="411"/>
+        <location filename="../Ui/Form_MainWindow.py" line="418"/>
         <source>Ctrl+Z</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="412"/>
+        <location filename="../Ui/Form_MainWindow.py" line="419"/>
         <source>&amp;Redo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="413"/>
+        <location filename="../Ui/Form_MainWindow.py" line="420"/>
         <source>Ctrl+Y</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="430"/>
+        <location filename="../Ui/Form_MainWindow.py" line="438"/>
         <source>&amp;Edit project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_MainWindow.py" line="392"/>
+        <source>Start/Resume every devices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_MainWindow.py" line="395"/>
+        <source>Stop every devices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_MainWindow.py" line="422"/>
+        <source>Suspend every devices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_MainWindow.py" line="439"/>
+        <source>Show layers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_MainWindow.py" line="440"/>
+        <source>ReloadAll</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="468"/>
+        <location filename="../NETFile.py" line="464"/>
         <source>Save</source>
         <translation>حفظ</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="468"/>
+        <location filename="../NETFile.py" line="464"/>
         <source>Please configure the path to Dynamips</source>
         <translation>أرجو تهيئة مسار ال Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="762"/>
+        <location filename="../NETFile.py" line="736"/>
         <source>Dynamips error</source>
         <translation>Dynamips خطأ</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="765"/>
+        <location filename="../NETFile.py" line="739"/>
         <source>Dynamips warning</source>
         <translation>Dynamips تحذير</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="499"/>
+        <location filename="../NETFile.py" line="495"/>
         <source>Exception detected, stopping importation...</source>
         <translation>وجود أستثناء,يتم أيقاف الاستيراد...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="760"/>
+        <location filename="../NETFile.py" line="734"/>
         <source>Exporting %s configuration to %s</source>
         <translation>يتم تصدير %s التهيئة ل  %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="777"/>
+        <location filename="../NETFile.py" line="751"/>
         <source>%s: IO Error: %s</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="499"/>
+        <location filename="../NETFile.py" line="495"/>
         <source>Importation</source>
         <translation>أستيراد</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="480"/>
+        <location filename="../NETFile.py" line="476"/>
         <source>Please wait while importing the topology</source>
         <translation>أرجو ا الانتظار حتي يتم أستيراد التوبولوجي</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="777"/>
+        <location filename="../NETFile.py" line="751"/>
         <source>IOError</source>
         <translation>IOError</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="931"/>
+        <location filename="../NETFile.py" line="905"/>
         <source>must be connected in order to be registered</source>
         <translation>يجب أن يتم التوصيل ليتم التسجيل</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="523"/>
+        <location filename="../NETFile.py" line="518"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation>تحذير: GNS3 لايدعم جمل الشبكة المحلية, ignore i</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="406"/>
+        <location filename="../NETFile.py" line="402"/>
         <source>Cannot load image: %s</source>
         <translation>لايمكن تحميل image: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="364"/>
+        <location filename="../NETFile.py" line="360"/>
         <source>Cannot load font: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="417"/>
+        <location filename="../NETFile.py" line="413"/>
         <source>%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2289,37 +2299,37 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>NodeConfigurator</name>
     <message>
-        <location filename="../NodeConfigurator.py" line="138"/>
+        <location filename="../NodeConfigurator.py" line="137"/>
         <source>Frame Relay switches</source>
         <translation>Frame Relay سوتشات</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="141"/>
+        <location filename="../NodeConfigurator.py" line="140"/>
         <source>Ethernet switches</source>
         <translation>Ethernet سوتشات</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="144"/>
+        <location filename="../NodeConfigurator.py" line="143"/>
         <source>ATM switches</source>
         <translation>ATM سوتشات</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="150"/>
+        <location filename="../NodeConfigurator.py" line="149"/>
         <source>Clouds</source>
         <translation>سحاب</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="244"/>
+        <location filename="../NodeConfigurator.py" line="242"/>
         <source>%s node</source>
         <translation>%sنقطة طرفية</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="236"/>
+        <location filename="../NodeConfigurator.py" line="234"/>
         <source>%s group</source>
         <translation>%sمجموعة</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="241"/>
+        <location filename="../NodeConfigurator.py" line="239"/>
         <source>Group of %d %s</source>
         <translation>مجموعة من %d %s</translation>
     </message>
@@ -2347,62 +2357,62 @@ to display the configuration page.</source>
 ارجو أختيار نقطة طرفية من القائمة ليتم عرض صفحة الاعدادات.</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="296"/>
+        <location filename="../NodeConfigurator.py" line="294"/>
         <source>Node configuration</source>
         <translation>تهيئة نقطة طرفية</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="105"/>
+        <location filename="../NodeConfigurator.py" line="104"/>
         <source>Routers c1700</source>
         <translation>روترات c1700</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="108"/>
+        <location filename="../NodeConfigurator.py" line="107"/>
         <source>Routers c2600</source>
         <translation>روترات c2600</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="111"/>
+        <location filename="../NodeConfigurator.py" line="110"/>
         <source>Routers c2691</source>
         <translation>روترات c2691</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="114"/>
+        <location filename="../NodeConfigurator.py" line="113"/>
         <source>Routers c3600</source>
         <translation>روترات c3600</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="117"/>
+        <location filename="../NodeConfigurator.py" line="116"/>
         <source>Routers c3700</source>
         <translation>روترات c3700</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="120"/>
+        <location filename="../NodeConfigurator.py" line="119"/>
         <source>Routers c7200</source>
         <translation>روترات c7200</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="126"/>
+        <location filename="../NodeConfigurator.py" line="125"/>
         <source>PIX firewalls</source>
         <translation>جدران نارية نوع بيكس</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="147"/>
+        <location filename="../NodeConfigurator.py" line="146"/>
         <source>ATM bridges</source>
         <translation>ATM bridges</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="129"/>
+        <location filename="../NodeConfigurator.py" line="128"/>
         <source>ASA firewalls</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="132"/>
+        <location filename="../NodeConfigurator.py" line="131"/>
         <source>Juniper routers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="135"/>
+        <location filename="../NodeConfigurator.py" line="134"/>
         <source>Qemu hosts</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2582,67 +2592,67 @@ to display the configuration page.</source>
         <translation>اللغة:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="83"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="80"/>
         <source>Paths</source>
         <translation>مسارات</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="89"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="86"/>
         <source>Project directory:</source>
         <translation>مسار المشروع:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="119"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="116"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="63"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="208"/>
         <source>Terminal command:</source>
         <translation>أمر طرفي:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="262"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="332"/>
         <source>Always use manual mode when adding links</source>
         <translation>دائما أستخدم النمط اليدوي لأضافة وصلات</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="73"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="218"/>
         <source>Launch this command using the system default shell</source>
         <translation>Launch this command using the system default shell</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="132"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="129"/>
         <source>Configuration file</source>
         <translation>ملف التهيئة</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="138"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="135"/>
         <source>Unknown location</source>
         <translation>مكان غير معروف</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="158"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="155"/>
         <source>&amp;Clear it</source>
         <translation>&amp;أمسحها</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="272"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="342"/>
         <source>Show link status points on the workspace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="188"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="258"/>
         <source>Workspace width:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="233"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="303"/>
         <source> px</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="220"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="290"/>
         <source>Workspace height:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2657,18 +2667,51 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="182"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="252"/>
         <source>GUI Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="252"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="322"/>
         <source>Draw a rectangle when an item is selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="109"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="106"/>
         <source>Image directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="63"/>
+        <source>Waiting time between each start when starting every devices:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="70"/>
+        <source> seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="179"/>
+        <source>Terminal Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="185"/>
+        <source>Preconfigurated terminal commands:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="201"/>
+        <source>&amp;Use</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="228"/>
+        <source>Terminal command magic strings:
+%h = device server 
+%p = device port
+%d = device hostname</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2695,7 +2738,7 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="890"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="897"/>
         <source>...</source>
         <translation type="unfinished">...</translation>
     </message>
@@ -2705,232 +2748,189 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="93"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="113"/>
         <source>Bind Qemu Manager with:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="107"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="127"/>
         <source>Enable Qemu Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="117"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="137"/>
         <source>Use Qemu Manager when importing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="130"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="150"/>
         <source>Host for an external qemuwrapper:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="140"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="160"/>
         <source>Base UDP port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="160"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="180"/>
         <source>Base console port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="197"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="204"/>
         <source>Qemu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="203"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="210"/>
         <source>Qemu Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="571"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="578"/>
         <source>Binary image:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="744"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="751"/>
         <source>Memory:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="770"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="777"/>
         <source>NIC:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="784"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="791"/>
         <source>ne2k_pci</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="789"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="796"/>
         <source>i82551</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="794"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="801"/>
         <source>i82557b</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="799"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="806"/>
         <source>i82559er</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="804"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="811"/>
         <source>rtl8139</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="809"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="816"/>
         <source>e1000</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="814"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="821"/>
         <source>pcnet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="819"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="826"/>
         <source>virtio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="827"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="834"/>
         <source>Qemu Options:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="844"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="851"/>
         <source>Use KQemu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="854"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="861"/>
         <source>Use KVM (Linux Only)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="350"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="357"/>
         <source>PIX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="356"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="363"/>
         <source>PIX Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="502"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="509"/>
         <source>PIX Specific Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="508"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="515"/>
         <source>Key:</source>
         <translation type="unfinished">Key:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="525"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="532"/>
         <source>Serial:</source>
         <translation type="unfinished">Serial:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="559"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="566"/>
         <source>JunOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="565"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="572"/>
         <source>JunOS Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="732"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="739"/>
         <source>ASA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="738"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="745"/>
         <source>ASA Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="864"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="871"/>
         <source>ASA Specific Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="913"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="920"/>
         <source>Initrd:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="880"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="887"/>
         <source>Kernel:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="900"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="907"/>
         <source>Kernel cmd line:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="73"/>
-        <source>Path to Qemu (not used for PIX):</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>PreferencesSimhost</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesSimhost.ui" line="13"/>
-        <source>Form</source>
+        <source>Path to qemu (not used for PIX):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesSimhost.ui" line="23"/>
-        <source>Simhost hypervisor</source>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="93"/>
+        <source>Path to qemu-img (not used for PIX):</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesSimhost.ui" line="35"/>
-        <source>Settings</source>
-        <translation type="unfinished">أعدادات</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesSimhost.ui" line="41"/>
-        <source>Executable path:</source>
-        <translation type="unfinished">مسار التطبيق:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesSimhost.ui" line="71"/>
-        <source>...</source>
-        <translation type="unfinished">...</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesSimhost.ui" line="61"/>
-        <source>Working directory:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesSimhost.ui" line="78"/>
-        <source>Base port:</source>
-        <translation type="unfinished">Base port:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesSimhost.ui" line="85"/>
-        <source> Base UDP:</source>
-        <translation type="unfinished">Base UDP:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesSimhost.ui" line="117"/>
-        <source>&amp;Test</source>
-        <translation type="unfinished">&amp;تجربة</translation>
     </message>
 </context>
 <context>
@@ -3063,92 +3063,9 @@ to display the configuration page.</source>
     </message>
 </context>
 <context>
-    <name>SIMHOSTPage</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="13"/>
-        <source>Ethernet Switch</source>
-        <translation type="unfinished">أيثرنت سوتش</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="25"/>
-        <source>Settings</source>
-        <translation type="unfinished">أعدادات</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="31"/>
-        <source>Interface ID:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="57"/>
-        <source>IP address:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="64"/>
-        <source>192.168.1.1</source>
-        <translation type="unfinished">192.168.1.1</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="71"/>
-        <source>Mask:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="78"/>
-        <source>255.255.255.0</source>
-        <translation type="unfinished">255.255.255.0</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="85"/>
-        <source>Gateway:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="92"/>
-        <source>192.168.1.254</source>
-        <translation type="unfinished">192.168.1.254</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="102"/>
-        <source>Interfaces</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="118"/>
-        <source>Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="123"/>
-        <source>IP address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="128"/>
-        <source>Mask</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="133"/>
-        <source>Gateway</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="144"/>
-        <source>&amp;Add</source>
-        <translation type="unfinished">&amp;أضف</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_SIMHOSTPage.ui" line="154"/>
-        <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;مسح</translation>
-    </message>
-</context>
-<context>
     <name>Scene</name>
     <message>
-        <location filename="../Scene.py" line="202"/>
+        <location filename="../Scene.py" line="191"/>
         <source>Delete</source>
         <translation>مسح</translation>
     </message>
@@ -3183,42 +3100,42 @@ to display the configuration page.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="341"/>
+        <location filename="../Scene.py" line="343"/>
         <source>IDLE PC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="276"/>
+        <location filename="../Scene.py" line="278"/>
         <source>Please select only one router</source>
         <translation>أرجو أختيار روتر واحد</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="317"/>
+        <location filename="../Scene.py" line="319"/>
         <source>No idlepc values found</source>
         <translation>لم يتم أيجاد قيم idlepc</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="319"/>
+        <location filename="../Scene.py" line="321"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
         <translation>أفضل قيم idlepc مشار أليها ب &apos;*&apos;</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="344"/>
+        <location filename="../Scene.py" line="346"/>
         <source>Dynamips error</source>
         <translation>Dynamipsخطأ </translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="283"/>
+        <location filename="../Scene.py" line="285"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
         <translation>%sيحمل idlepc , هل تريد حساب قيمة جديدة?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="341"/>
+        <location filename="../Scene.py" line="343"/>
         <source>Applied idlepc value %s to %s</source>
         <translation>Applied idlepc value %s to %s</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="225"/>
+        <location filename="../Scene.py" line="227"/>
         <source>Please wait while calculating an IDLE PC</source>
         <translation>أرجو الانتظار ليتم حساب IDLE PC</translation>
     </message>
@@ -3243,46 +3160,23 @@ to display the configuration page.</source>
         <translation>Startup-config</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="179"/>
+        <location filename="../Scene.py" line="197"/>
         <source>Lower one step</source>
         <translation>نقص خطوة واحدة</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="184"/>
+        <location filename="../Scene.py" line="202"/>
         <source>Raise one step</source>
         <translation>زيادة خطوة واحدة</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="195"/>
+        <location filename="../Scene.py" line="184"/>
         <source>Style</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>SimhostManager</name>
     <message>
-        <location filename="../SimhostManager.py" line="69"/>
-        <source>A simhost hypervisor is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../SimhostManager.py" line="81"/>
-        <source>Can&apos;t start simhost hypervisor on port %i</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../SimhostManager.py" line="105"/>
-        <source>Connecting to a simhost hypervisor on port %i ...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../SimhostManager.py" line="105"/>
-        <source>Abort</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../SimhostManager.py" line="134"/>
-        <source>Can&apos;t connect to the simhost hypervisor on port %i</source>
+        <location filename="../Scene.py" line="171"/>
+        <source>Reload</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3479,132 +3373,127 @@ ALT + LEFT or RIGHT</source>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="403"/>
+        <location filename="../Topology.py" line="360"/>
         <source>IOS image</source>
         <translation>IOS نسخة</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="356"/>
+        <location filename="../Topology.py" line="313"/>
         <source>Please register at least one IOS image</source>
         <translation>أرجو تسجيل علي الاقل  IOS image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="397"/>
+        <location filename="../Topology.py" line="354"/>
         <source>Hypervisor</source>
         <translation>Hypervisor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="394"/>
+        <location filename="../Topology.py" line="351"/>
         <source>Please configure the path to Dynamips</source>
         <translation>أرجو تهيئة مسارDynamips </translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="824"/>
+        <location filename="../Topology.py" line="659"/>
         <source>Dynamips error</source>
         <translation>Dynamips خطأ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="824"/>
+        <location filename="../Topology.py" line="659"/>
         <source>Connection lost</source>
         <translation>فقدالاتصال</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="718"/>
+        <location filename="../Topology.py" line="659"/>
         <source>Connection</source>
         <translation>توصيل</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="213"/>
+        <location filename="../Topology.py" line="208"/>
         <source>Can&apos;t connect to the external hypervisor on %s</source>
         <translation>Can&apos;t connect to the external hypervisor on %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="366"/>
+        <location filename="../Topology.py" line="323"/>
         <source>No image for platform %s</source>
         <translation>No image for platform %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="377"/>
+        <location filename="../Topology.py" line="334"/>
         <source>Please choose an image</source>
         <translation>Please choose an image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="718"/>
+        <location filename="../Topology.py" line="659"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>يتوجب علي الاقل ربط روتر واحد بسوتش واحد</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="496"/>
+        <location filename="../Topology.py" line="453"/>
         <source>PIX image</source>
         <translation>PIX image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="491"/>
+        <location filename="../Topology.py" line="448"/>
         <source>Please configure a default PIX image</source>
         <translation>Please configure a default PIX image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="705"/>
+        <location filename="../Topology.py" line="657"/>
         <source>Can&apos;t connect these devices</source>
         <translation>لايمكن توصيل هذه الاجهزة</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="397"/>
+        <location filename="../Topology.py" line="354"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation>أرجو أختبار المسار Dynamipsفي التفضيلات</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="332"/>
-        <source>Simhost error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="292"/>
+        <location filename="../Topology.py" line="288"/>
         <source>Qemuwrapper error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="496"/>
+        <location filename="../Topology.py" line="453"/>
         <source>%s seems to not exist, please check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="439"/>
+        <location filename="../Topology.py" line="396"/>
         <source>JunOS image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="434"/>
+        <location filename="../Topology.py" line="391"/>
         <source>Please configure a default JunOS image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="418"/>
+        <location filename="../Topology.py" line="375"/>
         <source>Qemu image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="413"/>
+        <location filename="../Topology.py" line="370"/>
         <source>Please configure a default Qemu image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="469"/>
+        <location filename="../Topology.py" line="426"/>
         <source>ASA kernel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="455"/>
+        <location filename="../Topology.py" line="412"/>
         <source>Please configure a default ASA kernel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="465"/>
+        <location filename="../Topology.py" line="422"/>
         <source>ASA initrd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="459"/>
+        <location filename="../Topology.py" line="416"/>
         <source>Please configure a default ASA initrd</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3649,254 +3538,259 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="143"/>
+        <location filename="../Workspace.py" line="148"/>
         <source>Docks</source>
         <translation>القوائم</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="843"/>
+        <location filename="../Workspace.py" line="873"/>
         <source>Dynamips error</source>
         <translation>Dynamips خطأ</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="583"/>
+        <location filename="../Workspace.py" line="607"/>
         <source>Connection lost</source>
         <translation>فقد الاتصال</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="559"/>
+        <location filename="../Workspace.py" line="576"/>
         <source>Abort</source>
         <translation>فشل</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="678"/>
+        <location filename="../Workspace.py" line="708"/>
         <source>Starting nodes ...</source>
         <translation>يتم بدأ النقاط الطرفية ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="601"/>
+        <location filename="../Workspace.py" line="625"/>
         <source>Stopping nodes ...</source>
         <translation>يتم توقف النقاط الطرفية ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="607"/>
+        <location filename="../Workspace.py" line="631"/>
         <source>Suspending nodes ...</source>
         <translation>يتم الوضع المؤقت ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="671"/>
+        <location filename="../Workspace.py" line="701"/>
         <source>Loading</source>
         <translation>تحميل</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="507"/>
+        <location filename="../Workspace.py" line="524"/>
         <source>Hide hostnames</source>
         <translation>عدم أظهار الاسم</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="512"/>
+        <location filename="../Workspace.py" line="529"/>
         <source>Show hostnames</source>
         <translation>أظهر الاسم</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="858"/>
+        <location filename="../Workspace.py" line="888"/>
         <source>Open a file</source>
         <translation>فتح ملف</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="854"/>
+        <location filename="../Workspace.py" line="884"/>
         <source>The path to Dynamips must be configured</source>
         <translation>يجب تهيئة مسارDynamips </translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="890"/>
+        <location filename="../Workspace.py" line="920"/>
         <source>Save Project As</source>
         <translation>احفظ المشروع بأسم</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="716"/>
+        <location filename="../Workspace.py" line="746"/>
         <source>New Project</source>
         <translation>مشروع جديد</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="909"/>
+        <location filename="../Workspace.py" line="939"/>
         <source>Message</source>
         <translation>رسالة</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="286"/>
+        <location filename="../Workspace.py" line="291"/>
         <source>Are you sure to clear the topology?</source>
         <translation>هل انت متأكد من مسح التوبولوجي؟</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="399"/>
+        <location filename="../Workspace.py" line="404"/>
         <source>Add a link</source>
         <translation>أضافة وصلة</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="414"/>
+        <location filename="../Workspace.py" line="419"/>
         <source>Cancel</source>
         <translation>ألغاء</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="716"/>
+        <location filename="../Workspace.py" line="746"/>
         <source>Can&apos;t create a project</source>
         <translation>لايمكن أنشاء مشروع</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="671"/>
+        <location filename="../Workspace.py" line="701"/>
         <source>Invalid file %s</source>
         <translation>Invalid file %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="909"/>
+        <location filename="../Workspace.py" line="939"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>هل ترغب بحفظ التوبولوجي قبل الخروج؟</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="764"/>
+        <location filename="../Workspace.py" line="794"/>
         <source>Would you like to save the current topology?</source>
         <translation>هل ترغب بحفظ التوبولوجي الحالي؟</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="310"/>
+        <location filename="../Workspace.py" line="315"/>
         <source>Directory to write startup-configs</source>
         <translation>مسار كتابة startup-configs</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="181"/>
+        <location filename="../Workspace.py" line="186"/>
         <source>Yes - Export all the workspace
 No - Export only what I see</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="522"/>
+        <location filename="../Workspace.py" line="539"/>
         <source>Hide interface names</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="527"/>
+        <location filename="../Workspace.py" line="544"/>
         <source>Show interface names</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="729"/>
+        <location filename="../Workspace.py" line="759"/>
         <source>Do you want to apply the project settings to the current topology? (can take some time)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="794"/>
+        <location filename="../Workspace.py" line="824"/>
         <source>Snapshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="782"/>
+        <location filename="../Workspace.py" line="812"/>
         <source>The project working directory must be set in the preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="794"/>
+        <location filename="../Workspace.py" line="824"/>
         <source>Cannot create directory %s: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="799"/>
+        <location filename="../Workspace.py" line="829"/>
         <source>Please wait while creating a snapshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="583"/>
+        <location filename="../Workspace.py" line="607"/>
         <source>%s: Dynamips error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="580"/>
+        <location filename="../Workspace.py" line="604"/>
         <source>%s: Dynamips warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="301"/>
+        <location filename="../Workspace.py" line="306"/>
         <source>Extracting to a directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="303"/>
+        <location filename="../Workspace.py" line="308"/>
         <source>Importing from a directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="297"/>
+        <location filename="../Workspace.py" line="302"/>
         <source>Configs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="297"/>
+        <location filename="../Workspace.py" line="302"/>
         <source>Please choose an option</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="323"/>
+        <location filename="../Workspace.py" line="328"/>
         <source>Directory to read startup-configs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="344"/>
+        <location filename="../Workspace.py" line="349"/>
         <source>IO Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="334"/>
+        <location filename="../Workspace.py" line="339"/>
         <source>Importing %s from %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="347"/>
+        <location filename="../Workspace.py" line="352"/>
         <source>Ignoring unknown device %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="349"/>
+        <location filename="../Workspace.py" line="354"/>
         <source>Dynamips Error: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="351"/>
+        <location filename="../Workspace.py" line="356"/>
         <source>Dynamips Warning: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="249"/>
+        <location filename="../Workspace.py" line="254"/>
         <source>I/O Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="249"/>
+        <location filename="../Workspace.py" line="254"/>
         <source>I/O Error: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="279"/>
+        <location filename="../Workspace.py" line="284"/>
         <source>Warning: Can&apos;t delete %s =&gt; %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="79"/>
+        <location filename="../Workspace.py" line="82"/>
         <source>Ctrl+Z</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="84"/>
+        <location filename="../Workspace.py" line="87"/>
         <source>Ctrl+Y</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="697"/>
+        <location filename="../Workspace.py" line="727"/>
         <source>Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="697"/>
+        <location filename="../Workspace.py" line="727"/>
         <source>Please create a new project first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="637"/>
+        <source>Reloading nodes ...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

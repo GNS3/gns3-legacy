@@ -88,12 +88,6 @@ class DynagenSub(Dynagen):
                                 print unicode(translate("DynagenSub", "Local PIX image %s cannot be found, use image %s instead")) \
                                 % (unicode(device['image']), image_name)
                                 device['image'] = image_name
-                                
-                if emulator == 'lwip':
-                    (host, port) = host.rsplit(':', 1)
-                    debug("Start lwip hypervisor on port: " + port)
-                    hypervisor =  globals.GApp.SimhostManager.startNewHypervisor(int(port))
-                    globals.GApp.SimhostManager.waitHypervisor(hypervisor)
     
             else:
                 server.host = server.name

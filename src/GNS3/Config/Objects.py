@@ -122,10 +122,5 @@ class systemQemuConf(ConfigObject):
         ConfigObject.__init__(self)
         self.conf = Defaults.conf_systemQemu_defaults.copy()
         self.types = Defaults.conf_systemQemu_types
-        
-class systemSimhostConf(ConfigObject):
-    def __init__(self):
-        ConfigObject.__init__(self)
-        self.conf = Defaults.conf_systemSimhost_defaults.copy()
-        self.types = Defaults.conf_systemSimhost_types
+
 
