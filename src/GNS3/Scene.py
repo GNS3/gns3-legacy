@@ -37,6 +37,8 @@ from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.AnyEmuDevice import AnyEmuDevice
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ATMSW import ATMSW
+from GNS3.Node.ETHSW import ETHSW
+from GNS3.Node.ATMBR import ATMBR
 from GNS3.Link.Ethernet import Ethernet
 from GNS3.Link.Serial import Serial
 
@@ -99,7 +101,7 @@ class Scene(QtGui.QGraphicsView):
 
         menu = QtGui.QMenu()
 
-        instances = map(lambda item: not isinstance(item, Annotation) and not isinstance(item, Pixmap) and not  isinstance(item, AbstractShapeItem), items)
+        instances = map(lambda item: not isinstance(item, Annotation) and not isinstance(item, Pixmap) and not isinstance(item, AbstractShapeItem), items)
         if True in instances:
 
             # Action: Configure (Configure the node)
@@ -117,10 +119,19 @@ class Scene(QtGui.QGraphicsView):
             showHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
             self.connect(showHostnameAct, QtCore.SIGNAL('triggered()'), self.slotShowHostname)
 
-            # actions for design mode
             menu.addAction(configAct)
             menu.addAction(showHostnameAct)
             menu.addAction(changeHostnameAct)
+
+        instances = map(lambda item: isinstance(item, ETHSW) or isinstance(item, ATMSW) or isinstance(item, ATMBR) or isinstance(item, FRSW), items)
+        if True in instances:
+            
+            # Action: ChangeHypervisor (Change the hypervisor)
+            changeHypervisor = QtGui.QAction(translate('Scene', 'Set an hypervisor'), menu)
+            changeHypervisor.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
+            self.connect(changeHypervisor, QtCore.SIGNAL('triggered()'), self.slotChangeHypervisor)
+            
+            menu.addAction(changeHypervisor)
 
         instances = map(lambda item: isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice), items)
         if True in instances:
@@ -365,6 +376,15 @@ class Scene(QtGui.QGraphicsView):
 
         for item in self.__topology.selectedItems():
             item.changeHostname()
+            
+    def slotChangeHypervisor(self):
+        """ Slot called to change hypervisor of selected items
+        """
+
+        for item in self.__topology.selectedItems():
+            if isinstance(item, ETHSW) or isinstance(item, ATMSW) or \
+                isinstance(item, ATMBR) or isinstance(item, FRSW):
+                item.changeHypervisor()
 
     def slotShowHostname(self):
         """ Slot called to show hostnames of selected items

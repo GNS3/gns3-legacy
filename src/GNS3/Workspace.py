@@ -281,7 +281,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 try:
                     os.remove(file)
                 except (OSError, IOError), e:
-                    print unicode(translate("Workspace", "Warning: Can't delete %s => %s")) % (file, e.strerror)
+                    #print unicode(translate("Workspace", "Warning: Can't delete %s => %s")) % (file, e.strerror)
                     continue
 
     def __action_Clear(self):

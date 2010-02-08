@@ -10,6 +10,7 @@ FILES=" Form_MainWindow
 	Form_SymbolManager
 	Form_Wizard
 	Form_StyleDialog
+	Form_StartupConfig
         ./ConfigurationPages/Form_IOSRouterPage
         ./ConfigurationPages/Form_CloudPage
         ./ConfigurationPages/Form_ETHSWPage

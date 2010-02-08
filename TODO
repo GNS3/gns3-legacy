@@ -6,12 +6,13 @@ TODO LIST
  * Symbols for Voice labs (gateway, gatekeeper, ip phones, sip servers, call managers) ==> need DIA + Inkscape
  * Create DMG for MacOSX (http://www.gns3.net/phpBB/topic307.html)
  
- * Hypervisor mode for Qemu
+ * Hypervisor mode for Qemu?
  * Reload router option ==> Almost completed, icon missing.
  
- * Clean router option (config + nvram)
- * Browse option for startup-config (http://www.gns3.net/phpBB/topic1267.html)
- * Possibility to select the hypervisor for Ethernet/ATM/FR/ATMBR (http://www.gns3.net/phpBB/topic1315.html)
+ * Browse option for startup-config (http://www.gns3.net/phpBB/topic1267.html) ==> done
+ * Possibility to select the hypervisor for Ethernet/ATM/FR/ATMBR (http://www.gns3.net/phpBB/topic1315.html) ==> Almost done, icon missing
+ * Finish Undo framework
+ * Improving the snapshot system (http://www.gns3.net/phpBB/topic290.html)
  
  * Change IOS (same platform, http://www.gns3.net/phpBB/topic721.html) ==> too complicated and bug prone !!
  * Relative paths (http://www.gns3.net/phpBB/topic361.html) ==> too complicated and bug prone !!
@@ -21,8 +22,6 @@ Low priority features:
  * NIO multicast support (next release of Dynamips)
  * Show NIO activity (next release of Dynamips)
  * Dynamips QinQ integration (next release of Dynamips)
- * Daisy chaining for switches
- * Improving the snapshot system (http://www.gns3.net/phpBB/topic290.html)
  * Vmware integration (http://www.gns3.net/phpBB/topic1162.html)
  
 Debugging:
@@ -35,5 +34,5 @@ Debugging:
  * Save interface label? (http://www.gns3.net/phpBB/topic1271.html)
  * Save GUI space? (http://www.gns3.net/phpBB/topic1268.html)
  * Check save on Mac OS X (http://www.gns3.net/phpBB/topic6.html)
- * Selecting device logically (http://www.gns3.net/phpBB/topic247.html)
+ * Selecting device logically (http://www.gns3.net/phpBB/topic247.html) ==> done
  * Bug with Cloud (http://www.gns3.net/phpBB/topic1030.html)

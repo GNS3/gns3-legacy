@@ -22,7 +22,7 @@
 import re
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui, QtSvg
-from GNS3.Utils import translate
+from GNS3.Utils import translate, debug
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.UndoFramework as undo 
 
@@ -43,6 +43,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.__selectedInterface = None
         self.__flag_hostname = False
 
+        self.dynagen = globals.GApp.dynagen
         self.default_symbol = True
         
         # status used in the topology summary
@@ -93,7 +94,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """ Called to change the hostname
         """
 
-        (text,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, translate("AbstractNode", "Change hostname"),
+        (text, ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, translate("AbstractNode", "Change the hostname"),
                                           translate("AbstractNode", "Hostname:"), QtGui.QLineEdit.Normal,
                                           self.hostname)
         if ok and text:
@@ -112,13 +113,62 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 self.removeHostname()
                 self.showHostname()
             self.updateToolTips()
+            
+    def changeHypervisor(self):
+        """ Called to change an hypervisor
+        """
+        
+        if len(self.__edgeList) > 0:
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractNode", "Hypervisor"), 
+                                      translate("AbstractNode", "The device must have no connection to other devices in order to change its hypervisor"))
+            return
+        
+        if self.d:
+            currentHypervisor = self.d
+        else:
+            currentHypervisor = "hostname:port"
+        (text, ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, translate("AbstractNode", "Set hypervisor"),
+                                    translate("AbstractNode", "New hypervisor:"), QtGui.QLineEdit.Normal,
+                                    currentHypervisor)
+        
+        if ok and text:
+            hypervisor = unicode(text)
+            if not re.search(r"""^.*:[0-9]*$""", text, re.UNICODE):
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hypervisor"), 
+                                           translate("AbstractNode", "Invalid format for hypervisor (hostname:port is required)"))
+                return
+            (host, port) = hypervisor.rsplit(':',  1)
+
+            if self.dynagen.dynamips.has_key(hypervisor):
+                debug("Use an hypervisor: " + hypervisor)
+                dynamips_hypervisor = self.dynagen.dynamips[hypervisor]
+            else:
+                debug("Connection to an hypervisor: " + hypervisor)
+                dynamips_hypervisor = self.dynagen.create_dynamips_hypervisor(host, int(port))
+                if not dynamips_hypervisor:
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hypervisor"),
+                                               unicode(translate("AbstractNode", "Can't connect to the hypervisor on %s")) % hypervisor)
+                    if self.dynagen.dynamips.has_key(hypervisor):
+                        del self.dynagen.dynamips[hypervisor]
+                    return
+
+            self.dynagen.update_running_config()
+            if self.d and self.dynagen.running_config[self.d].has_key(self.get_running_config_name()):
+                config = self.dynagen.running_config[self.d][self.get_running_config_name()]
+                self.dynagen.running_config[host + ':' + port][self.get_running_config_name()] = config
+                del self.dynagen.running_config[self.d][self.get_running_config_name()]
+            self.set_hypervisor(dynamips_hypervisor)
+            self.get_dynagen_device()
+            self.dynagen.update_running_config()
+            QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("AbstractNode", "Hypervisor"),
+                                           unicode(translate("AbstractNode", "New hypervisor %s has been set on device %s")) % (hypervisor, self.hostname))
 
     def changeConsolePort(self):
         """ Called to change the console port
         """
 
         device = self.get_dynagen_device()
-        (port,  ok) = QtGui.QInputDialog.getInteger(globals.GApp.mainWindow, translate("AbstractNode", "Change console port"),
+        (port,  ok) = QtGui.QInputDialog.getInteger(globals.GApp.mainWindow, translate("AbstractNode", "Change the console port"),
                                           unicode(translate("AbstractNode", "Console port for %s:")) % self.hostname, device.console, 1, 65535, 1)
         if ok and device.console != port:
             try:

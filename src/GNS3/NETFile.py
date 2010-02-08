@@ -902,14 +902,18 @@ class NETFile(object):
                     item.showHostname()
                 # record node x & y positions
                 if not item.d:
-                    print item.hostname + unicode(' ' + translate("NETFile", "must be connected in order to be registered"))
+                    print item.hostname + unicode(' ' + translate("NETFile", "must be connected or have a hypervisor set in order to be registered"))
                     continue
                 if not item.default_symbol:
                     self.dynagen.running_config[item.d][item.get_running_config_name()]['symbol'] = item.type
-                self.dynagen.running_config[item.d][item.get_running_config_name()]['x'] = item.x()
-                self.dynagen.running_config[item.d][item.get_running_config_name()]['y'] = item.y()
+                if self.dynagen.running_config[item.d][item.get_running_config_name()].has_key('x') and \
+                    self.dynagen.running_config[item.d][item.get_running_config_name()].has_key('y'):
+                    self.dynagen.running_config[item.d][item.get_running_config_name()]['x'] = item.x()
+                    self.dynagen.running_config[item.d][item.get_running_config_name()]['y'] = item.y()
                 # record hostname x & y positions
-                if item.hostname_xpos and item.hostname_ypos:
+                if item.hostname_xpos and item.hostname_ypos and \
+                    self.dynagen.running_config[item.d][item.get_running_config_name()].has_key('hx') and \
+                    self.dynagen.running_config[item.d][item.get_running_config_name()].has_key('hy'):
                     self.dynagen.running_config[item.d][item.get_running_config_name()]['hx'] = item.hostname_xpos
                     self.dynagen.running_config[item.d][item.get_running_config_name()]['hy'] = item.hostname_ypos
 

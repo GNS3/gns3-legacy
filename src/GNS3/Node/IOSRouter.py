@@ -27,6 +27,7 @@ import GNS3.Telnet as console
 from PyQt4 import QtCore, QtGui,  QtSvg
 from GNS3.Utils import translate, debug, error
 from GNS3.Node.AbstractNode import AbstractNode
+from GNS3.StartupConfigDialog import StartupConfigDialog
 
 MODULES_INTERFACES = {
     "PA-A1": ('a', 1),
@@ -292,11 +293,7 @@ class IOSRouter(AbstractNode):
         """ Set a dynagen device in this node, used for .net import
         """
 
-        model = self.model
-        #devdefaults = self.get_devdefaults()
         self.router = router
-        #self.dynagen.setdefaults(router, devdefaults[model])
-        #self.dynagen.update_running_config()
         self.running_config = self.dynagen.running_config[self.d][self.r]
         self.defaults_config = self.dynagen.defaults_config[self.d][self.router.model_string]
         self.create_config()
@@ -304,15 +301,12 @@ class IOSRouter(AbstractNode):
     def changeStartupConfig(self):
         """ Called to change the startup-config
         """
+     
+        startupConfigDlg = StartupConfigDialog(self.router)
+        startupConfigDlg.setWindowTitle(unicode(translate("IOSRouter", "Startup-Config for %s")) % self.hostname)
+        startupConfigDlg.show()
+        startupConfigDlg.exec_()
 
-        (startup_config,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, translate("IOSRouter", "Startup-config"),
-                                           unicode(translate("IOSRouter", "Startup-config for %s:")) % self.hostname, QtGui.QLineEdit.Normal, unicode(self.router.cnfg))
-        if ok and startup_config and startup_config != 'None':
-            try:
-                self.router.cnfg = unicode(startup_config)
-            except lib.DynamipsError, msg:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSRouter", "Startup-config"), unicode(msg))
-        
     def smart_interface(self, link_type):
         """ Pick automatically (if possible) the right interface and adapter for the desired link type
             link_type: an one character string 'g', 'f', 'e', 's', 'a', or 'p'

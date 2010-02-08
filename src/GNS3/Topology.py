@@ -656,14 +656,14 @@ class Topology(QtGui.QGraphicsScene):
                 or (isinstance(src_node, AnyEmuDevice) and isinstance(dst_node, Cloud)) or (isinstance(dst_node, AnyEmuDevice) and isinstance(src_node, Cloud)):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "Can't connect these devices"))
                 return False
-            elif (isinstance(dst_node, Cloud) or isinstance(dst_node,AnyEmuDevice) and isinstance(src_node, ETHSW):
+            elif (isinstance(dst_node, Cloud) or isinstance(dst_node,AnyEmuDevice)) and isinstance(src_node, ETHSW):
                 if not src_node.hypervisor:
                     debug('Allocate a hypervisor for ethsw ' + src_node.hostname)
                     if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(src_node):
                         QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "You have to connect at least one router to the switch"))
                         return False
                     src_node.get_dynagen_device()
-            elif (isinstance(src_node, Cloud) or isinstance(src_node, AnyEmuDevice) and isinstance(dst_node, ETHSW):
+            elif (isinstance(src_node, Cloud) or isinstance(src_node, AnyEmuDevice)) and isinstance(dst_node, ETHSW):
                 if not dst_node.hypervisor:
                     debug('Allocate a hypervisor for ethsw ' + dst_node.hostname)
                     if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(dst_node):
