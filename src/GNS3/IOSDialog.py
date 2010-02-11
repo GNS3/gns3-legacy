@@ -336,7 +336,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             self.pushButtonEditIOS.setEnabled(False)
             self.pushButtonDeleteIOS.setEnabled(False)
 
-    def slotIOSSelected(self,  item, column):
+    def slotIOSSelected(self, item, column):
         """ Load IOS settings into the GUI when selecting an entry in the list of IOS images
         """
 

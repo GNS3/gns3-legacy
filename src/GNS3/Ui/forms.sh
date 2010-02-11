@@ -7,6 +7,7 @@ FILES=" Form_MainWindow
         Form_NodeConfigurator
 	Form_PreferencesDialog
 	Form_NewProject
+	Form_Snapshots
 	Form_SymbolManager
 	Form_Wizard
 	Form_StyleDialog

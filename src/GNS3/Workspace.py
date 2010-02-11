@@ -30,6 +30,7 @@ from GNS3.Ui.Form_About import Ui_AboutDialog
 from GNS3.IOSDialog import IOSDialog
 from GNS3.SymbolManager import SymbolManager
 from GNS3.ProjectDialog import ProjectDialog
+from GNS3.SnapshotDialog import SnapshotDialog
 from GNS3.Utils import debug, translate, fileBrowser
 from GNS3.Config.Preferences import PreferencesDialog
 from GNS3.Node.IOSRouter import IOSRouter
@@ -256,7 +257,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def clear(self):
         """ Clear all the workspace
         """
-        
+
         globals.GApp.workspace.setWindowTitle("GNS3")
         projectWorkdir = self.projectWorkdir
         self.projectFile = None
@@ -805,15 +806,27 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.setWindowTitle("GNS3 Project - " + self.projectFile) 
 
     def __action_Snapshot(self):
-        """ Create a snapshot
+        """ Open snapshot dialog
         """
 
+        snapDialog = SnapshotDialog()
+        snapDialog.show()
+        self.centerDialog(snapDialog)
+        snapDialog.exec_()
+
+    def createSnapshot(self):
+        """ Create a new snapshot of the current topology
+        """
+        
         if not globals.GApp.systconf['general'].project_path:
             QtGui.QMessageBox.warning(self, translate("Workspace", "Snapshot"), translate("Workspace", "The project working directory must be set in the preferences"))
             return
 
         if self.projectFile is None:
-            return self.__action_SaveAs()
+            if self.__action_SaveAs() == False:
+                return
+            self.createSnapshot()
+            return
 
         projectName = os.path.basename(self.projectFile)
         snapshot_dir = globals.GApp.systconf['general'].project_path + os.sep + projectName + '_snapshot_' + time.strftime("%d%m%y_%H%M%S")
@@ -870,7 +883,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             for hypervisor in globals.GApp.dynagen.dynamips.values():
                 hypervisor.workingdir = globals.GApp.systconf['dynamips'].workdir
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "Dynamips error"), snapshot_dir + ': ') + unicode(msg))
+            QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "Dynamips error"), snapshot_dir + ': ') + unicode(msg))        
 
     def __action_OpenFile(self):
         """ Open a file
@@ -887,17 +900,20 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter = 'NET file (*.net);;All files (*.*)',
                                        directory=globals.GApp.systconf['general'].project_path, parent=self).getFile()
-        if path != None:
-            try:
-                if selected == 'NET file (*.net)' or selected == '':
-                    # here the loading
-                    self.projectWorkdir = None
-                    self.projectConfigs = None
-                    self.projectFile = None
-                    self.load_netfile(path)
-                    globals.GApp.topology.changed = False
-            except IOError, (errno, strerror):
-                QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
+        if path != None and (selected == 'NET file (*.net)' or selected == ''):
+            self.loadNetfile(path)
+                
+    def loadNetfile(self, path):
+
+        try:
+            # here the loading
+            self.projectWorkdir = None
+            self.projectConfigs = None
+            self.projectFile = None
+            self.load_netfile(path)
+            globals.GApp.topology.changed = False
+        except IOError, (errno, strerror):
+            QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
 
     def __action_Save(self):
         """ Save to a file (scenario or dynagen .NET format)
@@ -930,6 +946,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 net = netfile.NETFile()
                 net.export_net_file(path)
                 globals.GApp.topology.changed = False
+                return True
+        return False
 
     def closeEvent(self, event):
         """ Ask to close GNS3

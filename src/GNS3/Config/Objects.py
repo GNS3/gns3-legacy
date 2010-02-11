@@ -98,6 +98,12 @@ class hypervisorConf(ConfigObject):
         ConfigObject.__init__(self)
         self.conf = Defaults.conf_hypervisor_defaults.copy()
         self.types = Defaults.conf_hypervisor_types
+        
+class qemuImageConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_qemuImage_defaults.copy()
+        self.types = Defaults.conf_qemuImage_types
 
 class systemDynamipsConf(ConfigObject):
     def __init__(self):

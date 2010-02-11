@@ -5,14 +5,13 @@ TODO LIST
  
  * Symbols for Voice labs (gateway, gatekeeper, ip phones, sip servers, call managers) ==> need DIA + Inkscape
  * Create DMG for MacOSX (http://www.gns3.net/phpBB/topic307.html)
- 
  * Hypervisor mode for Qemu?
- * Reload router option ==> Almost completed, icon missing.
- 
+ * Reload router option ==> completed
  * Browse option for startup-config (http://www.gns3.net/phpBB/topic1267.html) ==> done
- * Possibility to select the hypervisor for Ethernet/ATM/FR/ATMBR (http://www.gns3.net/phpBB/topic1315.html) ==> Almost done, icon missing
+ * Possibility to select the hypervisor for Ethernet/ATM/FR/ATMBR (http://www.gns3.net/phpBB/topic1315.html) ==> done
+
  * Finish Undo framework
- * Improving the snapshot system (http://www.gns3.net/phpBB/topic290.html)
+ * Improving the snapshot system (http://www.gns3.net/phpBB/topic290.html) => done
  
  * Change IOS (same platform, http://www.gns3.net/phpBB/topic721.html) ==> too complicated and bug prone !!
  * Relative paths (http://www.gns3.net/phpBB/topic361.html) ==> too complicated and bug prone !!

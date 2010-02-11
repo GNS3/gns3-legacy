@@ -21,7 +21,7 @@
 
 import os
 import GNS3.Globals as globals
-from GNS3.Config.Objects import iosImageConf, hypervisorConf, libraryConf
+from GNS3.Config.Objects import iosImageConf, hypervisorConf, libraryConf, qemuImageConf
 from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from GNS3.Node.DecorativeNode import DecorativeNode
 from PyQt4 import QtCore
@@ -225,6 +225,35 @@ class GNS_Conf(object):
 
             if conf.id >= globals.GApp.hypervisors_ids:
                 globals.GApp.hypervisors_ids = conf.id + 1
+
+    def QEMU_images(self):
+        """ Load Qemu images settings from config file
+        """
+
+        # Loading Qemu image conf
+        basegroup = "QEMU.images"
+        c = ConfDB()
+        c.beginGroup(basegroup)
+        childGroups = c.childGroups()
+        c.endGroup()
+
+        for id in childGroups:
+
+            cgroup = basegroup + '/' + id
+            
+            conf = qemuImageConf()
+            conf.id = int(id)
+            conf.name = c.get(cgroup + "/name", unicode(''))
+            conf.filename = c.get(cgroup + "/filename", unicode(''))
+            conf.memory = int(c.get(cgroup + "/memory", 128))
+            conf.nic = str(c.get(cgroup + "/nic", 'e1000'))
+            conf.options = str(c.get(cgroup + "/options", ''))
+            conf.kqemu = c.value(cgroup + "/kqemu", QtCore.QVariant(False)).toBool()
+            conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
+            globals.GApp.qemuimages[conf.name] = conf
+            
+            if conf.id >= globals.GApp.qemuimages_ids:
+                globals.GApp.qemuimages_ids = conf.id + 1
 
     def Libraries(self):
         """ Load libraries settings from config file

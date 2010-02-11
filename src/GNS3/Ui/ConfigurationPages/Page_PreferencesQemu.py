@@ -23,7 +23,7 @@ import sys, os, re
 import GNS3.Globals as globals
 from PyQt4 import QtGui, QtCore, QtNetwork
 from GNS3.Ui.ConfigurationPages.Form_PreferencesQemu import Ui_PreferencesQemu
-from GNS3.Config.Objects import systemQemuConf
+from GNS3.Config.Objects import systemQemuConf, qemuImageConf
 from GNS3.Utils import fileBrowser, translate
 from GNS3.Config.Config import ConfDB
 
@@ -43,6 +43,9 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
 
         # Qemu settings
         self.connect(self.QemuImage_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectQemuImage)
+        self.connect(self.SaveQemuImage, QtCore.SIGNAL('clicked()'), self.slotSaveQemuImage)
+        self.connect(self.DeleteQemuImage, QtCore.SIGNAL('clicked()'), self.slotDeleteQemuImage)
+        self.connect(self.treeWidgetQemuImages,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotQemuImageSelectionChanged)
         
         # PIX settings
         self.connect(self.PIXImage_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectPIXImage)
@@ -106,25 +109,17 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             
         self.baseUDP.setValue(self.conf.qemuwrapper_baseUDP)
         self.baseConsole.setValue(self.conf.qemuwrapper_baseConsole)
- 
-        # Qemu settings
-        self.QemuImage.setText(self.conf.default_qemu_image)
-        self.QemuMemory.setValue(self.conf.default_qemu_memory)
-        self.QemuOptions.setText(self.conf.default_qemu_options)
         
-        index = self.QemuNIC.findText(self.conf.default_qemu_nic)
-        if index != -1:
-            self.QemuNIC.setCurrentIndex(index)
+        # Qemu settings
+        for (name, conf) in globals.GApp.qemuimages.iteritems():
+
+            item = QtGui.QTreeWidgetItem(self.treeWidgetQemuImages)
+            # name column
+            item.setText(0, name)
+            # image path column
+            item.setText(1, conf.filename)
             
-        if self.conf.default_qemu_kqemu == True:
-            self.QemucheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.QemucheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
-            
-        if self.conf.default_qemu_kvm == True:
-            self.QemucheckBoxKVM.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.QemucheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+        self.treeWidgetQemuImages.resizeColumnToContents(0)
         
         # PIX settings
         self.PIXImage.setText(self.conf.default_pix_image)
@@ -207,19 +202,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         self.conf.qemuwrapper_baseConsole = self.baseConsole.value()
         
         # Qemu settings
-        self.conf.default_qemu_image = unicode(self.QemuImage.text())
-        self.conf.default_qemu_memory = self.QemuMemory.value()
-        self.conf.default_qemu_options = str(self.QemuOptions.text())
-        self.conf.default_qemu_nic = str(self.QemuNIC.currentText())
-
-        if self.QemucheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-            self.conf.default_qemu_kqemu = True
-        else:
-            self.conf.default_qemu_kqemu  = False
-        if self.QemucheckBoxKVM.checkState() == QtCore.Qt.Checked:
-            self.conf.default_qemu_kvm = True
-        else:
-            self.conf.default_qemu_kvm  = False
+        globals.GApp.syncConf()
 
         # PIX settings
         self.conf.default_pix_image = unicode(self.PIXImage.text())
@@ -323,6 +306,96 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         if path != None and path[0] != '':
             self.QemuImage.clear()
             self.QemuImage.setText(os.path.normpath(path[0]))
+            
+    def slotSaveQemuImage(self):
+        """ Add/Save Qemu Image in the list of Qemu images
+        """
+
+        name = unicode(self.NameQemuImage.text())
+        image = unicode(self.QemuImage.text())
+        
+        if not name or not image:
+            return
+
+        if globals.GApp.qemuimages.has_key(name):
+            # update an already existing IOS image
+            item_to_update = self.treeWidgetQemuImages.findItems(name, QtCore.Qt.MatchFixedString)[0]
+            item_to_update.setText(1, image)
+        else:
+            # else create a new entry
+            item = QtGui.QTreeWidgetItem(self.treeWidgetQemuImages)
+            # image name column
+            item.setText(0, name)
+            # image path column
+            item.setText(1, image)
+            #self.treeWidgetQemuImages.setCurrentItem(item)
+            
+        # save settings
+        if globals.GApp.qemuimages.has_key(name):
+            conf = globals.GApp.qemuimages[name]
+        else:
+            conf = qemuImageConf()
+
+        conf.id = globals.GApp.qemuimages_ids
+        globals.GApp.qemuimages_ids += 1
+        conf.name = name
+        conf.filename = image
+        conf.memory = self.QemuMemory.value()
+        conf.nic = str(self.QemuNIC.currentText())
+        conf.options = str(self.QemuOptions.text())
+        
+        if self.QemucheckBoxKqemu.checkState() == QtCore.Qt.Checked:
+            conf.kqemu = True
+        else:
+            conf.kqemu  = False
+        if self.QemucheckBoxKVM.checkState() == QtCore.Qt.Checked:
+            conf.kvm = True
+        else:
+            conf.kvm  = False
+
+        globals.GApp.qemuimages[name] = conf
+        self.treeWidgetQemuImages.resizeColumnToContents(0)
+    
+    def slotDeleteQemuImage(self):
+        """ Delete Qemu Image from the list of Qemu images
+        """
+
+        item = self.treeWidgetQemuImages.currentItem()
+        if (item != None):
+            self.treeWidgetQemuImages.takeTopLevelItem(self.treeWidgetQemuImages.indexOfTopLevelItem(item))
+            name = unicode(item.text(0))
+            del globals.GApp.qemuimages[name]
+            
+    def slotQemuImageSelectionChanged(self):
+        """ Load Qemu settings into the GUI when selecting an entry in the list of Qemu images
+        """
+
+        # Only one selection is possible
+        items = self.treeWidgetQemuImages.selectedItems()
+        if len(items):
+            item = items[0]
+            name = unicode(item.text(0))
+
+            conf = globals.GApp.qemuimages[name]
+            
+            self.NameQemuImage.setText(name)
+            self.QemuImage.setText(conf.filename)
+            self.QemuMemory.setValue(conf.memory)
+            self.QemuOptions.setText(conf.options)
+        
+            index = self.QemuNIC.findText(conf.nic)
+            if index != -1:
+                self.QemuNIC.setCurrentIndex(index)
+
+            if conf.kqemu == True:
+                self.QemucheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.QemucheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
+            
+            if conf.kvm == True:
+                self.QemucheckBoxKVM.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.QemucheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
             
     def slotSelectPIXImage(self):
         """ Get a PIX image from the file system

@@ -190,6 +190,8 @@ class Dynagen:
 
         self.defaults_config_ran = False
         self.default_workingdir = ''
+        self.default_qemupath = 'qemu'
+        self.default_qemuimgpath = 'qemu-img'
 
     def setdefaults(self, device, defaults):
         """ Apply the global defaults to this router instance"""
@@ -1056,6 +1058,12 @@ class Dynagen:
                     except DynamipsError:
                         self.dowarning('Could not set working directory to %s on server %s' % (workingdir, server.name))
                         self.import_error = True
+
+                    # Set qemu & qemu-img paths if needed
+                    if server['qemupath']:
+                        self.dynamips[qemu_name].qemupath = server['qemupath']
+                    if server['qemuimgpath']:
+                        self.dynamips[qemu_name].qemuimgpath = server['qemuimgpath']
 
                     devdefaults = {}
                     for key in DEVICETUPLE:
@@ -2034,7 +2042,7 @@ class Dynagen:
         #go throught all hypervisor instances
         for hypervisor in self.dynamips.values():
             if isinstance(hypervisor, Qemu):
-                h = 'qemu ' + hypervisor.host
+                h = 'qemu ' + hypervisor.host             
             else:
                 h = hypervisor.host + ":" + str(hypervisor.port)
             self.running_config[h] = {}
@@ -2051,6 +2059,13 @@ class Dynagen:
                 self.running_config[h]['workingdir'] = hypervisor.workingdir
 
             self.running_config[h]['udp'] = hypervisor.starting_udp
+
+            # Check default qemu & qemu-img paths
+            if isinstance(hypervisor, Qemu):
+                if self.default_qemupath != hypervisor.qemupath:
+                    self.running_config[h]['qemupath'] = hypervisor.qemupath
+                if self.default_qemuimgpath != hypervisor.qemuimgpath:
+                    self.running_config[h]['qemuimgpath'] = hypervisor.qemuimgpath
 
             #go thought all routers for this hypervisor
             for device in self.devices.values():

@@ -49,9 +49,7 @@ frsw_hostname_re = re.compile(r"""^FR([0-9]+)""")
 atmsw_hostname_re = re.compile(r"""^ATM([0-9]+)""")
 atmbr_hostname_re = re.compile(r"""^BR([0-9]+)""")
 cloud_hostname_re = re.compile(r"""^C([0-9]+)""")
-firewall_hostname_re = re.compile(r"""^FW([0-9]+)""")
-junos_hostname_re = re.compile(r"""^JUNOS([0-9]+)""")
-asa_hostname_re = re.compile(r"""^ASA([0-9]+)""")
+emu_hostname_re = re.compile(r"""^[FW|JUNOS|ASA|QEMU]([0-9]+)""")
 decorative_hostname_re = re.compile(r"""^N([0-9]+)""")
 
 class NETFile(object):
@@ -171,7 +169,7 @@ class NETFile(object):
                     node.showHostname()
                 debug("Node created: " + str(node))
                 return node
-        assert('SYMBOL NAME NOT FOUND: ' + symbol_name)
+    
         return None
 
     def record_image(self, device):
@@ -660,7 +658,7 @@ class NETFile(object):
                 self.configure_node(node, device)
                 node.create_config()
                 self.populate_connection_list_for_emulated_device(device, connection_list)
-                match_obj = firewall_hostname_re.match(node.hostname)
+                match_obj = emu_hostname_re.match(node.hostname)
                 if match_obj:
                     id = int(match_obj.group(1))
                     if id > max_emu_id:
@@ -906,16 +904,15 @@ class NETFile(object):
                     continue
                 if not item.default_symbol:
                     self.dynagen.running_config[item.d][item.get_running_config_name()]['symbol'] = item.type
-                if self.dynagen.running_config[item.d][item.get_running_config_name()].has_key('x') and \
-                    self.dynagen.running_config[item.d][item.get_running_config_name()].has_key('y'):
+                try:          
                     self.dynagen.running_config[item.d][item.get_running_config_name()]['x'] = item.x()
                     self.dynagen.running_config[item.d][item.get_running_config_name()]['y'] = item.y()
-                # record hostname x & y positions
-                if item.hostname_xpos and item.hostname_ypos and \
-                    self.dynagen.running_config[item.d][item.get_running_config_name()].has_key('hx') and \
-                    self.dynagen.running_config[item.d][item.get_running_config_name()].has_key('hy'):
-                    self.dynagen.running_config[item.d][item.get_running_config_name()]['hx'] = item.hostname_xpos
-                    self.dynagen.running_config[item.d][item.get_running_config_name()]['hy'] = item.hostname_ypos
+                    # record hostname x & y positions
+                    if item.hostname_xpos and item.hostname_ypos: #and \
+                        self.dynagen.running_config[item.d][item.get_running_config_name()]['hx'] = item.hostname_xpos
+                        self.dynagen.running_config[item.d][item.get_running_config_name()]['hy'] = item.hostname_ypos
+                except:
+                    pass
 
         # record project settings
         if globals.GApp.workspace.projectConfigs or globals.GApp.workspace.projectWorkdir:

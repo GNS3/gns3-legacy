@@ -74,6 +74,7 @@ class DynagenSub(Dynagen):
                 (emulator, host) = server.name.split(' ')
                 if emulator == 'qemu' and (host == globals.GApp.systconf['qemu'].QemuManager_binding or host == 'localhost') and globals.GApp.systconf['qemu'].enable_QemuManager:
                     globals.GApp.QemuManager.startQemu()
+            
                     for subsection in server.sections:
                         device = server[subsection]
                         # check if the PIX image is accessible, if not find an alternative image

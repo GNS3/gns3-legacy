@@ -64,8 +64,10 @@ class Application(QApplication, Singleton):
         self.__iosimages = {}
         self.__hypervisors = {}
         self.__libraries = {}
+        self.__qemuimages = {}
         self.iosimages_ids = 0
         self.hypervisors_ids = 0
+        self.qemuimages_ids = 0
 
         # set global app to ourself
         globals.GApp = self
@@ -161,6 +163,20 @@ class Application(QApplication, Singleton):
         return self.__iosimages
 
     iosimages = property(__getIOSImages, __setIOSImages, doc = 'IOS images dictionnary')
+    
+    def __setQemuImages(self, qemuimages):
+        """ register the sysconf instance
+        """
+
+        self.__qemuimages = qemuimages
+
+    def __getQemuImages(self):
+        """ return the sysconf instance
+        """
+
+        return self.__qemuimages
+
+    qemuimages = property(__getQemuImages, __setQemuImages, doc = 'Qemu images dictionnary')
     
     def __setLibraries(self, libraries):
         """ register the sysconf instance
@@ -265,20 +281,14 @@ class Application(QApplication, Singleton):
         confo = self.systconf['qemu']
         confo.qemuwrapper_path = ConfDB().get('Qemu/qemuwrapper_path', unicode(''))
         confo.qemuwrapper_workdir = ConfDB().get('Qemu/qemuwrapper_working_directory', unicode(''))
-        confo.qemu_path = ConfDB().get('Qemu/qemu_path', unicode(''))
-        confo.qemu_img_path = ConfDB().get('Qemu/qemu_img_path', unicode(''))
+        confo.qemu_path = ConfDB().get('Qemu/qemu_path', unicode('qemu'))
+        confo.qemu_img_path = ConfDB().get('Qemu/qemu_img_path', unicode('qemu-img'))
         confo.external_host = ConfDB().get('Qemu/external_host', unicode(''))
         confo.enable_QemuManager = ConfDB().value("Qemu/enable_QemuManager", QVariant(True)).toBool()
         confo.import_use_QemuManager = ConfDB().value("Qemu/qemu_manager_import", QVariant(True)).toBool()
         confo.QemuManager_binding = ConfDB().get('Qemu/qemu_manager_binding', unicode('localhost'))
         confo.qemuwrapper_baseUDP = int(ConfDB().get('Qemu/qemuwrapper_baseUDP', 20000))
         confo.qemuwrapper_baseConsole = int(ConfDB().get('Qemu/qemuwrapper_baseConsole', 3000))
-        confo.default_qemu_image = ConfDB().get('Qemu/default_qemu_image', unicode(''))
-        confo.default_qemu_memory = int(ConfDB().get('Qemu/default_qemu_memory', 128))
-        confo.default_qemu_nic = str(ConfDB().get('Qemu/default_qemu_nic', unicode('e1000')))
-        confo.default_qemu_options = str(ConfDB().get('Qemu/default_qemu_options', unicode('')))
-        confo.default_qemu_kqemu = ConfDB().value("Qemu/default_qemu_kqemu", QVariant(False)).toBool()
-        confo.default_qemu_kvm = ConfDB().value("Qemu/default_qemu_kvm", QVariant(False)).toBool()
         confo.default_pix_image = ConfDB().get('Qemu/default_pix_image', unicode(''))
         confo.default_pix_memory = int(ConfDB().get('Qemu/default_pix_memory', 128))
         confo.default_pix_nic = str(ConfDB().get('Qemu/default_pix_nic', unicode('e1000')))
@@ -307,7 +317,6 @@ class Application(QApplication, Singleton):
         if os.environ.has_key("HOME"):
             confo.qemuwrapper_path = confo.qemuwrapper_path.replace('$HOME', os.environ["HOME"])
             confo.qemuwrapper_workdir =  confo.qemuwrapper_workdir.replace('$HOME', os.environ["HOME"])
-            confo.default_qemu_image = confo.default_qemu_image.replace('$HOME', os.environ["HOME"])
             confo.default_pix_image = confo.default_pix_image.replace('$HOME', os.environ["HOME"])
             confo.default_junos_image = confo.default_junos_image.replace('$HOME', os.environ["HOME"])
             confo.default_asa_kernel = confo.default_asa_kernel.replace('$HOME', os.environ["HOME"])
@@ -315,7 +324,6 @@ class Application(QApplication, Singleton):
 
         confo.qemuwrapper_path = os.path.expanduser(confo.qemuwrapper_path)
         confo.qemuwrapper_workdir = os.path.expanduser(confo.qemuwrapper_workdir)
-        confo.default_qemu_image = os.path.expanduser(confo.default_qemu_image)
         confo.default_pix_image = os.path.expanduser(confo.default_pix_image)
         confo.default_junos_image = os.path.expanduser(confo.default_junos_image)
         confo.default_asa_kernel = os.path.expanduser(confo.default_asa_kernel)
@@ -373,6 +381,7 @@ class Application(QApplication, Singleton):
 
         GNS_Conf().IOS_images()
         GNS_Conf().IOS_hypervisors()
+        GNS_Conf().QEMU_images()
         GNS_Conf().Libraries()
         GNS_Conf().Symbols()
         
@@ -473,12 +482,6 @@ class Application(QApplication, Singleton):
         c.set('Qemu/qemu_manager_binding', confo.QemuManager_binding)
         c.set('Qemu/qemuwrapper_baseUDP', confo.qemuwrapper_baseUDP)
         c.set('Qemu/qemuwrapper_baseConsole', confo.qemuwrapper_baseConsole)
-        c.set('Qemu/default_qemu_image', confo.default_qemu_image)
-        c.set('Qemu/default_qemu_memory', confo.default_qemu_memory)
-        c.set('Qemu/default_qemu_nic', confo.default_qemu_nic)
-        c.set('Qemu/default_qemu_options', confo.default_qemu_options)
-        c.set('Qemu/default_qemu_kqemu', confo.default_qemu_kqemu)
-        c.set('Qemu/default_qemu_kvm', confo.default_qemu_kvm)
         c.set('Qemu/default_pix_image', confo.default_pix_image)
         c.set('Qemu/default_pix_memory', confo.default_pix_memory)
         c.set('Qemu/default_pix_nic', confo.default_pix_nic)
@@ -507,12 +510,16 @@ class Application(QApplication, Singleton):
         c.set('Capture/capture_reader_cmd', confo.cap_cmd)
         c.set('Capture/auto_start_cmd', confo.auto_start)
 
-        # Clear IOS.hypervisors and IOS.images group
-        c.beginGroup("IOs.images")
+        # Clear IOS.hypervisors, IOS.images and QEMU.images group
+        c.beginGroup("IOS.images")
         c.remove("")
         c.endGroup()
 
         c.beginGroup("IOS.hypervisors")
+        c.remove("")
+        c.endGroup()
+        
+        c.beginGroup("QEMU.images")
         c.remove("")
         c.endGroup()
         
@@ -548,6 +555,17 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/working_directory", o.workdir)
             c.set(basekey + "/base_udp", o.baseUDP)
             c.set(basekey + "/base_console", o.baseConsole)
+            
+        # Qemu images
+        for (key, o) in self.__qemuimages.iteritems():
+            basekey = "QEMU.images/" + str(o.id)
+            c.set(basekey + "/name", o.name)
+            c.set(basekey + "/filename", o.filename)
+            c.set(basekey + "/memory", o.memory)
+            c.set(basekey + "/nic", o.nic)
+            c.set(basekey + "/options", o.options)
+            c.set(basekey + "/kqemu", o.kqemu)
+            c.set(basekey + "/kvm", o.kvm)
             
         # Libraries
         id = 0

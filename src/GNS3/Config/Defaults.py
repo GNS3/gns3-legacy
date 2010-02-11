@@ -72,6 +72,28 @@ conf_hypervisor_types = {
     'used_ram': int, 
 }
 
+conf_qemuImage_defaults = {
+    'id': -1,
+    'name': '',
+    'filename': '',
+    'memory': 128,
+    'nic': 'e1000',
+    'options': '',
+    'kqemu': False,
+    'kvm': False
+}
+
+conf_qemuImage_types = {
+    'id': int,
+    'name': unicode,
+    'filename': unicode,
+    'memory': int,
+    'nic': str,
+    'options': str,
+    'kqemu': bool,
+    'kvm': bool
+}
+
 conf_systemDynamips_defaults = {
     'path': '',
     'port': 7200,
@@ -149,8 +171,8 @@ conf_systemCapture_types = {
 conf_systemQemu_defaults = {
     'qemuwrapper_path':'',
     'qemuwrapper_workdir':'',
-    'qemu_path':'',
-    'qemu_img_path':'',
+    'qemu_path':'qemu',
+    'qemu_img_path':'qemu-img',
     'external_host':'',
     'enable_QemuManager': True,
     'import_use_QemuManager': True,

@@ -128,7 +128,7 @@ class Scene(QtGui.QGraphicsView):
             
             # Action: ChangeHypervisor (Change the hypervisor)
             changeHypervisor = QtGui.QAction(translate('Scene', 'Set an hypervisor'), menu)
-            changeHypervisor.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
+            changeHypervisor.setIcon(QtGui.QIcon(":/icons/applications.svg"))
             self.connect(changeHypervisor, QtCore.SIGNAL('triggered()'), self.slotChangeHypervisor)
             
             menu.addAction(changeHypervisor)
@@ -179,8 +179,9 @@ class Scene(QtGui.QGraphicsView):
             suspendAct.setIcon(QtGui.QIcon(':/icons/pause.svg'))
             self.connect(suspendAct, QtCore.SIGNAL('triggered()'), self.slotSuspendNode)
             
+            # Action: Reload (stop and start IOS on hypervisor)
             reloadAct = QtGui.QAction(translate('Scene', 'Reload'), menu)
-            reloadAct.setIcon(QtGui.QIcon(':/icons/pause.svg'))
+            reloadAct.setIcon(QtGui.QIcon(':/icons/reload.svg'))
             self.connect(reloadAct, QtCore.SIGNAL('triggered()'), self.slotReloadNode)
 
             menu.addAction(suspendAct)

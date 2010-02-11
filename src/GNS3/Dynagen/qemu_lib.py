@@ -115,8 +115,8 @@ class Qemu(object):
         self.default_udp = self.udp
         self.starting_udp = self.udp
         self._workingdir = None
-        self._qemupath = None
-        self._qemuimgpath = None
+        self._qemupath = 'qemu'
+        self._qemuimgpath = 'qemu-img'
         self.configchange = False
 
     def close(self):
