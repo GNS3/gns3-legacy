@@ -11,7 +11,7 @@ TODO LIST
  * Possibility to select the hypervisor for Ethernet/ATM/FR/ATMBR (http://www.gns3.net/phpBB/topic1315.html) ==> done
 
  * Finish Undo framework
- * Improving the snapshot system (http://www.gns3.net/phpBB/topic290.html) => done
+ * Improving the snapshot system (http://www.gns3.net/phpBB/topic290.html) => done (finish delete)
  
  * Change IOS (same platform, http://www.gns3.net/phpBB/topic721.html) ==> too complicated and bug prone !!
  * Relative paths (http://www.gns3.net/phpBB/topic361.html) ==> too complicated and bug prone !!
@@ -25,8 +25,8 @@ Low priority features:
  
 Debugging:
 
- * Check wics (http://www.gns3.net/phpBB/topic871.html http://www.gns3.net/phpBB/topic324.html http://www.gns3.net/phpBB/topic1087.html) and tooltips info about wics (http://www.gns3.net/phpBB/topic1205.html)
- * Check allocated ports (tooltips).
+ * Tooltip doesn't work properly on Mac OS X
+ * Check wics (http://www.gns3.net/phpBB/topic871.html http://www.gns3.net/phpBB/topic324.html http://www.gns3.net/phpBB/topic1087.html) and tooltips info about wics (http://www.gns3.net/phpBB/topic1205.html) => done
  * Generic Ethernet NIO is blank on Vista (http://www.gns3.net/phpBB/topic885.html)
  * Check ghostios (http://www.gns3.net/phpBB/topic999.html)
  * Check GNS3 on Windows 7 (e.g. http://www.gns3.net/phpBB/topic1355.html http://www.gns3.net/phpBB/topic1007.html)

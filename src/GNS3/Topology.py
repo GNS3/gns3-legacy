@@ -643,7 +643,6 @@ class Topology(QtGui.QGraphicsScene):
         self.undoStack.push(command)
 #        self.undoStack.endMacro()
         if command.getStatus() == False:
-            print 'UNDO'
             self.undoStack.undo()
             return False
         return True

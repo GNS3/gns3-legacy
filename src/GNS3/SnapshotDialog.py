@@ -19,7 +19,7 @@
 # code@gns3.net
 #
 
-import os, glob, re
+import os, glob, re, shutil
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_Snapshots import Ui_Snapshots
@@ -34,6 +34,7 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
         self.setupUi(self)
         
         self.connect(self.pushButtonCreate, QtCore.SIGNAL('clicked()'), self.slotCreateSnapshot)
+        self.connect(self.pushButtonDelete, QtCore.SIGNAL('clicked()'), self.slotDeleteSnapshot)
         self.connect(self.pushButtonLoad, QtCore.SIGNAL('clicked()'), self.slotLoadSnapshot)
         self.listSnaphosts()
 
@@ -56,6 +57,15 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
         
         globals.GApp.workspace.createSnapshot()
         self.listSnaphosts()
+        
+    def slotDeleteSnapshot(self):
+        
+        items = self.SnapshotList.selectedItems()
+        if len(items):
+            item = items[0]
+            snapshot_path = unicode(item.data(QtCore.Qt.UserRole).toString())
+            shutil.rmtree(snapshot_path, ignore_errors=True)
+            self.listSnaphosts()
         
     def slotLoadSnapshot(self):
         

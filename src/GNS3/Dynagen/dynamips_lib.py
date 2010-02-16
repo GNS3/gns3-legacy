@@ -568,15 +568,18 @@ class NIO_udp(NIO):
         from qemu_lib import AnyEmuDevice
         if isinstance(remote_device, Router):
             (rem_int_name, rem_dynagen_port) = remote_adapter.interfaces_mips2dyn[remote_port]
+            if rem_int_name == 'e':
+                rem_int_full_name = 'Ethernet'
+            elif rem_int_name == 'f':
+                rem_int_full_name = 'FastEthernet'
+            elif rem_int_name == 's':
+                rem_int_full_name = 'Serial'
             if remote_device.model_string in ['1710', '1720', '1721', '1750']:
-                if rem_int_name == 'e':
-                    rem_int_full_name = 'Ethernet'
-                elif rem_int_name == 'f':
-                    rem_int_full_name = 'FastEthernet'
-                elif rem_int_name == 's':
-                    rem_int_full_name = 'Serial'
-
                 return ' is connected to router ' + remote_device.name + " " + rem_int_full_name + str(rem_dynagen_port)
+            # remote_port >= 16 means it's a wic module
+            if remote_port >= 16:
+                return ' is connected to router ' + remote_device.name + " " + rem_int_full_name + str(remote_adapter.slot) + \
+                        "/" + str(rem_dynagen_port)
             return ' is connected to router ' + remote_device.name + " " + remote_adapter.interface_name + str(remote_adapter.slot) + \
                    "/" + str(rem_dynagen_port)
 
@@ -1261,11 +1264,11 @@ class BaseAdapter(object):
         """
 
         i = 0
-        for interface in self.interfaces:
-            for dynagenport in self.interfaces[interface]:
+        for interface in self.interfaces_mips2dyn:
+            # don't count the wics interfaces ... (interface nb >= 16 on the adapter)
+            if interface < 16:
                 i = i + 1
         return i
-
 
 class PA(BaseAdapter):
 
@@ -1766,6 +1769,7 @@ class NM_CIDS(NM):
             1,
             intlist,
         )
+        self.interface_name = 'i'
 
 
 class NM_NAM(NM):
@@ -1784,6 +1788,7 @@ class NM_NAM(NM):
             1,
             intlist,
         )
+        self.interface_name = 'an'
 
 
 class GT96100_FE(NM):
@@ -2268,6 +2273,7 @@ class Router(object):
 
         for adapter in self.slot:
             if adapter != None:
+
                 int_count = adapter.get_interface_count()
                 if int_count == 1:
                     int_string = ' interface\n'
@@ -2281,7 +2287,13 @@ class Router(object):
                 for interface in adapter.interfaces:
                     for dynagenport in adapter.interfaces[interface]:
                         i = adapter.interfaces[interface][dynagenport]
+                        
+                        # trick to ignore wics interfaces
+                        if i >= 16:
+                            continue
+                        
                         nio = adapter.nio(i)
+
                         #create the left side of description
                         #if this is no-slot router
                         if adapter.router.model_string in ['1710', '1720', '1721', '1750']:
@@ -2300,6 +2312,37 @@ class Router(object):
                         else:
                             #no NIO on this port, so it must be empty
                             slot_info = slot_info + ' is empty\n'
+
+        currentport_e = 0  # The starting WIC port for ethernets (e.g. Ex/0 or E0)
+        currentport_s = 0  # The starting WIC port for serials  (e.g. Sx0/0 or S0)
+        for i in range(0, len(self.slot[0].wics)):
+            if self.slot[0].wics[i] != None:
+                interfaces = WICS[self.slot[0].wics[i]]  # A list of the interface types provided by this WIC
+                
+                int_count = len(interfaces)
+                if int_count == 1:
+                    int_string = ' interface\n'
+                else:
+                    int_string = ' interfaces\n'
+                    
+                slot_info = slot_info + "   " + self.slot[0].wics[i] + " installed with " + str(int_count) + int_string
+                
+                dynaport = 16 * (i + 1)
+                for interface in interfaces:
+                    nio = self.slot[0].nio(dynaport)
+                    if interface == 'e':
+                        slot_info += '      ' + 'Ethernet0/' + str(currentport_e)
+                        currentport_e += 1
+                    elif interface == 's':
+                        slot_info += '      ' + 'Serial0/' + str(currentport_s)
+                        currentport_s += 1
+                    if nio != None:
+                        slot_info += nio.info() + '\n'
+                    else:
+                        #no NIO on this port, so it must be empty
+                        slot_info = slot_info + ' is empty\n'      
+                    dynaport += 1
+        
         #finally we ran over all slot and produced info about every one of them
         return slot_info
 
