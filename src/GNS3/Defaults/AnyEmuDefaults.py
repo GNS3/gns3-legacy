@@ -43,7 +43,7 @@ class AnyEmuDefaults(AbstractDefaults):
         """
 
         self.qemu = qemu
-        self.d = 'qemu ' + str(self.qemu.host)
+        self.d = 'qemu ' + unicode(self.qemu.host) + ':' + str(self.qemu.port)
         self.config = self.dynagen.defaults_config[self.d]
 
     def set_image(self, image, model):

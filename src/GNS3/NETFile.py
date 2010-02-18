@@ -126,8 +126,8 @@ class NETFile(object):
 
         symbol_name = x = y = hx = hy = None
         config = None
-        if isinstance(device, qlib.AnyEmuDevice) and self.dynagen.globalconfig['qemu ' + device.dynamips.host].has_key(running_config_name):
-            config = self.dynagen.globalconfig['qemu ' + device.dynamips.host][running_config_name]
+        if isinstance(device, qlib.AnyEmuDevice) and self.dynagen.globalconfig['qemu ' + device.dynamips.host +':' + str(device.dynamips.port)].has_key(running_config_name):
+            config = self.dynagen.globalconfig['qemu ' + device.dynamips.host +':' + str(device.dynamips.port)][running_config_name]
         elif self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)].has_key(running_config_name):
             config = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][running_config_name]
 
@@ -915,6 +915,7 @@ class NETFile(object):
                     pass
 
         # record project settings
+        #TODO: is this now useless?
         if globals.GApp.workspace.projectConfigs or globals.GApp.workspace.projectWorkdir:
             if not self.dynagen.running_config.has_key('GNS3-DATA'):
                 self.dynagen.running_config['GNS3-DATA'] = {}
@@ -923,11 +924,14 @@ class NETFile(object):
                 try:
                     config['configs'] = relpath(globals.GApp.workspace.projectConfigs, os.path.dirname(path))
                 except:
+                    debug("Failed to put a project relative path for configs")
                     config['configs'] = globals.GApp.workspace.projectConfigs
+                    
             if globals.GApp.workspace.projectWorkdir:
                 try:
                     config['workdir'] = relpath(globals.GApp.workspace.projectWorkdir, os.path.dirname(path))
                 except:
+                    debug("Failed to put a project relative path for workingdir")
                     config['workdir'] = globals.GApp.workspace.projectWorkdir
 
         # register matrix data
@@ -953,6 +957,39 @@ class NETFile(object):
         if len(self.dynagen.autostart) > 0:
             self.dynagen.running_config['autostart'] = True
         
+        # Relative path for device images
+        for hypervisor in self.dynagen.dynamips.values():
+            if isinstance(hypervisor, qlib.Qemu):
+                h = 'qemu ' + hypervisor.host + ":" + str(hypervisor.port)          
+            else:
+                h = hypervisor.host + ":" + str(hypervisor.port)
+            config = self.dynagen.running_config[h]
+            if config.has_key('workingdir'):
+                config['workingdir'] = self.convert_to_relpath(config['workingdir'], path)
+
+            for model in dynagen_namespace.DEVICETUPLE:
+                if config.has_key(model):
+                    # ASA has no image
+                    if model == '5520':
+                        config[model]['initrd'] = self.convert_to_relpath(config[model]['initrd'], path)
+                        config[model]['kernel'] = self.convert_to_relpath(config[model]['kernel'], path)
+                    else:
+                        config[model]['image'] = self.convert_to_relpath(config[model]['image'], path)
+        
         self.dynagen.running_config.filename = path
         self.dynagen.running_config.write()
         self.dynagen.running_config.filename = None
+        
+    def convert_to_relpath(self, path, config_path):
+        """ Returns a relative path when the config path and another path share a common base directory
+        """
+
+        real_image_path = os.path.realpath(path)
+        config_dir = os.path.dirname(os.path.realpath(config_path))
+        commonprefix = os.path.commonprefix([real_image_path, config_dir])
+        if config_dir == commonprefix:
+            #TODO: check if relpath can raises an exception
+            relpath = os.path.relpath(real_image_path, commonprefix)
+            debug("Convert path " + path + " to a relative path : " + relpath)
+            return relpath
+        return path

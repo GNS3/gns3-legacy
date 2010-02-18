@@ -20,7 +20,7 @@
 #
 
 import GNS3.Globals as globals
-from PyQt4 import QtCore,  QtGui
+from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
 from Form_ETHSWPage import Ui_ETHSWPage
 

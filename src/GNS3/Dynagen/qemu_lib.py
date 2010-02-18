@@ -285,6 +285,10 @@ class AnyEmuDevice(object):
         #set the console to Qemu baseconsole
         self.console = self.p.baseconsole
         self.p.baseconsole += 1
+        
+    def __del__(self):
+        
+        send(self.p, 'qemu delete %s' % self.name)
 
     def start(self):
         """starts the emulated device instance in Qemu"""

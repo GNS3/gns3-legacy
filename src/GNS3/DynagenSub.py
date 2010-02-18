@@ -34,7 +34,7 @@ class DynagenSub(Dynagen):
         Dynagen.__init__(self)
         self.gns3_data = None
 
-    def open_config(self,  FILENAME):
+    def open_config(self, FILENAME):
         """ Open the config file
         """
 
@@ -71,24 +71,29 @@ class DynagenSub(Dynagen):
 
             server = config[section]
             if ' ' in server.name:
-                (emulator, host) = server.name.split(' ')
+                (emulator, host) = server.name.split(' ')              
+                if ':' in host:
+                    # unpack the server and port
+                    # controlPort is ignored
+                    (host, controlPort) = host.split(':')
                 if emulator == 'qemu' and (host == globals.GApp.systconf['qemu'].QemuManager_binding or host == 'localhost') and globals.GApp.systconf['qemu'].enable_QemuManager:
                     globals.GApp.QemuManager.startQemu()
             
                     for subsection in server.sections:
                         device = server[subsection]
+                        #TODO: load default image for PIX/Qemu/JunOS
                         # check if the PIX image is accessible, if not find an alternative image
-                        if device.name in DEVICETUPLE:
-                            if not os.access(device['image'], os.F_OK):
-                                if globals.GApp.systconf['qemu'].default_pix_image:
-                                    image_name = globals.GApp.systconf['qemu'].default_pix_image
-                                else:
-                                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
-                                      unicode(translate("PIX image", "PIX image %s cannot be found and cannot find an alternative image")) % globals.GApp.systconf['qemu'].default_pix_image)
-                                    continue
-                                print unicode(translate("DynagenSub", "Local PIX image %s cannot be found, use image %s instead")) \
-                                % (unicode(device['image']), image_name)
-                                device['image'] = image_name
+#                        if device.name in DEVICETUPLE:
+#                            if not os.access(device['image'], os.F_OK):
+#                                if globals.GApp.systconf['qemu'].default_pix_image:
+#                                    image_name = globals.GApp.systconf['qemu'].default_pix_image
+#                                else:
+#                                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
+#                                      unicode(translate("PIX image", "PIX image %s cannot be found and cannot find an alternative image")) % globals.GApp.systconf['qemu'].default_pix_image)
+#                                    continue
+#                                print unicode(translate("DynagenSub", "Local PIX image %s cannot be found, use image %s instead")) \
+#                                % (unicode(device['image']), image_name)
+#                                device['image'] = image_name
     
             else:
                 server.host = server.name
@@ -107,6 +112,16 @@ class DynagenSub(Dynagen):
                     hypervisor = globals.GApp.HypervisorManager.startNewHypervisor(int(controlPort))
                     globals.GApp.HypervisorManager.waitHypervisor(hypervisor)
                     
+                    # Check if the image path is a relative path
+                    if os.path.exists(server['workingdir']) == False:
+                        abspath = os.path.join(os.path.dirname(FILENAME), server['workingdir'])
+                        if os.path.exists(abspath):
+                            server['workingdir'] = abspath
+                    
+                    if server['workingdir'] == '.':
+                        server['workingdir'] = os.path.dirname(FILENAME)
+                    
+
                     # check if the working directory is accessible, if not find an alternative working directory
                     if not os.access(server['workingdir'], os.F_OK):
                         if globals.GApp.workspace.projectWorkdir and os.access(globals.GApp.workspace.projectWorkdir, os.F_OK):
@@ -116,11 +131,18 @@ class DynagenSub(Dynagen):
                         print unicode(translate("DynagenSub", "Local working directory %s cannot be found for hypervisor %s, use working directory %s instead")) \
                         % (unicode(server['workingdir']), unicode(server.host) + ':' + controlPort, workdir)
                         server['workingdir'] = workdir
-                        
+
                     for subsection in server.sections:
                         device = server[subsection]
                         # check if the IOS image is accessible, if not find an alternative image
                         if device.name in DEVICETUPLE:
+                            
+                            # Check if the image path is a relative path
+                            if os.path.exists(device['image']) == False:
+                                abspath = os.path.join(os.path.dirname(FILENAME), device['image'])
+                                if os.path.exists(abspath):
+                                    device['image'] = abspath
+
                             if not os.access(device['image'], os.F_OK):
                                 selected_images = []
                                 image_to_use = None

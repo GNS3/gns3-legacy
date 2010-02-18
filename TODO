@@ -1,37 +1,38 @@
 TODO LIST
 
- * Simulated host support => Use a very small and dedicated Qemu image for this
+ * Simulated host support => Use a very small and dedicated Linux/Qemu image for this
  * cpulimit integration => no need to integrate, use a hint instead
  
  * Symbols for Voice labs (gateway, gatekeeper, ip phones, sip servers, call managers) ==> need DIA + Inkscape
  * Create DMG for MacOSX (http://www.gns3.net/phpBB/topic307.html)
+ * Compress project/snapshots?
  * Hypervisor mode for Qemu?
  * Reload router option ==> completed
+
  * Browse option for startup-config (http://www.gns3.net/phpBB/topic1267.html) ==> done
  * Possibility to select the hypervisor for Ethernet/ATM/FR/ATMBR (http://www.gns3.net/phpBB/topic1315.html) ==> done
+ * Improving the snapshot system (http://www.gns3.net/phpBB/topic290.html) => done
 
- * Finish Undo framework
- * Improving the snapshot system (http://www.gns3.net/phpBB/topic290.html) => done (finish delete)
- 
- * Change IOS (same platform, http://www.gns3.net/phpBB/topic721.html) ==> too complicated and bug prone !!
- * Relative paths (http://www.gns3.net/phpBB/topic361.html) ==> too complicated and bug prone !!
+ * Finish Undo framework => almost done (idle pc, startup-config (per device and extract/import all), style, next annotation text)
+ * Relative paths (http://www.gns3.net/phpBB/topic361.html) => almost done, configs files left + qemu devices
  
 Low priority features:
  
  * NIO multicast support (next release of Dynamips)
  * Show NIO activity (next release of Dynamips)
  * Dynamips QinQ integration (next release of Dynamips)
- * Vmware integration (http://www.gns3.net/phpBB/topic1162.html)
+ * Vmware integration (http://www.gns3.net/phpBB/topic1162.html) => see VIX API and pyvix
  
 Debugging:
 
  * Tooltip doesn't work properly on Mac OS X
  * Check wics (http://www.gns3.net/phpBB/topic871.html http://www.gns3.net/phpBB/topic324.html http://www.gns3.net/phpBB/topic1087.html) and tooltips info about wics (http://www.gns3.net/phpBB/topic1205.html) => done
  * Generic Ethernet NIO is blank on Vista (http://www.gns3.net/phpBB/topic885.html)
- * Check ghostios (http://www.gns3.net/phpBB/topic999.html)
+ * Check ghostios (http://www.gns3.net/phpBB/topic999.html) ==> It works, virtual mem usage is ok.
  * Check GNS3 on Windows 7 (e.g. http://www.gns3.net/phpBB/topic1355.html http://www.gns3.net/phpBB/topic1007.html)
- * Save interface label? (http://www.gns3.net/phpBB/topic1271.html)
- * Save GUI space? (http://www.gns3.net/phpBB/topic1268.html)
- * Check save on Mac OS X (http://www.gns3.net/phpBB/topic6.html)
+ * Save interface label? (http://www.gns3.net/phpBB/topic1271.html) => users should not edit interface labels?
+ * Save GUI space? (http://www.gns3.net/phpBB/topic1268.html) => not very useful
+ * Check save on Mac OS X (http://www.gns3.net/phpBB/topic6.html) => Apparently ok
  * Selecting device logically (http://www.gns3.net/phpBB/topic247.html) ==> done
- * Bug with Cloud (http://www.gns3.net/phpBB/topic1030.html)
+ * Bug with Cloud (http://www.gns3.net/phpBB/topic1030.html) => done
+ * Load default image for PIX/JunOS/Qemu + initrd/kernel for ASA when importing

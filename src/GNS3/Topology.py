@@ -23,6 +23,7 @@ import os, glob, socket, sys
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.qemu_lib as qlib
 import GNS3.Globals as globals
+import GNS3.UndoFramework as undo 
 from PyQt4 import QtGui, QtCore
 from GNS3.Utils import translate, debug
 from GNS3.Link.Ethernet import Ethernet
@@ -37,7 +38,7 @@ from GNS3.Node.Cloud import Cloud, init_cloud_id
 from GNS3.Node.AnyEmuDevice import QemuDevice, FW, ASA, AnyEmuDevice, JunOS, init_emu_id
 from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Annotation import Annotation
-import GNS3.UndoFramework as undo 
+
 
 class Topology(QtGui.QGraphicsScene):
     """ Topology class
@@ -60,7 +61,7 @@ class Topology(QtGui.QGraphicsScene):
         self.setSceneRect(-(width / 2), -(height / 2), width, height)
 
         self.undoStack = QtGui.QUndoStack(self)
-        self.undoStack.setUndoLimit (20)
+        self.undoStack.setUndoLimit(30)
         self.lastAddedLink = None
 
     def mousePressEvent(self, event):
@@ -261,7 +262,7 @@ class Topology(QtGui.QGraphicsScene):
             qemu_name = host + ':10525'
         else:
             host = globals.GApp.systconf['qemu'].external_host
-            qemu_name =  host + ':10525'
+            qemu_name = host + ':10525'
 
         debug('Qemuwrapper: ' + qemu_name)
         if not self.dynagen.dynamips.has_key(qemu_name):
@@ -298,7 +299,7 @@ class Topology(QtGui.QGraphicsScene):
             node: object
         """
         
-        command = undo.AddItem(self, node, "New node %s" % node.hostname)
+        command = undo.AddNode(self, node)
         self.undoStack.push(command)
         
     def addNode(self, node, fromScene=False):
@@ -514,7 +515,7 @@ class Topology(QtGui.QGraphicsScene):
         """
         
         node = self.__nodes[id]
-        command = undo.DeleteItem(self, node, "Node %s deleted" % node.hostname)
+        command = undo.DeleteNode(self, node)
         self.undoStack.push(command)
         
     def deleteNode(self, id):
@@ -637,11 +638,9 @@ class Topology(QtGui.QGraphicsScene):
     def addLinkFromScene(self, srcid, srcif, dstid, dstif):
         """ Add a link to the topology, called from Scene
         """
-        
-#        self.undoStack.beginMacro("Adding link")
+
         command = undo.AddLink(self, srcid, srcif, dstid, dstif)
         self.undoStack.push(command)
-#        self.undoStack.endMacro()
         if command.getStatus() == False:
             self.undoStack.undo()
             return False

@@ -1036,8 +1036,16 @@ class Dynagen:
                 if emulator == 'qemu':
                     #connect to the Qemu Wrapper
                     try:
-                        #add ':10525' string to the name so that it does not conflict with name of dynamips server
-                        qemu_name = host + ':10525'
+                        
+                        if ':' in host:
+                            # unpack the server and port
+                            qemu_name = host
+                            # controlPort is ignored
+                            (host, controlPort) = host.split(':')
+                        else:
+                            #add ':10525' string to the name so that it does not conflict with name of dynamips server
+                            qemu_name = host + ':10525'
+
                         #create the Qemu instance and add it to global dictionary
                         self.dynamips[qemu_name] = Qemu(host)
                         self.dynamips[qemu_name].reset()
@@ -1740,7 +1748,7 @@ class Dynagen:
 
         for hypervisor in self.dynamips.values():
             if isinstance(hypervisor, Qemu):
-                h = 'qemu ' + hypervisor.host
+                h = 'qemu ' + hypervisor.host + ":" + str(hypervisor.port)
             else:
                 h = hypervisor.host + ":" + str(hypervisor.port)
 
@@ -1967,7 +1975,7 @@ class Dynagen:
     def _update_running_config_for_emulated_device(self, hypervisor, device, need_active_config):
         """parse the all data structures associated with this emulated device and update the running_config properly"""
 
-        h = 'qemu ' + hypervisor.host
+        h = 'qemu ' + hypervisor.host + ":" + str(hypervisor.port)
         f = '%s %s' % (device.basehostname, device.name)
         self.running_config[h][f] = {}
 
@@ -2042,7 +2050,7 @@ class Dynagen:
         #go throught all hypervisor instances
         for hypervisor in self.dynamips.values():
             if isinstance(hypervisor, Qemu):
-                h = 'qemu ' + hypervisor.host             
+                h = 'qemu ' + hypervisor.host + ":" + str(hypervisor.port)          
             else:
                 h = hypervisor.host + ":" + str(hypervisor.port)
             self.running_config[h] = {}

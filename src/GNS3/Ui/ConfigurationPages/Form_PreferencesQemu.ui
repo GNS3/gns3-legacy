@@ -201,13 +201,13 @@
      </widget>
      <widget class="QWidget" name="tab_4">
       <attribute name="title">
-       <string>Qemu</string>
+       <string>Qemu Host</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_5">
+      <layout class="QVBoxLayout" name="verticalLayout_7">
        <item>
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
-          <string>Qemu Settings</string>
+          <string>Qemu Host Settings</string>
          </property>
          <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="0">
@@ -344,6 +344,13 @@
             </property>
            </widget>
           </item>
+          <item row="6" column="0">
+           <widget class="QPushButton" name="SaveQemuImage">
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
           <item row="6" column="1">
            <widget class="QPushButton" name="DeleteQemuImage">
             <property name="text">
@@ -364,7 +371,16 @@
             </property>
            </spacer>
           </item>
-          <item row="7" column="0" colspan="4">
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_8">
+         <property name="title">
+          <string>Qemu Host images</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
            <widget class="QTreeWidget" name="treeWidgetQemuImages">
             <column>
              <property name="text">
@@ -376,13 +392,6 @@
               <string>Image path</string>
              </property>
             </column>
-           </widget>
-          </item>
-          <item row="6" column="0">
-           <widget class="QPushButton" name="SaveQemuImage">
-            <property name="text">
-             <string>Save</string>
-            </property>
            </widget>
           </item>
          </layout>

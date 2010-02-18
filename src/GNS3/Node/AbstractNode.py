@@ -83,10 +83,10 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             edge.setCustomToolTip()
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
         
-    def setUndoConfig(self, config,  prevConfig):
+    def setUndoConfig(self, config, prevConfig):
         """ Set a new config to be put on the undo stack
         """
-        
+
         command = undo.AddConfig(self, config, prevConfig)
         globals.GApp.topology.undoStack.push(command)
 
@@ -104,15 +104,14 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                                            translate("AbstractNode", "Please use only alphanumeric characters"))
                 self.changeHostname()
                 return
+
             for node in globals.GApp.topology.nodes.itervalues():
                 if text == node.hostname:
                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hostname"),  translate("AbstractNode", "Hostname already used"))
-            self.reconfigNode(text)
-            if self.__flag_hostname:
-                # force to redisplay the hostname
-                self.removeHostname()
-                self.showHostname()
-            self.updateToolTips()
+                    return
+
+            command = undo.NewHostname(self, text)
+            globals.GApp.topology.undoStack.push(command)
             
     def changeHypervisor(self):
         """ Called to change an hypervisor
@@ -168,14 +167,15 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """
 
         device = self.get_dynagen_device()
-        (port,  ok) = QtGui.QInputDialog.getInteger(globals.GApp.mainWindow, translate("AbstractNode", "Change the console port"),
+        (port, ok) = QtGui.QInputDialog.getInteger(globals.GApp.mainWindow, translate("AbstractNode", "Change the console port"),
                                           unicode(translate("AbstractNode", "Console port for %s:")) % self.hostname, device.console, 1, 65535, 1)
         if ok and device.console != port:
-            try:
-                device.console = port
-                self.setCustomToolTip()
-            except lib.DynamipsError, msg:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Console port"), unicode(msg))
+
+            command = undo.NewConsolePort(self, port)
+            globals.GApp.topology.undoStack.push(command)
+            if command.getStatus() != None:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Console port"), unicode(command.getStatus()))
+                globals.GApp.topology.undoStack.undo()
 
     def paint(self, painter, option, widget=None):
         """ Don't show the selection rectangle
@@ -325,7 +325,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         menu = QtGui.QMenu()
         interfaces_list = self.getInterfaces()
         if len(interfaces_list) == 0:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Connection"),  translate("AbstractNode", "No interface available, please configure this device"))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Connection"), translate("AbstractNode", "No interface available, please configure this device"))
             return
         connected_list = self.getConnectedInterfaceList()
         for interface in interfaces_list:

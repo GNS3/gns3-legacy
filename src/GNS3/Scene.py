@@ -21,6 +21,7 @@
 
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
+import GNS3.UndoFramework as undo
 from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Topology import Topology
 from GNS3.Utils import translate, debug
@@ -412,26 +413,27 @@ class Scene(QtGui.QGraphicsView):
                 if ok_to_delete_node:
                     self.__topology.deleteNodeFromScene(item.id)
             else:
-                self.__topology.removeItem(item)
+                command = undo.DeleteItem(self.__topology, item)
+                self.__topology.undoStack.push(command)
 
     def slotlowerZValue(self):
         """ Lower Z value
         """
-    
+ 
         for item in self.__topology.selectedItems():
             zvalue = item.zValue()
             if zvalue > 0:
-                item.setZValue(zvalue - 1)
-                item.update()
-        
+                command = undo.NewZValue(item, zvalue - 1)
+                self.__topology.undoStack.push(command)
+
     def slotraiseZValue(self):
         """ Raise Z value
         """
     
         for item in self.__topology.selectedItems():
             zvalue = item.zValue()
-            item.setZValue(zvalue + 1)
-            item.update()
+            command = undo.NewZValue(item, zvalue + 1)
+            self.__topology.undoStack.push(command)
 
     def slotConsole(self):
         """ Slot called to launch a console on the selected items
@@ -669,8 +671,9 @@ class Scene(QtGui.QGraphicsView):
             note.setPos(self.mapToScene(event.pos()))
             pos_x = note.pos().x()
             pos_y = note.pos().y() - (note.boundingRect().height() / 2)
-            note.setPos(pos_x, pos_y)
-            globals.GApp.topology.addItem(note)
+            note.setPos(pos_x, pos_y)      
+            command = undo.AddItem(self.__topology, note, translate("Scene", "annotation"))
+            self.__topology.undoStack.push(command)
             note.editText()
             globals.GApp.workspace.action_AddNote.setChecked(False)
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
@@ -678,14 +681,16 @@ class Scene(QtGui.QGraphicsView):
         elif event.button() == QtCore.Qt.LeftButton and globals.drawingRectangle:
             size = QtCore.QSizeF(200, 100)
             item = Rectangle(self.mapToScene(event.pos()),  size)
-            globals.GApp.topology.addItem(item)
+            command = undo.AddItem(self.__topology, item, translate("Scene", "rectangle"))
+            self.__topology.undoStack.push(command)
             globals.GApp.workspace.action_DrawRectangle.setChecked(False)
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
             globals.drawingRectangle = False
         elif event.button() == QtCore.Qt.LeftButton and globals.drawingEllipse:
             size = QtCore.QSizeF(200, 200)
             item = Ellipse(self.mapToScene(event.pos()),  size)
-            globals.GApp.topology.addItem(item)
+            command = undo.AddItem(self.__topology, item, translate("Scene", "ellipse"))
+            self.__topology.undoStack.push(command)
             globals.GApp.workspace.action_DrawEllipse.setChecked(False)
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
             globals.drawingEllipse = False

@@ -75,7 +75,7 @@ def relpath(target, base=os.curdir):
     """
 
     if not os.path.exists(target):
-        raise OSError, 'Target does not exist: '+target
+        raise OSError, 'Target does not exist: '+ target
 
     if not os.path.isdir(base):
         raise OSError, 'Base is not a directory or does not exist: '+base

@@ -22,7 +22,7 @@
 import sys, os, traceback
 
 # current version of GNS3
-VERSION = "0.7RC2"
+VERSION = "0.7"
 VERSION_INTEGER = 0x000700
 
 try:

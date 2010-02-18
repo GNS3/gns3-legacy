@@ -23,6 +23,7 @@ import os, socket, glob, shutil, time, base64
 import GNS3.NETFile as netfile
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Globals as globals
+import GNS3.UndoFramework as undo
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtGui import QMainWindow, QIcon
 from GNS3.Ui.Form_MainWindow import Ui_MainWindow
@@ -269,14 +270,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
             
         if globals.GApp.systconf['dynamips'].clean_workdir:
             # delete dynamips files
-            dynamips_files = glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "c[0-9][0-9][0-9][0-9]*")
+            dynamips_files = glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*")
             if projectWorkdir:
                 # delete useless project files
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "*ghost*")
-                dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "*log.txt")
-                dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "*bootflash")
-                dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "*rommon_vars")
-                dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "*ssa")
+                dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*_log.txt")
+                dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*_bootflash")
+                dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*_rommon_vars")
+                dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*_ssa")
 
             for file in dynamips_files:
                 try:
@@ -394,7 +395,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 pos_y = item.pos().y() - (item.boundingRect().height() / 2)
                 item.setPos(pos_x, pos_y)
                 # add the image to the scene
-                globals.GApp.topology.addItem(item)
+                command = undo.AddItem(globals.GApp.topology, item, translate('Workspace', 'picture'))
+                globals.GApp.topology.undoStack.push(command)
 
     def __action_addLink(self):
         """ Implement the QAction `addLink'
