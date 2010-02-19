@@ -19,7 +19,9 @@
 # code@gns3.net
 #
 
+import socket
 import GNS3.Dynagen.dynamips_lib as lib
+import GNS3.Globals as globals
 from GNS3.Utils import translate
 from PyQt4 import QtGui
 
@@ -254,3 +256,174 @@ class NewConsolePort(QtGui.QUndoCommand):
     def getStatus(self):
     
         return self.status
+    
+class NewStartupConfigPath(QtGui.QUndoCommand):
+    
+    def __init__(self, router, path):
+
+        QtGui.QUndoCommand.__init__(self)
+        self.setText(unicode(translate("UndoFramework", "New startup-config %s for %s")) % (path, router.name))
+        self.path = path
+        self.router = router
+        self.prevPath = router.cnfg
+        self.status = None
+
+    def redo(self):
+
+        try:
+            self.router.cnfg = self.path
+        except lib.DynamipsError, msg:
+            self.status = msg
+            return
+        config = globals.GApp.dynagen.running_config[self.router.dynamips.host + ':' +  str(self.router.dynamips.port)]['ROUTER ' + self.router.name]
+        if config.has_key('cnfg'):
+            if self.path != 'None':
+                config['cnfg'] = self.path
+            else:
+                del config['cnfg']
+
+    def undo(self):
+
+        try:
+            self.router.cnfg = self.path.prevPath
+        except:
+            pass
+        config = globals.GApp.dynagen.running_config[self.router.dynamips.host + ':' +  str(self.router.dynamips.port)]['ROUTER ' + self.router.name]
+        if config.has_key('cnfg'):
+            if self.path.prevPath != None:
+                config['cnfg'] = self.prevPath
+            else:
+                del config['cnfg']
+
+    def getStatus(self):
+    
+        return self.status
+
+class NewStartupConfigNvram(QtGui.QUndoCommand):
+    
+    def __init__(self, router, encoded):
+
+        QtGui.QUndoCommand.__init__(self)
+        self.setText(unicode(translate("UndoFramework", "New startup-config in nvram for %s")) % router.name)
+        self.encoded = encoded
+        self.router = router
+        self.prevEncoded = globals.GApp.dynagen.devices[router.name].config_b64
+        self.status = None
+
+    def redo(self):
+
+        try:
+            globals.GApp.dynagen.devices[self.router.name].config_b64 = self.encoded
+        except lib.DynamipsError, msg:
+            self.status = msg
+        except lib.DynamipsWarning, msg:
+            self.status = msg
+        except (lib.DynamipsErrorHandled, socket.error):
+            self.status = translate("UndoFramework", "Connection lost")
+
+    def undo(self):
+
+        try:
+            globals.GApp.dynagen.devices[self.router.name].config_b64 = self.prevEncoded
+        except:
+            pass
+        
+    def getStatus(self):
+    
+        return self.status
+        
+class NewAnnotationStyle(QtGui.QUndoCommand):
+    
+    def __init__(self, item, defaultTextColor, font, rotation):
+
+        QtGui.QUndoCommand.__init__(self)
+        self.setText(translate("UndoFramework", "New style applied for annotation"))
+        self.type = type
+        self.item = item
+        self.defaultTextColor = defaultTextColor
+        self.font = font
+        self.rotation = rotation
+        self.prevDefaultTextColor = item.defaultTextColor()
+        self.prevFont = item.font()
+        self.prevRotation = item.rotation
+
+    def redo(self):
+
+        self.item.setDefaultTextColor(self.defaultTextColor)
+        self.item.setFont(self.font)
+        # reinitialize the rotation
+        if self.item.rotation:
+            self.item.rotate(-self.item.rotation)
+        self.item.rotation = self.rotation
+        self.item.rotate(self.item.rotation)
+
+    def undo(self):
+
+        self.item.setDefaultTextColor(self.prevDefaultTextColor)
+        self.item.setFont(self.prevFont)
+        self.item.rotation= self.prevRotation
+        # reinitialize the rotation
+        if self.item.rotation:
+            self.item.rotate(-self.item.rotation)
+        self.item.rotation = self.prevRotation
+        self.item.rotate(self.item.rotation)
+        
+class NewItemStyle(QtGui.QUndoCommand):
+    
+    def __init__(self, item, pen, brush, rotation):
+
+        QtGui.QUndoCommand.__init__(self)
+        self.setText(translate("UndoFramework", "New style applied for item"))
+        self.type = type
+        self.item = item
+        self.pen = pen
+        self.brush = brush
+        self.rotation = rotation
+        self.prevPen = item.pen()
+        self.prevBrush = item.brush()
+        self.prevRotation = item.rotation
+
+    def redo(self):
+
+        self.item.setPen(self.pen)
+        self.item.setBrush(self.brush)
+        # reinitialize the rotation
+        if self.item.rotation:
+            self.item.rotate(-self.item.rotation)
+        self.item.rotation = self.rotation
+        self.item.rotate(self.item.rotation)
+
+    def undo(self):
+
+        self.item.setPen(self.prevPen)
+        self.item.setBrush(self.prevBrush)
+        self.item.rotation= self.prevRotation
+        # reinitialize the rotation
+        if self.item.rotation:
+            self.item.rotate(-self.item.rotation)
+        self.item.rotation = self.prevRotation
+        self.item.rotate(self.item.rotation)
+
+class NewAnnotationText(QtGui.QUndoCommand):
+    
+    def __init__(self, item, prevText):
+
+        QtGui.QUndoCommand.__init__(self)
+        self.setText(translate("UndoFramework", "New text for annotation %d"))
+        self.text = item.toPlainText()
+        self.item = item
+        self.prevText = prevText
+        self.hasUndo = False
+
+    def redo(self):
+
+        if self.hasUndo:
+            self.item.setPlainText(self.text)
+            self.item.update()
+
+    def undo(self):
+
+        self.item.setPlainText(self.prevText)
+        self.hasUndo = True
+        self.item.update()
+

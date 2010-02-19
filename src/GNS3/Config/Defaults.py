@@ -131,6 +131,7 @@ conf_systemDynamips_types = {
 conf_systemGeneral_defaults = {
     'lang': 'en',
     'project_startup': True,
+    'relative_paths': True,
     'slow_start': 0,
     'term_cmd': '',
     'use_shell': True,
@@ -145,6 +146,7 @@ conf_systemGeneral_defaults = {
 conf_systemGeneral_types = {
     'lang': unicode,
     'project_startup': bool,
+    'relative_paths': bool,
     'slow_start': int,
     'use_shell': bool,
     'term_cmd': unicode,

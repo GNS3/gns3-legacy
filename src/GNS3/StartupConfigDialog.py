@@ -22,6 +22,7 @@
 import os, base64, socket
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Globals as globals
+import GNS3.UndoFramework as undo
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_StartupConfig import Ui_StartupConfigDialog
 from GNS3.Utils import fileBrowser, translate
@@ -36,6 +37,7 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
         self.setupUi(self)
 
         self.dynagen = globals.GApp.dynagen
+        self.topology = globals.GApp.topology
         self.router = router
         self.connect(self.StartupConfigPath_browser, QtCore.SIGNAL('clicked()'),  self.slotSelectStartupConfigPath)
         self.connect(self.LoadStartupConfig, QtCore.SIGNAL('clicked()'),  self.slotSelectLoadStartupConfig)
@@ -108,40 +110,35 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
                     try:
                         f = open(config_path, 'w')
                         f.write(unicode(self.EditStartupConfig.toPlainText()))
-                        f.close()
-                        self.router.cnfg = config_path
-                        self.dynagen.running_config[self.router.dynamips.host + ':' + \
-                                                    str(self.router.dynamips.port)]['ROUTER ' + self.router.name]['cnfg'] = config_path
+                        f.close()  
+                        command = undo.NewStartupConfigPath(self.router, config_path)
+                        self.topology.undoStack.push(command)
+                        if command.getStatus() != None:
+                            self.topology.undoStack.undo()
+                            QtGui.QMessageBox.critical(self, translate("StartupConfigDialog", "Startup-config"), unicode(command.getStatus()))
+                            return                            
                     except IOError, e:
                         QtGui.QMessageBox.critical(self, unicode(translate("StartupConfigDialog", "IO Error")),  unicode(e))
                         return
-                    except lib.DynamipsError, msg:
-                        QtGui.QMessageBox.critical(self, translate("StartupConfigDialog", "Startup-config"), unicode(msg))
-                        return
                 else:
-                    self.router.cnfg = 'None'
-                    try:
-                        del self.dynagen.running_config[self.router.dynamips.host + ':' + \
-                                                        str(self.router.dynamips.port)]['ROUTER ' + self.router.name]['cnfg']
-                    except:
-                        pass
+                    command = undo.NewStartupConfigPath(self.router, 'None')
+                    self.topology.undoStack.push(command)
+                    if command.getStatus() != None:
+                        self.topology.undoStack.undo()
+                        QtGui.QMessageBox.critical(self, translate("StartupConfigDialog", "Startup-config"), unicode(command.getStatus()))
+                        return  
 
             # Save changes into nvram
-            try:
-                config = unicode(self.EditStartupConfig.toPlainText())
-                if len(config) == 0:
-                    return
-                # Encode string puts in a bunch of newlines. Split them out then join them back together
-                encoded = ("").join(base64.encodestring(config).split())
-                self.dynagen.devices[self.router.name].config_b64 = encoded
-            except lib.DynamipsError, msg:
-                QtGui.QMessageBox.critical(self, unicode(translate("StartupConfigDialog", "Dynamips error")),  unicode(msg))
+            config = unicode(self.EditStartupConfig.toPlainText())
+            if len(config) == 0:
                 return
-            except lib.DynamipsWarning, msg:
-                QtGui.QMessageBox.critical(self, unicode(translate("StartupConfigDialog", "Dynamips warning")),  unicode(msg))
-                return
-            except (lib.DynamipsErrorHandled,  socket.error):
-                QtGui.QMessageBox.critical(self, unicode(translate("StartupConfigDialog", "%s: Dynamips error")) % self.router.name, translate("StartupConfigDialog", "Connection lost"))
+            # Encode string puts in a bunch of newlines. Split them out then join them back together
+            encoded = ("").join(base64.encodestring(config).split())
+            command = undo.NewStartupConfigNvram(self.router, encoded)
+            self.topology.undoStack.push(command)
+            if command.getStatus() != None:
+                self.topology.undoStack.undo()
+                QtGui.QMessageBox.critical(self, unicode(translate("StartupConfigDialog", "Dynamips error")),  unicode(command.getStatus()))
                 return
             
             QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("StartupConfigDialog", "Startup-config"),

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>539</width>
-    <height>484</height>
+    <height>478</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -58,13 +58,23 @@
         </widget>
        </item>
        <item row="3" column="0">
+        <widget class="QCheckBox" name="checkBoxRelativePaths">
+         <property name="text">
+          <string>Use relative path for projects</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
         <widget class="QLabel" name="label_7">
          <property name="text">
           <string>Waiting time between each start when starting every devices:</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
+       <item row="5" column="0">
         <widget class="QSpinBox" name="slowStartAll">
          <property name="suffix">
           <string> seconds</string>
@@ -74,7 +84,7 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="0">
+       <item row="6" column="0">
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
           <string>Paths</string>
@@ -123,7 +133,7 @@
          </layout>
         </widget>
        </item>
-       <item row="6" column="0">
+       <item row="7" column="0">
         <widget class="QGroupBox" name="groupBox_3">
          <property name="title">
           <string>Configuration file</string>
@@ -159,7 +169,7 @@
          </layout>
         </widget>
        </item>
-       <item row="7" column="0">
+       <item row="8" column="0">
         <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>

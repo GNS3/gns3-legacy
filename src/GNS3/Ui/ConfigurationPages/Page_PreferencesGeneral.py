@@ -156,6 +156,11 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         else:
             self.checkBoxDrawRectangle.setCheckState(QtCore.Qt.Unchecked)
             
+        if self.conf.relative_paths == True:
+            self.checkBoxRelativePaths.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxRelativePaths.setCheckState(QtCore.Qt.Unchecked)
+            
         self.labelConfigurationPath.setText(ConfDB().fileName())
 
     def saveConf(self):
@@ -194,6 +199,11 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.conf.draw_selected_rectangle = True
         else:
             self.conf.draw_selected_rectangle = False
+
+        if self.checkBoxRelativePaths.checkState() == QtCore.Qt.Checked:
+            self.conf.relative_paths = True
+        else:
+            self.conf.relative_paths = False
 
         self.conf.project_path = unicode(self.ProjectPath.text())
         self.conf.ios_path = unicode(self.IOSPath.text())

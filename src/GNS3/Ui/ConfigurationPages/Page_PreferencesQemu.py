@@ -21,7 +21,9 @@
 
 import sys, os, re
 import GNS3.Globals as globals
+import subprocess
 from PyQt4 import QtGui, QtCore, QtNetwork
+from GNS3.QemuManager import QemuManager
 from GNS3.Ui.ConfigurationPages.Form_PreferencesQemu import Ui_PreferencesQemu
 from GNS3.Config.Objects import systemQemuConf, qemuImageConf
 from GNS3.Utils import fileBrowser, translate
@@ -33,6 +35,9 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
 
         QtGui.QWidget.__init__(self)
         Ui_PreferencesQemu.setupUi(self, self)
+        
+        # Test button
+        self.connect(self.pushButtonTestQemu, QtCore.SIGNAL('clicked()'),self.__testQemu)
         
         # Qemuwrapper
         self.connect(self.QemuwrapperPath_browser, QtCore.SIGNAL('clicked()'),  self.slotSelectQemuWrapperPath)
@@ -432,4 +437,33 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         if path != None and path[0] != '':
             self.ASAInitrd.clear()
             self.ASAInitrd.setText(os.path.normpath(path[0]))
+
+    def __testQemu(self):
+    
+        self.saveConf()
+        if globals.GApp.systconf['qemu'].qemuwrapper_path and globals.GApp.systconf['qemu'].qemu_path and globals.GApp.systconf['qemu'].qemu_img_path:
+            
+            if os.path.exists(globals.GApp.systconf['qemu'].qemuwrapper_path) == False:
+                self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Qemuwrapper path doesn't exist")  + '</font>')
+                return
+            
+            globals.GApp.workspace.clear()
+            globals.GApp.QemuManager = QemuManager()
+            if globals.GApp.QemuManager.preloadQemuwrapper() == False:
+                self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start Qemuwrapper")  + '</font>')
+                return
+
+            try:
+                subprocess.Popen([globals.GApp.systconf['qemu'].qemu_path, '-h'], stdin=subprocess.PIPE, cwd=globals.GApp.systconf['qemu'].qemuwrapper_workdir)
+            except OSError:
+                self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start qemu")  + '</font>')
+                return
+            
+            try:
+                subprocess.Popen([globals.GApp.systconf['qemu'].qemu_img_path], stdin=subprocess.PIPE, cwd=globals.GApp.systconf['qemu'].qemuwrapper_workdir)
+            except OSError:
+                self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start qemu-img")  + '</font>')
+                return
+            
+            self.labelQemuStatus.setText('<font color="green">' + translate("UiConfig_PreferencesQemu", "Qemuwrapper, qemu and qemu-img have successfully started")  + '</font>')
 

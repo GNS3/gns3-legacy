@@ -957,24 +957,27 @@ class NETFile(object):
         if len(self.dynagen.autostart) > 0:
             self.dynagen.running_config['autostart'] = True
         
-        # Relative path for device images
-        for hypervisor in self.dynagen.dynamips.values():
-            if isinstance(hypervisor, qlib.Qemu):
-                h = 'qemu ' + hypervisor.host + ":" + str(hypervisor.port)          
-            else:
-                h = hypervisor.host + ":" + str(hypervisor.port)
-            config = self.dynagen.running_config[h]
-            if config.has_key('workingdir'):
-                config['workingdir'] = self.convert_to_relpath(config['workingdir'], path)
-
-            for model in dynagen_namespace.DEVICETUPLE:
-                if config.has_key(model):
-                    # ASA has no image
-                    if model == '5520':
-                        config[model]['initrd'] = self.convert_to_relpath(config[model]['initrd'], path)
-                        config[model]['kernel'] = self.convert_to_relpath(config[model]['kernel'], path)
-                    else:
-                        config[model]['image'] = self.convert_to_relpath(config[model]['image'], path)
+        if globals.GApp.systconf['general'].relative_paths:
+            # Change absolute paths to relative paths if same base as the config file
+            for hypervisor in self.dynagen.dynamips.values():
+                if isinstance(hypervisor, qlib.Qemu):
+                    h = 'qemu ' + hypervisor.host + ":" + str(hypervisor.port)          
+                else:
+                    h = hypervisor.host + ":" + str(hypervisor.port)
+                config = self.dynagen.running_config[h]
+                if config.has_key('workingdir'):
+                    config['workingdir'] = self.convert_to_relpath(config['workingdir'], path)
+    
+                for model in dynagen_namespace.DEVICETUPLE:
+                    if config.has_key(model):
+                        # ASA has no image
+                        if model == '5520':
+                            config[model]['initrd'] = self.convert_to_relpath(config[model]['initrd'], path)
+                            config[model]['kernel'] = self.convert_to_relpath(config[model]['kernel'], path)
+                        else:
+                            config[model]['image'] = self.convert_to_relpath(config[model]['image'], path)
+                            if config[model].has_key('cnfg') and config[model]['cnfg']:
+                                config[model]['cnfg'] = self.convert_to_relpath(config[model]['cnfg'], path)
         
         self.dynagen.running_config.filename = path
         self.dynagen.running_config.write()

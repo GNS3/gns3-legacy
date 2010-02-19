@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesDynamips.ui'
 #
-# Created: Wed Feb 17 14:43:53 2010
-#      by: PyQt4 UI code generator 4.6.2
+# Created: Fri Feb 19 15:03:13 2010
+#      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_PreferencesDynamips(object):
     def setupUi(self, PreferencesDynamips):
         PreferencesDynamips.setObjectName("PreferencesDynamips")
-        PreferencesDynamips.resize(430, 439)
+        PreferencesDynamips.resize(458, 439)
         self.vboxlayout = QtGui.QVBoxLayout(PreferencesDynamips)
         self.vboxlayout.setObjectName("vboxlayout")
         self.tabWidget = QtGui.QTabWidget(PreferencesDynamips)

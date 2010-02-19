@@ -172,12 +172,12 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             if self.fake:
                 return
             menu = QtGui.QMenu()
-            menu.addAction(QtGui.QIcon(':/icons/delete.svg'), translate("AbstractEdge", "Delete"))
             if self.capturing == True:
                 menu.addAction(QtGui.QIcon(':/icons/inspect.svg'), translate("AbstractEdge", "Stop the capture"))
                 menu.addAction(QtGui.QIcon(':/icons/wireshark.png'), translate("AbstractEdge", "Start Wireshark"))
             else:
                 menu.addAction(QtGui.QIcon(':/icons/inspect.svg'), translate("AbstractEdge", "Capture"))
+            menu.addAction(QtGui.QIcon(':/icons/delete.svg'), translate("AbstractEdge", "Delete"))
             menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.mousePressEvent_actions)
             menu.exec_(QtGui.QCursor.pos())
 

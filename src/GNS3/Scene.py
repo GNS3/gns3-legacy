@@ -264,23 +264,13 @@ class Scene(QtGui.QGraphicsView):
         if style.exec_():
             for item in self.__topology.selectedItems():
                 if isinstance(item, Annotation):
-                    item.setDefaultTextColor(style.color)
-                    item.setFont(style.font)
-                    # reinitialize the rotation
-                    if item.rotation:
-                        item.rotate(-item.rotation)
-                    item.rotation = style.rotation
-                    item.rotate(item.rotation)
+                    command = undo.NewAnnotationStyle(item, style.color, style.font, style.rotation)
+                    self.__topology.undoStack.push(command)
                 elif isinstance(item, AbstractShapeItem):
                     pen = QtGui.QPen(style.borderColor, style.borderWidth, style.borderStyle, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin)
-                    item.setPen(pen)
                     brush = QtGui.QBrush(style.color)
-                    item.setBrush(brush)
-                    # reinitialize the rotation
-                    if item.rotation:
-                        item.rotate(-item.rotation)
-                    item.rotation = style.rotation
-                    item.rotate(item.rotation)
+                    command = undo.NewItemStyle(item, pen, brush, style.rotation)
+                    self.__topology.undoStack.push(command)
 
     def slotIdlepc(self):
         """ Compute an IDLE PC

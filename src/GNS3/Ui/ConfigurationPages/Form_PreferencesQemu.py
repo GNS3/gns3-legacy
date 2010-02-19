@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesQemu.ui'
 #
-# Created: Wed Feb 17 14:43:53 2010
-#      by: PyQt4 UI code generator 4.6.2
+# Created: Fri Feb 19 15:03:14 2010
+#      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_PreferencesQemu(object):
     def setupUi(self, PreferencesQemu):
         PreferencesQemu.setObjectName("PreferencesQemu")
-        PreferencesQemu.resize(476, 529)
+        PreferencesQemu.resize(476, 577)
         self.verticalLayout = QtGui.QVBoxLayout(PreferencesQemu)
         self.verticalLayout.setObjectName("verticalLayout")
         self.tabWidget = QtGui.QTabWidget(PreferencesQemu)
@@ -105,6 +105,20 @@ class Ui_PreferencesQemu(object):
         self.baseConsole.setObjectName("baseConsole")
         self.gridLayout_7.addWidget(self.baseConsole, 13, 2, 1, 2)
         self.verticalLayout_2.addWidget(self.groupBox_2)
+        self.hboxlayout = QtGui.QHBoxLayout()
+        self.hboxlayout.setObjectName("hboxlayout")
+        self.pushButtonTestQemu = QtGui.QPushButton(self.tab)
+        self.pushButtonTestQemu.setObjectName("pushButtonTestQemu")
+        self.hboxlayout.addWidget(self.pushButtonTestQemu)
+        self.labelQemuStatus = QtGui.QLabel(self.tab)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.labelQemuStatus.sizePolicy().hasHeightForWidth())
+        self.labelQemuStatus.setSizePolicy(sizePolicy)
+        self.labelQemuStatus.setObjectName("labelQemuStatus")
+        self.hboxlayout.addWidget(self.labelQemuStatus)
+        self.verticalLayout_2.addLayout(self.hboxlayout)
         self.tabWidget.addTab(self.tab, "")
         self.tab_4 = QtGui.QWidget()
         self.tab_4.setObjectName("tab_4")
@@ -450,6 +464,7 @@ class Ui_PreferencesQemu(object):
         self.label_5.setText(QtGui.QApplication.translate("PreferencesQemu", "Host for an external qemuwrapper:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_31.setText(QtGui.QApplication.translate("PreferencesQemu", "Base UDP port:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_30.setText(QtGui.QApplication.translate("PreferencesQemu", "Base console port:", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonTestQemu.setText(QtGui.QApplication.translate("PreferencesQemu", "&Test", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QtGui.QApplication.translate("PreferencesQemu", "General Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox.setTitle(QtGui.QApplication.translate("PreferencesQemu", "Qemu Host Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.label_14.setText(QtGui.QApplication.translate("PreferencesQemu", "Identifier name:", None, QtGui.QApplication.UnicodeUTF8))

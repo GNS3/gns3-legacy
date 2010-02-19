@@ -81,19 +81,72 @@ class DynagenSub(Dynagen):
             
                     for subsection in server.sections:
                         device = server[subsection]
-                        #TODO: load default image for PIX/Qemu/JunOS
-                        # check if the PIX image is accessible, if not find an alternative image
-#                        if device.name in DEVICETUPLE:
-#                            if not os.access(device['image'], os.F_OK):
-#                                if globals.GApp.systconf['qemu'].default_pix_image:
-#                                    image_name = globals.GApp.systconf['qemu'].default_pix_image
-#                                else:
-#                                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
-#                                      unicode(translate("PIX image", "PIX image %s cannot be found and cannot find an alternative image")) % globals.GApp.systconf['qemu'].default_pix_image)
-#                                    continue
-#                                print unicode(translate("DynagenSub", "Local PIX image %s cannot be found, use image %s instead")) \
-#                                % (unicode(device['image']), image_name)
-#                                device['image'] = image_name
+                        # ASA has no image
+                        if device.name == '5520':
+                            if not os.access(device['initrd'], os.F_OK):
+                                if globals.GApp.systconf['qemu'].default_asa_initrd:
+                                    initrd_name = globals.GApp.systconf['qemu'].default_asa_initrd
+                                else:
+                                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
+                                        unicode(translate("ASA initrd", "ASA initrd %s cannot be found and cannot find an alternative initrd")) % device['initrd'])
+                                    continue
+                                print unicode(translate("DynagenSub", "Local ASA initrd %s cannot be found, use initrd %s instead")) \
+                                % (unicode(device['initrd']), initrd_name)
+                                device['initrd'] = initrd_name
+                                
+                            if not os.access(device['kernel'], os.F_OK):
+                                if globals.GApp.systconf['qemu'].default_asa_kernel:
+                                    kernel_name = globals.GApp.systconf['qemu'].default_asa_kernel
+                                else:
+                                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
+                                        unicode(translate("ASA kernel", "ASA kernel %s cannot be found and cannot find an alternative kernel")) % device['kernel'])
+                                    continue
+                                print unicode(translate("DynagenSub", "Local ASA kernel %s cannot be found, use kernel %s instead")) \
+                                % (unicode(device['kernel']), kernel_name)
+                                device['kernel'] = kernel_name
+                            continue
+
+                        # Check if the image path is a relative path
+                        if os.path.exists(device['image']) == False:
+                            abspath = os.path.join(os.path.dirname(FILENAME), device['image'])
+                            if os.path.exists(abspath):
+                                device['image'] = abspath
+                        
+                        if device.name == 'O-series':
+                            if not os.access(device['image'], os.F_OK):
+                                if globals.GApp.systconf['qemu'].default_junos_image:
+                                    image_name = globals.GApp.systconf['qemu'].default_junos_image
+                                else:
+                                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
+                                        unicode(translate("JunOS image", "JunOS image %s cannot be found and cannot find an alternative image")) % device['image'])
+                                    continue
+                                print unicode(translate("DynagenSub", "Local JunOS image %s cannot be found, use image %s instead")) \
+                                % (unicode(device['image']), image_name)
+                                device['image'] = image_name
+                        if device.name == 'QemuDevice':
+                            if not os.access(device['image'], os.F_OK):
+                                if len(globals.GApp.qemuimages.keys()):
+                                    image_name = globals.GApp.qemuimages.values[0].filename
+                                else:
+                                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
+                                        unicode(translate("Qemu image", "Qemu host image %s cannot be found and cannot find an alternative image")) % device['image'])
+                                    continue                                    
+                                print unicode(translate("DynagenSub", "Local Qemu host image %s cannot be found, use image %s instead")) \
+                                % (unicode(device['image']), image_name)
+                                device['image'] = image_name
+                        else:
+                            # must be a PIX device
+                            # check if the PIX image is accessible, if not find an alternative image
+                            if not os.access(device['image'], os.F_OK):
+                                if globals.GApp.systconf['qemu'].default_pix_image:
+                                    image_name = globals.GApp.systconf['qemu'].default_pix_image
+                                else:
+                                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
+                                        unicode(translate("PIX image", "PIX image %s cannot be found and cannot find an alternative image")) % device['image'])
+                                    continue
+                                print unicode(translate("DynagenSub", "Local PIX image %s cannot be found, use image %s instead")) \
+                                % (unicode(device['image']), image_name)
+                                device['image'] = image_name
     
             else:
                 server.host = server.name
@@ -169,6 +222,13 @@ class DynagenSub(Dynagen):
 
                         # check if the config file is accessible, if not find an alternative config
                         elif device.has_key('cnfg') and device['cnfg']:
+                            
+                            # Check if the config path is a relative path
+                            if os.path.exists(device['cnfg']) == False:
+                                abspath = os.path.join(os.path.dirname(FILENAME), device['cnfg'])
+                                if os.path.exists(abspath):
+                                    device['cnfg'] = abspath
+                            
                             if not os.access(device['cnfg'], os.F_OK):
                                 if globals.GApp.workspace.projectConfigs:
                                     

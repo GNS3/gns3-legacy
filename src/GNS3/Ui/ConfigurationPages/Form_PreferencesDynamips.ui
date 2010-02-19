@@ -1,164 +1,165 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>PreferencesDynamips</class>
- <widget class="QWidget" name="PreferencesDynamips" >
-  <property name="geometry" >
+ <widget class="QWidget" name="PreferencesDynamips">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>430</width>
+    <width>458</width>
     <height>439</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QVBoxLayout">
    <item>
-    <widget class="QTabWidget" name="tabWidget" >
-     <property name="currentIndex" >
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tab_1" >
-      <attribute name="title" >
+     <widget class="QWidget" name="tab_1">
+      <attribute name="title">
        <string>Dynamips</string>
       </attribute>
-      <layout class="QVBoxLayout" >
+      <layout class="QVBoxLayout">
        <item>
-        <widget class="QGroupBox" name="groupBox" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Maximum" hsizetype="MinimumExpanding" >
+        <widget class="QGroupBox" name="groupBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="title" >
+         <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout" >
-          <item row="0" column="0" colspan="3" >
-           <widget class="QLabel" name="label" >
-            <property name="text" >
+         <layout class="QGridLayout">
+          <item row="0" column="0" colspan="3">
+           <widget class="QLabel" name="label">
+            <property name="text">
              <string>Executable path:</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="3" >
-           <widget class="QLineEdit" name="dynamips_path" />
+          <item row="1" column="0" colspan="3">
+           <widget class="QLineEdit" name="dynamips_path"/>
           </item>
-          <item row="1" column="3" >
-           <widget class="QToolButton" name="dynamips_path_browser" >
-            <property name="text" >
+          <item row="1" column="3">
+           <widget class="QToolButton" name="dynamips_path_browser">
+            <property name="text">
              <string>...</string>
             </property>
-            <property name="toolButtonStyle" >
+            <property name="toolButtonStyle">
              <enum>Qt::ToolButtonTextOnly</enum>
             </property>
            </widget>
           </item>
-          <item row="2" column="0" colspan="3" >
-           <widget class="QLabel" name="label_2" >
-            <property name="text" >
+          <item row="2" column="0" colspan="3">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
              <string>Working directory:</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0" colspan="3" >
-           <widget class="QLineEdit" name="dynamips_workdir" />
+          <item row="3" column="0" colspan="3">
+           <widget class="QLineEdit" name="dynamips_workdir"/>
           </item>
-          <item row="3" column="3" >
-           <widget class="QToolButton" name="dynamips_workdir_browser" >
-            <property name="text" >
+          <item row="3" column="3">
+           <widget class="QToolButton" name="dynamips_workdir_browser">
+            <property name="text">
              <string>...</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="0" colspan="4" >
-           <widget class="QCheckBox" name="checkBoxClearWorkdir" >
-            <property name="text" >
+          <item row="4" column="0" colspan="4">
+           <widget class="QCheckBox" name="checkBoxClearWorkdir">
+            <property name="text">
              <string>Automatically clean the working directory</string>
             </property>
-            <property name="checked" >
+            <property name="checked">
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="5" column="0" >
-           <widget class="QLabel" name="label_5" >
-            <property name="text" >
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
              <string>Base port:</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="1" >
-           <widget class="QLabel" name="label_6" >
-            <property name="text" >
+          <item row="5" column="1">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
              <string> Base UDP:</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="2" colspan="2" >
-           <widget class="QLabel" name="label_7" >
-            <property name="text" >
+          <item row="5" column="2" colspan="2">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
              <string>Base console:</string>
             </property>
            </widget>
           </item>
-          <item row="6" column="0" >
-           <widget class="QSpinBox" name="dynamips_port" >
-            <property name="maximum" >
+          <item row="6" column="0">
+           <widget class="QSpinBox" name="dynamips_port">
+            <property name="maximum">
              <number>65535</number>
             </property>
-            <property name="value" >
+            <property name="value">
              <number>7200</number>
             </property>
            </widget>
           </item>
-          <item row="6" column="1" >
-           <widget class="QSpinBox" name="dynamips_baseUDP" >
-            <property name="maximum" >
+          <item row="6" column="1">
+           <widget class="QSpinBox" name="dynamips_baseUDP">
+            <property name="maximum">
              <number>65535</number>
             </property>
-            <property name="value" >
+            <property name="value">
              <number>10000</number>
             </property>
            </widget>
           </item>
-          <item row="6" column="2" >
-           <widget class="QSpinBox" name="dynamips_baseConsole" >
-            <property name="maximum" >
+          <item row="6" column="2">
+           <widget class="QSpinBox" name="dynamips_baseConsole">
+            <property name="maximum">
              <number>65535</number>
             </property>
-            <property name="value" >
+            <property name="value">
              <number>2000</number>
             </property>
            </widget>
           </item>
-          <item row="7" column="0" colspan="2" >
-           <widget class="QCheckBox" name="checkBoxGhosting" >
-            <property name="text" >
+          <item row="7" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxGhosting">
+            <property name="text">
              <string>Enable ghost IOS feature</string>
             </property>
-            <property name="checked" >
+            <property name="checked">
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="8" column="0" colspan="2" >
-           <widget class="QCheckBox" name="checkBoxMmap" >
-            <property name="text" >
+          <item row="8" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxMmap">
+            <property name="text">
              <string>Enable mmap feature</string>
             </property>
-            <property name="checked" >
+            <property name="checked">
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="9" column="0" colspan="2" >
-           <widget class="QCheckBox" name="checkBoxSparseMem" >
-            <property name="text" >
+          <item row="9" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxSparseMem">
+            <property name="text">
              <string>Enable sparse memory feature</string>
             </property>
-            <property name="checked" >
+            <property name="checked">
              <bool>false</bool>
             </property>
            </widget>
@@ -167,23 +168,23 @@
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" >
+        <layout class="QHBoxLayout">
          <item>
-          <widget class="QPushButton" name="pushButtonTestDynamips" >
-           <property name="text" >
+          <widget class="QPushButton" name="pushButtonTestDynamips">
+           <property name="text">
             <string>&amp;Test</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="labelDynamipsStatus" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+          <widget class="QLabel" name="labelDynamipsStatus">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <property name="text" >
+           <property name="text">
             <string/>
            </property>
           </widget>
@@ -192,10 +193,10 @@
        </item>
        <item>
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>390</width>
            <height>20</height>
@@ -205,83 +206,83 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_2" >
-      <attribute name="title" >
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
        <string>Hypervisor Manager</string>
       </attribute>
-      <layout class="QVBoxLayout" >
+      <layout class="QVBoxLayout">
        <item>
-        <widget class="QGroupBox" name="groupBox_2" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Maximum" hsizetype="MinimumExpanding" >
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="title" >
+         <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout" >
-          <item row="0" column="0" >
-           <widget class="QLabel" name="label_4" >
-            <property name="text" >
+         <layout class="QGridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
              <string>Memory usage limit per hypervisor:</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" >
-           <widget class="QSpinBox" name="spinBoxMemoryLimit" >
-            <property name="maximum" >
+          <item row="1" column="0">
+           <widget class="QSpinBox" name="spinBoxMemoryLimit">
+            <property name="maximum">
              <number>1000000</number>
             </property>
-            <property name="singleStep" >
+            <property name="singleStep">
              <number>128</number>
             </property>
-            <property name="value" >
+            <property name="value">
              <number>512</number>
             </property>
            </widget>
           </item>
-          <item row="2" column="0" >
-           <widget class="QLabel" name="label_8" >
-            <property name="text" >
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_8">
+            <property name="text">
              <string>UDP incrementation:</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0" >
-           <widget class="QSpinBox" name="spinBoxUDPIncrementation" >
-            <property name="maximum" >
+          <item row="3" column="0">
+           <widget class="QSpinBox" name="spinBoxUDPIncrementation">
+            <property name="maximum">
              <number>100000</number>
             </property>
-            <property name="singleStep" >
+            <property name="singleStep">
              <number>10</number>
             </property>
-            <property name="value" >
+            <property name="value">
              <number>100</number>
             </property>
            </widget>
           </item>
-          <item row="4" column="0" >
-           <widget class="QLabel" name="label_3" >
-            <property name="text" >
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
              <string>Bind Hypervisor Manager with:</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="0" >
-           <widget class="QComboBox" name="comboBoxBinding" >
-            <property name="sizeAdjustPolicy" >
+          <item row="5" column="0">
+           <widget class="QComboBox" name="comboBoxBinding">
+            <property name="sizeAdjustPolicy">
              <enum>QComboBox::AdjustToMinimumContentsLength</enum>
             </property>
            </widget>
           </item>
-          <item row="6" column="0" >
-           <widget class="QCheckBox" name="checkBoxHypervisorManagerImport" >
-            <property name="text" >
+          <item row="6" column="0">
+           <widget class="QCheckBox" name="checkBoxHypervisorManagerImport">
+            <property name="text">
              <string>Use Hypervisor Manager when importing</string>
             </property>
-            <property name="checked" >
+            <property name="checked">
              <bool>true</bool>
             </property>
            </widget>
@@ -291,10 +292,10 @@
        </item>
        <item>
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>390</width>
            <height>101</height>
@@ -311,19 +312,19 @@
  <resources/>
  <connections/>
  <designerdata>
-  <property name="gridDeltaX" >
+  <property name="gridDeltaX">
    <number>10</number>
   </property>
-  <property name="gridDeltaY" >
+  <property name="gridDeltaY">
    <number>10</number>
   </property>
-  <property name="gridSnapX" >
+  <property name="gridSnapX">
    <bool>true</bool>
   </property>
-  <property name="gridSnapY" >
+  <property name="gridSnapY">
    <bool>true</bool>
   </property>
-  <property name="gridVisible" >
+  <property name="gridVisible">
    <bool>true</bool>
   </property>
  </designerdata>

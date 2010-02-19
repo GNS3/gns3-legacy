@@ -20,8 +20,6 @@
 #
 
 workaround_ManualLink = False
-
-
 addingLinkFlag = False
 addingNote = False
 drawingRectangle = False

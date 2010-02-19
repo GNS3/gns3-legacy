@@ -151,3 +151,50 @@ class QemuManager(object):
             debug('QemuManager: stop Qemu with pid ' + str(self.proc.pid()))
             self.proc.close()
         self.proc = None
+        
+    def preloadQemuwrapper(self):
+        """ Preload Qemuwrapper
+        """
+
+        proc = QtCore.QProcess(globals.GApp.mainWindow)
+
+        if globals.GApp.systconf['qemu'].qemuwrapper_workdir:
+            if not os.access(globals.GApp.systconf['qemu'].qemuwrapper_workdir, os.F_OK | os.W_OK):
+                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Qemu Manager', 
+                                          unicode(translate("QemuManager", "Working directory %s seems to not exist or be writable, please check")) % globals.GApp.systconf['qemu'].qemuwrapper_workdir)
+                return False
+            # set the working directory
+            proc.setWorkingDirectory(globals.GApp.systconf['qemu'].qemuwrapper_workdir)
+        
+        
+        # start Qemuwrapper, use python on all platform but Windows
+        if sys.platform.startswith('win'):
+            proc.start('"' + globals.GApp.systconf['qemu'].qemuwrapper_path + '"')
+        else:
+            proc.start('python',  [globals.GApp.systconf['qemu'].qemuwrapper_path])
+
+        if proc.waitForStarted() == False:
+            return False
+
+        # give 5 seconds to the hypervisor to accept connections
+        count = 5
+        connection_success = False
+        for nb in range(count + 1):
+            s = socket(AF_INET, SOCK_STREAM)
+            s.setblocking(0)
+            s.settimeout(300)
+            try:
+                s.connect(('localhost', self.port))
+            except:
+                s.close()
+                time.sleep(1)
+                continue
+            connection_success = True
+            break
+        if connection_success:
+            s.close()
+            proc.close()
+            return True
+        if proc.state():
+            proc.close()
+        return False
