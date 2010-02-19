@@ -80,10 +80,11 @@ class Annotation(QtGui.QGraphicsTextItem):
         self.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
         if self.toPlainText().isEmpty():
             globals.GApp.topology.removeItem(self)
-        else:
+            return
+        if self.prevText:
             command = undo.NewAnnotationText(self, self.prevText)
             globals.GApp.topology.undoStack.push(command) 
-            return QtGui.QGraphicsTextItem.focusOutEvent(self, event)
+        return QtGui.QGraphicsTextItem.focusOutEvent(self, event)
 
     def paint(self, painter, option, widget=None):
         

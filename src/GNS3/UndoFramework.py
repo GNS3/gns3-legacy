@@ -307,12 +307,13 @@ class NewStartupConfigNvram(QtGui.QUndoCommand):
         self.setText(unicode(translate("UndoFramework", "New startup-config in nvram for %s")) % router.name)
         self.encoded = encoded
         self.router = router
-        self.prevEncoded = globals.GApp.dynagen.devices[router.name].config_b64
+        self.prevEncoded = None
         self.status = None
 
     def redo(self):
 
         try:
+            self.prevEncoded = globals.GApp.dynagen.devices[self.router.name].config_b64
             globals.GApp.dynagen.devices[self.router.name].config_b64 = self.encoded
         except lib.DynamipsError, msg:
             self.status = msg
@@ -387,29 +388,31 @@ class NewItemStyle(QtGui.QUndoCommand):
 
         self.item.setPen(self.pen)
         self.item.setBrush(self.brush)
-        # reinitialize the rotation
-        if self.item.rotation:
-            self.item.rotate(-self.item.rotation)
-        self.item.rotation = self.rotation
-        self.item.rotate(self.item.rotation)
+
+        if self.prevRotation:
+            self.item.rotate(self.prevRotation)
+            self.item.rotation = self.prevRotation
+            self.prevRotation = 0
+        else:
+            self.item.rotation = self.rotation
+            self.item.rotate(self.item.rotation)
 
     def undo(self):
 
         self.item.setPen(self.prevPen)
         self.item.setBrush(self.prevBrush)
-        self.item.rotation= self.prevRotation
-        # reinitialize the rotation
+
         if self.item.rotation:
             self.item.rotate(-self.item.rotation)
-        self.item.rotation = self.prevRotation
-        self.item.rotate(self.item.rotation)
+            self.prevRotation = self.item.rotation
+            self.item.rotation = self.rotation 
 
 class NewAnnotationText(QtGui.QUndoCommand):
     
     def __init__(self, item, prevText):
 
         QtGui.QUndoCommand.__init__(self)
-        self.setText(translate("UndoFramework", "New text for annotation %d"))
+        self.setText(translate("UndoFramework", "New text for annotation"))
         self.text = item.toPlainText()
         self.item = item
         self.prevText = prevText
@@ -423,7 +426,8 @@ class NewAnnotationText(QtGui.QUndoCommand):
 
     def undo(self):
 
-        self.item.setPlainText(self.prevText)
-        self.hasUndo = True
-        self.item.update()
+        if self.prevText:
+            self.item.setPlainText(self.prevText)
+            self.hasUndo = True
+            self.item.update()
 

@@ -84,8 +84,9 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
         
         try:
             config = base64.decodestring(self.router.config_b64)
-            config = config.replace('\r', "")
-            self.EditStartupConfig.setPlainText(config)
+            if config:
+                config = config.replace('\r', "")
+                self.EditStartupConfig.setPlainText(config)
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, unicode(translate("StartupConfigDialog", "Dynamips error")), unicode(msg) + \
                                        "\nMake sure you saved your config in IOS\ni.e. #copy run start")
@@ -110,7 +111,7 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
                     try:
                         f = open(config_path, 'w')
                         f.write(unicode(self.EditStartupConfig.toPlainText()))
-                        f.close()  
+                        f.close()
                         command = undo.NewStartupConfigPath(self.router, config_path)
                         self.topology.undoStack.push(command)
                         if command.getStatus() != None:
@@ -120,13 +121,6 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
                     except IOError, e:
                         QtGui.QMessageBox.critical(self, unicode(translate("StartupConfigDialog", "IO Error")),  unicode(e))
                         return
-                else:
-                    command = undo.NewStartupConfigPath(self.router, 'None')
-                    self.topology.undoStack.push(command)
-                    if command.getStatus() != None:
-                        self.topology.undoStack.undo()
-                        QtGui.QMessageBox.critical(self, translate("StartupConfigDialog", "Startup-config"), unicode(command.getStatus()))
-                        return  
 
             # Save changes into nvram
             config = unicode(self.EditStartupConfig.toPlainText())

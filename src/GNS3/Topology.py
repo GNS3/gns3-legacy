@@ -665,7 +665,8 @@ class Topology(QtGui.QGraphicsScene):
                 dst_node.startupInterfaces()
             return
         elif not isinstance(src_node, IOSRouter) and not isinstance(dst_node, IOSRouter):
-            if (isinstance(src_node, ETHSW) and not type(dst_node) in (IOSRouter, Cloud, AnyEmuDevice)) or (isinstance(dst_node, ETHSW) and not type(src_node) in (IOSRouter, Cloud, AnyEmuDevice)) \
+
+            if (isinstance(src_node, ETHSW) and not type(dst_node) in (IOSRouter, Cloud, QemuDevice, FW, ASA, JunOS)) or (isinstance(dst_node, ETHSW) and not type(src_node) in (IOSRouter, Cloud, QemuDevice, FW, ASA, JunOS)) \
                 or (type(src_node) in (ATMSW, FRSW, ATMBR) and not isinstance(dst_node, IOSRouter)) or (type(dst_node) in (ATMSW, FRSW, ATMBR) and not isinstance(src_node, IOSRouter)) \
                 or (isinstance(src_node, AnyEmuDevice) and isinstance(dst_node, Cloud)) or (isinstance(dst_node, AnyEmuDevice) and isinstance(src_node, Cloud)):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "Can't connect these devices"))

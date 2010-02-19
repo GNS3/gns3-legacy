@@ -439,7 +439,7 @@ And big thanks of course to Christophe Fillot as the author of Dynamips.
                 if device.state != 'running':
                     print 'Skipping %s device: %s' % (device.state, device.name)
                     continue
-                telnet(device.name)
+                self.telnet(device.name)
             except IndexError:
                 pass
             except (KeyError, AttributeError):
@@ -727,9 +727,9 @@ show run <device_name>
         try:
             netdir = os.getcwd()
             subdir = os.path.dirname(self.dynagen.global_filename)
-            debug('current dir is -> ' + os.getcwd())
+            self.debug('current dir is -> ' + os.getcwd())
             if subdir != "":
-                debug("changing dir to -> " + subdir)
+                self.debug("changing dir to -> " + subdir)
                 os.chdir(subdir)
         except OSError, e:
             error(e)
@@ -737,7 +737,7 @@ show run <device_name>
             return
 
         try:
-            debug('making -> ' + str(directory))
+            self.debug('making -> ' + str(directory))
             os.makedirs(directory)
         except OSError:
             # Directory exists
@@ -794,9 +794,9 @@ show run <device_name>
         try:
             netdir = os.getcwd()
             subdir = os.path.dirname(self.dynagen.global_filename)
-            debug('current dir is -> ' + os.getcwd())
+            self.debug('current dir is -> ' + os.getcwd())
             if subdir != "":
-                debug("changing dir to -> " + subdir)
+                self.debug("changing dir to -> " + subdir)
                 os.chdir(subdir)
         except OSError, e:
             error(e)
@@ -1431,22 +1431,28 @@ Examples:
             except DynamipsWarning, e:
                 print "Note: " + str(e)
 
-def telnet(device):
-    """Telnet to the console port of device"""
-
-    import __main__
-    telnetstring = __main__.telnetstring
-    port = str(__main__.dynagen.devices[device].console)
-    host = str(__main__.dynagen.devices[device].dynamips.host)
-
-    if telnetstring and not __main__.notelnet:
-        telnetstring = telnetstring.replace('%h', host)
-        telnetstring = telnetstring.replace('%p', port)
-        telnetstring = telnetstring.replace('%d', device)
-
-        os.system(telnetstring)
-        time.sleep(0.5)  # Give the telnet client a chance to start
-
+    def telnet(self, device):
+        """Telnet to the console port of device"""
+    
+        import dynagen as dyn
+        telnetstring = dyn.telnetstring
+        port = str(self.dynagen.devices[device].console)
+        host = str(self.dynagen.devices[device].dynamips.host)
+    
+        if telnetstring and not dyn.notelnet:
+            telnetstring = telnetstring.replace('%h', host)
+            telnetstring = telnetstring.replace('%p', port)
+            telnetstring = telnetstring.replace('%d', device)
+    
+            os.system(telnetstring)
+            time.sleep(0.5)  # Give the telnet client a chance to start
+    
+    def debug(self, string):
+        """ Print string if debugging is true"""
+    
+        # Debug level 2, console debugs
+        if self.dynagen.debuglevel >= 2:
+            print '  DEBUG: ' + str(string)
 
 def con_cmp(row1, row2):
     return cmp(row1[4], row2[4])
@@ -1468,15 +1474,6 @@ def error(msg):
     """Print out an error message"""
 
     print '*** Error:', str(msg)
-
-
-def debug(string):
-    """ Print string if debugging is true"""
-
-    import __main__
-    # Debug level 2, console debugs
-    if __main__.dynagen.debuglevel >= 2:
-        print '  DEBUG: ' + str(string)
 
 
 if __name__ == '__main__':

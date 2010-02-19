@@ -1,13 +1,9 @@
 TODO LIST
 
  * Simulated host support => Use a very small and dedicated Linux/Qemu image for this (ttylinux?)
- * Symbols for Voice labs (gateway, gatekeeper, ip phones, sip servers, call managers) ==> need DIA
+ * Symbols for Voice labs (gateway, gatekeeper, ip phones, sip servers, call managers)
  * Create DMG for MacOSX (http://www.gns3.net/phpBB/topic307.html)
- 
  * Compress project/snapshots with gzip module? (http://www.gns3.net/phpBB/topic362.html)
- * Finish Undo framework => done (check startup-config, style, annotation text)
- * Relative paths => done
- * Launch test for Qemu binaries => done
  * Improve IOS and hypervisors dialog
 
 Low priority features:
@@ -18,31 +14,31 @@ Low priority features:
  * Vmware integration (http://www.gns3.net/phpBB/topic1162.html) => see VIX API and pyvix
  * VirtualBox integration?
  * Hypervisor mode for Qemu?
- * cpulimit integration => no need to integrate, use a hint instead
+ * Cpulimit integration => no need to integrate, use a script to start Qemu followed by cpulimit
 
 Debugging:
 
+ * Load default image for PIX/JunOS/Qemu + initrd/kernel for ASA when importing (http://www.gns3.net/phpBB/topic1568.html) => fixed
+ * Unable to connect ethernet switch to PIX firewall (http://www.gns3.net/phpBB/topic1407.html) => fixed
+ * Command import R1 "C:" doesn't work (http://www.gns3.net/phpBB/topic1625.html) => fixed
+
  * Generic Ethernet NIO is blank on Vista (http://www.gns3.net/phpBB/topic885.html)
+ * The base mac is not saved (http://www.gns3.net/phpBB/topic1446.html)
  * Check ghostios  ==> It works, virtual mem usage is ok (at least on Mac OS X).
  * Check GNS3 on Windows 7 (e.g. http://www.gns3.net/phpBB/topic1355.html http://www.gns3.net/phpBB/topic1007.html http://www.gns3.net/phpBB/topic1348.html)
-
- * Unable to connect ethernet switch to PIX firewall (http://www.gns3.net/phpBB/topic1407.html)
+ * How the GNS3 0.7 RC1 run PIX directly from FLASH file without the OS image file ,like the 0.6 version.... (http://www.gns3.net/phpBB/topic1554.html)
+ 
  * Autostart always enabled on GNS3 0.7RC1 and no option to disable it (http://www.gns3.net/phpBB/topic1439.html)
  * Check wics restoration (http://www.gns3.net/phpBB/topic871.html http://www.gns3.net/phpBB/topic324.html http://www.gns3.net/phpBB/topic1087.html) 
  * Check slot 0 restoration for c7200 (http://www.gns3.net/phpBB/topic1598.html)
  * Save interface label? (http://www.gns3.net/phpBB/topic1271.html) => users should not edit interface labels?
- 
- * Load default image for PIX/JunOS/Qemu + initrd/kernel for ASA when importing (http://www.gns3.net/phpBB/topic1568.html) => done, need to test
-
- * Command import R1 "C:" doesn't work (http://www.gns3.net/phpBB/topic1625.html)
- * The base mac is not saved (http://www.gns3.net/phpBB/topic1446.html)
- * Creating a project using the wizard and saving does not retain selections to save nvram and export configs (http://www.gns3.net/phpBB/topic1446.html)
- * Closing the wizard, creating a network, and saving does not create a project and accompanying files/dirs only a .net layout. This results in an unexpected and inconsistent user experience (http://www.gns3.net/phpBB/topic1446.html)
- * If adding and removing a number of routers at some seemingly random point a router will be added but a console connection doesn't work and opens a blank screen (not blank pending a keypress, actually blank and unresponsive). => ?
- * Add iTerm: console=/usr/bin/osascript -e ‘tell application \”iTerm\”‘ -e ‘activate’ -e ’set myterm to (make new terminal)’ -e ‘tell myterm’ -e ’set mysession to (make new session at the end of sessions)’ -e ‘tell mysession’ -e ’set name to \”Router %p\”‘ -e ‘exec command \”/bin/bash\”‘ -e ‘write text \”telnet %h %p\”‘ -e ‘end tell’ -e ‘end tell’ -e ‘end tell’
  * Check if os.path.relpath can raise an exception
  * Check if GNS3-DATA for projects is still useful
- * How the GNS3 0.7 RC1 run PIX directly from FLASH file without the OS image file ,like the 0.6 version.... (http://www.gns3.net/phpBB/topic1554.html)
- * When i used a 3640 to emulate a switch,i setup the router with nm-16esw module in slot 0 bu gns3, as i add link between a router to the emulated switch,the 3640's nm-16esw module was automaticly changed to nm-1fe-tx.
- 
+ * Debug rotation
+
+ * Creating a project using the wizard and saving does not retain selections to save nvram and export configs (http://www.gns3.net/phpBB/topic1446.html)
+ * Closing the wizard, creating a network, and saving does not create a project and accompanying files/dirs only a .net layout. This results in an unexpected and inconsistent user experience (http://www.gns3.net/phpBB/topic1446.html)
+
+ * CCIE new track?
+ * Ask for iTerm
 

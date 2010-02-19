@@ -106,6 +106,8 @@ class DynagenSub(Dynagen):
                                 device['kernel'] = kernel_name
                             continue
 
+                        if device.name not in ('525', 'O-series', 'QemuDevice'):
+                            continue
                         # Check if the image path is a relative path
                         if os.path.exists(device['image']) == False:
                             abspath = os.path.join(os.path.dirname(FILENAME), device['image'])
@@ -126,7 +128,7 @@ class DynagenSub(Dynagen):
                         if device.name == 'QemuDevice':
                             if not os.access(device['image'], os.F_OK):
                                 if len(globals.GApp.qemuimages.keys()):
-                                    image_name = globals.GApp.qemuimages.values[0].filename
+                                    image_name = globals.GApp.qemuimages.values()[0].filename
                                 else:
                                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
                                         unicode(translate("Qemu image", "Qemu host image %s cannot be found and cannot find an alternative image")) % device['image'])
