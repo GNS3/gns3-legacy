@@ -174,6 +174,7 @@ class Dynagen:
         self.defaults_config.indent_type = '    '
         self.generic_router_options = [
             'ram',
+            'mac',
             'nvram',
             'disk0',
             'disk1',

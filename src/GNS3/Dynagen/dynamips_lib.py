@@ -2315,33 +2315,34 @@ class Router(object):
 
         currentport_e = 0  # The starting WIC port for ethernets (e.g. Ex/0 or E0)
         currentport_s = 0  # The starting WIC port for serials  (e.g. Sx0/0 or S0)
-        for i in range(0, len(self.slot[0].wics)):
-            if self.slot[0].wics[i] != None:
-                interfaces = WICS[self.slot[0].wics[i]]  # A list of the interface types provided by this WIC
-                
-                int_count = len(interfaces)
-                if int_count == 1:
-                    int_string = ' interface\n'
-                else:
-                    int_string = ' interfaces\n'
+        if self.slot[0] != None:
+            for i in range(0, len(self.slot[0].wics)):
+                if self.slot[0].wics[i] != None:
+                    interfaces = WICS[self.slot[0].wics[i]]  # A list of the interface types provided by this WIC
                     
-                slot_info = slot_info + "   " + self.slot[0].wics[i] + " installed with " + str(int_count) + int_string
-                
-                dynaport = 16 * (i + 1)
-                for interface in interfaces:
-                    nio = self.slot[0].nio(dynaport)
-                    if interface == 'e':
-                        slot_info += '      ' + 'Ethernet0/' + str(currentport_e)
-                        currentport_e += 1
-                    elif interface == 's':
-                        slot_info += '      ' + 'Serial0/' + str(currentport_s)
-                        currentport_s += 1
-                    if nio != None:
-                        slot_info += nio.info() + '\n'
+                    int_count = len(interfaces)
+                    if int_count == 1:
+                        int_string = ' interface\n'
                     else:
-                        #no NIO on this port, so it must be empty
-                        slot_info = slot_info + ' is empty\n'      
-                    dynaport += 1
+                        int_string = ' interfaces\n'
+                        
+                    slot_info = slot_info + "   " + self.slot[0].wics[i] + " installed with " + str(int_count) + int_string
+                    
+                    dynaport = 16 * (i + 1)
+                    for interface in interfaces:
+                        nio = self.slot[0].nio(dynaport)
+                        if interface == 'e':
+                            slot_info += '      ' + 'Ethernet0/' + str(currentport_e)
+                            currentport_e += 1
+                        elif interface == 's':
+                            slot_info += '      ' + 'Serial0/' + str(currentport_s)
+                            currentport_s += 1
+                        if nio != None:
+                            slot_info += nio.info() + '\n'
+                        else:
+                            #no NIO on this port, so it must be empty
+                            slot_info = slot_info + ' is empty\n'      
+                        dynaport += 1
         
         #finally we ran over all slot and produced info about every one of them
         return slot_info

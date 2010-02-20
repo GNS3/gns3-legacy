@@ -25,7 +25,7 @@ import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.qemu_lib as qlib
 from GNS3.Globals.Symbols import SYMBOLS
-from GNS3.Utils import translate, debug, error, relpath
+from GNS3.Utils import translate, debug, error
 from PyQt4 import QtGui, QtCore
 from GNS3.Annotation import Annotation
 from GNS3.Pixmap import Pixmap
@@ -915,24 +915,14 @@ class NETFile(object):
                     pass
 
         # record project settings
-        #TODO: is this now useless?
         if globals.GApp.workspace.projectConfigs or globals.GApp.workspace.projectWorkdir:
             if not self.dynagen.running_config.has_key('GNS3-DATA'):
                 self.dynagen.running_config['GNS3-DATA'] = {}
             config = self.dynagen.running_config['GNS3-DATA']
             if globals.GApp.workspace.projectConfigs:
-                try:
-                    config['configs'] = relpath(globals.GApp.workspace.projectConfigs, os.path.dirname(path))
-                except:
-                    debug("Failed to put a project relative path for configs")
-                    config['configs'] = globals.GApp.workspace.projectConfigs
-                    
+                config['configs'] = self.convert_to_relpath(globals.GApp.workspace.projectConfigs, path)
             if globals.GApp.workspace.projectWorkdir:
-                try:
-                    config['workdir'] = relpath(globals.GApp.workspace.projectWorkdir, os.path.dirname(path))
-                except:
-                    debug("Failed to put a project relative path for workingdir")
-                    config['workdir'] = globals.GApp.workspace.projectWorkdir
+                config['workdir'] = self.convert_to_relpath(globals.GApp.workspace.projectWorkdir, path)
 
         # register matrix data
         matrix = globals.GApp.scene.matrix()
@@ -954,8 +944,12 @@ class NETFile(object):
             self.dynagen.running_config['GNS3-DATA']['height'] = scene_height
 
         # autostart
-        if len(self.dynagen.autostart) > 0:
-            self.dynagen.running_config['autostart'] = True
+        autostart = False
+        for (name, val) in self.dynagen.autostart.iteritems():
+            if val == True:
+                autostart = True
+                break
+        self.dynagen.running_config['autostart'] = autostart
         
         if globals.GApp.systconf['general'].relative_paths:
             # Change absolute paths to relative paths if same base as the config file
@@ -991,7 +985,6 @@ class NETFile(object):
         config_dir = os.path.dirname(os.path.realpath(config_path))
         commonprefix = os.path.commonprefix([real_image_path, config_dir])
         if config_dir == commonprefix:
-            #TODO: check if relpath can raises an exception
             relpath = os.path.relpath(real_image_path, commonprefix)
             debug("Convert path " + path + " to a relative path : " + relpath)
             return relpath

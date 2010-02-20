@@ -271,6 +271,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if globals.GApp.systconf['dynamips'].clean_workdir:
             # delete dynamips files
             dynamips_files = glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*")
+            dynamips_files += glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "*ghost*")
+            dynamips_files += glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "*_lock")
+            dynamips_files += glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "*_log.txt")
+            
             if projectWorkdir:
                 # delete useless project files
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "*ghost*")
@@ -778,6 +782,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                     shutil.move(file, self.projectWorkdir)
                                 except (OSError, IOError), e:
                                     debug("Warning: cannot move " + file + " to " + self.projectWorkdir + ": " + e.strerror)
+                                    continue
+                                except:
                                     continue
                         if isinstance(node, AnyEmuDevice) and self.projectWorkdir != node.qemu.workingdir:
                             qemu_files = glob.glob(os.path.normpath(node.qemu.workingdir) + os.sep + node.hostname)

@@ -18,27 +18,14 @@ Low priority features:
 
 Debugging:
 
- * Load default image for PIX/JunOS/Qemu + initrd/kernel for ASA when importing (http://www.gns3.net/phpBB/topic1568.html) => fixed
- * Unable to connect ethernet switch to PIX firewall (http://www.gns3.net/phpBB/topic1407.html) => fixed
- * Command import R1 "C:" doesn't work (http://www.gns3.net/phpBB/topic1625.html) => fixed
-
  * Generic Ethernet NIO is blank on Vista (http://www.gns3.net/phpBB/topic885.html)
- * The base mac is not saved (http://www.gns3.net/phpBB/topic1446.html)
  * Check ghostios  ==> It works, virtual mem usage is ok (at least on Mac OS X).
  * Check GNS3 on Windows 7 (e.g. http://www.gns3.net/phpBB/topic1355.html http://www.gns3.net/phpBB/topic1007.html http://www.gns3.net/phpBB/topic1348.html)
- * How the GNS3 0.7 RC1 run PIX directly from FLASH file without the OS image file ,like the 0.6 version.... (http://www.gns3.net/phpBB/topic1554.html)
  
- * Autostart always enabled on GNS3 0.7RC1 and no option to disable it (http://www.gns3.net/phpBB/topic1439.html)
- * Check wics restoration (http://www.gns3.net/phpBB/topic871.html http://www.gns3.net/phpBB/topic324.html http://www.gns3.net/phpBB/topic1087.html) 
  * Check slot 0 restoration for c7200 (http://www.gns3.net/phpBB/topic1598.html)
+ * How the GNS3 0.7 RC1 run PIX directly from FLASH file without the OS image file ,like the 0.6 version.... (http://www.gns3.net/phpBB/topic1554.html)
+ * Check wics restoration (http://www.gns3.net/phpBB/topic871.html http://www.gns3.net/phpBB/topic324.html http://www.gns3.net/phpBB/topic1087.html)
  * Save interface label? (http://www.gns3.net/phpBB/topic1271.html) => users should not edit interface labels?
- * Check if os.path.relpath can raise an exception
- * Check if GNS3-DATA for projects is still useful
  * Debug rotation
-
- * Creating a project using the wizard and saving does not retain selections to save nvram and export configs (http://www.gns3.net/phpBB/topic1446.html)
- * Closing the wizard, creating a network, and saving does not create a project and accompanying files/dirs only a .net layout. This results in an unexpected and inconsistent user experience (http://www.gns3.net/phpBB/topic1446.html)
-
- * CCIE new track?
- * Ask for iTerm
+ * Preconfigurated term commands too long
 
