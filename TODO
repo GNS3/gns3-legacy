@@ -1,6 +1,6 @@
 TODO LIST
 
- * Simulated host support => Use a very small and dedicated Linux/Qemu image for this (ttylinux?)
+ * Simulated host support => Use a very small and dedicated Linux/Qemu image for this.
  * Symbols for Voice labs (gateway, gatekeeper, ip phones, sip servers, call managers)
  * Create DMG for MacOSX (http://www.gns3.net/phpBB/topic307.html)
  * Compress project/snapshots with gzip module? (http://www.gns3.net/phpBB/topic362.html)
@@ -18,14 +18,18 @@ Low priority features:
 
 Debugging:
 
+ * Save interface label? (http://www.gns3.net/phpBB/topic1271.html) => fixed
+ * Check slot 0 restoration for c7200 (http://www.gns3.net/phpBB/topic1598.html) => fixed
+ * How the GNS3 0.7 RC1 run PIX directly from FLASH file without the OS image file ,like the 0.6 version.... (http://www.gns3.net/phpBB/topic1554.html) => Use Qemu host
+
  * Generic Ethernet NIO is blank on Vista (http://www.gns3.net/phpBB/topic885.html)
  * Check ghostios  ==> It works, virtual mem usage is ok (at least on Mac OS X).
  * Check GNS3 on Windows 7 (e.g. http://www.gns3.net/phpBB/topic1355.html http://www.gns3.net/phpBB/topic1007.html http://www.gns3.net/phpBB/topic1348.html)
- 
- * Check slot 0 restoration for c7200 (http://www.gns3.net/phpBB/topic1598.html)
- * How the GNS3 0.7 RC1 run PIX directly from FLASH file without the OS image file ,like the 0.6 version.... (http://www.gns3.net/phpBB/topic1554.html)
  * Check wics restoration (http://www.gns3.net/phpBB/topic871.html http://www.gns3.net/phpBB/topic324.html http://www.gns3.net/phpBB/topic1087.html)
- * Save interface label? (http://www.gns3.net/phpBB/topic1271.html) => users should not edit interface labels?
- * Debug rotation
- * Preconfigurated term commands too long
+ 
+        #save wics        
+        for i in range(0, len(adapter.wics)):
+            if adapter.wics[i] != None:
+                print adapter.wics[i]
+ 
 

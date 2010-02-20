@@ -236,7 +236,7 @@ class QEMUInstance(xEMUInstance):
             command.extend(['-kernel-kqemu'])
         if bool(self.kvm) == True:
             command.extend(['-enable-kvm'])
-        command.extend(['-nographic'])
+        command.extend(self._graphic_options())
         command.extend(self._net_options())
         command.extend(self._ser_options())
         if self.options:
@@ -251,8 +251,10 @@ class QEMUInstance(xEMUInstance):
         
     def _image_options(self):
         return []
-        
-        
+    
+    def _graphic_options(self):
+        return []
+
 class ASAInstance(QEMUInstance):
 
     def __init__(self, *args, **kwargs):
@@ -275,6 +277,9 @@ class ASAInstance(QEMUInstance):
         
     def _kernel_options(self):
         return  ('-append', self.kernel_cmdline)
+    
+    def _graphic_options(self):
+        return ['-nographic']
 
 class JunOSInstance(QEMUInstance):
 
@@ -296,6 +301,9 @@ class JunOSInstance(QEMUInstance):
             os.spawnlp(os.P_WAIT, self.img_bin, self.img_bin, 'create',
                 '-f', 'qcow2', '-c', swap, self.swap_size)
         return (flash, '-hdb', swap)
+    
+    def _graphic_options(self):
+        return ['-nographic']
     
 class QemuDeviceInstance(QEMUInstance):
 

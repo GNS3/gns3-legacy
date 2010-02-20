@@ -28,6 +28,7 @@ nodeConfiguratorWindow = None
 preferencesWindow = None
 hypervisor_baseport = 7200
 recordConfiguration = True
+interfaceLabels = {}
 debugLevel = 0
 
 # A singleton instance of GNS3 Application

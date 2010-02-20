@@ -47,19 +47,19 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         self.connect(self.IOSPath_browser, QtCore.SIGNAL('clicked()'), self.__setIOSPath)
         self.connect(self.pushButtonUseTerminalCommand, QtCore.SIGNAL('clicked()'), self.__setTerminalCmd)
         self.loadConf()
+
+        terminal_cmds = {'Putty (Windows 64 bits)': 'C:\Program Files (x86)\Putty\putty.exe -telnet %h %p',
+                         'Putty (Windows 32 bits)': 'C:\Program Files\Putty\putty.exe -telnet %h %p',
+                         'TeraTerm (Windows)': 'C:\TTERMPRO\\ttssh.exe %h %p /W=%d /T=1',
+                         'Telnet (Windows)': 'start telnet %h %p',
+                         'xterm (Linux)': 'xterm -T %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
+                         'Kconsole (Linux KDE)': '/usr/lib/kde4/bin/konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &',
+                         'Terminal (Mac OS X)': "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'",
+                         'iTerm (Mac OS X)': "/usr/bin/osascript -e 'tell app \"iTerm\"' -e 'activate' -e 'set myterm to the first terminal' -e 'tell myterm' -e 'set mysession to (make new session at the end of sessions)' -e 'tell mysession' -e 'exec command \"telnet %h %p\"' -e 'set name to \"%d\"' -e 'end tell' -e 'end tell' -e 'end tell'"
+                         }
         
-        # Preconfigurated terminal commands
-        terminal_cmds = ['C:\Program Files (x86)\Putty\putty.exe -telnet %h %p',
-                         'C:\Program Files\Putty\putty.exe -telnet %h %p',
-                         'C:\TTERMPRO\ttssh.exe %h %p /W=%d /T=1',
-                         'start telnet %h %p',
-                         'xterm -T %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
-                         '/usr/lib/kde4/bin/konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &',
-                         "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'",
-                         "/usr/bin/osascript -e 'tell app \"iTerm\"' -e 'activate' -e 'set myterm to the first terminal' -e 'tell myterm' -e 'set mysession to (make new session at the end of sessions)' -e 'tell mysession' -e 'exec command \"telnet %h %p\"' -e 'set name to \"%d\"' -e 'end tell' -e 'end tell' -e 'end tell'"
-                         ]
-        
-        self.comboBoxPreconfigTerminalCommands.addItems(terminal_cmds)
+        for (name, cmd) in terminal_cmds.iteritems():
+            self.comboBoxPreconfigTerminalCommands.addItem(name, cmd)
 
     def loadConf(self):
 
@@ -238,7 +238,8 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
     def __setTerminalCmd(self):
     
         self.lineEditTermCommand.clear()
-        self.lineEditTermCommand.setText(self.comboBoxPreconfigTerminalCommands.currentText())
+        command = self.comboBoxPreconfigTerminalCommands.itemData(self.comboBoxPreconfigTerminalCommands.currentIndex(), QtCore.Qt.UserRole).toString()
+        self.lineEditTermCommand.setText(command)
 
     def __clearConfiguration(self):
     

@@ -345,6 +345,7 @@ class NETFile(object):
                             max_cloud_id = id
 
                 if devtype.lower() == 'note':
+
                     note_object = Annotation()
                     note_object.setPlainText(gns3data[section]['text'].replace("\\n", "\n"))
                     note_object.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
@@ -353,7 +354,7 @@ class NETFile(object):
                     if gns3data[section].has_key('font'):
                         font = QtGui.QFont()
                         if font.fromString(gns3data[section]['font']):
-                            note_object.setFont(font)
+                            QtGui.QColor
                         else:
                             print unicode(translate("NETFile", "Cannot load font: %s")) % gns3data[section]['font']
                     if gns3data[section].has_key('rotate'):
@@ -361,7 +362,12 @@ class NETFile(object):
                         note_object.rotate(note_object.rotation)
                     if gns3data[section].has_key('color'):
                         note_object.setDefaultTextColor(QtGui.QColor(gns3data[section]['color'][1:-1]))
-                    globals.GApp.topology.addItem(note_object)
+                        
+                    # this is an interface label, save it in a dict to be used later ...
+                    if gns3data[section].has_key('interface'):
+                        globals.interfaceLabels[gns3data[section]['interface']] = note_object
+                    else:
+                        globals.GApp.topology.addItem(note_object)
                     
                 if devtype.lower() == 'shape':
                     if gns3data[section]['type'] == 'rectangle':
@@ -816,15 +822,18 @@ class NETFile(object):
                 config['x'] = item.x()
                 config['y'] = item.y()
                 
+                if item.deviceName and item.deviceIf:
+                    config['interface'] = item.deviceName + ' ' + item.deviceIf
+                    
                 if item.font() != QtGui.QFont("TypeWriter", 10, QtGui.QFont.Bold):
                     config['font'] = str(item.font().toString())
-                if item.rotate:
+                if item.rotate != 0:
                     config['rotate'] = item.rotation
                 if item.defaultTextColor() != QtCore.Qt.black:
                     config['color'] = str(item.defaultTextColor().name())
 
                 zvalue = item.zValue()
-                if zvalue > 0:
+                if zvalue != 1:
                     config['z'] = zvalue
                 note_nb += 1
                 

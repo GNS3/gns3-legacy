@@ -1364,8 +1364,6 @@ class PA_C7200_IO_2FE(PA):
             intlist,
         )
         self.interface_name = 'FastEthernet'
-        #this IS a default adapter that we don't want to see in running config
-        self.default = True
 
     def can_be_removed(self):
         return False
@@ -1393,8 +1391,6 @@ class PA_C7200_IO_GE_E(PA):
             intlist,
         )
         self.interface_name = 'GigabitEthernet'
-        #this IS a default adapter that we don't want to see in running config
-        self.default = True
 
     def can_be_removed(self):
         return False

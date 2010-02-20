@@ -96,6 +96,7 @@ class Topology(QtGui.QGraphicsScene):
             globals.GApp.HypervisorManager.stopProcHypervisors()
         if globals.GApp.QemuManager:
             globals.GApp.QemuManager.stopQemu()
+        
         self.dynagen.dynamips.clear()
         self.dynagen.handled = False
         self.dynagen.devices.clear()
@@ -112,6 +113,7 @@ class Topology(QtGui.QGraphicsScene):
 
         # Clear Undo Stack first
         self.undoStack.clear()
+        globals.interfaceLabels.clear()
 
         for n_key in self.__nodes.copy().iterkeys():
             self.deleteNode(n_key)
@@ -791,6 +793,12 @@ class Topology(QtGui.QGraphicsScene):
         link.dest.deleteEdge(link)
         if link in self.__links:
             self.__links.remove(link)
+            if link.labelSouceIf != None:
+                globals.interfaceLabels[link.source.hostname + ' ' + link.srcIf] = link.labelSouceIf
+                self.removeItem(link.labelSouceIf)
+            if link.labelDestIf != None:
+                globals.interfaceLabels[link.dest.hostname + ' ' + link.destIf] = link.labelDestIf
+                self.removeItem(link.labelDestIf)
             self.removeItem(link)
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
         self.dynagen.update_running_config()

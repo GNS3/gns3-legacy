@@ -352,7 +352,7 @@ class NewAnnotationStyle(QtGui.QUndoCommand):
 
         self.item.setDefaultTextColor(self.defaultTextColor)
         self.item.setFont(self.font)
-        # reinitialize the rotation
+
         if self.item.rotation:
             self.item.rotate(-self.item.rotation)
         self.item.rotation = self.rotation
@@ -362,8 +362,7 @@ class NewAnnotationStyle(QtGui.QUndoCommand):
 
         self.item.setDefaultTextColor(self.prevDefaultTextColor)
         self.item.setFont(self.prevFont)
-        self.item.rotation= self.prevRotation
-        # reinitialize the rotation
+
         if self.item.rotation:
             self.item.rotate(-self.item.rotation)
         self.item.rotation = self.prevRotation
@@ -389,13 +388,10 @@ class NewItemStyle(QtGui.QUndoCommand):
         self.item.setPen(self.pen)
         self.item.setBrush(self.brush)
 
-        if self.prevRotation:
-            self.item.rotate(self.prevRotation)
-            self.item.rotation = self.prevRotation
-            self.prevRotation = 0
-        else:
-            self.item.rotation = self.rotation
-            self.item.rotate(self.item.rotation)
+        if self.item.rotation:
+            self.item.rotate(-self.item.rotation)
+        self.item.rotation = self.rotation
+        self.item.rotate(self.item.rotation)
 
     def undo(self):
 
@@ -404,8 +400,8 @@ class NewItemStyle(QtGui.QUndoCommand):
 
         if self.item.rotation:
             self.item.rotate(-self.item.rotation)
-            self.prevRotation = self.item.rotation
-            self.item.rotation = self.rotation 
+        self.item.rotation = self.prevRotation
+        self.item.rotate(self.item.rotation)
 
 class NewAnnotationText(QtGui.QUndoCommand):
     
