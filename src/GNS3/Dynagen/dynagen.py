@@ -668,11 +668,11 @@ class Dynagen:
 
         if isinstance(router, AnyEmuDevice):
             #TODO, apparently there is only support in qemu for e0-4. Talked to mmm123 about this, he is aware of that, but does not consider this a showstopper
-            if pa == 'e' and port >= 0 and port < 5:
+            if pa == 'e' and port >= 0 and port < 6:
                 router.add_interface(pa, port)
                 return
             else:
-                raise DynamipsError, 'Emulated device on qemuwrapper only supports e0-4'
+                raise DynamipsError, 'Emulated device on qemuwrapper only supports e0-5'
 
         try:
             if router.slot[slot] != None:
@@ -1830,7 +1830,6 @@ class Dynagen:
             self.running_config[h][r][slot] = adapter.adapter
 
         #go through all interfaces on the adapter
-
         for interface in adapter.interfaces:
             for dynagenport in adapter.interfaces[interface]:
                 i = adapter.interfaces[interface][dynagenport]
@@ -1842,6 +1841,12 @@ class Dynagen:
                 if nio != None:
                     #if it is a UDP NIO, find the reverse NIO and create output based on what type of device is on the other end
                     self.running_config[h][r][con] = nio.config_info()
+                    
+        #save wics        
+        for i in range(0, len(adapter.wics)):
+            if adapter.wics[i] != None:
+                wic = 'wic' + str(adapter.slot) + '/' + str(i)
+                self.running_config[h][r][wic] = adapter.wics[i]
 
     def _update_running_config_for_router(self, hypervisor, router, need_active_config=False):
         """parse the all data structures associated with this router and update the running_config properly"""

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Fri Feb 19 15:03:10 2010
-#      by: PyQt4 UI code generator 4.7
+# Created: Sat Feb 20 17:32:31 2010
+#      by: PyQt4 UI code generator 4.6.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -14,7 +14,7 @@ class Ui_IOSDialog(object):
         IOSDialog.setObjectName("IOSDialog")
         IOSDialog.resize(865, 506)
         icon = QtGui.QIcon()
-        icon.addFile(":/images/logo_icon.png")
+        icon.addPixmap(QtGui.QPixmap(":/images/logo_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         IOSDialog.setWindowIcon(icon)
         self.vboxlayout = QtGui.QVBoxLayout(IOSDialog)
         self.vboxlayout.setObjectName("vboxlayout")
@@ -127,10 +127,6 @@ class Ui_IOSDialog(object):
         self.pushButtonSaveIOS = QtGui.QPushButton(self.tab_1)
         self.pushButtonSaveIOS.setObjectName("pushButtonSaveIOS")
         self.hboxlayout.addWidget(self.pushButtonSaveIOS)
-        self.pushButtonEditIOS = QtGui.QPushButton(self.tab_1)
-        self.pushButtonEditIOS.setEnabled(False)
-        self.pushButtonEditIOS.setObjectName("pushButtonEditIOS")
-        self.hboxlayout.addWidget(self.pushButtonEditIOS)
         self.pushButtonDeleteIOS = QtGui.QPushButton(self.tab_1)
         self.pushButtonDeleteIOS.setEnabled(False)
         self.pushButtonDeleteIOS.setObjectName("pushButtonDeleteIOS")
@@ -219,10 +215,6 @@ class Ui_IOSDialog(object):
         self.pushButtonSaveHypervisor = QtGui.QPushButton(self.tab_2)
         self.pushButtonSaveHypervisor.setObjectName("pushButtonSaveHypervisor")
         self.hboxlayout1.addWidget(self.pushButtonSaveHypervisor)
-        self.pushButtonEditHypervisor = QtGui.QPushButton(self.tab_2)
-        self.pushButtonEditHypervisor.setEnabled(False)
-        self.pushButtonEditHypervisor.setObjectName("pushButtonEditHypervisor")
-        self.hboxlayout1.addWidget(self.pushButtonEditHypervisor)
         self.pushButtonDeleteHypervisor = QtGui.QPushButton(self.tab_2)
         self.pushButtonDeleteHypervisor.setEnabled(False)
         self.pushButtonDeleteHypervisor.setObjectName("pushButtonDeleteHypervisor")
@@ -262,7 +254,6 @@ class Ui_IOSDialog(object):
         self.groupBox_2.setTitle(QtGui.QApplication.translate("IOSDialog", "Hypervisors", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxIntegratedHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "Use the hypervisor manager", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonSaveIOS.setText(QtGui.QApplication.translate("IOSDialog", "&Save", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonEditIOS.setText(QtGui.QApplication.translate("IOSDialog", "&Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonDeleteIOS.setText(QtGui.QApplication.translate("IOSDialog", "&Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_1), QtGui.QApplication.translate("IOSDialog", "IOS Images", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_4.setTitle(QtGui.QApplication.translate("IOSDialog", "Settings", None, QtGui.QApplication.UnicodeUTF8))
@@ -277,7 +268,6 @@ class Ui_IOSDialog(object):
         self.treeWidgetHypervisor.headerItem().setText(0, QtGui.QApplication.translate("IOSDialog", "Host:Port", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetHypervisor.headerItem().setText(1, QtGui.QApplication.translate("IOSDialog", "Base UDP", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonSaveHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "&Save", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonEditHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "&Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonDeleteHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "&Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QtGui.QApplication.translate("IOSDialog", "External hypervisors", None, QtGui.QApplication.UnicodeUTF8))
 

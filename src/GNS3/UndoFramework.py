@@ -145,6 +145,7 @@ class DeleteLink(QtGui.QUndoCommand):
         self.setText(unicode(translate("UndoFramework", "Delete link: %s (%s) -> %s (%s)")) % (link.source.hostname, link.srcIf, link.dest.hostname, link.destIf))
         self.topology = topology
         self.link = link
+        self.status = None
         
     def redo(self):
 
@@ -158,6 +159,10 @@ class DeleteLink(QtGui.QUndoCommand):
 
         self.topology.addLink(self.link.source.id, self.link.srcIf, self.link.dest.id, self.link.destIf)
         self.link = self.topology.lastAddedLink
+
+    def getStatus(self):
+    
+        return self.status
 
 class AddConfig(QtGui.QUndoCommand):
     

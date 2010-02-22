@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_SymbolManager.ui'
 #
-# Created: Fri Feb 19 15:03:11 2010
-#      by: PyQt4 UI code generator 4.7
+# Created: Sat Feb 20 17:32:32 2010
+#      by: PyQt4 UI code generator 4.6.2
 #
 # WARNING! All changes made in this file will be lost!
 

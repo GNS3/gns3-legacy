@@ -2339,7 +2339,7 @@ class Router(object):
                             #no NIO on this port, so it must be empty
                             slot_info = slot_info + ' is empty\n'      
                         dynaport += 1
-        
+
         #finally we ran over all slot and produced info about every one of them
         return slot_info
 
