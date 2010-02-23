@@ -61,6 +61,10 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         # ASA settings
         self.connect(self.ASAInitrd_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectASAInitrd)
         self.connect(self.ASAKernel_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectASAKernel)
+        
+        # IDS settings
+        self.connect(self.IDSImage1_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectIDSImage1)
+        self.connect(self.IDSImage2_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectIDSImage2)
 
         self.loadConf()
 
@@ -183,6 +187,26 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         self.ASAKernel.setText(self.conf.default_asa_kernel)
         self.ASAInitrd.setText(self.conf.default_asa_initrd)
         self.ASAKernelCmdLine.setText(self.conf.default_asa_kernel_cmdline)
+        
+        # IDS settings
+        self.IDSImage1.setText(self.conf.default_ids_image1)
+        self.IDSImage2.setText(self.conf.default_ids_image2)
+        self.IDSMemory.setValue(self.conf.default_ids_memory)
+        self.IDSOptions.setText(self.conf.default_ids_options)
+
+        index = self.IDSNIC.findText(self.conf.default_ids_nic)
+        if index != -1:
+            self.IDSNIC.setCurrentIndex(index)
+                
+        if self.conf.default_ids_kqemu == True:
+            self.IDScheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.IDScheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
+                
+        if self.conf.default_ids_kvm == True:
+            self.IDScheckBoxKVM.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.IDScheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
 
     def saveConf(self):
 
@@ -265,6 +289,22 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             self.conf.default_asa_kvm = True
         else:
             self.conf.default_asa_kvm  = False
+
+        # IDS settings
+        self.conf.default_ids_image1 = unicode(self.IDSImage1.text())
+        self.conf.default_ids_image2 = unicode(self.IDSImage2.text())
+        self.conf.default_ids_memory = self.IDSMemory.value()
+        self.conf.default_ids_nic = str(self.IDSNIC.currentText())
+        self.conf.default_ids_options = str(self.IDSOptions.text())
+    
+        if self.IDScheckBoxKqemu.checkState() == QtCore.Qt.Checked:
+            self.conf.default_ids_kqemu = True
+        else:
+            self.conf.default_ids_kqemu  = False
+        if self.IDScheckBoxKVM.checkState() == QtCore.Qt.Checked:
+            self.conf.default_ids_kvm = True
+        else:
+            self.conf.default_ids_kvm  = False
 
         globals.GApp.systconf['qemu'] = self.conf
         ConfDB().sync()
@@ -437,6 +477,24 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         if path != None and path[0] != '':
             self.ASAInitrd.clear()
             self.ASAInitrd.setText(os.path.normpath(path[0]))
+            
+    def slotSelectIDSImage1(self):
+        """ Get a IDS image (hda) from the file system
+        """
+
+        path = fileBrowser('IDS image 1 (hda)', directory=globals.GApp.systconf['general'].ios_path, parent=globals.preferencesWindow).getFile()
+        if path != None and path[0] != '':
+            self.IDSImage1.clear()
+            self.IDSImage1.setText(os.path.normpath(path[0]))
+            
+    def slotSelectIDSImage2(self):
+        """ Get a IDS image (hdb) from the file system
+        """
+
+        path = fileBrowser('IDS image 2 (hdb)', directory=globals.GApp.systconf['general'].ios_path, parent=globals.preferencesWindow).getFile()
+        if path != None and path[0] != '':
+            self.IDSImage2.clear()
+            self.IDSImage2.setText(os.path.normpath(path[0]))
 
     def __testQemu(self):
     

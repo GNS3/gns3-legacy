@@ -48,7 +48,7 @@ import pemubin
 
 
 __author__ = 'Thomas Pani and Jeremy Grossmann'
-__version__ = '0.2.5'
+__version__ = '0.2.6'
 
 QEMU_PATH = "qemu"
 QEMU_IMG_PATH = "qemu-img"
@@ -306,6 +306,31 @@ class JunOSInstance(QEMUInstance):
     def _graphic_options(self):
         return ['-nographic']
     
+class IDSInstance(QEMUInstance):
+
+
+    def __init__(self, *args, **kwargs):
+        super(IDSInstance, self).__init__(*args, **kwargs)
+        self.netcard = 'e1000'
+        self.image1 = ''
+        self.image2 = ''
+        self.valid_attr_names += ['image1', 'image2']
+        self.img1_name = 'DISK1'
+        self.img2_name = 'DISK2'
+        self.img1_size = '512M'
+        self.img2_size = '4G'
+    
+    def _disk_options(self):
+        img1 = os.path.join(self.workdir, self.img1_name)
+        img2 = os.path.join(self.workdir, self.img2_name)
+        if not os.path.exists(img1):
+            os.spawnlp(os.P_WAIT, self.img_bin, self.img_bin, 'create',
+                '-b', self.image1, '-f', 'qcow2', img1, self.img1_size)
+        if not os.path.exists(img2):
+            os.spawnlp(os.P_WAIT, self.img_bin, self.img_bin, 'create',
+                '-b', self.image2, '-f', 'qcow2', img2, self.img2_size)
+        return ('-hda', img1, '-hdb', img2)
+    
 class QemuDeviceInstance(QEMUInstance):
 
 
@@ -360,6 +385,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         'pix': PIXInstance,
         'asa': ASAInstance,
         'junos': JunOSInstance,
+        'ids': IDSInstance,
         }
     
     # dynamips style status codes

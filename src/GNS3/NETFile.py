@@ -49,7 +49,7 @@ frsw_hostname_re = re.compile(r"""^FR([0-9]+)""")
 atmsw_hostname_re = re.compile(r"""^ATM([0-9]+)""")
 atmbr_hostname_re = re.compile(r"""^BR([0-9]+)""")
 cloud_hostname_re = re.compile(r"""^C([0-9]+)""")
-emu_hostname_re = re.compile(r"""^[FW|JUNOS|ASA|QEMU]([0-9]+)""")
+emu_hostname_re = re.compile(r"""^[FW|JUNOS|ASA|IDS|QEMU]([0-9]+)""")
 decorative_hostname_re = re.compile(r"""^N([0-9]+)""")
 
 class NETFile(object):
@@ -977,6 +977,10 @@ class NETFile(object):
                         if model == '5520':
                             config[model]['initrd'] = self.convert_to_relpath(config[model]['initrd'], path)
                             config[model]['kernel'] = self.convert_to_relpath(config[model]['kernel'], path)
+                        # IDS-4215 has no default image
+                        elif model == 'IDS-4215':
+                            config[model]['image1'] = self.convert_to_relpath(config[model]['image1'], path)
+                            config[model]['image2'] = self.convert_to_relpath(config[model]['image2'], path)
                         else:
                             config[model]['image'] = self.convert_to_relpath(config[model]['image'], path)
                             if config[model].has_key('cnfg') and config[model]['cnfg']:

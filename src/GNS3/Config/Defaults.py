@@ -208,6 +208,13 @@ conf_systemQemu_defaults = {
     'default_asa_kernel': '',
     'default_asa_initrd': '',
     'default_asa_kernel_cmdline': '',
+    'default_ids_image1': '',
+    'default_ids_image2': '',
+    'default_ids_memory': 512,
+    'default_ids_nic': 'e1000',
+    'default_ids_options': '',
+    'default_ids_kqemu': False,
+    'default_ids_kvm': False,
 }
 
 conf_systemQemu_types = {
@@ -248,4 +255,11 @@ conf_systemQemu_types = {
     'default_asa_kernel': unicode,
     'default_asa_initrd': unicode,
     'default_asa_kernel_cmdline': unicode,
+    'default_ids_image1': unicode,
+    'default_ids_image2': unicode,
+    'default_ids_memory': int,
+    'default_ids_nic': str,
+    'default_ids_options': str,
+    'default_ids_kqemu': bool,
+    'default_ids_kvm': bool,
 }

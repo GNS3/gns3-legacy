@@ -157,8 +157,9 @@ class DeleteLink(QtGui.QUndoCommand):
 
     def undo(self):
 
-        self.topology.addLink(self.link.source.id, self.link.srcIf, self.link.dest.id, self.link.destIf)
-        self.link = self.topology.lastAddedLink
+        if self.status == None:
+            self.topology.addLink(self.link.source.id, self.link.srcIf, self.link.dest.id, self.link.destIf)
+            self.link = self.topology.lastAddedLink
 
     def getStatus(self):
     

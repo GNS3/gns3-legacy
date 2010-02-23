@@ -83,3 +83,10 @@ class ASADefaults(AnyEmuDefaults):
     
 class JunOSDefaults(AnyEmuDefaults):
     pass
+
+class IDSDefaults(AnyEmuDefaults):
+    def __init__(self):
+        AnyEmuDefaults.__init__(self)
+        self.default_image1 = 'None'
+        self.default_image2 = 'None'
+

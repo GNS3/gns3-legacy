@@ -34,7 +34,7 @@ from dynamips_lib import Dynamips, PA_C7200_IO_FE, PA_A1, PA_FE_TX, PA_4T, PA_8T
      CISCO2600_MB_1E, CISCO2600_MB_2E, CISCO2600_MB_1FE, CISCO2600_MB_2FE, PA_2FE_TX, \
      PA_GE, PA_C7200_IO_2FE, PA_C7200_IO_GE_E, C1700, CISCO1710_MB_1FE_1E, C1700_MB_1ETH, \
      DynamipsVerError, DynamipsErrorHandled, NM_CIDS, NM_NAM, get_reverse_udp_nio
-from qemu_lib import Qemu, QemuDevice, AnyEmuDevice, FW, ASA, JunOS, nosend_qemu
+from qemu_lib import Qemu, QemuDevice, AnyEmuDevice, FW, ASA, JunOS, IDS, nosend_qemu
 from validate import Validator
 from configobj import ConfigObj, flatten_errors
 from optparse import OptionParser
@@ -56,12 +56,14 @@ MODELTUPLE = (  # A tuple of known model objects
     ASA, 
     FW,
     JunOS,
+    IDS,
     QemuDevice,
     )
 DEVICETUPLE = (  # A tuple of known device names
     '525',
     '5520', 
     'O-series',
+    'IDS-4215',
     'QemuDevice',
     '1710',
     '1720',
@@ -237,6 +239,8 @@ class Dynagen:
                 'initrd',
                 'kernel',
                 'kernel_cmdline',
+                'image1',
+                'image2',
                 ):
                 setattr(device, option, value)
                 return True
@@ -374,15 +378,21 @@ class Dynagen:
             port2 = int(port2)
 
             if isinstance(remote_device, AnyEmuDevice) and isinstance(local_device, AnyEmuDevice):
+                if remote_device.state == 'running' or local_device.state == 'running':
+                    raise DynamipsError, "Qemuwrapper doesn't support hot link removal"
                 local_device.disconnect_from_emulated_device(port1, remote_device, port2)
                 return True
             if isinstance(remote_device, AnyEmuDevice):
+                if remote_device.state == 'running':
+                    raise DynamipsError, "Qemuwrapper doesn't support hot link removal"
                 #disconnect local from remote
                 local_device.slot[slot1].disconnect(pa1, port1)
                 local_device.slot[slot1].delete_nio(pa1, port1)
                 remote_device.disconnect_from_dynamips(port2)
                 return True
             if isinstance(local_device, AnyEmuDevice):
+                if local_device.state == 'running':
+                    raise DynamipsError, "Qemuwrapper doesn't support hot link removal"
                 #disconnect remote from local
                 remote_device.slot[slot2].disconnect(pa2, port2)
                 remote_device.slot[slot2].delete_nio(pa2, port2)
@@ -424,6 +434,8 @@ class Dynagen:
             port2 = int(interface)
 
             if isinstance(local_device, AnyEmuDevice):
+                if local_device.state == 'running':
+                    raise DynamipsError, "Qemuwrapper doesn't support hot link removal"
                 local_device.disconnect_from_dynamips(port1)    
             else:
                 #the right side of the connection is a FRSW or ATMSW or ATMBR or ETHSW
@@ -1097,7 +1109,7 @@ class Dynagen:
                     for subsection in server.sections:
                         device = server[subsection]
 
-                        if device.name in ['525', '5520', 'O-series', 'QemuDevice']:
+                        if device.name in ['525', '5520', 'O-series', 'IDS-4215', 'QemuDevice']:
                             # Populate the appropriate dictionary
                             for scalar in device.scalars:
                                 if device[scalar] != None:
@@ -1118,6 +1130,8 @@ class Dynagen:
                             dev = ASA(self.dynamips[qemu_name], name=name)
                         elif devtype.lower() == 'junos':
                             dev = JunOS(self.dynamips[qemu_name], name=name)
+                        elif devtype.lower() == 'ids':
+                            dev = IDS(self.dynamips[qemu_name], name=name)
                         elif devtype.lower() == 'qemu':
                             dev = QemuDevice(self.dynamips[qemu_name], name=name)
                         else:
@@ -1140,6 +1154,8 @@ class Dynagen:
                                 'kernel_cmdline',
                                 'ram',
                                 'image',
+                                'image1',
+                                'image2',
                                 ):
                                 setattr(dev, option, devdefaults[dev.model_string][option])
 
@@ -1163,6 +1179,8 @@ class Dynagen:
                                     'kernel_cmdline',
                                     'ram',
                                     'image',
+                                    'image1',
+                                    'image2',
                                     ):
                                     setattr(dev, subitem, device[subitem])
                                     continue
@@ -1779,12 +1797,13 @@ class Dynagen:
                     if isinstance(device, AnyEmuDevice):
                         model = device.model_string
                         self.defaults_config[h][model] = {}
-                        # ASA has no image
-                        if model != '5520':
+                        # ASA and IDS have different image settings
+                        if model != '5520' and model != 'IDS-4215':
                             if device.image == None:
                                 self.error('specify at least image file for device ' + device.name)
                                 device.image = '"None"'
                             self.defaults_config[h][model]['image'] = device.image
+
                         for option in device.available_options:
                             if getattr(device, option) != device.defaults[option]:
                                 self.defaults_config[h][model][option] = getattr(device, option)
@@ -2017,7 +2036,7 @@ class Dynagen:
                     self.running_config[h][f][con] = remote_router.name + ' ' + remote_adapter + str(remote_port)
                 elif isinstance(remote_router, Router):
                     self.running_config[h][f][con] = self._translate_interface_connection(remote_adapter, remote_router, remote_port)
-                elif isinstance(remote_router, FRSW) or isinstance(remote_router, ATMSW) or isinstance(remote_router, ETHSW):
+                elif isinstance(remote_router, FRSW) or isinstance(remote_router, ATMSW) or isinstance(remote_router, ATMBR) or isinstance(remote_router, ETHSW):
                     self.running_config[h][f][con] = remote_router.name + " " + str(remote_port)
 
 

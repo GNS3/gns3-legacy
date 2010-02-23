@@ -624,6 +624,68 @@ class JunOS(AnyEmuDevice):
     _ufd_hardware = 'Juniper Olive router'
     available_options = ['image', 'ram', 'netcard', 'kqemu', 'kvm', 'options']
     
+class IDS(AnyEmuDevice):
+    model_string = 'IDS-4215'
+    qemu_dev_type = 'ids'
+    basehostname = 'IDS'
+    _ufd_machine = 'IDS'
+    _ufd_hardware = 'Qemu emulated Cisco IDS'
+    available_options = ['image1', 'image2', 'ram', 'netcard', 'kqemu', 'kvm', 'options']
+    
+    def __init__(self, *args, **kwargs):
+        super(IDS, self).__init__(*args, **kwargs)
+        self.defaults.update({
+            'image1': None,
+            'image2': None,
+        })
+        self._image1 = self.defaults['image1']
+        self._image2 = self.defaults['image2']
+
+    def _setimage1(self, image):
+        """ Set the IOS image (hda) for this emulated device
+            image: path to IOS image file
+        """
+
+        if type(image) not in [str, unicode]:
+            raise DynamipsError, 'invalid image'
+
+        # Can't verify existance of image because path is relative to backend
+        #send the image filename enclosed in quotes to protect it
+        send(self.p, 'qemu setattr %s image1 %s' % (self.name, '"' + image + '"'))
+        self._image1 = image
+
+    def _getimage1(self):
+        """ Returns path of the image being used by this emulated device
+        """
+
+        return self._image1
+
+    image1 = property(_getimage1, _setimage1, doc='The image (hda) file for this device')
+    
+    def _setimage2(self, image):
+        """ Set the IOS image (hdb) for this emulated device
+            image: path to IOS image file
+        """
+
+        if type(image) not in [str, unicode]:
+            raise DynamipsError, 'invalid image'
+
+        # Can't verify existance of image because path is relative to backend
+        #send the image filename enclosed in quotes to protect it
+        send(self.p, 'qemu setattr %s image2 %s' % (self.name, '"' + image + '"'))
+        self._image2 = image
+
+    def _getimage2(self):
+        """ Returns path of the image being used by this emulated device
+        """
+
+        return self._image2
+
+    image2 = property(_getimage2, _setimage2, doc='The image (hdb) file for this device')
+    
+    def extended_info(self):
+        return '  Image 1 (hda) path %s\n  Image 2 (hdb) path %s' % (self._image1, self._image2)
+    
 class QemuDevice(AnyEmuDevice):
     model_string = 'QemuDevice'
     qemu_dev_type = 'qemu'

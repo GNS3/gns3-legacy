@@ -31,7 +31,7 @@ from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ATMBR import ATMBR
-from GNS3.Node.AnyEmuDevice import FW, ASA, JunOS, QemuDevice
+from GNS3.Node.AnyEmuDevice import FW, ASA, JunOS, IDS, QemuDevice
 
 SYMBOL_TYPES = {
                 IOSRouter1700: 'Router c1700', 
@@ -43,6 +43,7 @@ SYMBOL_TYPES = {
                 FW: 'PIX firewall', 
                 ASA: 'ASA firewall',
                 JunOS: 'Juniper router',
+                IDS: 'IDS',
                 ETHSW: 'Ethernet switch',
                 ATMBR: 'ATM bridge',
                 ATMSW: 'ATM switch', 
@@ -107,7 +108,7 @@ SYMBOLS = [
     'select_svg_file': ":/symbols/router.selected.svg", 
     'translated': True,
     },
-    
+
     {'name': "Ethernet switch", 'object': ETHSW,
     'normal_svg_file': ":/symbols/ethernet_switch.normal.svg",
     'select_svg_file': ":/symbols/ethernet_switch.selected.svg", 
@@ -130,7 +131,13 @@ SYMBOLS = [
     'normal_svg_file': ":/symbols/frame_relay_switch.normal.svg",
     'select_svg_file': ":/symbols/frame_relay_switch.selected.svg", 
     'translated': True,
-    } ,
+    },
+    
+    {'name': "IDS", 'object': IDS,
+    'normal_svg_file': ":/symbols/ids.normal.svg",
+    'select_svg_file': ":/symbols/ids.selected.svg", 
+    'translated': True,
+    },
     
     {'name': "Qemu host", 'object': QemuDevice,
     'normal_svg_file': ":/symbols/computer.normal.svg",

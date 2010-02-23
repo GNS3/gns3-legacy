@@ -105,6 +105,32 @@ class DynagenSub(Dynagen):
                                 % (unicode(device['kernel']), kernel_name)
                                 device['kernel'] = kernel_name
                             continue
+                        
+                        # IDS has no default image
+                        if device.name == 'IDS-4215':
+                            if not os.access(device['image1'], os.F_OK):
+                                if globals.GApp.systconf['qemu'].default_ids_image1:
+                                    image1_name = globals.GApp.systconf['qemu'].default_ids_image1
+                                else:
+                                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
+                                        unicode(translate("IDS image (hda)", "IDS image %s cannot be found and cannot find an alternative image")) % device['image1'])
+                                    continue
+                                print unicode(translate("DynagenSub", "Local IDS image %s cannot be found, use image %s instead")) \
+                                % (unicode(device['image1']), image1_name)
+                                device['image1'] = image1_name
+                                
+                            if not os.access(device['image2'], os.F_OK):
+                                if globals.GApp.systconf['qemu'].default_ids_image2:
+                                    image2_name = globals.GApp.systconf['qemu'].default_ids_image2
+                                else:
+                                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
+                                        unicode(translate("IDS image (hdb)", "IDS image %s cannot be found and cannot find an alternative image")) % device['image2'])
+                                    continue
+                                print unicode(translate("DynagenSub", "Local IDS image %s cannot be found, use image %s instead")) \
+                                % (unicode(device['image2']), image2_name)
+                                device['image2'] = image2_name
+                                
+                            continue
 
                         if device.name not in ('525', 'O-series', 'QemuDevice'):
                             continue

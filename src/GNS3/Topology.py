@@ -35,7 +35,7 @@ from GNS3.Node.ATMBR import ATMBR, init_atmbr_id
 from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
 from GNS3.Node.FRSW import FRSW, init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
-from GNS3.Node.AnyEmuDevice import QemuDevice, FW, ASA, AnyEmuDevice, JunOS, init_emu_id
+from GNS3.Node.AnyEmuDevice import QemuDevice, FW, ASA, AnyEmuDevice, JunOS, IDS, init_emu_id
 from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Annotation import Annotation
 
@@ -424,6 +424,35 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_string_option('kqemu', globals.GApp.systconf['qemu'].default_junos_kqemu)
                 node.set_string_option('kvm', globals.GApp.systconf['qemu'].default_junos_kvm)                
                 node.set_string_option('options', globals.GApp.systconf['qemu'].default_junos_options)
+                
+            if isinstance(node, IDS):
+
+                if not globals.GApp.systconf['qemu'].default_ids_image1 or not globals.GApp.systconf['qemu'].default_ids_image2:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IDS images"), translate("Topology", "Please configure the default IDS images"))
+                    return False
+                
+                # give a warning if the IDS image paths are not accessible
+                if not os.access(globals.GApp.systconf['qemu'].default_ids_image1, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IDS images"), unicode(translate("Topology", "%s seems to not exist, please check")) % globals.GApp.systconf['qemu'].default_ids_image1)
+
+                # give a warning if the IDS image paths are not accessible
+                if not os.access(globals.GApp.systconf['qemu'].default_ids_image2, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IDS images"), unicode(translate("Topology", "%s seems to not exist, please check")) % globals.GApp.systconf['qemu'].default_ids_image2)
+          
+                if self.emuDeviceSetup(node) == False:
+                    return False
+
+                # No default image for IDS
+                node.set_image('None', node.model)
+                debug("Set image1 " + globals.GApp.systconf['qemu'].default_ids_image1 + " for node type %s, model %r" % (type(node), node.model))
+                debug("Set image2 " + globals.GApp.systconf['qemu'].default_ids_image2 + " for node type %s, model %r" % (type(node), node.model))
+                node.set_string_option('image1', globals.GApp.systconf['qemu'].default_ids_image1)
+                node.set_string_option('image2', globals.GApp.systconf['qemu'].default_ids_image2)
+                node.set_int_option('ram', globals.GApp.systconf['qemu'].default_ids_memory)
+                node.set_string_option('netcard', globals.GApp.systconf['qemu'].default_ids_nic)
+                node.set_string_option('kqemu', globals.GApp.systconf['qemu'].default_ids_kqemu)
+                node.set_string_option('kvm', globals.GApp.systconf['qemu'].default_ids_kvm)                
+                node.set_string_option('options', globals.GApp.systconf['qemu'].default_ids_options)
 
             if isinstance(node, ASA):
 
@@ -668,7 +697,7 @@ class Topology(QtGui.QGraphicsScene):
             return
         elif not isinstance(src_node, IOSRouter) and not isinstance(dst_node, IOSRouter):
 
-            if (isinstance(src_node, ETHSW) and not type(dst_node) in (IOSRouter, Cloud, QemuDevice, FW, ASA, JunOS)) or (isinstance(dst_node, ETHSW) and not type(src_node) in (IOSRouter, Cloud, QemuDevice, FW, ASA, JunOS)) \
+            if (isinstance(src_node, ETHSW) and not type(dst_node) in (IOSRouter, Cloud, QemuDevice, FW, ASA, JunOS, IDS)) or (isinstance(dst_node, ETHSW) and not type(src_node) in (IOSRouter, Cloud, QemuDevice, FW, ASA, JunOS, IDS)) \
                 or (type(src_node) in (ATMSW, FRSW, ATMBR) and not isinstance(dst_node, IOSRouter)) or (type(dst_node) in (ATMSW, FRSW, ATMBR) and not isinstance(src_node, IOSRouter)) \
                 or (isinstance(src_node, AnyEmuDevice) and isinstance(dst_node, Cloud)) or (isinstance(dst_node, AnyEmuDevice) and isinstance(src_node, Cloud)):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "Can't connect these devices"))

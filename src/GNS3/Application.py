@@ -301,7 +301,7 @@ class Application(QApplication, Singleton):
         confo.default_junos_nic = str(ConfDB().get('Qemu/default_junos_nic', unicode('e1000')))
         confo.default_junos_options = str(ConfDB().get('Qemu/default_junos_options', unicode('')))
         confo.default_junos_kqemu = ConfDB().value("Qemu/default_junos_kqemu", QVariant(False)).toBool()
-        confo.default_junos_kvm = ConfDB().value("Qemu/default_junis_kvm", QVariant(False)).toBool()
+        confo.default_junos_kvm = ConfDB().value("Qemu/default_junos_kvm", QVariant(False)).toBool()
         confo.default_asa_memory = int(ConfDB().get('Qemu/default_asa_memory', 256))
         confo.default_asa_nic = str(ConfDB().get('Qemu/default_asa_nic', unicode('e1000')))
         confo.default_asa_baseUDP = int(ConfDB().get('Qemu/default_asa_baseUDP', 22000))
@@ -312,6 +312,13 @@ class Application(QApplication, Singleton):
         confo.default_asa_kernel = ConfDB().get('Qemu/default_asa_kernel', unicode(''))
         confo.default_asa_initrd = ConfDB().get('Qemu/default_asa_initrd', unicode(''))
         confo.default_asa_kernel_cmdline = ConfDB().get('Qemu/default_asa_kernel_cmdline', unicode('auto console=ttyS0,9600 bigphysarea=16384 ide1=noprobe'))
+        confo.default_ids_image1 = ConfDB().get('Qemu/default_ids_image1', unicode(''))
+        confo.default_ids_image2 = ConfDB().get('Qemu/default_ids_image2', unicode(''))
+        confo.default_ids_memory = int(ConfDB().get('Qemu/default_ids_memory', 512))
+        confo.default_ids_nic = str(ConfDB().get('Qemu/default_ids_nic', unicode('e1000')))
+        confo.default_ids_options = str(ConfDB().get('Qemu/default_ids_options', unicode('-smbios type=1,product="IDS-4215"')))
+        confo.default_ids_kqemu = ConfDB().value("Qemu/default_ids_kqemu", QVariant(False)).toBool()
+        confo.default_ids_kvm = ConfDB().value("Qemu/default_ids_kvm", QVariant(False)).toBool()
 
         # replace ~user and $HOME by home directory
         if os.environ.has_key("HOME"):
@@ -321,6 +328,8 @@ class Application(QApplication, Singleton):
             confo.default_junos_image = confo.default_junos_image.replace('$HOME', os.environ["HOME"])
             confo.default_asa_kernel = confo.default_asa_kernel.replace('$HOME', os.environ["HOME"])
             confo.default_asa_initrd = confo.default_asa_initrd.replace('$HOME', os.environ["HOME"])
+            confo.default_ids_image1 = confo.default_ids_image1.replace('$HOME', os.environ["HOME"])
+            confo.default_ids_image2 = confo.default_ids_image2.replace('$HOME', os.environ["HOME"])
 
         confo.qemuwrapper_path = os.path.expanduser(confo.qemuwrapper_path)
         confo.qemuwrapper_workdir = os.path.expanduser(confo.qemuwrapper_workdir)
@@ -328,6 +337,8 @@ class Application(QApplication, Singleton):
         confo.default_junos_image = os.path.expanduser(confo.default_junos_image)
         confo.default_asa_kernel = os.path.expanduser(confo.default_asa_kernel)
         confo.default_asa_initrd = os.path.expanduser(confo.default_asa_initrd)
+        confo.default_ids_image1 = os.path.expanduser(confo.default_ids_image1)
+        confo.default_ids_image2 = os.path.expanduser(confo.default_ids_image2)
         
         # Capture config
         self.systconf['capture'] = systemCaptureConf()
@@ -505,6 +516,13 @@ class Application(QApplication, Singleton):
         c.set('Qemu/default_asa_kernel', confo.default_asa_kernel)
         c.set('Qemu/default_asa_initrd', confo.default_asa_initrd)
         c.set('Qemu/default_asa_kernel_cmdline', confo.default_asa_kernel_cmdline)
+        c.set('Qemu/default_ids_image1', confo.default_ids_image1)
+        c.set('Qemu/default_ids_image2', confo.default_ids_image2)
+        c.set('Qemu/default_ids_memory', confo.default_ids_memory)
+        c.set('Qemu/default_ids_nic', confo.default_ids_nic)
+        c.set('Qemu/default_ids_options', confo.default_ids_options)
+        c.set('Qemu/default_ids_kqemu', confo.default_ids_kqemu)
+        c.set('Qemu/default_ids_kvm', confo.default_ids_kvm)
         
         # Capture settings
         confo = self.systconf['capture']

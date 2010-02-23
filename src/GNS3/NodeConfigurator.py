@@ -30,7 +30,7 @@ from GNS3.Node.IOSRouter3600 import IOSRouter3600
 from GNS3.Node.IOSRouter3700 import IOSRouter3700
 from GNS3.Node.IOSRouter7200 import IOSRouter7200
 from GNS3.Node.DecorativeNode import DecorativeNode
-from GNS3.Node.AnyEmuDevice import FW, ASA, JunOS, QemuDevice
+from GNS3.Node.AnyEmuDevice import FW, ASA, JunOS, IDS, QemuDevice
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
@@ -130,6 +130,9 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             "JunOS":
                   [translate("NodeConfigurator", "Juniper routers"), ":/symbols/router.normal.svg",
                    "Page_JunOS", None, None],
+            "IDS":
+                  [translate("NodeConfigurator", "Cisco IDS"), ":/symbols/ids.normal.svg",
+                   "Page_IDS", None, None],
             "Qemu":
                 [translate("NodeConfigurator", "Qemu hosts"), ":/symbols/computer.normal.svg",
                  "Page_Qemu", None, None],
@@ -161,6 +164,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                                      FW: "FW",
                                      ASA: "ASA",
                                      JunOS: "JunOS",
+                                     IDS: "IDS",
                                      QemuDevice: "Qemu",
                                      FRSW: "FRSW",
                                      ETHSW: "ETHSW",

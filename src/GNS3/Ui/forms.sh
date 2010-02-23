@@ -21,6 +21,7 @@ FILES=" Form_MainWindow
         ./ConfigurationPages/Form_FWPage
         ./ConfigurationPages/Form_ASAPage
         ./ConfigurationPages/Form_JunOSPage
+        ./ConfigurationPages/Form_IDSPage
         ./ConfigurationPages/Form_QemuPage
         ./ConfigurationPages/Form_DecorativeNodePage
         ./ConfigurationPages/Form_PreferencesGeneral

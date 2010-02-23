@@ -26,7 +26,7 @@ import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Telnet as console
 from PyQt4 import QtGui
 from GNS3.Node.AbstractNode import AbstractNode
-from GNS3.Defaults.AnyEmuDefaults import AnyEmuDefaults, FWDefaults, ASADefaults, JunOSDefaults, QemuDefaults
+from GNS3.Defaults.AnyEmuDefaults import AnyEmuDefaults, FWDefaults, ASADefaults, JunOSDefaults, QemuDefaults, IDSDefaults
 from GNS3.Utils import translate, debug, error
 
 emu_id = 1
@@ -251,8 +251,8 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
             if devdefaults[model] == {} and not devdefaults[model].has_key('image'):
                 error('Create a defaults section for ' + model + ' first! Minimum setting is image name')
                 return False
-            # check if an image has been configured first (not for ASA)
-            elif not devdefaults[model].has_key('image') and model != '5520':
+            # check if an image has been configured first (not for ASA and IDS)
+            elif not devdefaults[model].has_key('image') and model != '5520' and model != 'IDS-4215':
                 error('Specify image name for ' + model + ' device first!')
                 return False
         else:
@@ -407,6 +407,26 @@ class JunOS(AnyEmuDevice, JunOSDefaults):
         from GNS3.Dynagen import qemu_lib
         return qemu_lib.JunOS(self.dynagen.dynamips[qemu_name], self.hostname)
     
+class IDS(AnyEmuDevice, IDSDefaults):
+
+    instance_counter = 0
+    model = 'IDS-4215'
+    basehostname = 'IDS'
+    friendly_name ='Cisco IDS'
+
+    def __init__(self, *args, **kwargs):
+        AnyEmuDevice.__init__(self, *args, **kwargs)
+        IDSDefaults.__init__(self)
+        self.emudev_options.extend([
+            'image1',
+            'image2',
+            ])
+        debug('Hello, I have initialized and my model is %s' % self.model)
+
+    def _make_devinstance(self, qemu_name):
+        from GNS3.Dynagen import qemu_lib
+        return qemu_lib.IDS(self.dynagen.dynamips[qemu_name], self.hostname)
+
 class QemuDevice(AnyEmuDevice, QemuDefaults):
 
     instance_counter = 0
