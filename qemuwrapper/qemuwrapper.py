@@ -135,7 +135,8 @@ class xEMUInstance(object):
             returncode = subprocess.call(['renice', '+19', str(self.process.pid)])
             if returncode:
                 print "    failed."
-                return False
+                # ignore if renice didn't worked
+                return True
 
         return True
 
@@ -348,6 +349,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             'setattr' : (3, 3),
             'create_nic' : (3, 3),
             'create_udp' : (5, 5),
+            'delete_udp' : (2, 2),
             'start' : (1, 1),
             'stop' : (1, 1),
             }
@@ -613,6 +615,15 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         udp_connection = UDPConnection(sport, daddr, dport)
         udp_connection.resolve_names()
         QEMU_INSTANCES[name].udp[int(vlan)] = udp_connection
+        self.send_reply(self.HSC_INFO_OK, 1, "OK")
+        
+    def do_qemu_delete_udp(self, data):
+        name, vlan = data
+        if not name in QEMU_INSTANCES.keys():
+            self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
+                            "unable to find Qemu '%s'" % name)
+            return
+        del QEMU_INSTANCES[name].udp[int(vlan)]
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_qemu_start(self, data):

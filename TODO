@@ -1,9 +1,7 @@
 TODO LIST
 
  * Create DMG for MacOSX (http://www.gns3.net/phpBB/topic307.html)
- * Compress project/snapshots with gzip module? (http://www.gns3.net/phpBB/topic362.html)
- * Remove links with Qemuwrapper
- * Cisco IDS integration?
+ * Cisco IPS integration?
 
 Low priority features:
  
@@ -12,7 +10,6 @@ Low priority features:
  * Dynamips QinQ integration (next release of Dynamips)
  * Vmware integration (http://www.gns3.net/phpBB/topic1162.html) => see VIX API and pyvix
  * VirtualBox integration?
- * Hypervisor mode for Qemu?
  * Cpulimit integration => no need to integrate, use a script to start Qemu followed by cpulimit
 
 Debugging:

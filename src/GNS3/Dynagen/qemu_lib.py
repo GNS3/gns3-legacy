@@ -482,7 +482,7 @@ class AnyEmuDevice(object):
 
     def connect_to_dynamips(self, local_port, dynamips, remote_slot, remote_int, remote_port):
         #figure out the destionation port according to interface descritors
-        if remote_slot.adapter in ['ETHSW', 'ATMSW', 'FRSW', 'Bridge']:
+        if remote_slot.adapter in ['ETHSW', 'ATMSW', 'ATMBR', 'FRSW', 'Bridge']:
             # This is a virtual switch that doesn't provide interface descriptors
             dst_port = remote_port
         else:
@@ -529,6 +529,12 @@ class AnyEmuDevice(object):
         remote_nio.reverse_nio = self.nios[local_port]
         self.nios[local_port].reverse_nio = remote_nio
         
+    def disconnect_from_dynamips(self, local_port):
+
+        #delete the emulated device side of UDP connection
+        send(self.p, 'qemu delete_udp %s %i' % (self.name, local_port))
+        del self.nios[local_port]
+        
     def connect_to_emulated_device(self, local_port, remote_emulated_device, remote_port):
         (src_udp, dst_udp) = self.__allocate_udp_port(remote_emulated_device.p)
 
@@ -552,6 +558,17 @@ class AnyEmuDevice(object):
         #set reverse nios
         self.nios[local_port].reverse_nio = remote_emulated_device.nios[remote_port]
         remote_emulated_device.nios[remote_port].reverse_nio = self.nios[local_port]
+        
+        
+    def disconnect_from_emulated_device(self, local_port, remote_emulated_device, remote_port):
+        
+        # disconnect the local emulated device side of UDP connection
+        send(self.p, 'qemu delete_udp %s %i' % (self.name, local_port))
+        del self.nios[local_port]
+        
+        # disconnect the remote emulated device side of UDP connection
+        send(remote_emulated_device.p, 'qemu delete_udp %s %i' % (remote_emulated_device.name, remote_port))
+        del remote_emulated_device.nios[remote_port]
 
     def slot_info(self):
         #gather information about interfaces and connections

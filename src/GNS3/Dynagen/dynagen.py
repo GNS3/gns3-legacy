@@ -373,9 +373,22 @@ class Dynagen:
             slot2 = int(slot2)
             port2 = int(port2)
 
-            #TODO add removal for emulated devices
+            if isinstance(remote_device, AnyEmuDevice) and isinstance(local_device, AnyEmuDevice):
+                local_device.disconnect_from_emulated_device(port1, remote_device, port2)
+                return True
             if isinstance(remote_device, AnyEmuDevice):
-                raise DynamipsError, 'qemuwrapper does not support removal'
+                #disconnect local from remote
+                local_device.slot[slot1].disconnect(pa1, port1)
+                local_device.slot[slot1].delete_nio(pa1, port1)
+                remote_device.disconnect_from_dynamips(port2)
+                return True
+            if isinstance(local_device, AnyEmuDevice):
+                #disconnect remote from local
+                remote_device.slot[slot2].disconnect(pa2, port2)
+                remote_device.slot[slot2].delete_nio(pa2, port2)
+                local_device.disconnect_from_dynamips(port1)
+                return True
+
             #disconnect local from remote
             local_device.slot[slot1].disconnect(pa1, port1)
 
@@ -410,18 +423,21 @@ class Dynagen:
         if match_obj:
             port2 = int(interface)
 
-            #the right side of the connection is a FRSW or ATMSW or ATMBR or ETHSW
-            #disconnect local from remote
-            local_device.slot[slot1].disconnect(pa1, port1)
-            #delete local nio
-            local_device.slot[slot1].delete_nio(pa1, port1)
-
-            #determine whether this is the last interface on local adapter that was removed
-            if local_device.slot[slot1].is_empty() and automatically_remove_unused_slot:
-                #determine whether this is a slot that can be removed (f.e. PA_C7200_IO_FE cannot be removed)
-                if local_device.slot[slot1].can_be_removed():
-                    local_device.slot[slot1].remove()
-                    local_device.slot[slot1] = None
+            if isinstance(local_device, AnyEmuDevice):
+                local_device.disconnect_from_dynamips(port1)    
+            else:
+                #the right side of the connection is a FRSW or ATMSW or ATMBR or ETHSW
+                #disconnect local from remote
+                local_device.slot[slot1].disconnect(pa1, port1)
+                #delete local nio
+                local_device.slot[slot1].delete_nio(pa1, port1)
+    
+                #determine whether this is the last interface on local adapter that was removed
+                if local_device.slot[slot1].is_empty() and automatically_remove_unused_slot:
+                    #determine whether this is a slot that can be removed (f.e. PA_C7200_IO_FE cannot be removed)
+                    if local_device.slot[slot1].can_be_removed():
+                        local_device.slot[slot1].remove()
+                        local_device.slot[slot1] = None
 
             #disconnect remote from local, delete the nio and delete all mappings.....TODO talk to Chris about redesigning the IPC
             remote_device.disconnect(port2)
@@ -667,7 +683,6 @@ class Dynagen:
             pa = pa[0].lower()
 
         if isinstance(router, AnyEmuDevice):
-            #TODO, apparently there is only support in qemu for e0-4. Talked to mmm123 about this, he is aware of that, but does not consider this a showstopper
             if pa == 'e' and port >= 0 and port < 6:
                 router.add_interface(pa, port)
                 return

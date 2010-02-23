@@ -760,9 +760,6 @@ class Topology(QtGui.QGraphicsScene):
 
         if not isinstance(link.source, DecorativeNode) and not isinstance(link.dest, DecorativeNode):
             # not a decorative device
-            if (isinstance(link.source, AnyEmuDevice) and isinstance(link.dest, ETHSW)) or (isinstance(link.source, ETHSW) and isinstance(link.dest, AnyEmuDevice)):
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  'qemuwrapper does not support removal')
-                return False
             try:
                 if isinstance(link.source, IOSRouter) or isinstance(link.source, AnyEmuDevice):
                     srcdev = link.source.get_dynagen_device()
