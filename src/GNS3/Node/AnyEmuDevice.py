@@ -195,11 +195,6 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         """ Used when changing the hostname
         """
 
-        links = self.getEdgeList()
-        if len(links):
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AnyEmuDevice", "New hostname"),
-                                       translate("AnyEmuDevice", "Cannot rename a connected emulated device because qemuwrapper does not support removal"))
-            return
         self.delete_emudev()
         if self.hostname != new_hostname:
             try:

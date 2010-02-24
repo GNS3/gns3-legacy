@@ -34,5 +34,5 @@ FILES=" Form_MainWindow
 for file in $FILES;
 do
     echo "Generating $file"
-    pyuic4-2.6 "$file.ui" > "$file.py"
+    /opt/local/var/macports/software/py26-pyqt4/4.6.2_0/opt/local/bin/pyuic4-2.6 "$file.ui" > "$file.py"
 done
