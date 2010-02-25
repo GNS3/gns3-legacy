@@ -31,11 +31,11 @@ except ImportError:
     sys.stderr.write("Can't import Qt modules, PyQt is probably not installed ...\n")
     sys.exit(False)
 
-if QtCore.QT_VERSION < 0x040300:
-    raise RuntimeError, "Need Qt v4.3 or higher, but got v%s" % QtCore.QT_VERSION_STR
+if QtCore.QT_VERSION < 0x040501:
+    raise RuntimeError, "Need Qt v4.5.1 or higher, but got v%s" % QtCore.QT_VERSION_STR
 
-if QtCore.PYQT_VERSION < 0x040300:
-    raise RuntimeError, "Need PyQt v4.3 or higher, but got v%s" % QtCore.PYQT_VERSION_STR
+if QtCore.PYQT_VERSION < 0x040500:
+    raise RuntimeError, "Need PyQt v4.5 or higher, but got v%s" % QtCore.PYQT_VERSION_STR
 
 def exceptionHook(type, value, tb):
 

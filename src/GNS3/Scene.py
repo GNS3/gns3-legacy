@@ -26,9 +26,7 @@ from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Topology import Topology
 from GNS3.Utils import translate, debug
 from GNS3.Annotation import Annotation
-from GNS3.ShapeItem import AbstractShapeItem
-from GNS3.ShapeItem import Rectangle
-from GNS3.ShapeItem import Ellipse
+from GNS3.ShapeItem import AbstractShapeItem, Rectangle, Ellipse
 from GNS3.StyleDialog import StyleDialog
 from GNS3.Pixmap import Pixmap
 from GNS3.NodeConfigurator import NodeConfigurator
@@ -413,6 +411,10 @@ class Scene(QtGui.QGraphicsView):
         for item in self.__topology.selectedItems():
             zvalue = item.zValue()
             if zvalue > 0:
+                command = undo.NewZValue(item, zvalue - 1)
+                self.__topology.undoStack.push(command)
+            elif isinstance(item, AbstractShapeItem):
+                # shape items can have a z value lower than 0
                 command = undo.NewZValue(item, zvalue - 1)
                 self.__topology.undoStack.push(command)
 

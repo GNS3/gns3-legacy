@@ -124,7 +124,7 @@ class NETFile(object):
         """ Create a new node
         """
 
-        symbol_name = x = y = hx = hy = None
+        symbol_name = x = y = z = hx = hy = None
         config = None
         if isinstance(device, qlib.AnyEmuDevice) and self.dynagen.globalconfig['qemu ' + device.dynamips.host +':' + str(device.dynamips.port)].has_key(running_config_name):
             config = self.dynagen.globalconfig['qemu ' + device.dynamips.host +':' + str(device.dynamips.port)][running_config_name]
@@ -136,6 +136,8 @@ class NETFile(object):
                 x = config['x']
             if config.has_key('y'):
                 y = config['y']
+            if config.has_key('z'):
+                z = config['z']
             if config.has_key('hx'):
                 hx = config['hx']
             if config.has_key('hy'):
@@ -162,6 +164,8 @@ class NETFile(object):
                 if y == None:
                     y = random.uniform(-200, 200)
                 node.setPos(float(x), float(y))
+                if z:
+                    node.setZValue(float(z))
                 if hx and hy:
                     node.hostname_xpos = float(hx)
                     node.hostname_ypos = float(hy)
@@ -319,6 +323,8 @@ class NETFile(object):
                     if gns3data[section].has_key('x') and gns3data[section].has_key('y') \
                         and gns3data[section]['x'] != None and gns3data[section]['y'] != None:
                         cloud.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
+                    if gns3data[section].has_key('z'):
+                        cloud.setZValue(float(gns3data[section]['z']))
                     if gns3data[section].has_key('hx') and gns3data[section].has_key('hy') \
                         and gns3data[section]['hx'] != None and gns3data[section]['hy'] != None:
                         cloud.hostname_xpos = float(gns3data[section]['hx'])
@@ -353,8 +359,8 @@ class NETFile(object):
                         note_object.setZValue(float(gns3data[section]['z']))
                     if gns3data[section].has_key('font'):
                         font = QtGui.QFont()
-                        if font.fromString(gns3data[section]['font']):
-                            QtGui.QColor
+                        if font.fromString(gns3data[section]['font'][1:-1]):
+                            note_object.setFont(font)
                         else:
                             print unicode(translate("NETFile", "Cannot load font: %s")) % gns3data[section]['font']
                     if gns3data[section].has_key('rotate'):
@@ -421,6 +427,8 @@ class NETFile(object):
                     decorative_node.set_hostname(hostname)
                     decorative_node.create_config()
                     decorative_node.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
+                    if gns3data[section].has_key('z'):
+                        decorative_node.setZValue(float(gns3data[section]['z']))
                     decorative_node.type = symbol
                     QtCore.QObject.connect(decorative_node, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
                     QtCore.QObject.connect(decorative_node, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
@@ -804,6 +812,9 @@ class NETFile(object):
                 if item.hostname_xpos and item.hostname_ypos:
                     config['hx'] = item.hostname_xpos
                     config['hy'] = item.hostname_ypos
+                zvalue = item.zValue()
+                if zvalue != 0:
+                    config['z'] = zvalue
                 # record connections
                 connections = ''
                 for interface in item.getConnectedInterfaceList():
@@ -826,11 +837,11 @@ class NETFile(object):
                     config['interface'] = item.deviceName + ' ' + item.deviceIf
                     
                 if item.font() != QtGui.QFont("TypeWriter", 10, QtGui.QFont.Bold):
-                    config['font'] = str(item.font().toString())
-                if item.rotate != 0:
+                    config['font'] = '"' + str(item.font().toString()) + '"'
+                if item.rotation != 0:
                     config['rotate'] = item.rotation
                 if item.defaultTextColor() != QtCore.Qt.black:
-                    config['color'] = str(item.defaultTextColor().name())
+                    config['color'] = '"' + str(item.defaultTextColor().name()) + '"'
 
                 zvalue = item.zValue()
                 if zvalue != 1:
@@ -855,19 +866,19 @@ class NETFile(object):
                 config['height'] = rect.height()
 
                 brush = item.brush()
-                if brush.style() != QtCore.Qt.NoBrush:
-                    config['fill_color'] = str(brush.color().name())
-                if item.rotate:
+                if brush.style() != QtCore.Qt.NoBrush and brush.color() != QtCore.Qt.transparent:
+                    config['fill_color'] = '"' + str(brush.color().name()) + '"'
+                if item.rotation != 0:
                     config['rotate'] = item.rotation
                 pen = item.pen()
                 if pen.color() != QtCore.Qt.black:
-                    config['border_color'] = str(pen.color().name())
+                    config['border_color'] = '"' + str(pen.color().name()) + '"'
                 if pen.width() != 2:
                     config['border_width'] = pen.width()
                 if pen.style() != QtCore.Qt.SolidLine:
                     config['border_style'] = pen.style()
                 zvalue = item.zValue()
-                if zvalue > 0:
+                if zvalue != 0:
                     config['z'] = zvalue
                 shape_nb += 1
 
@@ -916,6 +927,9 @@ class NETFile(object):
                 try:          
                     self.dynagen.running_config[item.d][item.get_running_config_name()]['x'] = item.x()
                     self.dynagen.running_config[item.d][item.get_running_config_name()]['y'] = item.y()
+                    zvalue = item.zValue()
+                    if zvalue != 0:
+                        self.dynagen.running_config[item.d][item.get_running_config_name()]['z'] = zvalue
                     # record hostname x & y positions
                     if item.hostname_xpos and item.hostname_ypos: #and \
                         self.dynagen.running_config[item.d][item.get_running_config_name()]['hx'] = item.hostname_xpos

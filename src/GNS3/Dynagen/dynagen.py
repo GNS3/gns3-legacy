@@ -552,6 +552,7 @@ class Dynagen:
                 (pa2, port2) = match_obj.group(1, 2)
                 slot2 = 0
 
+
         # If either of the interface formats matched...
         if match_obj:
             if pa2[:2].lower() == 'an':
@@ -567,10 +568,11 @@ class Dynagen:
                 raise DynamipsError, 'nonexistent device ' + devname
 
             remote_device = self.devices[devname]
+
             # If interfaces don't exist, create them
             self.smartslot(local_device, pa1, slot1, port1)
             self.smartslot(remote_device, pa2, slot2, port2)
-            
+
             #perform the connection
             if isinstance(local_device, AnyEmuDevice) and isinstance(remote_device, Router):
                 local_device.connect_to_dynamips(
@@ -651,7 +653,7 @@ class Dynagen:
                 pa2 = 'a'
             else:
                 return False
-                
+
             if isinstance(local_device, AnyEmuDevice):
                 local_device.connect_to_dynamips(
                     port1,
@@ -1186,7 +1188,7 @@ class Dynagen:
                                     continue
                                 elif subitem.lower() == 'autostart':
                                     self.autostart[name] = device[subitem]
-                                elif subitem.lower() in ['x', 'y', 'hx', 'hy', 'symbol']:
+                                elif subitem.lower() in ['x', 'y', 'z', 'hx', 'hy', 'symbol']:
                                     continue
                                 elif qemu_int_re.search(subitem):
                                     # Add the tuple to the list of connections to deal with later
@@ -1373,7 +1375,7 @@ class Dynagen:
                                 else:
                                     # Should be either an interface connection or a switch mapping
                                     # is it an interface?
-                                    if subitem in ['model', 'ghostios', 'jitsharing', 'configuration', 'autostart', 'x', 'y', 'hx', 'hy', 'symbol']:
+                                    if subitem in ['model', 'ghostios', 'jitsharing', 'configuration', 'autostart', 'x', 'y', 'z', 'hx', 'hy', 'symbol']:
                                         # These options are already handled elsewhere
                                         continue
                                     elif interface_re.search(subitem):
@@ -1863,6 +1865,12 @@ class Dynagen:
         if default_slot != adapter.adapter and not adapter.default:
             self.running_config[h][r][slot] = adapter.adapter
 
+        #save wics        
+        for i in range(0, len(adapter.wics)):
+            if adapter.wics[i] != None:
+                wic = 'wic' + str(adapter.slot) + '/' + str(i)
+                self.running_config[h][r][wic] = adapter.wics[i]
+
         #go through all interfaces on the adapter
         for interface in adapter.interfaces:
             for dynagenport in adapter.interfaces[interface]:
@@ -1875,12 +1883,6 @@ class Dynagen:
                 if nio != None:
                     #if it is a UDP NIO, find the reverse NIO and create output based on what type of device is on the other end
                     self.running_config[h][r][con] = nio.config_info()
-                    
-        #save wics        
-        for i in range(0, len(adapter.wics)):
-            if adapter.wics[i] != None:
-                wic = 'wic' + str(adapter.slot) + '/' + str(i)
-                self.running_config[h][r][wic] = adapter.wics[i]
 
     def _update_running_config_for_router(self, hypervisor, router, need_active_config=False):
         """parse the all data structures associated with this router and update the running_config properly"""

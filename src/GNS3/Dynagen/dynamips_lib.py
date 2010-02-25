@@ -4702,8 +4702,6 @@ def send(dynamips, command):
                 #debug('Chunk: ' + chunk)
                 buf += chunk
             except:
-                print 'Error: timed out communicating with %s server %s' % (dynamips.type, dynamips.host)
-                print 'Exiting...'
                 raise DynamipsErrorHandled
 
             # if the buffer doesn't end in '\n' then we can't be done
@@ -4893,7 +4891,8 @@ def validate_connect(
             if local_nio == None:  # only remote_nio must be occupied
                 raise DynamipsError, 'destination port is already occupied by a different connection'
             elif remote_nio == None:  # only local_nio must be occupied
-                raise DynamipsError, 'source port is already occupied by a different connection'
+                #raise DynamipsError, 'source port is already occupied by a different connection'
+                return False
             elif local_nio != None and remote_nio != None:  #both are occupied
                 #check whether this is not a reverse UDP connection
                 if type(remote_nio) == NIO_udp:

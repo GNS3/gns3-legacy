@@ -518,13 +518,13 @@ class AnyEmuDevice(object):
 
         #create the dynamips side of UDP connection - the NIO and connect it to the router
         remote_nio = NIO_udp(dynamips, dst_udp, src_ip, src_udp, None, remote_slot, dst_port)
-        
+
         if isinstance(remote_slot, Bridge):
             # Bridges don't use ports
             remote_slot.nio(nio=remote_nio)
         else:
             remote_slot.nio(port=dst_port, nio=remote_nio)
-        
+
         #set reverse nios
         remote_nio.reverse_nio = self.nios[local_port]
         self.nios[local_port].reverse_nio = remote_nio

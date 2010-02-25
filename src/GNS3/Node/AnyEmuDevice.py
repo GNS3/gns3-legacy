@@ -195,6 +195,11 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         """ Used when changing the hostname
         """
 
+        links = self.getEdgeList()
+        if len(links):
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AnyEmuDevice", "New hostname"),
+                                       translate("AnyEmuDevice", "Cannot rename a connected emulated device"))
+            return
         self.delete_emudev()
         if self.hostname != new_hostname:
             try:
@@ -277,9 +282,6 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         """ Start the node
         """
 
-        if not self.emudev.image:
-            print unicode(translate(self.basehostname, "%s: no device image")) % self.hostname
-            return
         try:
             if self.emudev.state == 'stopped':
                 self.emudev.start()

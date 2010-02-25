@@ -96,7 +96,7 @@ class Topology(QtGui.QGraphicsScene):
             globals.GApp.HypervisorManager.stopProcHypervisors()
         if globals.GApp.QemuManager:
             globals.GApp.QemuManager.stopQemu()
-        
+
         self.dynagen.dynamips.clear()
         self.dynagen.handled = False
         self.dynagen.devices.clear()
