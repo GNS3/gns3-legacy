@@ -50,6 +50,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
 
         terminal_cmds = {'Putty (Windows 64 bits)': 'C:\Program Files (x86)\Putty\putty.exe -telnet %h %p',
                          'Putty (Windows 32 bits)': 'C:\Program Files\Putty\putty.exe -telnet %h %p',
+                         'Putty (included with GNS3)': 'putty.exe -telnet %h %p',
                          'TeraTerm (Windows)': 'C:\TTERMPRO\\ttssh.exe %h %p /W=%d /T=1',
                          'Telnet (Windows)': 'start telnet %h %p',
                          'xterm (Linux)': 'xterm -T %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
@@ -85,29 +86,8 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             if sys.platform.startswith('darwin'):
                 self.conf.term_cmd = unicode("/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'")
             elif sys.platform.startswith('win'):
-                if os.path.lexists('C:\\WINDOWS\\system32\\telnet.exe'):
-                    # check if telnet is there
-                    self.conf.term_cmd = unicode("start telnet %h %p")
-                else:
-                
-                    try:
-                        # try to detect Windows 64 bits
-                        import ctypes
-                        i = ctypes.c_int()
-                        kernel32 = ctypes.windll.kernel32
-                        process = kernel32.GetCurrentProcess()
-                        kernel32.IsWow64Process(process, ctypes.byref(i))
-                        is64bit = (i.value != 0)
-                        if is64bit:
-                            # if 64 bits use Putty 32 bits
-                            self.conf.term_cmd = unicode('C:\Program Files (x86)\Putty\putty.exe -telnet %h %p')
-                        else:
-                            # else use the normal path
-                            self.conf.term_cmd = unicode('C:\Program Files\Putty\putty.exe -telnet %h %p')
-                    except:
-                        self.conf.term_cmd = unicode('C:\Program Files\Putty\putty.exe -telnet %h %p')
-                    self.conf.use_shell = False
-
+                self.conf.term_cmd = unicode('putty.exe -telnet %h %p')
+                self.conf.use_shell = False
             else:
                 self.conf.term_cmd = unicode("xterm -T %d -e 'telnet %h %p' >/dev/null 2>&1 &")
 
@@ -162,7 +142,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         else:
             self.checkBoxRelativePaths.setCheckState(QtCore.Qt.Unchecked)
             
-        self.labelConfigurationPath.setText(ConfDB().fileName())
+        self.labelConfigurationPath.setText(os.path.normpath(unicode(ConfDB().fileName())))
 
     def saveConf(self):
 

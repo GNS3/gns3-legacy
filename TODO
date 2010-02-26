@@ -1,18 +1,10 @@
 TODO LIST
 
  * Create DMG for MacOSX (http://www.gns3.net/phpBB/topic307.html)
-
-Low priority features:
- 
  * NIO multicast support (next release of Dynamips)
  * Show NIO activity (next release of Dynamips)
  * Dynamips QinQ integration (next release of Dynamips)
  * Vmware integration (http://www.gns3.net/phpBB/topic1162.html) => see VIX API and pyvix
  * VirtualBox integration?
  * Cpulimit integration => no need to integrate, use a script to start Qemu followed by cpulimit
-
-Debugging:
-
- * Generic Ethernet NIO is blank on Vista (http://www.gns3.net/phpBB/topic885.html)
  * Check ghostios  ==> It works, virtual mem usage is ok (at least on Mac OS X).
- * Check GNS3 on Windows 7 (e.g. http://www.gns3.net/phpBB/topic1355.html http://www.gns3.net/phpBB/topic1007.html http://www.gns3.net/phpBB/topic1348.html)

@@ -80,7 +80,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         # Default path to qemuwrapper
         if self.conf.qemuwrapper_path == '':
             if sys.platform.startswith('win'):
-                self.conf.qemuwrapper_path = unicode('C:\Program Files\GNS3\qemuwrapper.exe')
+                self.conf.qemuwrapper_path = unicode('qemuwrapper.exe')
             else:
                 path = os.getcwd() + '/qemu/qemuwrapper.py'
                 self.conf.qemuwrapper_path = unicode(path, errors='replace')

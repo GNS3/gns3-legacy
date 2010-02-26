@@ -48,7 +48,7 @@ import pemubin
 
 
 __author__ = 'Thomas Pani and Jeremy Grossmann'
-__version__ = '0.2.6'
+__version__ = '0.3'
 
 QEMU_PATH = "qemu"
 QEMU_IMG_PATH = "qemu-img"
@@ -266,10 +266,13 @@ class ASAInstance(QEMUInstance):
     def _disk_options(self):
         flash = os.path.join(self.workdir, self.flash_name)
         if not os.path.exists(flash):
-            os.spawnlp(os.P_WAIT, self.img_bin, self.img_bin, 'create',
-                '-f', 'qcow2', flash, self.flash_size)
+            try:
+                retcode = subprocess.call([self.img_bin, 'create', '-f', 'qcow2', flash, self.flash_size])
+                print self.img_bin + ' returned with ' + str(retcode)
+            except OSError, e:
+                print >> sys.stderr, "Execution failed:", e
         return ('-hda', flash)
-    
+
     def _image_options(self):
         return ('-kernel', self.kernel, '-initrd', self.initrd)
         
@@ -289,12 +292,18 @@ class JunOSInstance(QEMUInstance):
     def _disk_options(self):
         flash = os.path.join(self.workdir, self.flash_name)
         if not os.path.exists(flash):
-            os.spawnlp(os.P_WAIT, self.img_bin, self.img_bin, 'create',
-                '-b', self.image, '-f', 'qcow2', flash, self.flash_size)
+            try:
+                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image, '-f', 'qcow2', flash, self.flash_size])
+                print self.img_bin + ' returned with ' + str(retcode)
+            except OSError, e:
+                print >> sys.stderr, "Execution failed:", e
         swap = os.path.join(self.workdir, self.swap_name)
         if not os.path.exists(swap):
-            os.spawnlp(os.P_WAIT, self.img_bin, self.img_bin, 'create',
-                '-f', 'qcow2', '-c', swap, self.swap_size)
+            try:
+                retcode = subprocess.call([self.img_bin, 'create', '-f', 'qcow2', '-c', swap, self.swap_size])
+                print self.img_bin + ' returned with ' + str(retcode)
+            except OSError, e:
+                print >> sys.stderr, "Execution failed:", e
         return (flash, '-hdb', swap)
     
 class IDSInstance(QEMUInstance):
@@ -315,11 +324,17 @@ class IDSInstance(QEMUInstance):
         img1 = os.path.join(self.workdir, self.img1_name)
         img2 = os.path.join(self.workdir, self.img2_name)
         if not os.path.exists(img1):
-            os.spawnlp(os.P_WAIT, self.img_bin, self.img_bin, 'create',
-                '-b', self.image1, '-f', 'qcow2', img1, self.img1_size)
+            try:
+                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image1, '-f', 'qcow2', img1, self.img1_size])
+                print self.img_bin + ' returned with ' + str(retcode)
+            except OSError, e:
+                print >> sys.stderr, "Execution failed:", e
         if not os.path.exists(img2):
-            os.spawnlp(os.P_WAIT, self.img_bin, self.img_bin, 'create',
-                '-b', self.image2, '-f', 'qcow2', img2, self.img2_size)
+            try:
+                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image2, '-f', 'qcow2', img2, self.img2_size])
+                print self.img_bin + ' returned with ' + str(retcode)
+            except OSError, e:
+                print >> sys.stderr, "Execution failed:", e
         return ('-hda', img1, '-hdb', img2)
     
 class QemuDeviceInstance(QEMUInstance):
@@ -334,13 +349,21 @@ class QemuDeviceInstance(QEMUInstance):
     
     def _disk_options(self):
         flash = os.path.join(self.workdir, self.flash_name)
-        if not os.path.exists(flash):
-            os.spawnlp(os.P_WAIT, self.img_bin, self.img_bin, 'create',
-                '-b', self.image, '-f', 'qcow2', flash, self.flash_size)
+        if not os.path.exists(flash):         
+            try:
+                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image, '-f', 'qcow2', flash, self.flash_size])
+                print self.img_bin + ' returned with ' + str(retcode)
+            except OSError, e:
+                print >> sys.stderr, "Execution failed:", e 
         swap = os.path.join(self.workdir, self.swap_name)
         if not os.path.exists(swap):
             os.spawnlp(os.P_WAIT, self.img_bin, self.img_bin, 'create',
                 '-f', 'qcow2', '-c', swap, self.swap_size)
+            try:
+                retcode = subprocess.call([self.img_bin, 'create', '-f', 'qcow2', '-c', swap, self.swap_size])
+                print self.img_bin + ' returned with ' + str(retcode)
+            except OSError, e:
+                print >> sys.stderr, "Execution failed:", e
         return (flash, '-hdb', swap)
 
 class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):

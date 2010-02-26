@@ -386,7 +386,7 @@ conf
         print """
 Credits:
 Dynagen is written and maintained by Greg Anuzelli
-Contributing developer: Pavel Skovajsa
+Contributing developer: Pavel Skovajsa & Jeremy Grossmann
 Qemuwrapper: Thomas Pani & Jeremy Grossmann
 Pemu: Milen Svobodnikov
 Thanks to the authors of the ConfObj library

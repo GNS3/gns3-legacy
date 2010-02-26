@@ -36,6 +36,7 @@ if QtCore.QT_VERSION < 0x040501:
 
 if QtCore.PYQT_VERSION < 0x040500:
     raise RuntimeError, "Need PyQt v4.5 or higher, but got v%s" % QtCore.PYQT_VERSION_STR
+   
 
 def exceptionHook(type, value, tb):
 
@@ -43,9 +44,12 @@ def exceptionHook(type, value, tb):
     print "---------Traceback lines (saved in exception.log)----------"
     print "\n" . join(lines)
     print "-----------------------------------------------------------"
-    logfile = open('exception.log','a')
-    logfile.write("\n" . join(lines))
-    logfile.close()
+    try:
+    	logfile = open('exception.log','a')
+    	logfile.write("\n" . join(lines))
+    	logfile.close()
+    except:
+    	pass
 
 # catch exceptions to write them in a file
 sys.excepthook=exceptionHook

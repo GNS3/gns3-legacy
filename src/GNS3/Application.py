@@ -283,7 +283,7 @@ class Application(QApplication, Singleton):
         confo.qemuwrapper_workdir = ConfDB().get('Qemu/qemuwrapper_working_directory', unicode(''))
         confo.qemu_path = ConfDB().get('Qemu/qemu_path', unicode('qemu'))
         confo.qemu_img_path = ConfDB().get('Qemu/qemu_img_path', unicode('qemu-img'))
-        confo.external_host = ConfDB().get('Qemu/external_host', unicode(''))
+        confo.external_host = ConfDB().get('Qemu/external_host', unicode('localhost'))
         confo.enable_QemuManager = ConfDB().value("Qemu/enable_QemuManager", QVariant(True)).toBool()
         confo.import_use_QemuManager = ConfDB().value("Qemu/qemu_manager_import", QVariant(True)).toBool()
         confo.QemuManager_binding = ConfDB().get('Qemu/qemu_manager_binding', unicode('localhost'))
@@ -316,7 +316,7 @@ class Application(QApplication, Singleton):
         confo.default_ids_image2 = ConfDB().get('Qemu/default_ids_image2', unicode(''))
         confo.default_ids_memory = int(ConfDB().get('Qemu/default_ids_memory', 512))
         confo.default_ids_nic = str(ConfDB().get('Qemu/default_ids_nic', unicode('e1000')))
-        confo.default_ids_options = str(ConfDB().get('Qemu/default_ids_options', unicode('-smbios type=1,product="IDS-4215" -nographic')))
+        confo.default_ids_options = str(ConfDB().get('Qemu/default_ids_options', unicode("-smbios type=1,product='IDS-4215' -nographic")))
         confo.default_ids_kqemu = ConfDB().value("Qemu/default_ids_kqemu", QVariant(False)).toBool()
         confo.default_ids_kvm = ConfDB().value("Qemu/default_ids_kvm", QVariant(False)).toBool()
 

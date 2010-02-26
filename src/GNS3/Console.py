@@ -25,6 +25,7 @@ from GNS3.Utils import translate
 from GNS3.Dynagen.console import Console as Dynagen_Console, getItems
 from GNS3.External.PyCutExt import PyCutExt
 from GNS3.Node.IOSRouter import IOSRouter
+from __main__ import VERSION
 
 class Console(PyCutExt, Dynagen_Console):
 
@@ -34,7 +35,7 @@ class Console(PyCutExt, Dynagen_Console):
                 "exit", "help", "import", "push", "resume",
                 "shell", "stop", "ver", "confreg",
                 "export", "hist", "list", "py",
-                "save", "show", "suspend", "hypervisors"])
+                "save", "show", "suspend", "hypervisors", "versions"])
 
     def __init__(self, parent):
         """ Initialise the Console widget
@@ -136,6 +137,15 @@ class Console(PyCutExt, Dynagen_Console):
 
         if globals.GApp.HypervisorManager:
             globals.GApp.HypervisorManager.showHypervisors()
+            
+    def do_versions(self, args):
+        """ Show GNS3 + libs versions"""
+        
+        import sip
+        print 'GNS3 version is ' + VERSION
+        print 'Qt version is ' + QtCore.QT_VERSION_STR
+        print 'PyQt version is ' + QtCore.PYQT_VERSION_STR
+        print 'SIP version is ' + sip.SIP_VERSION_STR
 
     def do_start(self, args):
         """start  {/all | router1 [router2] ...}\nstart all or a specific router(s)"""

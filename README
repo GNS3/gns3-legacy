@@ -2,34 +2,77 @@ INSTALLATION
 
 * GNS3 dependencies:
 
-- Qt 4.3 (or higher)
-- Python 2.4 (or higher)
+- Qt 4.5.1 (or higher)
+- Python 2.5 (or higher)
 - Sip 4.5 (or higher)
-- PyQt 4.1 (or higher)
+- PyQt 4.5 (or higher)
 
 * WINDOWS users:
 
-Download the GNS3 all-in-one for Windows on http://www.gns3.net (~8 MB)
-This program will install a binary version of GNS3 as well as Dynamips, Pemu and WinPCAP.
-Recommendation: Dynamips has better performances on other platforms.
+Download the GNS3 all-in-one for Windows on http://www.gns3.net (~12 MB)
+This program will install a binary version of GNS3 as well as Dynamips, Qemu and WinPCAP.
+
+Recommendation: Dynamips has better performances on other platforms such as Linux or Mac OS X.
 
 * Linux users:
 
-On Linux you just need to install a package called python-qt4 or you can compile all the dependencies manually.
+On Linux you just need to install a package called python-qt4 (or similar). Instead, you can compile all the dependencies manually.
+
 A debian package is now available, until officially released with Debian/Ubuntu follow instructions
-on http://gpl.code.de/oswiki/GplcodedeApt and install "gns3" package.
+on http://gpl.code.de/oswiki/GplcodedeApt and install "gns3" package (it might not be up-to-date).
 
 * MacOS X users:
 
 Method 1.
 
-1. Install the Apple Devs Tools (on your Mac OS X DvD or download it on ADC account).
-2. Download python 2.5.1 (or higher) for MacOS X on http://www.python.org/download/ and install it.
-3. Download qt-mac-opensource-4.3.4.dmg on http://trolltech.com/developer/downloads/qt/mac and install it.
-4. Download SIP http://www.riverbankcomputing.com/Downloads/sip4/sip-4.7.tar.gz, compile and install it.
-5. Download PyQt hhttp://www.riverbankcomputing.com/Downloads/PyQt4/GPL/PyQt-mac-gpl-4.3.tar.gz, compile and install it.
-6. Start GNS3.
+1. Install the Apple Devs Tools (on your Mac OS X DvD or download it on ADC account). Run and install XcodeTools.mpkg.
 
-Method 2.
-Download the DMG package, it includes two binary versions of Dynamips: one for OSX Tiger and the other for OSX Leopard.
+2. Download Python 2.6 for MacOS X on http://www.python.org/download/ and install it.
 
+3. Download Qt librairies for Mac on http://qt.nokia.com/downloads and install it. 
+
+	Please note GNS3 doesn't run properly with Qt 4.6.1 and 4.6.2. Version 4.5.3 is currently recommended.
+
+4. Download SIP on http://www.riverbankcomputing.com/software/sip/download, compile and install it:
+
+	Version 4.9.3 is currently recommended.
+
+	Open terminal and cd into the folder you downloaded the tar file and compile via the following commands (example for SIP 4.9.3):
+
+	Macintosh:$  tar xvzf sip-4.9.3.tar.gz
+	Macintosh:$  cd sip-4.9.3
+	Macintosh:sip-4.9.3$  python configure.py
+	Macintosh:sip-4.9.3$  make
+	Macintosh:sip-4.9.3$  make install
+
+5. Download PyQt on http://www.riverbankcomputing.com/software/pyqt/download, compile and install it:
+
+	Version 4.6.2 is currently recommended.
+
+	Again, run the following commands to decompress and compile PyQt (example for PyQt 4.6.2):
+
+	Macintosh:$  tar xvzf PyQt-mac-gpl-4.6.2.tar.gz
+	Macintosh:$  cd PyQt-mac-gpl-4.6.2
+	Macintosh:PyQt-mac-gpl-4.6.2$  python configure.py
+	Macintosh:PyQt-mac-gpl-4.6.2$  make
+	Macintosh:PyQt-mac-gpl-4.6.2$  make install
+
+6. Download and start GNS3.
+
+
+Method 2 (this can take a few hours as everything is compiled).
+
+1. Download and install MacPorts http://guide.macports.org/#installing (you will need the Apple Devs Tools).
+
+2. Open a terminal and install GNS3 dependencies. 
+
+	To prevent MacPorts to install the last version of the dependencies (which may not work properly with GNS3), you have to specify the needed version.
+	
+	Currently, it is recommended to install Qt 4.5.3, SIP 4.9.3 and PyQt 4.6.2.
+
+	Macintosh:$ sudo port install python26
+	Macintosh:$ sudo port install py26-sip @4.9.3_0
+	Macintosh:$ sudo port install py26-pyqt4 @4.6.2_0
+	Macintosh:$ sudo port install qt4-mac @4.5.3_0
+
+3. Download and start GNS3
