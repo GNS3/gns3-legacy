@@ -62,7 +62,6 @@ class Topology(QtGui.QGraphicsScene):
 
         self.undoStack = QtGui.QUndoStack(self)
         self.undoStack.setUndoLimit(30)
-        self.lastAddedLink = None
 
     def mousePressEvent(self, event):
 
@@ -300,7 +299,7 @@ class Topology(QtGui.QGraphicsScene):
         """ Add node in the topology, called from Scene
             node: object
         """
-        
+
         command = undo.AddNode(self, node)
         self.undoStack.push(command)
         
@@ -544,7 +543,7 @@ class Topology(QtGui.QGraphicsScene):
     def deleteNodeFromScene(self, id):
         """ Delete a node from the topology, called from Scene
         """
-        
+
         node = self.__nodes[id]
         command = undo.DeleteNode(self, node)
         self.undoStack.push(command)
@@ -645,7 +644,6 @@ class Topology(QtGui.QGraphicsScene):
 
         self.__links.add(link)
         self.addItem(link)
-        self.lastAddedLink = link
 
     def updateStates(self, src_node, dst_node):
         """ Start nodes that are always on and update interface states

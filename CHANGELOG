@@ -1,5 +1,37 @@
 CHANGELOG
 
+GNS3 0.7
+
+ * Support & debugging on Windows 7.
+ * Qemuwrapper improvements & Windows compatibility.
+ * Integration of Cisco IDS/IPS, including a new symbol.
+ * Qemu 0.11.0 patched and Putty have been added in the Windows all-in-one package.
+ * An option to show the z coordinate of any object on the scene (View -> Show layers).
+ * Interface labels follow their moving parent nodes.
+ * Modified interface labels are saved in .net files.
+ * Option to slow start nodes (wait x seconds between each start).
+ * Links connected to Qemu based nodes are now removable (nodes have to be shutdown to do so).
+ * Possibility to set an hypervisor for Ethernet switches, ATM switches, ATM bridges and Frame Relay switches.
+ * New symbols for voice labs (Call manager, SIP server, IP phone, voice router, voice access server and PBX).
+ * New dialog window to browse and change a router startup-config.
+ * Undo/redo of actions is now supported.
+ * Qemu & qemu-img paths are saved in .net files if needed.
+ * Slight improvements for the snapshot system, including a new dialog window to manage it.
+ * Wics description in tooptips.
+ * Wics restoration from .net files.
+ * Support of relative paths in .net files (if the base path is the same as the .net file).
+ * Test button to validate you can launch Qemuwrapper, Qemu and qemu-img.
+ * New translation in Czech (thanks to Ondrej Filip).
+ * Lot of various small bug fixes and improvements.
+
+GNS3 0.7RC1
+
+ * Qemu integration.
+ * JunOS & ASA integration using Qemu.
+ * An undo/redo framework (unstable).
+ * Translations in Italian and Farsi.
+ * Various bugs fixes and improvements.
+
 GNS3 0.6.1
 
 Improvements:

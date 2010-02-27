@@ -39,16 +39,21 @@ class AddNode(QtGui.QUndoCommand):
         self.setText(unicode(translate("UndoFramework", "New node %s")) % node.hostname)
         self.topology = topology
         self.node = node
+        self.deleted = False
 
     def redo(self):
 
         if self.topology.addNode(self.node, fromScene=True) == False:
             self.undo()
+        if self.deleted:
+            self.node.set_config(self.config)
 
     def undo(self):
 
+        self.config = self.node.duplicate_config()
         self.topology.deleteNode(self.node.id)
         self.node.__del__()
+        self.deleted = True
         
 class DeleteNode(QtGui.QUndoCommand):
     
@@ -61,12 +66,14 @@ class DeleteNode(QtGui.QUndoCommand):
 
     def redo(self):
 
+        self.config = self.node.duplicate_config()
         self.topology.deleteNode(self.node.id)
-        self.node.__del__() 
+        self.node.__del__()   
 
     def undo(self):
 
         self.topology.addNode(self.node)
+        self.node.set_config(self.config)
         
 class AddItem(QtGui.QUndoCommand):
     
@@ -112,7 +119,6 @@ class AddLink(QtGui.QUndoCommand):
         self.setText(unicode(translate("UndoFramework", "New link: %s (%s) -> %s (%s)")) % (source.hostname, srcif, dest.hostname, dstif))
         self.topology = topology
         self.status = None
-        self.link = None
         self.srcid = srcid
         self.srcif = srcif
         self.dstid = dstid
@@ -121,17 +127,17 @@ class AddLink(QtGui.QUndoCommand):
     def redo(self):
 
         self.status = self.topology.addLink(self.srcid, self.srcif, self.dstid, self.dstif)
-        self.link = self.topology.lastAddedLink
 
     def undo(self):
 
         if self.status:
-            if self.link not in self.topology.links:
-                self.link = self.topology.lastAddedLink
-            self.topology.deleteLink(self.link)
+            for link in self.topology.links:
+                if link.source.id == self.srcid and link.srcIf == self.srcif \
+                and link.dest.id == self.dstid and link.destIf == self.dstif:
+                    self.topology.deleteLink(link)
+                    break
             for link in self.topology.links:
                 link.adjust()
-            self.link = None
 
     def getStatus(self):
     
@@ -145,21 +151,26 @@ class DeleteLink(QtGui.QUndoCommand):
         self.setText(unicode(translate("UndoFramework", "Delete link: %s (%s) -> %s (%s)")) % (link.source.hostname, link.srcIf, link.dest.hostname, link.destIf))
         self.topology = topology
         self.link = link
+        self.srcid = link.source.id
+        self.srcif = link.srcIf
+        self.dstid = link.dest.id
+        self.dstif = link.destIf
         self.status = None
         
     def redo(self):
-
-        if self.link not in self.topology.links:
-            self.link = self.topology.lastAddedLink
-        self.status = self.topology.deleteLink(self.link)
+        
+        for link in self.topology.links:
+            if link.source.id == self.srcid and link.srcIf == self.srcif \
+            and link.dest.id == self.dstid and link.destIf == self.dstif:
+                self.status = self.topology.deleteLink(link)
+                break
         for link in self.topology.links:
             link.adjust()
 
     def undo(self):
 
-        if self.status == None:
-            self.topology.addLink(self.link.source.id, self.link.srcIf, self.link.dest.id, self.link.destIf)
-            self.link = self.topology.lastAddedLink
+        if self.status:
+            self.topology.addLink(self.srcid, self.srcif, self.dstid, self.dstif)
 
     def getStatus(self):
     

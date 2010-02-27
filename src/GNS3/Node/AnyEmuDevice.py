@@ -79,7 +79,7 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
 
         self.delete_emudev()
 
-    def delete_emudev(self):
+    def delete_emudev(self, delete_persistent=False):
         """ Delete this emulated device
         """
         if self.emudev:
@@ -89,8 +89,12 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
                 if self.emudev in self.qemu.devices:
                     self.qemu.devices.remove(self.emudev)
                 self.dynagen.update_running_config()
+                if delete_persistent == True:
+                    path = os.path.realpath(os.path.join(self.emudev.dynamips.workingdir, self.hostname))
+                    shutil.rmtree(path, ignore_errors=True)
             except:
                 pass
+            self.emudev.delete()
             self.emudev = None
 
     def set_hostname(self, hostname):

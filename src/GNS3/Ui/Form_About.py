@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_About.ui'
 #
-# Created: Fri Feb 26 14:09:51 2010
+# Created: Fri Feb 26 21:48:56 2010
 #      by: PyQt4 UI code generator 4.6.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -25,7 +25,7 @@ class Ui_AboutDialog(object):
         self.gridLayout = QtGui.QGridLayout(self.tab)
         self.gridLayout.setObjectName("gridLayout")
         spacerItem = QtGui.QSpacerItem(396, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem, 0, 0, 1, 5)
+        self.gridLayout.addItem(spacerItem, 0, 0, 1, 4)
         self.label = QtGui.QLabel(self.tab)
         self.label.setPixmap(QtGui.QPixmap(":/images/logo_gns3_small.png"))
         self.label.setObjectName("label")
@@ -35,14 +35,9 @@ class Ui_AboutDialog(object):
         self.label_2 = QtGui.QLabel(self.tab)
         self.label_2.setOpenExternalLinks(True)
         self.label_2.setObjectName("label_2")
-        self.gridLayout.addWidget(self.label_2, 1, 2, 1, 3)
+        self.gridLayout.addWidget(self.label_2, 1, 2, 1, 2)
         spacerItem2 = QtGui.QSpacerItem(301, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem2, 2, 0, 1, 3)
-        self.label_3 = QtGui.QLabel(self.tab)
-        self.label_3.setPixmap(QtGui.QPixmap(":/images/project-support.jpg"))
-        self.label_3.setOpenExternalLinks(True)
-        self.label_3.setObjectName("label_3")
-        self.gridLayout.addWidget(self.label_3, 2, 3, 1, 1)
+        self.gridLayout.addItem(spacerItem2, 2, 0, 1, 4)
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName("tab_2")

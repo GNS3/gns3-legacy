@@ -286,9 +286,13 @@ class AnyEmuDevice(object):
         self.console = self.p.baseconsole
         self.p.baseconsole += 1
         
-    def __del__(self):
+    def delete(self):
+        """delete the emulated device instance in Qemu"""
         
-        send(self.p, 'qemu delete %s' % self.name)
+        try:
+            send(self.p, 'qemu delete %s' % self.name)
+        except:
+            pass
 
     def start(self):
         """starts the emulated device instance in Qemu"""
@@ -533,7 +537,8 @@ class AnyEmuDevice(object):
 
         #delete the emulated device side of UDP connection
         send(self.p, 'qemu delete_udp %s %i' % (self.name, local_port))
-        del self.nios[local_port]
+        if self.nios.has_key(local_port):
+            del self.nios[local_port]
         
     def connect_to_emulated_device(self, local_port, remote_emulated_device, remote_port):
         (src_udp, dst_udp) = self.__allocate_udp_port(remote_emulated_device.p)
@@ -564,11 +569,13 @@ class AnyEmuDevice(object):
         
         # disconnect the local emulated device side of UDP connection
         send(self.p, 'qemu delete_udp %s %i' % (self.name, local_port))
-        del self.nios[local_port]
+        if self.nios.has_key(local_port):
+            del self.nios[local_port]
         
         # disconnect the remote emulated device side of UDP connection
         send(remote_emulated_device.p, 'qemu delete_udp %s %i' % (remote_emulated_device.name, remote_port))
-        del remote_emulated_device.nios[remote_port]
+        if remote_emulated_device.nios.has_key(remote_port):
+            del remote_emulated_device.nios[remote_port]
 
     def slot_info(self):
         #gather information about interfaces and connections

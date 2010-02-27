@@ -82,7 +82,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             if sys.platform.startswith('win'):
                 self.conf.qemuwrapper_path = unicode('qemuwrapper.exe')
             else:
-                path = os.getcwd() + '/qemu/qemuwrapper.py'
+                path = os.getcwd() + '/qemuwrapper/qemuwrapper.py'
                 self.conf.qemuwrapper_path = unicode(path, errors='replace')
         
         # Default path to working directory

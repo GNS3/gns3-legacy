@@ -98,6 +98,7 @@ class xEMUInstance(object):
         self.valid_attr_names = ['image', 'ram', 'console', 'netcard', 'kqemu', 'kvm', 'options']
 
     def create(self):
+
         self.workdir = os.path.join(os.getcwd(), self.name)
         if not os.path.exists(self.workdir):
             os.makedirs(self.workdir)
@@ -180,7 +181,7 @@ class xEMUInstance(object):
         
     def _ser_options(self):
         if self.console:
-            return ['-serial', 'telnet::%s,server,nowait' % self.console]
+            return ['-serial', 'telnet:127.0.0.1:%s,server,nowait' % self.console]
         else:
             return []
 
@@ -607,8 +608,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
     def __qemu_delete(self, name):
         if not name in QEMU_INSTANCES.keys():
             return 1
-        if QEMU_INSTANCES[name].process and \
-        not QEMU_INSTANCES[name].stop():
+        if QEMU_INSTANCES[name].process and not QEMU_INSTANCES[name].stop():
             return 1
         del QEMU_INSTANCES[name]
         return 0
@@ -663,7 +663,8 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
                             "unable to find Qemu '%s'" % name)
             return
-        del QEMU_INSTANCES[name].udp[int(vlan)]
+        if QEMU_INSTANCES[name].udp.has_key(int(vlan)):
+            del QEMU_INSTANCES[name].udp[int(vlan)]
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_qemu_start(self, data):

@@ -23,7 +23,6 @@ import re
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Utils import translate, debug
-import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.UndoFramework as undo 
 
 class AbstractNode(QtSvg.QGraphicsSvgItem):
