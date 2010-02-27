@@ -39,18 +39,22 @@ class AddNode(QtGui.QUndoCommand):
         self.setText(unicode(translate("UndoFramework", "New node %s")) % node.hostname)
         self.topology = topology
         self.node = node
+        self.config = None
         self.deleted = False
+        self.aborted = False
 
     def redo(self):
 
         if self.topology.addNode(self.node, fromScene=True) == False:
+            self.aborted = True
             self.undo()
-        if self.deleted:
+        if self.deleted and self.config:
             self.node.set_config(self.config)
 
     def undo(self):
 
-        self.config = self.node.duplicate_config()
+        if self.aborted == False:
+            self.config = self.node.duplicate_config()
         self.topology.deleteNode(self.node.id)
         self.node.__del__()
         self.deleted = True

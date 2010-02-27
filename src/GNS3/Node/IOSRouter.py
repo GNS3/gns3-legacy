@@ -210,7 +210,7 @@ class IOSRouter(AbstractNode):
         """ Returns a copy of the local configuration
         """
 
-        config =  self.local_config.copy()
+        config = self.local_config.copy()
         config['slots'] = list(self.local_config['slots'])
         return config
         
