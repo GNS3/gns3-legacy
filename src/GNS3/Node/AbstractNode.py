@@ -56,7 +56,11 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.hostname = 'Node' + str(self.id)
 
         # scene settings
-        self.setFlags(self.ItemIsMovable | self.ItemIsSelectable | self.ItemIsFocusable)
+        flags = self.ItemIsMovable | self.ItemIsSelectable | self.ItemIsFocusable
+        # necessary to receive itemChange() notifications with Qt >= 4.6
+        if QtCore.QT_VERSION >= 0x040600:
+            flags = flags | self.ItemSendsGeometryChanges
+        self.setFlags(flags)
         self.setAcceptsHoverEvents(True)
         self.setSharedRenderer(self.__render_normal)
         
