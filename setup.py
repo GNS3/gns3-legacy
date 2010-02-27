@@ -2,6 +2,7 @@
 
 import sys
 sys.path.append('./src')
+sys.path.append('./qemuwrapper')
 from distutils.core import setup, Extension
 from glob import glob
 
