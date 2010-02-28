@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_FWPage.ui'
 #
-# Created: Sat Feb 27 21:18:14 2010
-#      by: PyQt4 UI code generator 4.6.2
+# Created: Mon Mar  1 07:47:37 2010
+#      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
 

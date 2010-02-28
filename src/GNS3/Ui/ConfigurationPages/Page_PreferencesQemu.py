@@ -498,6 +498,13 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
 
     def __testQemu(self):
     
+    
+        if len(globals.GApp.topology.nodes):
+            reply = QtGui.QMessageBox.question(self, translate("UiConfig_PreferencesQemu", "Message"), translate("UiConfig_PreferencesQemu", "This action is going to delete your current topology, would you like to continue?"),
+                                               QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+            if reply == QtGui.QMessageBox.No:
+                return
+        
         self.saveConf()
         if globals.GApp.systconf['qemu'].qemuwrapper_path and globals.GApp.systconf['qemu'].qemu_path and globals.GApp.systconf['qemu'].qemu_img_path:
             

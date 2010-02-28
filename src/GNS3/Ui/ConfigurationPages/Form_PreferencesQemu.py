@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesQemu.ui'
 #
-# Created: Sat Feb 27 21:18:15 2010
-#      by: PyQt4 UI code generator 4.6.2
+# Created: Mon Mar  1 07:47:39 2010
+#      by: PyQt4 UI code generator 4.7
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_PreferencesQemu(object):
     def setupUi(self, PreferencesQemu):
         PreferencesQemu.setObjectName("PreferencesQemu")
-        PreferencesQemu.resize(476, 587)
+        PreferencesQemu.resize(476, 576)
         self.verticalLayout = QtGui.QVBoxLayout(PreferencesQemu)
         self.verticalLayout.setObjectName("verticalLayout")
         self.tabWidget = QtGui.QTabWidget(PreferencesQemu)
@@ -200,6 +200,8 @@ class Ui_PreferencesQemu(object):
         self.treeWidgetQemuImages.setObjectName("treeWidgetQemuImages")
         self.verticalLayout_5.addWidget(self.treeWidgetQemuImages)
         self.verticalLayout_7.addWidget(self.groupBox_8)
+        spacerItem2 = QtGui.QSpacerItem(20, 29, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.verticalLayout_7.addItem(spacerItem2)
         self.tabWidget.addTab(self.tab_4, "")
         self.tab_5 = QtGui.QWidget()
         self.tab_5.setObjectName("tab_5")
@@ -287,8 +289,8 @@ class Ui_PreferencesQemu(object):
         self.PIXSerial.setObjectName("PIXSerial")
         self.gridLayout_5.addWidget(self.PIXSerial, 1, 1, 1, 1)
         self.verticalLayout_6.addWidget(self.groupBox_7)
-        spacerItem2 = QtGui.QSpacerItem(20, 69, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.verticalLayout_6.addItem(spacerItem2)
+        spacerItem3 = QtGui.QSpacerItem(20, 69, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.verticalLayout_6.addItem(spacerItem3)
         self.tabWidget.addTab(self.tab_5, "")
         self.tab_3 = QtGui.QWidget()
         self.tab_3.setObjectName("tab_3")
@@ -352,8 +354,8 @@ class Ui_PreferencesQemu(object):
         self.JunOScheckBoxKVM.setObjectName("JunOScheckBoxKVM")
         self.gridLayout_2.addWidget(self.JunOScheckBoxKVM, 5, 0, 1, 2)
         self.verticalLayout_4.addWidget(self.groupBox_5)
-        spacerItem3 = QtGui.QSpacerItem(20, 130, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.verticalLayout_4.addItem(spacerItem3)
+        spacerItem4 = QtGui.QSpacerItem(20, 130, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.verticalLayout_4.addItem(spacerItem4)
         self.tabWidget.addTab(self.tab_3, "")
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName("tab_2")
@@ -436,8 +438,8 @@ class Ui_PreferencesQemu(object):
         self.label_19.setObjectName("label_19")
         self.gridLayout_4.addWidget(self.label_19, 0, 0, 1, 1)
         self.verticalLayout_3.addWidget(self.groupBox_4)
-        spacerItem4 = QtGui.QSpacerItem(20, 7, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.verticalLayout_3.addItem(spacerItem4)
+        spacerItem5 = QtGui.QSpacerItem(20, 7, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.verticalLayout_3.addItem(spacerItem5)
         self.tabWidget.addTab(self.tab_2, "")
         self.tab_6 = QtGui.QWidget()
         self.tab_6.setObjectName("tab_6")
@@ -513,8 +515,8 @@ class Ui_PreferencesQemu(object):
         self.IDScheckBoxKVM.setObjectName("IDScheckBoxKVM")
         self.gridLayout_8.addWidget(self.IDScheckBoxKVM, 6, 0, 1, 2)
         self.verticalLayout_8.addWidget(self.groupBox_9)
-        spacerItem5 = QtGui.QSpacerItem(20, 236, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.verticalLayout_8.addItem(spacerItem5)
+        spacerItem6 = QtGui.QSpacerItem(20, 236, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.verticalLayout_8.addItem(spacerItem6)
         self.tabWidget.addTab(self.tab_6, "")
         self.verticalLayout.addWidget(self.tabWidget)
 

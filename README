@@ -31,11 +31,7 @@ Method 1.
 
 3. Download Qt librairies for Mac on http://qt.nokia.com/downloads and install it. 
 
-	Please note GNS3 doesn't run properly with Qt 4.6.1 and 4.6.2. Version 4.5.3 is currently recommended.
-
 4. Download SIP on http://www.riverbankcomputing.com/software/sip/download, compile and install it:
-
-	Version 4.9.3 is currently recommended.
 
 	Open terminal and cd into the folder you downloaded the tar file and compile via the following commands (example for SIP 4.9.3):
 
@@ -46,8 +42,6 @@ Method 1.
 	Macintosh:sip-4.9.3$  make install
 
 5. Download PyQt on http://www.riverbankcomputing.com/software/pyqt/download, compile and install it:
-
-	Version 4.6.2 is currently recommended.
 
 	Again, run the following commands to decompress and compile PyQt (example for PyQt 4.6.2):
 
@@ -66,9 +60,14 @@ Method 2 (this can take a few hours as everything is compiled).
 
 2. Open a terminal and install GNS3 dependencies. 
 
-	To prevent MacPorts to install the last version of the dependencies (which may not work properly with GNS3), you have to specify the needed version.
+	Macintosh:$ sudo port install python26
+	Macintosh:$ sudo port install py26-sip
+	Macintosh:$ sudo port install py26-pyqt4
+	Macintosh:$ sudo port install qt4-mac
 	
-	Currently, it is recommended to install Qt 4.5.3, SIP 4.9.3 and PyQt 4.6.2.
+	Optionnal: to prevent MacPorts to install the last version of the dependencies (which may not work properly with GNS3), you can force a specified version with @.
+	
+	Example:
 
 	Macintosh:$ sudo port install python26
 	Macintosh:$ sudo port install py26-sip @4.9.3_0

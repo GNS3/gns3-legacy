@@ -9,5 +9,7 @@ TODO LIST
  * Cpulimit integration => no need to integrate, use a script to start Qemu followed by cpulimit
  * Check ghostios  ==> It works, virtual mem usage is ok (at least on Mac OS X).
 
+Debugging
+
  * Kill process if already running warning
- * When using test buttons (Dynamips & Qemu), warn the user if a topology exists
+ * Relative path bug? (http://www.gns3.net/phpBB/topic1682.html)

@@ -169,7 +169,13 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.dynamips_workdir.setText(os.path.normpath(path))
 
     def __testDynamips(self):
-    
+        
+        if len(globals.GApp.topology.nodes):
+            reply = QtGui.QMessageBox.question(self, translate("UiConfig_PreferencesDynamips", "Message"), translate("UiConfig_PreferencesDynamips", "This action is going to delete your current topology, would you like to continue?"),
+                                               QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+            if reply == QtGui.QMessageBox.No:
+                return
+
         self.saveConf()
         if globals.GApp.systconf['dynamips'].path:
             globals.GApp.workspace.clear()

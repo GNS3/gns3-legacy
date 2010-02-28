@@ -323,7 +323,6 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             node: node instance
         """
 
-        # must do this to avoid a bug on Linux (kernel >= 2.6.26)
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
         menu = QtGui.QMenu()
         interfaces_list = self.getInterfaces()
@@ -342,6 +341,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         # connect the menu
         menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.slotSelectedInterface)
         menu.exec_(QtGui.QCursor.pos())
+        globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
 
     def showHostname(self):
         """ Show the hostname on the scene
