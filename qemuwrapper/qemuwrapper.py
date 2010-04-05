@@ -285,7 +285,7 @@ class JunOSInstance(QEMUInstance):
 
     def __init__(self, *args, **kwargs):
         super(JunOSInstance, self).__init__(*args, **kwargs)
-        self.flash_size = '3G'
+        self.flash_size = '4G'
         self.swap_name= 'SWAP'
         self.swap_size = '1G'
         self.netcard = 'e1000'
@@ -301,7 +301,7 @@ class JunOSInstance(QEMUInstance):
         swap = os.path.join(self.workdir, self.swap_name)
         if not os.path.exists(swap):
             try:
-                retcode = subprocess.call([self.img_bin, 'create', '-f', 'qcow2', '-c', swap, self.swap_size])
+                retcode = subprocess.call([self.img_bin, 'create', '-f', 'qcow2', swap, self.swap_size])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e

@@ -781,7 +781,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                 try:
                                     shutil.move(file, self.projectWorkdir)
                                 except (OSError, IOError), e:
-                                    debug("Warning: cannot move " + file + " to " + self.projectWorkdir + ": " + unicode(e.strerror))
+                                    debug("Warning: cannot move " + file + " to " + self.projectWorkdir)
                                     continue
                                 except:
                                     continue
@@ -791,7 +791,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                 try:
                                     shutil.move(file, self.projectWorkdir + os.sep + node.hostname)
                                 except (OSError, IOError), e:
-                                    debug("Warning: cannot move " + file + " to " + self.projectWorkdir + ": " + unicode(e.strerror))
+                                    debug("Warning: cannot move " + file + " to " + self.projectWorkdir)
                                     continue
                     # set the new working directory
                     try:

@@ -1,18 +1,17 @@
 """Setup script for the GNS3 packages."""
 
-import sys
+import sys, os
 sys.path.append('./src')
-sys.path.append('./qemuwrapper')
 from distutils.core import setup, Extension
 from glob import glob
 
 # current version of GNS3
 VERSION = '0.7'
 
-# Path Qt directory
-QTDIR = r'C:\Qt\2009.04\qt'
-
 if sys.platform.startswith('win'):
+
+    # Path to Qt directory (Windows)
+    QTDIR = r'C:\Qt\2009.04\qt'
 
     try:
         import py2exe
@@ -59,7 +58,81 @@ if sys.platform.startswith('win'):
     )
 
     # Compile qemuwrapper
+    sys.path.append('./qemuwrapper')
     setup(console=["qemuwrapper\qemuwrapper.py"], zipfile=None)
+
+elif sys.platform.startswith('darwin'):
+
+    import setuptools
+
+    QTDIR = r'/usr/local/Trolltech/Qt-4.6.2/'
+
+    data_files = [('', glob(r'src/GNS3/Langs/*.qm')),
+                  ('src/GNS3/Dynagen/configspec'),
+                  ('dynamips-0.2.8-RC2-OSX-Leopard.intel.bin'),
+                  ('LICENSE'),
+                  ("../PlugIns/iconengines", [QTDIR + r'/plugins/iconengines/libqsvgicon.dylib']),
+                  ("../PlugIns/imageformats", [QTDIR + r'/plugins/imageformats/libqgif.dylib',
+                                               QTDIR + r'/plugins/imageformats/libqjpeg.dylib',
+                                               QTDIR + r'/plugins/imageformats/libqsvg.dylib'])
+                  ]
+
+    APP = ['gns3.py']
+    OPTIONS = {'argv_emulation': True,
+               'optimize': 2,
+               'iconfile': 'gns3.icns',
+               'includes': ['sip',
+                            'PyQt4.QtCore',
+                            'PyQt4.QtGui',
+                            'PyQt4.QtSvg',
+                            'PyQt4.QtXml',
+                            'PyQt4.QtNetwork',
+                            'GNS3.Ui.ConfigurationPages.Page_ATMSW',
+                            'GNS3.Ui.ConfigurationPages.Page_ATMBR',
+                            'GNS3.Ui.ConfigurationPages.Page_Cloud',
+                            'GNS3.Ui.ConfigurationPages.Page_ETHSW',
+                            'GNS3.Ui.ConfigurationPages.Page_FRSW',
+                            'GNS3.Ui.ConfigurationPages.Page_IOSRouter',
+                            'GNS3.Ui.ConfigurationPages.Page_FW',
+                            'GNS3.Ui.ConfigurationPages.Page_ASA',
+                            'GNS3.Ui.ConfigurationPages.Page_JunOS',
+                            'GNS3.Ui.ConfigurationPages.Page_IDS',                                                                                                         
+                            'GNS3.Ui.ConfigurationPages.Page_Qemu',
+                            'GNS3.Ui.ConfigurationPages.Page_DecorativeNode',
+                            'GNS3.Ui.ConfigurationPages.Page_PreferencesDynamips',
+                            'GNS3.Ui.ConfigurationPages.Page_PreferencesGeneral',
+                            'GNS3.Ui.ConfigurationPages.Page_PreferencesCapture',
+                            'GNS3.Ui.ConfigurationPages.Page_PreferencesQemu'
+                            ],
+                
+                'plist'    : {  'CFBundleGetInfoString' : 'GNS3, Graphical Network Simulator',
+                                'CFBundleIdentifier':'net.gns3',
+                                'CFBundleShortVersionString':VERSION,
+                                'CFBundleVersion': 'GNS3 ' + VERSION,
+                                'LSMinimumSystemVersion':'10.5',
+                                'LSMultipleInstancesProhibited':'true',
+                                'NSHumanReadableCopyright':'GNU General Public License (GPL), Jeremy Grossmann',
+                            }
+                }
+
+    setuptools.setup(
+          name='GNS3',
+          app=APP,
+          data_files=data_files,
+          options={'py2app': OPTIONS},
+          setup_requires=['py2app'],
+          )
+
+    print '*** Removing Qt debug libs ***'
+    for root, dirs, files in os.walk('./dist'):
+        for file in files:
+            if 'debug' in file:
+                print 'Deleting', file
+                os.remove(os.path.join(root,file))
+                
+    print '*** Making DMG ***'
+    os.chdir('dist')
+    os.system(QTDIR + r'/bin/macdeployqt GNS3.app -dmg')
 
 else:
 
@@ -67,8 +140,10 @@ else:
             name = "GNS3",
             version = VERSION,
             description = "GNS3 is a graphical network simulator based on Dynamips, an IOS emulator which allows users to run IOS binary images from Cisco Systems and Qemu for emulating PIX & ASA firewalls as well as Juniper routers and Cisco IDS/IPS (binary images are not part of this package).",
+            license = 'GNU General Public License (GPL), see the LICENSE file for detailed info',
             author = "Jeremy Grossmann, David Ruiz, Romain Lamaison, Aurelien Levesque, Xavier Alt",
             author_email = "code@gns3.net",
+            platforms = 'Windows, Unix and MacOSX',
             url = "http://www.gns3.net/",
             scripts = [ 'gns3' ],
             package_dir = { '': 'src' },
