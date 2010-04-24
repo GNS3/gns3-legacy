@@ -54,6 +54,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         QMainWindow.__init__(self)
         self.submenu_Docks = QtGui.QMenu()
         Ui_MainWindow.setupUi(self, self)
+
         self.__createMenus()
         self.__connectActions()
         self.setCorner(QtCore.Qt.TopLeftCorner, QtCore.Qt.LeftDockWidgetArea)

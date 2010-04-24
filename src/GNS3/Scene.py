@@ -651,10 +651,14 @@ class Scene(QtGui.QGraphicsView):
             item_type = type(item)
             if item_type == Ethernet or item_type == Serial:
                 show = False
-        if show and event.button() == QtCore.Qt.RightButton and not globals.addingLinkFlag:
+                
+        if show and event.modifiers() & QtCore.Qt.ShiftModifier and event.button() == QtCore.Qt.LeftButton and item and not globals.addingLinkFlag:
+            item.setSelected(True)
+        elif show and event.button() == QtCore.Qt.RightButton and not globals.addingLinkFlag:
             if item:
-                for it in globals.GApp.topology.items():
-                    it.setSelected(False)
+                if not event.modifiers() & QtCore.Qt.ShiftModifier:
+                    for it in globals.GApp.topology.items():
+                        it.setSelected(False)
                 item.setSelected(True)
                 self.showContextualMenu()
             elif len(self.__topology.selectedItems()) > 1:

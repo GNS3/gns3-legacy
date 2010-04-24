@@ -50,7 +50,9 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
 
         terminal_cmds = {'Putty (Windows 64 bits)': 'C:\Program Files (x86)\Putty\putty.exe -telnet %h %p',
                          'Putty (Windows 32 bits)': 'C:\Program Files\Putty\putty.exe -telnet %h %p',
-                         'Putty (included with GNS3)': 'putty.exe -telnet %h %p',
+                         'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p',
+                         'SecureCRT (Windows 32 bits)': 'start C:\progra~1\vandyk~1\SecureCRT\SecureCRT.EXE /script C:\progra~1\gns3\securecrt.vbs /arg %d /T /telnet %h %p',
+                         'SecureCRT (Windows 64 bits)': 'start C:\progra~2\vandyk~1\SecureCRT\SecureCRT.EXE /script C:\progra~2\gns3\securecrt.vbs /arg %d /T /telnet %h %p',
                          'TeraTerm (Windows)': 'C:\TTERMPRO\\ttssh.exe %h %p /W=%d /T=1',
                          'Telnet (Windows)': 'start telnet %h %p',
                          'xterm (Linux)': 'xterm -T %d -e \'telnet %h %p\' >/dev/null 2>&1 &',

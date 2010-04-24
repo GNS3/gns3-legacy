@@ -207,7 +207,7 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         self.delete_emudev()
         if self.hostname != new_hostname:
             try:
-                qemu_name = self.qemu.host + ':10525'
+                qemu_name = self.qemu.host + ':' + str(self.qemu.port)
                 shutil.move(self.dynagen.dynamips[qemu_name].workingdir + os.sep + self.hostname, self.dynagen.dynamips[qemu_name].workingdir + os.sep + new_hostname)
             except:
                 debug("Cannot move emulator's working directory")
@@ -271,7 +271,7 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         devdefaults = self.get_devdefaults()
         if devdefaults == False:
             return False
-        qemu_name = self.qemu.host + ':10525'
+        qemu_name = self.qemu.host + ':' + str(self.qemu.port)
         self.emudev = self._make_devinstance(qemu_name)
         self.dynagen.setdefaults(self.emudev, devdefaults[model])
         self.dynagen.devices[self.hostname] = self.emudev

@@ -257,18 +257,39 @@ class Topology(QtGui.QGraphicsScene):
         """
 
         if globals.GApp.systconf['qemu'].enable_QemuManager:
-            if globals.GApp.QemuManager.startQemu() == False:
-                return False
             host = globals.GApp.systconf['qemu'].QemuManager_binding
-            qemu_name = host + ':10525'
+            port = globals.GApp.systconf['qemu'].qemuwrapper_port
+            if globals.GApp.QemuManager.startQemu(port) == False:
+                return False
         else:
-            host = globals.GApp.systconf['qemu'].external_host
-            qemu_name = host + ':10525'
+            external_hosts = globals.GApp.systconf['qemu'].external_hosts
+            
+            if len(external_hosts) == 0:
+                QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "External Qemuwrapper"), 
+                                          translate("Topology", "Please register at least one external Qemuwrapper"))
+                return False
 
+            if len(external_hosts) > 1:
+                (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "External Qemuwrapper"),
+                                                              translate("Topology", "Please choose your external Qemuwrapper"), external_hosts, 0, False)
+                if ok:
+                    qemuwrapper = unicode(selection)
+                else:
+                    return False
+            else:
+                qemuwrapper = external_hosts[0]
+
+            host = qemuwrapper
+            if ':' in host:
+                (host, port) = host.split(':')
+            else:
+                port = 10525
+        
+        qemu_name = host + ':' + str(port)
         debug('Qemuwrapper: ' + qemu_name)
         if not self.dynagen.dynamips.has_key(qemu_name):
             #create the Qemu instance and add it to global dictionary
-            self.dynagen.dynamips[qemu_name] = qlib.Qemu(host)
+            self.dynagen.dynamips[qemu_name] = qlib.Qemu(host, port)
             self.dynagen.dynamips[qemu_name].reset()
             self.dynagen.dynamips[qemu_name].qemupath = globals.GApp.systconf['qemu'].qemu_path
             self.dynagen.dynamips[qemu_name].qemuimgpath = globals.GApp.systconf['qemu'].qemu_img_path

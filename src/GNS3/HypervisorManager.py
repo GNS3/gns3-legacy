@@ -19,12 +19,12 @@
 # code@gns3.net
 #
 
-import time, os
+import time, os, sys
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 from socket import socket, AF_INET, SOCK_STREAM
 from PyQt4 import QtCore, QtGui
-from GNS3.Utils import translate, debug
+from GNS3.Utils import translate, debug, killAll
 from GNS3.Node.IOSRouter import IOSRouter
 
 class HypervisorManager(object):
@@ -71,11 +71,17 @@ class HypervisorManager(object):
             s.connect(('localhost', port))
             s.close()
 
-            reply = QtGui.QMessageBox.question(self, translate("HypervisorManager", "Hypervisor Manager"), unicode(translate("HypervisorManager", "Apparently a hypervisor is already running on port %i, would you like to kill it?")) % port,
+            reply = QtGui.QMessageBox.question(globals.GApp.mainWindow, translate("HypervisorManager", "Hypervisor Manager"), unicode(translate("HypervisorManager", "Apparently an hypervisor is already running on port %i, would you like to kill all Dynamips processes?")) % port,
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-#            if reply == QtGui.QMessageBox.Yes:
-#                s.connect(('localhost', port))
-#                s.close()
+            if reply == QtGui.QMessageBox.Yes:
+                if sys.platform.startswith('win'):            
+                    killAll(os.path.basename(self.hypervisor_path))
+                else:
+                    killAll('dynamips')
+
+            s.connect(('localhost', port))
+            s.close()
+    
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("HypervisorManager", "Hypervisor Manager"),
                                        unicode(translate("HypervisorManager", "Something is still running on port %i, you will have to stop it manually or change port settings")) % port)
 
@@ -142,8 +148,10 @@ class HypervisorManager(object):
         else:
             if last_exception:
                 debug("Hypervisor manager: last exception raised by socket: " + unicode(last_exception))
+            else:
+                last_exception = 'Unknown problem'
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',
-                                       unicode(translate("HypervisorManager", "Can't connect to the hypervisor on port %i")) % hypervisor['port'])
+                                       unicode(translate("HypervisorManager", "Can't connect to the hypervisor on port %i: %s")) % (hypervisor['port'], last_exception))
             hypervisor['proc_instance'].close()
             self.hypervisors.remove(hypervisor)
             return False

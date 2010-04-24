@@ -43,16 +43,16 @@ import tarfile
 import threading
 import SocketServer
 import time
-
 import pemubin
 
 
 __author__ = 'Thomas Pani and Jeremy Grossmann'
-__version__ = '0.3'
+__version__ = '0.3.2'
 
 QEMU_PATH = "qemu"
 QEMU_IMG_PATH = "qemu-img"
 PORT = 10525
+IP = ""
 QEMU_INSTANCES = {}
 
 PEMU_DIR = os.getcwd()
@@ -181,7 +181,7 @@ class xEMUInstance(object):
         
     def _ser_options(self):
         if self.console:
-            return ['-serial', 'telnet:127.0.0.1:%s,server,nowait' % self.console]
+            return ['-serial', 'telnet:' + IP + ':%s,server,nowait' % self.console]
         else:
             return []
 
@@ -285,7 +285,6 @@ class JunOSInstance(QEMUInstance):
 
     def __init__(self, *args, **kwargs):
         super(JunOSInstance, self).__init__(*args, **kwargs)
-        self.flash_size = '4G'
         self.swap_name= 'SWAP'
         self.swap_size = '1G'
         self.netcard = 'e1000'
@@ -294,7 +293,7 @@ class JunOSInstance(QEMUInstance):
         flash = os.path.join(self.workdir, self.flash_name)
         if not os.path.exists(flash):
             try:
-                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image, '-f', 'qcow2', flash, self.flash_size])
+                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image, '-f', 'qcow2', flash])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
@@ -318,21 +317,19 @@ class IDSInstance(QEMUInstance):
         self.valid_attr_names += ['image1', 'image2']
         self.img1_name = 'DISK1'
         self.img2_name = 'DISK2'
-        self.img1_size = '512M'
-        self.img2_size = '4G'
     
     def _disk_options(self):
         img1 = os.path.join(self.workdir, self.img1_name)
         img2 = os.path.join(self.workdir, self.img2_name)
         if not os.path.exists(img1):
             try:
-                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image1, '-f', 'qcow2', img1, self.img1_size])
+                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image1, '-f', 'qcow2', img1])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
         if not os.path.exists(img2):
             try:
-                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image2, '-f', 'qcow2', img2, self.img2_size])
+                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image2, '-f', 'qcow2', img2])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
@@ -343,7 +340,6 @@ class QemuDeviceInstance(QEMUInstance):
 
     def __init__(self, *args, **kwargs):
         super(QemuDeviceInstance, self).__init__(*args, **kwargs)
-        self.flash_size = '4G'
         self.swap_name= 'SWAP'
         self.swap_size = '1G'
         self.netcard = 'e1000'
@@ -352,16 +348,14 @@ class QemuDeviceInstance(QEMUInstance):
         flash = os.path.join(self.workdir, self.flash_name)
         if not os.path.exists(flash):         
             try:
-                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image, '-f', 'qcow2', flash, self.flash_size])
+                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image, '-f', 'qcow2', flash])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e 
         swap = os.path.join(self.workdir, self.swap_name)
         if not os.path.exists(swap):
-            os.spawnlp(os.P_WAIT, self.img_bin, self.img_bin, 'create',
-                '-f', 'qcow2', '-c', swap, self.swap_size)
             try:
-                retcode = subprocess.call([self.img_bin, 'create', '-f', 'qcow2', '-c', swap, self.swap_size])
+                retcode = subprocess.call([self.img_bin, 'create', '-f', 'qcow2', swap, self.swap_size])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
@@ -725,6 +719,33 @@ def cleanup():
 
 
 def main():
+
+    from optparse import OptionParser
+
+    usage = "usage: %prog [--listen <ip_address>] [--port <port_number>]"
+    parser = OptionParser(usage, version="%prog " + __version__)
+    parser.add_option("-l", "--listen", dest="host", help="IP address or hostname to listen on (default is to listen on all interfaces)")
+    parser.add_option("-p", "--port", type="int", dest="port", help="Port number (default is 10525)")
+
+    try:
+        (options, args) = parser.parse_args()
+    except SystemExit:
+        sys.exit(1)
+
+    if options.host:
+        host = options.host
+        global IP 
+        IP = host
+    else:
+        host = IP
+
+    if options.port:
+        port = options.port
+        global PORT
+        PORT = port
+    else:
+        port = PORT
+
     if not os.path.exists(PEMU_DIR):
         print "Unpacking pemu binary."
         f = cStringIO.StringIO(base64.decodestring(pemubin.ascii))
@@ -732,9 +753,9 @@ def main():
         for member in tar.getmembers():
             tar.extract(member)
 
-    server = QemuWrapperServer(("", PORT), QemuWrapperRequestHandler)
+    server = QemuWrapperServer((host, port), QemuWrapperRequestHandler)
 
-    print "Qemu TCP control server started (port %d)." % PORT
+    print "Qemu TCP control server started (port %d)." % port
     try:
         server.serve_forever()
     except KeyboardInterrupt:

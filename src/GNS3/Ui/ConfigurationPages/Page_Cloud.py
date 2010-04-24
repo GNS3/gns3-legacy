@@ -93,7 +93,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
             outputlines = p.stdout.readlines()
             p.wait()
             for line in outputlines:
-                match = re.search(r"""^rpcap://\\Device\\NPF_({.*}).*""",  line.strip())
+                match = re.search(r"""^rpcap://\\Device\\NPF_({[a-fA-F0-9\-]*}).*""",  line.strip())
                 if match:
                     interface_name = ': '
                     try:
@@ -138,9 +138,10 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
     
         interface = unicode(self.lineEditGenEth.text())
         if interface:
-            if sys.platform.startswith('win'):
-                match = re.search(r"""^rpcap://(\\Device\\NPF_{.*}).*""", interface)
-                interface = match.group(1)
+            #if sys.platform.startswith('win'):
+            match = re.search(r"""^rpcap://(\\Device\\NPF_{[a-fA-F0-9\-]*}).*""", interface)
+            interface = match.group(1)
+            print interface
             nio = 'nio_gen_eth:' + interface.lower()
             if not nio in self.nios:
                 self.listWidgetGenericEth.addItem(nio)

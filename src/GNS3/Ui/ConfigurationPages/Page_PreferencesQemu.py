@@ -101,7 +101,9 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         self.lineEditQemuwrapperWorkdir.setText(os.path.normpath(self.conf.qemuwrapper_workdir))
         self.lineEditQemuPath.setText(os.path.normpath(self.conf.qemu_path))
         self.lineEditQemuImgPath.setText(os.path.normpath(self.conf.qemu_img_path))
-        self.lineEditHostExternalQemu.setText(self.conf.external_host)
+        self.comboBoxExternalQemuwrappers.addItems(self.conf.external_hosts)
+        
+        #self.lineEditHostExternalQemu.setText(self.conf.external_host)
         
         if self.conf.enable_QemuManager == True:
             self.checkBoxEnableQemuManager.setCheckState(QtCore.Qt.Checked)
@@ -115,7 +117,8 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         index = self.comboBoxBinding.findText(self.conf.QemuManager_binding)
         if index != -1:
             self.comboBoxBinding.setCurrentIndex(index)
-            
+         
+        self.port.setValue(self.conf.qemuwrapper_port)   
         self.baseUDP.setValue(self.conf.qemuwrapper_baseUDP)
         self.baseConsole.setValue(self.conf.qemuwrapper_baseConsole)
         
@@ -215,7 +218,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         self.conf.qemuwrapper_workdir = unicode(self.lineEditQemuwrapperWorkdir.text())
         self.conf.qemu_path = unicode(self.lineEditQemuPath.text())
         self.conf.qemu_img_path = unicode(self.lineEditQemuImgPath.text())
-        self.conf.external_host = unicode(self.lineEditHostExternalQemu.text())
+        self.conf.external_hosts = self.comboBoxExternalQemuwrappers.items()
         self.conf.QemuManager_binding = unicode(self.comboBoxBinding.currentText())
         
         if self.checkBoxEnableQemuManager.checkState() == QtCore.Qt.Checked:
@@ -226,7 +229,8 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             self.conf.import_use_QemuManager = True
         else:
             self.conf.import_use_QemuManager  = False
-            
+       
+        self.conf.qemuwrapper_port = self.port.value()
         self.conf.qemuwrapper_baseUDP = self.baseUDP.value()
         self.conf.qemuwrapper_baseConsole = self.baseConsole.value()
         

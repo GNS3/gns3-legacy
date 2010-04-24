@@ -69,8 +69,8 @@ class UDPConnection:
 
 class Qemu(object):
 
-    def __init__(self, name):
-        self.port = 10525
+    def __init__(self, name, port=10525):
+        self.port = port
         self.host = name
 
         #connect to Qemu Wrapper

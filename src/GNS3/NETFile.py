@@ -997,8 +997,11 @@ class NETFile(object):
                             config[model]['image2'] = self.convert_to_relpath(config[model]['image2'], path)
                         else:
                             config[model]['image'] = self.convert_to_relpath(config[model]['image'], path)
-                            if config[model].has_key('cnfg') and config[model]['cnfg']:
-                                config[model]['cnfg'] = self.convert_to_relpath(config[model]['cnfg'], path)
+         
+                for subsection in config.sections:
+                    device = config[subsection]
+                    if device.has_key('cnfg') and device['cnfg']:
+                        device['cnfg'] = self.convert_to_relpath(device['cnfg'], path)
         
         self.dynagen.running_config.filename = path
         self.dynagen.running_config.write()

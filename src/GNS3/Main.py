@@ -53,6 +53,7 @@ if options.config_dir == True:
         sys.exit(1)
 
 file = None
+
 if len(args) >= 1:
     file = args.pop()
 

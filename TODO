@@ -1,10 +1,10 @@
 TODO LIST
 
- * Qemu linux host
- * Create DMG for MacOSX (http://www.gns3.net/phpBB/topic307.html)
- * Open .net files in GNS3 when clicking on them (http://www.gns3.net/phpBB/topic1817.html)
+ * Multiple qemuwrapper (http://www.gns3.net/phpBB/topic1861.html)
  * Change Snapshots/Save As (http://www.gns3.net/phpBB/topic1810.html)
- * Options to change Flash size for Qemu emulated devices
+ * Change IOS on a router (http://www.gns3.net/phpBB/topic721.html)
+ 
+ * Open .net files in GNS3 on Mac OS X (http://www.gns3.net/phpBB/topic1817.html)
  * NIO multicast support (next release of Dynamips)
  * Show NIO activity (next release of Dynamips)
  * Dynamips QinQ integration (next release of Dynamips)
@@ -12,8 +12,6 @@ TODO LIST
  * VirtualBox integration?
  * Cpulimit integration => no need to integrate, use a script to start Qemu followed by cpulimit
  * Check ghostios  ==> It works, virtual mem usage is ok (at least on Mac OS X).
- * SecureCRT in preconfigurated term cmd (http://www.gns3.net/phpBB/topic1246.html)
- * Show socket error in hypervisor/Qemu managers (http://www.gns3.net/phpBB/topic1741.html)
 
 Documentation
  
@@ -24,38 +22,11 @@ Documentation
 
 Debugging
 
- * Kill process if already running warning => need to find PID? => taskkill on Windows?
- * Relative path bug? (http://www.gns3.net/phpBB/topic1682.html)
- * Project router configuration not restored? (http://www.gns3.net/phpBB/topic1677.html)
- * Qemuwrapper doesn't listen on the right socket
- * Expand all should not be changed when starting/stopping nodes
- * Bug, would you like to save the topology after you quit
- * DMG not working on Leopard (http://www.gns3.net/phpBB/topic1743.html)
- * Cannot perform group configuration. (right-click issue) (http://www.gns3.net/phpBB/topic1815.html)
- * File "GNS3\DynagenSub.pyo", line 116, in open_config TypeError: coercing to Unicode: need string or buffer, NoneType found (http://www.gns3.net/phpBB/topic1809.html)
- * Relative paths (http://www.gns3.net/phpBB/topic1832.html)
- * Snapshot bug on Mac OS X (http://www.gns3.net/phpBB/topic1812.html)
- * Topology summary in order (http://www.gns3.net/phpBB/topic1806.html)
+ * Relative paths (http://www.gns3.net/phpBB/topic1832.html http://www.gns3.net/phpBB/topic1682.html)
+ * Extract bug on Mac OS X? (http://www.gns3.net/phpBB/topic1812.html)
  * External hypervisor + working dir bug (http://www.gns3.net/phpBB/topic1801.html)
- * Cannot delete cloud (http://www.gns3.net/phpBB/topic1760.html http://www.gns3.net/phpBB/topic1753.html)
- * Bug with connecting cloud on Windows (http://www.gns3.net/phpBB/topic1355.html)
- * Bug with c2600 and projects? (http://www.gns3.net/phpBB/topic1740.html)
+ * Check remote hypervisors (http://www.gns3.net/phpBB/topic1947.html)
+ * Windows XP: qemu failed to start message (http://www.gns3.net/phpBB/topic1744.html)
+ * Can only run one instance of Qemu on Windows (http://www.gns3.net/phpBB/topic1914.html)
 
-I have my Working directory for Qemu and Dynamips both set to /tmp
-
-My project is saved in /home/brezular/CCNP-work/SWITCH/Test1
-
-When I run project second time I get error message "204-chdir: No such file or directory
-
-It is because it is used Relative path in net file (workingdir = test1_working)
-
-Why does GNS3 use relative path if the base path is NOT the same as the .net file?
-
-def KillAll(process_names):
-  """Tries to kill all copies of each process in the processes list."""
-  for process_name in process_names:
-    Kill(process_name)
-
-def Kill(process_name):
-  command = ['taskkill.exe', '/f', '/t', '/im']
-  subprocess.call(command + [process_name])
+ 

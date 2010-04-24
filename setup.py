@@ -69,7 +69,7 @@ elif sys.platform.startswith('darwin'):
 
     data_files = [('', glob(r'src/GNS3/Langs/*.qm')),
                   ('src/GNS3/Dynagen/configspec'),
-                  ('dynamips-0.2.8-RC2-OSX-Leopard.intel.bin'),
+                  ('qemuwrapper/qemuwrapper.py'),
                   ('LICENSE'),
                   ("../PlugIns/iconengines", [QTDIR + r'/plugins/iconengines/libqsvgicon.dylib']),
                   ("../PlugIns/imageformats", [QTDIR + r'/plugins/imageformats/libqgif.dylib',
@@ -79,7 +79,8 @@ elif sys.platform.startswith('darwin'):
 
     APP = ['gns3.py']
     OPTIONS = {'argv_emulation': True,
-               'optimize': 2,
+               'semi_standalone': True,
+               'optimize':  2,
                'iconfile': 'gns3.icns',
                'includes': ['sip',
                             'PyQt4.QtCore',
@@ -105,13 +106,20 @@ elif sys.platform.startswith('darwin'):
                             'GNS3.Ui.ConfigurationPages.Page_PreferencesQemu'
                             ],
                 
-                'plist'    : {  'CFBundleGetInfoString' : 'GNS3, Graphical Network Simulator',
+                'plist'    : {  'CFBundleDisplayName': 'GNS3',
+                                'CFBundleGetInfoString' : 'GNS3, Graphical Network Simulator',
                                 'CFBundleIdentifier':'net.gns3',
                                 'CFBundleShortVersionString':VERSION,
                                 'CFBundleVersion': 'GNS3 ' + VERSION,
                                 'LSMinimumSystemVersion':'10.5',
                                 'LSMultipleInstancesProhibited':'true',
                                 'NSHumanReadableCopyright':'GNU General Public License (GPL), Jeremy Grossmann',
+                                'CFBundleDocumentTypes': [{
+                                                           'CFBundleTypeExtensions': ['net'],
+                                                           'CFBundleTypeName': 'GNS3 Topology',
+                                                           'CFBundleTypeRole': 'Viewer',
+                                                           'CFBundleTypeIconFile': 'gns3.icns',
+                                                           }]
                             }
                 }
 
@@ -133,6 +141,7 @@ elif sys.platform.startswith('darwin'):
     print '*** Making DMG ***'
     os.chdir('dist')
     os.system(QTDIR + r'/bin/macdeployqt GNS3.app -dmg')
+    os.system('cp ../dynamips-0.2.8-RC2-OSX-Leopard.intel.bin ./GNS3.app/Contents/Resources')
 
 else:
 

@@ -19,8 +19,9 @@
 # code@gns3.net
 #
 
-import os
+import os, sys
 import GNS3.Globals as globals
+import subprocess
 from PyQt4 import QtCore, QtGui
 
 class  Singleton(object):
@@ -65,6 +66,21 @@ def error(msg):
     """
 
     print '*** Error:', unicode(msg)
+    
+def killAll(process_name):
+    """ Killall
+    """
+    
+    if sys.platform.startswith('win'):
+        command = ['taskkill.exe', '/f', '/t', '/im']  
+    else:
+        command = ['killall', '-SIGKILL']
+    try:
+        print subprocess.call(command + [process_name])
+        return True
+    except:
+        return False
+    
     
 class fileBrowser(object):
     """ fileBrowser class

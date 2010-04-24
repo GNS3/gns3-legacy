@@ -82,7 +82,7 @@ class DynagenSub(Dynagen):
                     for subsection in server.sections:
                         device = server[subsection]
                         # ASA has no image
-                        if device.name == '5520':
+                        if device.name == '5520' and device['initrd'] and device['kernel']:
                             if not os.access(device['initrd'], os.F_OK):
                                 if globals.GApp.systconf['qemu'].default_asa_initrd:
                                     initrd_name = globals.GApp.systconf['qemu'].default_asa_initrd
@@ -107,7 +107,7 @@ class DynagenSub(Dynagen):
                             continue
                         
                         # IDS has no default image
-                        if device.name == 'IDS-4215':
+                        if device.name == 'IDS-4215' and device['image1'] and device['image2']:
                             if not os.access(device['image1'], os.F_OK):
                                 if globals.GApp.systconf['qemu'].default_ids_image1:
                                     image1_name = globals.GApp.systconf['qemu'].default_ids_image1
@@ -140,7 +140,7 @@ class DynagenSub(Dynagen):
                             if os.path.exists(abspath):
                                 device['image'] = abspath
                         
-                        if device.name == 'O-series':
+                        if device.name == 'O-series' and device['image']:
                             if not os.access(device['image'], os.F_OK):
                                 if globals.GApp.systconf['qemu'].default_junos_image:
                                     image_name = globals.GApp.systconf['qemu'].default_junos_image
@@ -151,7 +151,7 @@ class DynagenSub(Dynagen):
                                 print unicode(translate("DynagenSub", "Local JunOS image %s cannot be found, use image %s instead")) \
                                 % (unicode(device['image']), image_name)
                                 device['image'] = image_name
-                        if device.name == 'QemuDevice':
+                        if device.name == 'QemuDevice' and device['image']:
                             if not os.access(device['image'], os.F_OK):
                                 if len(globals.GApp.qemuimages.keys()):
                                     image_name = globals.GApp.qemuimages.values()[0].filename
@@ -162,7 +162,7 @@ class DynagenSub(Dynagen):
                                 print unicode(translate("DynagenSub", "Local Qemu host image %s cannot be found, use image %s instead")) \
                                 % (unicode(device['image']), image_name)
                                 device['image'] = image_name
-                        else:
+                        elif device['image']:
                             # must be a PIX device
                             # check if the PIX image is accessible, if not find an alternative image
                             if not os.access(device['image'], os.F_OK):

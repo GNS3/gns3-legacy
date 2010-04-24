@@ -33,6 +33,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
         QtGui.QTreeWidget.__init__(self, parent)
         self.header().hide()
         self.setRootIsDecorated(True)
+        self.expanded = False
 
     def refresh(self):
         """ Refresh topology summary
@@ -67,7 +68,8 @@ class topologySummaryDock(QtGui.QTreeWidget):
                 items.append(item)
             rootitem.addChildren(items)
             self.insertTopLevelItem(0, rootitem)
-
+            self.sortByColumn(0, QtCore.Qt.AscendingOrder)
+            
     def changeNodeStatus(self, hostname, status):
         """ Change the status of a node
             status: string 'running', 'stopped' or 'suspended'
@@ -84,6 +86,8 @@ class topologySummaryDock(QtGui.QTreeWidget):
                 item.setIcon(0, QtGui.QIcon(':/icons/led_yellow.svg'))
             else:
                 item.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
+        if self.expanded:
+            self.expandAll()
 
     def retranslateItem(self, item):
 
@@ -113,8 +117,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
             topItemNum += 1
             
     def mousePressEvent(self, event):
-    
-        item = self.itemAt(event.pos())
+
         if event.button() == QtCore.Qt.RightButton:
             self.showContextualMenu()
         else:
@@ -134,8 +137,12 @@ class topologySummaryDock(QtGui.QTreeWidget):
         menu.exec_(QtGui.QCursor.pos())
 
     def slotExpandAll(self):
+        
         self.expandAll()
+        self.expanded = True
 
     def slotCollapseAll(self):
+
         self.collapseAll()
+        self.expanded = False
             

@@ -26,7 +26,7 @@ import GNS3.Globals as globals
 import GNS3.Dynagen.qemu_lib as qlib
 from socket import socket, AF_INET, SOCK_STREAM
 from PyQt4 import QtCore, QtGui
-from GNS3.Utils import translate, debug
+from GNS3.Utils import translate, debug, killAll
 
 class QemuManager(object):
     """ QemuManager class
@@ -92,10 +92,11 @@ class QemuManager(object):
             progress = None
         return True
 
-    def startQemu(self):
+    def startQemu(self, port):
         """ Start Qemu
         """
 
+        self.port = port
         if self.proc and self.proc.state():
             debug('QemuManager: Qemu is already started with pid ' + str(self.proc.pid()))
             return True
@@ -122,10 +123,11 @@ class QemuManager(object):
             s.close()
 
         # start Qemuwrapper, use python on all platform but Windows
+        binding = globals.GApp.systconf['qemu'].QemuManager_binding
         if sys.platform.startswith('win'):
-            self.proc.start('"' + globals.GApp.systconf['qemu'].qemuwrapper_path + '"')
+            self.proc.start('"' + globals.GApp.systconf['qemu'].qemuwrapper_path + '"', ['--listen', binding, '--port', str(self.port)])
         else:
-            self.proc.start('python',  [globals.GApp.systconf['qemu'].qemuwrapper_path])
+            self.proc.start('python',  [globals.GApp.systconf['qemu'].qemuwrapper_path, '--listen', binding, '--port', str(self.port)])
 
         if self.proc.waitForStarted() == False:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Qemu Manager',  unicode(translate("QemuManager", "Can't start Qemu on port %i")) % self.port)
