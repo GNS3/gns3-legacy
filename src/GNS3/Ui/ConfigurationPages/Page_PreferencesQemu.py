@@ -40,10 +40,13 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         self.connect(self.pushButtonTestQemu, QtCore.SIGNAL('clicked()'),self.__testQemu)
         
         # Qemuwrapper
-        self.connect(self.QemuwrapperPath_browser, QtCore.SIGNAL('clicked()'),  self.slotSelectQemuWrapperPath)
-        self.connect(self.QemuwrapperWorkdir_browser, QtCore.SIGNAL('clicked()'),  self.slotSelectQemuWrapperWorkdir)
+        self.connect(self.QemuwrapperPath_browser, QtCore.SIGNAL('clicked()'), self.slotSelectQemuWrapperPath)
+        self.connect(self.QemuwrapperWorkdir_browser, QtCore.SIGNAL('clicked()'), self.slotSelectQemuWrapperWorkdir)
         self.connect(self.QemuPath_browser, QtCore.SIGNAL('clicked()'),  self.slotSelectQemuPath)
         self.connect(self.QemuImgPath_browser, QtCore.SIGNAL('clicked()'),  self.slotSelectQemuImgPath)
+        self.connect(self.pushButtonAddExternalQemuwrapper, QtCore.SIGNAL('clicked()'), self.slotAddExternalQemuwrapper)
+        self.connect(self.pushButtonDeleteExternalQemuwrapper, QtCore.SIGNAL('clicked()'), self.slotDeleteExternalQemuwrapper)
+        self.connect(self.comboBoxExternalQemuwrappers, QtCore.SIGNAL('currentIndexChanged(const QString &)'), self.slotExternalQemuwrapperChanged)
         self.comboBoxBinding.addItems(['localhost', QtNetwork.QHostInfo.localHostName()] + map(lambda addr: addr.toString(), QtNetwork.QNetworkInterface.allAddresses()))
 
         # Qemu settings
@@ -102,8 +105,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         self.lineEditQemuPath.setText(os.path.normpath(self.conf.qemu_path))
         self.lineEditQemuImgPath.setText(os.path.normpath(self.conf.qemu_img_path))
         self.comboBoxExternalQemuwrappers.addItems(self.conf.external_hosts)
-        
-        #self.lineEditHostExternalQemu.setText(self.conf.external_host)
+        self.external_hosts = self.conf.external_hosts
         
         if self.conf.enable_QemuManager == True:
             self.checkBoxEnableQemuManager.setCheckState(QtCore.Qt.Checked)
@@ -218,7 +220,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         self.conf.qemuwrapper_workdir = unicode(self.lineEditQemuwrapperWorkdir.text())
         self.conf.qemu_path = unicode(self.lineEditQemuPath.text())
         self.conf.qemu_img_path = unicode(self.lineEditQemuImgPath.text())
-        self.conf.external_hosts = self.comboBoxExternalQemuwrappers.items()
+        self.conf.external_hosts = self.external_hosts
         self.conf.QemuManager_binding = unicode(self.comboBoxBinding.currentText())
         
         if self.checkBoxEnableQemuManager.checkState() == QtCore.Qt.Checked:
@@ -313,6 +315,26 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         globals.GApp.systconf['qemu'] = self.conf
         ConfDB().sync()
             
+    def slotExternalQemuwrapperChanged(self, text):
+        
+        self.lineEditHostExternalQemu.setText(text)
+           
+    def slotAddExternalQemuwrapper(self):
+        
+        external_qemuwrapper = self.lineEditHostExternalQemu.text()
+        if external_qemuwrapper and external_qemuwrapper not in self.external_hosts:
+            self.comboBoxExternalQemuwrappers.addItem(self.lineEditHostExternalQemu.text())
+            self.external_hosts.append(unicode(external_qemuwrapper))
+
+    def slotDeleteExternalQemuwrapper(self):
+        
+        external_qemuwrapper = self.lineEditHostExternalQemu.text()
+        index = self.comboBoxExternalQemuwrappers.findText(external_qemuwrapper)
+        if index != -1 and external_qemuwrapper in self.external_hosts:
+            self.comboBoxExternalQemuwrappers.removeItem(index)
+            self.external_hosts.remove(unicode(external_qemuwrapper))
+        
+
     def slotSelectQemuWrapperPath(self):
         """ Get a path to Qemuwrapper from the file system
         """

@@ -282,6 +282,7 @@ class Topology(QtGui.QGraphicsScene):
             host = qemuwrapper
             if ':' in host:
                 (host, port) = host.split(':')
+                port = int(port)
             else:
                 port = 10525
         
