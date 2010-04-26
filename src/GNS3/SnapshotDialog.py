@@ -21,6 +21,7 @@
 
 import os, glob, re, shutil
 import GNS3.Globals as globals
+from GNS3.Utils import translate
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_Snapshots import Ui_Snapshots
 
@@ -41,7 +42,10 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
     def listSnaphosts(self):
         
         self.SnapshotList.clear()
-        snapshots = glob.glob(os.path.normpath(globals.GApp.systconf['general'].project_path) + os.sep + "*_snapshot_*")
+        if not globals.GApp.workspace.projectFile:
+            return
+        projectDir = os.path.dirname(globals.GApp.workspace.projectFile)
+        snapshots = glob.glob(os.path.normpath(projectDir) + os.sep + "*_snapshot_*")
         for entry in snapshots:
             snapregexp = re.compile(r"""^(.*)_snapshot_([0-9]+)_([0-9]+)""")
             match_obj = snapregexp.match(entry)
@@ -55,6 +59,9 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
 
     def slotCreateSnapshot(self):
         
+        if not globals.GApp.workspace.projectFile or not globals.GApp.workspace.projectWorkdir:
+            QtGui.QMessageBox.critical(self, translate("SnapshotDialog", "Project"), translate("SnapshotDialog", "Create a project first!"))
+            return
         globals.GApp.workspace.createSnapshot()
         self.listSnaphosts()
         
@@ -75,5 +82,9 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
             itemregexp = re.compile(r"""^(.*)\s+on\s+.*""")
             match_obj = itemregexp.match(item.text())
             if match_obj:
-                path = unicode(item.data(QtCore.Qt.UserRole).toString() + os.sep + match_obj.group(1))
-                globals.GApp.workspace.loadNetfile(path)
+                globals.GApp.workspace.projectFile
+                path = unicode(item.data(QtCore.Qt.UserRole).toString() + os.sep + match_obj.group(1)) + '.net'
+                globals.GApp.workspace.load_netfile(path)
+                globals.GApp.workspace.projectConfigs = os.path.dirname(path)
+                globals.GApp.workspace.projectWorkdir = os.path.dirname(path)
+                globals.GApp.workspace.projectFile = path

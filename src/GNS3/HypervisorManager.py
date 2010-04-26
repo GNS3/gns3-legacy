@@ -231,6 +231,19 @@ class HypervisorManager(object):
                 if hypervisor['load'] <= 0:
                     hypervisor['load'] = 0
                 break
+            
+    def changeHypervisorLoad(self, node, port, old_default_ram):
+        """ Change the hypervisor RAM load for a given node
+        """
+
+        for hypervisor in self.hypervisors:
+            if hypervisor['port'] == int(port):
+                debug("Hypervisor manager: change hypervisor load (port: " + str(port) + ") for node " + node.hostname)
+                hypervisor['load'] -= old_default_ram
+                if hypervisor['load'] <= 0:
+                    hypervisor['load'] = 0
+                hypervisor['load'] += node.default_ram
+                break
 
     def getHypervisor(self, port):
         """ Get a hypervisor from the hypervisor manager

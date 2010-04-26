@@ -319,7 +319,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Extract all startup-config
         """
         
-        fb = fileBrowser(translate('Workspace', 'Directory to write startup-configs'), parent=self)
+        fb = fileBrowser(translate('Workspace', 'Directory to write startup-configs'), directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self)
         path = fb.getDir()
         if path:
             globals.GApp.workspace.projectConfigs = path
@@ -332,7 +332,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Import all startup-config
         """
         
-        fb = fileBrowser(translate('Workspace', 'Directory to read startup-configs'), parent=self)
+        fb = fileBrowser(translate('Workspace', 'Directory to read startup-configs'), directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self)
         path = fb.getDir()
         if path:
             try:
@@ -734,7 +734,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if not self.projectFile:
             QtGui.QMessageBox.information(self, translate("Workspace", "Project"),  translate("Workspace", "Please create a new project first"))
             return
-        projectDialog = ProjectDialog(self.projectFile,  self.projectWorkdir, self.projectConfigs)
+        projectDialog = ProjectDialog(self.projectFile, self.projectWorkdir, self.projectConfigs)
         projectDialog.pushButtonOpenProject.hide()
         projectDialog.setWindowTitle("Edit Project")
         projectDialog.show()
@@ -826,10 +826,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def createSnapshot(self):
         """ Create a new snapshot of the current topology
         """
-        
-        if not globals.GApp.systconf['general'].project_path:
-            QtGui.QMessageBox.warning(self, translate("Workspace", "Snapshot"), translate("Workspace", "The project working directory must be set in the preferences"))
-            return
 
         if self.projectFile is None:
             if self.__action_SaveAs() == False:
@@ -838,7 +834,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             return
 
         projectName = os.path.basename(self.projectFile)
-        snapshot_dir = globals.GApp.systconf['general'].project_path + os.sep + projectName + '_snapshot_' + time.strftime("%d%m%y_%H%M%S")
+        projectDir = os.path.dirname(self.projectFile)
+        snapshot_dir = projectDir + os.sep + projectName.replace('.net', '') + '_snapshot_' + time.strftime("%d%m%y_%H%M%S")
 
         try:
             os.mkdir(snapshot_dir)
@@ -854,8 +851,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
         # copy dynamips & Qemu files
         for node in globals.GApp.topology.nodes.values():
             if isinstance(node, IOSRouter):
-                dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '?' + node.hostname + '*') + \
-                [os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_dynagen_device().formatted_ghost_file()]
+                dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_nvram*')
+                dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_ssa*')
+                dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_disk*')
+                dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_slot*')
+                dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_flash*')
                 for file in dynamips_files:
                     try:
                         shutil.copy(file, snapshot_dir)
@@ -875,12 +875,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
             for hypervisor in globals.GApp.dynagen.dynamips.values():
                 hypervisor.workingdir = snapshot_dir
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "Dynamips error"), snapshot_dir + ': ') + unicode(msg))
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), unicode(translate("Workspace", "Dynamips error: %s")) % msg)
 
         save_wd = self.projectWorkdir
         save_cfg = self.projectConfigs
         save_projectFile = self.projectFile
-        self.projectConfigs = None
+        self.projectConfigs = snapshot_dir
         self.projectWorkdir = snapshot_dir
         self.projectFile = snapshot_dir + os.sep + projectName
         self.__action_Save()
@@ -890,9 +890,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         try:
             for hypervisor in globals.GApp.dynagen.dynamips.values():
-                hypervisor.workingdir = globals.GApp.systconf['dynamips'].workdir
+                hypervisor.workingdir = self.projectWorkdir
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "Dynamips error"), snapshot_dir + ': ') + unicode(msg))        
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), unicode(translate("Workspace", "Dynamips error: %s")) % msg)
 
     def __action_OpenFile(self):
         """ Open a file
@@ -943,7 +943,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         fb = fileBrowser(translate("Workspace", "Save Project As"),
-                                filter='NET file (*.net);;All files (*.*)', directory=globals.GApp.systconf['general'].project_path, parent=self)
+                                filter='NET file (*.net);;All files (*.*)', directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self)
         (path, selected) = fb.getSaveFile()
 
         if path != None and path != '':

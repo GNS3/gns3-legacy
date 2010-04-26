@@ -743,12 +743,12 @@ class NETFile(object):
             config = config.replace('\r', "")
             # Write out the config to a file
             file_path = os.path.normpath(globals.GApp.workspace.projectConfigs) + os.sep + device.name + '.cfg'
-            print unicode(translate("NETFile", "Exporting %s configuration to %s")) % (device.name, file_path)
+            debug(unicode(translate("NETFile", "Exporting %s configuration to %s")) % (device.name, file_path))
         except lib.DynamipsError, msg:
-            print unicode(device.name + ': ' + translate("NETFile", "Dynamips error") + ': ') + unicode(msg)
+            debug(unicode(device.name + ': ' + translate("NETFile", "Dynamips error") + ': ') + unicode(msg))
             return
         except lib.DynamipsWarning, msg:
-            print unicode(device.name + ': ' + translate("NETFile", "Dynamips warning") + ': ') + unicode(msg)
+            debug(unicode(device.name + ': ' + translate("NETFile", "Dynamips warning") + ': ') + unicode(msg))
             return
         except:
             error('Unknown error exporting config for ' + device.name)

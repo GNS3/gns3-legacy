@@ -1,8 +1,5 @@
 TODO LIST
 
- * Change Snapshots/Save As (http://www.gns3.net/phpBB/topic1810.html)
- * Change IOS on a router (http://www.gns3.net/phpBB/topic721.html)
- 
  * Open .net files in GNS3 on Mac OS X (http://www.gns3.net/phpBB/topic1817.html)
  * NIO multicast support (next release of Dynamips)
  * Show NIO activity (next release of Dynamips)
@@ -10,7 +7,6 @@ TODO LIST
  * Vmware integration (http://www.gns3.net/phpBB/topic1162.html) => see VIX API and pyvix
  * VirtualBox integration?
  * Cpulimit integration => no need to integrate, use a script to start Qemu followed by cpulimit
- * Check ghostios  ==> It works, virtual mem usage is ok (at least on Mac OS X).
 
 Documentation
  
@@ -21,11 +17,5 @@ Documentation
 
 Debugging
 
- * Relative paths (http://www.gns3.net/phpBB/topic1832.html http://www.gns3.net/phpBB/topic1682.html)
- * Extract bug on Mac OS X? (http://www.gns3.net/phpBB/topic1812.html)
- * External hypervisor + working dir bug (http://www.gns3.net/phpBB/topic1801.html)
- * Check remote hypervisors (http://www.gns3.net/phpBB/topic1947.html)
  * Windows XP: qemu failed to start message (http://www.gns3.net/phpBB/topic1744.html)
  * Can only run one instance of Qemu on Windows (http://www.gns3.net/phpBB/topic1914.html)
-
- 

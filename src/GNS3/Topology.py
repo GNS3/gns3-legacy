@@ -292,26 +292,30 @@ class Topology(QtGui.QGraphicsScene):
             #create the Qemu instance and add it to global dictionary
             self.dynagen.dynamips[qemu_name] = qlib.Qemu(host, port)
             self.dynagen.dynamips[qemu_name].reset()
-            self.dynagen.dynamips[qemu_name].qemupath = globals.GApp.systconf['qemu'].qemu_path
-            self.dynagen.dynamips[qemu_name].qemuimgpath = globals.GApp.systconf['qemu'].qemu_img_path
+            if globals.GApp.systconf['qemu'].enable_QemuManager:
+                self.dynagen.dynamips[qemu_name].qemupath = globals.GApp.systconf['qemu'].qemu_path
+                self.dynagen.dynamips[qemu_name].qemuimgpath = globals.GApp.systconf['qemu'].qemu_img_path
+
             self.dynagen.dynamips[qemu_name].baseconsole = globals.GApp.systconf['qemu'].qemuwrapper_baseConsole
             self.dynagen.dynamips[qemu_name].baseudp = globals.GApp.systconf['qemu'].qemuwrapper_baseUDP
             self.dynagen.get_defaults_config()
             self.dynagen.update_running_config()
             self.dynagen.dynamips[qemu_name].configchange = True
-            if globals.GApp.workspace.projectWorkdir:
-                workdir = globals.GApp.workspace.projectWorkdir
-            elif globals.GApp.systconf['qemu'].qemuwrapper_workdir:
-                workdir = globals.GApp.systconf['qemu'].qemuwrapper_workdir
-            else:
-                realpath = os.path.realpath(self.dynagen.global_filename)
-                workdir = os.path.dirname(realpath)
-            try:
-                self.dynagen.dynamips[qemu_name].workingdir = workdir
-            except lib.DynamipsError, msg:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Qemuwrapper error"),  unicode(workdir + ': ') + unicode(msg))
-                del self.dynagen.dynamips[qemu_name]
-                return False
+            
+            if globals.GApp.systconf['qemu'].enable_QemuManager:
+                if globals.GApp.workspace.projectWorkdir:
+                    workdir = globals.GApp.workspace.projectWorkdir
+                elif globals.GApp.systconf['qemu'].qemuwrapper_workdir:
+                    workdir = globals.GApp.systconf['qemu'].qemuwrapper_workdir
+                else:
+                    realpath = os.path.realpath(self.dynagen.global_filename)
+                    workdir = os.path.dirname(realpath)
+                try:
+                    self.dynagen.dynamips[qemu_name].workingdir = workdir
+                except lib.DynamipsError, msg:
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Qemuwrapper error"),  unicode(workdir + ': ') + unicode(msg))
+                    del self.dynagen.dynamips[qemu_name]
+                    return False
 
         node.set_hypervisor(self.dynagen.dynamips[qemu_name])
 

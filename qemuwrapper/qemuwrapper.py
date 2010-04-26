@@ -55,6 +55,12 @@ PORT = 10525
 IP = ""
 QEMU_INSTANCES = {}
 
+WORKDIR = os.getcwd()
+if os.environ.has_key("TEMP"):
+    WORKDIR = unicode(os.environ["TEMP"], errors='replace')
+elif os.environ.has_key("TMP"):
+    WORKDIR = unicode(os.environ["TMP"], errors='replace')
+
 PEMU_DIR = os.getcwd()
 if platform.system() == 'Windows':
     PEMU_DIR = os.path.join(PEMU_DIR, 'pemu_public_win_2008-03-03')
@@ -94,7 +100,7 @@ class xEMUInstance(object):
         self.kvm = False
         self.options = ''
         self.process = None
-        self.workdir = None
+        self.workdir = WORKDIR
         self.valid_attr_names = ['image', 'ram', 'console', 'netcard', 'kqemu', 'kvm', 'options']
 
     def create(self):
@@ -726,6 +732,7 @@ def main():
     parser = OptionParser(usage, version="%prog " + __version__)
     parser.add_option("-l", "--listen", dest="host", help="IP address or hostname to listen on (default is to listen on all interfaces)")
     parser.add_option("-p", "--port", type="int", dest="port", help="Port number (default is 10525)")
+    parser.add_option("-w", "--workdir", dest="wd", help="Working directory (default is current directory)")
 
     try:
         (options, args) = parser.parse_args()
@@ -745,6 +752,10 @@ def main():
         PORT = port
     else:
         port = PORT
+        
+    if options.wd:
+        global WORKDIR
+        WORKDIR = options.wd
 
     if not os.path.exists(PEMU_DIR):
         print "Unpacking pemu binary."
