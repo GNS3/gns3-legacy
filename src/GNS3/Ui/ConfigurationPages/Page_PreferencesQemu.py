@@ -545,13 +545,15 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 return
 
             try:
-                subprocess.Popen([globals.GApp.systconf['qemu'].qemu_path, '-h'], stdin=subprocess.PIPE, cwd=globals.GApp.systconf['qemu'].qemuwrapper_workdir)
+                p = subprocess.Popen([globals.GApp.systconf['qemu'].qemu_path], cwd=globals.GApp.systconf['qemu'].qemuwrapper_workdir)
+                p.terminate()
             except OSError:
                 self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start qemu")  + '</font>')
                 return
             
             try:
-                subprocess.Popen([globals.GApp.systconf['qemu'].qemu_img_path], stdin=subprocess.PIPE, cwd=globals.GApp.systconf['qemu'].qemuwrapper_workdir)
+                p = subprocess.Popen([globals.GApp.systconf['qemu'].qemu_img_path], cwd=globals.GApp.systconf['qemu'].qemuwrapper_workdir)
+                p.terminate()
             except OSError:
                 self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start qemu-img")  + '</font>')
                 return

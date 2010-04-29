@@ -17,5 +17,9 @@ Documentation
 
 Debugging
 
- * Windows XP: qemu failed to start message (http://www.gns3.net/phpBB/topic1744.html)
  * Can only run one instance of Qemu on Windows (http://www.gns3.net/phpBB/topic1914.html)
+ * MAC addresses generation in qemuwrapper
+ * Dynagen context help
+
+
+ 
