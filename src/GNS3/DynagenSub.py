@@ -77,7 +77,7 @@ class DynagenSub(Dynagen):
                     # controlPort is ignored
                     (host, controlPort) = host.split(':')
                 if emulator == 'qemu' and (host == globals.GApp.systconf['qemu'].QemuManager_binding or host == 'localhost') and globals.GApp.systconf['qemu'].enable_QemuManager:
-                    globals.GApp.QemuManager.startQemu()
+                    globals.GApp.QemuManager.startQemu(int(controlPort))
             
                     for subsection in server.sections:
                         device = server[subsection]

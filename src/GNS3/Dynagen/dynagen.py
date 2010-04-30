@@ -1077,7 +1077,7 @@ class Dynagen:
                             qemu_name = host + ':10525'
 
                         #create the Qemu instance and add it to global dictionary
-                        self.dynamips[qemu_name] = Qemu(host)
+                        self.dynamips[qemu_name] = Qemu(host, int(controlPort))
                         self.dynamips[qemu_name].reset()
                     except DynamipsError:
                         self.dowarning('Could not connect to qemuwrapper server %s' % server.name)
