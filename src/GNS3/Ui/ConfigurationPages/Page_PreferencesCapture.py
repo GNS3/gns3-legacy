@@ -48,7 +48,7 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
         # Defaults capture terminal command
         if self.conf.cap_cmd == '':
             if sys.platform.startswith('darwin'):
-                self.conf.cap_cmd = unicode("/sw/bin/wireshark %c")
+                self.conf.cap_cmd = unicode("/usr/bin/open -a /Applications/Wireshark.app %c")
             elif sys.platform.startswith('win'):
                 self.conf.cap_cmd = unicode("C:\Program Files\Wireshark\wireshark.exe %c")
             else:

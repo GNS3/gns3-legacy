@@ -202,11 +202,10 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         iftype = interface[0]
         if iftype == 'e' or iftype == 'f' or iftype == 'g':
             options.append(hostname + ' ' +  interface + ' (encapsulation:ETH)')
-        elif iftype == 's' and isinstance(dest, FRSW):
-            options.append(hostname + ' ' +  interface + ' (encapsulation:FR)')
         elif iftype == 's':
             options.append(hostname + ' ' +  interface + ' (encapsulation:HDLC)')
             options.append(hostname + ' ' +  interface + ' (encapsulation:PPP)')
+            options.append(hostname + ' ' +  interface + ' (encapsulation:FR)')
         else:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),
                                            translate("AbstractEdge", "Packet capture is not supported on this link type"))
@@ -276,7 +275,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'capture','both', encapsulation + " " + '"' + self.capfile + '"')
                 self.captureInfo = (device, slot, inttype, port)
                 self.capturing = True
-                print "Capturing to " + self.capfile
+                debug("Capturing to " + self.capfile)
             except lib.DynamipsError, msg:
                 QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Dynamips error"),  unicode(msg))
                 return
