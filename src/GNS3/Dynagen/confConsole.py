@@ -59,7 +59,7 @@ def debug(string):
 
 class AbstractConsole(cmd.Cmd):
     """abstract console class, all other console and confconsole classes inherit behavior from it"""
-    
+
     def __init__(self):
         cmd.Cmd.__init__(self)
         # Import the main namespace for use in this module
@@ -191,6 +191,7 @@ class confDefaultsConsole(AbstractConsole):
         self.default_exec_area = 'None'
         self.default_mmap = True
         self.default_sparsemem = 'False'
+        self.default_ghostsize = None
 
     def do_exit(self, args):
         """Exits from the console"""
@@ -223,7 +224,7 @@ class confDefaultsConsole(AbstractConsole):
 
     def clean_args(self, args):
         """clean the arguments from spaces and stuff"""
-        
+
         #get rid of that '='
         argument = args.strip('=')
         #get rid of starting space
@@ -232,7 +233,7 @@ class confDefaultsConsole(AbstractConsole):
 
     def set_int_option(self, option, args):
         """set integer type option in config"""
-        
+
         if '?' in args or args.strip() == '':
             print getattr(self, 'do_' + option).__doc__
             return
@@ -251,7 +252,7 @@ class confDefaultsConsole(AbstractConsole):
 
     def set_string_option(self, option, args):
         """set string type option in config"""
-        
+
         if '?' in args or args.strip() == '':
             print getattr(self, 'do_' + option).__doc__
             return
@@ -375,7 +376,7 @@ class confDefaultsConsole(AbstractConsole):
             #implement IOS ghosting and port all other instances into it
             error('the only possible options are True or False, not: ' + args)
         self.dynamips_server.configchange = True
-    
+
     def do_jitsharing(self, args):
         """jitsharing = {True|False}
 \tenable or disable JIT blocks sharing"""
@@ -411,6 +412,13 @@ class confDefaultsConsole(AbstractConsole):
 
         self.set_int_option('idlemax', args)
 
+    def do_ghostsize(self, args):
+        """ghostsize = <number>
+\tsets the size of the ram allocated to the ghost IOS image
+Must be at least as large as the device with the most ram that
+will use this ghost image"""
+
+        self.set_int_option('ghostsize', args)
     def do_idlesleep(self, args):
         """idlesleep = <number>
 \tadvanced manipulation of idlepc"""
@@ -447,7 +455,7 @@ class confDefaultsConsole(AbstractConsole):
                 return
         else:
             error('incorect syntax: ' + args)
-        
+
         self.dynamips_server.configchange = True
 
 
@@ -684,7 +692,7 @@ class conf7200DefaultsConsole(confDefaultsConsole):
                 self.config['npe'] = npe
         else:
             error('this NPE type does not exist: ' + args + '\nProper npe types are: ' + str(self.npeTuple))
-        
+
         self.dynamips_server.configchange = True
 
     def do_midplane(self, args):
@@ -823,7 +831,7 @@ class confRouterConsole(confDefaultsConsole):
             err = e[0]
             error('Connecting %s %s to %s resulted in:    %s' % (self.router.name, source, destination, err))
             return
-        
+
         if result == False:
             error('Attempt to connect %s %s to unknown device: "%s"' % (self.router.name, source, destination))
 
@@ -841,7 +849,7 @@ class confRouterConsole(confDefaultsConsole):
         if adapter.can_be_removed():
             adapter.remove()
             self.router.slot[adapter.slot] = None
-            
+
         self.dynagen.update_running_config()
 
     def do_no(self, args):
@@ -1170,10 +1178,10 @@ class conf1700RouterConsole(confRouterConsole):
 
 class AbstractConfSWConsole(AbstractConsole):
     """abstract console for all dynamips emulated switches, that implement the common behaviour"""
-       
+
     def __init__(self):
         AbstractConsole.__init__(self)
-        
+
     def do_1(self, args):
         self.connect('1' + args)
 
@@ -1200,7 +1208,7 @@ class AbstractConfSWConsole(AbstractConsole):
 
     def do_9(self, args):
         self.connect('9' + args)
-    
+
     def precmd(self, line):
         ''' This method is called after the line has been input but before
                 it has been interpreted. If you want to modifdy the input line
@@ -1246,7 +1254,7 @@ class confFRSWConsole(AbstractConfSWConsole):
                     else:
                         self.frsw.map(port1, dlci1, port2, dlci2)
                         self.frsw.map(port2, dlci2, port1, dlci1)
-                        self.dynagen.update_running_config()                    
+                        self.dynagen.update_running_config()
                 except AttributeError:
                     error('semantic error in: ' + args)
                     return
@@ -1276,7 +1284,7 @@ class confFRSWConsole(AbstractConfSWConsole):
                         self.frsw.unmap(port1, dlci1, port2, dlci2)
                         self.frsw.unmap(port2, dlci2, port1, dlci1)
                         self.dynagen.update_running_config()
-                
+
                     else:
                         error('semantic error in: ' + args + ' this connection does not exist')
                 except AttributeError:
@@ -1345,7 +1353,7 @@ class confATMBRConsole(AbstractConfSWConsole):
             right_side = params[1].split(':')
             if len(right_side) == 3:
                 try:
-                    port1 = int(left_side)     
+                    port1 = int(left_side)
                     port2 = int(right_side[0])
                     vpi2 = int(right_side[1])
                     vci2 = int(right_side[2])
@@ -1354,7 +1362,7 @@ class confATMBRConsole(AbstractConfSWConsole):
                         error('semantic error in: ' + args + ' this connection already exists')
                     else:
                         self.atmbr.configure(port1, port2, vpi2, vci2)
-                        self.dynagen.update_running_config()                    
+                        self.dynagen.update_running_config()
                 except AttributeError:
                     error('semantic error in: ' + args)
                     return
@@ -1373,7 +1381,7 @@ class confATMBRConsole(AbstractConfSWConsole):
             right_side = params[1].split(':')
             if len(right_side) == 3:
                 try:
-                    port1 = int(left_side)     
+                    port1 = int(left_side)
                     port2 = int(right_side[0])
                     vpi2 = int(right_side[1])
                     vci2 = int(right_side[2])
@@ -1383,7 +1391,7 @@ class confATMBRConsole(AbstractConfSWConsole):
                     if self.dynagen.running_config[self.d][self.a][left_side] == right_side:
                         self.atmbr.unconfigure(port1, port2, vpi2, vci2)
                         self.dynagen.update_running_config()
-                
+
                     else:
                         error('semantic error in: ' + args + ' this connection does not exist')
                 except AttributeError:
@@ -1430,8 +1438,8 @@ class confATMSWConsole(AbstractConfSWConsole):
                         self.atmsw.mapvp(port1, vpi1, port2, vpi2)
                         self.atmsw.mapvp(port2, vpi2, port1, vpi1)
                         self.dynagen.update_running_config()
-                   
-                elif len(left_side) == 3 and len(right_side) == 3:                  
+
+                elif len(left_side) == 3 and len(right_side) == 3:
                     port1 = int(left_side[0])
                     vpi1 = int(left_side[1])
                     vci1 = int(left_side[2])
@@ -1444,7 +1452,7 @@ class confATMSWConsole(AbstractConfSWConsole):
                     else:
                         self.atmsw.mapvc(port1, vpi1, vci1, port2, vpi2, vci2)
                         self.atmsw.mapvc(port2, vpi2, vci2, port1, vpi1, vci1)
-                        self.dynagen.update_running_config()  
+                        self.dynagen.update_running_config()
                 else:
                     error('invalid syntax in: ' + args)
             except AttributeError:
@@ -1461,7 +1469,7 @@ class confATMSWConsole(AbstractConfSWConsole):
         if len(params) == 2:
             left_side = params[0].split(':')
             right_side = params[1].split(':')
-            try: 
+            try:
                 if len(left_side) == 2 and len(right_side) == 2:
                     port1 = int(left_side[0])
                     dlci1 = int(left_side[1])
@@ -1474,10 +1482,10 @@ class confATMSWConsole(AbstractConfSWConsole):
                         self.atmsw.unmapvp(port1, dlci1, port2, dlci2)
                         self.atmsw.unmapvp(port2, dlci2, port1, dlci1)
                         self.dynagen.update_running_config()
-                
+
                     else:
                         error('semantic error in: ' + args + ' this connection does not exist')
-                    
+
                 if len(left_side) == 3 and len(right_side) == 3:
                     port1 = int(left_side[0])
                     vpi1 = int(left_side[1])
@@ -1848,8 +1856,8 @@ router <new_router_name>
             if devdefaults[model].has_key('ghostios'):
                 if devdefaults[model]['ghostios']:
                     router.ghost_status = 2
-                    router.ghost_file =  router.formatted_ghost_file()
-                    
+                    router.ghost_file = router.formatted_ghost_file()
+
             #implement JIT blocks sharing when creating the router from configConsole
             #use devdefaults to find out whether we have jitsharing = True, and simply set the jitsharing_group
             if devdefaults[model].has_key('jitsharing'):
@@ -1929,7 +1937,7 @@ router <new_router_name>
         if frsw.dynamips != self.dynamips_server:
             error('this device is on different hypervisor: ' + frsw.dynamips.host + ':' + str(frsw.dynamips.port))
             return
-            
+
         #delete all frsw mappings
         frsw_section = self.dynagen.running_config[self.d]['FRSW ' + frsw.name]
         for scalar in frsw_section.scalars:
@@ -1938,7 +1946,7 @@ router <new_router_name>
             if self.dynagen.running_config[self.d]['FRSW ' + frsw.name].has_key(scalar):
                 nested_cmd.onecmd('no ' + scalar + ' = ' + frsw_section[scalar])
             self.dynagen.update_running_config()
-        
+
         self.__delete_all_connections_to_sw(frsw)
 
         #now delete the frsw from backend
@@ -1951,7 +1959,7 @@ router <new_router_name>
 
     def __delete_all_connections_to_sw(self, device):
         """go through all hypervisors and routers and emit "no" version of all connection command that are refering this device. Used in FRSW, ATMSW disconnection"""
-        
+
         #go through all hypervisors and routers and emit "no" version of all ATMSW subcommands
         for h in self.dynagen.running_config:
             if h == 'debug' or h == 'autostart':
@@ -1974,7 +1982,7 @@ router <new_router_name>
                                 router = self.dynagen.devices[router_section.name[7:]]
                                 nested_cmd = self.routerConsoleInstanceMap[router.model_string](router, self.prompt, self.dynagen)
                                 nested_cmd.onecmd('no ' + scalar + ' = ' + router_section[scalar])
-                                
+
     def no_atmsw(self, params):
         """delete the atmsw and all its connections"""
         #check if the atmsw exists
@@ -1987,7 +1995,7 @@ router <new_router_name>
         if atmsw.dynamips != self.dynamips_server:
             error('this device is on different hypervisor: ' + atmsw.dynamips.host + ':' + str(atmsw.dynamips.port))
             return
-            
+
         #delete all atmsw mappings
         atmsw_section = self.dynagen.running_config[self.d]['ATMSW ' + atmsw.name]
         for scalar in atmsw_section.scalars:
@@ -1995,7 +2003,7 @@ router <new_router_name>
             if self.dynagen.running_config[self.d]['ATMSW ' + atmsw.name].has_key(scalar):
                 nested_cmd.onecmd('no ' + scalar + ' = ' + atmsw_section[scalar])
             self.dynagen.update_running_config()
-        
+
         self.__delete_all_connections_to_sw(atmsw)
 
         #now delete the atmsw from backend
@@ -2005,7 +2013,7 @@ router <new_router_name>
         print 'ATM switch ' + params[1] + ' deleted'
         #update the config
         self.dynagen.update_running_config()
-        
+
     def no_atmbr(self, params):
         """delete the atmbr and all its connections"""
         #check if the atmbr exists
@@ -2018,7 +2026,7 @@ router <new_router_name>
         if atmbr.dynamips != self.dynamips_server:
             error('this device is on different hypervisor: ' + atmbr.dynamips.host + ':' + str(atmbr.dynamips.port))
             return
-            
+
         #delete all atmbr mappings
         atmbr_section = self.dynagen.running_config[self.d]['ATMBR ' + atmbr.name]
         for scalar in atmbr_section.scalars:
@@ -2026,7 +2034,7 @@ router <new_router_name>
             if self.dynagen.running_config[self.d]['ATMBR ' + atmbr.name].has_key(scalar):
                 nested_cmd.onecmd('no ' + scalar + ' = ' + atmbr_section[scalar])
             self.dynagen.update_running_config()
-        
+
         self.__delete_all_connections_to_sw(atmbr)
 
         #now delete the atmbr from backend
@@ -2051,7 +2059,7 @@ router <new_router_name>
             if device.dynamips == self.dynamips_server:
                 if isinstance(device, self.namespace.Router) and device.model_string == params[1]:
                     self.onecmd('no router ' + device.name)
-                    
+
         #delete the defaults section
         del self.dynagen.defaults_config[self.d][params[1]]
         print 'Defaults section ' + params[1] + ' on ' + self.d + ' deleted'
@@ -2139,7 +2147,7 @@ frsw <new frsw_name>
             #and let's jump into the confFRSWConsole
             nested_cmd = confFRSWConsole(frsw, self.prompt, self.dynagen)
             nested_cmd.cmdloop()
-    
+
     def do_atmsw(self, args):
         """atmsw <atmsw name>
 \tgo into ATM switch conf mode
@@ -2170,7 +2178,7 @@ atmsw <new atmsw_name>
             #and let's jump into the confFRSWConsole
             nested_cmd = confATMSWConsole(atmsw, self.prompt, self.dynagen)
             nested_cmd.cmdloop()
-            
+
     def do_atmbr(self, args):
         """atmbr <atmbr name>
 \tgo into ATM Bridge conf mode
@@ -2204,7 +2212,7 @@ atmbr <new atmbr_name>
                 nested_cmd.cmdloop()
             except DynamipsError, e:
                 print 'dynamips error in creating ATMBR bridge, ' + str(e)
-                
+
     def do_ethsw(self, args):
         """ethsw <ethsw name>
 \tgo into Ethernet switch conf mode
@@ -2238,8 +2246,8 @@ ethsw <new ethsw_name>
                 nested_cmd.cmdloop()
             except DynamipsError, e:
                 print 'dynamips error in creating ethsw bridge, ' + str(e)
-                
-                
+
+
 class confConsole(AbstractConsole):
 
     def __init__(self, dynagen, console):

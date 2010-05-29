@@ -3,7 +3,7 @@
 
 """
 dynamips_lib.py
-Copyright (C) 2006, 2007  Greg Anuzelli
+Copyright (C) 2006-2010  Greg Anuzelli
 contributions: Pavel Skovajsa
 
 This program is free software; you can redistribute it and/or
@@ -21,13 +21,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 
-from socket import socket, AF_INET, SOCK_STREAM
+from socket import socket, timeout, AF_INET, SOCK_STREAM
 import sys
 import os
 import re
 import copy
 
-#version = "0.11.0.090518"
+#version = "0.11.0.100511"
 # Minimum version of dynamips required. Currently 0.2.8-RC1 (due to change to
 # hypervisor commands related to slot/port handling, and the pluggable archtecture
 # that changed model specific commands to "vm")
@@ -90,7 +90,7 @@ DEVICETUPLE = (  # A tuple of known device names
                  '3640',
                  '3660',
                  '7200',
-             )
+)
 CHASSIS1700 = (
     '1710',
     '1720',
@@ -428,7 +428,7 @@ class Dynamips(object):
         return self.__ghosts
 
     ghosts = property(__getghosts, __setghosts, doc='ghosts hosted by this hypervisor instance')
-    
+
     def __setjitsharing_groups(self, jitsharingdict):
         """ Add a JIT blocks sharing group name to the list of groups created on this hypervisor instance
             jitsharingdict is of the form (imagename, groupnumber)
@@ -574,6 +574,12 @@ class NIO_udp(NIO):
                 rem_int_full_name = 'FastEthernet'
             elif rem_int_name == 's':
                 rem_int_full_name = 'Serial'
+            elif rem_int_name == 'a':
+                rem_int_full_name = 'ATM'
+            elif rem_int_name == 'p':
+                rem_int_full_name = 'POS'
+            elif rem_int_name == 'g':
+                rem_int_full_name = 'GigabitEthernet'    
             if remote_device.model_string in ['1710', '1720', '1721', '1750']:
                 return ' is connected to router ' + remote_device.name + " " + rem_int_full_name + str(rem_dynagen_port)
             # remote_port >= 16 means it's a wic module
@@ -635,7 +641,6 @@ class NIO_udp(NIO):
         
     def reset_stats(self):
         send(self.__d, 'nio reset_stats %s' % self.__name)
-        
     def delete(self):
         send(self.__d, 'nio delete %s' % self.__name)
 
@@ -915,7 +920,7 @@ class NIO_null(NIO):
         """return info string about this NIO"""
 
         return ' is connected to ' + self.__name + ' interface'
-        
+
     def delete(self):
         send(self.__d, 'nio delete %s' % self.__name)
 
@@ -1364,6 +1369,8 @@ class PA_C7200_IO_2FE(PA):
             intlist,
         )
         self.interface_name = 'FastEthernet'
+        #this IS a default adapter that we don't want to see in running config
+        self.default = True
 
     def can_be_removed(self):
         return False
@@ -1391,6 +1398,8 @@ class PA_C7200_IO_GE_E(PA):
             intlist,
         )
         self.interface_name = 'GigabitEthernet'
+        #this IS a default adapter that we don't want to see in running config
+        self.default = True
 
     def can_be_removed(self):
         return False
@@ -1786,7 +1795,6 @@ class NM_NAM(NM):
         )
         self.interface_name = 'an'
 
-
 class GT96100_FE(NM):
 
     """ Integrated GT96100-FE 2691/3725/3745 2 Port FastEthernet adapter
@@ -1974,7 +1982,10 @@ class C1700_WIC1(NM):
         return False
 
 
-class Router(object):
+class Dynamips_device(object):
+    pass
+
+class Router(Dynamips_device):
 
     """ Creates a new Router instance
         dynamips: a Dynamips object
@@ -2269,7 +2280,6 @@ class Router(object):
 
         for adapter in self.slot:
             if adapter != None:
-
                 int_count = adapter.get_interface_count()
                 if int_count == 1:
                     int_string = ' interface\n'
@@ -2283,13 +2293,10 @@ class Router(object):
                 for interface in adapter.interfaces:
                     for dynagenport in adapter.interfaces[interface]:
                         i = adapter.interfaces[interface][dynagenport]
-                        
                         # trick to ignore wics interfaces
                         if i >= 16:
                             continue
-                        
                         nio = adapter.nio(i)
-
                         #create the left side of description
                         #if this is no-slot router
                         if adapter.router.model_string in ['1710', '1720', '1721', '1750']:
@@ -2308,7 +2315,6 @@ class Router(object):
                         else:
                             #no NIO on this port, so it must be empty
                             slot_info = slot_info + ' is empty\n'
-
         currentport_e = 0  # The starting WIC port for ethernets (e.g. Ex/0 or E0)
         currentport_s = 0  # The starting WIC port for serials  (e.g. Sx0/0 or S0)
         if self.slot[0] != None:
@@ -2339,7 +2345,6 @@ class Router(object):
                             #no NIO on this port, so it must be empty
                             slot_info = slot_info + ' is empty\n'      
                         dynaport += 1
-
         #finally we ran over all slot and produced info about every one of them
         return slot_info
 
@@ -2362,7 +2367,7 @@ class Router(object):
             image_info = image_info + 'shared ' + self.ghost_file
         else:
             image_info = image_info + self.image
-            
+
         jitsharing_group_info = '  JIT blocks sharing group is '
         if self.jitsharing_group != None:
             jitsharing_group_info=  jitsharing_group_info + str(self.jitsharing_group)
@@ -2928,7 +2933,7 @@ class Router(object):
         return self.__ghost_file
 
     ghost_file = property(__getghost_file, __setghost_file, doc='The ghost file associated with this instance')
-    
+
     def __setjitsharing_group(self, jitsharing_group):
         """ Set the JIT blocks sharing group for this instance
             Use a number from 0 to 127
@@ -2937,7 +2942,7 @@ class Router(object):
 
         if not self.imagename:
             raise DynamipsError, 'Register an image first'
-        
+
         send(self.__d, 'vm set_tsg %s %s' % (self.__name, str(jitsharing_group)))
         self.__jitsharing_group = jitsharing_group
 
@@ -3414,7 +3419,7 @@ class C1700(Router):
     iomem = property(__getiomem, __setiomem, doc='The iomem size of this router')
 
 class UnicodeException(Exception):
-    
+
     def __init__(self, message):
         if isinstance(message, unicode):
             self.unicode_message = message
@@ -3426,7 +3431,7 @@ class UnicodeException(Exception):
             except UnicodeEncodeError:
                 self.unicode_message = unicode(message, "ISO-8859-1")
         Exception.__init__(self, message)
-    
+
     def __unicode__(self):
         return self.unicode_message
 
@@ -3434,7 +3439,7 @@ class DynamipsError(UnicodeException):
 
     def __init__(self, message):
         UnicodeException.__init__(self, message)
-        
+
 class DynamipsWarning(UnicodeException):
 
     def __init__(self, message):
@@ -3450,32 +3455,175 @@ class DynamipsVerError(Exception):
 
 ###############################################################################
 
+class Emulated_switch(Dynamips_device):
+    def connect(
+        self,
+        localadapter,
+        localport,
+        remoteserver,
+        remoteadapter,
+        remoteint,
+        remoteport,
+        ):
+        """ Connect this port to a port on another device
+            localport: A port on this adapter
+            remoteserver: the dynamips object that hosts the remote adapter
+            remoteadapter: An adapter or module object on another device (router, bridge, or switch)
+            localint: The interface type for the remote device
+            remoteport: A port on the remote adapter (only for routers or switches)
+        """
 
-class Bridge(object):
+        # Figure out the real ports
+        if remoteadapter.adapter in EMULATED_SWITCHES:
+            # This is a virtual switch that doesn't provide interface descriptors
+            dst_port = remoteport
+        else:
+            # Look at the interfaces dict to find out what the real port is as
+            # as far as dynamips is concerned
+            dst_port = remoteadapter.interfaces[remoteint][remoteport]
+
+        # Call the generalized connect function, validating first
+        if validate_connect(
+            localadapter,
+            remoteint,
+            src_dynamips=self._d,
+            src_adapter=self,
+            src_port=localport,
+            dst_dynamips=remoteserver,
+            dst_adapter=remoteadapter,
+            dst_port=dst_port,
+            ):
+            gen_connect(
+                src_dynamips=self._d,
+                src_adapter=self,
+                src_port=localport,
+                dst_dynamips=remoteserver,
+                dst_adapter=remoteadapter,
+                dst_port=dst_port,
+            )
+
+    def connected(self, interface, port):
+        """ Returns a boolean indicating if a port on this adapter is connected or not
+            interface: The interface type for the local device (e.g. 'f', 's', 'an' for "FastEthernet", "Serial", "Analysis-Module", and so forth")
+            port: A port on this adapter
+        """
+
+        return connected_general(self, interface, port)
+
+    def _getname(self):
+        """ Returns the name property
+        """
+
+        return self._name
+
+    name = property(_getname, doc='The device name')
+
+    def _getdynamips(self):
+        """ Returns the dynamips server on which this device resides
+        """
+
+        return self._d
+
+    dynamips = property(_getdynamips, doc='The dynamips object associated with this device')
+
+    def _getisrouter(self):
+        """ Returns true if this device is a router
+        """
+
+        return False
+
+    isrouter = property(_getisrouter, doc='Returns true if this device is a router')
+
+    def filter(
+            self,
+            port,
+            filterName,
+            direction='both',
+            options=None,
+            ):
+            ''' Apply a connection filter to this interface
+                port: a port on this adapter or module
+                filterName: The name of the filter
+                direction: 'in' for rx, 'out' for tx, or 'both'
+                options: a list of options to pass to this filter
+            '''
+    
+            filters = ['freq_drop', 'capture', 'none']  # a list of the known filters
+            filterName = filterName.lower()
+            if filterName not in filters:
+                raise DynamipsError, 'invalid filter'
+            direction = direction.lower()
+            if direction not in ['in', 'out', 'both']:
+                raise DynamipsError, 'invalid filter direction'
+    
+            if options == None:
+                if filterName.lower() == 'capture':
+                    raise DynamipsError, 'Error: No capture file specified'
+                else:
+                    options = ''
+    
+            # Determine the nio
+            try:
+                # Determine the real port
+                port = int(port)
+                nioName = self.nio(port).name
+            except AttributeError:
+                raise DynamipsError, 'Invalid interface'
+            except KeyError:
+                raise DynamipsError, 'Invalid interface'
+    
+            if direction == 'in':
+                dirint = 0
+            elif direction == 'out':
+                dirint = 1
+            else:
+                # Both
+                dirint = 2
+    
+            d = self._d
+    
+            # First bind the filter
+            # e.g. nio bind_filter nio_udp1 0 freq_drop
+            if filterName == 'none':
+                # unbind any filters
+                send(d, 'nio unbind_filter %s %s' % (nioName, dirint))
+                return
+            else:
+                send(d, 'nio bind_filter %s %s %s' % (nioName, dirint, filterName))
+    
+            # Next, setup the filter
+            # e.g nio setup_filter nio_udp1 0 50
+            send(d, 'nio setup_filter %s %s %s' % (nioName, dirint, options))
+
+
+########################################################################################	    
+
+
+class Bridge(Emulated_switch):
 
     """ Creates a new Ethernet bridge instance
         dynamips: a Dynamips object
         name: An optional name
     """
 
-    __instance_count = 0
+    _instance_count = 0
 
     def __init__(self, dynamips, name=None, create=True):
-        self.__d = dynamips
-        self.__instance = Bridge.__instance_count
-        Bridge.__instance_count += 1
+        self._d = dynamips
+        self._instance = Bridge._instance_count
+        Bridge._instance_count += 1
         if name == None:
-            self.__name = 'b' + str(self.__instance)
+            self._name = 'b' + str(self._instance)
         else:
-            self.__name = name
+            self._name = name
 
-        self.__nios = []  # A list NETIO objects that are associated with this bridge
+        self._nios = []  # A list NETIO objects that are associated with this bridge
 
         if create:
-            send(self.__d, 'nio_bridge create ' + self.__name)
+            send(self._d, 'nio_bridge create ' + self._name)
 
     def delete(self):
-        """ Delete this Frame Relay switch instance from the back end
+        """ Delete this switch instance from the back end
         """
 
         pass
@@ -3488,87 +3636,64 @@ class Bridge(object):
         if nio == None:
             # Return the NETIO string
             try:
-                return self.__nios
+                return self._nios
             except KeyError:
-                raise DynamipsError, 'port does not exist on this switch'
+                return None
 
         if isinstance(nio, NIO):
-            send(self.__d, 'nio_bridge add_nio %s %s' % (self.__name, nio.name))
+            send(self._d, 'nio_bridge add_nio %s %s' % (self._name, nio.name))
         else:
             raise DynamipsError, 'invalid NIO type'
 
         # Add the NETIO to the list
-        self.__nios.append(nio)
+        self._nios.append(nio)
 
-    def __getadapter(self):
+    def _getadapter(self):
         """ Returns the adapter property
         """
 
         return 'Bridge'
 
-    adapter = property(__getadapter, doc='The port adapter')
-
-    def __getname(self):
-        """ Returns the name property
-        """
-
-        return self.__name
-
-    name = property(__getname, doc='The device name')
-
-    def __getdynamips(self):
-        """ Returns the dynamips server on which this device resides
-        """
-
-        return self.__d
-
-    dynamips = property(__getdynamips, doc='The dynamips object associated with this device')
-
-    def __getisrouter(self):
-        """ Returns true if this device is a router
-        """
-
-        return False
-
-    isrouter = property(__getisrouter, doc='Returns true if this device is a router')
+    adapter = property(_getadapter, doc='The port adapter')
 
 
 ########################################################################################
 
 
-class FRSW(object):
+class FRSW(Emulated_switch):
 
     """ Creates a new Frame Relay switch instance
         dynamips: a Dynamips object
         name: An optional name
     """
 
-    __instance_count = 0
+    _instance_count = 0
 
     def __init__(self, dynamips, name=None, create=True):
-        self.__d = dynamips
-        self.__instance = FRSW.__instance_count
-        FRSW.__instance_count += 1
+        self._d = dynamips
+        self._instance = FRSW._instance_count
+        FRSW._instance_count += 1
         if name == None:
-            self.__name = 'frsw' + str(self.__instance)
+            self._name = 'frsw' + str(self._instance)
         else:
-            self.__name = name
+            self._name = name
 
-        self.__nios = {}  # A dict of NETIO objects indexed by switch port
-        self.__pvcs = {}  # A dict of PVCs used in show run output of confDYnagen
-
+        self._nios = {}  # A dict of NETIO objects indexed by switch port
+        self._pvcs = {}  # A dict of PVCs used in show run output of confDYnagen
+        self.slot = {}  
+        self.slot[0] = self
         if create:
-            send(self.__d, 'frsw create ' + self.__name)
+            send(self._d, 'frsw create ' + self._name)
 
     def info(self):
         """return the string with info about this device"""
 
-        info = "Frame-relay switch " + self.__name + " is always-on\n  Hardware is dynamips emulated simple frame-relay switch\n  Frame relay switch's hypervisor runs on " + self.__d.host + ':' + str(self.__d.port) + '\n'
+        info = "Frame-relay switch " + self._name + " is always-on\n  Hardware is dynamips emulated simple frame-relay switch\n  Frame relay switch's hypervisor runs on " + self._d.host + ':' + str(self._d.port) + '\n'
         map_info = ''
 
         #make the keys unique
         u = {}
-        for (x,y) in self.__pvcs.keys():
+        for (x,y) in self._pvcs.keys():
             u[x] = 1
         uniq_keys = u.keys()
 
@@ -3576,17 +3701,21 @@ class FRSW(object):
         map_info = ''
         for port in uniq_keys:
             map_info += '   Port '+str(port) + '\n'
-            for (port1, dlci1) in self.__pvcs.keys():
+            #add mapping info
+            for (port1, dlci1) in self._pvcs.keys():
                 if port == port1:
-                    (port2, dlci2) = self.__pvcs[(port1, dlci1)]
+                    (port2, dlci2) = self._pvcs[(port1, dlci1)]
                     map_info += '      incoming dlci ' + str(dlci1) + ' is switched to port ' + str(port2) + ' outgoing dlci ' + str(dlci2) + '\n'
+            #add connection info
+            nio = self.nio(port)
+            map_info += '     ' + nio.info() + '\n'
         return info + map_info
 
     def delete(self):
         """ Delete this Frame Relay switch instance from the back end
         """
 
-        send(self.__d, 'frsw delete ' + self.__name)
+        send(self._d, 'frsw delete ' + self._name)
 
     def map(
         self,
@@ -3618,9 +3747,11 @@ class FRSW(object):
             nio2 = self.nio(port2).name
         except DynamipsWarning, e:
             raise DynamipsError, e
-
-        send(self.__d, 'frsw create_vc %s %s %i %s %i' % (
-            self.__name,
+        except AttributeError, e:
+            raise DynamipsError, 'one of the ports does not exist'
+        
+        send(self._d, 'frsw create_vc %s %s %i %s %i' % (
+            self._name,
             nio1,
             dlci1,
             nio2,
@@ -3628,14 +3759,14 @@ class FRSW(object):
         ))
 
         #track the connections
-        self.__pvcs[(port1, dlci1)] = (port2, dlci2)
+        self._pvcs[(port1, dlci1)] = (port2, dlci2)
 
     def disconnect(self, port):
         #disconnect everything on port1, delete the nio and delete all mappings.....TODO talk to Chris about redesigning the IPC
-        mapping = copy.deepcopy(self.__pvcs)
+        mapping = copy.deepcopy(self._pvcs)
         for (port1, dlci1) in mapping.keys():
             if port1 == port:
-                (port2, dlci2) = self.__pvcs[(port1, dlci1)]
+                (port2, dlci2) = self._pvcs[(port1, dlci1)]
                 #delete the pvc port1:dlci1 -> port2:dlci2
                 self.unmap(port1, dlci1, port2, dlci2)
                 #delete the pvc port2:dlci2 -> port1:dlci1
@@ -3644,7 +3775,7 @@ class FRSW(object):
         #now delete the NIO from backend
         self.nio(port).delete()
         #delete from frontend
-        del self.__nios[port]
+        del self._nios[port]
 
 
     def unmap(
@@ -3677,65 +3808,14 @@ class FRSW(object):
             nio2 = self.nio(port2).name
         except DynamipsWarning, e:
             raise DynamipsError, e
-
-        send(self.__d, 'frsw delete_vc %s %s %i %s %i' % (self.__name, nio1, dlci1, nio2, dlci2))
+        except AttributeError, e:
+            raise DynamipsError, 'one of the ports does not exist'
+        
+        send(self._d, 'frsw delete_vc %s %s %i %s %i' % (self._name, nio1, dlci1, nio2, dlci2))
 
         #untrack the connections
-        del self.__pvcs[(port1, dlci1)]
+        del self._pvcs[(port1, dlci1)]
 
-
-    def connect(
-        self,
-        localport,
-        remoteserver,
-        remoteadapter,
-        remoteint,
-        remoteport=None,
-        ):
-        """ Connect this port to a port on another device
-            localport: A port on this adapter
-            remoteserver: the dynamips object that hosts the remote adapter
-            remoteadapter: An adapter or module object on another device (router, bridge, or switch)
-            localint: The interface type for the remote device
-            remoteport: A port on the remote adapter (only for routers or switches)
-        """
-
-        # Figure out the real ports
-        if remoteadapter.adapter in EMULATED_SWITCHES:
-            # This is a virtual switch that doesn't provide interface descriptors
-            dst_port = remoteport
-        else:
-            # Look at the interfaces dict to find out what the real port is as
-            # as far as dynamips is concerned
-            dst_port = remoteadapter.interfaces[remoteint][remoteport]
-
-        # Call the generalized connect function, validating first
-        if validate_connect(
-            's',
-            remoteint,
-            src_dynamips=self.__d,
-            src_adapter=self,
-            src_port=localport,
-            dst_dynamips=remoteserver,
-            dst_adapter=remoteadapter,
-            dst_port=dst_port,
-            ):
-            gen_connect(
-                src_dynamips=self.__d,
-                src_adapter=self,
-                src_port=localport,
-                dst_dynamips=remoteserver,
-                dst_adapter=remoteadapter,
-                dst_port=dst_port,
-            )
-
-    def connected(self, interface, port):
-        """ Returns a boolean indicating if a port on this adapter is connected or not
-            interface: The interface type for the local device (e.g. 'f', 's', 'an' for "FastEthernet", "Serial", "Analysis-Module", and so forth")
-            port: A port on this adapter
-        """
-
-        return connected_general(self, interface, port)
 
     def nio(self, port, nio=None):
         """ Returns the NETIO object for this port
@@ -3747,94 +3827,99 @@ class FRSW(object):
         if nio == None:
             # Return the NETIO string
             try:
-                return self.__nios[port]
+                return self._nios[port]
             except KeyError:
-                raise DynamipsWarning, 'switchport ' + str(port) + ' is not connected to anything'
+                return None
+
         if isinstance(nio, NIO):
             # Set the NETIO for this port
-            self.__nios[port] = nio
+            self._nios[port] = nio
         else:
             raise DynamipsError, 'invalid NIO type'
 
-    def __getadapter(self):
+    def _getadapter(self):
         """ Returns the adapter property
         """
 
         return 'FRSW'
 
-    adapter = property(__getadapter, doc='The port adapter')
+    adapter = property(_getadapter, doc='The port adapter')
 
-    def __getname(self):
-        """ Returns the name property
-        """
-
-        return self.__name
-
-    name = property(__getname, doc='The device name')
-
-    def __getdynamips(self):
-        """ Returns the dynamips server on which this device resides
-        """
-
-        return self.__d
-
-    dynamips = property(__getdynamips, doc='The dynamips object associated with this device')
-
-    def __getisrouter(self):
-        """ Returns true if this device is a router
-        """
-
-        return False
-
-    isrouter = property(__getisrouter, doc='Returns true if this device is a router')
-
-    def __getpvcs(self):
+    def _getpvcs(self):
         """ Return the pvc which maps port,dlci pair to each other"""
-        return self.__pvcs
+        return self._pvcs
 
-    pvcs = property(__getpvcs, doc='Return the pvc which maps port,dlci pair to each other')
+    pvcs = property(_getpvcs, doc='Return the pvc which maps port,dlci pair to each other')
+
+    def config(self, subconfig):
+        """parse the all data structures associated with this frsw and update the subconfig accordingly"""
+
+        f = 'FRSW ' + self.name
+        subconfig[f] = {}
+
+        #add mapping information
+        keys = self.pvcs.keys()
+        keys.sort()
+        for (port1,dlci1) in keys:
+            (port2, dlci2) = self.pvcs[(port1, dlci1)]
+            subconfig[f][str(port1) + ':' + str(dlci1)] = str(port2) + ':' + str(dlci2)
+
+        #make the keys unique
+        u = {}
+        for (x,y) in self.pvcs.keys():
+            u[x] = 1
+        ports = u.keys()
+        for port1 in ports:    
+            nio = self.nio(port1)
+            subconfig[f][str(port1)] = nio.config_info()
+
 
 ###############################################################################
 
-class ATMBR(object):
+class ATMBR(Emulated_switch):
     """ Creates a new ATM Bridge instance
         dynamips: a Dynamips object
         name: An optional name
     """
 
-    __instance_count = 0
+    _instance_count = 0
 
     def __init__(self, dynamips, name=None, create=True):
-        self.__d = dynamips
-        self.__instance = ATMBR.__instance_count
-        ATMBR.__instance_count += 1
+        self._d = dynamips
+        self._instance = ATMBR._instance_count
+        ATMBR._instance_count += 1
         if name == None:
-            self.__name = 'atmbr' + str(self.__instance)
+            self._name = 'atmbr' + str(self._instance)
         else:
-            self.__name = name
+            self._name = name
 
-        self.__nios = {}  # A dict of NETIO objects indexed by switch port
-        self.__mapping = {}  # A dict of PVCs used in show run output of confDYnagen
-
+        self._nios = {}  # A dict of NETIO objects indexed by switch port
+        self._mapping = {}  # A dict of PVCs used in show run output of confDYnagen
+        self.slot = {} 
+        self.slot[0] = self
         if create:
-            send(self.__d, 'atm_bridge create ' + self.__name)
+            send(self._d, 'atm_bridge create ' + self._name)
 
     def delete(self):
         """ Delete this ATM Bridge instance from the back end
         """
-        send(self.__d, 'atm_bridge delete ' + self.__name)
+        send(self._d, 'atm_bridge delete ' + self._name)
 
     def info(self):
         """return the string with info about this device"""
 
-        info = "ATM bridge " + self.__name + " is always-on\n  Hardware is dynamips emulated simple ATM bridge\n  ATM bridge's hypervisor runs on " + self.__d.host + ':' + str(self.__d.port) + '\n'
+        info = "ATM bridge " + self._name + " is always-on\n  Hardware is dynamips emulated simple ATM bridge\n  ATM bridge's hypervisor runs on " + self._d.host + ':' + str(self._d.port) + '\n'
         map_info = ''
-        keys = self.__mapping.keys()
+        keys = self._mapping.keys()
         keys.sort()
         map_info = ''
         for port1 in keys:
-            (port2, vpi2, vci2) = self.__mapping[port1]
+            #add mapping info
+            (port2, vpi2, vci2) = self._mapping[port1]
             map_info += '     Ethernet port '+str(port1) + ' is bridged to ATM port ' + str(port2) + ' outgoing VPI ' + str(vpi2) + ' and VCI ' + str(vci2) + '\n'
+            #add connection info
+            nio = self.nio(port1)
+            map_info += '     ' + nio.info() + '\n'
         return info + map_info
 
 
@@ -3870,16 +3955,18 @@ class ATMBR(object):
             nio2 = self.nio(port2).name
         except DynamipsWarning, e:
             raise DynamipsError, e
+        except AttributeError, e:
+            raise DynamipsError, 'one of the ports does not exist'
 
-        send(self.__d, 'atm_bridge configure %s %s %s %i %i' % (
-            self.__name,
+        send(self._d, 'atm_bridge configure %s %s %s %i %i' % (
+            self._name,
             nio1,
             nio2,
             vpi2,
             vci2,
         ))
 
-        self.__mapping[port1] = (port2, vpi2, vci2)
+        self._mapping[port1] = (port2, vpi2, vci2)
 
     def unconfigure(
         self,
@@ -3913,77 +4000,26 @@ class ATMBR(object):
             nio2 = self.nio(port2).name
         except DynamipsWarning, e:
             raise DynamipsError, e
+        except AttributeError, e:
+            raise DynamipsError, 'one of the ports does not exist'
+        
+        send(self._d, 'atm_bridge unconfigure %s' % self._name)
 
-        send(self.__d, 'atm_bridge unconfigure %s' % self.__name)
-
-        del self.__mapping[port1]
-
-    def connect(
-        self,
-        localport,
-        remoteserver,
-        remoteadapter,
-        remoteint,
-        remoteport=None,
-        ):
-        """ Connect this port to a port on another device
-            localport: A port on this adapter
-            remoteserver: the dynamips object that hosts the remote adapter
-            remoteadapter: An adapter or module object on another device (router, bridge, or switch)
-            localint: The interface type for the remote device
-            remoteport: A port on the remote adapter (only for routers or switches)
-        """
-
-        # Figure out the real ports
-        if remoteadapter.adapter in EMULATED_SWITCHES:
-            # This is a virtual switch that doesn't provide interface descriptors
-            dst_port = remoteport
-        else:
-            # Look at the interfaces dict to find out what the real port is as
-            # as far as dynamips is concerned
-            dst_port = remoteadapter.interfaces[remoteint][remoteport]
-
-        # Call the generalized connect function, validating first
-        if validate_connect(
-            'a',
-            remoteint,
-            src_dynamips=self.__d,
-            src_adapter=self,
-            src_port=localport,
-            dst_dynamips=remoteserver,
-            dst_adapter=remoteadapter,
-            dst_port=dst_port,
-            ):
-            gen_connect(
-                src_dynamips=self.__d,
-                src_adapter=self,
-                src_port=localport,
-                dst_dynamips=remoteserver,
-                dst_adapter=remoteadapter,
-                dst_port=dst_port,
-            )
+        del self._mapping[port1]
 
     def disconnect(self, port):
         #disconnect everything on port1, delete the nio and delete all mappings.....TODO talk to Chris about redesigning the IPC
-        mapping = copy.deepcopy(self.__mapping)
+        mapping = copy.deepcopy(self._mapping)
         for key in mapping:
             if key == port:
                 port1 = key
-                (port2, vpi2, vci2) = self.__mapping[port1]
+                (port2, vpi2, vci2) = self._mapping[port1]
                 self.unconfigure(port1, port2, vpi2, vci2)
 
         #now delete the NIO from backend
         self.nio(port).delete()
         #delete from frontend
-        del self.__nios[port]
-
-    def connected(self, interface, port):
-        """ Returns a boolean indicating if a port on this adapter is connected or not
-            interface: The interface type for the local device (e.g. 'f', 's', 'an' for "FastEthernet", "Serial", "Analysis-Module", and so forth")
-            port: A port on this adapter
-        """
-
-        return connected_general(self, interface, port)
+        del self._nios[port]
 
     def nio(self, port, nio=None):
         """ Returns the NETIO object for this port
@@ -3995,114 +4031,108 @@ class ATMBR(object):
         if nio == None:
             # Return the NETIO string
             try:
-                return self.__nios[port]
+                return self._nios[port]
             except KeyError:
-                raise DynamipsWarning, 'switchport ' + str(port) + ' is not connected to anything'
-
+                return None
+                
         if isinstance(nio, NIO):
             # Set the NETIO for this port
-            self.__nios[port] = nio
+            self._nios[port] = nio
         else:
             raise DynamipsError, 'invalid NIO type'
 
-    def __getadapter(self):
+    def _getadapter(self):
         """Returns the adapter property
         """
 
         return 'ATMBR'
 
-    adapter = property(__getadapter, doc='The port adapter')
+    adapter = property(_getadapter, doc='The port adapter')
 
-    def __getname(self):
-        """Returns the name property
-        """
-
-        return self.__name
-
-    name = property(__getname, doc='The device name')
-
-    def __getdynamips(self):
-        """Returns the dynamips server on which this device resides
-        """
-
-        return self.__d
-
-    dynamips = property(__getdynamips, doc='The dynamips object associated with this device')
-
-    def __getisrouter(self):
-        """Returns true if this device is a router
-        """
-
-        return False
-
-    isrouter = property(__getisrouter, doc='Returns true if this device is a router')
-
-    def __getmapping(self):
+    def _getmapping(self):
         """Returns the ETH -> ATM mapping"""
 
-        return self.__mapping
+        return self._mapping
 
-    mapping = property(__getmapping, doc ='Returns the ETH -> ATM mapping')
+    mapping = property(_getmapping, doc ='Returns the ETH -> ATM mapping')
 
+    def config(self, subconfig):
+        """parse the all data structures associated with this atmbr and update the running_config properly"""
+
+        f = 'ATMBR ' + self.name
+        subconfig[f] = {}
+
+        keys = self.mapping.keys()
+        keys.sort()
+        for port1 in keys:
+            #add mapping information
+            (port2, vci2, vpi2) = self.mapping[port1]
+            nio = self.nio(port1)
+            subconfig[f][str(port1)] = str(port2) + ':' + str(vci2) + ':' + str(vpi2) +  ' ' + nio.config_info()
+     
 ######################################################################################
 
-class ATMSW(object):
+class ATMSW(Emulated_switch):
 
     """ Creates a new ATM switch instance
         dynamips: a Dynamips object
         name: An optional name
     """
 
-    __instance_count = 0
+    _instance_count = 0
 
     def __init__(self, dynamips, name=None, create=True):
-        self.__d = dynamips
-        self.__instance = ATMSW.__instance_count
-        ATMSW.__instance_count += 1
+        self._d = dynamips
+        self._instance = ATMSW._instance_count
+        ATMSW._instance_count += 1
         if name == None:
-            self.__name = 'a' + str(self.__instance)
+            self._name = 'a' + str(self._instance)
         else:
-            self.__name = name
+            self._name = name
 
-        self.__nios = {}  # A dict of NETIO objects indexed by switch port
-        self.__vpivci_map = {}  #A dict tracking the mapping of (port1, vpi1) -> (port2, vpi2)
-
+        self._nios = {}  # A dict of NETIO objects indexed by switch port
+        self._vpivci_map = {}  #A dict tracking the mapping of (port1, vpi1) -> (port2, vpi2)
+        self.slot = {} 
+        self.slot[0] = self
         if create:
-            send(self.__d, 'atmsw create ' + self.__name)
+            send(self._d, 'atmsw create ' + self._name)
 
     def info(self):
         """return the string with info about this device"""
 
-        info = "ATM switch " + self.__name + " is always-on\n  Hardware is dynamips emulated simple ATM switch\n  ATM switch's hypervisor runs on " + self.__d.host + ':' + str(self.__d.port) + '\n'
+        info = "ATM switch " + self._name + " is always-on\n  Hardware is dynamips emulated simple ATM switch\n  ATM switch's hypervisor runs on " + self._d.host + ':' + str(self._d.port) + '\n'
         map_info = ''
 
         #make the keys unique
         u = {}
-        for x in self.__vpivci_map.keys():
+        for x in self._vpivci_map.keys():
             u[x[0]] = 1
         uniq_keys = u.keys()
 
         uniq_keys.sort()
         map_info = ''
-        for port in uniq_keys:
+        for port in uniq_keys:         
             map_info += '   Port '+str(port) + '\n'
-            for key in self.__vpivci_map.keys():
+            #add mapping info
+            for key in self._vpivci_map.keys():
                 if port == key[0]:
                     if len(key) == 2:
                         (port1, vpi1) = key
-                        (port2, vpi2) = self.__vpivci_map[key]
+                        (port2, vpi2) = self._vpivci_map[key]
                         map_info += '      incoming VPI ' + str(vpi1) + ' is switched to port ' + str(port2) + ' outgoing VPI ' + str(vpi2) + '\n'
                     else:
                         (port1, vpi1, vci1) = key
-                        (port2, vpi2, vci2) = self.__vpivci_map[key]
+                        (port2, vpi2, vci2) = self._vpivci_map[key]
                         map_info += '      incoming VPI ' + str(vpi1) + ' and VCI ' + str(vci1) + ' is switched to port ' + str(port2) + ' outgoing VPI ' + str(vpi2) + ' and VCI ' + str(vci2) + '\n'
-
+            #add connection info
+            nio = self.nio(port)
+            map_info += '     ' + nio.info() + '\n'
         return info + map_info
 
     def delete(self):
         """ Delete this ATM switch instance from the back end
         """
-        send(self.__d, 'atmsw delete ' + self.__name)
+        send(self._d, 'atmsw delete ' + self._name)
 
     def unmapvp(
         self,
@@ -4134,9 +4164,11 @@ class ATMSW(object):
             nio2 = self.nio(port2).name
         except DynamipsWarning, e:
             raise DynamipsError, e
+        except AttributeError, e:
+            raise DynamipsError, 'one of the ports does not exist'
 
-        send(self.__d, 'atmsw delete_vpc %s %s %i %s %i' % (
-            self.__name,
+        send(self._d, 'atmsw delete_vpc %s %s %i %s %i' % (
+            self._name,
             nio1,
             vpi1,
             nio2,
@@ -4144,7 +4176,7 @@ class ATMSW(object):
         ))
 
         #untrack the connections
-        del self.__vpivci_map[(port1, vpi1)]
+        del self._vpivci_map[(port1, vpi1)]
 
     def mapvp(
         self,
@@ -4176,9 +4208,11 @@ class ATMSW(object):
             nio2 = self.nio(port2).name
         except DynamipsWarning, e:
             raise DynamipsError, e
-
-        send(self.__d, 'atmsw create_vpc %s %s %i %s %i' % (
-            self.__name,
+        except AttributeError, e:
+            raise DynamipsError, 'one of the ports does not exist'
+        
+        send(self._d, 'atmsw create_vpc %s %s %i %s %i' % (
+            self._name,
             nio1,
             vpi1,
             nio2,
@@ -4186,7 +4220,7 @@ class ATMSW(object):
         ))
 
         #track the mapping
-        self.__vpivci_map[(port1, vpi1)] = (port2, vpi2)
+        self._vpivci_map[(port1, vpi1)] = (port2, vpi2)
 
     def unmapvc(
         self,
@@ -4225,9 +4259,11 @@ class ATMSW(object):
             nio2 = self.nio(port2).name
         except DynamipsWarning, e:
             raise DynamipsError, e
+        except AttributeError, e:
+            raise DynamipsError, 'one of the ports does not exist'
 
-        send(self.__d, 'atmsw delete_vcc %s %s %i %i %s %i %i' % (
-            self.__name,
+        send(self._d, 'atmsw delete_vcc %s %s %i %i %s %i %i' % (
+            self._name,
             nio1,
             vpi1,
             vci1,
@@ -4236,7 +4272,7 @@ class ATMSW(object):
             vci2,
         ))
 
-        del self.__vpivci_map[(port1, vpi1, vci1)]
+        del self._vpivci_map[(port1, vpi1, vci1)]
 
     def mapvc(
         self,
@@ -4275,9 +4311,11 @@ class ATMSW(object):
             nio2 = self.nio(port2).name
         except DynamipsWarning, e:
             raise DynamipsError, e
-
-        send(self.__d, 'atmsw create_vcc %s %s %i %i %s %i %i' % (
-            self.__name,
+        except AttributeError, e:
+            raise DynamipsError, 'one of the ports does not exist'
+        
+        send(self._d, 'atmsw create_vcc %s %s %i %i %s %i %i' % (
+            self._name,
             nio1,
             vpi1,
             vci1,
@@ -4286,70 +4324,25 @@ class ATMSW(object):
             vci2,
         ))
 
-        self.__vpivci_map[(port1, vpi1, vci1)] = (port2, vpi2, vci2)
-
-    def connect(
-        self,
-        localport,
-        remoteserver,
-        remoteadapter,
-        remoteint,
-        remoteport=None,
-        ):
-        """ Connect this port to a port on another device
-            localport: A port on this adapter
-            remoteserver: the dynamips object that hosts the remote adapter
-            remoteadapter: An adapter or module object on another device (router, bridge, or switch)
-            localint: The interface type for the remote device
-            remoteport: A port on the remote adapter (only for routers or switches)
-        """
-
-        # Figure out the real ports
-        if remoteadapter.adapter in EMULATED_SWITCHES:
-            # This is a virtual switch that doesn't provide interface descriptors
-            dst_port = remoteport
-        else:
-            # Look at the interfaces dict to find out what the real port is as
-            # as far as dynamips is concerned
-            dst_port = remoteadapter.interfaces[remoteint][remoteport]
-
-        # Call the generalized connect function, validating first
-        if validate_connect(
-            'a',
-            remoteint,
-            src_dynamips=self.__d,
-            src_adapter=self,
-            src_port=localport,
-            dst_dynamips=remoteserver,
-            dst_adapter=remoteadapter,
-            dst_port=dst_port,
-            ):
-            gen_connect(
-                src_dynamips=self.__d,
-                src_adapter=self,
-                src_port=localport,
-                dst_dynamips=remoteserver,
-                dst_adapter=remoteadapter,
-                dst_port=dst_port,
-            )
+        self._vpivci_map[(port1, vpi1, vci1)] = (port2, vpi2, vci2)
 
     def disconnect(self, port):
         #disconnect everything on port1, delete the nio and delete all mappings.....TODO talk to Chris about redesigning the IPC
 
-        mapping = copy.deepcopy(self.__vpivci_map)
+        mapping = copy.deepcopy(self._vpivci_map)
         for key in mapping:
             #(port1, ...) = key
             if key[0] == port:
                 if len(key) == 2:
                     (port1, vpi1) = key
-                    (port2, vpi2) = self.__vpivci_map[(port1, vpi1)]
+                    (port2, vpi2) = self._vpivci_map[(port1, vpi1)]
                     #delete the pvc port1:vpi1 -> port2:vpi2
                     self.unmapvp(port1, vpi1, port2, vpi2)
                     #delete the pvc port2:vpi2 -> port1:vpi1
                     self.unmapvp(port2, vpi2, port1, vpi1)
                 elif len(key) == 3:
                     (port1, vpi1, vci1) = key
-                    (port2, vpi2, vci2) = self.__vpivci_map[(port1, vpi1, vci1)]
+                    (port2, vpi2, vci2) = self._vpivci_map[(port1, vpi1, vci1)]
                     #delete the pvc port1:vpi1:vci1 -> port2:vpi2:vci2
                     self.unmapvc(port1, vpi1, vci1, port2, vpi2, vci2)
                     #delete the pvc port2:vpi2:vci2 -> port1:vpi1:vci1
@@ -4358,16 +4351,9 @@ class ATMSW(object):
         #now delete the NIO from backend
         self.nio(port).delete()
         #delete from frontend
-        del self.__nios[port]
+        del self._nios[port]
 
-    def connected(self, interface, port):
-        """ Returns a boolean indicating if a port on this adapter is connected or not
-            interface: The interface type for the local device (e.g. 'f', 's', 'an' for "FastEthernet", "Serial", "Analysis-Module", and so forth")
-            port: A port on this adapter
-        """
-
-        return connected_general(self, interface, port)
-
+    
     def nio(self, port, nio=None):
         """ Returns the NETIO object for this port
             or if nio is set, sets the NETIO for this port
@@ -4378,91 +4364,101 @@ class ATMSW(object):
         if nio == None:
             # Return the NETIO string
             try:
-                return self.__nios[port]
+                return self._nios[port]
             except KeyError:
-                raise DynamipsWarning, 'switchport ' + str(port) + ' is not connected to anything'
+                return None
+
         if isinstance(nio, NIO):
             # Set the NETIO for this port
-            self.__nios[port] = nio
+            self._nios[port] = nio
         else:
             raise DynamipsError, 'invalid NIO type'
 
-    def __getadapter(self):
+    def _getadapter(self):
         """ Returns the adapter property
         """
 
         return 'ATMSW'
 
-    adapter = property(__getadapter, doc='The port adapter')
+    adapter = property(_getadapter, doc='The port adapter')
 
-    def __getname(self):
-        """ Returns the name property
-        """
-
-        return self.__name
-
-    name = property(__getname, doc='The device name')
-
-    def __getdynamips(self):
-        """ Returns the dynamips server on which this device resides
-        """
-
-        return self.__d
-
-    dynamips = property(__getdynamips, doc='The dynamips object associated with this device')
-
-    def __getisrouter(self):
-        """ Returns true if this device is a router
-        """
-
-        return False
-
-    isrouter = property(__getisrouter, doc='Returns true if this device is a router')
-
-    def __getvpivci_map(self):
+    def _getvpivci_map(self):
         """ Returns the vpi_map dict"""
 
-        return self.__vpivci_map
+        return self._vpivci_map
 
-    vpivci_map = property(__getvpivci_map, doc ='Returns the vpi_map dict')
+    vpivci_map = property(_getvpivci_map, doc ='Returns the vpi_map dict')
+
+    def config(self, subconfig):
+        """parse the all data structures associated with this atmsw and return the running_config properly"""
+        
+        a = 'ATMSW ' + self.name
+        subconfig[a] = {}
+        
+        #add mapping information
+        keys = self.vpivci_map.keys()
+        keys.sort()
+        for key in keys:
+            if len(key) == 2:
+                #port1, vpi1 -> port2, vpi2
+                (port1, vpi1) = key
+                (port2, vpi2) = self.vpivci_map[key]
+                subconfig[a][str(port1) + ':' + str(vpi1)] = str(port2) + ':' + str(vpi2)
+        for key in keys:
+            if len(key) == 3:
+                #port1, vpi1, vci1 -> port2, vpi2, vci1
+                (port1, vpi1, vci1) = key
+                (port2, vpi2, vci2) = self.vpivci_map[key]
+                subconfig[a][str(port1) + ':' + str(vpi1) + ':' + str(vci1)] = str(port2) + ':' + str(vpi2) + ':' + str(vci2)
+        
+        #add connection information
+        #make the keys unique
+        u = {}
+        for (x,y,z) in self.vpivci_map.keys():
+            u[x] = 1
+        ports = u.keys()
+        for port1 in ports:
+            nio = self.nio(port1)
+            subconfig[a][str(port1)] = nio.config_info()
 
 ###############################################################################
 
 
-class ETHSW(object):
+class ETHSW(Emulated_switch):
 
     """ Creates a new Ethernet switch instance
         dynamips: a Dynamips object
         name: An optional name
     """
 
-    __instance_count = 0
+    _instance_count = 0
 
     def __init__(self, dynamips, name=None, create=True):
-        self.__d = dynamips
-        self.__instance = ETHSW.__instance_count
-        ETHSW.__instance_count += 1
+        self._d = dynamips
+        self._instance = ETHSW._instance_count
+        ETHSW._instance_count += 1
         if name == None:
-            self.__name = 's' + str(self.__instance)
+            self._name = 's' + str(self._instance)
         else:
-            self.__name = name
+            self._name = name
 
         self.nios = {}  # A dict of NETIO objects indexed by switch port
         self.mapping = {} # A dict of port -> (porttype, vlan) mapping the state of ports
-
+        self.slot = {} 
+        self.slot[0] = self
         if create:
-            send(self.__d, 'ethsw create ' + self.__name)
+            send(self._d, 'ethsw create ' + self._name)
 
     def delete(self):
         """ Delete this ETH switch instance from the back end
         """
 
-        send(self.__d, 'ethsw delete ' + self.__name)
+        send(self._d, 'ethsw delete ' + self._name)
 
     def info(self):
         """return the string with info about this device"""
 
-        info = "Ethernet switch " + self.__name + " is always-on\n  Hardware is dynamips emulated simple ethernet switch\n  Switch's hypervisor runs on " + self.__d.host + ':' + str(self.__d.port) + '\n'
+        info = "Ethernet switch " + self._name + " is always-on\n  Hardware is dynamips emulated simple ethernet switch\n  Switch's hypervisor runs on " + self._d.host + ':' + str(self._d.port) + '\n'
         map_info = ''
 
         keys = self.mapping.keys()
@@ -4472,7 +4468,9 @@ class ETHSW(object):
             map = self.mapping[port1]
             (porttype, vlan, nio,twosided) = map
             map_info += '   Port '+str(port1) + ' is in ' + porttype + ' mode, with native VLAN ' + str(vlan) + ',\n    ' + nio.info() + '\n'
-
+            #add connection info
+            nio = self.nio(port1)
+            map_info += '     ' + nio.info() + '\n'
         return info + map_info
 
     def unset_port (self, port):
@@ -4484,15 +4482,17 @@ class ETHSW(object):
             nio = self.nio(port).name
         except DynamipsWarning, e:
             raise DynamipsError, e
-
+        except AttributeError, e:
+            raise DynamipsError, 'the switchport does not exist'
+        
         #not implemented yet in dynamips
-        #send(self.__d, 'ethsw unset_port ' + self.__name + ' ' + nio + ' ' + str(vlan))
+        #send(self._d, 'ethsw unset_port ' + self._name + ' ' + nio + ' ' + str(vlan))
         del self.mapping[port]
 
     def set_port(self, port, porttype, vlan):
         ''' Define a port as an access port or trunk port, and it\'s vlan
             port: the switchport
-            porttype: string of the value "access" or "dot1q"
+            porttype: string of the value "access" or "dot1q" or "qinq"
             vlan: the vlan
         '''
 
@@ -4504,70 +4504,28 @@ class ETHSW(object):
             nio = self.nio(port).name
         except DynamipsWarning, e:
             raise DynamipsError, e
-
+        except AttributeError, e:
+            raise DynamipsError, 'the switchport does not exist'
+        
         porttype = porttype.lower()
-        if porttype != 'access' and porttype != 'dot1q':
+        if porttype != 'access' and porttype != 'dot1q' and porttype != 'qinq':
             raise DynamipsError, 'invalid porttype'
 
-        send(self.__d, 'ethsw set_' + porttype + '_port ' + self.__name + ' ' + nio + ' ' + str(vlan))
+        send(self._d, 'ethsw set_' + porttype + '_port ' + self._name + ' ' + nio + ' ' + str(vlan))
         self.mapping[port] = (porttype, vlan, self.nio(port), True)
 
     def show_mac(self):
         """ Show this switch's mac address table
         """
 
-        return send(self.__d, 'ethsw show_mac_addr_table ' + self.__name)
+        return send(self._d, 'ethsw show_mac_addr_table ' + self._name)
 
     def clear_mac(self):
         """ Clear this switch's mac address table
         """
 
-        return send(self.__d, 'ethsw clear_mac_addr_table ' + self.__name)
+        return send(self._d, 'ethsw clear_mac_addr_table ' + self._name)
 
-    def connect(
-        self,
-        localport,
-        remoteserver,
-        remoteadapter,
-        remoteint,
-        remoteport=None,
-        ):
-        """ Connect this port to a port on another device
-            localport: A port on this adapter
-            remoteserver: the dynamips object that hosts the remote adapter
-            remoteadapter: An adapter or module object on another device (router, bridge, or switch)
-            localint: The interface type for the remote device
-            remoteport: A port on the remote adapter (only for routers or switches)
-        """
-
-        # Figure out the real ports
-        if remoteadapter.adapter in EMULATED_SWITCHES:
-            # This is a virtual switch that doesn't provide interface descriptors
-            dst_port = remoteport
-        else:
-            # Look at the interfaces dict to find out what the real port is as
-            # as far as dynamips is concerned
-            dst_port = remoteadapter.interfaces[remoteint][remoteport]
-
-        # Call the generalized connect function, validating first
-        if validate_connect(
-            'e',
-            remoteint,
-            src_dynamips=self.__d,
-            src_adapter=self,
-            src_port=localport,
-            dst_dynamips=remoteserver,
-            dst_adapter=remoteadapter,
-            dst_port=dst_port,
-            ):
-            gen_connect(
-                src_dynamips=self.__d,
-                src_adapter=self,
-                src_port=localport,
-                dst_dynamips=remoteserver,
-                dst_adapter=remoteadapter,
-                dst_port=dst_port,
-            )
 
     def disconnect(self, port):
         try:
@@ -4575,17 +4533,10 @@ class ETHSW(object):
         except DynamipsWarning, e:
             raise DynamipsError, e
 
-        send(self.__d, 'ethsw remove_nio %s %s' % (self.__name, nio))
+        send(self._d, 'ethsw remove_nio %s %s' % (self._name, nio))
         del self.mapping[port]
 
-    def connected(self, interface, port):
-        """ Returns a boolean indicating if a port on this adapter is connected or not
-            interface: The interface type for the local device (e.g. 'f', 's', 'an' for "FastEthernet", "Serial", "Analysis-Module", and so forth")
-            port: A port on this adapter
-        """
-
-        return connected_general(self, interface, port)
-
+    
     def nio(
         self,
         port,
@@ -4605,10 +4556,10 @@ class ETHSW(object):
             try:
                 return self.nios[port]
             except KeyError:
-                raise DynamipsWarning, 'switchport ' + str(port) + ' is not connected to anything'
+                return None
 
         if isinstance(nio, NIO):
-            send(self.__d, 'ethsw add_nio %s %s' % (self.__name, nio.name))
+            send(self._d, 'ethsw add_nio %s %s' % (self._name, nio.name))
         else:
             raise DynamipsError, 'invalid NIO type'
 
@@ -4616,10 +4567,10 @@ class ETHSW(object):
         self.nios[port] = nio
         if porttype != None:
             porttype = porttype.lower()
-            if porttype != 'access' and porttype != 'dot1q':
+            if porttype != 'access' and porttype != 'dot1q' and porttype!= 'qinq':
                 raise DynamipsError, 'invalid porttype'
 
-            send(self.__d, 'ethsw set_' + porttype + '_port ' + self.__name + ' ' + nio.name + ' ' + str(vlan))
+            send(self._d, 'ethsw set_' + porttype + '_port ' + self._name + ' ' + nio.name + ' ' + str(vlan))
             self.mapping[port] = (porttype, vlan, nio, False)
 
     def __getadapter(self):
@@ -4630,29 +4581,17 @@ class ETHSW(object):
 
     adapter = property(__getadapter, doc='The port adapter')
 
-    def __getname(self):
-        """ Returns the name property
-        """
+    def config(self, subconfig):
+        """parse the all data structures associated with this ethsw and update the running_config properly"""
 
-        return self.__name
+        e = 'ETHSW ' + self.name
+        subconfig[e] = {}
 
-    name = property(__getname, doc='The device name')
-
-    def __getdynamips(self):
-        """ Returns the dynamips server on which this device resides
-        """
-
-        return self.__d
-
-    dynamips = property(__getdynamips, doc='The dynamips object associated with this device')
-
-    def __getisrouter(self):
-        """ Returns true if this device is a router
-        """
-
-        return False
-
-    isrouter = property(__getisrouter, doc='Returns true if this device is a router')
+        keys = self.mapping.keys()
+        keys.sort()
+        for port1 in keys:
+            (porttype, vlan, nio)= self.mapping[port1]
+            subconfig[e][str(port1)] = porttype + ' ' + str(vlan) + ' ' + nio.config_info()
 
 
 ###############################################################################
@@ -4702,6 +4641,8 @@ def send(dynamips, command):
                 #debug('Chunk: ' + chunk)
                 buf += chunk
             except:
+                print 'Error: timed out communicating with %s server %s' % (dynamips.type, dynamips.host)
+                print 'Exiting...'
                 raise DynamipsErrorHandled
 
             # if the buffer doesn't end in '\n' then we can't be done
@@ -4861,7 +4802,7 @@ def validate_connect(
         raise DynamipsError, 'cannot connect %s to %s' % (i1, i2)
 
     #check whether there is not already an existing connection on local int
-    if isinstance(src_adapter, BaseAdapter) and isinstance(dst_adapter, BaseAdapter):
+    if (isinstance(src_adapter, BaseAdapter) and isinstance(dst_adapter, BaseAdapter)) or (isinstance(src_adapter, Emulated_switch) and isinstance(dst_adapter, Emulated_switch)) or (isinstance(src_adapter, Emulated_switch) and isinstance(dst_adapter, BaseAdapter)) or (isinstance(src_adapter, BaseAdapter) and isinstance(dst_adapter, Emulated_switch)):
         local_nio = src_adapter.nio(src_port)
         remote_nio = dst_adapter.nio(dst_port)
         if local_nio != None or remote_nio != None:
@@ -4891,8 +4832,7 @@ def validate_connect(
             if local_nio == None:  # only remote_nio must be occupied
                 raise DynamipsError, 'destination port is already occupied by a different connection'
             elif remote_nio == None:  # only local_nio must be occupied
-                #raise DynamipsError, 'source port is already occupied by a different connection'
-                return False
+                raise DynamipsError, 'source port is already occupied by a different connection'
             elif local_nio != None and remote_nio != None:  #both are occupied
                 #check whether this is not a reverse UDP connection
                 if type(remote_nio) == NIO_udp:
@@ -4997,7 +4937,7 @@ def debug(string):
 
 
 if __name__ == '__main__':
-
+    import sys
     sys.exit(0)
 
     # Testing

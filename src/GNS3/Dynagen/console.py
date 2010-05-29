@@ -3,7 +3,7 @@
 
 """
 console.py
-Copyright (C) 2006, 2007  Greg Anuzelli
+Copyright (C) 2006-2010  Greg Anuzelli
 contributions: Pavel Skovajsa
 
 Derived from recipe on ASPN Cookbook
@@ -29,7 +29,8 @@ import time
 import StringIO
 import csv
 import base64
-from dynamips_lib import DynamipsError, DynamipsWarning, IDLEPROPGET, IDLEPROPSHOW, IDLEPROPSET
+import sys
+from dynamips_lib import Router, Emulated_switch, DynamipsError, DynamipsWarning, IDLEPROPGET, IDLEPROPSHOW, IDLEPROPSET
 from configobj import ConfigObj
 from confConsole import AbstractConsole, confHypervisorConsole, confConsole
 
@@ -47,6 +48,45 @@ try:
 except ImportError:
     pass
 
+# Progress bar class from http://code.activestate.com/recipes/168639/
+class progressBar:
+    def __init__(self, minValue = 0, maxValue = 10, totalWidth=12):
+        self.progBar = "[]"   # This holds the progress bar string
+        self.min = minValue
+        self.max = maxValue
+        self.span = maxValue - minValue
+        self.width = totalWidth
+        self.amount = 0       # When amount == max, we are 100% done 
+        self.updateAmount(0)  # Build progress bar string
+
+    def updateAmount(self, newAmount = 0):
+        if newAmount < self.min: newAmount = self.min
+        if newAmount > self.max: newAmount = self.max
+        self.amount = newAmount
+
+        # Figure out the new percent done, round to an integer
+        diffFromMin = float(self.amount - self.min)
+        percentDone = (diffFromMin / float(self.span)) * 100.0
+        percentDone = round(percentDone)
+        percentDone = int(percentDone)
+
+        # Figure out how many hash bars the percentage should be
+        allFull = self.width - 2
+        numHashes = (percentDone / 100.0) * allFull
+        numHashes = int(round(numHashes))
+
+        # build a progress bar with hashes and spaces
+        self.progBar = "[" + '#'*numHashes + ' '*(allFull-numHashes) + "]"
+
+        # figure out where to put the percentage, roughly centered
+        percentPlace = (len(self.progBar) / 2) - len(str(percentDone)) 
+        percentString = str(percentDone) + "%"
+
+        # slice the percentage into the bar
+        self.progBar = self.progBar[0:percentPlace] + percentString + self.progBar[percentPlace+len(percentString):]
+
+    def __str__(self):
+        return str(self.progBar)
 
 class Console(AbstractConsole):
 
@@ -55,9 +95,24 @@ class Console(AbstractConsole):
     def __init__(self, dynagen):
         AbstractConsole.__init__(self)
         self.prompt = '=> '
-        self.intro  = 'Dynagen management console for Dynamips and Qemuwrapper ' + self.namespace.VERSION + '\nCopyright (c) 2005-2007 Greg Anuzelli, contributions Pavel Skovajsa\n'
+        self.intro  = 'Dynagen management console for Dynamips and Qemuwrapper ' + self.namespace.VERSION + '\nCopyright (c) 2005-2010 Greg Anuzelli, contributions Pavel Skovajsa & Jeremy Grossman\n'
         self.dynagen = dynagen
     ## Command definitions ##
+
+    def delayWithProgress(self, seconds):
+        """ Sleep while displaying a progresss bar
+        """
+        width = 40      # Width of progress bar in characters
+        interval = float(seconds)/width
+        prog = progressBar(0, seconds, width)
+        i=0
+        while i < seconds:
+            i += interval
+            prog.updateAmount(i)
+            print width*"\b",
+            print prog, "\r",
+            time.sleep(interval)
+        print
 
     def do_list(self, args):
         """list
@@ -195,7 +250,9 @@ conf
 \tstart all or a specific router(s)
 \tFor start /all only, a delay can be specified. Dynagen will pause this many seconds between starting devices.
         """
-
+        import __main__
+        startdelay = __main__.startdelay
+        
         if '?' in args or args.strip() == "":
             print self.do_start.__doc__
             return
@@ -205,8 +262,8 @@ conf
             try:
                 delay = devices[1]
             except IndexError:
-                # No delay specified
-                delay = 0
+                # No delay specified, use default
+                delay = startdelay
             try:
                 delay = int(delay)
             except ValueError:
@@ -227,7 +284,7 @@ conf
                     if delay != 0 and device != self.dynagen.devices.values()[-1]:
                         # don't delay if there is none or if this is the last device
                         print 'Delaying start of next device for %i seconds...' % delay
-                        time.sleep(delay)
+                        self.delayWithProgress(delay)
                 except IndexError:
                     pass
                 except AttributeError:
@@ -247,7 +304,8 @@ conf
                         device.idlepc = self.dynagen.useridledb[device.imagename]
                     else:
                         print 'Warning: Starting %s with no idle-pc value' % device.name
-                self.dynagen.check_ghost_file(device)
+                if not self.dynagen.check_ghost_file(device):
+                    return
                 self.dynagen.jitsharing()
                 for line in device.start():
                     print line.strip()
@@ -456,7 +514,7 @@ And big thanks of course to Christophe Fillot as the author of Dynamips.
             output = []
             for device in self.dynagen.devices.values():
                 #if it is a router or other emulated device
-                if isinstance(device, (self.namespace.Router, self.namespace.AnyEmuDev, self.namespace.FRSW, self.namespace.ATMBR, self.namespace.ATMSW, self.namespace.ETHSW)):
+                if isinstance(device, (self.namespace.Router, self.namespace.AnyEmuDevice, self.namespace.FRSW, self.namespace.ATMBR, self.namespace.ATMSW, self.namespace.ETHSW)):
                     output.append(device.info())
             output.sort()
             for devinfo in output:
@@ -465,7 +523,7 @@ And big thanks of course to Christophe Fillot as the author of Dynamips.
             #if this is 'show device {something}' command print info about specific device
             try:
                 device = self.dynagen.devices[params[1]]
-                if isinstance(device, (self.namespace.Router, self.namespace.AnyEmuDev, self.namespace.FRSW, self.namespace.ATMBR, self.namespace.ATMSW, self.namespace.ETHSW)):
+                if isinstance(device, (self.namespace.Router, self.namespace.AnyEmuDevice, self.namespace.FRSW, self.namespace.ATMBR, self.namespace.ATMSW, self.namespace.ETHSW)):
                     print device.info()
             except KeyError:
                 error('unknown device: ' + params[1])
@@ -843,7 +901,7 @@ show run <device_name>
 \tfilter R1 s1/0 freq_drop in 50   -- Drops 1 out of every 50 packets inbound to R1 s1/0
 \tfilter R1 s1/0 none in           -- Removes all inbound filters from R1 s1/0
 \tfilter R1 s1/0 monitor both eth2           -- Span all traffic on s1/0 to eth2"""
-        
+
 
         filters = ['freq_drop', 'capture', 'monitor', 'none']  # The known list of filters
 
@@ -876,14 +934,16 @@ show run <device_name>
 
         # Parse out the slot and port
         match_obj = self.namespace.interface_re.search(interface)
-        if match_obj:
-            try:
-                (inttype, slot, port) = match_obj.group(1, 2, 3)
-                slot = int(slot)
-                port = int(port)
-            except ValueError:
-                print 'Error parsing interface descriptor: ' + interface
-                return
+        if not match_obj:
+            print 'Error parsing interface descriptor: ' + interface
+            return
+        try:
+            (inttype, slot, port) = match_obj.group(1, 2, 3)
+            slot = int(slot)
+            port = int(port)
+        except ValueError:
+            print 'Error parsing interface descriptor: ' + interface
+            return
         else:
             # Try checking for WIC interface specification (e.g. S1)
             match_obj = self.namespace.interface_noport_re.search(interface)
@@ -940,92 +1000,11 @@ show run <device_name>
   no capture R1 s0/0                    -- End the packet capture
         '''
 
-        # link type transformation
-        linkTransform = {'ETH': 'EN10MB', 'FR': 'FRELAY', 'HDLC': 'C_HDLC', 'PPP': 'PPP_SERIAL'}
-
         if '?' in args or args.strip() == "":
             print self.do_capture.__doc__
             return
 
-        try:
-            if len(args.split(" ")) > 3:
-                (device, interface, filename, linktype) = args.split(" ", 3)
-                try:
-                    linktype = linktype.upper()
-                    linktype = linkTransform[linktype]
-                except KeyError:
-                    print 'Invalid linktype: ' + linktype
-                    return
-            else:
-
-                (device, interface, filename) = args.split(" ", 2)
-                linktype = None
-        except ValueError:
-            print self.do_capture.__doc__
-            return
-
-        if device not in self.dynagen.devices:
-            print 'Unknown device: ' + device
-            return
-
-        # Parse out the slot and port
-        match_obj = self.namespace.interface_re.search(interface)
-        if match_obj:
-            try:
-                (inttype, slot, port) = match_obj.group(1, 2, 3)
-                slot = int(slot)
-                port = int(port)
-            except ValueError:
-                print 'Error parsing interface descriptor: ' + interface
-                return
-        else:
-            # Try checking for WIC interface specification (e.g. S1)
-            match_obj = self.namespace.interface_noport_re.search(interface)
-            if not match_obj:
-                print 'Error parsing interface descriptor: ' + interface
-                return
-            (inttype, port) = match_obj.group(1, 2)
-            slot = 0
-
-        if linktype == None:
-            if inttype.lower() in [
-                'e',
-                'et',
-                'f',
-                'fa',
-                'g',
-                'gi',
-                ]:
-                linktype = 'EN10MB'
-            elif inttype.lower() in ['s', 'se']:
-                print 'Error: Link type must be specified for serial interfaces'
-                return
-            else:
-                print 'Error: Packet capture is not supported on this interface type'
-                return
-
-        interface = inttype[0].lower()
-
-        # Apply the filter
-        try:
-            self.dynagen.devices[device].slot[slot].filter(
-                interface,
-                port,
-                'capture',
-                'both',
-                linktype + " " + filename,
-                )
-        except DynamipsError, e:
-            print e
-            return
-        except DynamipsWarning, e:
-            print "Note: " + str(e)
-        except IndexError:
-            print 'Error: No such interface %s on device %s' % (interface, device)
-            return
-        except AttributeError:
-            print 'Error: Interface %s on device %s is not connected' % (interface, device)
-            return
+        self.dynagen.capture(args)
 
     def do_no(self, args):
         """negates a command
@@ -1038,51 +1017,10 @@ show run <device_name>
         try:
             (command, options) = args.split(" ", 1)
             if command.lower() == 'capture':
-                if len(options.split(" ")) == 2:
-                    (device, interface) = options.split(" ", 1)
-                else:
-                    print 'Error parsing command'
-                    return
+                self.dynagen.no_capture(options)
         except ValueError:
             print 'Error parsing command'
             return
-
-        if device not in self.dynagen.devices:
-            print 'Unknown device: ' + device
-            return
-
-        # Parse out the slot and port
-        match_obj = self.namespace.interface_re.search(interface)
-        if match_obj:
-            try:
-                (inttype, slot, port) = match_obj.group(1, 2, 3)
-                slot = int(slot)
-                port = int(port)
-            except ValueError:
-                print 'Error parsing interface descriptor: ' + interface
-                return
-        else:
-            # Try checking for WIC interface specification (e.g. S1)
-            match_obj = self.namespace.interface_noport_re.search(interface)
-            if not match_obj:
-                print 'Error parsing interface descriptor: ' + interface
-                return
-            (inttype, port) = match_obj.group(1, 2)
-            slot = 0
-
-        interface = inttype[0].lower()
-        # Remove the filter
-        try:
-            self.dynagen.devices[device].slot[slot].filter(interface, port, 'none', 'both')
-        except DynamipsError, e:
-            print e
-            return
-        except DynamipsWarning, e:
-            print "Note: " + str(e)
-        except IndexError:
-            print 'No such interface %s on device %s' % (interface, device)
-            return
-
     def do_send(self, args):
         """send [host] commandstring
 \tsend a raw hypervisor command to a dynamips server
@@ -1446,7 +1384,7 @@ Examples:
     
             os.system(telnetstring)
             time.sleep(0.5)  # Give the telnet client a chance to start
-    
+
     def debug(self, string):
         """ Print string if debugging is true"""
     
