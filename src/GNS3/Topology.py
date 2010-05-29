@@ -721,25 +721,25 @@ class Topology(QtGui.QGraphicsScene):
             return
         elif not isinstance(src_node, IOSRouter) and not isinstance(dst_node, IOSRouter):
 
-            if (isinstance(src_node, ETHSW) and not type(dst_node) in (IOSRouter, Cloud, QemuDevice, FW, ASA, JunOS, IDS)) or (isinstance(dst_node, ETHSW) and not type(src_node) in (IOSRouter, Cloud, QemuDevice, FW, ASA, JunOS, IDS)) \
-                or (type(src_node) in (ATMSW, FRSW, ATMBR) and not isinstance(dst_node, IOSRouter)) or (type(dst_node) in (ATMSW, FRSW, ATMBR) and not isinstance(src_node, IOSRouter)) \
-                or (isinstance(src_node, AnyEmuDevice) and isinstance(dst_node, Cloud)) or (isinstance(dst_node, AnyEmuDevice) and isinstance(src_node, Cloud)):
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "Can't connect these devices"))
-                return False
-            elif (isinstance(dst_node, Cloud) or isinstance(dst_node,AnyEmuDevice)) and isinstance(src_node, ETHSW):
-                if not src_node.hypervisor:
-                    debug('Allocate a hypervisor for ethsw ' + src_node.hostname)
-                    if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(src_node):
-                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "You have to connect at least one router to the switch"))
-                        return False
-                    src_node.get_dynagen_device()
-            elif (isinstance(src_node, Cloud) or isinstance(src_node, AnyEmuDevice)) and isinstance(dst_node, ETHSW):
-                if not dst_node.hypervisor:
-                    debug('Allocate a hypervisor for ethsw ' + dst_node.hostname)
-                    if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(dst_node):
-                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "You have to connect at least one router to the switch"))
-                        return False
-                    dst_node.get_dynagen_device()
+#            if (isinstance(src_node, ETHSW) and not type(dst_node) in (IOSRouter, Cloud, QemuDevice, FW, ASA, JunOS, IDS)) or (isinstance(dst_node, ETHSW) and not type(src_node) in (IOSRouter, Cloud, QemuDevice, FW, ASA, JunOS, IDS)) \
+#                or (type(src_node) in (ATMSW, FRSW, ATMBR) and not isinstance(dst_node, IOSRouter)) or (type(dst_node) in (ATMSW, FRSW, ATMBR) and not isinstance(src_node, IOSRouter)) \
+#                or (isinstance(src_node, AnyEmuDevice) and isinstance(dst_node, Cloud)) or (isinstance(dst_node, AnyEmuDevice) and isinstance(src_node, Cloud)):
+#                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "Can't connect these devices"))
+#                return False
+            #if (isinstance(dst_node, Cloud) or isinstance(dst_node,AnyEmuDevice)) and isinstance(src_node, ETHSW):
+            if not src_node.hypervisor:
+                debug('Allocate a hypervisor for ethsw ' + src_node.hostname)
+                if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(src_node):
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "You have to connect at least one router to the switch"))
+                    return False
+
+            #elif (isinstance(src_node, Cloud) or isinstance(src_node, AnyEmuDevice)) and isinstance(dst_node, ETHSW):
+            if not dst_node.hypervisor:
+                debug('Allocate a hypervisor for ethsw ' + dst_node.hostname)
+                if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(dst_node):
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "You have to connect at least one router to the switch"))
+                    return False
+
         else:
             if not isinstance(src_node, IOSRouter) and not isinstance(src_node, Cloud) and not isinstance(src_node, AnyEmuDevice) and not src_node.hypervisor:
                 debug('Set hypervisor ' + dst_node.hypervisor.host + ':' + str(dst_node.hypervisor.port) + ' to ' + src_node.hostname)
@@ -749,8 +749,8 @@ class Topology(QtGui.QGraphicsScene):
                 dst_node.set_hypervisor(src_node.hypervisor)
 
         try:
-            if isinstance(src_node, IOSRouter) or isinstance(src_node, AnyEmuDevice):
-                srcdev = self.__nodes[srcid].get_dynagen_device()
+            if isinstance(src_node, IOSRouter) or isinstance(src_node, AnyEmuDevice) or type(src_node) in (ETHSW, ATMSW, ATMBR, FRSW):
+                srcdev = src_node.get_dynagen_device()
                 if type(dst_node) == Cloud:
                     debug('Connect link from ' + srcdev.name + ' ' + srcif +' to ' + dstif)
                     self.dynagen.connect(srcdev, srcif, dstif)
@@ -758,7 +758,7 @@ class Topology(QtGui.QGraphicsScene):
                     dstdev = dst_node.get_dynagen_device()
                     debug('Connect link from ' + srcdev.name + ' ' + srcif +' to ' + dstdev.name + ' ' + dstif)
                     self.dynagen.connect(srcdev, srcif, dstdev.name + ' ' + dstif)
-            elif isinstance(dst_node, IOSRouter) or isinstance(dst_node, AnyEmuDevice):
+            elif isinstance(dst_node, IOSRouter) or isinstance(dst_node, AnyEmuDevice) or type(dst_node) in (ETHSW, ATMSW, ATMBR, FRSW):
                 dstdev = dst_node.get_dynagen_device()
                 if type(src_node) == Cloud:
                     debug('Connect link from ' + dstdev.name + ' ' + srcif +' to ' + dstif)

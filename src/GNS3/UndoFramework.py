@@ -264,6 +264,8 @@ class NewConsolePort(QtGui.QUndoCommand):
             self.node.setCustomToolTip()
         except lib.DynamipsError, msg:
             self.status = msg
+        except (lib.DynamipsErrorHandled, socket.error):
+            self.status = translate("UndoFramework", "Connection lost")
         
     def undo(self):
         

@@ -4590,7 +4590,7 @@ class ETHSW(Emulated_switch):
         keys = self.mapping.keys()
         keys.sort()
         for port1 in keys:
-            (porttype, vlan, nio)= self.mapping[port1]
+            (porttype, vlan, nio, unused)= self.mapping[port1]
             subconfig[e][str(port1)] = porttype + ' ' + str(vlan) + ' ' + nio.config_info()
 
 

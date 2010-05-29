@@ -3,7 +3,7 @@
 
 """
 dynagen
-Copyright (C) 2006, 2007  Greg Anuzelli
+Copyright (C) 2006-2010  Greg Anuzelli
 contributions: Pavel Skovajsa
 
 This program is free software; you can redistribute it and/or
@@ -33,14 +33,14 @@ from dynamips_lib import Dynamips, PA_C7200_IO_FE, PA_A1, PA_FE_TX, PA_4T, PA_8T
      C2691, C3725, C3745, GT96100_FE, C2600, \
      CISCO2600_MB_1E, CISCO2600_MB_2E, CISCO2600_MB_1FE, CISCO2600_MB_2FE, PA_2FE_TX, \
      PA_GE, PA_C7200_IO_2FE, PA_C7200_IO_GE_E, C1700, CISCO1710_MB_1FE_1E, C1700_MB_1ETH, \
-     DynamipsVerError, DynamipsErrorHandled, NM_CIDS, NM_NAM, get_reverse_udp_nio
+     DynamipsVerError, DynamipsErrorHandled, NM_CIDS, NM_NAM, get_reverse_udp_nio, Dynamips_device, Emulated_switch
 from qemu_lib import Qemu, QemuDevice, AnyEmuDevice, FW, ASA, JunOS, IDS, nosend_qemu
 from validate import Validator
 from configobj import ConfigObj, flatten_errors
 from optparse import OptionParser
 
 # Constants
-VERSION = '0.11.0.090615'
+VERSION = '0.12.100515'
 CONFIGSPECPATH = ['/usr/share/dynagen', '/usr/local/share']
 CONFIGSPEC = 'configspec'
 INIPATH = ['/etc', '/usr/local/etc']
@@ -126,12 +126,13 @@ ADAPTER_TRANSFORM = {
 # Globals
 notelnet = False  # Flag to disable telnet (for gDynagen)
 telnetstring = ''  # global telnet string value for telneting onto consoles
+startdelay = 0     # global delay between router startup 
 interface_re = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po|i|id|IDS-Sensor|an|Analysis-Module)([0-9]+)\/([0-9]+)""", re.IGNORECASE)  # Regex matching intefaces
 interface_noport_re = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)""", re.IGNORECASE)  # Regex matching intefaces with out a port (e.g. "f0")
 qemu_int_re = re.compile(r"""^(e|et|eth)([0-9])""", re.IGNORECASE)
-number_re = re.compile(r"""^[0-9]*$""")  # Regex matching numbers
-mapint_re = re.compile(r"""^([0-9]*):([0-9]*)$""")  # Regex matching Frame Relay mappings or ATM vpi mappings
-mapvci_re = re.compile(r"""^([0-9]*):([0-9]*):([0-9]*)$""")  # Regex matching ATM vci mappings
+number_re = re.compile(r"""^[0-9]+$""")  # Regex matching numbers
+mapint_re = re.compile(r"""^([0-9]+):([0-9]+)$""")  # Regex matching Frame Relay mappings or ATM vpi mappings
+mapvci_re = re.compile(r"""^([0-9]+):([0-9]+):([0-9]+)$""")  # Regex matching ATM vci mappings
 ethswint_re = re.compile(r"""^([0-9]+)""")  # Regex mating a number (means an Ethernet switchport config)
 
 # determine if we are in the debugger
@@ -162,6 +163,7 @@ class Dynagen:
         self.global_filename = 'lab.net'
         self.autostart_value = False
         self.globaludp = 10000  # The default base UDP port for NIO
+        self.global_qemu_udp = 20000   # The default base UDP port for NIO on Qemuwrapper
         self.useridledbfile = ''  # The filespec of the idle database
         self.useridledb = None  # Dictionary of idle-pc values from the user database, indexed by image name
         self.debuglevel = 0  # The debug level
@@ -189,6 +191,13 @@ class Dynagen:
             'sparsemem',
             'image',
             'cnfg',
+            ]
+
+        self.generic_fw_options = [
+            'image',
+            'ram',
+            'key',
+            'serial',
             ]
 
         self.defaults_config_ran = False
@@ -250,7 +259,7 @@ class Dynagen:
 
             if option == 'ghostios':
                 self.ghosteddevices[device.name] = value
-                
+
             if option == 'jitsharing':
                 self.jitshareddevices[device.name] = value
 
@@ -454,6 +463,88 @@ class Dynagen:
             #disconnect remote from local, delete the nio and delete all mappings.....TODO talk to Chris about redesigning the IPC
             remote_device.disconnect(port2)
 
+    def _parse_interface_part_of_connection(self, device, interface):
+        """Parse interface part of connection 
+           interface: the string to parse
+        """
+        
+        if isinstance(device, Emulated_switch):
+            #if the left side is emulated switch port
+                match_obj = number_re.search(interface)
+                if match_obj:
+                    port2 = int(interface)
+                    # Should be a switch port
+                    self.debug('a switch port: ' + str(interface))
+
+                    if device.adapter == 'ETHSW':
+                        pa2 = 'f'  # Ethernet switches are FastEthernets (for our purposes anyway)
+                    elif device.adapter == 'FRSW':
+                        pa2 = 's'  # Frame Relays switches are Serials
+                    elif device.adapter == 'ATMSW':
+                        pa2 = 'a'  # And ATM switches are, well, ATM interfaces
+                    elif device.adapter == 'ATMBR':
+                        pa2 = 'a'
+                    else:
+                        raise DynamipsError, device.name + ' is not a Dynamips emulated simple switch'
+                    return (pa2, 0, port2)
+                else:
+                    raise DynamipsError, 'Dynamips emulated simple switch connections consist of interface number only'
+                
+        else:#if this is something similar to fa0/1 = pa1slot1/port1
+            match_obj = interface_re.search(interface)
+            if match_obj:
+                (pa1, slot1, port1) = match_obj.group(1, 2, 3)
+                if pa1[:2].lower() == 'an':
+                    # need to use two chars for Analysis-Module
+                    pa1 = pa1[:2].lower()
+                else:
+                    pa1 = pa1.lower()[0]
+                return (pa1, int(slot1), int(port1))
+   
+            else:
+                # is this an interface without a port designation (e.g. "f0") = pa1port1
+                match_obj = interface_noport_re.search(interface)
+                if match_obj:
+                    (pa1, port1) = match_obj.group(1, 2)
+                    pa1 = pa1.lower()[0]
+                    return (pa1, 0, int(port1))             
+    
+    def _parse_right_side_of_connection(self, dest):
+        """Parse right side of connection 
+           right_side: the string to parse
+        """
+        try:
+            (devname, interface) = dest.split(' ')
+
+            #check if this is not a connection to dynamips emulate bridge
+            if devname.lower() == 'lan':
+                self.debug('a LAN interface ' + str(dest))
+                match_obj = number_re.search(interface)
+                if match_obj:
+                    return (devname.lower(), 0, 0, int(interface), 'Bridge')
+                else:
+                    raise DynamipsError, 'the LAN interface must be a number'
+            
+            #if this is normal connection to another device
+            if devname not in self.devices:
+                raise DynamipsError, 'nonexistent device ' + devname
+            remote_device = self.devices[devname]
+            
+            #use the same function for interface as left side
+            (pa2, slot2, port2) =  self._parse_interface_part_of_connection(remote_device, interface)
+            return (remote_device, pa2, slot2, port2, 'AutoUDP')
+        except ValueError:
+            #the dest.split did not work so there are no spaces on the right side of connection
+            if not dest[:4].lower() == 'nio_':
+                self.debug('Malformed destination:' + str(dest))
+                raise DynamipsError, 'Malformed right side of connection'
+            try:
+                self.debug('A NETIO: ' + str(dest))
+                (niotype, niostring) = dest.split(':', 1)
+                return (niotype.lower(), niostring, 0, 0, 'Manual')
+            except ValueError:
+                self.debug('Malformed NETIO:' + str(dest))
+                raise DynamipsError, 'Malformed NETIO:'
 
     def connect(self, local_device, source, dest):
         """ Connect a device to something
@@ -461,120 +552,74 @@ class Dynagen:
             source: a string specifying the local interface
             dest: a string specifying a device and a remote interface, LAN, a raw NIO
         """
+        #parse the left side of connection
+        (pa1, slot1, port1) = self._parse_interface_part_of_connection(local_device, source)
 
-        match_obj = interface_re.search(source)
-        if not match_obj:
-            # is this an interface without a port designation (e.g. "f0")?
-            match_obj = interface_noport_re.search(source)
-            if not match_obj:
-                return False
-            else:
-                (pa1, port1) = match_obj.group(1, 2)
-                slot1 = 0
-        else:
-            (pa1, slot1, port1) = match_obj.group(1, 2, 3)
-
-        if pa1[:2].lower() == 'an':
-            # need to use two chars for Analysis-Module
-            pa1 = pa1[:2].lower()
-        else:
-            pa1 = pa1.lower()[0]  # Only care about first character
-        slot1 = int(slot1)
-        port1 = int(port1)
-        try:
-            (devname, interface) = dest.split(' ')
-        except ValueError:
-            # Must be either a NIO or malformed
-            if not dest[:4].lower() == 'nio_':
-                self.debug('Malformed destination:' + str(dest))
-                return False
-            try:
-                self.debug('A NETIO: ' + str(dest))
-                (niotype, niostring) = dest.split(':', 1)
-            except ValueError:
-                self.debug('Malformed NETIO:' + str(dest))
-                return False
-
-            #create the necessary adaptor
+        #create the necessary adaptor
+        if isinstance(local_device, Router) or isinstance(local_device, AnyEmuDevice):
             self.smartslot(local_device, pa1, slot1, port1)
-
             # Look at the interfaces dict to find out what the real port is as
             # as far as dynamips is concerned
-            try:
-                realPort = local_device.slot[slot1].interfaces[pa1][port1]
-            except AttributeError:
-                raise DynamipsError, 'Device does not support this type of NIO. Use an ETHSW to bridge the connection to the NIO instead.'
-
+            if isinstance(local_device, Router):
+                try:
+                    realPort = local_device.slot[slot1].interfaces[pa1][port1]
+                except AttributeError:
+                    raise DynamipsError, 'Device does not support this type of NIO. Use an ETHSW to bridge the connection to the NIO instead.'
+            
+      
+        #parse the right side of connection
+        (x1,x2,x3,x4,conn_type) = self._parse_right_side_of_connection(dest)
+        
+        #if the right side is manual nio specification f0/0 = nio_get_eth::
+        if conn_type == 'Manual':
+            niotype = x1
+            niostring = x2
             # Process the netio
-            if niotype.lower() == 'nio_linux_eth':
-                self.debug('NIO_linux_eth ' + str(dest))
-                local_device.slot[slot1].nio(realPort, nio=NIO_linux_eth(local_device.dynamips, interface=niostring))
-            elif niotype.lower() == 'nio_gen_eth':
-
-                self.debug('gen_eth ' + str(dest))
-                local_device.slot[slot1].nio(realPort, nio=NIO_gen_eth(local_device.dynamips, interface=niostring))
-            elif niotype.lower() == 'nio_udp':
-
-                self.debug('udp ' + str(dest))
-                (udplocal, remotehost, udpremote) = niostring.split(':', 2)
-                local_device.slot[slot1].nio(realPort, nio=NIO_udp(local_device.dynamips, int(udplocal), str(remotehost), int(udpremote)))
-            elif niotype.lower() == 'nio_null':
-
-                self.debug('nio null')
-                local_device.slot[slot1].nio(realPort, nio=NIO_null(local_device.dynamips, name=niostring))
-            elif niotype.lower() == 'nio_tap':
-
-                self.debug('nio tap ' + str(dest))
-                local_device.slot[slot1].nio(realPort, nio=NIO_tap(local_device.dynamips, niostring))
-            elif niotype.lower() == 'nio_unix':
-
-                self.debug('unix ' + str(dest))
-                (unixlocal, unixremote) = niostring.split(':', 1)
-                local_device.slot[slot1].nio(realPort, nio=NIO_unix(local_device.dynamips, unixlocal, unixremote))
-            elif niotype.lower() == 'nio_vde':
-
-                self.debug('vde ' + str(dest))
-                (controlsock, localsock) = niostring.split(':', 1)
-                local_device.slot[slot1].nio(realPort, nio=NIO_vde(local_device.dynamips, controlsock, localsock))
-            else:
-                # Bad NIO
+            try:
+                if niotype == 'nio_linux_eth':
+                    self.debug('NIO_linux_eth ' + str(dest))
+                    local_device.slot[slot1].nio(realPort, nio=NIO_linux_eth(local_device.dynamips, interface=niostring))
+                elif niotype == 'nio_gen_eth':
+                    self.debug('gen_eth ' + str(dest))
+                    local_device.slot[slot1].nio(realPort, nio=NIO_gen_eth(local_device.dynamips, interface=niostring))
+                elif niotype == 'nio_udp':
+                    self.debug('udp ' + str(dest))
+                    (udplocal, remotehost, udpremote) = niostring.split(':', 2)
+                    local_device.slot[slot1].nio(realPort, nio=NIO_udp(local_device.dynamips, int(udplocal), str(remotehost), int(udpremote)))
+                elif niotype == 'nio_null':
+                    self.debug('nio null')
+                    local_device.slot[slot1].nio(realPort, nio=NIO_null(local_device.dynamips, name=niostring))
+                elif niotype == 'nio_tap':
+                    self.debug('nio tap ' + str(dest))
+                    local_device.slot[slot1].nio(realPort, nio=NIO_tap(local_device.dynamips, niostring))
+                elif niotype == 'nio_unix':
+                    self.debug('unix ' + str(dest))
+                    (unixlocal, unixremote) = niostring.split(':', 1)
+                    local_device.slot[slot1].nio(realPort, nio=NIO_unix(local_device.dynamips, unixlocal, unixremote))
+                elif niotype == 'nio_vde':
+                    self.debug('vde ' + str(dest))
+                    (controlsock, localsock) = niostring.split(':', 1)
+                    local_device.slot[slot1].nio(realPort, nio=NIO_vde(local_device.dynamips, controlsock, localsock))
+                else:
+                    # Bad NIO
+                    raise DynamipsError, 'bad NIO specified'
+                return True
+            except ValueError:
                 raise DynamipsError, 'bad NIO specified'
-            return True
-
-        match_obj = interface_re.search(interface)
-        if match_obj:
-            # Connecting to another interface
-            (pa2, slot2, port2) = match_obj.group(1, 2, 3)
-        else:
-            match_obj = interface_noport_re.search(interface)
-            if match_obj:
-                # Connecting to another "portless" interface e.g. "f0"
-                (pa2, port2) = match_obj.group(1, 2)
-                slot2 = 0
-
-
-        # If either of the interface formats matched...
-        if match_obj:
-            if pa2[:2].lower() == 'an':
-                # need to use two chars for Analysis-Module
-                pa2 = pa2[:2].lower()
-            else:
-                pa2 = pa2.lower()[0]  # Only care about first character
-
-            slot2 = int(slot2)
-            port2 = int(port2)
-            # Does the device we are trying to connect to actually exist?
-            if not self.devices.has_key(devname):
-                raise DynamipsError, 'nonexistent device ' + devname
-
-            remote_device = self.devices[devname]
-
+            
+        elif conn_type == 'AutoUDP':    
+            # if the right side two side udp tunnel e.g. f0/0 = R1 f1/0
+            remote_device = x1
+            pa2 = x2
+            slot2 = x3
+            port2 = x4
+            
             # If interfaces don't exist, create them
-            self.smartslot(local_device, pa1, slot1, port1)
-            self.smartslot(remote_device, pa2, slot2, port2)
+            if isinstance(remote_device, Router) or isinstance(remote_device, AnyEmuDevice):
+                self.smartslot(remote_device, pa2, slot2, port2)
 
             #perform the connection
-            if isinstance(local_device, AnyEmuDevice) and isinstance(remote_device, Router):
+            if isinstance(local_device, AnyEmuDevice) and isinstance(remote_device, Dynamips_device):
                 local_device.connect_to_dynamips(
                     port1,
                     remote_device.dynamips,
@@ -584,7 +629,7 @@ class Dynagen:
                     )
             elif isinstance(local_device, AnyEmuDevice) and isinstance(remote_device, AnyEmuDevice):
                 local_device.connect_to_emulated_device(port1, remote_device, port2)
-            elif isinstance(local_device, Router) and isinstance(remote_device, AnyEmuDevice):
+            elif isinstance(local_device, Dynamips_device) and isinstance(remote_device, AnyEmuDevice):
                 remote_device.connect_to_dynamips(
                     port2,
                     local_device.dynamips,
@@ -604,11 +649,9 @@ class Dynagen:
                      )
 
             return True
-
-        if devname.lower() == 'lan':
-            self.debug('a LAN interface ' + str(dest))
-            # If interface doesn't exist, create it
-            self.smartslot(local_device, pa1, slot1, port1)
+        
+        elif conn_type == 'Bridge': 
+            interface = x4
             if not self.bridges.has_key(interface):
                 # If this LAN doesn't already exist, create it
                 self.bridges[interface] = Bridge(local_device.dynamips, name=interface)
@@ -630,51 +673,6 @@ class Dynagen:
                     'f',
                     )
             return True
-
-        match_obj = number_re.search(interface)
-        if match_obj:
-            port2 = int(interface)
-            # Should be a switch port
-            if devname not in self.devices:
-                raise DynamipsError, 'nonexistent device ' + devname
-
-            remote_device = self.devices[devname]
-
-            self.debug('a switch port: ' + str(dest))
-            # If interface doesn't exist, create it
-            self.smartslot(local_device, pa1, slot1, port1)
-            if remote_device.adapter == 'ETHSW':
-                pa2 = 'f'  # Ethernet switches are FastEthernets (for our purposes anyway)
-            elif remote_device.adapter == 'FRSW':
-                pa2 = 's'  # Frame Relays switches are Serials
-            elif remote_device.adapter == 'ATMSW':
-                pa2 = 'a'  # And ATM switches are, well, ATM interfaces
-            elif remote_device.adapter == 'ATMBR':
-                pa2 = 'a'
-            else:
-                return False
-
-            if isinstance(local_device, AnyEmuDevice):
-                local_device.connect_to_dynamips(
-                    port1,
-                    remote_device.dynamips,
-                    remote_device,
-                    pa2,
-                    port2,
-                    )
-            else:
-                local_device.slot[slot1].connect(
-                    pa1,
-                    port1,
-                    remote_device.dynamips,
-                    remote_device,
-                    pa2,
-                    port2,
-                    )
-            return True
-        else:
-            # Malformed
-            raise DynamipsError, 'malformed destination interface: ' + str(dest)
 
     def smartslot(
         self,
@@ -1066,7 +1064,6 @@ class Dynagen:
                 if emulator == 'qemu':
                     #connect to the Qemu Wrapper
                     try:
-                        
                         if ':' in host:
                             # unpack the server and port
                             qemu_name = host
@@ -1075,12 +1072,13 @@ class Dynagen:
                         else:
                             #add ':10525' string to the name so that it does not conflict with name of dynamips server
                             qemu_name = host + ':10525'
+                            controlPort = '10525'
 
                         #create the Qemu instance and add it to global dictionary
                         self.dynamips[qemu_name] = Qemu(host, int(controlPort))
                         self.dynamips[qemu_name].reset()
                     except DynamipsError:
-                        self.dowarning('Could not connect to qemuwrapper server %s' % server.name)
+                        self.dowarning('Could not connect to qemuwrapper server %s:%s' % (host,controlPort))
                         self.import_error = True
                         continue
 
@@ -1096,13 +1094,24 @@ class Dynagen:
                     except DynamipsError:
                         self.dowarning('Could not set working directory to %s on server %s' % (workingdir, server.name))
                         self.import_error = True
+                        
+                    if server['udp'] != None:
+                        udp = server['udp']
+                    else:
+                        udp = self.global_qemu_udp
+                    # Modify the default base UDP NIO port for this server
+                    try:
+                        self.dynamips[qemu_name].udp = udp
+                        self.dynamips[qemu_name].starting_udp = udp
+                    except DynamipsError:
+                        self.dowarning('Could not set base UDP NIO port to %s on server %s' % (server['udp'], server.name))
+                        self.import_error = True
 
                     # Set qemu & qemu-img paths if needed
                     if server['qemupath']:
                         self.dynamips[qemu_name].qemupath = server['qemupath']
                     if server['qemuimgpath']:
                         self.dynamips[qemu_name].qemuimgpath = server['qemuimgpath']
-
                     devdefaults = {}
                     for key in DEVICETUPLE:
                         devdefaults[key] = {}
@@ -1389,8 +1398,22 @@ class Dynagen:
                                         # Add the tupple to the list of mappings to deal with later
                                         maplist.append((dev, subitem, device[subitem]))
                                     elif ethswint_re.search(subitem):
-                                    # is it an Ethernet switch portcontinue configuration?
-                                        ethswintlist.append((dev, subitem, device[subitem]))
+                                        if not isinstance(dev, ETHSW):
+                                            if isinstance(dev, ATMBR):
+                                                try:
+                                                    (mapping, dest_device, dest_int) = str(device[subitem]).split (' ')
+                                                    if mapvci_re.search(mapping):
+                                                        maplist.append((dev, subitem, mapping))
+                                                    else:
+                                                        raise ValueError
+                                                    connectionlist.append((dev, subitem, dest_device + ' ' + dest_int ))
+                                                except ValueError:
+                                                    self.dowarning('incorrect syntax: %s = %s' % (str(subitem), str(device[subitem])))                                                                                              
+                                            else:    
+                                                connectionlist.append((dev, subitem, device[subitem]))
+                                        else:
+                                            # is it an Ethernet switch portcontinue configuration?
+                                            ethswintlist.append((dev, subitem, device[subitem]))
 
                                     else:
                                         self.dowarning('ignoring unknown config item: %s = %s' % (str(subitem), str(device[subitem])))
@@ -1417,12 +1440,21 @@ class Dynagen:
                 self.dowarning('Connecting %s %s to %s resulted in:\n\t%s' % (router.name, source, dest, err))
                 self.import_error = True
                 continue
+            except DynamipsWarning, e:
+                err = e[0]
+                self.dowarning('Connecting %s %s to %s resulted in:\n\t%s' % (router.name, source, dest, err))
+                continue
             if result == False:
                 self.dowarning('Attempt to connect %s %s to unknown device %s' % (router.name, source, dest))
                 self.import_error = True
                 continue
 
         # Apply the switch configuration we collected earlier
+        for ethswint in ethswintlist:
+            self.debug('ethernet switchport configuring: ' + str(ethswint))
+            (switch, source, dest) = ethswint
+            self.ethsw_map(switch, source, dest)
+            
         for mapping in maplist:
             self.debug('mapping: ' + str(mapping))
             (switch, source, dest) = mapping
@@ -1433,12 +1465,6 @@ class Dynagen:
                 self.dowarning('Connecting %s %s to %s resulted in:\n\t%s' % (switch.name, source, dest, err))
                 self.import_error = True
                 continue
-
-        for ethswint in ethswintlist:
-            self.debug('ethernet switchport configuring: ' + str(ethswint))
-            (switch, source, dest) = ethswint
-            self.ethsw_map(switch, source, dest)
-
 
         if self.import_error:
             self.doerror('errors during loading of the topology file, please correct them')
@@ -1514,6 +1540,22 @@ class Dynagen:
                 self.dowarning('Connecting %s port %s to %s resulted in:\n\t%s' % (switch.name, source, dest, e))
                 self.import_error = True
                 return
+        elif parameters == 4:
+            # Should be a porttype, vlan, and a device&port pair specifying the destionation of UDP NIO connection
+            
+            #handle the daisy connection between the switches
+            (porttype, vlan, remote_device, remote_port) = dest.split(' ')
+            try:
+                result = self.connect(switch, source, remote_device + ' ' + remote_port)
+                if result == False:
+                    self.dowarning('Attempt to connect %s %s to unknown device %s' % (switch.name, source, dest))
+                    self.import_error = True
+                #handle the port setting on the switch
+                self.ethsw_map(switch, source, porttype + ' ' + vlan)
+            except DynamipsError, e:
+                err = e[0]
+                self.dowarning('Connecting %s %s to %s resulted in:\n\t%s' % (switch.name, source, dest, err))
+                self.import_error = True
         else:
             e = 'invalid Ethernet switchport config'
             self.dowarning('Connecting %s port %s to %s resulted in:\n\t%s' % (switch.name, source, dest, e))
@@ -1523,7 +1565,7 @@ class Dynagen:
     def import_ini(self, FILENAME):
         """ Read in the INI file"""
 
-        global telnetstring
+        global telnetstring, startdelay
         # look for the INI file in the same directory as dynagen
         realpath = os.path.realpath(sys.argv[0])
         pathname = os.path.dirname(realpath)
@@ -1570,6 +1612,12 @@ class Dynagen:
         except KeyError:
             # Set default to the home directory
             self.useridledbfile = os.path.expanduser('~' + os.path.sep + 'dynagenidledb.ini')
+        
+        # Allow specification of a default delay between router startups
+        try:
+            startdelay = config['delay']
+        except KeyError:
+            pass
 
     def import_generic_ini(self, inifile):
         """ Import a generic ini file and return it as a dictionary, if it exists
@@ -1660,13 +1708,12 @@ class Dynagen:
 
         except DynamipsError, e:
             self.doerror(e)
-            
+
     def jitsharing(self):
         """ Implement JIT blocks sharing"""
 
         try:
             for device in self.devices.values():
-
                 if not self.jitshareddevices.has_key(device.name):
                     continue
 
@@ -1914,7 +1961,7 @@ class Dynagen:
                 self.running_config[h][r]['ghostios'] = False
             else:
                 self.running_config[h][r]['ghostios'] = True
-        
+
         self.running_config[h][r]['console'] = router.console
         
         #same thing for all other values
@@ -1949,71 +1996,6 @@ class Dynagen:
             if adapter != None:
                 self._update_running_config_for_router_adapter(h, r, defaults, adapter)
 
-    def _update_running_config_for_atmsw(self, hypervisor, atmsw):
-        """parse the all data structures associated with this atmsw and update the running_config properly"""
-
-        h = hypervisor.host + ":" + str(hypervisor.port)
-        a = 'ATMSW ' + atmsw.name
-        self.running_config[h][a] = {}
-
-        keys = atmsw.vpivci_map.keys()
-        keys.sort()
-        for key in keys:
-            if len(key) == 2:
-                #port1, vpi1 -> port2, vpi2
-                (port1, vpi1) = key
-                (port2, vpi2) = atmsw.vpivci_map[key]
-                self.running_config[h][a][str(port1) + ':' + str(vpi1)] = str(port2) + ':' + str(vpi2)
-        for key in keys:
-            if len(key) == 3:
-                #port1, vpi1, vci1 -> port2, vpi2, vci1
-                (port1, vpi1, vci1) = key
-                (port2, vpi2, vci2) = atmsw.vpivci_map[key]
-                self.running_config[h][a][str(port1) + ':' + str(vpi1) + ':' + str(vci1)] = str(port2) + ':' + str(vpi2) + ':' + str(vci2)
-
-    def _update_running_config_for_atmbr(self, hypervisor, atmbr):
-        """parse the all data structures associated with this atmbr and update the running_config properly"""
-
-        h = hypervisor.host + ":" + str(hypervisor.port)
-        f = 'ATMBR ' + atmbr.name
-        self.running_config[h][f] = {}
-
-        keys = atmbr.mapping.keys()
-        keys.sort()
-        for port1 in keys:
-            (port2, vci2, vpi2) = atmbr.mapping[port1]
-            self.running_config[h][f][str(port1)] = str(port2) + ':' + str(vci2) + ':' + str(vpi2)
-
-
-    def _update_running_config_for_frsw(self, hypervisor, frsw):
-        """parse the all data structures associated with this frsw and update the running_config properly"""
-
-        h = hypervisor.host + ":" + str(hypervisor.port)
-        f = 'FRSW ' + frsw.name
-        self.running_config[h][f] = {}
-
-        keys = frsw.pvcs.keys()
-        keys.sort()
-        for (port1,dlci1) in keys:
-            (port2, dlci2) = frsw.pvcs[(port1, dlci1)]
-            self.running_config[h][f][str(port1) + ':' + str(dlci1)] = str(port2) + ':' + str(dlci2)
-
-    def _update_running_config_for_ethsw(self, hypervisor, ethsw):
-        """parse the all data structures associated with this ethsw and update the running_config properly"""
-
-        h = hypervisor.host + ":" + str(hypervisor.port)
-        e = 'ETHSW ' + ethsw.name
-        self.running_config[h][e] = {}
-
-        keys = ethsw.mapping.keys()
-        keys.sort()
-        for port1 in keys:
-            (porttype, vlan, nio, twosided)= ethsw.mapping[port1]
-            if twosided:
-                self.running_config[h][e][str(port1)] = porttype + ' ' + str(vlan)
-            else:
-                self.running_config[h][e][str(port1)] = porttype + ' ' + str(vlan) + ' ' + nio.config_info()
-
     def _update_running_config_for_emulated_device(self, hypervisor, device, need_active_config):
         """parse the all data structures associated with this emulated device and update the running_config properly"""
 
@@ -2040,8 +2022,7 @@ class Dynagen:
                     self.running_config[h][f][con] = self._translate_interface_connection(remote_adapter, remote_router, remote_port)
                 elif isinstance(remote_router, FRSW) or isinstance(remote_router, ATMSW) or isinstance(remote_router, ATMBR) or isinstance(remote_router, ETHSW):
                     self.running_config[h][f][con] = remote_router.name + " " + str(remote_port)
-
-
+                    
     def _translate_interface_connection(self, remote_adapter, remote_router, remote_port):
         """translate the dynamips port values into dynagen port values"""
 
@@ -2092,7 +2073,7 @@ class Dynagen:
         #go throught all hypervisor instances
         for hypervisor in self.dynamips.values():
             if isinstance(hypervisor, Qemu):
-                h = 'qemu ' + hypervisor.host + ":" + str(hypervisor.port)          
+                h = 'qemu ' + hypervisor.host + ":" + str(hypervisor.port)
             else:
                 h = hypervisor.host + ":" + str(hypervisor.port)
             self.running_config[h] = {}
@@ -2109,7 +2090,6 @@ class Dynagen:
                 self.running_config[h]['workingdir'] = hypervisor.workingdir
 
             self.running_config[h]['udp'] = hypervisor.starting_udp
-
             # Check default qemu & qemu-img paths
             if isinstance(hypervisor, Qemu):
                 if self.default_qemupath != hypervisor.qemupath:
@@ -2120,14 +2100,8 @@ class Dynagen:
             #go thought all routers for this hypervisor
             for device in self.devices.values():
                 if device.dynamips == hypervisor:
-                    if isinstance(device, FRSW):
-                        self._update_running_config_for_frsw(hypervisor, device)
-                    elif isinstance(device, ATMSW):
-                        self._update_running_config_for_atmsw(hypervisor, device)
-                    elif isinstance(device, ATMBR):
-                        self._update_running_config_for_atmbr(hypervisor, device)
-                    elif isinstance(device, ETHSW):
-                        self._update_running_config_for_ethsw(hypervisor, device)
+                    if isinstance(device, Emulated_switch):
+                        device.config(self.running_config[h])
                     elif isinstance(device, Router):
                         #for routers - create the router running config by going throught all variables in dynamips_lib
                         self._update_running_config_for_router(hypervisor, device, need_active_config)
@@ -2215,7 +2189,7 @@ class Dynagen:
         else:
             # No ghosting
             return True
-                
+
     def _create_ghost_instance(self, device, maxram = 0):
         """ Create a new ghost instance to be used by 'device'
         """
@@ -2238,6 +2212,111 @@ class Dynagen:
         ghost.stop()
         ghost.delete()
 
+    def capture(self, args):
+
+        # link type transformation
+        linkTransform = {'ETH': 'EN10MB', 'FR': 'FRELAY', 'HDLC': 'C_HDLC', 'PPP': 'PPP_SERIAL'}
+
+        try:
+            if len(args.split(" ")) > 3:
+                (device, interface, filename, linktype) = args.split(" ", 3)
+                try:
+                    linktype = linktype.upper()
+                    linktype = linkTransform[linktype]
+                except KeyError:
+                    print 'Invalid linktype: ' + linktype
+                    return
+            else:
+                (device, interface, filename) = args.split(" ", 2)
+                linktype = None
+        except ValueError:
+            print  'Invalid syntax'
+            return
+
+        if device not in self.devices:
+            print 'Unknown device: ' + device
+            return
+        device = self.devices[device]
+        
+        (pa, slot, port) = self._parse_interface_part_of_connection(device,interface)
+        try:   
+            if isinstance (device, Router):
+                if linktype == None:
+                    if pa in [
+                        'e',
+                        'et',
+                        'f',
+                        'fa',
+                        'g',
+                        'gi',
+                        ]:
+                        linktype = 'EN10MB'
+                    elif inttype.lower() in ['s', 'se']:
+                        print 'Error: Link type must be specified for serial interfaces'
+                        return
+                    else:
+                        print 'Error: Packet capture is not supported on this interface type'
+                        return
+                pa = pa[0]
+                # Apply the filter
+                device.slot[slot].filter(
+                   pa,
+                   port,
+                   'capture',
+                   'both',
+                   linktype + " " + filename,
+               )
+            elif isinstance (device, Emulated_switch):
+                device.filter(
+                       port,
+                       'capture',
+                       'both',
+                       filename,
+                   )
+            else:
+                print device.name + " does not support interface capturing"
+        except DynamipsError, e:
+            print e
+            return
+        except DynamipsWarning, e:
+            print "Note: " + str(e)
+        except IndexError:
+            print 'Error: No such interface %s on device %s' % (interface, device)
+            return
+        except AttributeError:
+            print 'Error: Interface %s on device %s is not connected' % (interface, device)
+            return        
+
+    def no_capture(self, options):
+        if len(options.split(" ")) == 2:
+            (device, interface) = options.split(" ", 1)
+        else:
+            print "Invalid syntax"
+            
+        if device not in self.devices:
+            print 'Unknown device: ' + device
+            return
+        device = self.devices[device]
+        
+        (pa, slot, port) = self._parse_interface_part_of_connection(device,interface)
+        
+        # Remove the filter
+        try:
+            if isinstance (device, Router):
+                pa = pa[0]
+                device.slot[slot].filter(pa, port, 'none', 'both')
+            elif isinstance (device, Emulated_switch):
+                device.filter(port, 'none', 'both')    
+        except DynamipsError, e:
+            print e
+            return
+        except DynamipsWarning, e:
+            print "Note: " + str(e)
+        except IndexError:
+            print 'No such interface %s on device %s' % (pa, device)
+            return
+
+        
     def _create_jitsharing_group(self, devices):
         """ Create a new JIT sharing group to be used by 'devices'
         """
