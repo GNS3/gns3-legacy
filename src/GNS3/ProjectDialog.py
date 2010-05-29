@@ -57,8 +57,12 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         path = fb.getDir()
 
         if path:
-            self.ProjectPath.setText(os.path.normpath(path))
-            
+            path = os.path.normpath(path)
+            if os.path.realpath(path) != os.path.realpath(globals.GApp.systconf['general'].project_path):
+                self.ProjectPath.setText(path + os.sep + self.ProjectName.text())
+            else:
+                self.ProjectPath.setText(path)
+
     def __projectNameEdited(self, text):
         """ Propose a project directory when changing the project name
         """

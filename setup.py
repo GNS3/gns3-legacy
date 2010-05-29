@@ -65,7 +65,7 @@ elif sys.platform.startswith('darwin'):
 
     import setuptools
 
-    QTDIR = r'/usr/local/Trolltech/Qt-4.6.2/'
+    QTDIR = r'/usr/local/Trolltech/Qt-4.7.0/'
 
     data_files = [('', glob(r'src/GNS3/Langs/*.qm')),
                   ('src/GNS3/Dynagen/configspec'),

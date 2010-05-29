@@ -105,16 +105,6 @@ class fileBrowser(object):
             path = unicode(path)
         return ([path, str(self.selected)])
 
-    def getDir(self):
-        """ Get a directory from the file system
-        """
-
-        path = QtGui.QFileDialog.getExistingDirectory(self.filedialog,
-            self.caption, self.directory, QtGui.QFileDialog.ShowDirsOnly)
-        if path is not None:
-            path = unicode(path)
-        return (path)
-
     def getSaveFile(self):
         """ Save a file in the file system
         """
@@ -126,3 +116,12 @@ class fileBrowser(object):
             path = unicode(path)
         return ([path, str(self.selected)])
 
+    def getDir(self):
+        """ Get a directory from the file system
+        """
+
+        path = QtGui.QFileDialog.getExistingDirectory(self.filedialog,
+            self.caption, self.directory, QtGui.QFileDialog.ShowDirsOnly)
+        if path is not None:
+            path = unicode(path)
+        return (path)

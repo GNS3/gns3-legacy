@@ -908,7 +908,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             return
 
         (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter = 'NET file (*.net);;All files (*.*)',
-                                       directory=globals.GApp.systconf['general'].project_path, parent=self).getFile()
+                                       directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self).getFile()
         if path != None and (selected == 'NET file (*.net)' or selected == ''):
             self.loadNetfile(path)
                 
@@ -942,9 +942,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Save as (scenario or dynagen .NET format)
         """
 
-        fb = fileBrowser(translate("Workspace", "Save Project As"),
-                                filter='NET file (*.net);;All files (*.*)', directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self)
-        (path, selected) = fb.getSaveFile()
+        (path, selected) = fileBrowser(translate("Workspace", "Save Project As"),
+                                filter='NET file (*.net);;All files (*.*)', directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self).getSaveFile()
 
         if path != None and path != '':
             if str(selected) == 'NET file (*.net)' or selected == '':

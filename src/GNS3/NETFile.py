@@ -119,6 +119,20 @@ class NETFile(object):
                     self.add_in_connection_list((device.name, 'e' + str(port), remote_device.name, remote_adapter + str(remote_port)), connection_list)
                 elif isinstance(remote_device, lib.ETHSW):
                     connection_list.append((device.name, 'e' + str(port), remote_device.name, str(remote_port)))
+                    
+    def populate_connection_list_for_emulated_switch(self, device, connection_list):
+        """ Add emulated switch connections in connection_list
+        """
+
+        if isinstance(device, lib.ETHSW):
+            for port in device.nios:
+                if device.nios[port] != None:
+                    (remote_device, remote_adapter, remote_port) = lib.get_reverse_udp_nio(device.nios[port])
+                    if type(remote_device) in (lib.ETHSW, lib.ATMSW, lib.ATMBR, lib.FRSW):
+                        self.add_in_connection_list((device.name, str(port), remote_device.name, str(remote_port)), connection_list)
+        if isinstance(device, lib.FRSW):
+            #TODO: FRSW daisy chaining
+            print device.nios
 
     def create_node(self, device, default_symbol_name, running_config_name):
         """ Create a new node
@@ -572,6 +586,7 @@ class NETFile(object):
                         cloud.startNode()
                 node.set_config(config)
                 node.set_hypervisor(device.dynamips)
+                self.populate_connection_list_for_emulated_switch(device, connection_list)
                 match_obj = ethsw_hostname_re.match(node.hostname)
                 if match_obj:
                     id = int(match_obj.group(1))
@@ -597,6 +612,7 @@ class NETFile(object):
                 self.configure_node(node, device)
                 node.set_config(config)
                 node.set_hypervisor(device.dynamips)
+                self.populate_connection_list_for_emulated_switch(device, connection_list)
                 match_obj = frsw_hostname_re.match(node.hostname)
                 if match_obj:
                     id = int(match_obj.group(1))
@@ -634,6 +650,7 @@ class NETFile(object):
                 self.configure_node(node, device)
                 node.set_config(config)
                 node.set_hypervisor(device.dynamips)
+                self.populate_connection_list_for_emulated_switch(device, connection_list)
                 match_obj = atmsw_hostname_re.match(node.hostname)
                 if match_obj:
                     id = int(match_obj.group(1))
@@ -658,6 +675,7 @@ class NETFile(object):
                 self.configure_node(node, device)
                 node.set_config(config)
                 node.set_hypervisor(device.dynamips)
+                self.populate_connection_list_for_emulated_switch(device, connection_list)
                 match_obj = atmsw_hostname_re.match(node.hostname)
                 if match_obj:
                     id = int(match_obj.group(1))

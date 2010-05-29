@@ -4,8 +4,6 @@ TODO LIST
  * NIO multicast support (next release of Dynamips)
  * Show NIO activity (next release of Dynamips)
  * Dynamips QinQ integration (next release of Dynamips)
- * Vmware integration (http://www.gns3.net/phpBB/topic1162.html) => see VIX API and pyvix
- * VirtualBox integration?
  * Cpulimit integration => no need to integrate, use a script to start Qemu followed by cpulimit
 
 Documentation
