@@ -4414,8 +4414,9 @@ class ATMSW(Emulated_switch):
         #add connection information
         #make the keys unique
         u = {}
-        for (x,y,z) in self.vpivci_map.keys():
-            u[x] = 1
+        for key in self.vpivci_map.keys():
+            port = key[0]
+            u[port] = 1
         ports = u.keys()
         for port1 in ports:
             nio = self.nio(port1)

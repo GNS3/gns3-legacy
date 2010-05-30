@@ -125,14 +125,41 @@ class NETFile(object):
         """
 
         if isinstance(device, lib.ETHSW):
-            for port in device.nios:
-                if device.nios[port] != None:
-                    (remote_device, remote_adapter, remote_port) = lib.get_reverse_udp_nio(device.nios[port])
-                    if type(remote_device) in (lib.ETHSW, lib.ATMSW, lib.ATMBR, lib.FRSW):
+            keys = device.mapping.keys()
+            for port in keys:
+                nio_port = device.nio(port)
+                if nio_port:
+                    (remote_device, remote_adapter, remote_port) = lib.get_reverse_udp_nio(nio_port)
+                    if isinstance(remote_device, lib.ETHSW):
                         self.add_in_connection_list((device.name, str(port), remote_device.name, str(remote_port)), connection_list)
+        
         if isinstance(device, lib.FRSW):
-            #TODO: FRSW daisy chaining
-            print device.nios
+            keys = device.pvcs.keys()
+            for (port, dlci) in keys:
+                nio_port = device.nio(port)
+                if nio_port:
+                    (remote_device, remote_adapter, remote_port) = lib.get_reverse_udp_nio(nio_port)
+                    if isinstance(remote_device, lib.FRSW):
+                        self.add_in_connection_list((device.name, str(port), remote_device.name, str(remote_port)), connection_list)
+
+        if isinstance(device, lib.ATMSW):
+            keys = device.vpivci_map.keys()
+            for key in keys:
+                port = key[0]
+                nio_port = device.nio(port)
+                if nio_port:
+                    (remote_device, remote_adapter, remote_port) = lib.get_reverse_udp_nio(nio_port)
+                    if isinstance(remote_device, lib.ATMSW) or isinstance(remote_device, lib.ATMBR):
+                        self.add_in_connection_list((device.name, str(port), remote_device.name, str(remote_port)), connection_list)
+                        
+        if isinstance(device, lib.ATMBR):
+            keys = device.mapping.keys()
+            for port in keys:
+                nio_port = device.nio(port)
+                if nio_port:
+                    (remote_device, remote_adapter, remote_port) = lib.get_reverse_udp_nio(nio_port)
+                    if isinstance(remote_device, lib.ATMSW) or isinstance(remote_device, lib.ATMBR):
+                        self.add_in_connection_list((device.name, str(port), remote_device.name, str(remote_port)), connection_list)       
 
     def create_node(self, device, default_symbol_name, running_config_name):
         """ Create a new node
@@ -572,7 +599,7 @@ class NETFile(object):
                 keys = device.mapping.keys()
                 keys.sort()
                 for port in keys:
-                    (porttype, vlan, nio, twosided)= device.mapping[port]
+                    (porttype, vlan, nio, twosided) = device.mapping[port]
                     if not config['vlans'].has_key(vlan):
                         config['vlans'][vlan] = []
                     if twosided:
@@ -600,7 +627,7 @@ class NETFile(object):
                 config['mapping'] = {}
                 keys = device.pvcs.keys()
                 keys.sort()
-                for (port1,dlci1) in keys:
+                for (port1, dlci1) in keys:
                     (port2, dlci2) = device.pvcs[(port1, dlci1)]
                     if not port1 in config['ports']:
                         config['ports'].append(port1)
