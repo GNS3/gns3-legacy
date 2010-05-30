@@ -19,6 +19,3 @@ Debugging
  * MAC addresses generation in qemuwrapper
  * Dynagen context help
  * Debug ATMBR connections with other devices (ATM side, Ethernet side)
-
-
- 

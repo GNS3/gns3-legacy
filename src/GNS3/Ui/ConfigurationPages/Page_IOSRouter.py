@@ -39,16 +39,16 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         self.NM_16ESW_warning = True
 
         self.widget_slots = {0: self.comboBoxSlot0,
-                                        1: self.comboBoxSlot1,
-                                        2: self.comboBoxSlot2,
-                                        3: self.comboBoxSlot3,
-                                        4: self.comboBoxSlot4,
-                                        5: self.comboBoxSlot5,
-                                        6: self.comboBoxSlot6}
+                             1: self.comboBoxSlot1,
+                             2: self.comboBoxSlot2,
+                             3: self.comboBoxSlot3,
+                             4: self.comboBoxSlot4,
+                             5: self.comboBoxSlot5,
+                             6: self.comboBoxSlot6}
                                         
         self.widget_wics = {0: self.comboBoxWIC0,
-                                        1: self.comboBoxWIC1,
-                                        2: self.comboBoxWIC2}
+                            1: self.comboBoxWIC1,
+                            2: self.comboBoxWIC2}
 
     def loadConfig(self, id, config = None):
         """ Load the config
@@ -108,7 +108,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             self.comboBoxMidplane.addItems(['std', 'vxr'])
             self.comboBoxMidplane.setEnabled(True)
             self.comboBoxNPE.clear()
-            self.comboBoxNPE.addItems(['npe-100', 'npe-150', 'npe-175', 'npe-200', 'npe-225', 'npe-300', 'npe-400'])
+            self.comboBoxNPE.addItems(['npe-100', 'npe-150', 'npe-175', 'npe-200', 'npe-225', 'npe-300', 'npe-400', 'npe-g2'])
             self.comboBoxNPE.setEnabled(True)
         else:
             self.comboBoxMidplane.setEnabled(False)
@@ -180,6 +180,8 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                 router_config['midplane'] = str(self.comboBoxMidplane.currentText())
             if str(self.comboBoxNPE.currentText()):
                 router_config['npe'] = str(self.comboBoxNPE.currentText())
+                if router_config['npe'] == 'npe-g2':
+                    QtGui.QMessageBox.warning(globals.nodeConfiguratorWindow, 'NPE G2', translate("Page_IOSRouter", "Using npe-g2: there are potential bugs and you should have unpacked your IOS image"))
 
         iomem = self.spinBoxIomem.value()
         if platform == 'c3600' and iomem != 5:
@@ -195,7 +197,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                 # Give an information (only once): users must use manual connections with NM-16ESW
                 if module == 'NM-16ESW' and self.NM_16ESW_warning:
                     self.NM_16ESW_warning = False
-                    QtGui.QMessageBox.information(globals.nodeConfiguratorWindow, 'NM-16ESW', translate("Page_IOSRouter", "You must use manual mode when adding a link in NM-16ESW modules"))
+                    QtGui.QMessageBox.warning(globals.nodeConfiguratorWindow, 'NM-16ESW', translate("Page_IOSRouter", "You must use manual mode when adding a link in NM-16ESW modules"))
                 collision = False
                 if router.slot[slot_number] and router_config['slots'][slot_number] != module:
                     interfaces = router.slot[slot_number].interfaces
