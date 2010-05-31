@@ -79,7 +79,8 @@ elif sys.platform.startswith('darwin'):
 
     APP = ['gns3.py']
     OPTIONS = {'argv_emulation': True,
-               #'semi_standalone': True,
+               'semi_standalone': False,
+               'site_packages': True,
                'optimize':  2,
                'iconfile': 'gns3.icns',
                'includes': ['sip',
