@@ -565,8 +565,8 @@ class Dynagen:
                     realPort = local_device.slot[slot1].interfaces[pa1][port1]
                 except AttributeError:
                     raise DynamipsError, 'Device does not support this type of NIO. Use an ETHSW to bridge the connection to the NIO instead.'
-            
-      
+
+
         #parse the right side of connection
         (x1,x2,x3,x4,conn_type) = self._parse_right_side_of_connection(dest)
         

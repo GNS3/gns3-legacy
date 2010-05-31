@@ -721,9 +721,9 @@ class Topology(QtGui.QGraphicsScene):
             return
         elif not isinstance(src_node, IOSRouter) and not isinstance(dst_node, IOSRouter):
 
-            if (isinstance(src_node, AnyEmuDevice) and type(dst_node) in (Cloud, ATMSW, FRSW, ATMBR)) or (isinstance(dst_node, AnyEmuDevice) and type(src_node) in (Cloud, ATMSW, FRSW, ATMBR)):
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "Can't connect these devices"))
-                return False
+#            if (isinstance(src_node, AnyEmuDevice) and type(dst_node) in (Cloud, ATMSW, FRSW, ATMBR)) or (isinstance(dst_node, AnyEmuDevice) and type(src_node) in (Cloud, ATMSW, FRSW, ATMBR)):
+#                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "Can't connect these devices"))
+#                return False
             if (isinstance(dst_node, Cloud) or isinstance(dst_node, AnyEmuDevice)) and type(src_node) in (ETHSW, ATMSW, FRSW, ATMBR):
                 if not src_node.hypervisor:
                     debug('Allocate a hypervisor for emulated switch ' + src_node.hostname)

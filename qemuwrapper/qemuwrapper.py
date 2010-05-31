@@ -43,6 +43,7 @@ import tarfile
 import threading
 import SocketServer
 import time
+import random
 import pemubin
 
 
@@ -177,7 +178,7 @@ class xEMUInstance(object):
                 options.append('nic,vlan=%d,macaddr=%s,model=%s' % (vlan, self.nic[vlan], self.netcard))
             else:
                 # add a default NIC for Qemu (we always add 6 NICs)
-                options.append('nic,vlan=%d,macaddr=00:00:ab:cd:ef:%02d,model=%s' % (vlan, vlan, self.netcard))
+                options.append('nic,vlan=%d,macaddr=00:00:ab:%02x:%02x:%02d,model=%s' % (vlan, random.randint(0x00, 0xff), random.randint(0x00, 0xff), vlan, self.netcard))
             if vlan in self.udp:
                 options.extend(['-net', 'udp,vlan=%s,sport=%s,dport=%s,daddr=%s' %
                         (vlan, self.udp[vlan].sport,
