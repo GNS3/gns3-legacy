@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesQemu.ui'
 #
-# Created: Sun Apr 25 17:46:27 2010
-#      by: PyQt4 UI code generator 4.7
+# Created: Tue Jun  1 20:57:06 2010
+#      by: PyQt4 UI code generator 4.7.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -137,6 +137,7 @@ class Ui_PreferencesQemu(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.labelQemuStatus.sizePolicy().hasHeightForWidth())
         self.labelQemuStatus.setSizePolicy(sizePolicy)
+        self.labelQemuStatus.setText("")
         self.labelQemuStatus.setObjectName("labelQemuStatus")
         self.hboxlayout.addWidget(self.labelQemuStatus)
         self.verticalLayout_2.addLayout(self.hboxlayout)

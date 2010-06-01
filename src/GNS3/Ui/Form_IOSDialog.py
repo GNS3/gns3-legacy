@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Sun Apr 25 17:46:23 2010
-#      by: PyQt4 UI code generator 4.7
+# Created: Tue Jun  1 20:57:03 2010
+#      by: PyQt4 UI code generator 4.7.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -79,6 +79,7 @@ class Ui_IOSDialog(object):
         self.label_12.setObjectName("label_12")
         self.gridlayout1.addWidget(self.label_12, 3, 0, 1, 1)
         self.lineEditIdlePC = QtGui.QLineEdit(self.groupBox)
+        self.lineEditIdlePC.setText("")
         self.lineEditIdlePC.setObjectName("lineEditIdlePC")
         self.gridlayout1.addWidget(self.lineEditIdlePC, 3, 1, 1, 3)
         self.label_9 = QtGui.QLabel(self.groupBox)

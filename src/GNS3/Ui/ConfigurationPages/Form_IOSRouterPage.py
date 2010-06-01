@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_IOSRouterPage.ui'
 #
-# Created: Sun Apr 25 17:46:24 2010
-#      by: PyQt4 UI code generator 4.7
+# Created: Tue Jun  1 20:57:04 2010
+#      by: PyQt4 UI code generator 4.7.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -25,24 +25,28 @@ class Ui_IOSRouterPage(object):
         self.label_4.setObjectName("label_4")
         self.gridlayout.addWidget(self.label_4, 0, 0, 1, 1)
         self.textLabel_Platform = QtGui.QLabel(self.General)
+        self.textLabel_Platform.setText("")
         self.textLabel_Platform.setObjectName("textLabel_Platform")
         self.gridlayout.addWidget(self.textLabel_Platform, 0, 1, 1, 1)
         self.label_8 = QtGui.QLabel(self.General)
         self.label_8.setObjectName("label_8")
         self.gridlayout.addWidget(self.label_8, 1, 0, 1, 1)
         self.textLabel_Model = QtGui.QLabel(self.General)
+        self.textLabel_Model.setText("")
         self.textLabel_Model.setObjectName("textLabel_Model")
         self.gridlayout.addWidget(self.textLabel_Model, 1, 1, 1, 1)
         self.label_5 = QtGui.QLabel(self.General)
         self.label_5.setObjectName("label_5")
         self.gridlayout.addWidget(self.label_5, 2, 0, 1, 1)
         self.textLabel_ImageIOS = QtGui.QLabel(self.General)
+        self.textLabel_ImageIOS.setText("")
         self.textLabel_ImageIOS.setObjectName("textLabel_ImageIOS")
         self.gridlayout.addWidget(self.textLabel_ImageIOS, 2, 1, 1, 1)
         self.label_18 = QtGui.QLabel(self.General)
         self.label_18.setObjectName("label_18")
         self.gridlayout.addWidget(self.label_18, 3, 0, 1, 1)
         self.textLabel_StartupConfig = QtGui.QLabel(self.General)
+        self.textLabel_StartupConfig.setText("")
         self.textLabel_StartupConfig.setObjectName("textLabel_StartupConfig")
         self.gridlayout.addWidget(self.textLabel_StartupConfig, 3, 1, 1, 1)
         self.label = QtGui.QLabel(self.General)
@@ -294,6 +298,7 @@ class Ui_IOSRouterPage(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lineEditMAC.sizePolicy().hasHeightForWidth())
         self.lineEditMAC.setSizePolicy(sizePolicy)
+        self.lineEditMAC.setText("")
         self.lineEditMAC.setObjectName("lineEditMAC")
         self.gridlayout5.addWidget(self.lineEditMAC, 1, 1, 1, 1)
         self.label_31 = QtGui.QLabel(self.Advanced)

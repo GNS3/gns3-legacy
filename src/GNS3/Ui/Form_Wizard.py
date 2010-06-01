@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_Wizard.ui'
 #
-# Created: Sun Apr 25 17:46:24 2010
-#      by: PyQt4 UI code generator 4.7
+# Created: Tue Jun  1 20:57:03 2010
+#      by: PyQt4 UI code generator 4.7.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -24,6 +24,7 @@ class Ui_Wizard(object):
         self.gridlayout1.setObjectName("gridlayout1")
         self.pushButton_Step1 = QtGui.QPushButton(self.groupBox)
         self.pushButton_Step1.setMinimumSize(QtCore.QSize(96, 96))
+        self.pushButton_Step1.setText("")
         icon1 = QtGui.QIcon()
         icon1.addFile(":/icons/step1.svg")
         self.pushButton_Step1.setIcon(icon1)
@@ -44,6 +45,7 @@ class Ui_Wizard(object):
         self.gridlayout2.setObjectName("gridlayout2")
         self.pushButton_Step2 = QtGui.QPushButton(self.groupBox_2)
         self.pushButton_Step2.setMinimumSize(QtCore.QSize(96, 96))
+        self.pushButton_Step2.setText("")
         icon2 = QtGui.QIcon()
         icon2.addFile(":/icons/step2.svg")
         self.pushButton_Step2.setIcon(icon2)

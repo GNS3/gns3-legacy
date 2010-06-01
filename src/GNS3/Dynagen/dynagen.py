@@ -552,6 +552,227 @@ class Dynagen:
             source: a string specifying the local interface
             dest: a string specifying a device and a remote interface, LAN, a raw NIO
         """
+
+        match_obj = interface_re.search(source)
+        if not match_obj:
+            # is this an interface without a port designation (e.g. "f0")?
+            match_obj = interface_noport_re.search(source)
+            if not match_obj:
+                return False
+            else:
+                (pa1, port1) = match_obj.group(1, 2)
+                slot1 = 0
+        else:
+            (pa1, slot1, port1) = match_obj.group(1, 2, 3)
+
+        if pa1[:2].lower() == 'an':
+            # need to use two chars for Analysis-Module
+            pa1 = pa1[:2].lower()
+        else:
+            pa1 = pa1.lower()[0]  # Only care about first character
+        slot1 = int(slot1)
+        port1 = int(port1)
+        try:
+            (devname, interface) = dest.split(' ')
+        except ValueError:
+            # Must be either a NIO or malformed
+            if not dest[:4].lower() == 'nio_':
+                self.debug('Malformed destination:' + str(dest))
+                return False
+            try:
+                self.debug('A NETIO: ' + str(dest))
+                (niotype, niostring) = dest.split(':', 1)
+            except ValueError:
+                self.debug('Malformed NETIO:' + str(dest))
+                return False
+
+            #create the necessary adaptor
+            self.smartslot(local_device, pa1, slot1, port1)
+
+            # Look at the interfaces dict to find out what the real port is as
+            # as far as dynamips is concerned
+            try:
+                realPort = local_device.slot[slot1].interfaces[pa1][port1]
+            except AttributeError:
+                raise DynamipsError, 'Device does not support this type of NIO. Use an ETHSW to bridge the connection to the NIO instead.'
+
+            # Process the netio
+            if niotype.lower() == 'nio_linux_eth':
+                self.debug('NIO_linux_eth ' + str(dest))
+                local_device.slot[slot1].nio(realPort, nio=NIO_linux_eth(local_device.dynamips, interface=niostring))
+            elif niotype.lower() == 'nio_gen_eth':
+
+                self.debug('gen_eth ' + str(dest))
+                local_device.slot[slot1].nio(realPort, nio=NIO_gen_eth(local_device.dynamips, interface=niostring))
+            elif niotype.lower() == 'nio_udp':
+
+                self.debug('udp ' + str(dest))
+                (udplocal, remotehost, udpremote) = niostring.split(':', 2)
+                local_device.slot[slot1].nio(realPort, nio=NIO_udp(local_device.dynamips, int(udplocal), str(remotehost), int(udpremote)))
+            elif niotype.lower() == 'nio_null':
+
+                self.debug('nio null')
+                local_device.slot[slot1].nio(realPort, nio=NIO_null(local_device.dynamips, name=niostring))
+            elif niotype.lower() == 'nio_tap':
+
+                self.debug('nio tap ' + str(dest))
+                local_device.slot[slot1].nio(realPort, nio=NIO_tap(local_device.dynamips, niostring))
+            elif niotype.lower() == 'nio_unix':
+
+                self.debug('unix ' + str(dest))
+                (unixlocal, unixremote) = niostring.split(':', 1)
+                local_device.slot[slot1].nio(realPort, nio=NIO_unix(local_device.dynamips, unixlocal, unixremote))
+            elif niotype.lower() == 'nio_vde':
+
+                self.debug('vde ' + str(dest))
+                (controlsock, localsock) = niostring.split(':', 1)
+                local_device.slot[slot1].nio(realPort, nio=NIO_vde(local_device.dynamips, controlsock, localsock))
+            else:
+                # Bad NIO
+                raise DynamipsError, 'bad NIO specified'
+            return True
+
+        match_obj = interface_re.search(interface)
+        if match_obj:
+            # Connecting to another interface
+            (pa2, slot2, port2) = match_obj.group(1, 2, 3)
+        else:
+            match_obj = interface_noport_re.search(interface)
+            if match_obj:
+                # Connecting to another "portless" interface e.g. "f0"
+                (pa2, port2) = match_obj.group(1, 2)
+                slot2 = 0
+
+
+        # If either of the interface formats matched...
+        if match_obj:
+            if pa2[:2].lower() == 'an':
+                # need to use two chars for Analysis-Module
+                pa2 = pa2[:2].lower()
+            else:
+                pa2 = pa2.lower()[0]  # Only care about first character
+
+            slot2 = int(slot2)
+            port2 = int(port2)
+            # Does the device we are trying to connect to actually exist?
+            if not self.devices.has_key(devname):
+                raise DynamipsError, 'nonexistent device ' + devname
+
+            remote_device = self.devices[devname]
+
+            # If interfaces don't exist, create them
+            self.smartslot(local_device, pa1, slot1, port1)
+            self.smartslot(remote_device, pa2, slot2, port2)
+
+            #perform the connection
+            if isinstance(local_device, AnyEmuDevice) and isinstance(remote_device, Router):
+                local_device.connect_to_dynamips(
+                    port1,
+                    remote_device.dynamips,
+                    remote_device.slot[slot2],
+                    pa2,
+                    port2,
+                    )
+            elif isinstance(local_device, AnyEmuDevice) and isinstance(remote_device, AnyEmuDevice):
+                local_device.connect_to_emulated_device(port1, remote_device, port2)
+            elif isinstance(local_device, Router) and isinstance(remote_device, AnyEmuDevice):
+                remote_device.connect_to_dynamips(
+                    port2,
+                    local_device.dynamips,
+                    local_device.slot[slot1],
+                    pa1,
+                    port1,
+                    )
+            else:
+                #router -> router
+                local_device.slot[slot1].connect(
+                     pa1,
+                     port1,
+                     remote_device.dynamips,
+                     remote_device.slot[slot2],
+                     pa2,
+                     port2,
+                     )
+
+            return True
+
+        if devname.lower() == 'lan':
+            self.debug('a LAN interface ' + str(dest))
+            # If interface doesn't exist, create it
+            self.smartslot(local_device, pa1, slot1, port1)
+            if not self.bridges.has_key(interface):
+                # If this LAN doesn't already exist, create it
+                self.bridges[interface] = Bridge(local_device.dynamips, name=interface)
+            #perform the connection
+            if isinstance(local_device, AnyEmuDevice):
+                local_device.connect_to_dynamips(
+                    port1,
+                    self.bridges[interface].dynamips,
+                    self.bridges[interface],
+                    'f',
+                    0,
+                    )
+            else:
+                local_device.slot[slot1].connect(
+                    pa1,
+                    port1,
+                    self.bridges[interface].dynamips,
+                    self.bridges[interface],
+                    'f',
+                    )
+            return True
+
+        match_obj = number_re.search(interface)
+        if match_obj:
+            port2 = int(interface)
+            # Should be a switch port
+            if devname not in self.devices:
+                raise DynamipsError, 'nonexistent device ' + devname
+
+            remote_device = self.devices[devname]
+
+            self.debug('a switch port: ' + str(dest))
+            # If interface doesn't exist, create it
+            self.smartslot(local_device, pa1, slot1, port1)
+            if remote_device.adapter == 'ETHSW':
+                pa2 = 'f'  # Ethernet switches are FastEthernets (for our purposes anyway)
+            elif remote_device.adapter == 'FRSW':
+                pa2 = 's'  # Frame Relays switches are Serials
+            elif remote_device.adapter == 'ATMSW':
+                pa2 = 'a'  # And ATM switches are, well, ATM interfaces
+            elif remote_device.adapter == 'ATMBR':
+                pa2 = 'a'
+            else:
+                return False
+
+            if isinstance(local_device, AnyEmuDevice):
+                local_device.connect_to_dynamips(
+                    port1,
+                    remote_device.dynamips,
+                    remote_device,
+                    pa2,
+                    port2,
+                    )
+            else:
+                local_device.slot[slot1].connect(
+                    pa1,
+                    port1,
+                    remote_device.dynamips,
+                    remote_device,
+                    pa2,
+                    port2,
+                    )
+            return True
+        else:
+            # Malformed
+            raise DynamipsError, 'malformed destination interface: ' + str(dest)
+
+    def connect2(self, local_device, source, dest):
+        """ Connect a device to something
+            local_device: a local device object
+            source: a string specifying the local interface
+            dest: a string specifying a device and a remote interface, LAN, a raw NIO
+        """
         #parse the left side of connection
         (pa1, slot1, port1) = self._parse_interface_part_of_connection(local_device, source)
 

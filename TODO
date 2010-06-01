@@ -1,17 +1,10 @@
 TODO LIST
 
- * Open .net files in GNS3 on Mac OS X (http://www.gns3.net/phpBB/topic1817.html)
+ * Open .net files from Finder on Mac OS X (http://www.gns3.net/phpBB/topic1817.html)
  * NIO multicast support (next release of Dynamips)
  * Show NIO activity (next release of Dynamips)
  * Dynamips QinQ integration (next release of Dynamips)
  * Cpulimit integration => no need to integrate, use a script to start Qemu followed by cpulimit
-
-Documentation
- 
- * Save vlan.dat => http://www.gns3.net/phpBB/topic1818.html
- * IPS + ASA
- * Procedure to make DMG => http://www.gns3.net/phpBB/topic1686.html
- * Post JunOS videos => http://www.gns3.net/phpBB/topic1616.html
 
 Debugging
 

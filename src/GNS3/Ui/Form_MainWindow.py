@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sun Apr 25 17:46:23 2010
-#      by: PyQt4 UI code generator 4.7
+# Created: Tue Jun  1 20:57:02 2010
+#      by: PyQt4 UI code generator 4.7.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -47,9 +47,11 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.toolBar_General = QtGui.QToolBar(MainWindow)
+        self.toolBar_General.setToolTip("")
+        self.toolBar_General.setStatusTip("")
         self.toolBar_General.setOrientation(QtCore.Qt.Horizontal)
         self.toolBar_General.setObjectName("toolBar_General")
-        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar_General)
+        MainWindow.addToolBar(QtCore.Qt.ToolBarArea(QtCore.Qt.TopToolBarArea), self.toolBar_General)
         self.dockWidget_NodeTypes = QtGui.QDockWidget(MainWindow)
         self.dockWidget_NodeTypes.setAllowedAreas(QtCore.Qt.LeftDockWidgetArea|QtCore.Qt.RightDockWidgetArea)
         self.dockWidget_NodeTypes.setObjectName("dockWidget_NodeTypes")
@@ -74,7 +76,7 @@ class Ui_MainWindow(object):
         self.toolBar_Emulation = QtGui.QToolBar(MainWindow)
         self.toolBar_Emulation.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
         self.toolBar_Emulation.setObjectName("toolBar_Emulation")
-        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar_Emulation)
+        MainWindow.addToolBar(QtCore.Qt.ToolBarArea(QtCore.Qt.TopToolBarArea), self.toolBar_Emulation)
         self.dockWidget_TopoSum = QtGui.QDockWidget(MainWindow)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -122,7 +124,7 @@ class Ui_MainWindow(object):
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(8), self.dockWidget_Console)
         self.toolBar_drawing = QtGui.QToolBar(MainWindow)
         self.toolBar_drawing.setObjectName("toolBar_drawing")
-        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar_drawing)
+        MainWindow.addToolBar(QtCore.Qt.ToolBarArea(QtCore.Qt.TopToolBarArea), self.toolBar_drawing)
         self.dockWidget_UndoView = QtGui.QDockWidget(MainWindow)
         self.dockWidget_UndoView.setEnabled(True)
         self.dockWidget_UndoView.setObjectName("dockWidget_UndoView")
@@ -144,6 +146,7 @@ class Ui_MainWindow(object):
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/icons/quit.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_Quit.setIcon(icon1)
+        self.action_Quit.setStatusTip("")
         self.action_Quit.setObjectName("action_Quit")
         self.action_Open = QtGui.QAction(MainWindow)
         icon2 = QtGui.QIcon()

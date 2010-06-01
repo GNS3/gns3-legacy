@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_StartupConfig.ui'
 #
-# Created: Sun Apr 25 17:46:24 2010
-#      by: PyQt4 UI code generator 4.7
+# Created: Tue Jun  1 20:57:04 2010
+#      by: PyQt4 UI code generator 4.7.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -29,6 +29,7 @@ class Ui_StartupConfigDialog(object):
         self.StartupConfigPath_browser.setObjectName("StartupConfigPath_browser")
         self.gridLayout.addWidget(self.StartupConfigPath_browser, 0, 2, 1, 1)
         self.LoadStartupConfig = QtGui.QToolButton(StartupConfigDialog)
+        self.LoadStartupConfig.setText("")
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/icons/edit-redo.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.LoadStartupConfig.setIcon(icon1)

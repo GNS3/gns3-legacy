@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_IDSPage.ui'
 #
-# Created: Sun Apr 25 17:46:26 2010
-#      by: PyQt4 UI code generator 4.7
+# Created: Tue Jun  1 20:57:05 2010
+#      by: PyQt4 UI code generator 4.7.3
 #
 # WARNING! All changes made in this file will be lost!
 
