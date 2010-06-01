@@ -169,8 +169,11 @@ class NETFile(object):
         config = None
         if isinstance(device, qlib.AnyEmuDevice) and self.dynagen.globalconfig['qemu ' + device.dynamips.host +':' + str(device.dynamips.port)].has_key(running_config_name):
             config = self.dynagen.globalconfig['qemu ' + device.dynamips.host +':' + str(device.dynamips.port)][running_config_name]
-        elif self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)].has_key(running_config_name):
+        elif self.dynagen.globalconfig.has_key(device.dynamips.host +':' + str(device.dynamips.port)) and \
+            self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)].has_key(running_config_name):
             config = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][running_config_name]
+        elif self.dynagen.globalconfig.has_key(device.dynamips.host) and self.dynagen.globalconfig[device.dynamips.host].has_key(running_config_name):
+            config = self.dynagen.globalconfig[device.dynamips.host][running_config_name]
 
         if config:
             if config.has_key('x'):

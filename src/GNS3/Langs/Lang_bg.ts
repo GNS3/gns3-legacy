@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="bg">
+<!DOCTYPE TS><TS version="1.1" language="bg">
 <context>
     <name>ASA initrd</name>
     <message>
@@ -234,63 +233,27 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../Ui/Form_About.py" line="83"/>
+        <location filename="../Ui/Form_About.py" line="73"/>
         <source>About</source>
         <translation>Относно</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="100"/>
+        <location filename="../Ui/Form_About.py" line="90"/>
         <source>&amp;About</source>
         <translation>&amp;Относно</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="133"/>
+        <location filename="../Ui/Form_About.py" line="97"/>
         <source>&amp;Thanks to</source>
         <translation>&amp;Благодарение на</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="421"/>
+        <location filename="../Ui/Form_About.py" line="385"/>
         <source>&amp;License Agreement</source>
         <translation>&amp;Лицензионно споразумение</translation>
     </message>
-    <message utf8="true">
-        <location filename="../Ui/Form_About.py" line="101"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Alexander H. Hackenberg from Vienna, Austria&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Pavel Skovajsa from Slovakia&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:600;&quot;&gt;Translators:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Erik Wenzel from Germany: German translation (code: de) &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Huan Ji from Wuhan, China: Chinese translation (code: cn) &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Jose Sen from Buenos Aires, Argentina: Spanish translation (code: es) &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Mark Soe Min from Tokyo, Japan: Japanese translation (code: jp) &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Aboulgasem Albusaifi from Tarabulus, Libya: Arabic translation (code: ar) &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Marcio de Freitas Minicz from Sao Jose dos Campos, SP, Brazil: Brazilian-Portuguese translation (code: pt_br) &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Hasan Agirol Aksoy from Antalya, Turkey: Turkish translation (code: tr) &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Ivakin Dmitriy from Moscow, Russia: Russian translation (code: ru) &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Hyeonjin Kim from Seoul, Korea: Korean translation (code: kr) &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Pavel Skovajsa from Slovakia: Slovak translation (code: sk) &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Michał Zieliński from Plock, Poland: Polish translation (code: pl)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
-    </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="134"/>
+        <location filename="../Ui/Form_About.py" line="98"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -581,12 +544,7 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="99"/>
-        <source>&lt;div align=center&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;Donate&lt;/a&gt;&lt;/div&gt;</source>
-        <translation>&lt;div align=center&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;Дари пари на проекта&lt;/a&gt;&lt;/div&gt;</translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_About.py" line="84"/>
+        <location filename="../Ui/Form_About.ui" line="70"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -601,8 +559,39 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;David Ruiz&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="../Ui/Form_About.py" line="91"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;br /&gt;&lt;br /&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;br /&gt;&lt;br /&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;br /&gt;&lt;br /&gt;Alexander H. Hackenberg from Vienna, Austria&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa from Slovakia&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;Erik Wenzel: German translation (code: de)&lt;br /&gt;&lt;br /&gt;Huan Ji from Wuhan: Chinese translation (code: cn)&lt;br /&gt;&lt;br /&gt;Jose Sen: Spanish translation (code: es)&lt;br /&gt;&lt;br /&gt;Mark Soe Min: Japanese translation (code: jp)&lt;br /&gt;&lt;br /&gt;Aboulgasem Albusaifi from Tarabulus: Arabic translation (code: ar)&lt;br /&gt;&lt;br /&gt;Marcio de Freitas Minicz: Brazilian-Portuguese translation (code: pt_br)&lt;br /&gt;&lt;br /&gt;Hasan Agirol Aksoy: Turkish translation (code: tr)&lt;br /&gt;&lt;br /&gt;Ivakin Dmitriy: Russian translation (code: ru)&lt;br /&gt;&lt;br /&gt;Hyeonjin Kim: Korean translation (code: kr)&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa: Slovak translation (code: sk)&lt;br /&gt;&lt;br /&gt;Michał Zieliński: Polish translation (code: pl)&lt;br /&gt;&lt;br /&gt;Veljko Dzodic: Serbian translation (code: sr)&lt;br /&gt;&lt;br /&gt;Abalfazl Meshki: Farsi translation (code: fa)&lt;br /&gt;&lt;br /&gt;Ondřej Filip: Czech translation (code: cz)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_About.py" line="74"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;GNS3 0.7.1&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;Under GPL v2 license&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:600;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Jeremy Grossmann (PL)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Xavier Alt&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Romain Lamaison&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Aurelien Levesque&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;David Ruiz&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -623,37 +612,37 @@ p, li { white-space: pre-wrap; }
         <translation>Стартирай Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="330"/>
+        <location filename="../Link/AbstractEdge.py" line="329"/>
         <source>Capture</source>
         <translation>Прехващане</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="211"/>
+        <location filename="../Link/AbstractEdge.py" line="210"/>
         <source>Packet capture is not supported on this link type</source>
         <translation>Прехващането на пакети не се поддържа от този тип връзка</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="235"/>
+        <location filename="../Link/AbstractEdge.py" line="234"/>
         <source>Please choose a source</source>
         <translation>Моля, изберете източник</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="238"/>
+        <location filename="../Link/AbstractEdge.py" line="237"/>
         <source>No device available for traffic capture</source>
         <translation>Няма достъпно устройство за прехващане на трафик</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="300"/>
+        <location filename="../Link/AbstractEdge.py" line="299"/>
         <source>Dynamips error</source>
         <translation>Грешка в Dynamips</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="295"/>
+        <location filename="../Link/AbstractEdge.py" line="294"/>
         <source>Capture stopped</source>
         <translation>Прехващането спряно</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="309"/>
+        <location filename="../Link/AbstractEdge.py" line="308"/>
         <source>Please configure capture options</source>
         <translation>Моля, конфигурираите опциите за прехващане</translation>
     </message>
@@ -663,22 +652,22 @@ p, li { white-space: pre-wrap; }
         <translation>Връзка: %и (%и) -&gt; %и (%и)</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="245"/>
+        <location filename="../Link/AbstractEdge.py" line="244"/>
         <source>Device %s is not running</source>
         <translation>Устройството %и не е включено</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="330"/>
+        <location filename="../Link/AbstractEdge.py" line="329"/>
         <source>Cannot start %s : %s</source>
         <translation>Не може да стартира %и :%и</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="315"/>
+        <location filename="../Link/AbstractEdge.py" line="314"/>
         <source>%s is empty, no traffic captured on the link. Try again later</source>
         <translation>%и е празен, няма прехванат трафик на този линк. Опитайте по-късно</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="319"/>
+        <location filename="../Link/AbstractEdge.py" line="318"/>
         <source>Cannot find %s : %s</source>
         <translation>Не може да намери %и : %и</translation>
     </message>
@@ -686,97 +675,97 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractNode</name>
     <message>
-        <location filename="../Node/AbstractNode.py" line="97"/>
+        <location filename="../Node/AbstractNode.py" line="100"/>
         <source>Hostname:</source>
         <translation>Хостнейм:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="328"/>
+        <location filename="../Node/AbstractNode.py" line="330"/>
         <source>Connection</source>
         <translation>Връзка</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="293"/>
+        <location filename="../Node/AbstractNode.py" line="296"/>
         <source>Already connected interface</source>
         <translation>Свързан интерфейс</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="110"/>
+        <location filename="../Node/AbstractNode.py" line="113"/>
         <source>Hostname</source>
         <translation>Хостнейм</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="110"/>
+        <location filename="../Node/AbstractNode.py" line="113"/>
         <source>Hostname already used</source>
         <translation>Хостнейм, който вече е използван</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="264"/>
+        <location filename="../Node/AbstractNode.py" line="267"/>
         <source>Hostname: %s</source>
         <translation>Хостнейм: %и</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="328"/>
+        <location filename="../Node/AbstractNode.py" line="330"/>
         <source>No interface available, please configure this device</source>
         <translation>Няма наличен интерфейс, моля настройте  това устройство</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="170"/>
+        <location filename="../Node/AbstractNode.py" line="173"/>
         <source>Console port for %s:</source>
         <translation>Конзолен порт за %и:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="177"/>
+        <location filename="../Node/AbstractNode.py" line="180"/>
         <source>Console port</source>
         <translation>Конзолен порт</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="103"/>
+        <location filename="../Node/AbstractNode.py" line="106"/>
         <source>Please use only alphanumeric characters</source>
         <translation>Моля, използваите само буквено-цифрени символи</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="97"/>
+        <location filename="../Node/AbstractNode.py" line="100"/>
         <source>Change the hostname</source>
         <translation>Смени хостнейм</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="162"/>
+        <location filename="../Node/AbstractNode.py" line="165"/>
         <source>Hypervisor</source>
         <translation>Хипервайзър</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="121"/>
+        <location filename="../Node/AbstractNode.py" line="124"/>
         <source>The device must have no connection to other devices in order to change its hypervisor</source>
         <translation>Устройството не трябва да има връзка към други устроиства по ред за смяна на хипервайзъра</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="129"/>
+        <location filename="../Node/AbstractNode.py" line="132"/>
         <source>Set hypervisor</source>
         <translation>Задай хипервайзър</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="129"/>
+        <location filename="../Node/AbstractNode.py" line="132"/>
         <source>New hypervisor:</source>
         <translation>Нов хипервайзър:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="136"/>
+        <location filename="../Node/AbstractNode.py" line="139"/>
         <source>Invalid format for hypervisor (hostname:port is required)</source>
         <translation>Невалиден формат за хипервайзъра</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="148"/>
+        <location filename="../Node/AbstractNode.py" line="151"/>
         <source>Can&apos;t connect to the hypervisor on %s</source>
         <translation>Не може да свърже</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="162"/>
+        <location filename="../Node/AbstractNode.py" line="165"/>
         <source>New hypervisor %s has been set on device %s</source>
         <translation>Нов хипервайзър %и беше зададен на устройство %и</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="170"/>
+        <location filename="../Node/AbstractNode.py" line="173"/>
         <source>Change the console port</source>
         <translation>Сменете конзолния порт</translation>
     </message>
@@ -784,10 +773,19 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AnyEmuDevice</name>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="209"/>
+        <location filename="../Node/AnyEmuDevice.py" line="218"/>
         <source>Dynamips error</source>
-        <translatorcomment>Грешка в Dynamips</translatorcomment>
         <translation>Dynamips error</translation>
+    </message>
+    <message>
+        <location filename="../Node/AnyEmuDevice.py" line="204"/>
+        <source>New hostname</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/AnyEmuDevice.py" line="204"/>
+        <source>Cannot rename a connected emulated device</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -909,62 +907,62 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Console</name>
     <message>
-        <location filename="../Console.py" line="206"/>
+        <location filename="../Console.py" line="216"/>
         <source>Dynamips error</source>
         <translation>Грешка в Dynamips</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="204"/>
+        <location filename="../Console.py" line="214"/>
         <source>Dynamips warning</source>
         <translation>Dynamips предупреждение</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="206"/>
+        <location filename="../Console.py" line="216"/>
         <source>Connection lost</source>
         <translation>Връзката изгубена</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="270"/>
+        <location filename="../Console.py" line="280"/>
         <source>Sorry, not implemented in GNS3</source>
         <translation>Съжеляваме, не е внедрено в GNS3</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="281"/>
+        <location filename="../Console.py" line="291"/>
         <source>Please wait while gathering statistics...</source>
         <translation>Моля, изчакайте докато събере статистиките...</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="306"/>
+        <location filename="../Console.py" line="316"/>
         <source>No idlepc values found</source>
         <translation>Няма намерени idlepc стойности</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="318"/>
+        <location filename="../Console.py" line="328"/>
         <source>No changes made</source>
         <translation>Няма направени промени</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="331"/>
+        <location filename="../Console.py" line="341"/>
         <source>Can&apos;t apply idlepc value</source>
         <translation>Не може да приложи idlepc стойностите</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="336"/>
+        <location filename="../Console.py" line="346"/>
         <source>Incorrect number of paramaters or invalid parameters</source>
         <translation>Грешен номер на параметрите или невалидни параметри</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="349"/>
+        <location filename="../Console.py" line="359"/>
         <source>You have to save your topology before using save</source>
         <translation>Трябва да запишете вашата топология преди да използвате save</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="357"/>
+        <location filename="../Console.py" line="367"/>
         <source>You have to save your topology before using push</source>
         <translation>Трябва да запишете вашата топология преди да използвате push</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="308"/>
+        <location filename="../Console.py" line="318"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;
 Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 </source>
@@ -972,26 +970,36 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 Въведете номер на idlepc валиден за прилагане [1-%] или натиснете ENTER:</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="323"/>
+        <location filename="../Console.py" line="333"/>
         <source>Applied idlepc value %s to %s
 </source>
         <translation>Приложена idlepc стойност %и за %и
 </translation>
     </message>
     <message>
-        <location filename="../Console.py" line="339"/>
+        <location filename="../Console.py" line="349"/>
         <source>Unknown device: %s</source>
         <translation>Не разпознато устройство: %и</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="397"/>
+        <location filename="../Console.py" line="407"/>
         <source>Cannot create %s: %s</source>
         <translation>Не може да създаде %и: %и</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="278"/>
+        <location filename="../Console.py" line="288"/>
         <source>%s already has an idlepc value applied (%s).</source>
         <translation>%и вече има приложена стойност за idlepc (%и).</translation>
+    </message>
+    <message>
+        <location filename="../Telnet.py" line="48"/>
+        <source>Console</source>
+        <translation type="unfinished">Конзола</translation>
+    </message>
+    <message>
+        <location filename="../Telnet.py" line="48"/>
+        <source>Cannot start %s: %s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1156,7 +1164,6 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="123"/>
         <source>Port</source>
-        <translatorcomment>Порт</translatorcomment>
         <translation>Порт</translation>
     </message>
     <message>
@@ -1324,39 +1331,49 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="../HypervisorManager.py" line="109"/>
+        <location filename="../HypervisorManager.py" line="122"/>
         <source>Abort</source>
         <translation>Прекрати</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="84"/>
+        <location filename="../HypervisorManager.py" line="97"/>
         <source>Can&apos;t start Dynamips on port %i</source>
         <translation>Не може да стартира Dynapips на порт %i</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="138"/>
-        <source>Can&apos;t connect to the hypervisor on port %i</source>
-        <translation>Не може да свърже хипервайзъра на порт %i</translation>
-    </message>
-    <message>
-        <location filename="../HypervisorManager.py" line="72"/>
-        <source>A hypervisor is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation>Хипервайзъра е вече стартиран за този порт %i, ще бъде спрян когато излезете от GNS3</translation>
-    </message>
-    <message>
-        <location filename="../HypervisorManager.py" line="109"/>
+        <location filename="../HypervisorManager.py" line="122"/>
         <source>Connecting to a hypervisor on port %i ...</source>
         <translation>Свръзване към хипервайзър на порт %i ...</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="181"/>
+        <location filename="../HypervisorManager.py" line="196"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation>Работната директория или не съществува или не може да се записва в нея, моля проверете</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="186"/>
+        <location filename="../HypervisorManager.py" line="201"/>
         <source>Can&apos;t set up hypervisor on port %i, please check the settings (writable working directory ...)</source>
         <translation>Не може да настрои хипервайзъра на порт %i, моля проверете настройките(за запис в работната директория)</translation>
+    </message>
+    <message>
+        <location filename="../HypervisorManager.py" line="85"/>
+        <source>Hypervisor Manager</source>
+        <translation type="unfinished">Мениджър за хипервайзъра</translation>
+    </message>
+    <message>
+        <location filename="../HypervisorManager.py" line="74"/>
+        <source>Apparently an hypervisor is already running on port %i, would you like to kill all Dynamips processes?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../HypervisorManager.py" line="153"/>
+        <source>Can&apos;t connect to the hypervisor on port %i: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../HypervisorManager.py" line="85"/>
+        <source>A program is still running on port %i, you will have to stop it manually or change port settings</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2360,77 +2377,77 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="468"/>
+        <location filename="../NETFile.py" line="520"/>
         <source>Save</source>
         <translation>Запис</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="468"/>
+        <location filename="../NETFile.py" line="520"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Моля, конфигурираите път до Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="740"/>
+        <location filename="../NETFile.py" line="796"/>
         <source>Dynamips error</source>
         <translation>Dynamips грешка</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="743"/>
+        <location filename="../NETFile.py" line="799"/>
         <source>Dynamips warning</source>
         <translation>Dynamips предупреждение</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="499"/>
+        <location filename="../NETFile.py" line="551"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Засечено изключение, спиране на импортирането...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="738"/>
+        <location filename="../NETFile.py" line="794"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Експортване %и конфигурацията към %и</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="755"/>
+        <location filename="../NETFile.py" line="811"/>
         <source>%s: IO Error: %s</source>
         <translation>%и Входно-изходна грешка: %и</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="499"/>
+        <location filename="../NETFile.py" line="551"/>
         <source>Importation</source>
         <translation>Импортиране</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="480"/>
+        <location filename="../NETFile.py" line="532"/>
         <source>Please wait while importing the topology</source>
         <translation>Моля, изчакайте докато се импортира топологията</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="755"/>
+        <location filename="../NETFile.py" line="811"/>
         <source>IOError</source>
         <translation>Входно-изходна грешка</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="522"/>
+        <location filename="../NETFile.py" line="574"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation>Внимание: GNS3 все още не поддържа LAN състоянията, игнорирайте ги</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="406"/>
+        <location filename="../NETFile.py" line="456"/>
         <source>Cannot load image: %s</source>
         <translation>Не може да зареди изобранието: %и</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="359"/>
+        <location filename="../NETFile.py" line="409"/>
         <source>Cannot load font: %s</source>
         <translation>Не може да зареди шрифт: %и</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="417"/>
+        <location filename="../NETFile.py" line="467"/>
         <source>%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file</source>
         <translation>%и: не може да намери %и символа, моля проверете този символ във възела и презаредете .net файлът</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="912"/>
+        <location filename="../NETFile.py" line="971"/>
         <source>must be connected or have a hypervisor set in order to be registered</source>
         <translation>трябва да бъде свързан към хипервайзър за да може да бъде регистриран</translation>
     </message>
@@ -2438,39 +2455,44 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>NewProject</name>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="58"/>
+        <location filename="../Ui/Form_NewProject.py" line="64"/>
         <source>New Project</source>
         <translation>Нов проект</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="59"/>
+        <location filename="../Ui/Form_NewProject.py" line="66"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="60"/>
-        <source>Project file:</source>
-        <translation>Проектен файл:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_NewProject.py" line="61"/>
+        <location filename="../Ui/Form_NewProject.py" line="69"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="63"/>
+        <location filename="../Ui/Form_NewProject.py" line="71"/>
         <source>Export router configuration files</source>
         <translation>Експортирай конфигурационните файлове на рутера</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="62"/>
+        <location filename="../Ui/Form_NewProject.py" line="70"/>
         <source>Save nvrams and other disk files (recommended)</source>
         <translation>Запиши nvram и други дискови файлове (препоръчително)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="64"/>
+        <location filename="../Ui/Form_NewProject.py" line="65"/>
         <source>&amp;Open a project</source>
         <translation>&amp;Отвори проект</translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_NewProject.py" line="67"/>
+        <source>Project name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_NewProject.py" line="68"/>
+        <source>Project directory:</source>
+        <translation type="unfinished">Директория за проекти:</translation>
     </message>
 </context>
 <context>
@@ -2756,8 +2778,8 @@ to display the configuration page.</source>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="269"/>
-        <source>Bind Hypervisor Manager with:</source>
-        <translation>Прикачи хипервайзър мениджъра с:</translation>
+        <source>IP/host binding:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2922,12 +2944,7 @@ to display the configuration page.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="36"/>
-        <source>Path (qemuwrapper.exe on Windows else qemuwrapper.py):</source>
-        <translation>Път(qemuwrapper за Windows, за други ОС qemuwrapper.py):</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1071"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1141"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -2937,252 +2954,272 @@ to display the configuration page.</source>
         <translation>Работна директория:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="113"/>
-        <source>Bind Qemu Manager with:</source>
-        <translation>Монтирай Qemu мениджър с:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="127"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="187"/>
         <source>Enable Qemu Manager</source>
         <translation>Пусни Qemu Мениджъра</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="137"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="197"/>
         <source>Use Qemu Manager when importing</source>
         <translation>Използвай Qemu мениджъра когато импортира</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="150"/>
-        <source>Host for an external qemuwrapper:</source>
-        <translation>Хост за върншен qemuwrapper:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="160"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="147"/>
         <source>Base UDP port:</source>
         <translation>Базов UDP порт:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="180"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="167"/>
         <source>Base console port:</source>
         <translation>Базов конзолен порт:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="649"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="719"/>
         <source>Binary image:</source>
         <translation>Изображение:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1081"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1151"/>
         <source>Memory:</source>
         <translation>Памет:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1107"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1177"/>
         <source>NIC:</source>
         <translation>Мрежова карта:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1121"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1191"/>
         <source>ne2k_pci</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1126"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1196"/>
         <source>i82551</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1131"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1201"/>
         <source>i82557b</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1136"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1206"/>
         <source>i82559er</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1141"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1211"/>
         <source>rtl8139</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1146"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1216"/>
         <source>e1000</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1151"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1221"/>
         <source>pcnet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1156"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1226"/>
         <source>virtio</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1164"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1234"/>
         <source>Qemu Options:</source>
         <translation>Qemu опции:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1181"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1251"/>
         <source>Use KQemu</source>
         <translation>Използвай KQemu</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1191"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1261"/>
         <source>Use KVM (Linux Only)</source>
         <translation>Използвай KVM (само за Linux)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="428"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="498"/>
         <source>PIX</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="434"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="504"/>
         <source>PIX Settings</source>
         <translation>PIX настройки</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="580"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="650"/>
         <source>PIX Specific Settings</source>
         <translation>Специфични PIX настройки</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="586"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="656"/>
         <source>Key:</source>
         <translation>Ключ:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="603"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="673"/>
         <source>Serial:</source>
         <translation>Сериен:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="637"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="707"/>
         <source>JunOS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="643"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="713"/>
         <source>JunOS Settings</source>
         <translation>JunOS настройки</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="810"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="880"/>
         <source>ASA</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="816"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="886"/>
         <source>ASA Settings</source>
         <translation>ASA настройки</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="942"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1012"/>
         <source>ASA Specific Settings</source>
         <translation>ASA специфични настройки</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="991"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1061"/>
         <source>Initrd:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="958"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1028"/>
         <source>Kernel:</source>
         <translation>Ядро:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="978"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1048"/>
         <source>Kernel cmd line:</source>
         <translation>Командна линия за ядрото:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="73"/>
-        <source>Path to qemu (not used for PIX):</source>
-        <translation>Път до qemu (не се използва за PIX):</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="93"/>
-        <source>Path to qemu-img (not used for PIX):</source>
-        <translation>Път до qemu-img (не се използва за PIX):</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="205"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="249"/>
         <source>&amp;Test</source>
         <translation>&amp;Тестване</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="228"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="285"/>
         <source>Qemu Host</source>
         <translation>Qemu хост</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="234"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="291"/>
         <source>Qemu Host Settings</source>
         <translation>Qemu хостови настройки</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="240"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="297"/>
         <source>Identifier name:</source>
         <translation>Идентификационно име:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="374"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="431"/>
         <source>Save</source>
         <translation>Запиши</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="381"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="438"/>
         <source>Delete</source>
         <translation>Изтрий</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="404"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="461"/>
         <source>Qemu Host images</source>
         <translation>Qemu хостови изображения</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="411"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="468"/>
         <source>Name</source>
         <translation>Име</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="416"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="473"/>
         <source>Image path</source>
         <translation>Път до изображението</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1015"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1085"/>
         <source>IDS</source>
         <translation>IDS</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1021"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1091"/>
         <source>IDS Settings</source>
         <translation>IDS настройки</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1027"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1097"/>
         <source>Binary image 1 (hda):</source>
         <translation>Бинарно изображение 1 (hda):</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1054"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1124"/>
         <source>Binary image 2 (hdb):</source>
         <translation>Бинарно изображение 2 (hdb):</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="36"/>
+        <source>Path to Qemuwrapper:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="73"/>
+        <source>Path to qemu:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="93"/>
+        <source>Path to qemu-img:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="113"/>
+        <source>IP/host binding:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="127"/>
+        <source>Qemuwrapper port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="210"/>
+        <source>External Qemuwrapper:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="220"/>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="234"/>
+        <source>Registered external Qemuwrappers:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ProjectDialog</name>
     <message>
-        <location filename="../ProjectDialog.py" line="53"/>
-        <source>New Project</source>
-        <translation>Нов проект</translation>
+        <location filename="../ProjectDialog.py" line="90"/>
+        <source>Project Directory</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3211,17 +3248,17 @@ to display the configuration page.</source>
         <translation>Не може да се свърже с Qemu на порт %i</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="163"/>
+        <location filename="../QemuManager.py" line="165"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation>Работната директория %s не съществува или не може да се записва, моля проверете</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="117"/>
+        <location filename="../QemuManager.py" line="118"/>
         <source>Qemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
         <translation>Qemu е включен на порт %i, и ще бъде спрян когато излезете от GNS3</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="131"/>
+        <location filename="../QemuManager.py" line="133"/>
         <source>Can&apos;t start Qemu on port %i</source>
         <translation>Не може да стартира Qemu на порт %i</translation>
     </message>
@@ -3317,139 +3354,152 @@ to display the configuration page.</source>
 <context>
     <name>Scene</name>
     <message>
-        <location filename="../Scene.py" line="204"/>
+        <location filename="../Scene.py" line="202"/>
         <source>Delete</source>
         <translation>Изтрий</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="109"/>
+        <location filename="../Scene.py" line="107"/>
         <source>Configure</source>
         <translation>Конфигурация</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="146"/>
+        <location filename="../Scene.py" line="144"/>
         <source>Console</source>
         <translation>Конзола</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="151"/>
+        <location filename="../Scene.py" line="149"/>
         <source>Start</source>
         <translation>Стартиране</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="156"/>
+        <location filename="../Scene.py" line="154"/>
         <source>Stop</source>
         <translation>Спиране</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="179"/>
+        <location filename="../Scene.py" line="177"/>
         <source>Suspend</source>
         <translation>Преустановяване</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="169"/>
+        <location filename="../Scene.py" line="167"/>
         <source>Idle PC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="346"/>
+        <location filename="../Scene.py" line="345"/>
         <source>IDLE PC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="281"/>
+        <location filename="../Scene.py" line="280"/>
         <source>Please select only one router</source>
         <translation>Моля, изберете само един рутер</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="322"/>
+        <location filename="../Scene.py" line="321"/>
         <source>No idlepc values found</source>
         <translation>Няма намерени стойности за idlepc</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="324"/>
+        <location filename="../Scene.py" line="323"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
         <translation>По-добрите стойности за idlepc са маркирани с &apos;*&apos;</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="349"/>
+        <location filename="../Scene.py" line="348"/>
         <source>Dynamips error</source>
         <translation>Dynamips грешка</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="288"/>
+        <location filename="../Scene.py" line="287"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
         <translation>%s има вече приложена стойност за idlepc, искате ли да бъде калкулирана нова ?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="346"/>
+        <location filename="../Scene.py" line="345"/>
         <source>Applied idlepc value %s to %s</source>
         <translation>Приложена idlepc стойност %и за %и</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="240"/>
+        <location filename="../Scene.py" line="238"/>
         <source>Please wait while calculating an IDLE PC</source>
         <translation>Моля, изчакайте докато калкулира стойностите за IDLE PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="114"/>
+        <location filename="../Scene.py" line="112"/>
         <source>Change the hostname</source>
         <translation>Смени хостнейм</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="119"/>
+        <location filename="../Scene.py" line="117"/>
         <source>Show/Hide the hostname</source>
         <translation>Покажи/скрий хостнейм</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="141"/>
+        <location filename="../Scene.py" line="139"/>
         <source>Change console port</source>
         <translation>Смени конзолен порт</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="174"/>
+        <location filename="../Scene.py" line="172"/>
         <source>Startup-config</source>
         <translation>Стартова конфигурация</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="210"/>
+        <location filename="../Scene.py" line="208"/>
         <source>Lower one step</source>
         <translation>Стъпка надолу</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="215"/>
+        <location filename="../Scene.py" line="213"/>
         <source>Raise one step</source>
         <translation>Стъпка нагоре</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="197"/>
+        <location filename="../Scene.py" line="195"/>
         <source>Style</source>
         <translation>Стил</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="184"/>
+        <location filename="../Scene.py" line="182"/>
         <source>Reload</source>
         <translation>Презареди</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="131"/>
+        <location filename="../Scene.py" line="129"/>
         <source>Set an hypervisor</source>
         <translation>Задай хипервайзър</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="665"/>
+        <location filename="../Scene.py" line="672"/>
         <source>annotation</source>
         <translation>анотация</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="674"/>
+        <location filename="../Scene.py" line="681"/>
         <source>rectangle</source>
         <translation>правоъгълник</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="682"/>
+        <location filename="../Scene.py" line="689"/>
         <source>ellipse</source>
         <translation>елипса</translation>
+    </message>
+</context>
+<context>
+    <name>SnapshotDialog</name>
+    <message>
+        <location filename="../SnapshotDialog.py" line="63"/>
+        <source>Project</source>
+        <translation type="unfinished">Проект</translation>
+    </message>
+    <message>
+        <location filename="../SnapshotDialog.py" line="63"/>
+        <source>Create a project first!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3567,7 +3617,7 @@ i.e. #copy start run</source>
         <source>Rotation:</source>
         <translation>Ротаця:</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="../Ui/Form_StyleDialog.py" line="81"/>
         <source>°</source>
         <translation></translation>
@@ -3719,141 +3769,149 @@ ALT+ЛЯВА или ДЯСНА стрелка </translation>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="363"/>
+        <location filename="../Topology.py" line="388"/>
         <source>IOS image</source>
-        <translatorcomment>IOS изображение</translatorcomment>
         <translation>IOS image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="357"/>
+        <location filename="../Topology.py" line="382"/>
         <source>Hypervisor</source>
-        <translatorcomment>Хипервайзър</translatorcomment>
         <translation>Hypervisor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="354"/>
+        <location filename="../Topology.py" line="379"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Моля, конфигурираите пътя до Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="817"/>
+        <location filename="../Topology.py" line="839"/>
         <source>Dynamips error</source>
         <translation>Dynamips грешка</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="817"/>
+        <location filename="../Topology.py" line="839"/>
         <source>Connection lost</source>
         <translation>Връзката изгубена</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="716"/>
+        <location filename="../Topology.py" line="738"/>
         <source>Connection</source>
         <translation>Връзка</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="211"/>
+        <location filename="../Topology.py" line="210"/>
         <source>Can&apos;t connect to the external hypervisor on %s</source>
         <translation>Не може да се свърже към външен хипервайзър на %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="326"/>
+        <location filename="../Topology.py" line="351"/>
         <source>No image for platform %s</source>
         <translation>Няма изображение за платформа %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="382"/>
+        <location filename="../Topology.py" line="407"/>
         <source>Please choose an image</source>
         <translation>Моля, изберете изображение</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="716"/>
+        <location filename="../Topology.py" line="738"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Трябва да свържете с поне един рутер към суич</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="501"/>
+        <location filename="../Topology.py" line="526"/>
         <source>PIX image</source>
         <translation>PIX изображение</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="496"/>
+        <location filename="../Topology.py" line="521"/>
         <source>Please configure a default PIX image</source>
         <translation>Моля, конфигурираите PIX изображението като основно</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="703"/>
-        <source>Can&apos;t connect these devices</source>
-        <translation>Не може да се свърже към тези устроиства</translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="357"/>
+        <location filename="../Topology.py" line="382"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation>Моля, тествайте пъдя до Dynamips в предпочитанията</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="316"/>
+        <location filename="../Topology.py" line="341"/>
         <source>Please register at least one IOS image</source>
         <translation>Моля, регистрираите поне едно IOS изображение</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="291"/>
+        <location filename="../Topology.py" line="316"/>
         <source>Qemuwrapper error</source>
         <translation>Qemuwrapper грешка</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="501"/>
+        <location filename="../Topology.py" line="526"/>
         <source>%s seems to not exist, please check</source>
         <translation>%s изглежда не съществува, моля проверете</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="415"/>
+        <location filename="../Topology.py" line="440"/>
         <source>JunOS image</source>
         <translation>JunOS изображение</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="410"/>
+        <location filename="../Topology.py" line="435"/>
         <source>Please configure a default JunOS image</source>
         <translation>Моля, конфигурираите основно JunOS изображение</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="394"/>
+        <location filename="../Topology.py" line="419"/>
         <source>Qemu image</source>
         <translation>Qemu изображение</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="474"/>
+        <location filename="../Topology.py" line="499"/>
         <source>ASA kernel</source>
         <translation>ASA ядро</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="460"/>
+        <location filename="../Topology.py" line="485"/>
         <source>Please configure a default ASA kernel</source>
         <translation>Моля, конфигурираите основно ASA ядро</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="470"/>
+        <location filename="../Topology.py" line="495"/>
         <source>ASA initrd</source>
         <translation>ASA initrd</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="464"/>
+        <location filename="../Topology.py" line="489"/>
         <source>Please configure a default ASA initrd</source>
         <translation>Моля, конфигурираите основно ASA initrd</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="373"/>
+        <location filename="../Topology.py" line="398"/>
         <source>Please configure a Qemu image</source>
         <translation>Моля, конфигурираите основно Qemu изображение</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="440"/>
+        <location filename="../Topology.py" line="465"/>
         <source>IDS images</source>
         <translation>IDS изображения</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="431"/>
+        <location filename="../Topology.py" line="456"/>
         <source>Please configure the default IDS images</source>
         <translation>Моля, конфигурираите основно IDS изображения</translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="273"/>
+        <source>External Qemuwrapper</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="268"/>
+        <source>Please register at least one external Qemuwrapper</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="273"/>
+        <source>Please choose your external Qemuwrapper</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3864,77 +3922,77 @@ ALT+ЛЯВА или ДЯСНА стрелка </translation>
         <translation>Нов възел %s</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="58"/>
+        <location filename="../UndoFramework.py" line="67"/>
         <source>Delete node %s</source>
         <translation>Изтрий възела %s</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="76"/>
+        <location filename="../UndoFramework.py" line="87"/>
         <source>New item %s</source>
         <translation>Нова точка %s</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="93"/>
+        <location filename="../UndoFramework.py" line="104"/>
         <source>Delete item</source>
         <translation>Изтрий точката %s</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="112"/>
+        <location filename="../UndoFramework.py" line="123"/>
         <source>New link: %s (%s) -&gt; %s (%s)</source>
         <translation>Нова връзка: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="145"/>
+        <location filename="../UndoFramework.py" line="155"/>
         <source>Delete link: %s (%s) -&gt; %s (%s)</source>
         <translation>Изтриите връзката: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="173"/>
+        <location filename="../UndoFramework.py" line="188"/>
         <source>New configuration applied on %s</source>
         <translation>Новата конфигурация е приложена на %s</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="191"/>
+        <location filename="../UndoFramework.py" line="206"/>
         <source>New hostname %s -&gt; %s</source>
         <translation>Нов хостнейм %s -&gt; %s</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="219"/>
+        <location filename="../UndoFramework.py" line="234"/>
         <source>New layer position %d</source>
         <translation>Нова позиция на слоя %d</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="239"/>
+        <location filename="../UndoFramework.py" line="254"/>
         <source>New console port %d for %s</source>
         <translation>Нов конзолен порт %d за %s</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="271"/>
+        <location filename="../UndoFramework.py" line="288"/>
         <source>New startup-config %s for %s</source>
         <translation>Нова стартова конфигурация %s за %s</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="313"/>
+        <location filename="../UndoFramework.py" line="330"/>
         <source>New startup-config in nvram for %s</source>
         <translation>Нова стартова конфигурация в nvram за %s</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="329"/>
+        <location filename="../UndoFramework.py" line="346"/>
         <source>Connection lost</source>
         <translation>Загубена връзка</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="347"/>
+        <location filename="../UndoFramework.py" line="364"/>
         <source>New style applied for annotation</source>
         <translation>Приложен е нов стил за анотация</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="382"/>
+        <location filename="../UndoFramework.py" line="399"/>
         <source>New style applied for item</source>
         <translation>Приложен е нов стил за точка</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="417"/>
+        <location filename="../UndoFramework.py" line="434"/>
         <source>New text for annotation</source>
         <translation>Нов текст за анотация</translation>
     </message>
@@ -3979,7 +4037,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="150"/>
+        <location filename="../Workspace.py" line="151"/>
         <source>Docks</source>
         <translation>Докове</translation>
     </message>
@@ -4039,7 +4097,7 @@ p, li { white-space: pre-wrap; }
         <translation>Пътят до Dynamips трябва да е конфигуриран</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="944"/>
+        <location filename="../Workspace.py" line="945"/>
         <source>Save Project As</source>
         <translation>Запиши проекта като</translation>
     </message>
@@ -4094,7 +4152,7 @@ p, li { white-space: pre-wrap; }
         <translation>Директория за запис на стартовите настроики</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="188"/>
+        <location filename="../Workspace.py" line="189"/>
         <source>Yes - Export all the workspace
 No - Export only what I see</source>
         <translation>Да -Експортира цялото работно място
@@ -4116,22 +4174,17 @@ No - Export only what I see</source>
         <translation>Искате ли да приложите настройките на проекта към тази топология? (може да отнеме известно време)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="845"/>
+        <location filename="../Workspace.py" line="842"/>
         <source>Snapshot</source>
         <translation>Снимка</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="830"/>
-        <source>The project working directory must be set in the preferences</source>
-        <translation>Директорията за проектите трябва да бъде зададена в предпочитанията</translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="845"/>
+        <location filename="../Workspace.py" line="842"/>
         <source>Cannot create directory %s: %s</source>
         <translation>Не може да създаде директория %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="850"/>
+        <location filename="../Workspace.py" line="847"/>
         <source>Please wait while creating a snapshot</source>
         <translation>Моля, почакаите докато създава снимка</translation>
     </message>
@@ -4196,22 +4249,22 @@ No - Export only what I see</source>
         <translation>Dynamips предупреждение: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="256"/>
+        <location filename="../Workspace.py" line="257"/>
         <source>I/O Error</source>
         <translation>Входно-изходна грешка</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="256"/>
+        <location filename="../Workspace.py" line="257"/>
         <source>I/O Error: %s</source>
         <translation>Входно-изходна грешка: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="84"/>
+        <location filename="../Workspace.py" line="85"/>
         <source>Ctrl+Z</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="89"/>
+        <location filename="../Workspace.py" line="90"/>
         <source>Ctrl+Y</source>
         <translation></translation>
     </message>
@@ -4235,13 +4288,10 @@ No - Export only what I see</source>
         <source>picture</source>
         <translation>снимка</translation>
     </message>
-</context>
-<context>
-    <name>connect</name>
     <message>
-        <location filename="../Telnet.py" line="48"/>
-        <source>Console %s: %s</source>
-        <translation>Конзола %s: %s</translation>
+        <location filename="../Workspace.py" line="894"/>
+        <source>Dynamips error: %s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4325,17 +4375,17 @@ No - Export only what I see</source>
 <context>
     <name>topologySummaryDock</name>
     <message>
-        <location filename="../Ui/Widget_topologySummaryDock.py" line="94"/>
+        <location filename="../Ui/Widget_topologySummaryDock.py" line="98"/>
         <source>%s is connected to %s %s</source>
         <translation>%и е свързан с %и %и</translation>
     </message>
     <message>
-        <location filename="../Ui/Widget_topologySummaryDock.py" line="126"/>
+        <location filename="../Ui/Widget_topologySummaryDock.py" line="129"/>
         <source>Expand all</source>
         <translation>Разшири всички</translation>
     </message>
     <message>
-        <location filename="../Ui/Widget_topologySummaryDock.py" line="129"/>
+        <location filename="../Ui/Widget_topologySummaryDock.py" line="132"/>
         <source>Collapse all</source>
         <translation>Прибери всички</translation>
     </message>

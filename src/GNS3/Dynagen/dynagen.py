@@ -1219,7 +1219,7 @@ class Dynagen:
                 # However, a "copy run start" will obliterate the section too
                 # Code a way to preserve this
                 continue
-            else:
+            else:                
                 #this is dynamips hypervisor
                 server.host = server.name
                 controlPort = None
@@ -1235,6 +1235,7 @@ class Dynagen:
                         controlPort = server['port']
                     if controlPort == None:
                         controlPort = 7200
+        
                     self.dynamips[server.name] = Dynamips(server.host, int(controlPort))
                     # Reset each server
                     self.dynamips[server.name].reset()

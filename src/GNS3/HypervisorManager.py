@@ -83,7 +83,7 @@ class HypervisorManager(object):
             s.close()
     
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("HypervisorManager", "Hypervisor Manager"),
-                                       unicode(translate("HypervisorManager", "Something is still running on port %i, you will have to stop it manually or change port settings")) % port)
+                                       unicode(translate("HypervisorManager", "A program is still running on port %i, you will have to stop it manually or change port settings")) % port)
 
             globals.hypervisor_baseport += 1
             return None

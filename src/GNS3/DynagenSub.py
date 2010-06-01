@@ -184,7 +184,7 @@ class DynagenSub(Dynagen):
                 if server['port'] != None:
                     controlPort = server['port']
                 if controlPort == None:
-                    controlPort = 7200
+                    controlPort = '7200'
 
                 # need to start local hypervisors
                 if (server.host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or server.host == 'localhost') and \
@@ -194,7 +194,7 @@ class DynagenSub(Dynagen):
                     globals.GApp.HypervisorManager.waitHypervisor(hypervisor)
                     
                     # Check if the image path is a relative path
-                    if os.path.exists(server['workingdir']) == False:
+                    if server['workingdir'] and os.path.exists(server['workingdir']) == False:
                         abspath = os.path.join(os.path.dirname(FILENAME), server['workingdir'])
                         if os.path.exists(abspath):
                             server['workingdir'] = abspath
@@ -204,7 +204,7 @@ class DynagenSub(Dynagen):
                     
 
                     # check if the working directory is accessible, if not find an alternative working directory
-                    if not os.access(server['workingdir'], os.F_OK):
+                    if not server['workingdir'] or not os.access(server['workingdir'], os.F_OK):
                         if globals.GApp.workspace.projectWorkdir and os.access(globals.GApp.workspace.projectWorkdir, os.F_OK):
                             workdir = globals.GApp.workspace.projectWorkdir
                         else:

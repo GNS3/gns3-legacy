@@ -286,7 +286,7 @@ class Application(QApplication, Singleton):
         confo.external_hosts = ConfDB().get('Qemu/external_hosts', unicode('localhost:10525')).split(',')
         confo.enable_QemuManager = ConfDB().value("Qemu/enable_QemuManager", QVariant(True)).toBool()
         confo.import_use_QemuManager = ConfDB().value("Qemu/qemu_manager_import", QVariant(True)).toBool()
-        confo.QemuManager_binding = ConfDB().get('Qemu/qemu_manager_binding', unicode('localhost'))
+        confo.QemuManager_binding = ConfDB().get('Qemu/qemu_manager_binding', unicode('127.0.0.1'))
         confo.qemuwrapper_port = int(ConfDB().get('Qemu/qemuwrapper_port', 10525))
         confo.qemuwrapper_baseUDP = int(ConfDB().get('Qemu/qemuwrapper_baseUDP', 20000))
         confo.qemuwrapper_baseConsole = int(ConfDB().get('Qemu/qemuwrapper_baseConsole', 3000))

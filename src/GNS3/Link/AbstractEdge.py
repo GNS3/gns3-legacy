@@ -82,10 +82,10 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             # set item focusable
             self.setFlag(self.ItemIsFocusable)
 
-            self.encapsulationTransform = {'ETH': 'EN10MB',
-                                                            'FR': 'FRELAY',
-                                                            'HDLC': 'C_HDLC',
-                                                            'PPP': 'PPP_SERIAL'}
+            self.encapsulationTransform = { 'ETH': 'EN10MB',
+                                            'FR': 'FRELAY',
+                                            'HDLC': 'C_HDLC',
+                                            'PPP': 'PPP_SERIAL'}
 
         else:
             src_rect = self.source.boundingRect()

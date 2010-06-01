@@ -70,7 +70,7 @@ def error(msg):
 def killAll(process_name):
     """ Killall
     """
-    
+
     if sys.platform.startswith('win'):
         command = ['taskkill.exe', '/f', '/t', '/im']  
     else:

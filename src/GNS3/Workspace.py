@@ -280,7 +280,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 # delete useless project files
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "*ghost*")
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*_log.txt")
-                dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*_bootflash")
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*_rommon_vars")
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*_ssa")
 
@@ -909,7 +908,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter = 'NET file (*.net);;All files (*.*)',
                                        directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self).getFile()
-        if path != None and (selected == 'NET file (*.net)' or selected == ''):
+
+        if path and (selected == 'NET file (*.net)' or selected == ''):
             self.loadNetfile(path)
                 
     def loadNetfile(self, path):
