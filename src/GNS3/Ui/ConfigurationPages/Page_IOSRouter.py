@@ -19,12 +19,15 @@
 # code@gns3.net
 #
 
-import re
+import os, re
 import GNS3.Globals as globals
 from PyQt4 import QtGui
 from Form_IOSRouterPage import Ui_IOSRouterPage
 from GNS3.Utils import translate
 import GNS3.Dynagen.dynamips_lib as lib
+
+# Those modules don't work properly
+NOTWORKING_MODULES = ['PA-2FE-TX', 'PA-GE']
 
 class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
     """ Class implementing the IOS router configuration page.
@@ -49,24 +52,10 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         self.widget_wics = {0: self.comboBoxWIC0,
                             1: self.comboBoxWIC1,
                             2: self.comboBoxWIC2}
-
-    def loadConfig(self, id, config = None):
-        """ Load the config
+    
+    def loadSlotConfig(self, platform, chassis, router_config):
+        """ Load slot config
         """
-        
-        node = globals.GApp.topology.getNode(id)
-        self.currentNodeID = id
-        if config:
-            router_config = config
-        else:
-            router_config = node.get_config()
- 
-        router = node.get_dynagen_device()
-        platform = node.get_platform()
-        chassis = node.get_chassis()
-        self.textLabel_Platform.setText(platform)
-        self.textLabel_Model.setText(router.model_string)
-        self.textLabel_ImageIOS.setText(router_config['image'])
 
         for widget in self.widget_slots.values():
             widget.clear()
@@ -74,8 +63,8 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         for (slot_number, slot_modules) in lib.ADAPTER_MATRIX[platform][chassis].iteritems():
             if type(slot_modules) == str:
                 self.widget_slots[slot_number].addItem(slot_modules)
-            elif platform == 'c7200' and slot_number == 0:
-                self.widget_slots[slot_number].addItems(list(slot_modules))
+            elif platform == 'c7200' and slot_number == 0 and router_config['slots'][slot_number] != None:
+                self.widget_slots[slot_number].addItem(router_config['slots'][slot_number])
             else:
                 self.widget_slots[slot_number].addItems([''] + list(slot_modules))
             if router_config['slots'][slot_number]:
@@ -102,6 +91,26 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                         if (index != -1):
                             self.widget_wics[wic_number].setCurrentIndex(index)
                 wic_number += 1
+
+    def loadConfig(self, id, config = None):
+        """ Load the config
+        """
+        
+        node = globals.GApp.topology.getNode(id)
+        self.currentNodeID = id
+        if config:
+            router_config = config
+        else:
+            router_config = node.get_config()
+ 
+        router = node.get_dynagen_device()
+        platform = node.get_platform()
+        chassis = node.get_chassis()
+        self.textLabel_Platform.setText(platform)
+        self.textLabel_Model.setText(router.model_string)
+        self.textLabel_ImageIOS.setText(os.path.basename(router_config['image']))
+
+        self.loadSlotConfig(platform, chassis, router_config)
         
         if platform == 'c7200':
             self.comboBoxMidplane.clear()
@@ -175,13 +184,15 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             router_config['exec_area'] = None
 
         platform = node.get_platform()
+        chassis = node.get_chassis()
+
         if platform == 'c7200':
             if str(self.comboBoxMidplane.currentText()):
                 router_config['midplane'] = str(self.comboBoxMidplane.currentText())
             if str(self.comboBoxNPE.currentText()):
                 router_config['npe'] = str(self.comboBoxNPE.currentText())
                 if router_config['npe'] == 'npe-g2':
-                    QtGui.QMessageBox.warning(globals.nodeConfiguratorWindow, 'NPE G2', translate("Page_IOSRouter", "Using npe-g2: there are potential bugs and you should have unpacked your IOS image"))
+                    QtGui.QMessageBox.warning(globals.nodeConfiguratorWindow, 'NPE G2', translate("Page_IOSRouter", "Using npe-g2: there are potential bugs and your IOS image should be unpacked"))
 
         iomem = self.spinBoxIomem.value()
         if platform == 'c3600' and iomem != 5:
@@ -197,7 +208,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                 # Give an information (only once): users must use manual connections with NM-16ESW
                 if module == 'NM-16ESW' and self.NM_16ESW_warning:
                     self.NM_16ESW_warning = False
-                    QtGui.QMessageBox.warning(globals.nodeConfiguratorWindow, 'NM-16ESW', translate("Page_IOSRouter", "You must use manual mode when adding a link in NM-16ESW modules"))
+                    QtGui.QMessageBox.warning(globals.nodeConfiguratorWindow, 'NM-16ESW', translate("Page_IOSRouter", "You must use 'manual mode' to connect a link with a NM-16ESW module"))
                 collision = False
                 if router.slot[slot_number] and router_config['slots'][slot_number] != module:
                     interfaces = router.slot[slot_number].interfaces
@@ -209,6 +220,8 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                             break
                 if collision:
                     continue
+                if module in NOTWORKING_MODULES:
+                    QtGui.QMessageBox.warning(globals.nodeConfiguratorWindow, module, unicode(translate("Page_IOSRouter", "Module %s may not work properly")) % module)
                 router_config['slots'][slot_number] = module
             else:
                 try:
@@ -232,6 +245,9 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                 wic_name = str(widget.currentText())
                 if wic_name:
                     router_config['wics'][wic_number] = wic_name
+                    
+        self.loadSlotConfig(platform, chassis, router_config)
+
         return router_config
 
 def create(dlg):

@@ -2599,13 +2599,13 @@ class Router(Dynamips_device):
                 self.__npe = npe
                 return
 
-            if npe in ['npe-g1', 'npe-g2'] and type(self.slot[0]) != PA_C7200_IO_GE_E:
-                #lets change the IO card to the GE one
-                #TODO handle all the connections on the card
-                self.slot[0].remove()
-                self.slot[0] = None
-                send(self.__d, '%s set_npe %s %s' % (self.__model, self.__name, npe))
-                self.slot[0] = PA_C7200_IO_GE_E(self, 0)
+#            if npe in ['npe-g1', 'npe-g2'] and type(self.slot[0]) != PA_C7200_IO_GE_E:
+#                #lets change the IO card to the GE one
+#                #TODO handle all the connections on the card
+#                self.slot[0].remove()
+#                self.slot[0] = None
+#                send(self.__d, '%s set_npe %s %s' % (self.__model, self.__name, npe))
+#                self.slot[0] = PA_C7200_IO_GE_E(self, 0)
                 """
             # Bad idea to override the IO controller just based on the NPE in this case
             elif npe in [
@@ -2625,7 +2625,7 @@ class Router(Dynamips_device):
                 """
             else:
                 send(self.__d, '%s set_npe %s %s' % (self.__model, self.__name, npe))
-            self.__npe = npe
+                self.__npe = npe
         else:
             raise DynamipsError, 'Cannot change NPE on running router'
 

@@ -4,10 +4,7 @@ TODO LIST
  * NIO multicast support (next release of Dynamips)
  * Show NIO activity (next release of Dynamips)
  * Dynamips QinQ integration (next release of Dynamips)
- * Cpulimit integration => no need to integrate, use a script to start Qemu followed by cpulimit
 
 Debugging
 
  * Can only run one instance of Qemu on Windows (http://www.gns3.net/phpBB/topic1914.html)
- * Dynagen context help
- * Debug ATMBR connections with other devices (ATM side, Ethernet side)

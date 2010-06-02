@@ -267,7 +267,7 @@ class Application(QApplication, Singleton):
         confo.memory_limit =int(ConfDB().get("Dynamips/hypervisor_memory_usage_limit", 512))
         confo.udp_incrementation = int(ConfDB().get("Dynamips/hypervisor_udp_incrementation", 100))
         confo.import_use_HypervisorManager = ConfDB().value("Dynamips/hypervisor_manager_import", QVariant(True)).toBool()
-        confo.HypervisorManager_binding = ConfDB().get('Dynamips/hypervisor_manager_binding', unicode('localhost'))
+        confo.HypervisorManager_binding = ConfDB().get('Dynamips/hypervisor_manager_binding', unicode('127.0.0.1'))
 
         # replace ~user and $HOME by home directory
         if os.environ.has_key("HOME"):

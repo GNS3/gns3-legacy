@@ -31,7 +31,7 @@ from GNS3.StartupConfigDialog import StartupConfigDialog
 
 MODULES_INTERFACES = {
     "PA-A1": ('a', 1),
-    "PA-2FE-TX": ('f', 2),
+    "PA-FE-TX": ('f', 1),
     "PA-GE": ('g', 1),
     "PA-8T": ('s', 8),
     "PA-8E": ('e', 8),
