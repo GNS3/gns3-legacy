@@ -3769,17 +3769,17 @@ ALT + LEFT or RIGHT</source>
         <translation>Dynamips의 경로를 설정해주세요</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="839"/>
+        <location filename="../Topology.py" line="842"/>
         <source>Dynamips error</source>
         <translation>Dynamips 에러</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="839"/>
+        <location filename="../Topology.py" line="842"/>
         <source>Connection lost</source>
         <translation>연결 종료</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="738"/>
+        <location filename="../Topology.py" line="739"/>
         <source>Connection</source>
         <translation>연결</translation>
     </message>
@@ -3799,7 +3799,7 @@ ALT + LEFT or RIGHT</source>
         <translation>IOS 이미지를 선택해주세요</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="738"/>
+        <location filename="../Topology.py" line="739"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>적어도 하나의 라우터에서 스위치로 연결이 되어야 합니다</translation>
     </message>
@@ -3891,6 +3891,11 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Topology.py" line="273"/>
         <source>Please choose your external Qemuwrapper</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="726"/>
+        <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -3769,17 +3769,17 @@ ALT+ЛЯВА или ДЯСНА стрелка </translation>
         <translation>Моля, конфигурираите пътя до Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="839"/>
+        <location filename="../Topology.py" line="842"/>
         <source>Dynamips error</source>
         <translation>Dynamips грешка</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="839"/>
+        <location filename="../Topology.py" line="842"/>
         <source>Connection lost</source>
         <translation>Връзката изгубена</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="738"/>
+        <location filename="../Topology.py" line="739"/>
         <source>Connection</source>
         <translation>Връзка</translation>
     </message>
@@ -3799,7 +3799,7 @@ ALT+ЛЯВА или ДЯСНА стрелка </translation>
         <translation>Моля, изберете изображение</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="738"/>
+        <location filename="../Topology.py" line="739"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Трябва да свържете с поне един рутер към суич</translation>
     </message>
@@ -3896,6 +3896,11 @@ ALT+ЛЯВА или ДЯСНА стрелка </translation>
     <message>
         <location filename="../Topology.py" line="273"/>
         <source>Please choose your external Qemuwrapper</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="726"/>
+        <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

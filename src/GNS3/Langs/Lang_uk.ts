@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1">
+<!DOCTYPE TS><TS version="1.1" language="uk_UA">
 <context>
     <name>ASA initrd</name>
     <message>
@@ -3871,23 +3871,28 @@ ALT + LEFT or RIGHT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="839"/>
+        <location filename="../Topology.py" line="842"/>
         <source>Dynamips error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="839"/>
+        <location filename="../Topology.py" line="842"/>
         <source>Connection lost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="738"/>
+        <location filename="../Topology.py" line="739"/>
         <source>Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="738"/>
+        <location filename="../Topology.py" line="739"/>
         <source>You have to connect at least one router to the switch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="726"/>
+        <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

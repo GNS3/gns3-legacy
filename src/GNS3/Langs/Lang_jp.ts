@@ -3769,17 +3769,17 @@ ALT + LEFT or RIGHT</source>
         <translation>Dynamips のプログラムパスを設定してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="839"/>
+        <location filename="../Topology.py" line="842"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="839"/>
+        <location filename="../Topology.py" line="842"/>
         <source>Connection lost</source>
         <translation>接続失敗しました</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="738"/>
+        <location filename="../Topology.py" line="739"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
@@ -3799,7 +3799,7 @@ ALT + LEFT or RIGHT</source>
         <translation>イメージを選択して下さい</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="738"/>
+        <location filename="../Topology.py" line="739"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>スイッチに少なくとも1つのルータに接続する必要あります</translation>
     </message>
@@ -3891,6 +3891,11 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Topology.py" line="273"/>
         <source>Please choose your external Qemuwrapper</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="726"/>
+        <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

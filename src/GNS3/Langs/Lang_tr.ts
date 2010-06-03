@@ -3768,17 +3768,17 @@ ALT + LEFT or RIGHT</source>
         <translation>Lütfen Dynamips&apos;in yolunu ayarlayın</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="839"/>
+        <location filename="../Topology.py" line="842"/>
         <source>Dynamips error</source>
         <translation>Dynamips hatası</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="839"/>
+        <location filename="../Topology.py" line="842"/>
         <source>Connection lost</source>
         <translation>Bağlantı koptu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="738"/>
+        <location filename="../Topology.py" line="739"/>
         <source>Connection</source>
         <translation>Bağlantı</translation>
     </message>
@@ -3798,7 +3798,7 @@ ALT + LEFT or RIGHT</source>
         <translation>Lütfen imajı seçin</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="738"/>
+        <location filename="../Topology.py" line="739"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Switch&apos;e en az bir Router bağlamalısınız</translation>
     </message>
@@ -3890,6 +3890,11 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Topology.py" line="273"/>
         <source>Please choose your external Qemuwrapper</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="726"/>
+        <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

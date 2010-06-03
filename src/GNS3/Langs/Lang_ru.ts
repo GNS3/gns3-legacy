@@ -3768,17 +3768,17 @@ ALT + LEFT или RIGHT</translation>
         <translation>Пожалуйста настройте путь к Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="839"/>
+        <location filename="../Topology.py" line="842"/>
         <source>Dynamips error</source>
         <translation>Ошибка Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="839"/>
+        <location filename="../Topology.py" line="842"/>
         <source>Connection lost</source>
         <translation>Соединение разорвано</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="738"/>
+        <location filename="../Topology.py" line="739"/>
         <source>Connection</source>
         <translation>Подключение</translation>
     </message>
@@ -3798,7 +3798,7 @@ ALT + LEFT или RIGHT</translation>
         <translation>Пожалуйста выберите образ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="738"/>
+        <location filename="../Topology.py" line="739"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Вы должны подключить хотя бы один маршрутизатор к коммутатору</translation>
     </message>
@@ -3890,6 +3890,11 @@ ALT + LEFT или RIGHT</translation>
     <message>
         <location filename="../Topology.py" line="273"/>
         <source>Please choose your external Qemuwrapper</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="726"/>
+        <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

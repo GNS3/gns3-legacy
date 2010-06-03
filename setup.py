@@ -11,7 +11,7 @@ VERSION = '0.7.2'
 if sys.platform.startswith('win'):
 
     # Path to Qt directory (Windows)
-    QTDIR = r'C:\Qt\2009.04\qt'
+    QTDIR = r'C:\Qt\4.6.2'
 
     try:
         import py2exe

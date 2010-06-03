@@ -3776,17 +3776,17 @@ avec les touches ALT + GAUCHE ou DROIT</translation>
         <translation>SVP, configurez le chemin vers Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="839"/>
+        <location filename="../Topology.py" line="842"/>
         <source>Dynamips error</source>
         <translation>Erreur Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="839"/>
+        <location filename="../Topology.py" line="842"/>
         <source>Connection lost</source>
         <translation>Connection perdue</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="738"/>
+        <location filename="../Topology.py" line="739"/>
         <source>Connection</source>
         <translation>Connexion</translation>
     </message>
@@ -3806,7 +3806,7 @@ avec les touches ALT + GAUCHE ou DROIT</translation>
         <translation>SVP, choissisez une image</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="738"/>
+        <location filename="../Topology.py" line="739"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Vous devez relier au moins 1 routeur au commutateur</translation>
     </message>
@@ -3899,6 +3899,11 @@ avec les touches ALT + GAUCHE ou DROIT</translation>
         <location filename="../Topology.py" line="273"/>
         <source>Please choose your external Qemuwrapper</source>
         <translation>SVP, choissisez un Qemuwrapper externe</translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="726"/>
+        <source>Can&apos;t connect these devices</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -1992,7 +1992,7 @@ Seleccione el valor de idlepc a aplicar  [1-%i] u oprima ENTER para no efectuar 
     <message>
         <location filename="DynamicStrings.py" line="26"/>
         <source>English</source>
-        <translation>English</translation>
+        <translation type="unfinished">Español</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="363"/>
@@ -3766,17 +3766,17 @@ utilizando ALT + LEFT or RIGHT</translation>
         <translation>Por favor configure ruta para Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="839"/>
+        <location filename="../Topology.py" line="842"/>
         <source>Dynamips error</source>
         <translation>Error de Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="839"/>
+        <location filename="../Topology.py" line="842"/>
         <source>Connection lost</source>
         <translation>Perdida de conexion</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="738"/>
+        <location filename="../Topology.py" line="739"/>
         <source>Connection</source>
         <translation>Conexion</translation>
     </message>
@@ -3796,7 +3796,7 @@ utilizando ALT + LEFT or RIGHT</translation>
         <translation>Por favor seleccione una imagen</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="738"/>
+        <location filename="../Topology.py" line="739"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Debe conectar al menos un router al switch</translation>
     </message>
@@ -3893,6 +3893,11 @@ utilizando ALT + LEFT or RIGHT</translation>
     <message>
         <location filename="../Topology.py" line="273"/>
         <source>Please choose your external Qemuwrapper</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="726"/>
+        <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
