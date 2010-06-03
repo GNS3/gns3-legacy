@@ -69,7 +69,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         
         self.ProjectPath.clear()
         if text and globals.GApp.systconf['general'].project_path:
-            self.ProjectPath.setText(os.path.normpath(globals.GApp.systconf['general'].project_path) + os.sep + text + os.sep + text + '.net')
+            self.ProjectPath.setText(os.path.normpath(globals.GApp.systconf['general'].project_path) + os.sep + text + '.net')
         elif text:
             self.ProjectPath.setText(os.path.curdir + os.sep + text + os.sep + text + '.net')
 
