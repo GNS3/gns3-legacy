@@ -3,7 +3,7 @@
 
 """
 confConsole.py
-Copyright (C) 2007  Pavel Skovajsa
+Copyright (C) 2007-2010  Pavel Skovajsa
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -1903,7 +1903,7 @@ router <new_router_name>
         for r in self.dynagen.running_config[self.d]:
             router_section = self.dynagen.running_config[self.d][r]
             #if r is no a section, but a string....like workingdir
-            if isinstance(router_section, str) or isinstance(router_section, int):
+            if isinstance(router_section, str) or isinstance(router_section, unicode) or isinstance(router_section, int):
                 continue
             router_section_name = router_section.name
             router_name = router_section_name.split(' ')

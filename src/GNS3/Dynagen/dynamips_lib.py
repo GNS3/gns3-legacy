@@ -27,7 +27,7 @@ import os
 import re
 import copy
 
-#version = "0.11.0.100511"
+#version = "0.11.0.100601"
 # Minimum version of dynamips required. Currently 0.2.8-RC1 (due to change to
 # hypervisor commands related to slot/port handling, and the pluggable archtecture
 # that changed model specific commands to "vm")
@@ -1323,13 +1323,8 @@ class PA_C7200_IO_FE(PA):
     """
 
     def __init__(self, router, slot):
-        if router.npe == 'npe-g2':
-            ports = 4
-            #test
-            intlist = (['f', 0, 0], ['g', 0, 16], ['g', 1, 17], ['g', 2, 18])
-        else:
-            ports = 1
-            intlist = (['f', 0, 0], )
+        ports = 1
+        intlist = (['f', 0, 0], )
 
         PA.__init__(
             self,
@@ -1351,13 +1346,9 @@ class PA_C7200_IO_2FE(PA):
     """
 
     def __init__(self, router, slot):
-        if router.npe == 'npe-g2':
-            ports = 4
-            #test
-            intlist = (['g', 0, 0], ['f', 0, 16], ['f', 1, 17], ['f', 2, 18])
-        else:
-            ports = 2
-            intlist = (['f', 0, 0], ['f', 1, 1])
+        ports = 2
+        intlist = (['f', 0, 0], ['f', 1, 1])
+
         PA.__init__(
             self,
             router,
@@ -1378,13 +1369,9 @@ class PA_C7200_IO_GE_E(PA):
     """
 
     def __init__(self, router, slot):
-        if router.npe == 'npe-g2':
-            ports = 4
-            #test
-            intlist = (['g', 0, 0], ['f', 0, 16], ['f', 1, 17], ['f', 2, 18])
-        else:
-            ports = 1
-            intlist = (['g', 0, 0], )
+        ports = 1
+        intlist = (['g', 0, 0], )
+
         PA.__init__(
             self,
             router,
@@ -3628,11 +3615,7 @@ class Bridge(Emulated_switch):
         """
 
         if nio == None:
-            # Return the NETIO string
-            try:
-                return self._nios
-            except KeyError:
-                return None
+            return None
 
         if isinstance(nio, NIO):
             send(self._d, 'nio_bridge add_nio %s %s' % (self._name, nio.name))
@@ -3737,12 +3720,17 @@ class FRSW(Emulated_switch):
             raise DynamipsError, 'invalid dlci1. Must be an int >= 0'
 
         try:
-            nio1 = self.nio(port1).name
-            nio2 = self.nio(port2).name
+            try:
+                nio1 = self.nio(port1).name
+            except AttributeError, e:
+                raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port1)
+            try:
+                nio2 = self.nio(port2).name
+            except AttributeError, e:
+                raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port2)
         except DynamipsWarning, e:
             raise DynamipsError, e
-        except AttributeError, e:
-            raise DynamipsError, 'one of the ports does not exist'
+       
         
         send(self._d, 'frsw create_vc %s %s %i %s %i' % (
             self._name,
@@ -3798,12 +3786,16 @@ class FRSW(Emulated_switch):
             raise DynamipsError, 'invalid dlci1. Must be an int >= 0'
 
         try:
-            nio1 = self.nio(port1).name
-            nio2 = self.nio(port2).name
+            try:
+                nio1 = self.nio(port1).name
+            except AttributeError, e:
+                raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port1)
+            try:
+                nio2 = self.nio(port2).name
+            except AttributeError, e:
+                raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port2)
         except DynamipsWarning, e:
             raise DynamipsError, e
-        except AttributeError, e:
-            raise DynamipsError, 'one of the ports does not exist'
         
         send(self._d, 'frsw delete_vc %s %s %i %s %i' % (self._name, nio1, dlci1, nio2, dlci2))
 
@@ -3945,12 +3937,16 @@ class ATMBR(Emulated_switch):
             raise DynamipsError, 'invalid vci2. Must be an int >= 0'
 
         try:
-            nio1 = self.nio(port1).name
-            nio2 = self.nio(port2).name
+            try:
+                nio1 = self.nio(port1).name
+            except AttributeError, e:
+                raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port1)
+            try:
+                nio2 = self.nio(port2).name
+            except AttributeError, e:
+                raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port2)
         except DynamipsWarning, e:
             raise DynamipsError, e
-        except AttributeError, e:
-            raise DynamipsError, 'one of the ports does not exist'
 
         send(self._d, 'atm_bridge configure %s %s %s %i %i' % (
             self._name,
@@ -3990,12 +3986,16 @@ class ATMBR(Emulated_switch):
             raise DynamipsError, 'invalid vci2. Must be an int >= 0'
 
         try:
-            nio1 = self.nio(port1).name
-            nio2 = self.nio(port2).name
+            try:
+                nio1 = self.nio(port1).name
+            except AttributeError, e:
+                raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port1)
+            try:
+                nio2 = self.nio(port2).name
+            except AttributeError, e:
+                raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port2)
         except DynamipsWarning, e:
             raise DynamipsError, e
-        except AttributeError, e:
-            raise DynamipsError, 'one of the ports does not exist'
         
         send(self._d, 'atm_bridge unconfigure %s' % self._name)
 
@@ -4154,12 +4154,16 @@ class ATMSW(Emulated_switch):
             raise DynamipsError, 'invalid vpi2. Must be an int >= 0'
 
         try:
-            nio1 = self.nio(port1).name
-            nio2 = self.nio(port2).name
+            try:
+                nio1 = self.nio(port1).name
+            except AttributeError, e:
+                raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port1)
+            try:
+                nio2 = self.nio(port2).name
+            except AttributeError, e:
+                raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port2)
         except DynamipsWarning, e:
             raise DynamipsError, e
-        except AttributeError, e:
-            raise DynamipsError, 'one of the ports does not exist'
 
         send(self._d, 'atmsw delete_vpc %s %s %i %s %i' % (
             self._name,
@@ -4198,12 +4202,16 @@ class ATMSW(Emulated_switch):
             raise DynamipsError, 'invalid vpi2. Must be an int >= 0'
 
         try:
-            nio1 = self.nio(port1).name
-            nio2 = self.nio(port2).name
+            try:
+                nio1 = self.nio(port1).name
+            except AttributeError, e:
+                raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port1)
+            try:
+                nio2 = self.nio(port2).name
+            except AttributeError, e:
+                raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port2)
         except DynamipsWarning, e:
             raise DynamipsError, e
-        except AttributeError, e:
-            raise DynamipsError, 'one of the ports does not exist'
         
         send(self._d, 'atmsw create_vpc %s %s %i %s %i' % (
             self._name,
@@ -4249,12 +4257,16 @@ class ATMSW(Emulated_switch):
             raise DynamipsError, 'invalid vci2. Must be an int >= 0'
 
         try:
-            nio1 = self.nio(port1).name
-            nio2 = self.nio(port2).name
+            try:
+                nio1 = self.nio(port1).name
+            except AttributeError, e:
+                raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port1)
+            try:
+                nio2 = self.nio(port2).name
+            except AttributeError, e:
+                raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port2)
         except DynamipsWarning, e:
             raise DynamipsError, e
-        except AttributeError, e:
-            raise DynamipsError, 'one of the ports does not exist'
 
         send(self._d, 'atmsw delete_vcc %s %s %i %i %s %i %i' % (
             self._name,
@@ -4301,12 +4313,16 @@ class ATMSW(Emulated_switch):
             raise DynamipsError, 'invalid vci2. Must be an int >= 0'
 
         try:
-            nio1 = self.nio(port1).name
-            nio2 = self.nio(port2).name
+            try:
+                nio1 = self.nio(port1).name
+            except AttributeError, e:
+                raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port1)
+            try:
+                nio2 = self.nio(port2).name
+            except AttributeError, e:
+                raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port2)
         except DynamipsWarning, e:
             raise DynamipsError, e
-        except AttributeError, e:
-            raise DynamipsError, 'one of the ports does not exist'
         
         send(self._d, 'atmsw create_vcc %s %s %i %i %s %i %i' % (
             self._name,
@@ -4361,6 +4377,8 @@ class ATMSW(Emulated_switch):
                 return self._nios[port]
             except KeyError:
                 return None
+            except AttributeError, e:
+                raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port1)
 
         if isinstance(nio, NIO):
             # Set the NETIO for this port
