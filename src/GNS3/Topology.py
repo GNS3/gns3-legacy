@@ -725,14 +725,14 @@ class Topology(QtGui.QGraphicsScene):
                 or ((isinstance(dst_node, AnyEmuDevice) or isinstance(dst_node, Cloud)) and type(src_node) in (ATMSW, FRSW, ATMBR)):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "Can't connect these devices"))
                 return False
-            if (isinstance(dst_node, Cloud) or isinstance(dst_node, AnyEmuDevice) or isinstance(dst_node, ETHSW)) and type(src_node) in (ETHSW, ATMSW, FRSW, ATMBR):
+            if (isinstance(dst_node, Cloud) or isinstance(dst_node, AnyEmuDevice) or type(dst_node) in (ETHSW, ATMSW, FRSW, ATMBR)) and type(src_node) in (ETHSW, ATMSW, FRSW, ATMBR):
                 if not src_node.hypervisor:
                     debug('Allocate a hypervisor for emulated switch ' + src_node.hostname)
                     if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(src_node):
                         QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "You have to connect at least one router to the switch"))
                         return False
 
-            if (isinstance(src_node, Cloud) or isinstance(src_node, AnyEmuDevice) or isinstance(src_node, ETHSW)) and type(dst_node) in (ETHSW, ATMSW, FRSW, ATMBR):
+            if (isinstance(src_node, Cloud) or isinstance(src_node, AnyEmuDevice) or type(src_node) in (ETHSW, ATMSW, FRSW, ATMBR)) and type(dst_node) in (ETHSW, ATMSW, FRSW, ATMBR):
                 if not dst_node.hypervisor:
                     debug('Allocate a hypervisor for emulated switch ' + dst_node.hostname)
                     if globals.GApp.HypervisorManager and not globals.GApp.HypervisorManager.allocateHypervisor(dst_node):
