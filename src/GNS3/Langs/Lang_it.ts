@@ -3903,7 +3903,7 @@ ALT + LEFT o RIGHT</translation>
     <message>
         <location filename="../Topology.py" line="726"/>
         <source>Can&apos;t connect these devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile collegare gli apparati</translation>
     </message>
 </context>
 <context>
@@ -4366,22 +4366,22 @@ No - Esporta solo quello che vedo</translation>
     <message>
         <location filename="DynamicStrings.py" line="46"/>
         <source>Juniper router</source>
-        <translation type="unfinished"></translation>
+        <translation>Router Juniper</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="47"/>
         <source>ASA firewall</source>
-        <translation type="unfinished"></translation>
+        <translation>Firewall ASA</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="48"/>
         <source>IDS</source>
-        <translation type="unfinished">IDS</translation>
+        <translation>IDS</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="49"/>
         <source>Qemu host</source>
-        <translation type="unfinished"></translation>
+        <translation>Host Qemu</translation>
     </message>
 </context>
 <context>

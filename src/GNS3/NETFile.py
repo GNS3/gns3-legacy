@@ -490,7 +490,8 @@ class NETFile(object):
                         config = decorative_node.get_config()
                         for connection in connections:
                             (device, remote_interface, local_interface) = connection.split(':', 2)
-                            self.decorative_node_connections[(device, remote_interface, local_interface)] = decorative_node.id
+                            if not self.decorative_node_connections.has_key((hostname, local_interface, remote_interface)):
+                                self.decorative_node_connections[(device, remote_interface, local_interface)] = decorative_node.id
                             if local_interface not in config['interfaces']:
                                 config['interfaces'].append(local_interface)
 
