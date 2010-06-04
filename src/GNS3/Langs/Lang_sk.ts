@@ -4357,6 +4357,26 @@ No - Export only what I see</source>
         <source>Decorative nodes</source>
         <translation>Dekoratívne uzly</translation>
     </message>
+    <message>
+        <location filename="DynamicStrings.py" line="46"/>
+        <source>Juniper router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="47"/>
+        <source>ASA firewall</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="48"/>
+        <source>IDS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="49"/>
+        <source>Qemu host</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>topologySummaryDock</name>

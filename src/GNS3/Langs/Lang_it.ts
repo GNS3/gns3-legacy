@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="it_IT">
+<!DOCTYPE TS>
+<TS version="2.0" language="it_IT">
 <context>
     <name>ASA initrd</name>
     <message>
         <location filename="../DynagenSub.py" line="90"/>
         <source>ASA initrd %s cannot be found and cannot find an alternative initrd</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos; initrd dell&apos;ASA non è stato trovato, e non è presente un initrd alternativo</translation>
     </message>
 </context>
 <context>
@@ -13,7 +14,7 @@
     <message>
         <location filename="../DynagenSub.py" line="101"/>
         <source>ASA kernel %s cannot be found and cannot find an alternative kernel</source>
-        <translation type="unfinished"></translation>
+        <translation>Il kernel dell&apos;ASA non è stato trovato, e non è presente un kernel alternativo</translation>
     </message>
 </context>
 <context>
@@ -21,97 +22,97 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="14"/>
         <source>Firewall configuration</source>
-        <translation type="unfinished">Configurazione del firewall</translation>
+        <translation>Configurazione del firewall</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="20"/>
         <source>RAM size:</source>
-        <translation type="unfinished">Totale RAM:</translation>
+        <translation>Totale RAM:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="33"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="49"/>
         <source>NIC:</source>
-        <translation type="unfinished"></translation>
+        <translation>NIC:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="63"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation>ne2k_pci</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="68"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation>i82551</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="73"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation>i82557b</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="78"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation>i82559er</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="83"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation>rtl8139</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="88"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation>e1000</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="93"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="98"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="106"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opzioni Qemu:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="123"/>
         <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa KQemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="133"/>
         <source>UseKVM (Linux only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa KVM (solo Linux)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="140"/>
         <source>Initrd:</source>
-        <translation type="unfinished"></translation>
+        <translation>Initrd:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="205"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="176"/>
         <source>Kernel:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kernel:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="212"/>
         <source>Kernel cmd line:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kernel riga di comando:</translation>
     </message>
 </context>
 <context>
@@ -270,9 +271,9 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_About.py" line="92"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -285,7 +286,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lyubomir Tsekov: Bulgarian translation (code: bg)&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Andrea Riela: Italian translation (code: it)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="104"/>
@@ -576,7 +577,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;POSSIBILITY OF SUCH DAMAGES.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;END OF TERMS AND CONDITIONS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -604,7 +605,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="210"/>
         <source>Packet capture is not supported on this link type</source>
-        <translation>Lo sniffing non è supportato su questo tipo di link</translation>
+        <translation>La cattura del traffico non è supportata su questo tipo di link</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="234"/>
@@ -639,7 +640,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="244"/>
         <source>Device %s is not running</source>
-        <translation>Il device %s non è in funzione</translation>
+        <translation>L&apos;apparato %s non è in funzione</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="329"/>
@@ -649,7 +650,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="314"/>
         <source>%s is empty, no traffic captured on the link. Try again later</source>
-        <translation>%s è vuoto, non c&apos;è traffico catturato sul link. Riprovare più avanti</translation>
+        <translation>%s è vuoto, non c&apos;è traffico catturato sul link. Riprovare più tardi</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="318"/>
@@ -662,7 +663,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="100"/>
         <source>Hostname:</source>
-        <translation>Hostname:</translation>
+        <translation>Nome dell&apos;host:</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="330"/>
@@ -677,17 +678,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="113"/>
         <source>Hostname</source>
-        <translation></translation>
+        <translation>Nome dell&apos;host</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="113"/>
         <source>Hostname already used</source>
-        <translation>hostname già in uso</translation>
+        <translation>Nome (host) già in uso</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="267"/>
         <source>Hostname: %s</source>
-        <translation></translation>
+        <translation>Nome dell&apos;host: %s</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="330"/>
@@ -712,47 +713,47 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="100"/>
         <source>Change the hostname</source>
-        <translation type="unfinished">Cambia l&apos;hostname</translation>
+        <translation>Cambia il nome dell&apos;host</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="165"/>
         <source>Hypervisor</source>
-        <translation type="unfinished">Hypervisor</translation>
+        <translation>Hypervisor</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="124"/>
         <source>The device must have no connection to other devices in order to change its hypervisor</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;apparato non deve essere connesso ad altri apparati perchè possa cambiare hypervisor di riferimento</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="132"/>
         <source>Set hypervisor</source>
-        <translation type="unfinished"></translation>
+        <translation>Imposta hypervisor</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="132"/>
         <source>New hypervisor:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuova hypervisor:</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="139"/>
         <source>Invalid format for hypervisor (hostname:port is required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato per hypervisor invalido (il parametro hostname:porta è richiesto)</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="151"/>
         <source>Can&apos;t connect to the hypervisor on %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile connettersi all&apos;hypervisor su %s</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="165"/>
         <source>New hypervisor %s has been set on device %s</source>
-        <translation type="unfinished"></translation>
+        <translation>La nuova hypervisor %s è stata configurata per l&apos;apparato %s</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="173"/>
         <source>Change the console port</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambia la porta della console</translation>
     </message>
 </context>
 <context>
@@ -760,17 +761,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AnyEmuDevice.py" line="218"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Errore di Dynamips</translation>
+        <translation>Errore di Dynamips</translation>
     </message>
     <message>
         <location filename="../Node/AnyEmuDevice.py" line="204"/>
         <source>New hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuovo nome dell&apos;host</translation>
     </message>
     <message>
         <location filename="../Node/AnyEmuDevice.py" line="204"/>
         <source>Cannot rename a connected emulated device</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile rinominare l&apos;apparato connesso emulato</translation>
     </message>
 </context>
 <context>
@@ -878,7 +879,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="29"/>
         <source>Generic Ethernet NIO (require Administrator access)</source>
-        <translation>NIO Ethernet Generic (richiede accesso Amministratore)</translation>
+        <translation>NIO Ethernet generico (richiede accesso Amministratore)</translation>
     </message>
 </context>
 <context>
@@ -929,7 +930,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Console.py" line="341"/>
         <source>Can&apos;t apply idlepc value</source>
-        <translation>Non è possibile applicare il valore di idlepc</translation>
+        <translation>Impossibile applicare il valore di idlepc</translation>
     </message>
     <message>
         <location filename="../Console.py" line="346"/>
@@ -965,7 +966,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Console.py" line="349"/>
         <source>Unknown device: %s</source>
-        <translation>Device sconosciuto: %s</translation>
+        <translation>Apparato sconosciuto: %s</translation>
     </message>
     <message>
         <location filename="../Console.py" line="407"/>
@@ -975,17 +976,17 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Console.py" line="288"/>
         <source>%s already has an idlepc value applied (%s).</source>
-        <translation type="unfinished"></translation>
+        <translation>%s ha già un valore di idlepc applicato (%s).</translation>
     </message>
     <message>
         <location filename="../Telnet.py" line="48"/>
         <source>Console</source>
-        <translation type="unfinished">Console</translation>
+        <translation>Console</translation>
     </message>
     <message>
         <location filename="../Telnet.py" line="48"/>
         <source>Cannot start %s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile avviare %s: %s</translation>
     </message>
 </context>
 <context>
@@ -1069,27 +1070,27 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../DynagenSub.py" line="93"/>
         <source>Local ASA initrd %s cannot be found, use initrd %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Non è stato trovato un initrd locale per l&apos;ASA, verrà usato al suo posto l&apos;initrd %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="104"/>
         <source>Local ASA kernel %s cannot be found, use kernel %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Non è stato trovato un kernel locale per l&apos;ASA, verrà usato al suo posto il kernel %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="129"/>
         <source>Local IDS image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Non è stata trovata un&apos;immagine locale per l&apos;IDS, verrà usata al suo posto l&apos;immagine %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="151"/>
         <source>Local JunOS image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Non è stata trovata un&apos;immagine locale JunOS, verrà usata al suo posto l&apos;immagine %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="162"/>
         <source>Local Qemu host image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Non è stata trovata un&apos;immagine locale Qemu, verrà usata al suo posto l&apos;immagine %s</translation>
     </message>
 </context>
 <context>
@@ -1261,57 +1262,57 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="85"/>
         <source>NIC:</source>
-        <translation type="unfinished"></translation>
+        <translation>NIC:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="99"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation>ne2k_pci</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="104"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation>i82551</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="109"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation>i82557b</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="114"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation>i82559er</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="119"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation>rtl8139</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="124"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation>e1000</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="129"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="134"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="142"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opzioni Qemu:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="159"/>
         <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa KQemu</translation>
     </message>
 </context>
 <context>
@@ -1334,32 +1335,32 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../HypervisorManager.py" line="196"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
-        <translation type="unfinished"></translation>
+        <translation>La cartella di lavoro %s sembra non presente o non scrivibile, per cortesia verificare</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="201"/>
         <source>Can&apos;t set up hypervisor on port %i, please check the settings (writable working directory ...)</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile avviare l&apos;hypervisor sulla porta %i, per cortesia verificare le impostazioni (cartella di lavoro scrivibile, ...)</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="85"/>
         <source>Hypervisor Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Gestore Hypervisor</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="74"/>
         <source>Apparently an hypervisor is already running on port %i, would you like to kill all Dynamips processes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Apparentemente un&apos;altra hypervisor è in funzione sulla porta %i, vuoi fermare tuti i processi Dynamips?</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="153"/>
         <source>Can&apos;t connect to the hypervisor on port %i: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile connettersi all&apos;hypervisor sulla porta %i: %s</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="85"/>
         <source>A program is still running on port %i, you will have to stop it manually or change port settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Un programma è ancora in funzione sulla porta %i, occorre bloccarlo manualmente o cambiare le impostazioni della porta</translation>
     </message>
 </context>
 <context>
@@ -1367,7 +1368,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../DynagenSub.py" line="115"/>
         <source>IDS image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;immagine IDS %s non è presente, e non è possibile trovare un&apos;immagine alternativa</translation>
     </message>
 </context>
 <context>
@@ -1375,7 +1376,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../DynagenSub.py" line="126"/>
         <source>IDS image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;immagine IDS %s non è presente, e non è possibile trovare un&apos;immagine alternativa</translation>
     </message>
 </context>
 <context>
@@ -1383,92 +1384,92 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="14"/>
         <source>IDS configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurazione IDS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="20"/>
         <source>IDS Image 1 (hda):</source>
-        <translation type="unfinished"></translation>
+        <translation>IDS immagine 1 (hda):</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="85"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="56"/>
         <source>IDS Image 2 (hdb):</source>
-        <translation type="unfinished"></translation>
+        <translation>IDS immagine 2 (hdb):</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="92"/>
         <source>RAM size:</source>
-        <translation type="unfinished">Totale RAM:</translation>
+        <translation>Totale RAM:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="105"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="121"/>
         <source>NIC:</source>
-        <translation type="unfinished"></translation>
+        <translation>NIC:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="135"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation>ne2k_pci</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="140"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation>i82551</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="145"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation>i82557b</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="150"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation>i82559er</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="155"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation>rtl8139</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="160"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation>e1000</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="165"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="170"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="178"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opzioni Qemu:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="195"/>
         <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa KQemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="205"/>
         <source>Use KVM (Linux only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa KVM (solo Linux)</translation>
     </message>
 </context>
 <context>
@@ -1476,7 +1477,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../DynagenSub.py" line="234"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;immagine IOS %s non è presente per l&apos;hypervisor %s, e non è possibile trovare un&apos;immagine alternativa %s</translation>
     </message>
 </context>
 <context>
@@ -1489,12 +1490,12 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../IOSDialog.py" line="228"/>
         <source>No hypervisor selected, use the local hypervisor</source>
-        <translation>Nessun hypervisor selezionato, verrà usato l&apos;hypervisor locale</translation>
+        <translation>Nessuna hypervisor selezionata, verrà usata l&apos;hypervisor locale</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="374"/>
         <source>Select a working directory</source>
-        <translation>Seleziona una directory di lavoro</translation>
+        <translation>Seleziona una cartella di lavoro</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="241"/>
@@ -1549,7 +1550,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="256"/>
         <source>Use the hypervisor manager</source>
-        <translation>Usa l&apos;Hypervisor Manager</translation>
+        <translation>Usa il gestore di hypervisor</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="271"/>
@@ -1579,7 +1580,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="266"/>
         <source>Working directory:</source>
-        <translation>Directory di lavoro:</translation>
+        <translation>Cartella di lavoro:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="269"/>
@@ -1599,7 +1600,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="273"/>
         <source>External hypervisors</source>
-        <translation>Hypervisor esterni</translation>
+        <translation>Hypervisor esterne</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="164"/>
@@ -1692,7 +1693,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Node/IOSRouter.py" line="306"/>
         <source>Startup-Config for %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Startup-Config per %s</translation>
     </message>
 </context>
 <context>
@@ -1860,27 +1861,27 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="427"/>
         <source>wic0:</source>
-        <translation></translation>
+        <translation>wic0:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="443"/>
         <source>wic1:</source>
-        <translation></translation>
+        <translation>wic1:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="459"/>
         <source>wic2:</source>
-        <translation></translation>
+        <translation>wic2:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="492"/>
         <source>Confreg:</source>
-        <translation></translation>
+        <translation>Confreg:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="194"/>
         <source> KB</source>
-        <translation></translation>
+        <translation>KB</translation>
     </message>
 </context>
 <context>
@@ -1888,7 +1889,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../DynagenSub.py" line="148"/>
         <source>JunOS image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;immagine JunOS %s non è presente, e non è possibile trovare un&apos;immagine alternativa</translation>
     </message>
 </context>
 <context>
@@ -1896,87 +1897,87 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="14"/>
         <source>Firewall configuration</source>
-        <translation type="unfinished">Configurazione del firewall</translation>
+        <translation>Configurazione del firewall</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="20"/>
         <source>JunOS Image:</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine JunOS:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="49"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="56"/>
         <source>RAM size:</source>
-        <translation type="unfinished">Totale RAM:</translation>
+        <translation>Totale RAM:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="69"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="85"/>
         <source>NIC:</source>
-        <translation type="unfinished"></translation>
+        <translation>NIC:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="99"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation>ne2k_pci</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="104"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation>i82551</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="109"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation>i82557b</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="114"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation>i82559er</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="119"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation>rtl8139</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="124"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation>e1000</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="129"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="134"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="142"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opzioni Qemu:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="159"/>
         <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa KQemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="169"/>
         <source>Use KVM (Linux only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa KVM (solo Linux)</translation>
     </message>
 </context>
 <context>
@@ -1984,7 +1985,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Main.py" line="49"/>
         <source>On Unix you can choose the config directory by setting the XDG_CONFIG_HOME environment variable</source>
-        <translation>In Unic si può selezionare la directory delle configurazioni settando la variabile XDG_CONFIG_HOME</translation>
+        <translation>In Unix si può selezionare la cartella delle configurazioni settando la variabile XDG_CONFIG_HOME</translation>
     </message>
 </context>
 <context>
@@ -2112,7 +2113,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="401"/>
         <source>Show hostnames</source>
-        <translation>Mostra hostname</translation>
+        <translation>Mostra il nome dell&apos;host</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="403"/>
@@ -2142,7 +2143,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="408"/>
         <source>Zoom &amp;In</source>
-        <translation>Zoom &amp;In</translation>
+        <translation>&amp;Ingrandisci</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="409"/>
@@ -2152,7 +2153,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="410"/>
         <source>Zoom &amp;Out</source>
-        <translation>Zoom &amp;Out</translation>
+        <translation>&amp;Rimpicciolisci</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="411"/>
@@ -2222,7 +2223,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="400"/>
         <source>Show the hostnames</source>
-        <translation>Mostra gli hostname</translation>
+        <translation>Mostra i nomi dell&apos;host</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="402"/>
@@ -2257,7 +2258,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="435"/>
         <source>&amp;Symbol Manager</source>
-        <translation></translation>
+        <translation>&amp;Gestore di simboli</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="436"/>
@@ -2277,7 +2278,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="375"/>
         <source>Drawing</source>
-        <translation>Disegno</translation>
+        <translation>Disegna</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="437"/>
@@ -2297,7 +2298,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="440"/>
         <source>Snapshot</source>
-        <translation></translation>
+        <translation>Istantanea</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="433"/>
@@ -2307,57 +2308,57 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="376"/>
         <source>Undo Stack</source>
-        <translation type="unfinished"></translation>
+        <translation>Storico modifiche</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="420"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Recupera</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="421"/>
         <source>Ctrl+Z</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Z</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="422"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Recupera</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="423"/>
         <source>Ctrl+Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Y</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="441"/>
         <source>&amp;Edit project</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Modifica il progetto</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="395"/>
         <source>Start/Resume every devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvia/riprendi tutti gli apparati</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="398"/>
         <source>Stop every devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferma tutti gli apparati</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="425"/>
         <source>Suspend every devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Sospendi tutti gli apparati</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="442"/>
         <source>Show layers</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra i livelli</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="443"/>
         <source>ReloadAll</source>
-        <translation type="unfinished"></translation>
+        <translation>Riavvia tutto</translation>
     </message>
 </context>
 <context>
@@ -2410,7 +2411,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../NETFile.py" line="811"/>
         <source>IOError</source>
-        <translation></translation>
+        <translation>Errore IO</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="574"/>
@@ -2430,12 +2431,12 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../NETFile.py" line="467"/>
         <source>%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: impossibile trovare il simbolo %s, per cortesia verificare che si trovi nella lista nodi, e riavviare il file .net</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="971"/>
         <source>must be connected or have a hypervisor set in order to be registered</source>
-        <translation type="unfinished"></translation>
+        <translation>Occorre essere connessi o aver configurato un&apos;hypervisor per essere registrati</translation>
     </message>
 </context>
 <context>
@@ -2473,12 +2474,12 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Ui/Form_NewProject.py" line="68"/>
         <source>Project name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome progetto:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="69"/>
         <source>Project path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Indirizzo progetto:</translation>
     </message>
 </context>
 <context>
@@ -2588,22 +2589,22 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../NodeConfigurator.py" line="128"/>
         <source>ASA firewalls</source>
-        <translation type="unfinished"></translation>
+        <translation>Firewall ASA</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="131"/>
         <source>Juniper routers</source>
-        <translation type="unfinished"></translation>
+        <translation>Router Juniper</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="137"/>
         <source>Qemu hosts</source>
-        <translation type="unfinished"></translation>
+        <translation>Host Qemu</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="134"/>
         <source>Cisco IDS</source>
-        <translation type="unfinished"></translation>
+        <translation>Cisco IDS</translation>
     </message>
 </context>
 <context>
@@ -2611,7 +2612,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../DynagenSub.py" line="172"/>
         <source>PIX image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished">Non è stata trovata l&apos;immagine PIX %s per l&apos;hypervisor %s, e non è stata trovata un&apos;immagine alternativa</translation>
+        <translation>Non è stata trovata l&apos;immagine PIX %s per l&apos;hypervisor %s, e non è stata trovata un&apos;immagine alternativa</translation>
     </message>
 </context>
 <context>
@@ -2619,7 +2620,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="13"/>
         <source>Form</source>
-        <translation></translation>
+        <translation>Scheda</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="19"/>
@@ -2629,7 +2630,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="28"/>
         <source>Working directory for capture files:</source>
-        <translation>Directory di lavoro per il traffico catturato:</translation>
+        <translation>Cartella di lavoro per il traffico catturato:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="38"/>
@@ -2675,7 +2676,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Scheda</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="24"/>
@@ -2700,7 +2701,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="62"/>
         <source>Working directory:</source>
-        <translation>Directory di lavoro:</translation>
+        <translation>Cartella di lavoro:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="89"/>
@@ -2725,7 +2726,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="211"/>
         <source>Hypervisor Manager</source>
-        <translation></translation>
+        <translation>Gestore hypervisor</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="229"/>
@@ -2755,17 +2756,17 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="283"/>
         <source>Use Hypervisor Manager when importing</source>
-        <translation>Usa Hypervisor Manager durante l&apos;importazione</translation>
+        <translation>Usa il Gestore hypervisor durante l&apos;importazione</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="79"/>
         <source>Automatically clean the working directory</source>
-        <translation>Pulisci automaticamente la directory di lavoro</translation>
+        <translation>Pulisci automaticamente la cartella di lavoro</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="269"/>
         <source>IP/host binding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Associazione IP/host:</translation>
     </message>
 </context>
 <context>
@@ -2788,7 +2789,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="96"/>
         <source>Project directory:</source>
-        <translation>Directory di progetto:</translation>
+        <translation>Cartella progetto:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="126"/>
@@ -2803,7 +2804,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="342"/>
         <source>Always use manual mode when adding links</source>
-        <translation>Usa sempre la modalità &apos;manual&apos; per nuovi collegamenti</translation>
+        <translation>Usa sempre la modalità manuale per nuovi collegamenti</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="228"/>
@@ -2823,7 +2824,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="165"/>
         <source>&amp;Clear it</source>
-        <translation>&amp;Pulisci</translation>
+        <translation>&amp;Resetta</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="352"/>
@@ -2868,32 +2869,32 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="116"/>
         <source>Image directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella immagine:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="73"/>
         <source>Waiting time between each start when starting every devices:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo di attesa tra l&apos;accensione di ciascun apparato:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="80"/>
         <source> seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>secondi</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="189"/>
         <source>Terminal Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni terminale</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="195"/>
         <source>Preconfigurated terminal commands:</source>
-        <translation type="unfinished"></translation>
+        <translation>Comandi via terminale preconfigurati:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="211"/>
         <source>&amp;Use</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Usa</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="238"/>
@@ -2901,12 +2902,15 @@ per visionare la pagina di configurazione.</translation>
 %h = device server 
 %p = device port
 %d = device hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>Stringhe di comandi via terminale:
+%h = device server
+%p = device port
+%d = device hostname</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="63"/>
         <source>Use relative path for projects</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa il percorso relativo per i progetti</translation>
     </message>
 </context>
 <context>
@@ -2914,287 +2918,287 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation>Scheda</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="24"/>
         <source>General Settings</source>
-        <translation type="unfinished">Impostazioni generali</translation>
+        <translation>Impostazioni generali</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="30"/>
         <source>Qemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemuwrapper</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1141"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="56"/>
         <source>Working directory:</source>
-        <translation type="unfinished">Directory di lavoro:</translation>
+        <translation>Cartella di lavoro:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="187"/>
         <source>Enable Qemu Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilita il Gestore Qemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="197"/>
         <source>Use Qemu Manager when importing</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa il Gestore Qemu nell&apos;importare</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="147"/>
         <source>Base UDP port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Porta UDP di partenza:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="167"/>
         <source>Base console port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Console di partenza:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="719"/>
         <source>Binary image:</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine binaria:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1151"/>
         <source>Memory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Memoria:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1177"/>
         <source>NIC:</source>
-        <translation type="unfinished"></translation>
+        <translation>NIC:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1191"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation>ne2k_pci</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1196"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation>i82551</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1201"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation>i82557b</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1206"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation>i82559er</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1211"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation>rtl8139</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1216"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation>e1000</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1221"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1226"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1234"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opzioni Qemu:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1251"/>
         <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa KQemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1261"/>
         <source>Use KVM (Linux Only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa KVM (solo Linux)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="498"/>
         <source>PIX</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="504"/>
         <source>PIX Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni PIX</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="650"/>
         <source>PIX Specific Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni specifiche PIX</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="656"/>
         <source>Key:</source>
-        <translation type="unfinished">Chiave:</translation>
+        <translation>Chiave:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="673"/>
         <source>Serial:</source>
-        <translation type="unfinished">Seriale:</translation>
+        <translation>Seriale:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="707"/>
         <source>JunOS</source>
-        <translation type="unfinished"></translation>
+        <translation>JunOS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="713"/>
         <source>JunOS Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni JunOS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="880"/>
         <source>ASA</source>
-        <translation type="unfinished"></translation>
+        <translation>ASA</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="886"/>
         <source>ASA Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni ASA</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1012"/>
         <source>ASA Specific Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni specifiche ASA</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1061"/>
         <source>Initrd:</source>
-        <translation type="unfinished"></translation>
+        <translation>Initrd:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1028"/>
         <source>Kernel:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kernel:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1048"/>
         <source>Kernel cmd line:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kernel linea di comando:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="249"/>
         <source>&amp;Test</source>
-        <translation type="unfinished">&amp;Test</translation>
+        <translation>&amp;Testa</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="285"/>
         <source>Qemu Host</source>
-        <translation type="unfinished"></translation>
+        <translation>Host Qemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="291"/>
         <source>Qemu Host Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni Host Qemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="297"/>
         <source>Identifier name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome identificatore:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="431"/>
         <source>Save</source>
-        <translation type="unfinished">Salva</translation>
+        <translation>Salva</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="438"/>
         <source>Delete</source>
-        <translation type="unfinished">Cancella</translation>
+        <translation>Cancella</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="461"/>
         <source>Qemu Host images</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagini Host Qemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="468"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="473"/>
         <source>Image path</source>
-        <translation type="unfinished"></translation>
+        <translation>Percorso immagine</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1085"/>
         <source>IDS</source>
-        <translation type="unfinished"></translation>
+        <translation>IDS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1091"/>
         <source>IDS Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni IDS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1097"/>
         <source>Binary image 1 (hda):</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine binaria 1 (hda):</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1124"/>
         <source>Binary image 2 (hdb):</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine binaria 2 (hdb):</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="36"/>
         <source>Path to Qemuwrapper:</source>
-        <translation type="unfinished"></translation>
+        <translation>Percorso Qemuwrapper:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="73"/>
         <source>Path to qemu:</source>
-        <translation type="unfinished"></translation>
+        <translation>Percorso qemu:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="93"/>
         <source>Path to qemu-img:</source>
-        <translation type="unfinished"></translation>
+        <translation>Percorso qemy-img:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="113"/>
         <source>IP/host binding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Associazione IP/host:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="127"/>
         <source>Qemuwrapper port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Porta Qemuwrapper:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="210"/>
         <source>External Qemuwrapper:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemuwrapper esterno:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="220"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="234"/>
         <source>Registered external Qemuwrappers:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemuwrapper esterni registrati:</translation>
     </message>
 </context>
 <context>
@@ -3202,7 +3206,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../ProjectDialog.py" line="91"/>
         <source>Project Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella di progetto</translation>
     </message>
 </context>
 <context>
@@ -3210,7 +3214,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../DynagenSub.py" line="159"/>
         <source>Qemu host image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;immagine host Qemu %s non è presente e non è possibile trovare un&apos;immagine alternativa</translation>
     </message>
 </context>
 <context>
@@ -3218,32 +3222,32 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../QemuManager.py" line="61"/>
         <source>Connecting to Qemu on port %i ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Connessione a Qemu sulla porta %i in corso ...</translation>
     </message>
     <message>
         <location filename="../QemuManager.py" line="61"/>
         <source>Abort</source>
-        <translation type="unfinished">Annulla</translation>
+        <translation>Annulla</translation>
     </message>
     <message>
         <location filename="../QemuManager.py" line="85"/>
         <source>Can&apos;t connect to Qemu on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile connettersi a Qemu sulla porta %i</translation>
     </message>
     <message>
         <location filename="../QemuManager.py" line="165"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
-        <translation type="unfinished"></translation>
+        <translation>La cartella di lavoro %s sembra non presente o non scrivibile, per cortesia verificare</translation>
     </message>
     <message>
         <location filename="../QemuManager.py" line="118"/>
         <source>Qemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu è già avviato sulla porta %i, non sarà possibile bloccarlo se non chiudendo l&apos;applicazione GNS3</translation>
     </message>
     <message>
         <location filename="../QemuManager.py" line="133"/>
         <source>Can&apos;t start Qemu on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile avviare Qemu sulla porta %i</translation>
     </message>
 </context>
 <context>
@@ -3251,87 +3255,87 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="14"/>
         <source>Firewall configuration</source>
-        <translation type="unfinished">Configurazione del firewall</translation>
+        <translation>Configurazione del firewall</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="20"/>
         <source>Qemu Image:</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine Qemu:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="49"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="56"/>
         <source>RAM size:</source>
-        <translation type="unfinished">Totale RAM:</translation>
+        <translation>Totale RAM:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="69"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="85"/>
         <source>NIC:</source>
-        <translation type="unfinished"></translation>
+        <translation>NIC:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="99"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation>ne2k_pci</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="104"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation>i82551</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="109"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation>i82557b</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="114"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation>i82559er</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="119"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation>rtl8139</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="124"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation>e1000</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="129"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="134"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="142"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opzioni Qemu:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="159"/>
         <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa KQemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="169"/>
         <source>Use KVM (Linux only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa KVM (solo Linux)</translation>
     </message>
 </context>
 <context>
@@ -3369,12 +3373,12 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Scene.py" line="167"/>
         <source>Idle PC</source>
-        <translation></translation>
+        <translation>Idle PC</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="345"/>
         <source>IDLE PC</source>
-        <translation></translation>
+        <translation>IDLE PC</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="280"/>
@@ -3414,7 +3418,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Scene.py" line="112"/>
         <source>Change the hostname</source>
-        <translation>Cambia l&apos;hostname</translation>
+        <translation>Cambia il nome dell&apos;host</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="117"/>
@@ -3434,12 +3438,12 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Scene.py" line="208"/>
         <source>Lower one step</source>
-        <translation>Più basso uno step</translation>
+        <translation>Più basso un livello</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="213"/>
         <source>Raise one step</source>
-        <translation>Più alto un passo</translation>
+        <translation>Più alto un livello</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="195"/>
@@ -3449,27 +3453,27 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Scene.py" line="182"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Riavvia</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="129"/>
         <source>Set an hypervisor</source>
-        <translation type="unfinished"></translation>
+        <translation>Imposta hypervisor</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="672"/>
         <source>annotation</source>
-        <translation type="unfinished"></translation>
+        <translation>Annotazione</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="681"/>
         <source>rectangle</source>
-        <translation type="unfinished"></translation>
+        <translation>rettangolo</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="689"/>
         <source>ellipse</source>
-        <translation type="unfinished"></translation>
+        <translation>ellissi</translation>
     </message>
 </context>
 <context>
@@ -3477,12 +3481,12 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../SnapshotDialog.py" line="63"/>
         <source>Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Progetto</translation>
     </message>
     <message>
         <location filename="../SnapshotDialog.py" line="63"/>
         <source>Create a project first!</source>
-        <translation type="unfinished"></translation>
+        <translation>Crea un progetto prima!</translation>
     </message>
 </context>
 <context>
@@ -3490,22 +3494,22 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/Form_Snapshots.py" line="42"/>
         <source>Snapshots</source>
-        <translation type="unfinished"></translation>
+        <translation>Istantanee</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Snapshots.py" line="43"/>
         <source>Create</source>
-        <translation type="unfinished"></translation>
+        <translation>Crea</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Snapshots.py" line="44"/>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>Carica</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Snapshots.py" line="45"/>
         <source>Delete</source>
-        <translation type="unfinished">Cancella</translation>
+        <translation>Cancella</translation>
     </message>
 </context>
 <context>
@@ -3513,48 +3517,49 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="61"/>
         <source>Startup-config</source>
-        <translation type="unfinished"></translation>
+        <translation>Startup-config</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="62"/>
         <source>Config file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Config file:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="63"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="64"/>
         <source>Load config from nvram</source>
-        <translation type="unfinished"></translation>
+        <translation>Carica la config dalla nvram</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="65"/>
         <source>Save changes into the config file</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva i cambiamenti nel file di config</translation>
     </message>
     <message>
         <location filename="../StartupConfigDialog.py" line="122"/>
         <source>IO Error</source>
-        <translation type="unfinished">Errore IO</translation>
+        <translation>Errore IO</translation>
     </message>
     <message>
         <location filename="../StartupConfigDialog.py" line="135"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Errore di Dynamips</translation>
+        <translation>Errore di Dynamips</translation>
     </message>
     <message>
         <location filename="../StartupConfigDialog.py" line="94"/>
         <source>Dynamips warning</source>
-        <translation type="unfinished">Avviso di Dynamips</translation>
+        <translation>Avviso di Dynamips</translation>
     </message>
     <message>
         <location filename="../StartupConfigDialog.py" line="138"/>
         <source>The startup-config has been saved, now you can synchronize it in IOS
 i.e. #copy start run</source>
-        <translation type="unfinished"></translation>
+        <translation>La startup-config è stata salvata, ora puoi sincronizzarla via IOS
+es: #copy start run</translation>
     </message>
 </context>
 <context>
@@ -3599,7 +3604,7 @@ i.e. #copy start run</source>
         <source>Rotation:</source>
         <translation>Rotazione:</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_StyleDialog.py" line="81"/>
         <source>°</source>
         <translation></translation>
@@ -3823,77 +3828,77 @@ ALT + LEFT o RIGHT</translation>
     <message>
         <location filename="../Topology.py" line="316"/>
         <source>Qemuwrapper error</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore Qemuwrapper</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="526"/>
         <source>%s seems to not exist, please check</source>
-        <translation type="unfinished"></translation>
+        <translation>%s sembra non presente, per cortesia verificare</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="440"/>
         <source>JunOS image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine JunOS</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="435"/>
         <source>Please configure a default JunOS image</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurare un&apos;immagine JunOS di default</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="419"/>
         <source>Qemu image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine Qemu</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="499"/>
         <source>ASA kernel</source>
-        <translation type="unfinished"></translation>
+        <translation>kernel ASA</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="485"/>
         <source>Please configure a default ASA kernel</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurare un kernel ASA di default</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="495"/>
         <source>ASA initrd</source>
-        <translation type="unfinished"></translation>
+        <translation>initrd ASA</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="489"/>
         <source>Please configure a default ASA initrd</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurare un initrd ASA di default</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="398"/>
         <source>Please configure a Qemu image</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurare un&apos;immagine Qemu</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="465"/>
         <source>IDS images</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagini IDS</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="456"/>
         <source>Please configure the default IDS images</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurare le immagini IDS di default</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="273"/>
         <source>External Qemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemuwrapper esterno</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="268"/>
         <source>Please register at least one external Qemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Registrare almeno un Qemuwrapper esterno</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="273"/>
         <source>Please choose your external Qemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegliere il Qemuwrapper esterno</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="726"/>
@@ -3906,82 +3911,82 @@ ALT + LEFT o RIGHT</translation>
     <message>
         <location filename="../UndoFramework.py" line="39"/>
         <source>New node %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuovo nodo %s</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="67"/>
         <source>Delete node %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancella nodo %s</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="87"/>
         <source>New item %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuovo oggetto %s</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="104"/>
         <source>Delete item</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancella oggetto</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="123"/>
         <source>New link: %s (%s) -&gt; %s (%s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuovo collegamento: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="155"/>
         <source>Delete link: %s (%s) -&gt; %s (%s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancella collegamento: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="188"/>
         <source>New configuration applied on %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuova configurazione applicata a %s</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="206"/>
         <source>New hostname %s -&gt; %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuovo nome host %s -&gt; %s</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="234"/>
         <source>New layer position %d</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuova posizione livello %d</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="254"/>
         <source>New console port %d for %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuova porta console %d per %s</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="288"/>
         <source>New startup-config %s for %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuova startup-config %s per %s</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="330"/>
         <source>New startup-config in nvram for %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuova startup-config nella nvram per %s</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="346"/>
         <source>Connection lost</source>
-        <translation type="unfinished">Connessione perduta</translation>
+        <translation>Connessione perduta</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="364"/>
         <source>New style applied for annotation</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuovo stile applicato per annotazione</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="399"/>
         <source>New style applied for item</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuovo stile applicato per oggetto</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="434"/>
         <source>New text for annotation</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuovo testo per annotazione</translation>
     </message>
 </context>
 <context>
@@ -3989,7 +3994,7 @@ ALT + LEFT o RIGHT</translation>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="75"/>
         <source>Setup Wizard</source>
-        <translation></translation>
+        <translation>Configurazione assistita</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="76"/>
@@ -4046,17 +4051,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="715"/>
         <source>Starting nodes ...</source>
-        <translation>Avvio dei nodi ...</translation>
+        <translation>Avvio dei nodi in corso ...</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="632"/>
         <source>Stopping nodes ...</source>
-        <translation>Arresto dei nodi ...</translation>
+        <translation>Arresto dei nodi in corso...</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="638"/>
         <source>Suspending nodes ...</source>
-        <translation>Sospensione dei nodi ...</translation>
+        <translation>Sospensione dei nodi in corso...</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="708"/>
@@ -4066,12 +4071,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="531"/>
         <source>Hide hostnames</source>
-        <translation>Nascondi gli hostname</translation>
+        <translation>Nascondi i nomi degli host</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="536"/>
         <source>Show hostnames</source>
-        <translation>Mostra hostname</translation>
+        <translation>Mostra il nome host</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="909"/>
@@ -4136,7 +4141,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="321"/>
         <source>Directory to write startup-configs</source>
-        <translation>Directory per scrivere le startup config</translation>
+        <translation>Cartella per scrivere le startup config</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="189"/>
@@ -4163,12 +4168,12 @@ No - Esporta solo quello che vedo</translation>
     <message>
         <location filename="../Workspace.py" line="842"/>
         <source>Snapshot</source>
-        <translation></translation>
+        <translation>Istantanea</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="842"/>
         <source>Cannot create directory %s: %s</source>
-        <translation>Impossibile creare la directory %s: %s</translation>
+        <translation>Impossibile creare la cartella %s: %s</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="847"/>
@@ -4188,12 +4193,12 @@ No - Esporta solo quello che vedo</translation>
     <message>
         <location filename="../Workspace.py" line="312"/>
         <source>Extracting to a directory</source>
-        <translation>Estrazione nella directory in corso</translation>
+        <translation>Estrazione nella cartella in corso</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="314"/>
         <source>Importing from a directory</source>
-        <translation>Importazione da directory in corso</translation>
+        <translation>Importazione da cartella in corso</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="308"/>
@@ -4208,7 +4213,7 @@ No - Esporta solo quello che vedo</translation>
     <message>
         <location filename="../Workspace.py" line="334"/>
         <source>Directory to read startup-configs</source>
-        <translation>Directory per vedere le startup-config</translation>
+        <translation>Cartella per vedere le startup-config</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="355"/>
@@ -4223,7 +4228,7 @@ No - Esporta solo quello che vedo</translation>
     <message>
         <location filename="../Workspace.py" line="358"/>
         <source>Ignoring unknown device %s</source>
-        <translation>Device sconosciuto %s è stato ignorato</translation>
+        <translation>L&apos;apparato sconosciuto %s è stato ignorato</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="360"/>
@@ -4248,37 +4253,37 @@ No - Esporta solo quello che vedo</translation>
     <message>
         <location filename="../Workspace.py" line="85"/>
         <source>Ctrl+Z</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Z</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="90"/>
         <source>Ctrl+Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Y</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="734"/>
         <source>Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Progetto</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="734"/>
         <source>Please create a new project first</source>
-        <translation type="unfinished"></translation>
+        <translation>Creare un nuovo progetto prima</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="644"/>
         <source>Reloading nodes ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Riavvio dei nodi in corso ...</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="402"/>
         <source>picture</source>
-        <translation type="unfinished"></translation>
+        <translation>immagine</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="894"/>
         <source>Dynamips error: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore di Dynamips: %s</translation>
     </message>
 </context>
 <context>
@@ -4357,6 +4362,26 @@ No - Esporta solo quello che vedo</translation>
         <location filename="../Ui/Widget_nodesDock.py" line="61"/>
         <source>Decorative nodes</source>
         <translation>Nodi decorativi</translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="46"/>
+        <source>Juniper router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="47"/>
+        <source>ASA firewall</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="48"/>
+        <source>IDS</source>
+        <translation type="unfinished">IDS</translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="49"/>
+        <source>Qemu host</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
