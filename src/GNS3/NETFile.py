@@ -938,7 +938,7 @@ class NETFile(object):
                     self.dynagen.running_config['GNS3-DATA'] = {}
                 self.dynagen.running_config['GNS3-DATA']['PIXMAP ' + str(pix_nb)] = {}
                 config = self.dynagen.running_config['GNS3-DATA']['PIXMAP ' + str(pix_nb)] 
-                config['path'] = item.pixmap_path
+                config['path'] = self.convert_to_relpath(device['path'], item.pixmap_path)
                 config['x'] = item.x()
                 config['y'] = item.y()
                 zvalue = item.zValue()

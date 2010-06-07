@@ -1316,47 +1316,47 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="../HypervisorManager.py" line="122"/>
+        <location filename="../HypervisorManager.py" line="128"/>
         <source>Abort</source>
         <translation>Прекрати</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="97"/>
+        <location filename="../HypervisorManager.py" line="99"/>
         <source>Can&apos;t start Dynamips on port %i</source>
         <translation>Не може да стартира Dynapips на порт %i</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="122"/>
+        <location filename="../HypervisorManager.py" line="128"/>
         <source>Connecting to a hypervisor on port %i ...</source>
         <translation>Свръзване към хипервайзър на порт %i ...</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="196"/>
+        <location filename="../HypervisorManager.py" line="202"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation>Работната директория или не съществува или не може да се записва в нея, моля проверете</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="201"/>
+        <location filename="../HypervisorManager.py" line="207"/>
         <source>Can&apos;t set up hypervisor on port %i, please check the settings (writable working directory ...)</source>
         <translation>Не може да настрои хипервайзъра на порт %i, моля проверете настройките(за запис в работната директория)</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="85"/>
+        <location filename="../HypervisorManager.py" line="86"/>
         <source>Hypervisor Manager</source>
         <translation type="unfinished">Мениджър за хипервайзъра</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="74"/>
+        <location filename="../HypervisorManager.py" line="75"/>
         <source>Apparently an hypervisor is already running on port %i, would you like to kill all Dynamips processes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="153"/>
+        <location filename="../HypervisorManager.py" line="159"/>
         <source>Can&apos;t connect to the hypervisor on port %i: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="85"/>
+        <location filename="../HypervisorManager.py" line="86"/>
         <source>A program is still running on port %i, you will have to stop it manually or change port settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2362,77 +2362,77 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="520"/>
+        <location filename="../NETFile.py" line="522"/>
         <source>Save</source>
         <translation>Запис</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="520"/>
+        <location filename="../NETFile.py" line="522"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Моля, конфигурираите път до Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="796"/>
+        <location filename="../NETFile.py" line="798"/>
         <source>Dynamips error</source>
         <translation>Dynamips грешка</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="799"/>
+        <location filename="../NETFile.py" line="801"/>
         <source>Dynamips warning</source>
         <translation>Dynamips предупреждение</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="551"/>
+        <location filename="../NETFile.py" line="553"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Засечено изключение, спиране на импортирането...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="794"/>
+        <location filename="../NETFile.py" line="796"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Експортване %и конфигурацията към %и</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="811"/>
+        <location filename="../NETFile.py" line="813"/>
         <source>%s: IO Error: %s</source>
         <translation>%и Входно-изходна грешка: %и</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="551"/>
+        <location filename="../NETFile.py" line="553"/>
         <source>Importation</source>
         <translation>Импортиране</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="532"/>
+        <location filename="../NETFile.py" line="534"/>
         <source>Please wait while importing the topology</source>
         <translation>Моля, изчакайте докато се импортира топологията</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="811"/>
+        <location filename="../NETFile.py" line="813"/>
         <source>IOError</source>
         <translation>Входно-изходна грешка</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="574"/>
+        <location filename="../NETFile.py" line="576"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation>Внимание: GNS3 все още не поддържа LAN състоянията, игнорирайте ги</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="456"/>
+        <location filename="../NETFile.py" line="457"/>
         <source>Cannot load image: %s</source>
         <translation>Не може да зареди изобранието: %и</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="409"/>
+        <location filename="../NETFile.py" line="410"/>
         <source>Cannot load font: %s</source>
         <translation>Не може да зареди шрифт: %и</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="467"/>
+        <location filename="../NETFile.py" line="468"/>
         <source>%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file</source>
         <translation>%и: не може да намери %и символа, моля проверете този символ във възела и презаредете .net файлът</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="971"/>
+        <location filename="../NETFile.py" line="973"/>
         <source>must be connected or have a hypervisor set in order to be registered</source>
         <translation>трябва да бъде свързан към хипервайзър за да може да бъде регистриран</translation>
     </message>

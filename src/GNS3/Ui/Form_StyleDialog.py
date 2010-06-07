@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_StyleDialog.ui'
 #
-# Created: Tue Jun  1 20:57:04 2010
+# Created: Sun Jun  6 10:24:31 2010
 #      by: PyQt4 UI code generator 4.7.3
 #
 # WARNING! All changes made in this file will be lost!

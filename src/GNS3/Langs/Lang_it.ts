@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="it_IT">
+<!DOCTYPE TS><TS version="1.1" language="it_IT">
 <context>
     <name>ASA initrd</name>
     <message>
@@ -273,7 +272,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="../Ui/Form_About.py" line="92"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -1318,47 +1317,47 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="../HypervisorManager.py" line="122"/>
+        <location filename="../HypervisorManager.py" line="128"/>
         <source>Abort</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="97"/>
+        <location filename="../HypervisorManager.py" line="99"/>
         <source>Can&apos;t start Dynamips on port %i</source>
         <translation>Impossibile avviare Dynamips sulla porta %i</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="122"/>
+        <location filename="../HypervisorManager.py" line="128"/>
         <source>Connecting to a hypervisor on port %i ...</source>
         <translation>Connessione all&apos;hypervisor sulla porta %i in corso...</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="196"/>
+        <location filename="../HypervisorManager.py" line="202"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation>La cartella di lavoro %s sembra non presente o non scrivibile, per cortesia verificare</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="201"/>
+        <location filename="../HypervisorManager.py" line="207"/>
         <source>Can&apos;t set up hypervisor on port %i, please check the settings (writable working directory ...)</source>
         <translation>Impossibile avviare l&apos;hypervisor sulla porta %i, per cortesia verificare le impostazioni (cartella di lavoro scrivibile, ...)</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="85"/>
+        <location filename="../HypervisorManager.py" line="86"/>
         <source>Hypervisor Manager</source>
         <translation>Gestore Hypervisor</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="74"/>
+        <location filename="../HypervisorManager.py" line="75"/>
         <source>Apparently an hypervisor is already running on port %i, would you like to kill all Dynamips processes?</source>
         <translation>Apparentemente un&apos;altra hypervisor è in funzione sulla porta %i, vuoi fermare tuti i processi Dynamips?</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="153"/>
+        <location filename="../HypervisorManager.py" line="159"/>
         <source>Can&apos;t connect to the hypervisor on port %i: %s</source>
         <translation>Impossibile connettersi all&apos;hypervisor sulla porta %i: %s</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="85"/>
+        <location filename="../HypervisorManager.py" line="86"/>
         <source>A program is still running on port %i, you will have to stop it manually or change port settings</source>
         <translation>Un programma è ancora in funzione sulla porta %i, occorre bloccarlo manualmente o cambiare le impostazioni della porta</translation>
     </message>
@@ -2364,77 +2363,77 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="520"/>
+        <location filename="../NETFile.py" line="522"/>
         <source>Save</source>
         <translation>Salva</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="520"/>
+        <location filename="../NETFile.py" line="522"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Configurare il percorso per Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="796"/>
+        <location filename="../NETFile.py" line="798"/>
         <source>Dynamips error</source>
         <translation>Errore di Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="799"/>
+        <location filename="../NETFile.py" line="801"/>
         <source>Dynamips warning</source>
         <translation>Avviso di Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="551"/>
+        <location filename="../NETFile.py" line="553"/>
         <source>Exception detected, stopping importation...</source>
         <translation>S&apos;è verificato un errore in fase di importazione, il processo verrà fermato...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="794"/>
+        <location filename="../NETFile.py" line="796"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Esportazione della configurazione %s a %s in corso</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="811"/>
+        <location filename="../NETFile.py" line="813"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Errore IO: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="551"/>
+        <location filename="../NETFile.py" line="553"/>
         <source>Importation</source>
         <translation>Importazione</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="532"/>
+        <location filename="../NETFile.py" line="534"/>
         <source>Please wait while importing the topology</source>
         <translation>Attendere che l&apos;importazione della topologia sia terminata</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="811"/>
+        <location filename="../NETFile.py" line="813"/>
         <source>IOError</source>
         <translation>Errore IO</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="574"/>
+        <location filename="../NETFile.py" line="576"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation>Attenzione: GNS3 non supporta ancora i &apos;lan statements&apos;, ignorare</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="456"/>
+        <location filename="../NETFile.py" line="457"/>
         <source>Cannot load image: %s</source>
         <translation>Impossibile caricare l&apos;immagine: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="409"/>
+        <location filename="../NETFile.py" line="410"/>
         <source>Cannot load font: %s</source>
         <translation>Impossibile caricare il font: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="467"/>
+        <location filename="../NETFile.py" line="468"/>
         <source>%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file</source>
         <translation>%s: impossibile trovare il simbolo %s, per cortesia verificare che si trovi nella lista nodi, e riavviare il file .net</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="971"/>
+        <location filename="../NETFile.py" line="973"/>
         <source>must be connected or have a hypervisor set in order to be registered</source>
         <translation>Occorre essere connessi o aver configurato un&apos;hypervisor per essere registrati</translation>
     </message>
@@ -3604,7 +3603,7 @@ es: #copy start run</translation>
         <source>Rotation:</source>
         <translation>Rotazione:</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="../Ui/Form_StyleDialog.py" line="81"/>
         <source>°</source>
         <translation></translation>

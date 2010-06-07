@@ -59,6 +59,7 @@ class HypervisorManager(object):
         """
 
         proc = QtCore.QProcess(globals.GApp.mainWindow)
+        
         if self.hypervisor_wd:
             # set the working directory
             proc.setWorkingDirectory(self.hypervisor_wd)
@@ -98,8 +99,8 @@ class HypervisorManager(object):
             return None
 
         hypervisor = {'port': port,
-                            'proc_instance': proc,
-                            'load': 0}
+                      'proc_instance': proc,
+                      'load': 0}
 
         self.hypervisors.append(hypervisor)
         return hypervisor

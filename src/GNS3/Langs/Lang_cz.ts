@@ -1317,47 +1317,47 @@ Zadajte číslo idlepc hodnoty, kterou chcete nastaviť [1-%i], nebo stiskněte 
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="../HypervisorManager.py" line="122"/>
+        <location filename="../HypervisorManager.py" line="128"/>
         <source>Abort</source>
         <translation>Zrušit</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="97"/>
+        <location filename="../HypervisorManager.py" line="99"/>
         <source>Can&apos;t start Dynamips on port %i</source>
         <translation>Nemůžu spustit Dynamips na portu %i</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="122"/>
+        <location filename="../HypervisorManager.py" line="128"/>
         <source>Connecting to a hypervisor on port %i ...</source>
         <translation>Připojuji se k hypervisoru na portu %i …</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="196"/>
+        <location filename="../HypervisorManager.py" line="202"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="201"/>
+        <location filename="../HypervisorManager.py" line="207"/>
         <source>Can&apos;t set up hypervisor on port %i, please check the settings (writable working directory ...)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="85"/>
+        <location filename="../HypervisorManager.py" line="86"/>
         <source>Hypervisor Manager</source>
         <translation type="unfinished">Správce hypervisorů</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="74"/>
+        <location filename="../HypervisorManager.py" line="75"/>
         <source>Apparently an hypervisor is already running on port %i, would you like to kill all Dynamips processes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="153"/>
+        <location filename="../HypervisorManager.py" line="159"/>
         <source>Can&apos;t connect to the hypervisor on port %i: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="85"/>
+        <location filename="../HypervisorManager.py" line="86"/>
         <source>A program is still running on port %i, you will have to stop it manually or change port settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2363,77 +2363,77 @@ Zadajte číslo idlepc hodnoty, kterou chcete nastaviť [1-%i], nebo stiskněte 
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="520"/>
+        <location filename="../NETFile.py" line="522"/>
         <source>Save</source>
         <translation>Uložit</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="520"/>
+        <location filename="../NETFile.py" line="522"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Nakonfigurujte cestu k Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="796"/>
+        <location filename="../NETFile.py" line="798"/>
         <source>Dynamips error</source>
         <translation>Chyba Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="799"/>
+        <location filename="../NETFile.py" line="801"/>
         <source>Dynamips warning</source>
         <translation>Varování Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="551"/>
+        <location filename="../NETFile.py" line="553"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Zachytil jsem vyjímku, zastavuji importování…</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="794"/>
+        <location filename="../NETFile.py" line="796"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportuji konfiguraci zařízení %s do adresáře %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="811"/>
+        <location filename="../NETFile.py" line="813"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Chyba vstupu/výstupu: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="551"/>
+        <location filename="../NETFile.py" line="553"/>
         <source>Importation</source>
         <translation>Import</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="532"/>
+        <location filename="../NETFile.py" line="534"/>
         <source>Please wait while importing the topology</source>
         <translation>Prosím, čekejte dokud se nenaimportuje topologie</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="811"/>
+        <location filename="../NETFile.py" line="813"/>
         <source>IOError</source>
         <translation>Chyba vstupu/výstupu</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="574"/>
+        <location filename="../NETFile.py" line="576"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation>Varování: GNS3 momentálně nepodpotuje spojení typu LAN, ignoruji</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="456"/>
+        <location filename="../NETFile.py" line="457"/>
         <source>Cannot load image: %s</source>
         <translation>Nemůžu nahrát image: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="409"/>
+        <location filename="../NETFile.py" line="410"/>
         <source>Cannot load font: %s</source>
         <translation>Nemůžu nahrát font: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="467"/>
+        <location filename="../NETFile.py" line="468"/>
         <source>%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="971"/>
+        <location filename="../NETFile.py" line="973"/>
         <source>must be connected or have a hypervisor set in order to be registered</source>
         <translation type="unfinished"></translation>
     </message>

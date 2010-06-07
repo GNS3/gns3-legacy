@@ -48,12 +48,14 @@ class DynagenSub(Dynagen):
                 else:
                     projectConfigsDir = os.path.dirname(FILENAME) + os.sep + self.gns3_data['configs']
                 globals.GApp.workspace.projectConfigs = os.path.abspath(projectConfigsDir)
+                debug("GNS3-DATA: Set project config directory to %s") % globals.GApp.workspace.projectConfigs
             if self.gns3_data.has_key('workdir'):
                 if os.path.exists(self.gns3_data['workdir']):
                     projectWorkdir = self.gns3_data['workdir']
                 else:
                     projectWorkdir = os.path.dirname(FILENAME) + os.sep + self.gns3_data['workdir']
                 globals.GApp.workspace.projectWorkdir = os.path.abspath(projectWorkdir)
+                debug("GNS3-DATA: Set project global working directory to %s") % globals.GApp.workspace.projectWorkdir
             config.sections.remove('GNS3-DATA')
 
         count = len(config.sections)
@@ -78,7 +80,17 @@ class DynagenSub(Dynagen):
                     (host, controlPort) = host.split(':')
                 if emulator == 'qemu' and (host == globals.GApp.systconf['qemu'].QemuManager_binding or host == 'localhost') and globals.GApp.systconf['qemu'].enable_QemuManager:
                     globals.GApp.QemuManager.startQemu(int(controlPort))
-            
+
+                    # Check if the image path is a relative path
+                    if server['workingdir'] and os.path.exists(server['workingdir']) == False:
+                        abspath = os.path.join(os.path.dirname(FILENAME), server['workingdir'])
+                        if os.path.exists(abspath):
+                            server['workingdir'] = abspath
+                            debug("Expanded relative working directory path to %s") % server['workingdir']
+                    
+                    if server['workingdir'] == '.':
+                        server['workingdir'] = os.path.dirname(FILENAME)
+
                     for subsection in server.sections:
                         device = server[subsection]
                         # ASA has no image
@@ -198,6 +210,7 @@ class DynagenSub(Dynagen):
                         abspath = os.path.join(os.path.dirname(FILENAME), server['workingdir'])
                         if os.path.exists(abspath):
                             server['workingdir'] = abspath
+                            debug("Expanded relative working directory path to %s") % server['workingdir']
                     
                     if server['workingdir'] == '.':
                         server['workingdir'] = os.path.dirname(FILENAME)
