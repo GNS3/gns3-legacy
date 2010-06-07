@@ -39,6 +39,7 @@ class DynagenSub(Dynagen):
         """
 
         config = Dynagen.open_config(self, FILENAME)
+        self.filename = FILENAME
         self.gns3_data = None
         if 'GNS3-DATA' in config.sections:
             self.gns3_data = config['GNS3-DATA'].copy()
@@ -46,16 +47,16 @@ class DynagenSub(Dynagen):
                 if os.path.exists(self.gns3_data['configs']):
                     projectConfigsDir = self.gns3_data['configs']
                 else:
-                    projectConfigsDir = os.path.dirname(FILENAME) + os.sep + self.gns3_data['configs']
+                    projectConfigsDir = os.path.join(os.path.dirname(FILENAME), self.gns3_data['configs'])
                 globals.GApp.workspace.projectConfigs = os.path.abspath(projectConfigsDir)
-                debug("GNS3-DATA: Set project config directory to %s") % globals.GApp.workspace.projectConfigs
+                debug(unicode("GNS3-DATA: Set project global config directory to %s") % globals.GApp.workspace.projectConfigs)
             if self.gns3_data.has_key('workdir'):
                 if os.path.exists(self.gns3_data['workdir']):
                     projectWorkdir = self.gns3_data['workdir']
                 else:
-                    projectWorkdir = os.path.dirname(FILENAME) + os.sep + self.gns3_data['workdir']
+                    projectWorkdir = os.path.join(os.path.dirname(FILENAME), self.gns3_data['workdir'])
                 globals.GApp.workspace.projectWorkdir = os.path.abspath(projectWorkdir)
-                debug("GNS3-DATA: Set project global working directory to %s") % globals.GApp.workspace.projectWorkdir
+                debug(unicode("GNS3-DATA: Set project global working directory to %s") % globals.GApp.workspace.projectWorkdir)
             config.sections.remove('GNS3-DATA')
 
         count = len(config.sections)
@@ -81,12 +82,12 @@ class DynagenSub(Dynagen):
                 if emulator == 'qemu' and (host == globals.GApp.systconf['qemu'].QemuManager_binding or host == 'localhost') and globals.GApp.systconf['qemu'].enable_QemuManager:
                     globals.GApp.QemuManager.startQemu(int(controlPort))
 
-                    # Check if the image path is a relative path
-                    if server['workingdir'] and os.path.exists(server['workingdir']) == False:
+                    # Check if this is a relative working directory path and convert to an absolute path if necessary
+                    if server['workingdir']:
                         abspath = os.path.join(os.path.dirname(FILENAME), server['workingdir'])
                         if os.path.exists(abspath):
                             server['workingdir'] = abspath
-                            debug("Expanded relative working directory path to %s") % server['workingdir']
+                            debug(unicode("Converting relative working directory path to absolute path: %s") % server['workingdir'])
                     
                     if server['workingdir'] == '.':
                         server['workingdir'] = os.path.dirname(FILENAME)
@@ -205,12 +206,12 @@ class DynagenSub(Dynagen):
                     hypervisor = globals.GApp.HypervisorManager.startNewHypervisor(int(controlPort))
                     globals.GApp.HypervisorManager.waitHypervisor(hypervisor)
                     
-                    # Check if the image path is a relative path
-                    if server['workingdir'] and os.path.exists(server['workingdir']) == False:
+                    # Check if this is a relative working directory path and convert to an absolute path if necessary
+                    if server['workingdir']:
                         abspath = os.path.join(os.path.dirname(FILENAME), server['workingdir'])
                         if os.path.exists(abspath):
                             server['workingdir'] = abspath
-                            debug("Expanded relative working directory path to %s") % server['workingdir']
+                            debug(unicode("Converting relative working directory path to absolute path: %s") % server['workingdir'])
                     
                     if server['workingdir'] == '.':
                         server['workingdir'] = os.path.dirname(FILENAME)
@@ -231,11 +232,11 @@ class DynagenSub(Dynagen):
                         # check if the IOS image is accessible, if not find an alternative image
                         if device.name in DEVICETUPLE:
                             
-                            # Check if the image path is a relative path
-                            if os.path.exists(device['image']) == False:
-                                abspath = os.path.join(os.path.dirname(FILENAME), device['image'])
-                                if os.path.exists(abspath):
-                                    device['image'] = abspath
+                            # Check if this is a relative image path and convert to an absolute path if necessary
+                            abspath = os.path.join(os.path.dirname(FILENAME), device['image'])
+                            if os.path.exists(abspath):
+                                device['image'] = abspath
+                                debug(unicode("Converting relative image path to absolute path: %s") % device['image'])
 
                             if not os.access(device['image'], os.F_OK):
                                 selected_images = []
@@ -264,11 +265,11 @@ class DynagenSub(Dynagen):
                         # check if the config file is accessible, if not find an alternative config
                         elif device.has_key('cnfg') and device['cnfg']:
                             
-                            # Check if the config path is a relative path
-                            if os.path.exists(device['cnfg']) == False:
-                                abspath = os.path.join(os.path.dirname(FILENAME), device['cnfg'])
-                                if os.path.exists(abspath):
-                                    device['cnfg'] = abspath
+                            # Check if this is a relative config path and convert to an absolute path if necessary
+                            abspath = os.path.join(os.path.dirname(FILENAME), device['cnfg'])
+                            if os.path.exists(abspath):
+                                device['cnfg'] = abspath
+                                debug(unicode("Converting relative config path to absolute path: %s") % device['cnfg'])
                             
                             if not os.access(device['cnfg'], os.F_OK):
                                 if globals.GApp.workspace.projectConfigs:

@@ -450,6 +450,13 @@ class NETFile(object):
                     
                 if devtype.lower() == 'pixmap':
                     pixmap_path = unicode(gns3data[section]['path'])
+                    
+                    # Check if this is a relative pixmap path and convert to an absolute path if necessary
+                    abspath = os.path.join(os.path.dirname(self.dynagen.filename), pixmap_path)
+                    if os.path.exists(abspath):
+                        pixmap_path = abspath
+                        debug(unicode("Converting relative pixmap path to absolute path: %s") % pixmap_path)
+
                     pixmap_image = QtGui.QPixmap(pixmap_path)
                     if not pixmap_image.isNull():
                         pixmap_object= Pixmap(pixmap_image, pixmap_path)
@@ -937,8 +944,11 @@ class NETFile(object):
                 if not self.dynagen.running_config.has_key('GNS3-DATA'):
                     self.dynagen.running_config['GNS3-DATA'] = {}
                 self.dynagen.running_config['GNS3-DATA']['PIXMAP ' + str(pix_nb)] = {}
-                config = self.dynagen.running_config['GNS3-DATA']['PIXMAP ' + str(pix_nb)] 
-                config['path'] = self.convert_to_relpath(device['path'], item.pixmap_path)
+                config = self.dynagen.running_config['GNS3-DATA']['PIXMAP ' + str(pix_nb)]
+                if globals.GApp.systconf['general'].relative_paths:
+                    config['path'] = self.convert_to_relpath(item.pixmap_path, path)
+                else:
+                    config['path'] = item.pixmap_path
                 config['x'] = item.x()
                 config['y'] = item.y()
                 zvalue = item.zValue()
