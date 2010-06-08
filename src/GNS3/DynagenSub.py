@@ -49,14 +49,12 @@ class DynagenSub(Dynagen):
                 else:
                     projectConfigsDir = os.path.join(os.path.dirname(FILENAME), self.gns3_data['configs'])
                 globals.GApp.workspace.projectConfigs = os.path.abspath(projectConfigsDir)
-                debug(unicode("GNS3-DATA: Set project global config directory to %s") % globals.GApp.workspace.projectConfigs)
             if self.gns3_data.has_key('workdir'):
                 if os.path.exists(self.gns3_data['workdir']):
                     projectWorkdir = self.gns3_data['workdir']
                 else:
                     projectWorkdir = os.path.join(os.path.dirname(FILENAME), self.gns3_data['workdir'])
                 globals.GApp.workspace.projectWorkdir = os.path.abspath(projectWorkdir)
-                debug(unicode("GNS3-DATA: Set project global working directory to %s") % globals.GApp.workspace.projectWorkdir)
             config.sections.remove('GNS3-DATA')
 
         count = len(config.sections)

@@ -58,26 +58,31 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         """
 
         for widget in self.widget_slots.values():
+            widget.setEnabled(False)
             widget.clear()
         
         for (slot_number, slot_modules) in lib.ADAPTER_MATRIX[platform][chassis].iteritems():
+            self.widget_slots[slot_number].setEnabled(True)
             if type(slot_modules) == str:
                 self.widget_slots[slot_number].addItem(slot_modules)
             elif platform == 'c7200' and slot_number == 0 and router_config['slots'][slot_number] != None:
                 self.widget_slots[slot_number].addItem(router_config['slots'][slot_number])
             else:
                 self.widget_slots[slot_number].addItems([''] + list(slot_modules))
+
             if router_config['slots'][slot_number]:
                 index = self.widget_slots[slot_number].findText(router_config['slots'][slot_number])
                 if (index != -1):
                     self.widget_slots[slot_number].setCurrentIndex(index)
 
         for widget in self.widget_wics.values():
+            widget.setEnabled(False)
             widget.clear()
 
         if router_config['wics']:
             wic_number = 0
             for wic_name in router_config['wics']:
+                self.widget_wics[wic_number].setEnabled(True)
                 if wic_name:
                     self.widget_wics[wic_number].addItem(wic_name)
                 else:

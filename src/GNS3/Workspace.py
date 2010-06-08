@@ -204,8 +204,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         min_y = item.y()
                 x = min_x - 30
                 y = min_y - 30
-                width = abs(x) + max_x + 90
-                height = abs(y) + max_y + 80
+                width = abs(x) + max_x + 200
+                height = abs(y) + max_y + 200
     
             else:
 

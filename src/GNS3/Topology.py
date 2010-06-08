@@ -802,11 +802,13 @@ class Topology(QtGui.QGraphicsScene):
     def deleteLinkFromScene(self, link):
         """ Delete a link from the topology, called from Scene
         """
-        
+
         command = undo.DeleteLink(self, link)
         self.undoStack.push(command)
         if command.getStatus() == False:
             self.undoStack.undo()
+            return False
+        return True
         
     def deleteLink(self, link):
         """ Delete a link from the topology

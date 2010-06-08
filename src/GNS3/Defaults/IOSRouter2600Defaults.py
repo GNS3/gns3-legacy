@@ -30,7 +30,7 @@ class IOSRouter2600Defaults(IOSRouterDefaults):
         IOSRouterDefaults.__init__(self)
 
         #fill 2600 defaults
-        self.default_ram = 64
-        self.default_nvram = 128
+        self.default_ram = 128
+        self.default_nvram = 64
         self.default_disk0 = 8
         self.default_disk1 = 8

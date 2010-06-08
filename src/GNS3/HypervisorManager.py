@@ -74,11 +74,8 @@ class HypervisorManager(object):
 
             reply = QtGui.QMessageBox.question(globals.GApp.mainWindow, translate("HypervisorManager", "Hypervisor Manager"), unicode(translate("HypervisorManager", "Apparently an hypervisor is already running on port %i, would you like to kill all Dynamips processes?")) % port,
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-            if reply == QtGui.QMessageBox.Yes:
-                if sys.platform.startswith('win'):            
-                    killAll(os.path.basename(self.hypervisor_path))
-                else:
-                    killAll('dynamips')
+            if reply == QtGui.QMessageBox.Yes:       
+                killAll(os.path.basename(self.hypervisor_path))
 
             s.connect(('localhost', port))
             s.close()
@@ -201,7 +198,8 @@ class HypervisorManager(object):
         if not dynamips_hypervisor:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',
                                         unicode(translate("HypervisorManager", "Can't set up hypervisor on port %i, please check the settings (writable working directory ...)")) % hypervisor['port'])
-            del globals.GApp.dynagen.dynamips[globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + str(hypervisor['port'])]
+            if globals.GApp.dynagen.dynamips.has_key(globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + str(hypervisor['port'])):
+                del globals.GApp.dynagen.dynamips[globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + str(hypervisor['port'])]
             hypervisor['proc_instance'].close()
             hypervisor['proc_instance'] = None
             count = 0

@@ -334,7 +334,21 @@ class IOSRouter(AbstractNode):
                     if found == False:
                         self.clean_slot(module)
 
-        # try to automatically asign a WIC ...
+        # try to find an empty interface in an occupied slot
+        for module in self.router.slot:
+            if module and module.adapter != 'NM-16ESW':
+                interfaces = module.interfaces
+                for interface_type in interfaces.keys():
+                    if interface_type == link_type:
+                        for port in interfaces[link_type].keys():
+                            if self.router.model_string in SLOTLESS_MODELS:
+                                interface_name = interface_type + str(port)
+                            else:
+                                interface_name = interface_type + str(module.slot) + '/' + str(port)
+                            if interface_name not in connected_interfaces:
+                                return (interface_name)
+
+        # try to automatically assign a WIC ...
         if self.local_config['wics']:
             wic_number = 0
             new_wic = None
@@ -352,7 +366,7 @@ class IOSRouter(AbstractNode):
                 debug('Install ' + new_wic + ' in wic port ' + str(wic_number))
                 self.router.installwic(new_wic, 0, wic_number)
 
-        # try to find an empty interface in an occupied slot
+        # try again to find an empty interface in an occupied slot
         for module in self.router.slot:
             if module and module.adapter != 'NM-16ESW':
                 interfaces = module.interfaces

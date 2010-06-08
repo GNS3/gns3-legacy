@@ -19,7 +19,7 @@
 # code@gns3.net
 #
 
-import os, base64, socket
+import os, base64
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Globals as globals
 import GNS3.UndoFramework as undo

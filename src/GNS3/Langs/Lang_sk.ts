@@ -3,17 +3,17 @@
 <context>
     <name>ASA initrd</name>
     <message>
-        <location filename="../DynagenSub.py" line="90"/>
+        <location filename="../DynagenSub.py" line="101"/>
         <source>ASA initrd %s cannot be found and cannot find an alternative initrd</source>
-        <translation type="unfinished"></translation>
+        <translation>ASA initrd súbor %s ani jeho alternatívy sa nedajú nájsť</translation>
     </message>
 </context>
 <context>
     <name>ASA kernel</name>
     <message>
-        <location filename="../DynagenSub.py" line="101"/>
+        <location filename="../DynagenSub.py" line="112"/>
         <source>ASA kernel %s cannot be found and cannot find an alternative kernel</source>
-        <translation type="unfinished"></translation>
+        <translation>ASA kernel %s ani jeho alternatívy sa nedajú nájsť</translation>
     </message>
 </context>
 <context>
@@ -21,97 +21,97 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="14"/>
         <source>Firewall configuration</source>
-        <translation type="unfinished">Nastavenia firewallu</translation>
+        <translation>Nastavenia firewallu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="20"/>
         <source>RAM size:</source>
-        <translation type="unfinished">Veľkosť RAM:</translation>
+        <translation>Veľkosť RAM:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="33"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="49"/>
         <source>NIC:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sieťová karta:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="63"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation>ne2k_pci</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="68"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation>i82551</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="73"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation>i82557b</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="78"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation>i82559er</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="83"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation>rtl8139</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="88"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation>e1000</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="93"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="98"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="106"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Možnosti Qemu:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="123"/>
         <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
+        <translation>Použiť KQemu akcelerátor</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="133"/>
         <source>UseKVM (Linux only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Použiť KVM akcelerátor (iba pre Linux)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="140"/>
         <source>Initrd:</source>
-        <translation type="unfinished"></translation>
+        <translation>Initrd súbor:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="205"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="176"/>
         <source>Kernel:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kernel súbor:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="212"/>
         <source>Kernel cmd line:</source>
-        <translation type="unfinished"></translation>
+        <translation>Príkaz na spracovanie pre kernel:</translation>
     </message>
 </context>
 <context>
@@ -243,12 +243,12 @@
         <translation>&amp;O tomto programe</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="103"/>
+        <location filename="../Ui/Form_About.py" line="105"/>
         <source>&amp;Thanks to</source>
         <translation>&amp;Ďakujeme</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="391"/>
+        <location filename="../Ui/Form_About.py" line="393"/>
         <source>&amp;License Agreement</source>
         <translation>&amp;Licenčná zmluva</translation>
     </message>
@@ -270,25 +270,10 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../Ui/Form_About.py" line="92"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;br /&gt;&lt;br /&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;br /&gt;&lt;br /&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;br /&gt;&lt;br /&gt;Alexander H. Hackenberg from Vienna, Austria&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;a name=&quot;:vm&quot;&gt;&lt;/a&gt;Leonard Bernstein from USA&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;Erik Wenzel: German translation (code: de)&lt;br /&gt;&lt;br /&gt;Huan Ji from Wuhan: Chinese translation (code: cn)&lt;br /&gt;&lt;br /&gt;Jose Sen: Spanish translation (code: es)&lt;br /&gt;&lt;br /&gt;Mark Soe Min: Japanese translation (code: jp)&lt;br /&gt;&lt;br /&gt;Aboulgasem Albusaifi from Tarabulus: Arabic translation (code: ar)&lt;br /&gt;&lt;br /&gt;Marcio de Freitas Minicz: Brazilian-Portuguese translation (code: pt_br)&lt;br /&gt;&lt;br /&gt;Hasan Agirol Aksoy: Turkish translation (code: tr)&lt;br /&gt;&lt;br /&gt;Ivakin Dmitriy: Russian translation (code: ru)&lt;br /&gt;&lt;br /&gt;Hyeonjin Kim: Korean translation (code: kr)&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa: Slovak translation (code: sk)&lt;br /&gt;&lt;br /&gt;Michał Zieliński: Polish translation (code: pl)&lt;br /&gt;&lt;br /&gt;Veljko Dzodic: Serbian translation (code: sr)&lt;br /&gt;&lt;br /&gt;Abalfazl Meshki: Farsi translation (code: fa)&lt;br /&gt;&lt;br /&gt;Ondřej Filip: Czech translation (code: cz)&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lyubomir Tsekov: Bulgarian translation (code: bg)&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Andrea Riela: Italian translation (code: it)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="104"/>
+        <location filename="../Ui/Form_About.py" line="106"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -576,6 +561,23 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;POSSIBILITY OF SUCH DAMAGES.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;END OF TERMS AND CONDITIONS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="../Ui/Form_About.py" line="92"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;br /&gt;&lt;br /&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;br /&gt;&lt;br /&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;br /&gt;&lt;br /&gt;Alexander H. Hackenberg from Vienna, Austria&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;a name=&quot;:vm&quot;&gt;&lt;/a&gt;Leonard Bernstein from USA&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;Erik Wenzel: German translation (code: de)&lt;br /&gt;&lt;br /&gt;Huan Ji from Wuhan: Chinese translation (code: cn)&lt;br /&gt;&lt;br /&gt;Jose Sen: Spanish translation (code: es)&lt;br /&gt;&lt;br /&gt;Mark Soe Min: Japanese translation (code: jp)&lt;br /&gt;&lt;br /&gt;Aboulgasem Albusaifi from Tarabulus: Arabic translation (code: ar)&lt;br /&gt;&lt;br /&gt;Marcio de Freitas Minicz: Brazilian-Portuguese translation (code: pt_br)&lt;br /&gt;&lt;br /&gt;Hasan Agirol Aksoy: Turkish translation (code: tr)&lt;br /&gt;&lt;br /&gt;Ivakin Dmitriy: Russian translation (code: ru)&lt;br /&gt;&lt;br /&gt;Hyeonjin Kim: Korean translation (code: kr)&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa: Slovak translation (code: sk)&lt;br /&gt;&lt;br /&gt;Michał Zieliński: Polish translation (code: pl)&lt;br /&gt;&lt;br /&gt;Veljko Dzodic: Serbian translation (code: sr)&lt;br /&gt;&lt;br /&gt;Abalfazl Meshki: Farsi translation (code: fa)&lt;br /&gt;&lt;br /&gt;Ondřej Filip: Czech translation (code: cz)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lyubomir Tsekov: Bulgarian translation (code: bg)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Andrea Riela: Italian translation (code: it)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Kyryl Tumanov: Ukrainian translation (code: uk)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -708,52 +710,52 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="106"/>
         <source>Please use only alphanumeric characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Použite len alfanumerické znaky</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="100"/>
         <source>Change the hostname</source>
-        <translation type="unfinished">Zmeň meno zariadenia</translation>
+        <translation>Zmeň meno zariadenia</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="165"/>
         <source>Hypervisor</source>
-        <translation type="unfinished">Hypervízor</translation>
+        <translation>Hypervízor</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="124"/>
         <source>The device must have no connection to other devices in order to change its hypervisor</source>
-        <translation type="unfinished"></translation>
+        <translation>Pri zmene hypervízora nemože byť zariadenie pripojené ku iným zariadeniam</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="132"/>
         <source>Set hypervisor</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastav hypervízor</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="132"/>
         <source>New hypervisor:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nový hypervízor:</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="139"/>
         <source>Invalid format for hypervisor (hostname:port is required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatný formát pre umiestnenie hypervízora (správny formát je &quot;zariadenie:port&quot;)</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="151"/>
         <source>Can&apos;t connect to the hypervisor on %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Ku hypervízoru %s sa nedá pripojiť</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="165"/>
         <source>New hypervisor %s has been set on device %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nový hypervízor %s sa bol úspešne zmenený na zariadení %s</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="173"/>
         <source>Change the console port</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmena konzolového portu</translation>
     </message>
 </context>
 <context>
@@ -761,17 +763,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AnyEmuDevice.py" line="218"/>
         <source>Dynamips error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba Dynamips-u</translation>
     </message>
     <message>
         <location filename="../Node/AnyEmuDevice.py" line="204"/>
         <source>New hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>Nové zariadenie</translation>
     </message>
     <message>
         <location filename="../Node/AnyEmuDevice.py" line="204"/>
         <source>Cannot rename a connected emulated device</source>
-        <translation type="unfinished"></translation>
+        <translation>Pripojené emulované zariadenie sa nedá premenovať</translation>
     </message>
 </context>
 <context>
@@ -976,17 +978,17 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
     <message>
         <location filename="../Console.py" line="288"/>
         <source>%s already has an idlepc value applied (%s).</source>
-        <translation type="unfinished"></translation>
+        <translation>%s má už nastavenú hodnotu idlepc (%s).</translation>
     </message>
     <message>
         <location filename="../Telnet.py" line="48"/>
         <source>Console</source>
-        <translation type="unfinished">Konzola</translation>
+        <translation>Konzola</translation>
     </message>
     <message>
         <location filename="../Telnet.py" line="48"/>
         <source>Cannot start %s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem spustiť %s: %s</translation>
     </message>
 </context>
 <context>
@@ -994,12 +996,12 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
     <message>
         <location filename="../Node/DecorativeNode.py" line="138"/>
         <source>Connection</source>
-        <translation type="unfinished">Spojenie</translation>
+        <translation>Spojenie</translation>
     </message>
     <message>
         <location filename="../Node/DecorativeNode.py" line="138"/>
         <source>No interface available</source>
-        <translation type="unfinished">Žiaden interfejs nie je k dispozícii</translation>
+        <translation>Žiaden interfejs nie je k dispozícii</translation>
     </message>
 </context>
 <context>
@@ -1007,90 +1009,90 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
     <message>
         <location filename="../Ui/ConfigurationPages/Form_DecorativeNodePage.ui" line="13"/>
         <source>Decorative Node</source>
-        <translation type="unfinished"></translation>
+        <translation>Dekoratívny prvok</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_DecorativeNodePage.ui" line="19"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavenia</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_DecorativeNodePage.ui" line="25"/>
         <source>Interface name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Meno interfejsu:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_DecorativeNodePage.ui" line="45"/>
         <source>Interfaces</source>
-        <translation type="unfinished"></translation>
+        <translation>Interfejsy</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_DecorativeNodePage.ui" line="64"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">&amp;Pridaj</translation>
+        <translation>&amp;Pridaj</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_DecorativeNodePage.ui" line="74"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;Zmaž</translation>
+        <translation>&amp;Zmaž</translation>
     </message>
 </context>
 <context>
     <name>DynagenSub</name>
     <message>
-        <location filename="../DynagenSub.py" line="60"/>
+        <location filename="../DynagenSub.py" line="61"/>
         <source>Starting hypervisors ...</source>
         <translation>Štartujem hypervisor ...</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="60"/>
+        <location filename="../DynagenSub.py" line="61"/>
         <source>Abort</source>
         <translation>Prerušiť</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="175"/>
+        <location filename="../DynagenSub.py" line="186"/>
         <source>Local PIX image %s cannot be found, use image %s instead</source>
         <translation>Neviem nájst PIX image %s, použite image %s namiesto neho</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="247"/>
+        <location filename="../DynagenSub.py" line="259"/>
         <source>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</source>
         <translation>Neviem nájst IOS image %s pre hypervízor %s, použite image %s namiesto neho</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="275"/>
+        <location filename="../DynagenSub.py" line="287"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
         <translation>Neviem nájsť konfiguráciu pre smerovač %s, namiesto toho použite túto konfiguraciu: %s</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="212"/>
+        <location filename="../DynagenSub.py" line="224"/>
         <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../DynagenSub.py" line="93"/>
-        <source>Local ASA initrd %s cannot be found, use initrd %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem nájsť pracovný adresár %s pre hypervízor %s, namiesto neho použijem tento pracovný adresár %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="104"/>
+        <source>Local ASA initrd %s cannot be found, use initrd %s instead</source>
+        <translation>Neviem nájsť ASA initrd súbor %s, namiesto toho použite tento súbor: %s</translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="115"/>
         <source>Local ASA kernel %s cannot be found, use kernel %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem nájsť ASA kernel súbor %s, namiesto toho použite tento súbor: %s</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="129"/>
+        <location filename="../DynagenSub.py" line="140"/>
         <source>Local IDS image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../DynagenSub.py" line="151"/>
-        <source>Local JunOS image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem nájsť IDS súbor %s, namiesto toho použite tento súbor: %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="162"/>
+        <source>Local JunOS image %s cannot be found, use image %s instead</source>
+        <translation>Neviem nájsť JunOS súbor %s, namiesto toho použite tento súbor: %s</translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="173"/>
         <source>Local Qemu host image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem nájsť Qemu súbor %s, namiesto toho použite tento súbor: %s</translation>
     </message>
 </context>
 <context>
@@ -1262,121 +1264,121 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="85"/>
         <source>NIC:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sieťová karta:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="99"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation>ne2k_pci</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="104"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation>i82551</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="109"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation>i82557b</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="114"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation>i82559er</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="119"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation>rtl8139</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="124"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation>e1000</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="129"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="134"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="142"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Možnosti Qemu:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="159"/>
         <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
+        <translation>Použiť KQemu akceleráciu</translation>
     </message>
 </context>
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="../HypervisorManager.py" line="128"/>
+        <location filename="../HypervisorManager.py" line="120"/>
         <source>Abort</source>
         <translation>Prerušiť</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="99"/>
+        <location filename="../HypervisorManager.py" line="95"/>
         <source>Can&apos;t start Dynamips on port %i</source>
         <translation>Neviem spustiť Dynamips na porte %i</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="128"/>
+        <location filename="../HypervisorManager.py" line="120"/>
         <source>Connecting to a hypervisor on port %i ...</source>
         <translation>Pripojujem sa na hypervízor na porte %i ...</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="202"/>
+        <location filename="../HypervisorManager.py" line="194"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
-        <translation type="unfinished"></translation>
+        <translation>Pracovný adresár  %s neexistuje, respektívne nedá sa to neho zapisovať</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="207"/>
+        <location filename="../HypervisorManager.py" line="199"/>
         <source>Can&apos;t set up hypervisor on port %i, please check the settings (writable working directory ...)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedá sa pripraviť hypervízor na porte %i, skontrolujte jeho nastavenia (práva na zápis do pracovného adresára atď...)</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="86"/>
+        <location filename="../HypervisorManager.py" line="83"/>
         <source>Hypervisor Manager</source>
-        <translation type="unfinished">Manažér hypervízorov</translation>
+        <translation>Manažér hypervízorov</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="75"/>
         <source>Apparently an hypervisor is already running on port %i, would you like to kill all Dynamips processes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Na porte %i už beží hypervízor, chcete ukončiť všetky procesy Dynamipsu?</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="159"/>
+        <location filename="../HypervisorManager.py" line="151"/>
         <source>Can&apos;t connect to the hypervisor on port %i: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedá sa pripojiť ku hypervízoru na porte %i: %s</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="86"/>
+        <location filename="../HypervisorManager.py" line="83"/>
         <source>A program is still running on port %i, you will have to stop it manually or change port settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Na porte %i beží neznámy program, musíte ho buď zastaviť manuálne, alebo zmeniť nastavenia portov</translation>
     </message>
 </context>
 <context>
     <name>IDS image (hda)</name>
     <message>
-        <location filename="../DynagenSub.py" line="115"/>
+        <location filename="../DynagenSub.py" line="126"/>
         <source>IDS image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem nájst IDS súbor %s a ani alternatívny súbor</translation>
     </message>
 </context>
 <context>
     <name>IDS image (hdb)</name>
     <message>
-        <location filename="../DynagenSub.py" line="126"/>
+        <location filename="../DynagenSub.py" line="137"/>
         <source>IDS image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem nájst IDS súbor %s a ani alternatívny súbor</translation>
     </message>
 </context>
 <context>
@@ -1384,100 +1386,100 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="14"/>
         <source>IDS configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurácia IDS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="20"/>
         <source>IDS Image 1 (hda):</source>
-        <translation type="unfinished"></translation>
+        <translation>IDS Súbor 1 (hda):</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="85"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="56"/>
         <source>IDS Image 2 (hdb):</source>
-        <translation type="unfinished"></translation>
+        <translation>IDS Súbor 2 (hdb):</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="92"/>
         <source>RAM size:</source>
-        <translation type="unfinished">Veľkosť RAM:</translation>
+        <translation>Veľkosť RAM:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="105"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="121"/>
         <source>NIC:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sieťová karta:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="135"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation>ne2k_pci</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="140"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation>i82551</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="145"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation>i82557b</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="150"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation>i82559er</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="155"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation>rtl8139</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="160"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation>e1000</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="165"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="170"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="178"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Možnosti Qemu:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="195"/>
         <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
+        <translation>Použiť KQemu akceleráciu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="205"/>
         <source>Use KVM (Linux only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Použiť KVM akceleráciu (iba pre Linux)</translation>
     </message>
 </context>
 <context>
     <name>IOS image</name>
     <message>
-        <location filename="../DynagenSub.py" line="234"/>
+        <location filename="../DynagenSub.py" line="246"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem nájst súbor IOS %s pre hypervízor %s a ani alternatívny súbor s IOSom %s</translation>
     </message>
 </context>
 <context>
@@ -1666,12 +1668,12 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="626"/>
+        <location filename="../Node/IOSRouter.py" line="640"/>
         <source>Connection</source>
         <translation>Spojenie</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="626"/>
+        <location filename="../Node/IOSRouter.py" line="640"/>
         <source>No interface available</source>
         <translation>Žiaden interfejs nie je k dispozícii</translation>
     </message>
@@ -1686,14 +1688,14 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
         <translation>Ak chcete použíť nové moduly musíte najprv reštartovať tento smerovač</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="497"/>
+        <location filename="../Node/IOSRouter.py" line="511"/>
         <source>Dynamips error</source>
         <translation>Chyba Dynamipsu</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="306"/>
         <source>Startup-Config for %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Štartovacia konfigurácia pre %s</translation>
     </message>
 </context>
 <context>
@@ -1887,9 +1889,9 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
 <context>
     <name>JunOS image</name>
     <message>
-        <location filename="../DynagenSub.py" line="148"/>
+        <location filename="../DynagenSub.py" line="159"/>
         <source>JunOS image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem nájst JunOS súbor %s a ani alternatívny súbor</translation>
     </message>
 </context>
 <context>
@@ -1897,87 +1899,87 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="14"/>
         <source>Firewall configuration</source>
-        <translation type="unfinished">Nastavenia firewallu</translation>
+        <translation>Nastavenia firewallu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="20"/>
         <source>JunOS Image:</source>
-        <translation type="unfinished"></translation>
+        <translation>JunOS Súbor:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="49"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="56"/>
         <source>RAM size:</source>
-        <translation type="unfinished">Veľkosť RAM:</translation>
+        <translation>Veľkosť RAM:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="69"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="85"/>
         <source>NIC:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sieťová karta:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="99"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation>ne2k_pci</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="104"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation>i82551</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="109"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation>i82557b</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="114"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation>i82559er</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="119"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation>rtl8139</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="124"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation>e1000</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="129"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="134"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="142"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Možnosti Qemu:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="159"/>
         <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
+        <translation>Použiť KQemu akceleráciu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="169"/>
         <source>Use KVM (Linux only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Použiť KVM akceleráciu (iba pre Linux)</translation>
     </message>
 </context>
 <context>
@@ -1985,7 +1987,7 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
     <message>
         <location filename="../Main.py" line="49"/>
         <source>On Unix you can choose the config directory by setting the XDG_CONFIG_HOME environment variable</source>
-        <translation type="unfinished"></translation>
+        <translation>Na Unixe môžete nastaviť adresár s konfiguráciou pomocou premennej prostredia XDG_CONFIG_HOME</translation>
     </message>
 </context>
 <context>
@@ -2268,175 +2270,175 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="434"/>
         <source>Insert a picture</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložiť obrázok</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="371"/>
         <source>Emulation</source>
-        <translation type="unfinished"></translation>
+        <translation>Emulácia</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="375"/>
         <source>Drawing</source>
-        <translation type="unfinished"></translation>
+        <translation>Kreslenie</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="437"/>
         <source>Draw a rectangle</source>
-        <translation type="unfinished"></translation>
+        <translation>Nakresli obdĺžnik</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="438"/>
         <source>Draw an ellipse</source>
-        <translation type="unfinished"></translation>
+        <translation>Nakresli elipsu</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="439"/>
         <source>Show interface names</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukáž mená interfejsou</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="440"/>
         <source>Snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Snímka</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="433"/>
         <source>&amp;Extract/Import all startup-configs</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Export/Import štartovacích konfigurácii všetkých zariadení</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="376"/>
         <source>Undo Stack</source>
-        <translation type="unfinished"></translation>
+        <translation>Zasovník akcií Späť</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="420"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Späť</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="421"/>
         <source>Ctrl+Z</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Z</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="422"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Znovu</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="423"/>
         <source>Ctrl+Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Y</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="441"/>
         <source>&amp;Edit project</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Upraviť projekt</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="395"/>
         <source>Start/Resume every devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustiť/Obnoviť všetky zariadenia</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="398"/>
         <source>Stop every devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastaviť všetky zariadenia</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="425"/>
         <source>Suspend every devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozastaviť všetky zariadenia</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="442"/>
         <source>Show layers</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobraziť vrstvy</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="443"/>
         <source>ReloadAll</source>
-        <translation type="unfinished"></translation>
+        <translation>Reštartovať všetky zariadenia</translation>
     </message>
 </context>
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="522"/>
+        <location filename="../NETFile.py" line="529"/>
         <source>Save</source>
         <translation>Ulož</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="522"/>
+        <location filename="../NETFile.py" line="529"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Nakonfigurujte cestu ku Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="798"/>
+        <location filename="../NETFile.py" line="805"/>
         <source>Dynamips error</source>
         <translation>Chyba Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="801"/>
+        <location filename="../NETFile.py" line="808"/>
         <source>Dynamips warning</source>
         <translation>Varovanie Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="553"/>
+        <location filename="../NETFile.py" line="560"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Zachytil som výnimku, zastavujem importovanie...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="796"/>
+        <location filename="../NETFile.py" line="803"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportujem konfiguráciu zariadenia %s do adresára %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="813"/>
+        <location filename="../NETFile.py" line="820"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Chyba vstupu/výstupu: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="553"/>
+        <location filename="../NETFile.py" line="560"/>
         <source>Importation</source>
         <translation>Importujem</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="534"/>
+        <location filename="../NETFile.py" line="541"/>
         <source>Please wait while importing the topology</source>
         <translation>Čakajte kým sa naimportuje topológia</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="813"/>
+        <location filename="../NETFile.py" line="820"/>
         <source>IOError</source>
         <translation>Vstupno/Výstupná Chyba</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="576"/>
+        <location filename="../NETFile.py" line="583"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation>Varovanie: GNS3 momentálne nepodporuje spojenia typu LAN, ignorujem</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="457"/>
+        <location filename="../NETFile.py" line="464"/>
         <source>Cannot load image: %s</source>
         <translation>Neviem zaviesť image: %s</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="410"/>
         <source>Cannot load font: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedá sa zaviesť font: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="468"/>
+        <location filename="../NETFile.py" line="475"/>
         <source>%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: Nedá sa nájsť symbol %s, skontrolujte či sa tento symbol nachádza vo vašom zozname symbolov a znovu nahrajte súbor .net</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="973"/>
+        <location filename="../NETFile.py" line="983"/>
         <source>must be connected or have a hypervisor set in order to be registered</source>
-        <translation type="unfinished"></translation>
+        <translation>nato aby sa zaregistroval musí byť pripojený k niečomu alebo musí mať nastavený hypervízor</translation>
     </message>
 </context>
 <context>
@@ -2464,22 +2466,22 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
     <message>
         <location filename="../Ui/Form_NewProject.py" line="71"/>
         <source>Save nvrams and other disk files (recommended)</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložiť súbory NVRAM a ostatné súbory na disku (odporúčané)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="66"/>
         <source>&amp;Open a project</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Otvoriť projekt</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="68"/>
         <source>Project name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Meno projektu:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="69"/>
         <source>Project path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesta k projektu:</translation>
     </message>
 </context>
 <context>
@@ -2589,30 +2591,30 @@ na zobrazenie konfiguračnej stránky.</translation>
     <message>
         <location filename="../NodeConfigurator.py" line="128"/>
         <source>ASA firewalls</source>
-        <translation type="unfinished"></translation>
+        <translation>Firewally ASA</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="131"/>
         <source>Juniper routers</source>
-        <translation type="unfinished"></translation>
+        <translation>Juniper routre</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="137"/>
         <source>Qemu hosts</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu zariadenia</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="134"/>
         <source>Cisco IDS</source>
-        <translation type="unfinished"></translation>
+        <translation>Cisco IDS zariadenia</translation>
     </message>
 </context>
 <context>
     <name>PIX image</name>
     <message>
-        <location filename="../DynagenSub.py" line="172"/>
+        <location filename="../DynagenSub.py" line="183"/>
         <source>PIX image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished">Neviem nájsť PIX image %s ani alternatívny image</translation>
+        <translation>Neviem nájsť PIX image %s ani alternatívny image</translation>
     </message>
 </context>
 <context>
@@ -2766,7 +2768,7 @@ na zobrazenie konfiguračnej stránky.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="269"/>
         <source>IP/host binding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Spojenie IP/zariadenie:</translation>
     </message>
 </context>
 <context>
@@ -2829,72 +2831,72 @@ na zobrazenie konfiguračnej stránky.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="352"/>
         <source>Show link status points on the workspace</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobraziť stav liniek v pracovnom priestore</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="268"/>
         <source>Workspace width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Šírka pracovného priestoru:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="313"/>
         <source> px</source>
-        <translation type="unfinished"></translation>
+        <translation> px</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="300"/>
         <source>Workspace height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Výška pracovného priestoru:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="53"/>
         <source>Launch the project dialog at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustiť okno s výberom projektu pri štarte</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="24"/>
         <source>General Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Všeobecné nastavenia</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="262"/>
         <source>GUI Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavenia GUI</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="332"/>
         <source>Draw a rectangle when an item is selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Pri výbere objektu nakresliť obdĺžnik</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="116"/>
         <source>Image directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresár so súbormi s operačným systémom:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="73"/>
         <source>Waiting time between each start when starting every devices:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pri spúšťaní všetých zariadení oneskoriť spustenie každého ďalšieho zariadenia o:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="80"/>
         <source> seconds</source>
-        <translation type="unfinished"></translation>
+        <translation> sekundy</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="189"/>
         <source>Terminal Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavenie terminálového programu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="195"/>
         <source>Preconfigurated terminal commands:</source>
-        <translation type="unfinished"></translation>
+        <translation>Predkonfigurované príkazy pre terminálový program:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="211"/>
         <source>&amp;Use</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Použiť</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="238"/>
@@ -2902,12 +2904,15 @@ na zobrazenie konfiguračnej stránky.</translation>
 %h = device server 
 %p = device port
 %d = device hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>Magické skratky pri zadávaní príkazu pre terminálový program:
+%h = server zariadenia 
+%p = port zariadenia
+%d = meno zariadenia</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="63"/>
         <source>Use relative path for projects</source>
-        <translation type="unfinished"></translation>
+        <translation>Použiť pre projekt relatívne cesty</translation>
     </message>
 </context>
 <context>
@@ -2915,287 +2920,287 @@ na zobrazenie konfiguračnej stránky.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulár</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="24"/>
         <source>General Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Všeobecné nastavenia</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="30"/>
         <source>Qemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemuwrapper</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1141"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="56"/>
         <source>Working directory:</source>
-        <translation type="unfinished">Pracovný adresár:</translation>
+        <translation>Pracovný adresár:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="187"/>
         <source>Enable Qemu Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Použiť manažéra Qemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="197"/>
         <source>Use Qemu Manager when importing</source>
-        <translation type="unfinished"></translation>
+        <translation>Použiť manažéra Qemu pri importe</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="147"/>
         <source>Base UDP port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Začiatočný UDP port:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="167"/>
         <source>Base console port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Začiatočný port pre konzoly zariadení:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="719"/>
         <source>Binary image:</source>
-        <translation type="unfinished"></translation>
+        <translation>Binárny súbor s op.systémom:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1151"/>
         <source>Memory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pamäť:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1177"/>
         <source>NIC:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sieťová karta:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1191"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation>ne2k_pci</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1196"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation>i82551</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1201"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation>i82557b</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1206"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation>i82559er</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1211"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation>rtl8139</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1216"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation>e1000</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1221"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1226"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1234"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Možnosti Qemu:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1251"/>
         <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
+        <translation>Použiť KQemu akcelerátor</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1261"/>
         <source>Use KVM (Linux Only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Použiť KVM akcelerátor (iba pre Linux)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="498"/>
         <source>PIX</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="504"/>
         <source>PIX Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavenia pre PIX</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="650"/>
         <source>PIX Specific Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Špecifické nastavenia pre PIX</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="656"/>
         <source>Key:</source>
-        <translation type="unfinished">Kľúč:</translation>
+        <translation>Kľúč:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="673"/>
         <source>Serial:</source>
-        <translation type="unfinished">Sériové číslo:</translation>
+        <translation>Sériové číslo:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="707"/>
         <source>JunOS</source>
-        <translation type="unfinished"></translation>
+        <translation>JunOS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="713"/>
         <source>JunOS Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavenia pre JunOS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="880"/>
         <source>ASA</source>
-        <translation type="unfinished"></translation>
+        <translation>ASA</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="886"/>
         <source>ASA Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavenia pre ASA</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1012"/>
         <source>ASA Specific Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Špecifické nastavenia pre ASA</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1061"/>
         <source>Initrd:</source>
-        <translation type="unfinished"></translation>
+        <translation>Initrd:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1028"/>
         <source>Kernel:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kernel:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1048"/>
         <source>Kernel cmd line:</source>
-        <translation type="unfinished"></translation>
+        <translation>Príkazový riadok pre kernel:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="249"/>
         <source>&amp;Test</source>
-        <translation type="unfinished">&amp;Test</translation>
+        <translation>&amp;Test</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="285"/>
         <source>Qemu Host</source>
-        <translation type="unfinished"></translation>
+        <translation>Zariadenie Qemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="291"/>
         <source>Qemu Host Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavenia pre zariadenie Qemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="297"/>
         <source>Identifier name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Meno idenfikátora:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="431"/>
         <source>Save</source>
-        <translation type="unfinished">Ulož</translation>
+        <translation>Uložiť</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="438"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmazať</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="461"/>
         <source>Qemu Host images</source>
-        <translation type="unfinished"></translation>
+        <translation>Súbory s operačným systémom pre Qemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="468"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Meno</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="473"/>
         <source>Image path</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesta ku súboru s op. systémom</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1085"/>
         <source>IDS</source>
-        <translation type="unfinished"></translation>
+        <translation>IDS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1091"/>
         <source>IDS Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavenia pre IDS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1097"/>
         <source>Binary image 1 (hda):</source>
-        <translation type="unfinished"></translation>
+        <translation>Súbor s op. systémom 1 (hda):</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1124"/>
         <source>Binary image 2 (hdb):</source>
-        <translation type="unfinished"></translation>
+        <translation>Súbor s op. systémom 2 (hdb):</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="36"/>
         <source>Path to Qemuwrapper:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesta ku Qemuwrapper-u:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="73"/>
         <source>Path to qemu:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesta ku qemu:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="93"/>
         <source>Path to qemu-img:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesta ku qemu-img:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="113"/>
         <source>IP/host binding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Viazanie IP/zariadenie:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="127"/>
         <source>Qemuwrapper port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Port Qemuwrapper-a:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="210"/>
         <source>External Qemuwrapper:</source>
-        <translation type="unfinished"></translation>
+        <translation>Externý Qemuwrapper:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="220"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="234"/>
         <source>Registered external Qemuwrappers:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaregistrované externé Qemuwrapper-y:</translation>
     </message>
 </context>
 <context>
@@ -3203,15 +3208,15 @@ na zobrazenie konfiguračnej stránky.</translation>
     <message>
         <location filename="../ProjectDialog.py" line="91"/>
         <source>Project Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresár s projektami</translation>
     </message>
 </context>
 <context>
     <name>Qemu image</name>
     <message>
-        <location filename="../DynagenSub.py" line="159"/>
+        <location filename="../DynagenSub.py" line="170"/>
         <source>Qemu host image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem nájst súbor %s s op. systémom pre Qemu a ani alternatívny súbor</translation>
     </message>
 </context>
 <context>
@@ -3219,32 +3224,32 @@ na zobrazenie konfiguračnej stránky.</translation>
     <message>
         <location filename="../QemuManager.py" line="61"/>
         <source>Connecting to Qemu on port %i ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pripájam sa na Qemu na porte %i ...</translation>
     </message>
     <message>
         <location filename="../QemuManager.py" line="61"/>
         <source>Abort</source>
-        <translation type="unfinished">Prerušiť</translation>
+        <translation>Prerušiť</translation>
     </message>
     <message>
         <location filename="../QemuManager.py" line="85"/>
         <source>Can&apos;t connect to Qemu on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedá sa pripojiť na Qemu na porte %i</translation>
     </message>
     <message>
         <location filename="../QemuManager.py" line="165"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
-        <translation type="unfinished"></translation>
+        <translation>Pracovný adresár  %s neexistuje, respektívne nedá sa to neho zapisovať</translation>
     </message>
     <message>
         <location filename="../QemuManager.py" line="118"/>
         <source>Qemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu emulátor je už spustený na porte %i, pri ukončení GNS3 sa automaticky nevypne</translation>
     </message>
     <message>
         <location filename="../QemuManager.py" line="133"/>
         <source>Can&apos;t start Qemu on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedá sa spustiť Qemu na porte %i</translation>
     </message>
 </context>
 <context>
@@ -3252,87 +3257,87 @@ na zobrazenie konfiguračnej stránky.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="14"/>
         <source>Firewall configuration</source>
-        <translation type="unfinished">Nastavenia firewallu</translation>
+        <translation>Nastavenia firewallu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="20"/>
         <source>Qemu Image:</source>
-        <translation type="unfinished"></translation>
+        <translation>Súbor Qemu s op. systémom:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="49"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="56"/>
         <source>RAM size:</source>
-        <translation type="unfinished">Veľkosť RAM:</translation>
+        <translation>Veľkosť RAM:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="69"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="85"/>
         <source>NIC:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sieťová karta:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="99"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation>ne2k_pci</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="104"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation>i82551</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="109"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation>i82557b</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="114"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation>i82559er</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="119"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation>rtl8139</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="124"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation>e1000</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="129"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="134"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="142"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Možnosti Qemu:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="159"/>
         <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
+        <translation>Použiť KQemu akcelerátor</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="169"/>
         <source>Use KVM (Linux only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Použiť KVM akcelerátor (iba pre Linux)</translation>
     </message>
 </context>
 <context>
@@ -3445,32 +3450,32 @@ na zobrazenie konfiguračnej stránky.</translation>
     <message>
         <location filename="../Scene.py" line="195"/>
         <source>Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Štýl</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="182"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Reštartovať</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="129"/>
         <source>Set an hypervisor</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastaviť hypervízor</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="672"/>
         <source>annotation</source>
-        <translation type="unfinished"></translation>
+        <translation>poznámka</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="681"/>
         <source>rectangle</source>
-        <translation type="unfinished"></translation>
+        <translation>obdĺžnik</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="689"/>
         <source>ellipse</source>
-        <translation type="unfinished"></translation>
+        <translation>elipsa</translation>
     </message>
 </context>
 <context>
@@ -3478,12 +3483,12 @@ na zobrazenie konfiguračnej stránky.</translation>
     <message>
         <location filename="../SnapshotDialog.py" line="63"/>
         <source>Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Projekt</translation>
     </message>
     <message>
         <location filename="../SnapshotDialog.py" line="63"/>
         <source>Create a project first!</source>
-        <translation type="unfinished"></translation>
+        <translation>Najpv treba vytvoriť nový projekt!</translation>
     </message>
 </context>
 <context>
@@ -3491,22 +3496,22 @@ na zobrazenie konfiguračnej stránky.</translation>
     <message>
         <location filename="../Ui/Form_Snapshots.py" line="42"/>
         <source>Snapshots</source>
-        <translation type="unfinished"></translation>
+        <translation>Snímky</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Snapshots.py" line="43"/>
         <source>Create</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoriť</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Snapshots.py" line="44"/>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrať</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Snapshots.py" line="45"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmazať</translation>
     </message>
 </context>
 <context>
@@ -3514,48 +3519,49 @@ na zobrazenie konfiguračnej stránky.</translation>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="61"/>
         <source>Startup-config</source>
-        <translation type="unfinished">Štartovacia konfigurácia</translation>
+        <translation>Štartovacia konfigurácia</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="62"/>
         <source>Config file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguračný súbor:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="63"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="64"/>
         <source>Load config from nvram</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahrať konfiguráciu z NVRAM</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="65"/>
         <source>Save changes into the config file</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložiť zmeny do konfiguračného súboru</translation>
     </message>
     <message>
         <location filename="../StartupConfigDialog.py" line="122"/>
         <source>IO Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba Vstup/Výstup</translation>
     </message>
     <message>
         <location filename="../StartupConfigDialog.py" line="135"/>
         <source>Dynamips error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba Dynamipsu</translation>
     </message>
     <message>
         <location filename="../StartupConfigDialog.py" line="94"/>
         <source>Dynamips warning</source>
-        <translation type="unfinished">Varovanie Dynamipsu</translation>
+        <translation>Varovanie Dynamipsu</translation>
     </message>
     <message>
         <location filename="../StartupConfigDialog.py" line="138"/>
         <source>The startup-config has been saved, now you can synchronize it in IOS
 i.e. #copy start run</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložila sa štartovacia konfigurácia , možete ju synchronizovať s IOSom 
+napr.  #copy start run</translation>
     </message>
 </context>
 <context>
@@ -3563,83 +3569,83 @@ i.e. #copy start run</source>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="73"/>
         <source>Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Štýl</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="74"/>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Možnosti</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="75"/>
         <source>&amp;Select color</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vyberte fabru</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="76"/>
         <source>&amp;Select font</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vyberte font</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="77"/>
         <source>&amp;Select border color</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vyberte farbu okraja</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="78"/>
         <source>Border width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hrúbka okraja:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="79"/>
         <source>Border style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Štýl okraja:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="80"/>
         <source>Rotation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Natočenie:</translation>
     </message>
     <message encoding="UTF-8">
         <location filename="../Ui/Form_StyleDialog.py" line="81"/>
         <source>°</source>
-        <translation type="unfinished"></translation>
+        <translation>°</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="82"/>
         <source>Rotation can be ajusted on the scene for a selected item with
 ALT + LEFT or RIGHT</source>
-        <translation type="unfinished"></translation>
+        <translation>Natočenie môžete upravovať priamo na pracovnej ploche pomocou ALT + DOĽAVA alebo ALT + DOPRAVA</translation>
     </message>
     <message>
         <location filename="../StyleDialog.py" line="47"/>
         <source>Solid</source>
-        <translation type="unfinished"></translation>
+        <translation>plný</translation>
     </message>
     <message>
         <location filename="../StyleDialog.py" line="48"/>
         <source>Dash</source>
-        <translation type="unfinished"></translation>
+        <translation>čiarkovaný</translation>
     </message>
     <message>
         <location filename="../StyleDialog.py" line="49"/>
         <source>Dot</source>
-        <translation type="unfinished"></translation>
+        <translation>bodkovaný</translation>
     </message>
     <message>
         <location filename="../StyleDialog.py" line="50"/>
         <source>Dash Dot</source>
-        <translation type="unfinished"></translation>
+        <translation>bodko čiarkovaný</translation>
     </message>
     <message>
         <location filename="../StyleDialog.py" line="51"/>
         <source>Dash Dot Dot</source>
-        <translation type="unfinished"></translation>
+        <translation>bodko bodko čiarkovaný</translation>
     </message>
     <message>
         <location filename="../StyleDialog.py" line="52"/>
         <source>No border</source>
-        <translation type="unfinished"></translation>
+        <translation>bez okraja</translation>
     </message>
 </context>
 <context>
@@ -3647,12 +3653,12 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../SymbolManager.py" line="234"/>
         <source>Library</source>
-        <translation type="unfinished"></translation>
+        <translation>Knižnica</translation>
     </message>
     <message>
         <location filename="../SymbolManager.py" line="244"/>
         <source>Library path</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesta ku knižnici</translation>
     </message>
 </context>
 <context>
@@ -3660,92 +3666,92 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="112"/>
         <source>Symbol Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Manažér symbolov</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="113"/>
         <source>Symbol librairies</source>
-        <translation type="unfinished"></translation>
+        <translation>Knižnice symbolov</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="114"/>
         <source>Library path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesta ku knižnici:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="115"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="116"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">&amp;Pridaj</translation>
+        <translation>&amp;Pridaj</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="117"/>
         <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Odober</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="118"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&gt;</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="119"/>
         <source>&lt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="120"/>
         <source>Customized node settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Špeciálne nastavenia uzla</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="121"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Meno:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="122"/>
         <source>Type:</source>
-        <translation type="unfinished">Typ:</translation>
+        <translation>Typ:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="123"/>
         <source>&amp;Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Použiť</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="124"/>
         <source>Available symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Symboly k dispozícii</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="125"/>
         <source>Customized nodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Špeciálne uzly</translation>
     </message>
     <message>
         <location filename="../SymbolManager.py" line="217"/>
         <source>Library</source>
-        <translation type="unfinished"></translation>
+        <translation>Knižnica</translation>
     </message>
     <message>
         <location filename="../SymbolManager.py" line="214"/>
         <source>This library is already loaded: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Knižnica %s je už nahraná</translation>
     </message>
     <message>
         <location filename="../SymbolManager.py" line="217"/>
         <source>Can&apos;t open library: %s</source>
-        <translation type="unfinished">Neviem otvoriť knižnicu: %s</translation>
+        <translation>Neviem otvoriť knižnicu: %s</translation>
     </message>
     <message>
         <location filename="../SymbolManager.py" line="234"/>
         <source>Can&apos;t remove library: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Neviem odstrániť knižnicu %s</translation>
     </message>
 </context>
 <context>
@@ -3823,82 +3829,82 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Topology.py" line="316"/>
         <source>Qemuwrapper error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba Qemuwrappera</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="526"/>
         <source>%s seems to not exist, please check</source>
-        <translation type="unfinished"></translation>
+        <translation>%s asi neexistuje</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="440"/>
         <source>JunOS image</source>
-        <translation type="unfinished"></translation>
+        <translation>JunOS súbor</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="435"/>
         <source>Please configure a default JunOS image</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavte predvolený súbor s op. systémom JunOS</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="419"/>
         <source>Qemu image</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu súbor</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="499"/>
         <source>ASA kernel</source>
-        <translation type="unfinished"></translation>
+        <translation>ASA kernel</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="485"/>
         <source>Please configure a default ASA kernel</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavte predvolený súbor ASA kernel-u</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="495"/>
         <source>ASA initrd</source>
-        <translation type="unfinished"></translation>
+        <translation>ASA initrd</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="489"/>
         <source>Please configure a default ASA initrd</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavte predvolený súbor ASA initrd</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="398"/>
         <source>Please configure a Qemu image</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavte súbor s op. systémom pre Qemu</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="465"/>
         <source>IDS images</source>
-        <translation type="unfinished"></translation>
+        <translation>IDS súbory</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="456"/>
         <source>Please configure the default IDS images</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavte predvolené súbory s op. systémom pre IDS</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="273"/>
         <source>External Qemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Externý Qemuwrapper</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="268"/>
         <source>Please register at least one external Qemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Musíte zaregistrovať aspoň jeden externý Qemuwrapper</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="273"/>
         <source>Please choose your external Qemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvoľte externý Qemuwrapper</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="726"/>
         <source>Can&apos;t connect these devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Tieto zariadenia sa nedajú spojiť</translation>
     </message>
 </context>
 <context>
@@ -3906,82 +3912,82 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../UndoFramework.py" line="39"/>
         <source>New node %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nový uzol %s</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="67"/>
         <source>Delete node %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmazať uzol %s</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="87"/>
         <source>New item %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nový objekt %s</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="104"/>
         <source>Delete item</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmazať objekt</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="123"/>
         <source>New link: %s (%s) -&gt; %s (%s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nové prepojenie: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="155"/>
         <source>Delete link: %s (%s) -&gt; %s (%s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmazať prepojenie: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="188"/>
         <source>New configuration applied on %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Použila sa nová konfigurácia na %s</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="206"/>
         <source>New hostname %s -&gt; %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nové meno zariadenia %s -&gt; %s</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="234"/>
         <source>New layer position %d</source>
-        <translation type="unfinished"></translation>
+        <translation>Nová pozícii vo vrstve %d</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="254"/>
         <source>New console port %d for %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nový konzolový port %d pre %s</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="288"/>
         <source>New startup-config %s for %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nový štartovací konfig %s pre %s</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="330"/>
         <source>New startup-config in nvram for %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nový štartovací konfig v NVRAM pre %s</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="346"/>
         <source>Connection lost</source>
-        <translation type="unfinished"></translation>
+        <translation>Strata spojenia</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="364"/>
         <source>New style applied for annotation</source>
-        <translation type="unfinished"></translation>
+        <translation>Použitý nový štýl pre poznámku</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="399"/>
         <source>New style applied for item</source>
-        <translation type="unfinished"></translation>
+        <translation>Použitý nový štýl pre objekt</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="434"/>
         <source>New text for annotation</source>
-        <translation type="unfinished"></translation>
+        <translation>Nový text pre poznámku</translation>
     </message>
 </context>
 <context>
@@ -3989,12 +3995,12 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="75"/>
         <source>Setup Wizard</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprievodca úvodným nastavením</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="76"/>
         <source>Step 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Krok 1</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="77"/>
@@ -4004,12 +4010,17 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Configure and test the path to &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;&quot;&gt;Dynamips. Also check that &lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;&quot;&gt;the working directory is valid.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Nakonfiguruje a otestuje cestu k &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;&quot;&gt;Dynamipsu. Overí či &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;&quot;&gt;je pracovný adresár v poriadku.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="83"/>
         <source>Step 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Krok 2</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="84"/>
@@ -4018,7 +4029,11 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Add one or more uncompressed &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;&quot;&gt;IOS images.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Pridajte jeden alebo viacej rozbalených &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;&quot;&gt;IOS súborov.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -4142,142 +4157,143 @@ p, li { white-space: pre-wrap; }
         <location filename="../Workspace.py" line="189"/>
         <source>Yes - Export all the workspace
 No - Export only what I see</source>
-        <translation type="unfinished"></translation>
+        <translation>Áno - Exportovať celú pracovnú plochu
+Nie - Exportovať len momentálne viditeľnú časť plochy</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="546"/>
         <source>Hide interface names</source>
-        <translation type="unfinished"></translation>
+        <translation>Skryť mená interfejsov</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="551"/>
         <source>Show interface names</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobraziť mená interfejsov</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="766"/>
         <source>Do you want to apply the project settings to the current topology? (can take some time)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chcete aplikovať nastavenia projektu na aktuálnu topológiu? (može to chviľu trvať)</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="842"/>
         <source>Snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Snímka</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="842"/>
         <source>Cannot create directory %s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedá sa vytvoriť adresár %s: %s</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="847"/>
         <source>Please wait while creating a snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Čakajte.....vytvára sa snímka</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="614"/>
         <source>%s: Dynamips error</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: Chyba Dynamipsu</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="611"/>
         <source>%s: Dynamips warning</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: Varovanie Dynamipsu</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="312"/>
         <source>Extracting to a directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportujem konfiguráciu do adresára</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="314"/>
         <source>Importing from a directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Importujem konfiguráciu z adresára</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="308"/>
         <source>Configs</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurácie</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="308"/>
         <source>Please choose an option</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvoľte si možnosť</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="334"/>
         <source>Directory to read startup-configs</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresár z ktorého sa získajú štartovacie konfigurácie</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="355"/>
         <source>IO Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba Vstup/Výstup</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="345"/>
         <source>Importing %s from %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Importovanie %s z %s</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="358"/>
         <source>Ignoring unknown device %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingorujem neznáme zariadenie %s</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="360"/>
         <source>Dynamips Error: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba Dynamipsu: %s</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="362"/>
         <source>Dynamips Warning: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Varovanie Dynamipsu: %s</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="257"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba Vstup/Výstup</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="257"/>
         <source>I/O Error: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba Vstup/Výstup: %s</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="85"/>
         <source>Ctrl+Z</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Z</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="90"/>
         <source>Ctrl+Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Y</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="734"/>
         <source>Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Projekt</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="734"/>
         <source>Please create a new project first</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvorte najprv nový projekt</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="644"/>
         <source>Reloading nodes ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Reštartujem zariadenia...</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="402"/>
         <source>picture</source>
-        <translation type="unfinished"></translation>
+        <translation>obrázok</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="894"/>
         <source>Dynamips error: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba Dynamipsu: %s</translation>
     </message>
 </context>
 <context>
@@ -4360,22 +4376,22 @@ No - Export only what I see</source>
     <message>
         <location filename="DynamicStrings.py" line="46"/>
         <source>Juniper router</source>
-        <translation type="unfinished"></translation>
+        <translation>Juniper routre</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="47"/>
         <source>ASA firewall</source>
-        <translation type="unfinished"></translation>
+        <translation>ASA firewal</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="48"/>
         <source>IDS</source>
-        <translation type="unfinished"></translation>
+        <translation>IDS</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="49"/>
         <source>Qemu host</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu zariadenie</translation>
     </message>
 </context>
 <context>
@@ -4388,12 +4404,12 @@ No - Export only what I see</source>
     <message>
         <location filename="../Ui/Widget_topologySummaryDock.py" line="129"/>
         <source>Expand all</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozbaliť všetko</translation>
     </message>
     <message>
         <location filename="../Ui/Widget_topologySummaryDock.py" line="132"/>
         <source>Collapse all</source>
-        <translation type="unfinished"></translation>
+        <translation>Zbaliť všetko</translation>
     </message>
 </context>
 </TS>

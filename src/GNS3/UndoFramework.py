@@ -336,7 +336,10 @@ class NewStartupConfigNvram(QtGui.QUndoCommand):
     def redo(self):
 
         try:
-            self.prevEncoded = globals.GApp.dynagen.devices[self.router.name].config_b64
+            try:
+                self.prevEncoded = globals.GApp.dynagen.devices[self.router.name].config_b64
+            except:
+                pass
             globals.GApp.dynagen.devices[self.router.name].config_b64 = self.encoded
         except lib.DynamipsError, msg:
             self.status = msg

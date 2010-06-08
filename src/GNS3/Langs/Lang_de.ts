@@ -3,7 +3,7 @@
 <context>
     <name>ASA initrd</name>
     <message>
-        <location filename="../DynagenSub.py" line="90"/>
+        <location filename="../DynagenSub.py" line="101"/>
         <source>ASA initrd %s cannot be found and cannot find an alternative initrd</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11,7 +11,7 @@
 <context>
     <name>ASA kernel</name>
     <message>
-        <location filename="../DynagenSub.py" line="101"/>
+        <location filename="../DynagenSub.py" line="112"/>
         <source>ASA kernel %s cannot be found and cannot find an alternative kernel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -243,12 +243,12 @@
         <translation>&amp;Über</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="103"/>
+        <location filename="../Ui/Form_About.py" line="105"/>
         <source>&amp;Thanks to</source>
         <translation>&amp;Danke an</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="391"/>
+        <location filename="../Ui/Form_About.py" line="393"/>
         <source>&amp;License Agreement</source>
         <translation>&amp;Lizenzvereinbarung</translation>
     </message>
@@ -272,23 +272,8 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="../Ui/Form_About.py" line="92"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;br /&gt;&lt;br /&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;br /&gt;&lt;br /&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;br /&gt;&lt;br /&gt;Alexander H. Hackenberg from Vienna, Austria&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;a name=&quot;:vm&quot;&gt;&lt;/a&gt;Leonard Bernstein from USA&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;Erik Wenzel: German translation (code: de)&lt;br /&gt;&lt;br /&gt;Huan Ji from Wuhan: Chinese translation (code: cn)&lt;br /&gt;&lt;br /&gt;Jose Sen: Spanish translation (code: es)&lt;br /&gt;&lt;br /&gt;Mark Soe Min: Japanese translation (code: jp)&lt;br /&gt;&lt;br /&gt;Aboulgasem Albusaifi from Tarabulus: Arabic translation (code: ar)&lt;br /&gt;&lt;br /&gt;Marcio de Freitas Minicz: Brazilian-Portuguese translation (code: pt_br)&lt;br /&gt;&lt;br /&gt;Hasan Agirol Aksoy: Turkish translation (code: tr)&lt;br /&gt;&lt;br /&gt;Ivakin Dmitriy: Russian translation (code: ru)&lt;br /&gt;&lt;br /&gt;Hyeonjin Kim: Korean translation (code: kr)&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa: Slovak translation (code: sk)&lt;br /&gt;&lt;br /&gt;Michał Zieliński: Polish translation (code: pl)&lt;br /&gt;&lt;br /&gt;Veljko Dzodic: Serbian translation (code: sr)&lt;br /&gt;&lt;br /&gt;Abalfazl Meshki: Farsi translation (code: fa)&lt;br /&gt;&lt;br /&gt;Ondřej Filip: Czech translation (code: cz)&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lyubomir Tsekov: Bulgarian translation (code: bg)&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Andrea Riela: Italian translation (code: it)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="104"/>
+        <location filename="../Ui/Form_About.py" line="106"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -576,6 +561,23 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;POSSIBILITY OF SUCH DAMAGES.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;END OF TERMS AND CONDITIONS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="../Ui/Form_About.py" line="92"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;br /&gt;&lt;br /&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;br /&gt;&lt;br /&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;br /&gt;&lt;br /&gt;Alexander H. Hackenberg from Vienna, Austria&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;a name=&quot;:vm&quot;&gt;&lt;/a&gt;Leonard Bernstein from USA&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;Erik Wenzel: German translation (code: de)&lt;br /&gt;&lt;br /&gt;Huan Ji from Wuhan: Chinese translation (code: cn)&lt;br /&gt;&lt;br /&gt;Jose Sen: Spanish translation (code: es)&lt;br /&gt;&lt;br /&gt;Mark Soe Min: Japanese translation (code: jp)&lt;br /&gt;&lt;br /&gt;Aboulgasem Albusaifi from Tarabulus: Arabic translation (code: ar)&lt;br /&gt;&lt;br /&gt;Marcio de Freitas Minicz: Brazilian-Portuguese translation (code: pt_br)&lt;br /&gt;&lt;br /&gt;Hasan Agirol Aksoy: Turkish translation (code: tr)&lt;br /&gt;&lt;br /&gt;Ivakin Dmitriy: Russian translation (code: ru)&lt;br /&gt;&lt;br /&gt;Hyeonjin Kim: Korean translation (code: kr)&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa: Slovak translation (code: sk)&lt;br /&gt;&lt;br /&gt;Michał Zieliński: Polish translation (code: pl)&lt;br /&gt;&lt;br /&gt;Veljko Dzodic: Serbian translation (code: sr)&lt;br /&gt;&lt;br /&gt;Abalfazl Meshki: Farsi translation (code: fa)&lt;br /&gt;&lt;br /&gt;Ondřej Filip: Czech translation (code: cz)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lyubomir Tsekov: Bulgarian translation (code: bg)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Andrea Riela: Italian translation (code: it)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Kyryl Tumanov: Ukrainian translation (code: uk)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1037,57 +1039,57 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>DynagenSub</name>
     <message>
-        <location filename="../DynagenSub.py" line="60"/>
+        <location filename="../DynagenSub.py" line="61"/>
         <source>Starting hypervisors ...</source>
         <translation>Starte Hypervisoren ...</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="60"/>
+        <location filename="../DynagenSub.py" line="61"/>
         <source>Abort</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="175"/>
+        <location filename="../DynagenSub.py" line="186"/>
         <source>Local PIX image %s cannot be found, use image %s instead</source>
         <translation>Lokales PIX Image %s kann nicht gefunden werden, stattdessen das Image %s benutzen</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="247"/>
+        <location filename="../DynagenSub.py" line="259"/>
         <source>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</source>
         <translation>Lokales IOS Image %s für Hypervisor %s kann nicht gefunden werden, stattdessen das Image %s benutzen</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="275"/>
+        <location filename="../DynagenSub.py" line="287"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
         <translation>Lokale Konfiguration %s für Router %s kann nicht gefunden werden, stattdessen die Konfiguration %s verwenden</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="212"/>
+        <location filename="../DynagenSub.py" line="224"/>
         <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="93"/>
+        <location filename="../DynagenSub.py" line="104"/>
         <source>Local ASA initrd %s cannot be found, use initrd %s instead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="104"/>
+        <location filename="../DynagenSub.py" line="115"/>
         <source>Local ASA kernel %s cannot be found, use kernel %s instead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="129"/>
+        <location filename="../DynagenSub.py" line="140"/>
         <source>Local IDS image %s cannot be found, use image %s instead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="151"/>
+        <location filename="../DynagenSub.py" line="162"/>
         <source>Local JunOS image %s cannot be found, use image %s instead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="162"/>
+        <location filename="../DynagenSub.py" line="173"/>
         <source>Local Qemu host image %s cannot be found, use image %s instead</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1317,32 +1319,32 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="../HypervisorManager.py" line="128"/>
+        <location filename="../HypervisorManager.py" line="120"/>
         <source>Abort</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="99"/>
+        <location filename="../HypervisorManager.py" line="95"/>
         <source>Can&apos;t start Dynamips on port %i</source>
         <translation>Kann Dynamips auf Port %i nicht starten</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="128"/>
+        <location filename="../HypervisorManager.py" line="120"/>
         <source>Connecting to a hypervisor on port %i ...</source>
         <translation>Verbinde zu einem Hypervisor auf Port %i ...</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="202"/>
+        <location filename="../HypervisorManager.py" line="194"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="207"/>
+        <location filename="../HypervisorManager.py" line="199"/>
         <source>Can&apos;t set up hypervisor on port %i, please check the settings (writable working directory ...)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="86"/>
+        <location filename="../HypervisorManager.py" line="83"/>
         <source>Hypervisor Manager</source>
         <translation type="unfinished">Hypervisor-Manager</translation>
     </message>
@@ -1352,12 +1354,12 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="159"/>
+        <location filename="../HypervisorManager.py" line="151"/>
         <source>Can&apos;t connect to the hypervisor on port %i: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="86"/>
+        <location filename="../HypervisorManager.py" line="83"/>
         <source>A program is still running on port %i, you will have to stop it manually or change port settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1365,7 +1367,7 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>IDS image (hda)</name>
     <message>
-        <location filename="../DynagenSub.py" line="115"/>
+        <location filename="../DynagenSub.py" line="126"/>
         <source>IDS image %s cannot be found and cannot find an alternative image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1373,7 +1375,7 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>IDS image (hdb)</name>
     <message>
-        <location filename="../DynagenSub.py" line="126"/>
+        <location filename="../DynagenSub.py" line="137"/>
         <source>IDS image %s cannot be found and cannot find an alternative image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1474,7 +1476,7 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>IOS image</name>
     <message>
-        <location filename="../DynagenSub.py" line="234"/>
+        <location filename="../DynagenSub.py" line="246"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1665,12 +1667,12 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="626"/>
+        <location filename="../Node/IOSRouter.py" line="640"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="626"/>
+        <location filename="../Node/IOSRouter.py" line="640"/>
         <source>No interface available</source>
         <translation>Kein Interface verfügbar</translation>
     </message>
@@ -1685,7 +1687,7 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
         <translation>Der Router muss neugestartet werden um die neuen Module benutzen zu können</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="497"/>
+        <location filename="../Node/IOSRouter.py" line="511"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
@@ -1886,7 +1888,7 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>JunOS image</name>
     <message>
-        <location filename="../DynagenSub.py" line="148"/>
+        <location filename="../DynagenSub.py" line="159"/>
         <source>JunOS image %s cannot be found and cannot find an alternative image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2363,62 +2365,62 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="522"/>
+        <location filename="../NETFile.py" line="529"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="522"/>
+        <location filename="../NETFile.py" line="529"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Bitte konfiguriere den Pfad zu Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="798"/>
+        <location filename="../NETFile.py" line="805"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="801"/>
+        <location filename="../NETFile.py" line="808"/>
         <source>Dynamips warning</source>
         <translation>Warnung von Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="553"/>
+        <location filename="../NETFile.py" line="560"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Ausnahmebehandlungentdeckt, stoppe den Import...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="796"/>
+        <location filename="../NETFile.py" line="803"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportiere die Konfiguration von %s nach %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="813"/>
+        <location filename="../NETFile.py" line="820"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: EA Fehler: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="553"/>
+        <location filename="../NETFile.py" line="560"/>
         <source>Importation</source>
         <translation>Importierung</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="534"/>
+        <location filename="../NETFile.py" line="541"/>
         <source>Please wait while importing the topology</source>
         <translation>Bitte warten, die Topologie wird importiert</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="813"/>
+        <location filename="../NETFile.py" line="820"/>
         <source>IOError</source>
         <translation>EA Fehler</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="576"/>
+        <location filename="../NETFile.py" line="583"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation>Warnung: GNS3 unterstützt noch keine lan statements, wird ignoriert</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="457"/>
+        <location filename="../NETFile.py" line="464"/>
         <source>Cannot load image: %s</source>
         <translation>Image: %s kann nicht geladen werden</translation>
     </message>
@@ -2428,12 +2430,12 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
         <translation>Font: %s kann nicht geladen werden</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="468"/>
+        <location filename="../NETFile.py" line="475"/>
         <source>%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="973"/>
+        <location filename="../NETFile.py" line="983"/>
         <source>must be connected or have a hypervisor set in order to be registered</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2609,7 +2611,7 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
 <context>
     <name>PIX image</name>
     <message>
-        <location filename="../DynagenSub.py" line="172"/>
+        <location filename="../DynagenSub.py" line="183"/>
         <source>PIX image %s cannot be found and cannot find an alternative image</source>
         <translation type="unfinished">PIX Image %s kann nicht gefunden werden und es kann kein alternatives Image gefunden werden</translation>
     </message>
@@ -3208,7 +3210,7 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
 <context>
     <name>Qemu image</name>
     <message>
-        <location filename="../DynagenSub.py" line="159"/>
+        <location filename="../DynagenSub.py" line="170"/>
         <source>Qemu host image %s cannot be found and cannot find an alternative image</source>
         <translation type="unfinished"></translation>
     </message>
