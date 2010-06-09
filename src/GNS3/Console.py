@@ -15,7 +15,7 @@
 # code@gns3.net
 #
 
-import os, sys, cmd
+import os, sys, cmd, socket
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as Dynagen_Namespace
 import GNS3.Dynagen.dynamips_lib as lib

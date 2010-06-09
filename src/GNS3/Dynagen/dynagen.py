@@ -127,7 +127,6 @@ ADAPTER_TRANSFORM = {
 # Globals
 notelnet = False  # Flag to disable telnet (for gDynagen)
 telnetstring = ''  # global telnet string value for telneting onto consoles
-startdelay = 0     # global delay between router startup 
 interface_re = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po|i|id|IDS-Sensor|an|Analysis-Module)([0-9]+)\/([0-9]+)""", re.IGNORECASE)  # Regex matching intefaces
 interface_noport_re = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)""", re.IGNORECASE)  # Regex matching intefaces with out a port (e.g. "f0")
 qemu_int_re = re.compile(r"""^(e|et|eth)([0-9])""", re.IGNORECASE)
@@ -168,6 +167,7 @@ class Dynagen:
         self.useridledbfile = ''  # The filespec of the idle database
         self.useridledb = None  # Dictionary of idle-pc values from the user database, indexed by image name
         self.debuglevel = 0  # The debug level
+        self.startdelay = 0     # global delay between router startup 
         self.handled = True   # indicates whether and error was handled
 
         self.import_error = False  #True if errors during import

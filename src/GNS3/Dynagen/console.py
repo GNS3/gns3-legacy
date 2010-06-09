@@ -250,8 +250,8 @@ conf
 \tstart all or a specific router(s)
 \tFor start /all only, a delay can be specified. Dynagen will pause this many seconds between starting devices.
         """
-        import __main__
-        startdelay = __main__.startdelay
+
+        startdelay = self.dynagen.startdelay
         
         if '?' in args or args.strip() == "":
             print self.do_start.__doc__

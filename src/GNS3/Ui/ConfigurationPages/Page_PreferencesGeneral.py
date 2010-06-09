@@ -232,5 +232,6 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         QtGui.QMessageBox.information(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Configuration file"),  
                                       translate("UiConfig_PreferencesGeneral", "Configuration file cleared, default settings will be applied after a restart"))
         globals.recordConfiguration = False
+        globals.preferencesWindow.close()
 
 

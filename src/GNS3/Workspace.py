@@ -92,6 +92,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.menu_Edit.insertAction(self.action_SelectAll, action)
 
         self.menu_Edit.insertAction(self.action_SelectAll, self.menu_Edit.addSeparator())
+        
+        # Class to display error/warning messages once
+        self.errorMessage = QtGui.QErrorMessage(self)
 
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)
