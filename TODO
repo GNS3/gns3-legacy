@@ -4,6 +4,7 @@ TODO LIST
  * NIO multicast support (next release of Dynamips)
  * Show NIO activity (next release of Dynamips)
  * Dynamips QinQ integration (next release of Dynamips)
+ * Packet capture between Qemu devices
 
 Debugging
 

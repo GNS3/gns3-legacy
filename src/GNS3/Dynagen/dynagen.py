@@ -1723,32 +1723,46 @@ class Dynagen:
         """ Implement JIT blocks sharing"""
 
         try:
-            for device in self.devices.values():
-                if not self.jitshareddevices.has_key(device.name):
-                    continue
+            
+            for d in self.dynamips.values():
+                if isinstance(d, Dynamips):
 
-                if device.imagename == None:
-                    raise DynamipsError ('No IOS image specified for device: ' + device.name)
+                    # JIT sharing is not supported in Dynamips version ealier than 0.2.8 RC3
+                    if d.intversion < 208.3:
+                        continue
 
-                # Search of an existing JIT sharing groups across all
-                # dynamps servers running on the same host as the device
-                allgroups = []
-                for d in self.dynamips.values():
-                    if isinstance(d, Dynamips):
-                        allgroups.extend(d.jitsharing_groups)
-                if device.imagename not in allgroups:
-                    # Only create a JIT sharing group if at least two instances on this server using the same IOS image
+                    # need at least 2 routers on the same hypervisor
+                    if len(d.devices) < 2:
+                        continue
+
                     jitshared_devices = []
-                    for router in self.devices.values():
-                        try:
-                            if router.dynamips.host == device.dynamips.host and router.imagename == device.imagename:
-                                if self.jitshareddevices[router.name]:
-                                    jitshared_devices.append(router)
-                        except AttributeError:
+                    for router in d.devices:
+
+                        # JIT sharing is not enabled on this router
+                        if not self.jitshareddevices.has_key(router.name):
                             continue
+                        
+                        # no IOS image
+                        if router.imagename == None:
+                            raise DynamipsError ('No IOS image specified for device: ' + router.name)
+                        
+                        # router has already a JIT sharing group
+                        if router.jitsharing_group != None:
+                            continue
+      
+                        for device in d.devices:
+                            if router != device and self.jitshareddevices.has_key(device.name) and router.imagename == device.imagename:
+
+                                # use an existing group
+                                if device.jitsharing_group != None:
+                                    router.jitsharing_group = device.jitsharing_group
+                                    break
+                                jitshared_devices.append(router)
+
                     if len(jitshared_devices) > 1:
                         # Create a new JIT sharing group
                         self._create_jitsharing_group(jitshared_devices)
+
         except DynamipsError, e:
             self.doerror(e)
 
@@ -1883,6 +1897,9 @@ class Dynagen:
                         #handle ghostios
                         if device.ghost_status != device.defaults['ghost_status']:
                             self.defaults_config[h][model]['ghostios'] = True
+
+                        if device.jitsharing_group != device.defaults['jitsharing_group']:
+                            self.defaults_config[h][model]['jitsharing'] = True
 
                         #add chassis setting for 3600 and 2600
                         if device.model in ['c2600', 'c3600', 'c1700']:

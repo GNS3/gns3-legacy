@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesDynamips.ui'
 #
-# Created: Wed Jun  9 23:28:42 2010
+# Created: Thu Jun 10 16:58:21 2010
 #      by: PyQt4 UI code generator 4.7.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -88,7 +88,7 @@ class Ui_PreferencesDynamips(object):
         self.checkBoxJITsharing = QtGui.QCheckBox(self.groupBox)
         self.checkBoxJITsharing.setChecked(True)
         self.checkBoxJITsharing.setObjectName("checkBoxJITsharing")
-        self.gridLayout.addWidget(self.checkBoxJITsharing, 9, 0, 1, 2)
+        self.gridLayout.addWidget(self.checkBoxJITsharing, 9, 0, 1, 4)
         self.checkBoxSparseMem = QtGui.QCheckBox(self.groupBox)
         self.checkBoxSparseMem.setChecked(False)
         self.checkBoxSparseMem.setObjectName("checkBoxSparseMem")
@@ -177,7 +177,7 @@ class Ui_PreferencesDynamips(object):
         self.label_7.setText(QtGui.QApplication.translate("PreferencesDynamips", "Base console:", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxGhosting.setText(QtGui.QApplication.translate("PreferencesDynamips", "Enable ghost IOS support", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxMmap.setText(QtGui.QApplication.translate("PreferencesDynamips", "Enable mmap support", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxJITsharing.setText(QtGui.QApplication.translate("PreferencesDynamips", "Enable JIT sharing support", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxJITsharing.setText(QtGui.QApplication.translate("PreferencesDynamips", "Enable JIT sharing support (Dynamips > 0.2.8 RC2)", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxSparseMem.setText(QtGui.QApplication.translate("PreferencesDynamips", "Enable sparse memory support", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonTestDynamips.setText(QtGui.QApplication.translate("PreferencesDynamips", "&Test", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_1), QtGui.QApplication.translate("PreferencesDynamips", "Dynamips", None, QtGui.QApplication.UnicodeUTF8))

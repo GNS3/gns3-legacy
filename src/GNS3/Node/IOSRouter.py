@@ -468,22 +468,17 @@ class IOSRouter(AbstractNode):
         if devdefaults[model].has_key('jitsharing'):
             if devdefaults[model]['jitsharing']:
                 if self.dynagen.jitshareddevices.has_key(self.hostname):
-                    new_jit_group_created = globals.GApp.dynagen.jitsharing()
-                    # basename doesn't work on Unix with Windows paths, so let's use this little trick
-                    image = self.config['image']
-                    if not sys.platform.startswith('win') and image[1] == ":":
-                        image = image[2:]
-                        image = image.replace("\\", "/")
-                    imagename = os.path.basename(image)
-                    if router.dynamips.jitsharing_groups.has_key(imagename):
-                        router.jitsharing_group = router.dynamips.jitsharing_groups[imagename]
-                        if new_jit_group_created:
-                            for device in router.dynamips.devices:
-                                if device.jitsharing_group != None and router.jitsharing_group == device.jitsharing_group and device.name != router.name:
-                                    for node in globals.GApp.topology.nodes.values():
-                                        if node.hostname == device.name:
-                                            node.updateToolTips()
-                                            break
+                    globals.GApp.dynagen.jitsharing()
+
+#                    # basename doesn't work on Unix with Windows paths, so let's use this little trick
+#                    image = self.config['image']
+#                    if not sys.platform.startswith('win') and image[1] == ":":
+#                        image = image[2:]
+#                        image = image.replace("\\", "/")
+#                    imagename = os.path.basename(image)
+
+#                    if router.dynamips.jitsharing_groups.has_key(imagename):
+#                        router.jitsharing_group = router.dynamips.jitsharing_groups[imagename]
 
         self.dynagen.update_running_config()
         self.running_config = self.dynagen.running_config[self.d][self.r]

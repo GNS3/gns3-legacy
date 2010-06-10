@@ -539,6 +539,7 @@ class NETFile(object):
             splash = QtGui.QSplashScreen(QtGui.QPixmap(":images/logo_gns3_splash.png"))
             splash.show()
             splash.showMessage(translate("NETFile", "Please wait while importing the topology"))
+            globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
             self.dynagen.ghosting()
             self.dynagen.jitsharing()
         except lib.DynamipsError, msg:
@@ -792,6 +793,9 @@ class NETFile(object):
         globals.GApp.workspace.projectFile = path
         globals.GApp.workspace.setWindowTitle("GNS3 - " + globals.GApp.workspace.projectFile)
         debug("Running config after importing: " + str(self.dynagen.running_config))
+        
+        for node in globals.GApp.topology.nodes.itervalues():
+            node.updateToolTips()
 
     def export_router_config(self, device):
 

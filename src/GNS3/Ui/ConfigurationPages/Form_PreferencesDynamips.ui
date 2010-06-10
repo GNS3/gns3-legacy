@@ -154,10 +154,10 @@
             </property>
            </widget>
           </item>
-          <item row="9" column="0" colspan="2">
+          <item row="9" column="0" colspan="4">
            <widget class="QCheckBox" name="checkBoxJITsharing">
             <property name="text">
-             <string>Enable JIT sharing support</string>
+             <string>Enable JIT sharing support (Dynamips &gt; 0.2.8 RC2)</string>
             </property>
             <property name="checked">
              <bool>true</bool>

@@ -564,6 +564,8 @@ class Topology(QtGui.QGraphicsScene):
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
         debug("Running config: " + str(self.dynagen.running_config))
         self.changed = True
+        for node in globals.GApp.topology.nodes.itervalues():
+            node.updateToolTips()
         return True
 
     def deleteNodeFromScene(self, id):
@@ -657,6 +659,9 @@ class Topology(QtGui.QGraphicsScene):
 
         # MAX 7 links on the scene between 2 nodes
         if multi > 3:
+            multi = 0
+            
+        if src_node == dest_node:
             multi = 0
         
         if (globals.currentLinkType == globals.Enum.LinkType.Serial or globals.currentLinkType == globals.Enum.LinkType.ATM) or \

@@ -86,6 +86,10 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.checkBoxGhosting.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxGhosting.setCheckState(QtCore.Qt.Unchecked)
+        if self.conf.jitsharing == True:
+            self.checkBoxJITsharing.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxJITsharing.setCheckState(QtCore.Qt.Unchecked)
         if self.conf.sparsemem == True:
             self.checkBoxSparseMem.setCheckState(QtCore.Qt.Checked)
         else:
@@ -126,6 +130,10 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.conf.sparsemem = True
         else:
             self.conf.sparsemem = False
+        if self.checkBoxJITsharing.checkState() == QtCore.Qt.Checked:
+            self.conf.jitsharing = True
+        else:
+            self.conf.jitsharing = False
         if self.checkBoxMmap.checkState() == QtCore.Qt.Checked:
             self.conf.mmap = True
         else:
