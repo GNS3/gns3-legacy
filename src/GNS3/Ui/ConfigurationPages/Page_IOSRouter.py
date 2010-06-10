@@ -26,9 +26,6 @@ from Form_IOSRouterPage import Ui_IOSRouterPage
 from GNS3.Utils import translate
 import GNS3.Dynagen.dynamips_lib as lib
 
-# Those modules don't work properly with NPE-G2
-NOT_WORKING_MODULES_WITH_NPEG2 = ['PA-2FE-TX', 'PA-GE', 'C7200-IO-2FE', 'C7200-IO-GE-E']
-
 class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
     """ Class implementing the IOS router configuration page.
     """
@@ -196,7 +193,8 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             if str(self.comboBoxNPE.currentText()):
                 router_config['npe'] = str(self.comboBoxNPE.currentText())
                 if router_config['npe'] == 'npe-g2':
-                    globals.GApp.mainWindow.errorMessage.showMessage(translate("Page_IOSRouter", "Using npe-g2: there are potential bugs and your IOS image should be unpacked"))
+                    globals.GApp.mainWindow.errorMessage.showMessage(translate("Page_IOSRouter", \
+                                                                               "Using npe-g2: there are potential bugs and your IOS image should be unpacked.\nC7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work."))
 
         iomem = self.spinBoxIomem.value()
         if platform == 'c3600' and iomem != 5:
@@ -223,8 +221,6 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                             break
                 if collision:
                     continue
-                if router_config['npe'] == 'npe-g2' and module in NOT_WORKING_MODULES_WITH_NPEG2:
-                    globals.GApp.mainWindow.errorMessage.showMessage(unicode(translate("Page_IOSRouter", "Module %s may not work properly")) % module)
                 router_config['slots'][slot_number] = module
             else:
                 try:

@@ -1668,34 +1668,34 @@ Zadajte číslo idlepc hodnoty, ktorú chcete nastaviť, alebo zadajte ENTER pre
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="640"/>
+        <location filename="../Node/IOSRouter.py" line="642"/>
         <source>Connection</source>
         <translation>Spojenie</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="640"/>
+        <location filename="../Node/IOSRouter.py" line="642"/>
         <source>No interface available</source>
         <translation>Žiaden interfejs nie je k dispozícii</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="251"/>
-        <source>Slots</source>
-        <translation>Sloty</translation>
-    </message>
-    <message>
-        <location filename="../Node/IOSRouter.py" line="251"/>
-        <source>You have to restart this router to use new modules</source>
-        <translation>Ak chcete použíť nové moduly musíte najprv reštartovať tento smerovač</translation>
-    </message>
-    <message>
-        <location filename="../Node/IOSRouter.py" line="511"/>
+        <location filename="../Node/IOSRouter.py" line="513"/>
         <source>Dynamips error</source>
         <translation>Chyba Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="306"/>
+        <location filename="../Node/IOSRouter.py" line="308"/>
         <source>Startup-Config for %s</source>
         <translation>Štartovacia konfigurácia pre %s</translation>
+    </message>
+    <message>
+        <location filename="../Node/IOSRouter.py" line="253"/>
+        <source>Slots</source>
+        <translation type="unfinished">Sloty</translation>
+    </message>
+    <message>
+        <location filename="../Node/IOSRouter.py" line="253"/>
+        <source>You have to restart this router to use new modules</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2686,7 +2686,7 @@ na zobrazenie konfiguračnej stránky.</translation>
         <translation>Dynamips</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="223"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="233"/>
         <source>Settings</source>
         <translation>Nastavenia</translation>
     </message>
@@ -2721,42 +2721,27 @@ na zobrazenie konfiguračnej stránky.</translation>
         <translation>Začiatočný port konzoly:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="175"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="185"/>
         <source>&amp;Test</source>
         <translation>&amp;Test</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="211"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="221"/>
         <source>Hypervisor Manager</source>
         <translation>Manažér hypervízorov</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="229"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="239"/>
         <source>Memory usage limit per hypervisor:</source>
         <translation>Limit pamäte jedného hypervízora: </translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="249"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="259"/>
         <source>UDP incrementation:</source>
         <translation>Inkrementácia UDP portu:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="140"/>
-        <source>Enable ghost IOS feature</source>
-        <translation>Zapni ghost IOS funkciu</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="150"/>
-        <source>Enable mmap feature</source>
-        <translation>Zapni mmap funkciu</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="160"/>
-        <source>Enable sparse memory feature</source>
-        <translation>Zapni sparse pamäť funkciu</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="283"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="293"/>
         <source>Use Hypervisor Manager when importing</source>
         <translation>Použi Manažér Hypervízorov pri importe</translation>
     </message>
@@ -2766,9 +2751,29 @@ na zobrazenie konfiguračnej stránky.</translation>
         <translation>Automaticky vyčistiť pracovný adresár</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="269"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="279"/>
         <source>IP/host binding:</source>
         <translation>Spojenie IP/zariadenie:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="140"/>
+        <source>Enable ghost IOS support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="150"/>
+        <source>Enable mmap support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="160"/>
+        <source>Enable JIT sharing support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="170"/>
+        <source>Enable sparse memory support</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3777,12 +3782,12 @@ ALT + LEFT or RIGHT</source>
         <translation>Nakonfigurujte cestu ku Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="842"/>
+        <location filename="../Topology.py" line="844"/>
         <source>Dynamips error</source>
         <translation>Chyba Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="842"/>
+        <location filename="../Topology.py" line="844"/>
         <source>Connection lost</source>
         <translation>Spojenie ku Dynamipsu sa prerušilo</translation>
     </message>
@@ -3970,22 +3975,22 @@ ALT + LEFT or RIGHT</source>
         <translation>Nový štartovací konfig v NVRAM pre %s</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="346"/>
+        <location filename="../UndoFramework.py" line="349"/>
         <source>Connection lost</source>
         <translation>Strata spojenia</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="364"/>
+        <location filename="../UndoFramework.py" line="367"/>
         <source>New style applied for annotation</source>
         <translation>Použitý nový štýl pre poznámku</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="399"/>
+        <location filename="../UndoFramework.py" line="402"/>
         <source>New style applied for item</source>
         <translation>Použitý nový štýl pre objekt</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="434"/>
+        <location filename="../UndoFramework.py" line="437"/>
         <source>New text for annotation</source>
         <translation>Nový text pre poznámku</translation>
     </message>
@@ -4039,224 +4044,224 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="151"/>
+        <location filename="../Workspace.py" line="154"/>
         <source>Docks</source>
         <translation>Doky</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="894"/>
+        <location filename="../Workspace.py" line="897"/>
         <source>Dynamips error</source>
         <translation>Chyba v Dynamipse</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="614"/>
+        <location filename="../Workspace.py" line="617"/>
         <source>Connection lost</source>
         <translation>Spojenie ku Dynamipsu sa prerušilo</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="583"/>
+        <location filename="../Workspace.py" line="586"/>
         <source>Abort</source>
         <translation>Prerušiť</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="715"/>
+        <location filename="../Workspace.py" line="718"/>
         <source>Starting nodes ...</source>
         <translation>Spúštam uzly...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="632"/>
+        <location filename="../Workspace.py" line="635"/>
         <source>Stopping nodes ...</source>
         <translation>Zastavujem uzly ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="638"/>
+        <location filename="../Workspace.py" line="641"/>
         <source>Suspending nodes ...</source>
         <translation>Pozastavujem uzly ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="708"/>
+        <location filename="../Workspace.py" line="711"/>
         <source>Loading</source>
         <translation>Nahrávam</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="531"/>
+        <location filename="../Workspace.py" line="534"/>
         <source>Hide hostnames</source>
         <translation>Skry mená zariadení</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="536"/>
+        <location filename="../Workspace.py" line="539"/>
         <source>Show hostnames</source>
         <translation>Show hostnames</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="909"/>
+        <location filename="../Workspace.py" line="912"/>
         <source>Open a file</source>
         <translation>Otvor súbor</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="905"/>
+        <location filename="../Workspace.py" line="908"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Nastavte cestu ku Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="945"/>
+        <location filename="../Workspace.py" line="948"/>
         <source>Save Project As</source>
         <translation>Uložiť projekt ako</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="753"/>
+        <location filename="../Workspace.py" line="756"/>
         <source>New Project</source>
         <translation>Nový projekt</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="965"/>
+        <location filename="../Workspace.py" line="968"/>
         <source>Message</source>
         <translation>Správa</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="297"/>
+        <location filename="../Workspace.py" line="300"/>
         <source>Are you sure to clear the topology?</source>
         <translation>Chcete naozaj vymazať topologiu?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="411"/>
+        <location filename="../Workspace.py" line="414"/>
         <source>Add a link</source>
         <translation>Pridaj spojenie</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="426"/>
+        <location filename="../Workspace.py" line="429"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="753"/>
+        <location filename="../Workspace.py" line="756"/>
         <source>Can&apos;t create a project</source>
         <translation>Neviem vytvoriť projekt</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="708"/>
+        <location filename="../Workspace.py" line="711"/>
         <source>Invalid file %s</source>
         <translation>Neplatný súbor %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="965"/>
+        <location filename="../Workspace.py" line="968"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>Chcete uložiť topologiu pred ukončením?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="803"/>
+        <location filename="../Workspace.py" line="806"/>
         <source>Would you like to save the current topology?</source>
         <translation>Chcete uložiť aktuálnu topológiu?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="321"/>
+        <location filename="../Workspace.py" line="324"/>
         <source>Directory to write startup-configs</source>
         <translation>Adresár do ktorého zapísať štartovaciu konfiguráciu</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="189"/>
+        <location filename="../Workspace.py" line="192"/>
         <source>Yes - Export all the workspace
 No - Export only what I see</source>
         <translation>Áno - Exportovať celú pracovnú plochu
 Nie - Exportovať len momentálne viditeľnú časť plochy</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="546"/>
+        <location filename="../Workspace.py" line="549"/>
         <source>Hide interface names</source>
         <translation>Skryť mená interfejsov</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="551"/>
+        <location filename="../Workspace.py" line="554"/>
         <source>Show interface names</source>
         <translation>Zobraziť mená interfejsov</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="766"/>
+        <location filename="../Workspace.py" line="769"/>
         <source>Do you want to apply the project settings to the current topology? (can take some time)</source>
         <translation>Chcete aplikovať nastavenia projektu na aktuálnu topológiu? (može to chviľu trvať)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="842"/>
+        <location filename="../Workspace.py" line="845"/>
         <source>Snapshot</source>
         <translation>Snímka</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="842"/>
+        <location filename="../Workspace.py" line="845"/>
         <source>Cannot create directory %s: %s</source>
         <translation>Nedá sa vytvoriť adresár %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="847"/>
+        <location filename="../Workspace.py" line="850"/>
         <source>Please wait while creating a snapshot</source>
         <translation>Čakajte.....vytvára sa snímka</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="614"/>
+        <location filename="../Workspace.py" line="617"/>
         <source>%s: Dynamips error</source>
         <translation>%s: Chyba Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="611"/>
+        <location filename="../Workspace.py" line="614"/>
         <source>%s: Dynamips warning</source>
         <translation>%s: Varovanie Dynamipsu</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="312"/>
+        <location filename="../Workspace.py" line="315"/>
         <source>Extracting to a directory</source>
         <translation>Exportujem konfiguráciu do adresára</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="314"/>
+        <location filename="../Workspace.py" line="317"/>
         <source>Importing from a directory</source>
         <translation>Importujem konfiguráciu z adresára</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="308"/>
+        <location filename="../Workspace.py" line="311"/>
         <source>Configs</source>
         <translation>Konfigurácie</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="308"/>
+        <location filename="../Workspace.py" line="311"/>
         <source>Please choose an option</source>
         <translation>Zvoľte si možnosť</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="334"/>
+        <location filename="../Workspace.py" line="337"/>
         <source>Directory to read startup-configs</source>
         <translation>Adresár z ktorého sa získajú štartovacie konfigurácie</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="355"/>
+        <location filename="../Workspace.py" line="358"/>
         <source>IO Error</source>
         <translation>Chyba Vstup/Výstup</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="345"/>
+        <location filename="../Workspace.py" line="348"/>
         <source>Importing %s from %s</source>
         <translation>Importovanie %s z %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="358"/>
+        <location filename="../Workspace.py" line="361"/>
         <source>Ignoring unknown device %s</source>
         <translation>Ingorujem neznáme zariadenie %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="360"/>
+        <location filename="../Workspace.py" line="363"/>
         <source>Dynamips Error: %s</source>
         <translation>Chyba Dynamipsu: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="362"/>
+        <location filename="../Workspace.py" line="365"/>
         <source>Dynamips Warning: %s</source>
         <translation>Varovanie Dynamipsu: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="257"/>
+        <location filename="../Workspace.py" line="260"/>
         <source>I/O Error</source>
         <translation>Chyba Vstup/Výstup</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="257"/>
+        <location filename="../Workspace.py" line="260"/>
         <source>I/O Error: %s</source>
         <translation>Chyba Vstup/Výstup: %s</translation>
     </message>
@@ -4271,27 +4276,27 @@ Nie - Exportovať len momentálne viditeľnú časť plochy</translation>
         <translation>Ctrl+Y</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="734"/>
+        <location filename="../Workspace.py" line="737"/>
         <source>Project</source>
         <translation>Projekt</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="734"/>
+        <location filename="../Workspace.py" line="737"/>
         <source>Please create a new project first</source>
         <translation>Vytvorte najprv nový projekt</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="644"/>
+        <location filename="../Workspace.py" line="647"/>
         <source>Reloading nodes ...</source>
         <translation>Reštartujem zariadenia...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="402"/>
+        <location filename="../Workspace.py" line="405"/>
         <source>picture</source>
         <translation>obrázok</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="894"/>
+        <location filename="../Workspace.py" line="897"/>
         <source>Dynamips error: %s</source>
         <translation>Chyba Dynamipsu: %s</translation>
     </message>

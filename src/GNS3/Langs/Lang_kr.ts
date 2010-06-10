@@ -1666,33 +1666,33 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="640"/>
+        <location filename="../Node/IOSRouter.py" line="642"/>
         <source>Connection</source>
         <translation>연결</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="640"/>
+        <location filename="../Node/IOSRouter.py" line="642"/>
         <source>No interface available</source>
         <translation>사용가능한 인터페이스가 없습니다</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="251"/>
-        <source>Slots</source>
-        <translation>슬롯</translation>
-    </message>
-    <message>
-        <location filename="../Node/IOSRouter.py" line="251"/>
-        <source>You have to restart this router to use new modules</source>
-        <translation>새로운 모듈을 사용하기 위해서는 라우터를 재시작해야 합니다</translation>
-    </message>
-    <message>
-        <location filename="../Node/IOSRouter.py" line="511"/>
+        <location filename="../Node/IOSRouter.py" line="513"/>
         <source>Dynamips error</source>
         <translation>Dynamips 에러</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="306"/>
+        <location filename="../Node/IOSRouter.py" line="308"/>
         <source>Startup-Config for %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/IOSRouter.py" line="253"/>
+        <source>Slots</source>
+        <translation type="unfinished">슬롯</translation>
+    </message>
+    <message>
+        <location filename="../Node/IOSRouter.py" line="253"/>
+        <source>You have to restart this router to use new modules</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2684,7 +2684,7 @@ to display the configuration page.</source>
         <translation>Dynamips</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="223"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="233"/>
         <source>Settings</source>
         <translation>설정</translation>
     </message>
@@ -2719,42 +2719,27 @@ to display the configuration page.</source>
         <translation>기본 콘솔 포트:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="175"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="185"/>
         <source>&amp;Test</source>
         <translation>테스트(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="211"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="221"/>
         <source>Hypervisor Manager</source>
         <translation>하이퍼바이저 관리자</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="229"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="239"/>
         <source>Memory usage limit per hypervisor:</source>
         <translation>하이퍼바이저의 메모리 사용량:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="249"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="259"/>
         <source>UDP incrementation:</source>
         <translation>UDP 포트 증가량:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="140"/>
-        <source>Enable ghost IOS feature</source>
-        <translation>IOS 이미지의 고스트 기능을 사용합니다</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="150"/>
-        <source>Enable mmap feature</source>
-        <translation>mmap 기능을 사용합니다</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="160"/>
-        <source>Enable sparse memory feature</source>
-        <translation>Sparse 메모리 기능을 사용합니다</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="283"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="293"/>
         <source>Use Hypervisor Manager when importing</source>
         <translation>불러오기를 할 때 하이퍼바이저 관리자를 사용</translation>
     </message>
@@ -2764,8 +2749,28 @@ to display the configuration page.</source>
         <translation>작업 디렉터리의 내용들을 자동으로 삭제합니다</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="269"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="279"/>
         <source>IP/host binding:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="140"/>
+        <source>Enable ghost IOS support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="150"/>
+        <source>Enable mmap support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="160"/>
+        <source>Enable JIT sharing support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="170"/>
+        <source>Enable sparse memory support</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3771,12 +3776,12 @@ ALT + LEFT or RIGHT</source>
         <translation>Dynamips의 경로를 설정해주세요</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="842"/>
+        <location filename="../Topology.py" line="844"/>
         <source>Dynamips error</source>
         <translation>Dynamips 에러</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="842"/>
+        <location filename="../Topology.py" line="844"/>
         <source>Connection lost</source>
         <translation>연결 종료</translation>
     </message>
@@ -3964,22 +3969,22 @@ ALT + LEFT or RIGHT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="346"/>
+        <location filename="../UndoFramework.py" line="349"/>
         <source>Connection lost</source>
         <translation type="unfinished">연결 종료</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="364"/>
+        <location filename="../UndoFramework.py" line="367"/>
         <source>New style applied for annotation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="399"/>
+        <location filename="../UndoFramework.py" line="402"/>
         <source>New style applied for item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="434"/>
+        <location filename="../UndoFramework.py" line="437"/>
         <source>New text for annotation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4024,224 +4029,224 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="151"/>
+        <location filename="../Workspace.py" line="154"/>
         <source>Docks</source>
         <translation>Docks</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="894"/>
+        <location filename="../Workspace.py" line="897"/>
         <source>Dynamips error</source>
         <translation>Dynamips 에러</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="614"/>
+        <location filename="../Workspace.py" line="617"/>
         <source>Connection lost</source>
         <translation>연결 종료</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="583"/>
+        <location filename="../Workspace.py" line="586"/>
         <source>Abort</source>
         <translation>중지</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="715"/>
+        <location filename="../Workspace.py" line="718"/>
         <source>Starting nodes ...</source>
         <translation>노드를 시작 중 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="632"/>
+        <location filename="../Workspace.py" line="635"/>
         <source>Stopping nodes ...</source>
         <translation>노드를 중지 중...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="638"/>
+        <location filename="../Workspace.py" line="641"/>
         <source>Suspending nodes ...</source>
         <translation>노드를 일시정지 중 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="708"/>
+        <location filename="../Workspace.py" line="711"/>
         <source>Loading</source>
         <translation>불러오는 중</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="531"/>
+        <location filename="../Workspace.py" line="534"/>
         <source>Hide hostnames</source>
         <translation>호스트 이름을 숨깁니다</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="536"/>
+        <location filename="../Workspace.py" line="539"/>
         <source>Show hostnames</source>
         <translation>호스트 이름을 보여줍니다</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="909"/>
+        <location filename="../Workspace.py" line="912"/>
         <source>Open a file</source>
         <translation>파일 열기</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="905"/>
+        <location filename="../Workspace.py" line="908"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Dynamips의 경로가 반드시 설정되어 있어야 합니다</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="945"/>
+        <location filename="../Workspace.py" line="948"/>
         <source>Save Project As</source>
         <translation>프로젝트를 다른 이름으로 저장</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="753"/>
+        <location filename="../Workspace.py" line="756"/>
         <source>New Project</source>
         <translation>새로운 프로젝트</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="965"/>
+        <location filename="../Workspace.py" line="968"/>
         <source>Message</source>
         <translation>메시지</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="297"/>
+        <location filename="../Workspace.py" line="300"/>
         <source>Are you sure to clear the topology?</source>
         <translation>토폴로지 초기화를 하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="411"/>
+        <location filename="../Workspace.py" line="414"/>
         <source>Add a link</source>
         <translation>링크를 추가</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="426"/>
+        <location filename="../Workspace.py" line="429"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="753"/>
+        <location filename="../Workspace.py" line="756"/>
         <source>Can&apos;t create a project</source>
         <translation>프로젝트를 만들 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="708"/>
+        <location filename="../Workspace.py" line="711"/>
         <source>Invalid file %s</source>
         <translation>%s 파일이 잘못되어 있습니다</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="965"/>
+        <location filename="../Workspace.py" line="968"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>종료하시기 전에 토폴로지를 저장하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="803"/>
+        <location filename="../Workspace.py" line="806"/>
         <source>Would you like to save the current topology?</source>
         <translation>현재의 토폴로지를 저장하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="321"/>
+        <location filename="../Workspace.py" line="324"/>
         <source>Directory to write startup-configs</source>
         <translation>startup-config 를 기록할 디렉터리</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="189"/>
+        <location filename="../Workspace.py" line="192"/>
         <source>Yes - Export all the workspace
 No - Export only what I see</source>
         <translation>네 - 모두 내보내기
 아니오 - 현재 보고 있는 것만 내보내기</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="546"/>
+        <location filename="../Workspace.py" line="549"/>
         <source>Hide interface names</source>
         <translation>인터페이스 이름을 숨기기</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="551"/>
+        <location filename="../Workspace.py" line="554"/>
         <source>Show interface names</source>
         <translation>인터페이스 이름을 보이기</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="766"/>
+        <location filename="../Workspace.py" line="769"/>
         <source>Do you want to apply the project settings to the current topology? (can take some time)</source>
         <translation>프로젝트의 설정을 현재의 토폴로지에 적용시키겠습니까? (시간이 걸릴 수 있습니다)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="842"/>
+        <location filename="../Workspace.py" line="845"/>
         <source>Snapshot</source>
         <translation>스냅샷</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="842"/>
+        <location filename="../Workspace.py" line="845"/>
         <source>Cannot create directory %s: %s</source>
         <translation>%s 디렉터리를 생성할 수 없습니다: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="847"/>
+        <location filename="../Workspace.py" line="850"/>
         <source>Please wait while creating a snapshot</source>
         <translation>스냅샷을 만드는 동안 잠시만 기다려 주세요</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="614"/>
+        <location filename="../Workspace.py" line="617"/>
         <source>%s: Dynamips error</source>
         <translation>%s: Dynamips 에러</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="611"/>
+        <location filename="../Workspace.py" line="614"/>
         <source>%s: Dynamips warning</source>
         <translation>%s: Dynamips 경고</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="312"/>
+        <location filename="../Workspace.py" line="315"/>
         <source>Extracting to a directory</source>
         <translation>디렉터리로 내보내기</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="314"/>
+        <location filename="../Workspace.py" line="317"/>
         <source>Importing from a directory</source>
         <translation>디렉터리에서 불러오기</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="308"/>
+        <location filename="../Workspace.py" line="311"/>
         <source>Configs</source>
         <translation>구성</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="308"/>
+        <location filename="../Workspace.py" line="311"/>
         <source>Please choose an option</source>
         <translation>옵션을 선택 해주세요</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="334"/>
+        <location filename="../Workspace.py" line="337"/>
         <source>Directory to read startup-configs</source>
         <translation>startup-config 를 읽어들일 디렉터리</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="355"/>
+        <location filename="../Workspace.py" line="358"/>
         <source>IO Error</source>
         <translation>IO 에러</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="345"/>
+        <location filename="../Workspace.py" line="348"/>
         <source>Importing %s from %s</source>
         <translation>%s 를 %s 에서 불러오는 중</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="358"/>
+        <location filename="../Workspace.py" line="361"/>
         <source>Ignoring unknown device %s</source>
         <translation>알려지지 않는 장치 %s 를 무시합니다</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="360"/>
+        <location filename="../Workspace.py" line="363"/>
         <source>Dynamips Error: %s</source>
         <translation>Dynamips 에러: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="362"/>
+        <location filename="../Workspace.py" line="365"/>
         <source>Dynamips Warning: %s</source>
         <translation>Dynamips 경고: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="257"/>
+        <location filename="../Workspace.py" line="260"/>
         <source>I/O Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="257"/>
+        <location filename="../Workspace.py" line="260"/>
         <source>I/O Error: %s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4256,27 +4261,27 @@ No - Export only what I see</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="734"/>
+        <location filename="../Workspace.py" line="737"/>
         <source>Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="734"/>
+        <location filename="../Workspace.py" line="737"/>
         <source>Please create a new project first</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="644"/>
+        <location filename="../Workspace.py" line="647"/>
         <source>Reloading nodes ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="402"/>
+        <location filename="../Workspace.py" line="405"/>
         <source>picture</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="894"/>
+        <location filename="../Workspace.py" line="897"/>
         <source>Dynamips error: %s</source>
         <translation type="unfinished"></translation>
     </message>

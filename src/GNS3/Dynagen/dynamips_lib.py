@@ -1002,6 +1002,20 @@ class BaseAdapter(object):
                 0,
                 adapter,
             ))
+            
+        # generate an OIR event if the router is running
+        if router.state == 'running':
+            
+            # only c7200 and since dynamips 0.2.8-RC3, c3600 and c3745 with NM-4T are supported
+            if router.model == 'c7200' or ((router.model == 'c3600' and router.chassis == '3660') \
+                or (router.model == 'c3745' and adapter == 'NM-4T') \
+                and router.dynamips.intversion >= 208.3):
+                            
+                # if version of dynamips is > 0.2.8-RC2, then use 'vm slot_oir_start' command
+                if router.dynamips.intversion > 208.2:
+                    send(router.dynamips, '%s %s %i 0' % ('vm slot_oir_start', router.name, slot))
+                else:
+                    send(router.dynamips, '%s %s %s %i' % (router.model, 'pa_init_online', router.name, slot))
 
     def is_empty(self):
         """ Return true if the adapter is empty
@@ -1016,10 +1030,15 @@ class BaseAdapter(object):
         """ Remove the adapter
         """
 
-        #if the router is running let's send also the OIR event
+        # if the router is running let's send also the OIR event
         if self.__router.state == 'running':
-            if self.__router.model == 'c7200':
-            # if version of dynamips is > 0.2.8-RC2, then use 'vm slot_oir_stop' command
+
+            #  only c7200 and since dynamips 0.2.8-RC3, c3600 and c3745 with NM-4T are supported
+            if self.__router.model == 'c7200' or ((self.__router.model == 'c3600' and self.__router.chassis == '3660') \
+                or (self.__router.model == 'c3745' and self.__adapter == 'NM-4T') \
+                and self.__router.dynamips.intversion >= 208.3):
+
+                # if version of dynamips is > 0.2.8-RC2, then use 'vm slot_oir_stop' command
                 if self.__router.dynamips.intversion > 208.2:
                     send(self.__router.dynamips, 'vm slot_oir_stop %s %i 0' % (self.__router.name, self.slot))
                 else:
@@ -1305,13 +1324,6 @@ class PA(BaseAdapter):
             wics,
         )
         self.default = False
-        #generate an OIR event
-        if router.state == 'running':
-            # if version of dynamips is > 0.2.8-RC2, then use 'vm slot_oir_start' command
-            if router.dynamips.intversion > 208.2:
-                send(router.dynamips, '%s %s %i 0' % ('vm slot_oir_start', router.name, slot))
-            else:
-                send(router.dynamips, '%s %s %s %i' % (router.model, 'pa_init_online', router.name, slot))
 
     def can_be_removed(self):
         return True
@@ -1618,7 +1630,11 @@ class NM(BaseAdapter):
 
     def can_be_removed(self):
         if self.router.state == 'running':
-            return False
+            if self.router.dynamips.intversion >= 208.3 and (self.router.model == 'c3600' and self.router.chassis == '3660') \
+            or (self.router.model == 'c3745' and self.adapter == 'NM-4T'):
+                return True
+            else:
+                return False
         else:
             return True
 

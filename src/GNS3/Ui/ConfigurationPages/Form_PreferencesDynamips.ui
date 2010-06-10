@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>458</width>
-    <height>439</height>
+    <height>457</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
       <attribute name="title">
        <string>Dynamips</string>
       </attribute>
-      <layout class="QVBoxLayout">
+      <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QGroupBox" name="groupBox">
          <property name="sizePolicy">
@@ -35,8 +35,8 @@
          <property name="title">
           <string>Settings</string>
          </property>
-         <layout class="QGridLayout">
-          <item row="0" column="0" colspan="3">
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
            <widget class="QLabel" name="label">
             <property name="text">
              <string>Executable path:</string>
@@ -56,7 +56,7 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0" colspan="3">
+          <item row="2" column="0" colspan="2">
            <widget class="QLabel" name="label_2">
             <property name="text">
              <string>Working directory:</string>
@@ -73,7 +73,7 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="0" colspan="4">
+          <item row="4" column="0" colspan="3">
            <widget class="QCheckBox" name="checkBoxClearWorkdir">
             <property name="text">
              <string>Automatically clean the working directory</string>
@@ -137,7 +137,7 @@
           <item row="7" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxGhosting">
             <property name="text">
-             <string>Enable ghost IOS feature</string>
+             <string>Enable ghost IOS support</string>
             </property>
             <property name="checked">
              <bool>true</bool>
@@ -147,7 +147,7 @@
           <item row="8" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxMmap">
             <property name="text">
-             <string>Enable mmap feature</string>
+             <string>Enable mmap support</string>
             </property>
             <property name="checked">
              <bool>true</bool>
@@ -155,9 +155,19 @@
            </widget>
           </item>
           <item row="9" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxJITsharing">
+            <property name="text">
+             <string>Enable JIT sharing support</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxSparseMem">
             <property name="text">
-             <string>Enable sparse memory feature</string>
+             <string>Enable sparse memory support</string>
             </property>
             <property name="checked">
              <bool>false</bool>

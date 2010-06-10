@@ -1667,33 +1667,33 @@ Gib die Nummer des idlepc Wertes ein [1-%i] oder EINGABE für keine Änderung:
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="640"/>
+        <location filename="../Node/IOSRouter.py" line="642"/>
         <source>Connection</source>
         <translation>Verbindung</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="640"/>
+        <location filename="../Node/IOSRouter.py" line="642"/>
         <source>No interface available</source>
         <translation>Kein Interface verfügbar</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="251"/>
-        <source>Slots</source>
-        <translation>Slots</translation>
-    </message>
-    <message>
-        <location filename="../Node/IOSRouter.py" line="251"/>
-        <source>You have to restart this router to use new modules</source>
-        <translation>Der Router muss neugestartet werden um die neuen Module benutzen zu können</translation>
-    </message>
-    <message>
-        <location filename="../Node/IOSRouter.py" line="511"/>
+        <location filename="../Node/IOSRouter.py" line="513"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="306"/>
+        <location filename="../Node/IOSRouter.py" line="308"/>
         <source>Startup-Config for %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/IOSRouter.py" line="253"/>
+        <source>Slots</source>
+        <translation type="unfinished">Slots</translation>
+    </message>
+    <message>
+        <location filename="../Node/IOSRouter.py" line="253"/>
+        <source>You have to restart this router to use new modules</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2685,7 +2685,7 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Dynamips</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="223"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="233"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
@@ -2720,42 +2720,27 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Basis-Konsole:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="175"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="185"/>
         <source>&amp;Test</source>
         <translation>&amp;Test</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="211"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="221"/>
         <source>Hypervisor Manager</source>
         <translation>Hypervisor-Manager</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="229"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="239"/>
         <source>Memory usage limit per hypervisor:</source>
         <translation>Speicherbedarfslimitierung pro Hypervisor:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="249"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="259"/>
         <source>UDP incrementation:</source>
         <translation>UDP Inkrementierung:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="140"/>
-        <source>Enable ghost IOS feature</source>
-        <translation>Benutze das Ghost-IOS Feature</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="150"/>
-        <source>Enable mmap feature</source>
-        <translation>Benutze das mmap Feature</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="160"/>
-        <source>Enable sparse memory feature</source>
-        <translation>Benutze das Sparse-Memory Feature</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="283"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="293"/>
         <source>Use Hypervisor Manager when importing</source>
         <translation>Benutze den Hypervisor Manager beim Importieren</translation>
     </message>
@@ -2765,8 +2750,28 @@ der Liste aus, um die Konfiguration zu sehen.</translation>
         <translation>Automatisches säubern des Arbeitsverzeichnisses</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="269"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="279"/>
         <source>IP/host binding:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="140"/>
+        <source>Enable ghost IOS support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="150"/>
+        <source>Enable mmap support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="160"/>
+        <source>Enable JIT sharing support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="170"/>
+        <source>Enable sparse memory support</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3773,12 +3778,12 @@ ALT + LINKS oder RECHTS</translation>
         <translation>Bitte konfiguriere den Pfad zu Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="842"/>
+        <location filename="../Topology.py" line="844"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="842"/>
+        <location filename="../Topology.py" line="844"/>
         <source>Connection lost</source>
         <translation>Verbindung verloren</translation>
     </message>
@@ -3966,22 +3971,22 @@ ALT + LINKS oder RECHTS</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="346"/>
+        <location filename="../UndoFramework.py" line="349"/>
         <source>Connection lost</source>
         <translation type="unfinished">Verbindung verloren</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="364"/>
+        <location filename="../UndoFramework.py" line="367"/>
         <source>New style applied for annotation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="399"/>
+        <location filename="../UndoFramework.py" line="402"/>
         <source>New style applied for item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="434"/>
+        <location filename="../UndoFramework.py" line="437"/>
         <source>New text for annotation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4028,224 +4033,224 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="151"/>
+        <location filename="../Workspace.py" line="154"/>
         <source>Docks</source>
         <translation>Docks</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="894"/>
+        <location filename="../Workspace.py" line="897"/>
         <source>Dynamips error</source>
         <translation>Dynamips Fehler</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="614"/>
+        <location filename="../Workspace.py" line="617"/>
         <source>Connection lost</source>
         <translation>Verbindung verloren</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="583"/>
+        <location filename="../Workspace.py" line="586"/>
         <source>Abort</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="715"/>
+        <location filename="../Workspace.py" line="718"/>
         <source>Starting nodes ...</source>
         <translation>Starte Einheiten ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="632"/>
+        <location filename="../Workspace.py" line="635"/>
         <source>Stopping nodes ...</source>
         <translation>Beende Einheiten ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="638"/>
+        <location filename="../Workspace.py" line="641"/>
         <source>Suspending nodes ...</source>
         <translation>Suspendiere Einheiten ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="708"/>
+        <location filename="../Workspace.py" line="711"/>
         <source>Loading</source>
         <translation>Lade</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="531"/>
+        <location filename="../Workspace.py" line="534"/>
         <source>Hide hostnames</source>
         <translation>Verstecke Hostnamen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="536"/>
+        <location filename="../Workspace.py" line="539"/>
         <source>Show hostnames</source>
         <translation>Zeige Hostnamen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="909"/>
+        <location filename="../Workspace.py" line="912"/>
         <source>Open a file</source>
         <translation>Öffne eine Datei</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="905"/>
+        <location filename="../Workspace.py" line="908"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Der Pfad zu Dynamips muss konfiguriert sein</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="945"/>
+        <location filename="../Workspace.py" line="948"/>
         <source>Save Project As</source>
         <translation>Speichere Projekt als</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="753"/>
+        <location filename="../Workspace.py" line="756"/>
         <source>New Project</source>
         <translation>Neues Projekt</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="965"/>
+        <location filename="../Workspace.py" line="968"/>
         <source>Message</source>
         <translation>Nachricht</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="297"/>
+        <location filename="../Workspace.py" line="300"/>
         <source>Are you sure to clear the topology?</source>
         <translation>Sicher, dass die Topologie gelöscht werden soll?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="411"/>
+        <location filename="../Workspace.py" line="414"/>
         <source>Add a link</source>
         <translation>Füge einen Link hinzu</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="426"/>
+        <location filename="../Workspace.py" line="429"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="753"/>
+        <location filename="../Workspace.py" line="756"/>
         <source>Can&apos;t create a project</source>
         <translation>Kann ein Projekt nicht anlegen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="708"/>
+        <location filename="../Workspace.py" line="711"/>
         <source>Invalid file %s</source>
         <translation>Unzulässige Datei %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="965"/>
+        <location filename="../Workspace.py" line="968"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>Soll die Topologie vor dem Beenden gespeichert werden?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="803"/>
+        <location filename="../Workspace.py" line="806"/>
         <source>Would you like to save the current topology?</source>
         <translation>Möchten Sie die aktuelle Topologie speichern?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="321"/>
+        <location filename="../Workspace.py" line="324"/>
         <source>Directory to write startup-configs</source>
         <translation>Verzeichnis, in die Startup-Konfigurationen geschrieben werden</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="189"/>
+        <location filename="../Workspace.py" line="192"/>
         <source>Yes - Export all the workspace
 No - Export only what I see</source>
         <translation>Ja - Exportiere alle Arbeitsoberflächen
 Nein - Exportiere nur was sichtbar ist</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="546"/>
+        <location filename="../Workspace.py" line="549"/>
         <source>Hide interface names</source>
         <translation>Verstecke Interfacenamen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="551"/>
+        <location filename="../Workspace.py" line="554"/>
         <source>Show interface names</source>
         <translation>Zeige Interfacenamen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="766"/>
+        <location filename="../Workspace.py" line="769"/>
         <source>Do you want to apply the project settings to the current topology? (can take some time)</source>
         <translation>Sollen die Projekteinstellungen auf die aktuelle Topologie angewandt werden? (das kann einige Zeit dauern)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="842"/>
+        <location filename="../Workspace.py" line="845"/>
         <source>Snapshot</source>
         <translation>Schnappschuß</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="842"/>
+        <location filename="../Workspace.py" line="845"/>
         <source>Cannot create directory %s: %s</source>
         <translation>Kann Verzeichnis %s: %s nicht anlegen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="847"/>
+        <location filename="../Workspace.py" line="850"/>
         <source>Please wait while creating a snapshot</source>
         <translation>Schnappschuß wird erstellt, bitte warten</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="614"/>
+        <location filename="../Workspace.py" line="617"/>
         <source>%s: Dynamips error</source>
         <translation>%s: Dynamips Fehler</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="611"/>
+        <location filename="../Workspace.py" line="614"/>
         <source>%s: Dynamips warning</source>
         <translation>%s: Dynamips Warnung</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="312"/>
+        <location filename="../Workspace.py" line="315"/>
         <source>Extracting to a directory</source>
         <translation>Extrahiere in ein Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="314"/>
+        <location filename="../Workspace.py" line="317"/>
         <source>Importing from a directory</source>
         <translation>Importiere aus einem Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="308"/>
+        <location filename="../Workspace.py" line="311"/>
         <source>Configs</source>
         <translation>Konfigurationen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="308"/>
+        <location filename="../Workspace.py" line="311"/>
         <source>Please choose an option</source>
         <translation>Bitte eine Option auswählen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="334"/>
+        <location filename="../Workspace.py" line="337"/>
         <source>Directory to read startup-configs</source>
         <translation>Verzeichnis, aus dem Startup-Konfigurationen gelesen werden</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="355"/>
+        <location filename="../Workspace.py" line="358"/>
         <source>IO Error</source>
         <translation>EA Fehler</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="345"/>
+        <location filename="../Workspace.py" line="348"/>
         <source>Importing %s from %s</source>
         <translation>Importiere %s von %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="358"/>
+        <location filename="../Workspace.py" line="361"/>
         <source>Ignoring unknown device %s</source>
         <translation>Ignoriere unbekanntes Gerät %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="360"/>
+        <location filename="../Workspace.py" line="363"/>
         <source>Dynamips Error: %s</source>
         <translation>Dynamips Fehler: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="362"/>
+        <location filename="../Workspace.py" line="365"/>
         <source>Dynamips Warning: %s</source>
         <translation>Dynamips Warnung: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="257"/>
+        <location filename="../Workspace.py" line="260"/>
         <source>I/O Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="257"/>
+        <location filename="../Workspace.py" line="260"/>
         <source>I/O Error: %s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4260,27 +4265,27 @@ Nein - Exportiere nur was sichtbar ist</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="734"/>
+        <location filename="../Workspace.py" line="737"/>
         <source>Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="734"/>
+        <location filename="../Workspace.py" line="737"/>
         <source>Please create a new project first</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="644"/>
+        <location filename="../Workspace.py" line="647"/>
         <source>Reloading nodes ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="402"/>
+        <location filename="../Workspace.py" line="405"/>
         <source>picture</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="894"/>
+        <location filename="../Workspace.py" line="897"/>
         <source>Dynamips error: %s</source>
         <translation type="unfinished"></translation>
     </message>

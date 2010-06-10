@@ -238,16 +238,18 @@ class IOSRouter(AbstractNode):
         for module_name in config['slots']:
             if module_name and self.router.slot[slot_number] == None:
                 self.set_slot(slot_number, module_name)
-                slot_changed = True
+                if not self.router.slot[slot_number].can_be_removed():
+                    slot_changed = True
             elif self.router.slot[slot_number] and module_name and module_name != self.router.slot[slot_number].adapter:
                 self.clean_slot(self.router.slot[slot_number])
                 self.set_slot(slot_number, module_name)
-                slot_changed = True
+                if not self.router.slot[slot_number].can_be_removed():
+                    slot_changed = True
             elif module_name == None and self.router.slot[slot_number]:
                 self.clean_slot(self.router.slot[slot_number])
             slot_number += 1
 
-        if slot_changed and self.router.state == "running" and self.router.model != "c7200":
+        if slot_changed:
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("IOSRouter", "Slots"), translate("IOSRouter", "You have to restart this router to use new modules"))
 
         # configure wics if available
