@@ -32,7 +32,7 @@ from dynamips_lib import Dynamips, PA_C7200_IO_FE, PA_A1, PA_FE_TX, PA_4T, PA_8T
      NIO_udp, NIO_linux_eth, NIO_gen_eth, NIO_tap, NIO_unix, NIO_vde, NIO_null, nosend, setdebug, \
      C2691, C3725, C3745, GT96100_FE, C2600, \
      CISCO2600_MB_1E, CISCO2600_MB_2E, CISCO2600_MB_1FE, CISCO2600_MB_2FE, PA_2FE_TX, \
-     PA_GE, PA_C7200_IO_2FE, PA_C7200_IO_GE_E, C1700, CISCO1710_MB_1FE_1E, C1700_MB_1ETH, \
+     PA_GE, PA_C7200_IO_2FE, PA_C7200_IO_GE_E, PA_C7200_JC_PA, C1700, CISCO1710_MB_1FE_1E, C1700_MB_1ETH, \
      DynamipsVerError, DynamipsErrorHandled, NM_CIDS, NM_NAM, get_reverse_udp_nio, Dynamips_device, Emulated_switch
 from qemu_lib import Qemu, QemuDevice, AnyEmuDevice, FW, ASA, JunOS, IDS, nosend_qemu
 from validate import Validator
@@ -93,9 +93,11 @@ ADAPTER_TRANSFORM = {
     'C7200-IO-FE': PA_C7200_IO_FE,
     'C7200-IO-2FE': PA_C7200_IO_2FE,
     'C7200-IO-GE-E': PA_C7200_IO_GE_E,
+    'C7200-JC-PA': PA_C7200_JC_PA,
     'PA-C7200-IO-FE': PA_C7200_IO_FE,
     'PA-C7200-IO-2FE': PA_C7200_IO_2FE,
     'PA-C7200-IO-GE-E': PA_C7200_IO_GE_E,
+    'PA-C7200-JC-PA': PA_C7200_JC_PA,
     'PA-A1': PA_A1,
     'PA-FE-TX': PA_FE_TX,
     'PA-2FE-TX': PA_2FE_TX,

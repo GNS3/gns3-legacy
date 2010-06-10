@@ -26,7 +26,7 @@ import re
 from dynamips_lib import DynamipsError, DynamipsWarning, GENERIC_7200_PAS, GENERIC_3600_NMS, GENERIC_1700_NMS, GENERIC_2600_NMS, GENERIC_3700_NMS
 
 # Regex matching slot definitions. Used in pre_cmd() function in confRouterConsole
-SLOT_RE = re.compile('^slot[0-6]', re.IGNORECASE)
+SLOT_RE = re.compile('^slot[0-7]', re.IGNORECASE)
 
 # determine if we are in the debugger
 try:
@@ -176,7 +176,7 @@ class confDefaultsConsole(AbstractConsole):
         self.d = self.dynamips_server.host + ':' + str(self.dynamips_server.port)
         self.config = self.dynagen.defaults_config[self.d]
         self.adaptertuple = ()
-        self.max_slots = 6
+        self.max_slots = 7
         self.min_slot = 0
         self.chassis = 'None'
         self.default_image = 'None'
@@ -645,7 +645,7 @@ class conf7200DefaultsConsole(confDefaultsConsole):
             'npe-g1',
             'npe-g2',
             )
-        self.max_slots = 6
+        self.max_slots = 7
         self.chassis = '7200'
         if '7200' in self.config:
             self.config = self.config['7200']

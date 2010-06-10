@@ -43,19 +43,21 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                              3: self.comboBoxSlot3,
                              4: self.comboBoxSlot4,
                              5: self.comboBoxSlot5,
-                             6: self.comboBoxSlot6}
+                             6: self.comboBoxSlot6,
+                             7: self.comboBoxSlot7}
                                         
         self.widget_wics = {0: self.comboBoxWIC0,
                             1: self.comboBoxWIC1,
                             2: self.comboBoxWIC2}
     
-    def loadSlotConfig(self, platform, chassis, router_config):
+    def loadSlotConfig(self, platform, chassis, router_config, node):
         """ Load slot config
         """
 
         for widget in self.widget_slots.values():
             widget.setEnabled(False)
             widget.clear()
+
         
         for (slot_number, slot_modules) in lib.ADAPTER_MATRIX[platform][chassis].iteritems():
             self.widget_slots[slot_number].setEnabled(True)
@@ -64,12 +66,18 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             elif platform == 'c7200' and slot_number == 0 and router_config['slots'][slot_number] != None:
                 self.widget_slots[slot_number].addItem(router_config['slots'][slot_number])
             else:
-                self.widget_slots[slot_number].addItems([''] + list(slot_modules))
+                module_list = list(slot_modules)
+                if platform == 'c7200' and slot_number == 0 and node.router.dynamips.intversion < 208.3:
+                    module_list.remove('C7200-JC-PA')
+                self.widget_slots[slot_number].addItems([''] + module_list)
 
             if router_config['slots'][slot_number]:
                 index = self.widget_slots[slot_number].findText(router_config['slots'][slot_number])
                 if (index != -1):
                     self.widget_slots[slot_number].setCurrentIndex(index)
+
+        if platform == 'c7200' and (router_config['npe'] != 'npe-g2' or router_config['slots'][0] != 'C7200-JC-PA'):
+            self.widget_slots[7].setEnabled(False)
 
         for widget in self.widget_wics.values():
             widget.setEnabled(False)
@@ -111,7 +119,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         self.textLabel_Model.setText(router.model_string)
         self.textLabel_ImageIOS.setText(os.path.basename(router_config['image']))
 
-        self.loadSlotConfig(platform, chassis, router_config)
+        self.loadSlotConfig(platform, chassis, router_config, node)
         
         if platform == 'c7200':
             self.comboBoxMidplane.clear()
@@ -244,8 +252,12 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                 wic_name = str(widget.currentText())
                 if wic_name:
                     router_config['wics'][wic_number] = wic_name
-                    
-        self.loadSlotConfig(platform, chassis, router_config)
+
+        if  router_config['slots'][0] == 'C7200-JC-PA' and router_config['npe'] != 'npe-g2':
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'Slots', translate("Page_IOSRouter", "C7200-JC-PA can only be used with NPE-G2"))
+            router_config['slots'][0] = None
+
+        self.loadSlotConfig(platform, chassis, router_config, node)
 
         return router_config
 

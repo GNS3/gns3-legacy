@@ -249,7 +249,7 @@ class IOSRouter(AbstractNode):
                 self.clean_slot(self.router.slot[slot_number])
             slot_number += 1
 
-        if slot_changed:
+        if slot_changed and self.router.model != 'c7200' and self.state == 'running':
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("IOSRouter", "Slots"), translate("IOSRouter", "You have to restart this router to use new modules"))
 
         # configure wics if available
@@ -469,16 +469,6 @@ class IOSRouter(AbstractNode):
             if devdefaults[model]['jitsharing']:
                 if self.dynagen.jitshareddevices.has_key(self.hostname):
                     globals.GApp.dynagen.jitsharing()
-
-#                    # basename doesn't work on Unix with Windows paths, so let's use this little trick
-#                    image = self.config['image']
-#                    if not sys.platform.startswith('win') and image[1] == ":":
-#                        image = image[2:]
-#                        image = image.replace("\\", "/")
-#                    imagename = os.path.basename(image)
-
-#                    if router.dynamips.jitsharing_groups.has_key(imagename):
-#                        router.jitsharing_group = router.dynamips.jitsharing_groups[imagename]
 
         self.dynagen.update_running_config()
         self.running_config = self.dynagen.running_config[self.d][self.r]

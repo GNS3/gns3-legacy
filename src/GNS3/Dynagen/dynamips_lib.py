@@ -168,7 +168,7 @@ GENERIC_7200_PAS = (
     'PA-8E',
     'PA-POS-OC3',
 )
-IO_7200 = ('C7200-IO-FE', 'C7200-IO-2FE', 'C7200-IO-GE-E')
+IO_7200 = ('C7200-IO-FE', 'C7200-IO-2FE', 'C7200-IO-GE-E', 'C7200-JC-PA')
 WICS = {'WIC-1T': 1 * ['s'], 'WIC-2T': 2 * ['s'], 'WIC-1ENET': 1 * ['e']}
 
 """ Build the adapter compatibility matrix:
@@ -228,6 +228,9 @@ for sl in range(1, 5):
 ADAPTER_MATRIX['c7200'][''] = {0: IO_7200}
 for sl in range(1, 7):
     ADAPTER_MATRIX['c7200'][''][sl] = GENERIC_7200_PAS
+
+# Using the C7200-JC-PA (Jacket Card) in slot 0 and NPE-G2, allows us to add have slot 7
+ADAPTER_MATRIX['c7200'][''][7] = ('PA-2FE-TX', 'PA-POS-OC3')
 
 
 class Dynamips(object):
@@ -1298,7 +1301,7 @@ class PA(BaseAdapter):
 
     """ Creates a Router Port Adapter
         router: A Router object
-        slot: An int specifying the slot (0-6)
+        slot: An int specifying the slot (0-7)
         adapter: the adapter model
         ports: the number of ports
         intlist: a list of interface descriptors this adapter provides
@@ -1377,7 +1380,7 @@ class PA_C7200_IO_2FE(PA):
 
 class PA_C7200_IO_GE_E(PA):
 
-    """ A C7200-IO-GE-E FastEthernet adapter
+    """ A C7200-IO-GE-E GigabitEthernet adapter
     """
 
     def __init__(self, router, slot):
@@ -1394,6 +1397,28 @@ class PA_C7200_IO_GE_E(PA):
         )
         self.interface_name = 'GigabitEthernet'
 
+    def can_be_removed(self):
+        return False
+
+class PA_C7200_JC_PA(PA):
+    
+    """ A C7200-JC-PA Port Adapter Jacket Card adapter
+    """
+    
+    def __init__(self, router, slot):
+        ports = 0
+        intlist = ()
+
+        PA.__init__(
+            self,
+            router,
+            slot,
+            'C7200-JC-PA',
+            ports,
+            intlist,
+        )
+        self.interface_name = ''
+    
     def can_be_removed(self):
         return False
 
@@ -3055,7 +3080,7 @@ class C7200(Router):
         self._defaults['midplane'] = 'vxr'
 
         # generate the slots for port adapters
-        Router.createslots(self, 7)
+        Router.createslots(self, 8)
 
         # Start with the npe-400 and 2FE IO controller
         # This deviates from the dynamips defaults, but I think it is a
