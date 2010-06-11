@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_ETHSWPage.ui'
 #
-# Created: Fri Jun 11 11:25:54 2010
+# Created: Fri Jun 11 13:14:29 2010
 #      by: PyQt4 UI code generator 4.7.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -59,6 +59,7 @@ class Ui_ETHSWPage(object):
         self.comboBoxPortType.setObjectName("comboBoxPortType")
         self.comboBoxPortType.addItem("")
         self.comboBoxPortType.addItem("")
+        self.comboBoxPortType.addItem("")
         self.gridlayout1.addWidget(self.comboBoxPortType, 2, 1, 1, 1)
         self.gridlayout.addWidget(self.groupBox, 0, 0, 1, 2)
         self.groupBox_2 = QtGui.QGroupBox(ETHSWPage)
@@ -103,6 +104,7 @@ class Ui_ETHSWPage(object):
         self.label_2.setText(QtGui.QApplication.translate("ETHSWPage", "Type:", None, QtGui.QApplication.UnicodeUTF8))
         self.comboBoxPortType.setItemText(0, QtGui.QApplication.translate("ETHSWPage", "access", None, QtGui.QApplication.UnicodeUTF8))
         self.comboBoxPortType.setItemText(1, QtGui.QApplication.translate("ETHSWPage", "dot1q", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBoxPortType.setItemText(2, QtGui.QApplication.translate("ETHSWPage", "qinq", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setTitle(QtGui.QApplication.translate("ETHSWPage", "Ports", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetPorts.headerItem().setText(0, QtGui.QApplication.translate("ETHSWPage", "Port", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetPorts.headerItem().setText(1, QtGui.QApplication.translate("ETHSWPage", "VLAN", None, QtGui.QApplication.UnicodeUTF8))

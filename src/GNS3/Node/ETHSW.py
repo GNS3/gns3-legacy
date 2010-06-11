@@ -206,6 +206,10 @@ class ETHSW(AbstractNode):
                     if not self.ethsw.mapping.has_key(port):
                         (destnode, destinterface)= self.getConnectedNeighbor(str(port))
                         porttype = self.config['ports'][port]
+                        if self.ethsw.dynamips.intversion < 208.3 and porttype == 'qinq':
+                            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("ETHSW", "Port type"),  translate("ETHSW", "QinQ is only supported with Dynamips > 0.2.8 RC2"))
+                            return
+
                         if destinterface.lower()[:3] == 'nio':
                             debug("ethsw_map: " + str(port) + ' to ' + porttype + ' ' + str(vlan) + ' ' + destinterface)
                             self.dynagen.ethsw_map(self.ethsw, port, porttype + ' ' + str(vlan) + ' ' + destinterface)

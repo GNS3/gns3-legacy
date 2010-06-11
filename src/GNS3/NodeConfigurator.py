@@ -399,4 +399,4 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             for item in self.treeViewNodes.selectedItems():
                 node = globals.GApp.topology.getNode(item.getIDs()[0])
                 item.tmpConfig = node.get_config()
-                page.loadConfig(item.getIDs()[0],  item.tmpConfig)
+                page.loadConfig(item.getIDs()[0], item.tmpConfig)

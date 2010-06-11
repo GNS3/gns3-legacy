@@ -124,7 +124,7 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
             ETHSWconfig = config
         else:
             ETHSWconfig  = self.node.config
-            
+
         self.treeWidgetPorts.clear()
         self.vlans = {}
         self.ports = {}

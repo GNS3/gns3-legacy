@@ -95,6 +95,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         
         # Class to display error/warning messages once
         self.errorMessage = QtGui.QErrorMessage(self)
+        self.errorMessage.setMinimumSize(350, 200)
 
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)

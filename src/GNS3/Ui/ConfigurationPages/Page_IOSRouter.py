@@ -36,6 +36,8 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
         self.setupUi(self)
         self.setObjectName("IOSRouter")
         self.currentNodeID = None
+        self.NM_16ESW_warning = True
+        self.NPEG2_warning = True
 
         self.widget_slots = {0: self.comboBoxSlot0,
                              1: self.comboBoxSlot1,
@@ -200,9 +202,11 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                 router_config['midplane'] = str(self.comboBoxMidplane.currentText())
             if str(self.comboBoxNPE.currentText()):
                 router_config['npe'] = str(self.comboBoxNPE.currentText())
-                if router_config['npe'] == 'npe-g2':
+                if router_config['npe'] == 'npe-g2' and self.NPEG2_warning:
+                    
                     globals.GApp.mainWindow.errorMessage.showMessage(translate("Page_IOSRouter", \
                                                                                "Using npe-g2: there are potential bugs and your IOS image should be unpacked.\nC7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work."))
+                    self.NPEG2_warning = False
 
         iomem = self.spinBoxIomem.value()
         if platform == 'c3600' and iomem != 5:
@@ -216,8 +220,9 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             module = str(widget.currentText())
             if module:
                 # Give an information (only once): users must use manual connections with NM-16ESW
-                if module == 'NM-16ESW':
+                if module == 'NM-16ESW' and self.NM_16ESW_warning:
                     globals.GApp.mainWindow.errorMessage.showMessage(translate("Page_IOSRouter", "You must use 'manual mode' to connect a link with a NM-16ESW module"))
+                    self.NM_16ESW_warning = False
                 collision = False
                 if router.slot[slot_number] and router_config['slots'][slot_number] != module:
                     interfaces = router.slot[slot_number].interfaces

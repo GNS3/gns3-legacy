@@ -3,10 +3,9 @@ TODO LIST
  * Open .net files from Finder on Mac OS X (http://www.gns3.net/phpBB/topic1817.html)
  * NIO multicast support (next release of Dynamips)
  * Show NIO activity (next release of Dynamips)
- * Dynamips QinQ integration (next release of Dynamips)
  * Packet capture between Qemu devices
 
 Debugging
 
  * Can only run one instance of Qemu on Windows (http://www.gns3.net/phpBB/topic1914.html)
- * Disconnect between ETHSW and Clouds
+ * Disconnect between ETHSW and Clouds and between Simulated switches

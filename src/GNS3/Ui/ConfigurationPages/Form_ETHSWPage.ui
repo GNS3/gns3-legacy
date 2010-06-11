@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>ETHSWPage</class>
- <widget class="QWidget" name="ETHSWPage" >
-  <property name="geometry" >
+ <widget class="QWidget" name="ETHSWPage">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,91 +10,96 @@
     <height>315</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Ethernet Switch</string>
   </property>
-  <layout class="QGridLayout" >
-   <item row="0" column="0" colspan="2" >
-    <widget class="QGroupBox" name="groupBox" >
-     <property name="sizePolicy" >
-      <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+  <layout class="QGridLayout">
+   <item row="0" column="0" colspan="2">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="title" >
+     <property name="title">
       <string>Settings</string>
      </property>
-     <layout class="QGridLayout" >
-      <item row="0" column="0" >
-       <widget class="QLabel" name="label" >
-        <property name="text" >
+     <layout class="QGridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
          <string>Port:</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1" >
-       <widget class="QSpinBox" name="spinBoxPort" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+      <item row="0" column="1">
+       <widget class="QSpinBox" name="spinBoxPort">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="minimum" >
+        <property name="minimum">
          <number>0</number>
         </property>
-        <property name="maximum" >
+        <property name="maximum">
          <number>65535</number>
         </property>
-        <property name="value" >
+        <property name="value">
          <number>1</number>
         </property>
        </widget>
       </item>
-      <item row="1" column="0" >
-       <widget class="QLabel" name="label_3" >
-        <property name="text" >
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
          <string>VLAN:</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="1" >
-       <widget class="QSpinBox" name="spinBoxVLAN" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+      <item row="1" column="1">
+       <widget class="QSpinBox" name="spinBoxVLAN">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="minimum" >
+        <property name="minimum">
          <number>0</number>
         </property>
-        <property name="maximum" >
+        <property name="maximum">
          <number>65535</number>
         </property>
-        <property name="value" >
+        <property name="value">
          <number>1</number>
         </property>
        </widget>
       </item>
-      <item row="2" column="0" >
-       <widget class="QLabel" name="label_2" >
-        <property name="text" >
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
          <string>Type:</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1" >
-       <widget class="QComboBox" name="comboBoxPortType" >
+      <item row="2" column="1">
+       <widget class="QComboBox" name="comboBoxPortType">
         <item>
-         <property name="text" >
+         <property name="text">
           <string>access</string>
          </property>
         </item>
         <item>
-         <property name="text" >
+         <property name="text">
           <string>dot1q</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>qinq</string>
          </property>
         </item>
        </widget>
@@ -101,35 +107,35 @@
      </layout>
     </widget>
    </item>
-   <item rowspan="3" row="0" column="2" >
-    <widget class="QGroupBox" name="groupBox_2" >
-     <property name="title" >
+   <item row="0" column="2" rowspan="3">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
       <string>Ports</string>
      </property>
-     <layout class="QVBoxLayout" >
+     <layout class="QVBoxLayout">
       <item>
-       <widget class="QTreeWidget" name="treeWidgetPorts" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+       <widget class="QTreeWidget" name="treeWidgetPorts">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="rootIsDecorated" >
+        <property name="rootIsDecorated">
          <bool>false</bool>
         </property>
         <column>
-         <property name="text" >
+         <property name="text">
           <string>Port</string>
          </property>
         </column>
         <column>
-         <property name="text" >
+         <property name="text">
           <string>VLAN</string>
          </property>
         </column>
         <column>
-         <property name="text" >
+         <property name="text">
           <string>Type</string>
          </property>
         </column>
@@ -138,29 +144,29 @@
      </layout>
     </widget>
    </item>
-   <item row="1" column="0" >
-    <widget class="QPushButton" name="pushButtonAdd" >
-     <property name="text" >
+   <item row="1" column="0">
+    <widget class="QPushButton" name="pushButtonAdd">
+     <property name="text">
       <string>&amp;Add</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="1" >
-    <widget class="QPushButton" name="pushButtonDelete" >
-     <property name="enabled" >
+   <item row="1" column="1">
+    <widget class="QPushButton" name="pushButtonDelete">
+     <property name="enabled">
       <bool>false</bool>
      </property>
-     <property name="text" >
+     <property name="text">
       <string>&amp;Delete</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="1" >
+   <item row="2" column="1">
     <spacer>
-     <property name="orientation" >
+     <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="sizeHint" >
+     <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
        <height>71</height>
@@ -168,12 +174,12 @@
      </property>
     </spacer>
    </item>
-   <item row="3" column="2" >
+   <item row="3" column="2">
     <spacer>
-     <property name="orientation" >
+     <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="sizeHint" >
+     <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
        <height>20</height>
