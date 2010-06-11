@@ -506,6 +506,25 @@ class Dynamips(object):
 
 class NIO(object):
     """abstract NIO class"""
+    
+    def get_stats(self, dynamips, nio_name):
+        
+        # dynamips < 0.2.8 RC3 doesn't support NIO stats
+        if dynamips.intversion < 208.3:
+            return ""
+        result = send(dynamips, 'nio get_stats %s' % nio_name)[0]
+        if result.startswith("100"):
+            stats = result[4:].split()
+            return ("\n        " + stats[0] + ' packets in ' + stats[1] + ' packets out ' + stats[2] + ' bytes in ' + stats[3] + ' bytes out')
+        return ""
+
+    def reset_stats(self, dynamips, nio_name):
+
+        # dynamips < 0.2.8 RC3 doesn't support NIO stats
+        if dynamips.intversion < 208.3:
+            return False
+        send(dynamips, 'nio reset_stats %s' % nio_name)
+        return True
 
 class NIO_udp(NIO):
 
@@ -567,6 +586,7 @@ class NIO_udp(NIO):
     def info(self):
         """return info string about this NIO"""
 
+        stats = self.get_stats(self.__d, self.__name)
         (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self)
         from qemu_lib import AnyEmuDevice
         if isinstance(remote_device, Router):
@@ -584,27 +604,27 @@ class NIO_udp(NIO):
             elif rem_int_name == 'g':
                 rem_int_full_name = 'GigabitEthernet'    
             if remote_device.model_string in ['1710', '1720', '1721', '1750']:
-                return ' is connected to router ' + remote_device.name + " " + rem_int_full_name + str(rem_dynagen_port)
+                return ' is connected to router ' + remote_device.name + " " + rem_int_full_name + str(rem_dynagen_port) + stats
             # remote_port >= 16 means it's a wic module
             if remote_port >= 16:
                 return ' is connected to router ' + remote_device.name + " " + rem_int_full_name + str(remote_adapter.slot) + \
-                        "/" + str(rem_dynagen_port)
+                        "/" + str(rem_dynagen_port) + " " + stats
             return ' is connected to router ' + remote_device.name + " " + remote_adapter.interface_name + str(remote_adapter.slot) + \
-                   "/" + str(rem_dynagen_port)
+                   "/" + str(rem_dynagen_port) + " " + stats
 
         #if this is only UDP NIO without the other side
         elif remote_device == 'nothing':
-            return ' is connected to UDP NIO, with source port ' + str(self.udplocal) + ' and remote port ' + str(self.udpremote) + ' on ' + self.remotehost
+            return ' is connected to UDP NIO, with source port ' + str(self.udplocal) + ' and remote port ' + str(self.udpremote) + ' on ' + self.remotehost + " " + stats
         elif isinstance(remote_device, FRSW):
-            return ' is connected to frame-relay switch ' + remote_device.name + ' port ' + str(remote_port)
+            return ' is connected to frame-relay switch ' + remote_device.name + ' port ' + str(remote_port) + " " + stats
         elif isinstance(remote_device, ATMSW):
-            return ' is connected to ATM switch ' + remote_device.name + ' port ' + str(remote_port)
+            return ' is connected to ATM switch ' + remote_device.name + ' port ' + str(remote_port) + " " + stats
         elif isinstance(remote_device, ETHSW):
-            return ' is connected to ethernet switch ' + remote_device.name + ' port ' + str(remote_port)
+            return ' is connected to ethernet switch ' + remote_device.name + ' port ' + str(remote_port) + " " + stats
         elif isinstance(remote_device, ATMBR):
-            return ' is connected to ATM bridge ' + remote_device.name + ' port ' + str(remote_port)
+            return ' is connected to ATM bridge ' + remote_device.name + ' port ' + str(remote_port) + " " + stats
         elif isinstance(remote_device, AnyEmuDevice):
-            return ' is connected to emulated device ' + remote_device.name + ' Ethernet' + str(remote_port)
+            return ' is connected to emulated device ' + remote_device.name + ' Ethernet' + str(remote_port) + " " + stats
 
     def __getreverse_nio(self):
         return self.__reverse_nio
@@ -638,12 +658,6 @@ class NIO_udp(NIO):
         return self.__udpremote
 
     udpremote = property(__getudpremote)
-
-    def get_stats(self):
-        return send(self.__d, 'nio get_stats %s' % self.__name)
-        
-    def reset_stats(self):
-        send(self.__d, 'nio reset_stats %s' % self.__name)
 
     def delete(self):
         send(self.__d, 'nio delete %s' % self.__name)
@@ -683,7 +697,8 @@ class NIO_linux_eth(NIO):
     def info(self):
         """return info string about this NIO"""
 
-        return ' is connected to real ' + self.__interface + ' interface'
+        stats = self.get_stats(self.__d, self.__name)
+        return ' is connected to real ' + self.__interface + ' interface' + stats
 
     def __getinterface(self):
         return self.__interface
@@ -725,7 +740,8 @@ class NIO_gen_eth(NIO):
     def info(self):
         """return info string about this NIO"""
 
-        return ' is connected to real PCAP ' + self.__interface + ' interface'
+        stats = self.get_stats(self.__d, self.__name)
+        return ' is connected to real PCAP ' + self.__interface + ' interface' + stats
 
     def __getinterface(self):
         return self.__interface
@@ -768,7 +784,8 @@ class NIO_tap(NIO):
     def info(self):
         """return info string about this NIO"""
 
-        return ' is connected to real TAP ' + self.__interface + ' interface'
+        stats = self.get_stats(self.__d, self.__name)
+        return ' is connected to real TAP ' + self.__interface + ' interface' + stats
 
     def __getinterface(self):
         return self.__interface
@@ -819,7 +836,8 @@ class NIO_unix(NIO):
     def info(self):
         """return info string about this NIO"""
 
-        return ' is connected to UNIX NIO ' + self.unixlocal + ":" + self.unixremote + ' interface'
+        stats = self.get_stats(self.__d, self.__name)
+        return ' is connected to UNIX NIO ' + self.unixlocal + ":" + self.unixremote + ' interface' + stats
 
     def __getunixlocal(self):
         return self.__unixlocal
@@ -876,7 +894,8 @@ class NIO_vde(NIO):
     def info(self):
         """return info string about this NIO"""
 
-        return ' is connected to VDE ' + self.controlsock + ":" + self.localsock
+        stats = self.get_stats(self.__d, self.__name)
+        return ' is connected to VDE ' + self.controlsock + ":" + self.localsock + stats
 
     def __getcontrolsock(self):
         return self.__controlsock
@@ -923,7 +942,8 @@ class NIO_null(NIO):
     def info(self):
         """return info string about this NIO"""
 
-        return ' is connected to ' + self.__name + ' interface'
+        stats = self.get_stats(self.__d, self.__name)
+        return ' is connected to ' + self.__name + ' interface' + stats
 
     def delete(self):
         send(self.__d, 'nio delete %s' % self.__name)

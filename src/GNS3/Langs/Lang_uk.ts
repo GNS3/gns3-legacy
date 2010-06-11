@@ -584,52 +584,52 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractEdge</name>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="189"/>
+        <location filename="../Link/AbstractEdge.py" line="191"/>
         <source>Delete</source>
         <translation>Вилучити</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="193"/>
+        <location filename="../Link/AbstractEdge.py" line="195"/>
         <source>Stop the capture</source>
         <translation>Зупинити захоплення</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="195"/>
+        <location filename="../Link/AbstractEdge.py" line="197"/>
         <source>Start Wireshark</source>
         <translation>Запустити Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="329"/>
+        <location filename="../Link/AbstractEdge.py" line="331"/>
         <source>Capture</source>
         <translation>Захопити</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="210"/>
+        <location filename="../Link/AbstractEdge.py" line="212"/>
         <source>Packet capture is not supported on this link type</source>
         <translation>Захоплення пакетів не підтримується на цьому типі каналу зв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="234"/>
+        <location filename="../Link/AbstractEdge.py" line="236"/>
         <source>Please choose a source</source>
         <translation>Будь-ласка виберіть джерело</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="237"/>
+        <location filename="../Link/AbstractEdge.py" line="239"/>
         <source>No device available for traffic capture</source>
         <translation>Не має доступного пристрою для захоплення трафіку</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="299"/>
+        <location filename="../Link/AbstractEdge.py" line="301"/>
         <source>Dynamips error</source>
         <translation>Помилка Dynamips</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="294"/>
+        <location filename="../Link/AbstractEdge.py" line="296"/>
         <source>Capture stopped</source>
         <translation>Захоплення зупинено</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="308"/>
+        <location filename="../Link/AbstractEdge.py" line="310"/>
         <source>Please configure capture options</source>
         <translation>Будь-ласка налаштуйте оції захоплення</translation>
     </message>
@@ -639,22 +639,22 @@ p, li { white-space: pre-wrap; }
         <translation>Канал з&apos;єднання: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="244"/>
+        <location filename="../Link/AbstractEdge.py" line="246"/>
         <source>Device %s is not running</source>
         <translation>Пристрій %s не запущено</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="329"/>
+        <location filename="../Link/AbstractEdge.py" line="331"/>
         <source>Cannot start %s : %s</source>
         <translation>Неможливо запустити %s : %s</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="314"/>
+        <location filename="../Link/AbstractEdge.py" line="316"/>
         <source>%s is empty, no traffic captured on the link. Try again later</source>
         <translation>% порожній, не захоплено трафік на каналі зв&apos;язку. Спробуйте ще пізніше</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="318"/>
+        <location filename="../Link/AbstractEdge.py" line="320"/>
         <source>Cannot find %s : %s</source>
         <translation>Неможливо знайти %s : %s</translation>
     </message>
@@ -1096,82 +1096,97 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="232"/>
+        <location filename="../Node/ETHSW.py" line="236"/>
         <source>Connection</source>
         <translation>З&apos;єднання</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="232"/>
+        <location filename="../Node/ETHSW.py" line="236"/>
         <source>No port available</source>
         <translation>Немає доступних портів</translation>
+    </message>
+    <message>
+        <location filename="../Node/ETHSW.py" line="210"/>
+        <source>Port type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/ETHSW.py" line="210"/>
+        <source>QinQ is only supported with Dynamips &gt; 0.2.8 RC2</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ETHSWPage</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="13"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="14"/>
         <source>Ethernet Switch</source>
         <translation>Ethernet комутатор</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="25"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="26"/>
         <source>Settings</source>
         <translation>Налаштування</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="31"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="32"/>
         <source>Port:</source>
         <translation>Порт:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="57"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="58"/>
         <source>VLAN:</source>
         <translation>VLAN:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="83"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="84"/>
         <source>Type:</source>
         <translation>Тип:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="91"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="92"/>
         <source>access</source>
         <translation>access</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="96"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="97"/>
         <source>dot1q</source>
         <translation>dot1q</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="107"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="113"/>
         <source>Ports</source>
         <translation>Порти</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="123"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="129"/>
         <source>Port</source>
         <translation>Порт</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="128"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="134"/>
         <source>VLAN</source>
         <translation>VLAN</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="133"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="139"/>
         <source>Type</source>
         <translation>Тип</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="144"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="150"/>
         <source>&amp;Add</source>
         <translation>&amp;Додати</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="154"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="160"/>
         <source>&amp;Delete</source>
         <translation>&amp;Вилучити</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="102"/>
+        <source>qinq</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1666,17 +1681,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="642"/>
+        <location filename="../Node/IOSRouter.py" line="627"/>
         <source>Connection</source>
         <translation>З&apos;єднання</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="642"/>
+        <location filename="../Node/IOSRouter.py" line="627"/>
         <source>No interface available</source>
         <translation>Немає доступних інтерфейсів</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="513"/>
+        <location filename="../Node/IOSRouter.py" line="498"/>
         <source>Dynamips error</source>
         <translation>Помилка Dynamips</translation>
     </message>
@@ -1744,7 +1759,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>Розмір RAM:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="545"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="561"/>
         <source> MB</source>
         <translation> MB</translation>
     </message>
@@ -1809,32 +1824,32 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>slot6:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="486"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="502"/>
         <source>Advanced</source>
         <translation>Розширені налаштування</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="505"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="521"/>
         <source>0x2102</source>
         <translation>0x2102</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="512"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="528"/>
         <source>Base MAC :</source>
         <translation>Основний MAC :</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="532"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="548"/>
         <source>exec area:</source>
         <translation>exec area:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="561"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="577"/>
         <source>iomem :</source>
         <translation>iomem :</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="577"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="593"/>
         <source> %</source>
         <translation> %</translation>
     </message>
@@ -1854,27 +1869,27 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>Адаптери</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="415"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="431"/>
         <source>WICs</source>
         <translation>WICs</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="427"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="443"/>
         <source>wic0:</source>
         <translation>wic0:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="443"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="459"/>
         <source>wic1:</source>
         <translation>wic1:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="459"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="475"/>
         <source>wic2:</source>
         <translation>wic2:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="492"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="508"/>
         <source>Confreg:</source>
         <translation>Confreg:</translation>
     </message>
@@ -1882,6 +1897,11 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="194"/>
         <source> KB</source>
         <translation> KB</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="418"/>
+        <source>slot7:</source>
+        <translation type="unfinished">slot6: {7:?}</translation>
     </message>
 </context>
 <context>
@@ -2374,32 +2394,32 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>Будь ласка налаштуйте шлях до Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="805"/>
+        <location filename="../NETFile.py" line="809"/>
         <source>Dynamips error</source>
         <translation>Помилка Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="808"/>
+        <location filename="../NETFile.py" line="812"/>
         <source>Dynamips warning</source>
         <translation>Попередження Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="560"/>
+        <location filename="../NETFile.py" line="561"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Зафіксоно виключення, зупинення імпорту...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="803"/>
+        <location filename="../NETFile.py" line="807"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Експорт налаштування %s до %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="820"/>
+        <location filename="../NETFile.py" line="824"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Помилка вводу/виводу: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="560"/>
+        <location filename="../NETFile.py" line="561"/>
         <source>Importation</source>
         <translation>Імпорт</translation>
     </message>
@@ -2409,12 +2429,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>Будь ласка почекайте, поки імпортується топологія</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="820"/>
+        <location filename="../NETFile.py" line="824"/>
         <source>IOError</source>
         <translation>Помилка вводу-виводу</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="583"/>
+        <location filename="../NETFile.py" line="584"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation>Попередження: GNS3 не підтримує вирази локальних мереж, ігноруйте їх</translation>
     </message>
@@ -2434,7 +2454,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>%s: неможливо знайти символ %sl, будь ласка перевірте цей символ у своєму списку вузлів та завантажте ще раз .net файл</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="983"/>
+        <location filename="../NETFile.py" line="987"/>
         <source>must be connected or have a hypervisor set in order to be registered</source>
         <translation>повинен бути підключений або мати визначений гіпервізор, щоб бути зареєстрованим</translation>
     </message>
@@ -2764,13 +2784,13 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="160"/>
-        <source>Enable JIT sharing support</source>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="170"/>
+        <source>Enable sparse memory support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="170"/>
-        <source>Enable sparse memory support</source>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="160"/>
+        <source>Enable JIT sharing support (Dynamips &gt; 0.2.8 RC2)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3346,139 +3366,144 @@ to display the configuration page.</source>
 <context>
     <name>Scene</name>
     <message>
-        <location filename="../Scene.py" line="202"/>
+        <location filename="../Scene.py" line="213"/>
         <source>Delete</source>
         <translation>Вилучити</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="107"/>
+        <location filename="../Scene.py" line="108"/>
         <source>Configure</source>
         <translation>Налаштувати</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="144"/>
+        <location filename="../Scene.py" line="155"/>
         <source>Console</source>
         <translation>Консоль</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="149"/>
+        <location filename="../Scene.py" line="160"/>
         <source>Start</source>
         <translation>Запустити</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="154"/>
+        <location filename="../Scene.py" line="165"/>
         <source>Stop</source>
         <translation>Зупинити</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="177"/>
+        <location filename="../Scene.py" line="188"/>
         <source>Suspend</source>
         <translation>Призупинити</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="167"/>
+        <location filename="../Scene.py" line="178"/>
         <source>Idle PC</source>
         <translation>Idle PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="345"/>
+        <location filename="../Scene.py" line="366"/>
         <source>IDLE PC</source>
         <translation>IDLE PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="280"/>
+        <location filename="../Scene.py" line="301"/>
         <source>Please select only one router</source>
         <translation>Будь ласка виберіть лише один маршрутизатор</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="321"/>
+        <location filename="../Scene.py" line="342"/>
         <source>No idlepc values found</source>
         <translation>Не знайдено значення idlepc</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="323"/>
+        <location filename="../Scene.py" line="344"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
         <translation>Потенційно краще значення idlepc відмічено  &apos;*&apos;</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="348"/>
+        <location filename="../Scene.py" line="369"/>
         <source>Dynamips error</source>
         <translation>Помилка Dynamips</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="287"/>
+        <location filename="../Scene.py" line="308"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
         <translation>%s вже має значення idlepc (%s), бажаєте обчислити нове значення?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="345"/>
+        <location filename="../Scene.py" line="366"/>
         <source>Applied idlepc value %s to %s</source>
         <translation>Застосовано значення  idlepc %s до %s</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="238"/>
+        <location filename="../Scene.py" line="249"/>
         <source>Please wait while calculating an IDLE PC</source>
         <translation>Будь ласка почекайте, поки обчислюється значення IDLE PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="112"/>
+        <location filename="../Scene.py" line="113"/>
         <source>Change the hostname</source>
         <translation>Змінити ім&apos;я хоста</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="117"/>
+        <location filename="../Scene.py" line="118"/>
         <source>Show/Hide the hostname</source>
         <translation>Показати/сховати імена хостів</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="139"/>
+        <location filename="../Scene.py" line="150"/>
         <source>Change console port</source>
         <translation>Змінити консольний порт</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="172"/>
+        <location filename="../Scene.py" line="183"/>
         <source>Startup-config</source>
         <translation>Startup-config</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="208"/>
+        <location filename="../Scene.py" line="219"/>
         <source>Lower one step</source>
         <translation>Зменшити на крок</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="213"/>
+        <location filename="../Scene.py" line="224"/>
         <source>Raise one step</source>
         <translation>Збільшити на крок</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="195"/>
+        <location filename="../Scene.py" line="206"/>
         <source>Style</source>
         <translation>Стиль</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="182"/>
+        <location filename="../Scene.py" line="193"/>
         <source>Reload</source>
         <translation>Перезапустити</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="129"/>
+        <location filename="../Scene.py" line="130"/>
         <source>Set an hypervisor</source>
         <translation>Вибрати гіпервізор</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="672"/>
+        <location filename="../Scene.py" line="693"/>
         <source>annotation</source>
         <translation>аннотація</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="681"/>
+        <location filename="../Scene.py" line="702"/>
         <source>rectangle</source>
         <translation>прямокутник</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="689"/>
+        <location filename="../Scene.py" line="710"/>
         <source>ellipse</source>
         <translation>еліпс</translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="140"/>
+        <source>MAC Address Table</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3776,17 +3801,17 @@ ALT + ВЛІВО or ВПРАВО</translation>
         <translation>Будь ласка налаштуйте шлях до Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="844"/>
+        <location filename="../Topology.py" line="858"/>
         <source>Dynamips error</source>
         <translation>Помилка Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="844"/>
+        <location filename="../Topology.py" line="858"/>
         <source>Connection lost</source>
         <translation>З&apos;єднання втрачено</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="739"/>
+        <location filename="../Topology.py" line="744"/>
         <source>Connection</source>
         <translation>З&apos;єднання</translation>
     </message>
@@ -3806,7 +3831,7 @@ ALT + ВЛІВО or ВПРАВО</translation>
         <translation>Будь ласка виберіть образ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="739"/>
+        <location filename="../Topology.py" line="744"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Ви повинні підключити хоча б один маршрутизатор до комутатора</translation>
     </message>
@@ -3821,7 +3846,7 @@ ALT + ВЛІВО or ВПРАВО</translation>
         <translation>Будь ласка налаштуйте образ PIX за умовчанням</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="726"/>
+        <location filename="../Topology.py" line="731"/>
         <source>Can&apos;t connect these devices</source>
         <translation>Неможливо з&apos;єднати ці пристрої</translation>
     </message>
@@ -4043,224 +4068,224 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="154"/>
+        <location filename="../Workspace.py" line="155"/>
         <source>Docks</source>
         <translation>Панелі</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="897"/>
+        <location filename="../Workspace.py" line="898"/>
         <source>Dynamips error</source>
         <translation>Помилка Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="617"/>
+        <location filename="../Workspace.py" line="618"/>
         <source>Connection lost</source>
         <translation>З&apos;єднання втрачено</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="586"/>
+        <location filename="../Workspace.py" line="587"/>
         <source>Abort</source>
         <translation>Відмінити</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="718"/>
+        <location filename="../Workspace.py" line="719"/>
         <source>Starting nodes ...</source>
         <translation>Запуск вузлів ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="635"/>
+        <location filename="../Workspace.py" line="636"/>
         <source>Stopping nodes ...</source>
         <translation>Зупинення вузлів ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="641"/>
+        <location filename="../Workspace.py" line="642"/>
         <source>Suspending nodes ...</source>
         <translation>Призупинення вузлів ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="711"/>
+        <location filename="../Workspace.py" line="712"/>
         <source>Loading</source>
         <translation>Завантаження</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="534"/>
+        <location filename="../Workspace.py" line="535"/>
         <source>Hide hostnames</source>
         <translation>Сховати імена хостів</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="539"/>
+        <location filename="../Workspace.py" line="540"/>
         <source>Show hostnames</source>
         <translation>Показати імена хостів</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="912"/>
+        <location filename="../Workspace.py" line="913"/>
         <source>Open a file</source>
         <translation>Відкрити файл</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="908"/>
+        <location filename="../Workspace.py" line="909"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Будь ласка налаштуйте шлях до Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="948"/>
+        <location filename="../Workspace.py" line="949"/>
         <source>Save Project As</source>
         <translation>Зберегти проект як</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="756"/>
+        <location filename="../Workspace.py" line="757"/>
         <source>New Project</source>
         <translation>Новий проект</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="968"/>
+        <location filename="../Workspace.py" line="969"/>
         <source>Message</source>
         <translation>Повідомлення</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="300"/>
+        <location filename="../Workspace.py" line="301"/>
         <source>Are you sure to clear the topology?</source>
         <translation>Ви впевнені, що хочете очистити топологію?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="414"/>
+        <location filename="../Workspace.py" line="415"/>
         <source>Add a link</source>
         <translation>Додати лінію зв&apos;язку</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="429"/>
+        <location filename="../Workspace.py" line="430"/>
         <source>Cancel</source>
         <translation>Відмінити</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="756"/>
+        <location filename="../Workspace.py" line="757"/>
         <source>Can&apos;t create a project</source>
         <translation>Неможливо створити проект</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="711"/>
+        <location filename="../Workspace.py" line="712"/>
         <source>Invalid file %s</source>
         <translation>Неправильний файл %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="968"/>
+        <location filename="../Workspace.py" line="969"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>Бажаєте зберегти топологію перед виходом?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="806"/>
+        <location filename="../Workspace.py" line="807"/>
         <source>Would you like to save the current topology?</source>
         <translation>Бажаєте зберегти поточну топологію?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="324"/>
+        <location filename="../Workspace.py" line="325"/>
         <source>Directory to write startup-configs</source>
         <translation>Директорія для запису  startup-configs</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="192"/>
+        <location filename="../Workspace.py" line="193"/>
         <source>Yes - Export all the workspace
 No - Export only what I see</source>
         <translation>Так - Експортувати всю робочу область
 Ні - Експортувати лише, що бачу</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="549"/>
+        <location filename="../Workspace.py" line="550"/>
         <source>Hide interface names</source>
         <translation>Сховати імена інтерфейсів</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="554"/>
+        <location filename="../Workspace.py" line="555"/>
         <source>Show interface names</source>
         <translation>Показати імена інтерфейсів</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="769"/>
+        <location filename="../Workspace.py" line="770"/>
         <source>Do you want to apply the project settings to the current topology? (can take some time)</source>
         <translation>Бажаєте застосувати налаштування проекту до поточної топології? (може потребувати деякий час)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="845"/>
+        <location filename="../Workspace.py" line="846"/>
         <source>Snapshot</source>
         <translation>Знімок</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="845"/>
+        <location filename="../Workspace.py" line="846"/>
         <source>Cannot create directory %s: %s</source>
         <translation>Неможливо створити директорію %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="850"/>
+        <location filename="../Workspace.py" line="851"/>
         <source>Please wait while creating a snapshot</source>
         <translation>Будь ласка почекайте, поки робиться знімок</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="617"/>
+        <location filename="../Workspace.py" line="618"/>
         <source>%s: Dynamips error</source>
         <translation>%s: Помилка Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="614"/>
+        <location filename="../Workspace.py" line="615"/>
         <source>%s: Dynamips warning</source>
         <translation>%s: Попередження Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="315"/>
+        <location filename="../Workspace.py" line="316"/>
         <source>Extracting to a directory</source>
         <translation>Експортування в директорію</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="317"/>
+        <location filename="../Workspace.py" line="318"/>
         <source>Importing from a directory</source>
         <translation>Імпортування з директорії</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="311"/>
+        <location filename="../Workspace.py" line="312"/>
         <source>Configs</source>
         <translation>Конфігурації</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="311"/>
+        <location filename="../Workspace.py" line="312"/>
         <source>Please choose an option</source>
         <translation>Будь ласка виберіть опцію</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="337"/>
+        <location filename="../Workspace.py" line="338"/>
         <source>Directory to read startup-configs</source>
         <translation>Директорія для зчитування startup-configs</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="358"/>
+        <location filename="../Workspace.py" line="359"/>
         <source>IO Error</source>
         <translation>Помилка вводу-виводу</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="348"/>
+        <location filename="../Workspace.py" line="349"/>
         <source>Importing %s from %s</source>
         <translation>Імпортування %s з %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="361"/>
+        <location filename="../Workspace.py" line="362"/>
         <source>Ignoring unknown device %s</source>
         <translation>Ігнорування невідомого пристроя %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="363"/>
+        <location filename="../Workspace.py" line="364"/>
         <source>Dynamips Error: %s</source>
         <translation>Помилка Dynamips: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="365"/>
+        <location filename="../Workspace.py" line="366"/>
         <source>Dynamips Warning: %s</source>
         <translation>Попередження Dynamips: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="260"/>
+        <location filename="../Workspace.py" line="261"/>
         <source>I/O Error</source>
         <translation>Помилка вводу-виводу</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="260"/>
+        <location filename="../Workspace.py" line="261"/>
         <source>I/O Error: %s</source>
         <translation>Помилка вводу/виводу: %s</translation>
     </message>
@@ -4275,27 +4300,27 @@ No - Export only what I see</source>
         <translation>Ctrl+Y</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="737"/>
+        <location filename="../Workspace.py" line="738"/>
         <source>Project</source>
         <translation>Проект</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="737"/>
+        <location filename="../Workspace.py" line="738"/>
         <source>Please create a new project first</source>
         <translation>Будь ласка створіть новий проект спочатку</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="647"/>
+        <location filename="../Workspace.py" line="648"/>
         <source>Reloading nodes ...</source>
         <translation>Перезавантаження вузлів ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="405"/>
+        <location filename="../Workspace.py" line="406"/>
         <source>picture</source>
         <translation>зображення</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="897"/>
+        <location filename="../Workspace.py" line="898"/>
         <source>Dynamips error: %s</source>
         <translation type="unfinished"></translation>
     </message>

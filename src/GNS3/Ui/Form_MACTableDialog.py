@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MACTableDialog.ui'
 #
-# Created: Fri Jun 11 13:14:28 2010
+# Created: Fri Jun 11 16:46:03 2010
 #      by: PyQt4 UI code generator 4.7.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,6 +13,9 @@ class Ui_MACTableDialog(object):
     def setupUi(self, MACTableDialog):
         MACTableDialog.setObjectName("MACTableDialog")
         MACTableDialog.resize(336, 252)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/images/logo_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MACTableDialog.setWindowIcon(icon)
         self.gridLayout = QtGui.QGridLayout(MACTableDialog)
         self.gridLayout.setObjectName("gridLayout")
         self.plainTextEditMACTable = QtGui.QPlainTextEdit(MACTableDialog)
@@ -37,3 +40,4 @@ class Ui_MACTableDialog(object):
         self.pushButtonRefresh.setText(QtGui.QApplication.translate("MACTableDialog", "Refresh", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonClear.setText(QtGui.QApplication.translate("MACTableDialog", "Clear table", None, QtGui.QApplication.UnicodeUTF8))
 
+import svg_resources_rc

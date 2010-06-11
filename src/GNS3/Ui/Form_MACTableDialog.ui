@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>MAC Address Table</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <normaloff>:/images/logo_icon.png</normaloff>:/images/logo_icon.png</iconset>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" colspan="3">
     <widget class="QPlainTextEdit" name="plainTextEditMACTable"/>
@@ -40,6 +44,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../../../gns3-artwork/svg_resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

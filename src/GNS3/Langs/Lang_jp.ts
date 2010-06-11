@@ -584,52 +584,52 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractEdge</name>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="189"/>
+        <location filename="../Link/AbstractEdge.py" line="191"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="193"/>
+        <location filename="../Link/AbstractEdge.py" line="195"/>
         <source>Stop the capture</source>
         <translation>キャプチャをやめる</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="195"/>
+        <location filename="../Link/AbstractEdge.py" line="197"/>
         <source>Start Wireshark</source>
         <translation>Wiresharkを起動</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="329"/>
+        <location filename="../Link/AbstractEdge.py" line="331"/>
         <source>Capture</source>
         <translation>キャプチャする</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="210"/>
+        <location filename="../Link/AbstractEdge.py" line="212"/>
         <source>Packet capture is not supported on this link type</source>
         <translation>このリンクはキャプチャできません</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="234"/>
+        <location filename="../Link/AbstractEdge.py" line="236"/>
         <source>Please choose a source</source>
         <translation>ソースを選択して下さい</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="237"/>
+        <location filename="../Link/AbstractEdge.py" line="239"/>
         <source>No device available for traffic capture</source>
         <translation>キャプチャできるデバイスはありません</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="299"/>
+        <location filename="../Link/AbstractEdge.py" line="301"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="294"/>
+        <location filename="../Link/AbstractEdge.py" line="296"/>
         <source>Capture stopped</source>
         <translation>キャプチャ止まりました</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="308"/>
+        <location filename="../Link/AbstractEdge.py" line="310"/>
         <source>Please configure capture options</source>
         <translation>キャプチャの設定をしてください</translation>
     </message>
@@ -639,22 +639,22 @@ p, li { white-space: pre-wrap; }
         <translation>リンク: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="244"/>
+        <location filename="../Link/AbstractEdge.py" line="246"/>
         <source>Device %s is not running</source>
         <translation>デバイス %s は起動していません</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="329"/>
+        <location filename="../Link/AbstractEdge.py" line="331"/>
         <source>Cannot start %s : %s</source>
         <translation>スタートできません %s : %s</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="314"/>
+        <location filename="../Link/AbstractEdge.py" line="316"/>
         <source>%s is empty, no traffic captured on the link. Try again later</source>
         <translation>%s にトラフィックは流れていません。もう一度試してください</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="318"/>
+        <location filename="../Link/AbstractEdge.py" line="320"/>
         <source>Cannot find %s : %s</source>
         <translation>見つかりません %s : %s</translation>
     </message>
@@ -1096,82 +1096,97 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="232"/>
+        <location filename="../Node/ETHSW.py" line="236"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="232"/>
+        <location filename="../Node/ETHSW.py" line="236"/>
         <source>No port available</source>
         <translation>使用できるポートはありません</translation>
+    </message>
+    <message>
+        <location filename="../Node/ETHSW.py" line="210"/>
+        <source>Port type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/ETHSW.py" line="210"/>
+        <source>QinQ is only supported with Dynamips &gt; 0.2.8 RC2</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ETHSWPage</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="13"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="14"/>
         <source>Ethernet Switch</source>
         <translation>イーサネットスイッチ</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="25"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="26"/>
         <source>Settings</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="31"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="32"/>
         <source>Port:</source>
         <translation>ポート:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="57"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="58"/>
         <source>VLAN:</source>
         <translation>VLAN:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="83"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="84"/>
         <source>Type:</source>
         <translation>タイプ:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="91"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="92"/>
         <source>access</source>
         <translation>access</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="96"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="97"/>
         <source>dot1q</source>
         <translation>dot1q</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="107"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="113"/>
         <source>Ports</source>
         <translation>ポート</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="123"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="129"/>
         <source>Port</source>
         <translation>ポート</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="128"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="134"/>
         <source>VLAN</source>
         <translation>VLAN</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="133"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="139"/>
         <source>Type</source>
         <translation>タイプ</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="144"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="150"/>
         <source>&amp;Add</source>
         <translation>追加(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="154"/>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="160"/>
         <source>&amp;Delete</source>
         <translation>削除(&amp;D)</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="102"/>
+        <source>qinq</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1666,17 +1681,17 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="642"/>
+        <location filename="../Node/IOSRouter.py" line="627"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="642"/>
+        <location filename="../Node/IOSRouter.py" line="627"/>
         <source>No interface available</source>
         <translation>インターフェイスが見つかりません</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="513"/>
+        <location filename="../Node/IOSRouter.py" line="498"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
@@ -1744,7 +1759,7 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
         <translation>メモリー サイズ:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="545"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="561"/>
         <source> MB</source>
         <translation> MB</translation>
     </message>
@@ -1809,32 +1824,32 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
         <translation>スロット6:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="486"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="502"/>
         <source>Advanced</source>
         <translation>高度な設定</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="505"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="521"/>
         <source>0x2102</source>
         <translation>0x2102</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="512"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="528"/>
         <source>Base MAC :</source>
         <translation>ベース MAC :</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="532"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="548"/>
         <source>exec area:</source>
         <translation>exec エリア:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="561"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="577"/>
         <source>iomem :</source>
         <translation>iomem :</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="577"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="593"/>
         <source> %</source>
         <translation> %</translation>
     </message>
@@ -1854,27 +1869,27 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
         <translation>アダプタ</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="415"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="431"/>
         <source>WICs</source>
         <translation>WICs</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="427"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="443"/>
         <source>wic0:</source>
         <translation>wic0:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="443"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="459"/>
         <source>wic1:</source>
         <translation>wic1:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="459"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="475"/>
         <source>wic2:</source>
         <translation>wic2:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="492"/>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="508"/>
         <source>Confreg:</source>
         <translation>Confreg:</translation>
     </message>
@@ -1882,6 +1897,11 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="194"/>
         <source> KB</source>
         <translation> KB</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="418"/>
+        <source>slot7:</source>
+        <translation type="unfinished">スロット6: {7:?}</translation>
     </message>
 </context>
 <context>
@@ -2374,32 +2394,32 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
         <translation>Dynamips のプログラムパスを設定してください</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="805"/>
+        <location filename="../NETFile.py" line="809"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="808"/>
+        <location filename="../NETFile.py" line="812"/>
         <source>Dynamips warning</source>
         <translation>Dynamips 警告</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="560"/>
+        <location filename="../NETFile.py" line="561"/>
         <source>Exception detected, stopping importation...</source>
         <translation>例外エラーでたためインポートを中止しています...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="803"/>
+        <location filename="../NETFile.py" line="807"/>
         <source>Exporting %s configuration to %s</source>
         <translation>%s のコンフィッグを %s にエクスポート中</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="820"/>
+        <location filename="../NETFile.py" line="824"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO エラー: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="560"/>
+        <location filename="../NETFile.py" line="561"/>
         <source>Importation</source>
         <translation>インポート</translation>
     </message>
@@ -2409,12 +2429,12 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
         <translation>トポロジーのインポート完了するまでお待ちください</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="820"/>
+        <location filename="../NETFile.py" line="824"/>
         <source>IOError</source>
         <translation>IO エラー</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="583"/>
+        <location filename="../NETFile.py" line="584"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation>警告: GNS3 はまだ LAN 側を対応していないため、無視しています</translation>
     </message>
@@ -2434,7 +2454,7 @@ idlepc値の前にある番号を入力してください [1-%i]　またはENTE
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="983"/>
+        <location filename="../NETFile.py" line="987"/>
         <source>must be connected or have a hypervisor set in order to be registered</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2764,13 +2784,13 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="160"/>
-        <source>Enable JIT sharing support</source>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="170"/>
+        <source>Enable sparse memory support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="170"/>
-        <source>Enable sparse memory support</source>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="160"/>
+        <source>Enable JIT sharing support (Dynamips &gt; 0.2.8 RC2)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3343,138 +3363,143 @@ to display the configuration page.</source>
 <context>
     <name>Scene</name>
     <message>
-        <location filename="../Scene.py" line="202"/>
+        <location filename="../Scene.py" line="213"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="107"/>
+        <location filename="../Scene.py" line="108"/>
         <source>Configure</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="144"/>
+        <location filename="../Scene.py" line="155"/>
         <source>Console</source>
         <translation>コンソール</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="149"/>
+        <location filename="../Scene.py" line="160"/>
         <source>Start</source>
         <translation>スタート</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="154"/>
+        <location filename="../Scene.py" line="165"/>
         <source>Stop</source>
         <translation>ストップ</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="177"/>
+        <location filename="../Scene.py" line="188"/>
         <source>Suspend</source>
         <translation>サスペンド</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="167"/>
+        <location filename="../Scene.py" line="178"/>
         <source>Idle PC</source>
         <translation>Idle PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="345"/>
+        <location filename="../Scene.py" line="366"/>
         <source>IDLE PC</source>
         <translation>IDLE PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="280"/>
+        <location filename="../Scene.py" line="301"/>
         <source>Please select only one router</source>
         <translation>ルータを一台だけ選択してください</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="321"/>
+        <location filename="../Scene.py" line="342"/>
         <source>No idlepc values found</source>
         <translation>idlepc値を見つかりませんでした</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="323"/>
+        <location filename="../Scene.py" line="344"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
         <translation> &apos;*&apos;マークのある idlepc 値はお勧めです</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="348"/>
+        <location filename="../Scene.py" line="369"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="287"/>
+        <location filename="../Scene.py" line="308"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
         <translation>%s　に idlepc 値が既に指定されています。新しい値を発行しますか?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="345"/>
+        <location filename="../Scene.py" line="366"/>
         <source>Applied idlepc value %s to %s</source>
         <translation>idlepc 値　%s を %s　に設定しました</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="238"/>
+        <location filename="../Scene.py" line="249"/>
         <source>Please wait while calculating an IDLE PC</source>
         <translation>IDLE PC の計算完了するまでお待ちください</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="112"/>
+        <location filename="../Scene.py" line="113"/>
         <source>Change the hostname</source>
         <translation>ホスト名を変更</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="117"/>
+        <location filename="../Scene.py" line="118"/>
         <source>Show/Hide the hostname</source>
         <translation>ホスト名を表示．非表示する</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="139"/>
+        <location filename="../Scene.py" line="150"/>
         <source>Change console port</source>
         <translation>コンソールポートを変更</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="172"/>
+        <location filename="../Scene.py" line="183"/>
         <source>Startup-config</source>
         <translation>スタートアップコンフィッグ</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="208"/>
+        <location filename="../Scene.py" line="219"/>
         <source>Lower one step</source>
         <translation>一個下げる</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="213"/>
+        <location filename="../Scene.py" line="224"/>
         <source>Raise one step</source>
         <translation>一個上げる</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="195"/>
+        <location filename="../Scene.py" line="206"/>
         <source>Style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="182"/>
+        <location filename="../Scene.py" line="193"/>
         <source>Reload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="129"/>
+        <location filename="../Scene.py" line="130"/>
         <source>Set an hypervisor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="672"/>
+        <location filename="../Scene.py" line="693"/>
         <source>annotation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="681"/>
+        <location filename="../Scene.py" line="702"/>
         <source>rectangle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="689"/>
+        <location filename="../Scene.py" line="710"/>
         <source>ellipse</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="140"/>
+        <source>MAC Address Table</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3776,17 +3801,17 @@ ALT + LEFT or RIGHT</source>
         <translation>Dynamips のプログラムパスを設定してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="844"/>
+        <location filename="../Topology.py" line="858"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="844"/>
+        <location filename="../Topology.py" line="858"/>
         <source>Connection lost</source>
         <translation>接続失敗しました</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="739"/>
+        <location filename="../Topology.py" line="744"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
@@ -3806,7 +3831,7 @@ ALT + LEFT or RIGHT</source>
         <translation>イメージを選択して下さい</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="739"/>
+        <location filename="../Topology.py" line="744"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>スイッチに少なくとも1つのルータに接続する必要あります</translation>
     </message>
@@ -3901,7 +3926,7 @@ ALT + LEFT or RIGHT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="726"/>
+        <location filename="../Topology.py" line="731"/>
         <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4029,223 +4054,223 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="154"/>
+        <location filename="../Workspace.py" line="155"/>
         <source>Docks</source>
         <translation>ドッキング</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="897"/>
+        <location filename="../Workspace.py" line="898"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="617"/>
+        <location filename="../Workspace.py" line="618"/>
         <source>Connection lost</source>
         <translation>接続失敗しました</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="586"/>
+        <location filename="../Workspace.py" line="587"/>
         <source>Abort</source>
         <translation>中止</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="718"/>
+        <location filename="../Workspace.py" line="719"/>
         <source>Starting nodes ...</source>
         <translation>ノード開始中 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="635"/>
+        <location filename="../Workspace.py" line="636"/>
         <source>Stopping nodes ...</source>
         <translation>ノード停止中 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="641"/>
+        <location filename="../Workspace.py" line="642"/>
         <source>Suspending nodes ...</source>
         <translation>ノードサスペンド中 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="711"/>
+        <location filename="../Workspace.py" line="712"/>
         <source>Loading</source>
         <translation>読み込み中</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="534"/>
+        <location filename="../Workspace.py" line="535"/>
         <source>Hide hostnames</source>
         <translation>ホスト名を表示しない</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="539"/>
+        <location filename="../Workspace.py" line="540"/>
         <source>Show hostnames</source>
         <translation>ホスト名を表示する</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="912"/>
+        <location filename="../Workspace.py" line="913"/>
         <source>Open a file</source>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="908"/>
+        <location filename="../Workspace.py" line="909"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Dynamips のプログラムパスを使用する必要があります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="948"/>
+        <location filename="../Workspace.py" line="949"/>
         <source>Save Project As</source>
         <translation>プロジェクトを名前指定して保存</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="756"/>
+        <location filename="../Workspace.py" line="757"/>
         <source>New Project</source>
         <translation>新規プロジェクト</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="968"/>
+        <location filename="../Workspace.py" line="969"/>
         <source>Message</source>
         <translation>メッセージ</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="300"/>
+        <location filename="../Workspace.py" line="301"/>
         <source>Are you sure to clear the topology?</source>
         <translation>トポロジーをクリアします、よろしいですか?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="414"/>
+        <location filename="../Workspace.py" line="415"/>
         <source>Add a link</source>
         <translation>リンクを追加する</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="429"/>
+        <location filename="../Workspace.py" line="430"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="756"/>
+        <location filename="../Workspace.py" line="757"/>
         <source>Can&apos;t create a project</source>
         <translation>プロジェクトを作成できませんでした</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="711"/>
+        <location filename="../Workspace.py" line="712"/>
         <source>Invalid file %s</source>
         <translation>ファイル %s に誤りがあります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="968"/>
+        <location filename="../Workspace.py" line="969"/>
         <source>Would you like to save the topology before you quit?</source>
         <translation>閉じる前にトポロジーの保存しますか?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="806"/>
+        <location filename="../Workspace.py" line="807"/>
         <source>Would you like to save the current topology?</source>
         <translation>現在のトポロジーを保存しますか?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="324"/>
+        <location filename="../Workspace.py" line="325"/>
         <source>Directory to write startup-configs</source>
         <translation>スタートコンフィッグを書き込みするディレクトリ</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="192"/>
+        <location filename="../Workspace.py" line="193"/>
         <source>Yes - Export all the workspace
 No - Export only what I see</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="549"/>
+        <location filename="../Workspace.py" line="550"/>
         <source>Hide interface names</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="554"/>
+        <location filename="../Workspace.py" line="555"/>
         <source>Show interface names</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="769"/>
+        <location filename="../Workspace.py" line="770"/>
         <source>Do you want to apply the project settings to the current topology? (can take some time)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="845"/>
+        <location filename="../Workspace.py" line="846"/>
         <source>Snapshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="845"/>
+        <location filename="../Workspace.py" line="846"/>
         <source>Cannot create directory %s: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="850"/>
+        <location filename="../Workspace.py" line="851"/>
         <source>Please wait while creating a snapshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="617"/>
+        <location filename="../Workspace.py" line="618"/>
         <source>%s: Dynamips error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="614"/>
+        <location filename="../Workspace.py" line="615"/>
         <source>%s: Dynamips warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="315"/>
+        <location filename="../Workspace.py" line="316"/>
         <source>Extracting to a directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="317"/>
+        <location filename="../Workspace.py" line="318"/>
         <source>Importing from a directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="311"/>
+        <location filename="../Workspace.py" line="312"/>
         <source>Configs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="311"/>
+        <location filename="../Workspace.py" line="312"/>
         <source>Please choose an option</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="337"/>
+        <location filename="../Workspace.py" line="338"/>
         <source>Directory to read startup-configs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="358"/>
+        <location filename="../Workspace.py" line="359"/>
         <source>IO Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="348"/>
+        <location filename="../Workspace.py" line="349"/>
         <source>Importing %s from %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="361"/>
+        <location filename="../Workspace.py" line="362"/>
         <source>Ignoring unknown device %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="363"/>
+        <location filename="../Workspace.py" line="364"/>
         <source>Dynamips Error: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="365"/>
+        <location filename="../Workspace.py" line="366"/>
         <source>Dynamips Warning: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="260"/>
+        <location filename="../Workspace.py" line="261"/>
         <source>I/O Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="260"/>
+        <location filename="../Workspace.py" line="261"/>
         <source>I/O Error: %s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4260,27 +4285,27 @@ No - Export only what I see</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="737"/>
+        <location filename="../Workspace.py" line="738"/>
         <source>Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="737"/>
+        <location filename="../Workspace.py" line="738"/>
         <source>Please create a new project first</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="647"/>
+        <location filename="../Workspace.py" line="648"/>
         <source>Reloading nodes ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="405"/>
+        <location filename="../Workspace.py" line="406"/>
         <source>picture</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="897"/>
+        <location filename="../Workspace.py" line="898"/>
         <source>Dynamips error: %s</source>
         <translation type="unfinished"></translation>
     </message>

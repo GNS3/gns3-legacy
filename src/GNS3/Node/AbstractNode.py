@@ -228,6 +228,8 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """ Called when the mouse is hover the node
         """
 
+        # update tool tip
+        self.updateToolTips()
         if not self.isSelected() and self.__render_select:
             self.setSharedRenderer(self.__render_select)
 
