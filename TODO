@@ -5,7 +5,6 @@ TODO LIST
  * Show NIO activity (next release of Dynamips)
  * Dynamips QinQ integration (next release of Dynamips)
  * Packet capture between Qemu devices
- * Show MAC addrs table in ETHSW
 
 Debugging
 

@@ -4523,9 +4523,6 @@ class ETHSW(Emulated_switch):
             map = self.mapping[port1]
             (porttype, vlan, nio,twosided) = map
             map_info += '   Port '+str(port1) + ' is in ' + porttype + ' mode, with native VLAN ' + str(vlan) + ',\n    ' + nio.info() + '\n'
-            #add connection info
-            nio = self.nio(port1)
-            map_info += '     ' + nio.info() + '\n'
         return info + map_info
 
     def unset_port (self, port):

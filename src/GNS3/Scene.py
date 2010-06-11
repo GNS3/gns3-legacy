@@ -28,6 +28,7 @@ from GNS3.Utils import translate, debug
 from GNS3.Annotation import Annotation
 from GNS3.ShapeItem import AbstractShapeItem, Rectangle, Ellipse
 from GNS3.StyleDialog import StyleDialog
+from GNS3.MACTableDialog import MACTableDialog
 from GNS3.Pixmap import Pixmap
 from GNS3.NodeConfigurator import NodeConfigurator
 from GNS3.Node.AbstractNode import AbstractNode
@@ -131,6 +132,16 @@ class Scene(QtGui.QGraphicsView):
             self.connect(changeHypervisor, QtCore.SIGNAL('triggered()'), self.slotChangeHypervisor)
             
             menu.addAction(changeHypervisor)
+            
+        instances = map(lambda item: isinstance(item, ETHSW), items)
+        if True in instances:
+            
+            # Action: MAC Table
+            MACTableAct = QtGui.QAction(translate('Scene', 'MAC Address Table'), menu)
+            MACTableAct.setIcon(QtGui.QIcon(':/icons/inspect.svg'))
+            self.connect(MACTableAct, QtCore.SIGNAL('triggered()'), self.slotMACTable)
+
+            menu.addAction(MACTableAct)
 
         instances = map(lambda item: isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice), items)
         if True in instances:
@@ -239,6 +250,16 @@ class Scene(QtGui.QGraphicsView):
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
         result = globals.GApp.dynagen.devices[router.hostname].idleprop(lib.IDLEPROPGET)
         return result
+
+    def slotMACTable(self):
+        """ Show Ethernet Switch MAC Address Table
+        """
+
+        for item in self.__topology.selectedItems():
+            if isinstance(item, ETHSW):
+                table = MACTableDialog(item)
+                table.show()
+                table.exec_()
 
     def slotStyle(self):
         """ Change the style of an annotation or a shape item
