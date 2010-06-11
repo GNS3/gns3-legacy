@@ -644,6 +644,7 @@ class NIO_udp(NIO):
         
     def reset_stats(self):
         send(self.__d, 'nio reset_stats %s' % self.__name)
+
     def delete(self):
         send(self.__d, 'nio delete %s' % self.__name)
 

@@ -128,8 +128,8 @@ class NETFile(object):
             keys = device.mapping.keys()
             for port in keys:
                 nio_port = device.nio(port)
-                # NIO_null has no reverse udp nio
-                if nio_port and not isinstance(nio_port, lib.NIO_null):
+                # Only NIO_udp
+                if nio_port and isinstance(nio_port, lib.NIO_udp):
                     (remote_device, remote_adapter, remote_port) = lib.get_reverse_udp_nio(nio_port)
                     if isinstance(remote_device, lib.ETHSW):
                         self.add_in_connection_list((device.name, str(port), remote_device.name, str(remote_port)), connection_list)

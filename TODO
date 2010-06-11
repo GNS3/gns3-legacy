@@ -5,7 +5,9 @@ TODO LIST
  * Show NIO activity (next release of Dynamips)
  * Dynamips QinQ integration (next release of Dynamips)
  * Packet capture between Qemu devices
+ * Show MAC addrs table in ETHSW
 
 Debugging
 
  * Can only run one instance of Qemu on Windows (http://www.gns3.net/phpBB/topic1914.html)
+ * Disconnect between ETHSW and Clouds

@@ -149,7 +149,9 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         """
 
         self.setToolTip(unicode(translate("AbstractEdge", "Link: %s (%s) -> %s (%s)")) % (self.source.hostname, self.srcIf, self.dest.hostname, self.destIf))
-
+        
+        #self.source.get_dynagen_device().slot[0].nio(0).get_stats()
+                
     def keyReleaseEvent(self, event):
         """ Key release handler
         """
