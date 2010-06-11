@@ -4424,7 +4424,6 @@ class ATMSW(Emulated_switch):
         self.nio(port).delete()
         #delete from frontend
         del self._nios[port]
-
     
     def nio(self, port, nio=None):
         """ Returns the NETIO object for this port
@@ -4607,6 +4606,10 @@ class ETHSW(Emulated_switch):
 
         send(self._d, 'ethsw remove_nio %s %s' % (self._name, nio))
         del self.mapping[port]
+
+        #now delete the NIO from backend
+        self.nios[port].delete()
+        del self.nios[port]
 
     
     def nio(
