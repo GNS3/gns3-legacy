@@ -1068,7 +1068,11 @@ class NETFile(object):
                         device['cnfg'] = self.convert_to_relpath(device['cnfg'], path)
         
         self.dynagen.running_config.filename = path
-        self.dynagen.running_config.write()
+        try:
+            self.dynagen.running_config.write()  
+        except IOError, e:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 
+                                      unicode(device.name) + ': ' + translate("NETFile", "IOError"), unicode(translate("NETFile", "%s: IO Error: %s")) % (path, unicode(e)))        
         self.dynagen.running_config.filename = None
         
     def convert_to_relpath(self, path, config_path):

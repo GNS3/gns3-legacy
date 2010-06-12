@@ -584,52 +584,52 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractEdge</name>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="191"/>
+        <location filename="../Link/AbstractEdge.py" line="190"/>
         <source>Delete</source>
         <translation>Odstranit</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="195"/>
+        <location filename="../Link/AbstractEdge.py" line="194"/>
         <source>Stop the capture</source>
         <translation>Zastavit zachytávání paketů</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="197"/>
+        <location filename="../Link/AbstractEdge.py" line="196"/>
         <source>Start Wireshark</source>
         <translation>Spustit Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="331"/>
+        <location filename="../Link/AbstractEdge.py" line="330"/>
         <source>Capture</source>
         <translation>Zachytávát pakety</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="212"/>
+        <location filename="../Link/AbstractEdge.py" line="211"/>
         <source>Packet capture is not supported on this link type</source>
         <translation>Toto spojení nepodporuje zachytávání paketů</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="236"/>
+        <location filename="../Link/AbstractEdge.py" line="235"/>
         <source>Please choose a source</source>
         <translation>Vyberte zdroj</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="239"/>
+        <location filename="../Link/AbstractEdge.py" line="238"/>
         <source>No device available for traffic capture</source>
         <translation>Pro zachytávání paketů není k dispozici žádné zařízení </translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="301"/>
+        <location filename="../Link/AbstractEdge.py" line="300"/>
         <source>Dynamips error</source>
         <translation>Chyba v Dynamips</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="296"/>
+        <location filename="../Link/AbstractEdge.py" line="295"/>
         <source>Capture stopped</source>
         <translation>Zachytávání zastaveno</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="310"/>
+        <location filename="../Link/AbstractEdge.py" line="309"/>
         <source>Please configure capture options</source>
         <translation>Nastavte zachytávání paketov</translation>
     </message>
@@ -639,22 +639,22 @@ p, li { white-space: pre-wrap; }
         <translation>Spojení: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="246"/>
+        <location filename="../Link/AbstractEdge.py" line="245"/>
         <source>Device %s is not running</source>
         <translation>Zařízení %s neběží</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="331"/>
+        <location filename="../Link/AbstractEdge.py" line="330"/>
         <source>Cannot start %s : %s</source>
         <translation>Nemůžu spustit %s : %s</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="316"/>
+        <location filename="../Link/AbstractEdge.py" line="315"/>
         <source>%s is empty, no traffic captured on the link. Try again later</source>
         <translation>Nezachytil jsem na %s žádný datový tok. Zkuste později</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="320"/>
+        <location filename="../Link/AbstractEdge.py" line="319"/>
         <source>Cannot find %s : %s</source>
         <translation>Nemůžu nalézt: %s : %s</translation>
     </message>
@@ -667,12 +667,12 @@ p, li { white-space: pre-wrap; }
         <translation>Jméno zařízení:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="330"/>
+        <location filename="../Node/AbstractNode.py" line="335"/>
         <source>Connection</source>
         <translation>Spojení</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="296"/>
+        <location filename="../Node/AbstractNode.py" line="301"/>
         <source>Already connected interface</source>
         <translation>Rozhraní je již připojeno</translation>
     </message>
@@ -687,12 +687,12 @@ p, li { white-space: pre-wrap; }
         <translation>Vybrané jméno zařízení již existuje</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="267"/>
+        <location filename="../Node/AbstractNode.py" line="272"/>
         <source>Hostname: %s</source>
         <translation>Jméno zařízení: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="330"/>
+        <location filename="../Node/AbstractNode.py" line="335"/>
         <source>No interface available, please configure this device</source>
         <translation>Žádné rozhraní k dispozici, prosím nakonfigurujte toto zařízení</translation>
     </message>
@@ -2415,7 +2415,7 @@ Zadajte číslo idlepc hodnoty, kterou chcete nastaviť [1-%i], nebo stiskněte 
         <translation>Exportuji konfiguraci zařízení %s do adresáře %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="824"/>
+        <location filename="../NETFile.py" line="1074"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Chyba vstupu/výstupu: %s</translation>
     </message>
@@ -2430,7 +2430,7 @@ Zadajte číslo idlepc hodnoty, kterou chcete nastaviť [1-%i], nebo stiskněte 
         <translation>Prosím, čekejte dokud se nenaimportuje topologie</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="824"/>
+        <location filename="../NETFile.py" line="1074"/>
         <source>IOError</source>
         <translation>Chyba vstupu/výstupu</translation>
     </message>
@@ -3802,12 +3802,12 @@ ALT + LEFT or RIGHT</source>
         <translation>Nakonfigurujte cestu k Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="858"/>
+        <location filename="../Topology.py" line="861"/>
         <source>Dynamips error</source>
         <translation>Chyba Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="858"/>
+        <location filename="../Topology.py" line="861"/>
         <source>Connection lost</source>
         <translation>Spojení ztraceno</translation>
     </message>

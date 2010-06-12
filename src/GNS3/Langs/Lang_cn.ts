@@ -584,52 +584,52 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractEdge</name>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="191"/>
+        <location filename="../Link/AbstractEdge.py" line="190"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="195"/>
+        <location filename="../Link/AbstractEdge.py" line="194"/>
         <source>Stop the capture</source>
         <translation>停止capture</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="197"/>
+        <location filename="../Link/AbstractEdge.py" line="196"/>
         <source>Start Wireshark</source>
         <translation>启动Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="331"/>
+        <location filename="../Link/AbstractEdge.py" line="330"/>
         <source>Capture</source>
         <translation>Capture</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="212"/>
+        <location filename="../Link/AbstractEdge.py" line="211"/>
         <source>Packet capture is not supported on this link type</source>
         <translation>该链路类型不支持包抓取</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="236"/>
+        <location filename="../Link/AbstractEdge.py" line="235"/>
         <source>Please choose a source</source>
         <translation>请选择一个源</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="239"/>
+        <location filename="../Link/AbstractEdge.py" line="238"/>
         <source>No device available for traffic capture</source>
         <translation>没有设备可供流量Capture</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="301"/>
+        <location filename="../Link/AbstractEdge.py" line="300"/>
         <source>Dynamips error</source>
         <translation>Dynamips 错误</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="296"/>
+        <location filename="../Link/AbstractEdge.py" line="295"/>
         <source>Capture stopped</source>
         <translation>Capture已停止</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="310"/>
+        <location filename="../Link/AbstractEdge.py" line="309"/>
         <source>Please configure capture options</source>
         <translation>请配置Capture选项</translation>
     </message>
@@ -639,22 +639,22 @@ p, li { white-space: pre-wrap; }
         <translation>链路: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="246"/>
+        <location filename="../Link/AbstractEdge.py" line="245"/>
         <source>Device %s is not running</source>
         <translation>设备 %s 没有运行</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="331"/>
+        <location filename="../Link/AbstractEdge.py" line="330"/>
         <source>Cannot start %s : %s</source>
         <translation>无法开始 %s : %s</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="316"/>
+        <location filename="../Link/AbstractEdge.py" line="315"/>
         <source>%s is empty, no traffic captured on the link. Try again later</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="320"/>
+        <location filename="../Link/AbstractEdge.py" line="319"/>
         <source>Cannot find %s : %s</source>
         <translation></translation>
     </message>
@@ -667,12 +667,12 @@ p, li { white-space: pre-wrap; }
         <translation>设备名:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="330"/>
+        <location filename="../Node/AbstractNode.py" line="335"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="296"/>
+        <location filename="../Node/AbstractNode.py" line="301"/>
         <source>Already connected interface</source>
         <translation>端口已被连接</translation>
     </message>
@@ -687,12 +687,12 @@ p, li { white-space: pre-wrap; }
         <translation>设备名已经被使用</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="267"/>
+        <location filename="../Node/AbstractNode.py" line="272"/>
         <source>Hostname: %s</source>
         <translation>设备名: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="330"/>
+        <location filename="../Node/AbstractNode.py" line="335"/>
         <source>No interface available, please configure this device</source>
         <translation>没有端口可用,请配置该设备</translation>
     </message>
@@ -2415,7 +2415,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>输出%s的配置到%s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="824"/>
+        <location filename="../NETFile.py" line="1074"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO 错误: %s</translation>
     </message>
@@ -2430,7 +2430,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>正在导入拓扑,请稍后</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="824"/>
+        <location filename="../NETFile.py" line="1074"/>
         <source>IOError</source>
         <translation></translation>
     </message>
@@ -3802,12 +3802,12 @@ ALT + LEFT or RIGHT</source>
         <translation>请配置Dynamips路径</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="858"/>
+        <location filename="../Topology.py" line="861"/>
         <source>Dynamips error</source>
         <translation>Dynamips 错误</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="858"/>
+        <location filename="../Topology.py" line="861"/>
         <source>Connection lost</source>
         <translation>丢失连接</translation>
     </message>

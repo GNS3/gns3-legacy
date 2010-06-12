@@ -584,52 +584,52 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractEdge</name>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="191"/>
+        <location filename="../Link/AbstractEdge.py" line="190"/>
         <source>Delete</source>
         <translation>Eliminar</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="195"/>
+        <location filename="../Link/AbstractEdge.py" line="194"/>
         <source>Stop the capture</source>
         <translation>Detener captura</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="197"/>
+        <location filename="../Link/AbstractEdge.py" line="196"/>
         <source>Start Wireshark</source>
         <translation>Inicio Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="331"/>
+        <location filename="../Link/AbstractEdge.py" line="330"/>
         <source>Capture</source>
         <translation>Captura</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="212"/>
+        <location filename="../Link/AbstractEdge.py" line="211"/>
         <source>Packet capture is not supported on this link type</source>
         <translation>La captura de paquetes no esta soportada por este tipo de vinculo</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="236"/>
+        <location filename="../Link/AbstractEdge.py" line="235"/>
         <source>Please choose a source</source>
         <translation>Por favor selecciones un origen</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="239"/>
+        <location filename="../Link/AbstractEdge.py" line="238"/>
         <source>No device available for traffic capture</source>
         <translation>No hay dispositivos disponibles para la captura de trafico</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="301"/>
+        <location filename="../Link/AbstractEdge.py" line="300"/>
         <source>Dynamips error</source>
         <translation>Dynamips error</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="296"/>
+        <location filename="../Link/AbstractEdge.py" line="295"/>
         <source>Capture stopped</source>
         <translation>Captura detenida</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="310"/>
+        <location filename="../Link/AbstractEdge.py" line="309"/>
         <source>Please configure capture options</source>
         <translation>Por favor configure las opciones de captura</translation>
     </message>
@@ -639,22 +639,22 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="246"/>
+        <location filename="../Link/AbstractEdge.py" line="245"/>
         <source>Device %s is not running</source>
         <translation>Dispositivo % no esta en funcionamiento</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="331"/>
+        <location filename="../Link/AbstractEdge.py" line="330"/>
         <source>Cannot start %s : %s</source>
         <translation>No se puede iniciar %s : %s</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="316"/>
+        <location filename="../Link/AbstractEdge.py" line="315"/>
         <source>%s is empty, no traffic captured on the link. Try again later</source>
         <translation>%s esta vacio, no se capturo trafico en el vinculo. Intente en otro momento</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="320"/>
+        <location filename="../Link/AbstractEdge.py" line="319"/>
         <source>Cannot find %s : %s</source>
         <translation>No se encuentra %s: %s</translation>
     </message>
@@ -667,12 +667,12 @@ p, li { white-space: pre-wrap; }
         <translation>Nombre de host:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="330"/>
+        <location filename="../Node/AbstractNode.py" line="335"/>
         <source>Connection</source>
         <translation>Conexion</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="296"/>
+        <location filename="../Node/AbstractNode.py" line="301"/>
         <source>Already connected interface</source>
         <translation>Interfaz ya esta conectada</translation>
     </message>
@@ -687,12 +687,12 @@ p, li { white-space: pre-wrap; }
         <translation>Nombre de host ya utilizado</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="267"/>
+        <location filename="../Node/AbstractNode.py" line="272"/>
         <source>Hostname: %s</source>
         <translation>Nombre de host: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="330"/>
+        <location filename="../Node/AbstractNode.py" line="335"/>
         <source>No interface available, please configure this device</source>
         <translation>No hay interfaces disponibles, por favor configure el dispositivo</translation>
     </message>
@@ -2415,7 +2415,7 @@ Ingrese el numero del idlepc que desea aplicar [1-%i] o ENTER para no realizar c
         <translation>Exportando la configuracion %s a %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="824"/>
+        <location filename="../NETFile.py" line="1074"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO Error: %s</translation>
     </message>
@@ -2430,7 +2430,7 @@ Ingrese el numero del idlepc que desea aplicar [1-%i] o ENTER para no realizar c
         <translation>Aguarde mientras se importa la topologia</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="824"/>
+        <location filename="../NETFile.py" line="1074"/>
         <source>IOError</source>
         <translation>IOError</translation>
     </message>
@@ -3802,12 +3802,12 @@ ALT + IZQ o DER</translation>
         <translation>Por favor configure la ruta para Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="858"/>
+        <location filename="../Topology.py" line="861"/>
         <source>Dynamips error</source>
         <translation>Dynamips error</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="858"/>
+        <location filename="../Topology.py" line="861"/>
         <source>Connection lost</source>
         <translation>Perdida de conexion</translation>
     </message>

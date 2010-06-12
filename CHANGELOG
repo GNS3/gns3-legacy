@@ -1,5 +1,31 @@
 CHANGELOG
 
+GNS3 0.7.2
+
+ * Lot of small fixes (relative paths, link removal, .net loading, Ethernet switch connection to a Cloud etc.)
+ * Qemuwrapper: random MAC address for devices
+ * NPE-G2 option for c7200 routers (need a specific and uncompressed IOS image and C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work)
+ * Simulated switch daisy chaining support
+ * Improved directory selection for new projects
+ * New translations: Bulgarian, Italian and Ukrainian
+ * Frame Relay capture option for all serial links
+ * Dialog to display the MAC address table of a simulated Ethernet switch
+ 
+ The following features will work only with Dynamips version > 0.2.8 RC2:
+ 
+ * OIR (Online Insertion and Removal) for c3660 and c3745 (only NM-4T).
+ * JIT sharing support (saves memory).
+ * C7200-JC-PA Jacket Card support. Allow the use of a slot 7 for c7200 routers with NPE-G2.
+ * QinQ support for simulated Ethernet switches.
+ * Interfaces statistics (Packets in, Packets out, Bytes in, Bytes out). Displayed in node tooltips.
+
+GNS3 0.7.1
+
+ * Qemuwrapper (option to listen on a IP/host and port).
+ * Basic support for external hypervisors.
+ * Some improvement for projects under GNS3 (still work to do).
+ * Many small bugs fixes (graphical, cloud connection etc.)
+
 GNS3 0.7
 
  * Support & debugging on Windows 7.

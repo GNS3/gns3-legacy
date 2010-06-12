@@ -584,52 +584,52 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractEdge</name>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="197"/>
+        <location filename="../Link/AbstractEdge.py" line="196"/>
         <source>Start Wireshark</source>
         <translation>Wireshark شروع</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="310"/>
+        <location filename="../Link/AbstractEdge.py" line="309"/>
         <source>Please configure capture options</source>
         <translation>لطفا آپشن هاي كپچر را تنظيم كنيد</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="320"/>
+        <location filename="../Link/AbstractEdge.py" line="319"/>
         <source>Cannot find %s : %s</source>
         <translation>پيدا نشد %s : %s </translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="191"/>
+        <location filename="../Link/AbstractEdge.py" line="190"/>
         <source>Delete</source>
         <translation>پاك</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="301"/>
+        <location filename="../Link/AbstractEdge.py" line="300"/>
         <source>Dynamips error</source>
         <translation>خطاي دايناميپث</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="212"/>
+        <location filename="../Link/AbstractEdge.py" line="211"/>
         <source>Packet capture is not supported on this link type</source>
         <translation>پكت كپچر دراين نوع لينك ثاپورت نشده است</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="236"/>
+        <location filename="../Link/AbstractEdge.py" line="235"/>
         <source>Please choose a source</source>
         <translation>لطفا مبداء را مشخص كنيد</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="331"/>
+        <location filename="../Link/AbstractEdge.py" line="330"/>
         <source>Capture</source>
         <translation>كپچر</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="195"/>
+        <location filename="../Link/AbstractEdge.py" line="194"/>
         <source>Stop the capture</source>
         <translation>توقف كپچر</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="296"/>
+        <location filename="../Link/AbstractEdge.py" line="295"/>
         <source>Capture stopped</source>
         <translation>كپچر متوقف شد</translation>
     </message>
@@ -639,22 +639,22 @@ p, li { white-space: pre-wrap; }
         <translation>لينك: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="239"/>
+        <location filename="../Link/AbstractEdge.py" line="238"/>
         <source>No device available for traffic capture</source>
         <translation>براي اين ترافيك كپچر هيچ وسيله اي در دسترس نسيت</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="331"/>
+        <location filename="../Link/AbstractEdge.py" line="330"/>
         <source>Cannot start %s : %s</source>
         <translation>نيست %s : %s  قادر به راه اندازي </translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="246"/>
+        <location filename="../Link/AbstractEdge.py" line="245"/>
         <source>Device %s is not running</source>
         <translation>  كار نمي كند  %s دستگاه</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="316"/>
+        <location filename="../Link/AbstractEdge.py" line="315"/>
         <source>%s is empty, no traffic captured on the link. Try again later</source>
         <translation> خالي است، هيچ ترافيكي كپچر نشد، بعدا تلاش كنيد %s</translation>
     </message>
@@ -662,17 +662,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractNode</name>
     <message>
-        <location filename="../Node/AbstractNode.py" line="296"/>
+        <location filename="../Node/AbstractNode.py" line="301"/>
         <source>Already connected interface</source>
         <translation>قبلا متصل شده</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="330"/>
+        <location filename="../Node/AbstractNode.py" line="335"/>
         <source>Connection</source>
         <translation>اتصال</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="267"/>
+        <location filename="../Node/AbstractNode.py" line="272"/>
         <source>Hostname: %s</source>
         <translation>%s : نام </translation>
     </message>
@@ -697,7 +697,7 @@ p, li { white-space: pre-wrap; }
         <translation>نام قبلا استفاده شده است</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="330"/>
+        <location filename="../Node/AbstractNode.py" line="335"/>
         <source>No interface available, please configure this device</source>
         <translation>هيچ اينترفيسي در دسترس نيست، لطفا دستگاه را تنظيم كنيد</translation>
     </message>
@@ -2424,7 +2424,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>وارد كردن</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="824"/>
+        <location filename="../NETFile.py" line="1074"/>
         <source>%s: IO Error: %s</source>
         <translation></translation>
     </message>
@@ -2434,7 +2434,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>لطفا تا زمان وارد شدن توپولوژي صبر كنيد</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="824"/>
+        <location filename="../NETFile.py" line="1074"/>
         <source>IOError</source>
         <translation></translation>
     </message>
@@ -3786,7 +3786,7 @@ ALT + LEFT or RIGHT</source>
         <translation>امتحان كنيد preferences لطفا مسير بسمت دايناميپث را در </translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="858"/>
+        <location filename="../Topology.py" line="861"/>
         <source>Connection lost</source>
         <translation>اتصال قطع شد</translation>
     </message>
@@ -3796,7 +3796,7 @@ ALT + LEFT or RIGHT</source>
         <translation>اتصال</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="858"/>
+        <location filename="../Topology.py" line="861"/>
         <source>Dynamips error</source>
         <translation>خطاي دايناميپث</translation>
     </message>

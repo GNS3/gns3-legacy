@@ -229,7 +229,10 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """
 
         # update tool tip
-        self.updateToolTips()
+        try:
+            self.updateToolTips()
+        except:
+            pass
         if not self.isSelected() and self.__render_select:
             self.setSharedRenderer(self.__render_select)
 
