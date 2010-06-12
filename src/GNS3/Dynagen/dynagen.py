@@ -1726,6 +1726,7 @@ class Dynagen:
 
         try:
             
+            print self.jitshareddevices
             for d in self.dynamips.values():
                 if isinstance(d, Dynamips):
 
@@ -1737,7 +1738,6 @@ class Dynagen:
                     if len(d.devices) < 2:
                         continue
 
-                    jitshared_devices = []
                     for router in d.devices:
 
                         # JIT sharing is not enabled on this router
@@ -1752,6 +1752,7 @@ class Dynagen:
                         if router.jitsharing_group != None:
                             continue
       
+                        jitshared_devices = [router]
                         for device in d.devices:
                             if router != device and self.jitshareddevices.has_key(device.name) and router.imagename == device.imagename:
 
@@ -1759,11 +1760,11 @@ class Dynagen:
                                 if device.jitsharing_group != None:
                                     router.jitsharing_group = device.jitsharing_group
                                     break
-                                jitshared_devices.append(router)
+                                jitshared_devices.append(device)
 
-                    if len(jitshared_devices) > 1:
-                        # Create a new JIT sharing group
-                        self._create_jitsharing_group(jitshared_devices)
+                        if len(jitshared_devices) > 1:
+                            # Create a new JIT sharing group
+                            self._create_jitsharing_group(jitshared_devices)
 
         except DynamipsError, e:
             self.doerror(e)
