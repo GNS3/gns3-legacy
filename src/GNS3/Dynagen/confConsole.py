@@ -1319,6 +1319,7 @@ class confETHSWConsole(AbstractConfSWConsole):
             error('semantic error in: ' + args + ' , this connection already exists')
             return
         self.dynagen.ethsw_map(self.ethsw, params[0].strip(), params[1].strip())
+        self.dynagen.update_running_config()
 
     def do_no(self, args):
         params = args.split('=')
@@ -1326,10 +1327,11 @@ class confETHSWConsole(AbstractConfSWConsole):
         right_side = params[1].strip()
         try:
             if self.dynagen.running_config[self.d][self.e][left_side] == right_side:
-                self.ethsw.unset_port(int(left_side))
+                self.dynagen.disconnect(self.ethsw, left_side, right_side)
+                self.dynagen.update_running_config()
             else:
                 error('this mapping does not exist')
-        except IndexError:
+        except (IndexError, KeyError):
             error('this mapping does not exist')
         except DynamipsError, e:
             error(e)
@@ -1391,7 +1393,6 @@ class confATMBRConsole(AbstractConfSWConsole):
                     if self.dynagen.running_config[self.d][self.a][left_side] == right_side:
                         self.atmbr.unconfigure(port1, port2, vpi2, vci2)
                         self.dynagen.update_running_config()
-
                     else:
                         error('semantic error in: ' + args + ' this connection does not exist')
                 except AttributeError:
@@ -2320,6 +2321,8 @@ class confConsole(AbstractConsole):
 \tdebug output level. Higher numbers produce increasing levels of verbosity. 0 means none (the default). 1 is the same as the -d command line switch """
 
         result = self.set_option('debug', 'int', args)
+        if result == None:
+            return
         if result[0]:
             self.dynagen.debuglevel = result[1]
             debuglevel = self.dynagen.debuglevel

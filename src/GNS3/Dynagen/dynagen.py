@@ -20,7 +20,16 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
-
+"""
+TODO
+* disconnect() for LAN bridges
+* add/remove WIC cards via confConsole
+* sort the devices in running config, so that they do not appear in funny order
+* add idlepcdrift into the idlepc info output
+* change npe on 7200 correctly
+* investigate why dynamips gets frozen when it does not find the magic number in the nvram file
+* redesign the connect/disconnect IPC on the Emulated_switches
+"""
 import sys
 import os
 import re
@@ -40,7 +49,7 @@ from configobj import ConfigObj, flatten_errors
 from optparse import OptionParser
 
 # Constants
-VERSION = '0.12.100602'
+VERSION = '0.12.100612'
 CONFIGSPECPATH = ['/usr/share/dynagen', '/usr/local/share']
 CONFIGSPEC = 'configspec'
 INIPATH = ['/etc', '/usr/local/etc']
@@ -125,6 +134,15 @@ ADAPTER_TRANSFORM = {
     'NM-CIDS': NM_CIDS,
     'NM-NAM': NM_NAM,
     }
+
+NIOTYPE = ('nio_linux_eth',
+           'nio_gen_eth',
+           'nio_udp',
+           'nio_null',
+           'nio_tap',
+           'nio_unix',
+           'nio_vde',
+           )
 
 # Globals
 notelnet = False  # Flag to disable telnet (for gDynagen)
@@ -310,6 +328,14 @@ class Dynagen:
 
         return False
 
+    def _auto_adapter_remove(self, adapter):
+        #determine whether this is the last interface on local adapter that was removed
+        if adapter.is_empty():
+            #determine whether this is a slot that can be removed (f.e. PA_C7200_IO_FE cannot be removed)
+            if adapter.can_be_removed():
+                adapter.remove()
+                adapter = None
+                
     def disconnect(self, local_device, source, dest, automatically_remove_unused_slot=True):
         """ disconnect a local_device from something
         local_device: a local device object
@@ -317,78 +343,45 @@ class Dynagen:
         dest: a string specifying a device and a remote interface, LAN, a raw NIO
         """
 
-        match_obj = interface_re.search(source)
-        if not match_obj:
-            # is this an interface without a port designation (e.g. "f0")?
-            match_obj = interface_noport_re.search(source)
-            if not match_obj:
-                return False
-            else:
-                (pa1, port1) = match_obj.group(1, 2)
-                slot1 = 0
-        else:
-            (pa1, slot1, port1) = match_obj.group(1, 2, 3)
-
-        if pa1[:2].lower() == 'an':
-            # need to use two chars for Analysis-Module
-            pa1 = pa1[:2].lower()
-        else:
-            pa1 = pa1.lower()[0]  # Only care about first character
-        slot1 = int(slot1)
-        port1 = int(port1)
-
-        try:
-            (devname, interface) = dest.split(' ')
-        except ValueError:
-            # Must be either a NIO or malformed
-            if not dest[:4].lower() == 'nio_':
-                self.debug('Malformed destination:' + str(dest))
-                return False
+        #parse the left side of connection
+        (pa1, slot1, port1) = self._parse_interface_part_of_connection(local_device, source)
+        
+        #parse the right side of connection
+        (x1,x2,x3,x4,conn_type) = self._parse_right_side_of_connection(dest)
+        
+        #if the right side is manual nio specification f0/0 = nio_gen_eth::
+        if conn_type == 'Manual':
+            #manual mapping aplies only to Dynamips based devices
+            if isinstance(local_device, AnyEmuDevice):
+                raise DynamipsError, 'Device does not support this type of NIO. Use an ETHSW to bridge the connection to the NIO instead.'
+            niotype = x1
+            niostring = x2
+            # Process the netio
             try:
-                self.debug('Disconnecting A NETIO: ' + str(dest))
-                (niotype, niostring) = dest.split(':', 1)
+                if niotype in NIOTYPE:
+                    #disconnect local from remote
+                    local_device.slot[slot1].disconnect(pa1, port1)
+                    #delete local nio
+                    local_device.slot[slot1].delete_nio(pa1, port1)
+        
+                    #determine whether this is the last interface on local adapter that was removed
+                    if automatically_remove_unused_slot:
+                        self._auto_adapter_remove(local_device.slot[slot1])
+                    return True
+                else:
+                    # Bad NIO
+                    raise DynamipsError, 'bad NIO specified'
+                return True
             except ValueError:
-                return False
-            #disconnect local from remote
-            local_device.slot[slot1].disconnect(pa1, port1)
-            #delete local nio
-            local_device.slot[slot1].delete_nio(pa1, port1)
-
-            #determine whether this is the last interface on local adapter that was removed
-            if local_device.slot[slot1].is_empty() and automatically_remove_unused_slot:
-                #determine whether this is a slot that can be removed (f.e. PA_C7200_IO_FE cannot be removed)
-                if local_device.slot[slot1].can_be_removed():
-                    local_device.slot[slot1].remove()
-                    local_device.slot[slot1] = None
-            return True
-
-        # Does the device we are trying to disconnect from actually exist?
-        if not self.devices.has_key(devname):
-            raise DynamipsError , 'Nonexistant device ' + devname
-
-        remote_device = self.devices[devname]
-        match_obj = interface_re.search(interface)
-        if match_obj:
-            # Connecting to another interface
-            (pa2, slot2, port2) = match_obj.group(1, 2, 3)
-        else:
-            match_obj = interface_noport_re.search(interface)
-            if match_obj:
-                # Connecting to another "portless" interface e.g. "f0"
-                (pa2, port2) = match_obj.group(1, 2)
-                slot2 = 0
-
-        # If either of the interface formats matched...
-        if match_obj:
-            if pa2[:2].lower() == 'an':
-                # need to use two chars for Analysis-Module
-                pa2 = pa2[:2].lower()
-            else:
-                pa2 = pa2.lower()[0]  # Only care about first character
-
-            slot2 = int(slot2)
-            port2 = int(port2)
-
+                raise DynamipsError, 'bad NIO specified'
+            
+        elif conn_type == 'AutoUDP':    
+            # if the right side two side udp tunnel e.g. f0/0 = R1 f1/0
+            remote_device = x1
+            pa2 = x2
+            slot2 = x3
+            port2 = x4
+                      
             if isinstance(remote_device, AnyEmuDevice) and isinstance(local_device, AnyEmuDevice):
                 if remote_device.state == 'running' or local_device.state == 'running':
                     raise DynamipsError, "Qemuwrapper doesn't support hot link removal"
@@ -420,51 +413,19 @@ class Dynagen:
             #delete local nio
             local_device.slot[slot1].delete_nio(pa1, port1)
 
-
             #delete remote nio
             remote_device.slot[slot2].delete_nio(pa2, port2)
 
-
             #determine whether this is the last interface on local adapter that was removed
-            if local_device.slot[slot1].is_empty() and automatically_remove_unused_slot:
-                #determine whether this is a slot that can be removed (f.e. PA_C7200_IO_FE cannot be removed)
-                if local_device.slot[slot1].can_be_removed():
-                    local_device.slot[slot1].remove()
-                    local_device.slot[slot1] = None
+            if automatically_remove_unused_slot:
+                self._auto_adapter_remove(local_device.slot[slot1])
+                self._auto_adapter_remove(remote_device.slot[slot2])     
 
-            #determine whether this is the last interface on remote adapter that was removed, if yes remove the adapter
-            if remote_device.slot[slot2].is_empty() and automatically_remove_unused_slot:
-                #determine whether this is a slot that can be removed (f.e. PA_C7200_IO_FE cannot be removed)
-                if remote_device.slot[slot2].can_be_removed():
-                    remote_device.slot[slot2].remove()
-                    remote_device.slot[slot2] = None
+            return True            
+               
+        elif conn_type == 'Bridge': 
+            #TODO disconnect from Bridge
             return True
-
-        #or it could be a mapping to emulated switches f.e. s1/0 = FRSW 2
-        match_obj = number_re.search(interface)
-        if match_obj:
-            port2 = int(interface)
-
-            if isinstance(local_device, AnyEmuDevice):
-                if local_device.state == 'running':
-                    raise DynamipsError, "Qemuwrapper doesn't support hot link removal"
-                local_device.disconnect_from_dynamips(port1)    
-            else:
-                #the right side of the connection is a FRSW or ATMSW or ATMBR or ETHSW
-                #disconnect local from remote
-                local_device.slot[slot1].disconnect(pa1, port1)
-                #delete local nio
-                local_device.slot[slot1].delete_nio(pa1, port1)
-    
-                #determine whether this is the last interface on local adapter that was removed
-                if local_device.slot[slot1].is_empty() and automatically_remove_unused_slot:
-                    #determine whether this is a slot that can be removed (f.e. PA_C7200_IO_FE cannot be removed)
-                    if local_device.slot[slot1].can_be_removed():
-                        local_device.slot[slot1].remove()
-                        local_device.slot[slot1] = None
-
-            #disconnect remote from local, delete the nio and delete all mappings.....TODO talk to Chris about redesigning the IPC
-            remote_device.disconnect(port2)
 
     def _parse_interface_part_of_connection(self, device, interface):
         """Parse interface part of connection 
@@ -516,7 +477,23 @@ class Dynagen:
         """Parse right side of connection 
            right_side: the string to parse
         """
-        try:
+       
+        parameters = len(dest.split(' '))
+        if parameters == 1:
+            #there are no spaces on the right side of connection, probably a NIO f.e. NIO_gen_eth:\Device\NPF_{07FEAF75-631E-4950-A4A2-ED8ECA422DC7}
+            if dest[:4].lower() == 'nio_':
+                try:
+                    self.debug('A NETIO: ' + str(dest))
+                    (niotype, niostring) = dest.split(':', 1)
+                    return (niotype.lower(), niostring, 0, 0, 'Manual')
+                except ValueError:
+                    self.debug('Malformed NETIO:' + str(dest))
+                    raise DynamipsError, 'Malformed NETIO:'              
+            else:
+                self.debug('Malformed destination:' + str(dest))
+                raise DynamipsError, 'Malformed right side of connection'
+        if parameters == 2:
+            #either the normal "R0 f0/0", or "LAN 1"
             (devname, interface) = dest.split(' ')
 
             #check if this is not a connection to dynamips emulate bridge
@@ -536,18 +513,30 @@ class Dynagen:
             #use the same function for interface as left side
             (pa2, slot2, port2) =  self._parse_interface_part_of_connection(remote_device, interface)
             return (remote_device, pa2, slot2, port2, 'AutoUDP')
-        except ValueError:
-            #the dest.split did not work so there are no spaces on the right side of connection
-            if not dest[:4].lower() == 'nio_':
-                self.debug('Malformed destination:' + str(dest))
-                raise DynamipsError, 'Malformed right side of connection'
-            try:
-                self.debug('A NETIO: ' + str(dest))
-                (niotype, niostring) = dest.split(':', 1)
-                return (niotype.lower(), niostring, 0, 0, 'Manual')
-            except ValueError:
-                self.debug('Malformed NETIO:' + str(dest))
-                raise DynamipsError, 'Malformed NETIO:'
+        elif parameters == 4:
+            # Should be a porttype, vlan, and a device&port pair specifying the destionation of UDP NIO connection
+        
+            #handle the daisy connection between the switches
+            (porttype, vlan, devname, interface) = dest.split(' ')
+            
+            #if this is normal connection to another device
+            if devname not in self.devices:
+                raise DynamipsError, 'nonexistent device ' + devname
+            remote_device = self.devices[devname]
+            """
+            #this is only allowed for Emulated_switch instances
+            if not isinstance(remote_device, Emulated_switch):
+                raise DynamipsError, 'not an emulated switch ' + devname
+            """
+            #use the same function for interface as left side
+            (pa2, slot2, port2) =  self._parse_interface_part_of_connection(remote_device, interface)
+            
+            #return only the connection in normal src_int = dst_device dst_port format
+            return (remote_device, pa2, slot2, port2, 'AutoUDP')
+            
+        
+            
+            
 
     def connect(self, local_device, source, dest):
         """ Connect a device to something
@@ -1278,7 +1267,7 @@ class Dynagen:
                 try:
                     self.dynamips[server.name].workingdir = workingdir
                 except DynamipsError:
-                    self.dowarning('Could not set working directory to %s on server %s' % (server['workingdir'], server.name))
+                    self.dowarning('Could not set working directory to %s on server %s' % (workingdir, server.name))
                     self.import_error = True
 
                 # Has the base console port been overridden?
@@ -1699,7 +1688,7 @@ class Dynagen:
                     maxram = 0
                     for router in self.devices.values():
                         try:
-                            if router.dynamips.host == device.dynamips.host and router.imagename == device.imagename:
+                            if router.dynamips.host == device.dynamips.host and router.imagename == device.imagename and router.model_string == device.model_string:
                                 if self.ghosteddevices[router.name]:
                                     ioscount += 1
                                     if router.ram > maxram:
@@ -1725,8 +1714,6 @@ class Dynagen:
         """ Implement JIT blocks sharing"""
 
         try:
-            
-            print self.jitshareddevices
             for d in self.dynamips.values():
                 if isinstance(d, Dynamips):
 
@@ -1739,7 +1726,9 @@ class Dynagen:
                         continue
 
                     for router in d.devices:
-
+                        # JIT sharing does not apply for Emulated_switches
+                        if isinstance(router, Emulated_switch):
+                            continue
                         # JIT sharing is not enabled on this router
                         if not self.jitshareddevices.has_key(router.name):
                             continue
@@ -1754,13 +1743,16 @@ class Dynagen:
       
                         jitshared_devices = [router]
                         for device in d.devices:
-                            if router != device and self.jitshareddevices.has_key(device.name) and router.imagename == device.imagename:
-
-                                # use an existing group
-                                if device.jitsharing_group != None:
-                                    router.jitsharing_group = device.jitsharing_group
-                                    break
-                                jitshared_devices.append(device)
+                            try:
+                                if router != device and router.model_string == device.model_string and self.jitshareddevices.has_key(device.name) and router.imagename == device.imagename:
+    
+                                    # use an existing group
+                                    if device.jitsharing_group != None:
+                                        router.jitsharing_group = device.jitsharing_group
+                                        break
+                                    jitshared_devices.append(device)
+                            except AttributeError: # in case of Emulated_switches or ghost_instances
+                                continue
 
                         if len(jitshared_devices) > 1:
                             # Create a new JIT sharing group
@@ -1768,7 +1760,7 @@ class Dynagen:
 
         except DynamipsError, e:
             self.doerror(e)
-
+            
     def apply_idlepc(self):
         """  Apply idlepc values from the database"""
 
@@ -1864,8 +1856,8 @@ class Dynagen:
             #go thought all routers configs in this hypervisor
             for device in self.devices.values():
                 #skip non-routers
-                if isinstance(device, FRSW) or isinstance(device, ATMSW) or isinstance(device, ETHSW) or isinstance(device, ATMBR):
-                    #TODO FRSW, ATMSW, ATMBR, ETHSW support
+                if isinstance(device, Emulated_switch):
+                    #no defaults section for Emulated_switches
                     continue
                 if device.dynamips == hypervisor:
                     if isinstance(device, AnyEmuDevice):

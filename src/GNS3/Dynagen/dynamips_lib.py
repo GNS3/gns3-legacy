@@ -578,7 +578,9 @@ class NIO_udp(NIO):
         #if this is only UDP NIO without the other side
         elif remote_device == 'nothing':
             return 'NIO_udp:' + str(self.udplocal) + ":" + self.remotehost + ":" + str(self.udpremote)
-        elif isinstance(remote_device, FRSW) or isinstance(remote_device, ATMSW) or isinstance(remote_device, ETHSW) or isinstance(remote_device, ATMBR):
+        elif isinstance(remote_device, Bridge):
+            return 'LAN ' + remote_device.name
+        elif isinstance(remote_device, Emulated_switch):
             return remote_device.name + " " + str(remote_port)
         elif isinstance(remote_device, AnyEmuDevice):
             return remote_device.name + ' ' + remote_adapter + str(remote_port)
@@ -2048,7 +2050,7 @@ class Router(Dynamips_device):
         consoleFlag=True,
         ):
         if not isinstance(dynamips, Dynamips):
-            raise DynamipsError, 'not a Dynammips instance'
+            raise DynamipsError, 'not a Dynamips instance'
         self.__d = dynamips
         self.__instance = Router.__instance_count
         Router.__instance_count += 1
@@ -2647,15 +2649,15 @@ class Router(Dynamips_device):
                 send(self.__d, '%s set_npe %s %s' % (self.__model, self.__name, npe))
                 self.__npe = npe
                 return
-
-#            if npe in ['npe-g1', 'npe-g2'] and type(self.slot[0]) != PA_C7200_IO_GE_E:
-#                #lets change the IO card to the GE one
-#                #TODO handle all the connections on the card
-#                self.slot[0].remove()
-#                self.slot[0] = None
-#                send(self.__d, '%s set_npe %s %s' % (self.__model, self.__name, npe))
-#                self.slot[0] = PA_C7200_IO_GE_E(self, 0)
-                """
+            
+            if npe in ['npe-g1', 'npe-g2'] and type(self.slot[0]) != PA_C7200_IO_GE_E:
+                #lets change the IO card to the GE one
+                #TODO handle all the connections on the card
+                self.slot[0].remove()
+                self.slot[0] = None
+                send(self.__d, '%s set_npe %s %s' % (self.__model, self.__name, npe))
+                self.slot[0] = PA_C7200_IO_GE_E(self, 0)
+                
             # Bad idea to override the IO controller just based on the NPE in this case
             elif npe in [
                 'npe-100',
@@ -2671,10 +2673,11 @@ class Router(Dynamips_device):
                 self.slot[0] = None
                 send(self.__d, '%s set_npe %s %s' % (self.__model, self.__name, npe))
                 self.slot[0] = PA_C7200_IO_2FE(self, 0)
-                """
+            
             else:
                 send(self.__d, '%s set_npe %s %s' % (self.__model, self.__name, npe))
                 self.__npe = npe
+            
         else:
             raise DynamipsError, 'Cannot change NPE on running router'
 
@@ -3240,7 +3243,6 @@ class C3725(Router):
 
         # generate the slots for network modules
         Router.createslots(self, 3)
-        #TODO default slot0 can now be also other NMs?
         self.slot[0] = GT96100_FE(self, 0)
 
 
@@ -3272,7 +3274,6 @@ class C3745(Router):
 
         # generate the slots for network modules
         Router.createslots(self, 5)
-        #TODO default slot0 can now be also other NMs?
         self.slot[0] = GT96100_FE(self, 0)
 
 
@@ -3544,7 +3545,12 @@ class Emulated_switch(Dynamips_device):
                 dst_adapter=remoteadapter,
                 dst_port=dst_port,
             )
+    def is_empty(self):
+        """ Return true if the adapter is empty
+        """
 
+        return False
+            
     def connected(self, interface, port):
         """ Returns a boolean indicating if a port on this adapter is connected or not
             interface: The interface type for the local device (e.g. 'f', 's', 'an' for "FastEthernet", "Serial", "Analysis-Module", and so forth")
@@ -4542,6 +4548,9 @@ class ETHSW(Emulated_switch):
             map = self.mapping[port1]
             (porttype, vlan, nio,twosided) = map
             map_info += '   Port '+str(port1) + ' is in ' + porttype + ' mode, with native VLAN ' + str(vlan) + ',\n    ' + nio.info() + '\n'
+            #add connection info
+            nio = self.nio(port1)
+            map_info += '     ' + nio.info() + '\n'
         return info + map_info
 
     def unset_port (self, port):
@@ -4597,21 +4606,26 @@ class ETHSW(Emulated_switch):
 
         return send(self._d, 'ethsw clear_mac_addr_table ' + self._name)
 
-
-    def disconnect(self, port):
+    def disconnect(self, localint, localport):
+        """ Disconnect this port from port on another device
+            port: A port on this adapter
+        """
         try:
-            nio = self.nio(port).name
+            nio = self.nio(localport).name
         except DynamipsWarning, e:
             raise DynamipsError, e
 
         send(self._d, 'ethsw remove_nio %s %s' % (self._name, nio))
-        del self.mapping[port]
+        del self.mapping[localport]
 
-        #now delete the NIO from backend
-        self.nios[port].delete()
-        del self.nios[port]
+    def delete_nio(self, localint, localport):
+        """ Deletes this nio from the device """
 
-    
+        #delete the nio and remove it from the dictionary
+        self.nios[localport].delete()
+        del self.nios[localport]
+
+        
     def nio(
         self,
         port,
@@ -4794,7 +4808,7 @@ def gen_connect(
 
         #check whether the user did not make a mistake in multi-server .net file
         if src_ip == 'localhost' or src_ip =='127.0.0.1' or dst_ip =='localhost' or dst_ip == '127.0.0.1':
-            dowarning('Connecting %s slot %s port %s to %s slot %s port %s:\nin case of multi-server operation make sure you do not use "localhost" string in definition of dynamips hypervisor.\n'% (src_adapter.router.name, src_adapter.adapter, src_port, dst_adapter.router.name, dst_adapter.adapter, dst_port))
+            dowarning('in case of multi-server operation make sure you do not use "localhost" string in definition of dynamips hypervisor')
 
     # Dynagen connect currently always uses UDP NETIO
     # Allocate a UDP port for the local side of the NIO
@@ -4934,7 +4948,7 @@ def get_reverse_udp_nio(remote_nio):
     from qemu_lib import AnyEmuDevice
     if isinstance(local_nio.adapter, AnyEmuDevice):
         return [local_nio.dev, 'e', local_nio.port]
-    if isinstance(local_nio.adapter, FRSW) or isinstance(local_nio.adapter, ATMSW) or isinstance(local_nio.adapter, ETHSW) or isinstance(local_nio.adapter, ATMBR):
+    if isinstance(local_nio.adapter, Emulated_switch):
         return [local_nio.adapter, 'nothing', local_nio.port]
 
     #or it is a UDP_NIO on router

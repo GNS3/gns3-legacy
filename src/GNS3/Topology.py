@@ -845,13 +845,18 @@ class Topology(QtGui.QGraphicsScene):
                     
                 elif type(link.source) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR) and type(link.dest) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR) or \
                     type(link.dest) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR) and type(link.source) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR):
-
-                    if not isinstance(link.source, Cloud):
+                    
+                    if type(link.dest) == Cloud:
                         srcdev = link.source.get_dynagen_device()
-                        srcdev.disconnect(int(link.srcIf))
-                    if not isinstance(link.dest, Cloud):
+                        self.dynagen.disconnect(srcdev, link.srcIf, link.destIf, automatically_remove_unused_slot=False)
+                    elif type(link.source) == Cloud:
                         dstdev = link.dest.get_dynagen_device()
-                        dstdev.disconnect(int(link.destIf))
+                        self.dynagen.disconnect(dstdev, link.destIf, link.srcIf, automatically_remove_unused_slot=False)
+                    else:
+                        srcdev = link.source.get_dynagen_device()
+                        dstdev = link.dest.get_dynagen_device()
+                        self.dynagen.disconnect(srcdev, link.srcIf, dstdev.name + ' ' + link.destIf, automatically_remove_unused_slot=False)
+
                     link.source.set_config(link.source.get_config())
                     
             except lib.DynamipsError, msg:

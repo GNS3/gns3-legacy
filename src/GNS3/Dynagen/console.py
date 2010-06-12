@@ -181,8 +181,8 @@ conf
             try:
                 hyp_name = params[0]
                 hyp_port = int(params[1])
-            except AttributeError:
-                error('Syntax error in ' + params + ' . Use <hypervisor address>:<hypervisor port> syntax')
+            except (AttributeError, ValueError):
+                error('Syntax error in ' + args + ' . Use <hypervisor address>:<hypervisor port> syntax')
                 return
         else:
             error('Syntax error in ' + params + ' . Use <hypervisor address>:<hypervisor port> syntax')
