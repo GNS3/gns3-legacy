@@ -264,8 +264,11 @@ class Application(QApplication, Singleton):
         confo.ghosting = ConfDB().value("Dynamips/dynamips_ghosting", QVariant(True)).toBool()
         confo.mmap = ConfDB().value("Dynamips/dynamips_mmap", QVariant(True)).toBool()
         confo.sparsemem = ConfDB().value("Dynamips/dynamips_sparsemem", QVariant(False)).toBool()
-        confo.jitsharing = ConfDB().value("Dynamips/dynamips_jitsharing", QVariant(False)).toBool()
-        confo.memory_limit =int(ConfDB().get("Dynamips/hypervisor_memory_usage_limit", 512))
+        confo.jitsharing = ConfDB().value("Dynamips/dynamips_jitsharing", QVariant(True)).toBool()
+        if sys.platform.startswith('win'):
+            confo.memory_limit = int(ConfDB().get("Dynamips/hypervisor_memory_usage_limit", 512))
+        else:
+            confo.memory_limit = int(ConfDB().get("Dynamips/hypervisor_memory_usage_limit", 1024))
         confo.udp_incrementation = int(ConfDB().get("Dynamips/hypervisor_udp_incrementation", 100))
         confo.import_use_HypervisorManager = ConfDB().value("Dynamips/hypervisor_manager_import", QVariant(True)).toBool()
         confo.HypervisorManager_binding = ConfDB().get('Dynamips/hypervisor_manager_binding', unicode('127.0.0.1'))

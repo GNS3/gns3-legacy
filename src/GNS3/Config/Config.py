@@ -120,7 +120,9 @@ class ConfDB(Singleton, QtCore.QSettings):
             # Do the convertion, and assign the value
             if   conv_to == "string": __values[child] = str(child_value.toString())
             elif conv_to == "int":    __values[child] = int(child_value.toInt())
-            else: raise "convertion type not implemented"
+            else:
+                # convertion type not implemented
+                pass
 
         self.endGroup()
         return __values

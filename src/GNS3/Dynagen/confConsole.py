@@ -1379,23 +1379,27 @@ class confATMBRConsole(AbstractConfSWConsole):
     def do_no(self, args):
         params = args.split('=')
         if len(params) == 2:
-            left_side = params[0]
-            right_side = params[1].split(':')
+            left_side = params[0].strip()
+            right_side = params[1].strip().split(':')
             if len(right_side) == 3:
                 try:
                     port1 = int(left_side)
-                    port2 = int(right_side[0])
+                    port2 = int(right_side[0])                  
                     vpi2 = int(right_side[1])
-                    vci2 = int(right_side[2])
-                    left_side = params[0].strip()
-                    right_side = params[1].strip()
+                    #1 = 2:0:201 R1 a1/0
+                    try:
+                        vci2 = int(right_side[2])
+                    except ValueError:
+                        # must be this format "1 = 2:0:201 R1 a1/0"
+                        vci_split = right_side[2].split(' ')
+                        vci2 = int(vci_split[0])
                     #check whether this connection already exists:
                     if self.dynagen.running_config[self.d][self.a][left_side] == right_side:
                         self.atmbr.unconfigure(port1, port2, vpi2, vci2)
                         self.dynagen.update_running_config()
                     else:
                         error('semantic error in: ' + args + ' this connection does not exist')
-                except AttributeError:
+                except (AttributeError, ValueError):
                     error('semantic error in: ' + args)
                     return
                 except DynamipsError, e:

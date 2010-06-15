@@ -29,6 +29,7 @@ TODO
 * change npe on 7200 correctly
 * investigate why dynamips gets frozen when it does not find the magic number in the nvram file
 * redesign the connect/disconnect IPC on the Emulated_switches
+* deleting an ATMSW/FWSW/ATMBR chain
 """
 import sys
 import os
@@ -49,7 +50,7 @@ from configobj import ConfigObj, flatten_errors
 from optparse import OptionParser
 
 # Constants
-VERSION = '0.12.100612'
+VERSION = '0.12.100613'
 CONFIGSPECPATH = ['/usr/share/dynagen', '/usr/local/share']
 CONFIGSPEC = 'configspec'
 INIPATH = ['/etc', '/usr/local/etc']
@@ -513,6 +514,15 @@ class Dynagen:
             #use the same function for interface as left side
             (pa2, slot2, port2) =  self._parse_interface_part_of_connection(remote_device, interface)
             return (remote_device, pa2, slot2, port2, 'AutoUDP')
+        if parameters == 3:
+            #ETHSW to NIO type of connections f.e "access 1 nio_linux_eth:eth0"
+            (porttype, vlan, nio) = dest.split(' ')
+            try:
+                (niotype, niostring) = nio.split(':', 1)
+            except ValueError:
+                raise DynamipsError('Malformed NETIO')                      
+            return (niotype.lower(), niostring, 0,0,'Manual')
+
         elif parameters == 4:
             # Should be a porttype, vlan, and a device&port pair specifying the destionation of UDP NIO connection
         
@@ -523,11 +533,7 @@ class Dynagen:
             if devname not in self.devices:
                 raise DynamipsError, 'nonexistent device ' + devname
             remote_device = self.devices[devname]
-            """
-            #this is only allowed for Emulated_switch instances
-            if not isinstance(remote_device, Emulated_switch):
-                raise DynamipsError, 'not an emulated switch ' + devname
-            """
+
             #use the same function for interface as left side
             (pa2, slot2, port2) =  self._parse_interface_part_of_connection(remote_device, interface)
             

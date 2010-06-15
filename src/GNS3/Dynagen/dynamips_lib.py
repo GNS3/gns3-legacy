@@ -3811,7 +3811,7 @@ class FRSW(Emulated_switch):
         #track the connections
         self._pvcs[(port1, dlci1)] = (port2, dlci2)
 
-    def disconnect(self, port):
+    def disconnect(self, adapter, port):
         #disconnect everything on port1, delete the nio and delete all mappings.....TODO talk to Chris about redesigning the IPC
         mapping = copy.deepcopy(self._pvcs)
         for (port1, dlci1) in mapping.keys():
@@ -3822,11 +3822,13 @@ class FRSW(Emulated_switch):
                 #delete the pvc port2:dlci2 -> port1:dlci1
                 self.unmap(port2, dlci2, port1, dlci1)
 
+    def delete_nio(self, localint, port):
+        """ Deletes this nio from the device """
+
         #now delete the NIO from backend
         self.nio(port).delete()
         #delete from frontend
         del self._nios[port]
-
 
     def unmap(
         self,
@@ -4069,7 +4071,7 @@ class ATMBR(Emulated_switch):
 
         del self._mapping[port1]
 
-    def disconnect(self, port):
+    def disconnect(self, adapter, port):
         #disconnect everything on port1, delete the nio and delete all mappings.....TODO talk to Chris about redesigning the IPC
         mapping = copy.deepcopy(self._mapping)
         for key in mapping:
@@ -4077,6 +4079,9 @@ class ATMBR(Emulated_switch):
                 port1 = key
                 (port2, vpi2, vci2) = self._mapping[port1]
                 self.unconfigure(port1, port2, vpi2, vci2)
+
+    def delete_nio(self, localint, port):
+        """ Deletes this nio from the device """
 
         #now delete the NIO from backend
         self.nio(port).delete()
@@ -4404,8 +4409,8 @@ class ATMSW(Emulated_switch):
 
         self._vpivci_map[(port1, vpi1, vci1)] = (port2, vpi2, vci2)
 
-    def disconnect(self, port):
-        #disconnect everything on port1, delete the nio and delete all mappings.....TODO talk to Chris about redesigning the IPC
+    def disconnect(self, adapter, port):
+        #disconnect everything from port1 and delete all mappings.....TODO talk to Chris about redesigning the IPC
 
         mapping = copy.deepcopy(self._vpivci_map)
         for key in mapping:
@@ -4426,11 +4431,14 @@ class ATMSW(Emulated_switch):
                     #delete the pvc port2:vpi2:vci2 -> port1:vpi1:vci1
                     self.unmapvc(port2, vpi2, vci2, port1, vpi1, vci1)
 
+    def delete_nio(self, localint, port):
+        """ Deletes this nio from the device """
+
         #now delete the NIO from backend
         self.nio(port).delete()
         #delete from frontend
         del self._nios[port]
-    
+        
     def nio(self, port, nio=None):
         """ Returns the NETIO object for this port
             or if nio is set, sets the NETIO for this port
