@@ -886,7 +886,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Config</name>
     <message>
-        <location filename="../Config/Config.py" line="276"/>
+        <location filename="../Config/Config.py" line="278"/>
         <source>Can&apos;t open library: %s</source>
         <translation>Неможливо відкрити бібліотеку: %s</translation>
     </message>
@@ -3801,17 +3801,17 @@ ALT + ВЛІВО or ВПРАВО</translation>
         <translation>Будь ласка налаштуйте шлях до Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="861"/>
+        <location filename="../Topology.py" line="877"/>
         <source>Dynamips error</source>
         <translation>Помилка Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="861"/>
+        <location filename="../Topology.py" line="877"/>
         <source>Connection lost</source>
         <translation>З&apos;єднання втрачено</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="744"/>
+        <location filename="../Topology.py" line="755"/>
         <source>Connection</source>
         <translation>З&apos;єднання</translation>
     </message>
@@ -3831,7 +3831,7 @@ ALT + ВЛІВО or ВПРАВО</translation>
         <translation>Будь ласка виберіть образ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="744"/>
+        <location filename="../Topology.py" line="755"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Ви повинні підключити хоча б один маршрутизатор до комутатора</translation>
     </message>

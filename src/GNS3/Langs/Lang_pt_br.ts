@@ -886,7 +886,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Config</name>
     <message>
-        <location filename="../Config/Config.py" line="276"/>
+        <location filename="../Config/Config.py" line="278"/>
         <source>Can&apos;t open library: %s</source>
         <translation>Não pode abrir: %s</translation>
     </message>
@@ -3803,17 +3803,17 @@ ALT + LEFT ou RIGHT</translation>
         <translation>Por favor configure o caminho para o Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="861"/>
+        <location filename="../Topology.py" line="877"/>
         <source>Dynamips error</source>
         <translation>Erro do Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="861"/>
+        <location filename="../Topology.py" line="877"/>
         <source>Connection lost</source>
         <translation>Perda de conexão</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="744"/>
+        <location filename="../Topology.py" line="755"/>
         <source>Connection</source>
         <translation>Conexão</translation>
     </message>
@@ -3844,7 +3844,7 @@ ALT + LEFT ou RIGHT</translation>
 </translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="744"/>
+        <location filename="../Topology.py" line="755"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Você tem que conectar pelo menos um roteador ao switch</translation>
     </message>

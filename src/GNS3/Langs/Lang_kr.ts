@@ -5,7 +5,7 @@
     <message>
         <location filename="../DynagenSub.py" line="101"/>
         <source>ASA initrd %s cannot be found and cannot find an alternative initrd</source>
-        <translation type="unfinished"></translation>
+        <translation>%s 의 ASA initrd 및 그를 대체할 수 있는 initrd를 찾지 못했습니다</translation>
     </message>
 </context>
 <context>
@@ -13,7 +13,7 @@
     <message>
         <location filename="../DynagenSub.py" line="112"/>
         <source>ASA kernel %s cannot be found and cannot find an alternative kernel</source>
-        <translation type="unfinished"></translation>
+        <translation>%s 의 ASA 커널 및 그를 대체할 수 있는 커널을 찾지 못했습니다</translation>
     </message>
 </context>
 <context>
@@ -21,97 +21,97 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="14"/>
         <source>Firewall configuration</source>
-        <translation type="unfinished">방화벽 구성</translation>
+        <translation>방화벽 구성</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="20"/>
         <source>RAM size:</source>
-        <translation type="unfinished">메모리 사이즈:</translation>
+        <translation>메모리 사이즈:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="33"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="49"/>
         <source>NIC:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="63"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="68"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="73"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="78"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="83"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="88"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="93"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="98"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="106"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 옵션:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="123"/>
         <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
+        <translation>KQemu를 사용</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="133"/>
         <source>UseKVM (Linux only)</source>
-        <translation type="unfinished"></translation>
+        <translation>KVM 사용(리눅스 전용)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="140"/>
         <source>Initrd:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="205"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="176"/>
         <source>Kernel:</source>
-        <translation type="unfinished"></translation>
+        <translation>커널:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="212"/>
         <source>Kernel cmd line:</source>
-        <translation type="unfinished"></translation>
+        <translation>커널 명령어 라인:</translation>
     </message>
 </context>
 <context>
@@ -270,7 +270,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="106"/>
@@ -561,7 +561,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;POSSIBILITY OF SUCH DAMAGES.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;END OF TERMS AND CONDITIONS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message encoding="UTF-8">
         <location filename="../Ui/Form_About.py" line="92"/>
@@ -709,52 +709,52 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="106"/>
         <source>Please use only alphanumeric characters</source>
-        <translation type="unfinished"></translation>
+        <translation>영문자나 숫자만 사용할 수 있습니다</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="100"/>
         <source>Change the hostname</source>
-        <translation type="unfinished">호스트 이름을 변경</translation>
+        <translation>호스트 이름을 변경</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="165"/>
         <source>Hypervisor</source>
-        <translation type="unfinished">하이퍼바이저</translation>
+        <translation>하이퍼바이저</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="124"/>
         <source>The device must have no connection to other devices in order to change its hypervisor</source>
-        <translation type="unfinished"></translation>
+        <translation>하이퍼바이저를 변경하기 위해서는 다른 장비들과 연결상태가 되어 있으면 안됩니다</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="132"/>
         <source>Set hypervisor</source>
-        <translation type="unfinished"></translation>
+        <translation>하이퍼바이저 설정</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="132"/>
         <source>New hypervisor:</source>
-        <translation type="unfinished"></translation>
+        <translation>새로운 하이퍼바이저:</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="139"/>
         <source>Invalid format for hypervisor (hostname:port is required)</source>
-        <translation type="unfinished"></translation>
+        <translation>하이퍼바이저 설정 형식이 잘못되어 있습니다(호스트 이름:포트 형식이 필요함)</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="151"/>
         <source>Can&apos;t connect to the hypervisor on %s</source>
-        <translation type="unfinished"></translation>
+        <translation>하이퍼바이저 %s 에 연결할 수 없습니다</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="165"/>
         <source>New hypervisor %s has been set on device %s</source>
-        <translation type="unfinished"></translation>
+        <translation>새로운 하이퍼바이저 %s가 %s 장비에 설정이 되었습니다</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="173"/>
         <source>Change the console port</source>
-        <translation type="unfinished"></translation>
+        <translation>콘솔 포트를 변경</translation>
     </message>
 </context>
 <context>
@@ -762,17 +762,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AnyEmuDevice.py" line="218"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips 에러</translation>
+        <translation>Dynamips 에러</translation>
     </message>
     <message>
         <location filename="../Node/AnyEmuDevice.py" line="204"/>
         <source>New hostname</source>
-        <translation type="unfinished"></translation>
+        <translation>새로운 호스트 이름</translation>
     </message>
     <message>
         <location filename="../Node/AnyEmuDevice.py" line="204"/>
         <source>Cannot rename a connected emulated device</source>
-        <translation type="unfinished"></translation>
+        <translation>연결이 되어있는 에뮬레이팅이 된 장비의 이름을 변경할 수 없습니다</translation>
     </message>
 </context>
 <context>
@@ -886,7 +886,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Config</name>
     <message>
-        <location filename="../Config/Config.py" line="276"/>
+        <location filename="../Config/Config.py" line="278"/>
         <source>Can&apos;t open library: %s</source>
         <translation>%s 라이브러리를 불러올 수 없습니다</translation>
     </message>
@@ -976,17 +976,17 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
     <message>
         <location filename="../Console.py" line="288"/>
         <source>%s already has an idlepc value applied (%s).</source>
-        <translation type="unfinished"></translation>
+        <translation>%s에 이미 idlepc 값이 적용되어 있습니다 (%s).</translation>
     </message>
     <message>
         <location filename="../Telnet.py" line="48"/>
         <source>Console</source>
-        <translation type="unfinished">콘솔</translation>
+        <translation>콘솔</translation>
     </message>
     <message>
         <location filename="../Telnet.py" line="48"/>
         <source>Cannot start %s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>%s 를 시작할 수 없습니다 : %s</translation>
     </message>
 </context>
 <context>
@@ -1065,32 +1065,32 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
     <message>
         <location filename="../DynagenSub.py" line="224"/>
         <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>%s 작업 디렉터리에서 하이퍼바이저 %s 를 찾을 수 없기 때문에 %s 작업 디렉터리를 대신 사용합니다</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="104"/>
         <source>Local ASA initrd %s cannot be found, use initrd %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>ASA initrd %s를 찾을 수 없기 때문에 ASA initrd %s를 대신 사용합니다</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="115"/>
         <source>Local ASA kernel %s cannot be found, use kernel %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>ASA 커널 %s를 찾을 수 없기 때문에 ASA 커널 %s를 대신 사용합니다</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="140"/>
         <source>Local IDS image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>IDS 이미지 %s를 찾을 수 없기 때문에 IDS 이미지 %s를 대신 사용합니다</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="162"/>
         <source>Local JunOS image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>JunOS 이미지 %s를 찾을 수 없기 때문에 JunOS 이미지 %s를 대신 사용합니다</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="173"/>
         <source>Local Qemu host image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 호스트 이미지 %s를 찾을 수 없기 때문에 Qemu 호스트 이미지 %s를 대신 사용합니다</translation>
     </message>
 </context>
 <context>
@@ -1277,57 +1277,57 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="85"/>
         <source>NIC:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="99"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="104"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="109"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="114"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="119"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="124"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="129"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="134"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="142"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 옵션:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="159"/>
         <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
+        <translation>KQemu를 사용</translation>
     </message>
 </context>
 <context>
@@ -1350,32 +1350,32 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
     <message>
         <location filename="../HypervisorManager.py" line="194"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
-        <translation type="unfinished"></translation>
+        <translation>%s 작업 디렉터리가 존재하지 않거나 사용할 수 없습니다. 다시한번 확인을 부탁드립니다</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="199"/>
         <source>Can&apos;t set up hypervisor on port %i, please check the settings (writable working directory ...)</source>
-        <translation type="unfinished"></translation>
+        <translation>%i 포트로 하이퍼바이저를 설정할 수 없습니다 설정 부분을 확인 부탁드립니다 (작업 디렉터리같은 설정 등등)</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="83"/>
         <source>Hypervisor Manager</source>
-        <translation type="unfinished">하이퍼바이저 관리자</translation>
+        <translation>하이퍼바이저 관리자</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="75"/>
         <source>Apparently an hypervisor is already running on port %i, would you like to kill all Dynamips processes?</source>
-        <translation type="unfinished"></translation>
+        <translation>하이퍼바이저가 이미 %i 에서 실행되고 있는데, 모든 다이나밉스 프로세스를 죽였나요?</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="151"/>
         <source>Can&apos;t connect to the hypervisor on port %i: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>하이퍼바이저를 %i 포트에 연결할 수 없습니다 - %s</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="83"/>
         <source>A program is still running on port %i, you will have to stop it manually or change port settings</source>
-        <translation type="unfinished"></translation>
+        <translation>프로그램이 %i 포트에서 여전히~ 실행되고 있습니다. 프로그램을 수동으로 죽이시거나 포트 설정을 변경해주세요</translation>
     </message>
 </context>
 <context>
@@ -1383,7 +1383,7 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
     <message>
         <location filename="../DynagenSub.py" line="126"/>
         <source>IDS image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>%s 의 IDS 이미지 및 그를 대체할 수 있는 이미지를 찾지 못했습니다</translation>
     </message>
 </context>
 <context>
@@ -1391,7 +1391,7 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
     <message>
         <location filename="../DynagenSub.py" line="137"/>
         <source>IDS image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>%s 의 IDS 이미지 및 그를 대체할 수 있는 이미지를 찾지 못했습니다</translation>
     </message>
 </context>
 <context>
@@ -1399,92 +1399,92 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="14"/>
         <source>IDS configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>IDS 설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="20"/>
         <source>IDS Image 1 (hda):</source>
-        <translation type="unfinished"></translation>
+        <translation>IDS 이미지 1 (hda):</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="85"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="56"/>
         <source>IDS Image 2 (hdb):</source>
-        <translation type="unfinished"></translation>
+        <translation>IDS 이미지 2 (hdb):</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="92"/>
         <source>RAM size:</source>
-        <translation type="unfinished">메모리 사이즈:</translation>
+        <translation>메모리 사이즈:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="105"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="121"/>
         <source>NIC:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="135"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="140"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="145"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="150"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="155"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="160"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="165"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="170"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="178"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 옵션:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="195"/>
         <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
+        <translation>KQemu를 사용</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="205"/>
         <source>Use KVM (Linux only)</source>
-        <translation type="unfinished"></translation>
+        <translation>KVM 사용(리눅스 전용)</translation>
     </message>
 </context>
 <context>
@@ -1492,7 +1492,7 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
     <message>
         <location filename="../DynagenSub.py" line="246"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image</source>
-        <translation type="unfinished"></translation>
+        <translation>%s IOS 이미지가 %s 의 하이퍼바이저 및 대체할 수 있는 %s 이미지를 찾지 못했습니다</translation>
     </message>
 </context>
 <context>
@@ -1691,6 +1691,16 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
         <translation>사용가능한 인터페이스가 없습니다</translation>
     </message>
     <message>
+        <location filename="../Node/IOSRouter.py" line="253"/>
+        <source>Slots</source>
+        <translation>슬롯</translation>
+    </message>
+    <message>
+        <location filename="../Node/IOSRouter.py" line="253"/>
+        <source>You have to restart this router to use new modules</source>
+        <translation>새로운 모듈을 사용하기 위해서는 라우터를 재시작해야 합니다</translation>
+    </message>
+    <message>
         <location filename="../Node/IOSRouter.py" line="498"/>
         <source>Dynamips error</source>
         <translation>Dynamips 에러</translation>
@@ -1698,17 +1708,7 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
     <message>
         <location filename="../Node/IOSRouter.py" line="308"/>
         <source>Startup-Config for %s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Node/IOSRouter.py" line="253"/>
-        <source>Slots</source>
-        <translation type="unfinished">슬롯</translation>
-    </message>
-    <message>
-        <location filename="../Node/IOSRouter.py" line="253"/>
-        <source>You have to restart this router to use new modules</source>
-        <translation type="unfinished"></translation>
+        <translation>%s의 Startup-Config</translation>
     </message>
 </context>
 <context>
@@ -1909,7 +1909,7 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
     <message>
         <location filename="../DynagenSub.py" line="159"/>
         <source>JunOS image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>%s 의 JunOS 이미지 및 그를 대체할 수 있는 이미지를 찾지 못했습니다</translation>
     </message>
 </context>
 <context>
@@ -1917,87 +1917,87 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="14"/>
         <source>Firewall configuration</source>
-        <translation type="unfinished">방화벽 구성</translation>
+        <translation>방화벽 구성</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="20"/>
         <source>JunOS Image:</source>
-        <translation type="unfinished"></translation>
+        <translation>JunOS 이미지:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="49"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="56"/>
         <source>RAM size:</source>
-        <translation type="unfinished">메모리 사이즈:</translation>
+        <translation>메모리 사이즈:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="69"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="85"/>
         <source>NIC:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="99"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="104"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="109"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="114"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="119"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="124"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="129"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="134"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="142"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 옵션:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="159"/>
         <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
+        <translation>KQemu를 사용</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="169"/>
         <source>Use KVM (Linux only)</source>
-        <translation type="unfinished"></translation>
+        <translation>KVM 사용(리눅스 전용)</translation>
     </message>
 </context>
 <context>
@@ -2005,7 +2005,7 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
     <message>
         <location filename="../Main.py" line="49"/>
         <source>On Unix you can choose the config directory by setting the XDG_CONFIG_HOME environment variable</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -2328,57 +2328,57 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="376"/>
         <source>Undo Stack</source>
-        <translation type="unfinished"></translation>
+        <translation>Undo Stack (한글로 뭐라고 해야 할지..)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="420"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>되돌리기(&amp;U)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="421"/>
         <source>Ctrl+Z</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="422"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>다시 실행(&amp;R)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="423"/>
         <source>Ctrl+Y</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="441"/>
         <source>&amp;Edit project</source>
-        <translation type="unfinished"></translation>
+        <translation>프로젝트 편집(&amp;E)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="395"/>
         <source>Start/Resume every devices</source>
-        <translation type="unfinished"></translation>
+        <translation>모든 장비를 시작/재시작</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="398"/>
         <source>Stop every devices</source>
-        <translation type="unfinished"></translation>
+        <translation>모든 장비를 중지</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="425"/>
         <source>Suspend every devices</source>
-        <translation type="unfinished"></translation>
+        <translation>모든 장비를 일시중지</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="442"/>
         <source>Show layers</source>
-        <translation type="unfinished"></translation>
+        <translation>레이어 보여주기</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="443"/>
         <source>ReloadAll</source>
-        <translation type="unfinished"></translation>
+        <translation>모두 Reload</translation>
     </message>
 </context>
 <context>
@@ -2451,12 +2451,12 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
     <message>
         <location filename="../NETFile.py" line="475"/>
         <source>%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file</source>
-        <translation type="unfinished"></translation>
+        <translation>%s 장비에 대한 %s 심벌을 찾을 수 없습니다. 해당 심벌이 사용가능한 심벌인지 노드 리스트에서 확인 후 .Net 파일을 다시 불러와서 확인을 해주세요</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="987"/>
         <source>must be connected or have a hypervisor set in order to be registered</source>
-        <translation type="unfinished"></translation>
+        <translation>등록을 하기 위해서는 연결이 되어 있어야 하거나 하이퍼바이저가 설정되어 있어야 합니다</translation>
     </message>
 </context>
 <context>
@@ -2489,17 +2489,17 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
     <message>
         <location filename="../Ui/Form_NewProject.py" line="66"/>
         <source>&amp;Open a project</source>
-        <translation type="unfinished"></translation>
+        <translation>프로젝트 열기(&amp;O)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="68"/>
         <source>Project name:</source>
-        <translation type="unfinished"></translation>
+        <translation>프로젝트 이름:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="69"/>
         <source>Project path:</source>
-        <translation type="unfinished"></translation>
+        <translation>프로젝트 경로:</translation>
     </message>
 </context>
 <context>
@@ -2609,22 +2609,22 @@ to display the configuration page.</source>
     <message>
         <location filename="../NodeConfigurator.py" line="128"/>
         <source>ASA firewalls</source>
-        <translation type="unfinished"></translation>
+        <translation>ASA 방화벽</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="131"/>
         <source>Juniper routers</source>
-        <translation type="unfinished"></translation>
+        <translation>주니퍼 라우터</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="137"/>
         <source>Qemu hosts</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 호스트</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="134"/>
         <source>Cisco IDS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -2632,7 +2632,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../DynagenSub.py" line="183"/>
         <source>PIX image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished">%s 의 PIX 이미지 및 그를 대체할 수 있는 이미지를 찾지 못했습니다</translation>
+        <translation>%s 의 PIX 이미지 및 그를 대체할 수 있는 이미지를 찾지 못했습니다</translation>
     </message>
 </context>
 <context>
@@ -2771,7 +2771,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="279"/>
         <source>IP/host binding:</source>
-        <translation type="unfinished"></translation>
+        <translation>IP/호스트 binding:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="140"/>
@@ -2784,13 +2784,13 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="170"/>
-        <source>Enable sparse memory support</source>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="160"/>
+        <source>Enable JIT sharing support (Dynamips &gt; 0.2.8 RC2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="160"/>
-        <source>Enable JIT sharing support (Dynamips &gt; 0.2.8 RC2)</source>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="170"/>
+        <source>Enable sparse memory support</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2879,47 +2879,47 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="24"/>
         <source>General Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>일반 설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="262"/>
         <source>GUI Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>GUI 설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="332"/>
         <source>Draw a rectangle when an item is selected</source>
-        <translation type="unfinished"></translation>
+        <translation>아이콘 등.. 아이템이 선택되게 되면 네모칸으로 표시</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="116"/>
         <source>Image directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>이미지 디렉터리:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="73"/>
         <source>Waiting time between each start when starting every devices:</source>
-        <translation type="unfinished"></translation>
+        <translation>모든 장비를 시작할 때 각 장비간의 시작전 대기시간:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="80"/>
         <source> seconds</source>
-        <translation type="unfinished"></translation>
+        <translation> 초</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="189"/>
         <source>Terminal Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>터미널 설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="195"/>
         <source>Preconfigurated terminal commands:</source>
-        <translation type="unfinished"></translation>
+        <translation>미리 정의한 터미널 명령어:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="211"/>
         <source>&amp;Use</source>
-        <translation type="unfinished"></translation>
+        <translation>사용(&amp;U)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="238"/>
@@ -2927,12 +2927,12 @@ to display the configuration page.</source>
 %h = device server 
 %p = device port
 %d = device hostname</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="63"/>
         <source>Use relative path for projects</source>
-        <translation type="unfinished"></translation>
+        <translation>프로젝트에서 상대경로를 사용</translation>
     </message>
 </context>
 <context>
@@ -2940,287 +2940,287 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">폼</translation>
+        <translation>폼</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="24"/>
         <source>General Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>일반 설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="30"/>
         <source>Qemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1141"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="56"/>
         <source>Working directory:</source>
-        <translation type="unfinished">작업 디렉터리:</translation>
+        <translation>작업 디렉터리:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="187"/>
         <source>Enable Qemu Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 관리자를 사용</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="197"/>
         <source>Use Qemu Manager when importing</source>
-        <translation type="unfinished"></translation>
+        <translation>불러오기를 할 때 Qemu 관리자를 사용</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="147"/>
         <source>Base UDP port:</source>
-        <translation type="unfinished"></translation>
+        <translation>기본 UDP포트:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="167"/>
         <source>Base console port:</source>
-        <translation type="unfinished"></translation>
+        <translation>기본 콘솔 포트:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="719"/>
         <source>Binary image:</source>
-        <translation type="unfinished"></translation>
+        <translation>바이너리 이미지:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1151"/>
         <source>Memory:</source>
-        <translation type="unfinished"></translation>
+        <translation>메모리:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1177"/>
         <source>NIC:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1191"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1196"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1201"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1206"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1211"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1216"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1221"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1226"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1234"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 옵션:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1251"/>
         <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
+        <translation>KQemu를 사용</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1261"/>
         <source>Use KVM (Linux Only)</source>
-        <translation type="unfinished"></translation>
+        <translation>KVM 사용(리눅스 전용)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="498"/>
         <source>PIX</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="504"/>
         <source>PIX Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX 설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="650"/>
         <source>PIX Specific Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX 상세 설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="656"/>
         <source>Key:</source>
-        <translation type="unfinished">Key:</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="673"/>
         <source>Serial:</source>
-        <translation type="unfinished">Serial:</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="707"/>
         <source>JunOS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="713"/>
         <source>JunOS Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>JunOS 설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="880"/>
         <source>ASA</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="886"/>
         <source>ASA Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>ASA 설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1012"/>
         <source>ASA Specific Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>ASA 상세 설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1061"/>
         <source>Initrd:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1028"/>
         <source>Kernel:</source>
-        <translation type="unfinished"></translation>
+        <translation>커널:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1048"/>
         <source>Kernel cmd line:</source>
-        <translation type="unfinished"></translation>
+        <translation>커널 명령어 라인:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="249"/>
         <source>&amp;Test</source>
-        <translation type="unfinished">테스트(&amp;T)</translation>
+        <translation>테스트(&amp;T)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="285"/>
         <source>Qemu Host</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 호스트</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="291"/>
         <source>Qemu Host Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 호스트 설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="297"/>
         <source>Identifier name:</source>
-        <translation type="unfinished"></translation>
+        <translation>식별자 이름:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="431"/>
         <source>Save</source>
-        <translation type="unfinished">저장</translation>
+        <translation>저장</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="438"/>
         <source>Delete</source>
-        <translation type="unfinished">삭제</translation>
+        <translation>삭제</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="461"/>
         <source>Qemu Host images</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 호스트 이미지</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="468"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>이름</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="473"/>
         <source>Image path</source>
-        <translation type="unfinished"></translation>
+        <translation>이미지 경로</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1085"/>
         <source>IDS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1091"/>
         <source>IDS Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>IDS 설정</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1097"/>
         <source>Binary image 1 (hda):</source>
-        <translation type="unfinished"></translation>
+        <translation>바이너리 이미지 1 (hda):</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1124"/>
         <source>Binary image 2 (hdb):</source>
-        <translation type="unfinished"></translation>
+        <translation>바이너리 이미지 2 (hdb):</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="36"/>
         <source>Path to Qemuwrapper:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemuwrapper의 경로:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="73"/>
         <source>Path to qemu:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 경로:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="93"/>
         <source>Path to qemu-img:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu-img 경로:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="113"/>
         <source>IP/host binding:</source>
-        <translation type="unfinished"></translation>
+        <translation>IP/호스트 binding:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="127"/>
         <source>Qemuwrapper port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemuwrapper의 포트:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="210"/>
         <source>External Qemuwrapper:</source>
-        <translation type="unfinished"></translation>
+        <translation>외부 Qemuwrapper:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="220"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>추가</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="234"/>
         <source>Registered external Qemuwrappers:</source>
-        <translation type="unfinished"></translation>
+        <translation>등록된 외부 Qemuwrapper:</translation>
     </message>
 </context>
 <context>
@@ -3228,7 +3228,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../ProjectDialog.py" line="91"/>
         <source>Project Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>프로젝트 디렉터리</translation>
     </message>
 </context>
 <context>
@@ -3236,7 +3236,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../DynagenSub.py" line="170"/>
         <source>Qemu host image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>%s 의 Qemu 호스트 이미지 및 그를 대체할 수 있는 이미지를 찾지 못했습니다</translation>
     </message>
 </context>
 <context>
@@ -3244,32 +3244,32 @@ to display the configuration page.</source>
     <message>
         <location filename="../QemuManager.py" line="61"/>
         <source>Connecting to Qemu on port %i ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 포트 %i에 연결중...</translation>
     </message>
     <message>
         <location filename="../QemuManager.py" line="61"/>
         <source>Abort</source>
-        <translation type="unfinished">중지</translation>
+        <translation>중지</translation>
     </message>
     <message>
         <location filename="../QemuManager.py" line="85"/>
         <source>Can&apos;t connect to Qemu on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 포트 %i에 연결할 수 없습니다</translation>
     </message>
     <message>
         <location filename="../QemuManager.py" line="165"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
-        <translation type="unfinished"></translation>
+        <translation>%s 작업 디렉터리가 존재하지 않거나 사용할 수 없습니다. 다시한번 확인을 부탁드립니다</translation>
     </message>
     <message>
         <location filename="../QemuManager.py" line="118"/>
         <source>Qemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu가 이미 %i 포트에서 실행되고 있습니다. GNS3를 종료하기 전에는 Qemu가 종료되지 않습니다</translation>
     </message>
     <message>
         <location filename="../QemuManager.py" line="133"/>
         <source>Can&apos;t start Qemu on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 포트 %i에서 시작할 수 없습니다</translation>
     </message>
 </context>
 <context>
@@ -3277,87 +3277,87 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="14"/>
         <source>Firewall configuration</source>
-        <translation type="unfinished">방화벽 구성</translation>
+        <translation>방화벽 구성</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="20"/>
         <source>Qemu Image:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 이미지:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="49"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="56"/>
         <source>RAM size:</source>
-        <translation type="unfinished">메모리 사이즈:</translation>
+        <translation>메모리 사이즈:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="69"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="85"/>
         <source>NIC:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="99"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="104"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="109"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="114"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="119"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="124"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="129"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="134"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="142"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 옵션:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="159"/>
         <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
+        <translation>KQemu를 사용</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="169"/>
         <source>Use KVM (Linux only)</source>
-        <translation type="unfinished"></translation>
+        <translation>KVM 사용(리눅스 전용)</translation>
     </message>
 </context>
 <context>
@@ -3475,27 +3475,27 @@ to display the configuration page.</source>
     <message>
         <location filename="../Scene.py" line="193"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Scene.py" line="130"/>
         <source>Set an hypervisor</source>
-        <translation type="unfinished"></translation>
+        <translation>하이퍼바이저를 설정</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="693"/>
         <source>annotation</source>
-        <translation type="unfinished"></translation>
+        <translation>주석</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="702"/>
         <source>rectangle</source>
-        <translation type="unfinished"></translation>
+        <translation>사각형</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="710"/>
         <source>ellipse</source>
-        <translation type="unfinished"></translation>
+        <translation>타원</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="140"/>
@@ -3508,12 +3508,12 @@ to display the configuration page.</source>
     <message>
         <location filename="../SnapshotDialog.py" line="63"/>
         <source>Project</source>
-        <translation type="unfinished"></translation>
+        <translation>프로젝트</translation>
     </message>
     <message>
         <location filename="../SnapshotDialog.py" line="63"/>
         <source>Create a project first!</source>
-        <translation type="unfinished"></translation>
+        <translation>먼저 프로젝트를 만들어 주세요!!</translation>
     </message>
 </context>
 <context>
@@ -3521,22 +3521,22 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/Form_Snapshots.py" line="42"/>
         <source>Snapshots</source>
-        <translation type="unfinished"></translation>
+        <translation>스냅샷</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Snapshots.py" line="43"/>
         <source>Create</source>
-        <translation type="unfinished"></translation>
+        <translation>만들기</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Snapshots.py" line="44"/>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>불러오기</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Snapshots.py" line="45"/>
         <source>Delete</source>
-        <translation type="unfinished">삭제</translation>
+        <translation>지우기</translation>
     </message>
 </context>
 <context>
@@ -3544,48 +3544,48 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="61"/>
         <source>Startup-config</source>
-        <translation type="unfinished">Startup-config</translation>
+        <translation>Startup-config</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="62"/>
         <source>Config file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Config 파일:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="63"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="64"/>
         <source>Load config from nvram</source>
-        <translation type="unfinished"></translation>
+        <translation>NVRAM 으로부터 config를 불러옴</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="65"/>
         <source>Save changes into the config file</source>
-        <translation type="unfinished"></translation>
+        <translation>변경된 부분을 config 파일에 저장</translation>
     </message>
     <message>
         <location filename="../StartupConfigDialog.py" line="122"/>
         <source>IO Error</source>
-        <translation type="unfinished">IO 에러</translation>
+        <translation>IO 에러</translation>
     </message>
     <message>
         <location filename="../StartupConfigDialog.py" line="135"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips 에러</translation>
+        <translation>Dynamips 에러</translation>
     </message>
     <message>
         <location filename="../StartupConfigDialog.py" line="94"/>
         <source>Dynamips warning</source>
-        <translation type="unfinished">Dynamips 경고</translation>
+        <translation>Dynamips 경고</translation>
     </message>
     <message>
         <location filename="../StartupConfigDialog.py" line="138"/>
         <source>The startup-config has been saved, now you can synchronize it in IOS
 i.e. #copy start run</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -3801,17 +3801,17 @@ ALT + LEFT or RIGHT</source>
         <translation>Dynamips의 경로를 설정해주세요</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="861"/>
+        <location filename="../Topology.py" line="877"/>
         <source>Dynamips error</source>
         <translation>Dynamips 에러</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="861"/>
+        <location filename="../Topology.py" line="877"/>
         <source>Connection lost</source>
         <translation>연결 종료</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="744"/>
+        <location filename="../Topology.py" line="755"/>
         <source>Connection</source>
         <translation>연결</translation>
     </message>
@@ -3831,7 +3831,7 @@ ALT + LEFT or RIGHT</source>
         <translation>IOS 이미지를 선택해주세요</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="744"/>
+        <location filename="../Topology.py" line="755"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>적어도 하나의 라우터에서 스위치로 연결이 되어야 합니다</translation>
     </message>
@@ -3853,82 +3853,82 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Topology.py" line="316"/>
         <source>Qemuwrapper error</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemuwrapper 에러</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="526"/>
         <source>%s seems to not exist, please check</source>
-        <translation type="unfinished"></translation>
+        <translation>%s가 존재하지 않는 것 같습니다. 다시한번 확인을 부탁 드립니다</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="440"/>
         <source>JunOS image</source>
-        <translation type="unfinished"></translation>
+        <translation>JunOS 이미지</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="435"/>
         <source>Please configure a default JunOS image</source>
-        <translation type="unfinished"></translation>
+        <translation>기본 JunOS 이미지를 설정해주세요</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="419"/>
         <source>Qemu image</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 이미지</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="499"/>
         <source>ASA kernel</source>
-        <translation type="unfinished"></translation>
+        <translation>ASA 커널</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="485"/>
         <source>Please configure a default ASA kernel</source>
-        <translation type="unfinished"></translation>
+        <translation>기본 ASA 커널을 설정해주세요</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="495"/>
         <source>ASA initrd</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Topology.py" line="489"/>
         <source>Please configure a default ASA initrd</source>
-        <translation type="unfinished"></translation>
+        <translation>기본 ASA initrd를 설정해주세요</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="398"/>
         <source>Please configure a Qemu image</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 이미지를 설정해주세요</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="465"/>
         <source>IDS images</source>
-        <translation type="unfinished"></translation>
+        <translation>IOS 이미지</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="456"/>
         <source>Please configure the default IDS images</source>
-        <translation type="unfinished"></translation>
+        <translation>기본 IDS 이미지를 설정해주세요</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="273"/>
         <source>External Qemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>외부 Qemuwrapper</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="268"/>
         <source>Please register at least one external Qemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>적어도 하나의 Qemuwrapper를 등록시켜 주세요</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="273"/>
         <source>Please choose your external Qemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>외부 Qemuwrapper 를 선택 해주세요</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="731"/>
         <source>Can&apos;t connect these devices</source>
-        <translation type="unfinished"></translation>
+        <translation>그 장치들에 연결할 수 없습니다</translation>
     </message>
 </context>
 <context>
@@ -3936,82 +3936,82 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../UndoFramework.py" line="39"/>
         <source>New node %s</source>
-        <translation type="unfinished"></translation>
+        <translation>새로운 노드 %s</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="67"/>
         <source>Delete node %s</source>
-        <translation type="unfinished"></translation>
+        <translation>%s 노드를 삭제</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="87"/>
         <source>New item %s</source>
-        <translation type="unfinished"></translation>
+        <translation>새로운 항목 %s</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="104"/>
         <source>Delete item</source>
-        <translation type="unfinished"></translation>
+        <translation>항목을 삭제</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="123"/>
         <source>New link: %s (%s) -&gt; %s (%s)</source>
-        <translation type="unfinished"></translation>
+        <translation>새로운 링크: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="155"/>
         <source>Delete link: %s (%s) -&gt; %s (%s)</source>
-        <translation type="unfinished"></translation>
+        <translation>링크를 삭제: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="188"/>
         <source>New configuration applied on %s</source>
-        <translation type="unfinished"></translation>
+        <translation>새로운 Configuration이 %s 에 적용되었습니다</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="206"/>
         <source>New hostname %s -&gt; %s</source>
-        <translation type="unfinished"></translation>
+        <translation>새로운 호스트 이름 %s -&gt; %s</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="234"/>
         <source>New layer position %d</source>
-        <translation type="unfinished"></translation>
+        <translation>새로운 레이어 위치 %d</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="254"/>
         <source>New console port %d for %s</source>
-        <translation type="unfinished"></translation>
+        <translation>%s의 새로운 콘솔 포트 %d</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="288"/>
         <source>New startup-config %s for %s</source>
-        <translation type="unfinished"></translation>
+        <translation>%s - %s의 새로운 Startup-config</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="330"/>
         <source>New startup-config in nvram for %s</source>
-        <translation type="unfinished"></translation>
+        <translation>%s의 NVRAM에 새로운 Startup-config</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="349"/>
         <source>Connection lost</source>
-        <translation type="unfinished">연결 종료</translation>
+        <translation>연결 종료</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="367"/>
         <source>New style applied for annotation</source>
-        <translation type="unfinished"></translation>
+        <translation>주석에 대해 새로운 스타일이 적용되었습니다</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="402"/>
         <source>New style applied for item</source>
-        <translation type="unfinished"></translation>
+        <translation>항목에 대하여 새로운 스타일이 적용되었습니다</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="437"/>
         <source>New text for annotation</source>
-        <translation type="unfinished"></translation>
+        <translation>주석에 대한 새 텍스트</translation>
     </message>
 </context>
 <context>
@@ -4268,47 +4268,47 @@ No - Export only what I see</source>
     <message>
         <location filename="../Workspace.py" line="261"/>
         <source>I/O Error</source>
-        <translation type="unfinished"></translation>
+        <translation>I/O 에러</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="261"/>
         <source>I/O Error: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>I/O 에러: %s</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="85"/>
         <source>Ctrl+Z</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="90"/>
         <source>Ctrl+Y</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="738"/>
         <source>Project</source>
-        <translation type="unfinished"></translation>
+        <translation>프로젝트</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="738"/>
         <source>Please create a new project first</source>
-        <translation type="unfinished"></translation>
+        <translation>새로운 프로젝트를 만들어 주세요</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="648"/>
         <source>Reloading nodes ...</source>
-        <translation type="unfinished"></translation>
+        <translation>노드를 다시 불러오는 중입니다...</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="406"/>
         <source>picture</source>
-        <translation type="unfinished"></translation>
+        <translation>사진</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="898"/>
         <source>Dynamips error: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Dynamips 에러: %s</translation>
     </message>
 </context>
 <context>
@@ -4391,22 +4391,22 @@ No - Export only what I see</source>
     <message>
         <location filename="DynamicStrings.py" line="46"/>
         <source>Juniper router</source>
-        <translation type="unfinished"></translation>
+        <translation>주니퍼 라우터</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="47"/>
         <source>ASA firewall</source>
-        <translation type="unfinished"></translation>
+        <translation>ASA 방화벽</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="48"/>
         <source>IDS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="49"/>
         <source>Qemu host</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu 호스트</translation>
     </message>
 </context>
 <context>

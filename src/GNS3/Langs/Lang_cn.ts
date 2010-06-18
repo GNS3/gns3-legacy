@@ -886,7 +886,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Config</name>
     <message>
-        <location filename="../Config/Config.py" line="276"/>
+        <location filename="../Config/Config.py" line="278"/>
         <source>Can&apos;t open library: %s</source>
         <translation>无法打开库: %s</translation>
     </message>
@@ -3802,17 +3802,17 @@ ALT + LEFT or RIGHT</source>
         <translation>请配置Dynamips路径</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="861"/>
+        <location filename="../Topology.py" line="877"/>
         <source>Dynamips error</source>
         <translation>Dynamips 错误</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="861"/>
+        <location filename="../Topology.py" line="877"/>
         <source>Connection lost</source>
         <translation>丢失连接</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="744"/>
+        <location filename="../Topology.py" line="755"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
@@ -3832,7 +3832,7 @@ ALT + LEFT or RIGHT</source>
         <translation>请选择一个IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="744"/>
+        <location filename="../Topology.py" line="755"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>至少连接一个路由器到虚拟交换机</translation>
     </message>

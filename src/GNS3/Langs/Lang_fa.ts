@@ -886,7 +886,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Config</name>
     <message>
-        <location filename="../Config/Config.py" line="276"/>
+        <location filename="../Config/Config.py" line="278"/>
         <source>Can&apos;t open library: %s</source>
         <translation>نيست  %s   :قادر به باز كردن كتابخانه</translation>
     </message>
@@ -3786,17 +3786,17 @@ ALT + LEFT or RIGHT</source>
         <translation>امتحان كنيد preferences لطفا مسير بسمت دايناميپث را در </translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="861"/>
+        <location filename="../Topology.py" line="877"/>
         <source>Connection lost</source>
         <translation>اتصال قطع شد</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="744"/>
+        <location filename="../Topology.py" line="755"/>
         <source>Connection</source>
         <translation>اتصال</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="861"/>
+        <location filename="../Topology.py" line="877"/>
         <source>Dynamips error</source>
         <translation>خطاي دايناميپث</translation>
     </message>
@@ -3831,7 +3831,7 @@ ALT + LEFT or RIGHT</source>
         <translation> هيچ ايميجي وجود ندارد %s براي </translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="744"/>
+        <location filename="../Topology.py" line="755"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>شما بايد حداقل يك روتر به سوييچ متصل كنيد</translation>
     </message>

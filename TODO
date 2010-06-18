@@ -5,6 +5,7 @@ TODO LIST
  * Auto UDP (next release of Dynamips)
  * WICS removable (next release of Dynamips)
  * Packet capture between Qemu devices
+ * Do not remove original comments in .net files
 
 Debugging
 

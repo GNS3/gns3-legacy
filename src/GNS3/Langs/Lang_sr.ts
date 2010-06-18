@@ -886,7 +886,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Config</name>
     <message>
-        <location filename="../Config/Config.py" line="276"/>
+        <location filename="../Config/Config.py" line="278"/>
         <source>Can&apos;t open library: %s</source>
         <translation>Немогуће отворити библиотеку: %s</translation>
     </message>
@@ -3802,17 +3802,17 @@ ALT + ЛЕВО или ДЕСНО</translation>
         <translation>Унесите путању до Dynamips програма</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="861"/>
+        <location filename="../Topology.py" line="877"/>
         <source>Dynamips error</source>
         <translation>Dynamips грешка</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="861"/>
+        <location filename="../Topology.py" line="877"/>
         <source>Connection lost</source>
         <translation>Изгубљена веза</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="744"/>
+        <location filename="../Topology.py" line="755"/>
         <source>Connection</source>
         <translation>Веза</translation>
     </message>
@@ -3832,7 +3832,7 @@ ALT + ЛЕВО или ДЕСНО</translation>
         <translation>Изаберите бинарну датотеку</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="744"/>
+        <location filename="../Topology.py" line="755"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Морате повезати бар један рутер на свич</translation>
     </message>
