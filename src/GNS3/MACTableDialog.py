@@ -56,8 +56,15 @@ class MACTableDialog(QtGui.QDialog, Ui_MACTableDialog):
             for chunks in result:
                 lines = chunks.strip().split('\r\n')
                 for line in lines:
-                    if line != '100-OK':
-                        table = table + line[4:] + "\n"
+                    if line == '100-OK':
+                        continue
+                    infos = line.split()
+                    connected_interfaces = map(int, self.node.getConnectedInterfaceList())
+                    for port in connected_interfaces:
+                        nio = self.node.ethsw.nio(port)
+                        if nio and nio.name == infos[3]:
+                            table = table + infos[1] + ' ' + translate("MACTableDialog", "learned from port") + ' ' + str(port) + "\n"
+                            break
             self.plainTextEditMACTable.setPlainText(table)
         
     def __clearTable(self):

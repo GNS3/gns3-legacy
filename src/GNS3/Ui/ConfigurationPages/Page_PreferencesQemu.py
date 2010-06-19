@@ -386,6 +386,8 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         image = unicode(self.QemuImage.text())
         
         if not name or not image:
+            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "Qemu host"), 
+                                       translate("Page_PreferencesQemu", "Identifier and binary image must be set!"))
             return
 
         if globals.GApp.qemuimages.has_key(name):
