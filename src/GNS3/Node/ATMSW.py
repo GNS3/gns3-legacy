@@ -200,18 +200,18 @@ class ATMSW(AbstractNode):
             match_srcvci = MAPVCI.search(source)
             match_destvci = MAPVCI.search(destination)
             if match_srcvci and match_destvci:
-                (srcport,  srcvci,  srcvpi) = match_srcvci.group(1,2,3)
-                (destport,  destvci,  destvpi) = match_destvci.group(1,2,3)
+                (srcport, srcvpi, srcvci) = match_srcvci.group(1, 2, 3)
+                (destport, destvpi, destvci) = match_destvci.group(1, 2, 3)
             else:
-                (srcport,  srcvpi) = source.split(':')
-                (destport,  destvpi) = destination.split(':')
+                (srcport, srcvpi) = source.split(':')
+                (destport, destvpi) = destination.split(':')
                 srcvci = destvci = None
 
             if int(srcport) in connected_interfaces and int(destport) in connected_interfaces:
                 if srcvci and destvci:
                     if not self.atmsw.vpivci_map.has_key((int(srcport), int(srcvpi), int(srcvci))) and not self.atmsw.vpivci_map.has_key((int(destport), int(destvpi), int(destvci))):
-                        self.atmsw.mapvc(int(srcport), int(srcvpi), int(srcvci), int(destport), int(destvpi),  int(destvci))
-                        self.atmsw.mapvc(int(destport), int(destvpi), int(destvci), int(srcport), int(srcvpi),  int(srcvci))
+                        self.atmsw.mapvc(int(srcport), int(srcvpi), int(srcvci), int(destport), int(destvpi), int(destvci))
+                        self.atmsw.mapvc(int(destport), int(destvpi), int(destvci), int(srcport), int(srcvpi), int(srcvci))
                 else:
                     if not self.atmsw.vpivci_map.has_key((int(srcport), int(srcvpi))) and not self.atmsw.vpivci_map.has_key((int(destport), int(destvpi))):
                         self.atmsw.mapvp(int(srcport), int(srcvpi), int(destport), int(destvpi))

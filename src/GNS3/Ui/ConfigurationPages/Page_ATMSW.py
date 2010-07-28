@@ -21,7 +21,7 @@
 
 import re
 import GNS3.Globals as globals
-from PyQt4 import QtCore,  QtGui
+from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
 from Form_ATMSWPage import Ui_ATMSWPage
 
@@ -42,24 +42,12 @@ class Page_ATMSW(QtGui.QWidget, Ui_ATMSWPage):
         self.connect(self.pushButtonDelete, QtCore.SIGNAL('clicked()'), self.slotDeleteVC)
         self.connect(self.treeWidgetVCmap,  QtCore.SIGNAL('itemActivated(QTreeWidgetItem *, int)'),  self.slotVCselected)
         self.connect(self.treeWidgetVCmap,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotVCSelectionChanged)
-        self.connect(self.checkBoxVCI, QtCore.SIGNAL('stateChanged(int)'), self.slotCheckBoxVCI)
         
         # enable sorting
         self.treeWidgetVCmap.sortByColumn(0, QtCore.Qt.AscendingOrder)
         self.treeWidgetVCmap.setSortingEnabled(True)
         
         self.mapping = {}
-
-    def slotCheckBoxVCI(self,  state):
-        """ Enable VCI spinboxes
-        """
-    
-        if state == QtCore.Qt.Checked:
-            self.spinBoxSrcVCI.setEnabled(True)
-            self.spinBoxDestVCI.setEnabled(True)
-        else:
-            self.spinBoxSrcVCI.setEnabled(False)
-            self.spinBoxDestVCI.setEnabled(False)
 
     def slotVCselected(self, item, column):
         """ Load a selected virtual channel
@@ -69,30 +57,30 @@ class Page_ATMSW(QtGui.QWidget, Ui_ATMSWPage):
         destination = str(item.text(1))
         match_srcvci = MAPVCI.search(source)
         match_destvci = MAPVCI.search(destination)
+
         if match_srcvci and match_destvci:
-            self.checkBoxVCI.setCheckState(QtCore.Qt.Checked)
-            (srcport,  srcvci,  srcvpi) = match_srcvci.group(1,2,3)
-            (destport,  destvci,  destvpi) = match_destvci.group(1,2,3)
+            self.checkBoxVPI.setCheckState(QtCore.Qt.Unchecked)
+            (srcport, srcvpi, srcvci) = match_srcvci.group(1, 2, 3)
+            (destport, destvpi, destvci) = match_destvci.group(1, 2, 3)
         else:
-            self.checkBoxVCI.setCheckState(QtCore.Qt.Unchecked)
-            (srcport,  srcvpi) = source.split(':')
-            (destport,  destvpi) = destination.split(':')
+            self.checkBoxVPI.setCheckState(QtCore.Qt.Checked)
+            (srcport, srcvpi) = source.split(':')
+            (destport, destvpi) = destination.split(':')
             srcvci = destvci = None
 
+        self.spinBoxSrcVPI.setValue(int(srcvpi))
         self.spinBoxSrcPort.setValue(int(srcport))
         if srcvci:
             self.spinBoxSrcVCI.setValue(int(srcvci))
         else:
             self.spinBoxSrcVCI.setValue(0)
-        self.spinBoxSrcVPI.setValue(int(srcvpi))
 
+        self.spinBoxDestVPI.setValue(int(destvpi))
         self.spinBoxDestPort.setValue(int(destport))
         if destvci:
             self.spinBoxDestVCI.setValue(int(destvci))
         else:
             self.spinBoxDestVCI.setValue(0)
-    
-        self.spinBoxDestVPI.setValue(int(destvpi))
         
     def slotVCSelectionChanged(self):
         """ Enable the use of the delete button
@@ -109,19 +97,15 @@ class Page_ATMSW(QtGui.QWidget, Ui_ATMSWPage):
         """
         
         srcport = self.spinBoxSrcPort.value()
-        srcvci = self.spinBoxSrcVCI.value()
         srcvpi = self.spinBoxSrcVPI.value()
+        srcvci = self.spinBoxSrcVCI.value()
         destport = self.spinBoxDestPort.value()
-        destvci = self.spinBoxDestVCI.value()
         destvpi = self.spinBoxDestVPI.value()
-        
-        if srcport == destport:
-            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_ATMSW",  "Add virtual channel"),  translate("Page_ATMSW",  "Same source and destination ports"))
-            return
+        destvci = self.spinBoxDestVCI.value()
 
-        if self.checkBoxVCI.checkState() == QtCore.Qt.Checked:
-            source = str(srcport) + ':' + str(srcvci) + ':' + str(srcvpi)
-            destination = str(destport) + ':' + str(destvci) + ':' + str(destvpi)
+        if self.checkBoxVPI.checkState() == QtCore.Qt.Unchecked:
+            source = str(srcport) + ':' + str(srcvpi) + ':' + str(srcvci)
+            destination = str(destport) + ':' + str(destvpi) + ':' + str(destvci)
         else:
             source = str(srcport) + ':' + str(srcvpi)
             destination = str(destport) + ':' + str(destvpi)
@@ -135,12 +119,7 @@ class Page_ATMSW(QtGui.QWidget, Ui_ATMSWPage):
         item.setText(1, destination)
         self.treeWidgetVCmap.addTopLevelItem(item)
         self.spinBoxSrcPort.setValue(srcport + 1)
-        self.spinBoxSrcVPI.setValue(srcvpi + 1)
         self.spinBoxDestPort.setValue(destport + 1)
-        self.spinBoxDestVPI.setValue(destvpi + 1)
-        if self.checkBoxVCI.checkState() == QtCore.Qt.Checked:
-            self.spinBoxSrcVCI.setValue(srcvci + 1)
-            self.spinBoxDestVCI.setValue(destvci + 1)
         self.mapping[source] = destination
         
     def slotDeleteVC(self):
@@ -193,8 +172,8 @@ class Page_ATMSW(QtGui.QWidget, Ui_ATMSWPage):
         ATMSWconfig['mapping'] = self.mapping
         ATMSWconfig['ports'] = []
         for (source,  destination) in self.mapping.iteritems():
-            (srcport,  rest) = source.split(':',  1)
-            (destport,  rest) = destination.split(':',  1)
+            (srcport, rest) = source.split(':',  1)
+            (destport, rest) = destination.split(':',  1)
             if not srcport in ATMSWconfig['ports']:
                 ATMSWconfig['ports'].append(srcport)
             if not destport in ATMSWconfig['ports']:

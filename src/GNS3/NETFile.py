@@ -705,8 +705,8 @@ class NETFile(object):
                 keys = device.mapping.keys()
                 keys.sort()
                 for port1 in keys:
-                    (port2, vci2, vpi2) = device.mapping[port1]
-                    config['mapping'][str(port1)] = str(port2) + ':' + str(vci2) + ':' + str(vpi2)
+                    (port2, vpi, vci) = device.mapping[port1]
+                    config['mapping'][str(port1)] = str(port2) + ':' + str(vpi) + ':' + str(vci)
                     if not port1 in config['ports']:
                         config['ports'].append(port1)
                     if not port2 in config['ports']:

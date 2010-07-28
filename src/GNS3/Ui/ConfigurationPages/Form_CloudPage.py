@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_CloudPage.ui'
 #
-# Created: Fri Jun 11 16:46:03 2010
-#      by: PyQt4 UI code generator 4.7.3
+# Created: Wed Jul 28 11:54:25 2010
+#      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -347,10 +347,10 @@ class Ui_CloudPage(object):
 
     def retranslateUi(self, CloudPage):
         CloudPage.setWindowTitle(QtGui.QApplication.translate("CloudPage", "Cloud", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox.setTitle(QtGui.QApplication.translate("CloudPage", "Generic Ethernet NIO (require Administrator access)", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox.setTitle(QtGui.QApplication.translate("CloudPage", "Generic Ethernet NIO (Administrator access required)", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonAddGenericEth.setText(QtGui.QApplication.translate("CloudPage", "&Add", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonDeleteGenericEth.setText(QtGui.QApplication.translate("CloudPage", "&Delete", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox_2.setTitle(QtGui.QApplication.translate("CloudPage", "Linux Ethernet NIO (require root access)", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox_2.setTitle(QtGui.QApplication.translate("CloudPage", "Linux Ethernet NIO (root access required)", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonAddLinuxEth.setText(QtGui.QApplication.translate("CloudPage", "&Add", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonDeleteLinuxEth.setText(QtGui.QApplication.translate("CloudPage", "&Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QtGui.QApplication.translate("CloudPage", "NIO Ethernet", None, QtGui.QApplication.UnicodeUTF8))

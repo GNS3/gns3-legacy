@@ -172,7 +172,7 @@ class xEMUInstance(object):
 
     def _net_options(self):
         options = []
-        for vlan in range(6):
+        for vlan in range(7):
             options.append('-net')
             if vlan in self.nic:
                 options.append('nic,vlan=%d,macaddr=%s,model=%s' % (vlan, self.nic[vlan], self.netcard))

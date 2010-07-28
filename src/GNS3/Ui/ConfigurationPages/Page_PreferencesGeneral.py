@@ -53,7 +53,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
                          'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p',
                          'SecureCRT (Windows 32 bits)': 'start C:\progra~1\vandyk~1\SecureCRT\SecureCRT.EXE /script C:\progra~1\gns3\securecrt.vbs /arg %d /T /telnet %h %p',
                          'SecureCRT (Windows 64 bits)': 'start C:\progra~2\vandyk~1\SecureCRT\SecureCRT.EXE /script C:\progra~2\gns3\securecrt.vbs /arg %d /T /telnet %h %p',
-                         'TeraTerm (Windows)': 'C:\TTERMPRO\\ttssh.exe %h %p /W=%d /T=1',
+                         'TeraTerm (Windows)': 'C:\TTERMPRO\\ttermpro.exe %h:%p',
                          'Telnet (Windows)': 'start telnet %h %p',
                          'xterm (Linux)': 'xterm -T %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
                          'Gnome Terminal (Linux)': 'gnome-terminal -t %d -e \'telnet %h %p\' >/dev/null 2>&1 &',

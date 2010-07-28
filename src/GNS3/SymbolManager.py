@@ -135,7 +135,7 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
         current = self.treeWidgetNodes.currentItem()
         if current and self.lineEditNodeName.text():
             name = unicode(self.lineEditNodeName.text())
-            type = str(self.comboBoxNodeType.currentText())
+            type = unicode(self.comboBoxNodeType.currentText())
             for symbol in SYMBOLS:
                 if symbol['name'] == unicode(current.text(0)):
                     symbol['name'] = name

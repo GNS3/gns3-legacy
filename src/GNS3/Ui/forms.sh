@@ -35,5 +35,5 @@ FILES=" Form_MainWindow
 for file in $FILES;
 do
     echo "Generating $file"
-    /opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin/pyuic4 "$file.ui" > "$file.py"
+    /System/Library/Frameworks/Python.framework/Versions/2.6/bin/pyuic4 "$file.ui" > "$file.py"
 done

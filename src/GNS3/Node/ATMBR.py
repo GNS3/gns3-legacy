@@ -199,7 +199,7 @@ class ATMBR(AbstractNode):
         for (source, destination) in self.config['mapping'].iteritems():
             srcport = source
             match_destvci = MAPVCI.search(destination)
-            (destport,  destvci,  destvpi) = match_destvci.group(1,2,3)
+            (destport,  destvpi,  destvci) = match_destvci.group(1, 2, 3)
 
             if int(srcport) in connected_interfaces and int(destport) in connected_interfaces:
                 if not self.atmbr.mapping.has_key(int(srcport)):

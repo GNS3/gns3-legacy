@@ -21,7 +21,7 @@
 
 import re
 import GNS3.Globals as globals
-from PyQt4 import QtCore,  QtGui
+from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
 from Form_ATMBRPage import Ui_ATMBRPage
 
@@ -56,12 +56,12 @@ class Page_ATMBR(QtGui.QWidget, Ui_ATMBRPage):
         srcport = str(item.text(0))
         destination = str(item.text(1))
         match_destvci = MAPVCI.search(destination)
-        (destport,  destvci,  destvpi) = match_destvci.group(1,2,3)
+        (destport, destvpi, destvci) = match_destvci.group(1, 2, 3)
 
         self.spinBoxSrcPort.setValue(int(srcport))
         self.spinBoxDestPort.setValue(int(destport))
-        self.spinBoxDestVCI.setValue(int(destvci))
         self.spinBoxDestVPI.setValue(int(destvpi))
+        self.spinBoxDestVCI.setValue(int(destvci))
         
     def slotMapSelectionChanged(self):
         """ Enable the use of the delete button
@@ -79,15 +79,15 @@ class Page_ATMBR(QtGui.QWidget, Ui_ATMBRPage):
 
         srcport = self.spinBoxSrcPort.value()
         destport = self.spinBoxDestPort.value()
-        destvci = self.spinBoxDestVCI.value()
         destvpi = self.spinBoxDestVPI.value()
+        destvci = self.spinBoxDestVCI.value()
         
         if srcport == destport:
             QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_ATMBR",  "Add mapping"),  translate("Page_ATMBR",  "Same source and destination ports"))
             return
 
         source = str(srcport)
-        destination = str(destport) + ':' + str(destvci) + ':' + str(destvpi)
+        destination = str(destport) + ':' + str(destvpi) + ':' + str(destvci)
 
         if self.mapping.has_key(destination):
             QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_ATMBR",  "Add mapping"),  translate("Page_ATMBR",  "Mapping already defined"))
@@ -99,8 +99,6 @@ class Page_ATMBR(QtGui.QWidget, Ui_ATMBRPage):
         self.treeWidgetMapping.addTopLevelItem(item)
         self.spinBoxSrcPort.setValue(srcport + 1)
         self.spinBoxDestPort.setValue(destport + 1)
-        self.spinBoxDestVPI.setValue(destvpi + 1)
-        self.spinBoxDestVCI.setValue(destvci + 1)
         self.mapping[source] = destination
         
     def slotDeleteMap(self):
