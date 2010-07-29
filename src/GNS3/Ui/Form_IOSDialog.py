@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Thu Jul 29 17:56:52 2010
+# Created: Thu Jul 29 22:03:46 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!

@@ -6,11 +6,9 @@ TODO LIST
  * WICS removable (next release of Dynamips)
  * Packet capture between Qemu devices
  * Do not remove original comments in .net files (talk to Pavel)
- * Base config for routers
  * Multiple images for other Qemu-based devices
  * Option to choose number of interfaces for Qemu-based devices
- * Automatic save
-
+ 
 Debugging
 
  * Can only run one instance of Qemu on Windows (http://www.gns3.net/phpBB/topic1914.html)

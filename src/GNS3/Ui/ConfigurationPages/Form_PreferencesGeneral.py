@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
 #
-# Created: Thu Jul 29 17:56:58 2010
+# Created: Thu Jul 29 22:03:51 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_PreferencesGeneral(object):
     def setupUi(self, PreferencesGeneral):
         PreferencesGeneral.setObjectName("PreferencesGeneral")
-        PreferencesGeneral.resize(539, 478)
+        PreferencesGeneral.resize(539, 527)
         self.vboxlayout = QtGui.QVBoxLayout(PreferencesGeneral)
         self.vboxlayout.setObjectName("vboxlayout")
         self.tabWidget = QtGui.QTabWidget(PreferencesGeneral)
@@ -49,6 +49,14 @@ class Ui_PreferencesGeneral(object):
         self.slowStartAll.setMaximum(10000)
         self.slowStartAll.setObjectName("slowStartAll")
         self.gridLayout_2.addWidget(self.slowStartAll, 5, 0, 1, 1)
+        self.label_10 = QtGui.QLabel(self.tab)
+        self.label_10.setObjectName("label_10")
+        self.gridLayout_2.addWidget(self.label_10, 6, 0, 1, 1)
+        self.autoSave = QtGui.QSpinBox(self.tab)
+        self.autoSave.setMaximum(10000)
+        self.autoSave.setProperty("value", 60)
+        self.autoSave.setObjectName("autoSave")
+        self.gridLayout_2.addWidget(self.autoSave, 7, 0, 1, 1)
         self.groupBox_2 = QtGui.QGroupBox(self.tab)
         self.groupBox_2.setObjectName("groupBox_2")
         self.gridlayout = QtGui.QGridLayout(self.groupBox_2)
@@ -73,7 +81,7 @@ class Ui_PreferencesGeneral(object):
         self.IOSPath_browser.setToolButtonStyle(QtCore.Qt.ToolButtonTextOnly)
         self.IOSPath_browser.setObjectName("IOSPath_browser")
         self.gridlayout.addWidget(self.IOSPath_browser, 3, 1, 1, 1)
-        self.gridLayout_2.addWidget(self.groupBox_2, 6, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.groupBox_2, 8, 0, 1, 1)
         self.groupBox_3 = QtGui.QGroupBox(self.tab)
         self.groupBox_3.setObjectName("groupBox_3")
         self.hboxlayout = QtGui.QHBoxLayout(self.groupBox_3)
@@ -86,9 +94,9 @@ class Ui_PreferencesGeneral(object):
         self.pushButton_ClearConfiguration = QtGui.QPushButton(self.groupBox_3)
         self.pushButton_ClearConfiguration.setObjectName("pushButton_ClearConfiguration")
         self.hboxlayout.addWidget(self.pushButton_ClearConfiguration)
-        self.gridLayout_2.addWidget(self.groupBox_3, 7, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.groupBox_3, 9, 0, 1, 1)
         spacerItem1 = QtGui.QSpacerItem(471, 21, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout_2.addItem(spacerItem1, 8, 0, 1, 1)
+        self.gridLayout_2.addItem(spacerItem1, 10, 0, 1, 1)
         self.tabWidget.addTab(self.tab, "")
         self.tab_3 = QtGui.QWidget()
         self.tab_3.setObjectName("tab_3")
@@ -186,6 +194,8 @@ class Ui_PreferencesGeneral(object):
         self.checkBoxRelativePaths.setText(QtGui.QApplication.translate("PreferencesGeneral", "Use relative path for projects", None, QtGui.QApplication.UnicodeUTF8))
         self.label_7.setText(QtGui.QApplication.translate("PreferencesGeneral", "Waiting time between each start when starting every devices:", None, QtGui.QApplication.UnicodeUTF8))
         self.slowStartAll.setSuffix(QtGui.QApplication.translate("PreferencesGeneral", " seconds", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_10.setText(QtGui.QApplication.translate("PreferencesGeneral", "Autosave:", None, QtGui.QApplication.UnicodeUTF8))
+        self.autoSave.setSuffix(QtGui.QApplication.translate("PreferencesGeneral", " seconds", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setTitle(QtGui.QApplication.translate("PreferencesGeneral", "Paths", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("PreferencesGeneral", "Project directory:", None, QtGui.QApplication.UnicodeUTF8))
         self.ProjectPath_browser.setText(QtGui.QApplication.translate("PreferencesGeneral", "...", None, QtGui.QApplication.UnicodeUTF8))

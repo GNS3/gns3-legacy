@@ -83,6 +83,9 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
                 
         # Slow start when starting every devices
         self.slowStartAll.setValue(self.conf.slow_start)
+        
+        # Autosave
+        self.autoSave.setValue(self.conf.autosave)
                 
         # Defaults terminal command
         if self.conf.term_cmd == '':
@@ -195,6 +198,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         self.conf.scene_width = self.workspaceWidth.value()
         self.conf.scene_height = self.workspaceHeight.value()
         self.conf.slow_start = self.slowStartAll.value()
+        self.conf.autosave = self.autoSave.value()
         
         # Apply scene size
         globals.GApp.topology.setSceneRect(-(self.conf.scene_width / 2), -(self.conf.scene_height / 2), self.conf.scene_width, self.conf.scene_height)

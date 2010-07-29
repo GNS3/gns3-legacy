@@ -96,6 +96,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
         # Class to display error/warning messages once
         self.errorMessage = QtGui.QErrorMessage(self)
         self.errorMessage.setMinimumSize(350, 200)
+        
+        # Auto save timer
+        self.timer = QtCore.QTimer()
+        QtCore.QObject.connect(self.timer, QtCore.SIGNAL("timeout()"), self.__action_Autosave)
 
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)
@@ -266,6 +270,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         globals.GApp.workspace.setWindowTitle("GNS3")
         projectWorkdir = self.projectWorkdir
+        self.timer.stop()
         self.projectFile = None
         self.projectWorkdir = None
         self.projectConfigs = None
@@ -928,7 +933,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
 
-    def __action_Save(self):
+    def __action_Autosave(self):
+        """ Autosave feature
+        """
+
+        print translate("Workspace", "Auto-saving ... Next one in %s seconds" % str(globals.GApp.systconf['general'].autosave))
+        self.__action_Save(auto=True)
+
+    def __action_Save(self, auto=False):
         """ Save to a file (scenario or dynagen .NET format)
         """
 
@@ -937,8 +949,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         try:
             net = netfile.NETFile()
-            net.export_net_file(self.projectFile)
+            net.export_net_file(self.projectFile, auto)
             globals.GApp.topology.changed = False
+            autosave = globals.GApp.systconf['general'].autosave
+            if autosave > 0:
+                self.timer.start(autosave * 1000)
+            else:
+                self.timer.stop()
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
 

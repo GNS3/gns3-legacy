@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_CloudPage.ui'
 #
-# Created: Thu Jul 29 17:56:55 2010
+# Created: Thu Jul 29 22:03:48 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!

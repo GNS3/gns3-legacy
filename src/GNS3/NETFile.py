@@ -797,14 +797,15 @@ class NETFile(object):
         for node in globals.GApp.topology.nodes.itervalues():
             node.updateToolTips()
 
-    def export_router_config(self, device):
+    def export_router_config(self, device, auto=False):
 
         try:
             config = base64.decodestring(device.config_b64)
             config = config.replace('\r', "")
             # Write out the config to a file
             file_path = os.path.normpath(globals.GApp.workspace.projectConfigs) + os.sep + device.name + '.cfg'
-            print unicode(translate("NETFile", "Exporting %s configuration to %s")) % (device.name, file_path)
+            if auto == False:
+                print unicode(translate("NETFile", "Exporting %s configuration to %s")) % (device.name, file_path)
         except lib.DynamipsError, msg:
             print unicode(device.name + ': ' + translate("NETFile", "Dynamips error") + ': ') + unicode(msg)
             return
@@ -825,7 +826,7 @@ class NETFile(object):
                                       unicode(device.name) + ': ' + translate("NETFile", "IOError"), unicode(translate("NETFile", "%s: IO Error: %s")) % (file_path, unicode(e)))
             return
 
-    def export_net_file(self, path):
+    def export_net_file(self, path, auto=False):
         """ Export a .net file
         """
 
@@ -850,7 +851,7 @@ class NETFile(object):
         for device in self.dynagen.devices.values():
             # record router configs
             if isinstance(device, lib.Router) and globals.GApp.workspace.projectConfigs:
-                self.export_router_config(device)
+                self.export_router_config(device, auto)
 
         note_nb = 1
         shape_nb = 1
