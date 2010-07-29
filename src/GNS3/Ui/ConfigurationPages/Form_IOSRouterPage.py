@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_IOSRouterPage.ui'
 #
-# Created: Wed Jul 28 11:54:25 2010
+# Created: Thu Jul 29 17:56:55 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_IOSRouterPage(object):
     def setupUi(self, IOSRouterPage):
         IOSRouterPage.setObjectName("IOSRouterPage")
-        IOSRouterPage.resize(438, 486)
+        IOSRouterPage.resize(439, 488)
         self.vboxlayout = QtGui.QVBoxLayout(IOSRouterPage)
         self.vboxlayout.setObjectName("vboxlayout")
         self.tabWidget = QtGui.QTabWidget(IOSRouterPage)
@@ -232,14 +232,14 @@ class Ui_IOSRouterPage(object):
         self.comboBoxSlot6 = QtGui.QComboBox(self.groupBox_3)
         self.comboBoxSlot6.setObjectName("comboBoxSlot6")
         self.gridLayout.addWidget(self.comboBoxSlot6, 6, 1, 1, 1)
-        self.label_29 = QtGui.QLabel(self.groupBox_3)
+        self.label_30 = QtGui.QLabel(self.groupBox_3)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_29.sizePolicy().hasHeightForWidth())
-        self.label_29.setSizePolicy(sizePolicy)
-        self.label_29.setObjectName("label_29")
-        self.gridLayout.addWidget(self.label_29, 7, 0, 1, 1)
+        sizePolicy.setHeightForWidth(self.label_30.sizePolicy().hasHeightForWidth())
+        self.label_30.setSizePolicy(sizePolicy)
+        self.label_30.setObjectName("label_30")
+        self.gridLayout.addWidget(self.label_30, 7, 0, 1, 1)
         self.comboBoxSlot7 = QtGui.QComboBox(self.groupBox_3)
         self.comboBoxSlot7.setObjectName("comboBoxSlot7")
         self.gridLayout.addWidget(self.comboBoxSlot7, 7, 1, 1, 1)
@@ -371,18 +371,18 @@ class Ui_IOSRouterPage(object):
         self.spinBoxPcmciaDisk1Size.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MB", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.MemoriesDisks), QtGui.QApplication.translate("IOSRouterPage", "Memories and disks", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_3.setTitle(QtGui.QApplication.translate("IOSRouterPage", "Adapters", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_6.setText(QtGui.QApplication.translate("IOSRouterPage", "slot0:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_12.setText(QtGui.QApplication.translate("IOSRouterPage", "slot1:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_15.setText(QtGui.QApplication.translate("IOSRouterPage", "slot2:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_19.setText(QtGui.QApplication.translate("IOSRouterPage", "slot3:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_23.setText(QtGui.QApplication.translate("IOSRouterPage", "slot4:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_26.setText(QtGui.QApplication.translate("IOSRouterPage", "slot5:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_28.setText(QtGui.QApplication.translate("IOSRouterPage", "slot6:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_29.setText(QtGui.QApplication.translate("IOSRouterPage", "slot7:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_6.setText(QtGui.QApplication.translate("IOSRouterPage", "slot 0:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_12.setText(QtGui.QApplication.translate("IOSRouterPage", "slot 1:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_15.setText(QtGui.QApplication.translate("IOSRouterPage", "slot 2:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_19.setText(QtGui.QApplication.translate("IOSRouterPage", "slot 3:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_23.setText(QtGui.QApplication.translate("IOSRouterPage", "slot 4:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_26.setText(QtGui.QApplication.translate("IOSRouterPage", "slot 5:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_28.setText(QtGui.QApplication.translate("IOSRouterPage", "slot 6:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_30.setText(QtGui.QApplication.translate("IOSRouterPage", "slot 7:", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox.setTitle(QtGui.QApplication.translate("IOSRouterPage", "WICs", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_13.setText(QtGui.QApplication.translate("IOSRouterPage", "wic0:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_14.setText(QtGui.QApplication.translate("IOSRouterPage", "wic1:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_16.setText(QtGui.QApplication.translate("IOSRouterPage", "wic2:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_13.setText(QtGui.QApplication.translate("IOSRouterPage", "wic 0:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_14.setText(QtGui.QApplication.translate("IOSRouterPage", "wic 1:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_16.setText(QtGui.QApplication.translate("IOSRouterPage", "wic 2:", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.Slots), QtGui.QApplication.translate("IOSRouterPage", "Slots", None, QtGui.QApplication.UnicodeUTF8))
         self.label_25.setText(QtGui.QApplication.translate("IOSRouterPage", "Confreg:", None, QtGui.QApplication.UnicodeUTF8))
         self.lineEditConfreg.setText(QtGui.QApplication.translate("IOSRouterPage", "0x2102", None, QtGui.QApplication.UnicodeUTF8))

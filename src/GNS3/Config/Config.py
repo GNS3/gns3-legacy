@@ -178,6 +178,7 @@ class GNS_Conf(object):
             conf = iosImageConf()
             conf.id = int(img_num)
             conf.filename = img_filename
+            conf.baseconfig = unicode(c.get(cgroup + "/baseconfig", 'baseconfig.txt'))
             conf.platform = str(c.get(cgroup + "/platform", ''))
             conf.chassis = str(c.get(cgroup + "/chassis", ''))
             conf.idlepc = str(c.get(cgroup + "/idlepc", ''))

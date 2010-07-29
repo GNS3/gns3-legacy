@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesQemu.ui'
 #
-# Created: Wed Jul 28 11:54:28 2010
+# Created: Thu Jul 29 17:56:58 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_PreferencesQemu(object):
     def setupUi(self, PreferencesQemu):
         PreferencesQemu.setObjectName("PreferencesQemu")
-        PreferencesQemu.resize(555, 547)
+        PreferencesQemu.resize(512, 547)
         self.verticalLayout = QtGui.QVBoxLayout(PreferencesQemu)
         self.verticalLayout.setObjectName("verticalLayout")
         self.tabWidget = QtGui.QTabWidget(PreferencesQemu)
@@ -543,7 +543,7 @@ class Ui_PreferencesQemu(object):
         self.verticalLayout.addWidget(self.tabWidget)
 
         self.retranslateUi(PreferencesQemu)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         self.QemuNIC.setCurrentIndex(5)
         self.PIXNIC.setCurrentIndex(5)
         self.JunOSNIC.setCurrentIndex(5)

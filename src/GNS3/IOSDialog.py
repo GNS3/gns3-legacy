@@ -60,6 +60,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         self.connect(self.pushButtonSaveIOS, QtCore.SIGNAL('clicked()'), self.slotSaveIOS)
         self.connect(self.pushButtonDeleteIOS, QtCore.SIGNAL('clicked()'), self.slotDeleteIOS)
         self.connect(self.pushButtonSelectIOSImage, QtCore.SIGNAL('clicked()'), self.slotSelectIOS)
+        self.connect(self.pushButtonSelectBaseConfig, QtCore.SIGNAL('clicked()'), self.slotBaseConfig)
         self.connect(self.pushButtonSaveHypervisor, QtCore.SIGNAL('clicked()'), self.slotSaveHypervisor)
         self.connect(self.pushButtonDeleteHypervisor, QtCore.SIGNAL('clicked()'), self.slotDeleteHypervisor)
         self.connect(self.pushButtonSelectWorkingDir, QtCore.SIGNAL('clicked()'), self.slotWorkingDirectory)
@@ -206,6 +207,23 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                                 self.spinBoxDefaultRAM.setValue(DEFAULT_RAM[platformname])
                             break
 
+    def slotBaseConfig(self):
+        """ Get an base config file from the file system
+        """
+        
+        # get the path to the ios image
+        path = fileBrowser(translate("IOSDialog", "Select a Base configuration file"),  directory='.', parent=self).getFile()
+
+        if path != None and path[0] != '':
+            path = os.path.normpath(path[0])
+            # test if we can open it
+            if not testOpenFile(path):
+                QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), unicode(translate("IOSDialog", "Can't open file: %s")) % path)
+                return
+            
+            self.lineEditBaseConfig.clear()
+            self.lineEditBaseConfig.setText(path)
+
     def slotSaveIOS(self):
         """ Save an IOS image and all his settings
         """
@@ -267,6 +285,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         conf.id = globals.GApp.iosimages_ids
         globals.GApp.iosimages_ids += 1
         conf.filename = imagename
+        conf.baseconfig = unicode(self.lineEditBaseConfig.text())
         conf.platform = str(self.comboBoxPlatform.currentText())
         conf.chassis = str(self.comboBoxChassis.currentText())
         conf.idlepc = idlepc
@@ -317,6 +336,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             if globals.GApp.iosimages.has_key(imagekey):
                 conf = globals.GApp.iosimages[imagekey]
                 self.lineEditIOSImage.setText(conf.filename)
+                self.lineEditBaseConfig.setText(conf.baseconfig)
                 index = self.comboBoxPlatform.findText(conf.platform, QtCore.Qt.MatchFixedString)
                 self.comboBoxPlatform.setCurrentIndex(index)
                 index = self.comboBoxChassis.findText(conf.chassis, QtCore.Qt.MatchFixedString)

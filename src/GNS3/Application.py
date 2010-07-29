@@ -567,6 +567,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/filename", o.filename)
             c.set(basekey + "/chassis", o.chassis)
             c.set(basekey + "/platform", o.platform)
+            c.set(basekey + "/baseconfig", o.baseconfig)
             hypervisors = ''
             for hypervisor in o.hypervisors:
                 hypervisors += hypervisor + ' '

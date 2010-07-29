@@ -33,6 +33,7 @@ conf_library_types = {
 conf_iosImage_defaults = {
     'id': -1,
     'filename': '',
+    'baseconfig': '',
     'platform': '',
     'chassis': '',
     'idlepc': '',
@@ -44,6 +45,7 @@ conf_iosImage_defaults = {
 conf_iosImage_types = {
     'id': int,
     'filename': unicode,
+    'baseconfig': unicode,
     'platform': str,
     'chassis': str,
     'idlepc': str,

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_JunOSPage.ui'
 #
-# Created: Wed Jul 28 11:54:26 2010
+# Created: Thu Jul 29 17:56:57 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>438</width>
-    <height>486</height>
+    <width>439</width>
+    <height>488</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -303,7 +303,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>slot0:</string>
+             <string>slot 0:</string>
             </property>
            </widget>
           </item>
@@ -319,7 +319,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>slot1:</string>
+             <string>slot 1:</string>
             </property>
            </widget>
           </item>
@@ -335,7 +335,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>slot2:</string>
+             <string>slot 2:</string>
             </property>
            </widget>
           </item>
@@ -351,7 +351,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>slot3:</string>
+             <string>slot 3:</string>
             </property>
            </widget>
           </item>
@@ -367,7 +367,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>slot4:</string>
+             <string>slot 4:</string>
             </property>
            </widget>
           </item>
@@ -383,7 +383,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>slot5:</string>
+             <string>slot 5:</string>
             </property>
            </widget>
           </item>
@@ -399,7 +399,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>slot6:</string>
+             <string>slot 6:</string>
             </property>
            </widget>
           </item>
@@ -407,7 +407,7 @@
            <widget class="QComboBox" name="comboBoxSlot6"/>
           </item>
           <item row="7" column="0">
-           <widget class="QLabel" name="label_29">
+           <widget class="QLabel" name="label_30">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -415,7 +415,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>slot7:</string>
+             <string>slot 7:</string>
             </property>
            </widget>
           </item>
@@ -440,7 +440,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>wic0:</string>
+             <string>wic 0:</string>
             </property>
            </widget>
           </item>
@@ -456,7 +456,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>wic1:</string>
+             <string>wic 1:</string>
             </property>
            </widget>
           </item>
@@ -472,7 +472,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>wic2:</string>
+             <string>wic 2:</string>
             </property>
            </widget>
           </item>

@@ -19,7 +19,7 @@
 # code@gns3.net
 #
 
-import os, glob, socket, sys
+import os, glob, socket, sys, base64
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.qemu_lib as qlib
 import GNS3.Globals as globals
@@ -221,6 +221,23 @@ class Topology(QtGui.QGraphicsScene):
         node.set_hypervisor(dynamips_hypervisor)
         return True
 
+    def applyIOSBaseConfig(self, node, config_path):
+        """ Apply IOS base config
+        """
+
+        try:
+            f = open(config_path, 'r')
+            config = f.read()
+            f.close()
+            config = config.replace('%h', node.router.name)
+            encoded = ("").join(base64.encodestring(config).split())
+            node.router.config_b64 = encoded
+        except IOError, e:
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, unicode(translate("Topology", "IOS Base config")), unicode(translate("Topology", "%s: %s")) % (config_path, e[1]))
+        except:
+            debug("Cannot apply IOS base config")
+            pass
+
     def preConfigureNode(self, node, image_conf):
         """ Apply settings on node
         """
@@ -335,6 +352,7 @@ class Topology(QtGui.QGraphicsScene):
         """
 
         try:
+            iosConfig = None
             if isinstance(node, IOSRouter):
                 if len(globals.GApp.iosimages.keys()) == 0:
                     # no IOS images configured, users have to register an IOS
@@ -370,6 +388,8 @@ class Topology(QtGui.QGraphicsScene):
 
                 image_conf = globals.GApp.iosimages[image_to_use]
                 debug("Use image: " + image_to_use)
+                if image_conf.baseconfig:
+                    iosConfig = image_conf.baseconfig
                 if image_conf.default_ram:
                     debug("Set default RAM: " + str(image_conf.default_ram))
                     node.default_ram = image_conf.default_ram
@@ -544,6 +564,9 @@ class Topology(QtGui.QGraphicsScene):
 
             if node.configNode() == False:
                 self.deleteNode(node.id)
+                
+            if iosConfig:
+                self.applyIOSBaseConfig(node, iosConfig)
 
         except (lib.DynamipsVerError, lib.DynamipsError), msg:
             if isinstance(node, IOSRouter):
