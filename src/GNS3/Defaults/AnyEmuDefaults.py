@@ -30,6 +30,7 @@ class AnyEmuDefaults(AbstractDefaults):
 
         self.default_image = 'None'
         self.default_netcard = 'pcnet'
+        self.default_nics = 6
         self.default_kqemu = False
         self.default_kvm = False
         self.default_options = ''
@@ -64,6 +65,13 @@ class AnyEmuDefaults(AbstractDefaults):
                 del self.config['image']
         else:
             self.config['image'] = image
+            
+    def set_nics(self, nb):
+        """ Set the number of NIC for this device
+            nb: int
+        """
+
+        self.default_nics = nb
 
 class QemuDefaults(AnyEmuDefaults):
     pass

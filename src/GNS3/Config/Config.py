@@ -21,7 +21,7 @@
 
 import os
 import GNS3.Globals as globals
-from GNS3.Config.Objects import iosImageConf, hypervisorConf, libraryConf, qemuImageConf
+from GNS3.Config.Objects import iosImageConf, hypervisorConf, libraryConf, qemuImageConf, pixImageConf, junosImageConf, asaImageConf, idsImageConf
 from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from GNS3.Node.DecorativeNode import DecorativeNode
 from PyQt4 import QtCore
@@ -248,7 +248,8 @@ class GNS_Conf(object):
             conf.id = int(id)
             conf.name = c.get(cgroup + "/name", unicode(''))
             conf.filename = c.get(cgroup + "/filename", unicode(''))
-            conf.memory = int(c.get(cgroup + "/memory", 128))
+            conf.memory = int(c.get(cgroup + "/memory", 256))
+            conf.nic_nb = int(c.get(cgroup + "/nic_nb", 6))
             conf.nic = str(c.get(cgroup + "/nic", 'e1000'))
             conf.options = str(c.get(cgroup + "/options", ''))
             conf.kqemu = c.value(cgroup + "/kqemu", QtCore.QVariant(False)).toBool()
@@ -257,6 +258,130 @@ class GNS_Conf(object):
             
             if conf.id >= globals.GApp.qemuimages_ids:
                 globals.GApp.qemuimages_ids = conf.id + 1
+                
+    def PIX_images(self):
+        """ Load PIX images settings from config file
+        """
+
+        # Loading PIX image conf
+        basegroup = "PIX.images"
+        c = ConfDB()
+        c.beginGroup(basegroup)
+        childGroups = c.childGroups()
+        c.endGroup()
+
+        for id in childGroups:
+
+            cgroup = basegroup + '/' + id
+            
+            conf = pixImageConf()
+            conf.id = int(id)
+            conf.name = c.get(cgroup + "/name", unicode(''))
+            conf.filename = c.get(cgroup + "/filename", unicode(''))
+            conf.memory = int(c.get(cgroup + "/memory", 128))
+            conf.nic_nb = int(c.get(cgroup + "/nic_nb", 6))
+            conf.nic = str(c.get(cgroup + "/nic", 'e1000'))
+            conf.options = str(c.get(cgroup + "/options", ''))
+            conf.kqemu = c.value(cgroup + "/kqemu", QtCore.QVariant(False)).toBool()
+            conf.key = str(c.get(cgroup + "/key", ''))
+            conf.serial = str(c.get(cgroup + "/serial", ''))
+            globals.GApp.piximages[conf.name] = conf
+            
+            if conf.id >= globals.GApp.piximages_ids:
+                globals.GApp.piximages_ids = conf.id + 1
+                
+    def JUNOS_images(self):
+        """ Load JunOS images settings from config file
+        """
+
+        # Loading JunOS image conf
+        basegroup = "JUNOS.images"
+        c = ConfDB()
+        c.beginGroup(basegroup)
+        childGroups = c.childGroups()
+        c.endGroup()
+
+        for id in childGroups:
+
+            cgroup = basegroup + '/' + id
+            
+            conf = junosImageConf()
+            conf.id = int(id)
+            conf.name = c.get(cgroup + "/name", unicode(''))
+            conf.filename = c.get(cgroup + "/filename", unicode(''))
+            conf.memory = int(c.get(cgroup + "/memory", 128))
+            conf.nic_nb = int(c.get(cgroup + "/nic_nb", 6))
+            conf.nic = str(c.get(cgroup + "/nic", 'e1000'))
+            conf.options = str(c.get(cgroup + "/options", ''))
+            conf.kqemu = c.value(cgroup + "/kqemu", QtCore.QVariant(False)).toBool()
+            conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
+            globals.GApp.junosimages[conf.name] = conf
+
+            if conf.id >= globals.GApp.junosimages_ids:
+                globals.GApp.junosimages_ids = conf.id + 1
+                
+    def ASA_images(self):
+        """ Load ASA images settings from config file
+        """
+
+        # Loading ASA image conf
+        basegroup = "ASA.images"
+        c = ConfDB()
+        c.beginGroup(basegroup)
+        childGroups = c.childGroups()
+        c.endGroup()
+
+        for id in childGroups:
+
+            cgroup = basegroup + '/' + id
+            
+            conf = asaImageConf()
+            conf.id = int(id)
+            conf.name = c.get(cgroup + "/name", unicode(''))
+            conf.memory = int(c.get(cgroup + "/memory", 256))
+            conf.nic_nb = int(c.get(cgroup + "/nic_nb", 6))
+            conf.nic = str(c.get(cgroup + "/nic", 'e1000'))
+            conf.options = str(c.get(cgroup + "/options", ''))
+            conf.kqemu = c.value(cgroup + "/kqemu", QtCore.QVariant(False)).toBool()
+            conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
+            conf.initrd = c.get(cgroup + "/initrd", unicode(''))
+            conf.kernel = c.get(cgroup + "/kernel", unicode(''))
+            conf.kernel_cmdline = c.get(cgroup + "/kernel_cmdline", unicode(''))
+            globals.GApp.asaimages[conf.name] = conf
+
+            if conf.id >= globals.GApp.asaimages_ids:
+                globals.GApp.asaimages_ids = conf.id + 1
+                
+    def IDS_images(self):
+        """ Load IDS images settings from config file
+        """
+
+        # Loading IDS image conf
+        basegroup = "IDS.images"
+        c = ConfDB()
+        c.beginGroup(basegroup)
+        childGroups = c.childGroups()
+        c.endGroup()
+
+        for id in childGroups:
+
+            cgroup = basegroup + '/' + id
+            
+            conf = idsImageConf()
+            conf.id = int(id)
+            conf.image1 = c.get(cgroup + "/image1", unicode(''))
+            conf.image2 = c.get(cgroup + "/image2", unicode(''))
+            conf.name = c.get(cgroup + "/name", unicode(''))
+            conf.memory = int(c.get(cgroup + "/memory", 512))
+            conf.nic_nb = int(c.get(cgroup + "/nic_nb", 3))
+            conf.nic = str(c.get(cgroup + "/nic", 'e1000'))
+            conf.options = str(c.get(cgroup + "/options", ''))
+            conf.kqemu = c.value(cgroup + "/kqemu", QtCore.QVariant(False)).toBool()
+            conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
+            globals.GApp.idsimages[conf.name] = conf
+
+            if conf.id >= globals.GApp.idsimages_ids:
+                globals.GApp.idsimages_ids = conf.id + 1
 
     def Libraries(self):
         """ Load libraries settings from config file

@@ -67,6 +67,7 @@ class Page_FW(QtGui.QWidget, Ui_FWPage):
             self.lineEditSerial.setText(fw_config['serial'])
 
         self.spinBoxRamSize.setValue(fw_config['ram'])
+        self.spinBoxNics.setValue(fw_config['nics'])
       
         index = self.comboBoxNIC.findText(fw_config['netcard'])
         if index != -1:
@@ -109,6 +110,12 @@ class Page_FW(QtGui.QWidget, Ui_FWPage):
             fw_config['key'] = key
 
         fw_config['ram'] = self.spinBoxRamSize.value()
+        
+        nics = self.spinBoxNics.value()
+        if nics < fw_config['nics'] and len(node.getConnectedInterfaceList()):
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_FW", "PIX firewall"), translate("Page_FW", "You must remove the connected links first in order to reduce the number of interfaces"))
+        else:
+            fw_config['nics'] = self.spinBoxNics.value()
         
         fw_config['netcard'] = str(self.comboBoxNIC.currentText())
             

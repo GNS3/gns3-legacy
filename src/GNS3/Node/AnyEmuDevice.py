@@ -69,6 +69,7 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         self.emudev_options = [
             'ram',
             'image',
+            'nics',
             'netcard',
             'kqemu',
             'kvm',
@@ -175,8 +176,11 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         """ Return all interfaces
         """
 
-        # 6 Ethernet interfaces per default
-        return (['e0', 'e1', 'e2', 'e3', 'e4', 'e5'])
+        assert(self.emudev)
+        interfaces = []
+        for i in range(self.emudev.nics):
+            interfaces.append('e' + str(i))
+        return (interfaces)
 
     def get_dynagen_device(self):
         """ Returns the dynagen device corresponding to this bridge

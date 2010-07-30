@@ -23,7 +23,7 @@ import os
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_ASAPage import Ui_ASAPage
-from GNS3.Utils import fileBrowser
+from GNS3.Utils import fileBrowser, translate
 
 class Page_ASA(QtGui.QWidget, Ui_ASAPage):
     """ Class implementing the ASA firewall configuration page.
@@ -77,6 +77,7 @@ class Page_ASA(QtGui.QWidget, Ui_ASAPage):
             self.lineEditKernelCmdLine.setText(asa_config['kernel_cmdline'])
             
         self.spinBoxRamSize.setValue(asa_config['ram'])
+        self.spinBoxNics.setValue(asa_config['nics'])
         
         index = self.comboBoxNIC.findText(asa_config['netcard'])
         if index != -1:
@@ -118,6 +119,12 @@ class Page_ASA(QtGui.QWidget, Ui_ASAPage):
             asa_config['kernel_cmdline'] = kernel_cmdline
 
         asa_config['ram'] = self.spinBoxRamSize.value()
+        
+        nics = self.spinBoxNics.value()
+        if nics < asa_config['nics'] and len(node.getConnectedInterfaceList()):
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_ASA", "ASA firewall"), translate("Page_ASA", "You must remove the connected links first in order to reduce the number of interfaces"))
+        else:
+            asa_config['nics'] = self.spinBoxNics.value()
         
         asa_config['netcard'] = str(self.comboBoxNIC.currentText())
             

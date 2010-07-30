@@ -23,7 +23,7 @@ import os
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_IDSPage import Ui_IDSPage
-from GNS3.Utils import fileBrowser
+from GNS3.Utils import fileBrowser, translate
 
 class Page_IDS(QtGui.QWidget, Ui_IDSPage):
     """ Class implementing the IDS configuration page.
@@ -76,6 +76,7 @@ class Page_IDS(QtGui.QWidget, Ui_IDSPage):
             self.lineEditImage2.setText(ids_config['image2'])
 
         self.spinBoxRamSize.setValue(ids_config['ram'])
+        self.spinBoxNics.setValue(ids_config['nics'])
         
         index = self.comboBoxNIC.findText(ids_config['netcard'])
         if index != -1:
@@ -113,6 +114,12 @@ class Page_IDS(QtGui.QWidget, Ui_IDSPage):
             ids_config['image2'] = image2
 
         ids_config['ram'] = self.spinBoxRamSize.value()
+        
+        nics = self.spinBoxNics.value()
+        if nics < ids_config['nics'] and len(node.getConnectedInterfaceList()):
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_IDS", "IDS"), translate("Page_IDS", "You must remove the connected links first in order to reduce the number of interfaces"))
+        else:
+            ids_config['nics'] = self.spinBoxNics.value()
         
         ids_config['netcard'] = str(self.comboBoxNIC.currentText())
             

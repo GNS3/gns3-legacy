@@ -249,9 +249,6 @@ class AnyEmuDevice(object):
         else:
             self.name = name
 
-        self.nios = {}
-        for i in range(6):
-            self.nios[i] = None
         self._image = None
         self._console = None
         self.state = 'stopped'
@@ -262,16 +259,22 @@ class AnyEmuDevice(object):
         self.defaults = {
             'image': None,
             'ram': 128,
+            'nics': 6,
             'netcard': 'pcnet',
             'kqemu': False,
             'kvm': False,
             'options': None,
             }
         self._ram = self.defaults['ram']
+        self._nics = self.defaults['nics']
         self._netcard = self.defaults['netcard']
         self._kqemu = self.defaults['kqemu']
         self._kvm = self.defaults['kvm']
         self._options = self.defaults['options']
+
+        self.nios = {}
+        for i in range(self._nics):
+            self.nios[i] = None
 
         self.idlepc = '0'
         self.idlemax = 0
@@ -360,7 +363,33 @@ class AnyEmuDevice(object):
         return self._ram
 
     ram = property(_getram, _setram, doc='The amount of RAM allocated to this emulated device')
-    
+
+    def _setnics(self, nics):
+        """ Set the number of NICs to be used by this emulated device
+        nics: (int) number
+        """
+
+        if type(nics) != int:
+            raise DynamipsError, 'invalid nics number'
+
+        send(self.p, 'qemu setattr %s nics %s' % (self.name, str(nics)))
+        self._nics = nics
+        new_nios = {}
+        for i in range(self._nics):
+            if self.nios.has_key(i):
+                new_nios[i] = self.nios[i]
+            else:
+                new_nios[i] = None
+        self.nios = new_nios
+
+    def _getnics(self):
+        """ Returns the number of NICs used by this emulated device
+        """
+
+        return self._nics
+
+    nics = property(_getnics, _setnics, doc='The number of NICs used by this emulated device')
+
     def _setnetcard(self, netcard):
         """ Set the netcard to be used by this emulated device
         netcard: (str) netcard name
@@ -579,7 +608,7 @@ class AnyEmuDevice(object):
 
     def slot_info(self):
         #gather information about interfaces and connections
-        slot_info = '   Slot 0 hardware is ' + self._netcard + ' with 6 Ethernet interfaces\n'
+        slot_info = '   Slot 0 hardware is ' + self._netcard + ' with ' + str(self._nics) + ' Ethernet interfaces\n'
         for port in self.nios:
             slot_info = slot_info + "      Ethernet" + str(port)
             if self.nios[port] != None:
@@ -629,7 +658,7 @@ class JunOS(AnyEmuDevice):
     basehostname = 'JUNOS'
     _ufd_machine = 'Juniper router'
     _ufd_hardware = 'Juniper Olive router'
-    available_options = ['image', 'ram', 'netcard', 'kqemu', 'kvm', 'options']
+    available_options = ['image', 'ram', 'nics', 'netcard', 'kqemu', 'kvm', 'options']
     
 class IDS(AnyEmuDevice):
     model_string = 'IDS-4215'
@@ -637,7 +666,7 @@ class IDS(AnyEmuDevice):
     basehostname = 'IDS'
     _ufd_machine = 'IDS'
     _ufd_hardware = 'Qemu emulated Cisco IDS'
-    available_options = ['image1', 'image2', 'ram', 'netcard', 'kqemu', 'kvm', 'options']
+    available_options = ['image1', 'image2', 'nics', 'ram', 'netcard', 'kqemu', 'kvm', 'options']
     
     def __init__(self, *args, **kwargs):
         super(IDS, self).__init__(*args, **kwargs)
@@ -699,7 +728,7 @@ class QemuDevice(AnyEmuDevice):
     basehostname = 'QEMU'
     _ufd_machine = 'Qemu host'
     _ufd_hardware = 'Qemu Emulated System'
-    available_options = ['image', 'ram', 'netcard', 'kqemu', 'kvm', 'options']
+    available_options = ['image', 'ram', 'nics', 'netcard', 'kqemu', 'kvm', 'options']
 
 class ASA(AnyEmuDevice):
     model_string = '5520'
@@ -707,7 +736,7 @@ class ASA(AnyEmuDevice):
     basehostname = 'ASA'
     _ufd_machine = 'ASA firewall'
     _ufd_hardware = 'qemu-emulated Cisco ASA'
-    available_options = ['ram', 'netcard', 'kqemu', 'kvm', 'options', 'initrd', 'kernel', 'kernel_cmdline']
+    available_options = ['ram', 'nics', 'netcard', 'kqemu', 'kvm', 'options', 'initrd', 'kernel', 'kernel_cmdline']
     
     def __init__(self, *args, **kwargs):
         super(ASA, self).__init__(*args, **kwargs)
@@ -789,7 +818,7 @@ class FW(AnyEmuDevice):
     model_string = '525'
     qemu_dev_type = 'pix'
     basehostname = 'FW'
-    available_options = ['image', 'ram', 'netcard', 'kqemu', 'options', 'serial', 'key']
+    available_options = ['image', 'ram', 'nics', 'netcard', 'kqemu', 'options', 'serial', 'key']
     _ufd_machine = 'PIX firewall'
     _ufd_hardware = 'qemu-emulated Cisco PIX'
     def __init__(self, *args, **kwargs):

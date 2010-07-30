@@ -65,9 +65,17 @@ class Application(QApplication, Singleton):
         self.__hypervisors = {}
         self.__libraries = {}
         self.__qemuimages = {}
+        self.__piximages = {}
+        self.__junosimages = {}
+        self.__asaimages = {}
+        self.__idsimages = {}
         self.iosimages_ids = 0
         self.hypervisors_ids = 0
         self.qemuimages_ids = 0
+        self.piximages_ids = 0
+        self.junosimages_ids = 0
+        self.asaimages_ids = 0
+        self.idsimages_ids = 0
 
         # set global app to ourself
         globals.GApp = self
@@ -177,6 +185,62 @@ class Application(QApplication, Singleton):
         return self.__qemuimages
 
     qemuimages = property(__getQemuImages, __setQemuImages, doc = 'Qemu images dictionnary')
+    
+    def __setPIXImages(self, piximages):
+        """ register the sysconf instance
+        """
+
+        self.__piximages = piximages
+
+    def __getPIXImages(self):
+        """ return the sysconf instance
+        """
+
+        return self.__piximages
+
+    piximages = property(__getPIXImages, __setPIXImages, doc = 'PIX images dictionnary')
+    
+    def __setJunOSImages(self, junosimages):
+        """ register the sysconf instance
+        """
+
+        self.__junosimages = junosimages
+
+    def __getJunOSImages(self):
+        """ return the sysconf instance
+        """
+
+        return self.__junosimages
+
+    junosimages = property(__getJunOSImages, __setJunOSImages, doc = 'JunOS images dictionnary')
+    
+    def __setASAImages(self, asaimages):
+        """ register the sysconf instance
+        """
+
+        self.__asaimages = asaimages
+
+    def __getASAImages(self):
+        """ return the sysconf instance
+        """
+
+        return self.__asaimages
+
+    asaimages = property(__getASAImages, __setASAImages, doc = 'ASA images dictionnary')
+    
+    def __setIDSImages(self, idsimages):
+        """ register the sysconf instance
+        """
+
+        self.__idsimages = idsimages
+
+    def __getIDSImages(self):
+        """ return the sysconf instance
+        """
+
+        return self.__idsimages
+
+    idsimages = property(__getIDSImages, __setIDSImages, doc = 'IDS images dictionnary')
     
     def __setLibraries(self, libraries):
         """ register the sysconf instance
@@ -294,56 +358,14 @@ class Application(QApplication, Singleton):
         confo.qemuwrapper_port = int(ConfDB().get('Qemu/qemuwrapper_port', 10525))
         confo.qemuwrapper_baseUDP = int(ConfDB().get('Qemu/qemuwrapper_baseUDP', 20000))
         confo.qemuwrapper_baseConsole = int(ConfDB().get('Qemu/qemuwrapper_baseConsole', 3000))
-        confo.default_pix_image = ConfDB().get('Qemu/default_pix_image', unicode(''))
-        confo.default_pix_memory = int(ConfDB().get('Qemu/default_pix_memory', 128))
-        confo.default_pix_nic = str(ConfDB().get('Qemu/default_pix_nic', unicode('e1000')))
-        confo.default_pix_options = str(ConfDB().get('Qemu/default_pix_options', unicode('-nographic')))
-        confo.default_pix_kqemu = ConfDB().value("Qemu/default_pix_kqemu", QVariant(False)).toBool()
-        confo.default_pix_key = str(ConfDB().get('Qemu/default_pix_key', unicode('0x00000000,0x00000000,0x00000000,0x00000000')))
-        confo.default_pix_serial = str(ConfDB().get('Qemu/default_pix_serial', unicode('0x12345678')))
-        confo.default_junos_image = ConfDB().get('Qemu/default_junos_image', unicode(''))
-        confo.default_junos_memory = int(ConfDB().get('Qemu/default_junos_memory', 96))
-        confo.default_junos_nic = str(ConfDB().get('Qemu/default_junos_nic', unicode('e1000')))
-        confo.default_junos_options = str(ConfDB().get('Qemu/default_junos_options', unicode('')))
-        confo.default_junos_kqemu = ConfDB().value("Qemu/default_junos_kqemu", QVariant(False)).toBool()
-        confo.default_junos_kvm = ConfDB().value("Qemu/default_junos_kvm", QVariant(False)).toBool()
-        confo.default_asa_memory = int(ConfDB().get('Qemu/default_asa_memory', 256))
-        confo.default_asa_nic = str(ConfDB().get('Qemu/default_asa_nic', unicode('e1000')))
-        confo.default_asa_baseUDP = int(ConfDB().get('Qemu/default_asa_baseUDP', 22000))
-        confo.default_asa_baseConsole = int(ConfDB().get('Qemu/default_asa_baseConsole', 7000))
-        confo.default_asa_options = str(ConfDB().get('Qemu/default_asa_options', unicode('-hdachs 980,16,32')))
-        confo.default_asa_kqemu = ConfDB().value("Qemu/default_asa_kqemu", QVariant(False)).toBool()
-        confo.default_asa_kvm = ConfDB().value("Qemu/default_asa_kvm", QVariant(False)).toBool()       
-        confo.default_asa_kernel = ConfDB().get('Qemu/default_asa_kernel', unicode(''))
-        confo.default_asa_initrd = ConfDB().get('Qemu/default_asa_initrd', unicode(''))
-        confo.default_asa_kernel_cmdline = ConfDB().get('Qemu/default_asa_kernel_cmdline', unicode('auto console=ttyS0,9600 bigphysarea=16384 ide1=noprobe'))
-        confo.default_ids_image1 = ConfDB().get('Qemu/default_ids_image1', unicode(''))
-        confo.default_ids_image2 = ConfDB().get('Qemu/default_ids_image2', unicode(''))
-        confo.default_ids_memory = int(ConfDB().get('Qemu/default_ids_memory', 512))
-        confo.default_ids_nic = str(ConfDB().get('Qemu/default_ids_nic', unicode('e1000')))
-        confo.default_ids_options = str(ConfDB().get('Qemu/default_ids_options', unicode("-smbios type=1,product='IDS-4215'")))
-        confo.default_ids_kqemu = ConfDB().value("Qemu/default_ids_kqemu", QVariant(False)).toBool()
-        confo.default_ids_kvm = ConfDB().value("Qemu/default_ids_kvm", QVariant(False)).toBool()
 
         # replace ~user and $HOME by home directory
         if os.environ.has_key("HOME"):
             confo.qemuwrapper_path = confo.qemuwrapper_path.replace('$HOME', os.environ["HOME"])
             confo.qemuwrapper_workdir =  confo.qemuwrapper_workdir.replace('$HOME', os.environ["HOME"])
-            confo.default_pix_image = confo.default_pix_image.replace('$HOME', os.environ["HOME"])
-            confo.default_junos_image = confo.default_junos_image.replace('$HOME', os.environ["HOME"])
-            confo.default_asa_kernel = confo.default_asa_kernel.replace('$HOME', os.environ["HOME"])
-            confo.default_asa_initrd = confo.default_asa_initrd.replace('$HOME', os.environ["HOME"])
-            confo.default_ids_image1 = confo.default_ids_image1.replace('$HOME', os.environ["HOME"])
-            confo.default_ids_image2 = confo.default_ids_image2.replace('$HOME', os.environ["HOME"])
 
         confo.qemuwrapper_path = os.path.expanduser(confo.qemuwrapper_path)
         confo.qemuwrapper_workdir = os.path.expanduser(confo.qemuwrapper_workdir)
-        confo.default_pix_image = os.path.expanduser(confo.default_pix_image)
-        confo.default_junos_image = os.path.expanduser(confo.default_junos_image)
-        confo.default_asa_kernel = os.path.expanduser(confo.default_asa_kernel)
-        confo.default_asa_initrd = os.path.expanduser(confo.default_asa_initrd)
-        confo.default_ids_image1 = os.path.expanduser(confo.default_ids_image1)
-        confo.default_ids_image2 = os.path.expanduser(confo.default_ids_image2)
         
         # Capture config
         self.systconf['capture'] = systemCaptureConf()
@@ -400,6 +422,10 @@ class Application(QApplication, Singleton):
         GNS_Conf().IOS_images()
         GNS_Conf().IOS_hypervisors()
         GNS_Conf().QEMU_images()
+        GNS_Conf().PIX_images()
+        GNS_Conf().JUNOS_images()
+        GNS_Conf().ASA_images()
+        GNS_Conf().IDS_images()
         GNS_Conf().Libraries()
         GNS_Conf().Symbols()
         
@@ -505,34 +531,6 @@ class Application(QApplication, Singleton):
         c.set('Qemu/qemuwrapper_port', confo.qemuwrapper_port)
         c.set('Qemu/qemuwrapper_baseUDP', confo.qemuwrapper_baseUDP)
         c.set('Qemu/qemuwrapper_baseConsole', confo.qemuwrapper_baseConsole)
-        c.set('Qemu/default_pix_image', confo.default_pix_image)
-        c.set('Qemu/default_pix_memory', confo.default_pix_memory)
-        c.set('Qemu/default_pix_nic', confo.default_pix_nic)
-        c.set('Qemu/default_pix_options', confo.default_pix_options)
-        c.set('Qemu/default_pix_kqemu', confo.default_pix_kqemu)
-        c.set('Qemu/default_pix_key', confo.default_pix_key)
-        c.set('Qemu/default_pix_serial', confo.default_pix_serial)
-        c.set('Qemu/default_junos_image', confo.default_junos_image)
-        c.set('Qemu/default_junos_memory', confo.default_junos_memory)
-        c.set('Qemu/default_junos_nic', confo.default_junos_nic)
-        c.set('Qemu/default_junos_options', confo.default_junos_options)
-        c.set('Qemu/default_junos_kqemu', confo.default_junos_kqemu)
-        c.set('Qemu/default_junos_kvm', confo.default_junos_kvm)
-        c.set('Qemu/default_asa_memory', confo.default_asa_memory)
-        c.set('Qemu/default_asa_nic', confo.default_asa_nic)
-        c.set('Qemu/default_asa_options', confo.default_asa_options)
-        c.set('Qemu/default_asa_kqemu', confo.default_asa_kqemu)
-        c.set('Qemu/default_asa_kvm', confo.default_asa_kvm)
-        c.set('Qemu/default_asa_kernel', confo.default_asa_kernel)
-        c.set('Qemu/default_asa_initrd', confo.default_asa_initrd)
-        c.set('Qemu/default_asa_kernel_cmdline', confo.default_asa_kernel_cmdline)
-        c.set('Qemu/default_ids_image1', confo.default_ids_image1)
-        c.set('Qemu/default_ids_image2', confo.default_ids_image2)
-        c.set('Qemu/default_ids_memory', confo.default_ids_memory)
-        c.set('Qemu/default_ids_nic', confo.default_ids_nic)
-        c.set('Qemu/default_ids_options', confo.default_ids_options)
-        c.set('Qemu/default_ids_kqemu', confo.default_ids_kqemu)
-        c.set('Qemu/default_ids_kvm', confo.default_ids_kvm)
         
         # Capture settings
         confo = self.systconf['capture']
@@ -550,6 +548,22 @@ class Application(QApplication, Singleton):
         c.endGroup()
         
         c.beginGroup("QEMU.images")
+        c.remove("")
+        c.endGroup()
+        
+        c.beginGroup("PIX.images")
+        c.remove("")
+        c.endGroup()
+        
+        c.beginGroup("JUNOS.images")
+        c.remove("")
+        c.endGroup()
+        
+        c.beginGroup("ASA.images")
+        c.remove("")
+        c.endGroup()
+        
+        c.beginGroup("IDS.images")
         c.remove("")
         c.endGroup()
         
@@ -593,11 +607,64 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/name", o.name)
             c.set(basekey + "/filename", o.filename)
             c.set(basekey + "/memory", o.memory)
+            c.set(basekey + "/nic_nb", o.nic_nb)
             c.set(basekey + "/nic", o.nic)
             c.set(basekey + "/options", o.options)
             c.set(basekey + "/kqemu", o.kqemu)
             c.set(basekey + "/kvm", o.kvm)
             
+        # PIX images
+        for (key, o) in self.__piximages.iteritems():
+            basekey = "PIX.images/" + str(o.id)
+            c.set(basekey + "/name", o.name)
+            c.set(basekey + "/filename", o.filename)
+            c.set(basekey + "/memory", o.memory)
+            c.set(basekey + "/nic_nb", o.nic_nb)
+            c.set(basekey + "/nic", o.nic)
+            c.set(basekey + "/options", o.options)
+            c.set(basekey + "/kqemu", o.kqemu)
+            c.set(basekey + "/key", o.key)
+            c.set(basekey + "/serial", o.serial)
+            
+        # JunOS images
+        for (key, o) in self.__junosimages.iteritems():
+            basekey = "JUNOS.images/" + str(o.id)
+            c.set(basekey + "/name", o.name)
+            c.set(basekey + "/filename", o.filename)
+            c.set(basekey + "/memory", o.memory)
+            c.set(basekey + "/nic_nb", o.nic_nb)
+            c.set(basekey + "/nic", o.nic)
+            c.set(basekey + "/options", o.options)
+            c.set(basekey + "/kqemu", o.kqemu)
+            c.set(basekey + "/kvm", o.kvm)
+            
+        # ASA images
+        for (key, o) in self.__asaimages.iteritems():
+            basekey = "ASA.images/" + str(o.id)
+            c.set(basekey + "/name", o.name)
+            c.set(basekey + "/memory", o.memory)
+            c.set(basekey + "/nic_nb", o.nic_nb)
+            c.set(basekey + "/nic", o.nic)
+            c.set(basekey + "/options", o.options)
+            c.set(basekey + "/kqemu", o.kqemu)
+            c.set(basekey + "/kvm", o.kvm)
+            c.set(basekey + "/initrd", o.initrd)
+            c.set(basekey + "/kernel", o.kernel)
+            c.set(basekey + "/kernel_cmdline", o.kernel_cmdline)
+            
+        # IDS images
+        for (key, o) in self.__idsimages.iteritems():
+            basekey = "IDS.images/" + str(o.id)
+            c.set(basekey + "/name", o.name)
+            c.set(basekey + "/image1", o.image1)
+            c.set(basekey + "/image2", o.image2)
+            c.set(basekey + "/memory", o.memory)
+            c.set(basekey + "/nic_nb", o.nic_nb)
+            c.set(basekey + "/nic", o.nic)
+            c.set(basekey + "/options", o.options)
+            c.set(basekey + "/kqemu", o.kqemu)
+            c.set(basekey + "/kvm", o.kvm)
+
         # Libraries
         id = 0
         for (key, o) in self.__libraries.iteritems():

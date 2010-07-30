@@ -104,6 +104,30 @@ class qemuImageConf(ConfigObject):
         ConfigObject.__init__(self)
         self.conf = Defaults.conf_qemuImage_defaults.copy()
         self.types = Defaults.conf_qemuImage_types
+        
+class pixImageConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_pixImage_defaults.copy()
+        self.types = Defaults.conf_pixImage_types
+
+class junosImageConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_junosImage_defaults.copy()
+        self.types = Defaults.conf_junosImage_types
+
+class asaImageConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_asaImage_defaults.copy()
+        self.types = Defaults.conf_asaImage_types
+        
+class idsImageConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_idsImage_defaults.copy()
+        self.types = Defaults.conf_idsImage_types
 
 class systemDynamipsConf(ConfigObject):
     def __init__(self):
@@ -128,5 +152,3 @@ class systemQemuConf(ConfigObject):
         ConfigObject.__init__(self)
         self.conf = Defaults.conf_systemQemu_defaults.copy()
         self.types = Defaults.conf_systemQemu_types
-
-

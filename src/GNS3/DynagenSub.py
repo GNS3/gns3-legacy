@@ -95,8 +95,9 @@ class DynagenSub(Dynagen):
                         # ASA has no image
                         if device.name == '5520' and device['initrd'] and device['kernel']:
                             if not os.access(device['initrd'], os.F_OK):
-                                if globals.GApp.systconf['qemu'].default_asa_initrd:
-                                    initrd_name = globals.GApp.systconf['qemu'].default_asa_initrd
+                                
+                                if len(globals.GApp.asaimages.keys()):
+                                    initrd_name = globals.GApp.asaimages.values()[0].initrd
                                 else:
                                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
                                         unicode(translate("ASA initrd", "ASA initrd %s cannot be found and cannot find an alternative initrd")) % device['initrd'])
@@ -106,8 +107,8 @@ class DynagenSub(Dynagen):
                                 device['initrd'] = initrd_name
                                 
                             if not os.access(device['kernel'], os.F_OK):
-                                if globals.GApp.systconf['qemu'].default_asa_kernel:
-                                    kernel_name = globals.GApp.systconf['qemu'].default_asa_kernel
+                                if len(globals.GApp.asaimages.keys()):
+                                    kernel_name = globals.GApp.asaimages.values()[0].kernel
                                 else:
                                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
                                         unicode(translate("ASA kernel", "ASA kernel %s cannot be found and cannot find an alternative kernel")) % device['kernel'])
@@ -120,8 +121,9 @@ class DynagenSub(Dynagen):
                         # IDS has no default image
                         if device.name == 'IDS-4215' and device['image1'] and device['image2']:
                             if not os.access(device['image1'], os.F_OK):
-                                if globals.GApp.systconf['qemu'].default_ids_image1:
-                                    image1_name = globals.GApp.systconf['qemu'].default_ids_image1
+                                
+                                if len(globals.GApp.idsimages.keys()):
+                                    image1_name = globals.GApp.idsimages.values()[0].image1
                                 else:
                                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
                                         unicode(translate("IDS image (hda)", "IDS image %s cannot be found and cannot find an alternative image")) % device['image1'])
@@ -131,8 +133,8 @@ class DynagenSub(Dynagen):
                                 device['image1'] = image1_name
                                 
                             if not os.access(device['image2'], os.F_OK):
-                                if globals.GApp.systconf['qemu'].default_ids_image2:
-                                    image2_name = globals.GApp.systconf['qemu'].default_ids_image2
+                                if len(globals.GApp.idsimages.keys()):
+                                    image2_name = globals.GApp.idsimages.values()[0].image2
                                 else:
                                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
                                         unicode(translate("IDS image (hdb)", "IDS image %s cannot be found and cannot find an alternative image")) % device['image2'])
@@ -153,8 +155,8 @@ class DynagenSub(Dynagen):
                         
                         if device.name == 'O-series' and device['image']:
                             if not os.access(device['image'], os.F_OK):
-                                if globals.GApp.systconf['qemu'].default_junos_image:
-                                    image_name = globals.GApp.systconf['qemu'].default_junos_image
+                                if len(globals.GApp.junosimages.keys()):
+                                    image_name = globals.GApp.junosimages.values()[0].filename
                                 else:
                                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
                                         unicode(translate("JunOS image", "JunOS image %s cannot be found and cannot find an alternative image")) % device['image'])
@@ -162,6 +164,7 @@ class DynagenSub(Dynagen):
                                 print unicode(translate("DynagenSub", "Local JunOS image %s cannot be found, use image %s instead")) \
                                 % (unicode(device['image']), image_name)
                                 device['image'] = image_name
+
                         if device.name == 'QemuDevice' and device['image']:
                             if not os.access(device['image'], os.F_OK):
                                 if len(globals.GApp.qemuimages.keys()):
@@ -177,8 +180,8 @@ class DynagenSub(Dynagen):
                             # must be a PIX device
                             # check if the PIX image is accessible, if not find an alternative image
                             if not os.access(device['image'], os.F_OK):
-                                if globals.GApp.systconf['qemu'].default_pix_image:
-                                    image_name = globals.GApp.systconf['qemu'].default_pix_image
+                                if len(globals.GApp.piximages.keys()):
+                                    image_name = globals.GApp.piximages.values()[0].filename
                                 else:
                                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
                                         unicode(translate("PIX image", "PIX image %s cannot be found and cannot find an alternative image")) % device['image'])

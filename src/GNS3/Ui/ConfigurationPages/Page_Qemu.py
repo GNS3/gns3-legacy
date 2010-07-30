@@ -21,9 +21,9 @@
 
 import os
 import GNS3.Globals as globals
-from PyQt4 import QtCore,  QtGui
+from PyQt4 import QtCore, QtGui
 from Form_QemuPage import Ui_QemuPage
-from GNS3.Utils import fileBrowser
+from GNS3.Utils import fileBrowser, translate
 
 class Page_Qemu(QtGui.QWidget, Ui_QemuPage):
     """ Class implementing the Qemu configuration page.
@@ -63,6 +63,7 @@ class Page_Qemu(QtGui.QWidget, Ui_QemuPage):
             self.lineEditImage.setText(qemu_config['image'])
 
         self.spinBoxRamSize.setValue(qemu_config['ram'])
+        self.spinBoxNics.setValue(qemu_config['nics'])
         
         index = self.comboBoxNIC.findText(qemu_config['netcard'])
         if index != -1:
@@ -97,8 +98,14 @@ class Page_Qemu(QtGui.QWidget, Ui_QemuPage):
 
         qemu_config['ram'] = self.spinBoxRamSize.value()
         
+        nics = self.spinBoxNics.value()
+        if nics < qemu_config['nics'] and len(node.getConnectedInterfaceList()):
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_Qemu", "Qemu host"), translate("Page_Qemu", "You must remove the connected links first in order to reduce the number of interfaces"))
+        else:
+            qemu_config['nics'] = self.spinBoxNics.value()
+
         qemu_config['netcard'] = str(self.comboBoxNIC.currentText())
-            
+
         options = str(self.lineEditOptions.text())
         if options:
             qemu_config['options'] = options

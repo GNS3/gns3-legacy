@@ -345,7 +345,7 @@ class Topology(QtGui.QGraphicsScene):
 
         command = undo.AddNode(self, node)
         self.undoStack.push(command)
-        
+
     def addNode(self, node, fromScene=False):
         """ Add node in the topology
             node: object
@@ -415,24 +415,24 @@ class Topology(QtGui.QGraphicsScene):
             if isinstance(node, QemuDevice):
 
                 if len(globals.GApp.qemuimages) == 0:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Qemu image"), translate("Topology", "Please configure a Qemu image"))
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Qemu image"), translate("Topology", "Please configure a Qemu host"))
                     return False
                
-                images = []
+                devices = []
                 for name in globals.GApp.qemuimages.keys():
-                    images.append(name)
+                    devices.append(name)
                 
                 if len(globals.GApp.qemuimages) > 1:
 
-                    (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "Qemu image"),
-                                                                      translate("Topology", "Please choose an image"), images, 0, False)
+                    (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "Qemu host"),
+                                                                      translate("Topology", "Please choose a Qemu host"), devices, 0, False)
                     if ok:
-                        image_to_use = unicode(selection)
+                        device_to_use = unicode(selection)
                     else:
                         return False
-                    conf = globals.GApp.qemuimages[image_to_use]
+                    conf = globals.GApp.qemuimages[device_to_use]
                 else:
-                    conf = globals.GApp.qemuimages[images[0]]
+                    conf = globals.GApp.qemuimages[devices[0]]
 
                 # give a warning if the Qemu image path is not accessible
                 if not os.access(conf.filename, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
@@ -444,6 +444,7 @@ class Topology(QtGui.QGraphicsScene):
                 debug("Set default image " + conf.filename + " for node type %s, model %r" % (type(node), node.model))
                 node.set_image(conf.filename, node.model)
                 node.set_int_option('ram', conf.memory)
+                node.set_int_option('nics', conf.nic_nb)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('kqemu', conf.kqemu)
                 node.set_string_option('kvm', conf.kvm)                
@@ -451,110 +452,172 @@ class Topology(QtGui.QGraphicsScene):
 
             if isinstance(node, JunOS):
 
-                if not globals.GApp.systconf['qemu'].default_junos_image:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "JunOS image"), translate("Topology", "Please configure a default JunOS image"))
+                if len(globals.GApp.junosimages) == 0:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "JunOS"), translate("Topology", "Please configure a JunOS"))
                     return False
+               
+                devices = []
+                for name in globals.GApp.junosimages.keys():
+                    devices.append(name)
                 
+                if len(globals.GApp.junosimages) > 1:
+
+                    (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "JunOS image"),
+                                                                      translate("Topology", "Please choose a JunOS"), devices, 0, False)
+                    if ok:
+                        device_to_use = unicode(selection)
+                    else:
+                        return False
+                    conf = globals.GApp.junosimages[device_to_use]
+                else:
+                    conf = globals.GApp.junosimages[devices[0]]
+
                 # give a warning if the JunOS image path is not accessible
-                if not os.access(globals.GApp.systconf['qemu'].default_junos_image, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "JunOS image"), unicode(translate("Topology", "%s seems to not exist, please check")) % globals.GApp.systconf['qemu'].default_junos_image)
+                if not os.access(conf.filename, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "JunOS image"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.filename)
                 
                 if self.emuDeviceSetup(node) == False:
                     return False
                 
-                debug("Set default image " + globals.GApp.systconf['qemu'].default_junos_image + " for node type %s, model %r" % (type(node), node.model))
-                node.set_image(globals.GApp.systconf['qemu'].default_junos_image, node.model)
-                node.set_int_option('ram', globals.GApp.systconf['qemu'].default_junos_memory)
-                node.set_string_option('netcard', globals.GApp.systconf['qemu'].default_junos_nic)
-                node.set_string_option('kqemu', globals.GApp.systconf['qemu'].default_junos_kqemu)
-                node.set_string_option('kvm', globals.GApp.systconf['qemu'].default_junos_kvm)                
-                node.set_string_option('options', globals.GApp.systconf['qemu'].default_junos_options)
+                debug("Set default image " + conf.filename + " for node type %s, model %r" % (type(node), node.model))
+                node.set_image(conf.filename, node.model)
+                node.set_int_option('ram', conf.memory)
+                node.set_int_option('nics', conf.nic_nb)
+                node.set_string_option('netcard', conf.nic)
+                node.set_string_option('kqemu', conf.kqemu)
+                node.set_string_option('kvm', conf.kvm)                
+                node.set_string_option('options', conf.options)
                 
             if isinstance(node, IDS):
 
-                if not globals.GApp.systconf['qemu'].default_ids_image1 or not globals.GApp.systconf['qemu'].default_ids_image2:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IDS images"), translate("Topology", "Please configure the default IDS images"))
+                if len(globals.GApp.idsimages) == 0:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IDS"), translate("Topology", "Please configure an IDS"))
                     return False
-                
-                # give a warning if the IDS image paths are not accessible
-                if not os.access(globals.GApp.systconf['qemu'].default_ids_image1, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IDS images"), unicode(translate("Topology", "%s seems to not exist, please check")) % globals.GApp.systconf['qemu'].default_ids_image1)
+               
+                devices = []
+                for name in globals.GApp.idsimages.keys():
+                    devices.append(name)
+
+                if len(globals.GApp.idsimages) > 1:
+
+                    (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "IDS"),
+                                                                      translate("Topology", "Please choose an IDS"), devices, 0, False)
+                    if ok:
+                        device_to_use = unicode(selection)
+                    else:
+                        return False
+                    conf = globals.GApp.idsimages[device_to_use]
+                else:
+                    conf = globals.GApp.idsimages[devices[0]]
 
                 # give a warning if the IDS image paths are not accessible
-                if not os.access(globals.GApp.systconf['qemu'].default_ids_image2, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IDS images"), unicode(translate("Topology", "%s seems to not exist, please check")) % globals.GApp.systconf['qemu'].default_ids_image2)
+                if not os.access(conf.image1, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IDS images"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.image1)
+                if not os.access(conf.image2, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IDS images"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.image2)
           
                 if self.emuDeviceSetup(node) == False:
                     return False
 
                 # No default image for IDS
                 node.set_image('None', node.model)
-                debug("Set image1 " + globals.GApp.systconf['qemu'].default_ids_image1 + " for node type %s, model %r" % (type(node), node.model))
-                debug("Set image2 " + globals.GApp.systconf['qemu'].default_ids_image2 + " for node type %s, model %r" % (type(node), node.model))
-                node.set_string_option('image1', globals.GApp.systconf['qemu'].default_ids_image1)
-                node.set_string_option('image2', globals.GApp.systconf['qemu'].default_ids_image2)
-                node.set_int_option('ram', globals.GApp.systconf['qemu'].default_ids_memory)
-                node.set_string_option('netcard', globals.GApp.systconf['qemu'].default_ids_nic)
-                node.set_string_option('kqemu', globals.GApp.systconf['qemu'].default_ids_kqemu)
-                node.set_string_option('kvm', globals.GApp.systconf['qemu'].default_ids_kvm)                
-                node.set_string_option('options', globals.GApp.systconf['qemu'].default_ids_options)
+                debug("Set image1 " + conf.image1 + " for node type %s, model %r" % (type(node), node.model))
+                debug("Set image2 " + conf.image2 + " for node type %s, model %r" % (type(node), node.model))
+                node.set_string_option('image1', conf.image1)
+                node.set_string_option('image2', conf.image2)
+                node.set_int_option('ram', conf.memory)
+                node.set_int_option('nics', conf.nic_nb)
+                node.set_string_option('netcard', conf.nic)
+                node.set_string_option('kqemu', conf.kqemu)
+                node.set_string_option('kvm', conf.kvm)                
+                node.set_string_option('options', conf.options)
 
             if isinstance(node, ASA):
-
-                if not globals.GApp.systconf['qemu'].default_asa_kernel:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA kernel"), translate("Topology", "Please configure a default ASA kernel"))
-                    return False
                 
-                if not globals.GApp.systconf['qemu'].default_asa_initrd:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA initrd"), translate("Topology", "Please configure a default ASA initrd"))
+                if len(globals.GApp.asaimages) == 0:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA"), translate("Topology", "Please configure an ASA"))
                     return False
-                
+               
+                devices = []
+                for name in globals.GApp.asaimages.keys():
+                    devices.append(name)
 
+                if len(globals.GApp.asaimages) > 1:
+
+                    (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "ASA"),
+                                                                      translate("Topology", "Please choose an ASA"), devices, 0, False)
+                    if ok:
+                        device_to_use = unicode(selection)
+                    else:
+                        return False
+                    conf = globals.GApp.asaimages[device_to_use]
+                else:
+                    conf = globals.GApp.asaimages[devices[0]]
+                
                 # give a warning if the ASA initrd path is not accessible
-                if not os.access(globals.GApp.systconf['qemu'].default_asa_initrd, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA initrd"), unicode(translate("Topology", "%s seems to not exist, please check")) % globals.GApp.systconf['qemu'].default_asa_initrd)
+                if not os.access(conf.initrd, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA initrd"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.initrd)
              
                 # give a warning if the ASA kernel path is not accessible
-                if not os.access(globals.GApp.systconf['qemu'].default_asa_kernel, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA kernel"), unicode(translate("Topology", "%s seems to not exist, please check")) % globals.GApp.systconf['qemu'].default_asa_kernel)
+                if not os.access(conf.kernel, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA kernel"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.kernel)
    
                 if self.emuDeviceSetup(node) == False:
                     return False
                 
-                debug("Set default initrd " + globals.GApp.systconf['qemu'].default_asa_initrd + " for node type %s, model %r" % (type(node), node.model))
-                debug("Set default kernel " + globals.GApp.systconf['qemu'].default_asa_kernel + " for node type %s, model %r" % (type(node), node.model))
+                debug("Set default initrd " + conf.initrd + " for node type %s, model %r" % (type(node), node.model))
+                debug("Set default kernel " + conf.kernel + " for node type %s, model %r" % (type(node), node.model))
                 
                 # No image for ASA
                 node.set_image('None', node.model)
-                node.set_int_option('ram', globals.GApp.systconf['qemu'].default_asa_memory)
-                node.set_string_option('netcard', globals.GApp.systconf['qemu'].default_asa_nic)
-                node.set_string_option('kqemu', globals.GApp.systconf['qemu'].default_asa_kqemu)
-                node.set_string_option('kvm', globals.GApp.systconf['qemu'].default_asa_kvm)     
-                node.set_string_option('initrd', globals.GApp.systconf['qemu'].default_asa_initrd)
-                node.set_string_option('kernel', globals.GApp.systconf['qemu'].default_asa_kernel)
-                node.set_string_option('kernel_cmdline', globals.GApp.systconf['qemu'].default_asa_kernel_cmdline)
-                node.set_string_option('options', globals.GApp.systconf['qemu'].default_asa_options)
+                node.set_int_option('ram', conf.memory)
+                node.set_int_option('nics', conf.nic_nb)
+                node.set_string_option('netcard', conf.nic)
+                node.set_string_option('kqemu', conf.kqemu)
+                node.set_string_option('kvm', conf.kvm)
+                node.set_string_option('initrd', conf.initrd)
+                node.set_string_option('kernel', conf.kernel)
+                node.set_string_option('kernel_cmdline', conf.kernel_cmdline)
+                node.set_string_option('options', conf.options)
 
             if isinstance(node, FW):
                 
-                if not globals.GApp.systconf['qemu'].default_pix_image:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX image"), translate("Topology", "Please configure a default PIX image"))
+                if len(globals.GApp.piximages) == 0:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX"), translate("Topology", "Please configure a PIX"))
                     return False
+               
+                devices = []
+                for name in globals.GApp.piximages.keys():
+                    devices.append(name)
+
+                if len(globals.GApp.piximages) > 1:
+
+                    (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "PIX"),
+                                                                      translate("Topology", "Please choose a PIX"), devices, 0, False)
+                    if ok:
+                        device_to_use = unicode(selection)
+                    else:
+                        return False
+                    conf = globals.GApp.piximages[device_to_use]
+                else:
+                    conf = globals.GApp.piximages[devices[0]]
                     
                 # give a warning if the PIX image path is not accessible
-                    if not os.access(globals.GApp.systconf['qemu'].default_pix_image, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
-                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX image"), unicode(translate("Topology", "%s seems to not exist, please check")) % globals.GApp.systconf['qemu'].default_pix_image)
+                if not os.access(conf.filename, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX image"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.filename)
+                
                 if self.emuDeviceSetup(node) == False:
                     return False
                 
-                debug("Set default image " + globals.GApp.systconf['qemu'].default_pix_image + " for node type %s, model %r" % (type(node), node.model))
-                node.set_image(globals.GApp.systconf['qemu'].default_pix_image, node.model)
-                node.set_int_option('ram', globals.GApp.systconf['qemu'].default_pix_memory)
-                node.set_string_option('netcard', globals.GApp.systconf['qemu'].default_pix_nic)
-                node.set_string_option('key', globals.GApp.systconf['qemu'].default_pix_key)
-                node.set_string_option('serial', globals.GApp.systconf['qemu'].default_pix_serial)
-                node.set_string_option('kqemu', globals.GApp.systconf['qemu'].default_pix_kqemu)
-                node.set_string_option('options', globals.GApp.systconf['qemu'].default_pix_options)
+                debug("Set default image " + conf.filename + " for node type %s, model %r" % (type(node), node.model))
+                node.set_image(conf.filename, node.model)
+                node.set_int_option('ram', conf.memory)
+                node.set_int_option('nics', conf.nic_nb)
+                node.set_string_option('netcard', conf.nic)
+                node.set_string_option('key', conf.key)
+                node.set_string_option('serial', conf.serial)
+                node.set_string_option('kqemu', conf.kqemu)
+                node.set_string_option('options', conf.options)
 
             QtCore.QObject.connect(node, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
             QtCore.QObject.connect(node, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)

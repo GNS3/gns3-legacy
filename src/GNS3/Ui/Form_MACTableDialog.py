@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MACTableDialog.ui'
 #
-# Created: Thu Jul 29 22:03:48 2010
+# Created: Fri Jul 30 19:02:34 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!

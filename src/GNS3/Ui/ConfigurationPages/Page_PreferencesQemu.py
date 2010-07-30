@@ -25,7 +25,7 @@ import subprocess
 from PyQt4 import QtGui, QtCore, QtNetwork
 from GNS3.QemuManager import QemuManager
 from GNS3.Ui.ConfigurationPages.Form_PreferencesQemu import Ui_PreferencesQemu
-from GNS3.Config.Objects import systemQemuConf, qemuImageConf
+from GNS3.Config.Objects import systemQemuConf, qemuImageConf, pixImageConf, junosImageConf, asaImageConf, idsImageConf
 from GNS3.Utils import fileBrowser, translate
 from GNS3.Config.Config import ConfDB
 
@@ -57,17 +57,29 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         
         # PIX settings
         self.connect(self.PIXImage_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectPIXImage)
+        self.connect(self.SavePIXImage, QtCore.SIGNAL('clicked()'), self.slotSavePIXImage)
+        self.connect(self.DeletePIXImage, QtCore.SIGNAL('clicked()'), self.slotDeletePIXImage)
+        self.connect(self.treeWidgetPIXImages,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotPIXImageSelectionChanged)
 
         # JunOS settings
         self.connect(self.JunOSImage_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectJunOSImage)
+        self.connect(self.SaveJunOSImage, QtCore.SIGNAL('clicked()'), self.slotSaveJunOSImage)
+        self.connect(self.DeleteJunOSImage, QtCore.SIGNAL('clicked()'), self.slotDeleteJunOSImage)
+        self.connect(self.treeWidgetJunOSImages,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotJunOSImageSelectionChanged)
         
         # ASA settings
         self.connect(self.ASAInitrd_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectASAInitrd)
         self.connect(self.ASAKernel_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectASAKernel)
+        self.connect(self.SaveASAImage, QtCore.SIGNAL('clicked()'), self.slotSaveASAImage)
+        self.connect(self.DeleteASAImage, QtCore.SIGNAL('clicked()'), self.slotDeleteASAImage)
+        self.connect(self.treeWidgetASAImages,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotASAImageSelectionChanged)
         
         # IDS settings
         self.connect(self.IDSImage1_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectIDSImage1)
         self.connect(self.IDSImage2_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectIDSImage2)
+        self.connect(self.SaveIDSImage, QtCore.SIGNAL('clicked()'), self.slotSaveIDSImage)
+        self.connect(self.DeleteIDSImage, QtCore.SIGNAL('clicked()'), self.slotDeleteIDSImage)
+        self.connect(self.treeWidgetIDSImages,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotIDSImageSelectionChanged)
 
         self.loadConf()
 
@@ -136,82 +148,52 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         self.treeWidgetQemuImages.resizeColumnToContents(0)
         
         # PIX settings
-        self.PIXImage.setText(self.conf.default_pix_image)
-        self.PIXMemory.setValue(self.conf.default_pix_memory)
-        self.PIXOptions.setText(self.conf.default_pix_options)
+        for (name, conf) in globals.GApp.piximages.iteritems():
 
-        index = self.PIXNIC.findText(self.conf.default_pix_nic)
-        if index != -1:
-            self.PIXNIC.setCurrentIndex(index)
-                
-        if self.conf.default_pix_kqemu == True:
-            self.PIXcheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.PIXcheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
-                
-        self.PIXKey.setText(self.conf.default_pix_key)
-        self.PIXSerial.setText(self.conf.default_pix_serial)
+            item = QtGui.QTreeWidgetItem(self.treeWidgetPIXImages)
+            # name column
+            item.setText(0, name)
+            # image path column
+            item.setText(1, conf.filename)
+            
+        self.treeWidgetPIXImages.resizeColumnToContents(0)
         
         # JunOS settings
-        self.JunOSImage.setText(self.conf.default_junos_image)
-        self.JunOSMemory.setValue(self.conf.default_junos_memory)
-        self.JunOSOptions.setText(self.conf.default_junos_options)
+        for (name, conf) in globals.GApp.junosimages.iteritems():
 
-        index = self.JunOSNIC.findText(self.conf.default_junos_nic)
-        if index != -1:
-            self.JunOSNIC.setCurrentIndex(index)
-                
-        if self.conf.default_junos_kqemu == True:
-            self.JunOScheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.JunOScheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
-                
-        if self.conf.default_junos_kvm == True:
-            self.JunOScheckBoxKVM.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.JunOScheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
-        
+            item = QtGui.QTreeWidgetItem(self.treeWidgetJunOSImages)
+            # name column
+            item.setText(0, name)
+            # image path column
+            item.setText(1, conf.filename)
+            
+        self.treeWidgetJunOSImages.resizeColumnToContents(0)
+
         # ASA settings
-        self.ASAMemory.setValue(self.conf.default_asa_memory)
-        self.ASAOptions.setText(self.conf.default_asa_options)
+        for (name, conf) in globals.GApp.asaimages.iteritems():
 
-        index = self.ASANIC.findText(self.conf.default_asa_nic)
-        if index != -1:
-            self.ASANIC.setCurrentIndex(index)
-                
-        if self.conf.default_asa_kqemu == True:
-            self.ASAcheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.ASAcheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
-                
-        if self.conf.default_asa_kvm == True:
-            self.ASAcheckBoxKVM.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.ASAcheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
-
-        self.ASAKernel.setText(self.conf.default_asa_kernel)
-        self.ASAInitrd.setText(self.conf.default_asa_initrd)
-        self.ASAKernelCmdLine.setText(self.conf.default_asa_kernel_cmdline)
+            item = QtGui.QTreeWidgetItem(self.treeWidgetASAImages)
+            # name column
+            item.setText(0, name)
+            # initrd path column
+            item.setText(1, conf.initrd)
+            # kernel path column
+            item.setText(2, conf.kernel)
+            
+        self.treeWidgetASAImages.resizeColumnToContents(0)
         
         # IDS settings
-        self.IDSImage1.setText(self.conf.default_ids_image1)
-        self.IDSImage2.setText(self.conf.default_ids_image2)
-        self.IDSMemory.setValue(self.conf.default_ids_memory)
-        self.IDSOptions.setText(self.conf.default_ids_options)
+        for (name, conf) in globals.GApp.idsimages.iteritems():
 
-        index = self.IDSNIC.findText(self.conf.default_ids_nic)
-        if index != -1:
-            self.IDSNIC.setCurrentIndex(index)
-                
-        if self.conf.default_ids_kqemu == True:
-            self.IDScheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.IDScheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
-                
-        if self.conf.default_ids_kvm == True:
-            self.IDScheckBoxKVM.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.IDScheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+            item = QtGui.QTreeWidgetItem(self.treeWidgetIDSImages)
+            # name column
+            item.setText(0, name)
+            # image1 path column
+            item.setText(1, conf.image1)
+            # image2 path column
+            item.setText(2, conf.image2)
+            
+        self.treeWidgetIDSImages.resizeColumnToContents(0)
 
     def saveConf(self):
 
@@ -235,82 +217,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         self.conf.qemuwrapper_port = self.port.value()
         self.conf.qemuwrapper_baseUDP = self.baseUDP.value()
         self.conf.qemuwrapper_baseConsole = self.baseConsole.value()
-        
-        # Qemu settings
-        globals.GApp.syncConf()
-
-        # PIX settings
-        self.conf.default_pix_image = unicode(self.PIXImage.text())
-        self.conf.default_pix_memory = self.PIXMemory.value()
-        self.conf.default_pix_nic = str(self.PIXNIC.currentText())
-        self.conf.default_pix_options = str(self.PIXOptions.text())
-    
-        if self.PIXcheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-            self.conf.default_pix_kqemu = True
-        else:
-            self.conf.default_pix_kqemu  = False
-                
-        serial = str(self.PIXSerial.text())
-        if not re.search(r"""^0x[0-9a-fA-F]{8}$""", serial):
-            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "Serial"), 
-                                       translate("Page_PreferencesQemu", "Invalid serial (format required: 0xhhhhhhhh)"))
-        self.conf.default_pix_serial = serial
-
-        key = str(self.PIXKey.text())
-        if not re.search(r"""^(0x[0-9a-fA-F]{8},){3}0x[0-9a-fA-F]{8}$""", key):
-            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "Key"),
-                                       translate("Page_PreferencesQemu", "Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)"))
-        self.conf.default_pix_key  = key
-
-        # JunOS settings
-        self.conf.default_junos_image = unicode(self.JunOSImage.text())
-        self.conf.default_junos_memory = self.JunOSMemory.value()
-        self.conf.default_junos_nic = str(self.JunOSNIC.currentText())
-        self.conf.default_junos_options = str(self.JunOSOptions.text())
-    
-        if self.JunOScheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-            self.conf.default_junos_kqemu = True
-        else:
-            self.conf.default_junos_kqemu  = False
-        if self.JunOScheckBoxKVM.checkState() == QtCore.Qt.Checked:
-            self.conf.default_junos_kvm = True
-        else:
-            self.conf.default_junos_kvm  = False
-            
-        # ASA settings
-        
-        self.conf.default_asa_kernel = unicode(self.ASAKernel.text())
-        self.conf.default_asa_initrd = unicode(self.ASAInitrd.text())
-        self.conf.default_asa_kernel_cmdline = unicode(self.ASAKernelCmdLine.text())
-        
-        self.conf.default_asa_memory = self.ASAMemory.value()
-        self.conf.default_asa_nic = str(self.ASANIC.currentText())
-        self.conf.default_asa_options = str(self.ASAOptions.text())
-    
-        if self.ASAcheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-            self.conf.default_asa_kqemu = True
-        else:
-            self.conf.default_asa_kqemu  = False
-        if self.ASAcheckBoxKVM.checkState() == QtCore.Qt.Checked:
-            self.conf.default_asa_kvm = True
-        else:
-            self.conf.default_asa_kvm  = False
-
-        # IDS settings
-        self.conf.default_ids_image1 = unicode(self.IDSImage1.text())
-        self.conf.default_ids_image2 = unicode(self.IDSImage2.text())
-        self.conf.default_ids_memory = self.IDSMemory.value()
-        self.conf.default_ids_nic = str(self.IDSNIC.currentText())
-        self.conf.default_ids_options = str(self.IDSOptions.text())
-    
-        if self.IDScheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-            self.conf.default_ids_kqemu = True
-        else:
-            self.conf.default_ids_kqemu  = False
-        if self.IDScheckBoxKVM.checkState() == QtCore.Qt.Checked:
-            self.conf.default_ids_kvm = True
-        else:
-            self.conf.default_ids_kvm  = False
 
         globals.GApp.systconf['qemu'] = self.conf
         ConfDB().sync()
@@ -391,7 +297,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             return
 
         if globals.GApp.qemuimages.has_key(name):
-            # update an already existing IOS image
+            # update an already existing Qemu host image
             item_to_update = self.treeWidgetQemuImages.findItems(name, QtCore.Qt.MatchFixedString)[0]
             item_to_update.setText(1, image)
         else:
@@ -401,7 +307,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             item.setText(0, name)
             # image path column
             item.setText(1, image)
-            #self.treeWidgetQemuImages.setCurrentItem(item)
             
         # save settings
         if globals.GApp.qemuimages.has_key(name):
@@ -414,6 +319,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         conf.name = name
         conf.filename = image
         conf.memory = self.QemuMemory.value()
+        conf.nic_nb = self.QemuNICNb.value()
         conf.nic = str(self.QemuNIC.currentText())
         conf.options = str(self.QemuOptions.text())
         
@@ -428,6 +334,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
 
         globals.GApp.qemuimages[name] = conf
         self.treeWidgetQemuImages.resizeColumnToContents(0)
+        QtGui.QMessageBox.information(globals.preferencesWindow, translate("Page_PreferencesQemu", "Save"),  translate("Page_PreferencesQemu", "Qemu host settings have been saved"))
     
     def slotDeleteQemuImage(self):
         """ Delete Qemu Image from the list of Qemu images
@@ -438,6 +345,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             self.treeWidgetQemuImages.takeTopLevelItem(self.treeWidgetQemuImages.indexOfTopLevelItem(item))
             name = unicode(item.text(0))
             del globals.GApp.qemuimages[name]
+            globals.GApp.syncConf()
             
     def slotQemuImageSelectionChanged(self):
         """ Load Qemu settings into the GUI when selecting an entry in the list of Qemu images
@@ -455,6 +363,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             self.QemuImage.setText(conf.filename)
             self.QemuMemory.setValue(conf.memory)
             self.QemuOptions.setText(conf.options)
+            self.QemuNICNb.setValue(conf.nic_nb)
         
             index = self.QemuNIC.findText(conf.nic)
             if index != -1:
@@ -479,6 +388,109 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             self.PIXImage.clear()
             self.PIXImage.setText(os.path.normpath(path[0]))
             
+    def slotSavePIXImage(self):
+        """ Add/Save PIX Image in the list of PIX images
+        """
+
+        name = unicode(self.NamePIXImage.text())
+        image = unicode(self.PIXImage.text())
+        
+        if not name or not image:
+            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "PIX firewall"), 
+                                       translate("Page_PreferencesQemu", "Identifier and binary image must be set!"))
+            return
+
+        if globals.GApp.piximages.has_key(name):
+            # update an already existing PIX image
+            item_to_update = self.treeWidgetPIXImages.findItems(name, QtCore.Qt.MatchFixedString)[0]
+            item_to_update.setText(1, image)
+        else:
+            # else create a new entry
+            item = QtGui.QTreeWidgetItem(self.treeWidgetPIXImages)
+            # image name column
+            item.setText(0, name)
+            # image path column
+            item.setText(1, image)
+
+        # save settings
+        if globals.GApp.piximages.has_key(name):
+            conf = globals.GApp.piximages[name]
+        else:
+            conf = pixImageConf()
+
+        conf.id = globals.GApp.piximages_ids
+        globals.GApp.piximages_ids += 1
+        conf.name = name
+        conf.filename = image
+        conf.memory = self.PIXMemory.value()
+        conf.nic_nb = self.PIXNICNb.value()
+        conf.nic = str(self.PIXNIC.currentText())
+        conf.options = str(self.PIXOptions.text())
+        
+        if self.PIXcheckBoxKqemu.checkState() == QtCore.Qt.Checked:
+            conf.kqemu = True
+        else:
+            conf.kqemu  = False
+            
+        serial = str(self.PIXSerial.text())
+        if serial and not re.search(r"""^0x[0-9a-fA-F]{8}$""", serial):
+            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "Serial"), 
+                                       translate("Page_PreferencesQemu", "Invalid serial (format required: 0xhhhhhhhh)"))
+        else:
+            conf.serial = serial
+
+        key = str(self.PIXKey.text())
+        if key and not re.search(r"""^(0x[0-9a-fA-F]{8},){3}0x[0-9a-fA-F]{8}$""", key):
+            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "Key"),
+                                       translate("Page_PreferencesQemu", "Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)"))
+        else:
+            conf.key = key
+
+        globals.GApp.piximages[name] = conf
+        self.treeWidgetPIXImages.resizeColumnToContents(0)
+        QtGui.QMessageBox.information(globals.preferencesWindow, translate("Page_PreferencesQemu", "Save"),  translate("Page_PreferencesQemu", "PIX settings have been saved"))
+    
+    def slotDeletePIXImage(self):
+        """ Delete PIX Image from the list of PIX images
+        """
+
+        item = self.treeWidgetPIXImages.currentItem()
+        if (item != None):
+            self.treeWidgetPIXImages.takeTopLevelItem(self.treeWidgetPIXImages.indexOfTopLevelItem(item))
+            name = unicode(item.text(0))
+            del globals.GApp.piximages[name]
+            globals.GApp.syncConf()
+            
+    def slotPIXImageSelectionChanged(self):
+        """ Load PIX settings into the GUI when selecting an entry in the list of PIX images
+        """
+
+        # Only one selection is possible
+        items = self.treeWidgetPIXImages.selectedItems()
+        if len(items):
+            item = items[0]
+            name = unicode(item.text(0))
+
+            conf = globals.GApp.piximages[name]
+            
+            self.NamePIXImage.setText(name)
+            self.PIXImage.setText(conf.filename)
+            self.PIXMemory.setValue(conf.memory)
+            self.PIXOptions.setText(conf.options)
+            self.PIXNICNb.setValue(conf.nic_nb)
+        
+            index = self.PIXNIC.findText(conf.nic)
+            if index != -1:
+                self.PIXNIC.setCurrentIndex(index)
+
+            if conf.kqemu == True:
+                self.PIXcheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.PIXcheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
+                
+            self.PIXKey.setText(conf.key)
+            self.PIXSerial.setText(conf.serial)
+            
     def slotSelectJunOSImage(self):
         """ Get a JunOS image from the file system
         """
@@ -487,6 +499,101 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         if path != None and path[0] != '':
             self.JunOSImage.clear()
             self.JunOSImage.setText(os.path.normpath(path[0]))
+            
+    def slotSaveJunOSImage(self):
+        """ Add/Save JunOS Image in the list of JunOS images
+        """
+
+        name = unicode(self.NameJunOSImage.text())
+        image = unicode(self.JunOSImage.text())
+        
+        if not name or not image:
+            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "JunOS router"), 
+                                       translate("Page_PreferencesQemu", "Identifier and binary image must be set!"))
+            return
+
+        if globals.GApp.junosimages.has_key(name):
+            # update an already existing JunOS image
+            item_to_update = self.treeWidgetJunOSImages.findItems(name, QtCore.Qt.MatchFixedString)[0]
+            item_to_update.setText(1, image)
+        else:
+            # else create a new entry
+            item = QtGui.QTreeWidgetItem(self.treeWidgetJunOSImages)
+            # image name column
+            item.setText(0, name)
+            # image path column
+            item.setText(1, image)
+            
+        # save settings
+        if globals.GApp.junosimages.has_key(name):
+            conf = globals.GApp.junosimages[name]
+        else:
+            conf = junosImageConf()
+
+        conf.id = globals.GApp.junosimages_ids
+        globals.GApp.junosimages_ids += 1
+        conf.name = name
+        conf.filename = image
+        conf.memory = self.JunOSMemory.value()
+        conf.nic_nb = self.JunOSNICNb.value()
+        conf.nic = str(self.JunOSNIC.currentText())
+        conf.options = str(self.JunOSOptions.text())
+        
+        if self.JunOScheckBoxKqemu.checkState() == QtCore.Qt.Checked:
+            conf.kqemu = True
+        else:
+            conf.kqemu  = False
+        if self.JunOScheckBoxKVM.checkState() == QtCore.Qt.Checked:
+            conf.kvm = True
+        else:
+            conf.kvm  = False
+
+        globals.GApp.junosimages[name] = conf
+        self.treeWidgetJunOSImages.resizeColumnToContents(0)
+        QtGui.QMessageBox.information(globals.preferencesWindow, translate("Page_PreferencesQemu", "Save"),  translate("Page_PreferencesQemu", "JunOS settings have been saved"))
+    
+    def slotDeleteJunOSImage(self):
+        """ Delete JunOS Image from the list of JunOS images
+        """
+
+        item = self.treeWidgetJunOSImages.currentItem()
+        if (item != None):
+            self.treeWidgetJunOSImages.takeTopLevelItem(self.treeWidgetJunOSImages.indexOfTopLevelItem(item))
+            name = unicode(item.text(0))
+            del globals.GApp.junosimages[name]
+            globals.GApp.syncConf()
+            
+    def slotJunOSImageSelectionChanged(self):
+        """ Load JunOS settings into the GUI when selecting an entry in the list of JunOS images
+        """
+
+        # Only one selection is possible
+        items = self.treeWidgetJunOSImages.selectedItems()
+        if len(items):
+            item = items[0]
+            name = unicode(item.text(0))
+
+            conf = globals.GApp.junosimages[name]
+            
+            self.NameJunOSImage.setText(name)
+            self.JunOSImage.setText(conf.filename)
+            self.JunOSMemory.setValue(conf.memory)
+            self.JunOSOptions.setText(conf.options)
+            self.JunOSNICNb.setValue(conf.nic_nb)
+        
+            index = self.JunOSNIC.findText(conf.nic)
+            if index != -1:
+                self.JunOSNIC.setCurrentIndex(index)
+
+            if conf.kqemu == True:
+                self.JunOScheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.JunOScheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
+            
+            if conf.kvm == True:
+                self.JunOScheckBoxKVM.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.JunOScheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
             
     def slotSelectASAKernel(self):
         """ Get an ASA kernel from the file system
@@ -506,6 +613,109 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             self.ASAInitrd.clear()
             self.ASAInitrd.setText(os.path.normpath(path[0]))
             
+    def slotSaveASAImage(self):
+        """ Add/Save ASA Image in the list of ASA images
+        """
+
+        name = unicode(self.NameASAImage.text())
+        initrd = unicode(self.ASAInitrd.text())
+        kernel = unicode(self.ASAKernel.text())
+        
+        if not name or not initrd or not kernel:
+            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "ASA firewall"), 
+                                       translate("Page_PreferencesQemu", "Identifier, initrd and kernel must be set!"))
+            return
+
+        if globals.GApp.asaimages.has_key(name):
+            # update an already existing ASA initrd + kernel
+            item_to_update = self.treeWidgetASAImages.findItems(name, QtCore.Qt.MatchFixedString)[0]
+            item_to_update.setText(1, initrd)
+            item_to_update.setText(2, kernel)
+        else:
+            # else create a new entry
+            item = QtGui.QTreeWidgetItem(self.treeWidgetASAImages)
+            # image name column
+            item.setText(0, name)
+            # initrd path column
+            item.setText(1, initrd)
+            # kernel path column
+            item.setText(2, kernel)
+            
+        # save settings
+        if globals.GApp.asaimages.has_key(name):
+            conf = globals.GApp.asaimages[name]
+        else:
+            conf = asaImageConf()
+
+        conf.id = globals.GApp.asaimages_ids
+        globals.GApp.asaimages_ids += 1
+        conf.name = name
+        conf.initrd = initrd
+        conf.kernel = kernel
+        conf.kernel_cmdline = unicode(self.ASAKernelCmdLine.text())
+        conf.memory = self.ASAMemory.value()
+        conf.nic_nb = self.ASANICNb.value()
+        conf.nic = str(self.ASANIC.currentText())
+        conf.options = str(self.ASAOptions.text())
+        
+        if self.ASAcheckBoxKqemu.checkState() == QtCore.Qt.Checked:
+            conf.kqemu = True
+        else:
+            conf.kqemu  = False
+        if self.ASAcheckBoxKVM.checkState() == QtCore.Qt.Checked:
+            conf.kvm = True
+        else:
+            conf.kvm  = False
+
+        globals.GApp.asaimages[name] = conf
+        self.treeWidgetASAImages.resizeColumnToContents(0)
+        QtGui.QMessageBox.information(globals.preferencesWindow, translate("Page_PreferencesQemu", "Save"),  translate("Page_PreferencesQemu", "ASA settings have been saved"))
+    
+    def slotDeleteASAImage(self):
+        """ Delete ASA Image from the list of ASA images
+        """
+
+        item = self.treeWidgetASAImages.currentItem()
+        if (item != None):
+            self.treeWidgetASAImages.takeTopLevelItem(self.treeWidgetASAImages.indexOfTopLevelItem(item))
+            name = unicode(item.text(0))
+            del globals.GApp.asaimages[name]
+            globals.GApp.syncConf()
+            
+    def slotASAImageSelectionChanged(self):
+        """ Load ASA settings into the GUI when selecting an entry in the list of ASA images
+        """
+
+        # Only one selection is possible
+        items = self.treeWidgetASAImages.selectedItems()
+        if len(items):
+            item = items[0]
+            name = unicode(item.text(0))
+
+            conf = globals.GApp.asaimages[name]
+            
+            self.NameASAImage.setText(name)
+            self.ASAKernel.setText(conf.kernel)
+            self.ASAInitrd.setText(conf.initrd)
+            self.ASAKernelCmdLine.setText(conf.kernel_cmdline)
+            self.ASAMemory.setValue(conf.memory)
+            self.ASAOptions.setText(conf.options)
+            self.ASANICNb.setValue(conf.nic_nb)
+        
+            index = self.ASANIC.findText(conf.nic)
+            if index != -1:
+                self.ASANIC.setCurrentIndex(index)
+
+            if conf.kqemu == True:
+                self.ASAcheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.ASAcheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
+            
+            if conf.kvm == True:
+                self.ASAcheckBoxKVM.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.ASAcheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+            
     def slotSelectIDSImage1(self):
         """ Get a IDS image (hda) from the file system
         """
@@ -523,6 +733,107 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         if path != None and path[0] != '':
             self.IDSImage2.clear()
             self.IDSImage2.setText(os.path.normpath(path[0]))
+            
+    def slotSaveIDSImage(self):
+        """ Add/Save IDS Image in the list of IDS images
+        """
+
+        name = unicode(self.NameIDSImage.text())
+        image1 = unicode(self.IDSImage1.text())
+        image2 = unicode(self.IDSImage2.text())
+        
+        if not name or not image1 or not image2:
+            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "IDS"), 
+                                       translate("Page_PreferencesQemu", "Identifier, image 1 and image 2 must be set!"))
+            return
+
+        if globals.GApp.idsimages.has_key(name):
+            # update an already existing IDS image1 + image2
+            item_to_update = self.treeWidgetIDSImages.findItems(name, QtCore.Qt.MatchFixedString)[0]
+            item_to_update.setText(1, image1)
+            item_to_update.setText(2, image2)
+        else:
+            # else create a new entry
+            item = QtGui.QTreeWidgetItem(self.treeWidgetIDSImages)
+            # image name column
+            item.setText(0, name)
+            # image1 path column
+            item.setText(1, image1)
+            # image2 path column
+            item.setText(2, image2)
+            
+        # save settings
+        if globals.GApp.idsimages.has_key(name):
+            conf = globals.GApp.idsimages[name]
+        else:
+            conf = idsImageConf()
+
+        conf.id = globals.GApp.idsimages_ids
+        globals.GApp.idsimages_ids += 1
+        conf.name = name
+        conf.image1 = image1
+        conf.image2 = image2
+        conf.memory = self.IDSMemory.value()
+        conf.nic_nb = self.IDSNICNb.value()
+        conf.nic = str(self.IDSNIC.currentText())
+        conf.options = str(self.IDSOptions.text())
+        
+        if self.IDScheckBoxKqemu.checkState() == QtCore.Qt.Checked:
+            conf.kqemu = True
+        else:
+            conf.kqemu  = False
+        if self.IDScheckBoxKVM.checkState() == QtCore.Qt.Checked:
+            conf.kvm = True
+        else:
+            conf.kvm  = False
+
+        globals.GApp.idsimages[name] = conf
+        self.treeWidgetIDSImages.resizeColumnToContents(0)
+        QtGui.QMessageBox.information(globals.preferencesWindow, translate("Page_PreferencesQemu", "Save"),  translate("Page_PreferencesQemu", "IDS settings have been saved"))
+    
+    def slotDeleteIDSImage(self):
+        """ Delete IDS Image from the list of IDS images
+        """
+
+        item = self.treeWidgetIDSImages.currentItem()
+        if (item != None):
+            self.treeWidgetIDSImages.takeTopLevelItem(self.treeWidgetIDSImages.indexOfTopLevelItem(item))
+            name = unicode(item.text(0))
+            del globals.GApp.idsimages[name]
+            globals.GApp.syncConf()
+            
+    def slotIDSImageSelectionChanged(self):
+        """ Load IDS settings into the GUI when selecting an entry in the list of IDS images
+        """
+
+        # Only one selection is possible
+        items = self.treeWidgetIDSImages.selectedItems()
+        if len(items):
+            item = items[0]
+            name = unicode(item.text(0))
+
+            conf = globals.GApp.idsimages[name]
+            
+            self.NameIDSImage.setText(name)
+            self.IDSImage1.setText(conf.image1)
+            self.IDSImage2.setText(conf.image2)
+            self.IDSMemory.setValue(conf.memory)
+            self.IDSOptions.setText(conf.options)
+            self.IDSNICNb.setValue(conf.nic_nb)
+        
+            index = self.IDSNIC.findText(conf.nic)
+            if index != -1:
+                self.IDSNIC.setCurrentIndex(index)
+
+            if conf.kqemu == True:
+                self.IDScheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.IDScheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
+            
+            if conf.kvm == True:
+                self.IDScheckBoxKVM.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.IDScheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
 
     def __testQemu(self):
     

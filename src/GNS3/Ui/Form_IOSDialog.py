@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Thu Jul 29 22:03:46 2010
+# Created: Fri Jul 30 19:02:32 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -256,6 +256,7 @@ class Ui_IOSDialog(object):
         self.label.setText(QtGui.QApplication.translate("IOSDialog", "Image file:", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonSelectIOSImage.setText(QtGui.QApplication.translate("IOSDialog", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.label_10.setText(QtGui.QApplication.translate("IOSDialog", "Base config:", None, QtGui.QApplication.UnicodeUTF8))
+        self.lineEditBaseConfig.setText(QtGui.QApplication.translate("IOSDialog", "baseconfig.txt", None, QtGui.QApplication.UnicodeUTF8))
         self.label_6.setText(QtGui.QApplication.translate("IOSDialog", "Model:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_12.setText(QtGui.QApplication.translate("IOSDialog", "IDLE PC:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_9.setText(QtGui.QApplication.translate("IOSDialog", "Default RAM:", None, QtGui.QApplication.UnicodeUTF8))

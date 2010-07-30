@@ -263,6 +263,7 @@ class Dynagen:
                 'cnfg',
                 'key',
                 'serial',
+                'nics',
                 'netcard',
                 'kqemu',
                 'kvm',
@@ -696,11 +697,11 @@ class Dynagen:
             pa = pa[0].lower()
 
         if isinstance(router, AnyEmuDevice):
-            if pa == 'e' and port >= 0 and port < 6:
+            if pa == 'e' and port >= 0:
                 router.add_interface(pa, port)
                 return
             else:
-                raise DynamipsError, 'Emulated device on qemuwrapper only supports e0-5'
+                raise DynamipsError, 'Invalid interface name for emulated device on qemuwrapper'
 
         try:
             if router.slot[slot] != None:
@@ -1157,6 +1158,7 @@ class Dynagen:
                                 'console',
                                 'key',
                                 'serial',
+                                'nics',
                                 'netcard',
                                 'kqemu',
                                 'kvm',
@@ -1182,6 +1184,7 @@ class Dynagen:
                                     'console',
                                     'key',
                                     'serial',
+                                    'nics',
                                     'netcard',
                                     'kqemu',
                                     'kvm',

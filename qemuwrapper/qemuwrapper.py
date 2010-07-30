@@ -48,7 +48,7 @@ import pemubin
 
 
 __author__ = 'Thomas Pani and Jeremy Grossmann'
-__version__ = '0.3.2'
+__version__ = '0.3.3'
 
 QEMU_PATH = "qemu"
 QEMU_IMG_PATH = "qemu-img"
@@ -95,6 +95,7 @@ class xEMUInstance(object):
         self.console = ''
         self.image = ''
         self.nic = {}
+        self.nics = '6'
         self.udp = {}
         self.netcard = 'pcnet'
         self.kqemu = False
@@ -102,7 +103,7 @@ class xEMUInstance(object):
         self.options = ''
         self.process = None
         self.workdir = WORKDIR
-        self.valid_attr_names = ['image', 'ram', 'console', 'netcard', 'kqemu', 'kvm', 'options']
+        self.valid_attr_names = ['image', 'ram', 'console', 'nics', 'netcard', 'kqemu', 'kvm', 'options']
 
     def create(self):
 
@@ -172,12 +173,12 @@ class xEMUInstance(object):
 
     def _net_options(self):
         options = []
-        for vlan in range(7):
+        for vlan in range(int(self.nics)):
             options.append('-net')
             if vlan in self.nic:
                 options.append('nic,vlan=%d,macaddr=%s,model=%s' % (vlan, self.nic[vlan], self.netcard))
             else:
-                # add a default NIC for Qemu (we always add 6 NICs)
+                # add a default NIC for Qemu
                 options.append('nic,vlan=%d,macaddr=00:00:ab:%02x:%02x:%02d,model=%s' % (vlan, random.randint(0x00, 0xff), random.randint(0x00, 0xff), vlan, self.netcard))
             if vlan in self.udp:
                 options.extend(['-net', 'udp,vlan=%s,sport=%s,dport=%s,daddr=%s' %

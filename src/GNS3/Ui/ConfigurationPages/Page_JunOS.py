@@ -23,7 +23,7 @@ import os
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_JunOSPage import Ui_JunOSPage
-from GNS3.Utils import fileBrowser
+from GNS3.Utils import fileBrowser, translate
 
 class Page_JunOS(QtGui.QWidget, Ui_JunOSPage):
     """ Class implementing the JunOS configuration page.
@@ -63,6 +63,7 @@ class Page_JunOS(QtGui.QWidget, Ui_JunOSPage):
             self.lineEditImage.setText(junos_config['image'])
 
         self.spinBoxRamSize.setValue(junos_config['ram'])
+        self.spinBoxNics.setValue(junos_config['nics'])
         
         index = self.comboBoxNIC.findText(junos_config['netcard'])
         if index != -1:
@@ -96,6 +97,12 @@ class Page_JunOS(QtGui.QWidget, Ui_JunOSPage):
             junos_config['image'] = image
 
         junos_config['ram'] = self.spinBoxRamSize.value()
+        
+        nics = self.spinBoxNics.value()
+        if nics < junos_config['nics'] and len(node.getConnectedInterfaceList()):
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_JunOS", "JunOS"), translate("Page_JunOS", "You must remove the connected links first in order to reduce the number of interfaces"))
+        else:
+            junos_config['nics'] = self.spinBoxNics.value()
         
         junos_config['netcard'] = str(self.comboBoxNIC.currentText())
             
