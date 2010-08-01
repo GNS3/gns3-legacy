@@ -229,6 +229,7 @@ class Topology(QtGui.QGraphicsScene):
             f = open(config_path, 'r')
             config = f.read()
             f.close()
+            config = config.replace('\r', "")
             config = config.replace('%h', node.router.name)
             encoded = ("").join(base64.encodestring(config).split())
             node.router.config_b64 = encoded

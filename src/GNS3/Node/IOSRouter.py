@@ -19,7 +19,7 @@
 # code@gns3.net
 #
 
-import os, shutil, glob, sys
+import os, shutil, glob, sys, base64
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.dynagen as dynagen_namespace
@@ -479,6 +479,7 @@ class IOSRouter(AbstractNode):
         """ Used when changing the hostname
         """
 
+        old_hostname = self.hostname
         links = self.getEdgeList().copy()
         for link in links:
             globals.GApp.topology.deleteLink(link)
@@ -502,6 +503,18 @@ class IOSRouter(AbstractNode):
         self.set_config(self.local_config)
         for link in links:
             globals.GApp.topology.addLink(link.source.id, link.srcIf, link.dest.id, link.destIf)
+            
+        # Update base config
+        try:
+            config = base64.decodestring(self.router.config_b64)
+            if config:
+                old_hostname
+                config = config.replace('\r', "")
+                config = config.replace(old_hostname, new_hostname)
+                encoded = ("").join(base64.encodestring(config).split())
+                self.router.config_b64 = encoded
+        except:
+            debug("Cannot change base config")
 
     def configNode(self):
         """ Node configuration
