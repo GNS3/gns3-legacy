@@ -194,7 +194,10 @@ class HypervisorManager(object):
                 QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'HypervisorManager', 
                                           unicode(translate("HypervisorManager", "Working directory %s seems to not exist or be writable, please check")) % self.hypervisor_wd)
             globals.GApp.dynagen.defaults_config['workingdir'] = self.hypervisor_wd
-        dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor(globals.GApp.systconf['dynamips'].HypervisorManager_binding, hypervisor['port'])
+        try:
+            dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor(globals.GApp.systconf['dynamips'].HypervisorManager_binding, hypervisor['port'])
+        except:
+            dynamips_hypervisor = None
         if not dynamips_hypervisor:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',
                                         unicode(translate("HypervisorManager", "Can't set up hypervisor on port %i, please check the settings (writable working directory ...)")) % hypervisor['port'])

@@ -170,6 +170,12 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             if not testOpenFile(path):
                 QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), unicode(translate("IOSDialog", "Can't open file: %s")) % path)
                 return
+            
+            if sys.platform.startswith('win'):
+                try:
+                    path.encode('ascii')
+                except:
+                    QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn't support unicode on Windows!"))
 
             self.lineEditIOSImage.clear()
             self.lineEditIOSImage.setText(path)
@@ -220,6 +226,12 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             if not testOpenFile(path):
                 QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), unicode(translate("IOSDialog", "Can't open file: %s")) % path)
                 return
+            
+            if sys.platform.startswith('win'):
+                try:
+                    path.encode('ascii')
+                except:
+                    QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn't support unicode on Windows!"))
             
             self.lineEditBaseConfig.clear()
             self.lineEditBaseConfig.setText(path)
@@ -364,7 +376,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """ Check for minimum RAM requirement
         """
 
-        image_file = str(self.lineEditIOSImage.text())
+        image_file = unicode(self.lineEditIOSImage.text())
         if not image_file:
             QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "Image file box is empty"))
             return
@@ -395,6 +407,12 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         if path:
             self.lineEditWorkingDir.clear()
             self.lineEditWorkingDir.setText(os.path.normpath(path))
+            
+            if sys.platform.startswith('win'):
+                try:
+                    path.encode('ascii')
+                except:
+                    QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn't support unicode on Windows!"))
 
     def slotSaveHypervisor(self):
         """ Save a hypervisor to the hypervisors list

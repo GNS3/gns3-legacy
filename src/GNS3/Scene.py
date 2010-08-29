@@ -227,6 +227,21 @@ class Scene(QtGui.QGraphicsView):
 
         menu.addAction(raiseZvalueAct)
         menu.addAction(lowerZvalueAct)
+        
+        items = self.__topology.selectedItems()
+        if len(items) > 1:
+       
+            # Action: Align horizontally
+            hozAlignAct = QtGui.QAction(translate('Scene', 'Align horizontally'), menu)
+            hozAlignAct.setIcon(QtGui.QIcon(':/icons/horizontally.svg'))
+            self.connect(hozAlignAct, QtCore.SIGNAL('triggered()'), self.slotHozAlignment)
+            menu.addAction(hozAlignAct)
+            
+            # Action: Align vertically
+            vertAlignAct = QtGui.QAction(translate('Scene', 'Align vertically'), menu)
+            vertAlignAct.setIcon(QtGui.QIcon(':/icons/vertically.svg'))
+            self.connect(vertAlignAct, QtCore.SIGNAL('triggered()'), self.slotVertAlignment)
+            menu.addAction(vertAlignAct)
 
         menu.exec_(QtGui.QCursor.pos())
 
@@ -260,6 +275,22 @@ class Scene(QtGui.QGraphicsView):
                 table = MACTableDialog(item)
                 table.show()
                 table.exec_()
+
+    def slotHozAlignment(self):
+        """ Horizontally align items
+        """
+        
+        hozPos = self.__topology.selectedItems()[0].y()
+        for item in self.__topology.selectedItems():
+            item.setPos(item.x(), hozPos)
+            
+    def slotVertAlignment(self):
+        """ Vertically align items
+        """
+        
+        vertPos = self.__topology.selectedItems()[0].x()
+        for item in self.__topology.selectedItems():
+            item.setPos(vertPos, item.y())
 
     def slotStyle(self):
         """ Change the style of an annotation or a shape item

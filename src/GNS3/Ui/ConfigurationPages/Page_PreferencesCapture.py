@@ -91,3 +91,9 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
 
         if path:
             self.CaptureWorkingDirectory.setText(os.path.normpath(path))
+            
+            if sys.platform.startswith('win'):
+                try:
+                    path.encode('ascii')
+                except:
+                    QtGui.QMessageBox.warning(globals.preferencesWindow, translate("Page_PreferencesCapture", "Capture directory"), translate("Page_PreferencesCapture", "The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn't support unicode on Windows!"))

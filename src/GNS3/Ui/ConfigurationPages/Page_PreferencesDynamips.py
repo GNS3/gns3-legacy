@@ -163,8 +163,15 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             if not testOpenFile(path):
                 QtGui.QMessageBox.critical(globals.preferencesWindow, 'Dynamips path', unicode(translate("UiConfig_PreferencesDynamips", "Can't open file: %s")) % path)
                 return
+
             self.dynamips_path.clear()
             self.dynamips_path.setText(os.path.normpath(path))
+            
+            if sys.platform.startswith('win'):
+                try:
+                    path.encode('ascii')
+                except:
+                    QtGui.QMessageBox.warning(globals.preferencesWindow, translate("UiConfig_PreferencesDynamips", "Dynamips path"), translate("UiConfig_PreferencesDynamips", "The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn't support unicode on Windows!"))
 
     def __setDynamipsWorkdir(self):
         """ Open a file dialog for choosing the location of local hypervisor
@@ -175,6 +182,12 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
 
         if path:
             self.dynamips_workdir.setText(os.path.normpath(path))
+            
+            if sys.platform.startswith('win'):
+                try:
+                    path.encode('ascii')
+                except:
+                    QtGui.QMessageBox.warning(globals.preferencesWindow, translate("UiConfig_PreferencesDynamips", "Working directory"), translate("UiConfig_PreferencesDynamips", "The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn't support unicode on Windows!"))
 
     def __testDynamips(self):
         

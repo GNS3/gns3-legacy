@@ -5,8 +5,8 @@ TODO LIST
  * Auto UDP (next release of Dynamips)
  * WICS removable (next release of Dynamips)
  * Packet capture between Qemu devices
- * Do not remove original comments in .net files (talk to Pavel)
- 
+ * Do not remove original comments in .net files
+
 Debugging
 
  * Can only run one instance of Qemu on Windows (http://www.gns3.net/phpBB/topic1914.html)
