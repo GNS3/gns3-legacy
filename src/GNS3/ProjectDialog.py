@@ -39,7 +39,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         
         if projectFile:
             self.ProjectName.setText(os.path.basename(projectFile).replace('.net', ''))
-            self.ProjectPath.setText(projectFile)
+            self.ProjectPath.setText(os.path.dirname(projectFile))
         if projectWorkdir:
             self.checkBox_WorkdirFiles.setCheckState(QtCore.Qt.Checked)
         else:
@@ -59,9 +59,9 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         if path:
             path = os.path.normpath(path)
             if os.path.realpath(path) != os.path.realpath(globals.GApp.systconf['general'].project_path):
-                self.ProjectPath.setText(path + os.sep + self.ProjectName.text() + os.sep + self.ProjectName.text() + '.net')
+                self.ProjectPath.setText(path + os.sep + self.ProjectName.text())
             else:
-                self.ProjectPath.setText(path + os.sep + self.ProjectName.text() + '.net')
+                self.ProjectPath.setText(path)
 
     def __projectNameEdited(self, text):
         """ Propose a project directory when changing the project name
@@ -69,19 +69,18 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         
         self.ProjectPath.clear()
         if text and globals.GApp.systconf['general'].project_path:
-            self.ProjectPath.setText(os.path.normpath(globals.GApp.systconf['general'].project_path) + os.sep + text + '.net')
+            self.ProjectPath.setText(os.path.normpath(globals.GApp.systconf['general'].project_path) + os.sep + text)
         elif text:
-            self.ProjectPath.setText(os.path.curdir + os.sep + text + os.sep + text + '.net')
+            self.ProjectPath.setText(os.path.curdir + os.sep + text)
 
     def saveProjectSettings(self):
         """ Save project settings
         """
 
         projectName = unicode(self.ProjectName.text())
-        projectPath = os.path.normpath(unicode(self.ProjectPath.text()))
-        projectDir = os.path.dirname(projectPath)
+        projectDir = os.path.normpath(unicode(self.ProjectPath.text()))
 
-        if not projectName or not projectPath:
+        if not projectName or not projectDir:
             return (None, None, None)
 
         if not os.path.exists(projectDir):
@@ -91,7 +90,8 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
                 QtGui.QMessageBox.critical(self, translate('ProjectDialog', 'Project Directory'), unicode(translate("Workspace", "Cannot create directory %s: %s")) % (projectDir, e.strerror))
                 return (None, None, None)
 
-        projectFile = projectPath
+        projectFile = projectDir + os.sep + projectName + '.net'
+
         if os.environ.has_key("HOME"):
             projectFile = projectFile.replace('$HOME', os.environ["HOME"])
 

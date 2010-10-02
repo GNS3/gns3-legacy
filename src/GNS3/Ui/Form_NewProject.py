@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_NewProject.ui'
 #
-# Created: Sat Oct  2 20:53:05 2010
+# Created: Sat Oct  2 22:14:11 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -66,7 +66,7 @@ class Ui_NewProject(object):
         self.pushButtonOpenProject.setText(QtGui.QApplication.translate("NewProject", "&Open a project", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox.setTitle(QtGui.QApplication.translate("NewProject", "Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("NewProject", "Project name:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("NewProject", "Project path:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("NewProject", "Project directory:", None, QtGui.QApplication.UnicodeUTF8))
         self.NewProject_browser.setText(QtGui.QApplication.translate("NewProject", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBox_WorkdirFiles.setText(QtGui.QApplication.translate("NewProject", "Save nvrams and other disk files (recommended)", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBox_ConfigFiles.setText(QtGui.QApplication.translate("NewProject", "Export router configuration files", None, QtGui.QApplication.UnicodeUTF8))
