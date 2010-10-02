@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>458</width>
-    <height>457</height>
+    <width>509</width>
+    <height>467</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -43,18 +43,22 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="3">
-           <widget class="QLineEdit" name="dynamips_path"/>
-          </item>
-          <item row="1" column="3">
-           <widget class="QToolButton" name="dynamips_path_browser">
-            <property name="text">
-             <string>...</string>
-            </property>
-            <property name="toolButtonStyle">
-             <enum>Qt::ToolButtonTextOnly</enum>
-            </property>
-           </widget>
+          <item row="1" column="0" colspan="4">
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QLineEdit" name="dynamips_path"/>
+            </item>
+            <item>
+             <widget class="QToolButton" name="dynamips_path_browser">
+              <property name="text">
+               <string>...</string>
+              </property>
+              <property name="toolButtonStyle">
+               <enum>Qt::ToolButtonTextOnly</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item row="2" column="0" colspan="2">
            <widget class="QLabel" name="label_2">
@@ -63,15 +67,19 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0" colspan="3">
-           <widget class="QLineEdit" name="dynamips_workdir"/>
-          </item>
-          <item row="3" column="3">
-           <widget class="QToolButton" name="dynamips_workdir_browser">
-            <property name="text">
-             <string>...</string>
-            </property>
-           </widget>
+          <item row="3" column="0" colspan="4">
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QLineEdit" name="dynamips_workdir"/>
+            </item>
+            <item>
+             <widget class="QToolButton" name="dynamips_workdir_browser">
+              <property name="text">
+               <string>...</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item row="4" column="0" colspan="3">
            <widget class="QCheckBox" name="checkBoxClearWorkdir">
@@ -97,10 +105,17 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="2" colspan="2">
+          <item row="5" column="2">
            <widget class="QLabel" name="label_7">
             <property name="text">
              <string>Base console:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="3">
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>Base AUX port:</string>
             </property>
            </widget>
           </item>
@@ -131,6 +146,16 @@
             </property>
             <property name="value">
              <number>2000</number>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="3">
+           <widget class="QSpinBox" name="dynamips_baseAUX">
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+            <property name="value">
+             <number>2500</number>
             </property>
            </widget>
           </item>

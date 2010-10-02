@@ -150,7 +150,7 @@ class Scene(QtGui.QGraphicsView):
             consolePortAct = QtGui.QAction(translate('Scene', 'Change console port'), menu)
             consolePortAct.setIcon(QtGui.QIcon(':/icons/console_port.svg'))
             self.connect(consolePortAct, QtCore.SIGNAL('triggered()'), self.slotChangeConsolePort)
-
+            
             # Action: Console (Connect to the node console)
             consoleAct = QtGui.QAction(translate('Scene', 'Console'), menu)
             consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
@@ -174,6 +174,11 @@ class Scene(QtGui.QGraphicsView):
         instances = map(lambda item: isinstance(item, IOSRouter), items)
         if True in instances:
 
+            # Action: Change the aux port
+            auxPortAct = QtGui.QAction(translate('Scene', 'Change aux port'), menu)
+            auxPortAct.setIcon(QtGui.QIcon(':/icons/console_port.svg'))
+            self.connect(auxPortAct, QtCore.SIGNAL('triggered()'), self.slotChangeAUXPort)
+
             # Action: Calculate IDLE PC
             idlepcAct = QtGui.QAction(translate('Scene', 'Idle PC'), menu)
             idlepcAct.setIcon(QtGui.QIcon(':/icons/calculate.svg'))
@@ -195,6 +200,7 @@ class Scene(QtGui.QGraphicsView):
             self.connect(reloadAct, QtCore.SIGNAL('triggered()'), self.slotReloadNode)
 
             menu.addAction(suspendAct)
+            menu.addAction(auxPortAct)
             menu.addAction(reloadAct)
             menu.addAction(idlepcAct)
             menu.addAction(StartupConfigAct)
@@ -534,6 +540,14 @@ class Scene(QtGui.QGraphicsView):
         for item in self.__topology.selectedItems():
             if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice):
                 item.changeConsolePort()
+                
+    def slotChangeAUXPort(self):
+        """ Slot called to change the aux port
+        """
+
+        for item in self.__topology.selectedItems():
+            if isinstance(item, IOSRouter):
+                item.changeAUXPort()
 
     def slotStartupConfig(self):
         """ Slot called to change the startup-config

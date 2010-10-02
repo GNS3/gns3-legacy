@@ -280,6 +280,40 @@ class NewConsolePort(QtGui.QUndoCommand):
     
         return self.status
     
+class NewAUXPort(QtGui.QUndoCommand):
+    
+    def __init__(self, node, port):
+
+        QtGui.QUndoCommand.__init__(self)
+        self.setText(unicode(translate("UndoFramework", "New aux port %d for %s")) % (port, node.hostname))
+        self.port = port
+        self.node = node
+        self.prevPort = node.get_dynagen_device().aux
+        self.status = None
+
+    def redo(self):
+
+        try:
+            self.node.get_dynagen_device().aux = self.port
+            self.node.setCustomToolTip()
+        except lib.DynamipsError, msg:
+            self.status = msg
+        except (lib.DynamipsErrorHandled, socket.error):
+            self.status = translate("UndoFramework", "Connection lost")
+        
+    def undo(self):
+        
+        try:
+            if self.node.get_dynagen_device().aux != self.prevPort:
+                self.node.get_dynagen_device().aux = self.prevPort
+                self.node.setCustomToolTip()
+        except:
+            pass
+
+    def getStatus(self):
+    
+        return self.status
+    
 class NewStartupConfigPath(QtGui.QUndoCommand):
     
     def __init__(self, router, path):

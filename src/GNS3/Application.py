@@ -323,6 +323,7 @@ class Application(QApplication, Singleton):
         confo.port = int(ConfDB().get('Dynamips/hypervisor_port', 7200))
         confo.baseUDP = int(ConfDB().get('Dynamips/hypervisor_baseUDP', 10000))
         confo.baseConsole = int(ConfDB().get('Dynamips/hypervisor_baseConsole', 2000))
+        confo.baseAUX = int(ConfDB().get('Dynamips/hypervisor_baseAUX', 2100))
         confo.workdir = ConfDB().get('Dynamips/hypervisor_working_directory', unicode(''))
         confo.clean_workdir = ConfDB().value("Dynamips/clean_working_directory", QVariant(True)).toBool()
         confo.ghosting = ConfDB().value("Dynamips/dynamips_ghosting", QVariant(True)).toBool()
@@ -506,6 +507,7 @@ class Application(QApplication, Singleton):
         c.set('Dynamips/hypervisor_port', confo.port)
         c.set('Dynamips/hypervisor_baseUDP', confo.baseUDP)
         c.set('Dynamips/hypervisor_baseConsole', confo.baseConsole)
+        c.set('Dynamips/hypervisor_baseAUX', confo.baseAUX)
         c.set('Dynamips/hypervisor_working_directory', confo.workdir)
         c.set('Dynamips/clean_working_directory', confo.clean_workdir)
         c.set('Dynamips/dynamips_ghosting', confo.ghosting)
@@ -600,7 +602,8 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/working_directory", o.workdir)
             c.set(basekey + "/base_udp", o.baseUDP)
             c.set(basekey + "/base_console", o.baseConsole)
-            
+            c.set(basekey + "/base_aux", o.baseAUX)
+
         # Qemu images
         for (key, o) in self.__qemuimages.iteritems():
             basekey = "QEMU.images/" + str(o.id)

@@ -71,6 +71,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         self.dynamips_port.setValue(self.conf.port)
         self.dynamips_baseUDP.setValue(self.conf.baseUDP)
         self.dynamips_baseConsole.setValue(self.conf.baseConsole)
+        self.dynamips_baseAUX.setValue(self.conf.baseAUX)
         self.spinBoxMemoryLimit.setValue(self.conf.memory_limit)
         self.spinBoxUDPIncrementation.setValue(self.conf.udp_incrementation)
 
@@ -112,6 +113,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         self.conf.port = self.dynamips_port.value()
         self.conf.baseUDP = self.dynamips_baseUDP.value()
         self.conf.baseConsole = self.dynamips_baseConsole.value()
+        self.conf.baseAUX = self.dynamips_baseAUX.value()
         self.conf.memory_limit = self.spinBoxMemoryLimit.value()
         self.conf.udp_incrementation = self.spinBoxUDPIncrementation.value()
         if self.checkBoxClearWorkdir.checkState() == QtCore.Qt.Checked:

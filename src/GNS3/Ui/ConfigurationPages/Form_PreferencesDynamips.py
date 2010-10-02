@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesDynamips.ui'
 #
-# Created: Sat Oct  2 22:14:13 2010
+# Created: Sat Oct  2 23:18:24 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_PreferencesDynamips(object):
     def setupUi(self, PreferencesDynamips):
         PreferencesDynamips.setObjectName("PreferencesDynamips")
-        PreferencesDynamips.resize(458, 457)
+        PreferencesDynamips.resize(509, 467)
         self.vboxlayout = QtGui.QVBoxLayout(PreferencesDynamips)
         self.vboxlayout.setObjectName("vboxlayout")
         self.tabWidget = QtGui.QTabWidget(PreferencesDynamips)
@@ -33,22 +33,28 @@ class Ui_PreferencesDynamips(object):
         self.label = QtGui.QLabel(self.groupBox)
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
+        self.horizontalLayout_2 = QtGui.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.dynamips_path = QtGui.QLineEdit(self.groupBox)
         self.dynamips_path.setObjectName("dynamips_path")
-        self.gridLayout.addWidget(self.dynamips_path, 1, 0, 1, 3)
+        self.horizontalLayout_2.addWidget(self.dynamips_path)
         self.dynamips_path_browser = QtGui.QToolButton(self.groupBox)
         self.dynamips_path_browser.setToolButtonStyle(QtCore.Qt.ToolButtonTextOnly)
         self.dynamips_path_browser.setObjectName("dynamips_path_browser")
-        self.gridLayout.addWidget(self.dynamips_path_browser, 1, 3, 1, 1)
+        self.horizontalLayout_2.addWidget(self.dynamips_path_browser)
+        self.gridLayout.addLayout(self.horizontalLayout_2, 1, 0, 1, 4)
         self.label_2 = QtGui.QLabel(self.groupBox)
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 2, 0, 1, 2)
+        self.horizontalLayout = QtGui.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
         self.dynamips_workdir = QtGui.QLineEdit(self.groupBox)
         self.dynamips_workdir.setObjectName("dynamips_workdir")
-        self.gridLayout.addWidget(self.dynamips_workdir, 3, 0, 1, 3)
+        self.horizontalLayout.addWidget(self.dynamips_workdir)
         self.dynamips_workdir_browser = QtGui.QToolButton(self.groupBox)
         self.dynamips_workdir_browser.setObjectName("dynamips_workdir_browser")
-        self.gridLayout.addWidget(self.dynamips_workdir_browser, 3, 3, 1, 1)
+        self.horizontalLayout.addWidget(self.dynamips_workdir_browser)
+        self.gridLayout.addLayout(self.horizontalLayout, 3, 0, 1, 4)
         self.checkBoxClearWorkdir = QtGui.QCheckBox(self.groupBox)
         self.checkBoxClearWorkdir.setChecked(True)
         self.checkBoxClearWorkdir.setObjectName("checkBoxClearWorkdir")
@@ -61,7 +67,10 @@ class Ui_PreferencesDynamips(object):
         self.gridLayout.addWidget(self.label_6, 5, 1, 1, 1)
         self.label_7 = QtGui.QLabel(self.groupBox)
         self.label_7.setObjectName("label_7")
-        self.gridLayout.addWidget(self.label_7, 5, 2, 1, 2)
+        self.gridLayout.addWidget(self.label_7, 5, 2, 1, 1)
+        self.label_9 = QtGui.QLabel(self.groupBox)
+        self.label_9.setObjectName("label_9")
+        self.gridLayout.addWidget(self.label_9, 5, 3, 1, 1)
         self.dynamips_port = QtGui.QSpinBox(self.groupBox)
         self.dynamips_port.setMaximum(65535)
         self.dynamips_port.setProperty("value", 7200)
@@ -77,6 +86,11 @@ class Ui_PreferencesDynamips(object):
         self.dynamips_baseConsole.setProperty("value", 2000)
         self.dynamips_baseConsole.setObjectName("dynamips_baseConsole")
         self.gridLayout.addWidget(self.dynamips_baseConsole, 6, 2, 1, 1)
+        self.dynamips_baseAUX = QtGui.QSpinBox(self.groupBox)
+        self.dynamips_baseAUX.setMaximum(65535)
+        self.dynamips_baseAUX.setProperty("value", 2500)
+        self.dynamips_baseAUX.setObjectName("dynamips_baseAUX")
+        self.gridLayout.addWidget(self.dynamips_baseAUX, 6, 3, 1, 1)
         self.checkBoxGhosting = QtGui.QCheckBox(self.groupBox)
         self.checkBoxGhosting.setChecked(True)
         self.checkBoxGhosting.setObjectName("checkBoxGhosting")
@@ -175,6 +189,7 @@ class Ui_PreferencesDynamips(object):
         self.label_5.setText(QtGui.QApplication.translate("PreferencesDynamips", "Base port:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_6.setText(QtGui.QApplication.translate("PreferencesDynamips", " Base UDP:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_7.setText(QtGui.QApplication.translate("PreferencesDynamips", "Base console:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_9.setText(QtGui.QApplication.translate("PreferencesDynamips", "Base AUX port:", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxGhosting.setText(QtGui.QApplication.translate("PreferencesDynamips", "Enable ghost IOS support", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxMmap.setText(QtGui.QApplication.translate("PreferencesDynamips", "Enable mmap support", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxJITsharing.setText(QtGui.QApplication.translate("PreferencesDynamips", "Enable JIT sharing support (Dynamips > 0.2.8 RC2)", None, QtGui.QApplication.UnicodeUTF8))

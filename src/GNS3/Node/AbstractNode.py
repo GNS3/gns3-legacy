@@ -179,6 +179,21 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             if command.getStatus() != None:
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Console port"), unicode(command.getStatus()))
                 globals.GApp.topology.undoStack.undo()
+                
+    def changeAUXPort(self):
+        """ Called to change the aux port
+        """
+
+        device = self.get_dynagen_device()
+        (port, ok) = QtGui.QInputDialog.getInteger(globals.GApp.mainWindow, translate("AbstractNode", "Change the aux port"),
+                                          unicode(translate("AbstractNode", "AUX port for %s:")) % self.hostname, device.aux, 1, 65535, 1)
+        if ok and device.aux != port:
+
+            command = undo.NewAUXPort(self, port)
+            globals.GApp.topology.undoStack.push(command)
+            if command.getStatus() != None:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "AUX port"), unicode(command.getStatus()))
+                globals.GApp.topology.undoStack.undo()
 
     def paint(self, painter, option, widget=None):
         """ Don't show the selection rectangle

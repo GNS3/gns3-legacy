@@ -255,6 +255,7 @@ class NETFile(object):
             conf_hypervisor.workdir = unicode(device.dynamips.workingdir)
             conf_hypervisor.baseUDP = device.dynamips.udp
             conf_hypervisor.baseConsole = device.dynamips.baseconsole
+            conf_hypervisor.baseAUX = device.dynamips.baseaux
             globals.GApp.hypervisors[conf_hypervisor.host + ':' + str(conf_hypervisor.port)] = conf_hypervisor
             globals.GApp.iosimages[host + ':' + device.image] = conf_image
 

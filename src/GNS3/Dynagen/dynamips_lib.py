@@ -27,7 +27,7 @@ import os
 import re
 import copy
 
-#version = "0.11.0.100601"
+#version = "0.11.0.101003"
 # Minimum version of dynamips required. Currently 0.2.8-RC1 (due to change to
 # hypervisor commands related to slot/port handling, and the pluggable archtecture
 # that changed model specific commands to "vm")
@@ -260,6 +260,7 @@ class Dynamips(object):
         self.__host = host
         self.__port = port
         self.__baseconsole = 2000
+        self.__baseaux = 2500
         self.__udp = 10000
         self.__default_udp = self.__udp
         self.__starting_udp = self.__udp
@@ -368,12 +369,29 @@ class Dynamips(object):
         self.__baseconsole = baseconsole
 
     def __getbaseconsole(self):
-        """ Returns working directory
+        """ Returns base console TCP port for this server
         """
 
         return self.__baseconsole
 
     baseconsole = property(__getbaseconsole, __setbaseconsole, doc='The starting console port')
+    
+    def __setbaseaux(self, baseaux):
+        """ Set the base auxiliary TCP port for this server
+            directory: (int) the starting console port number
+        """
+
+        if type(baseaux) != int:
+            raise DynamipsError, 'invalid aux port'
+        self.__baseaux = baseaux
+
+    def __getbaseaux(self):
+        """ Returns base auxiliary port for this server
+        """
+
+        return self.__baseaux
+
+    baseaux = property(__getbaseaux, __setbaseaux, doc='The starting aux port')
 
     def __setudp(self, udp):
         """ Set the next open UDP port for NIOs for this server
@@ -2103,7 +2121,7 @@ class Router(Dynamips_device):
         }
 
         send(self.__d, 'vm create %s %i %s' % (name, self.__instance, model))
-        # Ghosts don't get console ports
+        # Ghosts don't get console & aux ports
         if consoleFlag:
             # Set the default console port. We'll try to use the base console port
             # plus the instance id, unless that is already taken
@@ -2116,6 +2134,16 @@ class Router(Dynamips_device):
                     break
                 else:
                     console += 1
+                    
+            aux = self.__d.baseaux + self.__instance
+            while True:
+                conflict = checkaux(aux, self.__d)
+                if conflict == None:
+                    self.__aux = aux
+                    send(self.__d, 'vm set_aux_tcp_port %s %i' % (self.__name, aux))
+                    break
+                else:
+                    aux += 1
 
         # Append this router to the list of devices managed by this dynamips instance
         self.__d.devices.append(self)
@@ -2434,7 +2462,7 @@ class Router(Dynamips_device):
         #create final output, with proper indentation
         return 'Router ' + self.name + ' is ' + self.state + '\n' + '  Hardware is dynamips emulated Cisco ' + model + router_specific_info + ' with ' + \
                str(self.ram) + ' MB RAM\n' + '  Router\'s hypervisor runs on ' + self.dynamips.host + ":" + str(self.dynamips.port) + \
-               ', console is on port ' + str(self.console) + image_info + idlepc_info + '\n' + jitsharing_group_info  + '\n  ' + str(self.nvram) + ' KB NVRAM, ' + str(self.disk0) + \
+               ', console is on port ' + str(self.console) + ', aux is on port ' + str(self.aux) + image_info + idlepc_info + '\n' + jitsharing_group_info  + '\n  ' + str(self.nvram) + ' KB NVRAM, ' + str(self.disk0) + \
                ' MB disk0 size, ' + str(self.disk1) + ' MB disk1 size' + '\n' + slot_info
 
     def idleprop(self, function, value=None):
@@ -2488,6 +2516,13 @@ class Router(Dynamips_device):
 
         if type(aux) != int or aux < 1 or aux > 65535:
             raise DynamipsError, 'invalid aux port'
+
+        # Check to see if the aux port is already in use first
+        conflict = checkaux(aux, self.__d)
+        if conflict != None:
+            # Is it this device that is causing the conflict? If so ignore it
+            if conflict != self:
+                raise DynamipsError, 'aux port %i is already in use by device: %s' % (aux, conflict.name)
 
         send(self.__d, 'vm set_aux_tcp_port %s %i' % (self.__name, aux))
         self.__aux = aux
@@ -4999,6 +5034,21 @@ def checkconsole(console, dynamips):
             return device
     return None
 
+def checkaux(aux, dynamips):
+    """ Returns the device that uses the aux port
+        Returns None if no device has that aux port
+    """
+
+    # Hunt through the console ports in use to see if there is a conflict
+    for device in dynamips.devices:
+        try:
+            aux2 = device.aux
+        except AttributeError:
+            # This device has no aux value
+            continue
+        if aux == aux2:
+            return device
+    return None
 
 def nosend(flag):
     """ If true, don't actually send any commands to the back end.

@@ -10,7 +10,13 @@ TODO LIST
 Debugging
 
  * Can only run one instance of Qemu on Windows (http://www.gns3.net/phpBB/topic1914.html)
- * Snapshots should have same directories like projects
+ * Snapshots should have the same directory layout as projects
+ * Dynamic FR/ATM/ATMBR mapping modification
+ * Change a symbol for a device
+ * Built-in symbols should be loaded even if not in the node list
+ * Interface label should be restored
+ * When creating a topology from another one, the configs should be copied
+ * Remove associated config when deleting a device.
 
  Traceback (most recent call last):
   File "/Users/grossmj/Documents/workspace/gns3-devel/src/GNS3/NETFile.py", line 543, in import_net_file

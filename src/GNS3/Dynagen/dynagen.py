@@ -1283,6 +1283,10 @@ class Dynagen:
                 if server['console'] != None:
                     self.dynamips[server.name].baseconsole = server['console']
 
+                # Has the base aux port been overridden?
+                if server['aux'] != None:
+                    self.dynamips[server.name].baseaux = server['aux']
+
                 # Initialize device default dictionaries for every router type supported
                 devdefaults = {}
                 for key in DEVICETUPLE:
@@ -1992,6 +1996,7 @@ class Dynagen:
                 self.running_config[h][r]['ghostios'] = True
 
         self.running_config[h][r]['console'] = router.console
+        self.running_config[h][r]['aux'] = router.aux
         
         #same thing for all other values
         for option in self.generic_router_options:

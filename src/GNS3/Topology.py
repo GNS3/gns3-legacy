@@ -218,6 +218,7 @@ class Topology(QtGui.QGraphicsScene):
             dynamips_hypervisor.udp = hypervisor_conf.baseUDP
             dynamips_hypervisor.starting_udp = hypervisor_conf.baseUDP
             dynamips_hypervisor.baseconsole = hypervisor_conf.baseConsole
+            dynamips_hypervisor.baseaux = hypervisor_conf.baseAUX         
         node.set_hypervisor(dynamips_hypervisor)
         return True
 

@@ -60,7 +60,8 @@ conf_hypervisor_defaults = {
     'port': 7200,
     'workdir': '',
     'baseUDP': 10000,
-    'baseConsole': 2000, 
+    'baseConsole': 2000,
+    'baseAUX': 2500,
     'used_ram':0, 
 }
 
@@ -70,7 +71,8 @@ conf_hypervisor_types = {
     'port': int,
     'workdir': unicode,
     'baseUDP': int,
-    'baseConsole': int, 
+    'baseConsole': int,
+    'baseAUX': int,
     'used_ram': int, 
 }
 
@@ -209,6 +211,7 @@ conf_systemDynamips_defaults = {
     'clean_workdir': True, 
     'baseUDP': 10000,
     'baseConsole': 2000,
+    'baseAUX': 2500,
     'ghosting': True,
     'jitsharing': False,
     'sparsemem': False,
@@ -226,6 +229,7 @@ conf_systemDynamips_types = {
     'clean_workdir': bool, 
     'baseUDP': int,
     'baseConsole': int,
+    'baseAUX': int,
     'ghosting': bool,
     'jitsharing': bool,
     'sparsemem': bool,

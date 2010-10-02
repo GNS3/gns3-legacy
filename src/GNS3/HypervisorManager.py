@@ -51,6 +51,7 @@ class HypervisorManager(object):
         self.hypervisor_path = dynamips.path
         self.hypervisor_wd = dynamips.workdir
         self.baseConsole = dynamips.baseConsole
+        self.baseAUX = dynamips.baseAUX
         globals.hypervisor_baseport = dynamips.port
         globals.GApp.dynagen.globaludp = dynamips.baseUDP
 
@@ -218,6 +219,7 @@ class HypervisorManager(object):
         dynamips_hypervisor.udp = globals.GApp.dynagen.globaludp
         dynamips_hypervisor.starting_udp = globals.GApp.dynagen.globaludp
         dynamips_hypervisor.baseconsole = self.baseConsole
+        dynamips_hypervisor.baseaux = self.baseAUX
         globals.GApp.dynagen.globaludp += globals.GApp.systconf['dynamips'].udp_incrementation
         node.set_hypervisor(dynamips_hypervisor)
         return hypervisor
