@@ -10,6 +10,7 @@ TODO LIST
 Debugging
 
  * Can only run one instance of Qemu on Windows (http://www.gns3.net/phpBB/topic1914.html)
+ * Snapshots should have same directories like projects
 
  Traceback (most recent call last):
   File "/Users/grossmj/Documents/workspace/gns3-devel/src/GNS3/NETFile.py", line 543, in import_net_file

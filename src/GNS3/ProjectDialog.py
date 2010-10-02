@@ -90,17 +90,17 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
                 QtGui.QMessageBox.critical(self, translate('ProjectDialog', 'Project Directory'), unicode(translate("Workspace", "Cannot create directory %s: %s")) % (projectDir, e.strerror))
                 return (None, None, None)
 
-        projectFile = projectDir + os.sep + projectName + '.net'
+        projectFile = projectDir + os.sep + 'topology.net'
 
         if os.environ.has_key("HOME"):
             projectFile = projectFile.replace('$HOME', os.environ["HOME"])
 
         if self.checkBox_WorkdirFiles.checkState() == QtCore.Qt.Checked:
-            projectWorkdir = os.path.normpath(projectDir + os.sep + projectName + '_working')
+            projectWorkdir = os.path.normpath(projectDir + os.sep + 'working')
         else:
             projectWorkdir = None
         if self.checkBox_ConfigFiles.checkState() == QtCore.Qt.Checked:
-            projectConfigs = os.path.normpath(projectDir + os.sep + projectName + '_configs')
+            projectConfigs = os.path.normpath(projectDir + os.sep + 'configs')
         else:
             projectConfigs = None
         return (projectFile, projectWorkdir, projectConfigs)
