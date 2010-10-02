@@ -430,7 +430,7 @@
     <string>Start/Resume all devices</string>
    </property>
    <property name="toolTip">
-    <string>Start/Resume every devices</string>
+    <string>Start/Resume all devices</string>
    </property>
    <property name="statusTip">
     <string>Start or resume all IOS instances</string>
@@ -448,7 +448,7 @@
     <string>Stop all devices</string>
    </property>
    <property name="toolTip">
-    <string>Stop every devices</string>
+    <string>Stop all devices</string>
    </property>
    <property name="statusTip">
     <string>Stop all IOS instances</string>
@@ -595,7 +595,7 @@
      <normaloff>:/icons/pause.svg</normaloff>:/icons/pause.svg</iconset>
    </property>
    <property name="text">
-    <string>Suspend every devices</string>
+    <string>Suspend all devices</string>
    </property>
    <property name="toolTip">
     <string>Suspend all devices</string>

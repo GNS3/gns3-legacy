@@ -209,6 +209,13 @@ class Scene(QtGui.QGraphicsView):
 
             menu.addAction(styleAct)
             
+            # Action: Duplicate
+            duplicateAct = QtGui.QAction(translate('Scene', 'Duplicate'), menu)
+            duplicateAct.setIcon(QtGui.QIcon(':/icons/new.svg'))
+            self.connect(duplicateAct, QtCore.SIGNAL('triggered()'), self.slotDuplicate)
+
+            menu.addAction(duplicateAct)
+            
         # Action: Delete (Delete the node)
         deleteAct = QtGui.QAction(translate('Scene', 'Delete'), menu)
         deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
@@ -322,6 +329,38 @@ class Scene(QtGui.QGraphicsView):
                     brush = QtGui.QBrush(style.color)
                     command = undo.NewItemStyle(item, pen, brush, style.rotation)
                     self.__topology.undoStack.push(command)
+
+    def slotDuplicate(self):
+        """ Duplicate an item
+        """
+        
+        for item in self.__topology.selectedItems():
+            if isinstance(item, Annotation):
+                dupnote = Annotation()
+                dupnote.setPos(item.x(), item.y() - 20)
+                dupnote.setPlainText(item.toPlainText())
+                dupnote.setDefaultTextColor(item.defaultTextColor())
+                dupnote.setFont(item.font())
+                dupnote.rotate(item.rotation)
+                dupnote.rotation = item.rotation
+                command = undo.AddItem(self.__topology, dupnote, translate("Scene", "annotation"))
+                self.__topology.undoStack.push(command)
+            if isinstance(item, AbstractShapeItem):
+                pos = QtCore.QPointF(item.x() - 20, item.y() - 20)
+                rect = item.rect()
+                if isinstance(item, Rectangle):
+                    dupshape = Rectangle(pos, QtCore.QSizeF(rect.width(), rect.height()))
+                else:
+                    dupshape = Ellipse(pos, QtCore.QSizeF(rect.width(), rect.height()))
+                dupshape.setPen(item.pen())
+                dupshape.setBrush(item.brush())
+                dupshape.rotate(item.rotation)
+                dupshape.rotation = item.rotation
+                if isinstance(dupshape, Rectangle):
+                    command = undo.AddItem(self.__topology, dupshape, translate("Scene", "rectangle"))
+                else:
+                    command = undo.AddItem(self.__topology, dupshape, translate("Scene", "ellipse"))
+                self.__topology.undoStack.push(command)
 
     def slotIdlepc(self):
         """ Compute an IDLE PC
