@@ -10,3 +10,25 @@ TODO LIST
 Debugging
 
  * Can only run one instance of Qemu on Windows (http://www.gns3.net/phpBB/topic1914.html)
+
+ Traceback (most recent call last):
+  File "/Users/grossmj/Documents/workspace/gns3-devel/src/GNS3/NETFile.py", line 543, in import_net_file
+    self.dynagen.ghosting()
+  File "/Users/grossmj/Documents/workspace/gns3-devel/src/GNS3/Dynagen/dynagen.py", line 1720, in ghosting
+    self.doerror(e)
+  File "/Users/grossmj/Documents/workspace/gns3-devel/src/GNS3/DynagenSub.py", line 312, in doerror
+    self.doreset()
+  File "/Users/grossmj/Documents/workspace/gns3-devel/src/GNS3/Dynagen/dynagen.py", line 2394, in doreset
+    d.reset()
+  File "/Users/grossmj/Documents/workspace/gns3-devel/src/GNS3/Dynagen/dynamips_lib.py", line 317, in reset
+    send(self, 'hypervisor reset')
+  File "/Users/grossmj/Documents/workspace/gns3-devel/src/GNS3/Dynagen/dynamips_lib.py", line 4743, in send
+    raise DynamipsErrorHandled
+DynamipsErrorHandled
+
+Traceback (most recent call last):
+
+  File "/Users/grossmj/Documents/workspace/gns3-devel/src/GNS3/Scene.py", line 694, in mousePressEvent
+    def mousePressEvent(self, event):
+
+KeyboardInterrupt

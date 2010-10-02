@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Fri Jul 30 19:02:32 2010
+# Created: Sat Oct  2 20:44:49 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -391,10 +391,10 @@ class Ui_MainWindow(object):
         self.action_IOS_images.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+I", None, QtGui.QApplication.UnicodeUTF8))
         self.action_OnlineHelp.setText(QtGui.QApplication.translate("MainWindow", "&Online Help", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Export.setText(QtGui.QApplication.translate("MainWindow", "&Export", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_StartAll.setText(QtGui.QApplication.translate("MainWindow", "Start/Resume every devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_StartAll.setText(QtGui.QApplication.translate("MainWindow", "Start/Resume all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StartAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Start/Resume every devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StartAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Start or resume all IOS instances", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_StopAll.setText(QtGui.QApplication.translate("MainWindow", "Stop every devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_StopAll.setText(QtGui.QApplication.translate("MainWindow", "Stop all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StopAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Stop every devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StopAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Stop all IOS instances", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ShowHostnames.setText(QtGui.QApplication.translate("MainWindow", "Show the hostnames", None, QtGui.QApplication.UnicodeUTF8))
@@ -422,7 +422,7 @@ class Ui_MainWindow(object):
         self.action_Redo.setText(QtGui.QApplication.translate("MainWindow", "&Redo", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Redo.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Y", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SuspendAll.setText(QtGui.QApplication.translate("MainWindow", "Suspend every devices", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_SuspendAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Suspend every devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_SuspendAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Suspend all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SuspendAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Suspend all IOS instances", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Clear.setText(QtGui.QApplication.translate("MainWindow", "Clear the topology", None, QtGui.QApplication.UnicodeUTF8))
         self.action_AddNote.setText(QtGui.QApplication.translate("MainWindow", "Add a note", None, QtGui.QApplication.UnicodeUTF8))

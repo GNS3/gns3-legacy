@@ -427,7 +427,7 @@
      <normaloff>:/icons/play.svg</normaloff>:/icons/play.svg</iconset>
    </property>
    <property name="text">
-    <string>Start/Resume every devices</string>
+    <string>Start/Resume all devices</string>
    </property>
    <property name="toolTip">
     <string>Start/Resume every devices</string>
@@ -445,7 +445,7 @@
      <normaloff>:/icons/stop.svg</normaloff>:/icons/stop.svg</iconset>
    </property>
    <property name="text">
-    <string>Stop every devices</string>
+    <string>Stop all devices</string>
    </property>
    <property name="toolTip">
     <string>Stop every devices</string>
@@ -598,7 +598,7 @@
     <string>Suspend every devices</string>
    </property>
    <property name="toolTip">
-    <string>Suspend every devices</string>
+    <string>Suspend all devices</string>
    </property>
    <property name="statusTip">
     <string>Suspend all IOS instances</string>
