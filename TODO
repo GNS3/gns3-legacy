@@ -17,6 +17,10 @@ Debugging
  * Interface label should be restored
  * When creating a topology from another one, the configs should be copied
  * Remove associated config when deleting a device.
+ 
+ File > New Blank Project which
+a) warns that the current topology will be cleared and then
+b) (after confirmation) do just that Ð clear the topology and start a new blank project in the directory you create by naming your project. [Note: I'm writing another post that relates to this comment - the Case for a new standard naming convention for configs and working directories - look out for that in a few days]
 
  Traceback (most recent call last):
   File "/Users/grossmj/Documents/workspace/gns3-devel/src/GNS3/NETFile.py", line 543, in import_net_file

@@ -62,10 +62,13 @@
      <string>&amp;File</string>
     </property>
     <addaction name="action_New"/>
+    <addaction name="action_EditProject"/>
     <addaction name="action_Open"/>
     <addaction name="action_Save"/>
     <addaction name="action_SaveAs"/>
     <addaction name="separator"/>
+    <addaction name="action_Clear"/>
+    <addaction name="action_config"/>
     <addaction name="action_Export"/>
     <addaction name="separator"/>
     <addaction name="action_Quit"/>
@@ -87,10 +90,31 @@
     <addaction name="action_ZoomReset"/>
     <addaction name="separator"/>
     <addaction name="action_ShowLayers"/>
+    <addaction name="action_ShowHostnames"/>
+    <addaction name="action_ShowinterfaceNames"/>
+   </widget>
+   <widget class="QMenu" name="menuControl">
+    <property name="title">
+     <string>Control</string>
+    </property>
+    <addaction name="action_StartAll"/>
+    <addaction name="action_StopAll"/>
+    <addaction name="action_SuspendAll"/>
+   </widget>
+   <widget class="QMenu" name="menuAnnotate">
+    <property name="title">
+     <string>Annotate</string>
+    </property>
+    <addaction name="action_AddNote"/>
+    <addaction name="action_InsertImage"/>
+    <addaction name="action_DrawRectangle"/>
+    <addaction name="action_DrawEllipse"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
    <addaction name="menu_View"/>
+   <addaction name="menuControl"/>
+   <addaction name="menuAnnotate"/>
    <addaction name="menu_About"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -346,7 +370,7 @@
     <string>&amp;Open</string>
    </property>
    <property name="toolTip">
-    <string>Open network file</string>
+    <string>Open project or topology file</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -361,7 +385,7 @@
     <string>&amp;Save</string>
    </property>
    <property name="toolTip">
-    <string>Save network file</string>
+    <string>Save topology file</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -415,7 +439,10 @@
      <normaloff>:/icons/export.svg</normaloff>:/icons/export.svg</iconset>
    </property>
    <property name="text">
-    <string>&amp;Export</string>
+    <string>&amp;Screenshot</string>
+   </property>
+   <property name="toolTip">
+    <string>Take a screenshot</string>
    </property>
   </action>
   <action name="action_StartAll">
@@ -427,7 +454,7 @@
      <normaloff>:/icons/play.svg</normaloff>:/icons/play.svg</iconset>
    </property>
    <property name="text">
-    <string>Start/Resume all devices</string>
+    <string>Start/Resume</string>
    </property>
    <property name="toolTip">
     <string>Start/Resume all devices</string>
@@ -445,7 +472,7 @@
      <normaloff>:/icons/stop.svg</normaloff>:/icons/stop.svg</iconset>
    </property>
    <property name="text">
-    <string>Stop all devices</string>
+    <string>Stop</string>
    </property>
    <property name="toolTip">
     <string>Stop all devices</string>
@@ -463,10 +490,10 @@
      <normaloff>:/icons/show-hostname.svg</normaloff>:/icons/show-hostname.svg</iconset>
    </property>
    <property name="text">
-    <string>Show the hostnames</string>
+    <string>Show Hostnames</string>
    </property>
    <property name="toolTip">
-    <string>Show hostnames</string>
+    <string>Show Hostnames</string>
    </property>
   </action>
   <action name="action_TelnetAll">
@@ -478,7 +505,10 @@
      <normaloff>:/icons/console.svg</normaloff>:/icons/console.svg</iconset>
    </property>
    <property name="text">
-    <string>Telnet to all IOS</string>
+    <string>Telnet</string>
+   </property>
+   <property name="toolTip">
+    <string>Telnet to all devices</string>
    </property>
    <property name="statusTip">
     <string>Start a console on all running IOS instances</string>
@@ -490,13 +520,13 @@
      <normaloff>:/icons/save-as.svg</normaloff>:/icons/save-as.svg</iconset>
    </property>
    <property name="text">
-    <string>Save &amp;As</string>
+    <string>Save Topology &amp;As… </string>
    </property>
    <property name="iconText">
     <string>Save As</string>
    </property>
    <property name="toolTip">
-    <string>Save network file as</string>
+    <string>Save topology file as...</string>
    </property>
   </action>
   <action name="action_AboutQt">
@@ -595,7 +625,7 @@
      <normaloff>:/icons/pause.svg</normaloff>:/icons/pause.svg</iconset>
    </property>
    <property name="text">
-    <string>Suspend all devices</string>
+    <string>Suspend</string>
    </property>
    <property name="toolTip">
     <string>Suspend all devices</string>
@@ -610,7 +640,10 @@
      <normaloff>:/icons/edit-clear.svg</normaloff>:/icons/edit-clear.svg</iconset>
    </property>
    <property name="text">
-    <string>Clear the topology</string>
+    <string>Clear topology</string>
+   </property>
+   <property name="toolTip">
+    <string>Clear topology</string>
    </property>
   </action>
   <action name="action_AddNote">
@@ -622,6 +655,9 @@
      <normaloff>:/icons/add-note.svg</normaloff>:/icons/add-note.svg</iconset>
    </property>
    <property name="text">
+    <string>Add Note</string>
+   </property>
+   <property name="toolTip">
     <string>Add a note</string>
    </property>
   </action>
@@ -631,13 +667,13 @@
      <normaloff>:/icons/new.svg</normaloff>:/icons/new.svg</iconset>
    </property>
    <property name="text">
-    <string>&amp;New Project</string>
+    <string>&amp;Save Project As…</string>
    </property>
    <property name="iconText">
     <string>New Project</string>
    </property>
    <property name="toolTip">
-    <string>New Project</string>
+    <string>Save project as…</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
@@ -649,7 +685,10 @@
      <normaloff>:/icons/import_export_configs.svg</normaloff>:/icons/import_export_configs.svg</iconset>
    </property>
    <property name="text">
-    <string>&amp;Extract/Import all startup-configs</string>
+    <string>&amp;Import/Export</string>
+   </property>
+   <property name="toolTip">
+    <string>Import/Export Startup Configs</string>
    </property>
   </action>
   <action name="action_InsertImage">
@@ -658,6 +697,9 @@
      <normaloff>:/icons/image.svg</normaloff>:/icons/image.svg</iconset>
    </property>
    <property name="text">
+    <string>Insert Picture</string>
+   </property>
+   <property name="toolTip">
     <string>Insert a picture</string>
    </property>
   </action>
@@ -682,6 +724,9 @@
      <normaloff>:/icons/rectangle.svg</normaloff>:/icons/rectangle.svg</iconset>
    </property>
    <property name="text">
+    <string>Draw Rectangle</string>
+   </property>
+   <property name="toolTip">
     <string>Draw a rectangle</string>
    </property>
   </action>
@@ -694,6 +739,9 @@
      <normaloff>:/icons/ellipse.svg</normaloff>:/icons/ellipse.svg</iconset>
    </property>
    <property name="text">
+    <string>Draw Ellipse</string>
+   </property>
+   <property name="toolTip">
     <string>Draw an ellipse</string>
    </property>
   </action>
@@ -706,7 +754,10 @@
      <normaloff>:/icons/show-interface-names.svg</normaloff>:/icons/show-interface-names.svg</iconset>
    </property>
    <property name="text">
-    <string>Show interface names</string>
+    <string>Show Interface Names</string>
+   </property>
+   <property name="toolTip">
+    <string>Show Interface Names</string>
    </property>
   </action>
   <action name="action_Snapshot">
@@ -717,6 +768,9 @@
    <property name="text">
     <string>Snapshot</string>
    </property>
+   <property name="toolTip">
+    <string>Take a snapshot</string>
+   </property>
   </action>
   <action name="action_EditProject">
    <property name="icon">
@@ -724,7 +778,10 @@
      <normaloff>:/icons/edit-project.svg</normaloff>:/icons/edit-project.svg</iconset>
    </property>
    <property name="text">
-    <string>&amp;Edit project</string>
+    <string>&amp;Edit Project</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit project</string>
    </property>
   </action>
   <action name="action_ShowLayers">
