@@ -4773,8 +4773,8 @@ def send(dynamips, command):
                 #debug('Chunk: ' + chunk)
                 buf += chunk
             except:
-                print 'Error: timed out communicating with %s server %s' % (dynamips.type, dynamips.host)
-                print 'Exiting...'
+                #print 'Error: timed out communicating with %s server %s' % (dynamips.type, dynamips.host)
+                #print 'Exiting...'
                 raise DynamipsErrorHandled
 
             # if the buffer doesn't end in '\n' then we can't be done
