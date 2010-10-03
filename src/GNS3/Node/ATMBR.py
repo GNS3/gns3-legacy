@@ -126,6 +126,7 @@ class ATMBR(AbstractNode):
         self.config['ports'] = list(config['ports'])
         self.config['mapping'] = config['mapping'].copy()
         globals.GApp.topology.changed = True
+        self.mapping()
         
     def duplicate_config(self):
         """ Returns a copy of the configuration
@@ -191,10 +192,10 @@ class ATMBR(AbstractNode):
         self.create_config()
         return True
 
-    def startNode(self):
-        """ Start the node
+    def mapping(self):
+        """ Configure ATM mapping
         """
-
+        
         connected_interfaces = map(int, self.getConnectedInterfaceList())
         for (source, destination) in self.config['mapping'].iteritems():
             srcport = source
@@ -203,8 +204,13 @@ class ATMBR(AbstractNode):
 
             if int(srcport) in connected_interfaces and int(destport) in connected_interfaces:
                 if not self.atmbr.mapping.has_key(int(srcport)):
-                    self.atmbr.configure(int(srcport), int(destport), int(destvpi), int(destvci))
+                    self.atmbr.configure(int(srcport), int(destport), int(destvpi), int(destvci))        
 
+    def startNode(self):
+        """ Start the node
+        """
+    
+        self.mapping()
         self.startupInterfaces()
         self.state = 'running'
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')

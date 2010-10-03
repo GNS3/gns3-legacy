@@ -126,7 +126,8 @@ class ATMSW(AbstractNode):
         self.config['ports'] = list(config['ports'])
         self.config['mapping'] = config['mapping'].copy()
         globals.GApp.topology.changed = True
-        
+        self.mapping()
+
     def duplicate_config(self):
         """ Returns a copy of the configuration
         """
@@ -191,8 +192,8 @@ class ATMSW(AbstractNode):
         self.create_config()
         return True
 
-    def startNode(self):
-        """ Start the node
+    def mapping(self):
+        """ Configure ATM mapping
         """
 
         connected_interfaces = map(int,  self.getConnectedInterfaceList())
@@ -217,6 +218,12 @@ class ATMSW(AbstractNode):
                         self.atmsw.mapvp(int(srcport), int(srcvpi), int(destport), int(destvpi))
                         self.atmsw.mapvp(int(destport), int(destvpi), int(srcport), int(srcvpi))
 
+
+    def startNode(self):
+        """ Start the node
+        """
+
+        self.mapping()
         self.startupInterfaces()
         self.state = 'running'
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')

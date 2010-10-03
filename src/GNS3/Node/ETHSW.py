@@ -140,6 +140,7 @@ class ETHSW(AbstractNode):
         self.config['vlans'] = config['vlans'].copy()
         self.config['ports'] = config['ports'].copy()
         globals.GApp.topology.changed = True
+        self.mapping()
 
     def set_hypervisor(self,  hypervisor):
         """ Records a hypervisor
@@ -195,8 +196,8 @@ class ETHSW(AbstractNode):
         self.create_config()
         return True
 
-    def startNode(self):
-        """ Start the node
+    def mapping(self):
+        """ Configure Ethernet port mapping
         """
 
         connected_interfaces = map(int, self.getConnectedInterfaceList())
@@ -217,6 +218,11 @@ class ETHSW(AbstractNode):
                             debug("ethsw_map: " + str(port) + ' to ' + porttype + ' ' + str(vlan))
                             self.dynagen.ethsw_map(self.ethsw, port, porttype + ' ' + str(vlan))
 
+    def startNode(self):
+        """ Start the node
+        """
+
+        self.mapping()
         self.startupInterfaces()
         self.state = 'running'
         globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
