@@ -26,7 +26,7 @@ import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.qemu_lib as qlib
 from GNS3.Globals.Symbols import SYMBOLS
 from GNS3.Utils import translate, debug, error
-from PyQt4 import QtGui, QtCore
+from PyQt4 import QtGui, QtCore, QtSvg
 from GNS3.Annotation import Annotation
 from GNS3.Pixmap import Pixmap
 from GNS3.ShapeItem import AbstractShapeItem

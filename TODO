@@ -12,8 +12,6 @@ Debugging
  * Can only run one instance of Qemu on Windows (http://www.gns3.net/phpBB/topic1914.html)
  * Snapshots should have the same directory layout as projects
  * Dynamic FR/ATM/ATMBR mapping modification
- * Change a symbol for a device
- * Built-in symbols should be loaded even if not in the node list
  * Interface label should be restored
  * When creating a topology from another one, the configs should be copied
  * Remove associated config when deleting a device.
@@ -21,25 +19,3 @@ Debugging
  File > New Blank Project which
 a) warns that the current topology will be cleared and then
 b) (after confirmation) do just that Ð clear the topology and start a new blank project in the directory you create by naming your project. [Note: I'm writing another post that relates to this comment - the Case for a new standard naming convention for configs and working directories - look out for that in a few days]
-
- Traceback (most recent call last):
-  File "/Users/grossmj/Documents/workspace/gns3-devel/src/GNS3/NETFile.py", line 543, in import_net_file
-    self.dynagen.ghosting()
-  File "/Users/grossmj/Documents/workspace/gns3-devel/src/GNS3/Dynagen/dynagen.py", line 1720, in ghosting
-    self.doerror(e)
-  File "/Users/grossmj/Documents/workspace/gns3-devel/src/GNS3/DynagenSub.py", line 312, in doerror
-    self.doreset()
-  File "/Users/grossmj/Documents/workspace/gns3-devel/src/GNS3/Dynagen/dynagen.py", line 2394, in doreset
-    d.reset()
-  File "/Users/grossmj/Documents/workspace/gns3-devel/src/GNS3/Dynagen/dynamips_lib.py", line 317, in reset
-    send(self, 'hypervisor reset')
-  File "/Users/grossmj/Documents/workspace/gns3-devel/src/GNS3/Dynagen/dynamips_lib.py", line 4743, in send
-    raise DynamipsErrorHandled
-DynamipsErrorHandled
-
-Traceback (most recent call last):
-
-  File "/Users/grossmj/Documents/workspace/gns3-devel/src/GNS3/Scene.py", line 694, in mousePressEvent
-    def mousePressEvent(self, event):
-
-KeyboardInterrupt

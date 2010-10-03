@@ -71,6 +71,15 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.default_hostname_xpos = None
         self.default_hostname_ypos = None
 
+    def setRenderers(self, render_normal, render_select):
+        """ renderer_normal: QtSvg.QSvgRenderer
+            renderer_select: QtSvg.QSvgRenderer
+        """
+        
+        self.__render_normal = render_normal
+        self.__render_select = render_select
+        self.setSharedRenderer(self.__render_normal)      
+        
     def getState(self):
         """ Returns the current node state
         """

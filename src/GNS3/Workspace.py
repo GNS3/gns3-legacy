@@ -194,7 +194,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             painter.end()
         else:
 
-            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Yes - Export all the workspace\nNo - Export only what I see"), 
+            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Yes - Take all the workspace\nNo - Take only what I see"), 
                                             QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
             if reply == QtGui.QMessageBox.Yes:
@@ -239,7 +239,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         filedialog = QtGui.QFileDialog(self)
         selected = QtCore.QString()
         exports = 'PNG File (*.png);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm);;PDF File (*.pdf)'
-        path = QtGui.QFileDialog.getSaveFileName(filedialog, 'Export', '.', exports, selected)
+        path = QtGui.QFileDialog.getSaveFileName(filedialog, 'Screenshot', '.', exports, selected)
         if not path:
             return
         path = unicode(path)
@@ -729,6 +729,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         projectDialog = ProjectDialog()
         projectDialog.pushButtonOpenProject.hide()
+        if self.projectFile:
+            projectDialog.setWindowTitle("Save Project As...")
         self.projectWorkdir
         self.projectConfigs
         projectDialog.show()
@@ -963,7 +965,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Save as (scenario or dynagen .NET format)
         """
 
-        (path, selected) = fileBrowser(translate("Workspace", "Save Project As"),
+        (path, selected) = fileBrowser(translate("Workspace", "Save As..."),
                                 filter='NET file (*.net);;All files (*.*)', directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self).getSaveFile()
 
         if path != None and path != '':

@@ -133,6 +133,12 @@ SYMBOLS = [
     'translated': True,
     },
     
+    {'name': "EtherSwitch router", 'object': IOSRouter3700,
+    'normal_svg_file': ":/symbols/multilayer_switch.normal.svg",
+    'select_svg_file': ":/symbols/multilayer_switch.selected.svg", 
+    'translated': True,
+    },
+
     {'name': "IDS", 'object': IDS,
     'normal_svg_file': ":/symbols/ids.normal.svg",
     'select_svg_file': ":/symbols/ids.selected.svg", 

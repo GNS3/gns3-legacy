@@ -309,5 +309,8 @@ class DynagenSub(Dynagen):
 
         print '\n*** Error:', unicode(msg)
         Dynagen.handled = True
-        self.doreset()
+        try:
+            self.doreset()
+        except:
+            print "Reset error, lost communication with hypervisor?"
         raise

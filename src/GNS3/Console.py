@@ -46,7 +46,7 @@ class Console(PyCutExt, Dynagen_Console):
         sys.ps1 = '=> '
 
         # Set introduction message
-        self.intro = 'Dynagen management console for Dynamips (adapted for GNS3)\nCopyright (c) 2008 GNS3 Project'
+        self.intro = 'Dynagen management console for Dynamips (adapted for GNS3)\nCopyright (c) 2008-2010 GNS3 Project'
 
         # Parent class initialisation
         try:
