@@ -12,8 +12,7 @@ Debugging
  * Can only run one instance of Qemu on Windows (http://www.gns3.net/phpBB/topic1914.html)
  
  * Snapshots should have the same directory layout as projects
- 
- * When creating a topology from another one, the configs should be copied
+
  * Remove associated config when deleting a device.
  
  File > New Blank Project which

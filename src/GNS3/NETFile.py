@@ -808,10 +808,12 @@ class NETFile(object):
             if auto == False:
                 print unicode(translate("NETFile", "Exporting %s configuration to %s")) % (device.name, file_path)
         except lib.DynamipsError, msg:
-            print unicode(device.name + ': ' + translate("NETFile", "Dynamips error") + ': ') + unicode(msg)
+            if auto == False:
+                print unicode(device.name + ': ' + translate("NETFile", "Dynamips error") + ': ') + unicode(msg)
             return
         except lib.DynamipsWarning, msg:
-            print unicode(device.name + ': ' + translate("NETFile", "Dynamips warning") + ': ') + unicode(msg)
+            if auto == False:
+                print unicode(device.name + ': ' + translate("NETFile", "Dynamips warning") + ': ') + unicode(msg)
             return
         except:
             error('Unknown error exporting config for ' + device.name)

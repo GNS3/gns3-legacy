@@ -264,20 +264,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, translate("Workspace", "I/O Error"),  unicode(translate("Workspace", "I/O Error: %s")) % strerror)
 
-    def clear(self):
-        """ Clear all the workspace
+    def clear_workdir(self, projectWorkdir):
+        """ Delete useless working directory files
         """
-
-        globals.GApp.workspace.setWindowTitle("GNS3")
-        projectWorkdir = self.projectWorkdir
-        self.timer.stop()
-        self.projectFile = None
-        self.projectWorkdir = None
-        self.projectConfigs = None
-        globals.GApp.topology.clear()
-        for item in globals.GApp.topology.items():
-            globals.GApp.topology.removeItem(item)
-            
+        
         if globals.GApp.systconf['dynamips'].clean_workdir:
             # delete dynamips files
             dynamips_files = glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*")
@@ -298,6 +288,23 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 except (OSError, IOError), e:
                     #print unicode(translate("Workspace", "Warning: Can't delete %s => %s")) % (file, e.strerror)
                     continue
+
+    def clear(self):
+        """ Clear all the workspace
+        """
+
+        globals.GApp.workspace.setWindowTitle("GNS3")
+        projectWorkdir = self.projectWorkdir
+        self.timer.stop()
+        self.projectFile = None
+        self.projectWorkdir = None
+        self.projectConfigs = None
+        globals.GApp.topology.clear()
+        for item in globals.GApp.topology.items():
+            globals.GApp.topology.removeItem(item)
+        
+        self.clear_workdir(projectWorkdir)
+
 
     def __action_Clear(self):
         """ Clear the topology
@@ -778,6 +785,17 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                                translate("Workspace", "Do you want to apply the project settings to the current topology? (can take some time)"), QtGui.QMessageBox.Yes, \
                                                QtGui.QMessageBox.No)
             if reply == QtGui.QMessageBox.Yes:
+                if self.projectConfigs:
+                    for node in globals.GApp.topology.nodes.values():
+                        if isinstance(node, IOSRouter) and node.router.cnfg:
+                            try:
+                                shutil.copy(node.router.cnfg, self.projectConfigs)
+                            except (OSError, IOError), e:
+                                debug("Warning: cannot copy " + file + " to " + self.projectConfigs)
+                                continue
+                            config = os.path.basename(node.router.cnfg)
+                            node.router.cnfg = self.projectConfigs + os.sep + config
+
                 if self.projectWorkdir:
                     # stop all router and firewall nodes
                     for node in globals.GApp.topology.nodes.values():
@@ -790,9 +808,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
                             [os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_dynagen_device().formatted_ghost_file()]
                             for file in dynamips_files:
                                 try:
-                                    shutil.move(file, self.projectWorkdir)
+                                    shutil.copy(file, self.projectWorkdir)
                                 except (OSError, IOError), e:
-                                    debug("Warning: cannot move " + file + " to " + self.projectWorkdir)
+                                    debug("Warning: cannot copy " + file + " to " + self.projectWorkdir)
                                     continue
                                 except:
                                     continue
@@ -800,9 +818,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
                             qemu_files = glob.glob(os.path.normpath(node.qemu.workingdir) + os.sep + node.hostname)
                             for file in qemu_files:
                                 try:
-                                    shutil.move(file, self.projectWorkdir + os.sep + node.hostname)
+                                    shutil.copy(file, self.projectWorkdir + os.sep + node.hostname)
                                 except (OSError, IOError), e:
-                                    debug("Warning: cannot move " + file + " to " + self.projectWorkdir)
+                                    debug("Warning: cannot copy " + file + " to " + self.projectWorkdir)
                                     continue
                     # set the new working directory
                     try:
@@ -821,7 +839,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 globals.GApp.topology.clear()
                 for item in globals.GApp.topology.items():
                     globals.GApp.topology.removeItem(item)
-        self.__action_Save()
+        self.__action_Save(auto=True)
         self.setWindowTitle("GNS3 Project - " + self.projectFile) 
 
     def __action_Snapshot(self):

@@ -88,7 +88,7 @@
       <item row="3" column="0" colspan="2">
        <widget class="QCheckBox" name="checkBox_ConfigFiles">
         <property name="text">
-         <string>Export router configuration files</string>
+         <string>Export IOS configuration files</string>
         </property>
        </widget>
       </item>
