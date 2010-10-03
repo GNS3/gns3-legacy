@@ -274,12 +274,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
             dynamips_files += glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "*ghost*")
             dynamips_files += glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "*_lock")
             dynamips_files += glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "*_log.txt")
-            
+
             if projectWorkdir:
                 # delete useless project files
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "*ghost*")
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*_log.txt")
-                dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*_rommon_vars")
+                dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*_rom*")
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*_ssa")
 
             for file in dynamips_files:
@@ -797,10 +797,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
                             node.router.cnfg = self.projectConfigs + os.sep + config
 
                 if self.projectWorkdir:
-                    # stop all router and firewall nodes
-                    for node in globals.GApp.topology.nodes.values():
-                        if isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice):
-                            node.stopNode()
+#                    # stop all router and firewall nodes
+#                    for node in globals.GApp.topology.nodes.values():
+#                        if isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice):
+#                            node.stopNode()
                     # move dynamips & Qemu files
                     for node in globals.GApp.topology.nodes.values():
                         if isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir:
@@ -864,54 +864,66 @@ class Workspace(QMainWindow, Ui_MainWindow):
         projectName = os.path.basename(self.projectFile)
         projectDir = os.path.dirname(self.projectFile)
         snapshot_dir = projectDir + os.sep + projectName.replace('.net', '') + '_snapshot_' + time.strftime("%d%m%y_%H%M%S")
+        snapshot_workdir = snapshot_dir + os.sep + 'working'
+        snapshot_configs = snapshot_dir + os.sep + 'configs'
 
         try:
             os.mkdir(snapshot_dir)
+            os.mkdir(snapshot_workdir)
+            os.mkdir(snapshot_configs)
         except (OSError, IOError), e:
-            QtGui.QMessageBox.critical(self, translate("Workspace", "Snapshot"), unicode(translate("Workspace", "Cannot create directory %s: %s")) % (snapshot_dir, e.strerror))
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Snapshot"), unicode(translate("Workspace", "Cannot create directories in %s: %s")) % (snapshot_dir, e.strerror))
             return
-        
+
         splash = QtGui.QSplashScreen(QtGui.QPixmap(":images/logo_gns3_splash.png"))
         splash.show()
         splash.showMessage(translate("Workspace", "Please wait while creating a snapshot"))
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
         
-        # copy dynamips & Qemu files
+        # copy dynamips & Qemu files + IOS configs
         for node in globals.GApp.topology.nodes.values():
             if isinstance(node, IOSRouter):
                 dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_nvram*')
-                dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_ssa*')
                 dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_disk*')
                 dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_slot*')
-                dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_flash*')
+                dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_*flash*')
                 for file in dynamips_files:
                     try:
-                        shutil.copy(file, snapshot_dir)
+                        shutil.copy(file, snapshot_workdir)
                     except (OSError, IOError), e:
-                        debug("Warning: cannot copy " + file + " to " + snapshot_dir + ": " + e.strerror)
+                        debug("Warning: cannot copy " + file + " to " + snapshot_workdir + ": " + e.strerror)
                         continue
+                if node.router.cnfg:
+                    try:
+                        shutil.copy(node.router.cnfg, snapshot_configs)
+                    except (OSError, IOError), e:
+                        debug("Warning: cannot copy " + file + " to " + snapshot_configs)
+                        continue
+                    config = os.path.basename(node.router.cnfg)
+                    node.router.cnfg = snapshot_configs + os.sep + config
+                
             if isinstance(node, AnyEmuDevice):
                 qemu_files = glob.glob(os.path.normpath(node.qemu.workingdir) + os.sep + node.hostname)
                 for file in qemu_files:
                     try:
-                        shutil.copytree(file, snapshot_dir + os.sep + node.hostname)
+                        shutil.copytree(file, snapshot_workdir + os.sep + node.hostname)
                     except (OSError, IOError), e:
-                        debug("Warning: cannot copy " + file + " to " + snapshot_dir + ": " + e.strerror)
+                        debug("Warning: cannot copy " + file + " to " + snapshot_workdir + ": " + e.strerror)
                         continue
-                        
+            
         try:
             for hypervisor in globals.GApp.dynagen.dynamips.values():
-                hypervisor.workingdir = snapshot_dir
+                hypervisor.workingdir = snapshot_workdir
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), unicode(translate("Workspace", "Dynamips error: %s")) % msg)
 
         save_wd = self.projectWorkdir
         save_cfg = self.projectConfigs
         save_projectFile = self.projectFile
-        self.projectConfigs = snapshot_dir
-        self.projectWorkdir = snapshot_dir
+        self.projectConfigs = snapshot_configs
+        self.projectWorkdir = snapshot_workdir
         self.projectFile = snapshot_dir + os.sep + projectName
-        self.__action_Save()
+        self.__action_Save(auto=True)
         self.projectWorkdir = save_wd
         self.projectFile = save_projectFile
         self.projectConfigs = save_cfg
@@ -919,6 +931,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
         try:
             for hypervisor in globals.GApp.dynagen.dynamips.values():
                 hypervisor.workingdir = self.projectWorkdir
+            if self.projectConfigs:
+                for node in globals.GApp.topology.nodes.values():
+                    if isinstance(node, IOSRouter) and node.router.cnfg:
+                        config = os.path.basename(node.router.cnfg)
+                        node.router.cnfg = self.projectConfigs + os.sep + config
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), unicode(translate("Workspace", "Dynamips error: %s")) % msg)
 

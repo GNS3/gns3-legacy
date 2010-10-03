@@ -85,6 +85,6 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
                 globals.GApp.workspace.projectFile
                 path = unicode(item.data(QtCore.Qt.UserRole).toString() + os.sep + match_obj.group(1)) + '.net'
                 globals.GApp.workspace.load_netfile(path)
-                globals.GApp.workspace.projectConfigs = os.path.dirname(path)
-                globals.GApp.workspace.projectWorkdir = os.path.dirname(path)
+                globals.GApp.workspace.projectConfigs = os.path.dirname(path) + os.sep + 'configs'
+                globals.GApp.workspace.projectWorkdir = os.path.dirname(path) + os.sep + 'working'
                 globals.GApp.workspace.projectFile = path
