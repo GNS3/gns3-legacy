@@ -12,7 +12,15 @@ Debugging
  * Can only run one instance of Qemu on Windows (http://www.gns3.net/phpBB/topic1914.html)
  * Remove associated config + workdir files when deleting a device?
  * Copy only useful working file (nvram, flash, PCMCIA disks) for project & snapshots
+ * Check WICS connections
  
  File > New Blank Project which
 a) warns that the current topology will be cleared and then
 b) (after confirmation) do just that Ð clear the topology and start a new blank project in the directory you create by naming your project. [Note: I'm writing another post that relates to this comment - the Case for a new standard naming convention for configs and working directories - look out for that in a few days]
+
+Traceback (most recent call last):
+File "GNS3\NETFile.pyo", line 485, in import_net_file
+File "GNS3\Dynagen\dynagen.pyo", line 1229, in import_config
+File "GNS3\Dynagen\dynamips_lib.pyo", line 264, in __init__
+File "GNS3\Dynagen\dynamips_lib.pyo", line 4705, in send
+DynamipsErrorHandled

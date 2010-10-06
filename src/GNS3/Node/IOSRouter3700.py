@@ -39,12 +39,11 @@ class IOSRouter3700(IOSRouter, IOSRouter3700Defaults):
         assert(self.router)
         return ('')
     
-    def create_config(self):
-        """ Creates a copy of the configuration of this router for the node configurator
-        """
+    def create_router(self):
 
+        IOSRouter.create_router(self)
         # Automatically assign NM-16ESW in slot 1
-        config = IOSRouter.create_config(self)
         if not self.default_symbol:
+            config = self.create_config()
             config['slots'][1] = 'NM-16ESW'
-        return config
+            self.set_config(config)
