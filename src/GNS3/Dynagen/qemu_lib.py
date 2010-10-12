@@ -271,6 +271,7 @@ class AnyEmuDevice(object):
         self._kqemu = self.defaults['kqemu']
         self._kvm = self.defaults['kvm']
         self._options = self.defaults['options']
+        self._capture = {}
 
         self.nios = {}
         for i in range(self._nics):
@@ -408,7 +409,7 @@ class AnyEmuDevice(object):
         return self._netcard
 
     netcard = property(_getnetcard, _setnetcard, doc='The netcard used by this emulated device')
-    
+
     def _setkqemu(self, kqemu):
         """ Set the kqemu option to be used by this emulated device
         kqemu: (bool) kqemu activation
@@ -487,6 +488,19 @@ class AnyEmuDevice(object):
         return self._image
 
     image = property(_getimage, _setimage, doc='The image file for this device')
+
+    def capture(self, interface, path):
+        """ Set the capture file path for a specific interface
+        interface: (int) interface number
+        path: (str) path to the capture file (if path is empty, remove the capture).
+        """
+
+        if not path and self._capture.has_key(interface):
+            send(self.p, 'qemu delete_capture %s %i' % (self.name, interface))
+            del self._capture[interface]
+        else:
+            send(self.p, 'qemu create_capture %s %i %s' % (self.name, interface, path))
+            self._capture[interface] = path
 
     def idleprop(self,prop):
         """Returns nothing so that all function in console.py recognize that there are no idlepc value

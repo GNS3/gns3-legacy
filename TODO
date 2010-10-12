@@ -13,6 +13,12 @@ Debugging
  * Remove associated config + workdir files when deleting a device?
  * Copy only useful working file (nvram, flash, PCMCIA disks) for project & snapshots
  * Check WICS connections
+ * Should prevent unwanted interface label to show up after loading a topology
+ * Rotation shortcut
+ * Capture for Qemu
+ * Capture status dialog
+ * Mapping delete (a link is connected message)
+ * Cannot create snapshot (save as project, config only)
  
  File > New Blank Project which
 a) warns that the current topology will be cleared and then

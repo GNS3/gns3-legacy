@@ -540,10 +540,6 @@ class Dynagen:
             
             #return only the connection in normal src_int = dst_device dst_port format
             return (remote_device, pa2, slot2, port2, 'AutoUDP')
-            
-        
-            
-            
 
     def connect(self, local_device, source, dest):
         """ Connect a device to something

@@ -69,6 +69,8 @@ class topologySummaryDock(QtGui.QTreeWidget):
             rootitem.addChildren(items)
             self.insertTopLevelItem(0, rootitem)
             self.sortByColumn(0, QtCore.Qt.AscendingOrder)
+        if self.expanded:
+            self.expandAll()
             
     def changeNodeStatus(self, hostname, status):
         """ Change the status of a node

@@ -24,9 +24,11 @@ import GNS3.Globals as globals
 import subprocess as sub
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.dynagen as dynagen_namespace
+import GNS3.Dynagen.qemu_lib as qemu
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate, debug
 from GNS3.Node.IOSRouter import IOSRouter
+from GNS3.Node.AnyEmuDevice import AnyEmuDevice
 from GNS3.Node.FRSW import FRSW
 
 class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
@@ -218,13 +220,13 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         """
 
         options = []
-        if isinstance(self.source, IOSRouter):
+        if isinstance(self.source, IOSRouter) or isinstance(self.source, AnyEmuDevice):
             hostname = self.source.hostname
             if type(hostname) != unicode:
                 hostname = unicode(hostname)
             if not self.__returnCaptureOptions(options, hostname, self.dest, self.srcIf):
                 return
-        if isinstance(self.dest, IOSRouter):
+        if isinstance(self.dest, IOSRouter) or isinstance(self.dest, AnyEmuDevice):
             hostname = self.dest.hostname
             if type(hostname) != unicode:
                 hostname = unicode(hostname)
@@ -239,59 +241,107 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             return
 
         if ok:
-
-            (device, interface, encapsulation) = unicode(selection).split(' ')
-            if globals.GApp.dynagen.devices[device].state != 'running':
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s is not running")) % device)
-                return
-
-            host = globals.GApp.dynagen.devices[device].dynamips.host
             
-            match_obj = dynagen_namespace.interface_re.search(interface)
-            if match_obj:
-                (inttype, slot, port) = match_obj.group(1, 2, 3)
-                slot = int(slot)
-                port = int(port)
+            (device, interface, encapsulation) = unicode(selection).split(' ')
+            if isinstance(globals.GApp.dynagen.devices[device], qemu.AnyEmuDevice):
+                if globals.GApp.dynagen.devices[device].state == 'running':
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s must be restarted to start capturing traffic")) % device)    
+                self.__captureQemuDevice(device, interface)
             else:
-                # Try checking for WIC interface specification (e.g. S1)
-                match_obj = dynagen_namespace.interface_noport_re.search(interface)
-                (inttype, port) = match_obj.group(1, 2)
-                slot = 0
+                if globals.GApp.dynagen.devices[device].state != 'running':
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s is not running")) % device)
+                    return
+                self.__captureDynamipsDevice(device, interface, encapsulation)
 
-            try:
-                encapsulation = encapsulation[1:-1].split(':')[1]
-                encapsulation = self.encapsulationTransform[encapsulation]
-                capture_conf = globals.GApp.systconf['capture']
+    def __captureQemuDevice(self, device, interface):
+        """ Capture for Qemu based devices
+        """
 
-                if capture_conf.workdir and (host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or host == 'localhost'):
-                    workdir = capture_conf.workdir
-                else:
-                    workdir = globals.GApp.dynagen.devices[device].dynamips.workingdir
-                if '/' in workdir:
-                    sep = '/'
-                else:
-                    sep = '\\'
-                self.capfile = unicode(workdir + sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
-                debug("Start capture to " + self.capfile)
-                globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'capture','both', encapsulation + " " + '"' + self.capfile + '"')
-                self.captureInfo = (device, slot, inttype, port)
-                self.capturing = True
-                debug("Capturing to " + self.capfile)
-            except lib.DynamipsError, msg:
-                QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Dynamips error"),  unicode(msg))
-                return
+        host = globals.GApp.dynagen.devices[device].dynamips.host
+        match_obj = dynagen_namespace. qemu_int_re.search(interface)
+        if not match_obj:
+            debug("Cannot parse interface " + interface)
+            return
+        port = match_obj.group(2)
+        
+        capture_conf = globals.GApp.systconf['capture']
+        if capture_conf.workdir and (host == globals.GApp.systconf['qemu'].QemuManager_binding or host == 'localhost'):
+            workdir = capture_conf.workdir
+        else:
+            workdir = globals.GApp.dynagen.devices[device].dynamips.workingdir
+        if '/' in workdir:
+            sep = '/'
+        else:
+            sep = '\\'
+        self.capfile = unicode(workdir + sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+        debug("Start capture to " + self.capfile)
+        
+        globals.GApp.dynagen.devices[device].capture(int(port), self.capfile)
+        self.captureInfo = (device, port)
+        self.capturing = True
+        debug("Capturing to " + self.capfile)
+
+    def __captureDynamipsDevice(self, device, interface, encapsulation):
+        """ Capture for Dynamips based devices
+        """
+        
+        host = globals.GApp.dynagen.devices[device].dynamips.host
+
+        match_obj = dynagen_namespace.interface_re.search(interface)
+        if match_obj:
+            (inttype, slot, port) = match_obj.group(1, 2, 3)
+            slot = int(slot)
+            port = int(port)
+        else:
+            # Try checking for WIC interface specification (e.g. S1)
+            match_obj = dynagen_namespace.interface_noport_re.search(interface)
+            (inttype, port) = match_obj.group(1, 2)
+            slot = 0
+
+        try:
+            encapsulation = encapsulation[1:-1].split(':')[1]
+            encapsulation = self.encapsulationTransform[encapsulation]
             capture_conf = globals.GApp.systconf['capture']
-            if capture_conf.auto_start and (host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or host == 'localhost'):
-                time.sleep(2)
-                self.__startWiresharkAction()
+
+            if capture_conf.workdir and (host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or host == 'localhost'):
+                workdir = capture_conf.workdir
+            else:
+                workdir = globals.GApp.dynagen.devices[device].dynamips.workingdir
+            if '/' in workdir:
+                sep = '/'
+            else:
+                sep = '\\'
+            self.capfile = unicode(workdir + sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+            debug("Start capture to " + self.capfile)
+            globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'capture','both', encapsulation + " " + '"' + self.capfile + '"')
+            self.captureInfo = (device, slot, inttype, port)
+            self.capturing = True
+            debug("Capturing to " + self.capfile)
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Dynamips error"),  unicode(msg))
+            return
+        capture_conf = globals.GApp.systconf['capture']
+        if capture_conf.auto_start and (host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or host == 'localhost'):
+            time.sleep(2)
+            self.__startWiresharkAction()
 
     def __stopCaptureAction(self):
         """ Stop capturing frames on the link
         """
 
         try:
-            (device, slot, inttype, port) = self.captureInfo
-            globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'none','both')
+            if isinstance(globals.GApp.dynagen.devices[self.captureInfo[0]], qemu.AnyEmuDevice):
+                (device, port) = self.captureInfo
+
+                if globals.GApp.dynagen.devices[device].state == 'running':
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s must be stopped to stop capturing traffic")) % device) 
+
+                # empty string means stop capturing traffic
+                globals.GApp.dynagen.devices[device].capture(int(port), '')
+    
+            else:
+                (device, slot, inttype, port) = self.captureInfo
+                globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'none','both')
             QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  translate("AbstractEdge", "Capture stopped"))
             self.capturing = False
             self.captureInfo = None

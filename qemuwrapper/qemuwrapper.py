@@ -48,7 +48,7 @@ import pemubin
 
 
 __author__ = 'Thomas Pani and Jeremy Grossmann'
-__version__ = '0.3.3'
+__version__ = '0.7.3'
 
 QEMU_PATH = "qemu"
 QEMU_IMG_PATH = "qemu-img"
@@ -97,6 +97,7 @@ class xEMUInstance(object):
         self.nic = {}
         self.nics = '6'
         self.udp = {}
+        self.capture = {}
         self.netcard = 'pcnet'
         self.kqemu = False
         self.kvm = False
@@ -185,6 +186,9 @@ class xEMUInstance(object):
                         (vlan, self.udp[vlan].sport,
                          self.udp[vlan].dport,
                          self.udp[vlan].daddr)])
+            if vlan in self.capture:
+                options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
+
         return options
         
     def _ser_options(self):
@@ -392,6 +396,8 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             'create_nic' : (3, 3),
             'create_udp' : (5, 5),
             'delete_udp' : (2, 2),
+            'create_capture' : (3, 3),
+            'delete_capture' : (2, 2),
             'start' : (1, 1),
             'stop' : (1, 1),
             }
@@ -667,6 +673,26 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             return
         if QEMU_INSTANCES[name].udp.has_key(int(vlan)):
             del QEMU_INSTANCES[name].udp[int(vlan)]
+        self.send_reply(self.HSC_INFO_OK, 1, "OK")
+        
+    def do_qemu_create_capture(self, data):
+        name, vlan, path = data
+        if not name in QEMU_INSTANCES.keys():
+            self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
+                            "unable to find Qemu '%s'" % name)
+            return
+
+        QEMU_INSTANCES[name].capture[int(vlan)] = path
+        self.send_reply(self.HSC_INFO_OK, 1, "OK")
+        
+    def do_qemu_delete_capture(self, data):
+        name, vlan = data
+        if not name in QEMU_INSTANCES.keys():
+            self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
+                            "unable to find Qemu '%s'" % name)
+            return
+        if QEMU_INSTANCES[name].capture.has_key(int(vlan)):
+            del QEMU_INSTANCES[name].capture[int(vlan)]
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_qemu_start(self, data):
