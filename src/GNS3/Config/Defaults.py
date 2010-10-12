@@ -61,7 +61,7 @@ conf_hypervisor_defaults = {
     'workdir': '',
     'baseUDP': 10000,
     'baseConsole': 2000,
-    'baseAUX': 2500,
+    'baseAUX': 2100,
     'used_ram':0, 
 }
 
@@ -211,7 +211,7 @@ conf_systemDynamips_defaults = {
     'clean_workdir': True, 
     'baseUDP': 10000,
     'baseConsole': 2000,
-    'baseAUX': 2500,
+    'baseAUX': 2100,
     'ghosting': True,
     'jitsharing': False,
     'sparsemem': False,

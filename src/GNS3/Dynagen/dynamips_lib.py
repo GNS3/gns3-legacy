@@ -260,7 +260,7 @@ class Dynamips(object):
         self.__host = host
         self.__port = port
         self.__baseconsole = 2000
-        self.__baseaux = 2500
+        self.__baseaux = 2100
         self.__udp = 10000
         self.__default_udp = self.__udp
         self.__starting_udp = self.__udp
@@ -2135,15 +2135,16 @@ class Router(Dynamips_device):
                 else:
                     console += 1
                     
-            aux = self.__d.baseaux + self.__instance
-            while True:
-                conflict = checkaux(aux, self.__d)
-                if conflict == None:
-                    self.__aux = aux
-                    send(self.__d, 'vm set_aux_tcp_port %s %i' % (self.__name, aux))
-                    break
-                else:
-                    aux += 1
+            if self.__d.baseaux:
+                aux = self.__d.baseaux + self.__instance
+                while True:
+                    conflict = checkaux(aux, self.__d)
+                    if conflict == None:
+                        self.__aux = aux
+                        send(self.__d, 'vm set_aux_tcp_port %s %i' % (self.__name, aux))
+                        break
+                    else:
+                        aux += 1
 
         # Append this router to the list of devices managed by this dynamips instance
         self.__d.devices.append(self)

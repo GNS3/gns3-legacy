@@ -58,8 +58,8 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
                 item.setData(QtCore.Qt.UserRole, QtCore.QVariant(match_obj.group(0)))
 
     def slotCreateSnapshot(self):
-        
-        if not globals.GApp.workspace.projectFile or not globals.GApp.workspace.projectWorkdir:
+
+        if not globals.GApp.workspace.projectFile:# or not globals.GApp.workspace.projectWorkdir:
             QtGui.QMessageBox.critical(self, translate("SnapshotDialog", "Project"), translate("SnapshotDialog", "Create a project first!"))
             return
         globals.GApp.workspace.createSnapshot()

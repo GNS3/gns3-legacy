@@ -202,9 +202,9 @@ class Topology(QtGui.QGraphicsScene):
             hypervisor_conf = globals.GApp.hypervisors[external_hypervisor_key]
             # use project workdir in priority
             if globals.GApp.workspace.projectWorkdir:
-                self.dynagen.defaults_config['workingdir'] =  globals.GApp.workspace.projectWorkdir
+                self.dynagen.defaults_config['workingdir'] = globals.GApp.workspace.projectWorkdir
             elif hypervisor_conf.workdir:
-                self.dynagen.defaults_config['workingdir'] =  hypervisor_conf.workdir
+                self.dynagen.defaults_config['workingdir'] = hypervisor_conf.workdir
             dynamips_hypervisor = self.dynagen.create_dynamips_hypervisor(host, int(port))
             if not dynamips_hypervisor:
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Hypervisor"),
@@ -217,8 +217,8 @@ class Topology(QtGui.QGraphicsScene):
             dynamips_hypervisor.configchange = True
             dynamips_hypervisor.udp = hypervisor_conf.baseUDP
             dynamips_hypervisor.starting_udp = hypervisor_conf.baseUDP
-            dynamips_hypervisor.baseconsole = hypervisor_conf.baseConsole
-            dynamips_hypervisor.baseaux = hypervisor_conf.baseAUX         
+            dynamips_hypervisor.baseconsole = hypervisor_conf.baseConsol
+            dynamips_hypervisor.baseaux = hypervisor_conf.baseAUX
         node.set_hypervisor(dynamips_hypervisor)
         return True
 

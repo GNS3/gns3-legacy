@@ -1992,7 +1992,8 @@ class Dynagen:
                 self.running_config[h][r]['ghostios'] = True
 
         self.running_config[h][r]['console'] = router.console
-        self.running_config[h][r]['aux'] = router.aux
+        if router.aux:
+            self.running_config[h][r]['aux'] = router.aux
         
         #same thing for all other values
         for option in self.generic_router_options:

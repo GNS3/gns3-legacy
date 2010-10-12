@@ -103,12 +103,16 @@ class Page_FRSW(QtGui.QWidget, Ui_FRSWPage):
 
         item = self.treeWidgetVCmap.currentItem()
         if (item != None):
-            source = str(item.text(0))
+            
             connected_ports = self.node.getConnectedInterfaceList()
-            (port, dlci) = source.split(':')
-            if port in connected_ports:
+            source = str(item.text(0))
+            (port1, dlci1) = source.split(':')
+            destination = str(item.text(1))
+            (port2, dlci2) = destination.split(':')
+
+            if port1 in connected_ports and port2 in connected_ports:
                 QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_ATMSW", "Frame Relay switch"), 
-                                        unicode(translate("Page_FRSW", "A link is connected in port %i")) % int(port))
+                                        unicode(translate("Page_FRSW", "Links connected in port %i and port %i")) % (int(port1), int(port2)))
                 return
             del self.mapping[source]
             self.treeWidgetVCmap.takeTopLevelItem(self.treeWidgetVCmap.indexOfTopLevelItem(item))

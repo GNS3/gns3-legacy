@@ -323,7 +323,7 @@ class Application(QApplication, Singleton):
         confo.port = int(ConfDB().get('Dynamips/hypervisor_port', 7200))
         confo.baseUDP = int(ConfDB().get('Dynamips/hypervisor_baseUDP', 10000))
         confo.baseConsole = int(ConfDB().get('Dynamips/hypervisor_baseConsole', 2000))
-        confo.baseAUX = int(ConfDB().get('Dynamips/hypervisor_baseAUX', 2100))
+        confo.baseAUX = int(ConfDB().get('Dynamips/hypervisor_baseAUX', 0))
         confo.workdir = ConfDB().get('Dynamips/hypervisor_working_directory', unicode(''))
         confo.clean_workdir = ConfDB().value("Dynamips/clean_working_directory", QVariant(True)).toBool()
         confo.ghosting = ConfDB().value("Dynamips/dynamips_ghosting", QVariant(True)).toBool()

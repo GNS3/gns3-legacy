@@ -918,26 +918,32 @@ class Workspace(QMainWindow, Ui_MainWindow):
             QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), unicode(translate("Workspace", "Dynamips error: %s")) % msg)
 
         save_wd = self.projectWorkdir
+        if not self.projectWorkdir:
+            self.projectWorkdir = globals.GApp.systconf['dynamips'].workdir
         save_cfg = self.projectConfigs
         save_projectFile = self.projectFile
         self.projectConfigs = snapshot_configs
         self.projectWorkdir = snapshot_workdir
         self.projectFile = snapshot_dir + os.sep + projectName
         self.__action_Save(auto=True)
-        self.projectWorkdir = save_wd
         self.projectFile = save_projectFile
         self.projectConfigs = save_cfg
+        self.projectWorkdir = save_wd
 
         try:
-            for hypervisor in globals.GApp.dynagen.dynamips.values():
-                hypervisor.workingdir = self.projectWorkdir
+            if self.projectWorkdir:
+                for hypervisor in globals.GApp.dynagen.dynamips.values():
+                    hypervisor.workingdir = self.projectWorkdir
+            else:
+                for hypervisor in globals.GApp.dynagen.dynamips.values():
+                    hypervisor.workingdir = globals.GApp.systconf['dynamips'].workdir
             if self.projectConfigs:
                 for node in globals.GApp.topology.nodes.values():
                     if isinstance(node, IOSRouter) and node.router.cnfg:
                         config = os.path.basename(node.router.cnfg)
                         node.router.cnfg = self.projectConfigs + os.sep + config
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), unicode(translate("Workspace", "Dynamips error: %s")) % msg)
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), unicode(translate("Workspace", "Dynamips error!!: %s")) % msg)
 
     def __action_OpenFile(self):
         """ Open a file
@@ -969,6 +975,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             globals.GApp.topology.changed = False
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
+        except (lib.DynamipsErrorHandled, socket.error):
+            QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "Dynamips error")), translate("Workspace", "Connection lost with Dynamips hypervisor (crashed?)"))
 
     def __action_Autosave(self):
         """ Autosave feature
