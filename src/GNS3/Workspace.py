@@ -70,6 +70,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         # By default don't show interface names
         self.flg_showInterfaceNames = False
         
+        # By default show only saved interface names (after loading a topology)
+        self.flg_showOnlySavedInterfaceNames = True
+        
         # By default don't show layer positioning
         self.flg_showLayerPos = False
     
@@ -558,6 +561,18 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
         
         if self.flg_showInterfaceNames == False:
+
+            if len(globals.interfaceLabels):
+                reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Show only saved interface labels?"), 
+                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+                if reply == QtGui.QMessageBox.Yes:
+                    self.flg_showOnlySavedInterfaceNames = True
+                else:
+                    self.flg_showOnlySavedInterfaceNames = False
+                    globals.interfaceLabels.clear()
+            else:
+                self.flg_showOnlySavedInterfaceNames = False
+
             self.flg_showInterfaceNames = True
             self.action_ShowinterfaceNames.setText(translate('Workspace', 'Hide interface names'))
             for link in globals.GApp.topology.links:

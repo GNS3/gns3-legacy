@@ -754,10 +754,10 @@
      <normaloff>:/icons/show-interface-names.svg</normaloff>:/icons/show-interface-names.svg</iconset>
    </property>
    <property name="text">
-    <string>Show Interface Names</string>
+    <string>Show Interface Labels</string>
    </property>
    <property name="toolTip">
-    <string>Show Interface Names</string>
+    <string>Show Interface Labels</string>
    </property>
   </action>
   <action name="action_Snapshot">

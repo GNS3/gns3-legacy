@@ -387,7 +387,7 @@ class Application(QApplication, Singleton):
         confo = self.systconf['general']
         confo.lang = ConfDB().get('GNS3/lang', unicode('en'))
         confo.slow_start = int(ConfDB().get('GNS3/slow_start', 0))
-        confo.autosave = int(ConfDB().get('GNS3/autosave', 60))
+        confo.autosave = int(ConfDB().get('GNS3/autosave', 0))
         confo.project_startup = ConfDB().value("GNS3/project_startup", QVariant(True)).toBool()
         confo.relative_paths = ConfDB().value("GNS3/relative_paths", QVariant(True)).toBool()
         confo.use_shell = ConfDB().value("GNS3/use_shell", QVariant(True)).toBool()

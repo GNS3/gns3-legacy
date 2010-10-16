@@ -509,6 +509,9 @@ class NETFile(object):
             init_cloud_id(max_cloud_id + 1)
         if max_decorative_id != -1:
             init_decoration_id(max_decorative_id + 1)
+            
+        if len(globals.interfaceLabels):
+            globals.GApp.workspace.flg_showOnlySavedInterfaceNames = True
 
     def apply_decorative_node_connections(self):
         """ Create GUI connections for decorative nodes

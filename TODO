@@ -4,18 +4,20 @@ TODO LIST
  * NIO Multicast support (next release of Dynamips)
  * Auto UDP (next release of Dynamips)
  * WICS removable (next release of Dynamips)
- * Packet capture between Qemu devices
  * Do not remove original comments in .net files
 
 Debugging
 
  * Can only run one instance of Qemu on Windows (http://www.gns3.net/phpBB/topic1914.html)
+ 
  * Remove associated config + workdir files when deleting a device?
  * Copy only useful working file (nvram, flash, PCMCIA disks) for project & snapshots
  * Check WICS connections
- * Should prevent unwanted interface label to show up after loading a topology
  * Rotation shortcut
  * Capture status dialog
+ * Change symbol for a device
+ * Check device rename with auto config (windows behavior?)
+ * snapshot, copy working dir if project has been set for it
  
  File > New Blank Project which
 a) warns that the current topology will be cleared and then
