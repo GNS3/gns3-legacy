@@ -11,13 +11,10 @@ Debugging
  * Can only run one instance of Qemu on Windows (http://www.gns3.net/phpBB/topic1914.html)
  
  * Remove associated config + workdir files when deleting a device?
- * Copy only useful working file (nvram, flash, PCMCIA disks) for project & snapshots
  * Check WICS connections
  * Rotation shortcut
  * Capture status dialog
  * Change symbol for a device
- * Check device rename with auto config (windows behavior?)
- * snapshot, copy working dir if project has been set for it
  
  File > New Blank Project which
 a) warns that the current topology will be cleared and then
