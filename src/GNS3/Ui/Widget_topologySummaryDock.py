@@ -71,6 +71,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
             self.sortByColumn(0, QtCore.Qt.AscendingOrder)
         if self.expanded:
             self.expandAll()
+        globals.GApp.mainWindow.capturesDock.refresh()
             
     def changeNodeStatus(self, hostname, status):
         """ Change the status of a node
@@ -90,6 +91,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
                 item.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
         if self.expanded:
             self.expandAll()
+        globals.GApp.mainWindow.capturesDock.refresh()
 
     def retranslateItem(self, item):
 

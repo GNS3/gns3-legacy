@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sun Oct  3 16:54:36 2010
+# Created: Sun Oct 17 02:28:16 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(840, 600)
+        MainWindow.resize(1008, 620)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/images/logo_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -32,7 +32,7 @@ class Ui_MainWindow(object):
         self.gridlayout.addWidget(self.graphicsView, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 840, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1008, 22))
         self.menubar.setObjectName("menubar")
         self.menu_Edit = QtGui.QMenu(self.menubar)
         self.menu_Edit.setObjectName("menu_Edit")
@@ -143,6 +143,25 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.UndoViewDock)
         self.dockWidget_UndoView.setWidget(self.dockWidgetContents)
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dockWidget_UndoView)
+        self.dockWidget_Capture = QtGui.QDockWidget(MainWindow)
+        self.dockWidget_Capture.setObjectName("dockWidget_Capture")
+        self.dockWidgetContents_2 = QtGui.QWidget()
+        self.dockWidgetContents_2.setObjectName("dockWidgetContents_2")
+        self.verticalLayout_2 = QtGui.QVBoxLayout(self.dockWidgetContents_2)
+        self.verticalLayout_2.setMargin(0)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.capturesDock = capturesDock(self.dockWidgetContents_2)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.capturesDock.sizePolicy().hasHeightForWidth())
+        self.capturesDock.setSizePolicy(sizePolicy)
+        self.capturesDock.setIconSize(QtCore.QSize(24, 24))
+        self.capturesDock.setRootIsDecorated(False)
+        self.capturesDock.setObjectName("capturesDock")
+        self.verticalLayout_2.addWidget(self.capturesDock)
+        self.dockWidget_Capture.setWidget(self.dockWidgetContents_2)
+        MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_Capture)
         self.action_About = QtGui.QAction(MainWindow)
         self.action_About.setMenuRole(QtGui.QAction.AboutRole)
         self.action_About.setObjectName("action_About")
@@ -311,6 +330,11 @@ class Ui_MainWindow(object):
         self.action_ShowLayers.setObjectName("action_ShowLayers")
         self.action_ReloadAll = QtGui.QAction(MainWindow)
         self.action_ReloadAll.setObjectName("action_ReloadAll")
+        self.action_SaveProjectAs = QtGui.QAction(MainWindow)
+        icon28 = QtGui.QIcon()
+        icon28.addPixmap(QtGui.QPixmap(":/icons/save-as-project.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.action_SaveProjectAs.setIcon(icon28)
+        self.action_SaveProjectAs.setObjectName("action_SaveProjectAs")
         self.menu_Edit.addAction(self.action_SelectAll)
         self.menu_Edit.addAction(self.action_SelectNone)
         self.menu_Edit.addSeparator()
@@ -318,6 +342,7 @@ class Ui_MainWindow(object):
         self.menu_Edit.addAction(self.action_Symbol_Manager)
         self.menu_Edit.addAction(self.action_Preferences)
         self.menu_File.addAction(self.action_New)
+        self.menu_File.addAction(self.action_SaveProjectAs)
         self.menu_File.addAction(self.action_EditProject)
         self.menu_File.addAction(self.action_Open)
         self.menu_File.addAction(self.action_Save)
@@ -352,6 +377,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuAnnotate.menuAction())
         self.menubar.addAction(self.menu_About.menuAction())
         self.toolBar_General.addAction(self.action_New)
+        self.toolBar_General.addAction(self.action_SaveProjectAs)
         self.toolBar_General.addAction(self.action_EditProject)
         self.toolBar_General.addAction(self.action_Open)
         self.toolBar_General.addAction(self.action_Save)
@@ -394,6 +420,9 @@ class Ui_MainWindow(object):
         self.dockWidget_Console.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Console", None, QtGui.QApplication.UnicodeUTF8))
         self.toolBar_drawing.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Drawing", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidget_UndoView.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Undo Stack", None, QtGui.QApplication.UnicodeUTF8))
+        self.dockWidget_Capture.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Captures", None, QtGui.QApplication.UnicodeUTF8))
+        self.capturesDock.headerItem().setText(0, QtGui.QApplication.translate("MainWindow", "Hostname", None, QtGui.QApplication.UnicodeUTF8))
+        self.capturesDock.headerItem().setText(1, QtGui.QApplication.translate("MainWindow", "Interface", None, QtGui.QApplication.UnicodeUTF8))
         self.action_About.setText(QtGui.QApplication.translate("MainWindow", "&About", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setText(QtGui.QApplication.translate("MainWindow", "&Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))
@@ -401,7 +430,7 @@ class Ui_MainWindow(object):
         self.action_Open.setToolTip(QtGui.QApplication.translate("MainWindow", "Open project or topology file", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Open.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+O", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Save.setText(QtGui.QApplication.translate("MainWindow", "&Save", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_Save.setToolTip(QtGui.QApplication.translate("MainWindow", "Save topology file", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Save.setToolTip(QtGui.QApplication.translate("MainWindow", "Save project or topology file", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Save.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+S", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Add_link.setText(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Add_link.setIconText(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
@@ -418,12 +447,12 @@ class Ui_MainWindow(object):
         self.action_StopAll.setText(QtGui.QApplication.translate("MainWindow", "Stop", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StopAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Stop all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StopAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Stop all IOS instances", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_ShowHostnames.setText(QtGui.QApplication.translate("MainWindow", "Show Hostnames", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_ShowHostnames.setToolTip(QtGui.QApplication.translate("MainWindow", "Show Hostnames", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ShowHostnames.setText(QtGui.QApplication.translate("MainWindow", "Show hostnames", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ShowHostnames.setToolTip(QtGui.QApplication.translate("MainWindow", "Show hostnames", None, QtGui.QApplication.UnicodeUTF8))
         self.action_TelnetAll.setText(QtGui.QApplication.translate("MainWindow", "Telnet", None, QtGui.QApplication.UnicodeUTF8))
         self.action_TelnetAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Telnet to all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_TelnetAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Start a console on all running IOS instances", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_SaveAs.setText(QtGui.QApplication.translate("MainWindow", "Save Topology &As… ", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_SaveAs.setText(QtGui.QApplication.translate("MainWindow", "Save topology &as…", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SaveAs.setIconText(QtGui.QApplication.translate("MainWindow", "Save As", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SaveAs.setToolTip(QtGui.QApplication.translate("MainWindow", "Save topology file as...", None, QtGui.QApplication.UnicodeUTF8))
         self.action_AboutQt.setText(QtGui.QApplication.translate("MainWindow", "About &Qt", None, QtGui.QApplication.UnicodeUTF8))
@@ -450,9 +479,9 @@ class Ui_MainWindow(object):
         self.action_Clear.setToolTip(QtGui.QApplication.translate("MainWindow", "Clear topology", None, QtGui.QApplication.UnicodeUTF8))
         self.action_AddNote.setText(QtGui.QApplication.translate("MainWindow", "Add Note", None, QtGui.QApplication.UnicodeUTF8))
         self.action_AddNote.setToolTip(QtGui.QApplication.translate("MainWindow", "Add a note", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_New.setText(QtGui.QApplication.translate("MainWindow", "&Save Project As…", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_New.setText(QtGui.QApplication.translate("MainWindow", "&New blank project", None, QtGui.QApplication.UnicodeUTF8))
         self.action_New.setIconText(QtGui.QApplication.translate("MainWindow", "New Project", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_New.setToolTip(QtGui.QApplication.translate("MainWindow", "Save project as…", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_New.setToolTip(QtGui.QApplication.translate("MainWindow", "New blank project", None, QtGui.QApplication.UnicodeUTF8))
         self.action_New.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+N", None, QtGui.QApplication.UnicodeUTF8))
         self.action_config.setText(QtGui.QApplication.translate("MainWindow", "&Import/Export", None, QtGui.QApplication.UnicodeUTF8))
         self.action_config.setToolTip(QtGui.QApplication.translate("MainWindow", "Import/Export Startup Configs", None, QtGui.QApplication.UnicodeUTF8))
@@ -464,18 +493,21 @@ class Ui_MainWindow(object):
         self.action_DrawRectangle.setToolTip(QtGui.QApplication.translate("MainWindow", "Draw a rectangle", None, QtGui.QApplication.UnicodeUTF8))
         self.action_DrawEllipse.setText(QtGui.QApplication.translate("MainWindow", "Draw Ellipse", None, QtGui.QApplication.UnicodeUTF8))
         self.action_DrawEllipse.setToolTip(QtGui.QApplication.translate("MainWindow", "Draw an ellipse", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_ShowinterfaceNames.setText(QtGui.QApplication.translate("MainWindow", "Show Interface Names", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_ShowinterfaceNames.setToolTip(QtGui.QApplication.translate("MainWindow", "Show Interface Names", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ShowinterfaceNames.setText(QtGui.QApplication.translate("MainWindow", "Show Interface Labels", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ShowinterfaceNames.setToolTip(QtGui.QApplication.translate("MainWindow", "Show interface labels", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Snapshot.setText(QtGui.QApplication.translate("MainWindow", "Snapshot", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Snapshot.setToolTip(QtGui.QApplication.translate("MainWindow", "Take a snapshot", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_EditProject.setText(QtGui.QApplication.translate("MainWindow", "&Edit Project", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_EditProject.setText(QtGui.QApplication.translate("MainWindow", "&Edit project", None, QtGui.QApplication.UnicodeUTF8))
         self.action_EditProject.setToolTip(QtGui.QApplication.translate("MainWindow", "Edit project", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ShowLayers.setText(QtGui.QApplication.translate("MainWindow", "Show layers", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ReloadAll.setText(QtGui.QApplication.translate("MainWindow", "ReloadAll", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_SaveProjectAs.setText(QtGui.QApplication.translate("MainWindow", "&Save project as…", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_SaveProjectAs.setToolTip(QtGui.QApplication.translate("MainWindow", "Save project as...", None, QtGui.QApplication.UnicodeUTF8))
 
-from GNS3.Console import Console
 from GNS3.UndoFramework import UndoView
-from GNS3.Ui.Widget_topologySummaryDock import topologySummaryDock
 from GNS3.Ui.Widget_nodesDock import nodesDock
 from GNS3.Scene import Scene
+from GNS3.Console import Console
+from GNS3.Ui.Widget_capturesDock import capturesDock
+from GNS3.Ui.Widget_topologySummaryDock import topologySummaryDock
 import svg_resources_rc

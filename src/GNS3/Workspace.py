@@ -128,6 +128,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_About,  QtCore.SIGNAL('triggered()'), self.__action_About)
         self.connect(self.action_AboutQt,  QtCore.SIGNAL('triggered()'), self.__action_AboutQt)
         self.connect(self.action_New,  QtCore.SIGNAL('triggered()'), self.__action_NewProject)
+        self.connect(self.action_SaveProjectAs,  QtCore.SIGNAL('triggered()'), self.__action_SaveProjectAs)
         self.connect(self.action_EditProject,  QtCore.SIGNAL('triggered()'), self.__action_EditProject)
         self.connect(self.action_Open,  QtCore.SIGNAL('triggered()'), self.__action_OpenFile)
         self.connect(self.action_Save,  QtCore.SIGNAL('triggered()'), self.__action_Save)
@@ -153,6 +154,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.subm.addAction(self.dockWidget_TopoSum.toggleViewAction())
         self.subm.addAction(self.dockWidget_Console.toggleViewAction())
         self.subm.addAction(self.dockWidget_UndoView.toggleViewAction())
+        self.subm.addAction(self.dockWidget_Capture.toggleViewAction())
         self.menu_View.addSeparator().setText(translate("Workspace", "Docks"))
         self.menu_View.addMenu(self.subm)
 
@@ -270,7 +272,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def clear_workdir(self, projectWorkdir):
         """ Delete useless working directory files
         """
-        
+
         if globals.GApp.systconf['dynamips'].clean_workdir:
             # delete dynamips files
             dynamips_files = glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*")
@@ -758,6 +760,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
         projectDialog.show()
         self.centerDialog(projectDialog)
         projectDialog.exec_()
+        
+    def __action_SaveProjectAs(self):
+        """ Save project in a new location
+        """
+        
+        print 'HERE'
         
     def __action_EditProject(self):
         """ Edit a project

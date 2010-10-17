@@ -252,6 +252,8 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s is not running")) % device)
                     return
                 self.__captureDynamipsDevice(device, interface, encapsulation)
+        
+        globals.GApp.mainWindow.capturesDock.refresh()
 
     def __captureQemuDevice(self, device, interface):
         """ Capture for Qemu based devices
@@ -341,7 +343,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
     
             else:
                 (device, slot, inttype, port) = self.captureInfo
-                globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'none','both')
+                globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port, 'none', 'both')
             QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  translate("AbstractEdge", "Capture stopped"))
             self.capturing = False
             self.captureInfo = None
@@ -349,6 +351,8 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Dynamips error"),  unicode(msg))
             return
+
+        globals.GApp.mainWindow.capturesDock.refresh()
 
     def __startWiresharkAction(self):
         """ Start a Wireshark like tool
