@@ -9,6 +9,7 @@ FILES=" Form_MainWindow
 	Form_NewProject
 	Form_Snapshots
 	Form_SymbolManager
+	Form_SymbolDialog
 	Form_Wizard
 	Form_StyleDialog
 	Form_StartupConfig

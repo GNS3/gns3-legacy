@@ -190,36 +190,57 @@ class NETFile(object):
             if config.has_key('symbol'):
                 symbol_name = config['symbol']
 
-        # symbol name not found, use default one
-        default_symbol = False
-        if not symbol_name or not globals.GApp.scene.renders.has_key(symbol_name):
-            symbol_name = default_symbol_name
-            default_symbol = True
+        node = None
+        if symbol_name:
+            for item in SYMBOLS:
+                if item['name'] == default_symbol_name:
+                    symbol_resources = QtCore.QResource(":/symbols")
+                    for symbol in symbol_resources.children():
+                        symbol = str(symbol)
+                        if symbol.startswith(symbol_name):
+                            normal_renderer = QtSvg.QSvgRenderer(':/symbols/' + symbol_name + '.normal.svg')
+                            select_renderer = QtSvg.QSvgRenderer(':/symbols/' + symbol_name + '.selected.svg')
+                            node = item['object'](normal_renderer, select_renderer)
+                            node.type = symbol_name
+                            node.default_symbol = False
+                            break
+                    break
 
-        for item in SYMBOLS:
-            if item['name'] == symbol_name:
-                renders = globals.GApp.scene.renders[symbol_name]
-                node = item['object'](renders['normal'], renders['selected'])
-                node.set_hostname(device.name)
-                node.type = item['name']
-                if not default_symbol:
-                    node.default_symbol = False
-                if x == None:
-                    x = random.uniform(-200, 200)
-                if y == None:
-                    y = random.uniform(-200, 200)
-                node.setPos(float(x), float(y))
-                if z:
-                    node.setZValue(float(z))
-                if hx and hy:
-                    node.hostname_xpos = float(hx)
-                    node.hostname_ypos = float(hy)
-                if globals.GApp.workspace.flg_showHostname == True:
-                    node.showHostname()
-                debug("Node created: " + str(node))
-                return node
+        if not node:
+            # symbol name not found, use default one
+            default_symbol = False
+            if not symbol_name or not globals.GApp.scene.renders.has_key(symbol_name):
+                symbol_name = default_symbol_name
+                default_symbol = True
     
-        return None
+    
+            for item in SYMBOLS:
+                if item['name'] == symbol_name:
+                    renders = globals.GApp.scene.renders[symbol_name]
+                    node = item['object'](renders['normal'], renders['selected'])
+                    node.type = item['name']
+                    if not default_symbol:
+                        node.default_symbol = False
+                    break
+        
+        if not node:    
+            return None
+             
+        node.set_hostname(device.name)       
+        if x == None:
+            x = random.uniform(-200, 200)
+        if y == None:
+            y = random.uniform(-200, 200)
+        node.setPos(float(x), float(y))
+        if z:
+            node.setZValue(float(z))
+        if hx and hy:
+            node.hostname_xpos = float(hx)
+            node.hostname_ypos = float(hy)
+        if globals.GApp.workspace.flg_showHostname == True:
+            node.showHostname()
+        debug("Node created: " + str(node))
+        return node
 
     def record_image(self, device):
         """ Record an image and all its settings in GNS3

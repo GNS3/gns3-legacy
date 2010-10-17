@@ -323,7 +323,7 @@ class IOSRouter(AbstractNode):
             if module and module.adapter != 'NM-16ESW':
                 interfaces = module.interfaces
                 if len(interfaces):
-                    type= interfaces.keys()[0]
+                    type = interfaces.keys()[0]
                     found = False
                     for port in interfaces[type].values():
                         if self.router.model_string in SLOTLESS_MODELS:

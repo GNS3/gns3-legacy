@@ -29,6 +29,7 @@ from GNS3.Annotation import Annotation
 from GNS3.ShapeItem import AbstractShapeItem, Rectangle, Ellipse
 from GNS3.StyleDialog import StyleDialog
 from GNS3.MACTableDialog import MACTableDialog
+from GNS3.SymbolDialog import SymbolDialog
 from GNS3.Pixmap import Pixmap
 from GNS3.NodeConfigurator import NodeConfigurator
 from GNS3.Node.AbstractNode import AbstractNode
@@ -142,6 +143,15 @@ class Scene(QtGui.QGraphicsView):
             self.connect(MACTableAct, QtCore.SIGNAL('triggered()'), self.slotMACTable)
 
             menu.addAction(MACTableAct)
+            
+        instances = map(lambda item: isinstance(item, AbstractNode), items)
+        if True in instances:
+
+            # Action: Change symbol
+            changeSymbol = QtGui.QAction(translate('Scene', 'Change Symbol'), menu)
+            changeSymbol.setIcon(QtGui.QIcon(':/icons/node_conception.svg'))
+            self.connect(changeSymbol, QtCore.SIGNAL('triggered()'), self.slotchangeSymbol)        
+            menu.addAction(changeSymbol)            
 
         instances = map(lambda item: isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice), items)
         if True in instances:
@@ -237,10 +247,10 @@ class Scene(QtGui.QGraphicsView):
         raiseZvalueAct = QtGui.QAction(translate('Scene', 'Raise one step'), menu)
         raiseZvalueAct.setIcon(QtGui.QIcon(':/icons/raise_z_value.svg'))
         self.connect(raiseZvalueAct, QtCore.SIGNAL('triggered()'), self.slotraiseZValue)
-
+        
         menu.addAction(raiseZvalueAct)
         menu.addAction(lowerZvalueAct)
-        
+
         items = self.__topology.selectedItems()
         if len(items) > 1:
        
@@ -524,6 +534,19 @@ class Scene(QtGui.QGraphicsView):
             zvalue = item.zValue()
             command = undo.NewZValue(item, zvalue + 1)
             self.__topology.undoStack.push(command)
+            
+    def slotchangeSymbol(self):
+        """ Change a device's symbol
+        """
+        
+        item_list = []
+        for item in self.__topology.selectedItems():
+            if isinstance(item, AbstractNode):
+                item_list.append(item)
+        if len(item_list):
+            dialog = SymbolDialog(item_list)
+            dialog.show()
+            dialog.exec_()
 
     def slotConsole(self):
         """ Slot called to launch a console on the selected items
