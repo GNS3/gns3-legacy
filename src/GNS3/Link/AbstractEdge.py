@@ -176,7 +176,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 return
             menu = QtGui.QMenu()
             if self.capturing == True:
-                menu.addAction(QtGui.QIcon(':/icons/inspect.svg'), translate("AbstractEdge", "Stop the capture"))
+                menu.addAction(QtGui.QIcon(':/icons/inspect.svg'), translate("AbstractEdge", "Stop capturing"))
                 menu.addAction(QtGui.QIcon(':/icons/wireshark.png'), translate("AbstractEdge", "Start Wireshark"))
             else:
                 menu.addAction(QtGui.QIcon(':/icons/inspect.svg'), translate("AbstractEdge", "Capture"))
@@ -193,7 +193,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             self.__deleteAction()
         elif action == translate("AbstractEdge", "Capture"):
             self.__captureAction()
-        elif action == translate("AbstractEdge", "Stop the capture"):
+        elif action == translate("AbstractEdge", "Stop capturing"):
             self.__stopCaptureAction()
         elif action == translate("AbstractEdge", "Start Wireshark"):
             self.__startWiresharkAction()
@@ -327,6 +327,10 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             time.sleep(2)
             self.__startWiresharkAction()
 
+    def stopCapturing(self):
+        
+        self.__stopCaptureAction()
+
     def __stopCaptureAction(self):
         """ Stop capturing frames on the link
         """
@@ -353,6 +357,10 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             return
 
         globals.GApp.mainWindow.capturesDock.refresh()
+
+    def startWireshark(self):
+        
+        self.__startWiresharkAction()
 
     def __startWiresharkAction(self):
         """ Start a Wireshark like tool
