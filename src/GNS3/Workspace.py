@@ -71,7 +71,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.flg_showInterfaceNames = False
         
         # By default show only saved interface names (after loading a topology)
-        self.flg_showOnlySavedInterfaceNames = True
+        self.flg_showOnlySavedInterfaceNames = False
         
         # By default don't show layer positioning
         self.flg_showLayerPos = False
@@ -564,16 +564,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
         
         if self.flg_showInterfaceNames == False:
 
-            if len(globals.interfaceLabels):
-                reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Show only saved interface labels?"), 
+            if not len(globals.interfaceLabels) and self.flg_showOnlySavedInterfaceNames:
+                reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Reset saved interface labels?"), 
                 QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
                 if reply == QtGui.QMessageBox.Yes:
-                    self.flg_showOnlySavedInterfaceNames = True
-                else:
                     self.flg_showOnlySavedInterfaceNames = False
-                    globals.interfaceLabels.clear()
-            else:
-                self.flg_showOnlySavedInterfaceNames = False
 
             self.flg_showInterfaceNames = True
             self.action_ShowinterfaceNames.setText(translate('Workspace', 'Hide interface names'))
@@ -751,21 +746,35 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Create a new project
         """
 
+
+        if len(globals.GApp.dynagen.devices):
+            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"),
+                                               translate("Workspace", "Do you want to clear the current topology?"), QtGui.QMessageBox.Yes, \
+                                               QtGui.QMessageBox.No)
+            if reply == QtGui.QMessageBox.No:
+                return
+
+        self.clear()
         projectDialog = ProjectDialog()
-        projectDialog.pushButtonOpenProject.hide()
-        if self.projectFile:
-            projectDialog.setWindowTitle("Save Project As...")
-        self.projectWorkdir
-        self.projectConfigs
+        self.projectWorkdir = None
+        self.projectConfigs = None
         projectDialog.show()
         self.centerDialog(projectDialog)
         projectDialog.exec_()
-        
+
     def __action_SaveProjectAs(self):
         """ Save project in a new location
         """
         
-        print 'HERE'
+        projectDialog = ProjectDialog()
+        projectDialog.pushButtonOpenProject.hide()
+        if self.projectFile:
+            projectDialog.setWindowTitle("Save Project As...")
+        self.projectWorkdir = None
+        self.projectConfigs = None
+        projectDialog.show()
+        self.centerDialog(projectDialog)
+        projectDialog.exec_()
         
     def __action_EditProject(self):
         """ Edit a project
@@ -785,7 +794,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Create a new project
         """
 
-        projectWorkdircopy = self.projectWorkdir
         globals.GApp.workspace.setWindowTitle("GNS3")
         self.projectWorkdir = None
         self.projectConfigs = None
@@ -803,71 +811,54 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 os.mkdir(self.projectConfigs)
             except (OSError, IOError), e:
                 print "Warning: cannot create directory: " + self.projectConfigs + ": " + e.strerror
+        
         if len(globals.GApp.dynagen.devices):
-            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"),
-                                               translate("Workspace", "Do you want to apply the project settings to the current topology? (can take some time)"), QtGui.QMessageBox.Yes, \
-                                               QtGui.QMessageBox.No)
-            if reply == QtGui.QMessageBox.Yes:
-                if self.projectConfigs:
-                    for node in globals.GApp.topology.nodes.values():
-                        if isinstance(node, IOSRouter) and node.router.cnfg:
-                            try:
-                                shutil.copy(node.router.cnfg, self.projectConfigs)
-                            except (OSError, IOError), e:
-                                debug("Warning: cannot copy " + file + " to " + self.projectConfigs)
-                                continue
-                            config = os.path.basename(node.router.cnfg)
-                            node.router.cnfg = self.projectConfigs + os.sep + config
+            if self.projectConfigs:
+                for node in globals.GApp.topology.nodes.values():
+                    if isinstance(node, IOSRouter) and node.router.cnfg:
+                        try:
+                            shutil.copy(node.router.cnfg, self.projectConfigs)
+                        except (OSError, IOError), e:
+                            debug("Warning: cannot copy " + file + " to " + self.projectConfigs)
+                            continue
+                        config = os.path.basename(node.router.cnfg)
+                        node.router.cnfg = self.projectConfigs + os.sep + config
 
-                if self.projectWorkdir:
-#                    # stop all router and firewall nodes
-#                    for node in globals.GApp.topology.nodes.values():
-#                        if isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice):
-#                            node.stopNode()
-                    # move dynamips & Qemu files
-                    for node in globals.GApp.topology.nodes.values():
-                        if isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir:
+            if self.projectWorkdir:
+                # move dynamips & Qemu files
+                for node in globals.GApp.topology.nodes.values():
+                    if isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir:
+   
+                        dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_nvram*')
+                        dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_disk*')
+                        dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_slot*')
+                        dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_rom')
+                        dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_*flash*')
+                        dynamips_files += [os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_dynagen_device().formatted_ghost_file()]
                             
-                            dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_nvram*')
-                            dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_disk*')
-                            dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_slot*')
-                            dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_rom')
-                            dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_*flash*')
-                            dynamips_files += [os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_dynagen_device().formatted_ghost_file()]
-                            
-                            for file in dynamips_files:
-                                try:
-                                    shutil.copy(file, self.projectWorkdir)
-                                except (OSError, IOError), e:
-                                    debug("Warning: cannot copy " + file + " to " + self.projectWorkdir)
-                                    continue
-                                except:
-                                    continue
-                        if isinstance(node, AnyEmuDevice) and self.projectWorkdir != node.qemu.workingdir:
-                            qemu_files = glob.glob(os.path.normpath(node.qemu.workingdir) + os.sep + node.hostname)
-                            for file in qemu_files:
-                                try:
-                                    shutil.copy(file, self.projectWorkdir + os.sep + node.hostname)
-                                except (OSError, IOError), e:
-                                    debug("Warning: cannot copy " + file + " to " + self.projectWorkdir)
-                                    continue
-                    # set the new working directory
-                    try:
-                        for hypervisor in globals.GApp.dynagen.dynamips.values():
-                            hypervisor.workingdir = self.projectWorkdir
-                    except lib.DynamipsError, msg:
-                        QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "Dynamips error"), "%s: %s") % (self.projectWorkdir, unicode(msg)))
-            elif globals.GApp.topology.changed == True:
-                reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the current topology?"),
-                                           QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-                if reply == QtGui.QMessageBox.Yes:
-                    save = self.projectWorkdir
-                    self.projectWorkdir = projectWorkdircopy
-                    self.__action_Save()
-                    self.projectWorkdir = save
-                globals.GApp.topology.clear()
-                for item in globals.GApp.topology.items():
-                    globals.GApp.topology.removeItem(item)
+                        for file in dynamips_files:
+                            try:
+                                shutil.copy(file, self.projectWorkdir)
+                            except (OSError, IOError), e:
+                                debug("Warning: cannot copy " + file + " to " + self.projectWorkdir)
+                                continue
+                            except:
+                                continue
+                    if isinstance(node, AnyEmuDevice) and self.projectWorkdir != node.qemu.workingdir:
+                        qemu_files = glob.glob(os.path.normpath(node.qemu.workingdir) + os.sep + node.hostname)
+                        for file in qemu_files:
+                            try:
+                                shutil.copy(file, self.projectWorkdir + os.sep + node.hostname)
+                            except (OSError, IOError), e:
+                                debug("Warning: cannot copy " + file + " to " + self.projectWorkdir)
+                                continue
+                # set the new working directory
+                try:
+                    for hypervisor in globals.GApp.dynagen.dynamips.values():
+                        hypervisor.workingdir = self.projectWorkdir
+                except lib.DynamipsError, msg:
+                    QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "Dynamips error"), "%s: %s") % (self.projectWorkdir, unicode(msg)))
+
         self.__action_Save(auto=True)
         self.setWindowTitle("GNS3 Project - " + self.projectFile) 
 

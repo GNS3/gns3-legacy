@@ -1,5 +1,25 @@
 CHANGELOG
 
+GNS3 0.7.3
+
+ * Easily change the symbol of one or several nodes (Select a node, then right click -> Change symbol).
+ * A docked window to see on what device and interface captures are running (View -> Docks -> Captures). You can stop capturing or start Wireshark using this view.
+ * Only the necessary files (nvram/flash/disks) are copied or kept when creating projects and snapshots.
+ * Preventing unsaved interface labels to show up after loading a topology. This can be reset using the "show interface labels" button.
+ * Improvements for ATM and Frame Relay switches: proper naming, dynamic mapping support and it is not needed to remove a link to change its DLCI/VC mapping.
+ * PCAP capture support for Qemu based devices (Qemu host, JunOS ASA, PIX, IDS). This option cannot be used after the selected device is started.
+ * Fixed many issues with the snapshot feature. Now it should work as expected.
+ * New node type: EtherSwitch router. This is a c3700 router with a Etherswitch NM-16ESW loaded.
+ * Better consistency between buttons and menus. Many items have been renamed, toolbar buttons accessible from the menu etc.
+ * Possibility to configure the AUX port. Only works for c7200 routers (Preferences -> Dynamips -> Base AUX port).
+ * Changed standard naming convention for project and snapshots. Topology file is named topology.net, working directory: working and configurations directory: configs.
+ * Duplicate option for annotations, ellipses and rectangles (Select an item, right click -> Duplicate).
+ * Horizontal + vertical alignment options (Select nodes, right click -> Align horizontally/vertically).
+ * Possibility to have multiple images for Qemu hosts, JunOS, PIX, ASA and IDS and to configure the number of interfaces on each devices.
+ * Autosave feature to save your topology every x secondes (Preferences -> General).
+ * A default base config (with hostname, exec-timeout commands etc.) is automatically loaded when creating a new IOS based router. The path to this default config can be changed in "IOS images and hypervisors" dialog.
+ * A more understandable MAC address table for Ethernet switches (right click on a switch -> Show MAC address table).
+
 GNS3 0.7.2
 
  * Lot of small fixes (relative paths, link removal, .net loading, Ethernet switch connection to a Cloud etc.)

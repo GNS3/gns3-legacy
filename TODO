@@ -5,13 +5,9 @@ TODO LIST
  * Auto UDP (next release of Dynamips)
  * WICS removable (next release of Dynamips)
  * Do not remove original comments in .net files
+ * New logo
 
 Debugging
 
  * Can only run one instance of Qemu on Windows (http://www.gns3.net/phpBB/topic1914.html)
  * Check WICS connections
- * Change symbol for a device
- 
- File > New Blank Project which
-a) warns that the current topology will be cleared and then
-b) (after confirmation) do just that Ð clear the topology and start a new blank project in the directory you create by naming your project.
