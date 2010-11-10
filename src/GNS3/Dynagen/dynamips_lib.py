@@ -1257,9 +1257,9 @@ class BaseAdapter(object):
             dynaport = self.interfaces[interface][port]
             nioName = self.nio(dynaport).name
         except AttributeError:
-            raise DynamipsError, 'Invalid interface'
+            raise DynamipsError, 'Invalid interface or interface not connected'
         except KeyError:
-            raise DynamipsError, 'Invalid interface'
+            raise DynamipsError, 'Invalid interface or interface not connected'
 
         if direction == 'in':
             dirint = 0

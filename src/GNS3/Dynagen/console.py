@@ -874,7 +874,7 @@ show run <device_name>
                     try:
                         f = open(directory + os.sep + file, 'r')
                         config = f.read()
-                        config = '\n!\n' + config
+                        config = '!\n' + config
                         f.close()
                         # Encodestring puts in a bunch of newlines. Split them out then join them back together
                         encoded = ("").join(base64.encodestring(config).split())

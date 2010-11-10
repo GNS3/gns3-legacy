@@ -217,7 +217,7 @@ class Topology(QtGui.QGraphicsScene):
             dynamips_hypervisor.configchange = True
             dynamips_hypervisor.udp = hypervisor_conf.baseUDP
             dynamips_hypervisor.starting_udp = hypervisor_conf.baseUDP
-            dynamips_hypervisor.baseconsole = hypervisor_conf.baseConsol
+            dynamips_hypervisor.baseconsole = hypervisor_conf.baseConsole
             dynamips_hypervisor.baseaux = hypervisor_conf.baseAUX
         node.set_hypervisor(dynamips_hypervisor)
         return True
@@ -230,7 +230,7 @@ class Topology(QtGui.QGraphicsScene):
             f = open(config_path, 'r')
             config = f.read()
             f.close()
-            config = config.replace('\r', "")
+            config = '!\n' + config.replace('\r', "")
             config = config.replace('%h', node.router.name)
             encoded = ("").join(base64.encodestring(config).split())
             node.router.config_b64 = encoded
@@ -711,6 +711,7 @@ class Topology(QtGui.QGraphicsScene):
         self.removeItem(node)
         del self.__nodes[id]
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
+        globals.GApp.mainWindow.capturesDock.refresh()
         # Work-around QGraphicsSvgItem caching bug:
         # Forcing to clear the QPixmapCache on node delete.
         # FIXME: in Qt 4.4

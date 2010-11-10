@@ -510,7 +510,7 @@ class IOSRouter(AbstractNode):
             if config:
                 old_hostname
                 config = config.replace('\r', "")
-                config = "!" + config.replace(old_hostname, new_hostname) 
+                config = '!\n' + config.replace(old_hostname, new_hostname)
                 encoded = ("").join(base64.encodestring(config).split())
                 self.router.config_b64 = encoded
         except:

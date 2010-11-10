@@ -278,6 +278,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """
 
         if edge in self.__edgeList:
+            edge.stopCapturing(showMessage=False)
             self.__edgeList.remove(edge)
 
     def getEdgeList(self):

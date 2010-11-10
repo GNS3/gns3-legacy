@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_SymbolDialog.ui'
 #
-# Created: Sun Oct 17 16:49:35 2010
+# Created: Wed Nov 10 21:46:20 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,6 +13,9 @@ class Ui_SymbolDialog(object):
     def setupUi(self, SymbolDialog):
         SymbolDialog.setObjectName("SymbolDialog")
         SymbolDialog.resize(337, 490)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/images/logo_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        SymbolDialog.setWindowIcon(icon)
         self.verticalLayout = QtGui.QVBoxLayout(SymbolDialog)
         self.verticalLayout.setObjectName("verticalLayout")
         self.treeWidgetSymbols = QtGui.QTreeWidget(SymbolDialog)
@@ -35,3 +38,4 @@ class Ui_SymbolDialog(object):
         SymbolDialog.setWindowTitle(QtGui.QApplication.translate("SymbolDialog", "Change symbol", None, QtGui.QApplication.UnicodeUTF8))
         self.treeWidgetSymbols.headerItem().setText(0, QtGui.QApplication.translate("SymbolDialog", "Symbols", None, QtGui.QApplication.UnicodeUTF8))
 
+import svg_resources_rc

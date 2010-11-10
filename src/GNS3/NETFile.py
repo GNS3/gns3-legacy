@@ -826,7 +826,7 @@ class NETFile(object):
 
         try:
             config = base64.decodestring(device.config_b64)
-            config = config.replace('\r', "")
+            config = '!\n' + config.replace('\r', "")
             # Write out the config to a file
             file_path = os.path.normpath(globals.GApp.workspace.projectConfigs) + os.sep + device.name + '.cfg'
             if auto == False:

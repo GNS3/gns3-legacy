@@ -47,13 +47,13 @@ class DynagenSub(Dynagen):
                 if os.path.exists(self.gns3_data['configs']):
                     projectConfigsDir = self.gns3_data['configs']
                 else:
-                    projectConfigsDir = os.path.join(os.path.dirname(FILENAME), self.gns3_data['configs'])
+                    projectConfigsDir = os.path.join(os.path.dirname(FILENAME), unicode(self.gns3_data['configs']))
                 globals.GApp.workspace.projectConfigs = os.path.abspath(projectConfigsDir)
             if self.gns3_data.has_key('workdir'):
                 if os.path.exists(self.gns3_data['workdir']):
                     projectWorkdir = self.gns3_data['workdir']
                 else:
-                    projectWorkdir = os.path.join(os.path.dirname(FILENAME), self.gns3_data['workdir'])
+                    projectWorkdir = os.path.join(os.path.dirname(FILENAME), unicode(self.gns3_data['workdir']))
                 globals.GApp.workspace.projectWorkdir = os.path.abspath(projectWorkdir)
             config.sections.remove('GNS3-DATA')
 
@@ -82,7 +82,7 @@ class DynagenSub(Dynagen):
 
                     # Check if this is a relative working directory path and convert to an absolute path if necessary
                     if server['workingdir']:
-                        abspath = os.path.join(os.path.dirname(FILENAME), server['workingdir'])
+                        abspath = os.path.join(os.path.dirname(FILENAME), unicode(server['workingdir']))
                         if os.path.exists(abspath):
                             server['workingdir'] = abspath
                             debug(unicode("Converting relative working directory path to absolute path: %s") % server['workingdir'])
@@ -149,7 +149,7 @@ class DynagenSub(Dynagen):
                             continue
                         # Check if the image path is a relative path
                         if os.path.exists(device['image']) == False:
-                            abspath = os.path.join(os.path.dirname(FILENAME), device['image'])
+                            abspath = os.path.join(os.path.dirname(FILENAME), unicode(device['image']))
                             if os.path.exists(abspath):
                                 device['image'] = abspath
                         
@@ -209,7 +209,7 @@ class DynagenSub(Dynagen):
                     
                     # Check if this is a relative working directory path and convert to an absolute path if necessary
                     if server['workingdir']:
-                        abspath = os.path.join(os.path.dirname(FILENAME), server['workingdir'])
+                        abspath = os.path.join(os.path.dirname(FILENAME), unicode(server['workingdir']))
                         if os.path.exists(abspath):
                             server['workingdir'] = abspath
                             debug(unicode("Converting relative working directory path to absolute path: %s") % server['workingdir'])
@@ -234,7 +234,7 @@ class DynagenSub(Dynagen):
                         if device.name in DEVICETUPLE:
                             
                             # Check if this is a relative image path and convert to an absolute path if necessary
-                            abspath = os.path.join(os.path.dirname(FILENAME), device['image'])
+                            abspath = os.path.join(os.path.dirname(FILENAME), unicode(device['image']))
                             if os.path.exists(abspath):
                                 device['image'] = abspath
                                 debug(unicode("Converting relative image path to absolute path: %s") % device['image'])
@@ -259,15 +259,19 @@ class DynagenSub(Dynagen):
                                 if not image_to_use:
                                     image_to_use = selected_images[0]
                                 image_name = globals.GApp.iosimages[image_to_use].filename
+                                ram = globals.GApp.iosimages[image_to_use].default_ram
+                                idlepc = globals.GApp.iosimages[image_to_use].idlepc
                                 print unicode(translate("DynagenSub", "Local IOS image %s cannot be found for hypervisor %s, use image %s instead")) \
                                 % (unicode(device['image']), unicode(server.host) + ':' + controlPort, image_name)
                                 device['image'] = image_name
+                                device['ram'] = ram
+                                device['idlepc'] = idlepc
 
                         # check if the config file is accessible, if not find an alternative config
                         elif device.has_key('cnfg') and device['cnfg']:
                             
                             # Check if this is a relative config path and convert to an absolute path if necessary
-                            abspath = os.path.join(os.path.dirname(FILENAME), device['cnfg'])
+                            abspath = os.path.join(os.path.dirname(FILENAME), unicode(device['cnfg']))
                             if os.path.exists(abspath):
                                 device['cnfg'] = abspath
                                 debug(unicode("Converting relative config path to absolute path: %s") % device['cnfg'])

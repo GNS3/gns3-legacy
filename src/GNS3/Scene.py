@@ -359,6 +359,7 @@ class Scene(QtGui.QGraphicsView):
                 dupnote.setFont(item.font())
                 dupnote.rotate(item.rotation)
                 dupnote.rotation = item.rotation
+                dupnote.setZValue(item.zValue())
                 command = undo.AddItem(self.__topology, dupnote, translate("Scene", "annotation"))
                 self.__topology.undoStack.push(command)
             if isinstance(item, AbstractShapeItem):
@@ -372,6 +373,7 @@ class Scene(QtGui.QGraphicsView):
                 dupshape.setBrush(item.brush())
                 dupshape.rotate(item.rotation)
                 dupshape.rotation = item.rotation
+                dupshape.setZValue(item.zValue())
                 if isinstance(dupshape, Rectangle):
                     command = undo.AddItem(self.__topology, dupshape, translate("Scene", "rectangle"))
                 else:

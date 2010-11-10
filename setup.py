@@ -35,7 +35,7 @@ if sys.platform.startswith('win'):
                 options={"py2exe":
                                     {
                                      "includes": ["sip"],
-                                     "optimize": 2,
+                                     "optimize": 1,
                                      "packages": ["GNS3.Ui.ConfigurationPages.Page_ATMSW",
                                                   "GNS3.Ui.ConfigurationPages.Page_ATMBR",
                                                   "GNS3.Ui.ConfigurationPages.Page_Cloud",
@@ -81,7 +81,7 @@ elif sys.platform.startswith('darwin'):
     OPTIONS = {'argv_emulation': True,
                'semi_standalone': False,
                'site_packages': True,
-               'optimize':  2,
+               'optimize':  1,
                'iconfile': 'gns3.icns',
                'includes': ['sip',
                             'PyQt4.QtCore',

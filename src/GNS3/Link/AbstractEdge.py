@@ -327,11 +327,12 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             time.sleep(2)
             self.__startWiresharkAction()
 
-    def stopCapturing(self):
-        
-        self.__stopCaptureAction()
+    def stopCapturing(self, showMessage=True):
 
-    def __stopCaptureAction(self):
+        if self.capturing:
+            self.__stopCaptureAction(showMessage)
+
+    def __stopCaptureAction(self, showMessage=True):
         """ Stop capturing frames on the link
         """
 
@@ -339,7 +340,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             if isinstance(globals.GApp.dynagen.devices[self.captureInfo[0]], qemu.AnyEmuDevice):
                 (device, port) = self.captureInfo
 
-                if globals.GApp.dynagen.devices[device].state == 'running':
+                if showMessage and globals.GApp.dynagen.devices[device].state == 'running':
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s must be stopped to stop capturing traffic")) % device) 
 
                 # empty string means stop capturing traffic
@@ -348,12 +349,14 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             else:
                 (device, slot, inttype, port) = self.captureInfo
                 globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port, 'none', 'both')
-            QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  translate("AbstractEdge", "Capture stopped"))
+            if showMessage:
+                QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  translate("AbstractEdge", "Capture stopped"))
             self.capturing = False
             self.captureInfo = None
             self.capfile = None
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Dynamips error"),  unicode(msg))
+            if showMessage:
+                QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Dynamips error"),  unicode(msg))
             return
 
         globals.GApp.mainWindow.capturesDock.refresh()

@@ -61,16 +61,17 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="action_New"/>
-    <addaction name="action_SaveProjectAs"/>
-    <addaction name="action_EditProject"/>
+    <addaction name="action_Clear"/>
     <addaction name="action_Open"/>
     <addaction name="action_Save"/>
     <addaction name="action_SaveAs"/>
+    <addaction name="action_New"/>
+    <addaction name="action_SaveProjectAs"/>
+    <addaction name="action_EditProject"/>
     <addaction name="separator"/>
-    <addaction name="action_Clear"/>
     <addaction name="action_config"/>
     <addaction name="action_Export"/>
+    <addaction name="action_Snapshot"/>
     <addaction name="separator"/>
     <addaction name="action_Quit"/>
    </widget>
@@ -101,6 +102,7 @@
     <addaction name="action_StartAll"/>
     <addaction name="action_StopAll"/>
     <addaction name="action_SuspendAll"/>
+    <addaction name="action_TelnetAll"/>
    </widget>
    <widget class="QMenu" name="menuAnnotate">
     <property name="title">
@@ -138,14 +140,14 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action_New"/>
-   <addaction name="action_SaveProjectAs"/>
-   <addaction name="action_EditProject"/>
+   <addaction name="action_Clear"/>
    <addaction name="action_Open"/>
    <addaction name="action_Save"/>
    <addaction name="action_SaveAs"/>
+   <addaction name="action_New"/>
+   <addaction name="action_SaveProjectAs"/>
+   <addaction name="action_EditProject"/>
    <addaction name="separator"/>
-   <addaction name="action_Clear"/>
    <addaction name="action_ShowinterfaceNames"/>
    <addaction name="action_ShowHostnames"/>
    <addaction name="action_Add_link"/>
@@ -551,10 +553,10 @@
      <normaloff>:/icons/console.svg</normaloff>:/icons/console.svg</iconset>
    </property>
    <property name="text">
-    <string>Telnet</string>
+    <string>Console to all devices</string>
    </property>
    <property name="toolTip">
-    <string>Telnet to all devices</string>
+    <string>Console to all devices</string>
    </property>
    <property name="statusTip">
     <string>Start a console on all running IOS instances</string>
@@ -683,13 +685,13 @@
   <action name="action_Clear">
    <property name="icon">
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/edit-clear.svg</normaloff>:/icons/edit-clear.svg</iconset>
+     <normaloff>:/icons/new.svg</normaloff>:/icons/new.svg</iconset>
    </property>
    <property name="text">
-    <string>Clear topology</string>
+    <string>New blank topology</string>
    </property>
    <property name="toolTip">
-    <string>Clear topology</string>
+    <string>New blank topology</string>
    </property>
   </action>
   <action name="action_AddNote">
@@ -710,7 +712,7 @@
   <action name="action_New">
    <property name="icon">
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/new.svg</normaloff>:/icons/new.svg</iconset>
+     <normaloff>:/icons/new-project.svg</normaloff>:/icons/new-project.svg</iconset>
    </property>
    <property name="text">
     <string>&amp;New blank project</string>

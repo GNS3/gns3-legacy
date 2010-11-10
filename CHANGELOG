@@ -3,7 +3,7 @@ CHANGELOG
 GNS3 0.7.3
 
  * Easily change the symbol of one or several nodes (Select a node, then right click -> Change symbol).
- * A docked window to see on what device and interface captures are running (View -> Docks -> Captures). You can stop capturing or start Wireshark using this view.
+ * A docked window to see on what device an interface captures are running (View -> Docks -> Captures). You can stop capturing or start Wireshark using this view.
  * Only the necessary files (nvram/flash/disks) are copied or kept when creating projects and snapshots.
  * Preventing unsaved interface labels to show up after loading a topology. This can be reset using the "show interface labels" button.
  * Improvements for ATM and Frame Relay switches: proper naming, dynamic mapping support and it is not needed to remove a link to change its DLCI/VC mapping.

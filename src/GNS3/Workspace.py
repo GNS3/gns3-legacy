@@ -309,17 +309,21 @@ class Workspace(QMainWindow, Ui_MainWindow):
             globals.GApp.topology.removeItem(item)
         
         self.clear_workdir(projectWorkdir)
-
+        globals.GApp.mainWindow.capturesDock.refresh()
 
     def __action_Clear(self):
         """ Clear the topology
         """
 
-        reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Are you sure to clear the topology?"), 
-                                            QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-
-        if reply == QtGui.QMessageBox.Yes:
-            self.clear()
+        if len(globals.GApp.topology.nodes) and globals.GApp.topology.changed == True:
+            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the current topology?"),
+                                               QtGui.QMessageBox.Yes, QtGui.QMessageBox.No, QtGui.QMessageBox.Cancel)
+            if reply == QtGui.QMessageBox.Yes:
+                self.__action_Save()
+            elif reply == QtGui.QMessageBox.Cancel:
+                return
+        
+        self.clear()
 
     def __action_Config(self):
         """ Choose between extracting or importing configs
@@ -367,7 +371,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     try:
                         f = open(path + os.sep + file, 'r')
                         config = f.read()
-                        config = '\n!\n' + config
+                        config = '!\n' + config
                         f.close()
                         # Encodestring puts in a bunch of newlines. Split them out then join them back together
                         encoded = ("").join(base64.encodestring(config).split())
@@ -383,6 +387,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         print unicode(translate("Workspace", "Dynamips Warning: %s")) % e
                     except (lib.DynamipsErrorHandled,  socket.error):
                         QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "%s: Dynamips error")) % device, translate("Workspace", "Connection lost"))
+
+        self.__action_Save(auto=True)
 
     def __action_AddNote(self):
         """ Add a note to the scene
@@ -821,6 +827,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         except (OSError, IOError), e:
                             debug("Warning: cannot copy " + file + " to " + self.projectConfigs)
                             continue
+                        except:
+                            continue
                         config = os.path.basename(node.router.cnfg)
                         node.router.cnfg = self.projectConfigs + os.sep + config
 
@@ -851,6 +859,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                 shutil.copy(file, self.projectWorkdir + os.sep + node.hostname)
                             except (OSError, IOError), e:
                                 debug("Warning: cannot copy " + file + " to " + self.projectWorkdir)
+                                continue
+                            except:
                                 continue
                 # set the new working directory
                 try:
@@ -970,6 +980,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Open a file
         """
 
+        if len(globals.GApp.topology.nodes) and globals.GApp.topology.changed == True:
+            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the current topology?"),
+                                               QtGui.QMessageBox.Yes, QtGui.QMessageBox.No, QtGui.QMessageBox.Cancel)
+            if reply == QtGui.QMessageBox.Yes:
+                self.__action_Save()
+            elif reply == QtGui.QMessageBox.Cancel:
+                return
+
         self.openFile()
 
     def openFile(self):
@@ -1049,9 +1067,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         if len(globals.GApp.topology.nodes) and globals.GApp.topology.changed == True:
-            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the topology before you quit?"),
-                                               QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the current topology?"),
+                                               QtGui.QMessageBox.Yes, QtGui.QMessageBox.No, QtGui.QMessageBox.Cancel)
             if reply == QtGui.QMessageBox.Yes:
                 self.__action_Save()
+            elif reply == QtGui.QMessageBox.Cancel:
+                event.ignore()
+                return
         self.clear()
         event.accept()

@@ -77,6 +77,7 @@ class HypervisorManager(object):
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
             if reply == QtGui.QMessageBox.Yes:       
                 killAll(os.path.basename(self.hypervisor_path))
+                time.sleep(1)
 
             s.connect(('localhost', port))
             s.close()
