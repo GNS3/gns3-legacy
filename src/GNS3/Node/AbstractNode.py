@@ -194,8 +194,11 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """
 
         device = self.get_dynagen_device()
+        current_aux = 2500
+        if device.aux:
+            current_aux = device.aux
         (port, ok) = QtGui.QInputDialog.getInteger(globals.GApp.mainWindow, translate("AbstractNode", "Change the aux port"),
-                                          unicode(translate("AbstractNode", "AUX port for %s:")) % self.hostname, device.aux, 1, 65535, 1)
+                                          unicode(translate("AbstractNode", "AUX port for %s:")) % self.hostname, current_aux, 1, 65535, 1)
         if ok and device.aux != port:
 
             command = undo.NewAUXPort(self, port)

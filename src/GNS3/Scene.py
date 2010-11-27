@@ -178,11 +178,17 @@ class Scene(QtGui.QGraphicsView):
             stopAct = QtGui.QAction(translate('Scene', 'Stop'), menu)
             stopAct.setIcon(QtGui.QIcon(':/icons/stop.svg'))
             self.connect(stopAct, QtCore.SIGNAL('triggered()'), self.slotStopNode)
+            
+            # Action: Reload (stop and start IOS on hypervisor)
+            reloadAct = QtGui.QAction(translate('Scene', 'Reload'), menu)
+            reloadAct.setIcon(QtGui.QIcon(':/icons/reload.svg'))
+            self.connect(reloadAct, QtCore.SIGNAL('triggered()'), self.slotReloadNode)
 
             menu.addAction(consolePortAct)
             menu.addAction(consoleAct)
             menu.addAction(startAct)
             menu.addAction(stopAct)
+            menu.addAction(reloadAct)
 
         instances = map(lambda item: isinstance(item, IOSRouter), items)
         if True in instances:
@@ -206,15 +212,9 @@ class Scene(QtGui.QGraphicsView):
             suspendAct = QtGui.QAction(translate('Scene', 'Suspend'), menu)
             suspendAct.setIcon(QtGui.QIcon(':/icons/pause.svg'))
             self.connect(suspendAct, QtCore.SIGNAL('triggered()'), self.slotSuspendNode)
-            
-            # Action: Reload (stop and start IOS on hypervisor)
-            reloadAct = QtGui.QAction(translate('Scene', 'Reload'), menu)
-            reloadAct.setIcon(QtGui.QIcon(':/icons/reload.svg'))
-            self.connect(reloadAct, QtCore.SIGNAL('triggered()'), self.slotReloadNode)
 
             menu.addAction(suspendAct)
             menu.addAction(auxPortAct)
-            menu.addAction(reloadAct)
             menu.addAction(idlepcAct)
             menu.addAction(StartupConfigAct)
 
@@ -432,7 +432,7 @@ class Scene(QtGui.QGraphicsView):
             if len(idles) == 0:
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "IDLE PC"),  translate("Scene", "No idlepc values found"))
                 return
-            (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Scene", "IDLE PC"),
+            (selection, ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Scene", "IDLE PC"),
                                                         translate("Scene", "Potentially better idlepc values marked with '*'"), options, 0, False)
             if ok:
                 selection = str(selection).split(':')[0].strip('* ')
@@ -502,6 +502,13 @@ class Scene(QtGui.QGraphicsView):
     def slotDeleteNode(self):
         """ Called to delete nodes
         """
+
+        if len(self.__topology.selectedItems()) > 1:
+            reply = QtGui.QMessageBox.question(self, translate("Scene", "Message"), translate("Scene", "Do you really want to delete these devices?"), 
+                                            QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+
+            if reply == QtGui.QMessageBox.No:
+                return
 
         ok_to_delete_node = True
         for item in self.__topology.selectedItems():
@@ -596,7 +603,14 @@ class Scene(QtGui.QGraphicsView):
     def slotStopNode(self):
         """ Slot called to stop the selected items
         """
+     
+        if len(self.__topology.selectedItems()) > 1:
+            reply = QtGui.QMessageBox.question(self, translate("Scene", "Message"), translate("Scene", "Do you really want to stop these devices?"), 
+                                            QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
+            if reply == QtGui.QMessageBox.No:
+                return
+     
         for item in self.__topology.selectedItems():
             if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice):
                 item.stopNode()
@@ -613,8 +627,15 @@ class Scene(QtGui.QGraphicsView):
         """ Slot called to reload the selected items
         """
 
+        if len(self.__topology.selectedItems()) > 1:
+            reply = QtGui.QMessageBox.question(self, translate("Scene", "Message"), translate("Scene", "Do you really want to reload these devices?"), 
+                                            QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+
+            if reply == QtGui.QMessageBox.No:
+                return
+
         for item in self.__topology.selectedItems():
-            if  isinstance(item, IOSRouter):
+            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice):
                 item.reloadNode()
                 
     def getSourceNode(self):
@@ -857,7 +878,10 @@ class Scene(QtGui.QGraphicsView):
         item = self.itemAt(event.pos())
         if not globals.addingLinkFlag and isinstance(item, AbstractNode):
             item.setSelected(True)
-            self.slotConfigNode()
+            if item.isStarted():
+                self.slotConsole()
+            else:
+                self.slotConfigNode()
         else:
             QtGui.QGraphicsView.mouseDoubleClickEvent(self, event)
 

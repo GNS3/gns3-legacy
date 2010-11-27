@@ -6,9 +6,12 @@ TODO LIST
  * WICS removable (next release of Dynamips)
  * Do not remove original comments in .net files
  * Open Recent File menu
- * New logo
+ * New logo for GNS3
+ * VNC support for Qemu (-vnc 127.0.0.1:i++) + memu to start it
+ * Implement Qemu monitor function (need to update Qemu patch)
+ * Style options for node labels
 
 Debugging
 
- * Can only run one instance of Qemu on Windows (http://www.gns3.net/phpBB/topic1914.html)
  * Check WICS connections
+ * Check external hypervors with topology opening (http://www.gns3.net/phpBB/topic2760.html?sid=315b02e620f14c23e9a41e609ad64589)

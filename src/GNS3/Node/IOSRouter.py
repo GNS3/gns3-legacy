@@ -626,6 +626,15 @@ class IOSRouter(AbstractNode):
 
         if self.router and self.router.state == 'running' and self.router.console:
             console.connect(self.hypervisor.host,  self.router.console,  self.hostname)
+    
+    def isStarted(self):
+        """ Returns True if this router is started
+        """
+
+        if self.router and self.router.state == 'running':
+            return True
+        else:
+            return False
 
     def mousePressEvent(self, event):
         """ Call when the node is clicked

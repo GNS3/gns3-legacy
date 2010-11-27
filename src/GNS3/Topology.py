@@ -380,7 +380,7 @@ class Topology(QtGui.QGraphicsScene):
                             break
                     if not image_to_use:
                         (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "IOS image"),
-                                                                      translate("Topology", "Please choose an image"), selected_images, 0, False)
+                                                                      translate("Topology", "Please choose an image:"), selected_images, 0, False)
                         if ok:
                             image_to_use = unicode(selection)
                         else:
@@ -417,7 +417,7 @@ class Topology(QtGui.QGraphicsScene):
             if isinstance(node, QemuDevice):
 
                 if len(globals.GApp.qemuimages) == 0:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Qemu image"), translate("Topology", "Please configure a Qemu host"))
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Qemu image"), translate("Topology", "Please configure a Qemu host:"))
                     return False
                
                 devices = []
@@ -971,10 +971,14 @@ class Topology(QtGui.QGraphicsScene):
         if link in self.__links:
             self.__links.remove(link)
             if link.labelSouceIf != None:
-                globals.interfaceLabels[link.source.hostname + ' ' + link.srcIf] = link.labelSouceIf
+                if globals.interfaceLabels.has_key(link.source.hostname + ' ' + link.srcIf):
+                    del globals.interfaceLabels[link.source.hostname + ' ' + link.srcIf]
+                #globals.interfaceLabels[link.source.hostname + ' ' + link.srcIf] = link.labelSouceIf  
                 self.removeItem(link.labelSouceIf)
             if link.labelDestIf != None:
-                globals.interfaceLabels[link.dest.hostname + ' ' + link.destIf] = link.labelDestIf
+                if globals.interfaceLabels.has_key(link.dest.hostname + ' ' + link.destIf):
+                    del globals.interfaceLabels[link.dest.hostname + ' ' + link.destIf]
+                #globals.interfaceLabels[link.dest.hostname + ' ' + link.destIf] = link.labelDestIf
                 self.removeItem(link.labelDestIf)
             self.removeItem(link)
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()

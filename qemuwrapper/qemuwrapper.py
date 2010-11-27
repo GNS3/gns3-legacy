@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright (c) 2007-2009 Thomas Pani & Jeremy Grossmann
+# Copyright (c) 2007-2010 Thomas Pani & Jeremy Grossmann
 #
 # Contributions by Pavel Skovajsa
 #
@@ -159,7 +159,8 @@ class xEMUInstance(object):
             except pywintypes.error, e:
                 print >> sys.stderr, "Unable to stop Qemu instance", self.name
                 print >> sys.stderr, e[2]
-                return False
+                # ignore and continue
+                #return False
         else:
             import signal
             try:
@@ -167,7 +168,8 @@ class xEMUInstance(object):
             except OSError, e:
                 print >> sys.stderr, "Unable to stop Qemu instance", self.name
                 print >> sys.stderr, e
-                return False
+                # ignore and continue
+                #return False
         self.process = None
 
         return True
@@ -242,6 +244,7 @@ class QEMUInstance(xEMUInstance):
     def _build_command(self):
         "Builds the command as a list of shell arguments."
         command = [self.bin]
+        command.extend(['-name', self.name])
         command.extend(['-m', str(self.ram)])
         command.extend(self._disk_options())
         command.extend(self._image_options())

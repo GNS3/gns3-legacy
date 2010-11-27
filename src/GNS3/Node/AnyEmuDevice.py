@@ -324,12 +324,30 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
 
         pass
 
+    def reloadNode(self, progress=False):
+        """ Reload this node
+        """
+ 
+        if self.emudev.state != 'running':
+            return
+        self.stopNode(progress)
+        self.startNode(progress)
+
     def console(self):
         """ Start a telnet console and connect it to this router
         """
 
         if self.emudev and self.emudev.state == 'running' and self.emudev.console:
             console.connect(self.emudev.dynamips.host, self.emudev.console, self.hostname)
+
+    def isStarted(self):
+        """ Returns True if this device is started
+        """
+
+        if self.emudev and self.emudev.state == 'running':
+            return True
+        else:
+            return False
 
     def mousePressEvent(self, event):
         """ Call when the node is clicked

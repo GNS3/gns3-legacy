@@ -240,17 +240,26 @@ class DynagenSub(Dynagen):
                                 debug(unicode("Converting relative image path to absolute path: %s") % device['image'])
 
                             if not os.access(device['image'], os.F_OK):
+                                
                                 selected_images = []
                                 image_to_use = None
                                 for (image, conf) in globals.GApp.iosimages.iteritems():
                                     if conf.chassis == device.name:
                                         selected_images.append(image)
-                                if len(selected_images) == 0:
+
+                                if len(selected_images):
+                                    message = "Local IOS image %s\ncannot be found for hypervisor %s\n\nPlease choose an alternative image:" % (unicode(device['image']), unicode(server.host) + ':' + controlPort)
+                                    (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("DynagenSub", "IOS image"),
+                                                                                      translate("DynagenSub", message), selected_images, 0, False)
+                                    if ok:
+                                        image_to_use = unicode(selection)
+
+                                if image_to_use == None and len(selected_images) == 0:
                                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub', 
                                                                unicode(translate("IOS image", "IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image")) 
                                                                 % (device['image'], unicode(server.host) + ':' + controlPort, device.name))
                                     continue
-                                if len(selected_images) > 1:
+                                if image_to_use == None and len(selected_images) > 1:
                                     for image in selected_images:
                                         conf = globals.GApp.iosimages[image]
                                         if conf.default:

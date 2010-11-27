@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sat Nov 27 17:51:42 2010
+# Created: Sat Nov 27 23:34:44 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -323,13 +323,16 @@ class Ui_MainWindow(object):
         self.action_ShowLayers = QtGui.QAction(MainWindow)
         self.action_ShowLayers.setCheckable(True)
         self.action_ShowLayers.setObjectName("action_ShowLayers")
-        self.action_ReloadAll = QtGui.QAction(MainWindow)
-        self.action_ReloadAll.setObjectName("action_ReloadAll")
         self.action_SaveProjectAs = QtGui.QAction(MainWindow)
         icon27 = QtGui.QIcon()
         icon27.addPixmap(QtGui.QPixmap(":/icons/save-as-project.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_SaveProjectAs.setIcon(icon27)
         self.action_SaveProjectAs.setObjectName("action_SaveProjectAs")
+        self.action_ReloadAll = QtGui.QAction(MainWindow)
+        icon28 = QtGui.QIcon()
+        icon28.addPixmap(QtGui.QPixmap(":/icons/reload.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.action_ReloadAll.setIcon(icon28)
+        self.action_ReloadAll.setObjectName("action_ReloadAll")
         self.menu_Edit.addAction(self.action_SelectAll)
         self.menu_Edit.addAction(self.action_SelectNone)
         self.menu_Edit.addSeparator()
@@ -359,8 +362,9 @@ class Ui_MainWindow(object):
         self.menu_View.addAction(self.action_ShowHostnames)
         self.menu_View.addAction(self.action_ShowinterfaceNames)
         self.menuControl.addAction(self.action_StartAll)
-        self.menuControl.addAction(self.action_StopAll)
         self.menuControl.addAction(self.action_SuspendAll)
+        self.menuControl.addAction(self.action_StopAll)
+        self.menuControl.addAction(self.action_ReloadAll)
         self.menuControl.addAction(self.action_TelnetAll)
         self.menuAnnotate.addAction(self.action_AddNote)
         self.menuAnnotate.addAction(self.action_InsertImage)
@@ -389,6 +393,7 @@ class Ui_MainWindow(object):
         self.toolBar_Emulation.addAction(self.action_StartAll)
         self.toolBar_Emulation.addAction(self.action_SuspendAll)
         self.toolBar_Emulation.addAction(self.action_StopAll)
+        self.toolBar_Emulation.addAction(self.action_ReloadAll)
         self.toolBar_drawing.addAction(self.action_AddNote)
         self.toolBar_drawing.addAction(self.action_InsertImage)
         self.toolBar_drawing.addAction(self.action_DrawRectangle)
@@ -430,7 +435,6 @@ class Ui_MainWindow(object):
         self.action_Add_link.setText(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Add_link.setIconText(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Add_link.setToolTip(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_Add_link.setStatusTip(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
         self.action_IOS_images.setText(QtGui.QApplication.translate("MainWindow", "IOS images and hypervisors", None, QtGui.QApplication.UnicodeUTF8))
         self.action_IOS_images.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+I", None, QtGui.QApplication.UnicodeUTF8))
         self.action_OnlineHelp.setText(QtGui.QApplication.translate("MainWindow", "&Online Help", None, QtGui.QApplication.UnicodeUTF8))
@@ -438,15 +442,12 @@ class Ui_MainWindow(object):
         self.action_Export.setToolTip(QtGui.QApplication.translate("MainWindow", "Take a screenshot", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StartAll.setText(QtGui.QApplication.translate("MainWindow", "Start/Resume", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StartAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Start/Resume all devices", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_StartAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Start or resume all IOS instances", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StopAll.setText(QtGui.QApplication.translate("MainWindow", "Stop", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StopAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Stop all devices", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_StopAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Stop all IOS instances", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ShowHostnames.setText(QtGui.QApplication.translate("MainWindow", "Show hostnames", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ShowHostnames.setToolTip(QtGui.QApplication.translate("MainWindow", "Show hostnames", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_TelnetAll.setText(QtGui.QApplication.translate("MainWindow", "Console to all devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_TelnetAll.setText(QtGui.QApplication.translate("MainWindow", "Console", None, QtGui.QApplication.UnicodeUTF8))
         self.action_TelnetAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Console to all devices", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_TelnetAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Start a console on all running IOS instances", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SaveAs.setText(QtGui.QApplication.translate("MainWindow", "Save topology &as…", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SaveAs.setIconText(QtGui.QApplication.translate("MainWindow", "Save As", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SaveAs.setToolTip(QtGui.QApplication.translate("MainWindow", "Save topology file as...", None, QtGui.QApplication.UnicodeUTF8))
@@ -469,7 +470,6 @@ class Ui_MainWindow(object):
         self.action_Redo.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Y", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SuspendAll.setText(QtGui.QApplication.translate("MainWindow", "Suspend", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SuspendAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Suspend all devices", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_SuspendAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Suspend all IOS instances", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Clear.setText(QtGui.QApplication.translate("MainWindow", "New blank topology", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Clear.setToolTip(QtGui.QApplication.translate("MainWindow", "New blank topology", None, QtGui.QApplication.UnicodeUTF8))
         self.action_AddNote.setText(QtGui.QApplication.translate("MainWindow", "Add Note", None, QtGui.QApplication.UnicodeUTF8))
@@ -493,9 +493,10 @@ class Ui_MainWindow(object):
         self.action_Snapshot.setText(QtGui.QApplication.translate("MainWindow", "Snapshot", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Snapshot.setToolTip(QtGui.QApplication.translate("MainWindow", "Take a snapshot", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ShowLayers.setText(QtGui.QApplication.translate("MainWindow", "Show layers", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_ReloadAll.setText(QtGui.QApplication.translate("MainWindow", "ReloadAll", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SaveProjectAs.setText(QtGui.QApplication.translate("MainWindow", "&Save project as…", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SaveProjectAs.setToolTip(QtGui.QApplication.translate("MainWindow", "Save project as...", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ReloadAll.setText(QtGui.QApplication.translate("MainWindow", "Reload", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ReloadAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Reload all devices", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.UndoFramework import UndoView
 from GNS3.Ui.Widget_nodesDock import nodesDock

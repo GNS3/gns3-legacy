@@ -99,8 +99,9 @@
      <string>Control</string>
     </property>
     <addaction name="action_StartAll"/>
-    <addaction name="action_StopAll"/>
     <addaction name="action_SuspendAll"/>
+    <addaction name="action_StopAll"/>
+    <addaction name="action_ReloadAll"/>
     <addaction name="action_TelnetAll"/>
    </widget>
    <widget class="QMenu" name="menuAnnotate">
@@ -215,6 +216,7 @@
    <addaction name="action_StartAll"/>
    <addaction name="action_SuspendAll"/>
    <addaction name="action_StopAll"/>
+   <addaction name="action_ReloadAll"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget_TopoSum">
    <property name="sizePolicy">
@@ -454,9 +456,6 @@
    <property name="toolTip">
     <string>Add a link</string>
    </property>
-   <property name="statusTip">
-    <string>Add a link</string>
-   </property>
   </action>
   <action name="action_IOS_images">
    <property name="icon">
@@ -505,9 +504,6 @@
    <property name="toolTip">
     <string>Start/Resume all devices</string>
    </property>
-   <property name="statusTip">
-    <string>Start or resume all IOS instances</string>
-   </property>
   </action>
   <action name="action_StopAll">
    <property name="enabled">
@@ -522,9 +518,6 @@
    </property>
    <property name="toolTip">
     <string>Stop all devices</string>
-   </property>
-   <property name="statusTip">
-    <string>Stop all IOS instances</string>
    </property>
   </action>
   <action name="action_ShowHostnames">
@@ -551,13 +544,10 @@
      <normaloff>:/icons/console.svg</normaloff>:/icons/console.svg</iconset>
    </property>
    <property name="text">
-    <string>Console to all devices</string>
+    <string>Console</string>
    </property>
    <property name="toolTip">
     <string>Console to all devices</string>
-   </property>
-   <property name="statusTip">
-    <string>Start a console on all running IOS instances</string>
    </property>
   </action>
   <action name="action_SaveAs">
@@ -675,9 +665,6 @@
    </property>
    <property name="toolTip">
     <string>Suspend all devices</string>
-   </property>
-   <property name="statusTip">
-    <string>Suspend all IOS instances</string>
    </property>
   </action>
   <action name="action_Clear">
@@ -826,11 +813,6 @@
     <string>Show layers</string>
    </property>
   </action>
-  <action name="action_ReloadAll">
-   <property name="text">
-    <string>ReloadAll</string>
-   </property>
-  </action>
   <action name="action_SaveProjectAs">
    <property name="icon">
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
@@ -841,6 +823,18 @@
    </property>
    <property name="toolTip">
     <string>Save project as...</string>
+   </property>
+  </action>
+  <action name="action_ReloadAll">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/reload.svg</normaloff>:/icons/reload.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Reload</string>
+   </property>
+   <property name="toolTip">
+    <string>Reload all devices</string>
    </property>
   </action>
  </widget>

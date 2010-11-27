@@ -83,7 +83,7 @@ conf_qemuImage_defaults = {
     'memory': 256,
     'nib_nb': 6,
     'nic': 'e1000',
-    'options': '',
+    'options': '-no-quit',
     'kqemu': False,
     'kvm': False
 }
@@ -107,7 +107,7 @@ conf_pixImage_defaults = {
     'memory': 128,
     'nib_nb': 6,
     'nic': 'e1000',
-    'options': '',
+    'options': '-no-quit',
     'kqemu': False,
     'key': '',
     'serial': ''
@@ -133,7 +133,7 @@ conf_junosImage_defaults = {
     'memory': 96,
     'nib_nb': 6,
     'nic': 'e1000',
-    'options': '',
+    'options': '-no-quit',
     'kqemu': False,
     'kvm': False
 }
@@ -156,7 +156,7 @@ conf_asaImage_defaults = {
     'memory': 256,
     'nib_nb': 6,
     'nic': 'e1000',
-    'options': '',
+    'options': '-no-quit',
     'kqemu': False,
     'kvm': False,
     'kernel': '',
@@ -186,7 +186,7 @@ conf_idsImage_defaults = {
     'memory': 512,
     'nib_nb': 3,
     'nic': 'e1000',
-    'options': '',
+    'options': '-no-quit',
     'kqemu': False,
     'kvm': False
 }
