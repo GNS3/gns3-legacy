@@ -754,8 +754,8 @@ class Topology(QtGui.QGraphicsScene):
             multi = 0
         
         if (globals.currentLinkType == globals.Enum.LinkType.Serial or globals.currentLinkType == globals.Enum.LinkType.ATM) or \
-            (globals.currentLinkType == globals.Enum.LinkType.Manual and ((srcif[0] == 's' or srcif[0] == 'a' or dstif[0] == 's' or dstif[0] == 'a') or \
-            (isinstance(src_node, ATMSW) or isinstance(src_node, FRSW) or isinstance(dest_node, ATMSW) or isinstance(dest_node, FRSW)))):
+            (globals.currentLinkType == globals.Enum.LinkType.Manual and (((srcif[0] == 's' or srcif[0] == 'a') or (dstif[0] == 's' or dstif[0] == 'a')) or \
+            ((isinstance(src_node, ATMSW) or isinstance(src_node, FRSW)) or (isinstance(dest_node, ATMSW) or isinstance(dest_node, FRSW))))):
             # interface is serial or ATM
             link = Serial(self.__nodes[srcid], srcif, self.__nodes[dstid], dstif, Multi=multi)
         else:

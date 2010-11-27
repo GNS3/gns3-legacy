@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_CloudPage.ui'
 #
-# Created: Wed Nov 10 21:46:21 2010
+# Created: Sat Nov 27 17:51:45 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_CloudPage(object):
     def setupUi(self, CloudPage):
         CloudPage.setObjectName("CloudPage")
-        CloudPage.resize(476, 494)
+        CloudPage.resize(558, 496)
         self.vboxlayout = QtGui.QVBoxLayout(CloudPage)
         self.vboxlayout.setObjectName("vboxlayout")
         self.tabWidget = QtGui.QTabWidget(CloudPage)
@@ -99,7 +99,7 @@ class Ui_CloudPage(object):
         sizePolicy.setHeightForWidth(self.spinBoxLocalPort.sizePolicy().hasHeightForWidth())
         self.spinBoxLocalPort.setSizePolicy(sizePolicy)
         self.spinBoxLocalPort.setMaximum(65535)
-        self.spinBoxLocalPort.setProperty("value", 5000)
+        self.spinBoxLocalPort.setProperty("value", 30000)
         self.spinBoxLocalPort.setObjectName("spinBoxLocalPort")
         self.gridlayout3.addWidget(self.spinBoxLocalPort, 0, 1, 1, 1)
         self.label_2 = QtGui.QLabel(self.groupBox_3)
@@ -123,7 +123,7 @@ class Ui_CloudPage(object):
         sizePolicy.setHeightForWidth(self.spinBoxRemotePort.sizePolicy().hasHeightForWidth())
         self.spinBoxRemotePort.setSizePolicy(sizePolicy)
         self.spinBoxRemotePort.setMaximum(65535)
-        self.spinBoxRemotePort.setProperty("value", 5001)
+        self.spinBoxRemotePort.setProperty("value", 20000)
         self.spinBoxRemotePort.setObjectName("spinBoxRemotePort")
         self.gridlayout3.addWidget(self.spinBoxRemotePort, 2, 1, 1, 1)
         self.gridlayout2.addWidget(self.groupBox_3, 0, 0, 1, 2)
@@ -342,7 +342,7 @@ class Ui_CloudPage(object):
         self.vboxlayout.addWidget(self.tabWidget)
 
         self.retranslateUi(CloudPage)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(CloudPage)
 
     def retranslateUi(self, CloudPage):
@@ -357,6 +357,7 @@ class Ui_CloudPage(object):
         self.groupBox_3.setTitle(QtGui.QApplication.translate("CloudPage", "Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("CloudPage", "Local port:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("CloudPage", "Remote host:", None, QtGui.QApplication.UnicodeUTF8))
+        self.lineEditRemoteHost.setText(QtGui.QApplication.translate("CloudPage", "127.0.0.1", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("CloudPage", "Remote port:", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_4.setTitle(QtGui.QApplication.translate("CloudPage", "NIOs", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonAddUDP.setText(QtGui.QApplication.translate("CloudPage", "&Add", None, QtGui.QApplication.UnicodeUTF8))

@@ -383,6 +383,8 @@ class NETFile(object):
                         symbol = 'Cloud'
                     renders = globals.GApp.scene.renders[symbol]
                     cloud = Cloud(renders['normal'], renders['selected'])
+                    config = {}
+                    config['nios'] = []
                     cloud.type = symbol
                     if not default_symbol:
                         cloud.default_symbol = False
@@ -398,13 +400,11 @@ class NETFile(object):
                         cloud.hostname_ypos = float(gns3data[section]['hy'])
                     if gns3data[section].has_key('connections'):
                         connections = gns3data[section]['connections'].split(' ')
-                        config = {}
-                        config['nios'] = []
                         for connection in connections:
                             (device, interface, nio) = connection.split(':', 2)
                             self.connection2cloud[(device, interface, nio.lower())] = cloud
                             config['nios'].append(nio)
-                        cloud.set_config(config)
+                    cloud.set_config(config)
                     QtCore.QObject.connect(cloud, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
                     QtCore.QObject.connect(cloud, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
                     globals.GApp.topology.nodes[cloud.id] = cloud

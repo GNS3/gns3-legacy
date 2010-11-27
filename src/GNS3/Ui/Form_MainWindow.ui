@@ -67,7 +67,6 @@
     <addaction name="action_SaveAs"/>
     <addaction name="action_New"/>
     <addaction name="action_SaveProjectAs"/>
-    <addaction name="action_EditProject"/>
     <addaction name="separator"/>
     <addaction name="action_config"/>
     <addaction name="action_Export"/>
@@ -146,7 +145,6 @@
    <addaction name="action_SaveAs"/>
    <addaction name="action_New"/>
    <addaction name="action_SaveProjectAs"/>
-   <addaction name="action_EditProject"/>
    <addaction name="separator"/>
    <addaction name="action_ShowinterfaceNames"/>
    <addaction name="action_ShowHostnames"/>
@@ -818,18 +816,6 @@
    </property>
    <property name="toolTip">
     <string>Take a snapshot</string>
-   </property>
-  </action>
-  <action name="action_EditProject">
-   <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/edit-project.svg</normaloff>:/icons/edit-project.svg</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Edit project</string>
-   </property>
-   <property name="toolTip">
-    <string>Edit project</string>
    </property>
   </action>
   <action name="action_ShowLayers">

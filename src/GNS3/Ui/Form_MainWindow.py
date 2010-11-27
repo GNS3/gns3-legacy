@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Wed Nov 10 21:46:19 2010
+# Created: Sat Nov 27 17:51:42 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -320,20 +320,15 @@ class Ui_MainWindow(object):
         icon26.addPixmap(QtGui.QPixmap(":/icons/snapshot.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_Snapshot.setIcon(icon26)
         self.action_Snapshot.setObjectName("action_Snapshot")
-        self.action_EditProject = QtGui.QAction(MainWindow)
-        icon27 = QtGui.QIcon()
-        icon27.addPixmap(QtGui.QPixmap(":/icons/edit-project.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.action_EditProject.setIcon(icon27)
-        self.action_EditProject.setObjectName("action_EditProject")
         self.action_ShowLayers = QtGui.QAction(MainWindow)
         self.action_ShowLayers.setCheckable(True)
         self.action_ShowLayers.setObjectName("action_ShowLayers")
         self.action_ReloadAll = QtGui.QAction(MainWindow)
         self.action_ReloadAll.setObjectName("action_ReloadAll")
         self.action_SaveProjectAs = QtGui.QAction(MainWindow)
-        icon28 = QtGui.QIcon()
-        icon28.addPixmap(QtGui.QPixmap(":/icons/save-as-project.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.action_SaveProjectAs.setIcon(icon28)
+        icon27 = QtGui.QIcon()
+        icon27.addPixmap(QtGui.QPixmap(":/icons/save-as-project.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.action_SaveProjectAs.setIcon(icon27)
         self.action_SaveProjectAs.setObjectName("action_SaveProjectAs")
         self.menu_Edit.addAction(self.action_SelectAll)
         self.menu_Edit.addAction(self.action_SelectNone)
@@ -347,7 +342,6 @@ class Ui_MainWindow(object):
         self.menu_File.addAction(self.action_SaveAs)
         self.menu_File.addAction(self.action_New)
         self.menu_File.addAction(self.action_SaveProjectAs)
-        self.menu_File.addAction(self.action_EditProject)
         self.menu_File.addSeparator()
         self.menu_File.addAction(self.action_config)
         self.menu_File.addAction(self.action_Export)
@@ -384,7 +378,6 @@ class Ui_MainWindow(object):
         self.toolBar_General.addAction(self.action_SaveAs)
         self.toolBar_General.addAction(self.action_New)
         self.toolBar_General.addAction(self.action_SaveProjectAs)
-        self.toolBar_General.addAction(self.action_EditProject)
         self.toolBar_General.addSeparator()
         self.toolBar_General.addAction(self.action_ShowinterfaceNames)
         self.toolBar_General.addAction(self.action_ShowHostnames)
@@ -499,8 +492,6 @@ class Ui_MainWindow(object):
         self.action_ShowinterfaceNames.setToolTip(QtGui.QApplication.translate("MainWindow", "Show interface labels", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Snapshot.setText(QtGui.QApplication.translate("MainWindow", "Snapshot", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Snapshot.setToolTip(QtGui.QApplication.translate("MainWindow", "Take a snapshot", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_EditProject.setText(QtGui.QApplication.translate("MainWindow", "&Edit project", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_EditProject.setToolTip(QtGui.QApplication.translate("MainWindow", "Edit project", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ShowLayers.setText(QtGui.QApplication.translate("MainWindow", "Show layers", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ReloadAll.setText(QtGui.QApplication.translate("MainWindow", "ReloadAll", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SaveProjectAs.setText(QtGui.QApplication.translate("MainWindow", "&Save project as…", None, QtGui.QApplication.UnicodeUTF8))

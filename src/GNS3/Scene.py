@@ -66,6 +66,9 @@ class Scene(QtGui.QGraphicsView):
         self.newedge = None
         self.resetAddingLink()
         self.reloadRenderers()
+        
+        self.sceneDragging = False
+        self.lastMousePos = None 
 
     def reloadRenderers(self):
         """ Load all needed renderers
@@ -697,7 +700,9 @@ class Scene(QtGui.QGraphicsView):
     def wheelEvent(self, event):
         """ Zoom with the mouse wheel
         """
-        self.scaleView(pow(2.0, -event.delta() / 240.0))
+        
+        if event.orientation() == QtCore.Qt.Vertical:
+            self.scaleView(pow(2.0, event.delta() / 240.0))
 
     def keyPressEvent(self, event):
         """ key press handler
@@ -781,16 +786,28 @@ class Scene(QtGui.QGraphicsView):
             item_type = type(item)
             if item_type == Ethernet or item_type == Serial:
                 show = False
+
+        # This statement checks to see if either the middle mouse is pressed
+        # or a combination of the right and left mouse buttons is pressed to start dragging the view
+        if show and event.buttons() == (QtCore.Qt.LeftButton | QtCore.Qt.RightButton) or event.buttons() & QtCore.Qt.MidButton:
+            self.lastMousePos = self.mapFromGlobal(event.globalPos())
+            self.sceneDragging = True
+            globals.GApp.scene.setCursor(QtCore.Qt.ClosedHandCursor)
+            return 
                 
         if show and event.modifiers() & QtCore.Qt.ShiftModifier and event.button() == QtCore.Qt.LeftButton and item and not globals.addingLinkFlag:
             item.setSelected(True)
         elif show and event.button() == QtCore.Qt.RightButton and not globals.addingLinkFlag:
             if item:
-                if not event.modifiers() & QtCore.Qt.ShiftModifier:
-                    for it in globals.GApp.topology.items():
-                        it.setSelected(False)
+                #Prevent right clicking on a selected item from de-selecting all other items
+                #if not item.isSelected():
+#                if not event.modifiers() & QtCore.Qt.ShiftModifier:
+#                    for it in globals.GApp.topology.items():
+#                        it.setSelected(False)
                 item.setSelected(True)
+                #else:
                 self.showContextualMenu()
+            # When more than one item is selected display the contextual menu even if mouse is not above an item
             elif len(self.__topology.selectedItems()) > 1:
                 self.showContextualMenu()
         elif event.button() == QtCore.Qt.LeftButton and globals.addingNote:
@@ -824,6 +841,17 @@ class Scene(QtGui.QGraphicsView):
         else:
             QtGui.QGraphicsView.mousePressEvent(self, event)
 
+    def mouseReleaseEvent(self, event):
+        """ If The Left and Right mouse buttons are not still pressed TOGETHER and neither is the middle button
+            this means the user is no longer trying to drag the scene
+        """
+        
+        if self.sceneDragging and not event.buttons() == (QtCore.Qt.LeftButton | QtCore.Qt.RightButton) and not event.buttons() & QtCore.Qt.MidButton:
+            self.sceneDragging = False
+            globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
+        else:   
+            QtGui.QGraphicsView.mouseReleaseEvent(self, event)
+
     def mouseDoubleClickEvent(self, event):
 
         item = self.itemAt(event.pos())
@@ -834,8 +862,20 @@ class Scene(QtGui.QGraphicsView):
             QtGui.QGraphicsView.mouseDoubleClickEvent(self, event)
 
     def mouseMoveEvent(self, event):
-
-        if (self.newedge):
+        """ This if statement event checks to see if the user is dragging the scene
+            if so it sets the value of the scene scroll bars based on the change between
+            the previous and current mouse position
+        """
+        
+        if self.sceneDragging:
+            mappedGlobalPos = self.mapFromGlobal(event.globalPos())
+            hBar = self.horizontalScrollBar()
+            vBar = self.verticalScrollBar()
+            delta = mappedGlobalPos - self.lastMousePos;
+            hBar.setValue(hBar.value() + (delta.x() if globals.GApp.isRightToLeft() else -delta.x()))
+            vBar.setValue(vBar.value() - delta.y())
+            self.lastMousePos = mappedGlobalPos
+        elif (self.newedge):
             self.newedge.setMousePoint(self.mapToScene(event.pos()))
             event.ignore()
         else:

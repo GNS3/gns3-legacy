@@ -29,25 +29,30 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
     """ ProjectDialog class
     """
 
-    def __init__(self, projectFile=None, projectWorkdir=None, projectConfigs=None):
+    def __init__(self, projectFile=None, projectWorkdir=None, projectConfigs=None, newProject=False):
 
         QtGui.QDialog.__init__(self)
         self.setupUi(self)
         self.connect(self.NewProject_browser, QtCore.SIGNAL('clicked()'), self.__setProjectDir)
         self.connect(self.pushButtonOpenProject, QtCore.SIGNAL('clicked()'), self.__openProject)
         self.connect(self.ProjectName, QtCore.SIGNAL('textEdited(const QString &)'), self.__projectNameEdited)
-        
-        if projectFile:
-            self.ProjectName.setText(os.path.basename(projectFile).replace('.net', ''))
-            self.ProjectPath.setText(os.path.dirname(projectFile))
-        if projectWorkdir:
-            self.checkBox_WorkdirFiles.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.checkBox_WorkdirFiles.setCheckState(QtCore.Qt.Unchecked)
-        if projectConfigs:
-            self.checkBox_ConfigFiles.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.checkBox_ConfigFiles.setCheckState(QtCore.Qt.Unchecked)
+                   
+        if newProject == False:
+
+            if projectFile:
+                projectPath = os.path.dirname(projectFile)
+                projectName = os.path.basename(projectPath)
+                self.ProjectName.setText(projectName)
+                self.ProjectPath.setText(projectPath)
+
+            if projectWorkdir:
+                self.checkBox_WorkdirFiles.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.checkBox_WorkdirFiles.setCheckState(QtCore.Qt.Unchecked)
+            if projectConfigs:
+                self.checkBox_ConfigFiles.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.checkBox_ConfigFiles.setCheckState(QtCore.Qt.Unchecked)
 
     def __setProjectDir(self):
         """ Open a file dialog for choosing the location of the project directory

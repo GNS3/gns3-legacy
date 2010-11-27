@@ -129,7 +129,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_AboutQt,  QtCore.SIGNAL('triggered()'), self.__action_AboutQt)
         self.connect(self.action_New,  QtCore.SIGNAL('triggered()'), self.__action_NewProject)
         self.connect(self.action_SaveProjectAs,  QtCore.SIGNAL('triggered()'), self.__action_SaveProjectAs)
-        self.connect(self.action_EditProject,  QtCore.SIGNAL('triggered()'), self.__action_EditProject)
         self.connect(self.action_Open,  QtCore.SIGNAL('triggered()'), self.__action_OpenFile)
         self.connect(self.action_Save,  QtCore.SIGNAL('triggered()'), self.__action_Save)
         self.connect(self.action_SaveAs,  QtCore.SIGNAL('triggered()'), self.__action_SaveAs)
@@ -761,7 +760,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 return
 
         self.clear()
-        projectDialog = ProjectDialog()
+        projectDialog = ProjectDialog(newProject=True)
         self.projectWorkdir = None
         self.projectConfigs = None
         projectDialog.show()
@@ -771,27 +770,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_SaveProjectAs(self):
         """ Save project in a new location
         """
-        
-        projectDialog = ProjectDialog()
-        projectDialog.pushButtonOpenProject.hide()
+
+        projectDialog = ProjectDialog(self.projectFile, self.projectWorkdir, self.projectConfigs)
+        projectDialog.pushButtonOpenProject.setEnabled(False)
         if self.projectFile:
             projectDialog.setWindowTitle("Save Project As...")
         self.projectWorkdir = None
         self.projectConfigs = None
-        projectDialog.show()
-        self.centerDialog(projectDialog)
-        projectDialog.exec_()
-        
-    def __action_EditProject(self):
-        """ Edit a project
-        """
-        
-        if not self.projectFile:
-            QtGui.QMessageBox.information(self, translate("Workspace", "Project"),  translate("Workspace", "Please create a new project first"))
-            return
-        projectDialog = ProjectDialog(self.projectFile, self.projectWorkdir, self.projectConfigs)
-        projectDialog.pushButtonOpenProject.hide()
-        projectDialog.setWindowTitle("Edit Project")
         projectDialog.show()
         self.centerDialog(projectDialog)
         projectDialog.exec_()

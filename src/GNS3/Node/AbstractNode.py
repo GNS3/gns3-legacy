@@ -385,14 +385,12 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.textItem.setFlag(self.textItem.ItemIsMovable)
         if self.hostname_xpos == None and self.hostname_ypos == None:
             # use default positions
-            if self.default_hostname_xpos == None and self.default_hostname_ypos == None:
-                # compute default positions once
-                textrect = self.textItem.boundingRect()
-                textmiddle = textrect.topRight() / 2
-                noderect = self.boundingRect()
-                nodemiddle = noderect.topRight() / 2
-                self.default_hostname_xpos = nodemiddle.x() - textmiddle.x()
-                self.default_hostname_ypos = -25
+            textrect = self.textItem.boundingRect()
+            textmiddle = textrect.topRight() / 2
+            noderect = self.boundingRect()
+            nodemiddle = noderect.topRight() / 2
+            self.default_hostname_xpos = nodemiddle.x() - textmiddle.x()
+            self.default_hostname_ypos = -25
             self.textItem.setPos(self.default_hostname_xpos, self.default_hostname_ypos)
         else:
             # use user defined positions
