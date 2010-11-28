@@ -15,3 +15,6 @@ Debugging
 
  * Check WICS connections
  * Check external hypervors with topology opening (http://www.gns3.net/phpBB/topic2760.html?sid=315b02e620f14c23e9a41e609ad64589)
+ * Daisy chaining broken
+ * No quit only for SDL
+ * Force delete of old Qemu files

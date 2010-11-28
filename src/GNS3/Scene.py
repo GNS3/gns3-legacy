@@ -821,13 +821,14 @@ class Scene(QtGui.QGraphicsView):
         elif show and event.button() == QtCore.Qt.RightButton and not globals.addingLinkFlag:
             if item:
                 #Prevent right clicking on a selected item from de-selecting all other items
-                #if not item.isSelected():
-#                if not event.modifiers() & QtCore.Qt.ShiftModifier:
-#                    for it in globals.GApp.topology.items():
-#                        it.setSelected(False)
-                item.setSelected(True)
-                #else:
-                self.showContextualMenu()
+                if not item.isSelected():
+                    if not event.modifiers() & QtCore.Qt.ShiftModifier:
+                        for it in self.__topology.items():
+                            it.setSelected(False)
+                    item.setSelected(True)
+                    self.showContextualMenu()
+                else:
+                    self.showContextualMenu()
             # When more than one item is selected display the contextual menu even if mouse is not above an item
             elif len(self.__topology.selectedItems()) > 1:
                 self.showContextualMenu()

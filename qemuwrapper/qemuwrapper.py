@@ -606,6 +606,21 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             return 1
 
         QEMU_INSTANCES[name] = qemu_instance
+        
+        flash = os.path.join(qemu_instance.workdir, qemu_instance.flash_name)
+        if os.path.exists(flash):
+            try:
+                print "Deleting old flash file:", flash
+                os.remove(flash)
+            except (OSError, IOError), e:
+                print >> sys.stderr, "Execution failed:", e
+        swap = os.path.join(qemu_instance.workdir, qemu_instance.swap_name)
+        if os.path.exists(swap):
+            try:
+                print "Deleting old swap file:", swap
+                os.remove(swap)
+            except (OSError, IOError), e:
+                print >> sys.stderr, "Execution failed:", e
         return 0
 
     def do_qemu_create(self, data):
