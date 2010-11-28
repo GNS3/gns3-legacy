@@ -879,7 +879,7 @@ class Scene(QtGui.QGraphicsView):
         item = self.itemAt(event.pos())
         if not globals.addingLinkFlag and isinstance(item, AbstractNode):
             item.setSelected(True)
-            if item.isStarted():
+            if (isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice)) and item.isStarted():
                 self.slotConsole()
             else:
                 self.slotConfigNode()
