@@ -203,6 +203,9 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         """ Used when changing the hostname
         """
 
+        old_console = None
+        if self.emudev:
+            old_console = self.emudev.console
         links = self.getEdgeList()
         if len(links):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AnyEmuDevice", "New hostname"),
@@ -218,6 +221,8 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         self.set_hostname(new_hostname)
         try:
             self.create_emudev()
+            if old_console:
+                self.emudev.console = old_console
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AnyEmuDevice", "Dynamips error"),  unicode(msg))
             self.delete_emudev()

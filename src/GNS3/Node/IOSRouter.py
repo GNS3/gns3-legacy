@@ -480,6 +480,11 @@ class IOSRouter(AbstractNode):
         """
 
         old_hostname = self.hostname
+        old_console = None
+        old_aux = None
+        if self.router:
+            old_console = self.router.console
+            old_aux = self.router.aux
         links = self.getEdgeList().copy()
         for link in links:
             globals.GApp.topology.deleteLink(link)
@@ -495,6 +500,10 @@ class IOSRouter(AbstractNode):
         self.set_hostname(new_hostname)
         try:
             self.create_router()
+            if old_console:
+                self.router.console = old_console
+            if old_aux:
+                self.router.aux = old_aux
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSRouter", "Dynamips error"),  unicode(msg))
             self.delete_router()
