@@ -57,7 +57,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
                          'Telnet (Windows)': 'start telnet %h %p',
                          'xterm (Linux)': 'xterm -T %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
                          'Gnome Terminal (Linux)': 'gnome-terminal -t %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
-                         'Kconsole (Linux KDE)': '/usr/lib/kde4/bin/konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &',
+                         'Konsole (Linux KDE)': '/usr/bin/konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &',
                          'Terminal (Mac OS X)': "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'",
                          'iTerm (Mac OS X)': "/usr/bin/osascript -e 'tell app \"iTerm\"' -e 'activate' -e 'set myterm to the first terminal' -e 'tell myterm' -e 'set mysession to (make new session at the end of sessions)' -e 'tell mysession' -e 'exec command \"telnet %h %p\"' -e 'set name to \"%d\"' -e 'end tell' -e 'end tell' -e 'end tell'"
                          }

@@ -2103,9 +2103,9 @@ class Dynagen:
 
         #go throught all hypervisor instances
         for hypervisor in self.dynamips.values():
-            
-            if len(hypervisor.devices) == 0:
-                continue
+
+#            if len(hypervisor.devices) == 0:
+#                continue
             
             if isinstance(hypervisor, Qemu):
                 h = 'qemu ' + hypervisor.host + ":" + str(hypervisor.port)

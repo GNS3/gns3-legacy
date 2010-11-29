@@ -10,14 +10,13 @@ TODO LIST
  * VNC support for Qemu (-vnc 127.0.0.1:i++) + memu to start it
  * Implement Qemu monitor function (need to update Qemu patch)
  * Style options for node labels
+ * No quit only for SDL
 
 Debugging
 
  * Check WICS connections
  * Check external hypervors with topology opening (http://www.gns3.net/phpBB/topic2760.html?sid=315b02e620f14c23e9a41e609ad64589)
- * Daisy chaining broken
- * No quit only for SDL
  * Is it possible to ask you what IOS to load when you have more than one configured for a specific router, it takes always the default one
- * CTRL+C CTRL+V in Dynagen Console does nothing to the clipboard, but replace the selected text in console with a ASCII code
- * AttributeError: 'Cloud' object has no attribute 'isStarted'
  * Dynamic topology to project ...
+ * Scroll
+ * Waiting time between each console opening

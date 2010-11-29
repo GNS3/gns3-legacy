@@ -9,7 +9,7 @@ contributions: Pavel Skovajsa
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
 as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
+of the License, or (at your option) xany later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -4558,6 +4558,7 @@ class ETHSW(Emulated_switch):
     _instance_count = 0
 
     def __init__(self, dynamips, name=None, create=True):
+
         self._d = dynamips
         self._instance = ETHSW._instance_count
         ETHSW._instance_count += 1
@@ -4597,7 +4598,7 @@ class ETHSW(Emulated_switch):
             map_info += '     ' + nio.info() + '\n'
         return info + map_info
 
-    def unset_port (self, port):
+    def unset_port(self, port):
         """ unset the port from access or dot1q """
         """ TODO talk to Chris about adding a IPC for this"""
         if type(port) != int:
