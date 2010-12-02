@@ -719,9 +719,9 @@ class Scene(QtGui.QGraphicsView):
         self.scale(scale_factor, scale_factor)
 
     def wheelEvent(self, event):
-        """ Zoom with the mouse wheel
+        """ Zoom or scroll with the mouse wheel
         """
-        
+
         if event.orientation() == QtCore.Qt.Vertical:
             self.scaleView(pow(2.0, event.delta() / 240.0))
 

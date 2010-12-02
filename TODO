@@ -11,12 +11,11 @@ TODO LIST
  * Implement Qemu monitor function (need to update Qemu patch)
  * Style options for node labels
  * No quit only for SDL
+ * Waiting time between each console opening
 
 Debugging
 
  * Check WICS connections
  * Check external hypervors with topology opening (http://www.gns3.net/phpBB/topic2760.html?sid=315b02e620f14c23e9a41e609ad64589)
- * Is it possible to ask you what IOS to load when you have more than one configured for a specific router, it takes always the default one
  * Dynamic topology to project ...
  * Scroll
- * Waiting time between each console opening

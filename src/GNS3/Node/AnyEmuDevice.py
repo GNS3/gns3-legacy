@@ -235,6 +235,7 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         """
 
         self.create_emudev()
+        self.emudev.clean()
         self.create_config()
         return True
 

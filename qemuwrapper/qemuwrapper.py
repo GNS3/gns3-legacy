@@ -111,6 +111,9 @@ class xEMUInstance(object):
         self.workdir = os.path.join(os.getcwd(), self.name)
         if not os.path.exists(self.workdir):
             os.makedirs(self.workdir)
+            
+    def clean(self):
+        pass
 
     def start(self):
         command = self._build_command()
@@ -279,17 +282,25 @@ class ASAInstance(QEMUInstance):
         self.kernel_cmdline = ''
         self.valid_attr_names += ['initrd', 'kernel', 'kernel_cmdline']
         
+    def clean(self):
+        
+        flash = os.path.join(self.workdir, self.flash_name)
+        if os.path.exists(flash):
+            try:
+                print "Deleting old flash file:", flash
+                os.remove(flash)
+            except (OSError, IOError), e:
+                print >> sys.stderr, "Execution failed:", e
+
     def _disk_options(self):
         
         flash = os.path.join(self.workdir, self.flash_name)
-        try:
-            if os.path.exists(flash):
-                print "Deleting old flash file:", flash
-                os.remove(flash)
-            retcode = subprocess.call([self.img_bin, 'create', '-f', 'qcow2', flash, self.flash_size])
-            print self.img_bin + ' returned with ' + str(retcode)
-        except OSError, e:
-            print >> sys.stderr, "Execution failed:", e
+        if not os.path.exists(flash):
+            try:
+                retcode = subprocess.call([self.img_bin, 'create', '-f', 'qcow2', flash, self.flash_size])
+                print self.img_bin + ' returned with ' + str(retcode)
+            except OSError, e:
+                print >> sys.stderr, "Execution failed:", e
 
         return ('-hda', flash)
 
@@ -308,28 +319,42 @@ class JunOSInstance(QEMUInstance):
         self.swap_size = '1G'
         self.netcard = 'e1000'
     
+    def clean(self):
+        
+        flash = os.path.join(self.workdir, self.flash_name)
+        if os.path.exists(flash):
+            try:
+                print "Deleting old flash file:", flash
+                os.remove(flash)
+            except (OSError, IOError), e:
+                print >> sys.stderr, "Execution failed:", e
+    
+        swap = os.path.join(self.workdir, self.swap_name)
+        if os.path.exists(swap):
+            try:
+                print "Deleting old swap file:", swap
+                os.remove(swap)
+            except (OSError, IOError), e:
+                print >> sys.stderr, "Execution failed:", e
+    
     def _disk_options(self):
         
         flash = os.path.join(self.workdir, self.flash_name)
-        try:
-            if os.path.exists(flash):
-                print "Deleting old flash file:", flash
-                os.remove(flash)
-            retcode = subprocess.call([self.img_bin, 'create', '-b', self.image, '-f', 'qcow2', flash])
-            print self.img_bin + ' returned with ' + str(retcode)
-        except OSError, e:
-            print >> sys.stderr, "Execution failed:", e
+        if not os.path.exists(flash):
+            try:
+                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image, '-f', 'qcow2', flash])
+                print self.img_bin + ' returned with ' + str(retcode)
+            except OSError, e:
+                print >> sys.stderr, "Execution failed:", e
 
         swap = os.path.join(self.workdir, self.swap_name)
-        try:
-            if os.path.exists(swap):
-                print "Deleting old swap file:", swap
-                os.remove(swap)
-            retcode = subprocess.call([self.img_bin, 'create', '-f', 'qcow2', swap, self.swap_size])
-            print self.img_bin + ' returned with ' + str(retcode)
-        except OSError, e:
-            print >> sys.stderr, "Execution failed:", e
-        
+        if not os.path.exists(swap):
+            try:
+                retcode = subprocess.call([self.img_bin, 'create', '-f', 'qcow2', swap, self.swap_size])
+                print self.img_bin + ' returned with ' + str(retcode)
+            except OSError, e:
+                print >> sys.stderr, "Execution failed:", e
+
         return (flash, '-hdb', swap)
     
 class IDSInstance(QEMUInstance):
@@ -344,29 +369,41 @@ class IDSInstance(QEMUInstance):
         self.img1_name = 'DISK1'
         self.img2_name = 'DISK2'
     
+    def clean(self):
+    
+        img1 = os.path.join(self.workdir, self.img1_name)
+        if os.path.exists(img1):
+            try:     
+                print "Deleting old image file:", img1
+                os.remove(img1)
+            except (OSError, IOError), e:
+                print >> sys.stderr, "Execution failed:", e
+        
+        img2 = os.path.join(self.workdir, self.img2_name)
+        if os.path.exists(img2):
+            try:     
+                print "Deleting old image file:", img2
+                os.remove(img2)
+            except (OSError, IOError), e:
+                print >> sys.stderr, "Execution failed:", e
+    
     def _disk_options(self):
         
         img1 = os.path.join(self.workdir, self.img1_name)
-        try:
-            if os.path.exists(img1): 
-                print "Deleting old image file:", img1
-                os.remove(img1)
-                
-            retcode = subprocess.call([self.img_bin, 'create', '-b', self.image1, '-f', 'qcow2', img1])
-            print self.img_bin + ' returned with ' + str(retcode)
-        except OSError, e:
-            print >> sys.stderr, "Execution failed:", e
+        if not os.path.exists(img1): 
+            try:
+                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image1, '-f', 'qcow2', img1])
+                print self.img_bin + ' returned with ' + str(retcode)
+            except OSError, e:
+                print >> sys.stderr, "Execution failed:", e
         
         img2 = os.path.join(self.workdir, self.img2_name)
-        try:
-            if os.path.exists(img2): 
-                print "Deleting old image file:", img2
-                os.remove(img2)
-            
-            retcode = subprocess.call([self.img_bin, 'create', '-b', self.image2, '-f', 'qcow2', img2])
-            print self.img_bin + ' returned with ' + str(retcode)
-        except OSError, e:
-            print >> sys.stderr, "Execution failed:", e
+        if not os.path.exists(img2): 
+            try:  
+                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image2, '-f', 'qcow2', img2])
+                print self.img_bin + ' returned with ' + str(retcode)
+            except OSError, e:
+                print >> sys.stderr, "Execution failed:", e
 
         return ('-hda', img1, '-hdb', img2)
     
@@ -379,27 +416,41 @@ class QemuDeviceInstance(QEMUInstance):
         self.swap_size = '1G'
         self.netcard = 'e1000'
 
+    def clean(self):
+
+        flash = os.path.join(self.workdir, self.flash_name)
+        if os.path.exists(flash): 
+            try:
+                print "Deleting old flash file:", flash
+                os.remove(flash)
+            except (OSError, IOError), e:
+                print >> sys.stderr, "Execution failed:", e
+                
+        swap = os.path.join(self.workdir, self.swap_name)
+        if os.path.exists(swap):
+            try:
+                print "Deleting old swap file:", swap
+                os.remove(swap)
+            except (OSError, IOError), e:
+                print >> sys.stderr, "Execution failed:", e
+
     def _disk_options(self):
         
         flash = os.path.join(self.workdir, self.flash_name)
-        try:
-            if os.path.exists(flash): 
-                print "Deleting old flash file:", flash
-                os.remove(flash)
-            retcode = subprocess.call([self.img_bin, 'create', '-b', self.image, '-f', 'qcow2', flash])
-            print self.img_bin + ' returned with ' + str(retcode)
-        except (OSError, IOError), e:
-            print >> sys.stderr, "Execution failed:", e
+        if not os.path.exists(flash):
+            try:
+                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image, '-f', 'qcow2', flash])
+                print self.img_bin + ' returned with ' + str(retcode)
+            except OSError, e:
+                print >> sys.stderr, "Execution failed:", e
                 
         swap = os.path.join(self.workdir, self.swap_name)
-        try:
-            if os.path.exists(swap):
-                print "Deleting old swap file:", swap
-                os.remove(swap)
-            retcode = subprocess.call([self.img_bin, 'create', '-f', 'qcow2', swap, self.swap_size])
-            print self.img_bin + ' returned with ' + str(retcode)
-        except (OSError, IOError), e:
-            print >> sys.stderr, "Execution failed:", e
+        if not os.path.exists(swap):
+            try:
+                retcode = subprocess.call([self.img_bin, 'create', '-f', 'qcow2', swap, self.swap_size])
+                print self.img_bin + ' returned with ' + str(retcode)
+            except OSError, e:
+                print >> sys.stderr, "Execution failed:", e
 
         return (flash, '-hdb', swap)
 
@@ -430,6 +481,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             'delete_capture' : (2, 2),
             'start' : (1, 1),
             'stop' : (1, 1),
+            'clean': (1, 1),
             }
         }
 
@@ -748,7 +800,15 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
                             "unable to stop instance '%s'" % name)
         else:
             self.send_reply(self.HSC_INFO_OK, 1, "Qemu '%s' stopped" % name)
-
+            
+    def do_qemu_clean(self, data):
+        name, = data
+        if not name in QEMU_INSTANCES.keys():
+            self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
+                            "unable to find Qemu '%s'" % name)
+            return
+        QEMU_INSTANCES[name].clean()
+        self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
 class DaemonThreadingMixIn(SocketServer.ThreadingMixIn):
     daemon_threads = True

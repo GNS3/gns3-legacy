@@ -316,6 +316,12 @@ class AnyEmuDevice(object):
         r = send(self.p, 'qemu stop %s' % self.name)
         self.state = 'stopped'
         return r
+    
+    def clean(self):
+        """clean the disk files for this Qemu instance"""
+
+        r = send(self.p, 'qemu clean %s' % self.name)
+        return r
 
     def suspend(self):
         """suspends the emulated device instance in Qemu"""
