@@ -322,6 +322,12 @@ class AnyEmuDevice(object):
 
         r = send(self.p, 'qemu clean %s' % self.name)
         return r
+    
+    def unbase(self):
+        """unbase the disk files to have no dependency"""
+
+        r = send(self.p, 'qemu unbase %s' % self.name)
+        return r
 
     def suspend(self):
         """suspends the emulated device instance in Qemu"""

@@ -35,7 +35,7 @@ from GNS3.SnapshotDialog import SnapshotDialog
 from GNS3.Utils import debug, translate, fileBrowser
 from GNS3.Config.Preferences import PreferencesDialog
 from GNS3.Node.IOSRouter import IOSRouter
-from GNS3.Node.AnyEmuDevice import AnyEmuDevice
+from GNS3.Node.AnyEmuDevice import AnyEmuDevice, JunOS, IDS, QemuDevice
 from GNS3.Pixmap import Pixmap
 
 class Workspace(QMainWindow, Ui_MainWindow):
@@ -818,6 +818,17 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         node.router.cnfg = self.projectConfigs + os.sep + config
 
             if self.projectWorkdir:
+                
+
+                unbase = False
+                instances = map(lambda node: isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS), globals.GApp.topology.nodes.values())
+                if True in instances:
+                    reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to unbase the Qemu disk(s)? (useful if you want to distribute your lab but it will increase the total size)"),
+                                                       QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+                    
+                    if reply == QtGui.QMessageBox.Yes:
+                        unbase = True
+                
                 # move dynamips & Qemu files
                 for node in globals.GApp.topology.nodes.values():
                     if isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir:
@@ -837,16 +848,21 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                 continue
                             except:
                                 continue
+
+                    if (isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS)) and unbase:
+                        node.get_dynagen_device().unbase()
+
                     if isinstance(node, AnyEmuDevice) and self.projectWorkdir != node.qemu.workingdir:
                         qemu_files = glob.glob(os.path.normpath(node.qemu.workingdir) + os.sep + node.hostname)
                         for file in qemu_files:
                             try:
-                                shutil.copy(file, self.projectWorkdir + os.sep + node.hostname)
+                                shutil.copytree(file, self.projectWorkdir + os.sep + node.hostname)
                             except (OSError, IOError), e:
                                 debug("Warning: cannot copy " + file + " to " + self.projectWorkdir)
                                 continue
                             except:
                                 continue
+
                 # set the new working directory
                 try:
                     for hypervisor in globals.GApp.dynagen.dynamips.values():

@@ -372,7 +372,9 @@ class Topology(QtGui.QGraphicsScene):
                                               unicode(translate("Topology", "No image for platform %s")) % node.platform)
                     return False
 
-                if len(selected_images) > 1:
+                if node.image_reference:
+                    image_to_use = node.image_reference
+                elif len(selected_images) > 1:
                     for image in selected_images:
                         conf = globals.GApp.iosimages[image]
                         if conf.default:
@@ -388,6 +390,7 @@ class Topology(QtGui.QGraphicsScene):
                 else:
                     image_to_use = selected_images[0]
 
+                node.image_reference = image_to_use
                 image_conf = globals.GApp.iosimages[image_to_use]
                 debug("Use image: " + image_to_use)
                 if image_conf.baseconfig:
@@ -424,7 +427,9 @@ class Topology(QtGui.QGraphicsScene):
                 for name in globals.GApp.qemuimages.keys():
                     devices.append(name)
                 
-                if len(globals.GApp.qemuimages) > 1:
+                if node.image_reference:
+                    conf = globals.GApp.qemuimages[node.image_reference]
+                elif len(globals.GApp.qemuimages) > 1:
 
                     (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "Qemu host"),
                                                                       translate("Topology", "Please choose a Qemu host"), devices, 0, False)
@@ -433,8 +438,11 @@ class Topology(QtGui.QGraphicsScene):
                     else:
                         return False
                     conf = globals.GApp.qemuimages[device_to_use]
+                    node.image_reference = device_to_use
+
                 else:
                     conf = globals.GApp.qemuimages[devices[0]]
+                    node.image_reference = devices[0]
 
                 # give a warning if the Qemu image path is not accessible
                 if not os.access(conf.filename, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
@@ -462,7 +470,9 @@ class Topology(QtGui.QGraphicsScene):
                 for name in globals.GApp.junosimages.keys():
                     devices.append(name)
                 
-                if len(globals.GApp.junosimages) > 1:
+                if node.image_reference:
+                    conf = globals.GApp.junosimages[node.image_reference]
+                elif len(globals.GApp.junosimages) > 1:
 
                     (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "JunOS image"),
                                                                       translate("Topology", "Please choose a JunOS"), devices, 0, False)
@@ -471,8 +481,10 @@ class Topology(QtGui.QGraphicsScene):
                     else:
                         return False
                     conf = globals.GApp.junosimages[device_to_use]
+                    node.image_reference = device_to_use
                 else:
                     conf = globals.GApp.junosimages[devices[0]]
+                    node.image_reference = devices[0]
 
                 # give a warning if the JunOS image path is not accessible
                 if not os.access(conf.filename, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
@@ -500,7 +512,9 @@ class Topology(QtGui.QGraphicsScene):
                 for name in globals.GApp.idsimages.keys():
                     devices.append(name)
 
-                if len(globals.GApp.idsimages) > 1:
+                if node.image_reference:
+                    conf = globals.GApp.idsimages[node.image_reference]
+                elif len(globals.GApp.idsimages) > 1:
 
                     (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "IDS"),
                                                                       translate("Topology", "Please choose an IDS"), devices, 0, False)
@@ -508,9 +522,12 @@ class Topology(QtGui.QGraphicsScene):
                         device_to_use = unicode(selection)
                     else:
                         return False
+
                     conf = globals.GApp.idsimages[device_to_use]
+                    node.image_reference = device_to_use
                 else:
                     conf = globals.GApp.idsimages[devices[0]]
+                    node.image_reference = devices[0]
 
                 # give a warning if the IDS image paths are not accessible
                 if not os.access(conf.image1, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
@@ -544,7 +561,9 @@ class Topology(QtGui.QGraphicsScene):
                 for name in globals.GApp.asaimages.keys():
                     devices.append(name)
 
-                if len(globals.GApp.asaimages) > 1:
+                if node.image_reference:
+                    conf = globals.GApp.asaimages[node.image_reference]
+                elif len(globals.GApp.asaimages) > 1:
 
                     (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "ASA"),
                                                                       translate("Topology", "Please choose an ASA"), devices, 0, False)
@@ -553,8 +572,10 @@ class Topology(QtGui.QGraphicsScene):
                     else:
                         return False
                     conf = globals.GApp.asaimages[device_to_use]
+                    node.image_reference = device_to_use
                 else:
                     conf = globals.GApp.asaimages[devices[0]]
+                    node.image_reference = devices[0]
                 
                 # give a warning if the ASA initrd path is not accessible
                 if not os.access(conf.initrd, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
@@ -592,7 +613,9 @@ class Topology(QtGui.QGraphicsScene):
                 for name in globals.GApp.piximages.keys():
                     devices.append(name)
 
-                if len(globals.GApp.piximages) > 1:
+                if node.image_reference:
+                    conf = globals.GApp.piximages[node.image_reference]
+                elif len(globals.GApp.piximages) > 1:
 
                     (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "PIX"),
                                                                       translate("Topology", "Please choose a PIX"), devices, 0, False)
@@ -601,8 +624,10 @@ class Topology(QtGui.QGraphicsScene):
                     else:
                         return False
                     conf = globals.GApp.piximages[device_to_use]
+                    node.image_reference = device_to_use
                 else:
                     conf = globals.GApp.piximages[devices[0]]
+                    node.image_reference = devices[0]
                     
                 # give a warning if the PIX image path is not accessible
                 if not os.access(conf.filename, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
@@ -816,7 +841,8 @@ class Topology(QtGui.QGraphicsScene):
         elif not isinstance(src_node, IOSRouter) and not isinstance(dst_node, IOSRouter):
 
             if ((isinstance(src_node, AnyEmuDevice) or isinstance(src_node, Cloud)) and type(dst_node) in (ATMSW, FRSW, ATMBR)) \
-                or ((isinstance(dst_node, AnyEmuDevice) or isinstance(dst_node, Cloud)) and type(src_node) in (ATMSW, FRSW, ATMBR)):
+                or ((isinstance(dst_node, AnyEmuDevice) or isinstance(dst_node, Cloud)) and type(src_node) in (ATMSW, FRSW, ATMBR)) \
+                or (isinstance(src_node, Cloud) and isinstance(dst_node, Cloud)):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "Can't connect these devices"))
                 return False
 

@@ -70,6 +70,9 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         
         self.default_hostname_xpos = None
         self.default_hostname_ypos = None
+        
+        # Used by the undo process to prevent to ask again to choose an image
+        self.image_reference = None
 
     def setRenderers(self, render_normal, render_select):
         """ renderer_normal: QtSvg.QSvgRenderer

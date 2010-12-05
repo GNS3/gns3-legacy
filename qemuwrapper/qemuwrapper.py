@@ -114,6 +114,9 @@ class xEMUInstance(object):
             
     def clean(self):
         pass
+    
+    def unbase_disk(self):
+        pass
 
     def start(self):
         command = self._build_command()
@@ -337,6 +340,17 @@ class JunOSInstance(QEMUInstance):
             except (OSError, IOError), e:
                 print >> sys.stderr, "Execution failed:", e
     
+    def unbase_disk(self):
+        
+        flash = os.path.join(self.workdir, self.flash_name)
+        if os.path.exists(flash):
+            try:
+                print "Converting %s to have no base image" % flash
+                retcode = subprocess.call([self.img_bin, 'convert', '-O', 'qcow2', flash, flash])
+                print self.img_bin + ' returned with ' + str(retcode)
+            except OSError, e:
+                print >> sys.stderr, "Execution failed:", e
+    
     def _disk_options(self):
         
         flash = os.path.join(self.workdir, self.flash_name)
@@ -387,6 +401,26 @@ class IDSInstance(QEMUInstance):
             except (OSError, IOError), e:
                 print >> sys.stderr, "Execution failed:", e
     
+    def unbase_disk(self):
+        
+        img1 = os.path.join(self.workdir, self.img1_name)
+        if os.path.exists(img1):
+            try:
+                print "Converting %s to have no base image" % img1
+                retcode = subprocess.call([self.img_bin, 'convert', '-O', 'qcow2', img1, img1])
+                print self.img_bin + ' returned with ' + str(retcode)
+            except OSError, e:
+                print >> sys.stderr, "Execution failed:", e
+                
+        img2 = os.path.join(self.workdir, self.img2_name)
+        if os.path.exists(img2):
+            try:
+                print "Converting %s to have no base image" % img2
+                retcode = subprocess.call([self.img_bin, 'convert', '-O', 'qcow2', img2, img2])
+                print self.img_bin + ' returned with ' + str(retcode)
+            except OSError, e:
+                print >> sys.stderr, "Execution failed:", e
+    
     def _disk_options(self):
         
         img1 = os.path.join(self.workdir, self.img1_name)
@@ -433,7 +467,18 @@ class QemuDeviceInstance(QEMUInstance):
                 os.remove(swap)
             except (OSError, IOError), e:
                 print >> sys.stderr, "Execution failed:", e
-
+                
+    def unbase_disk(self):
+        
+        flash = os.path.join(self.workdir, self.flash_name)
+        if os.path.exists(flash):
+            try:
+                print "Converting %s to have no base image" % flash
+                retcode = subprocess.call([self.img_bin, 'convert', '-O', 'qcow2', flash, flash])
+                print self.img_bin + ' returned with ' + str(retcode)
+            except OSError, e:
+                print >> sys.stderr, "Execution failed:", e
+                
     def _disk_options(self):
         
         flash = os.path.join(self.workdir, self.flash_name)
@@ -482,6 +527,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             'start' : (1, 1),
             'stop' : (1, 1),
             'clean': (1, 1),
+            'unbase': (1, 1),
             }
         }
 
@@ -808,6 +854,15 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
                             "unable to find Qemu '%s'" % name)
             return
         QEMU_INSTANCES[name].clean()
+        self.send_reply(self.HSC_INFO_OK, 1, "OK")
+        
+    def do_qemu_unbase(self, data):
+        name, = data
+        if not name in QEMU_INSTANCES.keys():
+            self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
+                            "unable to find Qemu '%s'" % name)
+            return
+        QEMU_INSTANCES[name].unbase_disk()
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
 class DaemonThreadingMixIn(SocketServer.ThreadingMixIn):

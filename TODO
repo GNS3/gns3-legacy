@@ -12,10 +12,13 @@ TODO LIST
  * Style options for node labels
  * No quit only for SDL
  * Waiting time between each console opening
+ * apply button for idle-pc
+ * Qemu image rebasing for project? or option to include base image in projects?
 
 Debugging
 
  * Check WICS connections
  * Check external hypervors with topology opening (http://www.gns3.net/phpBB/topic2760.html?sid=315b02e620f14c23e9a41e609ad64589)
  * Dynamic topology to project ...
+ * Undo stack
  * Scroll
