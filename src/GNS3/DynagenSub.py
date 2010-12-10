@@ -19,10 +19,10 @@
 # code@gns3.net
 #
 
-import sys, os
+import sys, os, re
 import GNS3.Globals as globals
 from GNS3.Dynagen.dynagen import Dynagen, DEVICETUPLE
-from GNS3.Utils import translate, debug
+from GNS3.Utils import translate, debug, getWindowsInterfaces
 from PyQt4 import QtCore, QtGui
 
 class DynagenSub(Dynagen):
@@ -34,10 +34,68 @@ class DynagenSub(Dynagen):
         Dynagen.__init__(self)
         self.gns3_data = None
 
+    def check_replace_GUID_NIO(self, filename):
+        """ Check and replace non-existing GUID (network interface ID) on Windows
+        """
+        
+        file = open(filename,'r')
+        lines = file.readlines()
+        cregex = re.compile("^.*nio_gen_eth:(.*)")
+        niolist = []
+        
+        for currentline in lines:
+            currentline = currentline.lower().strip() 
+            match_obj = cregex.match(currentline)
+            if match_obj:
+                niolist.append(match_obj.group(1))
+                
+        niolist = set(niolist)
+        if len(niolist):
+            
+            rpcaps = getWindowsInterfaces()
+            interfaces = {}
+            for rpcap in rpcaps:
+                match = re.search(r"""^rpcap://(\\Device\\NPF_{[a-fA-F0-9\-]*}).*:(.*)""", rpcap)
+                interface_guid = str(match.group(1)).lower()
+                interfaces[interface_guid] = unicode(match.group(2)).strip()
+
+            for nio in niolist:
+                if not interfaces.has_key(nio): 
+                    (selection, ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("DynagenSub", "NIO connection"),
+                                                        translate("DynagenSub", "%s cannot be found\nPlease choose an alternate network interface:"), interfaces.values(), 0, False), nio
+                    if ok:
+                        interface = ""
+                        for (key, name) in interfaces.iteritems():
+                            if name == unicode(selection):
+                                interface = key
+                                break
+
+                        index = 0
+                        for currentline in lines:
+                            match_obj = cregex.match(currentline.lower())
+                            if match_obj:
+                                currentline = currentline.replace(nio, interface)
+                                lines[index] = currentline
+                            index += 1      
+                    else:
+                        continue
+  
+        file.close()
+        
+        if len(niolist):
+            # write changes
+            file = open(filename,'w')
+            for line in lines:
+                file.write(line)
+            file.close()
+          
+
     def open_config(self, FILENAME):
         """ Open the config file
         """
 
+        if sys.platform.startswith('win'):
+            self.check_replace_GUID_NIO(FILENAME)
         config = Dynagen.open_config(self, FILENAME)
         self.filename = FILENAME
         self.gns3_data = None
@@ -230,9 +288,9 @@ class DynagenSub(Dynagen):
 
                     for subsection in server.sections:
                         device = server[subsection]
+                        
                         # check if the IOS image is accessible, if not find an alternative image
                         if device.name in DEVICETUPLE:
-                            
                             # Check if this is a relative image path and convert to an absolute path if necessary
                             abspath = os.path.join(os.path.dirname(FILENAME), unicode(device['image']))
                             if os.path.exists(abspath):

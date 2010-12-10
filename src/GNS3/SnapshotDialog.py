@@ -47,22 +47,32 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
         projectDir = os.path.dirname(globals.GApp.workspace.projectFile)
         snapshots = glob.glob(os.path.normpath(projectDir) + os.sep + "*_snapshot_*")
         for entry in snapshots:
-            snapregexp = re.compile(r"""^(.*)_snapshot_([0-9]+)_([0-9]+)""")
+            snapregexp = re.compile(r"""^(.*)_(.*)_snapshot_([0-9]+)_([0-9]+)""")
             match_obj = snapregexp.match(entry)
-            if match_obj:    
+            if match_obj:
+                name = match_obj.group(2)
                 filename = os.path.basename(match_obj.group(1))
-                date = match_obj.group(2)[:2] + '/' + match_obj.group(2)[2:4] + '/' + match_obj.group(2)[4:]
-                time = match_obj.group(3)[:2] + ':' + match_obj.group(3)[2:4] + ':' + match_obj.group(3)[4:]       
+                date = match_obj.group(3)[:2] + '/' + match_obj.group(3)[2:4] + '/' + match_obj.group(3)[4:]
+                time = match_obj.group(4)[:2] + ':' + match_obj.group(4)[2:4] + ':' + match_obj.group(4)[4:]    
                 item = QtGui.QListWidgetItem(self.SnapshotList)
-                item.setText(filename + ' on ' + date + ' at ' + time)
-                item.setData(QtCore.Qt.UserRole, QtCore.QVariant(match_obj.group(0)))
+                item.setText(name + ' on ' + date + ' at ' + time)
+                item.setData(QtCore.Qt.UserRole, QtCore.QVariant(match_obj.group(0) + os.sep + filename + '.net'))
 
     def slotCreateSnapshot(self):
+
+
+        (text, ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, translate("AbstractNode", "Snapshot name"),
+                                    translate("AbstractNode", "Snapshot name:"), QtGui.QLineEdit.Normal, "Unnamed")
+        
+        if ok and text:
+            snapshot_name = unicode(text)
+        else:
+            snapshot_name = "Unnamed"
 
         if not globals.GApp.workspace.projectFile:# or not globals.GApp.workspace.projectWorkdir:
             QtGui.QMessageBox.critical(self, translate("SnapshotDialog", "Project"), translate("SnapshotDialog", "Create a project first!"))
             return
-        globals.GApp.workspace.createSnapshot()
+        globals.GApp.workspace.createSnapshot(snapshot_name)
         self.listSnaphosts()
         
     def slotDeleteSnapshot(self):
@@ -79,12 +89,8 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
         items = self.SnapshotList.selectedItems()
         if len(items):
             item = items[0]
-            itemregexp = re.compile(r"""^(.*)\s+on\s+.*""")
-            match_obj = itemregexp.match(item.text())
-            if match_obj:
-                globals.GApp.workspace.projectFile
-                path = unicode(item.data(QtCore.Qt.UserRole).toString() + os.sep + match_obj.group(1)) + '.net'
-                globals.GApp.workspace.load_netfile(path)
-                globals.GApp.workspace.projectConfigs = os.path.dirname(path) + os.sep + 'configs'
-                globals.GApp.workspace.projectWorkdir = os.path.dirname(path) + os.sep + 'working'
-                globals.GApp.workspace.projectFile = path
+            path = unicode(item.data(QtCore.Qt.UserRole).toString())
+            globals.GApp.workspace.load_netfile(path)
+            globals.GApp.workspace.projectConfigs = os.path.dirname(path) + os.sep + 'configs'
+            globals.GApp.workspace.projectWorkdir = os.path.dirname(path) + os.sep + 'working'
+            globals.GApp.workspace.projectFile = path

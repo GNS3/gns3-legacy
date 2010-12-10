@@ -603,7 +603,7 @@ class NETFile(object):
         max_atmsw_id = -1
         max_atmbr_id = -1
         max_emu_id = -1
-        for (devicename, device) in  self.dynagen.devices.iteritems():
+        for (devicename, device) in self.dynagen.devices.iteritems():
 
             if isinstance(device,  lib.Bridge):
                 translate("NETFile", "Warning: GNS3 doesn't yet support lan statements, ignore it")

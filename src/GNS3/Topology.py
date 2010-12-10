@@ -370,6 +370,7 @@ class Topology(QtGui.QGraphicsScene):
                 if len(selected_images) == 0:
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"),
                                               unicode(translate("Topology", "No image for platform %s")) % node.platform)
+                    init_router_id(node.id)
                     return False
 
                 if node.image_reference:
@@ -386,6 +387,7 @@ class Topology(QtGui.QGraphicsScene):
                         if ok:
                             image_to_use = unicode(selection)
                         else:
+                            init_router_id(node.id)
                             return False
                 else:
                     image_to_use = selected_images[0]
@@ -402,11 +404,14 @@ class Topology(QtGui.QGraphicsScene):
                     # no hypervisor selected, allocate a new hypervisor for the node
                     if globals.GApp.systconf['dynamips'].path == '':
                         QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Hypervisor"), translate("Topology", "Please configure the path to Dynamips"))
+                        init_router_id(node.id)
                         return False
                     if not globals.GApp.HypervisorManager:
                         QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Hypervisor"), translate("Topology", "Please test the path to Dynamips in preferences"))
+                        init_router_id(node.id)
                         return False
                     if not globals.GApp.HypervisorManager.allocateHypervisor(node):
+                        init_router_id(node.id)
                         return False
                     # give a warning if the IOS path is not accessible
                     if not os.access(image_conf.filename, os.F_OK):
@@ -414,6 +419,7 @@ class Topology(QtGui.QGraphicsScene):
                 else:
                     # use an external hypervisor
                     if self.useExternalHypervisor(node, image_conf.hypervisors) == False:
+                        init_router_id(node.id)
                         return False
                 self.preConfigureNode(node, image_conf)
 
@@ -421,6 +427,7 @@ class Topology(QtGui.QGraphicsScene):
 
                 if len(globals.GApp.qemuimages) == 0:
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Qemu image"), translate("Topology", "Please configure a Qemu host:"))
+                    init_emu_id(node.id)
                     return False
                
                 devices = []
@@ -436,6 +443,7 @@ class Topology(QtGui.QGraphicsScene):
                     if ok:
                         device_to_use = unicode(selection)
                     else:
+                        init_emu_id(node.id)
                         return False
                     conf = globals.GApp.qemuimages[device_to_use]
                     node.image_reference = device_to_use
@@ -449,6 +457,7 @@ class Topology(QtGui.QGraphicsScene):
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Qemu image"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.filename)
 
                 if self.emuDeviceSetup(node) == False:
+                    init_emu_id(node.id)
                     return False
                 
                 debug("Set default image " + conf.filename + " for node type %s, model %r" % (type(node), node.model))
@@ -464,6 +473,7 @@ class Topology(QtGui.QGraphicsScene):
 
                 if len(globals.GApp.junosimages) == 0:
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "JunOS"), translate("Topology", "Please configure a JunOS"))
+                    init_emu_id(node.id)
                     return False
                
                 devices = []
@@ -479,6 +489,7 @@ class Topology(QtGui.QGraphicsScene):
                     if ok:
                         device_to_use = unicode(selection)
                     else:
+                        init_emu_id(node.id)
                         return False
                     conf = globals.GApp.junosimages[device_to_use]
                     node.image_reference = device_to_use
@@ -491,6 +502,7 @@ class Topology(QtGui.QGraphicsScene):
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "JunOS image"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.filename)
                 
                 if self.emuDeviceSetup(node) == False:
+                    init_emu_id(node.id)
                     return False
                 
                 debug("Set default image " + conf.filename + " for node type %s, model %r" % (type(node), node.model))
@@ -506,6 +518,7 @@ class Topology(QtGui.QGraphicsScene):
 
                 if len(globals.GApp.idsimages) == 0:
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IDS"), translate("Topology", "Please configure an IDS"))
+                    init_emu_id(node.id)
                     return False
                
                 devices = []
@@ -521,6 +534,7 @@ class Topology(QtGui.QGraphicsScene):
                     if ok:
                         device_to_use = unicode(selection)
                     else:
+                        init_emu_id(node.id)
                         return False
 
                     conf = globals.GApp.idsimages[device_to_use]
@@ -536,6 +550,7 @@ class Topology(QtGui.QGraphicsScene):
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IDS images"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.image2)
           
                 if self.emuDeviceSetup(node) == False:
+                    init_emu_id(node.id)
                     return False
 
                 # No default image for IDS
@@ -555,6 +570,7 @@ class Topology(QtGui.QGraphicsScene):
                 
                 if len(globals.GApp.asaimages) == 0:
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA"), translate("Topology", "Please configure an ASA"))
+                    init_emu_id(node.id)
                     return False
                
                 devices = []
@@ -570,6 +586,7 @@ class Topology(QtGui.QGraphicsScene):
                     if ok:
                         device_to_use = unicode(selection)
                     else:
+                        init_emu_id(node.id)
                         return False
                     conf = globals.GApp.asaimages[device_to_use]
                     node.image_reference = device_to_use
@@ -586,6 +603,7 @@ class Topology(QtGui.QGraphicsScene):
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA kernel"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.kernel)
    
                 if self.emuDeviceSetup(node) == False:
+                    init_emu_id(node.id)
                     return False
                 
                 debug("Set default initrd " + conf.initrd + " for node type %s, model %r" % (type(node), node.model))
@@ -607,6 +625,7 @@ class Topology(QtGui.QGraphicsScene):
                 
                 if len(globals.GApp.piximages) == 0:
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX"), translate("Topology", "Please configure a PIX"))
+                    init_emu_id(node.id)
                     return False
                
                 devices = []
@@ -622,6 +641,7 @@ class Topology(QtGui.QGraphicsScene):
                     if ok:
                         device_to_use = unicode(selection)
                     else:
+                        init_emu_id(node.id)
                         return False
                     conf = globals.GApp.piximages[device_to_use]
                     node.image_reference = device_to_use
@@ -634,6 +654,7 @@ class Topology(QtGui.QGraphicsScene):
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX image"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.filename)
                 
                 if self.emuDeviceSetup(node) == False:
+                    init_emu_id(node.id)
                     return False
                 
                 debug("Set default image " + conf.filename + " for node type %s, model %r" % (type(node), node.model))
@@ -654,6 +675,10 @@ class Topology(QtGui.QGraphicsScene):
 
             if node.configNode() == False:
                 self.deleteNode(node.id)
+                if isinstance(node, AnyEmuDevice):
+                    init_emu_id(node.id)
+                if isinstance(node, IOSRouter):
+                    init_router_id(node.id)
                 
             if iosConfig:
                 self.applyIOSBaseConfig(node, iosConfig)
@@ -668,10 +693,18 @@ class Topology(QtGui.QGraphicsScene):
                             print "Warning: " + file + " is not writable because of different rights, please delete this file manually if dynamips was not able to create this router"
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  unicode(msg))
             self.deleteNode(node.id)
+            if isinstance(node, AnyEmuDevice):
+                init_emu_id(node.id)
+            if isinstance(node, IOSRouter):
+                init_router_id(node.id)
             return False
         except (lib.DynamipsErrorHandled, socket.error):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"), translate("Topology", "Connection lost"))
             self.deleteNode(node.id)
+            if isinstance(node, AnyEmuDevice):
+                init_emu_id(node.id)
+            if isinstance(node, IOSRouter):
+                init_router_id(node.id)
             return False
 
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()

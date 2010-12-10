@@ -20,9 +20,8 @@
 #
 
 import re, sys
-import subprocess as sub
 import GNS3.Globals as globals
-from GNS3.Utils import translate
+from GNS3.Utils import translate, getWindowsInterfaces
 from PyQt4 import QtCore, QtGui, QtNetwork
 from Form_CloudPage import Ui_CloudPage
 
@@ -67,7 +66,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         
         self.nios = []
         if sys.platform.startswith('win'):
-            interfaces = self.getWindowsInterfaces()
+            interfaces = getWindowsInterfaces()
         else:
             interfaces = map(lambda interface: interface.name(), QtNetwork.QNetworkInterface.allInterfaces())
             self.comboBoxLinuxEth.addItems(interfaces)
@@ -75,40 +74,6 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         self.comboBoxGenEth.setSizeAdjustPolicy(QtGui.QComboBox.AdjustToContents)
         self.comboBoxGenEth.addItems(interfaces)
 
-    def getWindowsInterfaces(self):
-        """ Try to detect all available interfaces on Windows
-        """
-
-        try:
-            import _winreg
-        except:
-            pass
-        
-        interfaces = []
-        dynamips = globals.GApp.systconf['dynamips']
-        if dynamips == '':
-            return []
-        try:
-            p = sub.Popen(dynamips.path + ' -e', stdout=sub.PIPE, stderr=sub.STDOUT)
-            outputlines = p.stdout.readlines()
-            p.wait()
-            for line in outputlines:
-                match = re.search(r"""^rpcap://\\Device\\NPF_({[a-fA-F0-9\-]*}).*""",  line.strip())
-                if match:
-                    interface_name = ': '
-                    try:
-                        reg_key = "SYSTEM\\CurrentControlSet\\Control\\Network\\{4D36E972-E325-11CE-BFC1-08002BE10318}\\%s\\Connection" % match.group(1)
-                        key = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, reg_key, _winreg.KEY_READ)
-                        (value, typevalue) = _winreg.QueryValueEx(key, 'Name')
-                        _winreg.CloseKey(key)
-                        interface_name += value
-                    except:
-                        interface_name += "unknown name"
-                        pass
-                    interfaces.append(match.group(0) + interface_name)
-        except:
-            return []
-        return interfaces
 
     def slotSelectedGenEth(self,  index):
         """ Load the selected generic interface in lineEdit

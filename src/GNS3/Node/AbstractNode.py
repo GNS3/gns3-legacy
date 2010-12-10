@@ -131,7 +131,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
     def changeHypervisor(self):
         """ Called to change an hypervisor
         """
-        
+
         if len(self.__edgeList) > 0:
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractNode", "Hypervisor"), 
                                       translate("AbstractNode", "The device must have no connection to other devices in order to change its hypervisor"))
@@ -158,6 +158,13 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 dynamips_hypervisor = self.dynagen.dynamips[hypervisor]
             else:
                 debug("Connection to an hypervisor: " + hypervisor)
+
+                # use project workdir
+                if globals.GApp.workspace.projectWorkdir:
+                    self.dynagen.defaults_config['workingdir'] = globals.GApp.workspace.projectWorkdir
+                elif globals.GApp.systconf['dynamips'].workdir:
+                    self.dynagen.defaults_config['workingdir'] = globals.GApp.systconf['dynamips'].workdir
+                
                 dynamips_hypervisor = self.dynagen.create_dynamips_hypervisor(host, int(port))
                 if not dynamips_hypervisor:
                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hypervisor"),
@@ -172,7 +179,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 self.dynagen.running_config[host + ':' + port][self.get_running_config_name()] = config
                 del self.dynagen.running_config[self.d][self.get_running_config_name()]
             self.set_hypervisor(dynamips_hypervisor)
-            self.get_dynagen_device()
+            self.reconfigNode(self.hostname)
             self.dynagen.update_running_config()
             QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("AbstractNode", "Hypervisor"),
                                            unicode(translate("AbstractNode", "New hypervisor %s has been set on device %s")) % (hypervisor, self.hostname))

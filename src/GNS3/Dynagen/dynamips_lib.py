@@ -242,7 +242,7 @@ class Dynamips(object):
                  default is 3 seconds
     """
 
-    def __init__(self, host, port=7200, timeout=300):
+    def __init__(self, host, port=7200, timeout=500):
         self.s = socket(AF_INET, SOCK_STREAM)
         self.s.setblocking(0)
         self.s.settimeout(timeout)

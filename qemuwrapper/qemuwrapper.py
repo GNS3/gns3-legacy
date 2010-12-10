@@ -940,6 +940,11 @@ def main():
     server = QemuWrapperServer((host, port), QemuWrapperRequestHandler)
 
     print "Qemu TCP control server started (port %d)." % port
+    global IP
+    if IP:
+        print "Listenning on %s" % IP
+    else:
+        print "Listenning on all network interfaces"
     try:
         server.serve_forever()
     except KeyboardInterrupt:
@@ -948,7 +953,7 @@ def main():
 
 if __name__ == '__main__':
     print "Qemu Emulator Wrapper (version %s)" % __version__
-    print "Copyright (c) 2007-2009 Thomas Pani & Jeremy Grossmann"
+    print "Copyright (c) 2007-2010 Thomas Pani & Jeremy Grossmann"
     print
 
     if platform.system() == 'Windows':

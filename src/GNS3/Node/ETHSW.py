@@ -142,7 +142,7 @@ class ETHSW(AbstractNode):
         globals.GApp.topology.changed = True
         self.mapping()
 
-    def set_hypervisor(self,  hypervisor):
+    def set_hypervisor(self, hypervisor):
         """ Records a hypervisor
             hypervisor: object
         """

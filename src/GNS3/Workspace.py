@@ -828,11 +828,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     
                     if reply == QtGui.QMessageBox.Yes:
                         unbase = True
-                
+
                 # move dynamips & Qemu files
                 for node in globals.GApp.topology.nodes.values():
                     if isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir:
-   
+                        
+                        # Stop this router
+                        node.stopNode()
                         dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_nvram*')
                         dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_disk*')
                         dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_slot*')
@@ -853,6 +855,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         node.get_dynagen_device().unbase()
 
                     if isinstance(node, AnyEmuDevice) and self.projectWorkdir != node.qemu.workingdir:
+                        
+                        # Stop this node
+                        node.stopNode()
                         qemu_files = glob.glob(os.path.normpath(node.qemu.workingdir) + os.sep + node.hostname)
                         for file in qemu_files:
                             try:
@@ -882,19 +887,19 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.centerDialog(snapDialog)
         snapDialog.exec_()
 
-    def createSnapshot(self):
+    def createSnapshot(self, name):
         """ Create a new snapshot of the current topology
         """
 
         if self.projectFile is None:
             if self.__action_SaveAs() == False:
                 return
-            self.createSnapshot()
+            self.createSnapshot(name)
             return
 
         projectName = os.path.basename(self.projectFile)
         projectDir = os.path.dirname(self.projectFile)
-        snapshot_dir = projectDir + os.sep + projectName.replace('.net', '') + '_snapshot_' + time.strftime("%d%m%y_%H%M%S")
+        snapshot_dir = projectDir + os.sep + projectName.replace('.net', '') + '_' + name + '_snapshot_' + time.strftime("%d%m%y_%H%M%S")
         snapshot_workdir = snapshot_dir + os.sep + 'working'
         snapshot_configs = snapshot_dir + os.sep + 'configs'
 

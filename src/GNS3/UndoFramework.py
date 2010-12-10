@@ -136,8 +136,10 @@ class AddLink(QtGui.QUndoCommand):
 
         if self.status:
             for link in self.topology.links:
-                if link.source.id == self.srcid and link.srcIf == self.srcif \
-                and link.dest.id == self.dstid and link.destIf == self.dstif:
+                if (link.source.id == self.srcid or link.dest.id == self.srcid) and \
+                (link.srcIf == self.srcif or link.destIf == self.srcif) and \
+                (link.dest.id == self.dstid or link.source.id == self.dstid) and \
+                (link.destIf == self.dstif or link.srcIf == self.dstif):
                     self.topology.deleteLink(link)
                     break
             for link in self.topology.links:
@@ -164,10 +166,13 @@ class DeleteLink(QtGui.QUndoCommand):
     def redo(self):
         
         for link in self.topology.links:
-            if link.source.id == self.srcid and link.srcIf == self.srcif \
-            and link.dest.id == self.dstid and link.destIf == self.dstif:
+            if (link.source.id == self.srcid or link.dest.id == self.srcid) and \
+            (link.srcIf == self.srcif or link.destIf == self.srcif) and \
+            (link.dest.id == self.dstid or link.source.id == self.dstid) and \
+            (link.destIf == self.dstif or link.srcIf == self.dstif):
                 self.status = self.topology.deleteLink(link)
                 break
+
         for link in self.topology.links:
             link.adjust()
 

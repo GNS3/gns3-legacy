@@ -19,7 +19,8 @@
 # code@gns3.net
 #
 
-import os, sys
+import os, sys, re
+import subprocess as sub
 import GNS3.Globals as globals
 import subprocess
 from PyQt4 import QtCore, QtGui
@@ -80,7 +81,41 @@ def killAll(process_name):
         return True
     except:
         return False
-    
+  
+def getWindowsInterfaces():
+    """ Try to detect all available interfaces on Windows
+    """
+
+    try:
+        import _winreg
+    except:
+        pass
+        
+    interfaces = []
+    dynamips = globals.GApp.systconf['dynamips']
+    if dynamips == '':
+        return []
+    try:
+        p = sub.Popen(dynamips.path + ' -e', stdout=sub.PIPE, stderr=sub.STDOUT)
+        outputlines = p.stdout.readlines()
+        p.wait()
+        for line in outputlines:
+            match = re.search(r"""^rpcap://\\Device\\NPF_({[a-fA-F0-9\-]*}).*""",  line.strip())
+            if match:
+                interface_name = ': '
+                try:
+                    reg_key = "SYSTEM\\CurrentControlSet\\Control\\Network\\{4D36E972-E325-11CE-BFC1-08002BE10318}\\%s\\Connection" % match.group(1)
+                    key = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, reg_key, _winreg.KEY_READ)
+                    (value, typevalue) = _winreg.QueryValueEx(key, 'Name')
+                    _winreg.CloseKey(key)
+                    interface_name += value
+                except:
+                    interface_name += "unknown name"
+                    pass
+                interfaces.append(match.group(0) + interface_name)
+    except:
+        return []
+    return interfaces  
     
 class fileBrowser(object):
     """ fileBrowser class
