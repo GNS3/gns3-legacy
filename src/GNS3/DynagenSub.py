@@ -62,7 +62,7 @@ class DynagenSub(Dynagen):
             for nio in niolist:
                 if not interfaces.has_key(nio): 
                     (selection, ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("DynagenSub", "NIO connection"),
-                                                        translate("DynagenSub", "%s cannot be found\nPlease choose an alternate network interface:"), interfaces.values(), 0, False), nio
+                                                        unicode(translate("DynagenSub", "%s cannot be found\nPlease choose an alternate network interface:")) % nio, interfaces.values(), 0, False)
                     if ok:
                         interface = ""
                         for (key, name) in interfaces.iteritems():

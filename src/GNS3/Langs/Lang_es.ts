@@ -3,7 +3,7 @@
 <context>
     <name>ASA initrd</name>
     <message>
-        <location filename="../DynagenSub.py" line="102"/>
+        <location filename="../DynagenSub.py" line="160"/>
         <source>ASA initrd %s cannot be found and cannot find an alternative initrd</source>
         <translation>ASA initrd-%s no se encuentra y no hay un initrd alternativo</translation>
     </message>
@@ -11,7 +11,7 @@
 <context>
     <name>ASA kernel</name>
     <message>
-        <location filename="../DynagenSub.py" line="113"/>
+        <location filename="../DynagenSub.py" line="171"/>
         <source>ASA kernel %s cannot be found and cannot find an alternative kernel</source>
         <translation>ASA kernel-%s no se encuentra y no hay un kernel alternativo</translation>
     </message>
@@ -680,130 +680,140 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractNode</name>
     <message>
-        <location filename="../Node/AbstractNode.py" line="109"/>
+        <location filename="../Node/AbstractNode.py" line="112"/>
         <source>Hostname:</source>
         <translation>Nombre de host:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="360"/>
+        <location filename="../Node/AbstractNode.py" line="370"/>
         <source>Connection</source>
         <translation>Conexion</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="326"/>
+        <location filename="../Node/AbstractNode.py" line="336"/>
         <source>Already connected interface</source>
         <translation>Interfaz ya esta conectada</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="122"/>
+        <location filename="../Node/AbstractNode.py" line="125"/>
         <source>Hostname</source>
         <translation>Nombre de host</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="122"/>
+        <location filename="../Node/AbstractNode.py" line="125"/>
         <source>Hostname already used</source>
         <translation>Nombre de host ya utilizado</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="297"/>
+        <location filename="../Node/AbstractNode.py" line="307"/>
         <source>Hostname: %s</source>
         <translation>Nombre de host: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="360"/>
+        <location filename="../Node/AbstractNode.py" line="370"/>
         <source>No interface available, please configure this device</source>
         <translation>No hay interfaces disponibles, por favor configure el dispositivo</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="182"/>
+        <location filename="../Node/AbstractNode.py" line="192"/>
         <source>Console port for %s:</source>
         <translation>Puerto de consola para %s:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="189"/>
+        <location filename="../Node/AbstractNode.py" line="199"/>
         <source>Console port</source>
         <translation>Puerto de consola</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="115"/>
+        <location filename="../Node/AbstractNode.py" line="118"/>
         <source>Please use only alphanumeric characters</source>
         <translation>Solo caracteres alfanumericos</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="109"/>
+        <location filename="../Node/AbstractNode.py" line="112"/>
         <source>Change the hostname</source>
         <translation>Cambie el Nombre de Host</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="174"/>
+        <location filename="../Node/AbstractNode.py" line="184"/>
         <source>Hypervisor</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="133"/>
+        <location filename="../Node/AbstractNode.py" line="136"/>
         <source>The device must have no connection to other devices in order to change its hypervisor</source>
         <translation>El dispositivo no debe tener conexiones a otros dispositivos para poder cambiar el hypervisor</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="141"/>
+        <location filename="../Node/AbstractNode.py" line="144"/>
         <source>Set hypervisor</source>
         <translation>Establezca el hypervisor</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="141"/>
+        <location filename="../Node/AbstractNode.py" line="144"/>
         <source>New hypervisor:</source>
         <translation>Nuevo hypervisor:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="148"/>
+        <location filename="../Node/AbstractNode.py" line="151"/>
         <source>Invalid format for hypervisor (hostname:port is required)</source>
         <translation>Formato invalido para el hypevisor (Host:puerto es requerido)</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="160"/>
+        <location filename="../Node/AbstractNode.py" line="170"/>
         <source>Can&apos;t connect to the hypervisor on %s</source>
         <translation>No se puede conectar al hypervisor en %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="174"/>
+        <location filename="../Node/AbstractNode.py" line="184"/>
         <source>New hypervisor %s has been set on device %s</source>
         <translation>Nuevo hypervisor %s en el dispositivo %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="182"/>
+        <location filename="../Node/AbstractNode.py" line="192"/>
         <source>Change the console port</source>
         <translation>Cambie el puerto de consola</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="200"/>
+        <location filename="../Node/AbstractNode.py" line="210"/>
         <source>Change the aux port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="200"/>
+        <location filename="../Node/AbstractNode.py" line="210"/>
         <source>AUX port for %s:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="207"/>
+        <location filename="../Node/AbstractNode.py" line="217"/>
         <source>AUX port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../SnapshotDialog.py" line="64"/>
+        <source>Snapshot name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../SnapshotDialog.py" line="64"/>
+        <source>Snapshot name:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>AnyEmuDevice</name>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="222"/>
+        <location filename="../Node/AnyEmuDevice.py" line="229"/>
         <source>Dynamips error</source>
         <translation>Dynamips error</translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="208"/>
+        <location filename="../Node/AnyEmuDevice.py" line="213"/>
         <source>New hostname</source>
         <translation>Nombre de host nuevo</translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="208"/>
+        <location filename="../Node/AnyEmuDevice.py" line="213"/>
         <source>Cannot rename a connected emulated device</source>
         <translation>No se puede renombrar un dispositivo emulado conectado</translation>
     </message>
@@ -1077,59 +1087,75 @@ Ingrese el numero del idlepc que desea aplicar [1-%i] o ENTER para no realizar c
 <context>
     <name>DynagenSub</name>
     <message>
-        <location filename="../DynagenSub.py" line="61"/>
+        <location filename="../DynagenSub.py" line="119"/>
         <source>Starting hypervisors ...</source>
         <translation>Iniciando hypervisors...</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="61"/>
+        <location filename="../DynagenSub.py" line="119"/>
         <source>Abort</source>
         <translation>Abortar</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="189"/>
+        <location filename="../DynagenSub.py" line="247"/>
         <source>Local PIX image %s cannot be found, use image %s instead</source>
         <translation>Imagen local PIX %s no se puede hallar, utilice %S</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="264"/>
+        <location filename="../DynagenSub.py" line="331"/>
         <source>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</source>
         <translation>Imagen local IOS %s no se puede hallar, utilice %S</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="294"/>
+        <location filename="../DynagenSub.py" line="361"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
         <translation>La configuracion local %s no se puede hallar para el router %s, utilice la configuracion %s</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="227"/>
+        <location filename="../DynagenSub.py" line="285"/>
         <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
         <translation>Directorio de trabajo local %s no se puede hallar para el hypervisor %s , utilice el directorio de trabajo %s</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="105"/>
+        <location filename="../DynagenSub.py" line="163"/>
         <source>Local ASA initrd %s cannot be found, use initrd %s instead</source>
         <translation>Initrd-ASA-local %s no se puede hallar, utilice initrd %s</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="116"/>
+        <location filename="../DynagenSub.py" line="174"/>
         <source>Local ASA kernel %s cannot be found, use kernel %s instead</source>
         <translation>Kernel-ASA-local %s no se puede hallar, utilice kernel %s</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="142"/>
+        <location filename="../DynagenSub.py" line="200"/>
         <source>Local IDS image %s cannot be found, use image %s instead</source>
         <translation>Imagen local IDS%s no se puede hallar, utilice la imagen %s</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="164"/>
+        <location filename="../DynagenSub.py" line="222"/>
         <source>Local JunOS image %s cannot be found, use image %s instead</source>
         <translation>Imagen local JUNOS%s no se puede hallar, utilice la imagen %s</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="176"/>
+        <location filename="../DynagenSub.py" line="234"/>
         <source>Local Qemu host image %s cannot be found, use image %s instead</source>
         <translation>Imagen Qemu de host %s no se puede hallar, utilice la imagen %s</translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="64"/>
+        <source>NIO connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="64"/>
+        <source>%s cannot be found
+Please choose an alternate network interface:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="310"/>
+        <source>IOS image</source>
+        <translation type="unfinished">Imagen IOS</translation>
     </message>
 </context>
 <context>
@@ -1425,7 +1451,7 @@ Ingrese el numero del idlepc que desea aplicar [1-%i] o ENTER para no realizar c
 <context>
     <name>IDS image (hda)</name>
     <message>
-        <location filename="../DynagenSub.py" line="128"/>
+        <location filename="../DynagenSub.py" line="186"/>
         <source>IDS image %s cannot be found and cannot find an alternative image</source>
         <translation>Imagen IDS-%s no se encuentra y no hay una imagen alternativa</translation>
     </message>
@@ -1433,7 +1459,7 @@ Ingrese el numero del idlepc que desea aplicar [1-%i] o ENTER para no realizar c
 <context>
     <name>IDS image (hdb)</name>
     <message>
-        <location filename="../DynagenSub.py" line="139"/>
+        <location filename="../DynagenSub.py" line="197"/>
         <source>IDS image %s cannot be found and cannot find an alternative image</source>
         <translation>Imagen IDS-%s no se encuentra y no hay una imagen alternativa</translation>
     </message>
@@ -1539,7 +1565,7 @@ Ingrese el numero del idlepc que desea aplicar [1-%i] o ENTER para no realizar c
 <context>
     <name>IOS image</name>
     <message>
-        <location filename="../DynagenSub.py" line="249"/>
+        <location filename="../DynagenSub.py" line="316"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image</source>
         <translation>Imagen IOS %s no se puede hallar para el hypervisor %s y no se encuentra una imagen alternativa %s</translation>
     </message>
@@ -1750,32 +1776,32 @@ Ingrese el numero del idlepc que desea aplicar [1-%i] o ENTER para no realizar c
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="640"/>
+        <location filename="../Node/IOSRouter.py" line="660"/>
         <source>Connection</source>
         <translation>Conexion</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="640"/>
+        <location filename="../Node/IOSRouter.py" line="660"/>
         <source>No interface available</source>
         <translation>No hay interfaz disponible</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="499"/>
+        <location filename="../Node/IOSRouter.py" line="510"/>
         <source>Dynamips error</source>
         <translation>Dynamips error</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="308"/>
+        <location filename="../Node/IOSRouter.py" line="310"/>
         <source>Startup-Config for %s</source>
         <translation>Startup-config para %s</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="253"/>
+        <location filename="../Node/IOSRouter.py" line="255"/>
         <source>Slots</source>
         <translation type="unfinished">Slots</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="253"/>
+        <location filename="../Node/IOSRouter.py" line="255"/>
         <source>You have to restart this router to use new modules</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1976,7 +2002,7 @@ Ingrese el numero del idlepc que desea aplicar [1-%i] o ENTER para no realizar c
 <context>
     <name>JunOS image</name>
     <message>
-        <location filename="../DynagenSub.py" line="161"/>
+        <location filename="../DynagenSub.py" line="219"/>
         <source>JunOS image %s cannot be found and cannot find an alternative image</source>
         <translation>Imagen JUNOS %s no se encuentra y no hay una imagen alternativa</translation>
     </message>
@@ -2822,7 +2848,7 @@ para visualizar la pagina de configuracion.</translation>
 <context>
     <name>PIX image</name>
     <message>
-        <location filename="../DynagenSub.py" line="186"/>
+        <location filename="../DynagenSub.py" line="244"/>
         <source>PIX image %s cannot be found and cannot find an alternative image</source>
         <translation>Imagen PIX %s no encontrada y no hay imagen alternativa</translation>
     </message>
@@ -3494,7 +3520,7 @@ para visualizar la pagina de configuracion.</translation>
 <context>
     <name>Qemu image</name>
     <message>
-        <location filename="../DynagenSub.py" line="173"/>
+        <location filename="../DynagenSub.py" line="231"/>
         <source>Qemu host image %s cannot be found and cannot find an alternative image</source>
         <translation>Imagen host Qemu %s no se encuentra y no hay una imagen alternativa</translation>
     </message>
@@ -3748,17 +3774,17 @@ para visualizar la pagina de configuracion.</translation>
         <translation>Establecer un hypervisor</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="840"/>
+        <location filename="../Scene.py" line="841"/>
         <source>annotation</source>
         <translation>anotacion</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="849"/>
+        <location filename="../Scene.py" line="850"/>
         <source>rectangle</source>
         <translation>rectangulo</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="857"/>
+        <location filename="../Scene.py" line="858"/>
         <source>ellipse</source>
         <translation>elipse</translation>
     </message>
@@ -3816,12 +3842,12 @@ para visualizar la pagina de configuracion.</translation>
 <context>
     <name>SnapshotDialog</name>
     <message>
-        <location filename="../SnapshotDialog.py" line="63"/>
+        <location filename="../SnapshotDialog.py" line="73"/>
         <source>Project</source>
         <translation>Proyecto</translation>
     </message>
     <message>
-        <location filename="../SnapshotDialog.py" line="63"/>
+        <location filename="../SnapshotDialog.py" line="73"/>
         <source>Create a project first!</source>
         <translation>Primero debe crear un proyecto!</translation>
     </message>
@@ -4106,32 +4132,32 @@ ALT + IZQ o DER</translation>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="410"/>
+        <location filename="../Topology.py" line="418"/>
         <source>IOS image</source>
         <translation>Imagen IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="404"/>
+        <location filename="../Topology.py" line="410"/>
         <source>Hypervisor</source>
         <translation>Hypervisor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="401"/>
+        <location filename="../Topology.py" line="406"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Por favor configure la ruta para Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="966"/>
+        <location filename="../Topology.py" line="1025"/>
         <source>Dynamips error</source>
         <translation>Dynamips error</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="966"/>
+        <location filename="../Topology.py" line="1025"/>
         <source>Connection lost</source>
         <translation>Perdida de conexion</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="844"/>
+        <location filename="../Topology.py" line="903"/>
         <source>Connection</source>
         <translation>Conexion</translation>
     </message>
@@ -4146,22 +4172,17 @@ ALT + IZQ o DER</translation>
         <translation>No hay Imagen para la plataforma %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="382"/>
-        <source>Please choose an image</source>
-        <translation>Por favor selecciones una imagen</translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="844"/>
+        <location filename="../Topology.py" line="903"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Debe conectar al menos un router al switch</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="609"/>
+        <location filename="../Topology.py" line="654"/>
         <source>PIX image</source>
         <translation>Imagen PIX</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="404"/>
+        <location filename="../Topology.py" line="410"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation>Por favor pruebe el camino a Dynamips en las preferencias</translation>
     </message>
@@ -4176,32 +4197,32 @@ ALT + IZQ o DER</translation>
         <translation>Error Qemuwrapper</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="609"/>
+        <location filename="../Topology.py" line="654"/>
         <source>%s seems to not exist, please check</source>
         <translation>%s no existe, por favor verifique</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="479"/>
+        <location filename="../Topology.py" line="502"/>
         <source>JunOS image</source>
         <translation>Imagen JunOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="441"/>
+        <location filename="../Topology.py" line="457"/>
         <source>Qemu image</source>
         <translation>Imagen Qemu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="565"/>
+        <location filename="../Topology.py" line="603"/>
         <source>ASA kernel</source>
         <translation>ASA kernel</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="561"/>
+        <location filename="../Topology.py" line="599"/>
         <source>ASA initrd</source>
         <translation>ASA Initrd</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="519"/>
+        <location filename="../Topology.py" line="550"/>
         <source>IDS images</source>
         <translation>Imagenes IDS</translation>
     </message>
@@ -4221,7 +4242,7 @@ ALT + IZQ o DER</translation>
         <translation>Por favor seleccione un Qemuwrapper externo</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="820"/>
+        <location filename="../Topology.py" line="879"/>
         <source>Can&apos;t connect these devices</source>
         <translation>No se puede conectar estos dispositivos</translation>
     </message>
@@ -4236,78 +4257,83 @@ ALT + IZQ o DER</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="420"/>
-        <source>Please configure a Qemu host</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="429"/>
+        <location filename="../Topology.py" line="441"/>
         <source>Qemu host</source>
         <translation type="unfinished">Host Qemu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="429"/>
+        <location filename="../Topology.py" line="441"/>
         <source>Please choose a Qemu host</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="458"/>
+        <location filename="../Topology.py" line="475"/>
         <source>JunOS</source>
         <translation type="unfinished">JunOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="458"/>
+        <location filename="../Topology.py" line="475"/>
         <source>Please configure a JunOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="467"/>
+        <location filename="../Topology.py" line="487"/>
         <source>Please choose a JunOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="505"/>
+        <location filename="../Topology.py" line="532"/>
         <source>IDS</source>
         <translation type="unfinished">IDS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="496"/>
+        <location filename="../Topology.py" line="520"/>
         <source>Please configure an IDS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="505"/>
+        <location filename="../Topology.py" line="532"/>
         <source>Please choose an IDS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="549"/>
+        <location filename="../Topology.py" line="584"/>
         <source>ASA</source>
         <translation type="unfinished">ASA</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="540"/>
+        <location filename="../Topology.py" line="572"/>
         <source>Please configure an ASA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="549"/>
+        <location filename="../Topology.py" line="584"/>
         <source>Please choose an ASA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="597"/>
+        <location filename="../Topology.py" line="639"/>
         <source>PIX</source>
         <translation type="unfinished">PIX</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="588"/>
+        <location filename="../Topology.py" line="627"/>
         <source>Please configure a PIX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="597"/>
+        <location filename="../Topology.py" line="639"/>
         <source>Please choose a PIX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="385"/>
+        <source>Please choose an image:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="429"/>
+        <source>Please configure a Qemu host:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4339,62 +4365,62 @@ ALT + IZQ o DER</translation>
         <translation>Nuevo vinculo: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="155"/>
+        <location filename="../UndoFramework.py" line="157"/>
         <source>Delete link: %s (%s) -&gt; %s (%s)</source>
         <translation>Eliminar vinculo: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="188"/>
+        <location filename="../UndoFramework.py" line="193"/>
         <source>New configuration applied on %s</source>
         <translation>La nueva configuracion aplicada a %s</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="206"/>
+        <location filename="../UndoFramework.py" line="211"/>
         <source>New hostname %s -&gt; %s</source>
         <translation>Nuevo nombre de host %s -&gt; %s</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="234"/>
+        <location filename="../UndoFramework.py" line="239"/>
         <source>New layer position %d</source>
         <translation>Nueva pocision de capa %d</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="254"/>
+        <location filename="../UndoFramework.py" line="259"/>
         <source>New console port %d for %s</source>
         <translation>Nuevo puerto de consola %d para %s</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="322"/>
+        <location filename="../UndoFramework.py" line="327"/>
         <source>New startup-config %s for %s</source>
         <translation>Nuevo startup-config %s para %s</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="364"/>
+        <location filename="../UndoFramework.py" line="369"/>
         <source>New startup-config in nvram for %s</source>
         <translation>Nuevo startup-config en la nvram para %s</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="383"/>
+        <location filename="../UndoFramework.py" line="388"/>
         <source>Connection lost</source>
         <translation>Perdida de conexion</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="401"/>
+        <location filename="../UndoFramework.py" line="406"/>
         <source>New style applied for annotation</source>
         <translation>Nuevo estilo aplicado a la anotacion</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="436"/>
+        <location filename="../UndoFramework.py" line="441"/>
         <source>New style applied for item</source>
         <translation>Nuevo estilo aplicado al item</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="471"/>
+        <location filename="../UndoFramework.py" line="476"/>
         <source>New text for annotation</source>
         <translation>Nuevo texto para la anotacion</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="288"/>
+        <location filename="../UndoFramework.py" line="293"/>
         <source>New aux port %d for %s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4466,7 +4492,7 @@ p, li { white-space: pre-wrap; }
         <translation>Bahias</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1003"/>
+        <location filename="../Workspace.py" line="1024"/>
         <source>Dynamips error</source>
         <translation>Dynamips error</translation>
     </message>
@@ -4511,12 +4537,12 @@ p, li { white-space: pre-wrap; }
         <translation>Mostrar los nombres de host</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="985"/>
+        <location filename="../Workspace.py" line="1006"/>
         <source>Open a file</source>
         <translation>Abrir archivo</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="981"/>
+        <location filename="../Workspace.py" line="1002"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Por favor configure la ruta para Dynamips</translation>
     </message>
@@ -4526,7 +4552,7 @@ p, li { white-space: pre-wrap; }
         <translation>Nuevo Proyecto</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1055"/>
+        <location filename="../Workspace.py" line="1076"/>
         <source>Message</source>
         <translation>Mensaje</translation>
     </message>
@@ -4551,7 +4577,7 @@ p, li { white-space: pre-wrap; }
         <translation>Archivo invalido %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1055"/>
+        <location filename="../Workspace.py" line="1076"/>
         <source>Would you like to save the current topology?</source>
         <translation>Desea guardar la topologia actual?</translation>
     </message>
@@ -4571,7 +4597,7 @@ p, li { white-space: pre-wrap; }
         <translation>Mostrar los nombres de las interfaces</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="890"/>
+        <location filename="../Workspace.py" line="911"/>
         <source>Snapshot</source>
         <translation>Instantanea</translation>
     </message>
@@ -4581,7 +4607,7 @@ p, li { white-space: pre-wrap; }
         <translation>No es posible crear el directotio %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="895"/>
+        <location filename="../Workspace.py" line="916"/>
         <source>Please wait while creating a snapshot</source>
         <translation>Aguarde mientras se crea la instantanea</translation>
     </message>
@@ -4676,7 +4702,7 @@ p, li { white-space: pre-wrap; }
         <translation>imagen</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="934"/>
+        <location filename="../Workspace.py" line="955"/>
         <source>Dynamips error: %s</source>
         <translation>Error Dynamips: %s</translation>
     </message>
@@ -4697,23 +4723,28 @@ No - Take only what I see</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="890"/>
+        <location filename="../Workspace.py" line="911"/>
         <source>Cannot create directories in %s: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="962"/>
+        <location filename="../Workspace.py" line="983"/>
         <source>Dynamips error!!: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1003"/>
+        <location filename="../Workspace.py" line="1024"/>
         <source>Connection lost with Dynamips hypervisor (crashed?)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1035"/>
+        <location filename="../Workspace.py" line="1056"/>
         <source>Save As...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="826"/>
+        <source>Would you like to unbase the Qemu disk(s)? (useful if you want to distribute your lab but it will increase the total size)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

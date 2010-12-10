@@ -3,7 +3,7 @@
 <context>
     <name>ASA initrd</name>
     <message>
-        <location filename="../DynagenSub.py" line="102"/>
+        <location filename="../DynagenSub.py" line="160"/>
         <source>ASA initrd %s cannot be found and cannot find an alternative initrd</source>
         <translation>%s 의 ASA initrd 및 그를 대체할 수 있는 initrd를 찾지 못했습니다</translation>
     </message>
@@ -11,7 +11,7 @@
 <context>
     <name>ASA kernel</name>
     <message>
-        <location filename="../DynagenSub.py" line="113"/>
+        <location filename="../DynagenSub.py" line="171"/>
         <source>ASA kernel %s cannot be found and cannot find an alternative kernel</source>
         <translation>%s 의 ASA 커널 및 그를 대체할 수 있는 커널을 찾지 못했습니다</translation>
     </message>
@@ -680,130 +680,140 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractNode</name>
     <message>
-        <location filename="../Node/AbstractNode.py" line="109"/>
+        <location filename="../Node/AbstractNode.py" line="112"/>
         <source>Hostname:</source>
         <translation>호스트 이름:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="360"/>
+        <location filename="../Node/AbstractNode.py" line="370"/>
         <source>Connection</source>
         <translation>연결</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="326"/>
+        <location filename="../Node/AbstractNode.py" line="336"/>
         <source>Already connected interface</source>
         <translation>이미 인터페이스에 연결되어 있습니다</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="122"/>
+        <location filename="../Node/AbstractNode.py" line="125"/>
         <source>Hostname</source>
         <translation>호스트 이름</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="122"/>
+        <location filename="../Node/AbstractNode.py" line="125"/>
         <source>Hostname already used</source>
         <translation>호스트 이름이 이미 사용되고 있습니다</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="297"/>
+        <location filename="../Node/AbstractNode.py" line="307"/>
         <source>Hostname: %s</source>
         <translation>호스트 이름: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="360"/>
+        <location filename="../Node/AbstractNode.py" line="370"/>
         <source>No interface available, please configure this device</source>
         <translation>사용가능한 인터페이스가 존재하지 않습니다, 장비를 설정해주세요</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="182"/>
+        <location filename="../Node/AbstractNode.py" line="192"/>
         <source>Console port for %s:</source>
         <translation>%s 의 콘솔 포트:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="189"/>
+        <location filename="../Node/AbstractNode.py" line="199"/>
         <source>Console port</source>
         <translation>콘솔 포트</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="115"/>
+        <location filename="../Node/AbstractNode.py" line="118"/>
         <source>Please use only alphanumeric characters</source>
         <translation>영문자나 숫자만 사용할 수 있습니다</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="109"/>
+        <location filename="../Node/AbstractNode.py" line="112"/>
         <source>Change the hostname</source>
         <translation>호스트 이름을 변경</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="174"/>
+        <location filename="../Node/AbstractNode.py" line="184"/>
         <source>Hypervisor</source>
         <translation>하이퍼바이저</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="133"/>
+        <location filename="../Node/AbstractNode.py" line="136"/>
         <source>The device must have no connection to other devices in order to change its hypervisor</source>
         <translation>하이퍼바이저를 변경하기 위해서는 다른 장비들과 연결상태가 되어 있으면 안됩니다</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="141"/>
+        <location filename="../Node/AbstractNode.py" line="144"/>
         <source>Set hypervisor</source>
         <translation>하이퍼바이저 설정</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="141"/>
+        <location filename="../Node/AbstractNode.py" line="144"/>
         <source>New hypervisor:</source>
         <translation>새로운 하이퍼바이저:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="148"/>
+        <location filename="../Node/AbstractNode.py" line="151"/>
         <source>Invalid format for hypervisor (hostname:port is required)</source>
         <translation>하이퍼바이저 설정 형식이 잘못되어 있습니다(호스트 이름:포트 형식이 필요함)</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="160"/>
+        <location filename="../Node/AbstractNode.py" line="170"/>
         <source>Can&apos;t connect to the hypervisor on %s</source>
         <translation>하이퍼바이저 %s 에 연결할 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="174"/>
+        <location filename="../Node/AbstractNode.py" line="184"/>
         <source>New hypervisor %s has been set on device %s</source>
         <translation>새로운 하이퍼바이저 %s가 %s 장비에 설정이 되었습니다</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="182"/>
+        <location filename="../Node/AbstractNode.py" line="192"/>
         <source>Change the console port</source>
         <translation>콘솔 포트를 변경</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="200"/>
+        <location filename="../Node/AbstractNode.py" line="210"/>
         <source>Change the aux port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="200"/>
+        <location filename="../Node/AbstractNode.py" line="210"/>
         <source>AUX port for %s:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="207"/>
+        <location filename="../Node/AbstractNode.py" line="217"/>
         <source>AUX port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../SnapshotDialog.py" line="64"/>
+        <source>Snapshot name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../SnapshotDialog.py" line="64"/>
+        <source>Snapshot name:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>AnyEmuDevice</name>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="222"/>
+        <location filename="../Node/AnyEmuDevice.py" line="229"/>
         <source>Dynamips error</source>
         <translation>Dynamips 에러</translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="208"/>
+        <location filename="../Node/AnyEmuDevice.py" line="213"/>
         <source>New hostname</source>
         <translation>새로운 호스트 이름</translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="208"/>
+        <location filename="../Node/AnyEmuDevice.py" line="213"/>
         <source>Cannot rename a connected emulated device</source>
         <translation>연결이 되어있는 에뮬레이팅이 된 장비의 이름을 변경할 수 없습니다</translation>
     </message>
@@ -1076,59 +1086,75 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
 <context>
     <name>DynagenSub</name>
     <message>
-        <location filename="../DynagenSub.py" line="61"/>
+        <location filename="../DynagenSub.py" line="119"/>
         <source>Starting hypervisors ...</source>
         <translation>하이퍼바이저를 실행중...</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="61"/>
+        <location filename="../DynagenSub.py" line="119"/>
         <source>Abort</source>
         <translation>중지</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="189"/>
+        <location filename="../DynagenSub.py" line="247"/>
         <source>Local PIX image %s cannot be found, use image %s instead</source>
         <translation>%s 이미지를 찾을 수 없기 때문에 %s 이미지를 대신 사용합니다</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="264"/>
+        <location filename="../DynagenSub.py" line="331"/>
         <source>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</source>
         <translation>%s IOS 이미지에서 하이퍼바이저 %s 를 찾을 수 없기 때문에 %s 이미지를 대신 사용합니다</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="294"/>
+        <location filename="../DynagenSub.py" line="361"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
         <translation>%s 설정에서 라우터 %s 를 찾을 수 없기 때문에 %s 설정을 대신 사용합니다</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="227"/>
+        <location filename="../DynagenSub.py" line="285"/>
         <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
         <translation>%s 작업 디렉터리에서 하이퍼바이저 %s 를 찾을 수 없기 때문에 %s 작업 디렉터리를 대신 사용합니다</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="105"/>
+        <location filename="../DynagenSub.py" line="163"/>
         <source>Local ASA initrd %s cannot be found, use initrd %s instead</source>
         <translation>ASA initrd %s를 찾을 수 없기 때문에 ASA initrd %s를 대신 사용합니다</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="116"/>
+        <location filename="../DynagenSub.py" line="174"/>
         <source>Local ASA kernel %s cannot be found, use kernel %s instead</source>
         <translation>ASA 커널 %s를 찾을 수 없기 때문에 ASA 커널 %s를 대신 사용합니다</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="142"/>
+        <location filename="../DynagenSub.py" line="200"/>
         <source>Local IDS image %s cannot be found, use image %s instead</source>
         <translation>IDS 이미지 %s를 찾을 수 없기 때문에 IDS 이미지 %s를 대신 사용합니다</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="164"/>
+        <location filename="../DynagenSub.py" line="222"/>
         <source>Local JunOS image %s cannot be found, use image %s instead</source>
         <translation>JunOS 이미지 %s를 찾을 수 없기 때문에 JunOS 이미지 %s를 대신 사용합니다</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="176"/>
+        <location filename="../DynagenSub.py" line="234"/>
         <source>Local Qemu host image %s cannot be found, use image %s instead</source>
         <translation>Qemu 호스트 이미지 %s를 찾을 수 없기 때문에 Qemu 호스트 이미지 %s를 대신 사용합니다</translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="64"/>
+        <source>NIO connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="64"/>
+        <source>%s cannot be found
+Please choose an alternate network interface:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="310"/>
+        <source>IOS image</source>
+        <translation type="unfinished">IOS 이미지</translation>
     </message>
 </context>
 <context>
@@ -1424,7 +1450,7 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
 <context>
     <name>IDS image (hda)</name>
     <message>
-        <location filename="../DynagenSub.py" line="128"/>
+        <location filename="../DynagenSub.py" line="186"/>
         <source>IDS image %s cannot be found and cannot find an alternative image</source>
         <translation>%s 의 IDS 이미지 및 그를 대체할 수 있는 이미지를 찾지 못했습니다</translation>
     </message>
@@ -1432,7 +1458,7 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
 <context>
     <name>IDS image (hdb)</name>
     <message>
-        <location filename="../DynagenSub.py" line="139"/>
+        <location filename="../DynagenSub.py" line="197"/>
         <source>IDS image %s cannot be found and cannot find an alternative image</source>
         <translation>%s 의 IDS 이미지 및 그를 대체할 수 있는 이미지를 찾지 못했습니다</translation>
     </message>
@@ -1538,7 +1564,7 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
 <context>
     <name>IOS image</name>
     <message>
-        <location filename="../DynagenSub.py" line="249"/>
+        <location filename="../DynagenSub.py" line="316"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image</source>
         <translation>%s IOS 이미지가 %s 의 하이퍼바이저 및 대체할 수 있는 %s 이미지를 찾지 못했습니다</translation>
     </message>
@@ -1749,32 +1775,32 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="640"/>
+        <location filename="../Node/IOSRouter.py" line="660"/>
         <source>Connection</source>
         <translation>연결</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="640"/>
+        <location filename="../Node/IOSRouter.py" line="660"/>
         <source>No interface available</source>
         <translation>사용가능한 인터페이스가 없습니다</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="253"/>
+        <location filename="../Node/IOSRouter.py" line="255"/>
         <source>Slots</source>
         <translation>슬롯</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="253"/>
+        <location filename="../Node/IOSRouter.py" line="255"/>
         <source>You have to restart this router to use new modules</source>
         <translation>새로운 모듈을 사용하기 위해서는 라우터를 재시작해야 합니다</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="499"/>
+        <location filename="../Node/IOSRouter.py" line="510"/>
         <source>Dynamips error</source>
         <translation>Dynamips 에러</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="308"/>
+        <location filename="../Node/IOSRouter.py" line="310"/>
         <source>Startup-Config for %s</source>
         <translation>%s의 Startup-Config</translation>
     </message>
@@ -1975,7 +2001,7 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
 <context>
     <name>JunOS image</name>
     <message>
-        <location filename="../DynagenSub.py" line="161"/>
+        <location filename="../DynagenSub.py" line="219"/>
         <source>JunOS image %s cannot be found and cannot find an alternative image</source>
         <translation>%s 의 JunOS 이미지 및 그를 대체할 수 있는 이미지를 찾지 못했습니다</translation>
     </message>
@@ -2821,7 +2847,7 @@ to display the configuration page.</source>
 <context>
     <name>PIX image</name>
     <message>
-        <location filename="../DynagenSub.py" line="186"/>
+        <location filename="../DynagenSub.py" line="244"/>
         <source>PIX image %s cannot be found and cannot find an alternative image</source>
         <translation>%s 의 PIX 이미지 및 그를 대체할 수 있는 이미지를 찾지 못했습니다</translation>
     </message>
@@ -3490,7 +3516,7 @@ to display the configuration page.</source>
 <context>
     <name>Qemu image</name>
     <message>
-        <location filename="../DynagenSub.py" line="173"/>
+        <location filename="../DynagenSub.py" line="231"/>
         <source>Qemu host image %s cannot be found and cannot find an alternative image</source>
         <translation>%s 의 Qemu 호스트 이미지 및 그를 대체할 수 있는 이미지를 찾지 못했습니다</translation>
     </message>
@@ -3744,17 +3770,17 @@ to display the configuration page.</source>
         <translation>하이퍼바이저를 설정</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="840"/>
+        <location filename="../Scene.py" line="841"/>
         <source>annotation</source>
         <translation>주석</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="849"/>
+        <location filename="../Scene.py" line="850"/>
         <source>rectangle</source>
         <translation>사각형</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="857"/>
+        <location filename="../Scene.py" line="858"/>
         <source>ellipse</source>
         <translation>타원</translation>
     </message>
@@ -3812,12 +3838,12 @@ to display the configuration page.</source>
 <context>
     <name>SnapshotDialog</name>
     <message>
-        <location filename="../SnapshotDialog.py" line="63"/>
+        <location filename="../SnapshotDialog.py" line="73"/>
         <source>Project</source>
         <translation>프로젝트</translation>
     </message>
     <message>
-        <location filename="../SnapshotDialog.py" line="63"/>
+        <location filename="../SnapshotDialog.py" line="73"/>
         <source>Create a project first!</source>
         <translation>먼저 프로젝트를 만들어 주세요!!</translation>
     </message>
@@ -4100,7 +4126,7 @@ ALT + LEFT or RIGHT</source>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="410"/>
+        <location filename="../Topology.py" line="418"/>
         <source>IOS image</source>
         <translation>IOS 이미지</translation>
     </message>
@@ -4110,27 +4136,27 @@ ALT + LEFT or RIGHT</source>
         <translation>적어도 하나의 IOS를 등록시켜 주세요</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="404"/>
+        <location filename="../Topology.py" line="410"/>
         <source>Hypervisor</source>
         <translation>하이퍼바이저</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="401"/>
+        <location filename="../Topology.py" line="406"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Dynamips의 경로를 설정해주세요</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="966"/>
+        <location filename="../Topology.py" line="1025"/>
         <source>Dynamips error</source>
         <translation>Dynamips 에러</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="966"/>
+        <location filename="../Topology.py" line="1025"/>
         <source>Connection lost</source>
         <translation>연결 종료</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="844"/>
+        <location filename="../Topology.py" line="903"/>
         <source>Connection</source>
         <translation>연결</translation>
     </message>
@@ -4145,22 +4171,17 @@ ALT + LEFT or RIGHT</source>
         <translation>%s 플랫폼에 IOS 이미지가 설정되어 있지 않습니다</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="382"/>
-        <source>Please choose an image</source>
-        <translation>IOS 이미지를 선택해주세요</translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="844"/>
+        <location filename="../Topology.py" line="903"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>적어도 하나의 라우터에서 스위치로 연결이 되어야 합니다</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="609"/>
+        <location filename="../Topology.py" line="654"/>
         <source>PIX image</source>
         <translation>PIX 이미지</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="404"/>
+        <location filename="../Topology.py" line="410"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation>Dynamips 경로에 대해 테스트를 부탁 드립니다 (환경 설정 -&gt; Dynamips -&gt; 테스트)</translation>
     </message>
@@ -4170,32 +4191,32 @@ ALT + LEFT or RIGHT</source>
         <translation>Qemuwrapper 에러</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="609"/>
+        <location filename="../Topology.py" line="654"/>
         <source>%s seems to not exist, please check</source>
         <translation>%s가 존재하지 않는 것 같습니다. 다시한번 확인을 부탁 드립니다</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="479"/>
+        <location filename="../Topology.py" line="502"/>
         <source>JunOS image</source>
         <translation>JunOS 이미지</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="441"/>
+        <location filename="../Topology.py" line="457"/>
         <source>Qemu image</source>
         <translation>Qemu 이미지</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="565"/>
+        <location filename="../Topology.py" line="603"/>
         <source>ASA kernel</source>
         <translation>ASA 커널</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="561"/>
+        <location filename="../Topology.py" line="599"/>
         <source>ASA initrd</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="519"/>
+        <location filename="../Topology.py" line="550"/>
         <source>IDS images</source>
         <translation>IOS 이미지</translation>
     </message>
@@ -4215,7 +4236,7 @@ ALT + LEFT or RIGHT</source>
         <translation>외부 Qemuwrapper 를 선택 해주세요</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="820"/>
+        <location filename="../Topology.py" line="879"/>
         <source>Can&apos;t connect these devices</source>
         <translation>그 장치들에 연결할 수 없습니다</translation>
     </message>
@@ -4230,78 +4251,83 @@ ALT + LEFT or RIGHT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="420"/>
-        <source>Please configure a Qemu host</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="429"/>
+        <location filename="../Topology.py" line="441"/>
         <source>Qemu host</source>
         <translation type="unfinished">Qemu 호스트</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="429"/>
+        <location filename="../Topology.py" line="441"/>
         <source>Please choose a Qemu host</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="458"/>
+        <location filename="../Topology.py" line="475"/>
         <source>JunOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="458"/>
+        <location filename="../Topology.py" line="475"/>
         <source>Please configure a JunOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="467"/>
+        <location filename="../Topology.py" line="487"/>
         <source>Please choose a JunOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="505"/>
+        <location filename="../Topology.py" line="532"/>
         <source>IDS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="496"/>
+        <location filename="../Topology.py" line="520"/>
         <source>Please configure an IDS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="505"/>
+        <location filename="../Topology.py" line="532"/>
         <source>Please choose an IDS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="549"/>
+        <location filename="../Topology.py" line="584"/>
         <source>ASA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="540"/>
+        <location filename="../Topology.py" line="572"/>
         <source>Please configure an ASA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="549"/>
+        <location filename="../Topology.py" line="584"/>
         <source>Please choose an ASA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="597"/>
+        <location filename="../Topology.py" line="639"/>
         <source>PIX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="588"/>
+        <location filename="../Topology.py" line="627"/>
         <source>Please configure a PIX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="597"/>
+        <location filename="../Topology.py" line="639"/>
         <source>Please choose a PIX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="385"/>
+        <source>Please choose an image:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="429"/>
+        <source>Please configure a Qemu host:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4333,62 +4359,62 @@ ALT + LEFT or RIGHT</source>
         <translation>새로운 링크: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="155"/>
+        <location filename="../UndoFramework.py" line="157"/>
         <source>Delete link: %s (%s) -&gt; %s (%s)</source>
         <translation>링크를 삭제: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="188"/>
+        <location filename="../UndoFramework.py" line="193"/>
         <source>New configuration applied on %s</source>
         <translation>새로운 Configuration이 %s 에 적용되었습니다</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="206"/>
+        <location filename="../UndoFramework.py" line="211"/>
         <source>New hostname %s -&gt; %s</source>
         <translation>새로운 호스트 이름 %s -&gt; %s</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="234"/>
+        <location filename="../UndoFramework.py" line="239"/>
         <source>New layer position %d</source>
         <translation>새로운 레이어 위치 %d</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="254"/>
+        <location filename="../UndoFramework.py" line="259"/>
         <source>New console port %d for %s</source>
         <translation>%s의 새로운 콘솔 포트 %d</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="322"/>
+        <location filename="../UndoFramework.py" line="327"/>
         <source>New startup-config %s for %s</source>
         <translation>%s - %s의 새로운 Startup-config</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="364"/>
+        <location filename="../UndoFramework.py" line="369"/>
         <source>New startup-config in nvram for %s</source>
         <translation>%s의 NVRAM에 새로운 Startup-config</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="383"/>
+        <location filename="../UndoFramework.py" line="388"/>
         <source>Connection lost</source>
         <translation>연결 종료</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="401"/>
+        <location filename="../UndoFramework.py" line="406"/>
         <source>New style applied for annotation</source>
         <translation>주석에 대해 새로운 스타일이 적용되었습니다</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="436"/>
+        <location filename="../UndoFramework.py" line="441"/>
         <source>New style applied for item</source>
         <translation>항목에 대하여 새로운 스타일이 적용되었습니다</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="471"/>
+        <location filename="../UndoFramework.py" line="476"/>
         <source>New text for annotation</source>
         <translation>주석에 대한 새 텍스트</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="288"/>
+        <location filename="../UndoFramework.py" line="293"/>
         <source>New aux port %d for %s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4451,7 +4477,7 @@ p, li { white-space: pre-wrap; }
         <translation>Docks</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1003"/>
+        <location filename="../Workspace.py" line="1024"/>
         <source>Dynamips error</source>
         <translation>Dynamips 에러</translation>
     </message>
@@ -4496,12 +4522,12 @@ p, li { white-space: pre-wrap; }
         <translation>호스트 이름을 보여줍니다</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="985"/>
+        <location filename="../Workspace.py" line="1006"/>
         <source>Open a file</source>
         <translation>파일 열기</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="981"/>
+        <location filename="../Workspace.py" line="1002"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Dynamips의 경로가 반드시 설정되어 있어야 합니다</translation>
     </message>
@@ -4511,7 +4537,7 @@ p, li { white-space: pre-wrap; }
         <translation>새로운 프로젝트</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1055"/>
+        <location filename="../Workspace.py" line="1076"/>
         <source>Message</source>
         <translation>메시지</translation>
     </message>
@@ -4536,7 +4562,7 @@ p, li { white-space: pre-wrap; }
         <translation>%s 파일이 잘못되어 있습니다</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1055"/>
+        <location filename="../Workspace.py" line="1076"/>
         <source>Would you like to save the current topology?</source>
         <translation>현재의 토폴로지를 저장하시겠습니까?</translation>
     </message>
@@ -4556,7 +4582,7 @@ p, li { white-space: pre-wrap; }
         <translation>인터페이스 이름을 보이기</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="890"/>
+        <location filename="../Workspace.py" line="911"/>
         <source>Snapshot</source>
         <translation>스냅샷</translation>
     </message>
@@ -4566,7 +4592,7 @@ p, li { white-space: pre-wrap; }
         <translation>%s 디렉터리를 생성할 수 없습니다: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="895"/>
+        <location filename="../Workspace.py" line="916"/>
         <source>Please wait while creating a snapshot</source>
         <translation>스냅샷을 만드는 동안 잠시만 기다려 주세요</translation>
     </message>
@@ -4661,7 +4687,7 @@ p, li { white-space: pre-wrap; }
         <translation>사진</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="934"/>
+        <location filename="../Workspace.py" line="955"/>
         <source>Dynamips error: %s</source>
         <translation>Dynamips 에러: %s</translation>
     </message>
@@ -4682,23 +4708,28 @@ No - Take only what I see</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="890"/>
+        <location filename="../Workspace.py" line="911"/>
         <source>Cannot create directories in %s: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="962"/>
+        <location filename="../Workspace.py" line="983"/>
         <source>Dynamips error!!: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1003"/>
+        <location filename="../Workspace.py" line="1024"/>
         <source>Connection lost with Dynamips hypervisor (crashed?)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1035"/>
+        <location filename="../Workspace.py" line="1056"/>
         <source>Save As...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="826"/>
+        <source>Would you like to unbase the Qemu disk(s)? (useful if you want to distribute your lab but it will increase the total size)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

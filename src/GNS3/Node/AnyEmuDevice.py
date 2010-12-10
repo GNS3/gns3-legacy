@@ -48,6 +48,8 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
 
         # assign a new hostname
         global emu_id
+        if not emu_id:
+            emu_id = 1
         
         # check if hostname has already been assigned
         for node in globals.GApp.topology.nodes.itervalues():

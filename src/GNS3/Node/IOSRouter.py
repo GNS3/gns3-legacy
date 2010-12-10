@@ -60,6 +60,8 @@ class IOSRouter(AbstractNode):
 
         # assign a new hostname
         global router_id
+        if not router_id:
+            router_id = 1
 
         # check if hostname has already been assigned
         for node in globals.GApp.topology.nodes.itervalues():
