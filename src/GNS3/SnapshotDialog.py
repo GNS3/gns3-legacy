@@ -80,7 +80,7 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
         items = self.SnapshotList.selectedItems()
         if len(items):
             item = items[0]
-            snapshot_path = unicode(item.data(QtCore.Qt.UserRole).toString())
+            snapshot_path = os.path.dirname(unicode(item.data(QtCore.Qt.UserRole).toString()))
             shutil.rmtree(snapshot_path, ignore_errors=True)
             self.listSnaphosts()
         
