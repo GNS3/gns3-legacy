@@ -14,6 +14,7 @@ TODO LIST
  * Waiting time between each console opening
  * Apply button for idle-pc
  * Change Scrolling behavior
+ * Extract/write files from QEMU qcow2 format image file using libguestfs.
 
 Debugging
 

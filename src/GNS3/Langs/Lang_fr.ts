@@ -106,17 +106,17 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="20"/>
         <source>RAM:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="49"/>
         <source>Number of NICs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartes réseaux:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="72"/>
         <source>NIC model:</source>
-        <translation type="unfinished"></translation>
+        <translation>Modèle de carte:</translation>
     </message>
 </context>
 <context>
@@ -174,7 +174,7 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="82"/>
         <source>Port:VPI:VCI</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -227,12 +227,12 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="20"/>
         <source>Use VPI only (VP tunnel)</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser seulement le VPI</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="48"/>
         <source>Port:VPI:VCI</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -563,7 +563,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Andrea Riela: Italian translation (code: it)&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Kyryl Tumanov: Ukrainian translation (code: uk)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="75"/>
@@ -586,7 +586,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -664,17 +664,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="196"/>
         <source>Stop capturing</source>
-        <translation type="unfinished"></translation>
+        <translation>Arrêter la capture</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="248"/>
         <source>Device %s must be restarted to start capturing traffic</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;équipement doit être redémarré pour commencer la capture</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="344"/>
         <source>Device %s must be stopped to stop capturing traffic</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;équipement doit être stoppé pour arrêter la capture</translation>
     </message>
 </context>
 <context>
@@ -772,32 +772,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="192"/>
         <source>Change the console port</source>
-        <translation>Changer le port console</translation>
+        <translation>Changer le numéro de port console</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="210"/>
         <source>Change the aux port</source>
-        <translation type="unfinished"></translation>
+        <translation>Changer le numéro de port auxiliaire (AUX)</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="210"/>
         <source>AUX port for %s:</source>
-        <translation type="unfinished"></translation>
+        <translation>Port auxiliaire pour %s:</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="217"/>
         <source>AUX port</source>
-        <translation type="unfinished"></translation>
+        <translation>Port auxiliaire</translation>
     </message>
     <message>
         <location filename="../SnapshotDialog.py" line="64"/>
         <source>Snapshot name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom pour le snapshot</translation>
     </message>
     <message>
         <location filename="../SnapshotDialog.py" line="64"/>
         <source>Snapshot name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom pour le snapshot:</translation>
     </message>
 </context>
 <context>
@@ -918,17 +918,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="30"/>
         <source>Generic Ethernet NIO (Administrator access required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ethernet NIO générique (Droits Administrateurs requis)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="78"/>
         <source>Linux Ethernet NIO (root access required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ethernet NIO pour Linux (Droits root requis)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="185"/>
         <source>127.0.0.1</source>
-        <translation type="unfinished">127.0.0.1</translation>
+        <translation>127.0.0.1</translation>
     </message>
 </context>
 <context>
@@ -1144,18 +1144,19 @@ Entrer le numéro de la valeur a appliquer [1-%i] or ENTRER pour ignorer le chan
     <message>
         <location filename="../DynagenSub.py" line="64"/>
         <source>NIO connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Connexion NIO</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="64"/>
         <source>%s cannot be found
 Please choose an alternate network interface:</source>
-        <translation type="unfinished"></translation>
+        <translation>%s est introuvable
+SVP sélectionnez une carte réseau alternative:</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="310"/>
         <source>IOS image</source>
-        <translation type="unfinished">Image IOS</translation>
+        <translation>Image IOS</translation>
     </message>
 </context>
 <context>
@@ -1173,12 +1174,12 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Node/ETHSW.py" line="211"/>
         <source>Port type</source>
-        <translation type="unfinished"></translation>
+        <translation>Type de port</translation>
     </message>
     <message>
         <location filename="../Node/ETHSW.py" line="211"/>
         <source>QinQ is only supported with Dynamips &gt; 0.2.8 RC2</source>
-        <translation type="unfinished"></translation>
+        <translation>QinQ est supporté seulement avec la version de Dynamips &gt; 0.2.8-RC2</translation>
     </message>
 </context>
 <context>
@@ -1251,7 +1252,7 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="102"/>
         <source>qinq</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1387,17 +1388,17 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="56"/>
         <source>RAM:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="85"/>
         <source>Number of NICs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartes réseaux:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="108"/>
         <source>NIC model:</source>
-        <translation type="unfinished"></translation>
+        <translation>Modèle de carte:</translation>
     </message>
 </context>
 <context>
@@ -1549,17 +1550,17 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="92"/>
         <source>RAM:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="121"/>
         <source>Number of NICs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartes réseaux:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="144"/>
         <source>NIC model:</source>
-        <translation type="unfinished"></translation>
+        <translation>Modèle de carte:</translation>
     </message>
 </context>
 <context>
@@ -1750,27 +1751,27 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="256"/>
         <source>Image file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Image binaire:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="258"/>
         <source>Base config:</source>
-        <translation type="unfinished"></translation>
+        <translation>Config de base:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="259"/>
         <source>baseconfig.txt</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="415"/>
         <source>The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn&apos;t support unicode on Windows!</source>
-        <translation type="unfinished"></translation>
+        <translation>Le chemin sélectionné ne devrais contenir que des caractères ASCII. Dynamips (Cygwin DLL) ne supporte pas Unicode on Windows!</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="221"/>
         <source>Select a Base configuration file</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionnez un fichier pour la configuration de base</translation>
     </message>
 </context>
 <context>
@@ -1798,12 +1799,12 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Node/IOSRouter.py" line="255"/>
         <source>Slots</source>
-        <translation type="unfinished">Slots</translation>
+        <translation>Emplacements</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="255"/>
         <source>You have to restart this router to use new modules</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous devez redémarrer ce routeur pour utiliser les nouveaux modules</translation>
     </message>
 </context>
 <context>
@@ -1947,57 +1948,57 @@ panier:</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="306"/>
         <source>slot 0:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="322"/>
         <source>slot 1:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="338"/>
         <source>slot 2:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="354"/>
         <source>slot 3:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="370"/>
         <source>slot 4:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="386"/>
         <source>slot 5:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="402"/>
         <source>slot 6:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="418"/>
         <source>slot 7:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="443"/>
         <source>wic 0:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="459"/>
         <source>wic 1:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="475"/>
         <source>wic 2:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -2083,22 +2084,22 @@ panier:</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="14"/>
         <source>JunOS configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuration pour JunOS images</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="56"/>
         <source>RAM:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="85"/>
         <source>Number of NICs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartes réseaux:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="108"/>
         <source>NIC model:</source>
-        <translation type="unfinished"></translation>
+        <translation>Modèle de carte:</translation>
     </message>
 </context>
 <context>
@@ -2106,47 +2107,47 @@ panier:</translation>
     <message>
         <location filename="../Ui/Form_MACTableDialog.py" line="39"/>
         <source>MAC Address Table</source>
-        <translation type="unfinished"></translation>
+        <translation>Table des adresses MAC</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MACTableDialog.py" line="40"/>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualiser</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MACTableDialog.py" line="41"/>
         <source>Clear table</source>
-        <translation type="unfinished"></translation>
+        <translation>Effacer la table</translation>
     </message>
     <message>
         <location filename="../MACTableDialog.py" line="39"/>
         <source>%s MAC Address Table</source>
-        <translation type="unfinished"></translation>
+        <translation>%s Table des adresses MAC</translation>
     </message>
     <message>
         <location filename="../MACTableDialog.py" line="81"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Erreur Dynamips</translation>
+        <translation>Erreur Dynamips</translation>
     </message>
     <message>
         <location filename="../MACTableDialog.py" line="81"/>
         <source>Connection lost</source>
-        <translation type="unfinished">Connection perdue</translation>
+        <translation>Connexion perdue</translation>
     </message>
     <message>
         <location filename="../MACTableDialog.py" line="66"/>
         <source>learned from port</source>
-        <translation type="unfinished"></translation>
+        <translation>apprise par le port</translation>
     </message>
     <message>
         <location filename="../MACTableDialog.py" line="75"/>
         <source>MAC Table</source>
-        <translation type="unfinished"></translation>
+        <translation>Table MAC</translation>
     </message>
     <message>
         <location filename="../MACTableDialog.py" line="75"/>
         <source>The MAC table has been cleared</source>
-        <translation type="unfinished"></translation>
+        <translation>La table des adresses MAC a été effacé</translation>
     </message>
 </context>
 <context>
@@ -2210,7 +2211,7 @@ panier:</translation>
         <translation>Topologie</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="449"/>
+        <location filename="../Ui/Form_MainWindow.py" line="420"/>
         <source>Console</source>
         <translation>Console</translation>
     </message>
@@ -2432,172 +2433,152 @@ panier:</translation>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="412"/>
         <source>Control</source>
-        <translation type="unfinished"></translation>
+        <translation>Contrôle</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="413"/>
         <source>Annotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Annotation</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="423"/>
         <source>Captures</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="424"/>
         <source>Hostname</source>
-        <translation type="unfinished">Nom d&apos;hôte</translation>
+        <translation>Nom d&apos;hôte</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="425"/>
         <source>Interface</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="430"/>
         <source>Open project or topology file</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir un projet ou une topologie</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="433"/>
         <source>Save project or topology file</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauver un projet ou une topologie</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="441"/>
         <source>&amp;Screenshot</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="442"/>
         <source>Take a screenshot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_MainWindow.py" line="443"/>
-        <source>Start/Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>Prendre une capture d&apos;écran</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="444"/>
         <source>Start/Resume all devices</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_MainWindow.py" line="445"/>
-        <source>Stop</source>
-        <translation type="unfinished">Arrêter</translation>
+        <translation>Démarrer/Reprendre tous les équipements</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="446"/>
         <source>Stop all devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Arrêter tous les équipements</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="450"/>
         <source>Console to all devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Lancer une console tous les équipements</translation>
     </message>
     <message encoding="UTF-8">
         <location filename="../Ui/Form_MainWindow.py" line="451"/>
         <source>Save topology &amp;as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauver la topologie &amp;sous...</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="453"/>
         <source>Save topology file as...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_MainWindow.py" line="471"/>
-        <source>Suspend</source>
-        <translation type="unfinished">Suspendre</translation>
+        <translation>Sauver la topologie sous...</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="472"/>
         <source>Suspend all devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Suspendre tous les équipements</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="474"/>
         <source>New blank topology</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouvelle topologie</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="475"/>
         <source>Add Note</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter une note</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="477"/>
         <source>&amp;New blank project</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nouvelle topologie</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="479"/>
         <source>New blank project</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouvelle topologie</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="481"/>
         <source>&amp;Import/Export</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Importer/Exporter</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="482"/>
         <source>Import/Export Startup Configs</source>
-        <translation type="unfinished"></translation>
+        <translation>Importer/Exporter les startup-configs</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="483"/>
         <source>Insert Picture</source>
-        <translation type="unfinished"></translation>
+        <translation>Insérer une image</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="487"/>
         <source>Draw Rectangle</source>
-        <translation type="unfinished"></translation>
+        <translation>Dessiner un rectangle</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="489"/>
         <source>Draw Ellipse</source>
-        <translation type="unfinished"></translation>
+        <translation>Dessiner une ellipse</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="491"/>
         <source>Show Interface Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les noms des interfaces</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="492"/>
         <source>Show interface labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les noms des interfaces</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="494"/>
         <source>Take a snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Prendre un snapshot</translation>
     </message>
     <message encoding="UTF-8">
         <location filename="../Ui/Form_MainWindow.py" line="496"/>
         <source>&amp;Save project as…</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sauver le projet sous...</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="497"/>
         <source>Save project as...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_MainWindow.py" line="498"/>
-        <source>Reload</source>
-        <translation type="unfinished">Redémarrer</translation>
+        <translation>Sauver le projet sous...</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="499"/>
         <source>Reload all devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Redémarrer tous les équipements</translation>
     </message>
 </context>
 <context>
@@ -2703,22 +2684,22 @@ panier:</translation>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="74"/>
         <source>Project directory:</source>
-        <translation type="unfinished">Répertoire des projets:</translation>
+        <translation>Répertoire des projets:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="72"/>
         <source>Project settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Réglages du projet</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="76"/>
         <source>Save nvrams and virtual hard drives</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauver les NVRAMs et autres disques virtuels</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="77"/>
         <source>Save IOS startup configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarder les startup-configs des IOS</translation>
     </message>
 </context>
 <context>
@@ -2995,27 +2976,27 @@ pour afficher sa page de configuration.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="165"/>
         <source>Enable ghost IOS support</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer le support de Ghost IOS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="175"/>
         <source>Enable mmap support</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer le support de NMAP</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="195"/>
         <source>Enable sparse memory support</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer le support de sparse memory</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="185"/>
         <source>Enable JIT sharing support (Dynamips &gt; 0.2.8 RC2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer le support du JIT sharing (Dynamips &gt; 0.2.8 RC2)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="118"/>
         <source>Base AUX port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Port auxiliaire de base:</translation>
     </message>
 </context>
 <context>
@@ -3164,7 +3145,7 @@ pour afficher sa page de configuration.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="90"/>
         <source>Autosave:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarde automatique de la topologie:</translation>
     </message>
 </context>
 <context>
@@ -3442,72 +3423,72 @@ pour afficher sa page de configuration.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1520"/>
         <source>RAM:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1546"/>
         <source>Number of NICs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartes réseaux:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1569"/>
         <source>NIC model:</source>
-        <translation type="unfinished"></translation>
+        <translation>Modèle de carte:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="503"/>
         <source>Qemu Host Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Images Qemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="826"/>
         <source>PIX Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Images PIX</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1092"/>
         <source>JunOS Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Images JunOS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1345"/>
         <source>console=ttyS0,9600n8 bigphysarea=16384 auto nousb ide1=noprobe hda=980,16,32</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1396"/>
         <source>ASA Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Images ASA</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1408"/>
         <source>Initrd path</source>
-        <translation type="unfinished"></translation>
+        <translation>Chemin vers Initrd</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1413"/>
         <source>Kernel path</source>
-        <translation type="unfinished"></translation>
+        <translation>Chemin vers le Kernel</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1636"/>
         <source>-smbios type=1,product=IDS-4215</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1697"/>
         <source>IDS Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Images IDS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1709"/>
         <source>Image 1 path</source>
-        <translation type="unfinished"></translation>
+        <translation>Chemin vers l&apos;image 1</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1714"/>
         <source>Image 2 path</source>
-        <translation type="unfinished"></translation>
+        <translation>Chemin vers l&apos;image 2</translation>
     </message>
 </context>
 <context>
@@ -3634,22 +3615,22 @@ pour afficher sa page de configuration.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="14"/>
         <source>Qemu configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuration de Qemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="56"/>
         <source>RAM:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="85"/>
         <source>Number of NICs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartes réseaux:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="108"/>
         <source>NIC model:</source>
-        <translation type="unfinished"></translation>
+        <translation>Modèle de carte:</translation>
     </message>
 </context>
 <context>
@@ -3792,52 +3773,52 @@ pour afficher sa page de configuration.</translation>
     <message>
         <location filename="../Scene.py" line="144"/>
         <source>MAC Address Table</source>
-        <translation type="unfinished"></translation>
+        <translation>Table des adresses MAC</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="154"/>
         <source>Change Symbol</source>
-        <translation type="unfinished"></translation>
+        <translation>Changer le symbole</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="197"/>
         <source>Change aux port</source>
-        <translation type="unfinished"></translation>
+        <translation>Changer le numéro de port auxiliaire (AUX)</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="232"/>
         <source>Duplicate</source>
-        <translation type="unfinished"></translation>
+        <translation>Dupliquer</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="261"/>
         <source>Align horizontally</source>
-        <translation type="unfinished"></translation>
+        <translation>Aligner horizontalement</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="267"/>
         <source>Align vertically</source>
-        <translation type="unfinished"></translation>
+        <translation>Aligner verticallement</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="631"/>
         <source>Message</source>
-        <translation type="unfinished">Message</translation>
+        <translation>Message</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="507"/>
         <source>Do you really want to delete these devices?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous supprimer ces équipements?</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="608"/>
         <source>Do you really want to stop these devices?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous stopper ces équipements?</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="631"/>
         <source>Do you really want to reload these devices?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous redémarrer ces équipements?</translation>
     </message>
 </context>
 <context>
@@ -3856,22 +3837,22 @@ pour afficher sa page de configuration.</translation>
 <context>
     <name>Snapshots</name>
     <message>
-        <location filename="../Ui/Form_Snapshots.py" line="42"/>
+        <location filename="../Ui/Form_Snapshots.py" line="45"/>
         <source>Snapshots</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Snapshots.py" line="43"/>
+        <location filename="../Ui/Form_Snapshots.py" line="46"/>
         <source>Create</source>
         <translation>Créer</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Snapshots.py" line="44"/>
+        <location filename="../Ui/Form_Snapshots.py" line="47"/>
         <source>Load</source>
         <translation>Charger</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Snapshots.py" line="45"/>
+        <location filename="../Ui/Form_Snapshots.py" line="48"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
@@ -4016,12 +3997,12 @@ avec les touches ALT + GAUCHE ou DROIT</translation>
     <message>
         <location filename="../Ui/Form_SymbolDialog.py" line="38"/>
         <source>Change symbol</source>
-        <translation type="unfinished"></translation>
+        <translation>Changer le symbole</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolDialog.py" line="39"/>
         <source>Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Symboles</translation>
     </message>
 </context>
 <context>
@@ -4250,92 +4231,92 @@ avec les touches ALT + GAUCHE ou DROIT</translation>
     <message>
         <location filename="../Topology.py" line="238"/>
         <source>IOS Base config</source>
-        <translation type="unfinished"></translation>
+        <translation>Config de base</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="238"/>
         <source>%s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Topology.py" line="441"/>
         <source>Qemu host</source>
-        <translation type="unfinished">Hôte Qemu</translation>
+        <translation>Hôte Qemu</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="441"/>
         <source>Please choose a Qemu host</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionnez un hôte Qemu</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="475"/>
         <source>JunOS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Topology.py" line="475"/>
         <source>Please configure a JunOS</source>
-        <translation type="unfinished"></translation>
+        <translation>SVP configurez une image JunOS</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="487"/>
         <source>Please choose a JunOS</source>
-        <translation type="unfinished"></translation>
+        <translation>SVP sélectionnez une image JunOS</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="532"/>
         <source>IDS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Topology.py" line="520"/>
         <source>Please configure an IDS</source>
-        <translation type="unfinished"></translation>
+        <translation>SVP configurez une image IDS</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="532"/>
         <source>Please choose an IDS</source>
-        <translation type="unfinished"></translation>
+        <translation>SVP sélectionnez une image IDS</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="584"/>
         <source>ASA</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Topology.py" line="572"/>
         <source>Please configure an ASA</source>
-        <translation type="unfinished"></translation>
+        <translation>SVP configurez une image ASA</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="584"/>
         <source>Please choose an ASA</source>
-        <translation type="unfinished"></translation>
+        <translation>SVP sélectionnez une image ASA</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="639"/>
         <source>PIX</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Topology.py" line="627"/>
         <source>Please configure a PIX</source>
-        <translation type="unfinished"></translation>
+        <translation>SVP configurez une image PIX</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="639"/>
         <source>Please choose a PIX</source>
-        <translation type="unfinished"></translation>
+        <translation>SVP sélectionnez une image PIX</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="385"/>
         <source>Please choose an image:</source>
-        <translation type="unfinished"></translation>
+        <translation>SVP choissisez une image:</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="429"/>
         <source>Please configure a Qemu host:</source>
-        <translation type="unfinished"></translation>
+        <translation>SVP configurez une image Qemu:</translation>
     </message>
 </context>
 <context>
@@ -4423,7 +4404,7 @@ avec les touches ALT + GAUCHE ou DROIT</translation>
     <message>
         <location filename="../UndoFramework.py" line="293"/>
         <source>New aux port %d for %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouveau port auxiliaire %d pour %s</translation>
     </message>
 </context>
 <context>
@@ -4431,12 +4412,12 @@ avec les touches ALT + GAUCHE ou DROIT</translation>
     <message>
         <location filename="../Ui/Widget_capturesDock.py" line="76"/>
         <source>Stop capturing</source>
-        <translation type="unfinished"></translation>
+        <translation>Arrêter la capture</translation>
     </message>
     <message>
         <location filename="../Ui/Widget_capturesDock.py" line="79"/>
         <source>Start Wireshark</source>
-        <translation type="unfinished">Démarrer Wireshark</translation>
+        <translation>Démarrer Wireshark</translation>
     </message>
 </context>
 <context>
@@ -4711,37 +4692,38 @@ p, li { white-space: pre-wrap; }
         <location filename="../Workspace.py" line="201"/>
         <source>Yes - Take all the workspace
 No - Take only what I see</source>
-        <translation type="unfinished"></translation>
+        <translation>Oui - prendre tout l&apos;espace de travail
+Non - prendre seulement ce que je vois</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="573"/>
         <source>Reset saved interface labels?</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser les labels des interfaces?</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="756"/>
         <source>Do you want to clear the current topology?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous effacer la topologie actuelle?</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="911"/>
         <source>Cannot create directories in %s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de créer le répertoire %s: %s</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="983"/>
         <source>Dynamips error!!: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur Dynamips: %s</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="1024"/>
         <source>Connection lost with Dynamips hypervisor (crashed?)</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de se connecter sur l&apos;hypervisor (crash ?)</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="1056"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarder sous...</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="826"/>

@@ -3,8 +3,8 @@ CHANGELOG
 GNS3 0.7.3
 
  * Easily change the symbol of one or several nodes (Select a node, then right click -> Change symbol).
- * A docked window to see on what device an interface captures are running (View -> Docks -> Captures). You can stop capturing or start Wireshark using this view.
- * Only the necessary files (nvram/flash/disks) are copied or kept when creating projects and snapshots.
+ * A docked window to see on what device interface captures are running (View -> Docks -> Captures). You can stop capturing or start Wireshark using this view.
+ * Only the necessary files (nvram, flash, disks etc.) are copied or kept when creating projects and snapshots.
  * Preventing unsaved interface labels to show up after loading a topology. This can be reset using the "show interface labels" button.
  * Improvements for ATM and Frame Relay switches: proper naming, dynamic mapping support and it is not needed to remove a link to change its DLCI/VC mapping.
  * PCAP capture support for Qemu based devices (Qemu host, JunOS ASA, PIX, IDS). This option cannot be used after the selected device is started.
@@ -19,6 +19,17 @@ GNS3 0.7.3
  * Autosave feature to save your topology every x secondes (Preferences -> General).
  * A default base config (with hostname, exec-timeout commands etc.) is automatically loaded when creating a new IOS based router. The path to this default config can be changed in "IOS images and hypervisors" dialog.
  * A more understandable MAC address table for Ethernet switches (right click on a switch -> Show MAC address table).
+ * Qemuwrapper improvements like cleaning old FLASH/SWAP files when creating a new device with a same hostname.
+ * Multi Qemu based devices topologies now work using base images on Windows. Patched in Qemu 0.11.0 binary included in the all-in-one package (thanks tranzitwww!!!).
+ * Support for unbasing Qemu images when creating or saving as a project. This means no dependencies with your base images thus you can easily distribute your project.
+ * Option to replace unknown references (GUID: \device\npf_{802b5272-cd1b-431c-8cb5-f57ba76145c6}) to network interfaces on Windows when loading a NET file.
+ * Option to replace unknown IOS image when loading a NET file.
+ * Scroll the scene with the mouse middle click or right and left clicks a the same time. This behavior is to be changed in a future release.
+ * Possibility to specify a directory where GNS3 settings file (gns3.ini) is located with the parameter --config-dir on the command line.
+ * Romanian translation (thanks to tranzitwww).
+ * Double click on a running node opens a console.
+ * Reload all devices option.
+ * French and Italian translation updates.
 
 GNS3 0.7.2
 

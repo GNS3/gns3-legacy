@@ -499,7 +499,7 @@
      <normaloff>:/icons/play.svg</normaloff>:/icons/play.svg</iconset>
    </property>
    <property name="text">
-    <string>Start/Resume</string>
+    <string>Start/Resume all devices</string>
    </property>
    <property name="toolTip">
     <string>Start/Resume all devices</string>
@@ -514,7 +514,7 @@
      <normaloff>:/icons/stop.svg</normaloff>:/icons/stop.svg</iconset>
    </property>
    <property name="text">
-    <string>Stop</string>
+    <string>Stop all devices</string>
    </property>
    <property name="toolTip">
     <string>Stop all devices</string>
@@ -544,7 +544,7 @@
      <normaloff>:/icons/console.svg</normaloff>:/icons/console.svg</iconset>
    </property>
    <property name="text">
-    <string>Console</string>
+    <string>Console to all devices</string>
    </property>
    <property name="toolTip">
     <string>Console to all devices</string>
@@ -661,7 +661,7 @@
      <normaloff>:/icons/pause.svg</normaloff>:/icons/pause.svg</iconset>
    </property>
    <property name="text">
-    <string>Suspend</string>
+    <string>Suspend all devices</string>
    </property>
    <property name="toolTip">
     <string>Suspend all devices</string>
@@ -831,7 +831,7 @@
      <normaloff>:/icons/reload.svg</normaloff>:/icons/reload.svg</iconset>
    </property>
    <property name="text">
-    <string>Reload</string>
+    <string>Reload all devices</string>
    </property>
    <property name="toolTip">
     <string>Reload all devices</string>

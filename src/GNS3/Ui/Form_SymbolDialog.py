@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_SymbolDialog.ui'
 #
-# Created: Fri Dec 10 23:05:25 2010
+# Created: Sun Dec 12 11:17:44 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!

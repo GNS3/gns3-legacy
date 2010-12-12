@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_Snapshots.ui'
 #
-# Created: Fri Dec 10 23:05:25 2010
+# Created: Sun Dec 12 11:17:44 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,6 +13,9 @@ class Ui_Snapshots(object):
     def setupUi(self, Snapshots):
         Snapshots.setObjectName("Snapshots")
         Snapshots.resize(496, 288)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/images/logo_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        Snapshots.setWindowIcon(icon)
         self.gridLayout = QtGui.QGridLayout(Snapshots)
         self.gridLayout.setObjectName("gridLayout")
         self.SnapshotList = QtGui.QListWidget(Snapshots)
@@ -44,3 +47,4 @@ class Ui_Snapshots(object):
         self.pushButtonLoad.setText(QtGui.QApplication.translate("Snapshots", "Load", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonDelete.setText(QtGui.QApplication.translate("Snapshots", "Delete", None, QtGui.QApplication.UnicodeUTF8))
 
+import svg_resources_rc

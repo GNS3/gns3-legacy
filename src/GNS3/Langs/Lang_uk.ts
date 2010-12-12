@@ -2208,7 +2208,7 @@ Please choose an alternate network interface:</source>
         <translation>Топологія</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="449"/>
+        <location filename="../Ui/Form_MainWindow.py" line="420"/>
         <source>Console</source>
         <translation>Консоль</translation>
     </message>
@@ -2473,19 +2473,9 @@ Please choose an alternate network interface:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="443"/>
-        <source>Start/Resume</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Ui/Form_MainWindow.py" line="444"/>
         <source>Start/Resume all devices</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_MainWindow.py" line="445"/>
-        <source>Stop</source>
-        <translation type="unfinished">Зупинити</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="446"/>
@@ -2506,11 +2496,6 @@ Please choose an alternate network interface:</source>
         <location filename="../Ui/Form_MainWindow.py" line="453"/>
         <source>Save topology file as...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_MainWindow.py" line="471"/>
-        <source>Suspend</source>
-        <translation type="unfinished">Призупинити</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="472"/>
@@ -2586,11 +2571,6 @@ Please choose an alternate network interface:</source>
         <location filename="../Ui/Form_MainWindow.py" line="497"/>
         <source>Save project as...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_MainWindow.py" line="498"/>
-        <source>Reload</source>
-        <translation type="unfinished">Перезапустити</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="499"/>
@@ -3854,22 +3834,22 @@ to display the configuration page.</source>
 <context>
     <name>Snapshots</name>
     <message>
-        <location filename="../Ui/Form_Snapshots.py" line="42"/>
+        <location filename="../Ui/Form_Snapshots.py" line="45"/>
         <source>Snapshots</source>
         <translation>Знімки</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Snapshots.py" line="43"/>
+        <location filename="../Ui/Form_Snapshots.py" line="46"/>
         <source>Create</source>
         <translation>Створити</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Snapshots.py" line="44"/>
+        <location filename="../Ui/Form_Snapshots.py" line="47"/>
         <source>Load</source>
         <translation>Завантажити</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Snapshots.py" line="45"/>
+        <location filename="../Ui/Form_Snapshots.py" line="48"/>
         <source>Delete</source>
         <translation>Вилучити</translation>
     </message>

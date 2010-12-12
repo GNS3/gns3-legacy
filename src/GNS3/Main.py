@@ -30,7 +30,7 @@ from __main__ import VERSION
 usage = "usage: %prog [--debug] [--configdir <config_dir>] <net_file>"
 parser = OptionParser(usage, version="%prog " + VERSION)
 parser.add_option("-d", "--debug", action="store_true", help="display debug messages")
-parser.add_option("-c", "--configdir", action="store_true", dest="config_dir", help="directory where is stored gns3.ini")
+parser.add_option("-c", "--configdir", action="store_true", dest="config_dir", help="directory where gns3.ini is located")
 
 try:
     (options, args) = parser.parse_args()

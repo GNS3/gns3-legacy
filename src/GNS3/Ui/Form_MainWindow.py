@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Fri Dec 10 23:05:24 2010
+# Created: Sun Dec 12 11:17:43 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -440,13 +440,13 @@ class Ui_MainWindow(object):
         self.action_OnlineHelp.setText(QtGui.QApplication.translate("MainWindow", "&Online Help", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Export.setText(QtGui.QApplication.translate("MainWindow", "&Screenshot", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Export.setToolTip(QtGui.QApplication.translate("MainWindow", "Take a screenshot", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_StartAll.setText(QtGui.QApplication.translate("MainWindow", "Start/Resume", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_StartAll.setText(QtGui.QApplication.translate("MainWindow", "Start/Resume all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StartAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Start/Resume all devices", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_StopAll.setText(QtGui.QApplication.translate("MainWindow", "Stop", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_StopAll.setText(QtGui.QApplication.translate("MainWindow", "Stop all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StopAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Stop all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ShowHostnames.setText(QtGui.QApplication.translate("MainWindow", "Show hostnames", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ShowHostnames.setToolTip(QtGui.QApplication.translate("MainWindow", "Show hostnames", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_TelnetAll.setText(QtGui.QApplication.translate("MainWindow", "Console", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_TelnetAll.setText(QtGui.QApplication.translate("MainWindow", "Console to all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_TelnetAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Console to all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SaveAs.setText(QtGui.QApplication.translate("MainWindow", "Save topology &as…", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SaveAs.setIconText(QtGui.QApplication.translate("MainWindow", "Save As", None, QtGui.QApplication.UnicodeUTF8))
@@ -468,7 +468,7 @@ class Ui_MainWindow(object):
         self.action_Undo.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Z", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Redo.setText(QtGui.QApplication.translate("MainWindow", "&Redo", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Redo.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Y", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_SuspendAll.setText(QtGui.QApplication.translate("MainWindow", "Suspend", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_SuspendAll.setText(QtGui.QApplication.translate("MainWindow", "Suspend all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SuspendAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Suspend all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Clear.setText(QtGui.QApplication.translate("MainWindow", "New blank topology", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Clear.setToolTip(QtGui.QApplication.translate("MainWindow", "New blank topology", None, QtGui.QApplication.UnicodeUTF8))
@@ -495,7 +495,7 @@ class Ui_MainWindow(object):
         self.action_ShowLayers.setText(QtGui.QApplication.translate("MainWindow", "Show layers", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SaveProjectAs.setText(QtGui.QApplication.translate("MainWindow", "&Save project as…", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SaveProjectAs.setToolTip(QtGui.QApplication.translate("MainWindow", "Save project as...", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_ReloadAll.setText(QtGui.QApplication.translate("MainWindow", "Reload", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ReloadAll.setText(QtGui.QApplication.translate("MainWindow", "Reload all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ReloadAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Reload all devices", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.UndoFramework import UndoView
