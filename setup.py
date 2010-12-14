@@ -65,7 +65,7 @@ elif sys.platform.startswith('darwin'):
 
     import setuptools
 
-    QTDIR = r'/usr/local/Trolltech/Qt-4.7.0/'
+    QTDIR = r'/usr/local/Trolltech/Qt-4.7.1/'
 
     data_files = [('', glob(r'src/GNS3/Langs/*.qm')),
                   ('src/GNS3/Dynagen/configspec'),
@@ -78,7 +78,7 @@ elif sys.platform.startswith('darwin'):
                   ]
 
     APP = ['gns3.py']
-    OPTIONS = {'argv_emulation': True,
+    OPTIONS = {'argv_emulation': False,
                'semi_standalone': False,
                'site_packages': True,
                'optimize':  1,
@@ -141,9 +141,9 @@ elif sys.platform.startswith('darwin'):
                 
     print '*** Making DMG ***'
     os.chdir('dist')
-    os.system(QTDIR + r'/bin/macdeployqt GNS3.app -dmg')
     os.system('cp ../dynamips-0.2.8-RC2-OSX-Leopard.intel.bin ./GNS3.app/Contents/Resources')
-
+    os.system(QTDIR + r'/bin/macdeployqt GNS3.app -dmg')
+    
 else:
 
     setup( # Distribution meta-data
