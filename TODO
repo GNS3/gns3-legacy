@@ -15,7 +15,9 @@ TODO LIST
  * Apply button for idle-pc
  * Change Scrolling behavior
  * Extract/write files from QEMU qcow2 format image file using libguestfs.
+ * Dynamipswrapper for remote labs?
 
 Debugging
 
  * WICS connection on running routers
+ * Saved interface labels

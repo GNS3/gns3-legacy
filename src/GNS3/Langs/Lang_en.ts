@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="en">
+<!DOCTYPE TS>
+<TS version="2.0" language="en">
 <context>
     <name>ASA initrd</name>
     <message>
@@ -26,47 +27,47 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="33"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="86"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="91"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="96"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="101"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="106"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="111"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="116"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="121"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="129"/>
@@ -91,7 +92,7 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="211"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="218"/>
@@ -134,12 +135,12 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="105"/>
         <source>Port:</source>
-        <translation type="unfinished">Port:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="61"/>
         <source>Mapping</source>
-        <translation type="unfinished">Mapping</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="77"/>
@@ -154,22 +155,22 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="163"/>
         <source>VCI:</source>
-        <translation type="unfinished">VCI:</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="131"/>
         <source>VPI:</source>
-        <translation type="unfinished">VPI:</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="189"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">&amp;Add</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="199"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;Delete</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="82"/>
@@ -182,47 +183,47 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="14"/>
         <source>ATM Switch</source>
-        <translation>ATM Switch</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="27"/>
         <source>Mapping</source>
-        <translation>Mapping</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="65"/>
         <source>Source</source>
-        <translation>Source</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="161"/>
         <source>Port:</source>
-        <translation>Port:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="213"/>
         <source>VCI:</source>
-        <translation>VCI:</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="187"/>
         <source>VPI:</source>
-        <translation>VPI:</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="155"/>
         <source>Destination</source>
-        <translation>Destination</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="239"/>
         <source>&amp;Add</source>
-        <translation>&amp;Add</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="249"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Delete</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMSWPage.ui" line="20"/>
@@ -240,12 +241,12 @@
     <message>
         <location filename="../Ui/Form_About.py" line="74"/>
         <source>About</source>
-        <translation>About</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="94"/>
         <source>&amp;About</source>
-        <translation type="unfinished">&amp;About</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="108"/>
@@ -546,9 +547,9 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;POSSIBILITY OF SUCH DAMAGES.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;END OF TERMS AND CONDITIONS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_About.py" line="95"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -563,7 +564,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Andrea Riela: Italian translation (code: it)&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Kyryl Tumanov: Ukrainian translation (code: uk)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="75"/>
@@ -586,7 +587,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -624,7 +625,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="359"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips error</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="353"/>
@@ -682,17 +683,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="112"/>
         <source>Hostname:</source>
-        <translation>Hostname:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="370"/>
         <source>Connection</source>
-        <translation>Connection</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="336"/>
         <source>Already connected interface</source>
-        <translation>Already connected interface</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="125"/>
@@ -805,7 +806,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AnyEmuDevice.py" line="229"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips error</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Node/AnyEmuDevice.py" line="213"/>
@@ -823,92 +824,92 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="14"/>
         <source>Cloud</source>
-        <translation>Cloud</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="24"/>
         <source>NIO Ethernet</source>
-        <translation>NIO Ethernet</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="610"/>
         <source>&amp;Add</source>
-        <translation>&amp;Add</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="620"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Delete</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="137"/>
         <source>NIO UDP</source>
-        <translation>NIO UDP</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="565"/>
         <source>Settings</source>
-        <translation>Settings</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="149"/>
         <source>Local port:</source>
-        <translation>Local port:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="172"/>
         <source>Remote host:</source>
-        <translation>Remote host:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="192"/>
         <source>Remote port:</source>
-        <translation>Remote port:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="591"/>
         <source>NIOs</source>
-        <translation>NIOs</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="261"/>
         <source>NIO TAP</source>
-        <translation>NIO TAP</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="267"/>
         <source>TAP interface (require root access)</source>
-        <translation>TAP interface (require root access)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="313"/>
         <source>NIO UNIX</source>
-        <translation>NIO UNIX</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="471"/>
         <source>Local file:</source>
-        <translation>Local file:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="348"/>
         <source>Remote file:</source>
-        <translation>Remote file:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="436"/>
         <source>NIO VDE</source>
-        <translation>NIO VDE</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="450"/>
         <source>Control file:</source>
-        <translation>Control file:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="559"/>
         <source>NIO NULL</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="571"/>
@@ -928,7 +929,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="185"/>
         <source>127.0.0.1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -944,17 +945,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Console.py" line="216"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips error</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Console.py" line="214"/>
         <source>Dynamips warning</source>
-        <translation type="unfinished">Dynamips warning</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Console.py" line="216"/>
         <source>Connection lost</source>
-        <translation type="unfinished">Connection lost</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Console.py" line="280"/>
@@ -1027,7 +1028,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Telnet.py" line="48"/>
         <source>Console</source>
-        <translation type="unfinished">Console</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Telnet.py" line="48"/>
@@ -1040,12 +1041,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Node/DecorativeNode.py" line="138"/>
         <source>Connection</source>
-        <translation type="unfinished">Connection</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Node/DecorativeNode.py" line="138"/>
         <source>No interface available</source>
-        <translation type="unfinished">No interface available</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1058,7 +1059,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_DecorativeNodePage.ui" line="19"/>
         <source>Settings</source>
-        <translation type="unfinished">Settings</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_DecorativeNodePage.ui" line="25"/>
@@ -1073,12 +1074,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Ui/ConfigurationPages/Form_DecorativeNodePage.ui" line="64"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">&amp;Add</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_DecorativeNodePage.ui" line="74"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;Delete</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1091,7 +1092,7 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../DynagenSub.py" line="119"/>
         <source>Abort</source>
-        <translation type="unfinished">Abort</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="247"/>
@@ -1152,7 +1153,7 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../DynagenSub.py" line="310"/>
         <source>IOS image</source>
-        <translation type="unfinished">IOS image</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1160,12 +1161,12 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Node/ETHSW.py" line="242"/>
         <source>Connection</source>
-        <translation>Connection</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Node/ETHSW.py" line="242"/>
         <source>No port available</source>
-        <translation>No port available</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Node/ETHSW.py" line="211"/>
@@ -1183,72 +1184,72 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="14"/>
         <source>Ethernet Switch</source>
-        <translation>Ethernet Switch</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="26"/>
         <source>Settings</source>
-        <translation>Settings</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="32"/>
         <source>Port:</source>
-        <translation>Port:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="58"/>
         <source>VLAN:</source>
-        <translation>VLAN:</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="84"/>
         <source>Type:</source>
-        <translation>Type:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="92"/>
         <source>access</source>
-        <translation>access</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="97"/>
         <source>dot1q</source>
-        <translation>dot1q</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="113"/>
         <source>Ports</source>
-        <translation>Ports</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="129"/>
         <source>Port</source>
-        <translation>Port</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="134"/>
         <source>VLAN</source>
-        <translation>VLAN</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="139"/>
         <source>Type</source>
-        <translation>Type</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="150"/>
         <source>&amp;Add</source>
-        <translation>&amp;Add</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="160"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Delete</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ETHSWPage.ui" line="102"/>
         <source>qinq</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1256,47 +1257,47 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="13"/>
         <source>Frame Relay Switch</source>
-        <translation>Frame Relay Switch</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="25"/>
         <source>Source</source>
-        <translation>Source</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="127"/>
         <source>Port:</source>
-        <translation>Port:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="153"/>
         <source>DLCI:</source>
-        <translation>DLCI:</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="83"/>
         <source>Mapping</source>
-        <translation>Mapping</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="104"/>
         <source>Port:DLCI</source>
-        <translation>Port:DLCI</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="121"/>
         <source>Destination</source>
-        <translation>Destination</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="179"/>
         <source>&amp;Add</source>
-        <translation>&amp;Add</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="189"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Delete</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1314,12 +1315,12 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="49"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="69"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="189"/>
@@ -1334,42 +1335,42 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="122"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="127"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="132"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="137"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="142"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="147"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="152"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="157"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="165"/>
@@ -1402,7 +1403,7 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../HypervisorManager.py" line="122"/>
         <source>Abort</source>
-        <translation>Abort</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="97"/>
@@ -1476,7 +1477,7 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="85"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="56"/>
@@ -1486,47 +1487,47 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="105"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="158"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="163"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="168"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="173"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="178"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="183"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="188"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="193"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="201"/>
@@ -1572,107 +1573,107 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../IOSDialog.py" line="250"/>
         <source>IDLE PC not valid (format required: 0xhhhhhhhh)</source>
-        <translation>IDLE PC not valid (format required: 0xhhhhhhhh)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="258"/>
         <source>No hypervisor selected, use the local hypervisor</source>
-        <translation>No hypervisor selected, use the local hypervisor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="406"/>
         <source>Select a working directory</source>
-        <translation>Select a working directory</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="251"/>
         <source>IOS images and hypervisors</source>
-        <translation>IOS images and hypervisors</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="272"/>
         <source>IOS Images</source>
-        <translation>IOS Images</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="273"/>
         <source>Settings</source>
-        <translation>Settings</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="280"/>
         <source>...</source>
-        <translation>...</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="267"/>
         <source>Platform:</source>
-        <translation>Platform:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="261"/>
         <source>IDLE PC:</source>
-        <translation>IDLE PC:</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="252"/>
         <source>Images</source>
-        <translation>Images</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="253"/>
         <source>IOS image</source>
-        <translation>IOS image</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="281"/>
         <source>Hypervisors</source>
-        <translation>Hypervisors</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="269"/>
         <source>Use the hypervisor manager</source>
-        <translation>Use the hypervisor manager</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="284"/>
         <source>&amp;Save</source>
-        <translation>&amp;Save</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="285"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Delete</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="274"/>
         <source>Host:</source>
-        <translation>Host:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="276"/>
         <source>Port:</source>
-        <translation>Port:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="277"/>
         <source>Base UDP:</source>
-        <translation>Base UDP:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="279"/>
         <source>Working directory:</source>
-        <translation>Working directory:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="282"/>
         <source>Host:Port</source>
-        <translation>Host:Port</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="283"/>
         <source>Base UDP</source>
-        <translation>Base UDP</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="278"/>
@@ -1722,7 +1723,7 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="263"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="264"/>
@@ -1742,7 +1743,7 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="275"/>
         <source>127.0.0.1</source>
-        <translation type="unfinished">127.0.0.1</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="256"/>
@@ -1775,17 +1776,17 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Node/IOSRouter.py" line="660"/>
         <source>Connection</source>
-        <translation>Connection</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="660"/>
         <source>No interface available</source>
-        <translation>No interface available</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="510"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips error</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="310"/>
@@ -1795,7 +1796,7 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Node/IOSRouter.py" line="255"/>
         <source>Slots</source>
-        <translation type="unfinished">Slots</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="255"/>
@@ -1808,112 +1809,112 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="14"/>
         <source>Router configuration</source>
-        <translation>Router configuration</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="24"/>
         <source>General</source>
-        <translation>General</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="58"/>
         <source>IOS image:</source>
-        <translation>IOS image:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="72"/>
         <source>Startup-config:</source>
-        <translation>Startup-config:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="86"/>
         <source>Midplane:</source>
-        <translation>Midplane:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="106"/>
         <source>NPE:</source>
-        <translation>NPE:</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="140"/>
         <source>Memories and disks</source>
-        <translation>Memories and disks</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="146"/>
         <source>Memories</source>
-        <translation>Memories</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="152"/>
         <source>RAM size:</source>
-        <translation>RAM size:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="561"/>
         <source> MB</source>
-        <translation> MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="181"/>
         <source>NVRAM size:</source>
-        <translation>NVRAM size:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="213"/>
         <source>Disks</source>
-        <translation>Disks</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="219"/>
         <source>PCMCIA disk0 size:</source>
-        <translation>PCMCIA disk0 size:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="245"/>
         <source>PCMCIA disk1 size:</source>
-        <translation>PCMCIA disk1 size:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="288"/>
         <source>Slots</source>
-        <translation>Slots</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="502"/>
         <source>Advanced</source>
-        <translation>Advanced</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="521"/>
         <source>0x2102</source>
-        <translation>0x2102</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="528"/>
         <source>Base MAC :</source>
-        <translation>Base MAC :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="548"/>
         <source>exec area:</source>
-        <translation>exec area:</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="577"/>
         <source>iomem :</source>
-        <translation>iomem :</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="593"/>
         <source> %</source>
-        <translation> %</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="30"/>
         <source>Platform:</source>
-        <translation type="unfinished">Platform:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="44"/>
@@ -2014,52 +2015,52 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="49"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="69"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="122"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="127"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="132"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="137"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="142"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="147"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="152"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="157"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="165"/>
@@ -2079,7 +2080,7 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="14"/>
         <source>JunOS configuration</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="56"/>
@@ -2122,12 +2123,12 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../MACTableDialog.py" line="81"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips error</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MACTableDialog.py" line="81"/>
         <source>Connection lost</source>
-        <translation type="unfinished">Connection lost</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../MACTableDialog.py" line="66"/>
@@ -2158,177 +2159,177 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="DynamicStrings.py" line="26"/>
         <source>English</source>
-        <translation>English</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="407"/>
         <source>GNS3</source>
-        <translation>GNS3</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="408"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Edit</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="409"/>
         <source>&amp;File</source>
-        <translation>&amp;File</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="410"/>
         <source>&amp;Help</source>
-        <translation>&amp;Help</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="411"/>
         <source>&amp;View</source>
-        <translation>&amp;View</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="414"/>
         <source>General</source>
-        <translation>General</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="415"/>
         <source>Nodes Types</source>
-        <translation>Nodes Types</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="419"/>
         <source>1</source>
-        <translation>1</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="418"/>
         <source>Topology Summary</source>
-        <translation>Topology Summary</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="420"/>
         <source>Console</source>
-        <translation>Console</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="426"/>
         <source>&amp;About</source>
-        <translation>&amp;About</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="427"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Quit</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="428"/>
         <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="429"/>
         <source>&amp;Open</source>
-        <translation>&amp;Open</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="431"/>
         <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="432"/>
         <source>&amp;Save</source>
-        <translation>&amp;Save</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="434"/>
         <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="437"/>
         <source>Add a link</source>
-        <translation>Add a link</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="439"/>
         <source>Ctrl+Shift+I</source>
-        <translation>Ctrl+Shift+I</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="440"/>
         <source>&amp;Online Help</source>
-        <translation>&amp;Online Help</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="448"/>
         <source>Show hostnames</source>
-        <translation>Show hostnames</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="452"/>
         <source>Save As</source>
-        <translation>Save As</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="480"/>
         <source>Ctrl+N</source>
-        <translation>Ctrl+N</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="454"/>
         <source>About &amp;Qt</source>
-        <translation>About &amp;Qt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="455"/>
         <source>Zoom &amp;In</source>
-        <translation>Zoom &amp;In</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="456"/>
         <source>Ctrl++</source>
-        <translation>Ctrl++</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="457"/>
         <source>Zoom &amp;Out</source>
-        <translation>Zoom &amp;Out</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="458"/>
         <source>Ctrl+-</source>
-        <translation>Ctrl+-</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="459"/>
         <source>Zoom &amp;1:1</source>
-        <translation>Zoom &amp;1:1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="460"/>
         <source>Ctrl+/</source>
-        <translation>Ctrl+/</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="461"/>
         <source>Select &amp;All</source>
-        <translation>Select &amp;All</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="462"/>
         <source>Ctrl+A</source>
-        <translation>Ctrl+A</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="463"/>
         <source>Select &amp;None</source>
-        <translation>Select &amp;None</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="464"/>
         <source>Ctrl+Shift+A</source>
-        <translation>Ctrl+Shift+A</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="465"/>
@@ -2343,7 +2344,7 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="438"/>
         <source>IOS images and hypervisors</source>
-        <translation type="unfinished">IOS images and hypervisors</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="476"/>
@@ -2485,7 +2486,7 @@ Please choose an alternate network interface:</source>
         <source>Console to all devices</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="451"/>
         <source>Save topology &amp;as…</source>
         <translation type="unfinished"></translation>
@@ -2560,7 +2561,7 @@ Please choose an alternate network interface:</source>
         <source>Take a snapshot</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="496"/>
         <source>&amp;Save project as…</source>
         <translation type="unfinished"></translation>
@@ -2591,12 +2592,12 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../NETFile.py" line="836"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips error</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="840"/>
         <source>Dynamips warning</source>
-        <translation type="unfinished">Dynamips warning</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="586"/>
@@ -2664,7 +2665,7 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="75"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="78"/>
@@ -2702,59 +2703,58 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../NodeConfigurator.py" line="140"/>
         <source>Frame Relay switches</source>
-        <translation>Frame Relay switches</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="143"/>
         <source>Ethernet switches</source>
-        <translation>Ethernet switches</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="146"/>
         <source>ATM switches</source>
-        <translation>ATM switches</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="152"/>
         <source>Clouds</source>
-        <translation>Clouds</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="246"/>
         <source>%s node</source>
-        <translation>%s node</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="238"/>
         <source>%s group</source>
-        <translation>%s group</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="243"/>
         <source>Group of %d %s</source>
-        <translation>Group of %d %s</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_NodeConfigurator.py" line="84"/>
         <source>Node configurator</source>
-        <translation>Node configurator</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_NodeConfigurator.py" line="85"/>
         <source>Nodes</source>
-        <translation>Nodes</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_NodeConfigurator.py" line="86"/>
         <source>Node Configuration</source>
-        <translation>Node Configuration</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_NodeConfigurator.py" line="87"/>
         <source>Please select a node in the list 
 to display the configuration page.</source>
-        <translation>Please select a node in the list 
-to display the configuration page.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="298"/>
@@ -2840,7 +2840,7 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="19"/>
         <source>Settings</source>
-        <translation type="unfinished">Settings</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="28"/>
@@ -2850,7 +2850,7 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="38"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="51"/>
@@ -2868,12 +2868,12 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/Form_PreferencesDialog.py" line="88"/>
         <source>Preferences</source>
-        <translation>Preferences</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="29"/>
         <source>General</source>
-        <translation type="unfinished">General</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="30"/>
@@ -2891,7 +2891,7 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="24"/>
@@ -2901,22 +2901,22 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="258"/>
         <source>Settings</source>
-        <translation type="unfinished">Settings</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="42"/>
         <source>Executable path:</source>
-        <translation type="unfinished">Executable path:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="78"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="66"/>
         <source>Working directory:</source>
-        <translation type="unfinished">Working directory:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="97"/>
@@ -2999,12 +2999,12 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="33"/>
         <source>Language:</source>
-        <translation type="unfinished">Language:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="110"/>
@@ -3019,12 +3019,12 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="146"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="238"/>
         <source>Terminal command:</source>
-        <translation type="unfinished">Terminal command:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="362"/>
@@ -3160,12 +3160,12 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1510"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="56"/>
         <source>Working directory:</source>
-        <translation type="unfinished">Working directory:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="187"/>
@@ -3195,42 +3195,42 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1583"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1588"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1593"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1598"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1603"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1608"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1613"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1618"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1626"/>
@@ -3250,7 +3250,7 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="546"/>
         <source>PIX</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="567"/>
@@ -3275,7 +3275,7 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="854"/>
         <source>JunOS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="875"/>
@@ -3285,7 +3285,7 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1122"/>
         <source>ASA</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1143"/>
@@ -3300,12 +3300,12 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1355"/>
         <source>Initrd:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1318"/>
         <source>Kernel:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1338"/>
@@ -3355,7 +3355,7 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1429"/>
         <source>IDS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1450"/>
@@ -3465,7 +3465,7 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1636"/>
         <source>-smbios type=1,product=IDS-4215</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1697"/>
@@ -3509,7 +3509,7 @@ to display the configuration page.</translation>
     <message>
         <location filename="../QemuManager.py" line="61"/>
         <source>Abort</source>
-        <translation type="unfinished">Abort</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../QemuManager.py" line="85"/>
@@ -3542,52 +3542,52 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="49"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="69"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="122"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="127"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="132"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="137"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="142"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="147"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="152"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="157"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="165"/>
@@ -3640,7 +3640,7 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Scene.py" line="168"/>
         <source>Console</source>
-        <translation type="unfinished">Console</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Scene.py" line="173"/>
@@ -3660,12 +3660,12 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Scene.py" line="202"/>
         <source>Idle PC</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Scene.py" line="457"/>
         <source>IDLE PC</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Scene.py" line="392"/>
@@ -3685,7 +3685,7 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Scene.py" line="460"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips error</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Scene.py" line="399"/>
@@ -3864,7 +3864,7 @@ to display the configuration page.</translation>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="63"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="64"/>
@@ -3884,7 +3884,7 @@ to display the configuration page.</translation>
     <message>
         <location filename="../StartupConfigDialog.py" line="135"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips error</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../StartupConfigDialog.py" line="94"/>
@@ -3940,10 +3940,10 @@ i.e. #copy start run</source>
         <source>Rotation:</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_StyleDialog.py" line="81"/>
         <source>°</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="82"/>
@@ -4028,12 +4028,12 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="115"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="116"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">&amp;Add</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="117"/>
@@ -4043,12 +4043,12 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="118"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="119"/>
         <source>&lt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="120"/>
@@ -4063,7 +4063,7 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="122"/>
         <source>Type:</source>
-        <translation type="unfinished">Type:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="123"/>
@@ -4106,12 +4106,12 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Topology.py" line="418"/>
         <source>IOS image</source>
-        <translation type="unfinished">IOS image</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Topology.py" line="410"/>
         <source>Hypervisor</source>
-        <translation type="unfinished">Hypervisor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Topology.py" line="406"/>
@@ -4121,17 +4121,17 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Topology.py" line="1025"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Dynamips error</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Topology.py" line="1025"/>
         <source>Connection lost</source>
-        <translation type="unfinished">Connection lost</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Topology.py" line="903"/>
         <source>Connection</source>
-        <translation type="unfinished">Connection</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Topology.py" line="210"/>
@@ -4226,7 +4226,7 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Topology.py" line="238"/>
         <source>%s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Topology.py" line="441"/>
@@ -4241,7 +4241,7 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Topology.py" line="475"/>
         <source>JunOS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Topology.py" line="475"/>
@@ -4256,7 +4256,7 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Topology.py" line="532"/>
         <source>IDS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Topology.py" line="520"/>
@@ -4271,7 +4271,7 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Topology.py" line="584"/>
         <source>ASA</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Topology.py" line="572"/>
@@ -4286,7 +4286,7 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Topology.py" line="639"/>
         <source>PIX</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Topology.py" line="627"/>
@@ -4374,7 +4374,7 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../UndoFramework.py" line="388"/>
         <source>Connection lost</source>
-        <translation type="unfinished">Connection lost</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="406"/>
@@ -4452,37 +4452,37 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="163"/>
         <source>Docks</source>
-        <translation>Docks</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="1024"/>
         <source>Dynamips error</source>
-        <translation>Dynamips error</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="647"/>
         <source>Connection lost</source>
-        <translation>Connection lost</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="616"/>
         <source>Abort</source>
-        <translation>Abort</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="748"/>
         <source>Starting nodes ...</source>
-        <translation>Starting nodes ...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="665"/>
         <source>Stopping nodes ...</source>
-        <translation>Stopping nodes ...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="671"/>
         <source>Suspending nodes ...</source>
-        <translation>Suspending nodes ...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="741"/>
@@ -4497,7 +4497,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="562"/>
         <source>Show hostnames</source>
-        <translation type="unfinished">Show hostnames</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="1006"/>
@@ -4522,7 +4522,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="437"/>
         <source>Add a link</source>
-        <translation type="unfinished">Add a link</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="452"/>
@@ -4647,12 +4647,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="88"/>
         <source>Ctrl+Z</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="93"/>
         <source>Ctrl+Y</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="677"/>
@@ -4726,7 +4726,7 @@ No - Take only what I see</source>
     <message>
         <location filename="DynamicStrings.py" line="44"/>
         <source>Cloud</source>
-        <translation type="unfinished">Cloud</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="33"/>
