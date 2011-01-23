@@ -224,7 +224,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 rect = self.graphicsView.viewport().rect()
                 width = rect.width() + 10
                 height = rect.height() + 10
-    
+
             pixmap = QtGui.QPixmap(width, height)
             pixmap.fill(QtCore.Qt.white)
             painter = QtGui.QPainter(pixmap)

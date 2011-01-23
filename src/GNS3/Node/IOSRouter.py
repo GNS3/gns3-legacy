@@ -157,7 +157,10 @@ class IOSRouter(AbstractNode):
         """
 
         if self.router:
-            self.setToolTip(self.router.info())
+            try:
+                self.setToolTip(self.router.info())
+            except:
+                AbstractNode.setCustomToolTip(self)
         else:
             AbstractNode.setCustomToolTip(self)
 

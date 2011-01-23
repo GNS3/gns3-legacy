@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="it_IT">
+<!DOCTYPE TS>
+<TS version="2.0" language="it_IT">
 <context>
     <name>ASA initrd</name>
     <message>
@@ -129,7 +130,7 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="26"/>
         <source>Ethernet side</source>
-        <translation>lato Ethernet</translation>
+        <translation>Lato Ethernet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="105"/>
@@ -149,7 +150,7 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="99"/>
         <source>ATM side</source>
-        <translation>lato ATM</translation>
+        <translation>Lato ATM</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ATMBRPage.ui" line="163"/>
@@ -548,7 +549,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;END OF TERMS AND CONDITIONS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_About.py" line="95"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -639,7 +640,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="213"/>
         <source>Packet capture is not supported on this link type</source>
-        <translation>La cattura del traffico non è supportata su questo tipo di link</translation>
+        <translation>La cattura del traffico non è supportata su questo tipo di collegamento</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="237"/>
@@ -649,7 +650,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="240"/>
         <source>No device available for traffic capture</source>
-        <translation>Nessuno sniffer disponibile</translation>
+        <translation>Nessun analizzatore disponibile</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="359"/>
@@ -659,17 +660,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="353"/>
         <source>Capture stopped</source>
-        <translation>Sniffer bloccato</translation>
+        <translation>Cattura fermata</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="374"/>
         <source>Please configure capture options</source>
-        <translation>Configura le opzioni dello sniffer</translation>
+        <translation>Configura le opzioni di cattura</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="153"/>
         <source>Link: %s (%s) -&gt; %s (%s)</source>
-        <translation>Link: %s (%s) -&gt; %s (%s)</translation>
+        <translation>Collegamento: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="252"/>
@@ -684,7 +685,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="380"/>
         <source>%s is empty, no traffic captured on the link. Try again later</source>
-        <translation>%s è vuoto, non c&apos;è traffico catturato sul link. Riprovare più tardi</translation>
+        <translation>%s è vuoto, non c&apos;è traffico catturato sul collegamento. Riprovare più tardi</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="384"/>
@@ -1461,7 +1462,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../HypervisorManager.py" line="85"/>
         <source>Hypervisor Manager</source>
-        <translation>Gestore Hypervisor</translation>
+        <translation>Gestore hypervisor</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="76"/>
@@ -1736,12 +1737,12 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="265"/>
         <source>Default image for this platform</source>
-        <translation>Immagine di default per questa piattaforma</translation>
+        <translation>Immagine predefinita per questa piattaforma</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="316"/>
         <source>There is already a default image for this platform</source>
-        <translation>E&apos; già stata configurata un&apos;immagine di default per questa piattaforma</translation>
+        <translation>È già stata configurata un&apos;immagine predefinita per questa piattaforma</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="227"/>
@@ -1751,7 +1752,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="262"/>
         <source>Default RAM:</source>
-        <translation>RAM di default:</translation>
+        <translation>RAM predefinita:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="263"/>
@@ -2519,7 +2520,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
         <source>Console to all devices</source>
         <translation>Console per tutti i dispositivi</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="451"/>
         <source>Save topology &amp;as…</source>
         <translation>Salva topologi&amp;a come...</translation>
@@ -2594,7 +2595,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
         <source>Take a snapshot</source>
         <translation>Crea un&apos;istantanea</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="496"/>
         <source>&amp;Save project as…</source>
         <translation>&amp;Salva progetto come…</translation>
@@ -2620,7 +2621,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../NETFile.py" line="554"/>
         <source>Please configure the path to Dynamips</source>
-        <translation>Configurare il percorso per Dynamips</translation>
+        <translation>Configurare il percorso di Dynamips</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="836"/>
@@ -2635,7 +2636,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../NETFile.py" line="586"/>
         <source>Exception detected, stopping importation...</source>
-        <translation>S&apos;è verificato un errore in fase di importazione, il processo verrà fermato...</translation>
+        <translation>Si è verificato un errore in fase di importazione, il processo sarà fermato...</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="833"/>
@@ -2675,12 +2676,12 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../NETFile.py" line="432"/>
         <source>Cannot load font: %s</source>
-        <translation>Impossibile caricare il font: %s</translation>
+        <translation>Impossibile caricare il carattere: %s</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="497"/>
         <source>%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file</source>
-        <translation>%s: impossibile trovare il simbolo %s, per cortesia verificare che si trovi nella lista nodi, e riavviare il file .net</translation>
+        <translation>%s: impossibile trovare il simbolo %s, verifica che si trovi nella lista nodi, e riavvia il file .net</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="1015"/>
@@ -2990,7 +2991,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="318"/>
         <source>Use Hypervisor Manager when importing</source>
-        <translation>Usa il Gestore hypervisor durante l&apos;importazione</translation>
+        <translation>Usa il gestore hypervisor durante l&apos;importazione</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="87"/>
@@ -3088,7 +3089,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="372"/>
         <source>Show link status points on the workspace</source>
-        <translation>Mostra lo status dei link nella finestra principale</translation>
+        <translation>Mostra lo stato dei collegamenti nella finestra principale</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="288"/>
@@ -3207,12 +3208,12 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="187"/>
         <source>Enable Qemu Manager</source>
-        <translation>Abilita il Gestore Qemu</translation>
+        <translation>Abilita il gestore Qemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="197"/>
         <source>Use Qemu Manager when importing</source>
-        <translation>Usa il Gestore Qemu nell&apos;importare</translation>
+        <translation>Usa il gestore Qemu nell&apos;importare</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="147"/>
@@ -3352,7 +3353,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="249"/>
         <source>&amp;Test</source>
-        <translation>&amp;Testa</translation>
+        <translation>&amp;Prova</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="285"/>
@@ -3362,7 +3363,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="306"/>
         <source>Qemu Host Settings</source>
-        <translation>Impostazioni Host Qemu</translation>
+        <translation>Impostazioni host Qemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1456"/>
@@ -3860,7 +3861,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../SnapshotDialog.py" line="73"/>
         <source>Create a project first!</source>
-        <translation>Crea un progetto prima!</translation>
+        <translation>Crea prima un progetto!</translation>
     </message>
 </context>
 <context>
@@ -3896,7 +3897,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="62"/>
         <source>Config file:</source>
-        <translation>Config file:</translation>
+        <translation>File di configurazione:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="63"/>
@@ -3906,12 +3907,12 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="64"/>
         <source>Load config from nvram</source>
-        <translation>Carica la config dalla nvram</translation>
+        <translation>Carica la configurazione dalla nvram</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StartupConfig.py" line="65"/>
         <source>Save changes into the config file</source>
-        <translation>Salva i cambiamenti nel file di config</translation>
+        <translation>Salva i cambiamenti nel file di configurazione</translation>
     </message>
     <message>
         <location filename="../StartupConfigDialog.py" line="122"/>
@@ -3951,12 +3952,12 @@ es: #copy start run</translation>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="75"/>
         <source>&amp;Select color</source>
-        <translation>&amp;Seleziona colore</translation>
+        <translation>&amp;Seleziona il colore</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="76"/>
         <source>&amp;Select font</source>
-        <translation>&amp;Seleziona font</translation>
+        <translation>&amp;Seleziona il carattere</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="77"/>
@@ -3966,19 +3967,19 @@ es: #copy start run</translation>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="78"/>
         <source>Border width:</source>
-        <translation>Larghezza di bordo:</translation>
+        <translation>Larghezza del bordo:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="79"/>
         <source>Border style:</source>
-        <translation>Stile di bordo:</translation>
+        <translation>Stile del bordo:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="80"/>
         <source>Rotation:</source>
         <translation>Rotazione:</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_StyleDialog.py" line="81"/>
         <source>°</source>
         <translation></translation>
@@ -3988,7 +3989,7 @@ es: #copy start run</translation>
         <source>Rotation can be ajusted on the scene for a selected item with
 ALT + LEFT or RIGHT</source>
         <translation>Si può modificare la rotazione dell&apos;oggetto selezionato nella finestra principale con
-ALT + LEFT o RIGHT</translation>
+ALT + SINISTRA o DESTRA</translation>
     </message>
     <message>
         <location filename="../StyleDialog.py" line="47"/>
@@ -4039,12 +4040,12 @@ ALT + LEFT o RIGHT</translation>
     <message>
         <location filename="../SymbolManager.py" line="234"/>
         <source>Library</source>
-        <translation>Libreria</translation>
+        <translation>Raccolta</translation>
     </message>
     <message>
         <location filename="../SymbolManager.py" line="244"/>
         <source>Library path</source>
-        <translation>Percorso libreria</translation>
+        <translation>Percorso della raccolta</translation>
     </message>
 </context>
 <context>
@@ -4052,17 +4053,17 @@ ALT + LEFT o RIGHT</translation>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="112"/>
         <source>Symbol Manager</source>
-        <translation></translation>
+        <translation>Gestore dei simboli</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="113"/>
         <source>Symbol librairies</source>
-        <translation>Librerie di simboli</translation>
+        <translation>Raccolte di simboli</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="114"/>
         <source>Library path:</source>
-        <translation>Percorso libreria:</translation>
+        <translation>Percorso raccolta:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_SymbolManager.py" line="115"/>
@@ -4122,22 +4123,22 @@ ALT + LEFT o RIGHT</translation>
     <message>
         <location filename="../SymbolManager.py" line="217"/>
         <source>Library</source>
-        <translation>Libreria</translation>
+        <translation>Raccolta</translation>
     </message>
     <message>
         <location filename="../SymbolManager.py" line="214"/>
         <source>This library is already loaded: %s</source>
-        <translation>Questa libreria è già caricata: %s</translation>
+        <translation>Questa raccolta è già caricata: %s</translation>
     </message>
     <message>
         <location filename="../SymbolManager.py" line="217"/>
         <source>Can&apos;t open library: %s</source>
-        <translation>Impossibile aprire la libreria: %s</translation>
+        <translation>Impossibile aprire la raccolta: %s</translation>
     </message>
     <message>
         <location filename="../SymbolManager.py" line="234"/>
         <source>Can&apos;t remove library: %s</source>
-        <translation>Impossibile rimuovere la libreria: %s</translation>
+        <translation>Impossibile rimuovere la raccolta: %s</translation>
     </message>
 </context>
 <context>
@@ -4155,7 +4156,7 @@ ALT + LEFT o RIGHT</translation>
     <message>
         <location filename="../Topology.py" line="406"/>
         <source>Please configure the path to Dynamips</source>
-        <translation>Configurare il percorso per Dynamips</translation>
+        <translation>Configurare il percorso di Dynamips</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="1025"/>
@@ -4195,7 +4196,7 @@ ALT + LEFT o RIGHT</translation>
     <message>
         <location filename="../Topology.py" line="410"/>
         <source>Please test the path to Dynamips in preferences</source>
-        <translation>Testare il percorso per Dynamips nelle preferenze</translation>
+        <translation>Prova il percorso di Dynamips nelle preferenze</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="361"/>
@@ -4454,12 +4455,12 @@ ALT + LEFT o RIGHT</translation>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="75"/>
         <source>Setup Wizard</source>
-        <translation>Configurazione assistita</translation>
+        <translation>Configurazione guidata</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="76"/>
         <source>Step 1</source>
-        <translation></translation>
+        <translation>Passo 1</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="77"/>
@@ -4469,12 +4470,17 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Configure and test the path to &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;&quot;&gt;Dynamips. Also check that &lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;&quot;&gt;the working directory is valid.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Configura e prova il percorso di &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;&quot;&gt;Dynamips. Controlla anche che &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;&quot;&gt;la cartella di lavoro sia valida.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="83"/>
         <source>Step 2</source>
-        <translation></translation>
+        <translation>Passo 2</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="84"/>
@@ -4483,7 +4489,11 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Add one or more uncompressed &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;&quot;&gt;IOS images.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Aggiungi una o più immagini &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;&quot;&gt;di IOS non compresse.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>

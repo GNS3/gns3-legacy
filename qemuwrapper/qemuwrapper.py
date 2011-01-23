@@ -899,6 +899,7 @@ def cleanup():
 
 def main():
 
+    global IP
     from optparse import OptionParser
 
     usage = "usage: %prog [--listen <ip_address>] [--port <port_number>]"
@@ -914,7 +915,6 @@ def main():
 
     if options.host:
         host = options.host
-        global IP 
         IP = host
     else:
         host = IP
@@ -940,7 +940,7 @@ def main():
     server = QemuWrapperServer((host, port), QemuWrapperRequestHandler)
 
     print "Qemu TCP control server started (port %d)." % port
-    global IP
+
     if IP:
         print "Listenning on %s" % IP
     else:
