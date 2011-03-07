@@ -1777,32 +1777,32 @@ Por favor elija una interfaz de red alternativa:</translation>
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="660"/>
+        <location filename="../Node/IOSRouter.py" line="663"/>
         <source>Connection</source>
         <translation>Conexion</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="660"/>
+        <location filename="../Node/IOSRouter.py" line="663"/>
         <source>No interface available</source>
         <translation>No hay interfaz disponible</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="510"/>
+        <location filename="../Node/IOSRouter.py" line="513"/>
         <source>Dynamips error</source>
         <translation>Error Dynamips</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="310"/>
+        <location filename="../Node/IOSRouter.py" line="313"/>
         <source>Startup-Config for %s</source>
         <translation>Start-Config para %s</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="255"/>
+        <location filename="../Node/IOSRouter.py" line="258"/>
         <source>Slots</source>
         <translation>Slots</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="255"/>
+        <location filename="../Node/IOSRouter.py" line="258"/>
         <source>You have to restart this router to use new modules</source>
         <translation>Debe reiniciar el router para utilizar los modulos nuevos</translation>
     </message>

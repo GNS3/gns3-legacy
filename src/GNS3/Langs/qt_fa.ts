@@ -123,7 +123,7 @@
     <name>QScrollBar</name>
     <message>
         <source>Top</source>
-        <translation></translation>
+        <translation>بالا</translation>
     </message>
     <message>
         <source>Scroll down</source>
@@ -147,7 +147,7 @@
     </message>
     <message>
         <source>Bottom</source>
-        <translation></translation>
+        <translation>انتها</translation>
     </message>
     <message>
         <source>Page up</source>
@@ -155,7 +155,7 @@
     </message>
     <message>
         <source>Position</source>
-        <translation></translation>
+        <translation>موقعیت</translation>
     </message>
     <message>
         <source>Page right</source>
@@ -190,23 +190,23 @@
     <name>QFileDialog</name>
     <message>
         <source>Back</source>
-        <translation></translation>
+        <translation>بازگشت</translation>
     </message>
     <message>
         <source>File</source>
-        <translation></translation>
+        <translation>فایل</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation></translation>
+        <translation>باز كردن</translation>
     </message>
     <message>
         <source>&amp;Open</source>
-        <translation></translation>
+        <translation>&amp;باز کردن</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation></translation>
+        <translation>&amp;ذخیره</translation>
     </message>
     <message>
         <source>Drive</source>
@@ -214,7 +214,7 @@
     </message>
     <message>
         <source>Show </source>
-        <translation></translation>
+        <translation>نمایش</translation>
     </message>
     <message>
         <source>&apos;%1&apos; is write protected.
@@ -227,11 +227,11 @@ Do you want to delete it anyway?</source>
     </message>
     <message>
         <source>New Folder</source>
-        <translation></translation>
+        <translation>پوشه جدید</translation>
     </message>
     <message>
         <source>Parent Directory</source>
-        <translation></translation>
+        <translation>مسیر مادر</translation>
     </message>
     <message>
         <source>
@@ -241,11 +241,11 @@ Please verify the correct file name was given</source>
     </message>
     <message>
         <source>&amp;New Folder</source>
-        <translation></translation>
+        <translation>&amp;پوشه جدید</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation></translation>
+        <translation>خذف کردن</translation>
     </message>
     <message>
         <source>My Computer</source>
@@ -253,7 +253,7 @@ Please verify the correct file name was given</source>
     </message>
     <message>
         <source>Look in:</source>
-        <translation></translation>
+        <translation>جستجو در:</translation>
     </message>
     <message>
         <source>Files of type:</source>
@@ -261,19 +261,19 @@ Please verify the correct file name was given</source>
     </message>
     <message>
         <source>Find Directory</source>
-        <translation></translation>
+        <translation>پیدا کردن مسیر</translation>
     </message>
     <message>
         <source>Show &amp;hidden files</source>
-        <translation></translation>
+        <translation>نمایش و پنهان کردن فایل ها</translation>
     </message>
     <message>
         <source>Are sure you want to delete &apos;%1&apos;?</source>
-        <translation></translation>
+        <translation>آیا می خواهید %1 را پاک کنید؟</translation>
     </message>
     <message>
         <source>Save As</source>
-        <translation></translation>
+        <translation>ذخیره مانند</translation>
     </message>
     <message>
         <source>%1
@@ -287,39 +287,39 @@ Please verify the correct directory name was given.</source>
     </message>
     <message>
         <source>&amp;Choose</source>
-        <translation></translation>
+        <translation>&amp;انتخاب</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation></translation>
+        <translation>&amp;پاک کردن</translation>
     </message>
     <message>
         <source>All Files (*)</source>
-        <translation></translation>
+        <translation>تمامی فایل ها</translation>
     </message>
     <message>
         <source>Directories</source>
-        <translation></translation>
+        <translation>مسیر ها</translation>
     </message>
     <message>
         <source>All Files (*.*)</source>
-        <translation></translation>
+        <translation>تمامی فایل ها</translation>
     </message>
     <message>
         <source>&amp;Rename</source>
-        <translation></translation>
+        <translation>&amp; نام گذاری مجدد</translation>
     </message>
     <message>
         <source>Could not delete directory.</source>
-        <translation></translation>
+        <translation>قادر به پاک کردن مسیر نمی باشد.</translation>
     </message>
     <message>
         <source>Directory:</source>
-        <translation></translation>
+        <translation>مسیر:</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation></translation>
+        <translation>نا شناس</translation>
     </message>
     <message>
         <source>%1 already exists.
@@ -328,11 +328,11 @@ Do you want to replace it?</source>
     </message>
     <message>
         <source>Forward</source>
-        <translation></translation>
+        <translation>جلو</translation>
     </message>
     <message>
         <source>Create New Folder</source>
-        <translation></translation>
+        <translation>ساخت پوشه جدید</translation>
     </message>
     <message>
         <source>Detail View</source>
@@ -353,7 +353,7 @@ Please verify the correct file name was given.</source>
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation></translation>
+        <translation>&amp;کپی</translation>
     </message>
     <message>
         <source>&amp;Redo</source>
@@ -369,7 +369,7 @@ Please verify the correct file name was given.</source>
     </message>
     <message>
         <source>Delete</source>
-        <translation></translation>
+        <translation>پاک کردن</translation>
     </message>
     <message>
         <source>Select All</source>
@@ -407,15 +407,15 @@ Please verify the correct file name was given.</source>
     </message>
     <message>
         <source>Setup</source>
-        <translation></translation>
+        <translation>راه اندازی </translation>
     </message>
     <message>
         <source>Config</source>
-        <translation>كانفيگ</translation>
+        <translation>تنظیمات</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>آپشن</translation>
+        <translation>گزینه ها</translation>
     </message>
     <message>
         <source>Quit %1</source>
@@ -435,11 +435,11 @@ Please verify the correct file name was given.</source>
     </message>
     <message>
         <source>Preference</source>
-        <translation></translation>
+        <translation>اولویت ها</translation>
     </message>
     <message>
         <source>Preferences</source>
-        <translation></translation>
+        <translation>اولویت ها</translation>
     </message>
 </context>
 <context>

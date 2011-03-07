@@ -1775,32 +1775,32 @@ Please choose an alternate network interface:</source>
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="660"/>
+        <location filename="../Node/IOSRouter.py" line="663"/>
         <source>Connection</source>
         <translation>연결</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="660"/>
+        <location filename="../Node/IOSRouter.py" line="663"/>
         <source>No interface available</source>
         <translation>사용가능한 인터페이스가 없습니다</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="255"/>
+        <location filename="../Node/IOSRouter.py" line="258"/>
         <source>Slots</source>
         <translation>슬롯</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="255"/>
+        <location filename="../Node/IOSRouter.py" line="258"/>
         <source>You have to restart this router to use new modules</source>
         <translation>새로운 모듈을 사용하기 위해서는 라우터를 재시작해야 합니다</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="510"/>
+        <location filename="../Node/IOSRouter.py" line="513"/>
         <source>Dynamips error</source>
         <translation>Dynamips 에러</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="310"/>
+        <location filename="../Node/IOSRouter.py" line="313"/>
         <source>Startup-Config for %s</source>
         <translation>%s의 Startup-Config</translation>
     </message>

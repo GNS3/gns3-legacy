@@ -18,6 +18,8 @@ TODO LIST
  * Dynamipswrapper for remote labs?
  * Check if running nodes before quit/new.
  * Clear previous project when saving as.
+ * Use a default workingdir if no present in .net file.
+ * Do not record external IOS when loading .net files.
 
 Debugging
 
@@ -34,3 +36,20 @@ File "/Users/grossmj/Documents/workspace/gns3-devel/src/GNS3/Dynagen/qemu_lib.py
     dowarning('Connecting %s port %s to %s slot %s port %s:\nin case of multi-server operation make sure you do not use "localhost" string in definition of dynamips hypervisor.\n'% (self.name, local_port, remote_slot.router.name, remote_slot.adapter, remote_port))
 
 AttributeError: 'ETHSW' object has no attribute 'router
+
+=> ---------Traceback lines (saved in exception.log)----------
+Traceback (most recent call last):
+
+  File "/Users/grossmj/Documents/workspace/gns3/src/GNS3/UndoFramework.py", line 200, in redo
+    self.node.set_config(self.config)
+
+  File "/Users/grossmj/Documents/workspace/gns3/src/GNS3/Node/IOSRouter.py", line 267, in set_config
+    self.router.installwic(wic_name, 0, wic_number)
+
+  File "/Users/grossmj/Documents/workspace/gns3/src/GNS3/Dynagen/dynamips_lib.py", line 2235, in installwic
+    send(self.dynamips, 'vm slot_add_binding %s %i %i %s' % (self.name, slot, base, wic))
+
+  File "/Users/grossmj/Documents/workspace/gns3/src/GNS3/Dynagen/dynamips_lib.py", line 4805, in send
+    raise DynamipsError, data[-1]
+
+DynamipsError: 205-VM R2: unable to add binding for slot 0/32

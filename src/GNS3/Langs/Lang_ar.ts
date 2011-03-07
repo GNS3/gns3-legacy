@@ -1774,32 +1774,32 @@ Please choose an alternate network interface:</source>
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="660"/>
+        <location filename="../Node/IOSRouter.py" line="663"/>
         <source>Connection</source>
         <translation>توصيل</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="660"/>
+        <location filename="../Node/IOSRouter.py" line="663"/>
         <source>No interface available</source>
         <translation>عدم توفر توصيلة</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="510"/>
+        <location filename="../Node/IOSRouter.py" line="513"/>
         <source>Dynamips error</source>
         <translation>Dynamips خطأ</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="310"/>
+        <location filename="../Node/IOSRouter.py" line="313"/>
         <source>Startup-Config for %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="255"/>
+        <location filename="../Node/IOSRouter.py" line="258"/>
         <source>Slots</source>
         <translation type="unfinished">مداخل</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="255"/>
+        <location filename="../Node/IOSRouter.py" line="258"/>
         <source>You have to restart this router to use new modules</source>
         <translation type="unfinished"></translation>
     </message>
