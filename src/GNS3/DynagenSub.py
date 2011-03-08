@@ -274,10 +274,9 @@ class DynagenSub(Dynagen):
                     
                     if server['workingdir'] == '.':
                         server['workingdir'] = os.path.dirname(FILENAME)
-                    
 
                     # check if the working directory is accessible, if not find an alternative working directory
-                    if not server['workingdir'] or not os.access(server['workingdir'], os.F_OK):
+                    if not server.has_key('workingdir') or not server['workingdir'] or not os.access(server['workingdir'], os.F_OK):
                         if globals.GApp.workspace.projectWorkdir and os.access(globals.GApp.workspace.projectWorkdir, os.F_OK):
                             workdir = globals.GApp.workspace.projectWorkdir
                         else:

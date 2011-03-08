@@ -349,8 +349,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             else:
                 (device, slot, inttype, port) = self.captureInfo
                 globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port, 'none', 'both')
-            if showMessage:
-                QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  translate("AbstractEdge", "Capture stopped"))
+
             self.capturing = False
             self.captureInfo = None
             self.capfile = None

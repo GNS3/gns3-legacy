@@ -150,10 +150,20 @@ class ETHSW(AbstractNode):
         self.hypervisor = hypervisor
         self.d = self.hypervisor.host + ':' + str(self.hypervisor.port)
 
+    def autoAllocateFreePort(self):
+        """ Auto allocate one additional free port when all ports are occupied
+        """
+
+        if len(self.config['ports']) == len(self.getConnectedInterfaceList()):
+            port = max(self.config['ports']) + 1
+            self.config['ports'][port] = 'access'
+            self.config['vlans'][1].append(port)
+
     def getInterfaces(self):
         """ Returns all interfaces
         """
 
+        self.autoAllocateFreePort()
         ports = map(str, self.config['ports'].keys())
         return (ports)
 
@@ -196,6 +206,8 @@ class ETHSW(AbstractNode):
         self.create_config()
         return True
 
+
+
     def mapping(self):
         """ Configure Ethernet port mapping
         """
@@ -217,6 +229,13 @@ class ETHSW(AbstractNode):
                         else:
                             debug("ethsw_map: " + str(port) + ' to ' + porttype + ' ' + str(vlan))
                             self.dynagen.ethsw_map(self.ethsw, port, porttype + ' ' + str(vlan))
+                    elif self.ethsw.mapping.has_key(port):
+                        porttype = self.config['ports'][port]
+                        # check if the vlan or port type has changed
+                        # WARNING: see unset_port()
+                        if (vlan != self.ethsw.mapping[port][1]) or (porttype != self.ethsw.mapping[port][0]):
+                            self.ethsw.unset_port(port)
+                            self.dynagen.ethsw_map(self.ethsw, port, porttype + ' ' + str(vlan))
 
     def startNode(self):
         """ Start the node
@@ -234,6 +253,7 @@ class ETHSW(AbstractNode):
         """
 
         if globals.addingLinkFlag and globals.currentLinkType != globals.Enum.LinkType.Manual and event.button() == QtCore.Qt.LeftButton:
+            self.autoAllocateFreePort()
             connected_ports = self.getConnectedInterfaceList()
             for port in self.config['ports'].keys():
                 if not str(port) in connected_ports:

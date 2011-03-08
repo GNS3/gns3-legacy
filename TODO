@@ -3,34 +3,38 @@ TODO LIST
  * Open .net files from Finder on Mac OS X (http://www.gns3.net/phpBB/topic1817.html)
  * NIO Multicast support (next release of Dynamips)
  * Auto UDP (next release of Dynamips)
- * WICS removable (next release of Dynamips)
+ * WICs removable (next release of Dynamips)
  * Do not remove original comments in .net files
- * Open Recent File menu
+ * A "Open recent files" menu
  * New logo for GNS3
- * VNC support for Qemu (-vnc 127.0.0.1:i++) + memu to start it
- * Implement Qemu monitor function (need to update Qemu patch)
+ * VNC support for Qemu (-vnc 127.0.0.1:i++) + entry in the contextual memu to start VNC
+ * Implement Qemu monitor functions (need to update Qemu patch)
  * Style options for node labels
- * No quit only for SDL
- * Waiting time between each console opening
- * Apply button for idle-pc
- * Change Scrolling behavior
- * Extract/write files from QEMU qcow2 format image file using libguestfs.
- * Dynamipswrapper for remote labs?
- * Check if running nodes before quit/new.
- * Clear previous project when saving as.
- * Use a default workingdir if no present in .net file.
- * Do not record external IOS when loading .net files.
+ * Console to all devices: waiting time between each console opening
+ * Change the scrolling behavior for the scene
+ * Extract/write files from Qemu qcow2 format image files using libguestfs
+ * Dynamipswrapper for remote labs
+  
+ * Script to add Loopbacks on Windows http://www.gns3.net/phpBB/topic2920.html
+ * Apply button for idle-pc selection
+ * Check if running nodes before quit/new
+ * Clear previous project when saving as
+ * Do not record external IOS when loading .net files
+ * Prevent a user to change the hostname of a router while it is running
+ * Per-IOS memory limit process load balancing.
+ * NIO stats format
 
 Debugging
 
- * WICS connection on running routers
+ * WICs connection on running routers
  * Saved interface labels
  * Remove module while router is suspended
- * Screenshot broken in latest Qt
+ * Screenshots broken in latest Qt
  * Bug with IOS replacement?
  * Bug serial drawing when loading a topology
  * Cannot load topologies with Switches (ETHSW, ATMSW, FRSW ...) not defined on first hypervisor
  * Dynamic mappings for ATMSW
+ * http://www.gns3.net/phpBB/topic2918.html
 
 File "/Users/grossmj/Documents/workspace/gns3-devel/src/GNS3/Dynagen/qemu_lib.py", line 572, in connect_to_dynamips
     dowarning('Connecting %s port %s to %s slot %s port %s:\nin case of multi-server operation make sure you do not use "localhost" string in definition of dynamips hypervisor.\n'% (self.name, local_port, remote_slot.router.name, remote_slot.adapter, remote_port))
@@ -53,3 +57,72 @@ Traceback (most recent call last):
     raise DynamipsError, data[-1]
 
 DynamipsError: 205-VM R2: unable to add binding for slot 0/32
+
+Traceback (most recent call last):
+
+File "/usr/lib/python2.7/site-packages/GNS3/UndoFramework.py", line 48, in redo
+if self.topology.addNode(self.node, fromScene=True) == False:
+
+File "/usr/lib/python2.7/site-packages/GNS3/Topology.py", line 684, in addNode
+self.applyIOSBaseConfig(node, iosConfig)
+
+File "/usr/lib/python2.7/site-packages/GNS3/Topology.py", line 238, in applyIOSBaseConfig
+QtGui.QMessageBox.warning(globals.GApp.mainWindow, unicode(translate("Topology", "IOS Base config")), unicode(translate("Topology", "%s: %s")) % (config_path, e[1]))
+
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xd0 in position 0: ordinal not in range(128)
+
+-----------------------------------------------------------
+*** Error: 205-VM R4: unable to add binding for slot 1/0
+---------Traceback lines (saved in exception.log)----------
+Traceback (most recent call last):
+
+File "GNS3\UndoFramework.pyo", line 200, in redo
+
+File "GNS3\Node\IOSRouter.pyo", line 243, in set_config
+
+AttributeError: 'NoneType' object has no attribute 'can_be_removed'
+
+Traceback (most recent call last):
+  File "GNS3\Link\AbstractEdge.pyo", line 195, in mousePressEvent_actions
+  File "GNS3\Link\AbstractEdge.pyo", line 254, in __captureAction
+  File "GNS3\Link\AbstractEdge.pyo", line 328, in __captureDynamipsDevice
+  File "GNS3\Link\AbstractEdge.pyo", line 391, in __startWiresharkAction
+  File "subprocess.pyo", line 633, in __init__
+  File "subprocess.pyo", line 842, in _execute_child
+UnicodeEncodeError: 'ascii' codec can't encode character u'\u010f' in position 23: ordinal not in range(128)
+
+http://www.gns3.net/phpBB/topic3026.html
+
+Dynagen management console for Dynamips (adapted for GNS3)
+Copyright (c) 2008-2010 GNS3 Project
+
+=> ---------Traceback lines (saved in exception.log)----------
+Traceback (most recent call last):
+
+File "GNS3\UndoFramework.pyo", line 133, in redo
+
+File "GNS3\Topology.pyo", line 924, in addLink
+
+File "GNS3\Dynagen\dynagen.pyo", line 626, in connect
+
+File "GNS3\Dynagen\qemu_lib.pyo", line 572, in connect_to_dynamips
+
+AttributeError: 'ETHSW' object has no attribute 'router'
+
+	
+Next, if I try to save this second time by selecting menu File>Save, then it saves this project.
+
+After saving, if i click on button "Edit project" and set checkbox "Save nvrams", then Ok, and Yes on next dialog box, I get:
+
+---------Traceback lines (saved in exception.log)----------
+Traceback (most recent call last):
+
+File "/opt/gns3/src/GNS3/ProjectDialog.py", line 96, in accept
+globals.GApp.mainWindow.createProject(settings)
+
+File "/opt/gns3/src/GNS3/Workspace.py", line 784, in createProject
+debug("Warning: cannot move " + file + " to " + self.projectWorkdir + ": " + unicode(e.strerror))
+
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xd0 in position 0: ordinal not in range(128)
+
+-----------------------------------------------------------
