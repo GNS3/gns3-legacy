@@ -2,71 +2,76 @@
 
 # Form implementation generated from reading ui file 'Form_About.ui'
 #
-# Created: Sun Dec 12 21:25:37 2010
-#      by: PyQt4 UI code generator 4.7.4
+# Created: Wed Mar  9 00:43:09 2011
+#      by: PyQt4 UI code generator 4.8.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    _fromUtf8 = lambda s: s
+
 class Ui_AboutDialog(object):
     def setupUi(self, AboutDialog):
-        AboutDialog.setObjectName("AboutDialog")
+        AboutDialog.setObjectName(_fromUtf8("AboutDialog"))
         AboutDialog.resize(496, 384)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/images/logo_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         AboutDialog.setWindowIcon(icon)
         self.vboxlayout = QtGui.QVBoxLayout(AboutDialog)
-        self.vboxlayout.setObjectName("vboxlayout")
+        self.vboxlayout.setObjectName(_fromUtf8("vboxlayout"))
         self.tabWidget = QtGui.QTabWidget(AboutDialog)
-        self.tabWidget.setObjectName("tabWidget")
+        self.tabWidget.setObjectName(_fromUtf8("tabWidget"))
         self.tab = QtGui.QWidget()
-        self.tab.setObjectName("tab")
+        self.tab.setObjectName(_fromUtf8("tab"))
         self.gridLayout = QtGui.QGridLayout(self.tab)
-        self.gridLayout.setObjectName("gridLayout")
+        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         spacerItem = QtGui.QSpacerItem(396, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem, 0, 0, 1, 4)
         self.label = QtGui.QLabel(self.tab)
-        self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap(":/images/logo_gns3_small.png"))
-        self.label.setObjectName("label")
+        self.label.setText(_fromUtf8(""))
+        self.label.setPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_gns3_small.png")))
+        self.label.setObjectName(_fromUtf8("label"))
         self.gridLayout.addWidget(self.label, 1, 0, 1, 1)
         spacerItem1 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem1, 1, 1, 1, 1)
         self.label_2 = QtGui.QLabel(self.tab)
         self.label_2.setOpenExternalLinks(True)
-        self.label_2.setObjectName("label_2")
+        self.label_2.setObjectName(_fromUtf8("label_2"))
         self.gridLayout.addWidget(self.label_2, 1, 2, 1, 2)
         spacerItem2 = QtGui.QSpacerItem(301, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem2, 2, 0, 1, 4)
-        self.tabWidget.addTab(self.tab, "")
+        self.tabWidget.addTab(self.tab, _fromUtf8(""))
         self.tab_2 = QtGui.QWidget()
-        self.tab_2.setObjectName("tab_2")
+        self.tab_2.setObjectName(_fromUtf8("tab_2"))
         self.vboxlayout1 = QtGui.QVBoxLayout(self.tab_2)
-        self.vboxlayout1.setObjectName("vboxlayout1")
+        self.vboxlayout1.setObjectName(_fromUtf8("vboxlayout1"))
         self.textBrowser = QtGui.QTextBrowser(self.tab_2)
-        self.textBrowser.setObjectName("textBrowser")
+        self.textBrowser.setObjectName(_fromUtf8("textBrowser"))
         self.vboxlayout1.addWidget(self.textBrowser)
-        self.tabWidget.addTab(self.tab_2, "")
+        self.tabWidget.addTab(self.tab_2, _fromUtf8(""))
         self.tab_3 = QtGui.QWidget()
-        self.tab_3.setObjectName("tab_3")
+        self.tab_3.setObjectName(_fromUtf8("tab_3"))
         self.vboxlayout2 = QtGui.QVBoxLayout(self.tab_3)
-        self.vboxlayout2.setObjectName("vboxlayout2")
+        self.vboxlayout2.setObjectName(_fromUtf8("vboxlayout2"))
         self.textBrowser_2 = QtGui.QTextBrowser(self.tab_3)
-        self.textBrowser_2.setObjectName("textBrowser_2")
+        self.textBrowser_2.setObjectName(_fromUtf8("textBrowser_2"))
         self.vboxlayout2.addWidget(self.textBrowser_2)
-        self.tabWidget.addTab(self.tab_3, "")
+        self.tabWidget.addTab(self.tab_3, _fromUtf8(""))
         self.vboxlayout.addWidget(self.tabWidget)
         self.buttonBox = QtGui.QDialogButtonBox(AboutDialog)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Ok)
-        self.buttonBox.setObjectName("buttonBox")
+        self.buttonBox.setObjectName(_fromUtf8("buttonBox"))
         self.vboxlayout.addWidget(self.buttonBox)
 
         self.retranslateUi(AboutDialog)
         self.tabWidget.setCurrentIndex(0)
-        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("accepted()"), AboutDialog.accept)
-        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("rejected()"), AboutDialog.reject)
+        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("accepted()")), AboutDialog.accept)
+        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("rejected()")), AboutDialog.reject)
         QtCore.QMetaObject.connectSlotsByName(AboutDialog)
         AboutDialog.setTabOrder(self.textBrowser, self.textBrowser_2)
 

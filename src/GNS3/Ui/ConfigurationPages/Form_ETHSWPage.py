@@ -2,30 +2,35 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_ETHSWPage.ui'
 #
-# Created: Sun Dec 12 21:25:39 2010
-#      by: PyQt4 UI code generator 4.7.4
+# Created: Wed Mar  9 00:43:11 2011
+#      by: PyQt4 UI code generator 4.8.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    _fromUtf8 = lambda s: s
+
 class Ui_ETHSWPage(object):
     def setupUi(self, ETHSWPage):
-        ETHSWPage.setObjectName("ETHSWPage")
+        ETHSWPage.setObjectName(_fromUtf8("ETHSWPage"))
         ETHSWPage.resize(397, 315)
         self.gridlayout = QtGui.QGridLayout(ETHSWPage)
-        self.gridlayout.setObjectName("gridlayout")
+        self.gridlayout.setObjectName(_fromUtf8("gridlayout"))
         self.groupBox = QtGui.QGroupBox(ETHSWPage)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.groupBox.sizePolicy().hasHeightForWidth())
         self.groupBox.setSizePolicy(sizePolicy)
-        self.groupBox.setObjectName("groupBox")
+        self.groupBox.setObjectName(_fromUtf8("groupBox"))
         self.gridlayout1 = QtGui.QGridLayout(self.groupBox)
-        self.gridlayout1.setObjectName("gridlayout1")
+        self.gridlayout1.setObjectName(_fromUtf8("gridlayout1"))
         self.label = QtGui.QLabel(self.groupBox)
-        self.label.setObjectName("label")
+        self.label.setObjectName(_fromUtf8("label"))
         self.gridlayout1.addWidget(self.label, 0, 0, 1, 1)
         self.spinBoxPort = QtGui.QSpinBox(self.groupBox)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Fixed)
@@ -35,11 +40,11 @@ class Ui_ETHSWPage(object):
         self.spinBoxPort.setSizePolicy(sizePolicy)
         self.spinBoxPort.setMinimum(0)
         self.spinBoxPort.setMaximum(65535)
-        self.spinBoxPort.setProperty("value", 1)
-        self.spinBoxPort.setObjectName("spinBoxPort")
+        self.spinBoxPort.setProperty(_fromUtf8("value"), 1)
+        self.spinBoxPort.setObjectName(_fromUtf8("spinBoxPort"))
         self.gridlayout1.addWidget(self.spinBoxPort, 0, 1, 1, 1)
         self.label_3 = QtGui.QLabel(self.groupBox)
-        self.label_3.setObjectName("label_3")
+        self.label_3.setObjectName(_fromUtf8("label_3"))
         self.gridlayout1.addWidget(self.label_3, 1, 0, 1, 1)
         self.spinBoxVLAN = QtGui.QSpinBox(self.groupBox)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Fixed)
@@ -49,23 +54,23 @@ class Ui_ETHSWPage(object):
         self.spinBoxVLAN.setSizePolicy(sizePolicy)
         self.spinBoxVLAN.setMinimum(0)
         self.spinBoxVLAN.setMaximum(65535)
-        self.spinBoxVLAN.setProperty("value", 1)
-        self.spinBoxVLAN.setObjectName("spinBoxVLAN")
+        self.spinBoxVLAN.setProperty(_fromUtf8("value"), 1)
+        self.spinBoxVLAN.setObjectName(_fromUtf8("spinBoxVLAN"))
         self.gridlayout1.addWidget(self.spinBoxVLAN, 1, 1, 1, 1)
         self.label_2 = QtGui.QLabel(self.groupBox)
-        self.label_2.setObjectName("label_2")
+        self.label_2.setObjectName(_fromUtf8("label_2"))
         self.gridlayout1.addWidget(self.label_2, 2, 0, 1, 1)
         self.comboBoxPortType = QtGui.QComboBox(self.groupBox)
-        self.comboBoxPortType.setObjectName("comboBoxPortType")
-        self.comboBoxPortType.addItem("")
-        self.comboBoxPortType.addItem("")
-        self.comboBoxPortType.addItem("")
+        self.comboBoxPortType.setObjectName(_fromUtf8("comboBoxPortType"))
+        self.comboBoxPortType.addItem(_fromUtf8(""))
+        self.comboBoxPortType.addItem(_fromUtf8(""))
+        self.comboBoxPortType.addItem(_fromUtf8(""))
         self.gridlayout1.addWidget(self.comboBoxPortType, 2, 1, 1, 1)
         self.gridlayout.addWidget(self.groupBox, 0, 0, 1, 2)
         self.groupBox_2 = QtGui.QGroupBox(ETHSWPage)
-        self.groupBox_2.setObjectName("groupBox_2")
+        self.groupBox_2.setObjectName(_fromUtf8("groupBox_2"))
         self.vboxlayout = QtGui.QVBoxLayout(self.groupBox_2)
-        self.vboxlayout.setObjectName("vboxlayout")
+        self.vboxlayout.setObjectName(_fromUtf8("vboxlayout"))
         self.treeWidgetPorts = QtGui.QTreeWidget(self.groupBox_2)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -73,15 +78,15 @@ class Ui_ETHSWPage(object):
         sizePolicy.setHeightForWidth(self.treeWidgetPorts.sizePolicy().hasHeightForWidth())
         self.treeWidgetPorts.setSizePolicy(sizePolicy)
         self.treeWidgetPorts.setRootIsDecorated(False)
-        self.treeWidgetPorts.setObjectName("treeWidgetPorts")
+        self.treeWidgetPorts.setObjectName(_fromUtf8("treeWidgetPorts"))
         self.vboxlayout.addWidget(self.treeWidgetPorts)
         self.gridlayout.addWidget(self.groupBox_2, 0, 2, 3, 1)
         self.pushButtonAdd = QtGui.QPushButton(ETHSWPage)
-        self.pushButtonAdd.setObjectName("pushButtonAdd")
+        self.pushButtonAdd.setObjectName(_fromUtf8("pushButtonAdd"))
         self.gridlayout.addWidget(self.pushButtonAdd, 1, 0, 1, 1)
         self.pushButtonDelete = QtGui.QPushButton(ETHSWPage)
         self.pushButtonDelete.setEnabled(False)
-        self.pushButtonDelete.setObjectName("pushButtonDelete")
+        self.pushButtonDelete.setObjectName(_fromUtf8("pushButtonDelete"))
         self.gridlayout.addWidget(self.pushButtonDelete, 1, 1, 1, 1)
         spacerItem = QtGui.QSpacerItem(20, 71, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.gridlayout.addItem(spacerItem, 2, 1, 1, 1)

@@ -235,7 +235,7 @@ class Topology(QtGui.QGraphicsScene):
             encoded = ("").join(base64.encodestring(config).split())
             node.router.config_b64 = encoded
         except IOError, e:
-            QtGui.QMessageBox.warning(globals.GApp.mainWindow, unicode(translate("Topology", "IOS Base config")), unicode(translate("Topology", "%s: %s")) % (config_path, e[1]))
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, unicode(translate("Topology", "IOS Base config")), unicode(translate("Topology", "%s: %s"), errors='replace') % (config_path, e[1]))
         except:
             debug("Cannot apply IOS base config")
             pass

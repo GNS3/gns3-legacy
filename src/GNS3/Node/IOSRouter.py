@@ -151,6 +151,16 @@ class IOSRouter(AbstractNode):
         self.hostname = hostname
         self.r = 'ROUTER ' + self.hostname
         self.updateToolTips()
+        
+    def changeHostname(self):
+        """ Called to change the hostname
+        """
+        
+        if self.router.state != 'stopped':
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSRouter", "New hostname"),
+                                       translate("IOSRouter", "Cannot change the hostname of a running device"))            
+            return
+        AbstractNode.changeHostname(self)
 
     def setCustomToolTip(self):
         """ Set a custom tool tip
@@ -243,12 +253,12 @@ class IOSRouter(AbstractNode):
         for module_name in config['slots']:
             if module_name and self.router.slot[slot_number] == None:
                 self.set_slot(slot_number, module_name)
-                if not self.router.slot[slot_number].can_be_removed():
+                if self.router.slot[slot_number] and not self.router.slot[slot_number].can_be_removed():
                     slot_changed = True
             elif self.router.slot[slot_number] and module_name and module_name != self.router.slot[slot_number].adapter:
                 self.clean_slot(self.router.slot[slot_number])
                 self.set_slot(slot_number, module_name)
-                if not self.router.slot[slot_number].can_be_removed():
+                if self.router.slot[slot_number] and not self.router.slot[slot_number].can_be_removed():
                     slot_changed = True
             elif module_name == None and self.router.slot[slot_number]:
                 self.clean_slot(self.router.slot[slot_number])

@@ -533,7 +533,7 @@ class NIO(object):
         result = send(dynamips, 'nio get_stats %s' % nio_name)[0]
         if result.startswith("100"):
             stats = result[4:].split()
-            return ("\n        " + stats[0] + ' packets in ' + stats[1] + ' packets out ' + stats[2] + ' bytes in ' + stats[3] + ' bytes out')
+            return ("\n        " + stats[0] + ' packets in / ' + stats[1] + ' packets out (' + stats[2] + ' bytes in / ' + stats[3] + ' bytes out)')
         return ""
 
     def reset_stats(self, dynamips, nio_name):

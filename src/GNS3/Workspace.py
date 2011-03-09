@@ -314,6 +314,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Clear the topology
         """
 
+        running_nodes = False
+        for node in globals.GApp.topology.nodes.itervalues():
+            if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice)) and node.get_dynagen_device().state == 'running':
+                running_nodes = True
+
         if len(globals.GApp.topology.nodes) and globals.GApp.topology.changed == True:
             reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the current topology?"),
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No, QtGui.QMessageBox.Cancel)
@@ -321,7 +326,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 self.__action_Save()
             elif reply == QtGui.QMessageBox.Cancel:
                 return
-        
+
+        elif running_nodes:
+            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "You have running nodes and you may loose your configurations inside them, would you like to continue anyway?"),
+                                               QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+            if reply == QtGui.QMessageBox.No:
+                return
+
         self.clear()
 
     def __action_Config(self):
@@ -829,12 +840,15 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     if reply == QtGui.QMessageBox.Yes:
                         unbase = True
 
+                # stop the node before moving files
+                for node in globals.GApp.topology.nodes.values():
+                    if (isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir) or (isinstance(node, AnyEmuDevice) and self.projectWorkdir != node.qemu.workingdir):
+                        node.stopNode()
+
                 # move dynamips & Qemu files
                 for node in globals.GApp.topology.nodes.values():
                     if isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir:
-                        
-                        # Stop this router
-                        node.stopNode()
+
                         dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_nvram*')
                         dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_disk*')
                         dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_slot*')
@@ -850,7 +864,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                 continue
                             except:
                                 continue
-
+                            
+                        # clean the original working directory
+                        self.clear_workdir(os.path.normpath(node.hypervisor.workingdir))
+                    
                     if (isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS)) and unbase:
                         node.get_dynagen_device().unbase()
 
@@ -1072,6 +1089,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Ask to close GNS3
         """
 
+        running_nodes = False
+        for node in globals.GApp.topology.nodes.itervalues():
+            if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice)) and node.get_dynagen_device().state == 'running':
+                running_nodes = True
+
         if len(globals.GApp.topology.nodes) and globals.GApp.topology.changed == True:
             reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the current topology?"),
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No, QtGui.QMessageBox.Cancel)
@@ -1080,5 +1102,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
             elif reply == QtGui.QMessageBox.Cancel:
                 event.ignore()
                 return
+
+        elif running_nodes:
+            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "You have running nodes and you may loose your configurations inside them, would you like to continue anyway?"),
+                                               QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+            if reply == QtGui.QMessageBox.No:
+                event.ignore()
+                return
+            
         self.clear()
         event.accept()

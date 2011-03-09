@@ -14,6 +14,7 @@ FILES=" Form_MainWindow
 	Form_StyleDialog
 	Form_StartupConfig
 	Form_MACTableDialog
+	Form_IDLEPCDialog
         ./ConfigurationPages/Form_IOSRouterPage
         ./ConfigurationPages/Form_CloudPage
         ./ConfigurationPages/Form_ETHSWPage

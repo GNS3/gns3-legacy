@@ -56,9 +56,9 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
 
         if self.conf.workdir == '':
             if os.environ.has_key("TEMP"):
-                self.conf.workdir = unicode(os.environ["TEMP"])
+                self.conf.workdir = unicode(os.environ["TEMP"], errors='replace')
             elif os.environ.has_key("TMP"):
-                self.conf.workdir = unicode(os.environ["TMP"])
+                self.conf.workdir = unicode(os.environ["TMP"], errors='replace')
             else:
                 self.conf.workdir = unicode('/tmp')
 

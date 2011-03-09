@@ -2,44 +2,49 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesCapture.ui'
 #
-# Created: Sun Dec 12 21:25:41 2010
-#      by: PyQt4 UI code generator 4.7.4
+# Created: Wed Mar  9 00:43:12 2011
+#      by: PyQt4 UI code generator 4.8.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    _fromUtf8 = lambda s: s
+
 class Ui_PreferencesCapture(object):
     def setupUi(self, PreferencesCapture):
-        PreferencesCapture.setObjectName("PreferencesCapture")
+        PreferencesCapture.setObjectName(_fromUtf8("PreferencesCapture"))
         PreferencesCapture.resize(398, 308)
         self.vboxlayout = QtGui.QVBoxLayout(PreferencesCapture)
-        self.vboxlayout.setObjectName("vboxlayout")
+        self.vboxlayout.setObjectName(_fromUtf8("vboxlayout"))
         self.groupBox = QtGui.QGroupBox(PreferencesCapture)
-        self.groupBox.setObjectName("groupBox")
+        self.groupBox.setObjectName(_fromUtf8("groupBox"))
         self.gridlayout = QtGui.QGridLayout(self.groupBox)
-        self.gridlayout.setObjectName("gridlayout")
+        self.gridlayout.setObjectName(_fromUtf8("gridlayout"))
         self.label = QtGui.QLabel(self.groupBox)
         self.label.setEnabled(True)
-        self.label.setObjectName("label")
+        self.label.setObjectName(_fromUtf8("label"))
         self.gridlayout.addWidget(self.label, 0, 0, 1, 2)
         self.CaptureWorkingDirectory = QtGui.QLineEdit(self.groupBox)
-        self.CaptureWorkingDirectory.setObjectName("CaptureWorkingDirectory")
+        self.CaptureWorkingDirectory.setObjectName(_fromUtf8("CaptureWorkingDirectory"))
         self.gridlayout.addWidget(self.CaptureWorkingDirectory, 1, 0, 1, 1)
         self.CaptureWorkingDirectory_Browser = QtGui.QToolButton(self.groupBox)
         self.CaptureWorkingDirectory_Browser.setToolButtonStyle(QtCore.Qt.ToolButtonTextOnly)
-        self.CaptureWorkingDirectory_Browser.setObjectName("CaptureWorkingDirectory_Browser")
+        self.CaptureWorkingDirectory_Browser.setObjectName(_fromUtf8("CaptureWorkingDirectory_Browser"))
         self.gridlayout.addWidget(self.CaptureWorkingDirectory_Browser, 1, 1, 1, 1)
         self.label_2 = QtGui.QLabel(self.groupBox)
         self.label_2.setEnabled(True)
-        self.label_2.setObjectName("label_2")
+        self.label_2.setObjectName(_fromUtf8("label_2"))
         self.gridlayout.addWidget(self.label_2, 2, 0, 1, 2)
         self.CaptureCommand = QtGui.QLineEdit(self.groupBox)
-        self.CaptureCommand.setObjectName("CaptureCommand")
+        self.CaptureCommand.setObjectName(_fromUtf8("CaptureCommand"))
         self.gridlayout.addWidget(self.CaptureCommand, 3, 0, 1, 2)
         self.checkBoxStartCaptureCommand = QtGui.QCheckBox(self.groupBox)
         self.checkBoxStartCaptureCommand.setChecked(True)
-        self.checkBoxStartCaptureCommand.setObjectName("checkBoxStartCaptureCommand")
+        self.checkBoxStartCaptureCommand.setObjectName(_fromUtf8("checkBoxStartCaptureCommand"))
         self.gridlayout.addWidget(self.checkBoxStartCaptureCommand, 4, 0, 1, 2)
         self.vboxlayout.addWidget(self.groupBox)
         spacerItem = QtGui.QSpacerItem(20, 101, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)

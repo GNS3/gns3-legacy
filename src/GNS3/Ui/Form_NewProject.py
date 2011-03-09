@@ -2,69 +2,74 @@
 
 # Form implementation generated from reading ui file 'Form_NewProject.ui'
 #
-# Created: Sun Dec 12 21:25:37 2010
-#      by: PyQt4 UI code generator 4.7.4
+# Created: Wed Mar  9 00:43:09 2011
+#      by: PyQt4 UI code generator 4.8.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    _fromUtf8 = lambda s: s
+
 class Ui_NewProject(object):
     def setupUi(self, NewProject):
-        NewProject.setObjectName("NewProject")
+        NewProject.setObjectName(_fromUtf8("NewProject"))
         NewProject.resize(481, 211)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/images/logo_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         NewProject.setWindowIcon(icon)
         self.verticalLayout = QtGui.QVBoxLayout(NewProject)
-        self.verticalLayout.setObjectName("verticalLayout")
+        self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.groupBox = QtGui.QGroupBox(NewProject)
-        self.groupBox.setObjectName("groupBox")
+        self.groupBox.setObjectName(_fromUtf8("groupBox"))
         self.gridLayout = QtGui.QGridLayout(self.groupBox)
-        self.gridLayout.setObjectName("gridLayout")
+        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.label_2 = QtGui.QLabel(self.groupBox)
-        self.label_2.setObjectName("label_2")
+        self.label_2.setObjectName(_fromUtf8("label_2"))
         self.gridLayout.addWidget(self.label_2, 0, 0, 1, 1)
         self.ProjectName = QtGui.QLineEdit(self.groupBox)
-        self.ProjectName.setText("")
-        self.ProjectName.setObjectName("ProjectName")
+        self.ProjectName.setText(_fromUtf8(""))
+        self.ProjectName.setObjectName(_fromUtf8("ProjectName"))
         self.gridLayout.addWidget(self.ProjectName, 0, 1, 1, 2)
         self.label = QtGui.QLabel(self.groupBox)
-        self.label.setObjectName("label")
+        self.label.setObjectName(_fromUtf8("label"))
         self.gridLayout.addWidget(self.label, 1, 0, 1, 1)
         self.ProjectPath = QtGui.QLineEdit(self.groupBox)
-        self.ProjectPath.setObjectName("ProjectPath")
+        self.ProjectPath.setObjectName(_fromUtf8("ProjectPath"))
         self.gridLayout.addWidget(self.ProjectPath, 1, 1, 1, 1)
         self.NewProject_browser = QtGui.QToolButton(self.groupBox)
         self.NewProject_browser.setToolButtonStyle(QtCore.Qt.ToolButtonTextOnly)
-        self.NewProject_browser.setObjectName("NewProject_browser")
+        self.NewProject_browser.setObjectName(_fromUtf8("NewProject_browser"))
         self.gridLayout.addWidget(self.NewProject_browser, 1, 2, 1, 1)
         self.checkBox_WorkdirFiles = QtGui.QCheckBox(self.groupBox)
         self.checkBox_WorkdirFiles.setChecked(False)
-        self.checkBox_WorkdirFiles.setObjectName("checkBox_WorkdirFiles")
+        self.checkBox_WorkdirFiles.setObjectName(_fromUtf8("checkBox_WorkdirFiles"))
         self.gridLayout.addWidget(self.checkBox_WorkdirFiles, 2, 0, 1, 2)
         self.checkBox_ConfigFiles = QtGui.QCheckBox(self.groupBox)
         self.checkBox_ConfigFiles.setChecked(True)
-        self.checkBox_ConfigFiles.setObjectName("checkBox_ConfigFiles")
+        self.checkBox_ConfigFiles.setObjectName(_fromUtf8("checkBox_ConfigFiles"))
         self.gridLayout.addWidget(self.checkBox_ConfigFiles, 3, 0, 1, 2)
         self.verticalLayout.addWidget(self.groupBox)
         self.horizontalLayout = QtGui.QHBoxLayout()
-        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.pushButtonOpenProject = QtGui.QPushButton(NewProject)
-        self.pushButtonOpenProject.setObjectName("pushButtonOpenProject")
+        self.pushButtonOpenProject.setObjectName(_fromUtf8("pushButtonOpenProject"))
         self.horizontalLayout.addWidget(self.pushButtonOpenProject)
         spacerItem = QtGui.QSpacerItem(168, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.buttonBox = QtGui.QDialogButtonBox(NewProject)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
-        self.buttonBox.setObjectName("buttonBox")
+        self.buttonBox.setObjectName(_fromUtf8("buttonBox"))
         self.horizontalLayout.addWidget(self.buttonBox)
         self.verticalLayout.addLayout(self.horizontalLayout)
 
         self.retranslateUi(NewProject)
-        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("accepted()"), NewProject.accept)
-        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("rejected()"), NewProject.reject)
+        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("accepted()")), NewProject.accept)
+        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("rejected()")), NewProject.reject)
         QtCore.QMetaObject.connectSlotsByName(NewProject)
 
     def retranslateUi(self, NewProject):

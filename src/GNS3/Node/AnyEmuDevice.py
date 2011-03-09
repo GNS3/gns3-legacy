@@ -107,6 +107,16 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         self.hostname = hostname
         self.f = '%s %s' % (self.basehostname, self.hostname)
         self.updateToolTips()
+        
+    def changeHostname(self):
+        """ Called to change the hostname
+        """
+        
+        if self.emudev.state != 'stopped':
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AnyEmuDevice", "New hostname"),
+                                       translate("AnyEmuDevice", "Cannot change the hostname of a running device"))            
+            return
+        AbstractNode.changeHostname(self)
 
     def setCustomToolTip(self):
         """ Set a custom tool tip

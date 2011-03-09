@@ -30,6 +30,7 @@ from GNS3.ShapeItem import AbstractShapeItem, Rectangle, Ellipse
 from GNS3.StyleDialog import StyleDialog
 from GNS3.MACTableDialog import MACTableDialog
 from GNS3.SymbolDialog import SymbolDialog
+from GNS3.IDLEPCDialog import IDLEPCDialog
 from GNS3.Pixmap import Pixmap
 from GNS3.NodeConfigurator import NodeConfigurator
 from GNS3.Node.AbstractNode import AbstractNode
@@ -287,7 +288,7 @@ class Scene(QtGui.QGraphicsView):
 
         splash = QtGui.QSplashScreen(QtGui.QPixmap(":images/logo_gns3_splash.png"))
         splash.show()
-        splash.showMessage(translate("Scene", "Please wait while calculating an IDLE PC"))
+        splash.showMessage(translate("Scene", "Please wait while calculating IDLE PC values"))
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
         result = globals.GApp.dynagen.devices[router.hostname].idleprop(lib.IDLEPROPGET)
         return result
@@ -407,58 +408,38 @@ class Scene(QtGui.QGraphicsView):
                     result = globals.GApp.dynagen.devices[router.hostname].idleprop(lib.IDLEPROPSHOW)
             else:
                 result = self.calculateIDLEPC(router)
-
-            # remove the '100-OK' line
-            result.pop()
-
-            idles = {}
-            options = []
-            i = 1
-            for line in result:
-                (value, count) = line.split()[1:]
-
-                # Flag potentially "best" idlepc values (between 50 and 60)
-                iCount = int(count[1:-1])
-                if 50 < iCount < 60:
-                    flag = '*'
-                else:
-                    flag = ' '
-
-                option = "%s %i: %s %s" % (flag, i, value, count)
-                options.append(option)
-                idles[i] = value
-                i += 1
-
-            if len(idles) == 0:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "IDLE PC"),  translate("Scene", "No idlepc values found"))
-                return
-            (selection, ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Scene", "IDLE PC"),
-                                                        translate("Scene", "Potentially better idlepc values marked with '*'"), options, 0, False)
-            if ok:
-                selection = str(selection).split(':')[0].strip('* ')
-                index = int(selection)
-                for node in globals.GApp.topology.nodes.values():
-                    if isinstance(node, IOSRouter) and node.hostname == router.hostname:
-                        dyn_router = node.get_dynagen_device()
-                        if globals.GApp.iosimages.has_key(dyn_router.dynamips.host + ':' + dyn_router.image):
-                            image = globals.GApp.iosimages[dyn_router.dynamips.host + ':' + dyn_router.image]
-                            debug("Register IDLE PC " + idles[index] + " for image " + image.filename)
-                            image.idlepc =  idles[index]
-                            # Apply idle pc to devices with the same IOS image
-                            for device in globals.GApp.topology.nodes.values():
-                                if isinstance(device, IOSRouter) and device.config['image'] == image.filename:
-                                    debug("Apply IDLE PC " + idles[index] + " to " + device.hostname)
-                                    device.get_dynagen_device().idlepc = idles[index]
-                                    config = device.get_config()
-                                    config['idlepc'] = idles[index]
-                                    device.set_config(config)
-                                    device.setCustomToolTip()
-                            break
-                QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("Scene", "IDLE PC"),
-                                              unicode(translate("Scene", "Applied idlepc value %s to %s")) % (idles[index], router.hostname))
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, translate("Scene", "Dynamips error"),  unicode(msg))
             return
+
+        # remove the '100-OK' line
+        result.pop()
+
+        idles = {}
+        options = []
+        i = 1
+        for line in result:
+            (value, count) = line.split()[1:]
+
+            # Flag potentially "best" idlepc values (between 50 and 60)
+            iCount = int(count[1:-1])
+            if 50 < iCount < 60:
+                flag = '*'
+            else:
+                flag = ' '
+
+            option = "%s %i: %s %s" % (flag, i, value, count)
+            options.append(option)
+            idles[i] = value
+            i += 1
+
+        if len(idles) == 0:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "IDLE PC"),  translate("Scene", "No idlepc values found"))
+            return
+
+        idlepcdiag = IDLEPCDialog(router, idles, options)
+        idlepcdiag.show()
+        idlepcdiag.exec_()
 
     def slotConfigNode(self):
         """ Called to configure nodes

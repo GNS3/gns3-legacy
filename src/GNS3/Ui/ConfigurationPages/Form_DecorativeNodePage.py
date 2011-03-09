@@ -2,25 +2,30 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_DecorativeNodePage.ui'
 #
-# Created: Sun Dec 12 21:25:40 2010
-#      by: PyQt4 UI code generator 4.7.4
+# Created: Wed Mar  9 00:43:12 2011
+#      by: PyQt4 UI code generator 4.8.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    _fromUtf8 = lambda s: s
+
 class Ui_DecorativeNodePage(object):
     def setupUi(self, DecorativeNodePage):
-        DecorativeNodePage.setObjectName("DecorativeNodePage")
+        DecorativeNodePage.setObjectName(_fromUtf8("DecorativeNodePage"))
         DecorativeNodePage.resize(433, 443)
         self.gridlayout = QtGui.QGridLayout(DecorativeNodePage)
-        self.gridlayout.setObjectName("gridlayout")
+        self.gridlayout.setObjectName(_fromUtf8("gridlayout"))
         self.groupBox_11 = QtGui.QGroupBox(DecorativeNodePage)
-        self.groupBox_11.setObjectName("groupBox_11")
+        self.groupBox_11.setObjectName(_fromUtf8("groupBox_11"))
         self.gridlayout1 = QtGui.QGridLayout(self.groupBox_11)
-        self.gridlayout1.setObjectName("gridlayout1")
+        self.gridlayout1.setObjectName(_fromUtf8("gridlayout1"))
         self.label_9 = QtGui.QLabel(self.groupBox_11)
-        self.label_9.setObjectName("label_9")
+        self.label_9.setObjectName(_fromUtf8("label_9"))
         self.gridlayout1.addWidget(self.label_9, 0, 0, 1, 1)
         self.lineEditInterface = QtGui.QLineEdit(self.groupBox_11)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Fixed)
@@ -28,28 +33,28 @@ class Ui_DecorativeNodePage(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lineEditInterface.sizePolicy().hasHeightForWidth())
         self.lineEditInterface.setSizePolicy(sizePolicy)
-        self.lineEditInterface.setObjectName("lineEditInterface")
+        self.lineEditInterface.setObjectName(_fromUtf8("lineEditInterface"))
         self.gridlayout1.addWidget(self.lineEditInterface, 1, 0, 1, 1)
         self.gridlayout.addWidget(self.groupBox_11, 0, 0, 1, 2)
         self.groupBox_10 = QtGui.QGroupBox(DecorativeNodePage)
-        self.groupBox_10.setObjectName("groupBox_10")
+        self.groupBox_10.setObjectName(_fromUtf8("groupBox_10"))
         self.vboxlayout = QtGui.QVBoxLayout(self.groupBox_10)
-        self.vboxlayout.setObjectName("vboxlayout")
+        self.vboxlayout.setObjectName(_fromUtf8("vboxlayout"))
         self.listWidgetInterfaces = QtGui.QListWidget(self.groupBox_10)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.listWidgetInterfaces.sizePolicy().hasHeightForWidth())
         self.listWidgetInterfaces.setSizePolicy(sizePolicy)
-        self.listWidgetInterfaces.setObjectName("listWidgetInterfaces")
+        self.listWidgetInterfaces.setObjectName(_fromUtf8("listWidgetInterfaces"))
         self.vboxlayout.addWidget(self.listWidgetInterfaces)
         self.gridlayout.addWidget(self.groupBox_10, 0, 2, 3, 1)
         self.pushButtonAddInterface = QtGui.QPushButton(DecorativeNodePage)
-        self.pushButtonAddInterface.setObjectName("pushButtonAddInterface")
+        self.pushButtonAddInterface.setObjectName(_fromUtf8("pushButtonAddInterface"))
         self.gridlayout.addWidget(self.pushButtonAddInterface, 1, 0, 1, 1)
         self.pushButtonDeleteInterface = QtGui.QPushButton(DecorativeNodePage)
         self.pushButtonDeleteInterface.setEnabled(False)
-        self.pushButtonDeleteInterface.setObjectName("pushButtonDeleteInterface")
+        self.pushButtonDeleteInterface.setObjectName(_fromUtf8("pushButtonDeleteInterface"))
         self.gridlayout.addWidget(self.pushButtonDeleteInterface, 1, 1, 1, 1)
         spacerItem = QtGui.QSpacerItem(20, 321, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.gridlayout.addItem(spacerItem, 2, 0, 2, 2)

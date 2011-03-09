@@ -2,25 +2,30 @@
 
 # Form implementation generated from reading ui file 'Form_NodeConfigurator.ui'
 #
-# Created: Sun Dec 12 21:25:37 2010
-#      by: PyQt4 UI code generator 4.7.4
+# Created: Wed Mar  9 00:43:09 2011
+#      by: PyQt4 UI code generator 4.8.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    _fromUtf8 = lambda s: s
+
 class Ui_NodeConfigurator(object):
     def setupUi(self, NodeConfigurator):
-        NodeConfigurator.setObjectName("NodeConfigurator")
+        NodeConfigurator.setObjectName(_fromUtf8("NodeConfigurator"))
         NodeConfigurator.resize(789, 586)
         icon = QtGui.QIcon()
-        icon.addFile(":/images/logo_icon.png")
+        icon.addFile(_fromUtf8(":/images/logo_icon.png"))
         NodeConfigurator.setWindowIcon(icon)
         self.gridlayout = QtGui.QGridLayout(NodeConfigurator)
-        self.gridlayout.setObjectName("gridlayout")
+        self.gridlayout.setObjectName(_fromUtf8("gridlayout"))
         self.splitter = QtGui.QSplitter(NodeConfigurator)
         self.splitter.setOrientation(QtCore.Qt.Horizontal)
-        self.splitter.setObjectName("splitter")
+        self.splitter.setObjectName(_fromUtf8("splitter"))
         self.treeViewNodes = QtGui.QTreeWidget(self.splitter)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -28,13 +33,13 @@ class Ui_NodeConfigurator(object):
         sizePolicy.setHeightForWidth(self.treeViewNodes.sizePolicy().hasHeightForWidth())
         self.treeViewNodes.setSizePolicy(sizePolicy)
         self.treeViewNodes.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
-        self.treeViewNodes.setObjectName("treeViewNodes")
+        self.treeViewNodes.setObjectName(_fromUtf8("treeViewNodes"))
         self.verticalLayout = QtGui.QWidget(self.splitter)
-        self.verticalLayout.setObjectName("verticalLayout")
+        self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.vboxlayout = QtGui.QVBoxLayout(self.verticalLayout)
         self.vboxlayout.setSpacing(4)
         self.vboxlayout.setMargin(0)
-        self.vboxlayout.setObjectName("vboxlayout")
+        self.vboxlayout.setObjectName(_fromUtf8("vboxlayout"))
         self.titleLabel = QtGui.QLabel(self.verticalLayout)
         font = QtGui.QFont()
         font.setPointSize(16)
@@ -42,7 +47,7 @@ class Ui_NodeConfigurator(object):
         self.titleLabel.setFrameShape(QtGui.QFrame.Box)
         self.titleLabel.setFrameShadow(QtGui.QFrame.Sunken)
         self.titleLabel.setTextFormat(QtCore.Qt.PlainText)
-        self.titleLabel.setObjectName("titleLabel")
+        self.titleLabel.setObjectName(_fromUtf8("titleLabel"))
         self.vboxlayout.addWidget(self.titleLabel)
         self.configStack = QtGui.QStackedWidget(self.verticalLayout)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
@@ -52,18 +57,18 @@ class Ui_NodeConfigurator(object):
         self.configStack.setSizePolicy(sizePolicy)
         self.configStack.setFrameShape(QtGui.QFrame.Box)
         self.configStack.setFrameShadow(QtGui.QFrame.Sunken)
-        self.configStack.setObjectName("configStack")
+        self.configStack.setObjectName(_fromUtf8("configStack"))
         self.emptyPage = QtGui.QWidget()
-        self.emptyPage.setObjectName("emptyPage")
+        self.emptyPage.setObjectName(_fromUtf8("emptyPage"))
         self.vboxlayout1 = QtGui.QVBoxLayout(self.emptyPage)
         self.vboxlayout1.setSpacing(0)
         self.vboxlayout1.setContentsMargins(0, 4, 0, 0)
-        self.vboxlayout1.setObjectName("vboxlayout1")
+        self.vboxlayout1.setObjectName(_fromUtf8("vboxlayout1"))
         spacerItem = QtGui.QSpacerItem(20, 20, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.vboxlayout1.addItem(spacerItem)
         self.textLabel1 = QtGui.QLabel(self.emptyPage)
         self.textLabel1.setAlignment(QtCore.Qt.AlignCenter)
-        self.textLabel1.setObjectName("textLabel1")
+        self.textLabel1.setObjectName(_fromUtf8("textLabel1"))
         self.vboxlayout1.addWidget(self.textLabel1)
         spacerItem1 = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.vboxlayout1.addItem(spacerItem1)
@@ -73,7 +78,7 @@ class Ui_NodeConfigurator(object):
         self.buttonBox = QtGui.QDialogButtonBox(NodeConfigurator)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Apply|QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.NoButton|QtGui.QDialogButtonBox.Ok|QtGui.QDialogButtonBox.Reset)
-        self.buttonBox.setObjectName("buttonBox")
+        self.buttonBox.setObjectName(_fromUtf8("buttonBox"))
         self.gridlayout.addWidget(self.buttonBox, 1, 0, 1, 1)
 
         self.retranslateUi(NodeConfigurator)

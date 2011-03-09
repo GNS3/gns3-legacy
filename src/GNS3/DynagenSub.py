@@ -261,6 +261,13 @@ class DynagenSub(Dynagen):
                 # need to start local hypervisors
                 if (server.host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or server.host == 'localhost') and \
                     globals.GApp.HypervisorManager and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
+                    
+                    # update server.host and server.name to match with Hypervisor Manager Binding configuration, 
+                    # having hypervisors using 127.0.0.1 mixed with others using localhost will bring issues ...
+                    if (server.host == 'localhost' and server.host != globals.GApp.systconf['dynamips'].HypervisorManager_binding):
+                        server.host = globals.GApp.systconf['dynamips'].HypervisorManager_binding
+                        server.name = server.host + ':' +  controlPort
+                    
                     debug("Start hypervisor on port: " + str(controlPort))
                     hypervisor = globals.GApp.HypervisorManager.startNewHypervisor(int(controlPort))
                     globals.GApp.HypervisorManager.waitHypervisor(hypervisor)
