@@ -55,7 +55,7 @@ class HypervisorManager(object):
         globals.hypervisor_baseport = dynamips.port
         globals.GApp.dynagen.globaludp = dynamips.baseUDP
 
-    def startNewHypervisor(self, port):
+    def startNewHypervisor(self, port, processcheck=True):
         """ Create a new dynamips process and start it
         """
 
@@ -65,30 +65,39 @@ class HypervisorManager(object):
             # set the working directory
             proc.setWorkingDirectory(self.hypervisor_wd)
 
-        # test if a hypervisor is already running on this port
-        s = socket(AF_INET, SOCK_STREAM)
-        s.setblocking(0)
-        s.settimeout(300)
-        try:
-            s.connect(('localhost', port))
-            s.close()
-
-            reply = QtGui.QMessageBox.question(globals.GApp.mainWindow, translate("HypervisorManager", "Hypervisor Manager"), unicode(translate("HypervisorManager", "Apparently an hypervisor is already running on port %i, would you like to kill all Dynamips processes?")) % port,
-                                               QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-            if reply == QtGui.QMessageBox.Yes:       
-                killAll(os.path.basename(self.hypervisor_path))
-                time.sleep(1)
-
-            s.connect(('localhost', port))
-            s.close()
+        if processcheck:
+            # test if a hypervisor is already running on this port
+            s = socket(AF_INET, SOCK_STREAM)
+            s.setblocking(0)
+            s.settimeout(300)
+            try:
+                s.connect(('localhost', port))
+                s.close()
     
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("HypervisorManager", "Hypervisor Manager"),
-                                       unicode(translate("HypervisorManager", "A program is still running on port %i, you will have to stop it manually or change port settings")) % port)
-
-            globals.hypervisor_baseport += 1
-            return None
-        except:
-            s.close()
+                reply = QtGui.QMessageBox.question(globals.GApp.mainWindow, translate("HypervisorManager", "Hypervisor Manager"), unicode(translate("HypervisorManager", "Apparently an hypervisor is already running on port %i, would you like to kill all Dynamips processes?")) % port,
+                                                   QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+                if reply == QtGui.QMessageBox.Yes:       
+                    killAll(os.path.basename(self.hypervisor_path))
+                    time.sleep(1)
+                else:
+                    print "Incrementing +100 for base console port, base AUX port, base hypervisor port and base UDP port"
+                    self.baseConsole += 100
+                    if self.baseAUX:
+                        self.baseAUX += 100
+                    globals.hypervisor_baseport += 100
+                    globals.GApp.dynagen.globaludp += 100
+                    port = globals.hypervisor_baseport
+    
+                s.connect(('localhost', port))
+                s.close()
+        
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("HypervisorManager", "Hypervisor Manager"),
+                                           unicode(translate("HypervisorManager", "A program is still running on port %i, you will have to stop it manually or change port settings")) % port)
+    
+                globals.hypervisor_baseport += 1
+                return None
+            except:
+                s.close()
 
         # start dynamips in hypervisor mode (-H)
         proc.start( self.hypervisor_path ,  ['-H', str(port)])
@@ -99,7 +108,8 @@ class HypervisorManager(object):
 
         hypervisor = {'port': port,
                       'proc_instance': proc,
-                      'load': 0}
+                      'load': 0,
+                      'image_ref': ''}
 
         self.hypervisors.append(hypervisor)
         return hypervisor
@@ -168,6 +178,8 @@ class HypervisorManager(object):
         for hypervisor in self.hypervisors:
             if not isinstance(node, IOSRouter) or (isinstance(node, IOSRouter) and hypervisor['load'] + node.default_ram <= globals.GApp.systconf['dynamips'].memory_limit):
                 if isinstance(node, IOSRouter):
+                    if globals.GApp.systconf['dynamips'].allocateHypervisorPerIOS and hypervisor['image_ref'] != node.image_reference:
+                        continue
                     hypervisor['load'] += node.default_ram
                 debug('Hypervisor manager: allocates an already started hypervisor (port: ' + str(hypervisor['port']) + ')')
                 if not globals.GApp.dynagen.dynamips.has_key(globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + str(hypervisor['port'])):
@@ -185,6 +197,8 @@ class HypervisorManager(object):
 
         if isinstance(node, IOSRouter):
             hypervisor['load'] = node.default_ram
+            hypervisor['image_ref'] = node.image_reference
+
         # use project workdir in priority
         if globals.GApp.workspace.projectWorkdir:
             if not os.access(globals.GApp.workspace.projectWorkdir, os.F_OK | os.W_OK):

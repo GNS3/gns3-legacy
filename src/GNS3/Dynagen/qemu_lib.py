@@ -864,8 +864,9 @@ class FW(AnyEmuDevice):
         if type(serial) not in [str, unicode]:
             raise DynamipsError, 'invalid serial'
         #TODO verify serial
-        send(self.p, 'qemu setattr %s serial %s' % (self.name, serial))
-        self._serial = serial
+        if serial:
+            send(self.p, 'qemu setattr %s serial %s' % (self.name, serial))
+            self._serial = serial
 
     def _getserial(self):
         """ Returns path of the serial being used by this fw
@@ -883,8 +884,9 @@ class FW(AnyEmuDevice):
         if type(key) not in [str, unicode]:
             raise DynamipsError, 'invalid key'
         #TODO verify key
-        send(self.p, 'qemu setattr %s key %s' % (self.name, key))
-        self._key = key
+        if key:
+            send(self.p, 'qemu setattr %s key %s' % (self.name, key))
+            self._key = key
 
     def _getkey(self):
         """ Returns path of the key being used by this fw

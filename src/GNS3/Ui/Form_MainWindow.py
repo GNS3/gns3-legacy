@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Wed Mar  9 00:43:08 2011
+# Created: Thu Mar 10 21:26:28 2011
 #      by: PyQt4 UI code generator 4.8.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -338,6 +338,12 @@ class Ui_MainWindow(object):
         icon28.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/reload.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_ReloadAll.setIcon(icon28)
         self.action_ReloadAll.setObjectName(_fromUtf8("action_ReloadAll"))
+        self.action_ConsoleAuxAll = QtGui.QAction(MainWindow)
+        self.action_ConsoleAuxAll.setEnabled(True)
+        icon29 = QtGui.QIcon()
+        icon29.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/aux.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.action_ConsoleAuxAll.setIcon(icon29)
+        self.action_ConsoleAuxAll.setObjectName(_fromUtf8("action_ConsoleAuxAll"))
         self.menu_Edit.addAction(self.action_SelectAll)
         self.menu_Edit.addAction(self.action_SelectNone)
         self.menu_Edit.addSeparator()
@@ -371,6 +377,7 @@ class Ui_MainWindow(object):
         self.menuControl.addAction(self.action_StopAll)
         self.menuControl.addAction(self.action_ReloadAll)
         self.menuControl.addAction(self.action_TelnetAll)
+        self.menuControl.addAction(self.action_ConsoleAuxAll)
         self.menuAnnotate.addAction(self.action_AddNote)
         self.menuAnnotate.addAction(self.action_InsertImage)
         self.menuAnnotate.addAction(self.action_DrawRectangle)
@@ -394,6 +401,7 @@ class Ui_MainWindow(object):
         self.toolBar_Emulation.addAction(self.action_Snapshot)
         self.toolBar_Emulation.addAction(self.action_config)
         self.toolBar_Emulation.addAction(self.action_TelnetAll)
+        self.toolBar_Emulation.addAction(self.action_ConsoleAuxAll)
         self.toolBar_Emulation.addSeparator()
         self.toolBar_Emulation.addAction(self.action_StartAll)
         self.toolBar_Emulation.addAction(self.action_SuspendAll)
@@ -502,6 +510,8 @@ class Ui_MainWindow(object):
         self.action_SaveProjectAs.setToolTip(QtGui.QApplication.translate("MainWindow", "Save project as...", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ReloadAll.setText(QtGui.QApplication.translate("MainWindow", "Reload all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ReloadAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Reload all devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ConsoleAuxAll.setText(QtGui.QApplication.translate("MainWindow", "Console AUX to all devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ConsoleAuxAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Console AUX to all devices", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.UndoFramework import UndoView
 from GNS3.Ui.Widget_nodesDock import nodesDock

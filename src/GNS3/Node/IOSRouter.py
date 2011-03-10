@@ -19,7 +19,7 @@
 # code@gns3.net
 #
 
-import os, shutil, glob, sys, base64
+import os, shutil, glob, sys, base64, time
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.dynagen as dynagen_namespace
@@ -267,15 +267,18 @@ class IOSRouter(AbstractNode):
         if slot_changed and self.router.model != 'c7200' and self.state == 'running':
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("IOSRouter", "Slots"), translate("IOSRouter", "You have to restart this router to use new modules"))
 
-        # configure wics if available
-        if config['wics']:
-            wic_number = 0
-            for wic_name in config['wics']:
-                if wic_name and not self.router.slot[0].wics[wic_number]:
-                    # consider that all wics are in slot 0
-                    debug('Install ' + wic_name + ' in wic port ' + str(wic_number))
-                    self.router.installwic(wic_name, 0, wic_number)
-                wic_number += 1
+        try:
+            # configure wics if available
+            if config['wics']:
+                wic_number = 0
+                for wic_name in config['wics']:
+                    if wic_name and not self.router.slot[0].wics[wic_number]:
+                        # consider that all wics are in slot 0
+                        debug('Install ' + wic_name + ' in wic port ' + str(wic_number))
+                        self.router.installwic(wic_name, 0, wic_number)
+                    wic_number += 1
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSRouter", "Dynamips error"),  unicode(msg))
 
         self.local_config = config.copy()
         self.local_config['slots'] = list(config['slots'])
@@ -565,9 +568,12 @@ class IOSRouter(AbstractNode):
             module: object
         """
 
-        if module.can_be_removed():
-            module.remove()
-            self.router.slot[module.slot] = None
+        try:
+            if module.can_be_removed():
+                module.remove()
+                self.router.slot[module.slot] = None
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSRouter", "Dynamips error"),  unicode(msg))
 
     def getInterfaces(self):
         """ Returns all the router interfaces
@@ -627,6 +633,7 @@ class IOSRouter(AbstractNode):
         if self.router.state != 'running':
             return
         self.stopNode(progress)
+        time.sleep(1)
         self.startNode(progress)
 
     def suspendNode(self, progress=False):
@@ -649,7 +656,17 @@ class IOSRouter(AbstractNode):
         """
 
         if self.router and self.router.state == 'running' and self.router.console:
-            console.connect(self.hypervisor.host,  self.router.console,  self.hostname)
+            console.connect(self.hypervisor.host, self.router.console, self.hostname)
+            
+    def aux(self):
+        """ Start a telnet console and connect it to this router's AUX port
+        """
+        if not self.router.aux:
+            print translate("IOSRouter", "AUX port not available for this router model or base AUX port is set to 0 in preferences")
+            return
+
+        if self.router and self.router.state == 'running':
+            console.connect(self.hypervisor.host, self.router.aux, self.hostname)
     
     def isStarted(self):
         """ Returns True if this router is started

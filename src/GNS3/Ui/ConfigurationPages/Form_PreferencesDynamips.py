@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesDynamips.ui'
 #
-# Created: Wed Mar  9 00:43:12 2011
+# Created: Thu Mar 10 21:26:32 2011
 #      by: PyQt4 UI code generator 4.8.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -155,24 +155,28 @@ class Ui_PreferencesDynamips(object):
         self.gridlayout.addWidget(self.spinBoxMemoryLimit, 1, 0, 1, 1)
         self.label_8 = QtGui.QLabel(self.groupBox_2)
         self.label_8.setObjectName(_fromUtf8("label_8"))
-        self.gridlayout.addWidget(self.label_8, 2, 0, 1, 1)
+        self.gridlayout.addWidget(self.label_8, 3, 0, 1, 1)
         self.spinBoxUDPIncrementation = QtGui.QSpinBox(self.groupBox_2)
         self.spinBoxUDPIncrementation.setMaximum(100000)
         self.spinBoxUDPIncrementation.setSingleStep(10)
         self.spinBoxUDPIncrementation.setProperty(_fromUtf8("value"), 100)
         self.spinBoxUDPIncrementation.setObjectName(_fromUtf8("spinBoxUDPIncrementation"))
-        self.gridlayout.addWidget(self.spinBoxUDPIncrementation, 3, 0, 1, 1)
+        self.gridlayout.addWidget(self.spinBoxUDPIncrementation, 4, 0, 1, 1)
         self.label_3 = QtGui.QLabel(self.groupBox_2)
         self.label_3.setObjectName(_fromUtf8("label_3"))
-        self.gridlayout.addWidget(self.label_3, 4, 0, 1, 1)
+        self.gridlayout.addWidget(self.label_3, 5, 0, 1, 1)
         self.comboBoxBinding = QtGui.QComboBox(self.groupBox_2)
         self.comboBoxBinding.setSizeAdjustPolicy(QtGui.QComboBox.AdjustToMinimumContentsLength)
         self.comboBoxBinding.setObjectName(_fromUtf8("comboBoxBinding"))
-        self.gridlayout.addWidget(self.comboBoxBinding, 5, 0, 1, 1)
+        self.gridlayout.addWidget(self.comboBoxBinding, 6, 0, 1, 1)
         self.checkBoxHypervisorManagerImport = QtGui.QCheckBox(self.groupBox_2)
         self.checkBoxHypervisorManagerImport.setChecked(True)
         self.checkBoxHypervisorManagerImport.setObjectName(_fromUtf8("checkBoxHypervisorManagerImport"))
-        self.gridlayout.addWidget(self.checkBoxHypervisorManagerImport, 6, 0, 1, 1)
+        self.gridlayout.addWidget(self.checkBoxHypervisorManagerImport, 7, 0, 1, 1)
+        self.checkBoxAllocatePerIOS = QtGui.QCheckBox(self.groupBox_2)
+        self.checkBoxAllocatePerIOS.setChecked(True)
+        self.checkBoxAllocatePerIOS.setObjectName(_fromUtf8("checkBoxAllocatePerIOS"))
+        self.gridlayout.addWidget(self.checkBoxAllocatePerIOS, 2, 0, 1, 1)
         self.vboxlayout1.addWidget(self.groupBox_2)
         spacerItem1 = QtGui.QSpacerItem(390, 101, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.vboxlayout1.addItem(spacerItem1)
@@ -206,5 +210,6 @@ class Ui_PreferencesDynamips(object):
         self.label_8.setText(QtGui.QApplication.translate("PreferencesDynamips", "UDP incrementation:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("PreferencesDynamips", "IP/host binding:", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxHypervisorManagerImport.setText(QtGui.QApplication.translate("PreferencesDynamips", "Use Hypervisor Manager when importing", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxAllocatePerIOS.setText(QtGui.QApplication.translate("PreferencesDynamips", "Allocate a new hypervisor per IOS image", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QtGui.QApplication.translate("PreferencesDynamips", "Hypervisor Manager", None, QtGui.QApplication.UnicodeUTF8))
 

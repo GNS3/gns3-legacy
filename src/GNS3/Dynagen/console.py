@@ -119,12 +119,13 @@ class Console(AbstractConsole):
 \tList all devices"""
 
         table = []
-        print '%-10s %-10s %-10s %-15s %-10s' % (
+        print '%-10s %-10s %-10s %-27s %-10s %-10s' % (
             'Name',
             'Type',
             'State',
             'Server',
             'Console',
+            'AUX'
             )
         for device in self.dynagen.devices.values():
             row = []
@@ -140,13 +141,18 @@ class Console(AbstractConsole):
                 row.append('%-10s' % 'always on')
             try:
                 server = device.dynamips.host + ":" + str(device.dynamips.port)
-                row.append('%-15s' % server)
+                row.append('%-20s' % server)
             except AttributeError:
-                row.append('%-15s' % 'n/a')
+                row.append('%-20s' % 'n/a')
             try:
                 row.append('%-10s' % device.console)
             except AttributeError:
                 row.append('%-10s' % 'n/a')
+            try:
+                row.append('%-10s' % device.aux)
+            except AttributeError:
+                row.append('%-10s' % 'n/a')
+
             table.append(row)
         table.sort(con_cmp)  # Sort the table by the console port #
         for line in table:
@@ -498,6 +504,46 @@ And big thanks of course to Christophe Fillot as the author of Dynamips.
                     print 'Skipping %s device: %s' % (device.state, device.name)
                     continue
                 self.telnet(device.name)
+            except IndexError:
+                pass
+            except (KeyError, AttributeError):
+                error('invalid device: ' + device.name)
+            except DynamipsError, e:
+                error(e)
+            except DynamipsWarning, e:
+                print "Note: " + str(e)
+
+    def do_aux(self, args):
+        """aux  {/all | router1 [router2] ...}
+\tconnect to the AUX port(s) of all or a specific router(s)
+        """
+
+        if '?' in args or args.strip() == "":
+            print self.do_aux.__doc__
+            return
+
+        devices = args.split(" ")
+        if '/all' in args.split(" "):
+            # Set devices to all the devices
+            devices = self.dynagen.devices.values()
+        else:
+            devices = []
+            for device in args.split(" "):
+                # Create a list of all the device objects
+                try:
+                    devices.append(self.dynagen.devices[device])
+                except KeyError:
+                    error('unknown device: ' + device)
+
+        for device in devices:
+            try:
+                if not device.isrouter:
+                    continue
+
+                if device.state != 'running':
+                    print 'Skipping %s device: %s' % (device.state, device.name)
+                    continue
+                self.aux(device.name)
             except IndexError:
                 pass
             except (KeyError, AttributeError):
@@ -1382,6 +1428,22 @@ Examples:
             telnetstring = telnetstring.replace('%p', port)
             telnetstring = telnetstring.replace('%d', device)
     
+            os.system(telnetstring)
+            time.sleep(0.5)  # Give the telnet client a chance to start
+            
+    def aux(self, device):
+        """Telnet to the AUX port of device"""
+    
+        import dynagen as dyn
+        telnetstring = dyn.telnetstring
+        port = str(self.dynagen.devices[device].aux)
+        host = str(self.dynagen.devices[device].dynamips.host)
+
+        if telnetstring and not dyn.notelnet:
+            telnetstring = telnetstring.replace('%h', host)
+            telnetstring = telnetstring.replace('%p', port)
+            telnetstring = telnetstring.replace('%d', device)
+
             os.system(telnetstring)
             time.sleep(0.5)  # Give the telnet client a chance to start
 

@@ -31,7 +31,7 @@ class Console(PyCutExt, Dynagen_Console):
 
     # list of keywords to color
     keywords = set(["capture", "console", "filter", "idlepc", "no",
-                "reload", "send", "start", "telnet", "clear",
+                "reload", "send", "start", "telnet", "aux", "clear",
                 "exit", "help", "import", "push", "resume",
                 "shell", "stop", "ver", "confreg",
                 "export", "hist", "list", "py",
@@ -119,7 +119,8 @@ class Console(PyCutExt, Dynagen_Console):
         """
 
         self.pointer = 0
-        self.history.append(QtCore.QString(self.line))
+        if len(self.line):
+            self.history.append(QtCore.QString(self.line))
         try:
             self.lines.append(str(self.line))
             source = '\n'.join(self.lines)
@@ -380,6 +381,14 @@ Examples:
         for node in globals.GApp.topology.nodes.values():
             if isinstance(node, IOSRouter) and (node.hostname in devices or '/all' in devices):
                 node.console()
+                
+    def do_aux(self, args):
+        """aux  {/all | router1 [router2] ...}\nconnect to the AUX port(s) of all or a specific router(s)\n"""
+
+        devices = args.split(' ')
+        for node in globals.GApp.topology.nodes.values():
+            if isinstance(node, IOSRouter) and (node.hostname in devices or '/all' in devices):
+                node.aux()
 
     def do_export(self, args):
         """export {/all | router1 [router2] ...} \"directory\"\nsaves router configs individual files in \"directory\"\nEnclose the directory in quotes if there are spaces in the filespec."""

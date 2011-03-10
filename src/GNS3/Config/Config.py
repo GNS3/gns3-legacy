@@ -210,7 +210,7 @@ class GNS_Conf(object):
             hyp_wdir = c.get(cgroup + "/working_directory", unicode(''))
             hyp_baseUDP = c.get(cgroup + "/base_udp", '10000')
             hyp_baseConsole = c.get(cgroup + "/base_console", '2000')
-            hyp_baseAUX = c.get(cgroup + "/base_aux", '2500')
+            hyp_baseAUX = c.get(cgroup + "/base_aux", '0')
 
             # We need at least `hyp_host' and `hyp_port' to be set
             if hyp_host == '' or hyp_port == '':

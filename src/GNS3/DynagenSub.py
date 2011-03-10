@@ -269,7 +269,7 @@ class DynagenSub(Dynagen):
                         server.name = server.host + ':' +  controlPort
                     
                     debug("Start hypervisor on port: " + str(controlPort))
-                    hypervisor = globals.GApp.HypervisorManager.startNewHypervisor(int(controlPort))
+                    hypervisor = globals.GApp.HypervisorManager.startNewHypervisor(int(controlPort), processcheck=False)
                     globals.GApp.HypervisorManager.waitHypervisor(hypervisor)
                     
                     # Check if this is a relative working directory path and convert to an absolute path if necessary
@@ -313,6 +313,7 @@ class DynagenSub(Dynagen):
 
                                 if len(selected_images):
                                     message = "Local IOS image %s\ncannot be found for hypervisor %s\n\nPlease choose an alternative image:" % (unicode(device['image']), unicode(server.host) + ':' + controlPort)
+                                    selected_images.sort()
                                     (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("DynagenSub", "IOS image"),
                                                                                       translate("DynagenSub", message), selected_images, 0, False)
                                     if ok:

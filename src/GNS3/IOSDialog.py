@@ -452,6 +452,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             conf.workdir = working_dir
             conf.baseUDP = baseudp
             conf.baseConsole = self.spinBoxBaseConsole.value()
+            conf.baseAUX = self.spinBoxBaseAUX.value()
             self.spinBoxBaseUDP.setValue(conf.baseUDP + 100)
             self.spinBoxBaseConsole.setValue(conf.baseConsole + 10)
             globals.GApp.hypervisors[hypervisorkey] = conf
@@ -485,6 +486,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 self.lineEditWorkingDir.setText(conf.workdir)
                 self.spinBoxBaseUDP.setValue(conf.baseUDP)
                 self.spinBoxBaseConsole.setValue(conf.baseConsole)
+                self.spinBoxBaseAUX.setValue(conf.baseAUX)
         else:
             self.pushButtonDeleteHypervisor.setEnabled(False)
 

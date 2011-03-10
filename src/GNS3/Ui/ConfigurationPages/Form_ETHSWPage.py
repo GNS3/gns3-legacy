@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_ETHSWPage.ui'
 #
-# Created: Wed Mar  9 00:43:11 2011
+# Created: Thu Mar 10 21:26:31 2011
 #      by: PyQt4 UI code generator 4.8.1
 #
 # WARNING! All changes made in this file will be lost!

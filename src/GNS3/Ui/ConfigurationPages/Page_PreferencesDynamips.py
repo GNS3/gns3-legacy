@@ -83,6 +83,10 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.checkBoxHypervisorManagerImport.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxHypervisorManagerImport.setCheckState(QtCore.Qt.Unchecked)
+        if self.conf.allocateHypervisorPerIOS == True:
+            self.checkBoxAllocatePerIOS.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxAllocatePerIOS.setCheckState(QtCore.Qt.Unchecked)
         if self.conf.ghosting == True:
             self.checkBoxGhosting.setCheckState(QtCore.Qt.Checked)
         else:
@@ -124,6 +128,10 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.conf.import_use_HypervisorManager = True
         else:
             self.conf.import_use_HypervisorManager = False
+        if self.checkBoxAllocatePerIOS.checkState() == QtCore.Qt.Checked:
+            self.conf.allocateHypervisorPerIOS = True
+        else:
+            self.conf.allocateHypervisorPerIOS = False
         if self.checkBoxGhosting.checkState() == QtCore.Qt.Checked:
             self.conf.ghosting = True
         else:

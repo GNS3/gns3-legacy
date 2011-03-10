@@ -16,36 +16,12 @@ TODO LIST
  * Dynamipswrapper for remote labs
  * Auto-detection of a newer GNS3 version available to download
  * DMG installer for Mac OS X
-
- * Apply button for idle-pc selection
- * Per-IOS memory limit process load balancing.
+ * Drag'n'drop a .net topology inside GNS3
+ * Option to draw a line or draw an arrow on the scene
 
 Debugging
 
- * Screenshots broken in latest Qt
- * WICs connection on running routers
+ * Screenshots broken in latest Qt (4.7.x)
+ * Bug serial drawing when loading a topology?
  * Saved interface labels
- * Remove module while router is suspended
- * Bug serial drawing when loading a topology
- * Cannot load topologies with Switches (ETHSW, ATMSW, FRSW ...) not defined on first hypervisor
- * Dynamic mappings for ATMSW
- * http://www.gns3.net/phpBB/topic2918.html
-
-
-=> ---------Traceback lines (saved in exception.log)----------
-Traceback (most recent call last):
-
-  File "/Users/grossmj/Documents/workspace/gns3/src/GNS3/UndoFramework.py", line 200, in redo
-    self.node.set_config(self.config)
-
-  File "/Users/grossmj/Documents/workspace/gns3/src/GNS3/Node/IOSRouter.py", line 267, in set_config
-    self.router.installwic(wic_name, 0, wic_number)
-
-  File "/Users/grossmj/Documents/workspace/gns3/src/GNS3/Dynagen/dynamips_lib.py", line 2235, in installwic
-    send(self.dynamips, 'vm slot_add_binding %s %i %i %s' % (self.name, slot, base, wic))
-
-  File "/Users/grossmj/Documents/workspace/gns3/src/GNS3/Dynagen/dynamips_lib.py", line 4805, in send
-    raise DynamipsError, data[-1]
-
-DynamipsError: 205-VM R2: unable to add binding for slot 0/32
 

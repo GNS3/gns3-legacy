@@ -48,7 +48,7 @@ import pemubin
 
 
 __author__ = 'Thomas Pani and Jeremy Grossmann'
-__version__ = '0.7.3'
+__version__ = '0.7.4'
 
 QEMU_PATH = "qemu"
 QEMU_IMG_PATH = "qemu-img"
@@ -587,6 +587,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         request = self.rfile.readline()
         request = request.rstrip()      # Strip package delimiter.
 
+        
         # Parse request.
         tokens = self.__get_tokens(request)
         if len(tokens) < 2:

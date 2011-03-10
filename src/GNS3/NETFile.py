@@ -352,6 +352,7 @@ class NETFile(object):
         globals.GApp.topology.nodes[cloud.id] = cloud
         if globals.GApp.workspace.flg_showHostname == True:
             cloud.showHostname()
+            
         globals.GApp.topology.addItem(cloud)
         return cloud
 
@@ -375,17 +376,30 @@ class NETFile(object):
                 except ValueError:
                     continue
                 if devtype.lower() == 'cloud':
+
                     default_symbol = True
-                    if gns3data[section].has_key('symbol') and globals.GApp.scene.renders.has_key(gns3data[section]['symbol']):
-                        symbol = gns3data[section]['symbol']
-                        default_symbol = False
-                    else:
-                        symbol = 'Cloud'
-                    renders = globals.GApp.scene.renders[symbol]
-                    cloud = Cloud(renders['normal'], renders['selected'])
+                    if gns3data[section].has_key('symbol') and gns3data[section]['symbol']:
+                        symbol_name = gns3data[section]['symbol']
+
+                        symbol_resources = QtCore.QResource(":/symbols")
+                        for symbol in symbol_resources.children():
+                            symbol = str(symbol)
+                            if symbol.startswith(symbol_name):
+                                normal_renderer = QtSvg.QSvgRenderer(':/symbols/' + symbol_name + '.normal.svg')
+                                select_renderer = QtSvg.QSvgRenderer(':/symbols/' + symbol_name + '.selected.svg')
+                                default_symbol = False
+                                break
+
+                    if default_symbol:
+                        symbol_name = 'Cloud'
+                        normal_renderer = globals.GApp.scene.renders[symbol_name]['normal']
+                        select_renderer = globals.GApp.scene.renders[symbol_name]['selected']
+
+
+                    cloud = Cloud(normal_renderer, select_renderer)
                     config = {}
                     config['nios'] = []
-                    cloud.type = symbol
+                    cloud.type = symbol_name
                     if not default_symbol:
                         cloud.default_symbol = False
                     cloud.hostname = unicode(hostname)

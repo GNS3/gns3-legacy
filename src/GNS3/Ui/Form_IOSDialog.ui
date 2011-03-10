@@ -433,17 +433,17 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="0" colspan="3">
+          <item row="5" column="0" colspan="3">
            <widget class="QLabel" name="label_5">
             <property name="text">
              <string>Working directory:</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="3">
+          <item row="5" column="3">
            <widget class="QLineEdit" name="lineEditWorkingDir"/>
           </item>
-          <item row="4" column="4">
+          <item row="5" column="4">
            <widget class="QPushButton" name="pushButtonSelectWorkingDir">
             <property name="maximumSize">
              <size>
@@ -456,7 +456,7 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="3">
+          <item row="6" column="3">
            <spacer>
             <property name="orientation">
              <enum>Qt::Vertical</enum>
@@ -468,6 +468,20 @@
              </size>
             </property>
            </spacer>
+          </item>
+          <item row="4" column="3" colspan="2">
+           <widget class="QSpinBox" name="spinBoxBaseAUX">
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" colspan="3">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>Base AUX:</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>

@@ -103,6 +103,7 @@
     <addaction name="action_StopAll"/>
     <addaction name="action_ReloadAll"/>
     <addaction name="action_TelnetAll"/>
+    <addaction name="action_ConsoleAuxAll"/>
    </widget>
    <widget class="QMenu" name="menuAnnotate">
     <property name="title">
@@ -212,6 +213,7 @@
    <addaction name="action_Snapshot"/>
    <addaction name="action_config"/>
    <addaction name="action_TelnetAll"/>
+   <addaction name="action_ConsoleAuxAll"/>
    <addaction name="separator"/>
    <addaction name="action_StartAll"/>
    <addaction name="action_SuspendAll"/>
@@ -835,6 +837,21 @@
    </property>
    <property name="toolTip">
     <string>Reload all devices</string>
+   </property>
+  </action>
+  <action name="action_ConsoleAuxAll">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/aux.svg</normaloff>:/icons/aux.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Console AUX to all devices</string>
+   </property>
+   <property name="toolTip">
+    <string>Console AUX to all devices</string>
    </property>
   </action>
  </widget>

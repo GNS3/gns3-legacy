@@ -195,9 +195,14 @@ class Scene(QtGui.QGraphicsView):
         if True in instances:
 
             # Action: Change the aux port
-            auxPortAct = QtGui.QAction(translate('Scene', 'Change aux port'), menu)
+            auxPortAct = QtGui.QAction(translate('Scene', 'Change AUX port'), menu)
             auxPortAct.setIcon(QtGui.QIcon(':/icons/console_port.svg'))
             self.connect(auxPortAct, QtCore.SIGNAL('triggered()'), self.slotChangeAUXPort)
+
+            # Action: Console (Connect to the node console)
+            AuxAct = QtGui.QAction(translate('Scene', 'Console to AUX port'), menu)
+            AuxAct.setIcon(QtGui.QIcon(':/icons/aux.svg'))
+            self.connect(AuxAct, QtCore.SIGNAL('triggered()'), self.slotAuxConsole)
 
             # Action: Calculate IDLE PC
             idlepcAct = QtGui.QAction(translate('Scene', 'Idle PC'), menu)
@@ -216,6 +221,7 @@ class Scene(QtGui.QGraphicsView):
 
             menu.addAction(suspendAct)
             menu.addAction(auxPortAct)
+            menu.addAction(AuxAct)
             menu.addAction(idlepcAct)
             menu.addAction(StartupConfigAct)
 
@@ -548,6 +554,14 @@ class Scene(QtGui.QGraphicsView):
         for item in self.__topology.selectedItems():
             if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice):
                 item.console()
+                
+    def slotAuxConsole(self):
+        """ Slot called to launch a console to AUX on the selected items
+        """
+
+        for item in self.__topology.selectedItems():
+            if isinstance(item, IOSRouter):
+                item.aux()
                 
     def slotChangeConsolePort(self):
         """ Slot called to change the console port

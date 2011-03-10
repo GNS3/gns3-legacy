@@ -337,6 +337,7 @@ class Application(QApplication, Singleton):
         confo.udp_incrementation = int(ConfDB().get("Dynamips/hypervisor_udp_incrementation", 100))
         confo.import_use_HypervisorManager = ConfDB().value("Dynamips/hypervisor_manager_import", QVariant(True)).toBool()
         confo.HypervisorManager_binding = ConfDB().get('Dynamips/hypervisor_manager_binding', unicode('127.0.0.1'))
+        confo.allocateHypervisorPerIOS = ConfDB().value("Dynamips/allocate_hypervisor_per_IOS", QVariant(True)).toBool()        
 
         # replace ~user and $HOME by home directory
         if os.environ.has_key("HOME"):
@@ -517,6 +518,7 @@ class Application(QApplication, Singleton):
         c.set('Dynamips/hypervisor_memory_usage_limit', confo.memory_limit)
         c.set('Dynamips/hypervisor_udp_incrementation', confo.udp_incrementation)
         c.set('Dynamips/hypervisor_manager_import', confo.import_use_HypervisorManager)
+        c.set('Dynamips/allocate_hypervisor_per_IOS', confo.allocateHypervisorPerIOS)
         c.set('Dynamips/hypervisor_manager_binding', confo.HypervisorManager_binding)
         
         # Qemu config

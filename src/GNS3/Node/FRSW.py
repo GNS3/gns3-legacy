@@ -203,7 +203,7 @@ class FRSW(AbstractNode):
                 debug('FRSW ' + self.hostname + ' is mapping: ' + source + ' to ' + destination)
                 if not self.frsw.pvcs.has_key((int(srcport), int(srcdlci))) and not self.frsw.pvcs.has_key((int(destport), int(destdlci))):
                     self.frsw.map(int(srcport), int(srcdlci), int(destport), int(destdlci))
-                    self.frsw.map(int(destport), int(destdlci), int(srcport), int(srcdlci))    
+                    self.frsw.map(int(destport), int(destdlci), int(srcport), int(srcdlci))
 
     def startNode(self):
         """ Start the node

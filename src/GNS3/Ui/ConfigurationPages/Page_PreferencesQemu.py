@@ -146,6 +146,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             item.setText(1, conf.filename)
             
         self.treeWidgetQemuImages.resizeColumnToContents(0)
+        self.treeWidgetQemuImages.sortItems(0, QtCore.Qt.AscendingOrder)
         
         # PIX settings
         for (name, conf) in globals.GApp.piximages.iteritems():
@@ -157,6 +158,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             item.setText(1, conf.filename)
             
         self.treeWidgetPIXImages.resizeColumnToContents(0)
+        self.treeWidgetPIXImages.sortItems(0, QtCore.Qt.AscendingOrder)
         
         # JunOS settings
         for (name, conf) in globals.GApp.junosimages.iteritems():
@@ -168,6 +170,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             item.setText(1, conf.filename)
             
         self.treeWidgetJunOSImages.resizeColumnToContents(0)
+        self.treeWidgetJunOSImages.sortItems(0, QtCore.Qt.AscendingOrder)
 
         # ASA settings
         for (name, conf) in globals.GApp.asaimages.iteritems():
@@ -181,6 +184,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             item.setText(2, conf.kernel)
             
         self.treeWidgetASAImages.resizeColumnToContents(0)
+        self.treeWidgetASAImages.sortItems(0, QtCore.Qt.AscendingOrder)
         
         # IDS settings
         for (name, conf) in globals.GApp.idsimages.iteritems():
@@ -194,6 +198,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             item.setText(2, conf.image2)
             
         self.treeWidgetIDSImages.resizeColumnToContents(0)
+        self.treeWidgetIDSImages.sortItems(0, QtCore.Qt.AscendingOrder)
 
     def saveConf(self):
 

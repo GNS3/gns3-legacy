@@ -120,6 +120,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_SelectAll, QtCore.SIGNAL('triggered()'), self.__action_SelectAll)
         self.connect(self.action_SelectNone, QtCore.SIGNAL('triggered()'), self.__action_SelectNone)
         self.connect(self.action_TelnetAll,  QtCore.SIGNAL('triggered()'), self.__action_TelnetAll)
+        self.connect(self.action_ConsoleAuxAll,  QtCore.SIGNAL('triggered()'), self.__action_ConsoleAuxAll)
         self.connect(self.action_StartAll,  QtCore.SIGNAL('triggered()'), self.__action_StartAll)
         self.connect(self.action_StopAll,  QtCore.SIGNAL('triggered()'), self.__action_StopAll)
         self.connect(self.action_SuspendAll,  QtCore.SIGNAL('triggered()'), self.__action_SuspendAll)
@@ -581,11 +582,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if self.flg_showInterfaceNames == False:
 
             if not len(globals.interfaceLabels) and self.flg_showOnlySavedInterfaceNames:
+                print 'here'
                 reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Reset saved interface labels?"), 
                 QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
                 if reply == QtGui.QMessageBox.Yes:
                     self.flg_showOnlySavedInterfaceNames = False
 
+            print 'there'
             self.flg_showInterfaceNames = True
             self.action_ShowinterfaceNames.setText(translate('Workspace', 'Hide interface names'))
             for link in globals.GApp.topology.links:
@@ -603,6 +606,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
         for node in globals.GApp.topology.nodes.itervalues():
             if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice)) and node.get_dynagen_device().state == 'running':
                 node.console()
+                
+    def __action_ConsoleAuxAll(self):
+        """ Console AUX to all started IOS routers
+        """
+    
+        for node in globals.GApp.topology.nodes.itervalues():
+            if isinstance(node, IOSRouter) and node.get_dynagen_device().state == 'running':
+                node.aux()
 
     def __launchProgressDialog(self, action, text, autostart=False):
         """ Launch a progress dialog and do a action
@@ -782,6 +793,17 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Save project in a new location
         """
 
+        running_nodes = False
+        for node in globals.GApp.topology.nodes.itervalues():
+            if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice)) and node.get_dynagen_device().state == 'running':
+                running_nodes = True
+
+        if running_nodes:
+            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "This action is going to stop all your devices and captures, would you like to continue anyway?"),
+                                               QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+            if reply == QtGui.QMessageBox.No:
+                return
+
         projectDialog = ProjectDialog(self.projectFile, self.projectWorkdir, self.projectConfigs)
         projectDialog.pushButtonOpenProject.setEnabled(False)
         if self.projectFile:
@@ -844,6 +866,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 for node in globals.GApp.topology.nodes.values():
                     if (isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir) or (isinstance(node, AnyEmuDevice) and self.projectWorkdir != node.qemu.workingdir):
                         node.stopNode()
+                        
+                globals.GApp.mainWindow.capturesDock.stopAllCaptures()
 
                 # move dynamips & Qemu files
                 for node in globals.GApp.topology.nodes.values():

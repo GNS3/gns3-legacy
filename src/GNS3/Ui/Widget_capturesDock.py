@@ -95,6 +95,12 @@ class capturesDock(QtGui.QTreeWidget):
             elif link.dest.hostname == hostname and link.destIf == interface:
                 return link
         return None
+    
+    def stopAllCaptures(self):
+
+        for link in globals.GApp.topology.links:
+            link.stopCapturing()
+        self.refresh()
             
     def slotStopCapture(self):
 

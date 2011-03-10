@@ -382,6 +382,7 @@ class Topology(QtGui.QGraphicsScene):
                             image_to_use = image
                             break
                     if not image_to_use:
+                        selected_images.sort()
                         (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "IOS image"),
                                                                       translate("Topology", "Please choose an image:"), selected_images, 0, False)
                         if ok:
@@ -437,8 +438,8 @@ class Topology(QtGui.QGraphicsScene):
                 if node.image_reference:
                     conf = globals.GApp.qemuimages[node.image_reference]
                 elif len(globals.GApp.qemuimages) > 1:
-
-                    (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "Qemu host"),
+                    devices.sort()
+                    (selection, ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "Qemu host"),
                                                                       translate("Topology", "Please choose a Qemu host"), devices, 0, False)
                     if ok:
                         device_to_use = unicode(selection)
@@ -483,7 +484,7 @@ class Topology(QtGui.QGraphicsScene):
                 if node.image_reference:
                     conf = globals.GApp.junosimages[node.image_reference]
                 elif len(globals.GApp.junosimages) > 1:
-
+                    devices.sort()
                     (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "JunOS image"),
                                                                       translate("Topology", "Please choose a JunOS"), devices, 0, False)
                     if ok:
@@ -528,7 +529,7 @@ class Topology(QtGui.QGraphicsScene):
                 if node.image_reference:
                     conf = globals.GApp.idsimages[node.image_reference]
                 elif len(globals.GApp.idsimages) > 1:
-
+                    devices.sort()
                     (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "IDS"),
                                                                       translate("Topology", "Please choose an IDS"), devices, 0, False)
                     if ok:
@@ -580,7 +581,7 @@ class Topology(QtGui.QGraphicsScene):
                 if node.image_reference:
                     conf = globals.GApp.asaimages[node.image_reference]
                 elif len(globals.GApp.asaimages) > 1:
-
+                    devices.sort()
                     (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "ASA"),
                                                                       translate("Topology", "Please choose an ASA"), devices, 0, False)
                     if ok:
@@ -635,7 +636,7 @@ class Topology(QtGui.QGraphicsScene):
                 if node.image_reference:
                     conf = globals.GApp.piximages[node.image_reference]
                 elif len(globals.GApp.piximages) > 1:
-
+                    devices.sort()
                     (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "PIX"),
                                                                       translate("Topology", "Please choose a PIX"), devices, 0, False)
                     if ok:
@@ -1004,7 +1005,7 @@ class Topology(QtGui.QGraphicsScene):
                     
                 elif type(link.source) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR) and type(link.dest) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR) or \
                     type(link.dest) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR) and type(link.source) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR):
-                    
+
                     if type(link.dest) == Cloud:
                         srcdev = link.source.get_dynagen_device()
                         self.dynagen.disconnect(srcdev, link.srcIf, link.destIf, automatically_remove_unused_slot=False)
@@ -1016,8 +1017,6 @@ class Topology(QtGui.QGraphicsScene):
                         dstdev = link.dest.get_dynagen_device()
                         self.dynagen.disconnect(srcdev, link.srcIf, dstdev.name + ' ' + link.destIf, automatically_remove_unused_slot=False)
 
-                    link.source.set_config(link.source.get_config())
-                    
             except lib.DynamipsError, msg:
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  unicode(msg))
                 return False

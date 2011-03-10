@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_IDLEPCDialog.ui'
 #
-# Created: Wed Mar  9 00:43:10 2011
+# Created: Thu Mar 10 21:26:30 2011
 #      by: PyQt4 UI code generator 4.8.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,8 @@ except AttributeError:
 class Ui_IDLEPCDialog(object):
     def setupUi(self, IDLEPCDialog):
         IDLEPCDialog.setObjectName(_fromUtf8("IDLEPCDialog"))
-        IDLEPCDialog.resize(326, 108)
+        IDLEPCDialog.resize(316, 108)
+        IDLEPCDialog.setMinimumSize(QtCore.QSize(316, 108))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         IDLEPCDialog.setWindowIcon(icon)
