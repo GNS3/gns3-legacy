@@ -548,29 +548,6 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;END OF TERMS AND CONDITIONS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
-    <message>
-        <location filename="../Ui/Form_About.py" line="80"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;GNS3 0.7.3&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;Under GPL v2 license&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:600;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Developer:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Jeremy Grossmann&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Former developers:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Xavier Alt&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Romain Lamaison&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Aurelien Levesque&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;David Ruiz&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
-    </message>
     <message encoding="UTF-8">
         <location filename="../Ui/Form_About.py" line="100"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -586,6 +563,29 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Andrea Riela &amp;amp; Vincenzo Reale: Italian translation (code: it)&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Kyryl Tumanov: Ukrainian translation (code: uk)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_About.py" line="80"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;GNS3 0.7.4&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;Under GPL v2 license&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:600;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Developer:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Jeremy Grossmann&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Former developers:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Xavier Alt&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Romain Lamaison&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Aurelien Levesque&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;David Ruiz&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -680,12 +680,12 @@ p, li { white-space: pre-wrap; }
         <translation>Nom d&apos;hôte:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="370"/>
+        <location filename="../Node/AbstractNode.py" line="371"/>
         <source>Connection</source>
         <translation>Connexion</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="336"/>
+        <location filename="../Node/AbstractNode.py" line="337"/>
         <source>Already connected interface</source>
         <translation>Interface déjà connectée</translation>
     </message>
@@ -700,12 +700,12 @@ p, li { white-space: pre-wrap; }
         <translation>Nom d&apos;hôte déja utilisé</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="307"/>
+        <location filename="../Node/AbstractNode.py" line="308"/>
         <source>Hostname: %s</source>
         <translation>Nom d&apos;hôte: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="370"/>
+        <location filename="../Node/AbstractNode.py" line="371"/>
         <source>No interface available, please configure this device</source>
         <translation>Pas d&apos;interface disponible, SVP configurez le noeud</translation>
     </message>
@@ -770,17 +770,17 @@ p, li { white-space: pre-wrap; }
         <translation>Changer le numéro de port console</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="210"/>
+        <location filename="../Node/AbstractNode.py" line="211"/>
         <source>Change the aux port</source>
         <translation>Changer le numéro de port auxiliaire (AUX)</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="210"/>
+        <location filename="../Node/AbstractNode.py" line="211"/>
         <source>AUX port for %s:</source>
         <translation>Port auxiliaire pour %s:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="217"/>
+        <location filename="../Node/AbstractNode.py" line="218"/>
         <source>AUX port</source>
         <translation>Port auxiliaire</translation>
     </message>
@@ -793,6 +793,11 @@ p, li { white-space: pre-wrap; }
         <location filename="../SnapshotDialog.py" line="64"/>
         <source>Snapshot name:</source>
         <translation>Nom pour le snapshot:</translation>
+    </message>
+    <message>
+        <location filename="../Node/AbstractNode.py" line="208"/>
+        <source>AUX port not available for this router model or base AUX port is set to 0 in preferences</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1018,7 +1023,7 @@ Entrer le numéro de la valeur a appliquer [1-%i] or ENTRER pour ignorer le chan
         <translation>Noeud inconnu: %s</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="408"/>
+        <location filename="../Console.py" line="416"/>
         <source>Cannot create %s: %s</source>
         <translation>Impossible de créer %s: %s</translation>
     </message>
@@ -1404,49 +1409,77 @@ SVP sélectionnez une carte réseau alternative:</translation>
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="../HypervisorManager.py" line="122"/>
+        <location filename="../HypervisorManager.py" line="132"/>
         <source>Abort</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="97"/>
+        <location filename="../HypervisorManager.py" line="106"/>
         <source>Can&apos;t start Dynamips on port %i</source>
         <translation>Impossible de démarrer Dynamips sur le port %i</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="122"/>
+        <location filename="../HypervisorManager.py" line="132"/>
         <source>Connecting to a hypervisor on port %i ...</source>
         <translation>Connexion sur un hyperviseur sur le port %i ...</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="196"/>
+        <location filename="../HypervisorManager.py" line="210"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation>Le répertoire de travail %s semble ne pas existé or être modifiable, SVP vérifiez</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="204"/>
+        <location filename="../HypervisorManager.py" line="218"/>
         <source>Can&apos;t set up hypervisor on port %i, please check the settings (writable working directory ...)</source>
         <translation>Impossible de configurer l&apos;hyperviseur sur le port %i, svp vérifiez les réglages</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="85"/>
+        <location filename="../HypervisorManager.py" line="94"/>
         <source>Hypervisor Manager</source>
         <translation>Gestionnaire d&apos;hyperviseur</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="76"/>
+        <location filename="../HypervisorManager.py" line="77"/>
         <source>Apparently an hypervisor is already running on port %i, would you like to kill all Dynamips processes?</source>
         <translation>Apparament un hypervisor est toujours en fonctionnement sur le port %i, voulez-vous le fermer?</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="153"/>
+        <location filename="../HypervisorManager.py" line="163"/>
         <source>Can&apos;t connect to the hypervisor on port %i: %s</source>
         <translation>Impossible de se connecter sur l&apos;hypervisor, port %i: %s</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="85"/>
+        <location filename="../HypervisorManager.py" line="94"/>
         <source>A program is still running on port %i, you will have to stop it manually or change port settings</source>
         <translation>Un programme est toujours en cours d&apos;execution sur le port %i, vous devez l&apos;arrêter manuellement ou changer les réglages des ports</translation>
+    </message>
+</context>
+<context>
+    <name>IDLEPCDialog</name>
+    <message>
+        <location filename="../Ui/Form_IDLEPCDialog.py" line="45"/>
+        <source>IDLE PC values</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_IDLEPCDialog.py" line="46"/>
+        <source>Potentially better idlepc values marked with &apos;*&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../IDLEPCDialog.py" line="66"/>
+        <source>IDLE PC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../IDLEPCDialog.py" line="66"/>
+        <source>IDLE PC value %s has been applied on %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../IDLEPCDialog.py" line="69"/>
+        <source>Dynamips error</source>
+        <translation type="unfinished">Erreur Dynamips</translation>
     </message>
 </context>
 <context>
@@ -1589,102 +1622,102 @@ SVP sélectionnez une carte réseau alternative:</translation>
         <translation>Sélectionner un répertoire de travail</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="256"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="263"/>
         <source>IOS images and hypervisors</source>
         <translation>Images IOS et hyperviseurs</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="277"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="284"/>
         <source>IOS Images</source>
         <translation>Images IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="278"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="285"/>
         <source>Settings</source>
         <translation>Paramètres</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="285"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="292"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="272"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="279"/>
         <source>Platform:</source>
         <translation>Platforme:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="266"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="273"/>
         <source>IDLE PC:</source>
         <translation>IDLE PC:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="257"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="264"/>
         <source>Images</source>
         <translation>Images</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="258"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="265"/>
         <source>IOS image</source>
         <translation>Image IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="286"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="294"/>
         <source>Hypervisors</source>
         <translation>Hyperviseurs</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="274"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="281"/>
         <source>Use the hypervisor manager</source>
         <translation>Utiliser le gestionnaire d&apos;hyperviseur</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="289"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="297"/>
         <source>&amp;Save</source>
         <translation>&amp;Sauvegarder</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="290"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="298"/>
         <source>&amp;Delete</source>
         <translation>&amp;Supprimer</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="279"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="286"/>
         <source>Host:</source>
         <translation>Hôte:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="281"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="288"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="282"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="289"/>
         <source>Base UDP:</source>
         <translation>Base UDP:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="284"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="291"/>
         <source>Working directory:</source>
         <translation>Répertoire de travail:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="287"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="295"/>
         <source>Host:Port</source>
         <translation>Hôte:Port</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="288"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="296"/>
         <source>Base UDP</source>
         <translation>Base UDP</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="283"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="290"/>
         <source>Base console:</source>
         <translation>Base console:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="291"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="299"/>
         <source>External hypervisors</source>
         <translation>Hyperviseurs externes</translation>
     </message>
@@ -1694,17 +1727,17 @@ SVP sélectionnez une carte réseau alternative:</translation>
         <translation>Sélectionnez une image IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="259"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="266"/>
         <source>Model/Chassis</source>
         <translation>Modele/Chassis</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="265"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="272"/>
         <source>Model:</source>
         <translation>Modele:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="270"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="277"/>
         <source>Default image for this platform</source>
         <translation>Image par défaut pour cette platforme</translation>
     </message>
@@ -1719,17 +1752,17 @@ SVP sélectionnez une carte réseau alternative:</translation>
         <translation>Impossible d&apos;ouvrir le fichier: %s</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="267"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="274"/>
         <source>Default RAM:</source>
         <translation>RAM par défaut:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="268"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="275"/>
         <source> MB</source>
         <translation> MO</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="269"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="276"/>
         <source>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Check for minimum RAM requirement&lt;/a&gt;</source>
         <translation>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Vérifier le minimum de RAM requis&lt;/a&gt;</translation>
     </message>
@@ -1744,22 +1777,22 @@ SVP sélectionnez une carte réseau alternative:</translation>
         <translation>Fichier image est vide</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="280"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="287"/>
         <source>127.0.0.1</source>
         <translation>127.0.0.1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="261"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="268"/>
         <source>Image file:</source>
         <translation>Image binaire:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="263"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="270"/>
         <source>Base config:</source>
         <translation>Config de base:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="264"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="271"/>
         <source>baseconfig.txt</source>
         <translation></translation>
     </message>
@@ -1773,26 +1806,31 @@ SVP sélectionnez une carte réseau alternative:</translation>
         <source>Select a Base configuration file</source>
         <translation>Sélectionnez un fichier pour la configuration de base</translation>
     </message>
+    <message>
+        <location filename="../Ui/Form_IOSDialog.py" line="293"/>
+        <source>Base AUX:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="674"/>
+        <location filename="../Node/IOSRouter.py" line="690"/>
         <source>Connection</source>
         <translation>Connexion</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="674"/>
+        <location filename="../Node/IOSRouter.py" line="690"/>
         <source>No interface available</source>
         <translation>Pas d&apos;interface disponible</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="523"/>
+        <location filename="../Node/IOSRouter.py" line="576"/>
         <source>Dynamips error</source>
         <translation>Erreur Dynamips</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="323"/>
+        <location filename="../Node/IOSRouter.py" line="326"/>
         <source>Startup-Config for %s</source>
         <translation>Startup-Config pour %s</translation>
     </message>
@@ -1814,6 +1852,11 @@ SVP sélectionnez une carte réseau alternative:</translation>
     <message>
         <location filename="../Node/IOSRouter.py" line="160"/>
         <source>Cannot change the hostname of a running device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/IOSRouter.py" line="665"/>
+        <source>AUX port not available for this router model or base AUX port is set to 0 in preferences</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2176,495 +2219,500 @@ panier:</translation>
         <translation>Français</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="412"/>
+        <location filename="../Ui/Form_MainWindow.py" line="420"/>
         <source>GNS3</source>
         <translation>GNS3</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="413"/>
+        <location filename="../Ui/Form_MainWindow.py" line="421"/>
         <source>&amp;Edit</source>
         <translation>&amp;Editer</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="414"/>
+        <location filename="../Ui/Form_MainWindow.py" line="422"/>
         <source>&amp;File</source>
         <translation>&amp;Fichier</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="415"/>
+        <location filename="../Ui/Form_MainWindow.py" line="423"/>
         <source>&amp;Help</source>
         <translation>&amp;Aide</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="416"/>
+        <location filename="../Ui/Form_MainWindow.py" line="424"/>
         <source>&amp;View</source>
         <translation>&amp;Vues</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="419"/>
+        <location filename="../Ui/Form_MainWindow.py" line="427"/>
         <source>General</source>
         <translation>Général</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="420"/>
+        <location filename="../Ui/Form_MainWindow.py" line="428"/>
         <source>Nodes Types</source>
         <translation>Types de noeuds</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="424"/>
+        <location filename="../Ui/Form_MainWindow.py" line="432"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="423"/>
+        <location filename="../Ui/Form_MainWindow.py" line="431"/>
         <source>Topology Summary</source>
         <translation>Topologie</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="425"/>
+        <location filename="../Ui/Form_MainWindow.py" line="433"/>
         <source>Console</source>
         <translation>Console</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="431"/>
+        <location filename="../Ui/Form_MainWindow.py" line="439"/>
         <source>&amp;About</source>
         <translation>À &amp;propos</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="432"/>
+        <location filename="../Ui/Form_MainWindow.py" line="440"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="433"/>
+        <location filename="../Ui/Form_MainWindow.py" line="441"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="434"/>
+        <location filename="../Ui/Form_MainWindow.py" line="442"/>
         <source>&amp;Open</source>
         <translation>&amp;Ouvrir</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="436"/>
+        <location filename="../Ui/Form_MainWindow.py" line="444"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="437"/>
+        <location filename="../Ui/Form_MainWindow.py" line="445"/>
         <source>&amp;Save</source>
         <translation>&amp;Sauvegarder</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="439"/>
+        <location filename="../Ui/Form_MainWindow.py" line="447"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="442"/>
+        <location filename="../Ui/Form_MainWindow.py" line="450"/>
         <source>Add a link</source>
         <translation>Ajouter un lien</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="444"/>
+        <location filename="../Ui/Form_MainWindow.py" line="452"/>
         <source>Ctrl+Shift+I</source>
         <translation>Ctrl+Shift+I</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="445"/>
+        <location filename="../Ui/Form_MainWindow.py" line="453"/>
         <source>&amp;Online Help</source>
         <translation>Aide en &amp;ligne</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="453"/>
+        <location filename="../Ui/Form_MainWindow.py" line="461"/>
         <source>Show hostnames</source>
         <translation>Montrer les noms d&apos;hôtes</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="457"/>
+        <location filename="../Ui/Form_MainWindow.py" line="465"/>
         <source>Save As</source>
         <translation>Sauvegarder sous</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="485"/>
+        <location filename="../Ui/Form_MainWindow.py" line="493"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="459"/>
+        <location filename="../Ui/Form_MainWindow.py" line="467"/>
         <source>About &amp;Qt</source>
         <translation>À propos de &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="460"/>
+        <location filename="../Ui/Form_MainWindow.py" line="468"/>
         <source>Zoom &amp;In</source>
         <translation>Zoom &amp;avant</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="461"/>
+        <location filename="../Ui/Form_MainWindow.py" line="469"/>
         <source>Ctrl++</source>
         <translation>Ctrl++</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="462"/>
+        <location filename="../Ui/Form_MainWindow.py" line="470"/>
         <source>Zoom &amp;Out</source>
         <translation>Zoom a&amp;rrière</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="463"/>
+        <location filename="../Ui/Form_MainWindow.py" line="471"/>
         <source>Ctrl+-</source>
         <translation>Ctrl+-</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="464"/>
+        <location filename="../Ui/Form_MainWindow.py" line="472"/>
         <source>Zoom &amp;1:1</source>
         <translation>Zoom &amp;1:1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="465"/>
+        <location filename="../Ui/Form_MainWindow.py" line="473"/>
         <source>Ctrl+/</source>
         <translation>Ctrl+/</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="466"/>
+        <location filename="../Ui/Form_MainWindow.py" line="474"/>
         <source>Select &amp;All</source>
         <translation>&amp;Sélectionner tout</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="467"/>
+        <location filename="../Ui/Form_MainWindow.py" line="475"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="468"/>
+        <location filename="../Ui/Form_MainWindow.py" line="476"/>
         <source>Select &amp;None</source>
         <translation>&amp;Désélectionner tout</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="469"/>
+        <location filename="../Ui/Form_MainWindow.py" line="477"/>
         <source>Ctrl+Shift+A</source>
         <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="470"/>
+        <location filename="../Ui/Form_MainWindow.py" line="478"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Préférences...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="471"/>
+        <location filename="../Ui/Form_MainWindow.py" line="479"/>
         <source>Ctrl+Shift+P</source>
         <translation>Ctrl+Shift+P</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="443"/>
+        <location filename="../Ui/Form_MainWindow.py" line="451"/>
         <source>IOS images and hypervisors</source>
         <translation>Images IOS et hyperviseurs</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="481"/>
+        <location filename="../Ui/Form_MainWindow.py" line="489"/>
         <source>Add a note</source>
         <translation>Ajouter une note</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="483"/>
+        <location filename="../Ui/Form_MainWindow.py" line="491"/>
         <source>New Project</source>
         <translation>Nouveau Projet</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="490"/>
+        <location filename="../Ui/Form_MainWindow.py" line="498"/>
         <source>&amp;Symbol Manager</source>
         <translation>&amp;Gestionnaire de symboles</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="491"/>
+        <location filename="../Ui/Form_MainWindow.py" line="499"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="489"/>
+        <location filename="../Ui/Form_MainWindow.py" line="497"/>
         <source>Insert a picture</source>
         <translation>Insérer une image</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="422"/>
+        <location filename="../Ui/Form_MainWindow.py" line="430"/>
         <source>Emulation</source>
         <translation>Emulation</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="426"/>
+        <location filename="../Ui/Form_MainWindow.py" line="434"/>
         <source>Drawing</source>
         <translation>Dessin</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="493"/>
+        <location filename="../Ui/Form_MainWindow.py" line="501"/>
         <source>Draw a rectangle</source>
         <translation>Dessiner un rectangle</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="495"/>
+        <location filename="../Ui/Form_MainWindow.py" line="503"/>
         <source>Draw an ellipse</source>
         <translation>Dessiner une ellipse</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="498"/>
+        <location filename="../Ui/Form_MainWindow.py" line="506"/>
         <source>Snapshot</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="427"/>
+        <location filename="../Ui/Form_MainWindow.py" line="435"/>
         <source>Undo Stack</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="472"/>
+        <location filename="../Ui/Form_MainWindow.py" line="480"/>
         <source>&amp;Undo</source>
         <translation>&amp;Annuler</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="473"/>
+        <location filename="../Ui/Form_MainWindow.py" line="481"/>
         <source>Ctrl+Z</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="474"/>
+        <location filename="../Ui/Form_MainWindow.py" line="482"/>
         <source>&amp;Redo</source>
         <translation>&amp;Refaire</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="475"/>
+        <location filename="../Ui/Form_MainWindow.py" line="483"/>
         <source>Ctrl+Y</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="500"/>
+        <location filename="../Ui/Form_MainWindow.py" line="508"/>
         <source>Show layers</source>
         <translation>Afficher les couches</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="417"/>
+        <location filename="../Ui/Form_MainWindow.py" line="425"/>
         <source>Control</source>
         <translation>Contrôle</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="418"/>
+        <location filename="../Ui/Form_MainWindow.py" line="426"/>
         <source>Annotate</source>
         <translation>Annotation</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="428"/>
+        <location filename="../Ui/Form_MainWindow.py" line="436"/>
         <source>Captures</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="429"/>
+        <location filename="../Ui/Form_MainWindow.py" line="437"/>
         <source>Hostname</source>
         <translation>Nom d&apos;hôte</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="430"/>
+        <location filename="../Ui/Form_MainWindow.py" line="438"/>
         <source>Interface</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="435"/>
+        <location filename="../Ui/Form_MainWindow.py" line="443"/>
         <source>Open project or topology file</source>
         <translation>Ouvrir un projet ou une topologie</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="438"/>
+        <location filename="../Ui/Form_MainWindow.py" line="446"/>
         <source>Save project or topology file</source>
         <translation>Sauver un projet ou une topologie</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="446"/>
+        <location filename="../Ui/Form_MainWindow.py" line="454"/>
         <source>&amp;Screenshot</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="447"/>
+        <location filename="../Ui/Form_MainWindow.py" line="455"/>
         <source>Take a screenshot</source>
         <translation>Prendre une capture d&apos;écran</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="449"/>
+        <location filename="../Ui/Form_MainWindow.py" line="457"/>
         <source>Start/Resume all devices</source>
         <translation>Démarrer/Reprendre tous les équipements</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="451"/>
+        <location filename="../Ui/Form_MainWindow.py" line="459"/>
         <source>Stop all devices</source>
         <translation>Arrêter tous les équipements</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="455"/>
+        <location filename="../Ui/Form_MainWindow.py" line="463"/>
         <source>Console to all devices</source>
         <translation>Lancer une console tous les équipements</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../Ui/Form_MainWindow.py" line="456"/>
+        <location filename="../Ui/Form_MainWindow.py" line="464"/>
         <source>Save topology &amp;as…</source>
         <translation>Sauver la topologie &amp;sous...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="458"/>
+        <location filename="../Ui/Form_MainWindow.py" line="466"/>
         <source>Save topology file as...</source>
         <translation>Sauver la topologie sous...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="477"/>
+        <location filename="../Ui/Form_MainWindow.py" line="485"/>
         <source>Suspend all devices</source>
         <translation>Suspendre tous les équipements</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="479"/>
+        <location filename="../Ui/Form_MainWindow.py" line="487"/>
         <source>New blank topology</source>
         <translation>Nouvelle topologie</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="480"/>
+        <location filename="../Ui/Form_MainWindow.py" line="488"/>
         <source>Add Note</source>
         <translation>Ajouter une note</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="482"/>
+        <location filename="../Ui/Form_MainWindow.py" line="490"/>
         <source>&amp;New blank project</source>
         <translation>&amp;Nouvelle topologie</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="484"/>
+        <location filename="../Ui/Form_MainWindow.py" line="492"/>
         <source>New blank project</source>
         <translation>Nouvelle topologie</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="486"/>
+        <location filename="../Ui/Form_MainWindow.py" line="494"/>
         <source>&amp;Import/Export</source>
         <translation>&amp;Importer/Exporter</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="487"/>
+        <location filename="../Ui/Form_MainWindow.py" line="495"/>
         <source>Import/Export Startup Configs</source>
         <translation>Importer/Exporter les startup-configs</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="488"/>
+        <location filename="../Ui/Form_MainWindow.py" line="496"/>
         <source>Insert Picture</source>
         <translation>Insérer une image</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="492"/>
+        <location filename="../Ui/Form_MainWindow.py" line="500"/>
         <source>Draw Rectangle</source>
         <translation>Dessiner un rectangle</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="494"/>
+        <location filename="../Ui/Form_MainWindow.py" line="502"/>
         <source>Draw Ellipse</source>
         <translation>Dessiner une ellipse</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="496"/>
+        <location filename="../Ui/Form_MainWindow.py" line="504"/>
         <source>Show Interface Labels</source>
         <translation>Afficher les noms des interfaces</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="497"/>
+        <location filename="../Ui/Form_MainWindow.py" line="505"/>
         <source>Show interface labels</source>
         <translation>Afficher les noms des interfaces</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="499"/>
+        <location filename="../Ui/Form_MainWindow.py" line="507"/>
         <source>Take a snapshot</source>
         <translation>Prendre un snapshot</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../Ui/Form_MainWindow.py" line="501"/>
+        <location filename="../Ui/Form_MainWindow.py" line="509"/>
         <source>&amp;Save project as…</source>
         <translation>&amp;Sauver le projet sous...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="502"/>
+        <location filename="../Ui/Form_MainWindow.py" line="510"/>
         <source>Save project as...</source>
         <translation>Sauver le projet sous...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="504"/>
+        <location filename="../Ui/Form_MainWindow.py" line="512"/>
         <source>Reload all devices</source>
         <translation>Redémarrer tous les équipements</translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_MainWindow.py" line="514"/>
+        <source>Console AUX to all devices</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="554"/>
+        <location filename="../NETFile.py" line="568"/>
         <source>Save</source>
         <translation>Sauver</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="554"/>
+        <location filename="../NETFile.py" line="568"/>
         <source>Please configure the path to Dynamips</source>
         <translation>SVP, configurez le chemin vers Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="836"/>
+        <location filename="../NETFile.py" line="850"/>
         <source>Dynamips error</source>
         <translation>Erreur Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="840"/>
+        <location filename="../NETFile.py" line="854"/>
         <source>Dynamips warning</source>
         <translation>Avertissement Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="586"/>
+        <location filename="../NETFile.py" line="600"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Exception détectée, arrêt de l&apos;importation...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="833"/>
+        <location filename="../NETFile.py" line="847"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportation de la configuration %s vers %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1102"/>
+        <location filename="../NETFile.py" line="1116"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Erreur E/S: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="586"/>
+        <location filename="../NETFile.py" line="600"/>
         <source>Importation</source>
         <translation>Importation</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="566"/>
+        <location filename="../NETFile.py" line="580"/>
         <source>Please wait while importing the topology</source>
         <translation>SVP, patientez pendant le chargement de la topologie</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1102"/>
+        <location filename="../NETFile.py" line="1116"/>
         <source>IOError</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="609"/>
+        <location filename="../NETFile.py" line="623"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation>Warning: GNS3 ne supporte pas les entrées &quot;lan&quot;</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="486"/>
+        <location filename="../NETFile.py" line="500"/>
         <source>Cannot load image: %s</source>
         <translation>Impossible de charger l&apos;image: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="432"/>
+        <location filename="../NETFile.py" line="446"/>
         <source>Cannot load font: %s</source>
         <translation>Impossible de charger la font: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="497"/>
+        <location filename="../NETFile.py" line="511"/>
         <source>%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1015"/>
+        <location filename="../NETFile.py" line="1029"/>
         <source>must be connected or have a hypervisor set in order to be registered</source>
         <translation>doit être connecté ou avoir un hypervisor pour être sauvegardé</translation>
     </message>
@@ -3007,6 +3055,11 @@ pour afficher sa page de configuration.</translation>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="118"/>
         <source>Base AUX port:</source>
         <translation>Port auxiliaire de base:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="328"/>
+        <source>Allocate a new hypervisor per IOS image</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3646,7 +3699,7 @@ pour afficher sa page de configuration.</translation>
 <context>
     <name>Scene</name>
     <message>
-        <location filename="../Scene.py" line="240"/>
+        <location filename="../Scene.py" line="246"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
@@ -3671,37 +3724,37 @@ pour afficher sa page de configuration.</translation>
         <translation>Arrêter</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="213"/>
+        <location filename="../Scene.py" line="218"/>
         <source>Suspend</source>
         <translation>Suspendre</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="203"/>
+        <location filename="../Scene.py" line="208"/>
         <source>Idle PC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="437"/>
+        <location filename="../Scene.py" line="443"/>
         <source>IDLE PC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="393"/>
+        <location filename="../Scene.py" line="399"/>
         <source>Please select only one router</source>
         <translation>SVP, sélectionnez uniquement un routeur</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="437"/>
+        <location filename="../Scene.py" line="443"/>
         <source>No idlepc values found</source>
         <translation>Pas de valeurs idlepc trouvées</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="412"/>
+        <location filename="../Scene.py" line="418"/>
         <source>Dynamips error</source>
         <translation>Erreur Dynamips</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="400"/>
+        <location filename="../Scene.py" line="406"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
         <translation>%s a déjà une valeur idlepc, voulez vous en calculer une nouvelle ?</translation>
     </message>
@@ -3721,22 +3774,22 @@ pour afficher sa page de configuration.</translation>
         <translation>Changement de port console</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="208"/>
+        <location filename="../Scene.py" line="213"/>
         <source>Startup-config</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="246"/>
+        <location filename="../Scene.py" line="252"/>
         <source>Lower one step</source>
         <translation>Réduire d&apos;un niveau</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="251"/>
+        <location filename="../Scene.py" line="257"/>
         <source>Raise one step</source>
         <translation>Augmenter d&apos;un niveau</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="226"/>
+        <location filename="../Scene.py" line="232"/>
         <source>Style</source>
         <translation></translation>
     </message>
@@ -3751,17 +3804,17 @@ pour afficher sa page de configuration.</translation>
         <translation>Configurer un hyperviseur</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="822"/>
+        <location filename="../Scene.py" line="836"/>
         <source>annotation</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="831"/>
+        <location filename="../Scene.py" line="845"/>
         <source>rectangle</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="839"/>
+        <location filename="../Scene.py" line="853"/>
         <source>ellipse</source>
         <translation></translation>
     </message>
@@ -3776,48 +3829,53 @@ pour afficher sa page de configuration.</translation>
         <translation>Changer le symbole</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="198"/>
-        <source>Change aux port</source>
-        <translation>Changer le numéro de port auxiliaire (AUX)</translation>
-    </message>
-    <message>
-        <location filename="../Scene.py" line="233"/>
+        <location filename="../Scene.py" line="239"/>
         <source>Duplicate</source>
         <translation>Dupliquer</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="262"/>
+        <location filename="../Scene.py" line="268"/>
         <source>Align horizontally</source>
         <translation>Aligner horizontalement</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="268"/>
+        <location filename="../Scene.py" line="274"/>
         <source>Align vertically</source>
         <translation>Aligner verticallement</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="612"/>
+        <location filename="../Scene.py" line="626"/>
         <source>Message</source>
         <translation>Message</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="488"/>
+        <location filename="../Scene.py" line="494"/>
         <source>Do you really want to delete these devices?</source>
         <translation>Voulez-vous supprimer ces équipements?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="589"/>
+        <location filename="../Scene.py" line="603"/>
         <source>Do you really want to stop these devices?</source>
         <translation>Voulez-vous stopper ces équipements?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="612"/>
+        <location filename="../Scene.py" line="626"/>
         <source>Do you really want to reload these devices?</source>
         <translation>Voulez-vous redémarrer ces équipements?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="291"/>
+        <location filename="../Scene.py" line="297"/>
         <source>Please wait while calculating IDLE PC values</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="198"/>
+        <source>Change AUX port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="203"/>
+        <source>Console to AUX port</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4469,117 +4527,117 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="163"/>
+        <location filename="../Workspace.py" line="164"/>
         <source>Docks</source>
         <translation>Panneaux</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1054"/>
+        <location filename="../Workspace.py" line="1065"/>
         <source>Dynamips error</source>
         <translation>Erreur Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="658"/>
+        <location filename="../Workspace.py" line="669"/>
         <source>Connection lost</source>
         <translation>Connection perdue</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="627"/>
+        <location filename="../Workspace.py" line="638"/>
         <source>Abort</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="759"/>
+        <location filename="../Workspace.py" line="770"/>
         <source>Starting nodes ...</source>
         <translation>Démarrage des noeuds en cours...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="676"/>
+        <location filename="../Workspace.py" line="687"/>
         <source>Stopping nodes ...</source>
         <translation>Arrêt des noeuds en cours...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="682"/>
+        <location filename="../Workspace.py" line="693"/>
         <source>Suspending nodes ...</source>
         <translation>Noeuds en cours de suspension...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="752"/>
+        <location filename="../Workspace.py" line="763"/>
         <source>Loading</source>
         <translation>Chargement</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="568"/>
+        <location filename="../Workspace.py" line="569"/>
         <source>Hide hostnames</source>
         <translation>Cacher les noms d&apos;hôtes</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="573"/>
+        <location filename="../Workspace.py" line="574"/>
         <source>Show hostnames</source>
         <translation>Afficher les noms d&apos;hôtes</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1036"/>
+        <location filename="../Workspace.py" line="1047"/>
         <source>Open a file</source>
         <translation>Ouvrir un fichier</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1032"/>
+        <location filename="../Workspace.py" line="1043"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Le chemin vers Dynamips doit être configuré</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="815"/>
+        <location filename="../Workspace.py" line="826"/>
         <source>New Project</source>
         <translation>Nouveau Projet</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1120"/>
+        <location filename="../Workspace.py" line="1131"/>
         <source>Message</source>
         <translation>Message</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="448"/>
+        <location filename="../Workspace.py" line="449"/>
         <source>Add a link</source>
         <translation>Ajouter un lien</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="463"/>
+        <location filename="../Workspace.py" line="464"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="815"/>
+        <location filename="../Workspace.py" line="826"/>
         <source>Can&apos;t create a project</source>
         <translation>Impossible de créer un projet</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="752"/>
+        <location filename="../Workspace.py" line="763"/>
         <source>Invalid file %s</source>
         <translation>Fichier invalide %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1111"/>
+        <location filename="../Workspace.py" line="1122"/>
         <source>Would you like to save the current topology?</source>
         <translation>Voulez vous sauvegarder la topologie courante ?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="356"/>
+        <location filename="../Workspace.py" line="357"/>
         <source>Directory to write startup-configs</source>
         <translation>Répertoire ou écrire les startup-configs</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="590"/>
+        <location filename="../Workspace.py" line="593"/>
         <source>Hide interface names</source>
         <translation>Cacher les noms des interfaces</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="595"/>
+        <location filename="../Workspace.py" line="598"/>
         <source>Show interface names</source>
         <translation>Afficher les noms des interfaces</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="941"/>
+        <location filename="../Workspace.py" line="952"/>
         <source>Snapshot</source>
         <translation></translation>
     </message>
@@ -4589,77 +4647,77 @@ p, li { white-space: pre-wrap; }
         <translation>Impossible de créer le répertoire %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="946"/>
+        <location filename="../Workspace.py" line="957"/>
         <source>Please wait while creating a snapshot</source>
         <translation>SVP, attendez pendant la création de la snapshot</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="658"/>
+        <location filename="../Workspace.py" line="669"/>
         <source>%s: Dynamips error</source>
         <translation>%s: Erreur Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="655"/>
+        <location filename="../Workspace.py" line="666"/>
         <source>%s: Dynamips warning</source>
         <translation>%s: Avertissement Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="347"/>
+        <location filename="../Workspace.py" line="348"/>
         <source>Extracting to a directory</source>
         <translation>Extraire vers un répertoire</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="349"/>
+        <location filename="../Workspace.py" line="350"/>
         <source>Importing from a directory</source>
         <translation>Importer depuis un répertoire</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="343"/>
+        <location filename="../Workspace.py" line="344"/>
         <source>Configs</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="343"/>
+        <location filename="../Workspace.py" line="344"/>
         <source>Please choose an option</source>
         <translation>SVP choissisez une option</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="369"/>
+        <location filename="../Workspace.py" line="370"/>
         <source>Directory to read startup-configs</source>
         <translation>Répertoire pour charger les startup-configs</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="390"/>
+        <location filename="../Workspace.py" line="391"/>
         <source>IO Error</source>
         <translation>Erreur E/S</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="380"/>
+        <location filename="../Workspace.py" line="381"/>
         <source>Importing %s from %s</source>
         <translation>Importation de %s depuis %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="393"/>
+        <location filename="../Workspace.py" line="394"/>
         <source>Ignoring unknown device %s</source>
         <translation>Ignore le noeud inconnu %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="395"/>
+        <location filename="../Workspace.py" line="396"/>
         <source>Dynamips Error: %s</source>
         <translation>Erreur Dynamips: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="397"/>
+        <location filename="../Workspace.py" line="398"/>
         <source>Dynamips Warning: %s</source>
         <translation>Avertissement de Dynamips: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="269"/>
+        <location filename="../Workspace.py" line="270"/>
         <source>I/O Error</source>
         <translation>Erreur E/S</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="269"/>
+        <location filename="../Workspace.py" line="270"/>
         <source>I/O Error: %s</source>
         <translation>Erreur E/S: %s</translation>
     </message>
@@ -4674,69 +4732,69 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="688"/>
+        <location filename="../Workspace.py" line="699"/>
         <source>Reloading nodes ...</source>
         <translation>Rechargement des noeuds ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="439"/>
+        <location filename="../Workspace.py" line="440"/>
         <source>picture</source>
         <translation>image</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="985"/>
+        <location filename="../Workspace.py" line="996"/>
         <source>Dynamips error: %s</source>
         <translation>Erreur Dynamips: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="201"/>
+        <location filename="../Workspace.py" line="202"/>
         <source>Yes - Take all the workspace
 No - Take only what I see</source>
         <translation>Oui - prendre tout l&apos;espace de travail
 Non - prendre seulement ce que je vois</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="584"/>
+        <location filename="../Workspace.py" line="586"/>
         <source>Reset saved interface labels?</source>
         <translation>Réinitialiser les labels des interfaces?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="767"/>
+        <location filename="../Workspace.py" line="778"/>
         <source>Do you want to clear the current topology?</source>
         <translation>Voulez-vous effacer la topologie actuelle?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="941"/>
+        <location filename="../Workspace.py" line="952"/>
         <source>Cannot create directories in %s: %s</source>
         <translation>Impossible de créer le répertoire %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1013"/>
+        <location filename="../Workspace.py" line="1024"/>
         <source>Dynamips error!!: %s</source>
         <translation>Erreur Dynamips: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1054"/>
+        <location filename="../Workspace.py" line="1065"/>
         <source>Connection lost with Dynamips hypervisor (crashed?)</source>
         <translation>Impossible de se connecter sur l&apos;hypervisor (crash ?)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1086"/>
+        <location filename="../Workspace.py" line="1097"/>
         <source>Save As...</source>
         <translation>Sauvegarder sous...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="848"/>
+        <location filename="../Workspace.py" line="859"/>
         <source>Would you like to unbase the Qemu disk(s)? (useful if you want to distribute your lab but it will increase the total size)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1120"/>
+        <location filename="../Workspace.py" line="1131"/>
         <source>You have running nodes and you may loose your configurations inside them, would you like to continue anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="791"/>
+        <location filename="../Workspace.py" line="802"/>
         <source>This action is going to stop all your devices and captures, would you like to continue anyway?</source>
         <translation type="unfinished"></translation>
     </message>

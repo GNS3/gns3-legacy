@@ -21,5 +21,6 @@
       <file alias="bg">Lang_bg.qm</file>
       <file alias="uk">Lang_uk.qm</file>
       <file alias="ro">Lang_ro.qm</file>
+      <file alias="gr">Lang_gr.qm</file>
    </qresource>
 </RCC>
