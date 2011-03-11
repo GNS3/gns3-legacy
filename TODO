@@ -25,3 +25,14 @@ Debugging
  * Bug serial drawing when loading a topology?
  * Saved interface labels
 
+self.__captureDynamipsDevice(device, interface, encapsulation)
+
+  File "/Users/grossmj/Documents/workspace/gns3/src/GNS3/Link/AbstractEdge.py", line 328, in __captureDynamipsDevice
+    self.__startWiresharkAction()
+
+  File "/Users/grossmj/Documents/workspace/gns3/src/GNS3/Link/AbstractEdge.py", line 387, in __startWiresharkAction
+    path = unicode(capture_conf.cap_cmd.replace("%c", '"' + self.capfile + '"'), errors='replace')
+
+TypeError: decoding Unicode is not supported
+
+-----------------------------------------------------------
