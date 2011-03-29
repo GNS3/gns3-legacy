@@ -582,13 +582,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if self.flg_showInterfaceNames == False:
 
             if not len(globals.interfaceLabels) and self.flg_showOnlySavedInterfaceNames:
-                print 'here'
                 reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Reset saved interface labels?"), 
                 QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
                 if reply == QtGui.QMessageBox.Yes:
                     self.flg_showOnlySavedInterfaceNames = False
 
-            print 'there'
             self.flg_showInterfaceNames = True
             self.action_ShowinterfaceNames.setText(translate('Workspace', 'Hide interface names'))
             for link in globals.GApp.topology.links:

@@ -276,6 +276,12 @@ class IOSRouter(AbstractNode):
                         # consider that all wics are in slot 0
                         debug('Install ' + wic_name + ' in wic port ' + str(wic_number))
                         self.router.installwic(wic_name, 0, wic_number)
+                    elif wic_name and self.router.slot[0].wics[wic_number] != wic_name:
+                        self.router.uninstallwic(wic_number)
+                        debug('Re-Install ' + wic_name + ' in wic port ' + str(wic_number))
+                        self.router.installwic(wic_name, 0, wic_number)
+                    elif not wic_name and self.router.slot[0].wics[wic_number]:
+                        self.router.uninstallwic(wic_number)
                     wic_number += 1
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSRouter", "Dynamips error"),  unicode(msg))

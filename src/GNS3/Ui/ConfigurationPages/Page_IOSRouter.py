@@ -89,18 +89,18 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             wic_number = 0
             for wic_name in router_config['wics']:
                 self.widget_wics[wic_number].setEnabled(True)
+#                if wic_name:
+#                    self.widget_wics[wic_number].addItem(wic_name)
+#                else:
+                available_wics = ['', 'WIC-1T', 'WIC-2T']
+                if platform == 'c1700':
+                    # Ethernet WIC only available on platform c1700
+                    available_wics.append('WIC-1ENET')
+                self.widget_wics[wic_number].addItems(available_wics)
                 if wic_name:
-                    self.widget_wics[wic_number].addItem(wic_name)
-                else:
-                    available_wics = ['', 'WIC-1T', 'WIC-2T']
-                    if platform == 'c1700':
-                        # Ethernet WIC only available on platform c1700
-                        available_wics.append('WIC-1ENET')
-                    self.widget_wics[wic_number].addItems(available_wics)
-                    if wic_name:
-                        index = self.widget_wics[wic_number].findText(wic_name)
-                        if (index != -1):
-                            self.widget_wics[wic_number].setCurrentIndex(index)
+                    index = self.widget_wics[wic_number].findText(wic_name)
+                    if (index != -1):
+                        self.widget_wics[wic_number].setCurrentIndex(index)
                 wic_number += 1
 
     def loadConfig(self, id, config = None):
@@ -226,7 +226,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                 collision = False
                 if router.slot[slot_number] and router_config['slots'][slot_number] != module:
                     interfaces = router.slot[slot_number].interfaces
-                    interface_type= interfaces.keys()[0]
+                    interface_type = interfaces.keys()[0]
                     for port in interfaces[interface_type].values():
                         if router.slot[slot_number].connected(interface_type, port):
                             QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'Slots', unicode(translate("Page_IOSRouter", "Links are connected in slot %i")) % slot_number)
@@ -253,10 +253,29 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                 except:
                     pass
                     
-            for (wic_number, widget) in self.widget_wics.iteritems():
-                wic_name = str(widget.currentText())
-                if wic_name:
+        for (wic_number, widget) in self.widget_wics.iteritems():
+            wic_name = str(widget.currentText())
+            try:
+                if wic_name and not router_config['wics'][wic_number]:
                     router_config['wics'][wic_number] = wic_name
+                elif wic_name != router_config['wics'][wic_number]:
+                    collision = False
+                    interfaces = router.slot[0].interfaces
+                    interface_type = interfaces.keys()[0]
+                    for port in interfaces[interface_type].values():
+                        if router.slot[0].connected(interface_type, wic_number):   
+                            collision = True
+                            break
+                    if not collision:
+                        if not wic_name:
+                            router_config['wics'][wic_number] = None
+                        else:
+                            router_config['wics'][wic_number] = wic_name
+                    else:
+                        QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'WICs', unicode(translate("Page_IOSRouter", "Links are connected in WICS slot %i")) % wic_number)
+                        continue
+            except IndexError, e:
+                continue
 
         if  router_config['slots'][0] == 'C7200-JC-PA' and router_config['npe'] != 'npe-g2':
             QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'Slots', translate("Page_IOSRouter", "C7200-JC-PA can only be used with NPE-G2"))

@@ -2271,6 +2271,14 @@ class Router(Dynamips_device):
                             currentport_s += 1
                         dynaport += 1
 
+    def uninstallwic(self, slot):
+        """ Installs a WIC from a WIC slot
+        """
+
+        base = 16 * (slot + 1)
+        send(self.dynamips, 'vm slot_remove_binding %s 0 %i' % (self.name, base))
+        self.slot[0].wics[slot] = None
+
     def availablewicslot(self, slot):
         """ Returns the next open WIC slot
             or -1 if no open slots exist

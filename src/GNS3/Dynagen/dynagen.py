@@ -1726,7 +1726,7 @@ class Dynagen:
             for d in self.dynamips.values():
                 if isinstance(d, Dynamips):
 
-                    # JIT sharing is not supported in Dynamips version ealier than 0.2.8 RC3
+                    # JIT sharing is not supported in Dynamips version ealier than 0.2.8 RC3 unstable
                     if d.intversion < 208.3:
                         continue
 
@@ -1765,7 +1765,11 @@ class Dynagen:
 
                         if len(jitshared_devices) > 1:
                             # Create a new JIT sharing group
-                            self._create_jitsharing_group(jitshared_devices)
+                            try:
+                                self._create_jitsharing_group(jitshared_devices)
+                            except:
+                                print "Unable to activate JIT sharing group, please consider deactivating JIT sharing"
+                                break
 
         except DynamipsError, e:
             self.doerror(e)

@@ -490,8 +490,13 @@ class Scene(QtGui.QGraphicsView):
         """ Called to delete nodes
         """
 
-        if len(self.__topology.selectedItems()) > 1:
-            reply = QtGui.QMessageBox.question(self, translate("Scene", "Message"), translate("Scene", "Do you really want to delete these devices?"), 
+        count = 0
+        for item in self.__topology.selectedItems():
+            if not isinstance(item, Annotation) and not isinstance(item, Pixmap) and not isinstance(item, AbstractShapeItem):
+                count += 1
+        
+        if count > 1:
+            reply = QtGui.QMessageBox.question(self, translate("Scene", "Message"), translate("Scene", "Do you really want to delete these nodes?"), 
                                             QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
             if reply == QtGui.QMessageBox.No:
@@ -599,7 +604,12 @@ class Scene(QtGui.QGraphicsView):
         """ Slot called to stop the selected items
         """
      
-        if len(self.__topology.selectedItems()) > 1:
+        count = 0
+        for item in self.__topology.selectedItems():
+            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice):
+                count += 1
+
+        if count > 1:
             reply = QtGui.QMessageBox.question(self, translate("Scene", "Message"), translate("Scene", "Do you really want to stop these devices?"), 
                                             QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
@@ -622,7 +632,12 @@ class Scene(QtGui.QGraphicsView):
         """ Slot called to reload the selected items
         """
 
-        if len(self.__topology.selectedItems()) > 1:
+        count = 0
+        for item in self.__topology.selectedItems():
+            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice):
+                count += 1
+
+        if count > 1:
             reply = QtGui.QMessageBox.question(self, translate("Scene", "Message"), translate("Scene", "Do you really want to reload these devices?"), 
                                             QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
