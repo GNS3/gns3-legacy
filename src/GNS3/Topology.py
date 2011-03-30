@@ -19,7 +19,7 @@
 # code@gns3.net
 #
 
-import os, glob, socket, sys, base64
+import os, glob, socket, sys, base64, time
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.qemu_lib as qlib
 import GNS3.Globals as globals
@@ -86,16 +86,6 @@ class Topology(QtGui.QGraphicsScene):
         """ Clean all dynagen data
         """
 
-        for dynamips in globals.GApp.dynagen.dynamips.values():
-            try:
-                dynamips.reset()
-            except:
-                continue
-        if globals.GApp.HypervisorManager:
-            globals.GApp.HypervisorManager.stopProcHypervisors()
-        if globals.GApp.QemuManager:
-            globals.GApp.QemuManager.stopQemu()
-
         self.dynagen.dynamips.clear()
         self.dynagen.handled = False
         self.dynagen.devices.clear()
@@ -105,6 +95,17 @@ class Topology(QtGui.QGraphicsScene):
         self.dynagen.ghostsizes.clear()
         self.dynagen.bridges.clear()
         self.dynagen.autostart.clear()
+
+        for dynamips in globals.GApp.dynagen.dynamips.values():
+            try:
+                dynamips.reset()
+            except:
+                continue
+
+        if globals.GApp.HypervisorManager:
+            globals.GApp.HypervisorManager.stopProcHypervisors()
+        if globals.GApp.QemuManager:
+            globals.GApp.QemuManager.stopQemu()
 
     def clear(self):
         """ Clear the topology

@@ -144,6 +144,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_Undo, QtCore.SIGNAL('triggered()'), self.__action_Undo)
         self.connect(self.action_Redo, QtCore.SIGNAL('triggered()'), self.__action_Redo)
         self.connect(self.action_ShowLayers, QtCore.SIGNAL('triggered()'), self.__action_ShowLayers)
+        self.connect(self.action_ResetInterfaceLabels, QtCore.SIGNAL('triggered()'), self.__action_ResetInterfaceLabels)
         
     def __createMenus(self):
         """ Add own menu actions, and create new sub-menu
@@ -304,10 +305,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.projectFile = None
         self.projectWorkdir = None
         self.projectConfigs = None
+
         globals.GApp.topology.clear()
         for item in globals.GApp.topology.items():
             globals.GApp.topology.removeItem(item)
-        
+            
         self.clear_workdir(projectWorkdir)
         globals.GApp.mainWindow.capturesDock.refresh()
 
@@ -596,7 +598,16 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.action_ShowinterfaceNames.setText(translate('Workspace', 'Show interface names'))
             for link in globals.GApp.topology.links:
                 link.adjust()
+                
+    def __action_ResetInterfaceLabels(self):
+        """ Reset saved Interface Labels
+        """
         
+        self.flg_showOnlySavedInterfaceNames = False
+        for link in globals.GApp.topology.links:
+            link.adjust()  
+        QtGui.QMessageBox.information(self, translate("Workspace", "Interface labels"), translate("Workspace", "Interface labels have been reset"))
+
     def __action_TelnetAll(self):
         """ Telnet to all started IOS routers
         """

@@ -41,7 +41,8 @@ class HypervisorManager(object):
         """ Shutdown all started hypervisors
         """
 
-        self.stopProcHypervisors()
+        for hypervisor in self.hypervisors:
+            hypervisor['proc_instance'].kill()
 
     def setDefaults(self):
         """ Set the default values for the hypervisor manager

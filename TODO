@@ -17,7 +17,7 @@ TODO LIST
  * Drag'n'drop a .net topology inside GNS3
  * Option to draw a line or draw an arrow on the scene
  * Automatic console login for IOS (idlepc is not effective until hitting returns in the IOS console)
- * Auto UDP (next release of Dynamips): to simplify the UDP port mapping stuff and the binding problems that can occur
+ * Auto UDP (supported in dynamips-community): to simplify the UDP port mapping stuff and the binding problems that can occur
  	-> The first command to use is: "nio create_udp_auto <nio_name> <local_addr> <local_port_start> <local_port_end>"
  	-> It will return the allocated port number. local_addr is an IPv4/IPv6 address (0.0.0.0 on IPv4 and :: on IPv6 to listen on all addresses). local_port_start and local_port_end define a port range (it can be useful if you are behind a firewall).
 	-> On the remote side: nio connect_udp_auto <nio_name> <remote_host> <remote_port>
@@ -26,7 +26,5 @@ TODO LIST
 Debugging
 
  * Screenshots appear to be broken in latest Qt (4.7.x)
- * Saved interface labels
  * Duplicated packets with ETHSW?
- * Kill hypervisors when quit
  * Test QinQ

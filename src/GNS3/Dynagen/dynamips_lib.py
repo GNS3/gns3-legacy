@@ -4790,9 +4790,9 @@ def send(dynamips, command):
                 if buf[-1] != '\n':
                     continue
             except IndexError:
-                print 'Error: could not communicate with %s server %s' % (dynamips.type, dynamips.host)
-                print 'It may have crashed. Check the %s server output.' % dynamips.type
-                print 'Exiting...'
+#                print 'Error: could not communicate with %s server %s' % (dynamips.type, dynamips.host)
+#                print 'It may have crashed. Check the %s server output.' % dynamips.type
+#                print 'Exiting...'
                 raise DynamipsErrorHandled
 
             data += buf.split('\r\n')

@@ -42,7 +42,8 @@ class QemuManager(object):
         """ Kill Qemu
         """
 
-        self.stopQemu()
+        if self.proc:
+            self.proc.kill()
 
     def waitQemu(self):
         """ Wait Qemu until it accepts connections

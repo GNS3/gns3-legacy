@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Fri Mar 11 11:21:24 2011
+# Created: Wed Mar 30 18:09:50 2011
 #      by: PyQt4 UI code generator 4.8.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -344,6 +344,8 @@ class Ui_MainWindow(object):
         icon29.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/aux.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_ConsoleAuxAll.setIcon(icon29)
         self.action_ConsoleAuxAll.setObjectName(_fromUtf8("action_ConsoleAuxAll"))
+        self.action_ResetInterfaceLabels = QtGui.QAction(MainWindow)
+        self.action_ResetInterfaceLabels.setObjectName(_fromUtf8("action_ResetInterfaceLabels"))
         self.menu_Edit.addAction(self.action_SelectAll)
         self.menu_Edit.addAction(self.action_SelectNone)
         self.menu_Edit.addSeparator()
@@ -370,6 +372,7 @@ class Ui_MainWindow(object):
         self.menu_View.addAction(self.action_ZoomReset)
         self.menu_View.addSeparator()
         self.menu_View.addAction(self.action_ShowLayers)
+        self.menu_View.addAction(self.action_ResetInterfaceLabels)
         self.menu_View.addAction(self.action_ShowHostnames)
         self.menu_View.addAction(self.action_ShowinterfaceNames)
         self.menuControl.addAction(self.action_StartAll)
@@ -512,6 +515,7 @@ class Ui_MainWindow(object):
         self.action_ReloadAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Reload all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ConsoleAuxAll.setText(QtGui.QApplication.translate("MainWindow", "Console AUX to all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ConsoleAuxAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Console AUX to all devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ResetInterfaceLabels.setText(QtGui.QApplication.translate("MainWindow", "Reset Interface Labels", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.UndoFramework import UndoView
 from GNS3.Ui.Widget_nodesDock import nodesDock
