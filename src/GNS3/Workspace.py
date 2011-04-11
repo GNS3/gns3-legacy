@@ -603,9 +603,16 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Reset saved Interface Labels
         """
         
+        if self.flg_showInterfaceNames:
+            QtGui.QMessageBox.warning(self, translate("Workspace", "Interface labels"), translate("Workspace", "Please hide the interface names before using this option"))
+            return
+
         self.flg_showOnlySavedInterfaceNames = False
         for link in globals.GApp.topology.links:
-            link.adjust()  
+            link.labelSouceIf = None
+            link.labelDestIf = None
+            link.adjust()
+
         QtGui.QMessageBox.information(self, translate("Workspace", "Interface labels"), translate("Workspace", "Interface labels have been reset"))
 
     def __action_TelnetAll(self):

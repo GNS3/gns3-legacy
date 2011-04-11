@@ -170,7 +170,7 @@ class Ethernet(AbstractEdge):
                     self.dstCollisionOffset -= 10
 
             if globals.GApp.workspace.flg_showInterfaceNames:
-                if self.labelDestIf  == None:
+                if self.labelDestIf == None:
 
                     if globals.interfaceLabels.has_key(self.dest.hostname + ' ' + self.destIf):
                         self.labelDestIf = Annotation(self.dest)

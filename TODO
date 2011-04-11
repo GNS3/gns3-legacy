@@ -16,6 +16,7 @@ TODO LIST
  * Auto-detection of a newer GNS3 version available to download
  * Drag'n'drop a .net topology inside GNS3
  * Option to draw a line or draw an arrow on the scene
+ * Set system ID.
  * Automatic console login for IOS (idlepc is not effective until hitting returns in the IOS console)
  * Auto UDP (supported in dynamips-community): to simplify the UDP port mapping stuff and the binding problems that can occur
  	-> The first command to use is: "nio create_udp_auto <nio_name> <local_addr> <local_port_start> <local_port_end>"
@@ -28,3 +29,4 @@ Debugging
  * Screenshots appear to be broken in latest Qt (4.7.x)
  * Duplicated packets with ETHSW?
  * Test QinQ
+ * Removable WICs

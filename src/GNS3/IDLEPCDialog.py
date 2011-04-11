@@ -38,7 +38,7 @@ class IDLEPCDialog(QtGui.QDialog, Ui_IDLEPCDialog):
         self.router = router
         self.comboBox.addItems(options)
         
-    def apply(self):
+    def apply(self, message=False):
         """ Apply the IDLE PC to the router
         """
         
@@ -63,12 +63,13 @@ class IDLEPCDialog(QtGui.QDialog, Ui_IDLEPCDialog):
                                 device.setCustomToolTip()
                         break
 
-            QtGui.QMessageBox.information(self, translate("IDLEPCDialog", "IDLE PC"),
-                                          unicode(translate("IDLEPCDialog", "IDLE PC value %s has been applied on %s")) % (self.idles[index], self.router.hostname))
+            if message:
+                QtGui.QMessageBox.information(self, translate("IDLEPCDialog", "IDLE PC"),
+                                              unicode(translate("IDLEPCDialog", "IDLE PC value %s has been applied on %s")) % (self.idles[index], self.router.hostname))
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, translate("IDLEPCDialog", "Dynamips error"),  unicode(msg))
             return
-        
+
     def on_buttonBox_clicked(self, button):
         """ Private slot called by a button of the button box clicked.
             button: button that was clicked (QAbstractButton)
@@ -79,7 +80,7 @@ class IDLEPCDialog(QtGui.QDialog, Ui_IDLEPCDialog):
         elif button == self.buttonBox.button(QtGui.QDialogButtonBox.Apply):
             self.apply()
         else:
-            self.apply()
+            self.apply(message=True)
             QtGui.QDialog.accept(self)
 
         

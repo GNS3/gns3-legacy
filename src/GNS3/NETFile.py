@@ -580,7 +580,8 @@ class NETFile(object):
             splash.showMessage(translate("NETFile", "Please wait while importing the topology"))
             globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
             self.dynagen.ghosting()
-            self.dynagen.jitsharing()
+            if globals.GApp.systconf['dynamips'].jitsharing:
+                self.dynagen.jitsharing()
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "Dynamips error"),  unicode(msg))
             globals.GApp.workspace.projectFile = None
