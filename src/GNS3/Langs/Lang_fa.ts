@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="fa_IR">
+<!DOCTYPE TS><TS version="2.0" language="fa_IR" sourcelanguage="">
 <context>
     <name>ASA initrd</name>
     <message>
