@@ -111,10 +111,10 @@ class xEMUInstance(object):
         self.workdir = os.path.join(os.getcwd(), self.name)
         if not os.path.exists(self.workdir):
             os.makedirs(self.workdir)
-            
+
     def clean(self):
         pass
-    
+
     def unbase_disk(self):
         pass
 
@@ -133,7 +133,7 @@ class xEMUInstance(object):
 
         # give us some time to wait for Qemu to start
         time.sleep(1)
-        
+
         print "    pid:", self.process.pid
 
         if platform.system() == 'Windows':
@@ -148,7 +148,7 @@ class xEMUInstance(object):
 
         else:
             print "Renicing to 19"
-            returncode = subprocess.call(['renice', '+19', str(self.process.pid)])
+            returncode = subprocess.call(['renice', '-n', '19', '-p', str(self.process.pid)])
             if returncode:
                 print "    failed."
                 # ignore if renice didn't worked
@@ -198,7 +198,7 @@ class xEMUInstance(object):
                 options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
 
         return options
-        
+
     def _ser_options(self):
         if self.console:
             return ['-serial', 'telnet:' + IP + ':%s,server,nowait' % self.console]
@@ -229,14 +229,14 @@ class PEMUInstance(xEMUInstance):
         f.writelines(''.join(['%s=%s\n' % (attr, getattr(self, attr))
             for attr in ('serial', 'key', 'image')]))
         f.close()
-      
+
     def start(self):
         self._write_config()
         return super(PEMUInstance, self).start()
 
 class PIXInstance(PEMUInstance):
     pass
-    
+
 class QEMUInstance(xEMUInstance):
 
     def __init__(self, name):
@@ -246,7 +246,7 @@ class QEMUInstance(xEMUInstance):
         self.valid_attr_names.extend(('flash_size', 'flash_name'))
         self.flash_size = '256M'
         self.flash_name = 'FLASH'
-        
+
     def _build_command(self):
         "Builds the command as a list of shell arguments."
         command = [self.bin]
@@ -267,13 +267,13 @@ class QEMUInstance(xEMUInstance):
 
     def _disk_options(self):
         return []
-        
+
     def _kernel_options(self):
         return []
-        
+
     def _image_options(self):
         return []
-    
+
 
 class ASAInstance(QEMUInstance):
 
@@ -284,9 +284,9 @@ class ASAInstance(QEMUInstance):
         self.kernel = ''
         self.kernel_cmdline = ''
         self.valid_attr_names += ['initrd', 'kernel', 'kernel_cmdline']
-        
+
     def clean(self):
-        
+
         flash = os.path.join(self.workdir, self.flash_name)
         if os.path.exists(flash):
             try:
@@ -296,7 +296,7 @@ class ASAInstance(QEMUInstance):
                 print >> sys.stderr, "Execution failed:", e
 
     def _disk_options(self):
-        
+
         flash = os.path.join(self.workdir, self.flash_name)
         if not os.path.exists(flash):
             try:
@@ -309,7 +309,7 @@ class ASAInstance(QEMUInstance):
 
     def _image_options(self):
         return ('-kernel', self.kernel, '-initrd', self.initrd)
-        
+
     def _kernel_options(self):
         return  ('-append', self.kernel_cmdline)
 
@@ -321,9 +321,9 @@ class JunOSInstance(QEMUInstance):
         self.swap_name= 'SWAP'
         self.swap_size = '1G'
         self.netcard = 'e1000'
-    
+
     def clean(self):
-        
+
         flash = os.path.join(self.workdir, self.flash_name)
         if os.path.exists(flash):
             try:
@@ -331,7 +331,7 @@ class JunOSInstance(QEMUInstance):
                 os.remove(flash)
             except (OSError, IOError), e:
                 print >> sys.stderr, "Execution failed:", e
-    
+
         swap = os.path.join(self.workdir, self.swap_name)
         if os.path.exists(swap):
             try:
@@ -339,9 +339,9 @@ class JunOSInstance(QEMUInstance):
                 os.remove(swap)
             except (OSError, IOError), e:
                 print >> sys.stderr, "Execution failed:", e
-    
+
     def unbase_disk(self):
-        
+
         flash = os.path.join(self.workdir, self.flash_name)
         if os.path.exists(flash):
             try:
@@ -350,9 +350,9 @@ class JunOSInstance(QEMUInstance):
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
-    
+
     def _disk_options(self):
-        
+
         flash = os.path.join(self.workdir, self.flash_name)
         if not os.path.exists(flash):
             try:
@@ -370,7 +370,7 @@ class JunOSInstance(QEMUInstance):
                 print >> sys.stderr, "Execution failed:", e
 
         return (flash, '-hdb', swap)
-    
+
 class IDSInstance(QEMUInstance):
 
 
@@ -382,27 +382,27 @@ class IDSInstance(QEMUInstance):
         self.valid_attr_names += ['image1', 'image2']
         self.img1_name = 'DISK1'
         self.img2_name = 'DISK2'
-    
+
     def clean(self):
-    
+
         img1 = os.path.join(self.workdir, self.img1_name)
         if os.path.exists(img1):
-            try:     
+            try:
                 print "Deleting old image file:", img1
                 os.remove(img1)
             except (OSError, IOError), e:
                 print >> sys.stderr, "Execution failed:", e
-        
+
         img2 = os.path.join(self.workdir, self.img2_name)
         if os.path.exists(img2):
-            try:     
+            try:
                 print "Deleting old image file:", img2
                 os.remove(img2)
             except (OSError, IOError), e:
                 print >> sys.stderr, "Execution failed:", e
-    
+
     def unbase_disk(self):
-        
+
         img1 = os.path.join(self.workdir, self.img1_name)
         if os.path.exists(img1):
             try:
@@ -411,7 +411,7 @@ class IDSInstance(QEMUInstance):
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
-                
+
         img2 = os.path.join(self.workdir, self.img2_name)
         if os.path.exists(img2):
             try:
@@ -420,27 +420,27 @@ class IDSInstance(QEMUInstance):
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
-    
+
     def _disk_options(self):
-        
+
         img1 = os.path.join(self.workdir, self.img1_name)
-        if not os.path.exists(img1): 
+        if not os.path.exists(img1):
             try:
                 retcode = subprocess.call([self.img_bin, 'create', '-b', self.image1, '-f', 'qcow2', img1])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
-        
+
         img2 = os.path.join(self.workdir, self.img2_name)
-        if not os.path.exists(img2): 
-            try:  
+        if not os.path.exists(img2):
+            try:
                 retcode = subprocess.call([self.img_bin, 'create', '-b', self.image2, '-f', 'qcow2', img2])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
 
         return ('-hda', img1, '-hdb', img2)
-    
+
 class QemuDeviceInstance(QEMUInstance):
 
 
@@ -453,13 +453,13 @@ class QemuDeviceInstance(QEMUInstance):
     def clean(self):
 
         flash = os.path.join(self.workdir, self.flash_name)
-        if os.path.exists(flash): 
+        if os.path.exists(flash):
             try:
                 print "Deleting old flash file:", flash
                 os.remove(flash)
             except (OSError, IOError), e:
                 print >> sys.stderr, "Execution failed:", e
-                
+
         swap = os.path.join(self.workdir, self.swap_name)
         if os.path.exists(swap):
             try:
@@ -467,9 +467,9 @@ class QemuDeviceInstance(QEMUInstance):
                 os.remove(swap)
             except (OSError, IOError), e:
                 print >> sys.stderr, "Execution failed:", e
-                
+
     def unbase_disk(self):
-        
+
         flash = os.path.join(self.workdir, self.flash_name)
         if os.path.exists(flash):
             try:
@@ -478,9 +478,9 @@ class QemuDeviceInstance(QEMUInstance):
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
-                
+
     def _disk_options(self):
-        
+
         flash = os.path.join(self.workdir, self.flash_name)
         if not os.path.exists(flash):
             try:
@@ -488,7 +488,7 @@ class QemuDeviceInstance(QEMUInstance):
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
-                
+
         swap = os.path.join(self.workdir, self.swap_name)
         if not os.path.exists(swap):
             try:
@@ -538,7 +538,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         'junos': JunOSInstance,
         'ids': IDSInstance,
         }
-    
+
     # dynamips style status codes
     HSC_INFO_OK         = 100  #  ok
     HSC_INFO_MSG        = 101  #  informative message
@@ -587,7 +587,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         request = self.rfile.readline()
         request = request.rstrip()      # Strip package delimiter.
 
-        
+
         # Parse request.
         tokens = self.__get_tokens(request)
         if len(tokens) < 2:
@@ -793,7 +793,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         udp_connection.resolve_names()
         QEMU_INSTANCES[name].udp[int(vlan)] = udp_connection
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
-        
+
     def do_qemu_delete_udp(self, data):
         name, vlan = data
         if not name in QEMU_INSTANCES.keys():
@@ -803,7 +803,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         if QEMU_INSTANCES[name].udp.has_key(int(vlan)):
             del QEMU_INSTANCES[name].udp[int(vlan)]
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
-        
+
     def do_qemu_create_capture(self, data):
         name, vlan, path = data
         if not name in QEMU_INSTANCES.keys():
@@ -813,7 +813,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
 
         QEMU_INSTANCES[name].capture[int(vlan)] = path
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
-        
+
     def do_qemu_delete_capture(self, data):
         name, vlan = data
         if not name in QEMU_INSTANCES.keys():
@@ -847,7 +847,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
                             "unable to stop instance '%s'" % name)
         else:
             self.send_reply(self.HSC_INFO_OK, 1, "Qemu '%s' stopped" % name)
-            
+
     def do_qemu_clean(self, data):
         name, = data
         if not name in QEMU_INSTANCES.keys():
@@ -856,7 +856,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             return
         QEMU_INSTANCES[name].clean()
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
-        
+
     def do_qemu_unbase(self, data):
         name, = data
         if not name in QEMU_INSTANCES.keys():
@@ -926,7 +926,7 @@ def main():
         PORT = port
     else:
         port = PORT
-        
+
     if options.wd:
         global WORKDIR
         WORKDIR = options.wd
