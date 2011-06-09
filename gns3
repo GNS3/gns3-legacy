@@ -22,8 +22,8 @@
 import sys, os, traceback
 
 # current version of GNS3
-VERSION = "0.7.3"
-VERSION_INTEGER = 0x000703
+VERSION = "0.7.4"
+VERSION_INTEGER = 0x000704
 
 try:
     from PyQt4 import QtCore, QtGui
@@ -62,7 +62,7 @@ if __name__ == '__main__' and not hasattr(sys, "frozen"):
 
 if len(sys.argv) > 1 and sys.argv[1].startswith("-psn"):
     del sys.argv[1]
-                
+
 import GNS3.Main
 
 
