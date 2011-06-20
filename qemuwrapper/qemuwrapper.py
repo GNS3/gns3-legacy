@@ -934,7 +934,7 @@ def main():
     if not os.path.exists(PEMU_DIR):
         print "Unpacking pemu binary."
         f = cStringIO.StringIO(base64.decodestring(pemubin.ascii))
-        tar = tarfile.open('dummy', 'r:gz', f)
+        tar = tarfile.open(None, 'r:gz', f)
         for member in tar.getmembers():
             tar.extract(member)
 
