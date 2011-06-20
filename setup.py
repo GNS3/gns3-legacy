@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """Setup script for the GNS3 packages."""
 
 import sys, os
@@ -98,7 +99,7 @@ elif sys.platform.startswith('darwin'):
                             'GNS3.Ui.ConfigurationPages.Page_FW',
                             'GNS3.Ui.ConfigurationPages.Page_ASA',
                             'GNS3.Ui.ConfigurationPages.Page_JunOS',
-                            'GNS3.Ui.ConfigurationPages.Page_IDS',                                                                                                         
+                            'GNS3.Ui.ConfigurationPages.Page_IDS',
                             'GNS3.Ui.ConfigurationPages.Page_Qemu',
                             'GNS3.Ui.ConfigurationPages.Page_DecorativeNode',
                             'GNS3.Ui.ConfigurationPages.Page_PreferencesDynamips',
@@ -106,7 +107,7 @@ elif sys.platform.startswith('darwin'):
                             'GNS3.Ui.ConfigurationPages.Page_PreferencesCapture',
                             'GNS3.Ui.ConfigurationPages.Page_PreferencesQemu'
                             ],
-                
+
                 'plist'    : {  'CFBundleDisplayName': 'GNS3',
                                 'CFBundleGetInfoString' : 'GNS3, Graphical Network Simulator',
                                 'CFBundleIdentifier':'net.gns3',
@@ -138,12 +139,12 @@ elif sys.platform.startswith('darwin'):
             if 'debug' in file:
                 print 'Deleting', file
                 os.remove(os.path.join(root,file))
-                
+
     print '*** Making DMG ***'
     os.chdir('dist')
     os.system('cp ../dynamips-0.2.8-RC2-OSX-Leopard.intel.bin ./GNS3.app/Contents/Resources')
     os.system(QTDIR + r'/bin/macdeployqt GNS3.app -dmg')
-    
+
 else:
 
     setup( # Distribution meta-data
