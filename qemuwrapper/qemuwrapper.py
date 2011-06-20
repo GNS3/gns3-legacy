@@ -205,9 +205,9 @@ class xEMUInstance(object):
         else:
             return []
 
-class PEMUInstance(xEMUInstance):
+class PIXInstance(xEMUInstance):
     def __init__(self, name):
-        super(PEMUInstance, self).__init__(name)
+        super(PIXInstance, self).__init__(name)
         if platform.system() == 'Windows':
             self.bin = 'pemu.exe'
         else:
@@ -232,10 +232,7 @@ class PEMUInstance(xEMUInstance):
 
     def start(self):
         self._write_config()
-        return super(PEMUInstance, self).start()
-
-class PIXInstance(PEMUInstance):
-    pass
+        return super(PIXInstance, self).start()
 
 class QEMUInstance(xEMUInstance):
 
