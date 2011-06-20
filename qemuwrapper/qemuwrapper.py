@@ -57,10 +57,8 @@ IP = ""
 QEMU_INSTANCES = {}
 
 WORKDIR = os.getcwd()
-if os.environ.has_key("TEMP"):
-    WORKDIR = unicode(os.environ["TEMP"], errors='replace')
-elif os.environ.has_key("TMP"):
-    WORKDIR = unicode(os.environ["TMP"], errors='replace')
+if os.environ.has_key("QEMUWRAPPER_WDIR"):
+    WORKDIR = unicode(os.environ["QEMUWRAPPER_WDIR"], errors='replace')
 
 PEMU_DIR = os.getcwd()
 if platform.system() == 'Windows':
