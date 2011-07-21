@@ -19,6 +19,7 @@
 # code@gns3.net
 #
 
+
 from GNS3.Node.IOSRouter1700 import IOSRouter1700
 from GNS3.Node.IOSRouter2600 import IOSRouter2600
 from GNS3.Node.IOSRouter2691 import IOSRouter2691
@@ -32,6 +33,7 @@ from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ATMBR import ATMBR
 from GNS3.Node.AnyEmuDevice import FW, ASA, JunOS, IDS, QemuDevice
+from GNS3.Node.AnyVBoxEmuDevice import VBoxDevice
 
 SYMBOL_TYPES = {
                 IOSRouter1700: 'Router c1700', 
@@ -48,7 +50,8 @@ SYMBOL_TYPES = {
                 ATMBR: 'ATM bridge',
                 ATMSW: 'ATM switch', 
                 FRSW: 'Frame Relay switch',
-                QemuDevice: 'Qemu host',
+                QemuDevice: 'Qemu guest',
+                VBoxDevice: 'VirtualBox guest',
                 Cloud: 'Cloud', 
                 DecorativeNode: 'Decorative node', 
                 }
@@ -145,7 +148,13 @@ SYMBOLS = [
     'translated': True,
     },
     
-    {'name': "Qemu host", 'object': QemuDevice,
+    {'name': "Qemu guest", 'object': QemuDevice,
+    'normal_svg_file': ":/symbols/computer.normal.svg",
+    'select_svg_file': ":/symbols/computer.selected.svg", 
+    'translated': True,
+    },
+
+    {'name': "VirtualBox guest", 'object': VBoxDevice,
     'normal_svg_file': ":/symbols/computer.normal.svg",
     'select_svg_file': ":/symbols/computer.selected.svg", 
     'translated': True,

@@ -19,6 +19,17 @@
 # code@gns3.net
 #
 
+#This module is responsible for all the buttons (and reactions) on the main topology.
+
+#debuglevel: 0=disabled, 1=default, 2=debug, 3=deep debug
+debuglevel = 0
+
+def debugmsg(level, message):
+    if debuglevel == 0:
+        return
+    if debuglevel >= level:        
+        print message
+
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.UndoFramework as undo
@@ -37,6 +48,7 @@ from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.AnyEmuDevice import AnyEmuDevice
+from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ETHSW import ETHSW
@@ -170,10 +182,40 @@ class Scene(QtGui.QGraphicsView):
             consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
             self.connect(consoleAct, QtCore.SIGNAL('triggered()'), self.slotConsole)
 
+            menu.addAction(consolePortAct)
+            menu.addAction(consoleAct)
+
+        instances = map(lambda item: isinstance(item, AnyVBoxEmuDevice), items)
+        if True in instances:
+
+            # Action: Bring window to front
+            displayWindowFocusAct = QtGui.QAction(translate('Scene', 'Bring display to front'), menu)
+            displayWindowFocusAct.setIcon(QtGui.QIcon(':/symbols/computer.normal.svg'))
+            self.connect(displayWindowFocusAct, QtCore.SIGNAL('triggered()'), self.slotDisplayWindowFocus)
+            menu.addAction(displayWindowFocusAct)
+
+        instances = map(lambda item: isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice), items)
+        if True in instances:
+
             # Action: Start (Start IOS on hypervisor)
             startAct = QtGui.QAction(translate('Scene', 'Start'), menu)
             startAct.setIcon(QtGui.QIcon(':/icons/play.svg'))
             self.connect(startAct, QtCore.SIGNAL('triggered()'), self.slotStartNode)
+
+            menu.addAction(startAct)
+
+        instances = map(lambda item: isinstance(item, IOSRouter) or isinstance(item, AnyVBoxEmuDevice), items)
+        if True in instances:
+
+            # Action: Suspend / Pause (Suspend IOS on hypervisor/pause VM)
+            suspendAct = QtGui.QAction(translate('Scene', 'Suspend'), menu)
+            suspendAct.setIcon(QtGui.QIcon(':/icons/pause.svg'))
+            self.connect(suspendAct, QtCore.SIGNAL('triggered()'), self.slotSuspendNode)
+
+            menu.addAction(suspendAct)
+
+        instances = map(lambda item: isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice), items)
+        if True in instances:
 
             # Action: Stop (Stop IOS on hypervisor)
             stopAct = QtGui.QAction(translate('Scene', 'Stop'), menu)
@@ -185,9 +227,6 @@ class Scene(QtGui.QGraphicsView):
             reloadAct.setIcon(QtGui.QIcon(':/icons/reload.svg'))
             self.connect(reloadAct, QtCore.SIGNAL('triggered()'), self.slotReloadNode)
 
-            menu.addAction(consolePortAct)
-            menu.addAction(consoleAct)
-            menu.addAction(startAct)
             menu.addAction(stopAct)
             menu.addAction(reloadAct)
 
@@ -214,14 +253,8 @@ class Scene(QtGui.QGraphicsView):
             StartupConfigAct.setIcon(QtGui.QIcon(':/icons/startup_config.svg'))
             self.connect(StartupConfigAct, QtCore.SIGNAL('triggered()'), self.slotStartupConfig)
 
-            # Action: Suspend (Suspend IOS on hypervisor)
-            suspendAct = QtGui.QAction(translate('Scene', 'Suspend'), menu)
-            suspendAct.setIcon(QtGui.QIcon(':/icons/pause.svg'))
-            self.connect(suspendAct, QtCore.SIGNAL('triggered()'), self.slotSuspendNode)
-
-            menu.addAction(suspendAct)
             menu.addAction(auxPortAct)
-            menu.addAction(AuxAct)
+            menu.addAction(AuxAct)            
             menu.addAction(idlepcAct)
             menu.addAction(StartupConfigAct)
 
@@ -294,7 +327,7 @@ class Scene(QtGui.QGraphicsView):
 
         splash = QtGui.QSplashScreen(QtGui.QPixmap(":images/logo_gns3_splash.png"))
         splash.show()
-        splash.showMessage(translate("Scene", "Please wait while calculating IDLE PC values"))
+        splash.showMessage(translate("Scene", "Please wait while calculating an IDLE PC"))
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
         result = globals.GApp.dynagen.devices[router.hostname].idleprop(lib.IDLEPROPGET)
         return result
@@ -438,7 +471,6 @@ class Scene(QtGui.QGraphicsView):
             options.append(option)
             idles[i] = value
             i += 1
-
         if len(idles) == 0:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "IDLE PC"),  translate("Scene", "No idlepc values found"))
             return
@@ -557,9 +589,17 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice):
+            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
                 item.console()
-                
+
+    def slotDisplayWindowFocus(self):
+        """ Slot called to bring VM's display as foreground window and focus on it
+        """
+        for item in self.__topology.selectedItems():
+            if isinstance(item, AnyVBoxEmuDevice):
+                item.displayWindowFocus()
+                return
+
     def slotAuxConsole(self):
         """ Slot called to launch a console to AUX on the selected items
         """
@@ -567,13 +607,13 @@ class Scene(QtGui.QGraphicsView):
         for item in self.__topology.selectedItems():
             if isinstance(item, IOSRouter):
                 item.aux()
-                
+
     def slotChangeConsolePort(self):
         """ Slot called to change the console port
         """
 
         for item in self.__topology.selectedItems():
-            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice):
+            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
                 item.changeConsolePort()
                 
     def slotChangeAUXPort(self):
@@ -597,7 +637,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice):
+            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
                 item.startNode()
 
     def slotStopNode(self):
@@ -606,7 +646,7 @@ class Scene(QtGui.QGraphicsView):
      
         count = 0
         for item in self.__topology.selectedItems():
-            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice):
+            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
                 count += 1
 
         if count > 1:
@@ -617,7 +657,7 @@ class Scene(QtGui.QGraphicsView):
                 return
      
         for item in self.__topology.selectedItems():
-            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice):
+            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
                 item.stopNode()
 
     def slotSuspendNode(self):
@@ -625,7 +665,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            if  isinstance(item, IOSRouter):
+            if  isinstance(item, IOSRouter) or isinstance(item, AnyVBoxEmuDevice):
                 item.suspendNode()
                 
     def slotReloadNode(self):
@@ -634,7 +674,7 @@ class Scene(QtGui.QGraphicsView):
 
         count = 0
         for item in self.__topology.selectedItems():
-            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice):
+            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
                 count += 1
 
         if count > 1:
@@ -645,7 +685,7 @@ class Scene(QtGui.QGraphicsView):
                 return
 
         for item in self.__topology.selectedItems():
-            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice):
+            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
                 item.reloadNode()
                 
     def getSourceNode(self):
@@ -683,8 +723,42 @@ class Scene(QtGui.QGraphicsView):
             id: integer
             interface: string
         """
+        debugmsg(2, "Scene.py: id = %s" % str(id))
+        debugmsg(2, "Scene.py: interface = %s" % str(interface))
+        debugmsg(2, "Scene.py: node = %s" % str(self.__topology.getNode(id)))
 
         if id == None and interface == None:
+            self.__isFirstClick = True
+            return
+
+        node = self.__topology.getNode(id)
+        
+        if globals.currentLinkType == globals.Enum.LinkType.Serial or globals.currentLinkType == globals.Enum.LinkType.ATM or globals.currentLinkType == globals.Enum.LinkType.POS:
+            if isinstance(node, AnyEmuDevice) or isinstance(node, AnyVBoxEmuDevice) or isinstance(node, ETHSW):
+                if isinstance(node, AnyEmuDevice):
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "AddLink"),  translate("Scene", "Qemu machines support only Ethernet links."))
+                if isinstance(node, AnyVBoxEmuDevice):
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "AddLink"),  translate("Scene", "VirtualBox machines support only Ethernet links."))
+                if isinstance(node, ETHSW):
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "AddLink"),  translate("Scene", "Ethernet switch supports only Ethernet links."))
+                self.__isFirstClick = True
+                return
+
+        if not (globals.currentLinkType == globals.Enum.LinkType.ATM or \
+                globals.currentLinkType == globals.Enum.LinkType.Manual) and isinstance(node, ATMSW):
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "AddLink"),  translate("Scene", "ATM switch supports only ATM links."))
+            self.__isFirstClick = True
+            return
+
+        if not (globals.currentLinkType == globals.Enum.LinkType.Serial or \
+                globals.currentLinkType == globals.Enum.LinkType.Manual) and isinstance(node, FRSW):
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "AddLink"),  translate("Scene", "Frame-Relay switch supports only serial links."))
+            self.__isFirstClick = True
+            return
+
+        if (globals.currentLinkType == globals.Enum.LinkType.Serial or \
+            globals.currentLinkType == globals.Enum.LinkType.POS) and isinstance(node, ATMBR):
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "AddLink"),  translate("Scene", "ATM bridge supports only ATM and Ethernet links."))
             self.__isFirstClick = True
             return
 
@@ -695,7 +769,7 @@ class Scene(QtGui.QGraphicsView):
                 self.__sourceNodeID = id
                 self.__sourceInterface = interface
                 self.__isFirstClick = False
-                node = self.__topology.getNode(id)
+                #node = self.__topology.getNode(id)
                 if (globals.currentLinkType == globals.Enum.LinkType.Serial or globals.currentLinkType == globals.Enum.LinkType.ATM) or \
                     (globals.currentLinkType == globals.Enum.LinkType.Manual and ((interface[0] == 's' or interface[0] == 'a') or (isinstance(node, ATMSW) or isinstance(node, FRSW)))):
                     # interface is serial or ATM
@@ -887,10 +961,13 @@ class Scene(QtGui.QGraphicsView):
     def mouseDoubleClickEvent(self, event):
 
         item = self.itemAt(event.pos())
+        #print "ADEBUG: Scene.py: globals.addingLinkFlag = ", globals.addingLinkFlag
         if not globals.addingLinkFlag and isinstance(item, AbstractNode):
             item.setSelected(True)
             if (isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice)) and item.isStarted():
                 self.slotConsole()
+            elif isinstance(item, AnyVBoxEmuDevice) and (item.isStarted() or item.isSuspended()) and not globals.addingLinkFlag:
+                self.slotDisplayWindowFocus()
             else:
                 self.slotConfigNode()
         else:
