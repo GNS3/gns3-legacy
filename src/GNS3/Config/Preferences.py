@@ -19,6 +19,8 @@
 # code@gns3.net
 #
 
+#print "WELCOME to Preferences.py"
+
 from PyQt4 import QtGui, QtCore
 from GNS3.Ui.Form_PreferencesDialog import Ui_PreferencesDialog
 from GNS3.Utils import translate
@@ -37,6 +39,7 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
                         'Dynamips',
                         'Capture',
                         'Qemu',
+                        'VirtualBox',
                         ]
 
         QtGui.QDialog.__init__(self)

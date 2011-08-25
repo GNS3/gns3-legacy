@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
+# Copyright (C) 2007-2011 GNS3 Development Team (http://www.gns3.net/team).
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -41,6 +41,21 @@ if QtCore.PYQT_VERSION < 0x040500:
 if sys.version_info < (2, 6):
     raise RuntimeError, "Need Python 2.6 or higher"
 
+VBOXVER_REQUIRED = 4.1
+VBOXVER_STR = ""
+VBOXVER_FLOAT = 0.0
+
+try:
+    from vboxapi import VirtualBoxManager
+    g_VBoxmgr = VirtualBoxManager(None, None)
+    vboxver_maj = g_VBoxmgr.vbox.version.split('.')[0]
+    vboxver_min = g_VBoxmgr.vbox.version.split('.')[1]
+    VBOXVER_STR = g_VBoxmgr.vbox.version
+    VBOXVER_FLOAT = float(str(vboxver_maj)+'.'+str(vboxver_min))    
+except:
+    print "WARNING: vboxapi module cannot be loaded ! You can proceed, but VirtualBox functionality will not be locally available."
+    g_VBoxmgr = 0
+
 def exceptionHook(type, value, tb):
 
     lines = traceback.format_exception(type, value, tb)
@@ -65,5 +80,3 @@ if len(sys.argv) > 1 and sys.argv[1].startswith("-psn"):
     del sys.argv[1]
 
 import GNS3.Main
-
-
