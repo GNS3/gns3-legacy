@@ -30,7 +30,7 @@ from GNS3.Node.IOSRouter3600 import IOSRouter3600
 from GNS3.Node.IOSRouter3700 import IOSRouter3700
 from GNS3.Node.IOSRouter7200 import IOSRouter7200
 from GNS3.Node.DecorativeNode import DecorativeNode
-from GNS3.Node.AnyEmuDevice import FW, ASA, JunOS, IDS, QemuDevice
+from GNS3.Node.AnyEmuDevice import ASA, JunOS, IDS, QemuDevice
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
@@ -98,7 +98,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             # key : [display string, pixmap name, dialog module name, parent key,
             #        reference to configuration page (must always be last)]
             # The dialog module must have the module function create to create
-            # the configuration page. This must have the method save to save 
+            # the configuration page. This must have the method save to save
             # the settings.
             "Routers (1700)" : \
                 [translate("NodeConfigurator", "Routers c1700"), ":/symbols/router.normal.svg",
@@ -121,9 +121,6 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             "Decorative Nodes":
                 [translate("NodeConfigurator", "Nodes"), ":/icons/node_conception.svg",
                  "Page_DecorativeNode", None, None],
-            "FW":
-                [translate("NodeConfigurator", "PIX firewalls"), ":/symbols/PIX_firewall.normal.svg",
-                 "Page_FW", None, None],
             "ASA":
                  [translate("NodeConfigurator", "ASA firewalls"), ":/symbols/PIX_firewall.normal.svg",
                   "Page_ASA", None, None],
@@ -161,7 +158,6 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                                      IOSRouter3700: "Routers (3700)",
                                      IOSRouter7200: "Routers (7200)",
                                      DecorativeNode: "Decorative Nodes",
-                                     FW: "FW",
                                      ASA: "ASA",
                                      JunOS: "JunOS",
                                      IDS: "IDS",
@@ -197,7 +193,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                 item.setExpanded(True)
                 self.itmDict[parent] = item
 
-        # create the children items 
+        # create the children items
         for node in self.nodeitems:
             if not self.assocPage.has_key(type(node)):
                 continue

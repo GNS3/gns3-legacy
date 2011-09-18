@@ -65,14 +65,12 @@ class Application(QApplication, Singleton):
         self.__hypervisors = {}
         self.__libraries = {}
         self.__qemuimages = {}
-        self.__piximages = {}
         self.__junosimages = {}
         self.__asaimages = {}
         self.__idsimages = {}
         self.iosimages_ids = 0
         self.hypervisors_ids = 0
         self.qemuimages_ids = 0
-        self.piximages_ids = 0
         self.junosimages_ids = 0
         self.asaimages_ids = 0
         self.idsimages_ids = 0
@@ -185,20 +183,6 @@ class Application(QApplication, Singleton):
         return self.__qemuimages
 
     qemuimages = property(__getQemuImages, __setQemuImages, doc = 'Qemu images dictionnary')
-
-    def __setPIXImages(self, piximages):
-        """ register the sysconf instance
-        """
-
-        self.__piximages = piximages
-
-    def __getPIXImages(self):
-        """ return the sysconf instance
-        """
-
-        return self.__piximages
-
-    piximages = property(__getPIXImages, __setPIXImages, doc = 'PIX images dictionnary')
 
     def __setJunOSImages(self, junosimages):
         """ register the sysconf instance
@@ -617,19 +601,6 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/options", o.options)
             c.set(basekey + "/kqemu", o.kqemu)
             c.set(basekey + "/kvm", o.kvm)
-
-        # PIX images
-        for (key, o) in self.__piximages.iteritems():
-            basekey = "PIX.images/" + str(o.id)
-            c.set(basekey + "/name", o.name)
-            c.set(basekey + "/filename", o.filename)
-            c.set(basekey + "/memory", o.memory)
-            c.set(basekey + "/nic_nb", o.nic_nb)
-            c.set(basekey + "/nic", o.nic)
-            c.set(basekey + "/options", o.options)
-            c.set(basekey + "/kqemu", o.kqemu)
-            c.set(basekey + "/key", o.key)
-            c.set(basekey + "/serial", o.serial)
 
         # JunOS images
         for (key, o) in self.__junosimages.iteritems():

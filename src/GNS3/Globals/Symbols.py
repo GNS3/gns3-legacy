@@ -31,129 +31,122 @@ from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ATMBR import ATMBR
-from GNS3.Node.AnyEmuDevice import FW, ASA, JunOS, IDS, QemuDevice
+from GNS3.Node.AnyEmuDevice import ASA, JunOS, IDS, QemuDevice
 
 SYMBOL_TYPES = {
-                IOSRouter1700: 'Router c1700', 
+                IOSRouter1700: 'Router c1700',
                 IOSRouter2600: 'Router c2600',
                 IOSRouter2691: 'Router c2691',
                 IOSRouter3600: 'Router c3600',
                 IOSRouter3700: 'Router c3700',
                 IOSRouter7200: 'Router c7200',
-                FW: 'PIX firewall', 
                 ASA: 'ASA firewall',
                 JunOS: 'Juniper router',
                 IDS: 'IDS',
                 ETHSW: 'Ethernet switch',
                 ATMBR: 'ATM bridge',
-                ATMSW: 'ATM switch', 
+                ATMSW: 'ATM switch',
                 FRSW: 'Frame Relay switch',
                 QemuDevice: 'Qemu host',
-                Cloud: 'Cloud', 
-                DecorativeNode: 'Decorative node', 
+                Cloud: 'Cloud',
+                DecorativeNode: 'Decorative node',
                 }
 
 SYMBOLS = [
 
     {'name': "Router c1700", 'object': IOSRouter1700,
     'normal_svg_file': ":/symbols/router.normal.svg",
-    'select_svg_file': ":/symbols/router.selected.svg", 
+    'select_svg_file': ":/symbols/router.selected.svg",
     'translated': True,
     },
 
     {'name': "Router c2600", 'object': IOSRouter2600,
     'normal_svg_file': ":/symbols/router.normal.svg",
-    'select_svg_file': ":/symbols/router.selected.svg", 
+    'select_svg_file': ":/symbols/router.selected.svg",
     'translated': True,
     },
 
     {'name': "Router c2691", 'object': IOSRouter2691,
     'normal_svg_file': ":/symbols/router.normal.svg",
-    'select_svg_file': ":/symbols/router.selected.svg", 
+    'select_svg_file': ":/symbols/router.selected.svg",
     'translated': True,
     },
 
     {'name': "Router c3600", 'object': IOSRouter3600,
     'normal_svg_file': ":/symbols/router.normal.svg",
-    'select_svg_file': ":/symbols/router.selected.svg", 
+    'select_svg_file': ":/symbols/router.selected.svg",
     'translated': True,
     },
 
     {'name': "Router c3700", 'object': IOSRouter3700,
     'normal_svg_file': ":/symbols/router.normal.svg",
-    'select_svg_file': ":/symbols/router.selected.svg", 
+    'select_svg_file': ":/symbols/router.selected.svg",
     'translated': True,
     },
 
     {'name': "Router c7200", 'object': IOSRouter7200,
     'normal_svg_file': ":/symbols/router.normal.svg",
-    'select_svg_file': ":/symbols/router.selected.svg", 
-    'translated': True,
-    },
-
-    {'name': "PIX firewall", 'object': FW,
-    'normal_svg_file': ":/symbols/PIX_firewall.normal.svg",
-    'select_svg_file': ":/symbols/PIX_firewall.selected.svg", 
+    'select_svg_file': ":/symbols/router.selected.svg",
     'translated': True,
     },
 
     {'name': "ASA firewall", 'object': ASA,
     'normal_svg_file': ":/symbols/PIX_firewall.normal.svg",
-    'select_svg_file': ":/symbols/PIX_firewall.selected.svg", 
+    'select_svg_file': ":/symbols/PIX_firewall.selected.svg",
     'translated': True,
     },
 
     {'name': "Juniper router", 'object': JunOS,
     'normal_svg_file': ":/symbols/router.normal.svg",
-    'select_svg_file': ":/symbols/router.selected.svg", 
+    'select_svg_file': ":/symbols/router.selected.svg",
     'translated': True,
     },
 
     {'name': "Ethernet switch", 'object': ETHSW,
     'normal_svg_file': ":/symbols/ethernet_switch.normal.svg",
-    'select_svg_file': ":/symbols/ethernet_switch.selected.svg", 
+    'select_svg_file': ":/symbols/ethernet_switch.selected.svg",
     'translated': True,
     },
 
     {'name': "ATM bridge", 'object': ATMBR,
     'normal_svg_file': ":/symbols/atm_bridge.normal.svg",
-    'select_svg_file': ":/symbols/atm_bridge.selected.svg", 
+    'select_svg_file': ":/symbols/atm_bridge.selected.svg",
     'translated': True,
     },
 
     {'name': "ATM switch", 'object': ATMSW,
     'normal_svg_file': ":/symbols/atm_switch.normal.svg",
     'select_svg_file': ":/symbols/atm_switch.selected.svg",
-    'translated': True, 
+    'translated': True,
     },
 
     {'name': "Frame Relay switch", 'object': FRSW,
     'normal_svg_file': ":/symbols/frame_relay_switch.normal.svg",
-    'select_svg_file': ":/symbols/frame_relay_switch.selected.svg", 
+    'select_svg_file': ":/symbols/frame_relay_switch.selected.svg",
     'translated': True,
     },
-    
+
     {'name': "EtherSwitch router", 'object': IOSRouter3700,
     'normal_svg_file': ":/symbols/multilayer_switch.normal.svg",
-    'select_svg_file': ":/symbols/multilayer_switch.selected.svg", 
+    'select_svg_file': ":/symbols/multilayer_switch.selected.svg",
     'translated': True,
     },
 
     {'name': "IDS", 'object': IDS,
     'normal_svg_file': ":/symbols/ids.normal.svg",
-    'select_svg_file': ":/symbols/ids.selected.svg", 
+    'select_svg_file': ":/symbols/ids.selected.svg",
     'translated': True,
     },
-    
+
     {'name': "Qemu host", 'object': QemuDevice,
     'normal_svg_file': ":/symbols/computer.normal.svg",
-    'select_svg_file': ":/symbols/computer.selected.svg", 
+    'select_svg_file': ":/symbols/computer.selected.svg",
     'translated': True,
     },
 
     {'name': "Cloud", 'object': Cloud,
     'normal_svg_file': ":/symbols/cloud.normal.svg",
-    'select_svg_file': ":/symbols/cloud.selected.svg", 
+    'select_svg_file': ":/symbols/cloud.selected.svg",
     'translated': True,
     },
 ]

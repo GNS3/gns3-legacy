@@ -22,11 +22,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 #
-# !!!
-# !!! PLEASE NOTE: THIS LICENSE DOES NOT APPLY TO THE BINARIES ATTACHED TO
-# !!! THIS SCRIPT IN UUENCODED FORM. THEY ARE THE EFFORT OF mmm123 ON
-# !!! http://7200emu.hacki.at/.
-# !!!
 #
 
 
@@ -44,7 +39,6 @@ import threading
 import SocketServer
 import time
 import random
-import pemubin
 
 
 __author__ = 'Thomas Pani and Jeremy Grossmann'
@@ -61,13 +55,6 @@ if os.environ.has_key("TEMP"):
     WORKDIR = unicode(os.environ["TEMP"], errors='replace')
 elif os.environ.has_key("TMP"):
     WORKDIR = unicode(os.environ["TMP"], errors='replace')
-
-PEMU_DIR = os.getcwd()
-if platform.system() == 'Windows':
-    PEMU_DIR = os.path.join(PEMU_DIR, 'pemu_public_win_2008-03-03')
-else:
-    PEMU_DIR = os.path.join(PEMU_DIR, 'pemu_public_bin2008-03-04')
-
 
 class UDPConnection:
     def __init__(self, sport, daddr, dport):
@@ -204,38 +191,6 @@ class xEMUInstance(object):
             return ['-serial', 'telnet:' + IP + ':%s,server,nowait' % self.console]
         else:
             return []
-
-class PEMUInstance(xEMUInstance):
-    def __init__(self, name):
-        super(PEMUInstance, self).__init__(name)
-        if platform.system() == 'Windows':
-            self.bin = 'pemu.exe'
-        else:
-            self.bin = 'pemu'
-        self.serial = '0x12345678'
-        self.key = '0x00000000,0x00000000,0x00000000,0x00000000'
-        self.valid_attr_names += ['serial', 'key']
-
-    def _build_command(self):
-        "Builds the command as a list of shell arguments."
-        command = [os.path.join(PEMU_DIR, self.bin)]
-        command.extend(self._net_options())
-        command.extend(['-m', str(self.ram), 'FLASH'])
-        command.extend(self._ser_options())
-        return command
-
-    def _write_config(self):
-        f = open(os.path.join(self.workdir, 'pemu.ini'), 'w')
-        f.writelines(''.join(['%s=%s\n' % (attr, getattr(self, attr))
-            for attr in ('serial', 'key', 'image')]))
-        f.close()
-
-    def start(self):
-        self._write_config()
-        return super(PEMUInstance, self).start()
-
-class PIXInstance(PEMUInstance):
-    pass
 
 class QEMUInstance(xEMUInstance):
 
@@ -533,7 +488,6 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
 
     qemu_classes = {
         'qemu': QemuDeviceInstance,
-        'pix': PIXInstance,
         'asa': ASAInstance,
         'junos': JunOSInstance,
         'ids': IDSInstance,
@@ -930,13 +884,6 @@ def main():
     if options.wd:
         global WORKDIR
         WORKDIR = options.wd
-
-    if not os.path.exists(PEMU_DIR):
-        print "Unpacking pemu binary."
-        f = cStringIO.StringIO(base64.decodestring(pemubin.ascii))
-        tar = tarfile.open('dummy', 'r:gz', f)
-        for member in tar.getmembers():
-            tar.extract(member)
 
     server = QemuWrapperServer((host, port), QemuWrapperRequestHandler)
 

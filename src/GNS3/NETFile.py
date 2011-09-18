@@ -49,7 +49,7 @@ frsw_hostname_re = re.compile(r"""^FR([0-9]+)""")
 atmsw_hostname_re = re.compile(r"""^ATM([0-9]+)""")
 atmbr_hostname_re = re.compile(r"""^BR([0-9]+)""")
 cloud_hostname_re = re.compile(r"""^C([0-9]+)""")
-emu_hostname_re = re.compile(r"""^[FW|JUNOS|ASA|IDS|QEMU]([0-9]+)""")
+emu_hostname_re = re.compile(r"""^[JUNOS|ASA|IDS|QEMU]([0-9]+)""")
 decorative_hostname_re = re.compile(r"""^N([0-9]+)""")
 
 class NETFile(object):
@@ -119,7 +119,7 @@ class NETFile(object):
                     self.add_in_connection_list((device.name, 'e' + str(port), remote_device.name, remote_adapter + str(remote_port)), connection_list)
                 elif isinstance(remote_device, lib.ETHSW):
                     connection_list.append((device.name, 'e' + str(port), remote_device.name, str(remote_port)))
-                    
+
     def populate_connection_list_for_emulated_switch(self, device, connection_list):
         """ Add emulated switch connections in connection_list
         """
@@ -133,7 +133,7 @@ class NETFile(object):
                     (remote_device, remote_adapter, remote_port) = lib.get_reverse_udp_nio(nio_port)
                     if isinstance(remote_device, lib.ETHSW):
                         self.add_in_connection_list((device.name, str(port), remote_device.name, str(remote_port)), connection_list)
-        
+
         if isinstance(device, lib.FRSW):
             keys = device.pvcs.keys()
             for (port, dlci) in keys:
@@ -152,7 +152,7 @@ class NETFile(object):
                     (remote_device, remote_adapter, remote_port) = lib.get_reverse_udp_nio(nio_port)
                     if isinstance(remote_device, lib.ATMSW) or isinstance(remote_device, lib.ATMBR):
                         self.add_in_connection_list((device.name, str(port), remote_device.name, str(remote_port)), connection_list)
-                        
+
         if isinstance(device, lib.ATMBR):
             keys = device.mapping.keys()
             for port in keys:
@@ -160,7 +160,7 @@ class NETFile(object):
                 if nio_port:
                     (remote_device, remote_adapter, remote_port) = lib.get_reverse_udp_nio(nio_port)
                     if isinstance(remote_device, lib.ATMSW) or isinstance(remote_device, lib.ATMBR):
-                        self.add_in_connection_list((device.name, str(port), remote_device.name, str(remote_port)), connection_list)       
+                        self.add_in_connection_list((device.name, str(port), remote_device.name, str(remote_port)), connection_list)
 
     def create_node(self, device, default_symbol_name, running_config_name):
         """ Create a new node
@@ -212,8 +212,8 @@ class NETFile(object):
             if not symbol_name or not globals.GApp.scene.renders.has_key(symbol_name):
                 symbol_name = default_symbol_name
                 default_symbol = True
-    
-    
+
+
             for item in SYMBOLS:
                 if item['name'] == symbol_name:
                     renders = globals.GApp.scene.renders[symbol_name]
@@ -222,11 +222,11 @@ class NETFile(object):
                     if not default_symbol:
                         node.default_symbol = False
                     break
-        
-        if not node:    
+
+        if not node:
             return None
-             
-        node.set_hostname(device.name)       
+
+        node.set_hostname(device.name)
         if x == None:
             x = random.uniform(-200, 200)
         if y == None:
@@ -300,7 +300,7 @@ class NETFile(object):
         node.set_dynagen_device(device)
         device.dynamips.configchange = True
         return True
-    
+
     def add_connection(self, connection):
         """ Add a connection
         """
@@ -352,7 +352,7 @@ class NETFile(object):
         globals.GApp.topology.nodes[cloud.id] = cloud
         if globals.GApp.workspace.flg_showHostname == True:
             cloud.showHostname()
-            
+
         globals.GApp.topology.addItem(cloud)
         return cloud
 
@@ -449,13 +449,13 @@ class NETFile(object):
                         note_object.rotate(note_object.rotation)
                     if gns3data[section].has_key('color'):
                         note_object.setDefaultTextColor(QtGui.QColor(gns3data[section]['color'][1:-1]))
-                        
+
                     # this is an interface label, save it in a dict to be used later ...
                     if gns3data[section].has_key('interface'):
                         globals.interfaceLabels[gns3data[section]['interface']] = note_object
                     else:
                         globals.GApp.topology.addItem(note_object)
-                    
+
                 if devtype.lower() == 'shape':
                     if gns3data[section]['type'] == 'rectangle':
                         size = QtCore.QSizeF(float(gns3data[section]['width']), float(gns3data[section]['height']))
@@ -465,7 +465,7 @@ class NETFile(object):
                         size = QtCore.QSizeF(float(gns3data[section]['width']), float(gns3data[section]['height']))
                         pos = QtCore.QPointF(float(gns3data[section]['x']), float(gns3data[section]['y']))
                         shape_object = Ellipse(pos, size)
-    
+
                     if gns3data[section].has_key('z'):
                         shape_object.setZValue(float(gns3data[section]['z']))
                     if gns3data[section].has_key('rotate'):
@@ -483,10 +483,10 @@ class NETFile(object):
                         pen.setStyle(QtCore.Qt.PenStyle(int(gns3data[section]['border_style'])))
                     shape_object.setPen(pen)
                     globals.GApp.topology.addItem(shape_object)
-                    
+
                 if devtype.lower() == 'pixmap':
                     pixmap_path = unicode(gns3data[section]['path'])
-                    
+
                     # Check if this is a relative pixmap path and convert to an absolute path if necessary
                     abspath = os.path.join(os.path.dirname(self.dynagen.filename), pixmap_path)
                     if os.path.exists(abspath):
@@ -544,14 +544,14 @@ class NETFile(object):
             init_cloud_id(max_cloud_id + 1)
         if max_decorative_id != -1:
             init_decoration_id(max_decorative_id + 1)
-            
+
         if len(globals.interfaceLabels):
             globals.GApp.workspace.flg_showOnlySavedInterfaceNames = True
 
     def apply_decorative_node_connections(self):
         """ Create GUI connections for decorative nodes
         """
-        
+
         for (connection, local_device) in self.decorative_node_connections.iteritems():
             (remote_device, remote_interface, local_interface) = connection
             if isinstance(remote_device, IOSRouter):
@@ -623,7 +623,7 @@ class NETFile(object):
             if isinstance(device,  lib.Bridge):
                 translate("NETFile", "Warning: GNS3 doesn't yet support lan statements, ignore it")
                 continue
-        
+
             if isinstance(device, lib.Router):
                 platform = device.model
                 # dynamips lib doesn't return c3700, force platform
@@ -827,13 +827,13 @@ class NETFile(object):
             self.add_connection(connection)
 
         self.apply_decorative_node_connections()
-        
+
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
         globals.GApp.dynagen.update_running_config()
         globals.GApp.workspace.projectFile = path
         globals.GApp.workspace.setWindowTitle("GNS3 - " + globals.GApp.workspace.projectFile)
         debug("Running config after importing: " + str(self.dynagen.running_config))
-        
+
         for node in globals.GApp.topology.nodes.itervalues():
             node.updateToolTips()
 
@@ -864,7 +864,7 @@ class NETFile(object):
             device.cnfg = file_path
             self.dynagen.running_config[device.dynamips.host + ':' + str(device.dynamips.port)]['ROUTER ' + device.name]['cnfg'] = file_path
         except IOError, e:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow,
                                       unicode(device.name) + ': ' + translate("NETFile", "IOError"), unicode(translate("NETFile", "%s: IO Error: %s")) % (file_path, unicode(e)))
             return
 
@@ -931,15 +931,15 @@ class NETFile(object):
                 if not self.dynagen.running_config.has_key('GNS3-DATA'):
                     self.dynagen.running_config['GNS3-DATA'] = {}
                 self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] = {}
-                config = self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] 
+                config = self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)]
 
                 config['text'] = unicode(item.toPlainText()).replace("\n", "\\n")
                 config['x'] = item.x()
                 config['y'] = item.y()
-                
+
                 if item.deviceName and item.deviceIf:
                     config['interface'] = item.deviceName + ' ' + item.deviceIf
-                    
+
                 if item.font() != QtGui.QFont("TypeWriter", 10, QtGui.QFont.Bold):
                     config['font'] = '"' + str(item.font().toString()) + '"'
                 if item.rotation != 0:
@@ -951,13 +951,13 @@ class NETFile(object):
                 if zvalue != 1:
                     config['z'] = zvalue
                 note_nb += 1
-                
+
             # record shape items
             elif isinstance(item, AbstractShapeItem):
                 if not self.dynagen.running_config.has_key('GNS3-DATA'):
                     self.dynagen.running_config['GNS3-DATA'] = {}
                 self.dynagen.running_config['GNS3-DATA']['SHAPE ' + str(shape_nb)] = {}
-                config = self.dynagen.running_config['GNS3-DATA']['SHAPE ' + str(shape_nb)] 
+                config = self.dynagen.running_config['GNS3-DATA']['SHAPE ' + str(shape_nb)]
                 if isinstance(item, QtGui.QGraphicsRectItem):
                     config['type'] = 'rectangle'
                 else:
@@ -1006,7 +1006,7 @@ class NETFile(object):
                 if not self.dynagen.running_config.has_key('GNS3-DATA'):
                     self.dynagen.running_config['GNS3-DATA'] = {}
                 self.dynagen.running_config['GNS3-DATA']['NODE ' + item.hostname] = {}
-                config = self.dynagen.running_config['GNS3-DATA']['NODE ' + item.hostname] 
+                config = self.dynagen.running_config['GNS3-DATA']['NODE ' + item.hostname]
                 config['symbol'] = item.type
                 config['x'] = item.x()
                 config['y'] = item.y()
@@ -1031,7 +1031,7 @@ class NETFile(object):
                     continue
                 if not item.default_symbol:
                     self.dynagen.running_config[item.d][item.get_running_config_name()]['symbol'] = item.type
-                try:          
+                try:
                     self.dynagen.running_config[item.d][item.get_running_config_name()]['x'] = item.x()
                     self.dynagen.running_config[item.d][item.get_running_config_name()]['y'] = item.y()
                     zvalue = item.zValue()
@@ -1080,18 +1080,18 @@ class NETFile(object):
                 autostart = True
                 break
         self.dynagen.running_config['autostart'] = autostart
-        
+
         if globals.GApp.systconf['general'].relative_paths:
             # Change absolute paths to relative paths if same base as the config file
             for hypervisor in self.dynagen.dynamips.values():
                 if isinstance(hypervisor, qlib.Qemu):
-                    h = 'qemu ' + hypervisor.host + ":" + str(hypervisor.port)          
+                    h = 'qemu ' + hypervisor.host + ":" + str(hypervisor.port)
                 else:
                     h = hypervisor.host + ":" + str(hypervisor.port)
                 config = self.dynagen.running_config[h]
                 if config.has_key('workingdir'):
                     config['workingdir'] = self.convert_to_relpath(config['workingdir'], path)
-    
+
                 for model in dynagen_namespace.DEVICETUPLE:
                     if config.has_key(model):
                         # ASA has no image
@@ -1104,20 +1104,20 @@ class NETFile(object):
                             config[model]['image2'] = self.convert_to_relpath(config[model]['image2'], path)
                         else:
                             config[model]['image'] = self.convert_to_relpath(config[model]['image'], path)
-         
+
                 for subsection in config.sections:
                     device = config[subsection]
                     if device.has_key('cnfg') and device['cnfg']:
                         device['cnfg'] = self.convert_to_relpath(device['cnfg'], path)
-        
+
         self.dynagen.running_config.filename = path
         try:
-            self.dynagen.running_config.write()  
+            self.dynagen.running_config.write()
         except IOError, e:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 
-                                      unicode(device.name) + ': ' + translate("NETFile", "IOError"), unicode(translate("NETFile", "%s: IO Error: %s")) % (path, unicode(e)))        
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow,
+                                      unicode(device.name) + ': ' + translate("NETFile", "IOError"), unicode(translate("NETFile", "%s: IO Error: %s")) % (path, unicode(e)))
         self.dynagen.running_config.filename = None
-        
+
     def convert_to_relpath(self, path, config_path):
         """ Returns a relative path when the config path and another path share a common base directory
         """

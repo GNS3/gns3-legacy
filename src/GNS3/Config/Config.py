@@ -21,7 +21,7 @@
 
 import os
 import GNS3.Globals as globals
-from GNS3.Config.Objects import iosImageConf, hypervisorConf, libraryConf, qemuImageConf, pixImageConf, junosImageConf, asaImageConf, idsImageConf
+from GNS3.Config.Objects import iosImageConf, hypervisorConf, libraryConf, qemuImageConf, junosImageConf, asaImageConf, idsImageConf
 from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from GNS3.Node.DecorativeNode import DecorativeNode
 from PyQt4 import QtCore
@@ -260,37 +260,6 @@ class GNS_Conf(object):
 
             if conf.id >= globals.GApp.qemuimages_ids:
                 globals.GApp.qemuimages_ids = conf.id + 1
-
-    def PIX_images(self):
-        """ Load PIX images settings from config file
-        """
-
-        # Loading PIX image conf
-        basegroup = "PIX.images"
-        c = ConfDB()
-        c.beginGroup(basegroup)
-        childGroups = c.childGroups()
-        c.endGroup()
-
-        for id in childGroups:
-
-            cgroup = basegroup + '/' + id
-
-            conf = pixImageConf()
-            conf.id = int(id)
-            conf.name = c.get(cgroup + "/name", unicode(''))
-            conf.filename = c.get(cgroup + "/filename", unicode(''))
-            conf.memory = int(c.get(cgroup + "/memory", 128))
-            conf.nic_nb = int(c.get(cgroup + "/nic_nb", 6))
-            conf.nic = str(c.get(cgroup + "/nic", 'e1000'))
-            conf.options = str(c.get(cgroup + "/options", ''))
-            conf.kqemu = c.value(cgroup + "/kqemu", QtCore.QVariant(False)).toBool()
-            conf.key = str(c.get(cgroup + "/key", ''))
-            conf.serial = str(c.get(cgroup + "/serial", ''))
-            globals.GApp.piximages[conf.name] = conf
-
-            if conf.id >= globals.GApp.piximages_ids:
-                globals.GApp.piximages_ids = conf.id + 1
 
     def JUNOS_images(self):
         """ Load JunOS images settings from config file
