@@ -433,7 +433,7 @@ class Application(QApplication, Singleton):
         confo = self.systconf['capture']
         confo.workdir = ConfDB().get('Capture/working_directory', unicode(''))
         confo.cap_cmd = ConfDB().get('Capture/capture_reader_cmd', unicode(''))
-        confo.auto_start = ConfDB().value('Capture/auto_start_cmd', QVariant(False)).toBool()
+        confo.auto_start = ConfDB().value('Capture/auto_start_cmd', QVariant(True)).toBool()
 
         # replace ~user and $HOME by home directory
         if os.environ.has_key("HOME"):
