@@ -19,6 +19,7 @@
 # code@gns3.net
 #
 
+
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
@@ -31,6 +32,7 @@ from GNS3.Node.IOSRouter3700 import IOSRouter3700
 from GNS3.Node.IOSRouter7200 import IOSRouter7200
 from GNS3.Node.DecorativeNode import DecorativeNode
 from GNS3.Node.AnyEmuDevice import FW, ASA, JunOS, IDS, QemuDevice
+from GNS3.Node.AnyVBoxEmuDevice import VBoxDevice
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
@@ -121,9 +123,9 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             "Decorative Nodes":
                 [translate("NodeConfigurator", "Nodes"), ":/icons/node_conception.svg",
                  "Page_DecorativeNode", None, None],
-            "FW":
+            "PIX":
                 [translate("NodeConfigurator", "PIX firewalls"), ":/symbols/PIX_firewall.normal.svg",
-                 "Page_FW", None, None],
+                 "Page_PIX", None, None],
             "ASA":
                  [translate("NodeConfigurator", "ASA firewalls"), ":/symbols/PIX_firewall.normal.svg",
                   "Page_ASA", None, None],
@@ -134,8 +136,11 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                   [translate("NodeConfigurator", "Cisco IDS"), ":/symbols/ids.normal.svg",
                    "Page_IDS", None, None],
             "Qemu":
-                [translate("NodeConfigurator", "Qemu hosts"), ":/symbols/computer.normal.svg",
+                [translate("NodeConfigurator", "Qemu guests"), ":/symbols/computer.normal.svg",
                  "Page_Qemu", None, None],
+            "VBox":
+                [translate("NodeConfigurator", "VirtualBox guests"), ":/symbols/computer.normal.svg",
+                 "Page_VirtualBox", None, None],
             "FRSW":
                 [translate("NodeConfigurator", "Frame Relay switches"), ":/symbols/frame_relay_switch.normal.svg",
                  "Page_FRSW", None, None],
@@ -161,11 +166,12 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                                      IOSRouter3700: "Routers (3700)",
                                      IOSRouter7200: "Routers (7200)",
                                      DecorativeNode: "Decorative Nodes",
-                                     FW: "FW",
+                                     FW: "PIX",
                                      ASA: "ASA",
                                      JunOS: "JunOS",
                                      IDS: "IDS",
                                      QemuDevice: "Qemu",
+                                     VBoxDevice: "VBox",
                                      FRSW: "FRSW",
                                      ETHSW: "ETHSW",
                                      ATMSW: "ATMSW",

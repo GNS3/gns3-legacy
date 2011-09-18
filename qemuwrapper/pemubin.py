@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4:
 # $Id: pemubin.py 18 2008-03-04 12:59:29Z tpani $
 #
 # Copyright (c) 2007-2008 Thomas Pani
