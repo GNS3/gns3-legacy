@@ -349,7 +349,7 @@ class Application(QApplication, Singleton):
         # Qemu config
         self.systconf['qemu'] = systemQemuConf()
         confo = self.systconf['qemu']
-        confo.qemuwrapper_path = ConfDB().get('Qemu/qemuwrapper_path', unicode(''))
+        confo.qemuwrapper_path = ConfDB().get('Qemu/qemuwrapper_path', unicode('/usr/local/libexec/gns3/qemuwrapper.py'))
         confo.qemuwrapper_workdir = ConfDB().get('Qemu/qemuwrapper_working_directory', unicode(''))
         confo.qemu_path = ConfDB().get('Qemu/qemu_path', unicode('qemu'))
         confo.qemu_img_path = ConfDB().get('Qemu/qemu_img_path', unicode('qemu-img'))
