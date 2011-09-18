@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4:
 #
 # Copyright (c) 2007-2010 Thomas Pani & Jeremy Grossmann
 #
@@ -57,10 +59,8 @@ IP = ""
 QEMU_INSTANCES = {}
 
 WORKDIR = os.getcwd()
-if os.environ.has_key("TEMP"):
-    WORKDIR = unicode(os.environ["TEMP"], errors='replace')
-elif os.environ.has_key("TMP"):
-    WORKDIR = unicode(os.environ["TMP"], errors='replace')
+if os.environ.has_key("QEMUWRAPPER_WDIR"):
+    WORKDIR = unicode(os.environ["QEMUWRAPPER_WDIR"], errors='replace')
 
 PEMU_DIR = os.getcwd()
 if platform.system() == 'Windows':
@@ -205,9 +205,9 @@ class xEMUInstance(object):
         else:
             return []
 
-class PEMUInstance(xEMUInstance):
+class PIXInstance(xEMUInstance):
     def __init__(self, name):
-        super(PEMUInstance, self).__init__(name)
+        super(PIXInstance, self).__init__(name)
         if platform.system() == 'Windows':
             self.bin = 'pemu.exe'
         else:
@@ -232,10 +232,7 @@ class PEMUInstance(xEMUInstance):
 
     def start(self):
         self._write_config()
-        return super(PEMUInstance, self).start()
-
-class PIXInstance(PEMUInstance):
-    pass
+        return super(PIXInstance, self).start()
 
 class QEMUInstance(xEMUInstance):
 
@@ -934,7 +931,7 @@ def main():
     if not os.path.exists(PEMU_DIR):
         print "Unpacking pemu binary."
         f = cStringIO.StringIO(base64.decodestring(pemubin.ascii))
-        tar = tarfile.open('dummy', 'r:gz', f)
+        tar = tarfile.open(None, 'r:gz', f)
         for member in tar.getmembers():
             tar.extract(member)
 
