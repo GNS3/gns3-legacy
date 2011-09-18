@@ -171,7 +171,7 @@ else:
                 'GNS3.Ui.ConfigurationPages',
                 'GNS3.Langs'],
             data_files = [
-                    ('/usr/local/libexec/gns3/', ['qemuwrapper/qemuwrapper.py']),
+                    ('/usr/local/libexec/gns3/', ['qemuwrapper/qemuwrapper.py', 'qemuwrapper/pemubin.py']),
                     ('/usr/local/share/examples/gns3/', ['baseconfig.txt'])
             ]
     )
