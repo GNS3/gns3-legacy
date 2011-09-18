@@ -176,7 +176,7 @@ class Application(QApplication, Singleton):
         return self.__iosimages
 
     iosimages = property(__getIOSImages, __setIOSImages, doc = 'IOS images dictionnary')
-    
+
     def __setQemuImages(self, qemuimages):
         """ register the sysconf instance
         """
@@ -218,7 +218,7 @@ class Application(QApplication, Singleton):
         return self.__piximages
 
     piximages = property(__getPIXImages, __setPIXImages, doc = 'PIX images dictionnary')
-    
+
     def __setJunOSImages(self, junosimages):
         """ register the sysconf instance
         """
@@ -232,7 +232,7 @@ class Application(QApplication, Singleton):
         return self.__junosimages
 
     junosimages = property(__getJunOSImages, __setJunOSImages, doc = 'JunOS images dictionnary')
-    
+
     def __setASAImages(self, asaimages):
         """ register the sysconf instance
         """
@@ -246,7 +246,7 @@ class Application(QApplication, Singleton):
         return self.__asaimages
 
     asaimages = property(__getASAImages, __setASAImages, doc = 'ASA images dictionnary')
-    
+
     def __setIDSImages(self, idsimages):
         """ register the sysconf instance
         """
@@ -260,7 +260,7 @@ class Application(QApplication, Singleton):
         return self.__idsimages
 
     idsimages = property(__getIDSImages, __setIDSImages, doc = 'IDS images dictionnary')
-    
+
     def __setLibraries(self, libraries):
         """ register the sysconf instance
         """
@@ -352,7 +352,7 @@ class Application(QApplication, Singleton):
 
         self.systconf['dynamips'] = systemDynamipsConf()
         confo = self.systconf['dynamips']
-        confo.path = ConfDB().get('Dynamips/hypervisor_path', unicode(''))
+        confo.path = ConfDB().get('Dynamips/hypervisor_path', unicode('dynamips'))
         confo.port = int(ConfDB().get('Dynamips/hypervisor_port', 7200))
         confo.baseUDP = int(ConfDB().get('Dynamips/hypervisor_baseUDP', 10000))
         confo.baseConsole = int(ConfDB().get('Dynamips/hypervisor_baseConsole', 2000))
@@ -394,7 +394,7 @@ class Application(QApplication, Singleton):
         confo.qemuwrapper_port = int(ConfDB().get('Qemu/qemuwrapper_port', 10525))
         confo.qemuwrapper_baseUDP = int(ConfDB().get('Qemu/qemuwrapper_baseUDP', 20000))
         confo.qemuwrapper_baseConsole = int(ConfDB().get('Qemu/qemuwrapper_baseConsole', 3000))
-        
+
         # Qemu replace ~user and $HOME by home directory
         if os.environ.has_key("HOME"):
             confo.qemuwrapper_path = confo.qemuwrapper_path.replace('$HOME', os.environ["HOME"])
@@ -402,14 +402,14 @@ class Application(QApplication, Singleton):
 
         confo.qemuwrapper_path = os.path.expanduser(confo.qemuwrapper_path)
         confo.qemuwrapper_workdir = os.path.expanduser(confo.qemuwrapper_workdir)
-        
+
         # VBox config
-        
+
         self.systconf['vbox'] = systemVBoxConf()
         confo = self.systconf['vbox']
         confo.vboxwrapper_path = ConfDB().get('VBox/vboxwrapper_path', unicode(''))
         confo.vboxwrapper_workdir = ConfDB().get('VBox/vboxwrapper_working_directory', unicode(''))
-        confo.external_hosts = ConfDB().get('VBox/external_hosts', unicode('localhost:11525')).split(',')        
+        confo.external_hosts = ConfDB().get('VBox/external_hosts', unicode('localhost:11525')).split(',')
         confo.enable_VBoxWrapperAdvOptions = ConfDB().value("VBox/enable_VBoxWrapperAdvOptions", QVariant(False)).toBool()
         confo.enable_VBoxAdvOptions = ConfDB().value("VBox/enable_VBoxAdvOptions", QVariant(False)).toBool()
         confo.enable_GuestControl = ConfDB().value("VBox/enable_GuestControl", QVariant(False)).toBool()
@@ -434,7 +434,7 @@ class Application(QApplication, Singleton):
         confo.workdir = ConfDB().get('Capture/working_directory', unicode(''))
         confo.cap_cmd = ConfDB().get('Capture/capture_reader_cmd', unicode(''))
         confo.auto_start = ConfDB().value('Capture/auto_start_cmd', QVariant(False)).toBool()
-        
+
         # replace ~user and $HOME by home directory
         if os.environ.has_key("HOME"):
             confo.cap_cmd = confo.cap_cmd.replace('$HOME', os.environ["HOME"])
@@ -460,7 +460,7 @@ class Application(QApplication, Singleton):
         confo.draw_selected_rectangle = ConfDB().value("GNS3/gui_draw_selected_rectangle", QVariant(False)).toBool()
         confo.scene_width = int(ConfDB().get('GNS3/scene_width', 2000))
         confo.scene_height = int(ConfDB().get('GNS3/scene_height', 1000))
-        
+
         # replace ~user and $HOME by home directory
         if os.environ.has_key("HOME"):
             confo.term_cmd = confo.term_cmd.replace('$HOME', os.environ["HOME"])
@@ -483,7 +483,7 @@ class Application(QApplication, Singleton):
 
         # VBoxManager
         self.__VBoxManager = VBoxManager()
-        
+
         GNS_Conf().VBOX_images()
         GNS_Conf().IOS_images()
         GNS_Conf().IOS_hypervisors()
@@ -519,7 +519,7 @@ class Application(QApplication, Singleton):
             dialog.show()
             dialog.raise_()
             dialog.activateWindow()
-        
+
         if file:
             self.mainWindow.load_netfile(file)
         elif confo.project_startup and os.access(configFile, os.F_OK):
@@ -586,7 +586,7 @@ class Application(QApplication, Singleton):
         c.set('Dynamips/hypervisor_manager_import', confo.import_use_HypervisorManager)
         c.set('Dynamips/allocate_hypervisor_per_IOS', confo.allocateHypervisorPerIOS)
         c.set('Dynamips/hypervisor_manager_binding', confo.HypervisorManager_binding)
-        
+
         # Qemu config
         confo = self.systconf['qemu']
         c.set('Qemu/qemuwrapper_path', confo.qemuwrapper_path)
@@ -645,30 +645,30 @@ class Application(QApplication, Singleton):
         c.beginGroup("PIX.images")
         c.remove("")
         c.endGroup()
-        
+
         c.beginGroup("JUNOS.images")
         c.remove("")
         c.endGroup()
-        
+
         c.beginGroup("ASA.images")
         c.remove("")
         c.endGroup()
-        
+
         c.beginGroup("IDS.images")
         c.remove("")
         c.endGroup()
-        
+
         # Clear Symbol.libraries group
         c.beginGroup("Symbol.libraries")
         c.remove("")
         c.endGroup()
-        
+
         # Clear Symbol.libraries group
         c.beginGroup("Symbol.settings")
         c.remove("")
         c.endGroup()
 
-        # IOS Images 
+        # IOS Images
         for (key, o) in self.__iosimages.iteritems():
             basekey = "IOS.images/" + str(o.id)
             c.set(basekey + "/filename", o.filename)
@@ -725,7 +725,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/options", o.options)
             c.set(basekey + "/key", o.key)
             c.set(basekey + "/serial", o.serial)
-            
+
         # JunOS images
         for (key, o) in self.__junosimages.iteritems():
             basekey = "JUNOS.images/" + str(o.id)
@@ -736,7 +736,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/nic", o.nic)
             c.set(basekey + "/options", o.options)
             c.set(basekey + "/kvm", o.kvm)
-            
+
         # ASA images
         for (key, o) in self.__asaimages.iteritems():
             basekey = "ASA.images/" + str(o.id)
@@ -749,7 +749,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/initrd", o.initrd)
             c.set(basekey + "/kernel", o.kernel)
             c.set(basekey + "/kernel_cmdline", o.kernel_cmdline)
-            
+
         # IDS images
         for (key, o) in self.__idsimages.iteritems():
             basekey = "IDS.images/" + str(o.id)
@@ -768,7 +768,7 @@ class Application(QApplication, Singleton):
             basekey = "Symbol.libraries/" + str(id)
             c.set(basekey + "/path", o.path)
             id += 1
-            
+
         # Symbols
         id = 0
         for symbol in SYMBOLS:
