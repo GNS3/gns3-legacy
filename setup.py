@@ -171,5 +171,6 @@ else:
                 'GNS3.Ui.ConfigurationPages',
                 'GNS3.Langs'],
             package_data = { 'GNS3': ['Langs/*.qm', 'Dynagen/configspec'] },
-            data_files = [ ('/usr/local/libexec/gns3/', ['qemuwrapper/qemuwrapper.py'])]
+            data_files = [ ('/usr/local/libexec/gns3/', ['qemuwrapper/qemuwrapper.py']),
+            ('/usr/local/share/examples/gns3/', ['baseconfig.txt'])]
     )
