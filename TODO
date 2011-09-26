@@ -3,7 +3,7 @@ TODO LIST
  * Open .net files from Finder on Mac OS X (http://www.gns3.net/phpBB/topic1817.html)
  * DMG installer for Mac OS X (http://chromasoft.blogspot.com/2010/02/building-dmg-installer-for-mac-simple.html)
  * NIO Multicast support, is this useful? (supported only in dynamips-community version)
- * DONE: VirtualBox integration (patch VirtualBox to support UDP tunnels + create a VBoxWrapper).
+ * VirtualBox integration (patch VirtualBox to support UDP tunnels + create a VBoxWrapper).
  * VNC support for Qemu (-vnc 127.0.0.1:i++) + entry in the contextual memu to start VNC
  * Implement Qemu monitor functions (need to update the Qemu patch)
  * Style options for node labels
@@ -23,22 +23,6 @@ TODO LIST
  	-> It will return the allocated port number. local_addr is an IPv4/IPv6 address (0.0.0.0 on IPv4 and :: on IPv6 to listen on all addresses). local_port_start and local_port_end define a port range (it can be useful if you are behind a firewall).
 	-> On the remote side: nio connect_udp_auto <nio_name> <remote_host> <remote_port>
     -> remote_host being the host where nio create_udp_auto was called, and remote_port the port number returned by it.
-(by Technologov)
- * Real Cisco icons, including the various cards out there (like Cisco Packet Tracer does)
-     Not on topology -- but in Node configuration options.
- * Link Packet loss + delay (like Marionnet does)
- * Built-in Exercises + Labs (like Boson NetSim does)
- * backward-and-forward format compatibility (GNS3 format + dynagen topology format)
-     That is: topology importing fails, when GNS3 topology was made with newer version of software, and imported with older. (like Marionnet does)
-     Should ignore unknown parameters for import with older versions;
-     Should provide default parameters for import with newer versions;
- * Client/Server protocol must become asynchronoous, so ppl won't wait until all VMs actually start (like Marionnet does)
- * Investigate possibility of GuestIP address retrieval from Dynamips Routers by means of SNMP 
-     (+pre-configured SNMP startup-config + management interface)
- * Consider Quagga integration, like "VisualNetKit" does
- * Automatic Network Topology Generator, like "AutoNetkit" does
-     http://bandicoot.maths.adelaide.edu.au/AutoNetKit/AutoNetkit.pdf
-     http://www.eleceng.adelaide.edu.au/personal/sknight/AutoNetkit/AutoNetkit.pdf
 
 Debugging
 
@@ -46,26 +30,3 @@ Debugging
  * Duplicated packets with ETHSW?
  * Test QinQ
  * Removable WICs
-
-GNS3-Related feature-requests in 3rd party products: (by Technologov)
-
- * Wireshark: Wish 5982 - Feature-request: Please support live-capture from saved pcap file
- * IPv6 support for our engines: VirtualBox / Qemu / Dynamips
- * Qemu: Push Qemu UDP patch upstream
- * Qt4: [feature-request] Please add new GUI container element, that shows/hides others, "QIArrowButtonSwitch" (QTBUG-19984)
- * VirtualBox: serial port TCP / Telnet listener (Wish #1851)
- * VirtualBox: Direct Linux Boot (required for ASA guests; Wish #8401)
- * VirtualBox: PEMU key+serial injection (required for PIX guests)
- * VirtualBox: [feature-request] Please support 16 vNICs per VM (Wish #8805)
- * VirtualBox: [feature-request] GuestControl execute must automatically handle extensions, like shell does (Wish #9035)
- * VirtualBox: [feature-request] Guest Additions: Please provide clipboard copy paste for text-mode console VMs (without X.org) (Wish #9291) (jarle's case)
-
-GNS3-Related bugs in 3rd party products: (by Technologov)
-
- * VirtualBox: Guest IP retrieval works incorrectly if you have several IP addresses on the same NIC (bug #9006)
- * VirtualBox: Only first 4 out of 8 ethernet cards work with Windows XP guest (bug #8772)
- * FIXED: VirtualBox: Duplicate MAC addresses on import/export OVF appliance and clone VM (UldisD's case; bug #9074)
- * VirtualBox: Critical bug(!!!): VBoxSVC locks up on Windows XP hosts; reproducible with my vboxtestcase.py
-    (happens on VM stop and on netadp disable.) (VBox bug #9239)
-    This leads to GNS3 lock-ups and crashes.
- * VirtualBox: GuestControl execution from python fails on Windows hosts. (Bug #9295)
