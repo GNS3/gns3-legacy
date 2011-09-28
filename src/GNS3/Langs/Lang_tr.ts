@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="tr" sourcelanguage="">
+<!DOCTYPE TS><TS version="1.1" language="tr">
 <context>
     <name>ASA initrd</name>
     <message>
@@ -943,7 +943,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Config</name>
     <message>
-        <location filename="../Config/Config.py" line="406"/>
+        <location filename="../Config/Config.py" line="375"/>
         <source>Can&apos;t open library: %s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1104,22 +1104,17 @@ Numarayı girin ve uygulaya basın [1-%i] ya da  herhangi bi değişiklik olmama
         <translation>Yarıda bırak</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="247"/>
-        <source>Local PIX image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../DynagenSub.py" line="339"/>
+        <location filename="../DynagenSub.py" line="326"/>
         <source>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="369"/>
+        <location filename="../DynagenSub.py" line="356"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="292"/>
+        <location filename="../DynagenSub.py" line="279"/>
         <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1160,7 +1155,7 @@ Please choose an alternate network interface:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="318"/>
+        <location filename="../DynagenSub.py" line="305"/>
         <source>IOS image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1307,104 +1302,6 @@ Please choose an alternate network interface:</source>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="189"/>
         <source>&amp;Delete</source>
         <translation>&amp;Sil</translation>
-    </message>
-</context>
-<context>
-    <name>FWPage</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="14"/>
-        <source>Firewall configuration</source>
-        <translation>Firewall ayarı</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="20"/>
-        <source>PIX Image:</source>
-        <translation>PIX Imajı:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="49"/>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="69"/>
-        <source> MB</source>
-        <translation> MB</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="189"/>
-        <source>Key:</source>
-        <translation>Anahtar:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="206"/>
-        <source>Serial:</source>
-        <translation>Seri numarası:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="122"/>
-        <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="127"/>
-        <source>i82551</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="132"/>
-        <source>i82557b</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="137"/>
-        <source>i82559er</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="142"/>
-        <source>rtl8139</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="147"/>
-        <source>e1000</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="152"/>
-        <source>pcnet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="157"/>
-        <source>virtio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="165"/>
-        <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="182"/>
-        <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="56"/>
-        <source>RAM:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="85"/>
-        <source>Number of NICs:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="108"/>
-        <source>NIC model:</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1600,7 +1497,7 @@ Please choose an alternate network interface:</source>
 <context>
     <name>IOS image</name>
     <message>
-        <location filename="../DynagenSub.py" line="324"/>
+        <location filename="../DynagenSub.py" line="311"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2768,37 +2665,37 @@ Please choose an alternate network interface:</source>
 <context>
     <name>NodeConfigurator</name>
     <message>
-        <location filename="../NodeConfigurator.py" line="140"/>
+        <location filename="../NodeConfigurator.py" line="137"/>
         <source>Frame Relay switches</source>
         <translation>Frame Relay switchler</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="143"/>
+        <location filename="../NodeConfigurator.py" line="140"/>
         <source>Ethernet switches</source>
         <translation>Ethernet switchler</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="146"/>
+        <location filename="../NodeConfigurator.py" line="143"/>
         <source>ATM switches</source>
         <translation>ATM switchler</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="152"/>
+        <location filename="../NodeConfigurator.py" line="149"/>
         <source>Clouds</source>
         <translation>Cloud&apos;lar</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="246"/>
+        <location filename="../NodeConfigurator.py" line="242"/>
         <source>%s node</source>
         <translation>%s nod</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="238"/>
+        <location filename="../NodeConfigurator.py" line="234"/>
         <source>%s group</source>
         <translation>%s grubu</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="243"/>
+        <location filename="../NodeConfigurator.py" line="239"/>
         <source>Group of %d %s</source>
         <translation>%d %s Grubunda</translation>
     </message>
@@ -2825,7 +2722,7 @@ to display the configuration page.</source>
 lütfen nod seçin.</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="298"/>
+        <location filename="../NodeConfigurator.py" line="294"/>
         <source>Node configuration</source>
         <translation>Nod ayarı</translation>
     </message>
@@ -2860,41 +2757,28 @@ lütfen nod seçin.</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="125"/>
-        <source>PIX firewalls</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../NodeConfigurator.py" line="149"/>
+        <location filename="../NodeConfigurator.py" line="146"/>
         <source>ATM bridges</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="128"/>
+        <location filename="../NodeConfigurator.py" line="125"/>
         <source>ASA firewalls</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="131"/>
+        <location filename="../NodeConfigurator.py" line="128"/>
         <source>Juniper routers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="137"/>
+        <location filename="../NodeConfigurator.py" line="134"/>
         <source>Qemu hosts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="134"/>
+        <location filename="../NodeConfigurator.py" line="131"/>
         <source>Cisco IDS</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>PIX image</name>
-    <message>
-        <location filename="../DynagenSub.py" line="244"/>
-        <source>PIX image %s cannot be found and cannot find an alternative image</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3231,7 +3115,7 @@ lütfen nod seçin.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1510"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1198"/>
         <source>...</source>
         <translation type="unfinished">...</translation>
     </message>
@@ -3261,127 +3145,102 @@ lütfen nod seçin.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="891"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="581"/>
         <source>Binary image:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1583"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1271"/>
         <source>ne2k_pci</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1588"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1276"/>
         <source>i82551</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1593"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1281"/>
         <source>i82557b</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1598"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1286"/>
         <source>i82559er</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1603"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1291"/>
         <source>rtl8139</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1608"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1296"/>
         <source>e1000</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1613"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1301"/>
         <source>pcnet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1618"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1306"/>
         <source>virtio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1626"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1314"/>
         <source>Qemu Options:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1646"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1334"/>
         <source>Use KQemu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1656"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1344"/>
         <source>Use KVM (Linux Only)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="546"/>
-        <source>PIX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="567"/>
-        <source>PIX Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="746"/>
-        <source>PIX Specific Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="752"/>
-        <source>Key:</source>
-        <translation type="unfinished">Anahtar:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="772"/>
-        <source>Serial:</source>
-        <translation type="unfinished">Seri numarası:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="854"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="544"/>
         <source>JunOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="875"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="565"/>
         <source>JunOS Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1122"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="810"/>
         <source>ASA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1143"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="831"/>
         <source>ASA Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1302"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="990"/>
         <source>ASA Specific Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1355"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1043"/>
         <source>Initrd:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1318"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1006"/>
         <source>Kernel:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1338"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1026"/>
         <source>Kernel cmd line:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3401,47 +3260,47 @@ lütfen nod seçin.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1456"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1144"/>
         <source>Identifier name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1668"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1356"/>
         <source>Save</source>
         <translation type="unfinished">Kaydet</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1675"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1363"/>
         <source>Delete</source>
         <translation type="unfinished">Sil</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1704"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1392"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1104"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="794"/>
         <source>Image path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1429"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1117"/>
         <source>IDS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1450"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1138"/>
         <source>IDS Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1466"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1154"/>
         <source>Binary image 1 (hda):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1493"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1181"/>
         <source>Binary image 2 (hdb):</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3486,17 +3345,17 @@ lütfen nod seçin.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1520"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1208"/>
         <source>RAM:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1546"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1234"/>
         <source>Number of NICs:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1569"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1257"/>
         <source>NIC model:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3506,52 +3365,47 @@ lütfen nod seçin.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="826"/>
-        <source>PIX Images</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1092"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="782"/>
         <source>JunOS Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1345"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1033"/>
         <source>console=ttyS0,9600n8 bigphysarea=16384 auto nousb ide1=noprobe hda=980,16,32</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1396"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1084"/>
         <source>ASA Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1408"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1096"/>
         <source>Initrd path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1413"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1101"/>
         <source>Kernel path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1636"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1324"/>
         <source>-smbios type=1,product=IDS-4215</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1697"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1385"/>
         <source>IDS Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1709"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1397"/>
         <source>Image 1 path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1714"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1402"/>
         <source>Image 2 path</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4192,17 +4046,17 @@ ALT + LEFT or RIGHT</source>
         <translation>Lütfen Dynamips&apos;in yolunu ayarlayın</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1025"/>
+        <location filename="../Topology.py" line="979"/>
         <source>Dynamips error</source>
         <translation>Dynamips hatası</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1025"/>
+        <location filename="../Topology.py" line="979"/>
         <source>Connection lost</source>
         <translation>Bağlantı koptu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="905"/>
+        <location filename="../Topology.py" line="859"/>
         <source>Connection</source>
         <translation>Bağlantı</translation>
     </message>
@@ -4217,14 +4071,9 @@ ALT + LEFT or RIGHT</source>
         <translation>%s için platform imajı yok</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="905"/>
+        <location filename="../Topology.py" line="859"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Switch&apos;e en az bir Router bağlamalısınız</translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="656"/>
-        <source>PIX image</source>
-        <translation>PIX imaj</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="412"/>
@@ -4237,7 +4086,7 @@ ALT + LEFT or RIGHT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="656"/>
+        <location filename="../Topology.py" line="605"/>
         <source>%s seems to not exist, please check</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4282,7 +4131,7 @@ ALT + LEFT or RIGHT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="881"/>
+        <location filename="../Topology.py" line="835"/>
         <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4349,21 +4198,6 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Topology.py" line="586"/>
         <source>Please choose an ASA</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="641"/>
-        <source>PIX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="629"/>
-        <source>Please configure a PIX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="641"/>
-        <source>Please choose a PIX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
