@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -295,8 +295,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>452</width>
-            <height>480</height>
+            <width>482</width>
+            <height>498</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -538,316 +538,6 @@
         </widget>
        </item>
       </layout>
-      <zorder>scrollArea</zorder>
-      <zorder>scrollArea</zorder>
-     </widget>
-     <widget class="QWidget" name="tab_5">
-      <attribute name="title">
-       <string>PIX</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_10">
-       <item>
-        <widget class="QScrollArea" name="scrollArea_2">
-         <property name="widgetResizable">
-          <bool>true</bool>
-         </property>
-         <widget class="QWidget" name="scrollAreaWidgetContents_2">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>437</width>
-            <height>554</height>
-           </rect>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_9">
-           <item>
-            <widget class="QGroupBox" name="groupBox_6">
-             <property name="title">
-              <string>PIX Settings</string>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_6">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_38">
-                <property name="text">
-                 <string>Identifier name:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1" colspan="2">
-               <widget class="QLineEdit" name="NamePIXImage"/>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_23">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
-                <property name="text">
-                 <string>Binary image:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="PIXImage">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="2">
-               <widget class="QToolButton" name="PIXImage_Browser">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
-                <property name="text">
-                 <string>...</string>
-                </property>
-                <property name="toolButtonStyle">
-                 <enum>Qt::ToolButtonTextOnly</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_29">
-                <property name="text">
-                 <string>RAM:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1" colspan="2">
-               <widget class="QSpinBox" name="PIXMemory">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
-                <property name="minimum">
-                 <number>1</number>
-                </property>
-                <property name="maximum">
-                 <number>100000</number>
-                </property>
-                <property name="singleStep">
-                 <number>16</number>
-                </property>
-                <property name="value">
-                 <number>128</number>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="label_39">
-                <property name="text">
-                 <string>Number of NICs:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1" colspan="2">
-               <widget class="QSpinBox" name="PIXNICNb">
-                <property name="minimum">
-                 <number>0</number>
-                </property>
-                <property name="maximum">
-                 <number>100000</number>
-                </property>
-                <property name="singleStep">
-                 <number>1</number>
-                </property>
-                <property name="value">
-                 <number>6</number>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="label_26">
-                <property name="text">
-                 <string>NIC model:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="1" colspan="2">
-               <widget class="QComboBox" name="PIXNIC">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
-                <property name="currentIndex">
-                 <number>5</number>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>ne2k_pci</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>i82551</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>i82557b</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>i82559er</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>rtl8139</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>e1000</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>pcnet</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>virtio</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item row="5" column="0">
-               <widget class="QLabel" name="label_8">
-                <property name="text">
-                 <string>Qemu Options:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="1" colspan="2">
-               <widget class="QLineEdit" name="PIXOptions">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="6" column="0">
-               <widget class="QCheckBox" name="PIXcheckBoxKqemu">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
-                <property name="text">
-                 <string>Use KQemu</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="groupBox_7">
-             <property name="title">
-              <string>PIX Specific Settings</string>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_5">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_24">
-                <property name="text">
-                 <string>Key:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="PIXKey">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_25">
-                <property name="text">
-                 <string>Serial:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="PIXSerial">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
-             <item>
-              <widget class="QPushButton" name="SavePIXImage">
-               <property name="text">
-                <string>Save</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="DeletePIXImage">
-               <property name="text">
-                <string>Delete</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_2">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>217</width>
-                 <height>17</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="groupBox_10">
-             <property name="title">
-              <string>PIX Images</string>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_6">
-              <item>
-               <widget class="QTreeWidget" name="treeWidgetPIXImages">
-                <column>
-                 <property name="text">
-                  <string>Name</string>
-                 </property>
-                </column>
-                <column>
-                 <property name="text">
-                  <string>Image path</string>
-                 </property>
-                </column>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </item>
-      </layout>
      </widget>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -864,8 +554,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>452</width>
-            <height>480</height>
+            <width>482</width>
+            <height>498</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -1114,8 +804,6 @@
         </widget>
        </item>
       </layout>
-      <zorder>scrollArea_3</zorder>
-      <zorder>groupBox_5</zorder>
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
@@ -1132,8 +820,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>437</width>
-            <height>579</height>
+            <width>467</width>
+            <height>540</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -1439,8 +1127,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>437</width>
-            <height>507</height>
+            <width>482</width>
+            <height>498</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1720,16 +1408,10 @@
             </widget>
            </item>
           </layout>
-          <zorder>groupBox_9</zorder>
-          <zorder>layoutWidget_4</zorder>
-          <zorder>groupBox_13</zorder>
-          <zorder>groupBox_13</zorder>
          </widget>
         </widget>
        </item>
       </layout>
-      <zorder>scrollArea_5</zorder>
-      <zorder>scrollArea_5</zorder>
      </widget>
     </widget>
    </item>

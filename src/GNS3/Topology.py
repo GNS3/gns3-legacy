@@ -23,7 +23,7 @@ import os, glob, socket, sys, base64, time
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.qemu_lib as qlib
 import GNS3.Globals as globals
-import GNS3.UndoFramework as undo 
+import GNS3.UndoFramework as undo
 from PyQt4 import QtGui, QtCore
 from GNS3.Utils import translate, debug
 from GNS3.Link.Ethernet import Ethernet
@@ -35,7 +35,7 @@ from GNS3.Node.ATMBR import ATMBR, init_atmbr_id
 from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
 from GNS3.Node.FRSW import FRSW, init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
-from GNS3.Node.AnyEmuDevice import QemuDevice, FW, ASA, AnyEmuDevice, JunOS, IDS, init_emu_id
+from GNS3.Node.AnyEmuDevice import QemuDevice, ASA, AnyEmuDevice, JunOS, IDS, init_emu_id
 from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Annotation import Annotation
 
@@ -56,7 +56,7 @@ class Topology(QtGui.QGraphicsScene):
 
         width = globals.GApp.systconf['general'].scene_width
         height = globals.GApp.systconf['general'].scene_height
-        
+
         QtGui.QGraphicsScene.__init__(self, parent)
         self.setSceneRect(-(width / 2), -(height / 2), width, height)
 
@@ -73,7 +73,7 @@ class Topology(QtGui.QGraphicsScene):
         isinstance(srcnode, ATMBR) or isinstance(srcnode, ATMSW) or isinstance(srcnode, Cloud)):
             # In few circumstances, QtGui.QGraphicsScene.mousePressEvent()
             # send the mousePressEvent to the wrong item; we need to
-            # correct this behaviour for 'Manual Link' mode. We force the 
+            # correct this behaviour for 'Manual Link' mode. We force the
             # event to be send to the right item and activate workaround
             # so that the false recipiend ignore it.
             item.mousePressEvent(event)
@@ -164,7 +164,7 @@ class Topology(QtGui.QGraphicsScene):
         self.__nodes = value
 
     nodes = property(__getNodes, __setNodes, doc='Property of nodes topology')
-    
+
     def __getLinks(self):
         """ Return topology links
         """
@@ -283,9 +283,9 @@ class Topology(QtGui.QGraphicsScene):
                 return False
         else:
             external_hosts = globals.GApp.systconf['qemu'].external_hosts
-            
+
             if len(external_hosts) == 0:
-                QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "External Qemuwrapper"), 
+                QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "External Qemuwrapper"),
                                           translate("Topology", "Please register at least one external Qemuwrapper"))
                 return False
 
@@ -305,7 +305,7 @@ class Topology(QtGui.QGraphicsScene):
                 port = int(port)
             else:
                 port = 10525
-        
+
         qemu_name = host + ':' + str(port)
         debug('Qemuwrapper: ' + qemu_name)
         if not self.dynagen.dynamips.has_key(qemu_name):
@@ -321,7 +321,7 @@ class Topology(QtGui.QGraphicsScene):
             self.dynagen.get_defaults_config()
             self.dynagen.update_running_config()
             self.dynagen.dynamips[qemu_name].configchange = True
-            
+
             if globals.GApp.systconf['qemu'].enable_QemuManager or host == 'localhost':
                 if globals.GApp.workspace.projectWorkdir:
                     workdir = globals.GApp.workspace.projectWorkdir
@@ -340,7 +340,7 @@ class Topology(QtGui.QGraphicsScene):
         node.set_hypervisor(self.dynagen.dynamips[qemu_name])
 
         return True
-        
+
     def addNodeFromScene(self, node):
         """ Add node in the topology, called from Scene
             node: object
@@ -431,11 +431,11 @@ class Topology(QtGui.QGraphicsScene):
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Qemu image"), translate("Topology", "Please configure a Qemu host:"))
                     init_emu_id(node.id)
                     return False
-               
+
                 devices = []
                 for name in globals.GApp.qemuimages.keys():
                     devices.append(name)
-                
+
                 if node.image_reference:
                     conf = globals.GApp.qemuimages[node.image_reference]
                 elif len(globals.GApp.qemuimages) > 1:
@@ -461,14 +461,14 @@ class Topology(QtGui.QGraphicsScene):
                 if self.emuDeviceSetup(node) == False:
                     init_emu_id(node.id)
                     return False
-                
+
                 debug("Set default image " + conf.filename + " for node type %s, model %r" % (type(node), node.model))
                 node.set_image(conf.filename, node.model)
                 node.set_int_option('ram', conf.memory)
                 node.set_int_option('nics', conf.nic_nb)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('kqemu', conf.kqemu)
-                node.set_string_option('kvm', conf.kvm)                
+                node.set_string_option('kvm', conf.kvm)
                 node.set_string_option('options', conf.options)
 
             if isinstance(node, JunOS):
@@ -477,11 +477,11 @@ class Topology(QtGui.QGraphicsScene):
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "JunOS"), translate("Topology", "Please configure a JunOS"))
                     init_emu_id(node.id)
                     return False
-               
+
                 devices = []
                 for name in globals.GApp.junosimages.keys():
                     devices.append(name)
-                
+
                 if node.image_reference:
                     conf = globals.GApp.junosimages[node.image_reference]
                 elif len(globals.GApp.junosimages) > 1:
@@ -502,27 +502,27 @@ class Topology(QtGui.QGraphicsScene):
                 # give a warning if the JunOS image path is not accessible
                 if not os.access(conf.filename, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "JunOS image"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.filename)
-                
+
                 if self.emuDeviceSetup(node) == False:
                     init_emu_id(node.id)
                     return False
-                
+
                 debug("Set default image " + conf.filename + " for node type %s, model %r" % (type(node), node.model))
                 node.set_image(conf.filename, node.model)
                 node.set_int_option('ram', conf.memory)
                 node.set_int_option('nics', conf.nic_nb)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('kqemu', conf.kqemu)
-                node.set_string_option('kvm', conf.kvm)                
+                node.set_string_option('kvm', conf.kvm)
                 node.set_string_option('options', conf.options)
-                
+
             if isinstance(node, IDS):
 
                 if len(globals.GApp.idsimages) == 0:
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IDS"), translate("Topology", "Please configure an IDS"))
                     init_emu_id(node.id)
                     return False
-               
+
                 devices = []
                 for name in globals.GApp.idsimages.keys():
                     devices.append(name)
@@ -550,7 +550,7 @@ class Topology(QtGui.QGraphicsScene):
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IDS images"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.image1)
                 if not os.access(conf.image2, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IDS images"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.image2)
-          
+
                 if self.emuDeviceSetup(node) == False:
                     init_emu_id(node.id)
                     return False
@@ -565,16 +565,16 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_int_option('nics', conf.nic_nb)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('kqemu', conf.kqemu)
-                node.set_string_option('kvm', conf.kvm)                
+                node.set_string_option('kvm', conf.kvm)
                 node.set_string_option('options', conf.options)
 
             if isinstance(node, ASA):
-                
+
                 if len(globals.GApp.asaimages) == 0:
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA"), translate("Topology", "Please configure an ASA"))
                     init_emu_id(node.id)
                     return False
-               
+
                 devices = []
                 for name in globals.GApp.asaimages.keys():
                     devices.append(name)
@@ -595,22 +595,22 @@ class Topology(QtGui.QGraphicsScene):
                 else:
                     conf = globals.GApp.asaimages[devices[0]]
                     node.image_reference = devices[0]
-                
+
                 # give a warning if the ASA initrd path is not accessible
                 if not os.access(conf.initrd, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA initrd"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.initrd)
-             
+
                 # give a warning if the ASA kernel path is not accessible
                 if not os.access(conf.kernel, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA kernel"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.kernel)
-   
+
                 if self.emuDeviceSetup(node) == False:
                     init_emu_id(node.id)
                     return False
-                
+
                 debug("Set default initrd " + conf.initrd + " for node type %s, model %r" % (type(node), node.model))
                 debug("Set default kernel " + conf.kernel + " for node type %s, model %r" % (type(node), node.model))
-                
+
                 # No image for ASA
                 node.set_image('None', node.model)
                 node.set_int_option('ram', conf.memory)
@@ -621,52 +621,6 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_string_option('initrd', conf.initrd)
                 node.set_string_option('kernel', conf.kernel)
                 node.set_string_option('kernel_cmdline', conf.kernel_cmdline)
-                node.set_string_option('options', conf.options)
-
-            if isinstance(node, FW):
-                
-                if len(globals.GApp.piximages) == 0:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX"), translate("Topology", "Please configure a PIX"))
-                    init_emu_id(node.id)
-                    return False
-               
-                devices = []
-                for name in globals.GApp.piximages.keys():
-                    devices.append(name)
-
-                if node.image_reference:
-                    conf = globals.GApp.piximages[node.image_reference]
-                elif len(globals.GApp.piximages) > 1:
-                    devices.sort()
-                    (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "PIX"),
-                                                                      translate("Topology", "Please choose a PIX"), devices, 0, False)
-                    if ok:
-                        device_to_use = unicode(selection)
-                    else:
-                        init_emu_id(node.id)
-                        return False
-                    conf = globals.GApp.piximages[device_to_use]
-                    node.image_reference = device_to_use
-                else:
-                    conf = globals.GApp.piximages[devices[0]]
-                    node.image_reference = devices[0]
-                    
-                # give a warning if the PIX image path is not accessible
-                if not os.access(conf.filename, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX image"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.filename)
-                
-                if self.emuDeviceSetup(node) == False:
-                    init_emu_id(node.id)
-                    return False
-                
-                debug("Set default image " + conf.filename + " for node type %s, model %r" % (type(node), node.model))
-                node.set_image(conf.filename, node.model)
-                node.set_int_option('ram', conf.memory)
-                node.set_int_option('nics', conf.nic_nb)
-                node.set_string_option('netcard', conf.nic)
-                node.set_string_option('key', conf.key)
-                node.set_string_option('serial', conf.serial)
-                node.set_string_option('kqemu', conf.kqemu)
                 node.set_string_option('options', conf.options)
 
             QtCore.QObject.connect(node, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
@@ -681,7 +635,7 @@ class Topology(QtGui.QGraphicsScene):
                     init_emu_id(node.id)
                 if isinstance(node, IOSRouter):
                     init_router_id(node.id)
-                
+
             if iosConfig:
                 self.applyIOSBaseConfig(node, iosConfig)
 
@@ -723,7 +677,7 @@ class Topology(QtGui.QGraphicsScene):
         node = self.__nodes[id]
         command = undo.DeleteNode(self, node)
         self.undoStack.push(command)
-        
+
     def deleteNode(self, id):
         """ Delete a node from the topology
         """
@@ -749,7 +703,7 @@ class Topology(QtGui.QGraphicsScene):
                         globals.GApp.hypervisors[external_hypervisor_key].used_ram -= node.default_ram
                         if globals.GApp.hypervisors[external_hypervisor_key].used_ram < 0:
                             globals.GApp.hypervisors[external_hypervisor_key].used_ram = 0
-                    
+
                 if router.jitsharing_group != None:
                     last_jitgroup_number = True
                     for device in router.dynamips.devices:
@@ -764,7 +718,7 @@ class Topology(QtGui.QGraphicsScene):
                             image = image.replace("\\", "/")
                         imagename = os.path.basename(image)
                         del router.dynamips.jitsharing_groups[imagename]
-                        
+
             except:
                 pass
 
@@ -791,7 +745,7 @@ class Topology(QtGui.QGraphicsScene):
                 d1 += 1
             if edge.source.hostname == dest_node.hostname:
                 d2 += 1
-        
+
         if len(edges) > 0:
             if d2 - d1 == 2:
                 srcid, dstid = dstid, srcid
@@ -809,10 +763,10 @@ class Topology(QtGui.QGraphicsScene):
         # MAX 7 links on the scene between 2 nodes
         if multi > 3:
             multi = 0
-            
+
         if src_node == dest_node:
             multi = 0
-        
+
         if (globals.currentLinkType == globals.Enum.LinkType.Serial or globals.currentLinkType == globals.Enum.LinkType.ATM) or \
             (globals.currentLinkType == globals.Enum.LinkType.Manual and (((srcif[0] == 's' or srcif[0] == 'a') or (dstif[0] == 's' or dstif[0] == 'a')) or \
             ((isinstance(src_node, ATMSW) or isinstance(src_node, FRSW)) or (isinstance(dest_node, ATMSW) or isinstance(dest_node, FRSW))))):
@@ -828,7 +782,7 @@ class Topology(QtGui.QGraphicsScene):
     def updateStates(self, src_node, dst_node):
         """ Start nodes that are always on and update interface states
         """
-    
+
         try:
             # start nodes that are always on
             if not isinstance(src_node, IOSRouter) and not isinstance(src_node, AnyEmuDevice):
@@ -843,7 +797,7 @@ class Topology(QtGui.QGraphicsScene):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Dynamips error"),  unicode(msg))
             return False
         return True
-        
+
     def addLinkFromScene(self, srcid, srcif, dstid, dstif):
         """ Add a link to the topology, called from Scene
         """
@@ -854,7 +808,7 @@ class Topology(QtGui.QGraphicsScene):
             self.undoStack.undo()
             return False
         return True
-        
+
     def addLink(self, srcid, srcif, dstid, dstif, draw=True):
         """ Add a link to the topology
         """
@@ -882,7 +836,7 @@ class Topology(QtGui.QGraphicsScene):
                 return False
 
             if (isinstance(dst_node, Cloud) or isinstance(dst_node, AnyEmuDevice) or type(dst_node) in (ETHSW, ATMSW, FRSW, ATMBR)) and type(src_node) in (ETHSW, ATMSW, FRSW, ATMBR):
-                
+
                 if not src_node.hypervisor:
                     if type(dst_node) in (ETHSW, ATMSW, FRSW, ATMBR) and dst_node.hypervisor:
                         debug('Set hypervisor ' + dst_node.hypervisor.host + ':' + str(dst_node.hypervisor.port) + ' to ' + src_node.hostname)
@@ -894,7 +848,7 @@ class Topology(QtGui.QGraphicsScene):
                             return False
 
             if (isinstance(src_node, Cloud) or isinstance(src_node, AnyEmuDevice) or type(src_node) in (ETHSW, ATMSW, FRSW, ATMBR)) and type(dst_node) in (ETHSW, ATMSW, FRSW, ATMBR):
-                
+
                 if not dst_node.hypervisor:
                     if type(src_node) in (ETHSW, ATMSW, FRSW, ATMBR) and src_node.hypervisor:
                         debug('Set hypervisor ' + src_node.hypervisor.host + ':' + str(src_node.hypervisor.port) + ' to ' + dst_node.hostname)
@@ -975,7 +929,7 @@ class Topology(QtGui.QGraphicsScene):
             self.undoStack.undo()
             return False
         return True
-        
+
     def deleteLink(self, link):
         """ Delete a link from the topology
         """
@@ -1003,7 +957,7 @@ class Topology(QtGui.QGraphicsScene):
                         debug('Disconnect link from ' + dstdev.name + ' ' + link.destIf +' to ' + srcdev.name + ' ' + link.srcIf)
                         self.dynagen.disconnect(dstdev, link.destIf, srcdev.name + ' ' + link.srcIf, automatically_remove_unused_slot=False)
                     link.dest.set_config(link.dest.get_config())
-                    
+
                 elif type(link.source) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR) and type(link.dest) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR) or \
                     type(link.dest) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR) and type(link.source) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR):
 
@@ -1032,7 +986,7 @@ class Topology(QtGui.QGraphicsScene):
             if link.labelSouceIf != None:
                 if globals.interfaceLabels.has_key(link.source.hostname + ' ' + link.srcIf):
                     del globals.interfaceLabels[link.source.hostname + ' ' + link.srcIf]
-                #globals.interfaceLabels[link.source.hostname + ' ' + link.srcIf] = link.labelSouceIf  
+                #globals.interfaceLabels[link.source.hostname + ' ' + link.srcIf] = link.labelSouceIf
                 self.removeItem(link.labelSouceIf)
             if link.labelDestIf != None:
                 if globals.interfaceLabels.has_key(link.dest.hostname + ' ' + link.destIf):

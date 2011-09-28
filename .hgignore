@@ -5,6 +5,7 @@ syntax: glob
 *.swp
 .DS_Store
 gns3.conf
+build/*
 
 syntax: regexp
 (.*/)?\#[^/]*\#$

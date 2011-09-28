@@ -37,21 +37,21 @@ class DynagenSub(Dynagen):
     def check_replace_GUID_NIO(self, filename):
         """ Check and replace non-existing GUID (network interface ID) on Windows
         """
-        
+
         file = open(filename,'r')
         lines = file.readlines()
         cregex = re.compile("^.*nio_gen_eth:(.*)")
         niolist = []
-        
+
         for currentline in lines:
-            currentline = currentline.lower().strip() 
+            currentline = currentline.lower().strip()
             match_obj = cregex.match(currentline)
             if match_obj:
                 niolist.append(match_obj.group(1))
-                
+
         niolist = set(niolist)
         if len(niolist):
-            
+
             rpcaps = getWindowsInterfaces()
             interfaces = {}
             for rpcap in rpcaps:
@@ -60,7 +60,7 @@ class DynagenSub(Dynagen):
                 interfaces[interface_guid] = unicode(match.group(2)).strip()
 
             for nio in niolist:
-                if not interfaces.has_key(nio): 
+                if not interfaces.has_key(nio):
                     (selection, ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("DynagenSub", "NIO connection"),
                                                         unicode(translate("DynagenSub", "%s cannot be found\nPlease choose an alternate network interface:")) % nio, interfaces.values(), 0, False)
                     if ok:
@@ -76,19 +76,19 @@ class DynagenSub(Dynagen):
                             if match_obj:
                                 currentline = currentline.replace(nio, interface)
                                 lines[index] = currentline
-                            index += 1      
+                            index += 1
                     else:
                         continue
-  
+
         file.close()
-        
+
         if len(niolist):
             # write changes
             file = open(filename,'w')
             for line in lines:
                 file.write(line)
             file.close()
-          
+
 
     def open_config(self, FILENAME):
         """ Open the config file
@@ -130,7 +130,7 @@ class DynagenSub(Dynagen):
 
             server = config[section]
             if ' ' in server.name:
-                (emulator, host) = server.name.split(' ')              
+                (emulator, host) = server.name.split(' ')
                 if ':' in host:
                     # unpack the server and port
                     # controlPort is ignored
@@ -144,7 +144,7 @@ class DynagenSub(Dynagen):
                         if os.path.exists(abspath):
                             server['workingdir'] = abspath
                             debug(unicode("Converting relative working directory path to absolute path: %s") % server['workingdir'])
-                    
+
                     if server['workingdir'] == '.':
                         server['workingdir'] = os.path.dirname(FILENAME)
 
@@ -153,7 +153,7 @@ class DynagenSub(Dynagen):
                         # ASA has no image
                         if device.name == '5520' and device['initrd'] and device['kernel']:
                             if not os.access(device['initrd'], os.F_OK):
-                                
+
                                 if len(globals.GApp.asaimages.keys()):
                                     initrd_name = globals.GApp.asaimages.values()[0].initrd
                                 else:
@@ -163,7 +163,7 @@ class DynagenSub(Dynagen):
                                 print unicode(translate("DynagenSub", "Local ASA initrd %s cannot be found, use initrd %s instead")) \
                                 % (unicode(device['initrd']), initrd_name)
                                 device['initrd'] = initrd_name
-                                
+
                             if not os.access(device['kernel'], os.F_OK):
                                 if len(globals.GApp.asaimages.keys()):
                                     kernel_name = globals.GApp.asaimages.values()[0].kernel
@@ -175,11 +175,11 @@ class DynagenSub(Dynagen):
                                 % (unicode(device['kernel']), kernel_name)
                                 device['kernel'] = kernel_name
                             continue
-                        
+
                         # IDS has no default image
                         if device.name == 'IDS-4215' and device['image1'] and device['image2']:
                             if not os.access(device['image1'], os.F_OK):
-                                
+
                                 if len(globals.GApp.idsimages.keys()):
                                     image1_name = globals.GApp.idsimages.values()[0].image1
                                 else:
@@ -189,7 +189,7 @@ class DynagenSub(Dynagen):
                                 print unicode(translate("DynagenSub", "Local IDS image %s cannot be found, use image %s instead")) \
                                 % (unicode(device['image1']), image1_name)
                                 device['image1'] = image1_name
-                                
+
                             if not os.access(device['image2'], os.F_OK):
                                 if len(globals.GApp.idsimages.keys()):
                                     image2_name = globals.GApp.idsimages.values()[0].image2
@@ -200,7 +200,7 @@ class DynagenSub(Dynagen):
                                 print unicode(translate("DynagenSub", "Local IDS image %s cannot be found, use image %s instead")) \
                                 % (unicode(device['image2']), image2_name)
                                 device['image2'] = image2_name
-                                
+
                             continue
 
                         if device.name not in ('525', 'O-series', 'QemuDevice'):
@@ -210,7 +210,7 @@ class DynagenSub(Dynagen):
                             abspath = os.path.join(os.path.dirname(FILENAME), unicode(device['image']))
                             if os.path.exists(abspath):
                                 device['image'] = abspath
-                        
+
                         if device.name == 'O-series' and device['image']:
                             if not os.access(device['image'], os.F_OK):
                                 if len(globals.GApp.junosimages.keys()):
@@ -230,24 +230,11 @@ class DynagenSub(Dynagen):
                                 else:
                                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
                                         unicode(translate("Qemu image", "Qemu host image %s cannot be found and cannot find an alternative image")) % device['image'])
-                                    continue                                    
+                                    continue
                                 print unicode(translate("DynagenSub", "Local Qemu host image %s cannot be found, use image %s instead")) \
                                 % (unicode(device['image']), image_name)
                                 device['image'] = image_name
-                        elif device['image']:
-                            # must be a PIX device
-                            # check if the PIX image is accessible, if not find an alternative image
-                            if not os.access(device['image'], os.F_OK):
-                                if len(globals.GApp.piximages.keys()):
-                                    image_name = globals.GApp.piximages.values()[0].filename
-                                else:
-                                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
-                                        unicode(translate("PIX image", "PIX image %s cannot be found and cannot find an alternative image")) % device['image'])
-                                    continue
-                                print unicode(translate("DynagenSub", "Local PIX image %s cannot be found, use image %s instead")) \
-                                % (unicode(device['image']), image_name)
-                                device['image'] = image_name
-    
+
             else:
                 server.host = server.name
                 controlPort = None
@@ -261,25 +248,25 @@ class DynagenSub(Dynagen):
                 # need to start local hypervisors
                 if (server.host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or server.host == 'localhost') and \
                     globals.GApp.HypervisorManager and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
-                    
-                    # update server.host and server.name to match with Hypervisor Manager Binding configuration, 
+
+                    # update server.host and server.name to match with Hypervisor Manager Binding configuration,
                     # having hypervisors using 127.0.0.1 mixed with others using localhost will bring issues ...
                     if (server.host == 'localhost' and server.host != globals.GApp.systconf['dynamips'].HypervisorManager_binding):
                         print "Warning: using localhost in your topology file is not recommended"
 #                        server.host = globals.GApp.systconf['dynamips'].HypervisorManager_binding
 #                        server.name = server.host + ':' + controlPort
-                    
+
                     debug("Start hypervisor on port: " + str(controlPort))
                     hypervisor = globals.GApp.HypervisorManager.startNewHypervisor(int(controlPort), processcheck=False)
                     globals.GApp.HypervisorManager.waitHypervisor(hypervisor)
-                    
+
                     # Check if this is a relative working directory path and convert to an absolute path if necessary
                     if server['workingdir']:
                         abspath = os.path.join(os.path.dirname(FILENAME), unicode(server['workingdir']))
                         if os.path.exists(abspath):
                             server['workingdir'] = abspath
                             debug(unicode("Converting relative working directory path to absolute path: %s") % server['workingdir'])
-                    
+
                     if server['workingdir'] == '.':
                         server['workingdir'] = os.path.dirname(FILENAME)
 
@@ -295,7 +282,7 @@ class DynagenSub(Dynagen):
 
                     for subsection in server.sections:
                         device = server[subsection]
-                        
+
                         # check if the IOS image is accessible, if not find an alternative image
                         if device.name in DEVICETUPLE:
                             # Check if this is a relative image path and convert to an absolute path if necessary
@@ -305,7 +292,7 @@ class DynagenSub(Dynagen):
                                 debug(unicode("Converting relative image path to absolute path: %s") % device['image'])
 
                             if not os.access(device['image'], os.F_OK):
-                                
+
                                 selected_images = []
                                 image_to_use = None
                                 for (image, conf) in globals.GApp.iosimages.iteritems():
@@ -321,8 +308,8 @@ class DynagenSub(Dynagen):
                                         image_to_use = unicode(selection)
 
                                 if image_to_use == None and len(selected_images) == 0:
-                                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub', 
-                                                               unicode(translate("IOS image", "IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image")) 
+                                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
+                                                               unicode(translate("IOS image", "IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image"))
                                                                 % (device['image'], unicode(server.host) + ':' + controlPort, device.name))
                                     continue
                                 if image_to_use == None and len(selected_images) > 1:
@@ -344,16 +331,16 @@ class DynagenSub(Dynagen):
 
                         # check if the config file is accessible, if not find an alternative config
                         elif device.has_key('cnfg') and device['cnfg']:
-                            
+
                             # Check if this is a relative config path and convert to an absolute path if necessary
                             abspath = os.path.join(os.path.dirname(FILENAME), unicode(device['cnfg']))
                             if os.path.exists(abspath):
                                 device['cnfg'] = abspath
                                 debug(unicode("Converting relative config path to absolute path: %s") % device['cnfg'])
-                            
+
                             if not os.access(device['cnfg'], os.F_OK):
                                 if globals.GApp.workspace.projectConfigs:
-                                    
+
                                     basename =  os.path.basename(device['cnfg'])
                                     if sys.platform.startswith('win') and basename == device['cnfg']:
                                         # basename is the same as the original path, maybe it's an unix/posix path
@@ -363,9 +350,9 @@ class DynagenSub(Dynagen):
                                         # basename is the same as the original path, maybe it's a Windows path
                                         import ntpath
                                         basename = ntpath.basename(device['cnfg'])
-                                    
+
                                     new_config_path = globals.GApp.workspace.projectConfigs + os.sep + basename
-                                    
+
                                     print unicode(translate("DynagenSub", "Local configuration %s cannot be found for router %s, use configuration %s instead")) \
                                     % (unicode(device['cnfg']), unicode(device.name), new_config_path)
                                     device['cnfg'] = new_config_path

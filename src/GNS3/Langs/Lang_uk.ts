@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="uk" sourcelanguage="">
+<!DOCTYPE TS><TS version="1.1" language="uk">
 <context>
     <name>ASA initrd</name>
     <message>
@@ -943,7 +943,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Config</name>
     <message>
-        <location filename="../Config/Config.py" line="406"/>
+        <location filename="../Config/Config.py" line="375"/>
         <source>Can&apos;t open library: %s</source>
         <translation>Неможливо відкрити бібліотеку: %s</translation>
     </message>
@@ -1105,22 +1105,17 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <translation>Відмінити</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="247"/>
-        <source>Local PIX image %s cannot be found, use image %s instead</source>
-        <translation>Локальний образ PIX%s не знайдено, використовуйте замість нього образ %s</translation>
-    </message>
-    <message>
-        <location filename="../DynagenSub.py" line="339"/>
+        <location filename="../DynagenSub.py" line="326"/>
         <source>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</source>
         <translation>Локальний образ IOS %s не знайдено для гіпервізора %s,використовуйте замість нього образ %s</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="369"/>
+        <location filename="../DynagenSub.py" line="356"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
         <translation>Локальні налаштування %s не знайдено для маршрутизатора %s,використовуйте налаштування %s</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="292"/>
+        <location filename="../DynagenSub.py" line="279"/>
         <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
         <translation>Локальну робочу директорію %s не знайдено для гіпервізора %s,використовуйте замість неї робочу директорію%s</translation>
     </message>
@@ -1161,7 +1156,7 @@ Please choose an alternate network interface:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="318"/>
+        <location filename="../DynagenSub.py" line="305"/>
         <source>IOS image</source>
         <translation type="unfinished">Образ IOS</translation>
     </message>
@@ -1308,104 +1303,6 @@ Please choose an alternate network interface:</source>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="189"/>
         <source>&amp;Delete</source>
         <translation>&amp;Вилучити</translation>
-    </message>
-</context>
-<context>
-    <name>FWPage</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="14"/>
-        <source>Firewall configuration</source>
-        <translation>Налаштування мережевого екрану</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="20"/>
-        <source>PIX Image:</source>
-        <translation>Образ PIX:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="49"/>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="69"/>
-        <source> MB</source>
-        <translation> MB</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="189"/>
-        <source>Key:</source>
-        <translation>Key:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="206"/>
-        <source>Serial:</source>
-        <translation>Serial:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="122"/>
-        <source>ne2k_pci</source>
-        <translation>ne2k_pci</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="127"/>
-        <source>i82551</source>
-        <translation>i82551</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="132"/>
-        <source>i82557b</source>
-        <translation>i82557b</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="137"/>
-        <source>i82559er</source>
-        <translation>i82559er</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="142"/>
-        <source>rtl8139</source>
-        <translation>rtl8139</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="147"/>
-        <source>e1000</source>
-        <translation>e1000</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="152"/>
-        <source>pcnet</source>
-        <translation>pcnet</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="157"/>
-        <source>virtio</source>
-        <translation>virtio</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="165"/>
-        <source>Qemu Options:</source>
-        <translation>Опції Qemu:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="182"/>
-        <source>Use KQemu</source>
-        <translation>Використовувати KQemu</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="56"/>
-        <source>RAM:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="85"/>
-        <source>Number of NICs:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="108"/>
-        <source>NIC model:</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1601,7 +1498,7 @@ Please choose an alternate network interface:</source>
 <context>
     <name>IOS image</name>
     <message>
-        <location filename="../DynagenSub.py" line="324"/>
+        <location filename="../DynagenSub.py" line="311"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image</source>
         <translation>Образ IOS %s не знайдено для гіпервізора %s і не знайдено альтернативний %s образ</translation>
     </message>
@@ -2769,37 +2666,37 @@ Please choose an alternate network interface:</source>
 <context>
     <name>NodeConfigurator</name>
     <message>
-        <location filename="../NodeConfigurator.py" line="140"/>
+        <location filename="../NodeConfigurator.py" line="137"/>
         <source>Frame Relay switches</source>
         <translation>Комутатори Frame Relay</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="143"/>
+        <location filename="../NodeConfigurator.py" line="140"/>
         <source>Ethernet switches</source>
         <translation>Ethernet комутатори</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="146"/>
+        <location filename="../NodeConfigurator.py" line="143"/>
         <source>ATM switches</source>
         <translation>ATM комутатори</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="152"/>
+        <location filename="../NodeConfigurator.py" line="149"/>
         <source>Clouds</source>
         <translation>Хмари</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="246"/>
+        <location filename="../NodeConfigurator.py" line="242"/>
         <source>%s node</source>
         <translation>%s вузол</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="238"/>
+        <location filename="../NodeConfigurator.py" line="234"/>
         <source>%s group</source>
         <translation>%s група</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="243"/>
+        <location filename="../NodeConfigurator.py" line="239"/>
         <source>Group of %d %s</source>
         <translation>Група %d %s</translation>
     </message>
@@ -2826,7 +2723,7 @@ to display the configuration page.</source>
 щоб показати сторінку налаштування.</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="298"/>
+        <location filename="../NodeConfigurator.py" line="294"/>
         <source>Node configuration</source>
         <translation>Налаштування вузла</translation>
     </message>
@@ -2861,42 +2758,29 @@ to display the configuration page.</source>
         <translation>Маршрутизатори c7200</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="125"/>
-        <source>PIX firewalls</source>
-        <translation>Мережеві екрани PIX</translation>
-    </message>
-    <message>
-        <location filename="../NodeConfigurator.py" line="149"/>
+        <location filename="../NodeConfigurator.py" line="146"/>
         <source>ATM bridges</source>
         <translation>ATM мости</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="128"/>
+        <location filename="../NodeConfigurator.py" line="125"/>
         <source>ASA firewalls</source>
         <translation>Мережеві екрани ASA</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="131"/>
+        <location filename="../NodeConfigurator.py" line="128"/>
         <source>Juniper routers</source>
         <translation>Маршрутизатори Juniper</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="137"/>
+        <location filename="../NodeConfigurator.py" line="134"/>
         <source>Qemu hosts</source>
         <translation>Хости Qemu</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="134"/>
+        <location filename="../NodeConfigurator.py" line="131"/>
         <source>Cisco IDS</source>
         <translation>Cisco IDS</translation>
-    </message>
-</context>
-<context>
-    <name>PIX image</name>
-    <message>
-        <location filename="../DynagenSub.py" line="244"/>
-        <source>PIX image %s cannot be found and cannot find an alternative image</source>
-        <translation>Обрах PIX %s не знайдено і не знайдено альтернативний образ</translation>
     </message>
 </context>
 <context>
@@ -3235,7 +3119,7 @@ to display the configuration page.</source>
         <translation>Qemuwrapper</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1510"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1198"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -3265,127 +3149,102 @@ to display the configuration page.</source>
         <translation>Основна консольний порт:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="891"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="581"/>
         <source>Binary image:</source>
         <translation>Двійковий образ:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1583"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1271"/>
         <source>ne2k_pci</source>
         <translation>ne2k_pci</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1588"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1276"/>
         <source>i82551</source>
         <translation>i82551</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1593"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1281"/>
         <source>i82557b</source>
         <translation>i82557b</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1598"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1286"/>
         <source>i82559er</source>
         <translation>i82559er</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1603"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1291"/>
         <source>rtl8139</source>
         <translation>rtl8139</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1608"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1296"/>
         <source>e1000</source>
         <translation>e1000</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1613"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1301"/>
         <source>pcnet</source>
         <translation>pcnet</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1618"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1306"/>
         <source>virtio</source>
         <translation>virtio</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1626"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1314"/>
         <source>Qemu Options:</source>
         <translation>Опції Qemu:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1646"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1334"/>
         <source>Use KQemu</source>
         <translation>Використовувати KQemu</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1656"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1344"/>
         <source>Use KVM (Linux Only)</source>
         <translation>Використовувати KVM (тільки для Linux)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="546"/>
-        <source>PIX</source>
-        <translation>PIX</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="567"/>
-        <source>PIX Settings</source>
-        <translation>Налаштування PIX</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="746"/>
-        <source>PIX Specific Settings</source>
-        <translation>Специфічні налаштування PIX</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="752"/>
-        <source>Key:</source>
-        <translation>Ключ:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="772"/>
-        <source>Serial:</source>
-        <translation>Serial:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="854"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="544"/>
         <source>JunOS</source>
         <translation>JunOS</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="875"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="565"/>
         <source>JunOS Settings</source>
         <translation>Налаштування JunOS</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1122"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="810"/>
         <source>ASA</source>
         <translation>ASA</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1143"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="831"/>
         <source>ASA Settings</source>
         <translation>Налаштування ASA</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1302"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="990"/>
         <source>ASA Specific Settings</source>
         <translation>Специфічні налаштування ASA</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1355"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1043"/>
         <source>Initrd:</source>
         <translation>Initrd:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1318"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1006"/>
         <source>Kernel:</source>
         <translation>Kernel:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1338"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1026"/>
         <source>Kernel cmd line:</source>
         <translation>Kernel командний рядок:</translation>
     </message>
@@ -3405,47 +3264,47 @@ to display the configuration page.</source>
         <translation>Налаштування хоста Qemu</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1456"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1144"/>
         <source>Identifier name:</source>
         <translation>Ідентифікатор імені:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1668"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1356"/>
         <source>Save</source>
         <translation>Зберегти</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1675"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1363"/>
         <source>Delete</source>
         <translation>Вилучити</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1704"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1392"/>
         <source>Name</source>
         <translation>Ім&apos;я</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1104"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="794"/>
         <source>Image path</source>
         <translation>Шлях до образу</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1429"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1117"/>
         <source>IDS</source>
         <translation>IDS</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1450"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1138"/>
         <source>IDS Settings</source>
         <translation>Налаштування IDS</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1466"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1154"/>
         <source>Binary image 1 (hda):</source>
         <translation>Двійковий образ 1 (hda):</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1493"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1181"/>
         <source>Binary image 2 (hdb):</source>
         <translation>Двійковий образ 2 (hdb):</translation>
     </message>
@@ -3490,17 +3349,17 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1520"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1208"/>
         <source>RAM:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1546"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1234"/>
         <source>Number of NICs:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1569"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1257"/>
         <source>NIC model:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3510,52 +3369,47 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="826"/>
-        <source>PIX Images</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1092"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="782"/>
         <source>JunOS Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1345"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1033"/>
         <source>console=ttyS0,9600n8 bigphysarea=16384 auto nousb ide1=noprobe hda=980,16,32</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1396"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1084"/>
         <source>ASA Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1408"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1096"/>
         <source>Initrd path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1413"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1101"/>
         <source>Kernel path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1636"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1324"/>
         <source>-smbios type=1,product=IDS-4215</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1697"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1385"/>
         <source>IDS Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1709"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1397"/>
         <source>Image 1 path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1714"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1402"/>
         <source>Image 2 path</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4193,17 +4047,17 @@ ALT + ВЛІВО or ВПРАВО</translation>
         <translation>Будь ласка налаштуйте шлях до Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1025"/>
+        <location filename="../Topology.py" line="979"/>
         <source>Dynamips error</source>
         <translation>Помилка Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1025"/>
+        <location filename="../Topology.py" line="979"/>
         <source>Connection lost</source>
         <translation>З&apos;єднання втрачено</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="905"/>
+        <location filename="../Topology.py" line="859"/>
         <source>Connection</source>
         <translation>З&apos;єднання</translation>
     </message>
@@ -4218,17 +4072,12 @@ ALT + ВЛІВО or ВПРАВО</translation>
         <translation>Немає образу для платформи %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="905"/>
+        <location filename="../Topology.py" line="859"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Ви повинні підключити хоча б один маршрутизатор до комутатора</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="656"/>
-        <source>PIX image</source>
-        <translation>Образ PIX</translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="881"/>
+        <location filename="../Topology.py" line="835"/>
         <source>Can&apos;t connect these devices</source>
         <translation>Неможливо з&apos;єднати ці пристрої</translation>
     </message>
@@ -4248,7 +4097,7 @@ ALT + ВЛІВО or ВПРАВО</translation>
         <translation>Помилка Qemuwrapper</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="656"/>
+        <location filename="../Topology.py" line="605"/>
         <source>%s seems to not exist, please check</source>
         <translation>%s схоже не існує, будь ласка перевірте</translation>
     </message>
@@ -4355,21 +4204,6 @@ ALT + ВЛІВО or ВПРАВО</translation>
     <message>
         <location filename="../Topology.py" line="586"/>
         <source>Please choose an ASA</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="641"/>
-        <source>PIX</source>
-        <translation type="unfinished">PIX</translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="629"/>
-        <source>Please configure a PIX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="641"/>
-        <source>Please choose a PIX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

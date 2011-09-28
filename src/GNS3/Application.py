@@ -65,14 +65,12 @@ class Application(QApplication, Singleton):
         self.__hypervisors = {}
         self.__libraries = {}
         self.__qemuimages = {}
-        self.__piximages = {}
         self.__junosimages = {}
         self.__asaimages = {}
         self.__idsimages = {}
         self.iosimages_ids = 0
         self.hypervisors_ids = 0
         self.qemuimages_ids = 0
-        self.piximages_ids = 0
         self.junosimages_ids = 0
         self.asaimages_ids = 0
         self.idsimages_ids = 0
@@ -171,7 +169,7 @@ class Application(QApplication, Singleton):
         return self.__iosimages
 
     iosimages = property(__getIOSImages, __setIOSImages, doc = 'IOS images dictionnary')
-    
+
     def __setQemuImages(self, qemuimages):
         """ register the sysconf instance
         """
@@ -185,21 +183,7 @@ class Application(QApplication, Singleton):
         return self.__qemuimages
 
     qemuimages = property(__getQemuImages, __setQemuImages, doc = 'Qemu images dictionnary')
-    
-    def __setPIXImages(self, piximages):
-        """ register the sysconf instance
-        """
 
-        self.__piximages = piximages
-
-    def __getPIXImages(self):
-        """ return the sysconf instance
-        """
-
-        return self.__piximages
-
-    piximages = property(__getPIXImages, __setPIXImages, doc = 'PIX images dictionnary')
-    
     def __setJunOSImages(self, junosimages):
         """ register the sysconf instance
         """
@@ -213,7 +197,7 @@ class Application(QApplication, Singleton):
         return self.__junosimages
 
     junosimages = property(__getJunOSImages, __setJunOSImages, doc = 'JunOS images dictionnary')
-    
+
     def __setASAImages(self, asaimages):
         """ register the sysconf instance
         """
@@ -227,7 +211,7 @@ class Application(QApplication, Singleton):
         return self.__asaimages
 
     asaimages = property(__getASAImages, __setASAImages, doc = 'ASA images dictionnary')
-    
+
     def __setIDSImages(self, idsimages):
         """ register the sysconf instance
         """
@@ -241,7 +225,7 @@ class Application(QApplication, Singleton):
         return self.__idsimages
 
     idsimages = property(__getIDSImages, __setIDSImages, doc = 'IDS images dictionnary')
-    
+
     def __setLibraries(self, libraries):
         """ register the sysconf instance
         """
@@ -319,7 +303,7 @@ class Application(QApplication, Singleton):
 
         self.systconf['dynamips'] = systemDynamipsConf()
         confo = self.systconf['dynamips']
-        confo.path = ConfDB().get('Dynamips/hypervisor_path', unicode(''))
+        confo.path = ConfDB().get('Dynamips/hypervisor_path', unicode('dynamips'))
         confo.port = int(ConfDB().get('Dynamips/hypervisor_port', 7200))
         confo.baseUDP = int(ConfDB().get('Dynamips/hypervisor_baseUDP', 10000))
         confo.baseConsole = int(ConfDB().get('Dynamips/hypervisor_baseConsole', 2000))
@@ -337,7 +321,7 @@ class Application(QApplication, Singleton):
         confo.udp_incrementation = int(ConfDB().get("Dynamips/hypervisor_udp_incrementation", 100))
         confo.import_use_HypervisorManager = ConfDB().value("Dynamips/hypervisor_manager_import", QVariant(True)).toBool()
         confo.HypervisorManager_binding = ConfDB().get('Dynamips/hypervisor_manager_binding', unicode('127.0.0.1'))
-        confo.allocateHypervisorPerIOS = ConfDB().value("Dynamips/allocate_hypervisor_per_IOS", QVariant(True)).toBool()        
+        confo.allocateHypervisorPerIOS = ConfDB().value("Dynamips/allocate_hypervisor_per_IOS", QVariant(True)).toBool()
 
         # replace ~user and $HOME by home directory
         if os.environ.has_key("HOME"):
@@ -349,7 +333,7 @@ class Application(QApplication, Singleton):
         # Qemu config
         self.systconf['qemu'] = systemQemuConf()
         confo = self.systconf['qemu']
-        confo.qemuwrapper_path = ConfDB().get('Qemu/qemuwrapper_path', unicode(''))
+        confo.qemuwrapper_path = ConfDB().get('Qemu/qemuwrapper_path', unicode('/usr/local/libexec/gns3/qemuwrapper.py'))
         confo.qemuwrapper_workdir = ConfDB().get('Qemu/qemuwrapper_working_directory', unicode(''))
         confo.qemu_path = ConfDB().get('Qemu/qemu_path', unicode('qemu'))
         confo.qemu_img_path = ConfDB().get('Qemu/qemu_img_path', unicode('qemu-img'))
@@ -368,14 +352,14 @@ class Application(QApplication, Singleton):
 
         confo.qemuwrapper_path = os.path.expanduser(confo.qemuwrapper_path)
         confo.qemuwrapper_workdir = os.path.expanduser(confo.qemuwrapper_workdir)
-        
+
         # Capture config
         self.systconf['capture'] = systemCaptureConf()
         confo = self.systconf['capture']
         confo.workdir = ConfDB().get('Capture/working_directory', unicode(''))
         confo.cap_cmd = ConfDB().get('Capture/capture_reader_cmd', unicode(''))
         confo.auto_start = ConfDB().value('Capture/auto_start_cmd', QVariant(True)).toBool()
-        
+
         # replace ~user and $HOME by home directory
         if os.environ.has_key("HOME"):
             confo.cap_cmd = confo.cap_cmd.replace('$HOME', os.environ["HOME"])
@@ -400,7 +384,7 @@ class Application(QApplication, Singleton):
         confo.draw_selected_rectangle = ConfDB().value("GNS3/gui_draw_selected_rectangle", QVariant(False)).toBool()
         confo.scene_width = int(ConfDB().get('GNS3/scene_width', 2000))
         confo.scene_height = int(ConfDB().get('GNS3/scene_height', 1000))
-        
+
         # replace ~user and $HOME by home directory
         if os.environ.has_key("HOME"):
             confo.term_cmd = confo.term_cmd.replace('$HOME', os.environ["HOME"])
@@ -424,13 +408,12 @@ class Application(QApplication, Singleton):
         GNS_Conf().IOS_images()
         GNS_Conf().IOS_hypervisors()
         GNS_Conf().QEMU_images()
-        GNS_Conf().PIX_images()
         GNS_Conf().JUNOS_images()
         GNS_Conf().ASA_images()
         GNS_Conf().IDS_images()
         GNS_Conf().Libraries()
         GNS_Conf().Symbols()
-        
+
         # Workspace create a ` Scene' object,
         # so it also set self.__topology
         self.__workspace = Workspace()
@@ -455,7 +438,7 @@ class Application(QApplication, Singleton):
             dialog.show()
             dialog.raise_()
             dialog.activateWindow()
-        
+
         if file:
             self.mainWindow.load_netfile(file)
         elif confo.project_startup and os.access(configFile, os.F_OK):
@@ -520,7 +503,7 @@ class Application(QApplication, Singleton):
         c.set('Dynamips/hypervisor_manager_import', confo.import_use_HypervisorManager)
         c.set('Dynamips/allocate_hypervisor_per_IOS', confo.allocateHypervisorPerIOS)
         c.set('Dynamips/hypervisor_manager_binding', confo.HypervisorManager_binding)
-        
+
         # Qemu config
         confo = self.systconf['qemu']
         c.set('Qemu/qemuwrapper_path', confo.qemuwrapper_path)
@@ -535,7 +518,7 @@ class Application(QApplication, Singleton):
         c.set('Qemu/qemuwrapper_port', confo.qemuwrapper_port)
         c.set('Qemu/qemuwrapper_baseUDP', confo.qemuwrapper_baseUDP)
         c.set('Qemu/qemuwrapper_baseConsole', confo.qemuwrapper_baseConsole)
-        
+
         # Capture settings
         confo = self.systconf['capture']
         c.set('Capture/working_directory', confo.workdir)
@@ -550,38 +533,34 @@ class Application(QApplication, Singleton):
         c.beginGroup("IOS.hypervisors")
         c.remove("")
         c.endGroup()
-        
+
         c.beginGroup("QEMU.images")
         c.remove("")
         c.endGroup()
-        
-        c.beginGroup("PIX.images")
-        c.remove("")
-        c.endGroup()
-        
+
         c.beginGroup("JUNOS.images")
         c.remove("")
         c.endGroup()
-        
+
         c.beginGroup("ASA.images")
         c.remove("")
         c.endGroup()
-        
+
         c.beginGroup("IDS.images")
         c.remove("")
         c.endGroup()
-        
+
         # Clear Symbol.libraries group
         c.beginGroup("Symbol.libraries")
         c.remove("")
         c.endGroup()
-        
+
         # Clear Symbol.libraries group
         c.beginGroup("Symbol.settings")
         c.remove("")
         c.endGroup()
 
-        # IOS Images 
+        # IOS Images
         for (key, o) in self.__iosimages.iteritems():
             basekey = "IOS.images/" + str(o.id)
             c.set(basekey + "/filename", o.filename)
@@ -617,20 +596,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/options", o.options)
             c.set(basekey + "/kqemu", o.kqemu)
             c.set(basekey + "/kvm", o.kvm)
-            
-        # PIX images
-        for (key, o) in self.__piximages.iteritems():
-            basekey = "PIX.images/" + str(o.id)
-            c.set(basekey + "/name", o.name)
-            c.set(basekey + "/filename", o.filename)
-            c.set(basekey + "/memory", o.memory)
-            c.set(basekey + "/nic_nb", o.nic_nb)
-            c.set(basekey + "/nic", o.nic)
-            c.set(basekey + "/options", o.options)
-            c.set(basekey + "/kqemu", o.kqemu)
-            c.set(basekey + "/key", o.key)
-            c.set(basekey + "/serial", o.serial)
-            
+
         # JunOS images
         for (key, o) in self.__junosimages.iteritems():
             basekey = "JUNOS.images/" + str(o.id)
@@ -642,7 +608,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/options", o.options)
             c.set(basekey + "/kqemu", o.kqemu)
             c.set(basekey + "/kvm", o.kvm)
-            
+
         # ASA images
         for (key, o) in self.__asaimages.iteritems():
             basekey = "ASA.images/" + str(o.id)
@@ -656,7 +622,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/initrd", o.initrd)
             c.set(basekey + "/kernel", o.kernel)
             c.set(basekey + "/kernel_cmdline", o.kernel_cmdline)
-            
+
         # IDS images
         for (key, o) in self.__idsimages.iteritems():
             basekey = "IDS.images/" + str(o.id)
@@ -676,7 +642,7 @@ class Application(QApplication, Singleton):
             basekey = "Symbol.libraries/" + str(id)
             c.set(basekey + "/path", o.path)
             id += 1
-            
+
         # Symbols
         id = 0
         for symbol in SYMBOLS:
