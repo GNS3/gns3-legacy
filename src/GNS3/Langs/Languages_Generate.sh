@@ -13,4 +13,4 @@ PATH=$PATH":/Library/Frameworks/Python.framework/Versions/2.7/bin/:/usr/local/Tr
 pylupdate4 -noobsolete -verbose Languages.pro
 
 # create .qm files from .ts files
-lrelease -verbose Languages.pro
+lrelease4 -verbose Languages.pro
