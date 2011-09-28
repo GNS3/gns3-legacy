@@ -408,7 +408,6 @@ class Application(QApplication, Singleton):
         GNS_Conf().IOS_images()
         GNS_Conf().IOS_hypervisors()
         GNS_Conf().QEMU_images()
-        GNS_Conf().PIX_images()
         GNS_Conf().JUNOS_images()
         GNS_Conf().ASA_images()
         GNS_Conf().IDS_images()
@@ -536,10 +535,6 @@ class Application(QApplication, Singleton):
         c.endGroup()
 
         c.beginGroup("QEMU.images")
-        c.remove("")
-        c.endGroup()
-
-        c.beginGroup("PIX.images")
         c.remove("")
         c.endGroup()
 
