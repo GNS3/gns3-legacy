@@ -59,6 +59,7 @@ GNS3-Related feature-requests in 3rd party products: (by Technologov)
  * VirtualBox: [feature-request] Please support 16 vNICs per VM (Wish #8805)
  * VirtualBox: [feature-request] GuestControl execute must automatically handle extensions, like shell does (Wish #9035)
  * VirtualBox: [feature-request] Guest Additions: Please provide clipboard copy paste for text-mode console VMs (without X.org) (Wish #9291) (jarle's case)
+ * VirtualBox: Multicast support (many procotols use multicast, like OSPF, RIPv2 etc.)
 
 GNS3-Related bugs in 3rd party products: (by Technologov)
 
