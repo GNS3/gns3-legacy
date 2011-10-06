@@ -9,7 +9,7 @@ from distutils.core import setup, Extension
 from glob import glob
 
 # current version of GNS3
-VERSION = '0.7.4'
+VERSION = '0.8.2'
 
 if sys.platform.startswith('win'):
 

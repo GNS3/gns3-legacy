@@ -21,13 +21,14 @@
 
 import sys
 import os
+import platform
 import GNS3.Globals as globals
 from PyQt4 import QtGui, QtCore
 from GNS3.Config.Objects import systemGeneralConf
 from GNS3.Ui.ConfigurationPages.Form_PreferencesGeneral import Ui_PreferencesGeneral
 from GNS3.Utils import translate, fileBrowser
 from GNS3.Config.Config import ConfDB
-from __main__ import VERSION_INTEGER
+from __main__ import VERSION_INTEGER, GNS3_RUN_PATH
 
 class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
 
@@ -41,28 +42,59 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             lang_name = lang[1]
             lang_displayText = u"%s (%s)" % (lang_name, lang_code)
             self.langsBox.addItem(lang_displayText)
+
+        if platform.system() == 'Darwin':
+            self.checkBoxBringConsoleToFront.setVisible(False)
         
         self.connect(self.pushButton_ClearConfiguration, QtCore.SIGNAL('clicked()'), self.__clearConfiguration)
         self.connect(self.ProjectPath_browser, QtCore.SIGNAL('clicked()'), self.__setProjectPath)
         self.connect(self.IOSPath_browser, QtCore.SIGNAL('clicked()'), self.__setIOSPath)
         self.connect(self.pushButtonUseTerminalCommand, QtCore.SIGNAL('clicked()'), self.__setTerminalCmd)
         self.loadConf()
-
-        terminal_cmds = {'Putty (Windows 64 bits)': 'C:\Program Files (x86)\Putty\putty.exe -telnet %h %p',
-                         'Putty (Windows 32 bits)': 'C:\Program Files\Putty\putty.exe -telnet %h %p',
-                         'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p',
-                         'SecureCRT (Windows 32 bits)': 'start C:\progra~1\vandyk~1\SecureCRT\SecureCRT.EXE /script C:\progra~1\gns3\securecrt.vbs /arg %d /T /telnet %h %p',
-                         'SecureCRT (Windows 64 bits)': 'start C:\progra~2\vandyk~1\SecureCRT\SecureCRT.EXE /script C:\progra~2\gns3\securecrt.vbs /arg %d /T /telnet %h %p',
-                         'TeraTerm (Windows)': 'C:\TTERMPRO\\ttermpro.exe %h:%p',
-                         'Telnet (Windows)': 'start telnet %h %p',
-                         'xterm (Linux)': 'xterm -T %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
-                         'Gnome Terminal (Linux)': 'gnome-terminal -t %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
-                         'Konsole (Linux KDE)': '/usr/bin/konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &',
-                         'Terminal (Mac OS X)': "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'",
-                         'iTerm (Mac OS X)': "/usr/bin/osascript -e 'tell app \"iTerm\"' -e 'activate' -e 'set myterm to the first terminal' -e 'tell myterm' -e 'set mysession to (make new session at the end of sessions)' -e 'tell mysession' -e 'exec command \"telnet %h %p\"' -e 'set name to \"%d\"' -e 'end tell' -e 'end tell' -e 'end tell'"
-                         }
         
-        for (name, cmd) in terminal_cmds.iteritems():
+        if platform.system() == 'Linux' or platform.system().__contains__("BSD"):
+            terminal_cmds = {'xterm (Linux/BSD)': 'xterm -T %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
+                            'Putty (Linux/BSD)': 'putty -telnet %h %p',
+                            'Gnome Terminal (Linux/BSD)': 'gnome-terminal -t %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
+                            'KDE Konsole (Linux/BSD)': '/usr/bin/konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &'
+                            }
+        elif platform.system() == 'Windows'  and os.path.exists("C:\Program Files (x86)\\"):
+            terminal_cmds = {'Putty (Windows 64 bit)': 'C:\Program Files (x86)\Putty\putty.exe -telnet %h %p',
+                            'Putty (Windows 32 bit)': 'C:\Program Files\Putty\putty.exe -telnet %h %p',
+                            'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p',
+                            'SecureCRT (Windows 64 bit)': '"C:\Program Files(x86)\\VanDyke Software\SecureCRT\SecureCRT.EXE" /script "%s\securecrt.vbs"' % GNS3_RUN_PATH + ' /arg %d /T /telnet %h %p',
+                            'SecureCRT (Windows 32 bit)': '"C:\Program Files\\VanDyke Software\SecureCRT\SecureCRT.EXE" /script "%s\securecrt.vbs"' % GNS3_RUN_PATH + ' /arg %d /T /telnet %h %p',
+                            'TeraTerm (Windows)': 'C:\TTERMPRO\\ttermpro.exe %h:%p',
+                            'Telnet (Windows)': 'start telnet %h %p'
+                            }
+        elif platform.system() == 'Windows':
+            terminal_cmds = {'Putty (Windows)': 'C:\Program Files\Putty\putty.exe -telnet %h %p',
+                            'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p',
+                            'SecureCRT (Windows)': '"C:\Program Files\\VanDyke Software\SecureCRT\SecureCRT.EXE" /script "%s\securecrt.vbs"' % GNS3_RUN_PATH + ' /arg %d /T /telnet %h %p',
+                            'TeraTerm (Windows)': 'C:\TTERMPRO\\ttermpro.exe %h:%p',
+                            'Telnet (Windows)': 'start telnet %h %p'
+                            }
+        elif platform.system() == 'Darwin':
+            terminal_cmds = {'Terminal (Mac OS X)': "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'",
+                            'iTerm (Mac OS X)': "/usr/bin/osascript -e 'tell app \"iTerm\"' -e 'activate' -e 'set myterm to the first terminal' -e 'tell myterm' -e 'set mysession to (make new session at the end of sessions)' -e 'tell mysession' -e 'exec command \"telnet %h %p\"' -e 'set name to \"%d\"' -e 'end tell' -e 'end tell' -e 'end tell'"
+                            }
+        else:  # For unknown platforms, or if detection failed, we list all options.
+            terminal_cmds = {'Putty (Windows 64 bits)': 'C:\Program Files (x86)\Putty\putty.exe -telnet %h %p',
+                            'Putty (Windows 32 bits)': 'C:\Program Files\Putty\putty.exe -telnet %h %p',
+                            'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p',
+                            'SecureCRT (Windows 64 bits)': '"C:\Program Files(x86)\\VanDyke Software\SecureCRT\SecureCRT.EXE" /script "%s\securecrt.vbs"' % GNS3_RUN_PATH + ' /arg %d /T /telnet %h %p',
+                            'SecureCRT (Windows 32 bits)': '"C:\Program Files\\VanDyke Software\SecureCRT\SecureCRT.EXE" /script "%s\securecrt.vbs"' % GNS3_RUN_PATH + ' /arg %d /T /telnet %h %p',
+                            'TeraTerm (Windows)': 'C:\TTERMPRO\\ttermpro.exe %h:%p',
+                            'Telnet (Windows)': 'start telnet %h %p',
+                            'xterm (Linux/BSD)': 'xterm -T %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
+                            'Putty (Linux/BSD)': 'putty -telnet %h %p',
+                            'Gnome Terminal (Linux/BSD)': 'gnome-terminal -t %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
+                            'KDE Konsole (Linux/BSD)': '/usr/bin/konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &',
+                            'Terminal (Mac OS X)': "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'",
+                            'iTerm (Mac OS X)': "/usr/bin/osascript -e 'tell app \"iTerm\"' -e 'activate' -e 'set myterm to the first terminal' -e 'tell myterm' -e 'set mysession to (make new session at the end of sessions)' -e 'tell mysession' -e 'exec command \"telnet %h %p\"' -e 'set name to \"%d\"' -e 'end tell' -e 'end tell' -e 'end tell'"
+                            }
+        
+        for (name, cmd) in sorted(terminal_cmds.iteritems()):
             self.comboBoxPreconfigTerminalCommands.addItem(name, cmd)
 
     def loadConf(self):
@@ -133,6 +165,10 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.checkBoxUseShell.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxUseShell.setCheckState(QtCore.Qt.Unchecked)
+        if self.conf.bring_console_to_front == True:
+            self.checkBoxBringConsoleToFront.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxBringConsoleToFront.setCheckState(QtCore.Qt.Unchecked)
         if self.conf.project_startup == True:
             self.checkBoxProjectDialog.setCheckState(QtCore.Qt.Checked)
         else:
@@ -177,6 +213,10 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.conf.use_shell = True
         else:
             self.conf.use_shell = False
+        if self.checkBoxBringConsoleToFront.checkState() == QtCore.Qt.Checked:
+            self.conf.bring_console_to_front = True
+        else:
+            self.conf.bring_console_to_front = False
         if self.checkBoxProjectDialog.checkState() == QtCore.Qt.Checked:
             self.conf.project_startup = True
         else:

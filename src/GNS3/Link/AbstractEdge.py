@@ -25,10 +25,12 @@ import subprocess as sub
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Dynagen.qemu_lib as qemu
+import GNS3.Dynagen.dynagen_vbox_lib as vboxlib
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate, debug
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.AnyEmuDevice import AnyEmuDevice
+from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice
 from GNS3.Node.FRSW import FRSW
 
 class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
@@ -220,13 +222,13 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         """
 
         options = []
-        if isinstance(self.source, IOSRouter) or isinstance(self.source, AnyEmuDevice):
+        if isinstance(self.source, IOSRouter) or isinstance(self.source, AnyEmuDevice) or isinstance(self.source, AnyVBoxEmuDevice):
             hostname = self.source.hostname
             if type(hostname) != unicode:
                 hostname = unicode(hostname)
             if not self.__returnCaptureOptions(options, hostname, self.dest, self.srcIf):
                 return
-        if isinstance(self.dest, IOSRouter) or isinstance(self.dest, AnyEmuDevice):
+        if isinstance(self.dest, IOSRouter) or isinstance(self.dest, AnyEmuDevice) or isinstance(self.dest, AnyVBoxEmuDevice):
             hostname = self.dest.hostname
             if type(hostname) != unicode:
                 hostname = unicode(hostname)
@@ -244,9 +246,13 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             
             (device, interface, encapsulation) = unicode(selection).split(' ')
             if isinstance(globals.GApp.dynagen.devices[device], qemu.AnyEmuDevice):
-                if globals.GApp.dynagen.devices[device].state == 'running':
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s must be restarted to start capturing traffic")) % device)    
+                if globals.GApp.dynagen.devices[device].state != 'stopped':
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s must be restarted to start capturing traffic")) % device)
                 self.__captureQemuDevice(device, interface)
+            elif isinstance(globals.GApp.dynagen.devices[device], vboxlib.AnyVBoxEmuDevice):
+                if globals.GApp.dynagen.devices[device].state != 'stopped':
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s must be restarted to start capturing traffic")) % device)
+                self.__captureVBoxDevice(device, interface)
             else:
                 if globals.GApp.dynagen.devices[device].state != 'running':
                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s is not running")) % device)
@@ -254,6 +260,12 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 self.__captureDynamipsDevice(device, interface, encapsulation)
         
         globals.GApp.mainWindow.capturesDock.refresh()
+
+    def isLocalhost(self, i_host):
+        if i_host == 'localhost' or i_host == '127.0.0.1' or i_host == '::1' or i_host == "0:0:0:0:0:0:0:1":
+            return True
+        else:
+            return False
 
     def __captureQemuDevice(self, device, interface):
         """ Capture for Qemu based devices
@@ -265,9 +277,9 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             debug("Cannot parse interface " + interface)
             return
         port = match_obj.group(2)
-        
         capture_conf = globals.GApp.systconf['capture']
-        if capture_conf.workdir and (host == globals.GApp.systconf['qemu'].QemuManager_binding or host == 'localhost'):
+        """ # This code can fail with multi-host hypervisor setup:
+        if capture_conf.workdir and (host == globals.GApp.systconf['qemu'].QemuManager_binding or self.isLocalhost(host)):
             workdir = capture_conf.workdir
         else:
             workdir = globals.GApp.dynagen.devices[device].dynamips.workingdir
@@ -276,6 +288,50 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         else:
             sep = '\\'
         self.capfile = unicode(workdir + sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+        """
+        if capture_conf.workdir and (host == globals.GApp.systconf['qemu'].QemuManager_binding or self.isLocalhost(host)):
+            # We only provide capture directory to locally running wrappers.
+            self.capfile = unicode(capture_conf.workdir + '/' + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+        else:
+            # Remote hypervisor should setup it's own work dir, when user is starting wrapper.
+            self.capfile = unicode(self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+        #"""
+        debug("Start capture to " + self.capfile)
+        globals.GApp.dynagen.devices[device].capture(int(port), self.capfile)
+        self.captureInfo = (device, port)
+        self.capturing = True
+        debug("Capturing to " + self.capfile)
+
+    def __captureVBoxDevice(self, device, interface):
+        """ Capture for VBox based devices
+        """
+
+        host = globals.GApp.dynagen.devices[device].dynamips.host
+        match_obj = dynagen_namespace. vbox_int_re.search(interface)
+        if not match_obj:
+            debug("Cannot parse interface " + interface)
+            return
+        port = match_obj.group(2)
+        
+        capture_conf = globals.GApp.systconf['capture']
+        """ # This code can fail with multi-host hypervisor setup:
+        if capture_conf.workdir and (host == globals.GApp.systconf['vbox'].VBoxManager_binding or self.isLocalhost(host)):
+            workdir = capture_conf.workdir
+        else:
+            workdir = globals.GApp.dynagen.devices[device].dynamips.workingdir
+        if '/' in workdir:
+            sep = '/'
+        else:
+            sep = '\\'
+        self.capfile = unicode(workdir + sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+        """
+        if capture_conf.workdir and (host == globals.GApp.systconf['vbox'].VBoxManager_binding or self.isLocalhost(host)):
+            # We only provide capture directory to locally running wrappers.
+            self.capfile = unicode(capture_conf.workdir + '/' + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+        else:
+            # Remote hypervisor should setup it's own work dir, when user is starting wrapper.
+            self.capfile = unicode(self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+        #"""
         debug("Start capture to " + self.capfile)
         
         globals.GApp.dynagen.devices[device].capture(int(port), self.capfile)
@@ -305,7 +361,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             encapsulation = self.encapsulationTransform[encapsulation]
             capture_conf = globals.GApp.systconf['capture']
 
-            if capture_conf.workdir and (host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or host == 'localhost'):
+            if capture_conf.workdir and (host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or host == 'localhost' or host == '127.0.0.1' or host == '::1'):
                 workdir = capture_conf.workdir
             else:
                 workdir = globals.GApp.dynagen.devices[device].dynamips.workingdir
@@ -337,10 +393,10 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         """
 
         try:
-            if isinstance(globals.GApp.dynagen.devices[self.captureInfo[0]], qemu.AnyEmuDevice):
+            if isinstance(globals.GApp.dynagen.devices[self.captureInfo[0]], qemu.AnyEmuDevice) or isinstance(globals.GApp.dynagen.devices[self.captureInfo[0]], vboxlib.AnyVBoxEmuDevice):
                 (device, port) = self.captureInfo
 
-                if showMessage and globals.GApp.dynagen.devices[device].state == 'running':
+                if showMessage and globals.GApp.dynagen.devices[device].state != 'stopped':
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s must be stopped to stop capturing traffic")) % device) 
 
                 # empty string means stop capturing traffic
@@ -380,14 +436,19 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                                             unicode(translate("AbstractEdge",  "%s is empty, no traffic captured on the link. Try again later")) % self.capfile)
                 return
         except (OSError, IOError), e:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), unicode(translate("AbstractEdge", "Cannot find %s : %s")) % (self.capfile, e.strerror))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), unicode(translate("AbstractEdge", "Cannot find %s : %s")) % (self.capfile, e.strerror)+os.linesep+unicode(translate("AbstractEdge", "NOTE: This feature is only available for local hypervisors.")))
             return
 
         try:
             path = unicode(capture_conf.cap_cmd.replace("%c", '"%s"')) % self.capfile
-            debug("Start Wireshark like application: " + path)
+            debug("Start Wireshark-like application: " + path)
             if sys.platform.startswith('win'):
-                sub.Popen(path)
+                if path.__contains__('|'):
+                    # Live Traffic Capture on Windows
+                    sub.Popen(path, shell=True)
+                else:
+                    # Traditional Capture on Windows
+                    sub.Popen(path)
             else:
                 sub.Popen(path, shell=True)
         except (OSError, IOError), e:

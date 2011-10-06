@@ -23,8 +23,8 @@
 import sys, os, traceback
 
 # current version of GNS3
-VERSION = "0.7.4"
-VERSION_INTEGER = 0x000704
+VERSION = "0.8.2"
+VERSION_INTEGER = 0x000802
 
 try:
     from PyQt4 import QtCore, QtGui
@@ -38,8 +38,8 @@ if QtCore.QT_VERSION < 0x040501:
 if QtCore.PYQT_VERSION < 0x040500:
     raise RuntimeError, "Need PyQt v4.5 or higher, but got v%s" % QtCore.PYQT_VERSION_STR
 
-if sys.version_info < (2, 6):
-    raise RuntimeError, "Need Python 2.6 or higher"
+if sys.version_info < (2, 5):
+    raise RuntimeError, "Need Python 2.5 or higher"
 
 VBOXVER_REQUIRED = 4.1
 VBOXVER_STR = ""
@@ -72,9 +72,14 @@ def exceptionHook(type, value, tb):
 # catch exceptions to write them in a file
 sys.excepthook=exceptionHook
 if __name__ == '__main__' and not hasattr(sys, "frozen"):
-    source_path = os.path.dirname(os.path.abspath(__file__)) + os.sep + 'src'
+    GNS3_RUN_PATH = os.path.dirname(os.path.abspath(__file__))
+    source_path = GNS3_RUN_PATH + os.sep + 'src'
+    print "source_path = ", source_path
     if os.access(source_path, os.F_OK):
+        syspathold = sys.path
+        sys.path = []
         sys.path.append(source_path)
+        sys.path+=syspathold
 
 if len(sys.argv) > 1 and sys.argv[1].startswith("-psn"):
     del sys.argv[1]

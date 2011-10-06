@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-# vim: expandtab ts=4 sw=4 sts=4:
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Mon Apr 11 15:55:30 2011
-#      by: PyQt4 UI code generator 4.8.1
+# Created: Wed Oct  5 20:06:37 2011
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
