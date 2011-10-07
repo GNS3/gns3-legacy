@@ -31,7 +31,7 @@ if sys.platform.startswith('win'):
                   ("", glob(r'..\GNS3 Windows Files\*'))]
 
     # Settings for py2exe, packages values are to tell to py2exe about hidden imports
-    setup(windows=[{"script":"gns3",
+    setup(windows=[{"script":"gns3.pyw",
                 "icon_resources": [(1, "C:\gns3.ico")]}],
                 zipfile=None,
                 data_files=data_files,
@@ -85,7 +85,7 @@ elif sys.platform.startswith('darwin'):
                                                QTDIR + r'/plugins/imageformats/libqsvg.dylib'])
                   ]
 
-    APP = ['gns3.py']
+    APP = ['gns3.pyw']
     OPTIONS = {'argv_emulation': False,
                'semi_standalone': False,
                'site_packages': True,
@@ -165,7 +165,7 @@ else:
             author_email = "code@gns3.net",
             platforms = 'Windows, Unix and MacOSX',
             url = "http://www.gns3.net/",
-            scripts = [ 'gns3' ],
+            scripts = [ 'gns3.pyw' ],
             package_dir = { '': 'src' },
             packages = [
                 'GNS3',
