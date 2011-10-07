@@ -194,6 +194,11 @@ class Scene(QtGui.QGraphicsView):
             self.connect(displayWindowFocusAct, QtCore.SIGNAL('triggered()'), self.slotDisplayWindowFocus)
             menu.addAction(displayWindowFocusAct)
 
+            # Action: Hide window
+            displayWindowHideAct = QtGui.QAction(translate('Scene', 'Hide display window'), menu)
+            self.connect(displayWindowHideAct, QtCore.SIGNAL('triggered()'), self.slotDisplayWindowHide)
+            menu.addAction(displayWindowHideAct)
+
         instances = map(lambda item: isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice), items)
         if True in instances:
 
@@ -598,6 +603,14 @@ class Scene(QtGui.QGraphicsView):
         for item in self.__topology.selectedItems():
             if isinstance(item, AnyVBoxEmuDevice):
                 item.displayWindowFocus()
+                return
+
+    def slotDisplayWindowHide(self):
+        """ Slot called to hide VM's display window
+        """
+        for item in self.__topology.selectedItems():
+            if isinstance(item, AnyVBoxEmuDevice):
+                item.displayWindowHide()
                 return
 
     def slotAuxConsole(self):
