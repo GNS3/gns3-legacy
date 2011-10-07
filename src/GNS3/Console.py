@@ -36,14 +36,14 @@ from __main__ import VERSION
 class Console(PyCutExt, Dynagen_Console):
 
     # list of keywords to color
-    """
+
     keywords = set(["capture", "console", "filter", "idlepc", "no",
                 "reload", "send", "start", "telnet", "aux", "clear",
                 "exit", "help", "import", "push", "resume",
-                "shell", "stop", "ver", "confreg",
+                "shell", "stop", "ver", "confreg", "vboxexec",
                 "export", "hist", "list", "py",
-                "save", "show", "suspend", "hypervisors", "versions"])
-    """
+                "save", "show", "suspend", "ver"])
+
     def __init__(self, parent):
         """ Initialise the Console widget
         """
@@ -59,7 +59,7 @@ class Console(PyCutExt, Dynagen_Console):
         try:
             PyCutExt.__init__(self, None, self.intro, parent=parent)
             # put our own keywords list
-            #self.colorizer.keywords = self.keywords
+            self.colorizer.keywords = self.keywords
             self._Dynagen_Console_init()
         except Exception,e:
             sys.stderr.write(e.message)
@@ -156,21 +156,6 @@ class Console(PyCutExt, Dynagen_Console):
         except Exception,e:
             print e
 
-    #def do_hypervisors(self, args):
-    #    """hypervisors \nshow the hypervisors started by the hypervisor manager"""
-    """
-        if globals.GApp.HypervisorManager:
-            globals.GApp.HypervisorManager.showHypervisors()
-    """        
-    #def do_versions(self, args):
-    #    """ Show GNS3 + libs versions"""
-    """        
-        import sip
-        print 'GNS3 version is ' + VERSION
-        print 'Qt version is ' + QtCore.QT_VERSION_STR
-        print 'PyQt version is ' + QtCore.PYQT_VERSION_STR
-        print 'SIP version is ' + sip.SIP_VERSION_STR
-    """
     def do_start(self, args):
         """start  {/all | device1 [device2] ...}\nstart all or a specific device(s)"""
 
@@ -246,7 +231,8 @@ class Console(PyCutExt, Dynagen_Console):
         self.do_start(args)
 
     def do_vboxexec(self, args):
-        """vboxexec <VBOX device> <command>\nVirtualBox GuestControl execute sends a command to\n VirtualBox guest, and prints it's output (experimental feature)
+        """vboxexec <VBOX device> <command>\nVirtualBox GuestControl execute sends a command to VirtualBox guest\nand prints it's output (experimental feature).
+This requires VirtualBox Guest Additions to be installed inside the guest VM.
 
 Example for Windows guest:
   vboxexec VBOX1 ping.exe 127.0.0.1
@@ -261,6 +247,10 @@ Example for Linux guest:
             return
             
         try:
+            node_name = args.split(' ')[0]
+            for node in globals.GApp.topology.nodes.values():
+                if isinstance(node, AnyVBoxEmuDevice) and node.hostname == node_name:
+                    break
             Dynagen_Console.do_vboxexec(self, args)
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  unicode(msg))
