@@ -200,10 +200,11 @@ class Console(AbstractConsole):
 
 
     def do_vboxexec(self, args):
-        """vboxexec <VBOX device> <command>\nVirtualBox GuestControl execute sends a command to\n VirtualBox guest, and prints it's output (experimental feature) """
+        """vboxexec <VBOX device> <command>\nVirtualBox GuestControl execute sends a command to VirtualBox guest\nand prints it's output (experimental feature).
+This requires VirtualBox Guest Additions to be installed inside the guest VM."""
         
         if '?' in args or args.strip() == "":
-            print self.do_start.__doc__
+            print self.do_vboxexec.__doc__
             return
         devices = args.split(" ")
 
