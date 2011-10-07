@@ -37,11 +37,10 @@ class Console(PyCutExt, Dynagen_Console):
 
     # list of keywords to color
 
-    keywords = set(["capture", "console", "filter", "idlepc", "no",
-                "reload", "send", "start", "telnet", "aux", "clear",
-                "exit", "help", "import", "push", "resume",
-                "shell", "stop", "ver", "confreg", "vboxexec",
-                "export", "hist", "list", "py",
+    keywords = set(["capture", "console", "filter", "idlepc",
+                "reload", "start", "telnet", "aux", "clear",
+                "clear topology", "help", "import", "push", "resume", 
+                "stop", "ver", "vboxexec", "export", "hist", "list",
                 "save", "show", "suspend", "ver"])
 
     def __init__(self, parent):
