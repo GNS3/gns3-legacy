@@ -21,7 +21,7 @@ FILES=" Form_MainWindow
         ./ConfigurationPages/Form_FRSWPage
         ./ConfigurationPages/Form_ATMSWPage
         ./ConfigurationPages/Form_ATMBRPage
-        ./ConfigurationPages/Form_PIXPage
+        ./ConfigurationPages/Form_FWPage
         ./ConfigurationPages/Form_ASAPage
         ./ConfigurationPages/Form_JunOSPage
         ./ConfigurationPages/Form_IDSPage

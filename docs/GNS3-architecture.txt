@@ -1,0 +1,105 @@
+
+Copyright (C) 2011 Alexey Eromenko "Technologov"
+
+================================================================================
+Bird's eye overview of the GNS3 architecture for developers.
+================================================================================
+We have several layers:
+1. GUI
+2. Dynagen Layer - distributed dynamic topology layer. It also provides command-line interface (CLI) terminal.
+3. Hypervisors (dynamips/qemuwrapper/vboxwrapper)
+
+Historically Dynagen predates GNS3, and it was a separate component.
+A layer that sits above the hypervisors.
+
+Once user clicks on a device in the main window:
++scene.py
+-+GNS3/Node/<device>.py
+--+GNS3/Dynagen/<device lib>.py (TCP clients)
+
+The clients connect to one of our Hypervisor TCP servers:
++dynamips (both a TCP server _and_ an engine)
++qemuwrapper (TCP server that speaks to Qemu engine)
++vboxwrapper (TCP server, with several backends, where each backend targets specific major version of VirtualBox engine)
+-+vboxcontroller_4_1.py
+
+*This is modular, because VirtualBox breaks their API on every major release.
+*vboxcontroller_4_1 can only speak to VirtualBox 4.1.x engine
+
+GUI's major components are:
+scene.py - where control and menus happens
+and topology.py - where actual implementation of links happens
+Globals/Symbols.py - actual main GUI, topology and new devices
+
+Import/Export Topology logic exists in:
+DynagenSub.py
+Workspace.py
+NETFile.py
+Dynagen/configspec
+configobj.py
+
+================================================================================
+Security:
+================================================================================
+GNS3 is insecure in several ways:
+
+a. Communication between dynagen and hypervisors / wrappers is insecure.
+b. UDP Tunnels are insecure (VDE can solve this, but is Linux-only)
+c. VBox GuestExec Passwords are stored, logged and sent in clear-text
+d. Since we use capture command with "Shell=True", it allows for shell injection attacks.
+
+================================================================================
+VirtualBox integration:
+================================================================================
+Being developed since Apr.2011, available in GNS3 0.8.0 VirtualBox Edition.
+
+Design Goals:
+* Full VirtualBox support, with best integration into GNS3 architecture
+1. VM Parameters should not be configurable from GNS3 GUI, except the network.
+2. First vNIC is not managed by GNS3; It is managed by VirtualBox GUI instead. (NAT/Bridge/etc...)
+3. GNS3 Manages VirtualBox vNICs <2-N>
+4. Zero regressions against official GNS3 release 0.7.4; It means that old features must work.
+
+Reason:
+VirtualBox already has a nice Qt4-based GUI and a management layer, "VirtualBox Manager",
+so no reason to manage VBox VMs separately from GNS3 GUI.
+Attempt to doing so will complicate GNS3 GUI, and we won't achieve the depth
+of "VirtualBox Manager" anyway.
+It means, that VM Parameters should not be configurable from GNS3 GUI, except the network.
+
+Explanation of the concept of non-managed First NIC:
+Qemu and Dynamips do not have a separate management layer. 
+GNS3 is the only management layer for them. Because VirtualBox has built-in
+management layer, people can decide to have a back-door for their own controlled VMs.
+This back-door allows admins to manage their VMs in background using first
+vNIC - running scripts, doing X11 forwarding, or just have Internet access via NAT. Convenient.
+If you don't need this back-door, just disconnect the VBox vCable from vNIC 1. (VM->Settings->Network)
+
+VirtualBox backend features:
+-FlexiNetwork: Link hot-add/hot-remove
+-Packet capture
+-Suspend/Resume VMs
+-Instant reboot
+-"automatic" NIC type (just mirrors existing NIC type)
+-Network statistics (Bytes Transmitted / Bytes Received)
+-View of Guest OS IP addresses, by retrieving data from Virtual machine (if GuestAdditions installed)
+(added after BETA1)
+-GuestControl execution; send commands from Dynagen console
+-Double-click on VBOX VM brings it's display window to front.
+-Modular design
+
+================================================================================
+Short History:
+================================================================================
+In 2005 Christophe Fillot developed Dynamips - the Cisco router emulator engine.
+You could run only one router instance per process.
+
+In 2006 Greg Anuzelli developed command-line management and topology layer for it, named "Dynagen".
+You had high-level view of the whole topology, but you had to shut-down the whole topology to make even small change.
+This layer was distributed, and support clustering. I.e. several Dynamips engines could run on different physical hosts.
+
+In 2007 Pavel Skovajsa "jumbo" developed "confDynagen", which added dynamic topology layer.
+Now you could add/modify/remove devices/links/hypervisors at run-time.
+
+Also in 2007 Jeremy Grossmann and other 4 French students developed GNS3,
+which inhereted Dynagen and Dynamips design concepts, and added a GUI on top of it.
