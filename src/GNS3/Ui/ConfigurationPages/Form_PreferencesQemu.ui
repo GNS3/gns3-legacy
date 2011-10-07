@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>526</width>
-    <height>563</height>
+    <width>464</width>
+    <height>491</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -107,20 +107,6 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>IP/host binding:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1" colspan="6">
-           <widget class="QComboBox" name="comboBoxBinding">
-            <property name="sizeAdjustPolicy">
-             <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-            </property>
-           </widget>
-          </item>
           <item row="5" column="0">
            <widget class="QLabel" name="label_35">
             <property name="text">
@@ -133,25 +119,8 @@
             <property name="enabled">
              <bool>true</bool>
             </property>
-            <property name="minimum">
-             <number>1</number>
-            </property>
-            <property name="maximum">
-             <number>65535</number>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="0">
-           <widget class="QLabel" name="label_31">
-            <property name="text">
-             <string>Base UDP port:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1" colspan="6">
-           <widget class="QSpinBox" name="baseUDP">
-            <property name="enabled">
-             <bool>true</bool>
+            <property name="suffix">
+             <string notr="true"> TCP</string>
             </property>
             <property name="minimum">
              <number>1</number>
@@ -161,17 +130,20 @@
             </property>
            </widget>
           </item>
-          <item row="7" column="0">
+          <item row="9" column="0">
            <widget class="QLabel" name="label_30">
             <property name="text">
              <string>Base console port:</string>
             </property>
            </widget>
           </item>
-          <item row="7" column="1" colspan="6">
+          <item row="9" column="1" colspan="6">
            <widget class="QSpinBox" name="baseConsole">
             <property name="enabled">
              <bool>true</bool>
+            </property>
+            <property name="suffix">
+             <string notr="true"> TCP</string>
             </property>
             <property name="minimum">
              <number>1</number>
@@ -181,7 +153,7 @@
             </property>
            </widget>
           </item>
-          <item row="8" column="0" colspan="3">
+          <item row="14" column="0" colspan="3">
            <widget class="QCheckBox" name="checkBoxEnableQemuManager">
             <property name="text">
              <string>Enable Qemu Manager</string>
@@ -191,7 +163,7 @@
             </property>
            </widget>
           </item>
-          <item row="9" column="0" colspan="4">
+          <item row="15" column="0" colspan="4">
            <widget class="QCheckBox" name="checkBoxQemuManagerImport">
             <property name="text">
              <string>Use Qemu Manager when importing</string>
@@ -201,7 +173,7 @@
             </property>
            </widget>
           </item>
-          <item row="10" column="0" colspan="2">
+          <item row="16" column="0" colspan="2">
            <widget class="QLabel" name="label_5">
             <property name="enabled">
              <bool>true</bool>
@@ -211,32 +183,80 @@
             </property>
            </widget>
           </item>
-          <item row="10" column="2" colspan="2">
-           <widget class="QLineEdit" name="lineEditHostExternalQemu"/>
+          <item row="16" column="2" colspan="2">
+           <widget class="QLineEdit" name="lineEditHostExternalQemu">
+            <property name="toolTip">
+             <string>Add several wrappers, to make your GNS3 distributed across several hosts.</string>
+            </property>
+           </widget>
           </item>
-          <item row="10" column="4">
+          <item row="16" column="4">
            <widget class="QPushButton" name="pushButtonAddExternalQemuwrapper">
             <property name="text">
              <string>Add</string>
             </property>
            </widget>
           </item>
-          <item row="10" column="5" colspan="2">
+          <item row="16" column="5" colspan="2">
            <widget class="QPushButton" name="pushButtonDeleteExternalQemuwrapper">
             <property name="text">
              <string>Delete</string>
             </property>
            </widget>
           </item>
-          <item row="11" column="0" colspan="3">
+          <item row="17" column="0" colspan="3">
            <widget class="QLabel" name="label_36">
             <property name="text">
              <string>Registered external Qemuwrappers:</string>
             </property>
            </widget>
           </item>
-          <item row="11" column="3" colspan="4">
+          <item row="17" column="3" colspan="4">
            <widget class="QComboBox" name="comboBoxExternalQemuwrappers"/>
+          </item>
+          <item row="12" column="1" colspan="6">
+           <widget class="QComboBox" name="comboBoxBinding">
+            <property name="sizeAdjustPolicy">
+             <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>IP/host binding:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="0" colspan="4">
+           <widget class="QCheckBox" name="checkBoxQemuWrapperShowAdvancedOptions">
+            <property name="text">
+             <string>Show QemuWrapper Advanced Options</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0">
+           <widget class="QLabel" name="label_31">
+            <property name="text">
+             <string>Base UDP port:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="1" colspan="6">
+           <widget class="QSpinBox" name="baseUDP">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="suffix">
+             <string notr="true"> UDP</string>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -282,7 +302,7 @@
      </widget>
      <widget class="QWidget" name="tab_4">
       <attribute name="title">
-       <string>Qemu Host</string>
+       <string>Qemu Guest</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_7">
        <item>
@@ -295,15 +315,15 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>452</width>
-            <height>480</height>
+            <width>420</width>
+            <height>427</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
            <item>
             <widget class="QGroupBox" name="groupBox">
              <property name="title">
-              <string>Qemu Host Settings</string>
+              <string>Qemu Guest Settings</string>
              </property>
              <layout class="QGridLayout" name="gridLayout">
               <item row="0" column="0">
@@ -348,6 +368,9 @@
               </item>
               <item row="2" column="1" colspan="2">
                <widget class="QSpinBox" name="QemuMemory">
+                <property name="suffix">
+                 <string> MiB</string>
+                </property>
                 <property name="minimum">
                  <number>1</number>
                 </property>
@@ -392,11 +415,16 @@
                 </property>
                </widget>
               </item>
-              <item row="4" column="1">
+              <item row="4" column="1" colspan="2">
                <widget class="QComboBox" name="QemuNIC">
                 <property name="currentIndex">
-                 <number>5</number>
+                 <number>0</number>
                 </property>
+                <item>
+                 <property name="text">
+                  <string>rtl8139</string>
+                 </property>
+                </item>
                 <item>
                  <property name="text">
                   <string>ne2k_pci</string>
@@ -415,11 +443,6 @@
                 <item>
                  <property name="text">
                   <string>i82559er</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>rtl8139</string>
                  </property>
                 </item>
                 <item>
@@ -450,16 +473,9 @@
                <widget class="QLineEdit" name="QemuOptions"/>
               </item>
               <item row="6" column="0">
-               <widget class="QCheckBox" name="QemucheckBoxKqemu">
-                <property name="text">
-                 <string>Use KQemu</string>
-                </property>
-               </widget>
-              </item>
-              <item row="6" column="1">
                <widget class="QCheckBox" name="QemucheckBoxKVM">
                 <property name="text">
-                 <string>Use KVM (Linux Only)</string>
+                 <string>Use KVM</string>
                 </property>
                </widget>
               </item>
@@ -471,14 +487,14 @@
              <item>
               <widget class="QPushButton" name="SaveQemuImage">
                <property name="text">
-                <string>Save</string>
+                <string>&amp;Save</string>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="DeleteQemuImage">
                <property name="text">
-                <string>Delete</string>
+                <string>&amp;Delete</string>
                </property>
               </widget>
              </item>
@@ -500,7 +516,7 @@
            <item>
             <widget class="QGroupBox" name="groupBox_8">
              <property name="title">
-              <string>Qemu Host Images</string>
+              <string>Qemu Guest Images</string>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_5">
               <item>
@@ -520,26 +536,11 @@
              </layout>
             </widget>
            </item>
-           <item>
-            <spacer name="verticalSpacer_4">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
           </layout>
          </widget>
         </widget>
        </item>
       </layout>
-      <zorder>scrollArea</zorder>
-      <zorder>scrollArea</zorder>
      </widget>
      <widget class="QWidget" name="tab_5">
       <attribute name="title">
@@ -556,8 +557,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>437</width>
-            <height>554</height>
+            <width>205</width>
+            <height>427</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -618,6 +619,9 @@
                <widget class="QSpinBox" name="PIXMemory">
                 <property name="enabled">
                  <bool>true</bool>
+                </property>
+                <property name="suffix">
+                 <string> MiB</string>
                 </property>
                 <property name="minimum">
                  <number>1</number>
@@ -727,16 +731,6 @@
                 </property>
                </widget>
               </item>
-              <item row="6" column="0">
-               <widget class="QCheckBox" name="PIXcheckBoxKqemu">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
-                <property name="text">
-                 <string>Use KQemu</string>
-                </property>
-               </widget>
-              </item>
              </layout>
             </widget>
            </item>
@@ -794,14 +788,14 @@
              <item>
               <widget class="QPushButton" name="SavePIXImage">
                <property name="text">
-                <string>Save</string>
+                <string>&amp;Save</string>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="DeletePIXImage">
                <property name="text">
-                <string>Delete</string>
+                <string>&amp;Delete</string>
                </property>
               </widget>
              </item>
@@ -864,8 +858,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>452</width>
-            <height>480</height>
+            <width>205</width>
+            <height>365</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -923,6 +917,9 @@
                <widget class="QSpinBox" name="JunOSMemory">
                 <property name="enabled">
                  <bool>true</bool>
+                </property>
+                <property name="suffix">
+                 <string> MiB</string>
                 </property>
                 <property name="minimum">
                  <number>1</number>
@@ -1032,23 +1029,13 @@
                 </property>
                </widget>
               </item>
-              <item row="6" column="0">
-               <widget class="QCheckBox" name="JunOScheckBoxKqemu">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
-                <property name="text">
-                 <string>Use KQemu</string>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="0" colspan="2">
+              <item row="6" column="0" colspan="2">
                <widget class="QCheckBox" name="JunOScheckBoxKVM">
                 <property name="enabled">
                  <bool>true</bool>
                 </property>
                 <property name="text">
-                 <string>Use KVM (Linux Only)</string>
+                 <string>Use KVM</string>
                 </property>
                </widget>
               </item>
@@ -1060,14 +1047,14 @@
              <item>
               <widget class="QPushButton" name="SaveJunOSImage">
                <property name="text">
-                <string>Save</string>
+                <string>&amp;Save</string>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="DeleteJunOSImage">
                <property name="text">
-                <string>Delete</string>
+                <string>&amp;Delete</string>
                </property>
               </widget>
              </item>
@@ -1114,8 +1101,6 @@
         </widget>
        </item>
       </layout>
-      <zorder>scrollArea_3</zorder>
-      <zorder>groupBox_5</zorder>
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
@@ -1132,8 +1117,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>437</width>
-            <height>579</height>
+            <width>200</width>
+            <height>450</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -1164,6 +1149,9 @@
                <widget class="QSpinBox" name="ASAMemory">
                 <property name="enabled">
                  <bool>true</bool>
+                </property>
+                <property name="suffix">
+                 <string> MiB</string>
                 </property>
                 <property name="minimum">
                  <number>1</number>
@@ -1273,23 +1261,13 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="0">
-               <widget class="QCheckBox" name="ASAcheckBoxKqemu">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
-                <property name="text">
-                 <string>Use KQemu</string>
-                </property>
-               </widget>
-              </item>
-              <item row="6" column="0" colspan="2">
+              <item row="5" column="0" colspan="2">
                <widget class="QCheckBox" name="ASAcheckBoxKVM">
                 <property name="enabled">
                  <bool>true</bool>
                 </property>
                 <property name="text">
-                 <string>Use KVM (Linux Only)</string>
+                 <string>Use KVM</string>
                 </property>
                </widget>
               </item>
@@ -1364,14 +1342,14 @@
              <item>
               <widget class="QPushButton" name="SaveASAImage">
                <property name="text">
-                <string>Save</string>
+                <string>&amp;Save</string>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="DeleteASAImage">
                <property name="text">
-                <string>Delete</string>
+                <string>&amp;Delete</string>
                </property>
               </widget>
              </item>
@@ -1439,8 +1417,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>437</width>
-            <height>507</height>
+            <width>228</width>
+            <height>391</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1525,6 +1503,9 @@
                <widget class="QSpinBox" name="IDSMemory">
                 <property name="enabled">
                  <bool>true</bool>
+                </property>
+                <property name="suffix">
+                 <string> MiB</string>
                 </property>
                 <property name="minimum">
                  <number>1</number>
@@ -1637,23 +1618,13 @@
                 </property>
                </widget>
               </item>
-              <item row="7" column="0">
-               <widget class="QCheckBox" name="IDScheckBoxKqemu">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
-                <property name="text">
-                 <string>Use KQemu</string>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="0" colspan="2">
+              <item row="7" column="0" colspan="2">
                <widget class="QCheckBox" name="IDScheckBoxKVM">
                 <property name="enabled">
                  <bool>true</bool>
                 </property>
                 <property name="text">
-                 <string>Use KVM (Linux Only)</string>
+                 <string>Use KVM</string>
                 </property>
                </widget>
               </item>
@@ -1665,14 +1636,14 @@
              <item>
               <widget class="QPushButton" name="SaveIDSImage">
                <property name="text">
-                <string>Save</string>
+                <string>&amp;Save</string>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="DeleteIDSImage">
                <property name="text">
-                <string>Delete</string>
+                <string>&amp;Delete</string>
                </property>
               </widget>
              </item>
@@ -1720,16 +1691,10 @@
             </widget>
            </item>
           </layout>
-          <zorder>groupBox_9</zorder>
-          <zorder>layoutWidget_4</zorder>
-          <zorder>groupBox_13</zorder>
-          <zorder>groupBox_13</zorder>
          </widget>
         </widget>
        </item>
       </layout>
-      <zorder>scrollArea_5</zorder>
-      <zorder>scrollArea_5</zorder>
      </widget>
     </widget>
    </item>

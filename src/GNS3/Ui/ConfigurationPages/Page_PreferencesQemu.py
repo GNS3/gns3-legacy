@@ -19,7 +19,7 @@
 # code@gns3.net
 #
 
-import sys, os, re
+import sys, os, re, platform
 import GNS3.Globals as globals
 import subprocess
 from PyQt4 import QtGui, QtCore, QtNetwork
@@ -35,7 +35,13 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
 
         QtGui.QWidget.__init__(self)
         Ui_PreferencesQemu.setupUi(self, self)
-        
+
+        if platform.system() != 'Linux':
+            self.QemucheckBoxKVM.setVisible(False)
+            self.JunOScheckBoxKVM.setVisible(False)
+            self.ASAcheckBoxKVM.setVisible(False)
+            self.IDScheckBoxKVM.setVisible(False)
+
         # Test button
         self.connect(self.pushButtonTestQemu, QtCore.SIGNAL('clicked()'),self.__testQemu)
         
@@ -47,7 +53,13 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         self.connect(self.pushButtonAddExternalQemuwrapper, QtCore.SIGNAL('clicked()'), self.slotAddExternalQemuwrapper)
         self.connect(self.pushButtonDeleteExternalQemuwrapper, QtCore.SIGNAL('clicked()'), self.slotDeleteExternalQemuwrapper)
         self.connect(self.comboBoxExternalQemuwrappers, QtCore.SIGNAL('currentIndexChanged(const QString &)'), self.slotExternalQemuwrapperChanged)
-        self.comboBoxBinding.addItems(['localhost', QtNetwork.QHostInfo.localHostName()] + map(lambda addr: addr.toString(), QtNetwork.QNetworkInterface.allAddresses()))
+        #self.comboBoxBinding.addItems(['localhost', QtNetwork.QHostInfo.localHostName()] + map(lambda addr: addr.toString(), QtNetwork.QNetworkInterface.allAddresses()))
+        mylist = map(lambda addr: addr.toString(), QtNetwork.QNetworkInterface.allAddresses())
+        if mylist.__contains__('0:0:0:0:0:0:0:1'):
+            self.comboBoxBinding.addItems(['localhost', '::1', QtNetwork.QHostInfo.localHostName()] + mylist)
+        else:
+            self.comboBoxBinding.addItems(['localhost', QtNetwork.QHostInfo.localHostName()] + mylist)
+        self.connect(self.checkBoxQemuWrapperShowAdvancedOptions,  QtCore.SIGNAL('clicked()'), self.slotCheckBoxQemuWrapperShowAdvancedOptions)        
 
         # Qemu settings
         self.connect(self.QemuImage_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectQemuImage)
@@ -83,6 +95,39 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
 
         self.loadConf()
 
+
+    def slotCheckBoxQemuWrapperShowAdvancedOptions(self):
+        if self.checkBoxQemuWrapperShowAdvancedOptions.checkState() == QtCore.Qt.Checked:
+            self.conf.enable_QemuWrapperAdvOptions = True
+            self.checkBoxEnableQemuManager.setVisible(True)
+            self.checkBoxQemuManagerImport.setVisible(True)
+            #self.baseUDP.setVisible(True)
+            #self.label_31.setVisible(True)
+            self.comboBoxBinding.setVisible(True)
+            self.label_6.setVisible(True)
+            #external vboxwrapper
+            self.label_5.setVisible(True)
+            self.lineEditHostExternalQemu.setVisible(True)
+            self.pushButtonAddExternalQemuwrapper.setVisible(True)
+            self.pushButtonDeleteExternalQemuwrapper.setVisible(True)
+            self.label_36.setVisible(True)
+            self.comboBoxExternalQemuwrappers.setVisible(True)
+        else:
+            self.conf.enable_QemuWrapperAdvOptions = False
+            self.checkBoxEnableQemuManager.setVisible(False)
+            self.checkBoxQemuManagerImport.setVisible(False)
+            #self.baseUDP.setVisible(False)
+            #self.label_31.setVisible(False)
+            self.comboBoxBinding.setVisible(False)
+            self.label_6.setVisible(False)
+            #external vboxwrapper
+            self.label_5.setVisible(False)
+            self.lineEditHostExternalQemu.setVisible(False)
+            self.pushButtonAddExternalQemuwrapper.setVisible(False)
+            self.pushButtonDeleteExternalQemuwrapper.setVisible(False)
+            self.label_36.setVisible(False)
+            self.comboBoxExternalQemuwrappers.setVisible(False)          
+
     def loadConf(self):
 
         # Use conf from GApp.systconf['qemu'] it it exist,
@@ -95,7 +140,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         # Default path to qemuwrapper
         if self.conf.qemuwrapper_path == '':
             if sys.platform.startswith('win'):
-                self.conf.qemuwrapper_path = unicode('qemuwrapper.exe')
+                self.conf.qemuwrapper_path = unicode('.\qemuwrapper\qemuwrapper.exe')
             else:
                 path = os.getcwd() + '/qemuwrapper/qemuwrapper.py'
                 self.conf.qemuwrapper_path = unicode(path, errors='replace')
@@ -127,6 +172,12 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             self.checkBoxQemuManagerImport.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxQemuManagerImport.setCheckState(QtCore.Qt.Unchecked)
+            
+        if self.conf.enable_QemuWrapperAdvOptions:
+            self.checkBoxQemuWrapperShowAdvancedOptions.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxQemuWrapperShowAdvancedOptions.setCheckState(QtCore.Qt.Unchecked)
+        self.slotCheckBoxQemuWrapperShowAdvancedOptions()
             
         index = self.comboBoxBinding.findText(self.conf.QemuManager_binding)
         if index != -1:
@@ -231,6 +282,9 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         self.lineEditHostExternalQemu.setText(text)
            
     def slotAddExternalQemuwrapper(self):
+        part1 = self.lineEditHostExternalQemu.text().split(':')[0]
+        if part1 == '127.0.0.1' or part1 == 'localhost':
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("New Hypervisor", "New Hypervisor"), unicode(translate("New Hypervisor", "WARNING: When doing multi-host setup, never use loopback addresses, such as 'localhost' or '127.0.0.1'. Use actual IP addresses instead.")))
         
         external_qemuwrapper = self.lineEditHostExternalQemu.text()
         if external_qemuwrapper and external_qemuwrapper not in self.external_hosts:
@@ -297,12 +351,12 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         image = unicode(self.QemuImage.text())
         
         if not name or not image:
-            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "Qemu host"), 
+            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "Qemu guest"), 
                                        translate("Page_PreferencesQemu", "Identifier and binary image must be set!"))
             return
 
         if globals.GApp.qemuimages.has_key(name):
-            # update an already existing Qemu host image
+            # update an already existing Qemu image
             item_to_update = self.treeWidgetQemuImages.findItems(name, QtCore.Qt.MatchFixedString)[0]
             item_to_update.setText(1, image)
         else:
@@ -328,10 +382,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         conf.nic = str(self.QemuNIC.currentText())
         conf.options = str(self.QemuOptions.text())
         
-        if self.QemucheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-            conf.kqemu = True
-        else:
-            conf.kqemu  = False
         if self.QemucheckBoxKVM.checkState() == QtCore.Qt.Checked:
             conf.kvm = True
         else:
@@ -339,7 +389,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
 
         globals.GApp.qemuimages[name] = conf
         self.treeWidgetQemuImages.resizeColumnToContents(0)
-        QtGui.QMessageBox.information(globals.preferencesWindow, translate("Page_PreferencesQemu", "Save"),  translate("Page_PreferencesQemu", "Qemu host settings have been saved"))
     
     def slotDeleteQemuImage(self):
         """ Delete Qemu Image from the list of Qemu images
@@ -373,11 +422,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             index = self.QemuNIC.findText(conf.nic)
             if index != -1:
                 self.QemuNIC.setCurrentIndex(index)
-
-            if conf.kqemu == True:
-                self.QemucheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.QemucheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
             
             if conf.kvm == True:
                 self.QemucheckBoxKVM.setCheckState(QtCore.Qt.Checked)
@@ -431,11 +475,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         conf.nic_nb = self.PIXNICNb.value()
         conf.nic = str(self.PIXNIC.currentText())
         conf.options = str(self.PIXOptions.text())
-        
-        if self.PIXcheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-            conf.kqemu = True
-        else:
-            conf.kqemu  = False
             
         serial = str(self.PIXSerial.text())
         if serial and not re.search(r"""^0x[0-9a-fA-F]{8}$""", serial):
@@ -487,11 +526,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             index = self.PIXNIC.findText(conf.nic)
             if index != -1:
                 self.PIXNIC.setCurrentIndex(index)
-
-            if conf.kqemu == True:
-                self.PIXcheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.PIXcheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
                 
             self.PIXKey.setText(conf.key)
             self.PIXSerial.setText(conf.serial)
@@ -544,10 +578,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         conf.nic = str(self.JunOSNIC.currentText())
         conf.options = str(self.JunOSOptions.text())
         
-        if self.JunOScheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-            conf.kqemu = True
-        else:
-            conf.kqemu  = False
         if self.JunOScheckBoxKVM.checkState() == QtCore.Qt.Checked:
             conf.kvm = True
         else:
@@ -589,11 +619,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             index = self.JunOSNIC.findText(conf.nic)
             if index != -1:
                 self.JunOSNIC.setCurrentIndex(index)
-
-            if conf.kqemu == True:
-                self.JunOScheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.JunOScheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
             
             if conf.kvm == True:
                 self.JunOScheckBoxKVM.setCheckState(QtCore.Qt.Checked)
@@ -663,10 +688,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         conf.nic = str(self.ASANIC.currentText())
         conf.options = str(self.ASAOptions.text())
         
-        if self.ASAcheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-            conf.kqemu = True
-        else:
-            conf.kqemu  = False
         if self.ASAcheckBoxKVM.checkState() == QtCore.Qt.Checked:
             conf.kvm = True
         else:
@@ -710,11 +731,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             index = self.ASANIC.findText(conf.nic)
             if index != -1:
                 self.ASANIC.setCurrentIndex(index)
-
-            if conf.kqemu == True:
-                self.ASAcheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.ASAcheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
             
             if conf.kvm == True:
                 self.ASAcheckBoxKVM.setCheckState(QtCore.Qt.Checked)
@@ -783,10 +799,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         conf.nic = str(self.IDSNIC.currentText())
         conf.options = str(self.IDSOptions.text())
         
-        if self.IDScheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-            conf.kqemu = True
-        else:
-            conf.kqemu  = False
         if self.IDScheckBoxKVM.checkState() == QtCore.Qt.Checked:
             conf.kvm = True
         else:
@@ -829,11 +841,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             index = self.IDSNIC.findText(conf.nic)
             if index != -1:
                 self.IDSNIC.setCurrentIndex(index)
-
-            if conf.kqemu == True:
-                self.IDScheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.IDScheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
             
             if conf.kvm == True:
                 self.IDScheckBoxKVM.setCheckState(QtCore.Qt.Checked)
@@ -868,7 +875,33 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             except OSError:
                 self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start qemu")  + '</font>')
                 return
+                
+            if platform.system() != 'Windows':
+                # we test this only on non-Windows versions of GNS3, because our patched 
+                # Qemu-0.11 for Windows is buggy, and fails to return 'qemu --help' results.
+                try:
+                    p = subprocess.Popen([globals.GApp.systconf['qemu'].qemu_path, '--help'], cwd=globals.GApp.systconf['qemu'].qemuwrapper_workdir, stdout = subprocess.PIPE)
+                    qemustdout = p.communicate()
+                except:
+                    self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start qemu")  + '</font>')
+                    return
+                if not qemustdout[0].__contains__('ynamips'):
+                    self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "You're running unpatched version of qemu, which won't work")  + '</font>')
+                    return
             
+            PEMU_BIN = "pemu"
+            if platform.system() == 'Windows':
+                # expected to be the same as "qemuwrapper_path"
+                PEMU_BIN = os.path.dirname(globals.GApp.systconf['qemu'].qemuwrapper_path)+"\pemu.exe"
+                #print "PEMU_BIN =",PEMU_BIN      
+                
+            bPEMUfound = True
+            try:
+                p = subprocess.Popen([PEMU_BIN], cwd=globals.GApp.systconf['qemu'].qemuwrapper_workdir)
+                p.terminate()
+            except OSError:
+                bPEMUfound = False
+
             try:
                 p = subprocess.Popen([globals.GApp.systconf['qemu'].qemu_img_path], cwd=globals.GApp.systconf['qemu'].qemuwrapper_workdir)
                 p.terminate()
@@ -876,5 +909,8 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start qemu-img")  + '</font>')
                 return
             
-            self.labelQemuStatus.setText('<font color="green">' + translate("UiConfig_PreferencesQemu", "Qemuwrapper, qemu and qemu-img have successfully started")  + '</font>')
+            if bPEMUfound:
+                self.labelQemuStatus.setText('<font color="green">' + translate("UiConfig_PreferencesQemu", "Qemuwrapper, qemu, qemu-img and pemu have successfully started")  + '</font>')
+            else:
+                self.labelQemuStatus.setText('<font color="green">' + translate("UiConfig_PreferencesQemu", "Qemuwrapper, qemu and qemu-img have successfully started")  + '</font>'+'<font color="red">' + translate("UiConfig_PreferencesQemu", " (except pemu)")  + '</font>')
 
