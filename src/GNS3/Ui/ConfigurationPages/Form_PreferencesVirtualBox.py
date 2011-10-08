@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesVirtualBox.ui'
 #
-# Created: Thu Oct  6 23:54:19 2011
+# Created: Fri Oct  7 19:05:09 2011
 #      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_PreferencesVirtualBox(object):
     def setupUi(self, PreferencesVirtualBox):
         PreferencesVirtualBox.setObjectName(_fromUtf8("PreferencesVirtualBox"))
-        PreferencesVirtualBox.resize(464, 464)
+        PreferencesVirtualBox.resize(504, 522)
         self.verticalLayout_17 = QtGui.QVBoxLayout(PreferencesVirtualBox)
         self.verticalLayout_17.setObjectName(_fromUtf8("verticalLayout_17"))
         self.tabWidget = QtGui.QTabWidget(PreferencesVirtualBox)
@@ -150,7 +150,7 @@ class Ui_PreferencesVirtualBox(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName(_fromUtf8("scrollArea"))
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 327, 366))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 432, 441))
         self.scrollAreaWidgetContents.setObjectName(_fromUtf8("scrollAreaWidgetContents"))
         self.verticalLayout = QtGui.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
@@ -182,7 +182,7 @@ class Ui_PreferencesVirtualBox(object):
         self.VBoxNICNb.setMinimum(0)
         self.VBoxNICNb.setMaximum(7)
         self.VBoxNICNb.setSingleStep(1)
-        self.VBoxNICNb.setProperty(_fromUtf8("value"), 6)
+        self.VBoxNICNb.setProperty(_fromUtf8("value"), 1)
         self.VBoxNICNb.setObjectName(_fromUtf8("VBoxNICNb"))
         self.gridLayout.addWidget(self.VBoxNICNb, 2, 2, 1, 1)
         self.label_37 = QtGui.QLabel(self.groupBox)
