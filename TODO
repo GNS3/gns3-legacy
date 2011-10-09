@@ -8,21 +8,16 @@ TODO LIST
  * Implement Qemu monitor functions (need to update the Qemu patch)
  * Style options for node labels
  * Do not remove original comments in .net files.
- * Add an Open Recent option to the file menu, lists say last 6 projects.
- * Add a Clear Configuration button to the startup configuration option, and/or add a Clear All Configurations option to the control menu.
+ * A "Open recent files" menu.
  * New logo for GNS3
  * Change the scrolling behavior for the scene
  * Extract/write files from Qemu qcow2 format image files using libguestfs
  * Dynamipswrapper for remote labs (not need to share an IOS image)
  * Auto-detection of a newer GNS3 version available to download
- * Improved "baseconfig.txt" message => "The Base config: file specified in Edit->IOS Images and hypervisors [IOS Images] (%filename) for image %imagename can not be found; no such file or directory. Your router will start with a blank configuration."
- * Finish Kqemu clean-up
  * Drag'n'drop a .net topology inside GNS3
  * Option to draw a line or draw an arrow on the scene
  * Set system ID.
- * .net versioning
  * Automatic console login for IOS (idlepc is not effective until hitting returns in the IOS console)
- * Check for new version at startup, ask for download.
  * Auto UDP (supported in dynamips-community): to simplify the UDP port mapping stuff and the binding problems that can occur
  	-> The first command to use is: "nio create_udp_auto <nio_name> <local_addr> <local_port_start> <local_port_end>"
  	-> It will return the allocated port number. local_addr is an IPv4/IPv6 address (0.0.0.0 on IPv4 and :: on IPv6 to listen on all addresses). local_port_start and local_port_end define a port range (it can be useful if you are behind a firewall).
@@ -44,18 +39,6 @@ TODO LIST
  * Automatic Network Topology Generator, like "AutoNetkit" does
      http://bandicoot.maths.adelaide.edu.au/AutoNetKit/AutoNetkit.pdf
      http://www.eleceng.adelaide.edu.au/personal/sknight/AutoNetkit/AutoNetkit.pdf
-
-Code Refactoring
-
-REMOVAL of:
-1. *Defaults.py (can be merged into *Devices.py ?)
-2. initialization scripts may be merged: gns3.pyw + main.py + application.py (main.py might be merged either into application.py or into gns3.pyw)
-
-Cleanup:
-3. DynagenSub.py: open_config() -- one *huge* function.
-This is import/export code, but it is very ugly/unreadable. Spaghetti code, which is very hard to debug and understand.
-It needs to be broken up into smaller functions, that are readable and easy to debug.
-(I afraid to touch this code, because I don't understand it fully, and I may break features)
 
 Debugging
 

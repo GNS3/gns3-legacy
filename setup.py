@@ -9,7 +9,7 @@ from distutils.core import setup, Extension
 from glob import glob
 
 # current version of GNS3
-VERSION = '0.8.2'
+VERSION = '0.7.4'
 
 if sys.platform.startswith('win'):
 
@@ -31,7 +31,7 @@ if sys.platform.startswith('win'):
                   ("", glob(r'..\GNS3 Windows Files\*'))]
 
     # Settings for py2exe, packages values are to tell to py2exe about hidden imports
-    setup(windows=[{"script":"gns3.pyw",
+    setup(windows=[{"script":"gns3",
                 "icon_resources": [(1, "C:\gns3.ico")]}],
                 zipfile=None,
                 data_files=data_files,
@@ -85,7 +85,7 @@ elif sys.platform.startswith('darwin'):
                                                QTDIR + r'/plugins/imageformats/libqsvg.dylib'])
                   ]
 
-    APP = ['gns3.pyw']
+    APP = ['gns3.py']
     OPTIONS = {'argv_emulation': False,
                'semi_standalone': False,
                'site_packages': True,
@@ -165,7 +165,7 @@ else:
             author_email = "code@gns3.net",
             platforms = 'Windows, Unix and MacOSX',
             url = "http://www.gns3.net/",
-            scripts = [ 'gns3.pyw' ],
+            scripts = [ 'gns3' ],
             package_dir = { '': 'src' },
             packages = [
                 'GNS3',

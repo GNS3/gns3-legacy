@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>539</width>
-    <height>453</height>
+    <height>527</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -242,7 +242,7 @@
        <item row="3" column="0" colspan="2">
         <widget class="QLineEdit" name="lineEditTermCommand"/>
        </item>
-       <item row="5" column="0">
+       <item row="4" column="0">
         <widget class="QCheckBox" name="checkBoxUseShell">
          <property name="text">
           <string>Launch this command using the system default shell</string>
@@ -252,7 +252,7 @@
          </property>
         </widget>
        </item>
-       <item row="7" column="0">
+       <item row="5" column="0">
         <widget class="QLabel" name="label_9">
          <property name="text">
           <string>Terminal command magic strings:
@@ -262,7 +262,7 @@
          </property>
         </widget>
        </item>
-       <item row="8" column="0" colspan="2">
+       <item row="6" column="0" colspan="2">
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -274,16 +274,6 @@
           </size>
          </property>
         </spacer>
-       </item>
-       <item row="6" column="0">
-        <widget class="QCheckBox" name="checkBoxBringConsoleToFront">
-         <property name="toolTip">
-          <string>&lt;html&gt;This option will attempt to bring existing opened console window to front, instead of opening a new window.&lt;br&gt;If no existing opened console window exists, it will start a new  console window.&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string>Bring console window to front (experimental feature)</string>
-         </property>
-        </widget>
        </item>
       </layout>
      </widget>

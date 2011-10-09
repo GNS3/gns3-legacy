@@ -22,7 +22,6 @@
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 import GNS3.Dynagen.qemu_lib as qemu
-import GNS3.Dynagen.dynagen_vbox_lib as vboxlib
 from GNS3.Utils import translate
 
 class capturesDock(QtGui.QTreeWidget):
@@ -46,9 +45,6 @@ class capturesDock(QtGui.QTreeWidget):
             if link.capturing:
                 device = globals.GApp.dynagen.devices[link.captureInfo[0]]
                 if isinstance(device, qemu.AnyEmuDevice):
-                    (hostname, port) = link.captureInfo
-                    port = 'e' + port
-                elif isinstance(device, vboxlib.AnyVBoxEmuDevice):
                     (hostname, port) = link.captureInfo
                     port = 'e' + port
                 else:

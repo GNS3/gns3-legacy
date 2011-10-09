@@ -15,10 +15,6 @@
 # code@gns3.net
 #
 
-#class Console is basically overloading of "Dynagen/console.py", and of "Dynagen/confConsole.py"
-#  with many functions redefined.
-#it allows you to type-in commands via GNS3 Dynagen console.
-
 import os, sys, cmd, socket
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as Dynagen_Namespace
@@ -29,19 +25,17 @@ from GNS3.Utils import translate
 from GNS3.Dynagen.console import Console as Dynagen_Console, getItems
 from GNS3.External.PyCutExt import PyCutExt
 from GNS3.Node.IOSRouter import IOSRouter
-from GNS3.Node.AnyEmuDevice import AnyEmuDevice
-from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice
 from __main__ import VERSION
 
 class Console(PyCutExt, Dynagen_Console):
 
     # list of keywords to color
-
-    keywords = set(["capture", "console", "filter", "idlepc",
-                "reload", "start", "telnet", "aux", "clear",
-                "clear topology", "help", "import", "push", "resume", 
-                "stop", "ver", "vboxexec", "export", "hist", "list",
-                "save", "show", "suspend", "ver"])
+    keywords = set(["capture", "console", "filter", "idlepc", "no",
+                "reload", "send", "start", "telnet", "aux", "clear",
+                "exit", "help", "import", "push", "resume",
+                "shell", "stop", "ver", "confreg",
+                "export", "hist", "list", "py",
+                "save", "show", "suspend", "hypervisors", "versions"])
 
     def __init__(self, parent):
         """ Initialise the Console widget
@@ -52,7 +46,7 @@ class Console(PyCutExt, Dynagen_Console):
         sys.ps1 = '=> '
 
         # Set introduction message
-        self.intro = 'Dynagen management console for Dynamips (adapted for GNS3)\nCopyright (c) 2006-2011 GNS3 Project'
+        self.intro = 'Dynagen management console for Dynamips (adapted for GNS3)\nCopyright (c) 2008-2010 GNS3 Project'
 
         # Parent class initialisation
         try:
@@ -139,30 +133,29 @@ class Console(PyCutExt, Dynagen_Console):
         self.lines = []
         self._clearLine()
 
+    def do_hypervisors(self, args):
+        """hypervisors \nshow the hypervisors started by the hypervisor manager"""
 
-    def do_ver(self, args):
-        """Print hypervisors, dynagen, GNS3, libs versions and credits"""
-        pythonver = str(sys.version_info[0])+'.'+str(sys.version_info[1])+'.'+str(sys.version_info[2])
+        if globals.GApp.HypervisorManager:
+            globals.GApp.HypervisorManager.showHypervisors()
+            
+    def do_versions(self, args):
+        """ Show GNS3 + libs versions"""
+        
         import sip
         print 'GNS3 version is ' + VERSION
         print 'Qt version is ' + QtCore.QT_VERSION_STR
         print 'PyQt version is ' + QtCore.PYQT_VERSION_STR
         print 'SIP version is ' + sip.SIP_VERSION_STR
-        print 'Python version is ' + pythonver
-        
-        try:
-            Dynagen_Console.do_ver(self, args)
-        except Exception,e:
-            print e
 
     def do_start(self, args):
-        """start  {/all | device1 [device2] ...}\nstart all or a specific device(s)"""
+        """start  {/all | router1 [router2] ...}\nstart all or a specific router(s)"""
 
         try:
             Dynagen_Console.do_start(self, args)
             devices = args.split(' ')
             for node in globals.GApp.topology.nodes.values():
-                if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice) or isinstance(node, AnyVBoxEmuDevice)) and (node.hostname in devices or '/all' in devices):
+                if isinstance(node, IOSRouter) and (node.hostname in devices or '/all' in devices):
                     node.startupInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'running')
         except lib.DynamipsError, msg:
@@ -173,13 +166,13 @@ class Console(PyCutExt, Dynagen_Console):
             QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
 
     def do_stop(self, args):
-        """stop  {/all | device1 [device2] ...}\nstop all or a specific device(s)"""
+        """stop  {/all | router1 [router2] ...}\nstop all or a specific router(s)"""
 
         try:
             Dynagen_Console.do_stop(self, args)
             devices = args.split(' ')
             for node in globals.GApp.topology.nodes.values():
-                if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice) or isinstance(node, AnyVBoxEmuDevice)) and (node.hostname in devices or '/all' in devices):
+                if isinstance(node, IOSRouter) and (node.hostname in devices or '/all' in devices):
                     node.shutdownInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'stopped')
         except lib.DynamipsError, msg:
@@ -190,13 +183,13 @@ class Console(PyCutExt, Dynagen_Console):
             QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
 
     def do_suspend(self, args):
-        """suspend  {/all | device1 [device2] ...}\nsuspend all or a specific device(s)"""
+        """suspend  {/all | router1 [router2] ...}\nsuspend all or a specific router(s)"""
 
         try:
             Dynagen_Console.do_suspend(self, args)
             devices = args.split(' ')
             for node in globals.GApp.topology.nodes.values():
-                if (isinstance(node, IOSRouter) or isinstance(node, AnyVBoxEmuDevice)) and (node.hostname in devices or '/all' in devices):
+                if isinstance(node, IOSRouter) and (node.hostname in devices or '/all' in devices):
                     node.suspendInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'suspended')
         except lib.DynamipsError, msg:
@@ -207,13 +200,13 @@ class Console(PyCutExt, Dynagen_Console):
             QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
 
     def do_resume(self, args):
-        """resume  {/all | device1 [device2] ...}\nresume all or a specific device(s)"""
+        """resume  {/all | router1 [router2] ...}\nresume all or a specific router(s)"""
 
         try:
             Dynagen_Console.do_resume(self, args)
             devices = args.split(' ')
             for node in globals.GApp.topology.nodes.values():
-                if (isinstance(node, IOSRouter) or isinstance(node, AnyVBoxEmuDevice)) and (node.hostname in devices or '/all' in devices):
+                if isinstance(node, IOSRouter) and (node.hostname in devices or '/all' in devices):
                     node.startupInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'running')
         except lib.DynamipsError, msg:
@@ -224,73 +217,31 @@ class Console(PyCutExt, Dynagen_Console):
             QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
 
     def do_reload(self, args):
-        """reload  {/all | device1 [device2] ...}\nreboots all or a specific device(s)"""
+        """reload  {/all | router1 [router2] ...}\nreload all or a specific router(s)"""
 
         self.do_stop(args)
         self.do_start(args)
 
-    def do_vboxexec(self, args):
-        """vboxexec <VBOX device> <command>\nVirtualBox GuestControl execute sends a command to VirtualBox guest\nand prints it's output (experimental feature).
-This requires VirtualBox Guest Additions to be installed inside the guest VM.
+    def do_exit(self,  args):
+        """clear the topology"""
 
-Example for Windows guest:
-  vboxexec VBOX1 ping.exe 127.0.0.1
-Example for Linux guest:
-  vboxexec VBOX1 /bin/ping 127.0.0.1 -c4"""
+        globals.GApp.topology.clear()
 
-        if '?' in args or args.strip() == '':
-            print self.do_vboxexec.__doc__
-            return
-        if not globals.GApp.systconf['vbox'].enable_GuestControl:
-            print "VirtualBox GuestControl execution is disabled in preferences"
-            return
-            
-        try:
-            node_name = args.split(' ')[0]
-            for node in globals.GApp.topology.nodes.values():
-                if isinstance(node, AnyVBoxEmuDevice) and node.hostname == node_name:
-                    break
-            Dynagen_Console.do_vboxexec(self, args)
-        except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  unicode(msg))
-        except lib.DynamipsWarning,  msg:
-            QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  unicode(msg))
-        except (lib.DynamipsErrorHandled,  socket.error):
-            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
+    def do_disconnect(self,  args):
+        """clear the topology"""
 
-    def do_clear(self,  args):
-        """clear [item]
+        globals.GApp.topology.clear()
 
-Examples:
-  clear mac <ethernet_switch_name> -- clear the mac address table of an ethernet switch
-  clear topology -- clear the network topology"""
+    def do_py(self,  args):
+        """not implemented in GNS3"""
 
-        if '?' in args or args.strip() == '':
-            print self.do_clear.__doc__
-            return
-        try:
-            command = args.split()[0]
-            command = command.lower()
-            params = args.split()[1:]
+        print translate("Console", "Sorry, not implemented in GNS3")
 
-            if command == 'topology':
-                globals.GApp.topology.clear()
-                return
+    def do_hist(self, args):
+        """print a list of commands that have been entered"""
 
-            if command == 'mac':
-                try:
-                    Dynagen_Console.do_clear(self, args)
-                except Exception,e:
-                    print e
-        except ValueError:
-            print translate("Console", "Incorrect number of paramaters or invalid parameters")
-            return
-        except KeyError:
-            print unicode(translate("Console", "Unknown device: %s")) % device
-            return
-        except lib.DynamipsError, e:
-            print e
-            return
+        for entry in self.history:
+            print unicode(entry)
 
     def do_idlepc(self, args):
         """idlepc {get|set|show|save|idlemax|idlesleep|showdrift} device [value]
@@ -430,7 +381,7 @@ Examples:
         for node in globals.GApp.topology.nodes.values():
             if isinstance(node, IOSRouter) and (node.hostname in devices or '/all' in devices):
                 node.console()
-
+                
     def do_aux(self, args):
         """aux  {/all | router1 [router2] ...}\nconnect to the AUX port(s) of all or a specific router(s)\n"""
 

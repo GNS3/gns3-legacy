@@ -75,7 +75,13 @@ class Page_FW(QtGui.QWidget, Ui_FWPage):
             
         if fw_config['options']:
             self.lineEditOptions.setText(fw_config['options'])
-
+            
+        if fw_config['kqemu'] == True:
+            self.checkBoxKqemu.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
+        
+        
     def saveConfig(self, id, config = None):
         """ Save the config
         """
@@ -116,6 +122,11 @@ class Page_FW(QtGui.QWidget, Ui_FWPage):
         options = str(self.lineEditOptions.text())
         if options:
             fw_config['options'] = options
+
+        if self.checkBoxKqemu.checkState() == QtCore.Qt.Checked:
+            fw_config['kqemu'] = True
+        else:
+            fw_config['kqemu']  = False
 
         return fw_config
 

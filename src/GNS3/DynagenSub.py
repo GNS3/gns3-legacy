@@ -163,7 +163,7 @@ class DynagenSub(Dynagen):
                     controlPort = int(host.split(':')[-1])
                     host = self.getHost(host)
                 if emulator == 'qemu' and (host == globals.GApp.systconf['qemu'].QemuManager_binding or host == 'localhost') and globals.GApp.systconf['qemu'].enable_QemuManager:
-                    globals.GApp.QemuManager.startQemu(controlPort)
+                    globals.GApp.QemuManager.startQemu(int(controlPort))
                     debugmsg(2, "DynagenSub::open_config(), entered QemuManager")
 
                     # Check if this is a relative working directory path and convert to an absolute path if necessary
@@ -282,7 +282,7 @@ class DynagenSub(Dynagen):
                                 device['image'] = image_name
                 elif emulator == 'vbox' and (host == globals.GApp.systconf['vbox'].VBoxManager_binding or host == 'localhost') and globals.GApp.systconf['vbox'].enable_VBoxManager:
                     debugmsg(2, "DynagenSub::open_config(), entered VBoxManager")
-                    globals.GApp.VBoxManager.startVBox(controlPort)
+                    globals.GApp.VBoxManager.startVBox(int(controlPort))
 
                     # Check if this is a relative working directory path and convert to an absolute path if necessary
                     #"""

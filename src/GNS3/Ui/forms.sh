@@ -21,7 +21,7 @@ FILES=" Form_MainWindow
         ./ConfigurationPages/Form_FRSWPage
         ./ConfigurationPages/Form_ATMSWPage
         ./ConfigurationPages/Form_ATMBRPage
-        ./ConfigurationPages/Form_FWPage
+        ./ConfigurationPages/Form_PIXPage
         ./ConfigurationPages/Form_ASAPage
         ./ConfigurationPages/Form_JunOSPage
         ./ConfigurationPages/Form_IDSPage
@@ -39,5 +39,5 @@ FILES=" Form_MainWindow
 for file in $FILES;
 do
     echo "Generating $file"
-    /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/pyuic4 "$file.ui" > "$file.py"
+    /Library/Frameworks/Python.framework/Versions/2.7/bin/pyuic4 "$file.ui" > "$file.py"
 done

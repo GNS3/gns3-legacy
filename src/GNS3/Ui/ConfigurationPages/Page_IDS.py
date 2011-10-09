@@ -19,7 +19,7 @@
 # code@gns3.net
 #
 
-import os, platform
+import os
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_IDSPage import Ui_IDSPage
@@ -35,9 +35,6 @@ class Page_IDS(QtGui.QWidget, Ui_IDSPage):
         self.setupUi(self)
         self.setObjectName("Cisco IDS")
         self.currentNodeID = None
-
-        if platform.system() != 'Linux':
-            self.checkBoxKVM.setVisible(False)
 
         # connect slots
         self.connect(self.pushButtonImage1Browser, QtCore.SIGNAL('clicked()'), self.slotSelectImage1)
@@ -88,6 +85,11 @@ class Page_IDS(QtGui.QWidget, Ui_IDSPage):
         if ids_config['options']:
             self.lineEditOptions.setText(ids_config['options'])
             
+        if ids_config['kqemu'] == True:
+            self.checkBoxKqemu.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
+            
         if ids_config['kvm'] == True:
             self.checkBoxKVM.setCheckState(QtCore.Qt.Checked)
         else:
@@ -125,6 +127,11 @@ class Page_IDS(QtGui.QWidget, Ui_IDSPage):
         if options:
             ids_config['options'] = options
 
+        if self.checkBoxKqemu.checkState() == QtCore.Qt.Checked:
+            ids_config['kqemu'] = True
+        else:
+            ids_config['kqemu']  = False
+            
         if self.checkBoxKVM.checkState() == QtCore.Qt.Checked:
             ids_config['kvm'] = True
         else:

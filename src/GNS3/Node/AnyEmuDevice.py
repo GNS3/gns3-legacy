@@ -73,6 +73,7 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
             'image',
             'nics',
             'netcard',
+            'kqemu',
             'kvm',
             'options',
             ]

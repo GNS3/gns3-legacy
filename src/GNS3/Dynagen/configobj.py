@@ -566,8 +566,6 @@ class Section(dict):
 
     def __getitem__(self, key):
         """Fetch the item and do string interpolation."""
-        #if constants.debuglevel > 1:
-        #    print "ADEBUG: configobj.py: Section::__getitem__(%s)" % str(key)
         val = dict.__getitem__(self, key)
         if self.main.interpolation: 
             if isinstance(val, basestring):
@@ -1245,18 +1243,13 @@ class ConfigObj(Section):
         self._original_configspec = configspec
         self._load(infile, configspec)
         
-    def _backward_compatibility(self, infile):
-        infile = infile.replace("[[FW", "[[PIX")
-        return infile
-
+        
     def _load(self, infile, configspec):
         if isinstance(infile, basestring):
             self.filename = infile
             if os.path.isfile(infile):
                 h = open(infile, 'rb')
                 infile = h.read() or []
-                infile = self._backward_compatibility(infile)
-                #print "ADEBUG: configobj.py: infile = ", infile
                 h.close()
             elif self.file_error:
                 # raise an error if the file doesn't exist
@@ -2060,7 +2053,6 @@ class ConfigObj(Section):
             
             if isinstance(this_entry, dict):
                 # a section
-                #print "ADEBUG: configobj.py: this_entry = ", this_entry
                 out.append(self._write_marker(
                     indent_string,
                     this_entry.depth,
@@ -2118,8 +2110,6 @@ class ConfigObj(Section):
         if outfile is not None:
             outfile.write(output)
         else:
-            #print "ADEBUG: configobj.py: self.filename = %s" % self.filename
-            #print "ADEBUG: configobj.py: output = " + os.linesep + "%s" % str(output)
             h = open(self.filename, 'wb')
             h.write(output)
             h.close()

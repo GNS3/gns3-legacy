@@ -31,6 +31,7 @@ class AnyEmuDefaults(AbstractDefaults):
         self.default_image = 'None'
         self.default_netcard = 'pcnet'
         self.default_nics = 6
+        self.default_kqemu = False
         self.default_kvm = False
         self.default_options = ''
         self.default_ram = 128

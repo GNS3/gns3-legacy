@@ -386,8 +386,10 @@ class AnyVBoxEmuDevice(object):
                 debug("dynagen_vbox_lib.py: displayWindowFocus() is not implemented on Mac OS X")
             elif int(self.hwnd) != 0: #Unix-like, X11-based, i.e. Linux/Solaris/FreeBSD
                 try:
-                    import subprocess
-                    subprocess.call(['xdotool', 'windowactivate', self.hwnd])
+                    sys.stderr = open("/dev/null", 'a')
+                    import commands
+                    commands.getstatusoutput('xdotool windowactivate %d' % int(self.hwnd))
+                    sys.stderr = sys.__stderr__  # restore stderr back to normal
                 except Exception, e:
                     debug("dynagen_vbox_lib.py: %s" % e.__str__())
             

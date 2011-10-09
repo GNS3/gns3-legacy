@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4:
 #
 # Copyright (c) 2007-2010 Thomas Pani & Jeremy Grossmann
 #
-# Contributions by Pavel Skovajsa, Juergen Lock & Alexey Eromenko "Technologov"
+# Contributions by Pavel Skovajsa
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -23,14 +24,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 #
+# !!!
+# !!! PLEASE NOTE: THIS LICENSE DOES NOT APPLY TO THE BINARIES ATTACHED TO
+# !!! THIS SCRIPT IN UUENCODED FORM. THEY ARE THE EFFORT OF mmm123 ON
+# !!! http://7200emu.hacki.at/.
+# !!!
+#
 
-#This module is used for actual control of VMs, sending commands to the hypervisor.
-#This is the server part, it can be started manually, or automatically from "QemuManager"
-#Client part is named "qemu_lib". (dynagen component)
 
-#debuglevel: 0=disabled, 1=default, 2=debug, 3=deep debug
-debuglevel = 0
-
+import base64
 import csv
 import cStringIO
 import os
@@ -39,57 +41,33 @@ import select
 import socket
 import subprocess
 import sys
+import tarfile
 import threading
 import SocketServer
 import time
 import random
-import ctypes
+import pemubin
 
-if debuglevel > 0:
-    if platform.system() == 'Windows':
-        debugfilename = "C:\TEMP\gns3-qemuwrapper-log.txt"
-    else:
-        debugfilename = "/tmp/gns3-qemuwrapper-log.txt"
-    try:
-        dfile = open(debugfilename, 'wb')    
-    except:
-        dfile = 0
-        print "WARNING: log file cannot be created !"
-    if dfile:
-        print "Log file = %s" % str(debugfilename)
-
-def debugmsg(level, message):
-    if debuglevel == 0:
-        return
-    if debuglevel >= level:        
-        print message
-        if dfile:
-            #In python 2.6, print with redirections always uses UNIX line-ending,
-            # so I must add os-neutral line-endings.
-            print >> dfile, message,
-            dfile.write(os.linesep)
-            dfile.flush()
-
-msg = "WELCOME to qemuwrapper.py"
-debugmsg(2, msg)
 
 __author__ = 'Thomas Pani and Jeremy Grossmann'
-__version__ = '0.8.0'
+__version__ = '0.7.4'
 
 QEMU_PATH = "qemu"
 QEMU_IMG_PATH = "qemu-img"
 PORT = 10525
 IP = ""
 QEMU_INSTANCES = {}
-FORCE_IPV6 = False
 
 WORKDIR = os.getcwd()
-if os.environ.has_key("TEMP"):
-    WORKDIR = unicode(os.environ["TEMP"], errors='replace')
-elif os.environ.has_key("TMP"):
-    WORKDIR = unicode(os.environ["TMP"], errors='replace')
+if os.environ.has_key("QEMUWRAPPER_WDIR"):
+    WORKDIR = unicode(os.environ["QEMUWRAPPER_WDIR"], errors='replace')
 
-PEMU_DIR = os.path.dirname(os.path.abspath(__file__))
+PEMU_DIR = os.getcwd()
+if platform.system() == 'Windows':
+    PEMU_DIR = os.path.join(PEMU_DIR, 'pemu_public_win_2008-03-03')
+else:
+    PEMU_DIR = os.path.join(PEMU_DIR, 'pemu_public_bin2008-03-04')
+
 
 class UDPConnection:
     def __init__(self, sport, daddr, dport):
@@ -112,7 +90,6 @@ class UDPConnection:
 class xEMUInstance(object):
 
     def __init__(self, name):
-        debugmsg(2, "xEMUInstance::__init__()")
         self.name = name
         self.ram = '256'
         self.console = ''
@@ -121,67 +98,34 @@ class xEMUInstance(object):
         self.nics = '6'
         self.udp = {}
         self.capture = {}
-        self.netcard = 'rtl8139'
+        self.netcard = 'pcnet'
+        self.kqemu = False
         self.kvm = False
         self.options = ''
         self.process = None
         self.workdir = WORKDIR
-        self.valid_attr_names = ['image', 'ram', 'console', 'nics', 'netcard', 'kvm', 'options']
+        self.valid_attr_names = ['image', 'ram', 'console', 'nics', 'netcard', 'kqemu', 'kvm', 'options']
 
-    def preexecFreeBSD(self): 
-        # FreeBSD preexec_fn hack to unblock signals in child processes 
-        # to work around the bug in this PR: 
-        #        http://www.freebsd.org/cgi/query-pr.cgi?pr=ports/153167
-        # inspired by: 
-        #        http://stackoverflow.com/questions/3791398/how-to-stop-python-from-propagating-signals-to-subprocesses
- 
-        # Get the size of the array used to 
-        # represent the signal mask 
-        SIGSET_NWORDS = 1024 / (8 * ctypes.sizeof(ctypes.c_uint)) 
- 
-        # Define the sigset_t structure 
-        class SIGSET(ctypes.Structure): 
-            _fields_ = [ 
-                ('val', ctypes.c_uint * SIGSET_NWORDS) 
-            ] 
- 
-        # Create a new sigset_t to mask out SIGINT 
-        sigs = (ctypes.c_uint * SIGSET_NWORDS)() 
-        mask = SIGSET(sigs) 
- 
-        SIG_SETMASK = 3 
-        libc = ctypes.CDLL('libc.so') 
- 
-        # Unblock all signals 
-        libc.sigprocmask(SIG_SETMASK, ctypes.pointer(mask), 0) 
- 
     def create(self):
-        debugmsg(2, "xEMUInstance::create()")
+
         self.workdir = os.path.join(os.getcwd(), self.name)
         if not os.path.exists(self.workdir):
             os.makedirs(self.workdir)
-            
+
     def clean(self):
         pass
-    
+
     def unbase_disk(self):
         pass
 
     def start(self):
-        debugmsg(2, "xEMUInstance::start()")
         command = self._build_command()
-        
+
         print "    command:", command
         try:
-            if platform.system() == 'FreeBSD':
-                self.process = subprocess.Popen(command, 
-                                                stdin=subprocess.PIPE, 
-                                                preexec_fn=self.preexecFreeBSD, 
-                                                cwd=self.workdir)
-            else:
-                self.process = subprocess.Popen(command,
-                                                stdin=subprocess.PIPE,
-                                                cwd=self.workdir)
+            self.process = subprocess.Popen(command,
+                                            stdin=subprocess.PIPE,
+                                            cwd=self.workdir)
         except OSError, e:
             print >> sys.stderr, "Unable to start instance", self.name, "of", self.__class__
             print >> sys.stderr, e
@@ -189,7 +133,7 @@ class xEMUInstance(object):
 
         # give us some time to wait for Qemu to start
         time.sleep(1)
-        
+
         print "    pid:", self.process.pid
 
         if platform.system() == 'Windows':
@@ -204,7 +148,7 @@ class xEMUInstance(object):
 
         else:
             print "Renicing to 19"
-            returncode = subprocess.call(['renice', '+19', str(self.process.pid)])
+            returncode = subprocess.call(['renice', '-n', '19', '-p', str(self.process.pid)])
             if returncode:
                 print "    failed."
                 # ignore if renice didn't worked
@@ -254,17 +198,16 @@ class xEMUInstance(object):
                 options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
 
         return options
-        
+
     def _ser_options(self):
         if self.console:
             return ['-serial', 'telnet:' + IP + ':%s,server,nowait' % self.console]
         else:
             return []
 
-class PEMUInstance(xEMUInstance):
+class PIXInstance(xEMUInstance):
     def __init__(self, name):
-        debugmsg(2, "PEMUInstance::__init__()")
-        super(PEMUInstance, self).__init__(name)
+        super(PIXInstance, self).__init__(name)
         if platform.system() == 'Windows':
             self.bin = 'pemu.exe'
         else:
@@ -272,11 +215,8 @@ class PEMUInstance(xEMUInstance):
         self.serial = '0x12345678'
         self.key = '0x00000000,0x00000000,0x00000000,0x00000000'
         self.valid_attr_names += ['serial', 'key']
-        self.pemu_bin_path = os.path.join(PEMU_DIR, self.bin)
-        debugmsg(1, "self.pemu_bin_path = %s" % self.pemu_bin_path)
 
     def _build_command(self):
-        debugmsg(2, "PEMUInstance::_build_command()")
         "Builds the command as a list of shell arguments."
         command = [os.path.join(PEMU_DIR, self.bin)]
         command.extend(self._net_options())
@@ -285,37 +225,26 @@ class PEMUInstance(xEMUInstance):
         return command
 
     def _write_config(self):
-        debugmsg(2, "PEMUInstance::_write_config()")
         f = open(os.path.join(self.workdir, 'pemu.ini'), 'w')
         f.writelines(''.join(['%s=%s\n' % (attr, getattr(self, attr))
             for attr in ('serial', 'key', 'image')]))
         f.close()
-      
-    def start(self):
-        debugmsg(2, "PEMUInstance::start()")
-        if not os.path.exists(self.pemu_bin_path):
-            debugmsg(1, "ERROR: Cannot find PEMU !")
-            print >> sys.stderr, "ERROR: Cannot find PEMU ! (looking for %s)" % self.pemu_bin_path
-            return False
-        self._write_config()
-        return super(PEMUInstance, self).start()
 
-class PIXInstance(PEMUInstance):
-    pass
-    
+    def start(self):
+        self._write_config()
+        return super(PIXInstance, self).start()
+
 class QEMUInstance(xEMUInstance):
 
     def __init__(self, name):
-        debugmsg(3, "QEMUInstance::__init__()")        
         super(QEMUInstance, self).__init__(name)
         self.bin = QEMU_PATH
         self.img_bin = QEMU_IMG_PATH
         self.valid_attr_names.extend(('flash_size', 'flash_name'))
         self.flash_size = '256M'
         self.flash_name = 'FLASH'
-        
+
     def _build_command(self):
-        debugmsg(3, "QEMUInstance::_build_command()")        
         "Builds the command as a list of shell arguments."
         command = [self.bin]
         command.extend(['-name', self.name])
@@ -323,6 +252,8 @@ class QEMUInstance(xEMUInstance):
         command.extend(self._disk_options())
         command.extend(self._image_options())
         command.extend(self._kernel_options())
+        if bool(self.kqemu) == True:
+            command.extend(['-kernel-kqemu'])
         if bool(self.kvm) == True:
             command.extend(['-enable-kvm'])
         command.extend(self._net_options())
@@ -332,32 +263,27 @@ class QEMUInstance(xEMUInstance):
         return command
 
     def _disk_options(self):
-        debugmsg(3, "QEMUInstance::_disk_options()")
         return []
-        
+
     def _kernel_options(self):
-        debugmsg(3, "QEMUInstance::_kernel_options()")
         return []
-        
+
     def _image_options(self):
-        debugmsg(3, "QEMUInstance::_image_options()")
         return []
-    
+
 
 class ASAInstance(QEMUInstance):
 
     def __init__(self, *args, **kwargs):
-        debugmsg(3, "ASAInstance::__init__()")        
         super(ASAInstance, self).__init__(*args, **kwargs)
         self.netcard = 'e1000'
         self.initrd = ''
         self.kernel = ''
         self.kernel_cmdline = ''
         self.valid_attr_names += ['initrd', 'kernel', 'kernel_cmdline']
-        
+
     def clean(self):
-        debugmsg(3, "ASAInstance::clean()")        
-        
+
         flash = os.path.join(self.workdir, self.flash_name)
         if os.path.exists(flash):
             try:
@@ -367,8 +293,7 @@ class ASAInstance(QEMUInstance):
                 print >> sys.stderr, "Execution failed:", e
 
     def _disk_options(self):
-        debugmsg(3, "ASAInstance::_disk_options()")
-        
+
         flash = os.path.join(self.workdir, self.flash_name)
         if not os.path.exists(flash):
             try:
@@ -380,25 +305,22 @@ class ASAInstance(QEMUInstance):
         return ('-hda', flash)
 
     def _image_options(self):
-        debugmsg(3, "ASAInstance::_image_options()")
         return ('-kernel', self.kernel, '-initrd', self.initrd)
-        
+
     def _kernel_options(self):
-        debugmsg(3, "ASAInstance::_kernel_options()")
         return  ('-append', self.kernel_cmdline)
 
 class JunOSInstance(QEMUInstance):
 
 
     def __init__(self, *args, **kwargs):
-        debugmsg(3, "JunOSInstance::__init__()")
         super(JunOSInstance, self).__init__(*args, **kwargs)
         self.swap_name= 'SWAP'
         self.swap_size = '1G'
         self.netcard = 'e1000'
-    
+
     def clean(self):
-        debugmsg(3, "JunOSInstance::clean()")        
+
         flash = os.path.join(self.workdir, self.flash_name)
         if os.path.exists(flash):
             try:
@@ -406,7 +328,7 @@ class JunOSInstance(QEMUInstance):
                 os.remove(flash)
             except (OSError, IOError), e:
                 print >> sys.stderr, "Execution failed:", e
-    
+
         swap = os.path.join(self.workdir, self.swap_name)
         if os.path.exists(swap):
             try:
@@ -414,10 +336,9 @@ class JunOSInstance(QEMUInstance):
                 os.remove(swap)
             except (OSError, IOError), e:
                 print >> sys.stderr, "Execution failed:", e
-    
+
     def unbase_disk(self):
-        debugmsg(3, "JunOSInstance::unbase_disk()")        
-        
+
         flash = os.path.join(self.workdir, self.flash_name)
         if os.path.exists(flash):
             try:
@@ -426,10 +347,9 @@ class JunOSInstance(QEMUInstance):
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
-    
+
     def _disk_options(self):
-        debugmsg(3, "JunOSInstance::_disk_options()")        
-        
+
         flash = os.path.join(self.workdir, self.flash_name)
         if not os.path.exists(flash):
             try:
@@ -447,12 +367,11 @@ class JunOSInstance(QEMUInstance):
                 print >> sys.stderr, "Execution failed:", e
 
         return (flash, '-hdb', swap)
-    
+
 class IDSInstance(QEMUInstance):
 
 
     def __init__(self, *args, **kwargs):
-        debugmsg(3, "IDSInstance::__init__()")        
         super(IDSInstance, self).__init__(*args, **kwargs)
         self.netcard = 'e1000'
         self.image1 = ''
@@ -460,29 +379,27 @@ class IDSInstance(QEMUInstance):
         self.valid_attr_names += ['image1', 'image2']
         self.img1_name = 'DISK1'
         self.img2_name = 'DISK2'
-    
+
     def clean(self):
-        debugmsg(3, "IDSInstance::clean()")
-    
+
         img1 = os.path.join(self.workdir, self.img1_name)
         if os.path.exists(img1):
-            try:     
+            try:
                 print "Deleting old image file:", img1
                 os.remove(img1)
             except (OSError, IOError), e:
                 print >> sys.stderr, "Execution failed:", e
-        
+
         img2 = os.path.join(self.workdir, self.img2_name)
         if os.path.exists(img2):
-            try:     
+            try:
                 print "Deleting old image file:", img2
                 os.remove(img2)
             except (OSError, IOError), e:
                 print >> sys.stderr, "Execution failed:", e
-    
+
     def unbase_disk(self):
-        debugmsg(3, "IDSInstance::unbase_disk()")        
-        
+
         img1 = os.path.join(self.workdir, self.img1_name)
         if os.path.exists(img1):
             try:
@@ -491,7 +408,7 @@ class IDSInstance(QEMUInstance):
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
-                
+
         img2 = os.path.join(self.workdir, self.img2_name)
         if os.path.exists(img2):
             try:
@@ -500,49 +417,46 @@ class IDSInstance(QEMUInstance):
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
-    
+
     def _disk_options(self):
-        debugmsg(3, "IDSInstance::_disk_options()")        
-        
+
         img1 = os.path.join(self.workdir, self.img1_name)
-        if not os.path.exists(img1): 
+        if not os.path.exists(img1):
             try:
                 retcode = subprocess.call([self.img_bin, 'create', '-b', self.image1, '-f', 'qcow2', img1])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
-        
+
         img2 = os.path.join(self.workdir, self.img2_name)
-        if not os.path.exists(img2): 
-            try:  
+        if not os.path.exists(img2):
+            try:
                 retcode = subprocess.call([self.img_bin, 'create', '-b', self.image2, '-f', 'qcow2', img2])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
 
         return ('-hda', img1, '-hdb', img2)
-    
+
 class QemuDeviceInstance(QEMUInstance):
 
 
     def __init__(self, *args, **kwargs):
-        debugmsg(3, "QemuDeviceInstance::__init__()")        
         super(QemuDeviceInstance, self).__init__(*args, **kwargs)
         self.swap_name= 'SWAP'
         self.swap_size = '1G'
-        self.netcard = 'rtl8139'
+        self.netcard = 'e1000'
 
     def clean(self):
-        debugmsg(3, "QemuDeviceInstance::clean()")        
 
         flash = os.path.join(self.workdir, self.flash_name)
-        if os.path.exists(flash): 
+        if os.path.exists(flash):
             try:
                 print "Deleting old flash file:", flash
                 os.remove(flash)
             except (OSError, IOError), e:
                 print >> sys.stderr, "Execution failed:", e
-                
+
         swap = os.path.join(self.workdir, self.swap_name)
         if os.path.exists(swap):
             try:
@@ -550,10 +464,9 @@ class QemuDeviceInstance(QEMUInstance):
                 os.remove(swap)
             except (OSError, IOError), e:
                 print >> sys.stderr, "Execution failed:", e
-                
+
     def unbase_disk(self):
-        debugmsg(3, "QemuDeviceInstance::unbase_disk()")        
-        
+
         flash = os.path.join(self.workdir, self.flash_name)
         if os.path.exists(flash):
             try:
@@ -562,9 +475,9 @@ class QemuDeviceInstance(QEMUInstance):
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
-                
+
     def _disk_options(self):
-        debugmsg(3, "QemuDeviceInstance::_disk_options()")        
+
         flash = os.path.join(self.workdir, self.flash_name)
         if not os.path.exists(flash):
             try:
@@ -572,7 +485,7 @@ class QemuDeviceInstance(QEMUInstance):
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
-                
+
         swap = os.path.join(self.workdir, self.swap_name)
         if not os.path.exists(swap):
             try:
@@ -580,9 +493,6 @@ class QemuDeviceInstance(QEMUInstance):
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
-        debugmsg(3, "flash = %s" % str(flash))
-        debugmsg(3, "image = %s" % str(self.image))
-        debugmsg(3, "swap = %s" % str(swap))
 
         return (flash, '-hdb', swap)
 
@@ -625,7 +535,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         'junos': JunOSInstance,
         'ids': IDSInstance,
         }
-    
+
     # dynamips style status codes
     HSC_INFO_OK         = 100  #  ok
     HSC_INFO_MSG        = 101  #  informative message
@@ -647,14 +557,12 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
     close_connection = 0
 
     def send_reply(self, code, done, msg):
-        debugmsg(3, "QemuWrapperRequestHandler::send_reply(code=%s, done=%s, msg=%s)" % (str(code), str(done), str(msg)))
         sep = '-'
         if not done:
             sep = ' '
         self.wfile.write("%3d%s%s\r\n" % (code, sep, msg))
 
     def handle(self):
-        debugmsg(2, "QemuWrapperRequestHandler::handle()")
         print "Connection from", self.client_address
         try:
             self.handle_one_request()
@@ -664,7 +572,6 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             pass
 
     def __get_tokens(self, request):
-        debugmsg(3, "QemuWrapperRequestHandler::__get_tokens(%s)" % str(request))
         input_ = cStringIO.StringIO(request)
         tokens = []
         try:
@@ -674,9 +581,9 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         return tokens
 
     def handle_one_request(self):
-        debugmsg(3, "QemuWrapperRequestHandler::handle_one_request()")
         request = self.rfile.readline()
         request = request.rstrip()      # Strip package delimiter.
+
 
         # Parse request.
         tokens = self.__get_tokens(request)
@@ -699,20 +606,14 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.send_reply(self.HSC_ERR_UNK_CMD, 1,
                             "Unknown command '%s'" % command)
             return
-        try:
-            if len(data) < self.modules[module][command][0] or \
-                len(data) > self.modules[module][command][1]:
-                self.send_reply(self.HSC_ERR_BAD_PARAM, 1,
-                                "Bad number of parameters (%d with min/max=%d/%d)" %
-                                    (len(data),
-                                      self.modules[module][command][0],
-                                      self.modules[module][command][1])
-                                    )
-                return
-        except Exception, e:
-            # This can happen, if you add send command, but forget to define it in class modules
-            self.send_reply(self.HSC_ERR_INV_PARAM, 1, "Unknown Exception")
-            debugmsg(1, ("handle_one_request(), ERROR: Unknown Exception: ", e))
+        if len(data) < self.modules[module][command][0] or \
+           len(data) > self.modules[module][command][1]:
+            self.send_reply(self.HSC_ERR_BAD_PARAM, 1,
+                            "Bad number of parameters (%d with min/max=%d/%d)" %
+                                (len(data),
+                                 self.modules[module][command][0],
+                                 self.modules[module][command][1])
+                                )
             return
 
         # Call the function.
@@ -720,11 +621,9 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         method(data)
 
     def do_qemuwrapper_version(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemuwrapper_version(%s)" % str(data))
         self.send_reply(self.HSC_INFO_OK, 1, __version__)
 
     def do_qemuwrapper_parser_test(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemuwrapper_parser_test(%s)" % str(data))
         for i in range(len(data)):
             self.send_reply(self.HSC_INFO_MSG, 0,
                             "arg %d (len %u): \"%s\"" % \
@@ -733,13 +632,11 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_qemuwrapper_module_list(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemuwrapper_module_list(%s)" % str(data))
         for module in self.modules.keys():
             self.send_reply(self.HSC_INFO_MSG, 0, module)
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_qemuwrapper_cmd_list(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemuwrapper_cmd_list(%s)" % str(data))
         module, = data
 
         if not module in self.modules.keys():
@@ -758,7 +655,6 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_qemuwrapper_qemu_path(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemuwrapper_qemu_path(%s)" % str(data))
         qemu_path, = data
         try:
             os.access(qemu_path, os.F_OK)
@@ -773,7 +669,6 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
                             "access: %s" % e.strerror)
 
     def do_qemuwrapper_qemu_img_path(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemuwrapper_qemu_img_path(%s)" % str(data))
         qemu_img_path, = data
         try:
             os.access(qemu_img_path, os.F_OK)
@@ -788,7 +683,6 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
                             "access: %s" % e.strerror)
 
     def do_qemuwrapper_working_dir(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemuwrapper_working_dir(%s)" % str(data))
         working_dir, = data
         try:
             os.chdir(working_dir)
@@ -800,27 +694,22 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
                             "chdir: %s" % e.strerror)
 
     def do_qemuwrapper_reset(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemuwrapper_reset(%s)" % str(data))
         cleanup()
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_qemuwrapper_close(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemuwrapper_close(%s)" % str(data))
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
         self.close_connection = 1
 
     def do_qemuwrapper_stop(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemuwrapper_stop(%s)" % str(data))
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
         self.close_connection = 1
         self.server.stop()
 
     def do_qemu_version(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemu_version(%s)" % str(data))
         self.send_reply(self.HSC_INFO_OK, 1, __version__)
 
     def __qemu_create(self, dev_type, name):
-        debugmsg(2, "QemuWrapperRequestHandler::__qemu_create(dev_type=%s, name=%s)" % (str(dev_type), str(name)))
         try:
             devclass = self.qemu_classes[dev_type]
         except KeyError:
@@ -843,7 +732,6 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         return 0
 
     def do_qemu_create(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemu_create(%s)" % str(data))
         dev_type, name = data
         if self.__qemu_create(dev_type, name) == 0:
             self.send_reply(self.HSC_INFO_OK, 1, "Qemu '%s' created" % name)
@@ -852,7 +740,6 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
                             "unable to create Qemu instance '%s'" % name)
 
     def __qemu_delete(self, name):
-        debugmsg(2, "QemuWrapperRequestHandler::__qemu_delete(%s)" % str(name))
         if not name in QEMU_INSTANCES.keys():
             return 1
         if QEMU_INSTANCES[name].process and not QEMU_INSTANCES[name].stop():
@@ -861,7 +748,6 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         return 0
 
     def do_qemu_delete(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemu_delete(%s)" % str(data))
         name, = data
         if self.__qemu_delete(name) == 0:
             self.send_reply(self.HSC_INFO_OK, 1, "Qemu '%s' deleted" % name)
@@ -870,7 +756,6 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
                             "unable to delete Qemu instance '%s'" % name)
 
     def do_qemu_setattr(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemu_setattr(%s)" % str(data))
         name, attr, value = data
         try:
             instance = QEMU_INSTANCES[name]
@@ -887,7 +772,6 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         self.send_reply(self.HSC_INFO_OK, 1, "%s set for '%s'" % (attr, name))
 
     def do_qemu_create_nic(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemu_create_nic(%s)" % str(data))
         name, vlan, mac = data
         if not name in QEMU_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
@@ -897,7 +781,6 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_qemu_create_udp(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemu_create_udp(%s)" % str(data))
         name, vlan, sport, daddr, dport = data
         if not name in QEMU_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
@@ -907,9 +790,8 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         udp_connection.resolve_names()
         QEMU_INSTANCES[name].udp[int(vlan)] = udp_connection
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
-        
+
     def do_qemu_delete_udp(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemu_delete_udp(%s)" % str(data))
         name, vlan = data
         if not name in QEMU_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
@@ -918,9 +800,8 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         if QEMU_INSTANCES[name].udp.has_key(int(vlan)):
             del QEMU_INSTANCES[name].udp[int(vlan)]
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
-        
+
     def do_qemu_create_capture(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemu_create_capture(%s)" % str(data))
         name, vlan, path = data
         if not name in QEMU_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
@@ -929,9 +810,8 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
 
         QEMU_INSTANCES[name].capture[int(vlan)] = path
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
-        
+
     def do_qemu_delete_capture(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemu_delete_capture(%s)" % str(data))
         name, vlan = data
         if not name in QEMU_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
@@ -942,7 +822,6 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_qemu_start(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemu_start(%s)" % str(data))
         name, = data
         if not name in QEMU_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
@@ -955,7 +834,6 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.send_reply(self.HSC_INFO_OK, 1, "Qemu '%s' started" % name)
 
     def do_qemu_stop(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemu_stop(%s)" % str(data))
         name, = data
         if not QEMU_INSTANCES[name].process:
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
@@ -966,9 +844,8 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
                             "unable to stop instance '%s'" % name)
         else:
             self.send_reply(self.HSC_INFO_OK, 1, "Qemu '%s' stopped" % name)
-            
+
     def do_qemu_clean(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemu_clean(%s)" % str(data))
         name, = data
         if not name in QEMU_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
@@ -976,9 +853,8 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             return
         QEMU_INSTANCES[name].clean()
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
-        
+
     def do_qemu_unbase(self, data):
-        debugmsg(2, "QemuWrapperRequestHandler::do_qemu_unbase(%s)" % str(data))
         name, = data
         if not name in QEMU_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
@@ -995,13 +871,6 @@ class QemuWrapperServer(DaemonThreadingMixIn, SocketServer.TCPServer):
     allow_reuse_address = True
 
     def __init__(self, server_address, RequestHandlerClass):
-        debugmsg(2, "QemuWrapperServer::__init__()")
-        global FORCE_IPV6
-        if server_address[0].__contains__(':'):
-            FORCE_IPV6 = True
-        if FORCE_IPV6:
-            # IPv6 address support
-            self.address_family = socket.AF_INET6
         SocketServer.TCPServer.__init__(self, server_address,
                                         RequestHandlerClass)
         self.stopping = threading.Event()
@@ -1026,17 +895,16 @@ def cleanup():
     print "Shutdown completed."
 
 
-def main():  
-    debugmsg(2, "qemuwrapper.py    main()")
+def main():
+
     global IP
     from optparse import OptionParser
 
-    usage = "usage: %prog [--listen <ip_address>] [--port <port_number>] [--forceipv6 false]"
+    usage = "usage: %prog [--listen <ip_address>] [--port <port_number>]"
     parser = OptionParser(usage, version="%prog " + __version__)
     parser.add_option("-l", "--listen", dest="host", help="IP address or hostname to listen on (default is to listen on all interfaces)")
     parser.add_option("-p", "--port", type="int", dest="port", help="Port number (default is 10525)")
     parser.add_option("-w", "--workdir", dest="wd", help="Working directory (default is current directory)")
-    parser.add_option("-6", "--forceipv6", dest="force_ipv6", help="Force IPv6 usage (default is false; i.e. IPv4)")
 
     try:
         (options, args) = parser.parse_args()
@@ -1055,28 +923,26 @@ def main():
         PORT = port
     else:
         port = PORT
-        
+
     if options.wd:
         global WORKDIR
         WORKDIR = options.wd
 
-    if options.force_ipv6 and not (options.force_ipv6.lower().__contains__("false") or options.force_ipv6.__contains__("0")):
-        global FORCE_IPV6
-        FORCE_IPV6 = options.force_ipv6
+    if not os.path.exists(PEMU_DIR):
+        print "Unpacking pemu binary."
+        f = cStringIO.StringIO(base64.decodestring(pemubin.ascii))
+        tar = tarfile.open(None, 'r:gz', f)
+        for member in tar.getmembers():
+            tar.extract(member)
 
     server = QemuWrapperServer((host, port), QemuWrapperRequestHandler)
 
     print "Qemu TCP control server started (port %d)." % port
-    
-    if FORCE_IPV6:
-        LISTENING_MODE = "Listening in IPv6 mode"
-    else:
-        LISTENING_MODE = "Listening"
-        
+
     if IP:
-        print "%s on %s" % (LISTENING_MODE, IP)
+        print "Listenning on %s" % IP
     else:
-        print "%s on all network interfaces" % LISTENING_MODE
+        print "Listenning on all network interfaces"
     try:
         server.serve_forever()
     except KeyboardInterrupt:
@@ -1085,7 +951,7 @@ def main():
 
 if __name__ == '__main__':
     print "Qemu Emulator Wrapper (version %s)" % __version__
-    print "Copyright (c) 2007-2011 Thomas Pani & Jeremy Grossmann"
+    print "Copyright (c) 2007-2010 Thomas Pani & Jeremy Grossmann"
     print
 
     if platform.system() == 'Windows':

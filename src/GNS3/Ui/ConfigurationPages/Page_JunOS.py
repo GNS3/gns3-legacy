@@ -19,7 +19,7 @@
 # code@gns3.net
 #
 
-import os, platform
+import os
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_JunOSPage import Ui_JunOSPage
@@ -35,9 +35,6 @@ class Page_JunOS(QtGui.QWidget, Ui_JunOSPage):
         self.setupUi(self)
         self.setObjectName("Juniper router")
         self.currentNodeID = None
-
-        if platform.system() != 'Linux':
-            self.checkBoxKVM.setVisible(False)
 
         # connect slot
         self.connect(self.pushButtonImageBrowser, QtCore.SIGNAL('clicked()'), self.slotSelectImage)
@@ -75,6 +72,11 @@ class Page_JunOS(QtGui.QWidget, Ui_JunOSPage):
         if junos_config['options']:
             self.lineEditOptions.setText(junos_config['options'])
             
+        if junos_config['kqemu'] == True:
+            self.checkBoxKqemu.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
+            
         if junos_config['kvm'] == True:
             self.checkBoxKVM.setCheckState(QtCore.Qt.Checked)
         else:
@@ -107,6 +109,11 @@ class Page_JunOS(QtGui.QWidget, Ui_JunOSPage):
         options = str(self.lineEditOptions.text())
         if options:
             junos_config['options'] = options
+
+        if self.checkBoxKqemu.checkState() == QtCore.Qt.Checked:
+            junos_config['kqemu'] = True
+        else:
+            junos_config['kqemu']  = False
             
         if self.checkBoxKVM.checkState() == QtCore.Qt.Checked:
             junos_config['kvm'] = True

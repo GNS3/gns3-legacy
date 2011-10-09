@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4:
 
 # Form implementation generated from reading ui file 'Form_NewProject.ui'
 #
-# Created: Fri Oct  7 19:05:06 2011
-#      by: PyQt4 UI code generator 4.8.4
+# Created: Mon Apr 11 15:55:31 2011
+#      by: PyQt4 UI code generator 4.8.1
 #
 # WARNING! All changes made in this file will be lost!
 
