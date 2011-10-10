@@ -5,6 +5,7 @@
 """
 qemu_lib.py
 Copyright (C) 2007-2009  Pavel Skovajsa & Jeremy Grossmann
+contributions: Alexey Eromenko "Technologov"
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -21,7 +22,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 
-from socket import socket, AF_INET, SOCK_STREAM
+# This file is a client, that connects to 'qemuwrapper' server.
+
+from socket import socket, AF_INET, AF_INET6, SOCK_STREAM
 from dynamips_lib import NIO_udp, send, dowarning, debug, DynamipsError, validate_connect, Bridge, DynamipsVerError, get_reverse_udp_nio, Router, FRSW, ATMSW, ETHSW, DynamipsWarning
 import random
 
@@ -66,7 +69,8 @@ class UDPConnection:
             return ' is connected to ethernet switch ' + remote_device.name + ' port ' + str(remote_port) + '\n'
         elif remote_device == 'nothing':  #if this is only UDP NIO without the other side...used in dynamips <-> UDP for example
             return ' is connected to UDP NIO, with source port ' + str(self.sport) + ' and remote port ' + str(self.dport) + ' on ' + self.daddr + '\n'
-
+        else:
+            return ' is connected to unknown device ' + remote_device.name + '\n'
 
 class Qemu(object):
 
@@ -75,7 +79,11 @@ class Qemu(object):
         self.host = name
 
         #connect to Qemu Wrapper
-        self.s = socket(AF_INET, SOCK_STREAM)
+        if name.__contains__(':'):
+            # IPv6 address support
+            self.s = socket(AF_INET6, SOCK_STREAM)
+        else:
+            self.s = socket(AF_INET, SOCK_STREAM)
         self.s.setblocking(0)
         self.s.settimeout(300)
         self._type = 'qemuwrapper'
@@ -105,7 +113,7 @@ class Qemu(object):
             intver = 999999
 
         if intver < INTVER:
-            raise DynamipsVerError, 'This version of Dynagen requires at least version %s of qemuwrapper. \n Server %s is runnning version %s. \n Get the latest version from http://gdynagen.sourceforge.net/qemuwrapper/' % (STRVER, self.host, version)
+            raise DynamipsVerError, 'This version of Dynagen requires at least version %s of qemuwrapper. \n Server %s is runnning version %s.' % (STRVER, self.host, version)
         self._version = version
 
         #all other needed variables
@@ -205,6 +213,10 @@ class Qemu(object):
         directory: (string) the directory
         """
 
+        if directory == 'None':
+            #skip broken topology ini files
+            return
+
         if type(directory) not in [str, unicode]:
             raise DynamipsError, 'invalid directory'
         # send to qemuwrapper encased in quotes to protect spaces
@@ -261,7 +273,7 @@ class AnyEmuDevice(object):
             'image': None,
             'ram': 128,
             'nics': 6,
-            'netcard': 'pcnet',
+            'netcard': 'rtl8139',
             'kvm': False,
             'options': None,
             }
@@ -276,13 +288,8 @@ class AnyEmuDevice(object):
         for i in range(self._nics):
             self.nios[i] = None
 
-        self.idlepc = '0'
-        self.idlemax = 0
-        self.idlesleep = 0
         self.nvram = 0
         self.disk0 = 16
-        self.disk1 = 0
-        self.ghost_status = 0
         send(self.p, 'qemu create %s %s' % (self.qemu_dev_type, self.name))
         self.p.devices.append(self)
         #set the console to Qemu baseconsole
@@ -538,8 +545,13 @@ class AnyEmuDevice(object):
 
         (src_udp, dst_udp) = self.__allocate_udp_port(dynamips)
 
+        """ # WARNING: This code crashes on multi-host setups:
         if self.p.host == dynamips.host:
             # source and dest adapters are on the same dynamips server, perform loopback binding optimization
+            src_ip = '127.0.0.1'
+            dst_ip = '127.0.0.1'        
+        elif (self.p.host == 'localhost' or self.p.host == '127.0.0.1' or self.p.host == '::1') and (dynamips.host == 'localhost' or dynamips.host == '127.0.0.1' or dynamips.host == '::1'):
+            # 'localhost', IP: '127.0.0.1' and IPv6 '::1' are equal.
             src_ip = '127.0.0.1'
             dst_ip = '127.0.0.1'
         else:
@@ -550,6 +562,14 @@ class AnyEmuDevice(object):
             #check whether the user did not make a mistake in multi-server .net file
             if src_ip == 'localhost' or src_ip =='127.0.0.1' or dst_ip =='localhost' or dst_ip == '127.0.0.1':
                 dowarning('Connecting %s port %s to %s slot %s port %s:\nin case of multi-server operation make sure you do not use "localhost" string in definition of dynamips hypervisor.\n'% (self.name, local_port, remote_slot.router.name, remote_slot.adapter, remote_port))
+        """
+
+        src_ip = self.p.name
+        dst_ip = dynamips.host
+        if src_ip != dst_ip:
+            if (self.isLocalhost(src_ip)) or (self.isLocalhost(dst_ip)):
+                if (self.isLocalhost(src_ip) is False) or (self.isLocalhost(dst_ip) is False):
+                    dowarning('In case of multi-server operation, make sure you do not use "localhost" or "127.0.0.1" string in definition of dynamips hypervisor. Use actual IP addresses instead.')
 
         #create the emulated device side of UDP connection
         send(self.p, 'qemu create_udp %s %i %i %s %i' % (self.name, local_port, src_udp, dst_ip, dst_udp))
@@ -575,40 +595,60 @@ class AnyEmuDevice(object):
         if self.nios.has_key(local_port):
             del self.nios[local_port]
 
-    def connect_to_emulated_device(self, local_port, remote_emulated_device, remote_port):
-        (src_udp, dst_udp) = self.__allocate_udp_port(remote_emulated_device.p)
+    def isLocalhost(self, i_host):
+        if i_host == 'localhost' or i_host == '127.0.0.1' or i_host == '::1' or i_host == "0:0:0:0:0:0:0:1":
+            return True
+        else:
+            return False
 
+    def connect_to_emulated_device(self, local_port, remote_emulated_device, remote_port):
+
+        (src_udp, dst_udp) = self.__allocate_udp_port(remote_emulated_device.p)
+        """ # WARNING: This code crashes on multi-host setups:
         if self.p.host == remote_emulated_device.p.host:
             # source and dest adapters are on the same dynamips server, perform loopback binding optimization
+            src_ip = '127.0.0.1'
+            dst_ip = '127.0.0.1'
+        elif (self.p.host == 'localhost' or self.p.host == '127.0.0.1' or self.p.host == '::1') and (remote_emulated_device.p.host == 'localhost' or remote_emulated_device.p.host == '127.0.0.1' or remote_emulated_device.p.host == '::1'):
+            # 'localhost', IP: '127.0.0.1' and IPv6 '::1' are equal.
             src_ip = '127.0.0.1'
             dst_ip = '127.0.0.1'
         else:
             # source and dest are on different dynamips servers
             src_ip = self.p.name
             dst_ip = remote_emulated_device.p.host
+        """
+        src_ip = self.p.name
+        dst_ip = remote_emulated_device.p.host
 
+        if src_ip != dst_ip:
+            if (self.isLocalhost(src_ip)) or (self.isLocalhost(dst_ip)):
+                if (self.isLocalhost(src_ip) is False) or (self.isLocalhost(dst_ip) is False):
+                    dowarning('In case of multi-server operation, make sure you do not use "localhost" or "127.0.0.1" string in definition of dynamips hypervisor. Use actual IP addresses instead.')
         #create the local emulated device side of UDP connection
         send(self.p, 'qemu create_udp %s %i %i %s %i' % (self.name, local_port, src_udp, dst_ip, dst_udp))
         self.nios[local_port] = UDPConnection(src_udp, dst_ip, dst_udp, self, local_port)
 
-        #create the remote emulated device side of UDP connection
-        send(remote_emulated_device.p, 'qemu create_udp %s %i %i %s %i' % (remote_emulated_device.name, remote_port, dst_udp, src_ip, src_udp))
+        #create the remote device side of UDP connection
+        if isinstance(remote_emulated_device, AnyEmuDevice):
+            send(remote_emulated_device.p, 'qemu create_udp %s %i %i %s %i' % (remote_emulated_device.name, remote_port, dst_udp, src_ip, src_udp))
         remote_emulated_device.nios[remote_port] = UDPConnection(dst_udp, src_ip, src_udp, remote_emulated_device, remote_port)
-
+        
         #set reverse nios
         self.nios[local_port].reverse_nio = remote_emulated_device.nios[remote_port]
         remote_emulated_device.nios[remote_port].reverse_nio = self.nios[local_port]
 
-
     def disconnect_from_emulated_device(self, local_port, remote_emulated_device, remote_port):
-
+        
         # disconnect the local emulated device side of UDP connection
         send(self.p, 'qemu delete_udp %s %i' % (self.name, local_port))
         if self.nios.has_key(local_port):
             del self.nios[local_port]
+        
+        # disconnect the remote device side of UDP connection
+        if isinstance(remote_emulated_device, AnyEmuDevice):
+            send(remote_emulated_device.p, 'qemu delete_udp %s %i' % (remote_emulated_device.name, remote_port))
 
-        # disconnect the remote emulated device side of UDP connection
-        send(remote_emulated_device.p, 'qemu delete_udp %s %i' % (remote_emulated_device.name, remote_port))
         if remote_emulated_device.nios.has_key(remote_port):
             del remote_emulated_device.nios[remote_port]
 
@@ -631,6 +671,8 @@ class AnyEmuDevice(object):
                     slot_info = slot_info + ' is connected to ethernet switch ' + remote_device.name + ' port ' + str(remote_port) + '\n'
                 elif remote_device == 'nothing':  #if this is only UDP NIO without the other side...used in dynamips <-> UDP for example
                     slot_info = slot_info + ' is connected to UDP NIO, with source port ' + str(self.nios[port].sport) + ' and remote port  ' + str(self.nios[port].dport) + ' on ' + self.nios[port].daddr + '\n'
+                else:
+                    slot_info = slot_info + ' is connected to unknown device ' + remote_device.name + '\n'
             else:  #no NIO on this port, so it must be empty
                 slot_info = slot_info + ' is empty\n'
         return slot_info

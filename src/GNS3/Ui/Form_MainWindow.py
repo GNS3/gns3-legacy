@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-# vim: expandtab ts=4 sw=4 sts=4:
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Wed Sep 28 16:25:05 2011
-#      by: PyQt4 UI code generator 4.8.1
+# Created: Fri Oct  7 19:05:05 2011
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -404,8 +403,8 @@ class Ui_MainWindow(object):
         self.toolBar_General.addAction(self.action_Add_link)
         self.toolBar_Emulation.addAction(self.action_Snapshot)
         self.toolBar_Emulation.addAction(self.action_config)
-        self.toolBar_Emulation.addAction(self.action_TelnetAll)
         self.toolBar_Emulation.addAction(self.action_ConsoleAuxAll)
+        self.toolBar_Emulation.addAction(self.action_TelnetAll)
         self.toolBar_Emulation.addSeparator()
         self.toolBar_Emulation.addAction(self.action_StartAll)
         self.toolBar_Emulation.addAction(self.action_SuspendAll)
