@@ -424,9 +424,9 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
                     p = subprocess.Popen(['xdotool'])
                     p.terminate()
                 except OSError:
-                    self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start xdotool")  + '</font>')
+                    self.labelVBoxStatus.setText('<font color="yellow">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start xdotool")  + '</font>')
                     return
-                
+
             from __main__ import g_VBoxmgr, VBOXVER_REQUIRED, VBOXVER_FLOAT
 
             if not g_VBoxmgr:

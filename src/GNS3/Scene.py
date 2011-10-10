@@ -196,6 +196,7 @@ class Scene(QtGui.QGraphicsView):
             
             # Action: Hide window
             displayWindowHideAct = QtGui.QAction(translate('Scene', 'Hide display window'), menu)
+            displayWindowHideAct.setIcon(QtGui.QIcon(':/symbols/computer.normal.svg'))
             self.connect(displayWindowHideAct, QtCore.SIGNAL('triggered()'), self.slotDisplayWindowHide)
             menu.addAction(displayWindowHideAct)
 
