@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-# vim: expandtab ts=4 sw=4 sts=4:
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_QemuPage.ui'
 #
-# Created: Wed Sep 28 16:25:08 2011
-#      by: PyQt4 UI code generator 4.8.1
+# Created: Fri Oct  7 19:05:08 2011
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -52,7 +51,7 @@ class Ui_QemuPage(object):
         self.spinBoxRamSize.setSizePolicy(sizePolicy)
         self.spinBoxRamSize.setMaximum(100000)
         self.spinBoxRamSize.setSingleStep(4)
-        self.spinBoxRamSize.setProperty(_fromUtf8("value"), 96)
+        self.spinBoxRamSize.setProperty(_fromUtf8("value"), 128)
         self.spinBoxRamSize.setObjectName(_fromUtf8("spinBoxRamSize"))
         self.gridLayout.addWidget(self.spinBoxRamSize, 1, 1, 1, 2)
         self.label_37 = QtGui.QLabel(QemuPage)
@@ -87,19 +86,15 @@ class Ui_QemuPage(object):
         self.lineEditOptions.setEnabled(True)
         self.lineEditOptions.setObjectName(_fromUtf8("lineEditOptions"))
         self.gridLayout.addWidget(self.lineEditOptions, 4, 1, 1, 2)
-        self.checkBoxKqemu = QtGui.QCheckBox(QemuPage)
-        self.checkBoxKqemu.setEnabled(True)
-        self.checkBoxKqemu.setObjectName(_fromUtf8("checkBoxKqemu"))
-        self.gridLayout.addWidget(self.checkBoxKqemu, 5, 0, 1, 1)
         self.checkBoxKVM = QtGui.QCheckBox(QemuPage)
         self.checkBoxKVM.setEnabled(True)
         self.checkBoxKVM.setObjectName(_fromUtf8("checkBoxKVM"))
-        self.gridLayout.addWidget(self.checkBoxKVM, 6, 0, 1, 2)
+        self.gridLayout.addWidget(self.checkBoxKVM, 5, 0, 1, 2)
         spacerItem = QtGui.QSpacerItem(20, 281, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem, 7, 1, 1, 1)
+        self.gridLayout.addItem(spacerItem, 6, 1, 1, 1)
 
         self.retranslateUi(QemuPage)
-        self.comboBoxNIC.setCurrentIndex(5)
+        self.comboBoxNIC.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(QemuPage)
 
     def retranslateUi(self, QemuPage):
@@ -107,18 +102,17 @@ class Ui_QemuPage(object):
         self.label_17.setText(QtGui.QApplication.translate("QemuPage", "Qemu Image:", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonImageBrowser.setText(QtGui.QApplication.translate("QemuPage", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.label_24.setText(QtGui.QApplication.translate("QemuPage", "RAM:", None, QtGui.QApplication.UnicodeUTF8))
-        self.spinBoxRamSize.setSuffix(QtGui.QApplication.translate("QemuPage", " MB", None, QtGui.QApplication.UnicodeUTF8))
+        self.spinBoxRamSize.setSuffix(QtGui.QApplication.translate("QemuPage", " MiB", None, QtGui.QApplication.UnicodeUTF8))
         self.label_37.setText(QtGui.QApplication.translate("QemuPage", "Number of NICs:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_26.setText(QtGui.QApplication.translate("QemuPage", "NIC model:", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxNIC.setItemText(0, QtGui.QApplication.translate("QemuPage", "ne2k_pci", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxNIC.setItemText(1, QtGui.QApplication.translate("QemuPage", "i82551", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxNIC.setItemText(2, QtGui.QApplication.translate("QemuPage", "i82557b", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxNIC.setItemText(3, QtGui.QApplication.translate("QemuPage", "i82559er", None, QtGui.QApplication.UnicodeUTF8))
-        self.comboBoxNIC.setItemText(4, QtGui.QApplication.translate("QemuPage", "rtl8139", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBoxNIC.setItemText(0, QtGui.QApplication.translate("QemuPage", "rtl8139", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBoxNIC.setItemText(1, QtGui.QApplication.translate("QemuPage", "ne2k_pci", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBoxNIC.setItemText(2, QtGui.QApplication.translate("QemuPage", "i82551", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBoxNIC.setItemText(3, QtGui.QApplication.translate("QemuPage", "i82557b", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBoxNIC.setItemText(4, QtGui.QApplication.translate("QemuPage", "i82559er", None, QtGui.QApplication.UnicodeUTF8))
         self.comboBoxNIC.setItemText(5, QtGui.QApplication.translate("QemuPage", "e1000", None, QtGui.QApplication.UnicodeUTF8))
         self.comboBoxNIC.setItemText(6, QtGui.QApplication.translate("QemuPage", "pcnet", None, QtGui.QApplication.UnicodeUTF8))
         self.comboBoxNIC.setItemText(7, QtGui.QApplication.translate("QemuPage", "virtio", None, QtGui.QApplication.UnicodeUTF8))
         self.label_8.setText(QtGui.QApplication.translate("QemuPage", "Qemu Options:", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxKqemu.setText(QtGui.QApplication.translate("QemuPage", "Use KQemu", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxKVM.setText(QtGui.QApplication.translate("QemuPage", "Use KVM (Linux only)", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxKVM.setText(QtGui.QApplication.translate("QemuPage", "Use KVM", None, QtGui.QApplication.UnicodeUTF8))
 
