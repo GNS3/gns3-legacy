@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2007-2010 Thomas Pani & Jeremy Grossmann
 #
-# Contributions by Pavel Skovajsa
+# Contributions by Pavel Skovajsa, Juergen Lock & Alexey Eromenko "Technologov"
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,9 @@
 #
 #
 
+# This module is used for actual control of VMs, sending commands to the hypervisor.
+# This is the server part, it can be started manually, or automatically from "QemuManager"
+# Client part is named "qemu_lib". (dynagen component)
 
 import base64
 import csv
@@ -41,10 +44,11 @@ import threading
 import SocketServer
 import time
 import random
+import ctypes
 
 
 __author__ = 'Thomas Pani and Jeremy Grossmann'
-__version__ = '0.7.4'
+__version__ = '0.8.0'
 
 QEMU_PATH = "qemu"
 QEMU_IMG_PATH = "qemu-img"
@@ -85,7 +89,7 @@ class xEMUInstance(object):
         self.nics = '6'
         self.udp = {}
         self.capture = {}
-        self.netcard = 'pcnet'
+        self.netcard = 'rtl8139'
         self.kvm = False
         self.options = ''
         self.process = None
@@ -560,15 +564,19 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.send_reply(self.HSC_ERR_UNK_CMD, 1,
                             "Unknown command '%s'" % command)
             return
-        if len(data) < self.modules[module][command][0] or \
-           len(data) > self.modules[module][command][1]:
-            self.send_reply(self.HSC_ERR_BAD_PARAM, 1,
-                            "Bad number of parameters (%d with min/max=%d/%d)" %
-                                (len(data),
-                                 self.modules[module][command][0],
-                                 self.modules[module][command][1])
-                                )
-            return
+        try:
+            if len(data) < self.modules[module][command][0] or \
+               len(data) > self.modules[module][command][1]:
+                self.send_reply(self.HSC_ERR_BAD_PARAM, 1,
+                                "Bad number of parameters (%d with min/max=%d/%d)" %
+                                    (len(data),
+                                     self.modules[module][command][0],
+                                     self.modules[module][command][1])
+                                    )
+                return
+        except Exception, e:
+             # This can happen, if you add send command, but forget to define it in class modules
+             self.send_reply(self.HSC_ERR_INV_PARAM, 1, "Unknown Exception")
 
         # Call the function.
         method = getattr(self, mname)
@@ -825,6 +833,14 @@ class QemuWrapperServer(DaemonThreadingMixIn, SocketServer.TCPServer):
     allow_reuse_address = True
 
     def __init__(self, server_address, RequestHandlerClass):
+
+        global FORCE_IPV6
+        if server_address[0].__contains__(':'):
+            FORCE_IPV6 = True
+        if FORCE_IPV6:
+            # IPv6 address support
+            self.address_family = socket.AF_INET6
+
         SocketServer.TCPServer.__init__(self, server_address,
                                         RequestHandlerClass)
         self.stopping = threading.Event()
@@ -854,11 +870,12 @@ def main():
     global IP
     from optparse import OptionParser
 
-    usage = "usage: %prog [--listen <ip_address>] [--port <port_number>]"
+    usage = "usage: %prog [--listen <ip_address>] [--port <port_number>] [--forceipv6 false]"
     parser = OptionParser(usage, version="%prog " + __version__)
     parser.add_option("-l", "--listen", dest="host", help="IP address or hostname to listen on (default is to listen on all interfaces)")
     parser.add_option("-p", "--port", type="int", dest="port", help="Port number (default is 10525)")
     parser.add_option("-w", "--workdir", dest="wd", help="Working directory (default is current directory)")
+    parser.add_option("-6", "--forceipv6", dest="force_ipv6", help="Force IPv6 usage (default is false; i.e. IPv4)")
 
     try:
         (options, args) = parser.parse_args()
@@ -882,24 +899,24 @@ def main():
         global WORKDIR
         WORKDIR = options.wd
 
-<<<<<<< local
-=======
-    if not os.path.exists(PEMU_DIR):
-        print "Unpacking pemu binary."
-        f = cStringIO.StringIO(base64.decodestring(pemubin.ascii))
-        tar = tarfile.open(None, 'r:gz', f)
-        for member in tar.getmembers():
-            tar.extract(member)
-
->>>>>>> other
+    if options.force_ipv6 and not (options.force_ipv6.lower().__contains__("false") or options.force_ipv6.__contains__("0")):
+       global FORCE_IPV6
+       FORCE_IPV6 = options.force_ipv6
+   
     server = QemuWrapperServer((host, port), QemuWrapperRequestHandler)
 
     print "Qemu TCP control server started (port %d)." % port
 
-    if IP:
-        print "Listenning on %s" % IP
+    if FORCE_IPV6:
+        LISTENING_MODE = "Listening in IPv6 mode"
     else:
-        print "Listenning on all network interfaces"
+        LISTENING_MODE = "Listening"
+       
+    if IP:
+        print "%s on %s" % (LISTENING_MODE, IP)
+    else:
+        print "%s on all network interfaces" % LISTENING_MODE
+
     try:
         server.serve_forever()
     except KeyboardInterrupt:
@@ -908,7 +925,7 @@ def main():
 
 if __name__ == '__main__':
     print "Qemu Emulator Wrapper (version %s)" % __version__
-    print "Copyright (c) 2007-2010 Thomas Pani & Jeremy Grossmann"
+    print "Copyright (c) 2007-2011 Thomas Pani & Jeremy Grossmann"
     print
 
     if platform.system() == 'Windows':
