@@ -6,6 +6,9 @@ syntax: glob
 .DS_Store
 gns3.conf
 build/*
+dist/*
+*.orig
+*.log
 
 syntax: regexp
 (.*/)?\#[^/]*\#$
