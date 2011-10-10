@@ -12,8 +12,8 @@
   
   
   <pydev_pathproperty name="org.python.pydev.PROJECT_SOURCE_PATH">
-<path>/gns3/src</path>
-<path>/gns3/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages</path>
+<path>/gns3-devel/src</path>
+<path>/gns3-devel/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages</path>
 </pydev_pathproperty>
   
   
