@@ -165,6 +165,10 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.checkBoxUseShell.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxUseShell.setCheckState(QtCore.Qt.Unchecked)
+        if self.conf.bring_console_to_front == True:
+            self.checkBoxBringConsoleToFront.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxBringConsoleToFront.setCheckState(QtCore.Qt.Unchecked)
         if self.conf.project_startup == True:
             self.checkBoxProjectDialog.setCheckState(QtCore.Qt.Checked)
         else:
@@ -209,6 +213,10 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.conf.use_shell = True
         else:
             self.conf.use_shell = False
+        if self.checkBoxBringConsoleToFront.checkState() == QtCore.Qt.Checked:
+            self.conf.bring_console_to_front = True
+        else:
+            self.conf.bring_console_to_front = False
         if self.checkBoxProjectDialog.checkState() == QtCore.Qt.Checked:
             self.conf.project_startup = True
         else:

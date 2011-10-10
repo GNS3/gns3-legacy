@@ -19,11 +19,15 @@
 # code@gns3.net
 #
 
+# AnyVBoxEmuDevice module is a highter-level control of dynagen_vbox_lib TCP client.
+# This one is part of GNS3 GUI layer, rather than dynagen topology layer.
+     
 import os, shutil, time
 import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Telnet as console
+import GNS3.WindowManipulator as winm
 from PyQt4 import QtGui
 from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Defaults.AnyVBoxEmuDefaults import AnyVBoxEmuDefaults, VBoxDefaults
@@ -378,7 +382,17 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
         """ Bring VM's display as foreground window and focus on it
         """
         if self.emu_vboxdev.state == 'running' or self.emu_vboxdev.state == 'suspended':
-            self.emu_vboxdev.displayWindowFocus()
+            hwnd = int(self.emu_vboxdev.displayWindowFocus())
+            if hwnd > 0:
+                winm.activateWindow(hwnd)
+
+    def displayWindowHide(self):
+        """ Hide VM's display window
+        """
+        if self.emu_vboxdev.state == 'running' or self.emu_vboxdev.state == 'suspended':
+            hwnd = int(self.emu_vboxdev.displayWindowFocus())
+        if hwnd > 0:
+            winm.hideWindow(hwnd)
 
     def isStarted(self):
         """ Returns True if this device is started
