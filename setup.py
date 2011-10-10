@@ -31,7 +31,7 @@ if sys.platform.startswith('win'):
                   ("", glob(r'..\GNS3 Windows Files\*'))]
 
     # Settings for py2exe, packages values are to tell to py2exe about hidden imports
-    setup(windows=[{"script":"gns3",
+    setup(windows=[{"script":"gns3.pyw",
                 "icon_resources": [(1, "C:\gns3.ico")]}],
                 zipfile=None,
                 data_files=data_files,
@@ -50,11 +50,13 @@ if sys.platform.startswith('win'):
                                                   "GNS3.Ui.ConfigurationPages.Page_JunOS",
                                                   "GNS3.Ui.ConfigurationPages.Page_IDS",
                                                   "GNS3.Ui.ConfigurationPages.Page_Qemu",
+                                                  "GNS3.Ui.ConfigurationPages.Page_VirtualBox",
                                                   "GNS3.Ui.ConfigurationPages.Page_DecorativeNode",
                                                   "GNS3.Ui.ConfigurationPages.Page_PreferencesDynamips",
                                                   "GNS3.Ui.ConfigurationPages.Page_PreferencesGeneral",
                                                   "GNS3.Ui.ConfigurationPages.Page_PreferencesCapture",
                                                   "GNS3.Ui.ConfigurationPages.Page_PreferencesQemu",
+                                                  "GNS3.Ui.ConfigurationPages.Page_PreferencesVirtualBox",
                                                 ]
                                         }
                              }
@@ -63,6 +65,8 @@ if sys.platform.startswith('win'):
     # Compile qemuwrapper
     sys.path.append('./qemuwrapper')
     setup(console=["qemuwrapper\qemuwrapper.py"], zipfile=None)
+    sys.path.append('./vboxwrapper')
+    setup(console=["vboxwrapper\vboxwrapper.py"], zipfile=None)
 
 elif sys.platform.startswith('darwin'):
 
@@ -73,6 +77,7 @@ elif sys.platform.startswith('darwin'):
     data_files = [('', glob(r'src/GNS3/Langs/*.qm')),
                   ('src/GNS3/Dynagen/configspec'),
                   ('qemuwrapper/qemuwrapper.py'),
+                  ('vboxwrapper/vboxwrapper.py'),
                   ('LICENSE'),
                   ("../PlugIns/iconengines", [QTDIR + r'/plugins/iconengines/libqsvgicon.dylib']),
                   ("../PlugIns/imageformats", [QTDIR + r'/plugins/imageformats/libqgif.dylib',
@@ -80,7 +85,7 @@ elif sys.platform.startswith('darwin'):
                                                QTDIR + r'/plugins/imageformats/libqsvg.dylib'])
                   ]
 
-    APP = ['gns3.py']
+    APP = ['gns3.pyw']
     OPTIONS = {'argv_emulation': False,
                'semi_standalone': False,
                'site_packages': True,
@@ -101,15 +106,17 @@ elif sys.platform.startswith('darwin'):
                             'GNS3.Ui.ConfigurationPages.Page_FW',
                             'GNS3.Ui.ConfigurationPages.Page_ASA',
                             'GNS3.Ui.ConfigurationPages.Page_JunOS',
-                            'GNS3.Ui.ConfigurationPages.Page_IDS',
+                            'GNS3.Ui.ConfigurationPages.Page_IDS',                                                                                                         
                             'GNS3.Ui.ConfigurationPages.Page_Qemu',
+                            'GNS3.Ui.ConfigurationPages.Page_VirtualBox',
                             'GNS3.Ui.ConfigurationPages.Page_DecorativeNode',
                             'GNS3.Ui.ConfigurationPages.Page_PreferencesDynamips',
                             'GNS3.Ui.ConfigurationPages.Page_PreferencesGeneral',
                             'GNS3.Ui.ConfigurationPages.Page_PreferencesCapture',
                             'GNS3.Ui.ConfigurationPages.Page_PreferencesQemu'
+                            'GNS3.Ui.ConfigurationPages.Page_PreferencesVirtualBox'
                             ],
-
+                
                 'plist'    : {  'CFBundleDisplayName': 'GNS3',
                                 'CFBundleGetInfoString' : 'GNS3, Graphical Network Simulator',
                                 'CFBundleIdentifier':'net.gns3',
@@ -141,12 +148,12 @@ elif sys.platform.startswith('darwin'):
             if 'debug' in file:
                 print 'Deleting', file
                 os.remove(os.path.join(root,file))
-
+                
     print '*** Making DMG ***'
     os.chdir('dist')
     os.system('cp ../dynamips-0.2.8-RC2-OSX-Leopard.intel.bin ./GNS3.app/Contents/Resources')
     os.system(QTDIR + r'/bin/macdeployqt GNS3.app -dmg')
-
+    
 else:
 
     setup(
@@ -154,11 +161,11 @@ else:
             version = VERSION,
             description = "GNS3 is a graphical network simulator based on Dynamips, an IOS emulator which allows users to run IOS binary images from Cisco Systems and Qemu for emulating PIX & ASA firewalls as well as Juniper routers and Cisco IDS/IPS (binary images are not part of this package).",
             license = 'GNU General Public License (GPL), see the LICENSE file for detailed info',
-            author = "Jeremy Grossmann, David Ruiz, Romain Lamaison, Aurelien Levesque, Xavier Alt",
+            author = 'Jeremy Grossmann, David Ruiz, Romain Lamaison, Aurelien Levesque, Xavier Alt and Alexey Eromenko "Technologov"',
             author_email = "code@gns3.net",
             platforms = 'Windows, Unix and MacOSX',
             url = "http://www.gns3.net/",
-            scripts = [ 'gns3' ],
+            scripts = [ 'gns3.pyw' ],
             package_dir = { '': 'src' },
             packages = [
                 'GNS3',
@@ -173,7 +180,7 @@ else:
                 'GNS3.Ui.ConfigurationPages',
                 'GNS3.Langs'],
             data_files = [
-                    ('/usr/local/libexec/gns3/', ['qemuwrapper/qemuwrapper.py']),
+                    ('/usr/local/libexec/gns3/', ['qemuwrapper/qemuwrapper.py', 'qemuwrapper/pemubin.py']),
                     ('/usr/local/share/examples/gns3/', ['baseconfig.txt'])
             ]
     )
