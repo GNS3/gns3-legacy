@@ -1,23 +1,27 @@
 # -*- coding: utf-8 -*-
-# vim: expandtab ts=4 sw=4 sts=4:
 
-# Form implementation generated from reading ui file 'Form_VirtualBoxPage.ui'
+# Form implementation generated from reading ui file './ConfigurationPages/Form_VirtualBoxPage.ui'
 #
-# Created: Thu May  5 11:38:45 2011
-#      by: PyQt4 UI code generator 4.7.3
+# Created: Fri Oct  7 19:05:08 2011
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    _fromUtf8 = lambda s: s
+
 class Ui_VirtualBoxPage(object):
     def setupUi(self, VirtualBoxPage):
-        VirtualBoxPage.setObjectName("VirtualBoxPage")
+        VirtualBoxPage.setObjectName(_fromUtf8("VirtualBoxPage"))
         VirtualBoxPage.resize(419, 453)
         self.gridLayout = QtGui.QGridLayout(VirtualBoxPage)
-        self.gridLayout.setObjectName("gridLayout")
+        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.label_17 = QtGui.QLabel(VirtualBoxPage)
-        self.label_17.setObjectName("label_17")
+        self.label_17.setObjectName(_fromUtf8("label_17"))
         self.gridLayout.addWidget(self.label_17, 0, 0, 1, 1)
         self.lineEditImage = QtGui.QLineEdit(VirtualBoxPage)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Fixed)
@@ -25,32 +29,32 @@ class Ui_VirtualBoxPage(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lineEditImage.sizePolicy().hasHeightForWidth())
         self.lineEditImage.setSizePolicy(sizePolicy)
-        self.lineEditImage.setObjectName("lineEditImage")
+        self.lineEditImage.setObjectName(_fromUtf8("lineEditImage"))
         self.gridLayout.addWidget(self.lineEditImage, 0, 1, 1, 1)
         self.label_37 = QtGui.QLabel(VirtualBoxPage)
         self.label_37.setEnabled(True)
-        self.label_37.setObjectName("label_37")
+        self.label_37.setObjectName(_fromUtf8("label_37"))
         self.gridLayout.addWidget(self.label_37, 1, 0, 1, 1)
         self.spinBoxNics = QtGui.QSpinBox(VirtualBoxPage)
         self.spinBoxNics.setEnabled(True)
         self.spinBoxNics.setMinimum(0)
         self.spinBoxNics.setMaximum(7)
         self.spinBoxNics.setSingleStep(1)
-        self.spinBoxNics.setProperty("value", 6)
-        self.spinBoxNics.setObjectName("spinBoxNics")
+        self.spinBoxNics.setProperty(_fromUtf8("value"), 6)
+        self.spinBoxNics.setObjectName(_fromUtf8("spinBoxNics"))
         self.gridLayout.addWidget(self.spinBoxNics, 1, 1, 1, 1)
         self.label_26 = QtGui.QLabel(VirtualBoxPage)
         self.label_26.setEnabled(True)
-        self.label_26.setObjectName("label_26")
+        self.label_26.setObjectName(_fromUtf8("label_26"))
         self.gridLayout.addWidget(self.label_26, 2, 0, 1, 1)
         self.comboBoxNIC = QtGui.QComboBox(VirtualBoxPage)
         self.comboBoxNIC.setEnabled(True)
-        self.comboBoxNIC.setObjectName("comboBoxNIC")
-        self.comboBoxNIC.addItem("")
-        self.comboBoxNIC.addItem("")
-        self.comboBoxNIC.addItem("")
-        self.comboBoxNIC.addItem("")
-        self.comboBoxNIC.addItem("")
+        self.comboBoxNIC.setObjectName(_fromUtf8("comboBoxNIC"))
+        self.comboBoxNIC.addItem(_fromUtf8(""))
+        self.comboBoxNIC.addItem(_fromUtf8(""))
+        self.comboBoxNIC.addItem(_fromUtf8(""))
+        self.comboBoxNIC.addItem(_fromUtf8(""))
+        self.comboBoxNIC.addItem(_fromUtf8(""))
         self.gridLayout.addWidget(self.comboBoxNIC, 2, 1, 1, 1)
         spacerItem = QtGui.QSpacerItem(20, 281, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.gridLayout.addItem(spacerItem, 3, 1, 1, 1)
