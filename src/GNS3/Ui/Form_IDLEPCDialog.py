@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-# vim: expandtab ts=4 sw=4 sts=4:
 
 # Form implementation generated from reading ui file 'Form_IDLEPCDialog.ui'
 #
-# Created: Sun Oct  9 21:31:09 2011
+# Created: Mon Oct 10 00:00:22 2011
 #      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!

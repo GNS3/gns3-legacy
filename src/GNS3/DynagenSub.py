@@ -264,7 +264,6 @@ class DynagenSub(Dynagen):
                                         unicode(translate("Qemu image", "Qemu guest image %s cannot be found and cannot find an alternative image")) % device['image'])
                                     continue                                    
                                 print unicode(translate("DynagenSub", "Local Qemu guest image %s cannot be found, use image %s instead")) \
-
                                 % (unicode(device['image']), image_name)
                                 device['image'] = image_name
 

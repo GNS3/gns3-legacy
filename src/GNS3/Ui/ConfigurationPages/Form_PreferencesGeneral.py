@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-# vim: expandtab ts=4 sw=4 sts=4:
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
 #
-# Created: Sun Oct  9 21:31:11 2011
+# Created: Mon Oct 10 00:00:23 2011
 #      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -18,7 +17,7 @@ except AttributeError:
 class Ui_PreferencesGeneral(object):
     def setupUi(self, PreferencesGeneral):
         PreferencesGeneral.setObjectName(_fromUtf8("PreferencesGeneral"))
-        PreferencesGeneral.resize(539, 527)
+        PreferencesGeneral.resize(539, 453)
         self.vboxlayout = QtGui.QVBoxLayout(PreferencesGeneral)
         self.vboxlayout.setObjectName(_fromUtf8("vboxlayout"))
         self.tabWidget = QtGui.QTabWidget(PreferencesGeneral)
@@ -131,12 +130,15 @@ class Ui_PreferencesGeneral(object):
         self.checkBoxUseShell = QtGui.QCheckBox(self.tab_3)
         self.checkBoxUseShell.setChecked(True)
         self.checkBoxUseShell.setObjectName(_fromUtf8("checkBoxUseShell"))
-        self.gridLayout.addWidget(self.checkBoxUseShell, 4, 0, 1, 1)
+        self.gridLayout.addWidget(self.checkBoxUseShell, 5, 0, 1, 1)
         self.label_9 = QtGui.QLabel(self.tab_3)
         self.label_9.setObjectName(_fromUtf8("label_9"))
-        self.gridLayout.addWidget(self.label_9, 5, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_9, 7, 0, 1, 1)
         spacerItem2 = QtGui.QSpacerItem(20, 315, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem2, 6, 0, 1, 2)
+        self.gridLayout.addItem(spacerItem2, 8, 0, 1, 2)
+        self.checkBoxBringConsoleToFront = QtGui.QCheckBox(self.tab_3)
+        self.checkBoxBringConsoleToFront.setObjectName(_fromUtf8("checkBoxBringConsoleToFront"))
+        self.gridLayout.addWidget(self.checkBoxBringConsoleToFront, 6, 0, 1, 1)
         self.tabWidget.addTab(self.tab_3, _fromUtf8(""))
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName(_fromUtf8("tab_2"))
@@ -219,6 +221,8 @@ class Ui_PreferencesGeneral(object):
 "%h = device server \n"
 "%p = device port\n"
 "%d = device hostname", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxBringConsoleToFront.setToolTip(QtGui.QApplication.translate("PreferencesGeneral", "<html>This option will attempt to bring existing opened console window to front, instead of opening a new window.<br>If no existing opened console window exists, it will start a new  console window.</html>", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxBringConsoleToFront.setText(QtGui.QApplication.translate("PreferencesGeneral", "Bring console window to front (experimental feature)", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QtGui.QApplication.translate("PreferencesGeneral", "Terminal Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.label_5.setText(QtGui.QApplication.translate("PreferencesGeneral", "Workspace width:", None, QtGui.QApplication.UnicodeUTF8))
         self.workspaceWidth.setSuffix(QtGui.QApplication.translate("PreferencesGeneral", " px", None, QtGui.QApplication.UnicodeUTF8))
