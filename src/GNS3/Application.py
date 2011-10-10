@@ -19,6 +19,7 @@
 # code@gns3.net
 #
 
+
 import sys, os
 import GNS3.Globals as globals
 import GNS3.Config.Defaults as Defaults
@@ -26,11 +27,12 @@ from PyQt4.QtGui import QApplication
 from PyQt4.QtCore import QVariant, QSettings
 from GNS3.Utils import Singleton
 from GNS3.Workspace import Workspace
-from GNS3.Config.Objects import systemDynamipsConf, systemGeneralConf, systemCaptureConf, systemQemuConf
+from GNS3.Config.Objects import systemDynamipsConf, systemGeneralConf, systemCaptureConf, systemQemuConf, systemVBoxConf
 from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from GNS3.Config.Config import ConfDB, GNS_Conf
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.QemuManager import QemuManager
+from GNS3.VBoxManager import VBoxManager
 from GNS3.Translations import Translator
 from GNS3.DynagenSub import DynagenSub
 from GNS3.ProjectDialog import ProjectDialog
@@ -57,6 +59,7 @@ class Application(QApplication, Singleton):
         self.__dynagen = None
         self.__HypervisorManager = None
         self.__QemuManager = None
+        self.__VBoxManager = None
 
         # Dict for storing config
         self.__systconf = {}
@@ -65,12 +68,14 @@ class Application(QApplication, Singleton):
         self.__hypervisors = {}
         self.__libraries = {}
         self.__qemuimages = {}
+        self.__vboximages = {}
         self.__junosimages = {}
         self.__asaimages = {}
         self.__idsimages = {}
         self.iosimages_ids = 0
         self.hypervisors_ids = 0
         self.qemuimages_ids = 0
+        self.vboximages_ids = 0
         self.junosimages_ids = 0
         self.asaimages_ids = 0
         self.idsimages_ids = 0
@@ -184,6 +189,20 @@ class Application(QApplication, Singleton):
 
     qemuimages = property(__getQemuImages, __setQemuImages, doc = 'Qemu images dictionnary')
 
+    def __setVBoxImages(self, vboximages):
+        """ register the sysconf instance
+        """
+
+        self.__vboximages = vboximages
+
+    def __getVBoxImages(self):
+        """ return the sysconf instance
+        """
+
+        return self.__vboximages
+
+    vboximages = property(__getVBoxImages, __setVBoxImages, doc = 'VBox images dictionnary')
+
     def __setJunOSImages(self, junosimages):
         """ register the sysconf instance
         """
@@ -296,6 +315,20 @@ class Application(QApplication, Singleton):
 
     QemuManager = property(__getQemuManager, __setQemuManager, doc = 'QemuManager instance')
 
+    def __setVBoxManager(self, VBoxManager):
+        """ register the VBoxManager instance
+        """
+
+        self.__VBoxManager = VBoxManager
+
+    def __getVBoxManager(self):
+        """ return the VBoxManager instance
+        """
+
+        return self.__VBoxManager
+
+    VBoxManager = property(__getVBoxManager, __setVBoxManager, doc = 'VBoxManager instance')
+
     def run(self, file):
 
         # Instantiation of Dynagen
@@ -338,6 +371,7 @@ class Application(QApplication, Singleton):
         confo.qemu_path = ConfDB().get('Qemu/qemu_path', unicode('qemu'))
         confo.qemu_img_path = ConfDB().get('Qemu/qemu_img_path', unicode('qemu-img'))
         confo.external_hosts = ConfDB().get('Qemu/external_hosts', unicode('localhost:10525')).split(',')
+        confo.enable_QemuWrapperAdvOptions = ConfDB().value("Qemu/enable_QemuWrapperAdvOptions", QVariant(False)).toBool()
         confo.enable_QemuManager = ConfDB().value("Qemu/enable_QemuManager", QVariant(True)).toBool()
         confo.import_use_QemuManager = ConfDB().value("Qemu/qemu_manager_import", QVariant(True)).toBool()
         confo.QemuManager_binding = ConfDB().get('Qemu/qemu_manager_binding', unicode('127.0.0.1'))
@@ -345,13 +379,38 @@ class Application(QApplication, Singleton):
         confo.qemuwrapper_baseUDP = int(ConfDB().get('Qemu/qemuwrapper_baseUDP', 20000))
         confo.qemuwrapper_baseConsole = int(ConfDB().get('Qemu/qemuwrapper_baseConsole', 3000))
 
-        # replace ~user and $HOME by home directory
+        # Qemu replace ~user and $HOME by home directory
         if os.environ.has_key("HOME"):
             confo.qemuwrapper_path = confo.qemuwrapper_path.replace('$HOME', os.environ["HOME"])
             confo.qemuwrapper_workdir =  confo.qemuwrapper_workdir.replace('$HOME', os.environ["HOME"])
 
         confo.qemuwrapper_path = os.path.expanduser(confo.qemuwrapper_path)
         confo.qemuwrapper_workdir = os.path.expanduser(confo.qemuwrapper_workdir)
+
+        # VBox config
+
+        self.systconf['vbox'] = systemVBoxConf()
+        confo = self.systconf['vbox']
+        confo.vboxwrapper_path = ConfDB().get('VBox/vboxwrapper_path', unicode(''))
+        confo.vboxwrapper_workdir = ConfDB().get('VBox/vboxwrapper_working_directory', unicode(''))
+        confo.external_hosts = ConfDB().get('VBox/external_hosts', unicode('localhost:11525')).split(',')
+        confo.enable_VBoxWrapperAdvOptions = ConfDB().value("VBox/enable_VBoxWrapperAdvOptions", QVariant(False)).toBool()
+        confo.enable_VBoxAdvOptions = ConfDB().value("VBox/enable_VBoxAdvOptions", QVariant(False)).toBool()
+        confo.enable_GuestControl = ConfDB().value("VBox/enable_GuestControl", QVariant(False)).toBool()
+        confo.enable_VBoxManager = ConfDB().value("VBox/enable_VBoxManager", QVariant(True)).toBool()
+        confo.import_use_VBoxManager = ConfDB().value("VBox/vbox_manager_import", QVariant(True)).toBool()
+        confo.VBoxManager_binding = ConfDB().get('VBox/vbox_manager_binding', unicode('127.0.0.1'))
+        confo.vboxwrapper_port = int(ConfDB().get('VBox/vboxwrapper_port', 11525))
+        confo.vboxwrapper_baseUDP = int(ConfDB().get('VBox/vboxwrapper_baseUDP', 20900))
+        confo.vboxwrapper_baseConsole = int(ConfDB().get('VBox/vboxwrapper_baseConsole', 3900))
+
+        # VBox replace ~user and $HOME by home directory
+        if os.environ.has_key("HOME"):
+            confo.vboxwrapper_path = confo.vboxwrapper_path.replace('$HOME', os.environ["HOME"])
+            confo.vboxwrapper_workdir =  confo.vboxwrapper_workdir.replace('$HOME', os.environ["HOME"])
+
+        confo.vboxwrapper_path = os.path.expanduser(confo.vboxwrapper_path)
+        confo.vboxwrapper_workdir = os.path.expanduser(confo.vboxwrapper_workdir)
 
         # Capture config
         self.systconf['capture'] = systemCaptureConf()
@@ -376,6 +435,7 @@ class Application(QApplication, Singleton):
         confo.project_startup = ConfDB().value("GNS3/project_startup", QVariant(True)).toBool()
         confo.relative_paths = ConfDB().value("GNS3/relative_paths", QVariant(True)).toBool()
         confo.use_shell = ConfDB().value("GNS3/use_shell", QVariant(True)).toBool()
+        confo.bring_console_to_front = ConfDB().value("GNS3/bring_console_to_front", QVariant(False)).toBool()
         confo.term_cmd = ConfDB().get('GNS3/console', unicode(''))
         confo.project_path = ConfDB().get('GNS3/project_directory', unicode(''))
         confo.ios_path = ConfDB().get('GNS3/ios_directory', unicode(''))
@@ -405,6 +465,10 @@ class Application(QApplication, Singleton):
         # QemuManager
         self.__QemuManager = QemuManager()
 
+        # VBoxManager
+        self.__VBoxManager = VBoxManager()
+
+        GNS_Conf().VBOX_images()
         GNS_Conf().IOS_images()
         GNS_Conf().IOS_hypervisors()
         GNS_Conf().QEMU_images()
@@ -452,6 +516,7 @@ class Application(QApplication, Singleton):
 
         self.__HypervisorManager = None
         self.__QemuManager = None
+        self.__VBoxManager = None
 
         if globals.recordConfiguration:
             # Save the geometry & state of the GUI
@@ -477,6 +542,7 @@ class Application(QApplication, Singleton):
         c.set('GNS3/autosave', confo.autosave)
         c.set('GNS3/console', confo.term_cmd)
         c.set('GNS3/use_shell', confo.use_shell)
+        c.set('GNS3/bring_console_to_front', confo.bring_console_to_front)
         c.set('GNS3/gui_show_status_points', confo.status_points)
         c.set('GNS3/gui_use_manual_connection', confo.manual_connection)
         c.set('GNS3/gui_draw_selected_rectangle', confo.draw_selected_rectangle)
@@ -512,12 +578,29 @@ class Application(QApplication, Singleton):
         c.set('Qemu/qemu_img_path', confo.qemu_img_path)
         external_hosts = ','.join(confo.external_hosts)
         c.set('Qemu/external_hosts', external_hosts)
+        c.set('Qemu/enable_QemuWrapperAdvOptions', confo.enable_QemuWrapperAdvOptions)
         c.set('Qemu/enable_QemuManager', confo.enable_QemuManager)
         c.set('Qemu/qemu_manager_import', confo.import_use_QemuManager)
         c.set('Qemu/qemu_manager_binding', confo.QemuManager_binding)
         c.set('Qemu/qemuwrapper_port', confo.qemuwrapper_port)
         c.set('Qemu/qemuwrapper_baseUDP', confo.qemuwrapper_baseUDP)
         c.set('Qemu/qemuwrapper_baseConsole', confo.qemuwrapper_baseConsole)
+
+        # VBox config
+        confo = self.systconf['vbox']
+        c.set('VBox/vboxwrapper_path', confo.vboxwrapper_path)
+        c.set('VBox/vboxwrapper_working_directory', confo.vboxwrapper_workdir)
+        external_hosts = ','.join(confo.external_hosts)
+        c.set('VBox/external_hosts', external_hosts)
+        c.set('VBox/enable_VBoxWrapperAdvOptions', confo.enable_VBoxWrapperAdvOptions)
+        c.set('VBox/enable_VBoxAdvOptions', confo.enable_VBoxAdvOptions)
+        c.set('VBox/enable_GuestControl', confo.enable_GuestControl)
+        c.set('VBox/enable_VBoxManager', confo.enable_VBoxManager)
+        c.set('VBox/vbox_manager_import', confo.import_use_VBoxManager)
+        c.set('VBox/vbox_manager_binding', confo.VBoxManager_binding)
+        c.set('VBox/vboxwrapper_port', confo.vboxwrapper_port)
+        c.set('VBox/vboxwrapper_baseUDP', confo.vboxwrapper_baseUDP)
+        c.set('VBox/vboxwrapper_baseConsole', confo.vboxwrapper_baseConsole)
 
         # Capture settings
         confo = self.systconf['capture']
@@ -535,6 +618,10 @@ class Application(QApplication, Singleton):
         c.endGroup()
 
         c.beginGroup("QEMU.images")
+        c.remove("")
+        c.endGroup()
+
+        c.beginGroup("VBOX.images")
         c.remove("")
         c.endGroup()
 
@@ -595,6 +682,16 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/nic", o.nic)
             c.set(basekey + "/options", o.options)
             c.set(basekey + "/kvm", o.kvm)
+
+        # VBox images
+        for (key, o) in self.__vboximages.iteritems():
+            basekey = "VBOX.images/" + str(o.id)
+            c.set(basekey + "/name", o.name)
+            c.set(basekey + "/filename", o.filename)
+            c.set(basekey + "/nic_nb", o.nic_nb)
+            c.set(basekey + "/nic", o.nic)
+            c.set(basekey + "/guestcontrol_user", o.guestcontrol_user)
+            c.set(basekey + "/guestcontrol_password", o.guestcontrol_password)
 
         # JunOS images
         for (key, o) in self.__junosimages.iteritems():

@@ -904,7 +904,6 @@ def main():
        FORCE_IPV6 = options.force_ipv6
    
     server = QemuWrapperServer((host, port), QemuWrapperRequestHandler)
-
     print "Qemu TCP control server started (port %d)." % port
 
     if FORCE_IPV6:

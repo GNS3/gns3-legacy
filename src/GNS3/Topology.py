@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
+# Copyright (C) 2007-2011 GNS3 Development Team (http://www.gns3.net/team).
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -19,9 +19,11 @@
 # code@gns3.net
 #
 
+
 import os, glob, socket, sys, base64, time
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.qemu_lib as qlib
+import GNS3.Dynagen.dynagen_vbox_lib as vboxlib
 import GNS3.Globals as globals
 import GNS3.UndoFramework as undo
 from PyQt4 import QtGui, QtCore
@@ -36,6 +38,7 @@ from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
 from GNS3.Node.FRSW import FRSW, init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
 from GNS3.Node.AnyEmuDevice import QemuDevice, ASA, AnyEmuDevice, JunOS, IDS, init_emu_id
+from GNS3.Node.AnyVBoxEmuDevice import VBoxDevice, AnyVBoxEmuDevice, init_vbox_emu_id
 from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Annotation import Annotation
 
@@ -69,7 +72,7 @@ class Topology(QtGui.QGraphicsScene):
         item = self.itemAt(event.scenePos())
         if item and ((isinstance(item, AbstractNode) and \
         globals.currentLinkType == globals.Enum.LinkType.Manual) or \
-        isinstance(srcnode, AnyEmuDevice) or isinstance(srcnode, FRSW) or \
+        isinstance(srcnode, AnyEmuDevice) or isinstance(srcnode, AnyVBoxEmuDevice) or isinstance(srcnode, FRSW) or \
         isinstance(srcnode, ATMBR) or isinstance(srcnode, ATMSW) or isinstance(srcnode, Cloud)):
             # In few circumstances, QtGui.QGraphicsScene.mousePressEvent()
             # send the mousePressEvent to the wrong item; we need to
@@ -106,6 +109,8 @@ class Topology(QtGui.QGraphicsScene):
             globals.GApp.HypervisorManager.stopProcHypervisors()
         if globals.GApp.QemuManager:
             globals.GApp.QemuManager.stopQemu()
+        if globals.GApp.VBoxManager:
+            globals.GApp.VBoxManager.stopVBox()
 
     def clear(self):
         """ Clear the topology
@@ -130,6 +135,7 @@ class Topology(QtGui.QGraphicsScene):
         init_ethsw_id()
         init_frsw_id()
         init_emu_id()
+        init_vbox_emu_id()
         init_cloud_id()
         init_decoration_id()
         self.cleanDynagen()
@@ -272,6 +278,22 @@ class Topology(QtGui.QGraphicsScene):
             debug("Enable JIT blocks sharing")
             node.set_jitsharing(True)
 
+    def getHost(self, i_strAddress):
+        # IPv6: gets the "host" portion from "host:port" string
+        elements = i_strAddress.split(':')
+        for x in range(len(elements)-1): #Except TCP port
+            if x == 0:
+                hostname = elements[x]
+            else:
+                hostname += ':' + elements[x]
+        return hostname
+
+    def isLocalhost(self, i_host):
+        if i_host == 'localhost' or i_host == '127.0.0.1' or i_host == '::1' or i_host == "0:0:0:0:0:0:0:1":
+            return True
+        else:
+            return False
+
     def emuDeviceSetup(self, node):
         """ Start a connection to an Emulated device & set defaults
         """
@@ -282,6 +304,7 @@ class Topology(QtGui.QGraphicsScene):
             if globals.GApp.QemuManager.startQemu(port) == False:
                 return False
         else:
+        #if True:
             external_hosts = globals.GApp.systconf['qemu'].external_hosts
 
             if len(external_hosts) == 0:
@@ -301,8 +324,10 @@ class Topology(QtGui.QGraphicsScene):
 
             host = qemuwrapper
             if ':' in host:
-                (host, port) = host.split(':')
-                port = int(port)
+                #(host, port) = host.split(':')
+                #port = int(port)
+                port = int(host.split(':')[-1])
+                host = self.getHost(host)
             else:
                 port = 10525
 
@@ -312,7 +337,7 @@ class Topology(QtGui.QGraphicsScene):
             #create the Qemu instance and add it to global dictionary
             self.dynagen.dynamips[qemu_name] = qlib.Qemu(host, port)
             self.dynagen.dynamips[qemu_name].reset()
-            if globals.GApp.systconf['qemu'].enable_QemuManager or host == 'localhost':
+            if globals.GApp.systconf['qemu'].enable_QemuManager and self.isLocalhost(host):
                 self.dynagen.dynamips[qemu_name].qemupath = globals.GApp.systconf['qemu'].qemu_path
                 self.dynagen.dynamips[qemu_name].qemuimgpath = globals.GApp.systconf['qemu'].qemu_img_path
 
@@ -321,8 +346,9 @@ class Topology(QtGui.QGraphicsScene):
             self.dynagen.get_defaults_config()
             self.dynagen.update_running_config()
             self.dynagen.dynamips[qemu_name].configchange = True
+            
+            if globals.GApp.systconf['qemu'].enable_QemuManager and self.isLocalhost(host):
 
-            if globals.GApp.systconf['qemu'].enable_QemuManager or host == 'localhost':
                 if globals.GApp.workspace.projectWorkdir:
                     workdir = globals.GApp.workspace.projectWorkdir
                 elif globals.GApp.systconf['qemu'].qemuwrapper_workdir:
@@ -340,6 +366,76 @@ class Topology(QtGui.QGraphicsScene):
         node.set_hypervisor(self.dynagen.dynamips[qemu_name])
 
         return True
+
+    def vboxDeviceSetup(self, node):
+        """ Start a connection to a virtualized device & set defaults
+        """
+        
+        if globals.GApp.systconf['vbox'].enable_VBoxManager:
+            host = globals.GApp.systconf['vbox'].VBoxManager_binding
+            port = globals.GApp.systconf['vbox'].vboxwrapper_port
+            if globals.GApp.VBoxManager.startVBox(port) == False:
+                return False
+        else:
+        #if True:
+            external_hosts = globals.GApp.systconf['vbox'].external_hosts
+            
+            if len(external_hosts) == 0:
+                QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "External VBoxwrapper"), 
+                                          translate("Topology", "Please register at least one external VBoxwrapper"))
+                return False
+
+            if len(external_hosts) > 1:
+                (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "External VBoxwrapper"),
+                                                              translate("Topology", "Please choose your external VBoxwrapper"), external_hosts, 0, False)
+                if ok:
+                    vboxwrapper = unicode(selection)
+                else:
+                    return False
+            else:
+                vboxwrapper = external_hosts[0]
+
+            host = vboxwrapper
+            if ':' in host:
+                #(host, port) = host.split(':')
+                #port = int(port)
+                port = int(host.split(':')[-1])
+                host = self.getHost(host)
+            else:
+                port = 11525
+        
+        vbox_name = host + ':' + str(port)
+        debug('VBoxwrapper: ' + vbox_name)
+        if not self.dynagen.dynamips.has_key(vbox_name):
+            #create the VBox instance and add it to global dictionary
+            self.dynagen.dynamips[vbox_name] = vboxlib.VBox(host, port)
+            self.dynagen.dynamips[vbox_name].reset()
+
+            self.dynagen.dynamips[vbox_name].baseconsole = globals.GApp.systconf['vbox'].vboxwrapper_baseConsole
+            self.dynagen.dynamips[vbox_name].baseudp = globals.GApp.systconf['vbox'].vboxwrapper_baseUDP
+            self.dynagen.get_defaults_config()
+            self.dynagen.update_running_config()
+            self.dynagen.dynamips[vbox_name].configchange = True
+            
+            if globals.GApp.systconf['vbox'].enable_VBoxManager and self.isLocalhost(host):
+                if globals.GApp.workspace.projectWorkdir:
+                    workdir = globals.GApp.workspace.projectWorkdir
+                elif globals.GApp.systconf['vbox'].vboxwrapper_workdir:
+                    workdir = globals.GApp.systconf['vbox'].vboxwrapper_workdir
+                else:
+                    realpath = os.path.realpath(self.dynagen.global_filename)
+                    workdir = os.path.dirname(realpath)
+                try:
+                    self.dynagen.dynamips[vbox_name].workingdir = workdir
+                except lib.DynamipsError, msg:
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "VBoxwrapper error"),  unicode(workdir + ': ') + unicode(msg))
+                    del self.dynagen.dynamips[vbox_name]
+                    return False
+
+        node.set_hypervisor(self.dynagen.dynamips[vbox_name])
+
+        return True
+        #"""
 
     def addNodeFromScene(self, node):
         """ Add node in the topology, called from Scene
@@ -428,7 +524,7 @@ class Topology(QtGui.QGraphicsScene):
             if isinstance(node, QemuDevice):
 
                 if len(globals.GApp.qemuimages) == 0:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Qemu image"), translate("Topology", "Please configure a Qemu host:"))
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Qemu image"), translate("Topology", "Please configure a Qemu guest:"))
                     init_emu_id(node.id)
                     return False
 
@@ -439,9 +535,10 @@ class Topology(QtGui.QGraphicsScene):
                 if node.image_reference:
                     conf = globals.GApp.qemuimages[node.image_reference]
                 elif len(globals.GApp.qemuimages) > 1:
+
                     devices.sort()
-                    (selection, ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "Qemu host"),
-                                                                      translate("Topology", "Please choose a Qemu host"), devices, 0, False)
+                    (selection, ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "Qemu guest"),
+                                                                      translate("Topology", "Please choose a Qemu guest"), devices, 0, False)
                     if ok:
                         device_to_use = unicode(selection)
                     else:
@@ -470,6 +567,74 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_string_option('kvm', conf.kvm)
                 node.set_string_option('options', conf.options)
 
+            if isinstance(node, VBoxDevice):
+
+                if len(globals.GApp.vboximages) == 0:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "VBox image"), translate("Topology", "Please configure a VirtualBox guest:"))
+                    init_vbox_emu_id(node.id)
+                    return False
+               
+                devices = []
+                for name in globals.GApp.vboximages.keys():
+                    devices.append(name)
+                
+                if node.image_reference:
+                    conf = globals.GApp.vboximages[node.image_reference]
+                elif len(globals.GApp.vboximages) > 1:
+
+                    devices.sort()
+                    (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "VirtualBox guest"),
+                                                                      translate("Topology", "Please choose a VirtualBox guest"), devices, 0, False)
+                    if ok:
+                        device_to_use = unicode(selection)
+                    else:
+                        init_vbox_emu_id(node.id)
+                        return False
+                    conf = globals.GApp.vboximages[device_to_use]
+                    node.image_reference = device_to_use
+
+                else:
+                    conf = globals.GApp.vboximages[devices[0]]
+                    node.image_reference = devices[0]
+
+                # give a warning if the VBox VMname/UUID is not accessible
+                if globals.GApp.systconf['vbox'].enable_VBoxManager:
+                    try:
+                        from vboxapi import VirtualBoxManager
+                    except:
+                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "VirtualBox API"), unicode(translate("Topology", "ERROR: VirtualBox API module cannot be loaded !")))
+                        return False
+                    #mgr = VirtualBoxManager(None, None)
+                    #vbox = mgr.vbox
+                    
+                    from __main__ import g_VBoxmgr, VBOXVER_REQUIRED, VBOXVER_FLOAT
+                    if not g_VBoxmgr:
+                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "VirtualBox API"), unicode(translate("Topology", "ERROR: VirtualBox API module cannot start !")))
+                        return False
+                      
+                    vbox = g_VBoxmgr.vbox
+                    
+                    if VBOXVER_FLOAT < VBOXVER_REQUIRED:
+                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "VirtualBox API"), unicode(translate("Topology", "ERROR: Detected VirtualBox version %s, which is too old.\nMinimum required is: %s" % (g_VBoxmgr.vbox.version, str(VBOXVER_REQUIRED)))))
+                        return False
+                    
+                    vmname = conf.filename  #Qemu's Disk Image equals to VMname/UUID in this release.                
+                    try:
+                        mach = vbox.findMachine(vmname)
+                    except Exception, e:
+                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "VirtualBox VMname/UUID"), unicode(translate("Topology", "VirtualBox Machine '%s' seems to not exist, please check")) % conf.filename)
+
+                if self.vboxDeviceSetup(node) == False:
+                    init_vbox_emu_id(node.id)
+                    return False
+                
+                debug("Set default image " + conf.filename + " for node type %s, model %r" % (type(node), node.model))
+                node.set_image(conf.filename, node.model)
+                node.set_int_option('nics', conf.nic_nb)
+                node.set_string_option('netcard', conf.nic)
+                node.set_string_option('guestcontrol_user', conf.guestcontrol_user)
+                node.set_string_option('guestcontrol_password', conf.guestcontrol_password)
+
             if isinstance(node, JunOS):
 
                 if len(globals.GApp.junosimages) == 0:
@@ -484,6 +649,7 @@ class Topology(QtGui.QGraphicsScene):
                 if node.image_reference:
                     conf = globals.GApp.junosimages[node.image_reference]
                 elif len(globals.GApp.junosimages) > 1:
+
                     devices.sort()
                     (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "JunOS image"),
                                                                       translate("Topology", "Please choose a JunOS"), devices, 0, False)
@@ -528,6 +694,7 @@ class Topology(QtGui.QGraphicsScene):
                 if node.image_reference:
                     conf = globals.GApp.idsimages[node.image_reference]
                 elif len(globals.GApp.idsimages) > 1:
+
                     devices.sort()
                     (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "IDS"),
                                                                       translate("Topology", "Please choose an IDS"), devices, 0, False)
@@ -579,6 +746,7 @@ class Topology(QtGui.QGraphicsScene):
                 if node.image_reference:
                     conf = globals.GApp.asaimages[node.image_reference]
                 elif len(globals.GApp.asaimages) > 1:
+
                     devices.sort()
                     (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "ASA"),
                                                                       translate("Topology", "Please choose an ASA"), devices, 0, False)
@@ -629,6 +797,8 @@ class Topology(QtGui.QGraphicsScene):
                 self.deleteNode(node.id)
                 if isinstance(node, AnyEmuDevice):
                     init_emu_id(node.id)
+                if isinstance(node, AnyVBoxEmuDevice):
+                    init_vbox_emu_id(node.id)
                 if isinstance(node, IOSRouter):
                     init_router_id(node.id)
 
@@ -647,6 +817,8 @@ class Topology(QtGui.QGraphicsScene):
             self.deleteNode(node.id)
             if isinstance(node, AnyEmuDevice):
                 init_emu_id(node.id)
+            if isinstance(node, AnyVBoxEmuDevice):
+                init_vbox_emu_id(node.id)
             if isinstance(node, IOSRouter):
                 init_router_id(node.id)
             return False
@@ -655,6 +827,8 @@ class Topology(QtGui.QGraphicsScene):
             self.deleteNode(node.id)
             if isinstance(node, AnyEmuDevice):
                 init_emu_id(node.id)
+            if isinstance(node, AnyVBoxEmuDevice):
+                init_vbox_emu_id(node.id)
             if isinstance(node, IOSRouter):
                 init_router_id(node.id)
             return False
@@ -781,11 +955,11 @@ class Topology(QtGui.QGraphicsScene):
 
         try:
             # start nodes that are always on
-            if not isinstance(src_node, IOSRouter) and not isinstance(src_node, AnyEmuDevice):
+            if not isinstance(src_node, IOSRouter) and not isinstance(src_node, AnyEmuDevice) and not isinstance(src_node, AnyVBoxEmuDevice):
                 src_node.startNode()
             elif src_node.state == 'running':
                 src_node.startupInterfaces()
-            if not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, AnyEmuDevice):
+            if not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, AnyEmuDevice) and not isinstance(dst_node, AnyVBoxEmuDevice):
                 dst_node.startNode()
             elif dst_node.state == 'running':
                 dst_node.startupInterfaces()
@@ -825,14 +999,13 @@ class Topology(QtGui.QGraphicsScene):
             return
         elif not isinstance(src_node, IOSRouter) and not isinstance(dst_node, IOSRouter):
 
-            if ((isinstance(src_node, AnyEmuDevice) or isinstance(src_node, Cloud)) and type(dst_node) in (ATMSW, FRSW, ATMBR)) \
-                or ((isinstance(dst_node, AnyEmuDevice) or isinstance(dst_node, Cloud)) and type(src_node) in (ATMSW, FRSW, ATMBR)) \
+            if ((isinstance(src_node, AnyEmuDevice) or isinstance(src_node, AnyVBoxEmuDevice) or isinstance(src_node, Cloud)) and type(dst_node) in (ATMSW, FRSW, ATMBR)) \
+                or ((isinstance(dst_node, AnyEmuDevice) or isinstance(dst_node, AnyVBoxEmuDevice) or isinstance(dst_node, Cloud)) and type(src_node) in (ATMSW, FRSW, ATMBR)) \
                 or (isinstance(src_node, Cloud) and isinstance(dst_node, Cloud)):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "Can't connect these devices"))
                 return False
 
-            if (isinstance(dst_node, Cloud) or isinstance(dst_node, AnyEmuDevice) or type(dst_node) in (ETHSW, ATMSW, FRSW, ATMBR)) and type(src_node) in (ETHSW, ATMSW, FRSW, ATMBR):
-
+            if (isinstance(dst_node, Cloud) or isinstance(dst_node, AnyEmuDevice) or isinstance(dst_node, AnyVBoxEmuDevice) or type(dst_node) in (ETHSW, ATMSW, FRSW, ATMBR)) and type(src_node) in (ETHSW, ATMSW, FRSW, ATMBR):
                 if not src_node.hypervisor:
                     if type(dst_node) in (ETHSW, ATMSW, FRSW, ATMBR) and dst_node.hypervisor:
                         debug('Set hypervisor ' + dst_node.hypervisor.host + ':' + str(dst_node.hypervisor.port) + ' to ' + src_node.hostname)
@@ -843,8 +1016,7 @@ class Topology(QtGui.QGraphicsScene):
                             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "You have to connect at least one router to the switch"))
                             return False
 
-            if (isinstance(src_node, Cloud) or isinstance(src_node, AnyEmuDevice) or type(src_node) in (ETHSW, ATMSW, FRSW, ATMBR)) and type(dst_node) in (ETHSW, ATMSW, FRSW, ATMBR):
-
+            if (isinstance(src_node, Cloud) or isinstance(src_node, AnyEmuDevice) or isinstance(src_node, AnyVBoxEmuDevice) or type(src_node) in (ETHSW, ATMSW, FRSW, ATMBR)) and type(dst_node) in (ETHSW, ATMSW, FRSW, ATMBR):
                 if not dst_node.hypervisor:
                     if type(src_node) in (ETHSW, ATMSW, FRSW, ATMBR) and src_node.hypervisor:
                         debug('Set hypervisor ' + src_node.hypervisor.host + ':' + str(src_node.hypervisor.port) + ' to ' + dst_node.hostname)
@@ -856,15 +1028,15 @@ class Topology(QtGui.QGraphicsScene):
                             return False
 
         else:
-            if not isinstance(src_node, IOSRouter) and not isinstance(src_node, Cloud) and not isinstance(src_node, AnyEmuDevice) and not src_node.hypervisor:
+            if not isinstance(src_node, IOSRouter) and not isinstance(src_node, Cloud) and not isinstance(src_node, AnyEmuDevice) and not isinstance(src_node, AnyVBoxEmuDevice) and not src_node.hypervisor:
                 debug('Set hypervisor ' + dst_node.hypervisor.host + ':' + str(dst_node.hypervisor.port) + ' to ' + src_node.hostname)
                 src_node.set_hypervisor(dst_node.hypervisor)
-            elif not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, Cloud) and not isinstance(dst_node, AnyEmuDevice) and not dst_node.hypervisor:
+            elif not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, Cloud) and not isinstance(dst_node, AnyEmuDevice) and not isinstance(dst_node, AnyVBoxEmuDevice) and not dst_node.hypervisor:
                 debug('Set hypervisor ' + src_node.hypervisor.host + ':' + str(src_node.hypervisor.port) + ' to ' + dst_node.hostname)
                 dst_node.set_hypervisor(src_node.hypervisor)
 
         try:
-            if isinstance(src_node, IOSRouter) or isinstance(src_node, AnyEmuDevice) or type(src_node) in (ETHSW, ATMSW, ATMBR, FRSW):
+            if isinstance(src_node, IOSRouter) or isinstance(src_node, AnyEmuDevice) or isinstance(src_node, AnyVBoxEmuDevice) or type(src_node) in (ETHSW, ATMSW, ATMBR, FRSW):
                 srcdev = src_node.get_dynagen_device()
                 if type(dst_node) == Cloud:
                     if not type(src_node) in (ETHSW, ATMSW, ATMBR, FRSW):
@@ -874,7 +1046,7 @@ class Topology(QtGui.QGraphicsScene):
                     dstdev = dst_node.get_dynagen_device()
                     debug('Connect link from ' + srcdev.name + ' ' + srcif +' to ' + dstdev.name + ' ' + dstif)
                     self.dynagen.connect(srcdev, srcif, dstdev.name + ' ' + dstif)
-            elif isinstance(dst_node, IOSRouter) or isinstance(dst_node, AnyEmuDevice) or type(dst_node) in (ETHSW, ATMSW, ATMBR, FRSW):
+            elif isinstance(dst_node, IOSRouter) or isinstance(dst_node, AnyEmuDevice) or isinstance(dst_node, AnyVBoxEmuDevice) or type(dst_node) in (ETHSW, ATMSW, ATMBR, FRSW):
                 dstdev = dst_node.get_dynagen_device()
                 if type(src_node) == Cloud:
                     if not type(dst_node) in (ETHSW, ATMSW, ATMBR, FRSW):
@@ -897,11 +1069,11 @@ class Topology(QtGui.QGraphicsScene):
 
         try:
             # start nodes that are always on
-            if not isinstance(src_node, IOSRouter) and not isinstance(src_node, AnyEmuDevice):
+            if not isinstance(src_node, IOSRouter) and not isinstance(src_node, AnyEmuDevice) and not isinstance(src_node, AnyVBoxEmuDevice):
                 src_node.startNode()
             elif src_node.state == 'running':
                 src_node.startupInterfaces()
-            if not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, AnyEmuDevice):
+            if not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, AnyEmuDevice) and not isinstance(dst_node, AnyVBoxEmuDevice):
                 dst_node.startNode()
             elif dst_node.state == 'running':
                 dst_node.startupInterfaces()
@@ -933,7 +1105,7 @@ class Topology(QtGui.QGraphicsScene):
         if not isinstance(link.source, DecorativeNode) and not isinstance(link.dest, DecorativeNode):
             # not a decorative device
             try:
-                if isinstance(link.source, IOSRouter) or isinstance(link.source, AnyEmuDevice):
+                if isinstance(link.source, IOSRouter) or isinstance(link.source, AnyEmuDevice) or isinstance(link.source, AnyVBoxEmuDevice):
                     srcdev = link.source.get_dynagen_device()
                     if type(link.dest) == Cloud:
                         debug('Disconnect link from ' + srcdev.name + ' ' + link.srcIf +' to ' + link.destIf)
@@ -943,7 +1115,7 @@ class Topology(QtGui.QGraphicsScene):
                         debug('Disconnect link from ' + srcdev.name + ' ' + link.srcIf +' to ' + dstdev.name + ' ' + link.destIf)
                         self.dynagen.disconnect(srcdev, link.srcIf, dstdev.name + ' ' + link.destIf, automatically_remove_unused_slot=False)
                     link.source.set_config(link.source.get_config())
-                elif isinstance(link.dest, IOSRouter) or isinstance(link.dest, AnyEmuDevice):
+                elif isinstance(link.dest, IOSRouter) or isinstance(link.dest, AnyEmuDevice) or isinstance(link.dest, AnyVBoxEmuDevice):
                     dstdev = link.dest.get_dynagen_device()
                     if type(link.source) == Cloud:
                         debug('Disconnect link from ' + dstdev.name + ' ' + link.destIf +' to ' + link.srcIf)
@@ -956,7 +1128,7 @@ class Topology(QtGui.QGraphicsScene):
 
                 elif type(link.source) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR) and type(link.dest) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR) or \
                     type(link.dest) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR) and type(link.source) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR):
-
+                    
                     if type(link.dest) == Cloud:
                         srcdev = link.source.get_dynagen_device()
                         self.dynagen.disconnect(srcdev, link.srcIf, link.destIf, automatically_remove_unused_slot=False)

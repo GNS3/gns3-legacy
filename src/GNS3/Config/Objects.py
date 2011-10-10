@@ -44,7 +44,10 @@ class ConfigObject(object):
         else:
             # In case the attribute is not part of the conf,
             # behave like the normal __getattr__
+            #try:
             super(ConfigObject, self).__getattr__(name)
+            #except:
+	    #    print "WARNING: object" + str(name) + "doesn't have __getattr__ attribute"
 
     def __setattr__(self, name, value):
         # We must bypass `conf' and `types' attributes, because we use
@@ -105,6 +108,12 @@ class qemuImageConf(ConfigObject):
         self.conf = Defaults.conf_qemuImage_defaults.copy()
         self.types = Defaults.conf_qemuImage_types
 
+class vboxImageConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_vboxImage_defaults.copy()
+        self.types = Defaults.conf_vboxImage_types
+
 class junosImageConf(ConfigObject):
     def __init__(self):
         ConfigObject.__init__(self)
@@ -146,3 +155,9 @@ class systemQemuConf(ConfigObject):
         ConfigObject.__init__(self)
         self.conf = Defaults.conf_systemQemu_defaults.copy()
         self.types = Defaults.conf_systemQemu_types
+
+class systemVBoxConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_systemVBox_defaults.copy()
+        self.types = Defaults.conf_systemVBox_types

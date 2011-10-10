@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 from socket import socket, AF_INET, AF_INET6, SOCK_STREAM
 from dynamips_lib import NIO_udp, send, dowarning, debug, DynamipsError, validate_connect, Bridge, DynamipsVerError, get_reverse_udp_nio, Router, FRSW, ATMSW, ETHSW, DynamipsWarning
+from dynagen_vbox_lib import VBox, VBoxDevice, AnyVBoxEmuDevice
 import random
 
 #version = "0.11.0.091411"
@@ -49,6 +50,8 @@ class UDPConnection:
         (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self)
         if isinstance(remote_device, AnyEmuDevice):
             return ' is connected to emulated device ' + remote_device.name + ' Ethernet' + str(remote_port) + '\n'
+        elif isinstance(remote_device, AnyVBoxEmuDevice):
+            return ' is connected to virtualized device ' + remote_device.name + ' Ethernet' + str(remote_port) + '\n'
         elif isinstance(remote_device, Router):
             (rem_int_name, rem_dynagen_port) = remote_adapter.interfaces_mips2dyn[remote_port]
             if remote_device.model_string in ['1710', '1720', '1721', '1750']:
@@ -632,6 +635,8 @@ class AnyEmuDevice(object):
         #create the remote device side of UDP connection
         if isinstance(remote_emulated_device, AnyEmuDevice):
             send(remote_emulated_device.p, 'qemu create_udp %s %i %i %s %i' % (remote_emulated_device.name, remote_port, dst_udp, src_ip, src_udp))
+        if isinstance(remote_emulated_device, AnyVBoxEmuDevice):
+            send(remote_emulated_device.p, 'vbox create_udp %s %i %i %s %i' % (remote_emulated_device.name, remote_port, dst_udp, src_ip, src_udp))
         remote_emulated_device.nios[remote_port] = UDPConnection(dst_udp, src_ip, src_udp, remote_emulated_device, remote_port)
         
         #set reverse nios
@@ -648,6 +653,8 @@ class AnyEmuDevice(object):
         # disconnect the remote device side of UDP connection
         if isinstance(remote_emulated_device, AnyEmuDevice):
             send(remote_emulated_device.p, 'qemu delete_udp %s %i' % (remote_emulated_device.name, remote_port))
+        if isinstance(remote_emulated_device, AnyVBoxEmuDevice):
+            send(remote_emulated_device.p, 'vbox delete_udp %s %i' % (remote_emulated_device.name, remote_port))
 
         if remote_emulated_device.nios.has_key(remote_port):
             del remote_emulated_device.nios[remote_port]
@@ -661,6 +668,8 @@ class AnyEmuDevice(object):
                 (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self.nios[port])
                 if isinstance(remote_device, AnyEmuDevice):
                     slot_info = slot_info + ' is connected to emulated device ' + remote_device.name + ' Ethernet' + str(remote_port) + '\n'
+                elif isinstance(remote_device, AnyVBoxEmuDevice):
+                    slot_info = slot_info + ' is connected to virtualized device ' + remote_device.name + ' Ethernet' + str(remote_port) + '\n'
                 elif isinstance(remote_device, Router):
                     slot_info = slot_info + ' is connected to router ' + remote_device.name + " " + remote_adapter.interface_name + str(remote_adapter.slot) + "/" + str(remote_port) + '\n'
                 elif isinstance(remote_device, FRSW):
