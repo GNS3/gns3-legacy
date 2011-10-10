@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="sr">
+<!DOCTYPE TS><TS version="2.0" language="sr" sourcelanguage="">
 <context>
     <name>ASA initrd</name>
     <message>
@@ -606,7 +606,7 @@ p, li { white-space: pre-wrap; }
         <translation>Покрени Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="394"/>
+        <location filename="../Link/AbstractEdge.py" line="402"/>
         <source>Capture</source>
         <translation>Снимај</translation>
     </message>
@@ -626,12 +626,12 @@ p, li { white-space: pre-wrap; }
         <translation>Није пронађен уређај за снимање мрежног саобраћаја података</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="358"/>
+        <location filename="../Link/AbstractEdge.py" line="361"/>
         <source>Dynamips error</source>
         <translation>Dynamips грешка</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="373"/>
+        <location filename="../Link/AbstractEdge.py" line="376"/>
         <source>Please configure capture options</source>
         <translation>Подесите опције снимања</translation>
     </message>
@@ -646,17 +646,17 @@ p, li { white-space: pre-wrap; }
         <translation>Уређај  %s није покренут</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="394"/>
+        <location filename="../Link/AbstractEdge.py" line="402"/>
         <source>Cannot start %s : %s</source>
         <translation>Немогуће покренути %s : %s</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="379"/>
+        <location filename="../Link/AbstractEdge.py" line="382"/>
         <source>%s is empty, no traffic captured on the link. Try again later</source>
         <translation>%s је празан, мрежни саобраћај није снимљен са везе. Покушајте касније</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="383"/>
+        <location filename="../Link/AbstractEdge.py" line="386"/>
         <source>Cannot find %s : %s</source>
         <translation>Немогуће пронаћи %s : %s</translation>
     </message>
@@ -671,8 +671,13 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="344"/>
+        <location filename="../Link/AbstractEdge.py" line="347"/>
         <source>Device %s must be stopped to stop capturing traffic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="386"/>
+        <source>NOTE: This feature is only available for local hypervisors.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -807,22 +812,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AnyEmuDevice</name>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="239"/>
+        <location filename="../Node/AnyEmuDevice.py" line="238"/>
         <source>Dynamips error</source>
         <translation type="unfinished">Dynamips грешка</translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="223"/>
+        <location filename="../Node/AnyEmuDevice.py" line="222"/>
         <source>New hostname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="223"/>
+        <location filename="../Node/AnyEmuDevice.py" line="222"/>
         <source>Cannot rename a connected emulated device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="116"/>
+        <location filename="../Node/AnyEmuDevice.py" line="115"/>
         <source>Cannot change the hostname of a running device</source>
         <translation type="unfinished"></translation>
     </message>
@@ -943,7 +948,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Config</name>
     <message>
-        <location filename="../Config/Config.py" line="375"/>
+        <location filename="../Config/Config.py" line="371"/>
         <source>Can&apos;t open library: %s</source>
         <translation>Немогуће отворити библиотеку: %s</translation>
     </message>
@@ -951,62 +956,62 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Console</name>
     <message>
-        <location filename="../Console.py" line="217"/>
+        <location filename="../Console.py" line="223"/>
         <source>Dynamips error</source>
         <translation>Dynamips грешка</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="215"/>
+        <location filename="../Console.py" line="221"/>
         <source>Dynamips warning</source>
         <translation>Dynamips упозорење</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="217"/>
+        <location filename="../Console.py" line="223"/>
         <source>Connection lost</source>
         <translation>Изгубљена веза</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="281"/>
+        <location filename="../Console.py" line="306"/>
         <source>Sorry, not implemented in GNS3</source>
         <translation>Опростите, није имплементирано у GNS3</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="292"/>
+        <location filename="../Console.py" line="317"/>
         <source>Please wait while gathering statistics...</source>
         <translation>Молим сачекајте док се врши сакупљање статистика...</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="317"/>
+        <location filename="../Console.py" line="342"/>
         <source>No idlepc values found</source>
         <translation>Вредност idlepc није пронађена</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="329"/>
+        <location filename="../Console.py" line="354"/>
         <source>No changes made</source>
         <translation>Нису изврешене измене</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="342"/>
+        <location filename="../Console.py" line="367"/>
         <source>Can&apos;t apply idlepc value</source>
         <translation>Немогуће применити  idlepc вредност</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="347"/>
+        <location filename="../Console.py" line="372"/>
         <source>Incorrect number of paramaters or invalid parameters</source>
         <translation>Неправилан број параметра или неправилни параметри</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="360"/>
+        <location filename="../Console.py" line="385"/>
         <source>You have to save your topology before using save</source>
         <translation>Прво морате сачувати вашу мрежну топологију, пре коришћења команде сачувај</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="368"/>
+        <location filename="../Console.py" line="393"/>
         <source>You have to save your topology before using push</source>
         <translation>Прво морате сачувати вашу мрежну топологију, пре коришћења команде push</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="319"/>
+        <location filename="../Console.py" line="344"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;
 Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 </source>
@@ -1014,24 +1019,24 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 Унесите редни број idlepc вредности за [1-%i] или притисните ENTER за отказивање промене :</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="334"/>
+        <location filename="../Console.py" line="359"/>
         <source>Applied idlepc value %s to %s
 </source>
         <translation>Примењена вредност idlepc %s на %s
 </translation>
     </message>
     <message>
-        <location filename="../Console.py" line="350"/>
+        <location filename="../Console.py" line="375"/>
         <source>Unknown device: %s</source>
         <translation>Непознати уређај: %s</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="416"/>
+        <location filename="../Console.py" line="441"/>
         <source>Cannot create %s: %s</source>
         <translation>Немогуће направити %s: %s</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="289"/>
+        <location filename="../Console.py" line="314"/>
         <source>%s already has an idlepc value applied (%s).</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1043,6 +1048,11 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Telnet.py" line="48"/>
         <source>Cannot start %s: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Console.py" line="259"/>
+        <source>Unknown device</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2784,36 +2794,303 @@ to display the configuration page.</source>
     </message>
 </context>
 <context>
+    <name>Page_ASA</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ASA.py" line="123"/>
+        <source>ASA firewall</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ASA.py" line="123"/>
+        <source>You must remove the connected links first in order to reduce the number of interfaces</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_ATMBR</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="93"/>
+        <source>Add mapping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="86"/>
+        <source>Same source and destination ports</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="93"/>
+        <source>Mapping already defined</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="114"/>
+        <source>ATM bridge</source>
+        <translation type="unfinished">АТМ бриџ</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="114"/>
+        <source>A link is connected in port %i</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_ATMSW</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="114"/>
+        <source>Add virtual channel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="114"/>
+        <source>Mapping already defined</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="139"/>
+        <source>ATM switch</source>
+        <translation type="unfinished">ATM свич</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="139"/>
+        <source>Links connected in port %i and port %i</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_Cloud</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_Cloud.py" line="373"/>
+        <source>A link is connected with NIO %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_ETHSW</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ETHSW.py" line="120"/>
+        <source>A link is connected in port %i</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_FRSW</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_FRSW.py" line="87"/>
+        <source>Add virtual channel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_FRSW.py" line="80"/>
+        <source>Same source and destination ports</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_FRSW.py" line="87"/>
+        <source>Mapping already defined</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_IDS</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_IDS.py" line="118"/>
+        <source>IDS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_IDS.py" line="118"/>
+        <source>You must remove the connected links first in order to reduce the number of interfaces</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_IOSRouter</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="144"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="182"/>
+        <source>Invalid MAC address (format required: hh:hh:hh:hh:hh:hh)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="207"/>
+        <source>Using npe-g2: there are potential bugs and your IOS image should be unpacked.
+C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="224"/>
+        <source>You must use &apos;manual mode&apos; to connect a link with a NM-16ESW module</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="251"/>
+        <source>Links are connected in slot %i</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="286"/>
+        <source>C7200-JC-PA can only be used with NPE-G2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_JunOS</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_JunOS.py" line="101"/>
+        <source>JunOS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_JunOS.py" line="101"/>
+        <source>You must remove the connected links first in order to reduce the number of interfaces</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_PreferencesCapture</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="99"/>
+        <source>Capture directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="99"/>
+        <source>The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn&apos;t support unicode on Windows!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_PreferencesQemu</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="282"/>
+        <source>Qemu host</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="377"/>
+        <source>Identifier and binary image must be set!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="636"/>
+        <source>Save</source>
+        <translation type="unfinished">Сачувај</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="320"/>
+        <source>Qemu host settings have been saved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="377"/>
+        <source>JunOS router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="415"/>
+        <source>JunOS settings have been saved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="482"/>
+        <source>ASA firewall</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="482"/>
+        <source>Identifier, initrd and kernel must be set!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="525"/>
+        <source>ASA settings have been saved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="594"/>
+        <source>IDS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="594"/>
+        <source>Identifier, image 1 and image 2 must be set!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="636"/>
+        <source>IDS settings have been saved</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_Qemu</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_Qemu.py" line="98"/>
+        <source>Qemu host</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_Qemu.py" line="98"/>
+        <source>You must remove the connected links first in order to reduce the number of interfaces</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PreferencesCapture</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="13"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="14"/>
         <source>Form</source>
         <translation>Форма</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="19"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="20"/>
         <source>Settings</source>
         <translation>Подешавања</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="28"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="29"/>
         <source>Working directory for capture files:</source>
         <translation>Радни директоријум за датотеке снимљеног мрежног саобраћаја:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="38"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="82"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="51"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="42"/>
         <source>Command to launch Wireshark or a capture file reader:</source>
         <translation>Команда за покретање Wireshark или компатибилног програма:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="61"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="55"/>
         <source>Automatically start the command when capturing</source>
         <translation>Аутматски изврши команду када се покрене снимање</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="68"/>
+        <source>Default Presets:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="75"/>
+        <source>Use</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="95"/>
+        <source>Hint: To actually start capturing traffic, right click on link&apos;s small colored circle.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="102"/>
+        <source>%c = capture file</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3116,7 +3393,7 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1198"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1488"/>
         <source>...</source>
         <translation type="unfinished">...</translation>
     </message>
@@ -3126,182 +3403,157 @@ to display the configuration page.</source>
         <translation type="unfinished">Радни директоријум:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="187"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="159"/>
         <source>Enable Qemu Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="197"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="169"/>
         <source>Use Qemu Manager when importing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="147"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="241"/>
         <source>Base UDP port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="167"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="136"/>
         <source>Base console port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="581"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="885"/>
         <source>Binary image:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1271"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1564"/>
         <source>ne2k_pci</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1276"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1569"/>
         <source>i82551</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1281"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1574"/>
         <source>i82557b</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1286"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1579"/>
         <source>i82559er</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1291"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1584"/>
         <source>rtl8139</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1296"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1589"/>
         <source>e1000</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1301"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1594"/>
         <source>pcnet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1306"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1599"/>
         <source>virtio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1314"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1607"/>
         <source>Qemu Options:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1334"/>
-        <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1344"/>
-        <source>Use KVM (Linux Only)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="544"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="848"/>
         <source>JunOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="565"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="869"/>
         <source>JunOS Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="810"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1107"/>
         <source>ASA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="831"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1128"/>
         <source>ASA Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="990"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1280"/>
         <source>ASA Specific Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1043"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1333"/>
         <source>Initrd:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1006"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1296"/>
         <source>Kernel:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1026"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1316"/>
         <source>Kernel cmd line:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="249"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="269"/>
         <source>&amp;Test</source>
         <translation type="unfinished">&amp;Провери</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="285"/>
-        <source>Qemu Host</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="306"/>
-        <source>Qemu Host Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1144"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1434"/>
         <source>Identifier name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1356"/>
-        <source>Save</source>
-        <translation type="unfinished">Сачувај</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1363"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="203"/>
         <source>Delete</source>
         <translation type="unfinished">Обриши</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1392"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1675"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="794"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1091"/>
         <source>Image path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1117"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1407"/>
         <source>IDS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1138"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1428"/>
         <source>IDS Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1154"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1444"/>
         <source>Binary image 1 (hda):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1181"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1471"/>
         <source>Binary image 2 (hdb):</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3321,93 +3573,163 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="113"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="227"/>
         <source>IP/host binding:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="127"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="113"/>
         <source>Qemuwrapper port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="210"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="182"/>
         <source>External Qemuwrapper:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="220"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="196"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="234"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="210"/>
         <source>Registered external Qemuwrappers:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1208"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1498"/>
         <source>RAM:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1234"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1527"/>
         <source>Number of NICs:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1257"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1550"/>
         <source>NIC model:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="503"/>
-        <source>Qemu Host Images</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="782"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1079"/>
         <source>JunOS Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1033"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1323"/>
         <source>console=ttyS0,9600n8 bigphysarea=16384 auto nousb ide1=noprobe hda=980,16,32</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1084"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1374"/>
         <source>ASA Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1096"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1386"/>
         <source>Initrd path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1101"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1391"/>
         <source>Kernel path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1324"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1617"/>
         <source>-smbios type=1,product=IDS-4215</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1385"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1668"/>
         <source>IDS Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1397"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1680"/>
         <source>Image 1 path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1402"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1685"/>
         <source>Image 2 path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="189"/>
+        <source>Add several wrappers, to make your GNS3 distributed across several hosts.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="234"/>
+        <source>Show QemuWrapper Advanced Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="305"/>
+        <source>Qemu Guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="326"/>
+        <source>Qemu Guest Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1508"/>
+        <source> MiB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1627"/>
+        <source>Use KVM</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1639"/>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Сачувај</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1646"/>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="519"/>
+        <source>Qemu Guest Images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="547"/>
+        <source>PIX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="568"/>
+        <source>PIX Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="740"/>
+        <source>PIX Specific Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="746"/>
+        <source>Key:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="766"/>
+        <source>Serial:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="820"/>
+        <source>PIX Images</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3445,17 +3767,17 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="166"/>
+        <location filename="../QemuManager.py" line="167"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="119"/>
+        <location filename="../QemuManager.py" line="120"/>
         <source>Qemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="134"/>
+        <location filename="../QemuManager.py" line="135"/>
         <source>Can&apos;t start Qemu on port %i</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3473,32 +3795,27 @@ to display the configuration page.</source>
         <translation type="unfinished">...</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="69"/>
-        <source> MB</source>
-        <translation type="unfinished"> MB</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="122"/>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="127"/>
         <source>ne2k_pci</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="127"/>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="132"/>
         <source>i82551</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="132"/>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="137"/>
         <source>i82557b</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="137"/>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="142"/>
         <source>i82559er</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="142"/>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="122"/>
         <source>rtl8139</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3523,16 +3840,6 @@ to display the configuration page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="182"/>
-        <source>Use KQemu</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="192"/>
-        <source>Use KVM (Linux only)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="14"/>
         <source>Qemu configuration</source>
         <translation type="unfinished"></translation>
@@ -3550,6 +3857,16 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="108"/>
         <source>NIC model:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="69"/>
+        <source> MiB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="182"/>
+        <source>Use KVM</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4048,17 +4365,17 @@ ALT + ЛЕВО или ДЕСНО</translation>
         <translation>Унесите путању до Dynamips програма</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="979"/>
+        <location filename="../Topology.py" line="975"/>
         <source>Dynamips error</source>
         <translation>Dynamips грешка</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="979"/>
+        <location filename="../Topology.py" line="975"/>
         <source>Connection lost</source>
         <translation>Изгубљена веза</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="859"/>
+        <location filename="../Topology.py" line="855"/>
         <source>Connection</source>
         <translation>Веза</translation>
     </message>
@@ -4073,7 +4390,7 @@ ALT + ЛЕВО или ДЕСНО</translation>
         <translation>Нема бинарне датотеке за платформу %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="859"/>
+        <location filename="../Topology.py" line="855"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Морате повезати бар један рутер на свич</translation>
     </message>
@@ -4088,12 +4405,12 @@ ALT + ЛЕВО или ДЕСНО</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="605"/>
+        <location filename="../Topology.py" line="602"/>
         <source>%s seems to not exist, please check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="504"/>
+        <location filename="../Topology.py" line="503"/>
         <source>JunOS image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4103,17 +4420,17 @@ ALT + ЛЕВО или ДЕСНО</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="605"/>
+        <location filename="../Topology.py" line="602"/>
         <source>ASA kernel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="601"/>
+        <location filename="../Topology.py" line="598"/>
         <source>ASA initrd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="552"/>
+        <location filename="../Topology.py" line="550"/>
         <source>IDS images</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4133,7 +4450,7 @@ ALT + ЛЕВО или ДЕСНО</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="835"/>
+        <location filename="../Topology.py" line="831"/>
         <source>Can&apos;t connect these devices</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4158,47 +4475,47 @@ ALT + ЛЕВО или ДЕСНО</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="477"/>
+        <location filename="../Topology.py" line="476"/>
         <source>JunOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="477"/>
+        <location filename="../Topology.py" line="476"/>
         <source>Please configure a JunOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="489"/>
+        <location filename="../Topology.py" line="488"/>
         <source>Please choose a JunOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="534"/>
+        <location filename="../Topology.py" line="532"/>
         <source>IDS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="522"/>
+        <location filename="../Topology.py" line="520"/>
         <source>Please configure an IDS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="534"/>
+        <location filename="../Topology.py" line="532"/>
         <source>Please choose an IDS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="586"/>
+        <location filename="../Topology.py" line="583"/>
         <source>ASA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="574"/>
+        <location filename="../Topology.py" line="571"/>
         <source>Please configure an ASA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="586"/>
+        <location filename="../Topology.py" line="583"/>
         <source>Please choose an ASA</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4210,6 +4527,143 @@ ALT + ЛЕВО или ДЕСНО</translation>
     <message>
         <location filename="../Topology.py" line="431"/>
         <source>Please configure a Qemu host:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UiConfig_PreferencesCapture</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="89"/>
+        <source>Local capture working directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UiConfig_PreferencesDynamips</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="174"/>
+        <source>Dynamips binary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="180"/>
+        <source>Can&apos;t open file: %s</source>
+        <translation type="unfinished">Немогуће отворити датотеку: %s</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="190"/>
+        <source>Dynamips path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="206"/>
+        <source>The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn&apos;t support unicode on Windows!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="196"/>
+        <source>Local hypervisor working directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="206"/>
+        <source>Working directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="211"/>
+        <source>Message</source>
+        <translation type="unfinished">Порука</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="211"/>
+        <source>This action is going to delete your current topology, would you like to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="247"/>
+        <source>Failed to start Dynamips</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="233"/>
+        <source>Failed to determine version of Dynamips.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="237"/>
+        <source>Found Dynamips %s, which is not supported. Use 0.2.8+ instead.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="245"/>
+        <source>Dynamips %s successfully started</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UiConfig_PreferencesGeneral</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="243"/>
+        <source>Project Directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="251"/>
+        <source>IOS Directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="269"/>
+        <source>Configuration file</source>
+        <translation type="unfinished">Датотека GNS3 конфигурације</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="269"/>
+        <source>Configuration file cleared, default settings will be applied after a restart</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UiConfig_PreferencesQemu</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="243"/>
+        <source>Local Qemu working directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="681"/>
+        <source>Message</source>
+        <translation type="unfinished">Порука</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="681"/>
+        <source>This action is going to delete your current topology, would you like to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="690"/>
+        <source>Qemuwrapper path doesn&apos;t exist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="696"/>
+        <source>Failed to start Qemuwrapper</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="703"/>
+        <source>Failed to start qemu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="710"/>
+        <source>Failed to start qemu-img</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="713"/>
+        <source>Qemuwrapper, qemu and qemu-img have successfully started</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

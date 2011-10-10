@@ -22,7 +22,8 @@ PY_SRC="DynamicStrings.py	\
         ../Config/*.py	\
         ../Globals/*.py	\
         ../Link/*.py	\
-        ../Node/*.py"
+        ../Node/*.py	\
+     	../Ui/ConfigurationPages/Page_*.py"
 
 # Add new Qt UI files here
 UI_SRC="../Ui/*.ui	\
@@ -53,7 +54,7 @@ SOURCES = $EXPAND_PY_SRC
 FORMS = $EXPAND_UI_SRC
 
 TRANSLATIONS = $EXPAND_LANGUAGES
-" > $PROJ_FILE
+" >> $PROJ_FILE
 
 # Update .qrc file
 echo \
@@ -62,3 +63,5 @@ echo \
    <qresource>
 $EXPAND_QRC_RES   </qresource>
 </RCC>" > $QRC_FILE
+
+echo "Project files have been updated."
