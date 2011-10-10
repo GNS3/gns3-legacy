@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4:
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_DecorativeNodePage.ui'
 #

@@ -5,7 +5,7 @@
 """
 dynagen
 Copyright (C) 2006-2010  Greg Anuzelli
-contributions: Pavel Skovajsa
+contributions: Pavel Skovajsa, Alexey Eromenko "Technologov"
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -30,7 +30,7 @@ TODO
 * change npe on 7200 correctly
 * investigate why dynamips gets frozen when it does not find the magic number in the nvram file
 * redesign the connect/disconnect IPC on the Emulated_switches
-* deleting an ATMSW/FWSW/ATMBR chain
+* deleting an ATMSW/FRSW/ATMBR chain
 """
 import sys
 import os
@@ -46,12 +46,22 @@ from dynamips_lib import Dynamips, PA_C7200_IO_FE, PA_A1, PA_FE_TX, PA_4T, PA_8T
      PA_GE, PA_C7200_IO_2FE, PA_C7200_IO_GE_E, PA_C7200_JC_PA, C1700, CISCO1710_MB_1FE_1E, C1700_MB_1ETH, \
      DynamipsVerError, DynamipsErrorHandled, NM_CIDS, NM_NAM, get_reverse_udp_nio, Dynamips_device, Emulated_switch
 from qemu_lib import Qemu, QemuDevice, AnyEmuDevice, ASA, JunOS, IDS, nosend_qemu
+from dynagen_vbox_lib import VBox, VBoxDevice, AnyVBoxEmuDevice, nosend_vbox
 from validate import Validator
 from configobj import ConfigObj, flatten_errors
 from optparse import OptionParser
 
+#debuglevel: 0=disabled, 1=default, 2=debug, 3=deep debug
+debuglevel = 0
+
+def debugmsg(level, message):
+    if debuglevel == 0:
+        return
+    if debuglevel >= level:        
+        print message
+
 # Constants
-VERSION = '0.12.100613'
+VERSION = '0.13.110507'
 CONFIGSPECPATH = ['/usr/share/dynagen', '/usr/local/share']
 CONFIGSPEC = 'configspec'
 INIPATH = ['/etc', '/usr/local/etc']
@@ -68,6 +78,7 @@ MODELTUPLE = (  # A tuple of known model objects
     JunOS,
     IDS,
     QemuDevice,
+    VBoxDevice,
     )
 DEVICETUPLE = (  # A tuple of known device names
     '525',
@@ -75,6 +86,7 @@ DEVICETUPLE = (  # A tuple of known device names
     'O-series',
     'IDS-4215',
     'QemuDevice',
+    'VBoxDevice',
     '1710',
     '1720',
     '1721',
@@ -151,6 +163,7 @@ telnetstring = ''  # global telnet string value for telneting onto consoles
 interface_re = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po|i|id|IDS-Sensor|an|Analysis-Module)([0-9]+)\/([0-9]+)""", re.IGNORECASE)  # Regex matching intefaces
 interface_noport_re = re.compile(r"""^(g|gi|f|fa|a|at|s|se|e|et|p|po)([0-9]+)""", re.IGNORECASE)  # Regex matching intefaces with out a port (e.g. "f0")
 qemu_int_re = re.compile(r"""^(e|et|eth)([0-9])""", re.IGNORECASE)
+vbox_int_re = re.compile(r"""^(e|et|eth)([0-9])""", re.IGNORECASE)
 number_re = re.compile(r"""^[0-9]+$""")  # Regex matching numbers
 mapint_re = re.compile(r"""^([0-9]+):([0-9]+)$""")  # Regex matching Frame Relay mappings or ATM vpi mappings
 mapvci_re = re.compile(r"""^([0-9]+):([0-9]+):([0-9]+)$""")  # Regex matching ATM vci mappings
@@ -185,6 +198,7 @@ class Dynagen:
         self.autostart_value = False
         self.globaludp = 10000  # The default base UDP port for NIO
         self.global_qemu_udp = 20000   # The default base UDP port for NIO on Qemuwrapper
+        self.global_vbox_udp = 20900   # The default base UDP port for NIO on VBoxwrapper
         self.useridledbfile = ''  # The filespec of the idle database
         self.useridledb = None  # Dictionary of idle-pc values from the user database, indexed by image name
         self.debuglevel = 0  # The debug level
@@ -265,6 +279,8 @@ class Dynagen:
                 'kernel_cmdline',
                 'image1',
                 'image2',
+                'guestcontrol_user',
+                'guestcontrol_password',
                 ):
                 setattr(device, option, value)
                 return True
@@ -348,6 +364,8 @@ class Dynagen:
             #manual mapping aplies only to Dynamips based devices
             if isinstance(local_device, AnyEmuDevice):
                 raise DynamipsError, 'Device does not support this type of NIO. Use an ETHSW to bridge the connection to the NIO instead.'
+            if isinstance(local_device, AnyVBoxEmuDevice):
+                raise DynamipsError, 'Device does not support this type of NIO. Use an ETHSW to bridge the connection to the NIO instead.'
             niotype = x1
             niostring = x2
             # Process the netio
@@ -376,28 +394,30 @@ class Dynagen:
             slot2 = x3
             port2 = x4
 
-            if isinstance(remote_device, AnyEmuDevice) and isinstance(local_device, AnyEmuDevice):
-                if remote_device.state == 'running' or local_device.state == 'running':
-                    raise DynamipsError, "Qemuwrapper doesn't support hot link removal"
+            #print "ADEBUG: local_device = ", local_device
+            #print "ADEBUG: remote_device = ", remote_device
+
+            if (isinstance(remote_device, AnyEmuDevice) and remote_device.state == 'running') or (isinstance(local_device, AnyEmuDevice) and local_device.state == 'running'):
+                raise DynamipsError, "Qemuwrapper doesn't support hot link removal"
+
+            if (isinstance(remote_device, AnyEmuDevice) or isinstance(remote_device, AnyVBoxEmuDevice)) and (isinstance(local_device, AnyEmuDevice) or isinstance(local_device, AnyVBoxEmuDevice)):
                 local_device.disconnect_from_emulated_device(port1, remote_device, port2)
                 return True
-            if isinstance(remote_device, AnyEmuDevice):
-                if remote_device.state == 'running':
-                    raise DynamipsError, "Qemuwrapper doesn't support hot link removal"
+
+            if isinstance(remote_device, AnyEmuDevice) or isinstance(remote_device, AnyVBoxEmuDevice): #From Dynamips
                 #disconnect local from remote
                 local_device.slot[slot1].disconnect(pa1, port1)
                 local_device.slot[slot1].delete_nio(pa1, port1)
                 remote_device.disconnect_from_dynamips(port2)
                 return True
-            if isinstance(local_device, AnyEmuDevice):
-                if local_device.state == 'running':
-                    raise DynamipsError, "Qemuwrapper doesn't support hot link removal"
+            
+            if isinstance(local_device, AnyEmuDevice) or isinstance(local_device, AnyVBoxEmuDevice): #To Dynamips
                 #disconnect remote from local
                 remote_device.slot[slot2].disconnect(pa2, port2)
                 remote_device.slot[slot2].delete_nio(pa2, port2)
                 local_device.disconnect_from_dynamips(port1)
                 return True
-
+                                    
             #disconnect local from remote
             local_device.slot[slot1].disconnect(pa1, port1)
 
@@ -544,7 +564,7 @@ class Dynagen:
         (pa1, slot1, port1) = self._parse_interface_part_of_connection(local_device, source)
 
         #create the necessary adaptor
-        if isinstance(local_device, Router) or isinstance(local_device, AnyEmuDevice):
+        if isinstance(local_device, Router) or isinstance(local_device, AnyEmuDevice) or isinstance(local_device, AnyVBoxEmuDevice):
             self.smartslot(local_device, pa1, slot1, port1)
             # Look at the interfaces dict to find out what the real port is as
             # as far as dynamips is concerned
@@ -560,7 +580,7 @@ class Dynagen:
         #if the right side is manual nio specification f0/0 = nio_gen_eth::
         if conn_type == 'Manual':
             #manual mapping aplies only to Dynamips based devices
-            if isinstance(local_device, AnyEmuDevice):
+            if isinstance(local_device, AnyEmuDevice) or isinstance(local_device, AnyVBoxEmuDevice):
                 raise DynamipsError, 'Device does not support this type of NIO. Use an ETHSW to bridge the connection to the NIO instead.'
             niotype = x1
             niostring = x2
@@ -604,12 +624,15 @@ class Dynagen:
             slot2 = x3
             port2 = x4
 
+            if (isinstance(remote_device, AnyEmuDevice) and remote_device.state == 'running') or (isinstance(local_device, AnyEmuDevice) and local_device.state == 'running'):
+                raise DynamipsError, "Qemuwrapper doesn't support hot link add"
+
             # If interfaces don't exist, create them
-            if isinstance(remote_device, Router) or isinstance(remote_device, AnyEmuDevice):
+            if isinstance(remote_device, Router) or isinstance(remote_device, AnyEmuDevice) or isinstance(remote_device, AnyVBoxEmuDevice):
                 self.smartslot(remote_device, pa2, slot2, port2)
 
             #perform the connection
-            if isinstance(local_device, AnyEmuDevice) and isinstance(remote_device, Dynamips_device):
+            if (isinstance(local_device, AnyEmuDevice) or isinstance(local_device, AnyVBoxEmuDevice)) and isinstance(remote_device, Dynamips_device):
                 local_device.connect_to_dynamips(
                     port1,
                     remote_device.dynamips,
@@ -617,9 +640,9 @@ class Dynagen:
                     pa2,
                     port2,
                     )
-            elif isinstance(local_device, AnyEmuDevice) and isinstance(remote_device, AnyEmuDevice):
+            elif (isinstance(local_device, AnyEmuDevice) or isinstance(local_device, AnyVBoxEmuDevice)) and (isinstance(remote_device, AnyEmuDevice) or isinstance(remote_device, AnyVBoxEmuDevice)):
                 local_device.connect_to_emulated_device(port1, remote_device, port2)
-            elif isinstance(local_device, Dynamips_device) and isinstance(remote_device, AnyEmuDevice):
+            elif isinstance(local_device, Dynamips_device) and (isinstance(remote_device, AnyEmuDevice) or isinstance(remote_device, AnyVBoxEmuDevice)):
                 remote_device.connect_to_dynamips(
                     port2,
                     local_device.dynamips,
@@ -646,7 +669,7 @@ class Dynagen:
                 # If this LAN bridge doesn't already exist, create it
                 self.bridges[bridge_number] = Bridge(local_device.dynamips, name=bridge_number)
             #perform the connection
-            if isinstance(local_device, AnyEmuDevice):
+            if isinstance(local_device, AnyEmuDevice) or isinstance(local_device, AnyVBoxEmuDevice):
                 local_device.connect_to_dynamips(
                     port1,
                     self.bridges[bridge_number].dynamips,
@@ -690,6 +713,13 @@ class Dynagen:
                 return
             else:
                 raise DynamipsError, 'Invalid interface name for emulated device on qemuwrapper'
+
+        if isinstance(router, AnyVBoxEmuDevice):
+            if pa == 'e' and port >= 0:
+                router.add_interface(pa, port)
+                return
+            else:
+                raise DynamipsError, 'Invalid interface name for virtualized device on vboxwrapper'
 
         try:
             if router.slot[slot] != None:
@@ -1025,9 +1055,19 @@ class Dynagen:
 
         return config
 
+    def getHost(self, i_strAddress):
+        # IPv6: gets the "host" portion from "host:port" string
+        elements = i_strAddress.split(':')
+        for x in range(len(elements)-1): #Except TCP port
+            if x == 0:
+                hostname = elements[x]
+            else:
+                hostname += ':' + elements[x]
+        return hostname
+
     def import_config(self, FILENAME):
         """ Read in the config file and set up the network"""
-
+        debugmsg(2, "Dynagen::import_config()")
         connectionlist = []  # A list of router connections
         maplist = []  # A list of Frame Relay and ATM switch mappings
         ethswintlist = []  # A list of Ethernet Switch vlan mappings
@@ -1058,7 +1098,9 @@ class Dynagen:
                             # unpack the server and port
                             qemu_name = host
                             # controlPort is ignored
-                            (host, controlPort) = host.split(':')
+                            #(host, controlPort) = host.split(':')
+                            controlPort = int(host.split(':')[-1])
+                            host = self.getHost(host)
                         else:
                             #add ':10525' string to the name so that it does not conflict with name of dynamips server
                             qemu_name = host + ':10525'
@@ -1082,9 +1124,9 @@ class Dynagen:
                     try:
                         self.dynamips[qemu_name].workingdir = workingdir
                     except DynamipsError:
-                        self.dowarning('Could not set working directory to %s on qemuwrapper server %s:10525' % (workingdir, server.name))
-                        self.import_error = True
-
+                        self.dowarning('Could not set working directory to %s on qemuwrapper server %s ... auto-guessing it...' % (workingdir, server.name))
+                        #self.import_error = True
+                        
                     if server['udp'] != None:
                         udp = server['udp']
                     else:
@@ -1199,6 +1241,129 @@ class Dynagen:
                             self.autostart[name] = config['autostart']
                         else:
                             self.autostart[name] = device['autostart']
+                elif emulator == 'vbox':
+                    #connect to the VBox Wrapper
+                    try:
+                        if ':' in host:
+                            # unpack the server and port
+                            vbox_name = host
+                            # controlPort is ignored
+                            #(host, controlPort) = host.split(':')
+                            controlPort = int(host.split(':')[-1])
+                            host = self.getHost(host)
+                        else:
+                            #add ':11525' string to the name so that it does not conflict with name of dynamips server
+                            vbox_name = host + ':11525'
+                            controlPort = '11525'
+
+                        #create the VBox instance and add it to global dictionary
+                        self.dynamips[vbox_name] = VBox(host, int(controlPort))
+                        self.dynamips[vbox_name].reset()
+                    except DynamipsError:
+                        self.dowarning('Could not connect to vboxwrapper server %s:%s' % (host,controlPort))
+                        self.import_error = True
+                        continue
+
+                    if server['workingdir'] == None:
+                        # If workingdir is not specified, set it to the same directory
+                        # as the network file
+                        realpath = os.path.realpath(FILENAME)
+                        workingdir = os.path.dirname(realpath)
+                    else:
+                        workingdir = server['workingdir']
+                    try:
+                        self.dynamips[vbox_name].workingdir = workingdir
+                    except DynamipsError:
+                        self.dowarning('Could not set working directory to %s on vboxwrapper server %s ... auto-guessing it...' % (workingdir, server.name))
+                        #self.import_error = True
+                        
+                    if server['udp'] != None:
+                        udp = server['udp']
+                    else:
+                        udp = self.global_vbox_udp
+                    # Modify the default base UDP NIO port for this server
+                    try:
+                        self.dynamips[vbox_name].udp = udp
+                        self.dynamips[vbox_name].starting_udp = udp
+                    except DynamipsError:
+                        self.dowarning('Could not set base UDP NIO port to %s on server %s' % (server['udp'], server.name))
+                        self.import_error = True
+
+                    devdefaults = {}
+                    for key in DEVICETUPLE:
+                        devdefaults[key] = {}
+
+                    #handle the virtualized devices
+                    for subsection in server.sections:
+                        device = server[subsection]
+
+                        if device.name in ['VBoxDevice']:
+                            # Populate the appropriate dictionary
+                            for scalar in device.scalars:
+                                if device[scalar] != None:
+                                    devdefaults[device.name][scalar] = device[scalar]
+                            continue
+
+                        # Create the device
+                        try:
+                            (devtype, name) = device.name.split(' ')
+                        except ValueError:
+                            self.dowarning ('Unable to interpret line: "[[' + device.name + ']]"')
+                            self.import_error = True
+                            continue
+
+                        if devtype.lower() == 'vbox':
+                            dev = VBoxDevice(self.dynamips[vbox_name], name=name)
+                        else:
+                            self.dowarning('Unable to identify the type of device ' + device.name)
+                            self.import_error = True
+                            continue
+
+                        #set the defaults
+                        for option in devdefaults[dev.model_string]:
+                            if option in (
+                                'console',
+                                'nics',
+                                'netcard',
+                                'image',
+                                'guestcontrol_user',
+                                'guestcontrol_password',
+                                ):
+                                setattr(dev, option, devdefaults[dev.model_string][option])
+
+                        #add the whole device into global dictionary
+                        self.devices[name] = dev
+
+                        #set the special device options
+                        for subitem in device.scalars:
+                            if device[subitem] != None:
+                                self.debug('  ' + subitem + ' = ' + unicode(device[subitem]))
+                                if subitem in (
+                                    'console',
+                                    'nics',
+                                    'netcard',
+                                    'image',
+                                    'guestcontrol_user',
+                                    'guestcontrol_password',
+                                    ):
+                                    setattr(dev, subitem, device[subitem])
+                                    continue
+                                elif subitem.lower() == 'autostart':
+                                    self.autostart[name] = device[subitem]
+                                elif subitem.lower() in ['x', 'y', 'z', 'hx', 'hy', 'symbol']:
+                                    continue
+                                elif vbox_int_re.search(subitem):
+                                    # Add the tuple to the list of connections to deal with later
+                                    connectionlist.append((dev, subitem, device[subitem]))
+                                else:
+                                    self.dowarning( 'ignoring unknown config item: %s = %s' % (str(subitem), str(device[subitem])))
+                                    self.import_error = True
+
+                        # Set default autostart flag for this virtualized device if not already set
+                        if device['autostart'] == None:
+                            self.autostart[name] = config['autostart']
+                        else:
+                            self.autostart[name] = device['autostart']
                 else:
                     self.dowarning('Bad emulator definition format: %s' % server.name)
                     self.import_error = True
@@ -1213,7 +1378,9 @@ class Dynagen:
                 controlPort = None
                 if ':' in server.host:
                     # unpack the server and port
-                    (server.host, controlPort) = server.host.split(':')
+                    #(server.host, controlPort) = server.host.split(':')
+                    controlPort = int(server.host.split(':')[-1])
+                    server.host = self.getHost(server.host)
                 if self.debuglevel >= 3:
                     self.debug('Server = ' + server.name)
                     for item in server.scalars:
@@ -1850,6 +2017,8 @@ class Dynagen:
         for hypervisor in self.dynamips.values():
             if isinstance(hypervisor, Qemu):
                 h = 'qemu ' + hypervisor.host + ":" + str(hypervisor.port)
+            elif isinstance(hypervisor, VBox):
+	        h = 'vbox ' + hypervisor.host + ":" + str(hypervisor.port)
             else:
                 h = hypervisor.host + ":" + str(hypervisor.port)
 
@@ -1874,6 +2043,22 @@ class Dynagen:
                         for option in device.available_options:
                             if getattr(device, option) != device.defaults[option]:
                                 self.defaults_config[h][model][option] = getattr(device, option)
+                    elif isinstance(device, AnyVBoxEmuDevice):
+		        #continue
+		      
+                        model = device.model_string
+                        self.defaults_config[h][model] = {}
+                        # ASA and IDS have different image settings
+                        if model != '5520' and model != 'IDS-4215':
+                            if device.image == None:
+                                self.error('specify at least image file for device ' + device.name)
+                                device.image = '"None"'
+                            self.defaults_config[h][model]['image'] = device.image
+
+                        for option in device.available_options:
+                            if getattr(device, option) != device.defaults[option]:
+                                self.defaults_config[h][model][option] = getattr(device, option)
+                                
                     else:
                         #find out the model of the device
                         model = device.model_string
@@ -1923,7 +2108,7 @@ class Dynagen:
         adapter,
         ):
         """parse the whole router adapter data structure and generate proper running_config output for it"""
-
+        debugmsg(2, "Dynagen::_update_running_config_for_router_adapter(%s, %s, %s, %s)" % (str(h), str(r), str(defaults), str(adapter)))
         #add adapter type to the running config
         slot = 'slot' + str(adapter.slot)
         if defaults.has_key(slot):
@@ -1954,7 +2139,7 @@ class Dynagen:
 
     def _update_running_config_for_router(self, hypervisor, router, need_active_config=False):
         """parse the all data structures associated with this router and update the running_config properly"""
-
+        debugmsg(2, "Dynagen::_update_running_config_for_router(%s, %s, %s)" % (str(hypervisor), str(router), str(need_active_config)))
         h = hypervisor.host + ":" + str(hypervisor.port)
         r = 'ROUTER ' + router.name
 
@@ -2020,9 +2205,12 @@ class Dynagen:
                 self._update_running_config_for_router_adapter(h, r, defaults, adapter)
 
     def _update_running_config_for_emulated_device(self, hypervisor, device, need_active_config):
-        """parse the all data structures associated with this emulated device and update the running_config properly"""
-
-        h = 'qemu ' + hypervisor.host + ":" + str(hypervisor.port)
+        """parse the all data structures associated with this device and update the running_config properly"""
+        debugmsg(2, "Dynagen::_update_running_config_for_emulated_device(%s, %s, %s)" % (str(hypervisor), str(device), str(need_active_config)))
+        if isinstance(device, AnyEmuDevice):
+            h = 'qemu ' + hypervisor.host + ":" + str(hypervisor.port)
+        if isinstance(device, AnyVBoxEmuDevice):
+            h = 'vbox ' + hypervisor.host + ":" + str(hypervisor.port)
         f = '%s %s' % (device.basehostname, device.name)
         self.running_config[h][f] = {}
 
@@ -2039,7 +2227,7 @@ class Dynagen:
             if device.nios[port] != None:
                 con = 'e' + str(port)
                 (remote_router, remote_adapter, remote_port) = get_reverse_udp_nio(device.nios[port])
-                if isinstance(remote_router, AnyEmuDevice):
+                if isinstance(remote_router, AnyEmuDevice) or isinstance(remote_router, AnyVBoxEmuDevice):
                     self.running_config[h][f][con] = remote_router.name + ' ' + remote_adapter + str(remote_port)
                 elif isinstance(remote_router, Router):
                     self.running_config[h][f][con] = self._translate_interface_connection(remote_adapter, remote_router, remote_port)
@@ -2101,6 +2289,8 @@ class Dynagen:
 
             if isinstance(hypervisor, Qemu):
                 h = 'qemu ' + hypervisor.host + ":" + str(hypervisor.port)
+            elif isinstance(hypervisor, VBox):
+                h = 'vbox ' + hypervisor.host + ":" + str(hypervisor.port)
             else:
                 h = hypervisor.host + ":" + str(hypervisor.port)
             self.running_config[h] = {}
@@ -2132,7 +2322,7 @@ class Dynagen:
                     elif isinstance(device, Router):
                         #for routers - create the router running config by going throught all variables in dynamips_lib
                         self._update_running_config_for_router(hypervisor, device, need_active_config)
-                    elif isinstance(device, AnyEmuDevice):
+                    elif isinstance(device, AnyEmuDevice) or isinstance(device, AnyVBoxEmuDevice):
                         self._update_running_config_for_emulated_device(hypervisor, device, need_active_config)
 
         #after everything is done merge this config with defaults_config
@@ -2156,16 +2346,23 @@ class Dynagen:
             return running_config_tuple
         elif len(params) == 2:
         #if this is a 'show run <device_name>'
-            try:
+            #try:
+            if True:
                 self.update_running_config()
                 device = self.devices[params[1]]
                 hypervisor_name = device.dynamips.host + ":" + str(device.dynamips.port)
+                #print "ADEBUG: dynagen.py: device = ", device
+                #print "ADEBUG: dynagen.py: device.name = ", device.name
+                #print "ADEBUG: dynagen.py: hypervisor_name = ", hypervisor_name
                 if isinstance(device, Router):
                     device_section = self.running_config[hypervisor_name]['ROUTER ' + device.name]
                     print '\t' + '[[ROUTER ' + device.name + ']]'
-                if isinstance(device, AnyEmuDevice):
-                    device_section = self.running_config[hypervisor_name]['%s %s' % (device.basehostname, device.name)]
-                    print '\t' + '[[ROUTER ' + device.name + ']]'
+                elif isinstance(device, AnyEmuDevice):
+                    device_section = self.running_config['qemu '+hypervisor_name]['%s %s' % (device.basehostname, device.name)]
+                    print '\t' + '[[QEMU ' + device.name + ']]'
+                elif isinstance(device, AnyVBoxEmuDevice):
+                    device_section = self.running_config['vbox '+hypervisor_name]['%s %s' % (device.basehostname, device.name)]
+                    print '\t' + '[[VBOX ' + device.name + ']]'
                 elif isinstance(device, FRSW):
                     device_section = self.running_config[hypervisor_name]['FRSW ' + device.name]
                     print '\t' + '[[FRSW ' + device.name + ']]'
@@ -2181,8 +2378,8 @@ class Dynagen:
                 #print out the device config
                 device_section_tuple = self.running_config.write(section=device_section)
                 return device_section_tuple
-            except KeyError:
-                return ('unknown device: ' + params[1], )
+            #except KeyError:
+            #    return ('unknown device: ' + params[1], )
         else:
             return ('invalid show run command', )
 
@@ -2435,6 +2632,7 @@ if __name__ == '__main__':
         if options.nosend:
             nosend(True)
             nosend_qemu(True)
+            nosend_vbox(True)
         if options.notelnet:
             notelnet = True
 
