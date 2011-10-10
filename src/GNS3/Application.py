@@ -594,7 +594,6 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/nic_nb", o.nic_nb)
             c.set(basekey + "/nic", o.nic)
             c.set(basekey + "/options", o.options)
-            c.set(basekey + "/kqemu", o.kqemu)
             c.set(basekey + "/kvm", o.kvm)
 
         # JunOS images
@@ -606,7 +605,6 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/nic_nb", o.nic_nb)
             c.set(basekey + "/nic", o.nic)
             c.set(basekey + "/options", o.options)
-            c.set(basekey + "/kqemu", o.kqemu)
             c.set(basekey + "/kvm", o.kvm)
 
         # ASA images
@@ -617,7 +615,6 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/nic_nb", o.nic_nb)
             c.set(basekey + "/nic", o.nic)
             c.set(basekey + "/options", o.options)
-            c.set(basekey + "/kqemu", o.kqemu)
             c.set(basekey + "/kvm", o.kvm)
             c.set(basekey + "/initrd", o.initrd)
             c.set(basekey + "/kernel", o.kernel)
@@ -633,7 +630,6 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/nic_nb", o.nic_nb)
             c.set(basekey + "/nic", o.nic)
             c.set(basekey + "/options", o.options)
-            c.set(basekey + "/kqemu", o.kqemu)
             c.set(basekey + "/kvm", o.kvm)
 
         # Libraries

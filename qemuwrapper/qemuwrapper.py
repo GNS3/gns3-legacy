@@ -86,12 +86,11 @@ class xEMUInstance(object):
         self.udp = {}
         self.capture = {}
         self.netcard = 'pcnet'
-        self.kqemu = False
         self.kvm = False
         self.options = ''
         self.process = None
         self.workdir = WORKDIR
-        self.valid_attr_names = ['image', 'ram', 'console', 'nics', 'netcard', 'kqemu', 'kvm', 'options']
+        self.valid_attr_names = ['image', 'ram', 'console', 'nics', 'netcard', 'kvm', 'options']
 
     def create(self):
 
@@ -210,8 +209,6 @@ class QEMUInstance(xEMUInstance):
         command.extend(self._disk_options())
         command.extend(self._image_options())
         command.extend(self._kernel_options())
-        if bool(self.kqemu) == True:
-            command.extend(['-kernel-kqemu'])
         if bool(self.kvm) == True:
             command.extend(['-enable-kvm'])
         command.extend(self._net_options())

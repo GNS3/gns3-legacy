@@ -309,11 +309,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         conf.nic_nb = self.QemuNICNb.value()
         conf.nic = str(self.QemuNIC.currentText())
         conf.options = str(self.QemuOptions.text())
-
-        if self.QemucheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-            conf.kqemu = True
-        else:
-            conf.kqemu  = False
+            
         if self.QemucheckBoxKVM.checkState() == QtCore.Qt.Checked:
             conf.kvm = True
         else:
@@ -355,11 +351,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             index = self.QemuNIC.findText(conf.nic)
             if index != -1:
                 self.QemuNIC.setCurrentIndex(index)
-
-            if conf.kqemu == True:
-                self.QemucheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.QemucheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
 
             if conf.kvm == True:
                 self.QemucheckBoxKVM.setCheckState(QtCore.Qt.Checked)
@@ -414,10 +405,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         conf.nic = str(self.JunOSNIC.currentText())
         conf.options = str(self.JunOSOptions.text())
 
-        if self.JunOScheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-            conf.kqemu = True
-        else:
-            conf.kqemu  = False
         if self.JunOScheckBoxKVM.checkState() == QtCore.Qt.Checked:
             conf.kvm = True
         else:
@@ -459,11 +446,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             index = self.JunOSNIC.findText(conf.nic)
             if index != -1:
                 self.JunOSNIC.setCurrentIndex(index)
-
-            if conf.kqemu == True:
-                self.JunOScheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.JunOScheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
 
             if conf.kvm == True:
                 self.JunOScheckBoxKVM.setCheckState(QtCore.Qt.Checked)
@@ -533,10 +515,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         conf.nic = str(self.ASANIC.currentText())
         conf.options = str(self.ASAOptions.text())
 
-        if self.ASAcheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-            conf.kqemu = True
-        else:
-            conf.kqemu  = False
         if self.ASAcheckBoxKVM.checkState() == QtCore.Qt.Checked:
             conf.kvm = True
         else:
@@ -580,11 +558,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             index = self.ASANIC.findText(conf.nic)
             if index != -1:
                 self.ASANIC.setCurrentIndex(index)
-
-            if conf.kqemu == True:
-                self.ASAcheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.ASAcheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
 
             if conf.kvm == True:
                 self.ASAcheckBoxKVM.setCheckState(QtCore.Qt.Checked)
@@ -653,10 +626,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         conf.nic = str(self.IDSNIC.currentText())
         conf.options = str(self.IDSOptions.text())
 
-        if self.IDScheckBoxKqemu.checkState() == QtCore.Qt.Checked:
-            conf.kqemu = True
-        else:
-            conf.kqemu  = False
         if self.IDScheckBoxKVM.checkState() == QtCore.Qt.Checked:
             conf.kvm = True
         else:
@@ -699,11 +668,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             index = self.IDSNIC.findText(conf.nic)
             if index != -1:
                 self.IDSNIC.setCurrentIndex(index)
-
-            if conf.kqemu == True:
-                self.IDScheckBoxKqemu.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.IDScheckBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
 
             if conf.kvm == True:
                 self.IDScheckBoxKVM.setCheckState(QtCore.Qt.Checked)

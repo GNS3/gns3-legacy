@@ -467,7 +467,6 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_int_option('ram', conf.memory)
                 node.set_int_option('nics', conf.nic_nb)
                 node.set_string_option('netcard', conf.nic)
-                node.set_string_option('kqemu', conf.kqemu)
                 node.set_string_option('kvm', conf.kvm)
                 node.set_string_option('options', conf.options)
 
@@ -512,7 +511,6 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_int_option('ram', conf.memory)
                 node.set_int_option('nics', conf.nic_nb)
                 node.set_string_option('netcard', conf.nic)
-                node.set_string_option('kqemu', conf.kqemu)
                 node.set_string_option('kvm', conf.kvm)
                 node.set_string_option('options', conf.options)
 
@@ -564,7 +562,6 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_int_option('ram', conf.memory)
                 node.set_int_option('nics', conf.nic_nb)
                 node.set_string_option('netcard', conf.nic)
-                node.set_string_option('kqemu', conf.kqemu)
                 node.set_string_option('kvm', conf.kvm)
                 node.set_string_option('options', conf.options)
 
@@ -616,7 +613,6 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_int_option('ram', conf.memory)
                 node.set_int_option('nics', conf.nic_nb)
                 node.set_string_option('netcard', conf.nic)
-                node.set_string_option('kqemu', conf.kqemu)
                 node.set_string_option('kvm', conf.kvm)
                 node.set_string_option('initrd', conf.initrd)
                 node.set_string_option('kernel', conf.kernel)

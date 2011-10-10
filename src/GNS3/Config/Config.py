@@ -254,7 +254,6 @@ class GNS_Conf(object):
             conf.nic_nb = int(c.get(cgroup + "/nic_nb", 6))
             conf.nic = str(c.get(cgroup + "/nic", 'e1000'))
             conf.options = str(c.get(cgroup + "/options", ''))
-            conf.kqemu = c.value(cgroup + "/kqemu", QtCore.QVariant(False)).toBool()
             conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
             globals.GApp.qemuimages[conf.name] = conf
 
@@ -284,7 +283,6 @@ class GNS_Conf(object):
             conf.nic_nb = int(c.get(cgroup + "/nic_nb", 6))
             conf.nic = str(c.get(cgroup + "/nic", 'e1000'))
             conf.options = str(c.get(cgroup + "/options", ''))
-            conf.kqemu = c.value(cgroup + "/kqemu", QtCore.QVariant(False)).toBool()
             conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
             globals.GApp.junosimages[conf.name] = conf
 
@@ -313,7 +311,6 @@ class GNS_Conf(object):
             conf.nic_nb = int(c.get(cgroup + "/nic_nb", 6))
             conf.nic = str(c.get(cgroup + "/nic", 'e1000'))
             conf.options = str(c.get(cgroup + "/options", ''))
-            conf.kqemu = c.value(cgroup + "/kqemu", QtCore.QVariant(False)).toBool()
             conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
             conf.initrd = c.get(cgroup + "/initrd", unicode(''))
             conf.kernel = c.get(cgroup + "/kernel", unicode(''))
@@ -347,7 +344,6 @@ class GNS_Conf(object):
             conf.nic_nb = int(c.get(cgroup + "/nic_nb", 3))
             conf.nic = str(c.get(cgroup + "/nic", 'e1000'))
             conf.options = str(c.get(cgroup + "/options", ''))
-            conf.kqemu = c.value(cgroup + "/kqemu", QtCore.QVariant(False)).toBool()
             conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
             globals.GApp.idsimages[conf.name] = conf
 

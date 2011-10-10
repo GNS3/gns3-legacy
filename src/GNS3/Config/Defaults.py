@@ -84,7 +84,6 @@ conf_qemuImage_defaults = {
     'nib_nb': 6,
     'nic': 'e1000',
     'options': '',
-    'kqemu': False,
     'kvm': False
 }
 
@@ -96,7 +95,6 @@ conf_qemuImage_types = {
     'nic_nb': int,
     'nic': str,
     'options': str,
-    'kqemu': bool,
     'kvm': bool
 }
 
@@ -108,7 +106,6 @@ conf_junosImage_defaults = {
     'nib_nb': 6,
     'nic': 'e1000',
     'options': '',
-    'kqemu': False,
     'kvm': False
 }
 
@@ -120,7 +117,6 @@ conf_junosImage_types = {
     'nic_nb': int,
     'nic': str,
     'options': str,
-    'kqemu': bool,
     'kvm': bool
 }
 
@@ -131,7 +127,6 @@ conf_asaImage_defaults = {
     'nib_nb': 6,
     'nic': 'e1000',
     'options': '',
-    'kqemu': False,
     'kvm': False,
     'kernel': '',
     'initrd': '',
@@ -145,7 +140,6 @@ conf_asaImage_types = {
     'nic_nb': int,
     'nic': str,
     'options': str,
-    'kqemu': bool,
     'kvm': bool,
     'kernel': unicode,
     'initrd': unicode,
@@ -161,7 +155,6 @@ conf_idsImage_defaults = {
     'nib_nb': 3,
     'nic': 'e1000',
     'options': '',
-    'kqemu': False,
     'kvm': False
 }
 
@@ -174,7 +167,6 @@ conf_idsImage_types = {
     'nic_nb': int,
     'nic': str,
     'options': str,
-    'kqemu': bool,
     'kvm': bool
 }
 
