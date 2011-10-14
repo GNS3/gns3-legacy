@@ -4,13 +4,13 @@
 
 """
 dynamips_lib.py
-Copyright (C) 2006-2010  Greg Anuzelli
-contributions: Pavel Skovajsa
+Copyright (C) 2006-2011  Greg Anuzelli
+contributions: Pavel Skovajsa, Alexey Eromenko "Technologov"
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
 as published by the Free Software Foundation; either version 2
-of the License, or (at your option) xany later version.
+of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,7 +22,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 
-from socket import socket, timeout, AF_INET, SOCK_STREAM
+#This file is a client, that connects to 'dynamips' server.
+#This is part of Dynagen-GNS3.
+
+from socket import socket, timeout, AF_INET, AF_INET6, SOCK_STREAM
 import sys
 import os
 import re
@@ -244,7 +247,11 @@ class Dynamips(object):
     """
 
     def __init__(self, host, port=7200, timeout=500):
-        self.s = socket(AF_INET, SOCK_STREAM)
+        if host.__contains__(':'):
+            # IPv6 address support
+            self.s = socket(AF_INET6, SOCK_STREAM)
+        else:
+            self.s = socket(AF_INET, SOCK_STREAM)
         self.s.setblocking(0)
         self.s.settimeout(timeout)
         self.configchange = False
@@ -527,11 +534,12 @@ class NIO(object):
     """abstract NIO class"""
     
     def get_stats(self, dynamips, nio_name):
-        
+        #print "ADEBUG: dynamips_lib.py: NIO::get_stats(dynamips = %s, nio_name = %s)" % (str(dynamips), str(nio_name))
         # dynamips < 0.2.8 RC3 doesn't support NIO stats
         if dynamips.intversion < 208.3:
             return ""
         result = send(dynamips, 'nio get_stats %s' % nio_name)[0]
+        #print "ADEBUG: dynamips_lib.py: NIO::get_stats(), result1 = %s" % str(result)
         if result.startswith("100"):
             stats = result[4:].split()
             return ("\n        " + stats[0] + ' packets in / ' + stats[1] + ' packets out (' + stats[2] + ' bytes in / ' + stats[3] + ' bytes out)')
@@ -588,6 +596,8 @@ class NIO_udp(NIO):
         """return an info string for .net file config"""
         (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self)
         from qemu_lib import AnyEmuDevice
+        from dynagen_vbox_lib import AnyVBoxEmuDevice
+
         if isinstance(remote_device, Router):
             (rem_int_name, rem_dynagen_port) = remote_adapter.interfaces_mips2dyn[remote_port]
             if remote_device.model_string in ['1710', '1720', '1721', '1750']:
@@ -603,6 +613,8 @@ class NIO_udp(NIO):
             return remote_device.name + " " + str(remote_port)
         elif isinstance(remote_device, AnyEmuDevice):
             return remote_device.name + ' ' + remote_adapter + str(remote_port)
+        elif isinstance(remote_device, AnyVBoxEmuDevice):
+            return remote_device.name + ' ' + remote_adapter + str(remote_port)
 
     def info(self):
         """return info string about this NIO"""
@@ -610,6 +622,7 @@ class NIO_udp(NIO):
         stats = self.get_stats(self.__d, self.__name)
         (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self)
         from qemu_lib import AnyEmuDevice
+        from dynagen_vbox_lib import AnyVBoxEmuDevice
         if isinstance(remote_device, Router):
             (rem_int_name, rem_dynagen_port) = remote_adapter.interfaces_mips2dyn[remote_port]
             if rem_int_name == 'e':
@@ -646,6 +659,8 @@ class NIO_udp(NIO):
             return ' is connected to ATM bridge ' + remote_device.name + ' port ' + str(remote_port) + " " + stats
         elif isinstance(remote_device, AnyEmuDevice):
             return ' is connected to emulated device ' + remote_device.name + ' Ethernet' + str(remote_port) + " " + stats
+        elif isinstance(remote_device, AnyVBoxEmuDevice):
+            return ' is connected to virtualized device ' + remote_device.name + ' Ethernet' + str(remote_port) + " " + stats
 
     def __getreverse_nio(self):
         return self.__reverse_nio
@@ -2271,7 +2286,7 @@ class Router(Dynamips_device):
                             self.slot[slot].interfaces_mips2dyn[dynaport] = (interface, currentport_s)
                             currentport_s += 1
                         dynaport += 1
-
+                        
     def uninstallwic(self, slot):
         """ Installs a WIC from a WIC slot
         """
@@ -2340,6 +2355,7 @@ class Router(Dynamips_device):
             raise DynamipsWarning, 'router %s is stopped and cannot be suspended' % self.name
 
         r = send(self.__d, 'vm suspend %s' % self.__name)
+        #print "ADEBUG: dynamips_lib.py: suspend(), r = ", r        
         self.__state = 'suspended'
         return r
 
@@ -4602,7 +4618,6 @@ class ETHSW(Emulated_switch):
             map = self.mapping[port1]
             (porttype, vlan, nio, twosided) = map
             map_info += '   Port '+ str(port1) + ' is in ' + porttype + ' mode, with native VLAN ' + str(vlan) + ',\n    ' + nio.info() + '\n'
-
         return info + map_info
 
     def unset_port(self, port):
@@ -4791,9 +4806,9 @@ def send(dynamips, command):
                 if buf[-1] != '\n':
                     continue
             except IndexError:
-#                print 'Error: could not communicate with %s server %s' % (dynamips.type, dynamips.host)
-#                print 'It may have crashed. Check the %s server output.' % dynamips.type
-#                print 'Exiting...'
+                #print 'Error: could not communicate with %s server %s' % (dynamips.type, dynamips.host)
+                #print 'It may have crashed. Check the %s server output.' % dynamips.type
+                #print 'Exiting...'
                 raise DynamipsErrorHandled
 
             data += buf.split('\r\n')
@@ -4827,6 +4842,12 @@ def send(dynamips, command):
         return ''  # NOSEND, so return empty string
 
 
+def isLocalhost(i_host):
+    if i_host == 'localhost' or i_host == '127.0.0.1' or i_host == '::1' or i_host == "0:0:0:0:0:0:0:1":
+        return True
+    else:
+        return False
+
 def gen_connect(
     src_dynamips,
     src_adapter,
@@ -4859,7 +4880,7 @@ def gen_connect(
         dst_ip = dst_dynamips.host
 
         #check whether the user did not make a mistake in multi-server .net file
-        if src_ip == 'localhost' or src_ip =='127.0.0.1' or dst_ip =='localhost' or dst_ip == '127.0.0.1':
+        if isLocalhost(src_ip) or isLocalhost(dst_ip):
             dowarning('in case of multi-server operation make sure you do not use "localhost" string in definition of dynamips hypervisor')
 
     # Dynagen connect currently always uses UDP NETIO
@@ -4998,7 +5019,10 @@ def get_reverse_udp_nio(remote_nio):
 
     #if the local_nio is UDPConnection of AnyEmuDevice
     from qemu_lib import AnyEmuDevice
+    from dynagen_vbox_lib import AnyVBoxEmuDevice
     if isinstance(local_nio.adapter, AnyEmuDevice):
+        return [local_nio.dev, 'e', local_nio.port]
+    if isinstance(local_nio.adapter, AnyVBoxEmuDevice):
         return [local_nio.dev, 'e', local_nio.port]
     if isinstance(local_nio.adapter, Emulated_switch):
         return [local_nio.adapter, 'nothing', local_nio.port]

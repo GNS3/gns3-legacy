@@ -36,6 +36,7 @@ from GNS3.Utils import debug, translate, fileBrowser
 from GNS3.Config.Preferences import PreferencesDialog
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.AnyEmuDevice import AnyEmuDevice, JunOS, IDS, QemuDevice
+from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice, VBoxDevice
 from GNS3.Pixmap import Pixmap
 
 class Workspace(QMainWindow, Ui_MainWindow):
@@ -226,7 +227,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 rect = self.graphicsView.viewport().rect()
                 width = rect.width() + 10
                 height = rect.height() + 10
-
+            #FIXME: This code is broken on Qt4.7 or newer (works with Qt4.6 and PyQt4.7)
             pixmap = QtGui.QPixmap(width, height)
             pixmap.fill(QtCore.Qt.white)
             painter = QtGui.QPainter(pixmap)
@@ -244,7 +245,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
     
         filedialog = QtGui.QFileDialog(self)
         selected = QtCore.QString()
-        exports = 'PNG File (*.png);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm);;PDF File (*.pdf)'
+        if int(QtCore.PYQT_VERSION_STR.split('.')[1]) > 7:
+            exports = 'PDF File (*.pdf)'
+        else:
+            exports = 'PNG File (*.png);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm);;PDF File (*.pdf)'
         path = QtGui.QFileDialog.getSaveFileName(filedialog, 'Screenshot', '.', exports, selected)
         if not path:
             return
@@ -305,21 +309,21 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.projectFile = None
         self.projectWorkdir = None
         self.projectConfigs = None
-
+        
         globals.GApp.topology.clear()
         for item in globals.GApp.topology.items():
             globals.GApp.topology.removeItem(item)
-            
+        
         self.clear_workdir(projectWorkdir)
         globals.GApp.mainWindow.capturesDock.refresh()
 
     def __action_Clear(self):
         """ Clear the topology
         """
-
+        
         running_nodes = False
         for node in globals.GApp.topology.nodes.itervalues():
-            if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice)) and node.get_dynagen_device().state == 'running':
+            if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice) or isinstance(node, AnyVBoxEmuDevice)) and node.get_dynagen_device().state == 'running':
                 running_nodes = True
 
         if len(globals.GApp.topology.nodes) and globals.GApp.topology.changed == True:
@@ -329,13 +333,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 self.__action_Save()
             elif reply == QtGui.QMessageBox.Cancel:
                 return
-
         elif running_nodes:
-            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "You have running nodes and you may loose your configurations inside them, would you like to continue anyway?"),
+            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "You have running nodes and you may lose your configurations inside them, would you like to continue anyway?"),
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
             if reply == QtGui.QMessageBox.No:
                 return
-
+        
         self.clear()
 
     def __action_Config(self):
@@ -598,11 +601,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.action_ShowinterfaceNames.setText(translate('Workspace', 'Show interface names'))
             for link in globals.GApp.topology.links:
                 link.adjust()
-                
+
     def __action_ResetInterfaceLabels(self):
         """ Reset saved Interface Labels
         """
-        
+         
         if self.flg_showInterfaceNames:
             QtGui.QMessageBox.warning(self, translate("Workspace", "Interface labels"), translate("Workspace", "Please hide the interface names before using this option"))
             return
@@ -620,9 +623,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
     
         for node in globals.GApp.topology.nodes.itervalues():
-            if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice)) and node.get_dynagen_device().state == 'running':
+            if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice) or isinstance(node, AnyVBoxEmuDevice)) and node.get_dynagen_device().state == 'running':
                 node.console()
-                
+
     def __action_ConsoleAuxAll(self):
         """ Console AUX to all started IOS routers
         """
@@ -645,7 +648,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     node_list.append(node)
         else:
             for node in globals.GApp.topology.nodes.values():
-                if isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice):
+                if isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice) or isinstance(node, AnyVBoxEmuDevice):
                     node_list.append(node)
                 
         count = len(node_list)
@@ -811,7 +814,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         running_nodes = False
         for node in globals.GApp.topology.nodes.itervalues():
-            if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice)) and node.get_dynagen_device().state == 'running':
+            if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice) or isinstance(node, AnyVBoxEmuDevice)) and node.get_dynagen_device().state == 'running':
                 running_nodes = True
 
         if running_nodes:
@@ -880,7 +883,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
                 # stop the node before moving files
                 for node in globals.GApp.topology.nodes.values():
-                    if (isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir) or (isinstance(node, AnyEmuDevice) and self.projectWorkdir != node.qemu.workingdir):
+                    if (isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir) or (isinstance(node, AnyEmuDevice) and self.projectWorkdir != node.qemu.workingdir) or (isinstance(node, AnyVBoxEmuDevice) and self.projectWorkdir != node.vbox.workingdir):
                         node.stopNode()
                         
                 globals.GApp.mainWindow.capturesDock.stopAllCaptures()
@@ -888,7 +891,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 # move dynamips & Qemu files
                 for node in globals.GApp.topology.nodes.values():
                     if isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir:
-
+                        
                         dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_nvram*')
                         dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_disk*')
                         dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_slot*')
@@ -904,10 +907,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                 continue
                             except:
                                 continue
-                            
+
                         # clean the original working directory
                         self.clear_workdir(os.path.normpath(node.hypervisor.workingdir))
-                    
+
                     if (isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS)) and unbase:
                         node.get_dynagen_device().unbase()
 
@@ -924,13 +927,28 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                 continue
                             except:
                                 continue
+                    """
+                    if isinstance(node, AnyVBoxEmuDevice) and self.projectWorkdir != node.vbox.workingdir:
+                        
+                        # Stop this node
+                        node.stopNode()
+                        vbox_files = glob.glob(os.path.normpath(node.vbox.workingdir) + os.sep + node.hostname)
+                        for file in vbox_files:
+                            try:
+                                shutil.copytree(file, self.projectWorkdir + os.sep + node.hostname)
+                            except (OSError, IOError), e:
+                                debug("Warning: cannot copy " + file + " to " + self.projectWorkdir)
+                                continue
+                            except:
+                                continue
+                    #"""
 
                 # set the new working directory
                 try:
                     for hypervisor in globals.GApp.dynagen.dynamips.values():
                         hypervisor.workingdir = self.projectWorkdir
                 except lib.DynamipsError, msg:
-                    QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "Dynamips error"), "%s: %s") % (self.projectWorkdir, unicode(msg)))
+                    QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "Dynamips error")+ "%s: %s") % (self.projectWorkdir, unicode(msg)))
 
         self.__action_Save(auto=True)
         self.setWindowTitle("GNS3 Project - " + self.projectFile) 
@@ -1004,6 +1022,16 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     except (OSError, IOError), e:
                         debug("Warning: cannot copy " + file + " to " + snapshot_workdir + ": " + e.strerror)
                         continue
+		        """
+            if isinstance(node, AnyVBoxEmuDevice):
+                vbox_files = glob.glob(os.path.normpath(node.vbox.workingdir) + os.sep + node.hostname)
+                for file in vbox_files:
+                    try:
+                        shutil.copytree(file, snapshot_workdir + os.sep + node.hostname)
+                    except (OSError, IOError), e:
+                        debug("Warning: cannot copy " + file + " to " + snapshot_workdir + ": " + e.strerror)
+                        continue
+		        #"""
             
         try:
             for hypervisor in globals.GApp.dynagen.dynamips.values():
@@ -1131,7 +1159,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         running_nodes = False
         for node in globals.GApp.topology.nodes.itervalues():
-            if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice)) and node.get_dynagen_device().state == 'running':
+            if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice) or isinstance(node, AnyVBoxEmuDevice)) and node.get_dynagen_device().state == 'running':
                 running_nodes = True
 
         if len(globals.GApp.topology.nodes) and globals.GApp.topology.changed == True:
@@ -1142,13 +1170,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
             elif reply == QtGui.QMessageBox.Cancel:
                 event.ignore()
                 return
-
+                
         elif running_nodes:
-            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "You have running nodes and you may loose your configurations inside them, would you like to continue anyway?"),
+            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "You have running nodes and you may lose your configurations inside them, would you like to continue anyway?"),
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
             if reply == QtGui.QMessageBox.No:
                 event.ignore()
                 return
-            
+
         self.clear()
         event.accept()
