@@ -42,9 +42,6 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             lang_name = lang[1]
             lang_displayText = u"%s (%s)" % (lang_name, lang_code)
             self.langsBox.addItem(lang_displayText)
-
-        if platform.system() == 'Darwin':
-            self.checkBoxBringConsoleToFront.setVisible(False)
         
         self.connect(self.pushButton_ClearConfiguration, QtCore.SIGNAL('clicked()'), self.__clearConfiguration)
         self.connect(self.ProjectPath_browser, QtCore.SIGNAL('clicked()'), self.__setProjectPath)
