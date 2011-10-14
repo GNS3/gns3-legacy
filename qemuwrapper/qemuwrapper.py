@@ -55,6 +55,7 @@ QEMU_IMG_PATH = "qemu-img"
 PORT = 10525
 IP = ""
 QEMU_INSTANCES = {}
+FORCE_IPV6 = False
 
 WORKDIR = os.getcwd()
 if os.environ.has_key("QEMUWRAPPER_WDIR"):
