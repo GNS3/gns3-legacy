@@ -36,11 +36,11 @@ class Console(PyCutExt, Dynagen_Console):
 
     # list of keywords to color
 
-    keywords = set(["capture", "console", "filter", "idlepc",
-                "reload", "start", "telnet", "aux", "clear",
+    keywords = set(["capture", "console", "filter", "idlepc", "hypervisors",
+                "reload", "start", "telnet", "aux", "clear", "send",
                 "clear topology", "help", "import", "push", "resume", 
                 "stop", "ver", "export", "hist", "list",
-                "save", "show", "suspend", "ver"])
+                "save", "show", "suspend"])
 
     def __init__(self, parent):
         """ Initialise the Console widget
@@ -138,6 +138,11 @@ class Console(PyCutExt, Dynagen_Console):
         self.lines = []
         self._clearLine()
 
+    def do_hypervisors(self, args):
+        """hypervisors \nshow the hypervisors started by the hypervisor manager"""
+
+        if globals.GApp.HypervisorManager:
+            globals.GApp.HypervisorManager.showHypervisors()
 
     def do_ver(self, args):
         """Print hypervisors, dynagen, GNS3, libs versions and credits"""
@@ -424,7 +429,7 @@ Examples:
         try:
             items = getItems(args)
         except lib.DynamipsError, e:
-            error(e)
+            self.error(e)
             return
 
         if len(items) < 2:
@@ -484,3 +489,25 @@ Examples:
         else:
             print self.do_debug.__doc__
     
+    # The following commands must exist in Dynagen/console.py but must not be available in GNS3's dynagen console
+    # default() will return "unknown command".
+
+    def do_conf(self, args):
+
+        self.default(None)
+
+    def do_cpuinfo(self, args):
+
+        self.default(None)
+
+    def do_py(self, args):
+
+        self.default(None)
+
+    def do_shell(self, args):
+
+        self.default(None)
+
+    def do_exit(self, args):
+
+        self.default(None)

@@ -96,7 +96,7 @@ class Console(AbstractConsole):
     def __init__(self, dynagen):
         AbstractConsole.__init__(self)
         self.prompt = '=> '
-        self.intro  = 'Dynagen management console for Dynamips and Qemuwrapper ' + self.namespace.VERSION + '\nCopyright (c) 2005-2010 Greg Anuzelli, contributions Pavel Skovajsa & Jeremy Grossman\n'
+        self.intro  = 'Dynagen management console for Dynamips and Qemuwrapper ' + self.namespace.VERSION + '\nCopyright (c) 2005-2010 Greg Anuzelli, contributions Pavel Skovajsa & Jeremy Grossmann\n'
         self.dynagen = dynagen
     ## Command definitions ##
 
@@ -1068,11 +1068,13 @@ show run <device_name>
         except ValueError:
             print 'Error parsing command'
             return
+
     def do_send(self, args):
         """send [host] commandstring
 \tsend a raw hypervisor command to a dynamips server
+\tplease use 'list' to find available hosts
 \tExamples:
-\tsend bender hypervisor version   -- Send the 'hypervisor version' command to the host named bender"""
+\tsend 127.0.0.1 hypervisor version   -- Send the 'hypervisor version' command to the host named bender"""
 
         if '?' in args or args.strip() == "":
             print self.do_send.__doc__
