@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# vim: expandtab ts=4 sw=4 sts=4:
 #
 # Copyright (c) 2011 Alexey Eromenko "Technologov"
 #
@@ -39,6 +38,7 @@ debuglevel = 0
 import time
 import sys
 import os
+import subprocess as sub
 
 if debuglevel > 0:
     if sys.platform == 'win32':
@@ -95,6 +95,7 @@ class VBoxController_4_1():
         self.statBytesSent = 0
         self.stats = ""
         self.guestIP = ""
+        self.VBoxBug9239Workaround = True # VBoxSVC crash on Windows hosts.
 
     def start(self, vmname, nics, udp, capture, netcard):
         debugmsg(2, "VBoxController_4_1::start()")
@@ -148,17 +149,22 @@ class VBoxController_4_1():
 
     def stop(self):
         debugmsg(2, "VBoxController_4_1::stop()")
-        try:
-            self.progress = self.console.powerDown()
-            #Wait for VM to actually go down:
-            self.progress.waitForCompletion(-1)
-            debugmsg(3, "self.progress.percent = %s" % str(self.progress.percent))
-            self._safeUnlockMachine()
-        except:
-            #Do not crash "vboxwrapper", if stopping VM fails.
-            #But return True anyway, so VM state in GNS3 can become "stopped"
-            #This can happen, if user manually kills VBox VM.
-            return True
+        if self.VBoxBug9239Workaround and sys.platform == 'win32':
+            debugmsg(1, "doing VM stop with workaround...")
+            p = sub.Popen('cd /D "%%VBOX_INSTALL_PATH%%" && VBoxManage.exe controlvm "%s" poweroff' % self.vmname, shell=True)
+            p.communicate()
+        else:
+            try:
+                self.progress = self.console.powerDown()
+                #Wait for VM to actually go down:
+                self.progress.waitForCompletion(-1)
+                debugmsg(3, "self.progress.percent = %s" % str(self.progress.percent))
+                self._safeUnlockMachine()
+            except:
+                #Do not crash "vboxwrapper", if stopping VM fails.
+                #But return True anyway, so VM state in GNS3 can become "stopped"
+                #This can happen, if user manually kills VBox VM.
+                return True        
 
         #Shutdown all managed interfaces:
         if not self._safeLockMachine():

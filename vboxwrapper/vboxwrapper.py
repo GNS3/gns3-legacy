@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# vim: expandtab ts=4 sw=4 sts=4:
 #
 # Copyright (c) 2007-2011 Thomas Pani, Jeremy Grossmann & Alexey Eromenko "Technologov"
 #
@@ -52,7 +51,7 @@ if debuglevel > 0:
     else:
         debugfilename = "/tmp/gns3-vboxwrapper-log.txt"
     try:
-        dfile = open(debugfilename, 'wb')
+        dfile = open(debugfilename, 'wb')    
     except:
         dfile = False
         print "WARNING: log file cannot be created !"
@@ -62,7 +61,7 @@ if debuglevel > 0:
 def debugmsg(level, message):
     if debuglevel == 0:
         return
-    if debuglevel >= level:
+    if debuglevel >= level:        
         print message
         if dfile:
             #In python 2.6, print with redirections always uses UNIX line-ending,
@@ -76,7 +75,7 @@ debugmsg(2, msg)
 debugmsg(1, "debuglevel =  %s" % debuglevel + os.linesep)
 
 __author__ = 'Thomas Pani, Jeremy Grossmann and Alexey Eromenko "Technologov"'
-__version__ = '0.8.0-RC1'
+__version__ = '0.8.2'
 
 try:
     from vboxapi import VirtualBoxManager
@@ -154,7 +153,7 @@ class xVBOXInstance(object):
         # Init win32 com
         if sys.platform == 'win32':
             self.prepareWindowsCOM()
-
+        
     def prepareWindowsCOM(self):
         # Microsoft COM behaves differently than Mozilla XPCOM, and requires special multi-threading code.
         debugmsg(2, "xVBOXInstance::prepareWindowsCOM()")
@@ -169,10 +168,10 @@ class xVBOXInstance(object):
         self.workdir = os.path.join(os.getcwd(), self.name)
         if not os.path.exists(self.workdir):
             os.makedirs(self.workdir)
-
+            
     def clean(self):
         pass
-
+    
     def unbase_disk(self):
         pass
 
@@ -189,7 +188,7 @@ class xVBOXInstance(object):
     def stop(self):
         debugmsg(2, "xVBOXInstance::stop()")
         return self.vbc.stop()
-
+        
     def suspend(self):
         debugmsg(2, "xVBOXInstance::suspend()")
         return self.vbc.suspend()
@@ -197,7 +196,7 @@ class xVBOXInstance(object):
     def resume(self):
         debugmsg(2, "xVBOXInstance::resume()")
         return self.vbc.resume()
-
+    
     def create_udp(self, i_vnic, sport, daddr, dport):
         debugmsg(2, "xVBOXInstance::create_udp(%s, %s, %s, %s)" % (str(i_vnic), str(sport), str(daddr), str(dport)))
         # FlexiNetwork: Link hot-add
@@ -252,14 +251,14 @@ class VBOXInstance(xVBOXInstance):
 
 class VBoxDeviceInstance(VBOXInstance):
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):        
         debugmsg(3, "class VBoxDeviceInstance::__init__(%s, %s)" % (str(*args), str(**kwargs)))
         super(VBoxDeviceInstance, self).__init__(*args, **kwargs)
         self.netcard = 'automatic'
 
     def clean(self):
         pass
-
+        
     def unbase_disk(self):
         pass
 
@@ -302,7 +301,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
     vbox_classes = {
         'vbox': VBoxDeviceInstance,
         }
-
+    
     # dynamips style status codes
     HSC_INFO_OK         = 100  #  ok
     HSC_INFO_MSG        = 101  #  informative message
@@ -331,7 +330,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
                             "unable to display window focus of instance '%s'" % name)
         else:
             self.send_reply(self.HSC_INFO_OK, 1, "%s %s" % ("hwnd", str(g_result)))
-
+            
     def do_vbox_get_nio_stats(self, data):
         debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_get_nio_stats(%s)" % str(data))
         name, vnic = data
@@ -401,18 +400,18 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         #debugmsg(3, ("VBoxWrapperRequestHandler::__get_tokens(),    returns original_tokens = ", tokens))
         #tokens = request.split(' ')
         #debugmsg(3, ("VBoxWrapperRequestHandler::__get_tokens(),    returns alternative_tokens = ", tokens))
-
+        
         #exec command exception:
         # This is a gross hack, because original code converts one Windows back-slash into four.
         #if tokens[1] is 'exec':
         #    tokens[3] = request.split()[3:]
         debugmsg(3, ("VBoxWrapperRequestHandler::__get_tokens(),    returns tokens = ", tokens))
-
+        
         return tokens
 
     def handle_one_request(self):
         debugmsg(3, "VBoxWrapperRequestHandler::handle_one_request()")
-        request = self.rfile.readline()
+        request = self.rfile.readline()        
         debugmsg(3, "handle_one_request(), request = %s" % request)
         # If command exists in cache (=cache hit), we skip further processing
         if self.check_cache(request):
@@ -472,7 +471,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         #
         # Checks command cache, and sends cached reply immediately.
         # Returns True, if cached request/reply found within reasonable time period. (=cache hit)
-        # Otherwise returns false, which means cache miss, and further processing
+        # Otherwise returns false, which means cache miss, and further processing 
         # by handle_one_request() is required.
         global CACHED_REQUEST, CACHED_REPLY, CACHED_TIME
         cur_time = time.time()
@@ -532,7 +531,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         #"""
         debugmsg(2, "VBoxWrapperRequestHandler::do_vboxwrapper_working_dir(%s)" % str(data))
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
-
+        
         working_dir, = data
         try:
             os.chdir(working_dir)
@@ -581,7 +580,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
             return 1
 
         vbox_instance = devclass(name)
-
+        
         try:
             vbox_instance.create()
         except OSError, e:
@@ -665,7 +664,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         udp_connection.resolve_names()
         VBOX_INSTANCES[name].udp[int(vnic)] = udp_connection
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
-
+        
     def do_vbox_delete_udp(self, data):
         debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_delete_udp(%s)" % str(data))
         name, vnic = data
@@ -673,7 +672,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
                             "unable to find VBox '%s'" % name)
             return
-        # ***************
+        # ***************            
         #Try to delete UDP:
         VBOX_INSTANCES[name].delete_udp(vnic)
         #if not VBOX_INSTANCES[name].delete_udp(vnic):
@@ -683,7 +682,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         if VBOX_INSTANCES[name].udp.has_key(int(vnic)):
             del VBOX_INSTANCES[name].udp[int(vnic)]
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
-
+        
     def do_vbox_create_capture(self, data):
         debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_create_capture(%s)" % str(data))
         name, vnic, path = data
@@ -694,7 +693,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
 
         VBOX_INSTANCES[name].capture[int(vnic)] = path
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
-
+        
     def do_vbox_delete_capture(self, data):
         debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_delete_capture(%s)" % str(data))
         name, vnic = data
@@ -707,7 +706,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_vbox_start(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_start(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_start(%s)" % str(data))        
         name, = data
         if not name in VBOX_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
@@ -726,7 +725,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.send_reply(self.HSC_ERR_STOP, 1,
                             "unable to stop instance '%s'" % name)
         else:
-            self.send_reply(self.HSC_INFO_OK, 1, "VBox '%s' stopped" % name)
+            self.send_reply(self.HSC_INFO_OK, 1, "VBox '%s' stopped" % name)        
 
     def do_vbox_reset(self, data):
         debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_reset(%s)" % str(data))
@@ -753,8 +752,8 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.send_reply(self.HSC_ERR_STOP, 1,
                             "unable to resume instance '%s'" % name)
         else:
-            self.send_reply(self.HSC_INFO_OK, 1, "VBox '%s' resumed" % name)
-
+            self.send_reply(self.HSC_INFO_OK, 1, "VBox '%s' resumed" % name)        
+            
     def do_vbox_clean(self, data):
         debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_clean(%s)" % str(data))
         name, = data
@@ -764,7 +763,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
             return
         VBOX_INSTANCES[name].clean()
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
-
+        
     def do_vbox_unbase(self, data):
         debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_unbase(%s)" % str(data))
         name, = data
@@ -845,7 +844,7 @@ def cleanup():
             VBOX_INSTANCES[name].stop()
         del VBOX_INSTANCES[name]
     print "Shutdown completed."
-
+    
 def main():
     debugmsg(2, "vboxwrapper.py    main()")
     global IP
@@ -865,7 +864,7 @@ def main():
 
     if options.host:
         host = options.host
-        global IP
+        global IP 
         IP = host
     else:
         host = IP
@@ -876,7 +875,7 @@ def main():
         PORT = port
     else:
         port = PORT
-
+        
     if options.wd:
         global WORKDIR
         WORKDIR = options.wd
@@ -889,13 +888,13 @@ def main():
     server = VBoxWrapperServer((host, port), VBoxWrapperRequestHandler)
 
     print "VBoxWrapper TCP control server started (port %d)." % port
-
-
+    
+    
     if FORCE_IPV6:
         LISTENING_MODE = "Listening in IPv6 mode"
     else:
         LISTENING_MODE = "Listening"
-
+        
     if IP:
         print "%s on %s" % (LISTENING_MODE, IP)
     else:
@@ -911,7 +910,7 @@ if __name__ == '__main__':
     print 'Copyright (c) 2007-2011'
     print 'Thomas Pani, Jeremy Grossmann and Alexey Eromenko "Technologov"'
     print
-
+    
     if sys.platform == 'win32':
         try:
             import win32com, pythoncom
