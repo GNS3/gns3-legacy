@@ -279,12 +279,12 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         image = unicode(self.QemuImage.text())
 
         if not name or not image:
-            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "Qemu host"),
+            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "Qemu guest"),
                                        translate("Page_PreferencesQemu", "Identifier and binary image must be set!"))
             return
 
         if globals.GApp.qemuimages.has_key(name):
-            # update an already existing Qemu host image
+            # update an already existing Qemu guest image
             item_to_update = self.treeWidgetQemuImages.findItems(name, QtCore.Qt.MatchFixedString)[0]
             item_to_update.setText(1, image)
         else:
@@ -317,7 +317,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
 
         globals.GApp.qemuimages[name] = conf
         self.treeWidgetQemuImages.resizeColumnToContents(0)
-        QtGui.QMessageBox.information(globals.preferencesWindow, translate("Page_PreferencesQemu", "Save"),  translate("Page_PreferencesQemu", "Qemu host settings have been saved"))
+        QtGui.QMessageBox.information(globals.preferencesWindow, translate("Page_PreferencesQemu", "Save"),  translate("Page_PreferencesQemu", "Qemu guest settings have been saved"))
 
     def slotDeleteQemuImage(self):
         """ Delete Qemu Image from the list of Qemu images

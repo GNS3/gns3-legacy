@@ -783,7 +783,7 @@ class QemuDevice(AnyEmuDevice):
     model_string = 'QemuDevice'
     qemu_dev_type = 'qemu'
     basehostname = 'QEMU'
-    _ufd_machine = 'Qemu host'
+    _ufd_machine = 'Qemu guest'
     _ufd_hardware = 'Qemu Emulated System'
     available_options = ['image', 'ram', 'nics', 'netcard', 'options']
 

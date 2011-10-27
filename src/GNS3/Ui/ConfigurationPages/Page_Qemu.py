@@ -95,7 +95,7 @@ class Page_Qemu(QtGui.QWidget, Ui_QemuPage):
         
         nics = self.spinBoxNics.value()
         if nics < qemu_config['nics'] and len(node.getConnectedInterfaceList()):
-            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_Qemu", "Qemu host"), translate("Page_Qemu", "You must remove the connected links first in order to reduce the number of interfaces"))
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_Qemu", "Qemu guest"), translate("Page_Qemu", "You must remove the connected links first in order to reduce the number of interfaces"))
         else:
             qemu_config['nics'] = self.spinBoxNics.value()
 
