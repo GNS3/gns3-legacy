@@ -19,18 +19,27 @@
 # code@gns3.net
 #
 
+#debuglevel: 0=disabled, 1=default, 2=debug, 3=deep debug
+debuglevel = 0
+
 import sys, os, re
 import GNS3.Globals as globals
 from GNS3.Dynagen.dynagen import Dynagen, DEVICETUPLE
 from GNS3.Utils import translate, debug, getWindowsInterfaces
 from PyQt4 import QtCore, QtGui
 
+def debugmsg(level, message):
+    if debuglevel == 0:
+        return
+    if debuglevel >= level:        
+        print message
+
 class DynagenSub(Dynagen):
     """ Subclass of Dynagen
     """
 
     def __init__(self):
-
+        debugmsg(2, "DynagenSub::__init__()")
         Dynagen.__init__(self)
         self.gns3_data = None
 
@@ -38,6 +47,7 @@ class DynagenSub(Dynagen):
         """ Check and replace non-existing GUID (network interface ID) on Windows
         """
 
+        debugmsg(2, "DynagenSub::check_replace_GUID_NIO(%s)" % str(filename))
         file = open(filename,'r')
         lines = file.readlines()
         cregex = re.compile("^.*nio_gen_eth:(.*)")
@@ -88,18 +98,30 @@ class DynagenSub(Dynagen):
             for line in lines:
                 file.write(line)
             file.close()
-
+          
+    def getHost(self, i_strAddress):
+        # IPv6: gets the "host" portion from "host:port" string
+        elements = i_strAddress.split(':')
+        for x in range(len(elements)-1): #Except TCP port
+            if x == 0:
+                hostname = elements[x]
+            else:
+                hostname += ':' + elements[x]
+        return hostname
 
     def open_config(self, FILENAME):
         """ Open the config file
         """
+        debugmsg(2, "DynagenSub::open_config(%s)" % str(FILENAME))
 
         if sys.platform.startswith('win'):
             self.check_replace_GUID_NIO(FILENAME)
         config = Dynagen.open_config(self, FILENAME)
+        debugmsg(2, ("DynagenSub::open_config(): config = ", config))
         self.filename = FILENAME
         self.gns3_data = None
         if 'GNS3-DATA' in config.sections:
+            debugmsg(3, "DynagenSub::open_config(), entered into: if 'GNS3-DATA'")
             self.gns3_data = config['GNS3-DATA'].copy()
             if self.gns3_data.has_key('configs'):
                 if os.path.exists(self.gns3_data['configs']):
@@ -121,6 +143,7 @@ class DynagenSub(Dynagen):
         progress.setWindowModality(QtCore.Qt.WindowModal)
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents)
         current = 0
+        debugmsg(3, ("DynagenSub::open_config(), config.sections = ", config.sections))
         for section in config.sections:
             progress.setValue(current)
             globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
@@ -129,14 +152,19 @@ class DynagenSub(Dynagen):
                 break
 
             server = config[section]
+            #debugmsg(3, ("DynagenSub::open_config(), server = ", server))  # Returns long config of hypervisor
             if ' ' in server.name:
                 (emulator, host) = server.name.split(' ')
+                debugmsg(2, "DynagenSub::open_config(), emulator = %s, host = %s" % (str(emulator), str(host)))
                 if ':' in host:
                     # unpack the server and port
                     # controlPort is ignored
-                    (host, controlPort) = host.split(':')
+                    #(host, controlPort) = host.split(':')  # What if we provide IPv6 ???
+                    controlPort = int(host.split(':')[-1])
+                    host = self.getHost(host)
                 if emulator == 'qemu' and (host == globals.GApp.systconf['qemu'].QemuManager_binding or host == 'localhost') and globals.GApp.systconf['qemu'].enable_QemuManager:
                     globals.GApp.QemuManager.startQemu(int(controlPort))
+                    debugmsg(2, "DynagenSub::open_config(), entered QemuManager")
 
                     # Check if this is a relative working directory path and convert to an absolute path if necessary
                     if server['workingdir']:
@@ -152,6 +180,7 @@ class DynagenSub(Dynagen):
                         device = server[subsection]
                         # ASA has no image
                         if device.name == '5520' and device['initrd'] and device['kernel']:
+                            debugmsg(2, "DynagenSub::open_config(), entered QemuManager, ASA 5520")
                             if not os.access(device['initrd'], os.F_OK):
 
                                 if len(globals.GApp.asaimages.keys()):
@@ -178,6 +207,7 @@ class DynagenSub(Dynagen):
 
                         # IDS has no default image
                         if device.name == 'IDS-4215' and device['image1'] and device['image2']:
+                            debugmsg(2, "DynagenSub::open_config(), entered QemuManager, IDS")
                             if not os.access(device['image1'], os.F_OK):
 
                                 if len(globals.GApp.idsimages.keys()):
@@ -212,6 +242,7 @@ class DynagenSub(Dynagen):
                                 device['image'] = abspath
 
                         if device.name == 'O-series' and device['image']:
+                            debugmsg(2, "DynagenSub::open_config(), entered QemuManager, JunOS")
                             if not os.access(device['image'], os.F_OK):
                                 if len(globals.GApp.junosimages.keys()):
                                     image_name = globals.GApp.junosimages.values()[0].filename
@@ -224,22 +255,63 @@ class DynagenSub(Dynagen):
                                 device['image'] = image_name
 
                         if device.name == 'QemuDevice' and device['image']:
+                            debugmsg(2, "DynagenSub::open_config(), entered QemuManager, QemuDevice")
                             if not os.access(device['image'], os.F_OK):
                                 if len(globals.GApp.qemuimages.keys()):
                                     image_name = globals.GApp.qemuimages.values()[0].filename
                                 else:
                                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
-                                        unicode(translate("Qemu image", "Qemu host image %s cannot be found and cannot find an alternative image")) % device['image'])
-                                    continue
-                                print unicode(translate("DynagenSub", "Local Qemu host image %s cannot be found, use image %s instead")) \
+                                        unicode(translate("Qemu image", "Qemu guest image %s cannot be found and cannot find an alternative image")) % device['image'])
+                                    continue                                    
+                                print unicode(translate("DynagenSub", "Local Qemu guest image %s cannot be found, use image %s instead")) \
                                 % (unicode(device['image']), image_name)
                                 device['image'] = image_name
 
+                elif emulator == 'vbox' and (host == globals.GApp.systconf['vbox'].VBoxManager_binding or host == 'localhost') and globals.GApp.systconf['vbox'].enable_VBoxManager:
+                    debugmsg(2, "DynagenSub::open_config(), entered VBoxManager")
+                    globals.GApp.VBoxManager.startVBox(int(controlPort))
+
+                    # Check if this is a relative working directory path and convert to an absolute path if necessary
+                    #"""
+                    if server['workingdir']:
+                        abspath = os.path.join(os.path.dirname(FILENAME), unicode(server['workingdir']))
+                        debugmsg(3, "DynagenSub::open_config(), 'vbox', abspath = %s" % str(abspath))
+                        if os.path.exists(abspath):
+                            server['workingdir'] = abspath
+                            debug(unicode("Converting relative working directory path to absolute path: %s") % server['workingdir'])
+
+                    debugmsg(3, "DynagenSub::open_config(), 'vbox', os.path.dirname(FILENAME) = %s" % str(os.path.dirname(FILENAME)))
+                    if server['workingdir'] == '.':
+                        server['workingdir'] = os.path.dirname(FILENAME)
+
+                    for subsection in server.sections:
+                        device = server[subsection]
+                        debugmsg(3, "DynagenSub::open_config(), 'vbox', device...")
+                        #debugmsg(3, "DynagenSub::open_config(), device = %s" % str(device))
+                        """  # Disabled whole test, as it fails on multi-host systems, if VBoxManager enabled.
+                        
+                        # Check if the image path is a relative path
+                        if os.path.exists(device['image']) == False:
+                            abspath = os.path.join(os.path.dirname(FILENAME), unicode(device['image']))
+                            debugmsg(3, "DynagenSub::open_config(), 'vbox', abspath = %s" % str(abspath))
+                            if os.path.exists(abspath):
+                                device['image'] = abspath
+                        #"""
+                        #if device.name == 'VBoxDevice' and device['image']:
+                        #    debugmsg(2, "DynagenSub.py:  if device.name == 'VBoxDevice' and device['image']")
+                        #    #Warning about non-existend VBox Machine disabled.
+                        #    #I decided to skip check on import. Just imported VMs won't run, so user can manually fix them.
+                        #    #VirtualBox will give correct error anyway, on VM start attempt.
+                    #"""
+
             else:
                 server.host = server.name
+                debugmsg(3, "DynagenSub::open_config(), server.host = %s, server.name = %s" % (str(server.host), str(server.name)))
                 controlPort = None
                 if ':' in server.host:
-                    (server.host, controlPort) = server.host.split(':')
+                    #(server.host, controlPort) = server.host.split(':')
+                    controlPort = int(server.host.split(':')[-1])
+                    server.host = self.getHost(server.host)
                 if server['port'] != None:
                     controlPort = server['port']
                 if controlPort == None:
@@ -248,6 +320,7 @@ class DynagenSub(Dynagen):
                 # need to start local hypervisors
                 if (server.host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or server.host == 'localhost') and \
                     globals.GApp.HypervisorManager and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
+                    debugmsg(2, "DynagenSub::open_config(), entered Dynamips HypervisorManager")
 
                     # update server.host and server.name to match with Hypervisor Manager Binding configuration,
                     # having hypervisors using 127.0.0.1 mixed with others using localhost will bring issues ...
@@ -269,6 +342,7 @@ class DynagenSub(Dynagen):
 
                     if server['workingdir'] == '.':
                         server['workingdir'] = os.path.dirname(FILENAME)
+                    
 
                     # check if the working directory is accessible, if not find an alternative working directory
                     if not server.has_key('workingdir') or not server['workingdir'] or not os.access(server['workingdir'], os.F_OK):
@@ -280,6 +354,7 @@ class DynagenSub(Dynagen):
                         % (unicode(server['workingdir']), unicode(server.host) + ':' + controlPort, workdir)
                         server['workingdir'] = workdir
 
+                    debugmsg(3, ("DynagenSub::open_config(), server.sections = ", server.sections))
                     for subsection in server.sections:
                         device = server[subsection]
 
@@ -333,6 +408,7 @@ class DynagenSub(Dynagen):
                         elif device.has_key('cnfg') and device['cnfg']:
 
                             # Check if this is a relative config path and convert to an absolute path if necessary
+                            debugmsg(3, "DynagenSub::open_config(), device.has_key('cnfg') and device['cnfg']")
                             abspath = os.path.join(os.path.dirname(FILENAME), unicode(device['cnfg']))
                             if os.path.exists(abspath):
                                 device['cnfg'] = abspath
@@ -362,11 +438,14 @@ class DynagenSub(Dynagen):
         progress.setValue(count)
         progress.deleteLater()
         progress = None
+        debugmsg(2, "DynagenSub::open_config(), returning config")
+        #debugmsg(3, ("config = ", config))
         return config
 
     def getGNS3Data(self):
         """ Returns GNS3 specific data from NET file
         """
+        debugmsg(2, "DynagenSub::getGNS3Data(), returns: %s" % str(self.gns3_data))
 
         return self.gns3_data
 

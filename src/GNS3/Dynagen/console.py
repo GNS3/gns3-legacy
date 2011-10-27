@@ -4,7 +4,7 @@
 
 """
 console.py
-Copyright (C) 2006-2010  Greg Anuzelli
+Copyright (C) 2006-2011  Greg Anuzelli
 contributions: Pavel Skovajsa
 
 Derived from recipe on ASPN Cookbook
@@ -96,7 +96,7 @@ class Console(AbstractConsole):
     def __init__(self, dynagen):
         AbstractConsole.__init__(self)
         self.prompt = '=> '
-        self.intro  = 'Dynagen management console for Dynamips and Qemuwrapper ' + self.namespace.VERSION + '\nCopyright (c) 2005-2010 Greg Anuzelli, contributions Pavel Skovajsa & Jeremy Grossmann\n'
+        self.intro  = 'Dynagen management console for Dynamips and Qemuwrapper/VBoxwrapper ' + self.namespace.VERSION + '\nCopyright (c) 2005-2011 Greg Anuzelli, contributions Pavel Skovajsa, Jeremy Grossmann & Alexey Eromenko "Technologov"\n'
         self.dynagen = dynagen
     ## Command definitions ##
 
@@ -153,65 +153,13 @@ class Console(AbstractConsole):
                 row.append('%-10s' % device.aux)
             except AttributeError:
                 row.append('%-10s' % 'n/a')
-
+                
             table.append(row)
         table.sort(con_cmp)  # Sort the table by the console port #
         for line in table:
             for item in line:
                 print item,
             print
-
-    def do_conf(self, args):
-        """conf <hypervisor address>:<hypervisor port>
-\tswitch into configuration mode of the specific hypervisor eg. 'conf localhost'. If the hypervisor does not exist it will be created.
-conf
-\tswitch into global config mode"""
-
-        if '?' in args:
-            print self.do_conf.__doc__
-            return
-
-        #if this is a conf <nothing> command go into global config mode
-        if args.strip() == "":
-            nested_cmd = confConsole(self.dynagen, self)
-            nested_cmd.cmdloop()
-            return
-
-        #if this is a conf <hypervisor_name> go into hypervisor config mode
-        #check if this hypervisor already exists
-        found = False
-        params = args.split(":")
-        if len(params) == 1:
-            hyp_name = params[0]
-            hyp_port = 7200
-        elif len(params) == 2:
-            try:
-                hyp_name = params[0]
-                hyp_port = int(params[1])
-            except (AttributeError, ValueError):
-                error('Syntax error in ' + args + ' . Use <hypervisor address>:<hypervisor port> syntax')
-                return
-        else:
-            error('Syntax error in ' + params + ' . Use <hypervisor address>:<hypervisor port> syntax')
-            return
-
-        for server in self.dynagen.dynamips.values():
-            if hyp_name == server.host and hyp_port == server.port:
-                found = True
-                break
-        if not found:
-            #if not found create the hypervisor instance...
-            dynamips = self.dynagen.create_dynamips_hypervisor(hyp_name, hyp_port)
-
-            #call hypervisor config mode
-            if dynamips != None:
-                nested_cmd = confHypervisorConsole(dynamips, self.dynagen)
-                nested_cmd.cmdloop()
-        else:
-
-            #looks like we found an already existing hypervisor instance, so let's jump into nested conf Cmd to configure it
-            nested_cmd = confHypervisorConsole(server, self.dynagen)
-            nested_cmd.cmdloop()
 
     def do_suspend(self, args):
         """suspend  {/all | router1 [router2] ...}
@@ -251,6 +199,44 @@ conf
                 print "Note: " + str(e)
 
 
+    def do_vboxexec(self, args):
+        """vboxexec <VBOX device> <command>\nVirtualBox GuestControl execute sends a command to VirtualBox guest\nand prints it's output (experimental feature).
+This requires VirtualBox Guest Additions to be installed inside the guest VM."""
+        
+        if '?' in args or args.strip() == "":
+            print self.do_vboxexec.__doc__
+            return
+        devices = args.split(" ")
+
+        #if devname in devices[0]:
+        devname =  devices[0]
+        #print "ADEBUG: console.py: devname = ", devname
+        
+        try:
+            device = self.dynagen.devices[devname]
+            if not isinstance(device, self.namespace.AnyVBoxEmuDevice):
+                error("Device is not VirtualBox device: " + devname)
+                return
+            result = device.vboxexec(args.split(" ")[1:])
+            #print "ADEBUG: console.py: vboxexec raw result = ", result
+            #If we got incorrect result, just drop it.
+            try:
+                if not result[0][0:10] == "100-result":
+                    #print "ADEBUG: console.py: result[0][0:9] = %s" % result[0][0:9]
+                    return
+            except:
+                return
+            # vboxwrapper TCP server incorrectly formats text by adding double
+            #line-ending in UNIX style, which we convert to single line-end in client-native style
+            print result[0][10:].replace('\n\n', os.linesep)
+        except IndexError:
+            pass
+        except (KeyError, AttributeError):
+            error('invalid device: ' + devname)
+        except DynamipsError, e:
+            error(e)
+        except DynamipsWarning, e:
+            print "Note: " + str(e)
 
     def do_start(self, args):
         """start  {/all [delay] | router1 [router2] ...}
@@ -450,19 +436,15 @@ conf
             print ' %s at %s:%i has version %s' % (d.type, d.host, d.port, d.version)
         print """
 Credits:
-Dynagen is written and maintained by Greg Anuzelli
-Contributing developer: Pavel Skovajsa & Jeremy Grossmann
+Dynagen is written by Greg Anuzelli
+Contributing developers: Pavel Skovajsa, Jeremy Grossmann & Alexey Eromenko "Technologov"
 Qemuwrapper: Thomas Pani & Jeremy Grossmann
+VBoxwrapper: Thomas Pani, Jeremy Grossmann & Alexey Eromenko "Technologov"
 Pemu: Milen Svobodnikov
 Thanks to the authors of the ConfObj library
 
 And big thanks of course to Christophe Fillot as the author of Dynamips.
 """
-
-    def do_shell(self, args):
-        """Pass command to a system shell when line begins with '!'"""
-
-        os.system(args)
 
     def do_telnet(self, args):
         """telnet  {/all | router1 [router2] ...}
@@ -561,7 +543,7 @@ And big thanks of course to Christophe Fillot as the author of Dynamips.
             output = []
             for device in self.dynagen.devices.values():
                 #if it is a router or other emulated device
-                if isinstance(device, (self.namespace.Router, self.namespace.AnyEmuDevice, self.namespace.FRSW, self.namespace.ATMBR, self.namespace.ATMSW, self.namespace.ETHSW)):
+                if isinstance(device, (self.namespace.Router, self.namespace.AnyEmuDevice, self.namespace.AnyVBoxEmuDevice, self.namespace.FRSW, self.namespace.ATMBR, self.namespace.ATMSW, self.namespace.ETHSW)):
                     output.append(device.info())
             output.sort()
             for devinfo in output:
@@ -570,7 +552,7 @@ And big thanks of course to Christophe Fillot as the author of Dynamips.
             #if this is 'show device {something}' command print info about specific device
             try:
                 device = self.dynagen.devices[params[1]]
-                if isinstance(device, (self.namespace.Router, self.namespace.AnyEmuDevice, self.namespace.FRSW, self.namespace.ATMBR, self.namespace.ATMSW, self.namespace.ETHSW)):
+                if isinstance(device, (self.namespace.Router, self.namespace.AnyEmuDevice, self.namespace.AnyVBoxEmuDevice, self.namespace.FRSW, self.namespace.ATMBR, self.namespace.ATMSW, self.namespace.ETHSW)):
                     print device.info()
             except KeyError:
                 error('unknown device: ' + params[1])
@@ -1333,91 +1315,6 @@ Examples:
         except DynamipsWarning, e:
             print "Note: " + str(e)
 
-    def do_confreg(self, args):
-        """confreg  {/all | router1 [router2] <0x0-0xFFFF>}
-\tset the config register(s)"""
-
-        if '?' in args or args.strip() == "":
-            print self.do_confreg.__doc__
-            return
-
-        devices = args.split(" ")
-        if devices[-1][:2] == '0x':
-            confreg = devices.pop()
-            flag = 'set'
-        else:
-            print "***Error: No confreg value specified"
-            return
-
-        if '/all' in devices:
-            for device in self.dynagen.devices.values():
-                try:
-                    if flag == 'set':
-                        device.confreg = confreg
-                except IndexError:
-                    #else:
-                    #    confreg = device.confreg
-                    #    print device.name + ": " + confreg
-                    pass
-                except AttributeError:
-                    # If this device doesn't support stop just ignore it
-                    pass
-                except DynamipsError, e:
-                    error(e)
-                except DynamipsWarning, e:
-                    print "Note: " + str(e)
-            return
-
-        for device in devices:
-            try:
-                self.dynagen.devices[device].confreg = confreg
-            except IndexError:
-                pass
-            except (KeyError, AttributeError):
-                error('invalid device: ' + device)
-            except DynamipsError, e:
-                error(e)
-            except DynamipsWarning, e:
-                print "Note: " + str(e)
-
-
-    def do_cpuinfo(self, args):
-        """cpuinfo  {/all | router1 [router2] ...}\nshow CPU info for a specific router(s)"""
-
-        if '?' in args or args.strip() == '':
-            print self.do_cpuinfo.__doc__
-            return
-
-        devices = args.split(' ')
-        if '/all' in devices:
-            for device in self.dynagen.devices.values():
-                try:
-                    for line in device.cpuinfo:
-                        print line.strip()
-                except IndexError:
-                    pass
-                except AttributeError:
-                    # If this device doesn't support cpuinfo just ignore it
-                    pass
-                except DynamipsError, e:
-                    error(e)
-                except DynamipsWarning, e:
-                    print "Note: " + str(e)
-                    return
-            return
-
-        for device in devices:
-            try:
-                print self.dynagen.devices[device].cpuinfo[0].strip()
-            except IndexError:
-                pass
-            except (KeyError, AttributeError):
-                error('invalid device: ' + device)
-            except DynamipsError, e:
-                error(e)
-            except DynamipsWarning, e:
-                print "Note: " + str(e)
-
     def telnet(self, device):
         """Telnet to the console port of device"""
     
@@ -1433,7 +1330,7 @@ Examples:
     
             os.system(telnetstring)
             time.sleep(0.5)  # Give the telnet client a chance to start
-            
+
     def aux(self, device):
         """Telnet to the AUX port of device"""
     

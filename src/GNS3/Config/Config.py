@@ -21,7 +21,7 @@
 
 import os
 import GNS3.Globals as globals
-from GNS3.Config.Objects import iosImageConf, hypervisorConf, libraryConf, qemuImageConf, junosImageConf, asaImageConf, idsImageConf
+from GNS3.Config.Objects import iosImageConf, hypervisorConf, libraryConf, qemuImageConf, junosImageConf, asaImageConf, idsImageConf, vboxImageConf
 from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from GNS3.Node.DecorativeNode import DecorativeNode
 from PyQt4 import QtCore
@@ -252,13 +252,41 @@ class GNS_Conf(object):
             conf.filename = c.get(cgroup + "/filename", unicode(''))
             conf.memory = int(c.get(cgroup + "/memory", 256))
             conf.nic_nb = int(c.get(cgroup + "/nic_nb", 6))
-            conf.nic = str(c.get(cgroup + "/nic", 'e1000'))
+            conf.nic = str(c.get(cgroup + "/nic", 'rtl8139'))
             conf.options = str(c.get(cgroup + "/options", ''))
             conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
             globals.GApp.qemuimages[conf.name] = conf
 
             if conf.id >= globals.GApp.qemuimages_ids:
                 globals.GApp.qemuimages_ids = conf.id + 1
+
+    def VBOX_images(self):
+        """ Load VBox images settings from config file
+        """
+
+        # Loading Qemu image conf
+        basegroup = "VBOX.images"
+        c = ConfDB()
+        c.beginGroup(basegroup)
+        childGroups = c.childGroups()
+        c.endGroup()
+
+        for id in childGroups:
+
+            cgroup = basegroup + '/' + id
+
+            conf = vboxImageConf()
+            conf.id = int(id)
+            conf.name = c.get(cgroup + "/name", unicode(''))
+            conf.filename = c.get(cgroup + "/filename", unicode(''))
+            conf.nic_nb = int(c.get(cgroup + "/nic_nb", 6))
+            conf.nic = str(c.get(cgroup + "/nic", 'automatic'))
+            conf.guestcontrol_user = str(c.get(cgroup + "/guestcontrol_user", ''))
+            conf.guestcontrol_password = str(c.get(cgroup + "/guestcontrol_password", ''))
+            globals.GApp.vboximages[conf.name] = conf
+
+            if conf.id >= globals.GApp.vboximages_ids:
+                globals.GApp.vboximages_ids = conf.id + 1
 
     def JUNOS_images(self):
         """ Load JunOS images settings from config file

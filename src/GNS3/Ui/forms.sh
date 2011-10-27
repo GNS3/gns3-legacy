@@ -25,11 +25,13 @@ FILES=" Form_MainWindow
         ./ConfigurationPages/Form_JunOSPage
         ./ConfigurationPages/Form_IDSPage
         ./ConfigurationPages/Form_QemuPage
+        ./ConfigurationPages/Form_VirtualBoxPage
         ./ConfigurationPages/Form_DecorativeNodePage
         ./ConfigurationPages/Form_PreferencesGeneral
         ./ConfigurationPages/Form_PreferencesDynamips
         ./ConfigurationPages/Form_PreferencesCapture
         ./ConfigurationPages/Form_PreferencesQemu
+        ./ConfigurationPages/Form_PreferencesVirtualBox
 "
 
 # Update files...

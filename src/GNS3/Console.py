@@ -30,6 +30,7 @@ from GNS3.Dynagen.console import Console as Dynagen_Console, getItems
 from GNS3.External.PyCutExt import PyCutExt
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.AnyEmuDevice import AnyEmuDevice
+from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice
 from __main__ import VERSION
 
 class Console(PyCutExt, Dynagen_Console):
@@ -40,7 +41,7 @@ class Console(PyCutExt, Dynagen_Console):
                 "reload", "start", "telnet", "aux", "clear", "send",
                 "clear topology", "help", "import", "push", "resume", 
                 "stop", "ver", "export", "hist", "list",
-                "save", "show", "suspend"])
+                "save", "show", "suspend", "ver", "vboxexec"])
 
     def __init__(self, parent):
         """ Initialise the Console widget
@@ -166,7 +167,7 @@ class Console(PyCutExt, Dynagen_Console):
             Dynagen_Console.do_start(self, args)
             devices = args.split(' ')
             for node in globals.GApp.topology.nodes.values():
-                if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice)) and (node.hostname in devices or '/all' in devices):
+                if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice) or isinstance(node, AnyVBoxEmuDevice)) and (node.hostname in devices or '/all' in devices):
                     node.startupInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'running')
         except lib.DynamipsError, msg:
@@ -183,7 +184,7 @@ class Console(PyCutExt, Dynagen_Console):
             Dynagen_Console.do_stop(self, args)
             devices = args.split(' ')
             for node in globals.GApp.topology.nodes.values():
-                if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice)) and (node.hostname in devices or '/all' in devices):
+                if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice) or isinstance(node, AnyVBoxEmuDevice)) and (node.hostname in devices or '/all' in devices):
                     node.shutdownInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'stopped')
         except lib.DynamipsError, msg:
@@ -200,7 +201,7 @@ class Console(PyCutExt, Dynagen_Console):
             Dynagen_Console.do_suspend(self, args)
             devices = args.split(' ')
             for node in globals.GApp.topology.nodes.values():
-                if isinstance(node, IOSRouter) and (node.hostname in devices or '/all' in devices):
+                if (isinstance(node, IOSRouter) or isinstance(node, AnyVBoxEmuDevice)) and (node.hostname in devices or '/all' in devices):
                     node.suspendInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'suspended')
         except lib.DynamipsError, msg:
@@ -217,7 +218,7 @@ class Console(PyCutExt, Dynagen_Console):
             Dynagen_Console.do_resume(self, args)
             devices = args.split(' ')
             for node in globals.GApp.topology.nodes.values():
-                if isinstance(node, IOSRouter) and (node.hostname in devices or '/all' in devices):
+                if (isinstance(node, IOSRouter) or isinstance(node, AnyVBoxEmuDevice)) and (node.hostname in devices or '/all' in devices):
                     node.startupInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'running')
         except lib.DynamipsError, msg:
@@ -232,6 +233,35 @@ class Console(PyCutExt, Dynagen_Console):
 
         self.do_stop(args)
         self.do_start(args)
+
+    def do_vboxexec(self, args):
+        """vboxexec <VBOX device> <command>\nVirtualBox GuestControl execute sends a command to VirtualBox guest\nand prints it's output (experimental feature).
+This requires VirtualBox Guest Additions to be installed inside the guest VM.
+
+Example for Windows guest:
+  vboxexec VBOX1 ping.exe 127.0.0.1
+Example for Linux guest:
+  vboxexec VBOX1 /bin/ping 127.0.0.1 -c4"""
+
+        if '?' in args or args.strip() == '':
+            print self.do_vboxexec.__doc__
+            return
+        if not globals.GApp.systconf['vbox'].enable_GuestControl:
+            print "VirtualBox GuestControl execution is disabled in preferences"
+            return
+            
+        try:
+            node_name = args.split(' ')[0]
+            for node in globals.GApp.topology.nodes.values():
+                if isinstance(node, AnyVBoxEmuDevice) and node.hostname == node_name:
+                    break
+            Dynagen_Console.do_vboxexec(self, args)
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  unicode(msg))
+        except lib.DynamipsWarning,  msg:
+            QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  unicode(msg))
+        except (lib.DynamipsErrorHandled,  socket.error):
+            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
 
     def do_clear(self,  args):
         """clear [item]

@@ -82,7 +82,7 @@ conf_qemuImage_defaults = {
     'filename': '',
     'memory': 256,
     'nib_nb': 6,
-    'nic': 'e1000',
+    'nic': 'rtl8139',
     'options': '',
     'kvm': False
 }
@@ -96,6 +96,26 @@ conf_qemuImage_types = {
     'nic': str,
     'options': str,
     'kvm': bool
+}
+
+conf_vboxImage_defaults = {
+    'id': -1,
+    'name': '',
+    'filename': '',
+    'nib_nb': 6,
+    'nic': 'automatic',
+    'guestcontrol_user': '',
+    'guestcontrol_password': ''
+}
+
+conf_vboxImage_types = {
+    'id': int,
+    'name': unicode,
+    'filename': unicode,
+    'nic_nb': int,
+    'nic': str,
+    'guestcontrol_user': str,
+    'guestcontrol_password': str
 }
 
 conf_junosImage_defaults = {
@@ -216,6 +236,7 @@ conf_systemGeneral_defaults = {
     'autosave': 60,
     'term_cmd': '',
     'use_shell': True,
+    'bring_console_to_front': False,
     'project_path': '.',
     'ios_path': '.',
     'status_points': True,
@@ -231,6 +252,7 @@ conf_systemGeneral_types = {
     'slow_start': int,
     'autosave': int,
     'use_shell': bool,
+    'bring_console_to_front': bool,
     'term_cmd': unicode,
     'project_path': unicode,
     'ios_path': unicode,
@@ -243,7 +265,7 @@ conf_systemGeneral_types = {
 conf_systemCapture_defaults = {
     'workdir': '',
     'cap_cmd': '',
-    'auto_start': True,
+    'auto_start': False,
 }
 
 conf_systemCapture_types = {
@@ -258,6 +280,7 @@ conf_systemQemu_defaults = {
     'qemu_path':'qemu',
     'qemu_img_path':'qemu-img',
     'external_hosts':[],
+    'enable_QemuWrapperAdvOptions' : False,
     'enable_QemuManager': True,
     'import_use_QemuManager': True,
     'QemuManager_binding': u'localhost',
@@ -272,10 +295,41 @@ conf_systemQemu_types = {
     'qemu_path': unicode,
     'qemu_img_path': unicode,
     'external_hosts': list,
+    'enable_QemuWrapperAdvOptions' : bool,
     'enable_QemuManager': bool,
     'import_use_QemuManager': bool,
     'QemuManager_binding': unicode,
     'qemuwrapper_port': int,
     'qemuwrapper_baseUDP': int,
     'qemuwrapper_baseConsole': int,
+}
+
+conf_systemVBox_defaults = {
+    'vboxwrapper_path':'',
+    'vboxwrapper_workdir':'',
+    'external_hosts':[],
+    'enable_VBoxWrapperAdvOptions' : False,
+    'enable_VBoxAdvOptions' : False,
+    'enable_GuestControl': False,
+    'enable_VBoxManager': True,
+    'import_use_VBoxManager': True,
+    'VBoxManager_binding': u'localhost',
+    'vboxwrapper_port': 11525,
+    'vboxwrapper_baseUDP': 20900,
+    'vboxwrapper_baseConsole': 3900,
+}
+
+conf_systemVBox_types = {
+    'vboxwrapper_path': unicode,
+    'vboxwrapper_workdir': unicode,
+    'external_hosts': list,
+    'enable_VBoxWrapperAdvOptions' : bool,
+    'enable_VBoxAdvOptions' : bool,
+    'enable_GuestControl': bool,
+    'enable_VBoxManager': bool,
+    'import_use_VBoxManager': bool,
+    'VBoxManager_binding': unicode,
+    'vboxwrapper_port': int,
+    'vboxwrapper_baseUDP': int,
+    'vboxwrapper_baseConsole': int,
 }
