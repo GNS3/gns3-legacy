@@ -1,33 +1,50 @@
 TODO LIST
 
- * Open .net files from Finder on Mac OS X (http://www.gns3.net/phpBB/topic1817.html)
- * DMG installer for Mac OS X (http://chromasoft.blogspot.com/2010/02/building-dmg-installer-for-mac-simple.html)
- * NIO Multicast support, is this useful? (supported only in dynamips-community version)
- * DONE: VirtualBox integration (patch VirtualBox to support UDP tunnels + create a VBoxWrapper).
- * VNC support for Qemu (-vnc 127.0.0.1:i++) + entry in the contextual memu to start VNC
+Qemu/Pemu
+
+ * Extract/write files from Qemu qcow2 format image files using libguestfs
  * Implement Qemu monitor functions (need to update the Qemu patch)
- * Style options for node labels
- * Do not remove original comments in .net files.
+ * VNC support for Qemu (-vnc 127.0.0.1:i++) + entry in the contextual memu to start VNC
+
+GUI
+
  * Add an Open Recent option to the file menu, lists say last 6 projects.
  * Add a Clear Configuration button to the startup configuration option, and/or add a Clear All Configurations option to the control menu.
- * New logo for GNS3
+ * Style options for node labels
  * Change the scrolling behavior for the scene
- * Extract/write files from Qemu qcow2 format image files using libguestfs
- * Dynamipswrapper for remote labs (not need to share an IOS image)
- * Auto-detection of a newer GNS3 version available to download
  * Improved "baseconfig.txt" message => "The Base config: file specified in Edit->IOS Images and hypervisors [IOS Images] (%filename) for image %imagename can not be found; no such file or directory. Your router will start with a blank configuration."
- * Dynagen only topology export?
- * Drag'n'drop a .net topology inside GNS3
  * Option to draw a line or draw an arrow on the scene
+ * Copy feature for Dynagen console
+
+Dynamips
+
+ * NIO Multicast support, is this useful? (supported only in dynamips-community version) 
  * Set system ID.
- * .net versioning
  * Automatic console login for IOS (idlepc is not effective until hitting returns in the IOS console)
- * Check for new version at startup, ask for download.
  * Auto UDP (supported in dynamips-community): to simplify the UDP port mapping stuff and the binding problems that can occur
  	-> The first command to use is: "nio create_udp_auto <nio_name> <local_addr> <local_port_start> <local_port_end>"
  	-> It will return the allocated port number. local_addr is an IPv4/IPv6 address (0.0.0.0 on IPv4 and :: on IPv6 to listen on all addresses). local_port_start and local_port_end define a port range (it can be useful if you are behind a firewall).
 	-> On the remote side: nio connect_udp_auto <nio_name> <remote_host> <remote_port>
     -> remote_host being the host where nio create_udp_auto was called, and remote_port the port number returned by it.
+
+Client/Server
+
+ * Dynamipswrapper for remote labs (not need to share an IOS image)
+
+Import/Export
+
+ * Open .net files from Finder on Mac OS X (http://www.gns3.net/phpBB/topic1817.html)
+ * Do not remove original comments in .net files.
+ * Drag'n'drop a .net topology inside GNS3
+ * .net versioning
+
+Misc.
+
+ * New logo for GNS3
+ * Check for new version at startup, ask for download.
+ * DMG installer for Mac OS X (http://chromasoft.blogspot.com/2010/02/building-dmg-installer-for-mac-simple.html)
+ * Only one location for VERSION constant (in setup.py)
+
 (by Technologov)
  * Real Cisco icons, including the various cards out there (like Cisco Packet Tracer does)
      Not on topology -- but in Node configuration options.
@@ -59,10 +76,19 @@ It needs to be broken up into smaller functions, that are readable and easy to d
 
 Debugging
 
- * Screenshots appear to be broken in latest Qt (4.7.x)
  * Duplicated packets with ETHSW?
  * Test QinQ
- * Removable WICs
+ * PIX booting with 256M RAM?! => 128 Minimum
+ * Unicode error with PIX
+
+---------Traceback lines (saved in exception.log)----------
+Traceback (most recent call last):
+
+  File "C:\Program Files\GNS3 VirtualBox Edition\src\GNS3\Ui\ConfigurationPages\Page_PreferencesQemu.py", line 486, in slotSavePIXImage
+    key = str(self.PIXKey.text())
+
+UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-1: ordinal not in range(128)
+
 
 GNS3-Related feature-requests in 3rd party products: (by Technologov)
 
