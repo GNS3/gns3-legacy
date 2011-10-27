@@ -180,7 +180,7 @@ conf_systemDynamips_defaults = {
     'baseAUX': 2100,
     'ghosting': True,
     'jitsharing': False,
-    'sparsemem': False,
+    'sparsemem': True,
     'mmap': True,
     'memory_limit': 512,
     'udp_incrementation': 100,

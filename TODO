@@ -16,7 +16,7 @@ TODO LIST
  * Dynamipswrapper for remote labs (not need to share an IOS image)
  * Auto-detection of a newer GNS3 version available to download
  * Improved "baseconfig.txt" message => "The Base config: file specified in Edit->IOS Images and hypervisors [IOS Images] (%filename) for image %imagename can not be found; no such file or directory. Your router will start with a blank configuration."
- * Finish Kqemu clean-up
+ * Dynagen only topology export?
  * Drag'n'drop a .net topology inside GNS3
  * Option to draw a line or draw an arrow on the scene
  * Set system ID.

@@ -312,7 +312,7 @@ class Application(QApplication, Singleton):
         confo.clean_workdir = ConfDB().value("Dynamips/clean_working_directory", QVariant(True)).toBool()
         confo.ghosting = ConfDB().value("Dynamips/dynamips_ghosting", QVariant(True)).toBool()
         confo.mmap = ConfDB().value("Dynamips/dynamips_mmap", QVariant(True)).toBool()
-        confo.sparsemem = ConfDB().value("Dynamips/dynamips_sparsemem", QVariant(False)).toBool()
+        confo.sparsemem = ConfDB().value("Dynamips/dynamips_sparsemem", QVariant(True)).toBool()
         confo.jitsharing = ConfDB().value("Dynamips/dynamips_jitsharing", QVariant(False)).toBool()
         if sys.platform.startswith('win'):
             confo.memory_limit = int(ConfDB().get("Dynamips/hypervisor_memory_usage_limit", 512))
