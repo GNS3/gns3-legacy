@@ -391,8 +391,8 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
         """
         if self.emu_vboxdev.state == 'running' or self.emu_vboxdev.state == 'suspended':
             hwnd = int(self.emu_vboxdev.displayWindowFocus())
-        if hwnd > 0:
-            winm.hideWindow(hwnd)
+            if hwnd > 0:
+                winm.hideWindow(hwnd)
 
     def isStarted(self):
         """ Returns True if this device is started

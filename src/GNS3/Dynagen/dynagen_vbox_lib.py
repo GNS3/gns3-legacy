@@ -21,8 +21,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 
-#This file is a client, that connects to 'vboxwrapper' server.
-#This is part of Dynagen-GNS3.
+# dynagen_vbox_lib.py module is a TCP client, that controls to 'vboxwrapper' server.
+# This is part of Dynagen topology layer, and controlled from GNS3 AnyVBoxEmuDevice.
 
 #debuglevel: 0=disabled, 1=default, 2=debug, 3=deep debug
 debuglevel = 0
@@ -362,10 +362,10 @@ class AnyVBoxEmuDevice(object):
         #only for local hypervisors !
         if self.state == 'stopped':
             raise DynamipsWarning, 'virtualized device %s is stopped and cannot be focused on' % self.name
-            return
+            return 0
         if not self.isLocalhost(self.p.name):
             #raise DynamipsWarning, 'virtualized device %s is running on non-local hypervisor' % self.name
-            return
+            return 0
         # We use double-query, because Multi-threaded server often returns previous result.
         r = send(self.p, 'vbox display_window_focus %s' % self.name)
         r = send(self.p, 'vbox display_window_focus %s' % self.name)
@@ -373,24 +373,9 @@ class AnyVBoxEmuDevice(object):
         if r[0].startswith('100-hwnd'):
             self.hwnd = r[0].split()[1]
             debugmsg(1, "hwnd = %s" % str(self.hwnd))
-            if int(self.hwnd) != 0 and platform.system() == 'Windows':
-                try:
-                    import win32gui, win32con
-                    if win32gui.IsIconic(int(self.hwnd)):
-                        win32gui.ShowWindow(int(self.hwnd), win32con.SW_RESTORE)
-                    win32gui.SetForegroundWindow(int(self.hwnd))
-                except Exception, e:
-                    debug("dynagen_vbox_lib.py: %s" % e.__str__())
-            elif int(self.hwnd) != 0 and platform.system() == 'Darwin':
-                # Technologov: Not Implemented. I have no Mac around...
-                debug("dynagen_vbox_lib.py: displayWindowFocus() is not implemented on Mac OS X")
-            elif int(self.hwnd) != 0: #Unix-like, X11-based, i.e. Linux/Solaris/FreeBSD
-                try:
-                    import subprocess
-                    subprocess.call(['xdotool', 'windowactivate', self.hwnd])
-                except Exception, e:
-                    debug("dynagen_vbox_lib.py: %s" % e.__str__())
-        return r
+            return self.hwnd
+        else:
+            return 0
 
     def suspend(self):
         """suspends the virtualized device instance in VBox"""
