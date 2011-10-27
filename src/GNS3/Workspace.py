@@ -201,54 +201,51 @@ class Workspace(QMainWindow, Ui_MainWindow):
             painter.end()
         else:
 
-            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Yes - Take all the workspace\nNo - Take only what I see"), 
-                                            QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+#            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Yes - Take all the workspace\nNo - Take only what I see"), 
+#                                            QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
-            if reply == QtGui.QMessageBox.Yes:
+#            if reply == QtGui.QMessageBox.Yes:
 
-                items = self.graphicsView.scene().items()
-                max_x = max_y = min_x = min_y = 0
-                for item in items:
-                    if item.x() > max_x:
-                        max_x = item.x()
-                    if item.y() > max_y:
-                        max_y = item.y()
-                    if item.x() < min_x:
-                        min_x = item.x()
-                    if item.y() < min_y:
-                        min_y = item.y()
-                x = min_x - 30
-                y = min_y - 30
-                width = abs(x) + max_x + 200
-                height = abs(y) + max_y + 200
-    
-            else:
+#                items = self.graphicsView.scene().items()
+#                max_x = max_y = min_x = min_y = 0
+#                for item in items:
+#                    if item.x() > max_x:
+#                        max_x = item.x()
+#                    if item.y() > max_y:
+#                        max_y = item.y()
+#                    if item.x() < min_x:
+#                        min_x = item.x()
+#                    if item.y() < min_y:
+#                        min_y = item.y()
+#                x = min_x - 30
+#                y = min_y - 30
+#                width = abs(x) + max_x + 200
+#                height = abs(y) + max_y + 200
+#
+#            else:
 
-                rect = self.graphicsView.viewport().rect()
-                width = rect.width() + 10
-                height = rect.height() + 10
-            #FIXME: This code is broken on Qt4.7 or newer (works with Qt4.6 and PyQt4.7)
+            rect = self.graphicsView.viewport().rect()
+            width = rect.width() + 10
+            height = rect.height() + 10
+
             pixmap = QtGui.QPixmap(width, height)
             pixmap.fill(QtCore.Qt.white)
             painter = QtGui.QPainter(pixmap)
             painter.setRenderHint(QtGui.QPainter.Antialiasing)
-            if reply == QtGui.QMessageBox.Yes:
-                self.graphicsView.scene().render(painter, QtCore.QRectF(0,0,pixmap.width(),pixmap.height()), QtCore.QRectF(x, y, width, height))
-            else:
-                self.graphicsView.render(painter)
+#            if reply == QtGui.QMessageBox.Yes:
+#                self.graphicsView.scene().render(painter, QtCore.QRectF(0,0,pixmap.width(),pixmap.height()), QtCore.QRectF(x, y, width, height))
+#            else:
+            self.graphicsView.render(painter)
             painter.end()
             pixmap.save(name, format)
 
     def __action_Export(self):
         """ Export the scene to an image file
         """
-    
+
         filedialog = QtGui.QFileDialog(self)
         selected = QtCore.QString()
-        if int(QtCore.PYQT_VERSION_STR.split('.')[1]) > 7:
-            exports = 'PDF File (*.pdf)'
-        else:
-            exports = 'PNG File (*.png);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm);;PDF File (*.pdf)'
+        exports = 'PNG File (*.png);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm);;PDF File (*.pdf)'
         path = QtGui.QFileDialog.getSaveFileName(filedialog, 'Screenshot', '.', exports, selected)
         if not path:
             return
