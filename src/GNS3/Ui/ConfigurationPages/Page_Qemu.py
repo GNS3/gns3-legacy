@@ -72,6 +72,11 @@ class Page_Qemu(QtGui.QWidget, Ui_QemuPage):
         if qemu_config['options']:
             self.lineEditOptions.setText(qemu_config['options'])
             
+        if qemu_config['kqemu'] == True:
+            self.checkBoxKqemu.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
+            
         if qemu_config['kvm'] == True:
             self.checkBoxKVM.setCheckState(QtCore.Qt.Checked)
         else:
@@ -104,6 +109,11 @@ class Page_Qemu(QtGui.QWidget, Ui_QemuPage):
         options = str(self.lineEditOptions.text())
         if options:
             qemu_config['options'] = options
+
+        if self.checkBoxKqemu.checkState() == QtCore.Qt.Checked:
+            qemu_config['kqemu'] = True
+        else:
+            qemu_config['kqemu']  = False
             
         if self.checkBoxKVM.checkState() == QtCore.Qt.Checked:
             qemu_config['kvm'] = True

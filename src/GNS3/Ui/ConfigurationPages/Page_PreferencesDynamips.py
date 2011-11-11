@@ -27,7 +27,6 @@ from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Config import ConfDB
 from GNS3.Utils import fileBrowser, translate, testOpenFile
 import GNS3.Globals as globals
-import subprocess as sub
 
 class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
 
@@ -38,12 +37,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         self.connect(self.dynamips_path_browser, QtCore.SIGNAL('clicked()'), self.__setDynamipsPath)
         self.connect(self.dynamips_workdir_browser, QtCore.SIGNAL('clicked()'), self.__setDynamipsWorkdir)
         self.connect(self.pushButtonTestDynamips, QtCore.SIGNAL('clicked()'),self.__testDynamips)
-        #self.comboBoxBinding.addItems(['localhost', QtNetwork.QHostInfo.localHostName()] + map(lambda addr: addr.toString(), QtNetwork.QNetworkInterface.allAddresses()))
-        mylist = map(lambda addr: addr.toString(), QtNetwork.QNetworkInterface.allAddresses())
-        if mylist.__contains__('0:0:0:0:0:0:0:1'):
-            self.comboBoxBinding.addItems(['localhost', '::1', QtNetwork.QHostInfo.localHostName()] + mylist)
-        else:
-            self.comboBoxBinding.addItems(['localhost', QtNetwork.QHostInfo.localHostName()] + mylist)
+        self.comboBoxBinding.addItems(['localhost', QtNetwork.QHostInfo.localHostName()] + map(lambda addr: addr.toString(), QtNetwork.QNetworkInterface.allAddresses()))
         self.loadConf()
 
     def loadConf(self):
@@ -60,7 +54,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
 
         # Default path to dynamips executable
         if self.conf.path == '' and sys.platform.startswith('win'):
-            self.conf.path = unicode('dynamips.exe')
+            self.conf.path = unicode('dynamips-wxp.exe')
             
         # Default path to working directory
         if self.conf.workdir == '':
@@ -213,35 +207,11 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             if reply == QtGui.QMessageBox.No:
                 return
 
-        try:
-            p = sub.Popen([globals.GApp.systconf['dynamips'].path, '--help'], stdout = sub.PIPE)
-            dynamips_stdout = p.communicate()
-        except OSError:
-            self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Failed to start Dynamips")  + '</font>')
-            return
-            
-        try:
-            if not dynamips_stdout[0].splitlines()[0].__contains__('version'):
-                self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Failed to determine version of Dynamips.")  + '</font>')
-                return
-            version_raw = dynamips_stdout[0].splitlines()[0].split('version')[1].lstrip()
-            version_1st = int(version_raw.split('.')[0])
-            version_2nd = int(version_raw.split('.')[1])
-            version_3rd = int(version_raw.split('.')[2].split('-')[0])
-            dynamips_ver = str(version_1st)+'.'+str(version_2nd)+'.'+str(version_3rd)+'-'+version_raw.split('.')[2].split('-')[1]
-        except:
-            self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Failed to determine version of Dynamips.")  + '</font>')
-            return            
-        
-        if version_2nd < 2 or version_3rd < 8:
-            self.labelDynamipsStatus.setText('<font color="red">' + unicode(translate("UiConfig_PreferencesDynamips", "Found Dynamips %s, which is not supported. Use 0.2.8+ instead.")) % dynamips_ver + '</font>')
-            return
-
         self.saveConf()
         if globals.GApp.systconf['dynamips'].path:
             globals.GApp.workspace.clear()
             globals.GApp.HypervisorManager = HypervisorManager()
             if globals.GApp.HypervisorManager.preloadDynamips():
-                self.labelDynamipsStatus.setText('<font color="green">' + unicode(translate("UiConfig_PreferencesDynamips", "Dynamips %s successfully started")) % dynamips_ver + '</font>')
+                self.labelDynamipsStatus.setText('<font color="green">' + translate("UiConfig_PreferencesDynamips", "Dynamips successfully started")  + '</font>')
             else:
                 self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Failed to start Dynamips")  + '</font>')

@@ -1,54 +1,44 @@
-.Dd $Mdocdate: Jun 20 2011$
-.Dt GNS3 1
-.Os
-.Sh "NAME"
-.Nm gns3
-.Nd a graphical network simulator
-.Sh "SYNOPSIS"
-.Nm gns3
-.Op -cdh
-.Op file
-.Sh DESCRIPTION
-GNS3 is a graphical network simulator that allows simulation of
-complex networks and to launch simulations on them. It is an excellent
-complementary tool to real labs for administrators of Cisco networks
-or people wanting to pass their CCNA, CCNP, CCIP or CCIE certifications.
-It can also be used to experiment features of Cisco IOS or to check
-configurations that need to be deployed later on real routers.
-.Pp
-To allow complete simulations, GNS3 is strongly linked with :
-.Bl -bullet -offset 1c
-.It
-Dynamips, the core program that allows Cisco IOS emulation
-.It
-Dynagen, a text-based front-end for Dynamips
-.It
-Qemu, a generic and open source machine emulator and virtualizer
-.El
-.Pp
-\fIImportant notice:\fP users have to provide their own images.
-.Pp
-You may have to install a patched version of some emulators, please read
-the online documentation.
-The options are as follows:
-.Bl -tag -width 3c
-.It Fl h
-Displays a help message
-.It Fl c
-Directory where gns3.ini is located (default: ~/gns3/)
-.It Fl d
-Display debug messages
-.It Fl -version
-Prints out the version and exits
-.El
-.Sh ONLINE DOCUMENTATION
-Check out the online documentation at http://www.gns3.net
-.Sh REPORTING BUGS
-Please send bug reports at http://redmine.gns3.net
-.Sh SEE ALSO
-.Xr qemu 1 ,
-.Xr dynamips 1
-.Sh "AUTHOR"
-GNS3 was originally written by Jeremy Grossmann, David Ruiz, Romain
-Lamaison, Aurelien Levesque and Xavier Alt. The developers can be
-reached by email: contact@gns3.net.
+.TH "GNS3" "1"
+.SH "NAME"
+gns3 \- a graphical network simulator
+.SH "SYNOPSIS"
+.B gns3
+[
+options
+]
+<
+config file
+>
+.br
+.SH "DESCRIPTION"
+.B gns3
+GNS3 is a graphical network simulator that allows you to design complex
+network topologies. You may run simulations or configure devices ranging from
+simple workstations to powerful Cisco routers. It is based on Dynamips, an IOS
+emulator which allows users to run IOS binary images from Cisco Systems and
+Pemu, an PIX firewall emulator based on Qemu.
+.SH OPTIONS
+.br
+.B \-d
+,
+.B \-\-debug
+.br
+.B \-h
+,
+.B \-\-help
+.br
+.B \-\-version
+.br
+.SH REPORTING BUGS
+.br
+Please send bug reports to http://www.ipflow.utc.fr/bts/
+.SH SEE ALSO
+.br
+http://www.gns3.net/
+.SH "AUTHOR"
+.br
+GNS3 was written by Jeremy Grossmann, David Ruiz, Romain Lamaison, Aurelien
+Levesque and Xavier Alt. The developer can be reached by Email:
+contact@gns3.net This manual page was written by Erik Wenzel <erik@debian.org>
+for the \fBDebian GNU/Linux\fP system (but may be used by others).
+

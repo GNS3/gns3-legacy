@@ -1,20 +1,10 @@
 #!/bin/bash
 
-# Update and run this script whenever you add a new .py, a new .ui file that need or
-# will need translation or a new language
-# Don't forget to run Languages_Generate.sh to generate missing .ts files and
-# regenerate .qm files
-
-# SET UP
-#----------------------------------------------------------------------
-
-# Add new languages here
 LANGUAGES="en fr de cn jp es ar pt_br tr ru sk kr pl sr it fa cz bg uk ro gr"
 
 PROJ_FILE="Languages.pro"
 QRC_FILE="Languages.qrc"
 
-# Add new python source files here
 PY_SRC="DynamicStrings.py	\
 	../*.py		\
 	../Ui/*.py		\
@@ -22,14 +12,11 @@ PY_SRC="DynamicStrings.py	\
         ../Config/*.py	\
         ../Globals/*.py	\
         ../Link/*.py	\
-        ../Node/*.py	\
-     	../Ui/ConfigurationPages/Page_*.py"
+        ../Node/*.py"
 
-# Add new Qt UI files here
 UI_SRC="../Ui/*.ui	\
 	../Ui/ConfigurationPages/*.ui"
 
-# GENERATE VARIABLES
 #----------------------------------------------------------------------
 
 EXPAND_PY_SRC=`ls -1 $PY_SRC | tr '\n' ' '`
@@ -43,18 +30,16 @@ for lang in $LANGUAGES; do
 "
 done
 
-# Update PROJ_FILE and QRC_FILE
 #----------------------------------------------------------------------
 
 # Update .pro file
-echo "
-# Do not update this file by hand, see Languages_UpdtProjFiles.sh
+echo " 
 SOURCES = $EXPAND_PY_SRC
 
 FORMS = $EXPAND_UI_SRC
 
 TRANSLATIONS = $EXPAND_LANGUAGES
-" >> $PROJ_FILE
+" > $PROJ_FILE 
 
 # Update .qrc file
 echo \
@@ -63,5 +48,3 @@ echo \
    <qresource>
 $EXPAND_QRC_RES   </qresource>
 </RCC>" > $QRC_FILE
-
-echo "Project files have been updated."

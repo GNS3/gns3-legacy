@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="ro_RO" sourcelanguage="">
+<!DOCTYPE TS><TS version="1.1" language="ro_RO">
 <context>
     <name>ASA initrd</name>
     <message>
@@ -606,7 +606,7 @@ p, li { white-space: pre-wrap; }
         <translation>Deschide Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="402"/>
+        <location filename="../Link/AbstractEdge.py" line="394"/>
         <source>Capture</source>
         <translation>Captură</translation>
     </message>
@@ -626,12 +626,12 @@ p, li { white-space: pre-wrap; }
         <translation>Nici un dispozitiv disponibil pentru captură trafic</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="361"/>
+        <location filename="../Link/AbstractEdge.py" line="358"/>
         <source>Dynamips error</source>
         <translation>Eroare Dynamips</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="376"/>
+        <location filename="../Link/AbstractEdge.py" line="373"/>
         <source>Please configure capture options</source>
         <translation>Vă rog să configuraţi opţiunile pentru captură (sniffer)</translation>
     </message>
@@ -646,17 +646,17 @@ p, li { white-space: pre-wrap; }
         <translation>Echipamentul %s nu este pornit</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="402"/>
+        <location filename="../Link/AbstractEdge.py" line="394"/>
         <source>Cannot start %s : %s</source>
         <translation>Nu pot porni %s : %s</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="382"/>
+        <location filename="../Link/AbstractEdge.py" line="379"/>
         <source>%s is empty, no traffic captured on the link. Try again later</source>
         <translation>%s este gol, nu s-a capturat nimic pe link. Încercaţi din nou mai târziu</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="386"/>
+        <location filename="../Link/AbstractEdge.py" line="383"/>
         <source>Cannot find %s : %s</source>
         <translation>Nu pot găsi %s : %s</translation>
     </message>
@@ -671,14 +671,9 @@ p, li { white-space: pre-wrap; }
         <translation>Echipamentul %s trebuie să fie repornit pentru a începe înregistrarea traficului</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="347"/>
+        <location filename="../Link/AbstractEdge.py" line="344"/>
         <source>Device %s must be stopped to stop capturing traffic</source>
         <translation>Echipamentul %s trebuie să fie inchis pentru a opri înregistrarea traficului</translation>
-    </message>
-    <message>
-        <location filename="../Link/AbstractEdge.py" line="386"/>
-        <source>NOTE: This feature is only available for local hypervisors.</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -812,22 +807,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AnyEmuDevice</name>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="238"/>
+        <location filename="../Node/AnyEmuDevice.py" line="239"/>
         <source>Dynamips error</source>
         <translation>Eroare Dynamips</translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="222"/>
+        <location filename="../Node/AnyEmuDevice.py" line="223"/>
         <source>New hostname</source>
         <translation>Nume de host nou</translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="222"/>
+        <location filename="../Node/AnyEmuDevice.py" line="223"/>
         <source>Cannot rename a connected emulated device</source>
         <translation>Nu se poate redenumi un echipament deja conectat</translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="115"/>
+        <location filename="../Node/AnyEmuDevice.py" line="116"/>
         <source>Cannot change the hostname of a running device</source>
         <translation type="unfinished"></translation>
     </message>
@@ -948,7 +943,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Config</name>
     <message>
-        <location filename="../Config/Config.py" line="371"/>
+        <location filename="../Config/Config.py" line="406"/>
         <source>Can&apos;t open library: %s</source>
         <translation>Nu pot deschide librăria:%s</translation>
     </message>
@@ -956,62 +951,62 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Console</name>
     <message>
-        <location filename="../Console.py" line="223"/>
+        <location filename="../Console.py" line="217"/>
         <source>Dynamips error</source>
         <translation>Eroare Dynamips</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="221"/>
+        <location filename="../Console.py" line="215"/>
         <source>Dynamips warning</source>
         <translation>Avertizare Dynamips</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="223"/>
+        <location filename="../Console.py" line="217"/>
         <source>Connection lost</source>
         <translation>Conexiune pierdută</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="306"/>
+        <location filename="../Console.py" line="281"/>
         <source>Sorry, not implemented in GNS3</source>
         <translation>Ne pare rău, nu este implementat în GNS3</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="317"/>
+        <location filename="../Console.py" line="292"/>
         <source>Please wait while gathering statistics...</source>
         <translation>Vă rugăm să aşteptaţi până ce se colectează statisticile...</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="342"/>
+        <location filename="../Console.py" line="317"/>
         <source>No idlepc values found</source>
         <translation>Nu s-au găsit valori pentru IdlePC</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="354"/>
+        <location filename="../Console.py" line="329"/>
         <source>No changes made</source>
         <translation>Nu s-au făcut modificări</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="367"/>
+        <location filename="../Console.py" line="342"/>
         <source>Can&apos;t apply idlepc value</source>
         <translation>Nu pot aplica valoarea IdlePC</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="372"/>
+        <location filename="../Console.py" line="347"/>
         <source>Incorrect number of paramaters or invalid parameters</source>
         <translation>Incorect număr de parametri sau parametri invalizi</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="385"/>
+        <location filename="../Console.py" line="360"/>
         <source>You have to save your topology before using save</source>
         <translation>Trebuie să salvaţi topologia înainte</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="393"/>
+        <location filename="../Console.py" line="368"/>
         <source>You have to save your topology before using push</source>
         <translation>Trebuie să salvaţi topologia înainte de a folosi împinge (push)</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="344"/>
+        <location filename="../Console.py" line="319"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;
 Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 </source>
@@ -1020,24 +1015,24 @@ Introduceţi numărul IdlePC care va fi aplicat pe echipalent [1 - %i] sau ENTER
 </translation>
     </message>
     <message>
-        <location filename="../Console.py" line="359"/>
+        <location filename="../Console.py" line="334"/>
         <source>Applied idlepc value %s to %s
 </source>
         <translation>Aplică valoarea IdlePC %s pentru %s
 </translation>
     </message>
     <message>
-        <location filename="../Console.py" line="375"/>
+        <location filename="../Console.py" line="350"/>
         <source>Unknown device: %s</source>
         <translation>Echipament necunoscut %s</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="441"/>
+        <location filename="../Console.py" line="416"/>
         <source>Cannot create %s: %s</source>
         <translation>Nu pot crea %s: %s</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="314"/>
+        <location filename="../Console.py" line="289"/>
         <source>%s already has an idlepc value applied (%s).</source>
         <translation>%s are deja o valoare IdlePC aplicată (%s).</translation>
     </message>
@@ -1050,11 +1045,6 @@ Introduceţi numărul IdlePC care va fi aplicat pe echipalent [1 - %i] sau ENTER
         <location filename="../Telnet.py" line="48"/>
         <source>Cannot start %s: %s</source>
         <translation>Nu pot porni %s: %s</translation>
-    </message>
-    <message>
-        <location filename="../Console.py" line="259"/>
-        <source>Unknown device</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1116,17 +1106,22 @@ Introduceţi numărul IdlePC care va fi aplicat pe echipalent [1 - %i] sau ENTER
         <translation>Întrerupe</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="326"/>
+        <location filename="../DynagenSub.py" line="247"/>
+        <source>Local PIX image %s cannot be found, use image %s instead</source>
+        <translation>Imaginea locală PIX %s nu poate fi găsită, folosesc imaginea %s în schimb</translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="339"/>
         <source>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</source>
         <translation>Imaginea locală IOS %s nu poate fi găsită pentru hypervisor-ul %s, folosesc imaginea %s în schimb</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="356"/>
+        <location filename="../DynagenSub.py" line="369"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
         <translation>Configuraţia locală %s nu poate fi găsită pentru Routerul %s, folosesc %s în schimb</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="279"/>
+        <location filename="../DynagenSub.py" line="292"/>
         <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
         <translation>Directorul local de lucru %s nu poate fi găsit pentru hypervisor-ul %, folosesc directorul %s în schimb</translation>
     </message>
@@ -1167,7 +1162,7 @@ Please choose an alternate network interface:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="305"/>
+        <location filename="../DynagenSub.py" line="318"/>
         <source>IOS image</source>
         <translation type="unfinished">Imagine IOS</translation>
     </message>
@@ -1314,6 +1309,104 @@ Please choose an alternate network interface:</source>
         <location filename="../Ui/ConfigurationPages/Form_FRSWPage.ui" line="189"/>
         <source>&amp;Delete</source>
         <translation>Ş&amp;terge</translation>
+    </message>
+</context>
+<context>
+    <name>FWPage</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="14"/>
+        <source>Firewall configuration</source>
+        <translation>Configurare Firewall</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="20"/>
+        <source>PIX Image:</source>
+        <translation>Imagine PIX:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="49"/>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="69"/>
+        <source> MB</source>
+        <translation> MB</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="189"/>
+        <source>Key:</source>
+        <translation>Licenţă:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="206"/>
+        <source>Serial:</source>
+        <translation>Serial:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="122"/>
+        <source>ne2k_pci</source>
+        <translation>ne2k_pci</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="127"/>
+        <source>i82551</source>
+        <translation>i82551</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="132"/>
+        <source>i82557b</source>
+        <translation>i82557b</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="137"/>
+        <source>i82559er</source>
+        <translation>i82559er</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="142"/>
+        <source>rtl8139</source>
+        <translation>rtl8139</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="147"/>
+        <source>e1000</source>
+        <translation>e1000</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="152"/>
+        <source>pcnet</source>
+        <translation>pcnet</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="157"/>
+        <source>virtio</source>
+        <translation>virtio</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="165"/>
+        <source>Qemu Options:</source>
+        <translation>Opţiuni Qemu:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="182"/>
+        <source>Use KQemu</source>
+        <translation>Foloseşte KQemu</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="56"/>
+        <source>RAM:</source>
+        <translation>RAM:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="85"/>
+        <source>Number of NICs:</source>
+        <translation>Numărul de plăci de reţea:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="108"/>
+        <source>NIC model:</source>
+        <translation>Modelul plăcii de reţea:</translation>
     </message>
 </context>
 <context>
@@ -1509,7 +1602,7 @@ Please choose an alternate network interface:</source>
 <context>
     <name>IOS image</name>
     <message>
-        <location filename="../DynagenSub.py" line="311"/>
+        <location filename="../DynagenSub.py" line="324"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image</source>
         <translation>Imaginea locală IOS %s nu poate fi găsită pentru hypervisor-ul %s şi nu pot găsi o alternativă la imaginea %s</translation>
     </message>
@@ -2677,37 +2770,37 @@ Please choose an alternate network interface:</source>
 <context>
     <name>NodeConfigurator</name>
     <message>
-        <location filename="../NodeConfigurator.py" line="137"/>
+        <location filename="../NodeConfigurator.py" line="140"/>
         <source>Frame Relay switches</source>
         <translation>Switch-uri Frame Relay</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="140"/>
+        <location filename="../NodeConfigurator.py" line="143"/>
         <source>Ethernet switches</source>
         <translation>Switch-uri ethernet</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="143"/>
+        <location filename="../NodeConfigurator.py" line="146"/>
         <source>ATM switches</source>
         <translation>Switch-uri ATM</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="149"/>
+        <location filename="../NodeConfigurator.py" line="152"/>
         <source>Clouds</source>
         <translation>Nori de Reţea</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="242"/>
+        <location filename="../NodeConfigurator.py" line="246"/>
         <source>%s node</source>
         <translation>nod %s</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="234"/>
+        <location filename="../NodeConfigurator.py" line="238"/>
         <source>%s group</source>
         <translation>grup %s</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="239"/>
+        <location filename="../NodeConfigurator.py" line="243"/>
         <source>Group of %d %s</source>
         <translation>Grup de %d %s</translation>
     </message>
@@ -2734,7 +2827,7 @@ to display the configuration page.</source>
 pentru a afişa pagina de configurare.</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="294"/>
+        <location filename="../NodeConfigurator.py" line="298"/>
         <source>Node configuration</source>
         <translation>Configurare nod</translation>
     </message>
@@ -2769,329 +2862,75 @@ pentru a afişa pagina de configurare.</translation>
         <translation>Routere c7200</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="146"/>
+        <location filename="../NodeConfigurator.py" line="125"/>
+        <source>PIX firewalls</source>
+        <translation>Firewall-uri PIX</translation>
+    </message>
+    <message>
+        <location filename="../NodeConfigurator.py" line="149"/>
         <source>ATM bridges</source>
         <translation>Punţi ATM</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="125"/>
+        <location filename="../NodeConfigurator.py" line="128"/>
         <source>ASA firewalls</source>
         <translation>Firewall-uri ASA</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="128"/>
+        <location filename="../NodeConfigurator.py" line="131"/>
         <source>Juniper routers</source>
         <translation>Routere Juniper</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="134"/>
+        <location filename="../NodeConfigurator.py" line="137"/>
         <source>Qemu hosts</source>
         <translation>Gazde Qemu</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="131"/>
+        <location filename="../NodeConfigurator.py" line="134"/>
         <source>Cisco IDS</source>
         <translation>Cisco IDS/IPS</translation>
     </message>
 </context>
 <context>
-    <name>Page_ASA</name>
+    <name>PIX image</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_ASA.py" line="123"/>
-        <source>ASA firewall</source>
-        <translation type="unfinished">Firewall ASA</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_ASA.py" line="123"/>
-        <source>You must remove the connected links first in order to reduce the number of interfaces</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Page_ATMBR</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="93"/>
-        <source>Add mapping</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="86"/>
-        <source>Same source and destination ports</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="93"/>
-        <source>Mapping already defined</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="114"/>
-        <source>ATM bridge</source>
-        <translation type="unfinished">Punte ATM</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="114"/>
-        <source>A link is connected in port %i</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Page_ATMSW</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="114"/>
-        <source>Add virtual channel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="114"/>
-        <source>Mapping already defined</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="139"/>
-        <source>ATM switch</source>
-        <translation type="unfinished">Switch ATM</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="139"/>
-        <source>Links connected in port %i and port %i</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Page_Cloud</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_Cloud.py" line="373"/>
-        <source>A link is connected with NIO %s</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Page_ETHSW</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_ETHSW.py" line="120"/>
-        <source>A link is connected in port %i</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Page_FRSW</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_FRSW.py" line="87"/>
-        <source>Add virtual channel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_FRSW.py" line="80"/>
-        <source>Same source and destination ports</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_FRSW.py" line="87"/>
-        <source>Mapping already defined</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Page_IDS</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_IDS.py" line="118"/>
-        <source>IDS</source>
-        <translation type="unfinished">IDS/IPS</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_IDS.py" line="118"/>
-        <source>You must remove the connected links first in order to reduce the number of interfaces</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Page_IOSRouter</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="144"/>
-        <source>None</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="182"/>
-        <source>Invalid MAC address (format required: hh:hh:hh:hh:hh:hh)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="207"/>
-        <source>Using npe-g2: there are potential bugs and your IOS image should be unpacked.
-C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="224"/>
-        <source>You must use &apos;manual mode&apos; to connect a link with a NM-16ESW module</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="251"/>
-        <source>Links are connected in slot %i</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="286"/>
-        <source>C7200-JC-PA can only be used with NPE-G2</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Page_JunOS</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_JunOS.py" line="101"/>
-        <source>JunOS</source>
-        <translation type="unfinished">JunOS</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_JunOS.py" line="101"/>
-        <source>You must remove the connected links first in order to reduce the number of interfaces</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Page_PreferencesCapture</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="99"/>
-        <source>Capture directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="99"/>
-        <source>The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn&apos;t support unicode on Windows!</source>
-        <translation type="unfinished">Calea pe care aţi selectat-o ar trebui să conţine numai caractere ASCII (fără diacritice) Dynamips (Cygwin.DLL) nu are suport pentru Unicode pe Windows!</translation>
-    </message>
-</context>
-<context>
-    <name>Page_PreferencesQemu</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="282"/>
-        <source>Qemu host</source>
-        <translation type="unfinished">Gazdă Qemu</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="377"/>
-        <source>Identifier and binary image must be set!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="636"/>
-        <source>Save</source>
-        <translation type="unfinished">Salvează</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="320"/>
-        <source>Qemu host settings have been saved</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="377"/>
-        <source>JunOS router</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="415"/>
-        <source>JunOS settings have been saved</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="482"/>
-        <source>ASA firewall</source>
-        <translation type="unfinished">Firewall ASA</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="482"/>
-        <source>Identifier, initrd and kernel must be set!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="525"/>
-        <source>ASA settings have been saved</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="594"/>
-        <source>IDS</source>
-        <translation type="unfinished">IDS/IPS</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="594"/>
-        <source>Identifier, image 1 and image 2 must be set!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="636"/>
-        <source>IDS settings have been saved</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Page_Qemu</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_Qemu.py" line="98"/>
-        <source>Qemu host</source>
-        <translation type="unfinished">Gazdă Qemu</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_Qemu.py" line="98"/>
-        <source>You must remove the connected links first in order to reduce the number of interfaces</source>
-        <translation type="unfinished"></translation>
+        <location filename="../DynagenSub.py" line="244"/>
+        <source>PIX image %s cannot be found and cannot find an alternative image</source>
+        <translation>Imaginea pentru PIX %s nu poate fi găsită și nu există o alternativă la acesta</translation>
     </message>
 </context>
 <context>
     <name>PreferencesCapture</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="14"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="13"/>
         <source>Form</source>
         <translation>Formular</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="20"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="19"/>
         <source>Settings</source>
         <translation>Setări</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="29"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="28"/>
         <source>Working directory for capture files:</source>
         <translation>Director de lucru pentru fişierele de captură:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="82"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="38"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="42"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="51"/>
         <source>Command to launch Wireshark or a capture file reader:</source>
         <translation>Comandă de pornire Wireshark sau alt program care citeşte fişiere de captură .cap:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="55"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="61"/>
         <source>Automatically start the command when capturing</source>
         <translation>Porneste automat comanda când începe captura</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="68"/>
-        <source>Default Presets:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="75"/>
-        <source>Use</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="95"/>
-        <source>Hint: To actually start capturing traffic, right click on link&apos;s small colored circle.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="102"/>
-        <source>%c = capture file</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3397,7 +3236,7 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
         <translation>Qemuwrapper</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1488"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1510"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -3407,157 +3246,207 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
         <translation>Directorul de lucru:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="159"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="187"/>
         <source>Enable Qemu Manager</source>
         <translation>Activează Managerul Qemu</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="169"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="197"/>
         <source>Use Qemu Manager when importing</source>
         <translation>Foloseşte managerul Qemu la import</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="241"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="147"/>
         <source>Base UDP port:</source>
         <translation>Portul UDP de bază:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="136"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="167"/>
         <source>Base console port:</source>
         <translation>Portul consola de bază:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="885"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="891"/>
         <source>Binary image:</source>
         <translation>Imagine binară:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1564"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1583"/>
         <source>ne2k_pci</source>
         <translation>ne2k_pci</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1569"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1588"/>
         <source>i82551</source>
         <translation>i82551</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1574"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1593"/>
         <source>i82557b</source>
         <translation>i82557b</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1579"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1598"/>
         <source>i82559er</source>
         <translation>i82559er</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1584"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1603"/>
         <source>rtl8139</source>
         <translation>rtl8139</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1589"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1608"/>
         <source>e1000</source>
         <translation>e1000</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1594"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1613"/>
         <source>pcnet</source>
         <translation>pcnet</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1599"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1618"/>
         <source>virtio</source>
         <translation>virtio</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1607"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1626"/>
         <source>Qemu Options:</source>
         <translation>Opţiuni Qemu:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="848"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1646"/>
+        <source>Use KQemu</source>
+        <translation>Foloseşte KQemu</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1656"/>
+        <source>Use KVM (Linux Only)</source>
+        <translation>Foloseşte KVM (doar Linux)</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="546"/>
+        <source>PIX</source>
+        <translation>PIX</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="567"/>
+        <source>PIX Settings</source>
+        <translation>Setări PIX</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="746"/>
+        <source>PIX Specific Settings</source>
+        <translation>Setări specifice PIX</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="752"/>
+        <source>Key:</source>
+        <translation>Licenţă:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="772"/>
+        <source>Serial:</source>
+        <translation>Serial:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="854"/>
         <source>JunOS</source>
         <translation>JunOS</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="869"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="875"/>
         <source>JunOS Settings</source>
         <translation>Setări JunOS</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1107"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1122"/>
         <source>ASA</source>
         <translation>ASA</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1128"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1143"/>
         <source>ASA Settings</source>
         <translation>Setări ASA</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1280"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1302"/>
         <source>ASA Specific Settings</source>
         <translation>Setări specifice ASA</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1333"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1355"/>
         <source>Initrd:</source>
         <translation>Initrd:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1296"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1318"/>
         <source>Kernel:</source>
         <translation>Kernel:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1316"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1338"/>
         <source>Kernel cmd line:</source>
         <translation>Comenzi pentru Kernel:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="269"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="249"/>
         <source>&amp;Test</source>
         <translation>&amp;Testează</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1434"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="285"/>
+        <source>Qemu Host</source>
+        <translation>Gazdă Qemu</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="306"/>
+        <source>Qemu Host Settings</source>
+        <translation>Setări Gazde Qemu</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1456"/>
         <source>Identifier name:</source>
         <translation>Nume identificator:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="203"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1668"/>
+        <source>Save</source>
+        <translation>Salvează</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1675"/>
         <source>Delete</source>
         <translation>Şterge</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1675"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1704"/>
         <source>Name</source>
         <translation>Nume</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1091"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1104"/>
         <source>Image path</source>
         <translation>Cale imagine</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1407"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1429"/>
         <source>IDS</source>
         <translation>IDS/IPS</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1428"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1450"/>
         <source>IDS Settings</source>
         <translation>Setări IDS</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1444"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1466"/>
         <source>Binary image 1 (hda):</source>
         <translation>Imagine binară 1 (hda):</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1471"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1493"/>
         <source>Binary image 2 (hdb):</source>
         <translation>Imagine binară 2 (hdb):</translation>
     </message>
@@ -3577,164 +3466,99 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
         <translation>Calea către qemu-img:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="227"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="113"/>
         <source>IP/host binding:</source>
         <translation>legătură IP/gazdă:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="113"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="127"/>
         <source>Qemuwrapper port:</source>
         <translation>Port Qemuwrapper:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="182"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="210"/>
         <source>External Qemuwrapper:</source>
         <translation>Qemuwrapper extern:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="196"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="220"/>
         <source>Add</source>
         <translation>Adaugă</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="210"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="234"/>
         <source>Registered external Qemuwrappers:</source>
         <translation>Qemuwrapperi externi înregistraţi:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1498"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1520"/>
         <source>RAM:</source>
         <translation>RAM:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1527"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1546"/>
         <source>Number of NICs:</source>
         <translation>Numărul de plăci de reţea:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1550"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1569"/>
         <source>NIC model:</source>
         <translation>Modelul plăcii de reţea:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1079"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="503"/>
+        <source>Qemu Host Images</source>
+        <translation>Imagini Gazde Qemu</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="826"/>
+        <source>PIX Images</source>
+        <translation>Imagini PIX</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1092"/>
         <source>JunOS Images</source>
         <translation>Imagini JunOS</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1323"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1345"/>
         <source>console=ttyS0,9600n8 bigphysarea=16384 auto nousb ide1=noprobe hda=980,16,32</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1374"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1396"/>
         <source>ASA Images</source>
         <translation>Imagini ASA</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1386"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1408"/>
         <source>Initrd path</source>
         <translation>Cale Initrd</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1391"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1413"/>
         <source>Kernel path</source>
         <translation>Cale Kernel</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1617"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1636"/>
         <source>-smbios type=1,product=IDS-4215</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1668"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1697"/>
         <source>IDS Images</source>
         <translation>Imagini IDS</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1680"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1709"/>
         <source>Image 1 path</source>
         <translation>Cale imagine 1</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1685"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1714"/>
         <source>Image 2 path</source>
         <translation>Cale imagine 2</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="189"/>
-        <source>Add several wrappers, to make your GNS3 distributed across several hosts.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="234"/>
-        <source>Show QemuWrapper Advanced Options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="305"/>
-        <source>Qemu Guest</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="326"/>
-        <source>Qemu Guest Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1508"/>
-        <source> MiB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1627"/>
-        <source>Use KVM</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1639"/>
-        <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Salvează</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1646"/>
-        <source>&amp;Delete</source>
-        <translation type="unfinished">Ş&amp;terge</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="519"/>
-        <source>Qemu Guest Images</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="547"/>
-        <source>PIX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="568"/>
-        <source>PIX Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="740"/>
-        <source>PIX Specific Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="746"/>
-        <source>Key:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="766"/>
-        <source>Serial:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="820"/>
-        <source>PIX Images</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3771,17 +3595,17 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
         <translation>Nu mă pot conecta la Qemu pe portul %i</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="167"/>
+        <location filename="../QemuManager.py" line="166"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation>Directorul de lucru %s nu pare să existe sau nu permită scrierea, vă rog să verificaţi</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="120"/>
+        <location filename="../QemuManager.py" line="119"/>
         <source>Qemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
         <translation>Qemu deja rulează pe portul %i, nu va fi oprit automat după ce închideţi GNS3</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="135"/>
+        <location filename="../QemuManager.py" line="134"/>
         <source>Can&apos;t start Qemu on port %i</source>
         <translation>Nu pot porni Qemu pe portul %i</translation>
     </message>
@@ -3799,27 +3623,32 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="127"/>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="69"/>
+        <source> MB</source>
+        <translation> MB</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="122"/>
         <source>ne2k_pci</source>
         <translation>ne2k_pci</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="132"/>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="127"/>
         <source>i82551</source>
         <translation>i82551</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="137"/>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="132"/>
         <source>i82557b</source>
         <translation>i82557b</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="142"/>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="137"/>
         <source>i82559er</source>
         <translation>i82559er</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="122"/>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="142"/>
         <source>rtl8139</source>
         <translation>rtl8139</translation>
     </message>
@@ -3844,6 +3673,16 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
         <translation>Opţiuni Qemu:</translation>
     </message>
     <message>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="182"/>
+        <source>Use KQemu</source>
+        <translation>Foloseşte KQemu</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="192"/>
+        <source>Use KVM (Linux only)</source>
+        <translation>Foloseşte KVM (doar Linux)</translation>
+    </message>
+    <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="14"/>
         <source>Qemu configuration</source>
         <translation>Configurare Qemu</translation>
@@ -3862,16 +3701,6 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="108"/>
         <source>NIC model:</source>
         <translation>Modelul plăcii de reţea:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="69"/>
-        <source> MiB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="182"/>
-        <source>Use KVM</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4365,17 +4194,17 @@ ALT + STÂNGA sau DREAPTA</translation>
         <translation>Vă rog să configuraţi calea pentru Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="975"/>
+        <location filename="../Topology.py" line="1025"/>
         <source>Dynamips error</source>
         <translation>Eroare Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="975"/>
+        <location filename="../Topology.py" line="1025"/>
         <source>Connection lost</source>
         <translation>Conexiune pierdută</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="855"/>
+        <location filename="../Topology.py" line="905"/>
         <source>Connection</source>
         <translation>Conexiune</translation>
     </message>
@@ -4390,9 +4219,14 @@ ALT + STÂNGA sau DREAPTA</translation>
         <translation>Nici o imagine pentru platforma %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="855"/>
+        <location filename="../Topology.py" line="905"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Trebuie să conectaţi cel puţin un Router la Switch</translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="656"/>
+        <source>PIX image</source>
+        <translation>Imagine PIX</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="412"/>
@@ -4410,12 +4244,12 @@ ALT + STÂNGA sau DREAPTA</translation>
         <translation>Eroare Qemuwrapper</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="602"/>
+        <location filename="../Topology.py" line="656"/>
         <source>%s seems to not exist, please check</source>
         <translation>%s nu pare să existe, vă rog să verificaţi</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="503"/>
+        <location filename="../Topology.py" line="504"/>
         <source>JunOS image</source>
         <translation>Imagine JunOS</translation>
     </message>
@@ -4425,17 +4259,17 @@ ALT + STÂNGA sau DREAPTA</translation>
         <translation>Imagine Qemu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="602"/>
+        <location filename="../Topology.py" line="605"/>
         <source>ASA kernel</source>
         <translation>Fişierul ASA kernel</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="598"/>
+        <location filename="../Topology.py" line="601"/>
         <source>ASA initrd</source>
         <translation>Fişierul ASA initrd</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="550"/>
+        <location filename="../Topology.py" line="552"/>
         <source>IDS images</source>
         <translation>Imagini IDS</translation>
     </message>
@@ -4455,7 +4289,7 @@ ALT + STÂNGA sau DREAPTA</translation>
         <translation>Vă rog să alegeţi Qemuwrapper-ul extern</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="831"/>
+        <location filename="../Topology.py" line="881"/>
         <source>Can&apos;t connect these devices</source>
         <translation>Nu pot conecta aceste echipamente</translation>
     </message>
@@ -4480,49 +4314,64 @@ ALT + STÂNGA sau DREAPTA</translation>
         <translation>Vă rog să alegeţi o gazdă Qemu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="476"/>
+        <location filename="../Topology.py" line="477"/>
         <source>JunOS</source>
         <translation>JunOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="476"/>
+        <location filename="../Topology.py" line="477"/>
         <source>Please configure a JunOS</source>
         <translation>Vă rog să configuraţi un JunOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="488"/>
+        <location filename="../Topology.py" line="489"/>
         <source>Please choose a JunOS</source>
         <translation>Vă rog să alegeţi un JunOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="532"/>
+        <location filename="../Topology.py" line="534"/>
         <source>IDS</source>
         <translation>IDS/IPS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="520"/>
+        <location filename="../Topology.py" line="522"/>
         <source>Please configure an IDS</source>
         <translation>Vă rog să configuraţi un IDS/IPS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="532"/>
+        <location filename="../Topology.py" line="534"/>
         <source>Please choose an IDS</source>
         <translation>Vă rog să alegeţi un IDS/IPS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="583"/>
+        <location filename="../Topology.py" line="586"/>
         <source>ASA</source>
         <translation>ASA</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="571"/>
+        <location filename="../Topology.py" line="574"/>
         <source>Please configure an ASA</source>
         <translation>Vă rog să configuraţi un ASA</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="583"/>
+        <location filename="../Topology.py" line="586"/>
         <source>Please choose an ASA</source>
         <translation>Vă rog să alegeţi un ASA</translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="641"/>
+        <source>PIX</source>
+        <translation>PIX</translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="629"/>
+        <source>Please configure a PIX</source>
+        <translation>Vă rog să configuraţi un PIX</translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="641"/>
+        <source>Please choose a PIX</source>
+        <translation>Vă rog să alegeţi un PIX</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="387"/>
@@ -4532,143 +4381,6 @@ ALT + STÂNGA sau DREAPTA</translation>
     <message>
         <location filename="../Topology.py" line="431"/>
         <source>Please configure a Qemu host:</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>UiConfig_PreferencesCapture</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="89"/>
-        <source>Local capture working directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>UiConfig_PreferencesDynamips</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="174"/>
-        <source>Dynamips binary</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="180"/>
-        <source>Can&apos;t open file: %s</source>
-        <translation type="unfinished">Nu pot deschide fişierul:%s</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="190"/>
-        <source>Dynamips path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="206"/>
-        <source>The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn&apos;t support unicode on Windows!</source>
-        <translation type="unfinished">Calea pe care aţi selectat-o ar trebui să conţine numai caractere ASCII (fără diacritice) Dynamips (Cygwin.DLL) nu are suport pentru Unicode pe Windows!</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="196"/>
-        <source>Local hypervisor working directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="206"/>
-        <source>Working directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="211"/>
-        <source>Message</source>
-        <translation type="unfinished">Mesaj</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="211"/>
-        <source>This action is going to delete your current topology, would you like to continue?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="247"/>
-        <source>Failed to start Dynamips</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="233"/>
-        <source>Failed to determine version of Dynamips.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="237"/>
-        <source>Found Dynamips %s, which is not supported. Use 0.2.8+ instead.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="245"/>
-        <source>Dynamips %s successfully started</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>UiConfig_PreferencesGeneral</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="243"/>
-        <source>Project Directory</source>
-        <translation type="unfinished">Directorul pentru proiect</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="251"/>
-        <source>IOS Directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="269"/>
-        <source>Configuration file</source>
-        <translation type="unfinished">Fişierul de configurare</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="269"/>
-        <source>Configuration file cleared, default settings will be applied after a restart</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>UiConfig_PreferencesQemu</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="243"/>
-        <source>Local Qemu working directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="681"/>
-        <source>Message</source>
-        <translation type="unfinished">Mesaj</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="681"/>
-        <source>This action is going to delete your current topology, would you like to continue?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="690"/>
-        <source>Qemuwrapper path doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="696"/>
-        <source>Failed to start Qemuwrapper</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="703"/>
-        <source>Failed to start qemu</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="710"/>
-        <source>Failed to start qemu-img</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="713"/>
-        <source>Qemuwrapper, qemu and qemu-img have successfully started</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

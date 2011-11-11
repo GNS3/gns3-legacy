@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-# vim: expandtab ts=4 sw=4 sts=4:
 # configobj.py
 # A config file reader/writer that supports nested sections in config files.
 # Copyright (C) 2005-2010 Michael Foord, Nicola Larosa

@@ -38,7 +38,7 @@ conf_iosImage_defaults = {
     'chassis': '',
     'idlepc': '',
     'default_ram': 0,
-    'hypervisors': [],
+    'hypervisors': [], 
     'default': False
 }
 
@@ -49,8 +49,8 @@ conf_iosImage_types = {
     'platform': str,
     'chassis': str,
     'idlepc': str,
-    'default_ram': int,
-    'hypervisors': list,
+    'default_ram': int, 
+    'hypervisors': list, 
     'default': bool
 }
 
@@ -62,7 +62,7 @@ conf_hypervisor_defaults = {
     'baseUDP': 10000,
     'baseConsole': 2000,
     'baseAUX': 2100,
-    'used_ram':0,
+    'used_ram':0, 
 }
 
 conf_hypervisor_types = {
@@ -73,7 +73,7 @@ conf_hypervisor_types = {
     'baseUDP': int,
     'baseConsole': int,
     'baseAUX': int,
-    'used_ram': int,
+    'used_ram': int, 
 }
 
 conf_qemuImage_defaults = {
@@ -84,6 +84,7 @@ conf_qemuImage_defaults = {
     'nib_nb': 6,
     'nic': 'e1000',
     'options': '',
+    'kqemu': False,
     'kvm': False
 }
 
@@ -95,7 +96,34 @@ conf_qemuImage_types = {
     'nic_nb': int,
     'nic': str,
     'options': str,
+    'kqemu': bool,
     'kvm': bool
+}
+
+conf_pixImage_defaults = {
+    'id': -1,
+    'name': '',
+    'filename': '',
+    'memory': 128,
+    'nib_nb': 6,
+    'nic': 'e1000',
+    'options': '',
+    'kqemu': False,
+    'key': '',
+    'serial': ''
+}
+
+conf_pixImage_types = {
+    'id': int,
+    'name': unicode,
+    'filename': unicode,
+    'memory': int,
+    'nic_nb': int,
+    'nic': str,
+    'options': str,
+    'kqemu': bool,
+    'key': str,
+    'serial': str
 }
 
 conf_junosImage_defaults = {
@@ -106,6 +134,7 @@ conf_junosImage_defaults = {
     'nib_nb': 6,
     'nic': 'e1000',
     'options': '',
+    'kqemu': False,
     'kvm': False
 }
 
@@ -117,6 +146,7 @@ conf_junosImage_types = {
     'nic_nb': int,
     'nic': str,
     'options': str,
+    'kqemu': bool,
     'kvm': bool
 }
 
@@ -127,6 +157,7 @@ conf_asaImage_defaults = {
     'nib_nb': 6,
     'nic': 'e1000',
     'options': '',
+    'kqemu': False,
     'kvm': False,
     'kernel': '',
     'initrd': '',
@@ -140,6 +171,7 @@ conf_asaImage_types = {
     'nic_nb': int,
     'nic': str,
     'options': str,
+    'kqemu': bool,
     'kvm': bool,
     'kernel': unicode,
     'initrd': unicode,
@@ -155,6 +187,7 @@ conf_idsImage_defaults = {
     'nib_nb': 3,
     'nic': 'e1000',
     'options': '',
+    'kqemu': False,
     'kvm': False
 }
 
@@ -167,6 +200,7 @@ conf_idsImage_types = {
     'nic_nb': int,
     'nic': str,
     'options': str,
+    'kqemu': bool,
     'kvm': bool
 }
 
@@ -174,26 +208,26 @@ conf_systemDynamips_defaults = {
     'path': '',
     'port': 7200,
     'workdir': '',
-    'clean_workdir': True,
+    'clean_workdir': True, 
     'baseUDP': 10000,
     'baseConsole': 2000,
     'baseAUX': 2100,
     'ghosting': True,
     'jitsharing': False,
-    'sparsemem': True,
+    'sparsemem': False,
     'mmap': True,
     'memory_limit': 512,
     'udp_incrementation': 100,
     'import_use_HypervisorManager': True,
     'allocateHypervisorPerIOS': True,
-    'HypervisorManager_binding': u'localhost',
+    'HypervisorManager_binding': u'localhost', 
 }
 
 conf_systemDynamips_types = {
     'path': unicode,
     'port': int,
     'workdir': unicode,
-    'clean_workdir': bool,
+    'clean_workdir': bool, 
     'baseUDP': int,
     'baseConsole': int,
     'baseAUX': int,
@@ -205,7 +239,7 @@ conf_systemDynamips_types = {
     'udp_incrementation': int,
     'import_use_HypervisorManager': bool,
     'allocateHypervisorPerIOS': bool,
-    'HypervisorManager_binding': unicode,
+    'HypervisorManager_binding': unicode, 
 }
 
 conf_systemGeneral_defaults = {
@@ -219,9 +253,9 @@ conf_systemGeneral_defaults = {
     'project_path': '.',
     'ios_path': '.',
     'status_points': True,
-    'manual_connection': False,
-    'scene_width': 2000,
-    'scene_height': 1000,
+    'manual_connection': False, 
+    'scene_width': 2000, 
+    'scene_height': 1000, 
 }
 
 conf_systemGeneral_types = {
@@ -235,9 +269,9 @@ conf_systemGeneral_types = {
     'project_path': unicode,
     'ios_path': unicode,
     'status_points': bool,
-    'manual_connection': bool,
-    'scene_width': int,
-    'scene_height': int,
+    'manual_connection': bool, 
+    'scene_width': int, 
+    'scene_height': int, 
 }
 
 conf_systemCapture_defaults = {

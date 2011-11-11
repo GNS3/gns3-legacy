@@ -31,6 +31,7 @@ class AnyEmuDefaults(AbstractDefaults):
         self.default_image = 'None'
         self.default_netcard = 'pcnet'
         self.default_nics = 6
+        self.default_kqemu = False
         self.default_kvm = False
         self.default_options = ''
         self.default_ram = 128
@@ -64,7 +65,7 @@ class AnyEmuDefaults(AbstractDefaults):
                 del self.config['image']
         else:
             self.config['image'] = image
-
+            
     def set_nics(self, nb):
         """ Set the number of NIC for this device
             nb: int
@@ -75,13 +76,19 @@ class AnyEmuDefaults(AbstractDefaults):
 class QemuDefaults(AnyEmuDefaults):
     pass
 
+class FWDefaults(AnyEmuDefaults):
+    def __init__(self):
+        AnyEmuDefaults.__init__(self)
+        self.default_serial = '0x12345678'
+        self.default_key = '0x00000000,0x00000000,0x00000000,0x00000000'
+
 class ASADefaults(AnyEmuDefaults):
     def __init__(self):
         AnyEmuDefaults.__init__(self)
         self.default_initrd = 'None'
         self.default_kernel = 'None'
         self.default_kernel_cmdline = 'None'
-
+    
 class JunOSDefaults(AnyEmuDefaults):
     pass
 

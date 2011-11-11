@@ -1,11 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-# vim: expandtab ts=4 sw=4 sts=4:
 
 """
 qemu_lib.py
 Copyright (C) 2007-2009  Pavel Skovajsa & Jeremy Grossmann
-contributions: Alexey Eromenko "Technologov"
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -22,9 +20,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 
-# This file is a client, that connects to 'qemuwrapper' server.
-
-from socket import socket, AF_INET, AF_INET6, SOCK_STREAM
+from socket import socket, AF_INET, SOCK_STREAM
 from dynamips_lib import NIO_udp, send, dowarning, debug, DynamipsError, validate_connect, Bridge, DynamipsVerError, get_reverse_udp_nio, Router, FRSW, ATMSW, ETHSW, DynamipsWarning
 import random
 
@@ -44,7 +40,7 @@ class UDPConnection:
         self.adapter = self.dev
         self.port = port
         self.reverse_nio = None
-
+        
     def info(self):
         (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self)
         if isinstance(remote_device, AnyEmuDevice):
@@ -55,11 +51,11 @@ class UDPConnection:
                 if rem_int_name == 'e':
                     rem_int_full_name = 'Ethernet'
                 elif rem_int_name == 'f':
-                    rem_int_full_name = 'FastEthernet'
+                    rem_int_full_name = 'FastEthernet'    
                 return ' is connected to router ' + remote_device.name + " " + rem_int_full_name + str(rem_dynagen_port)
-
+            
             return ' is connected to router ' + remote_device.name + " " + remote_adapter.interface_name + str(remote_adapter.slot) + \
-                "/" + str(rem_dynagen_port)
+                "/" + str(rem_dynagen_port)            
 
         elif isinstance(remote_device, FRSW):
             return ' is connected to frame-relay switch ' + remote_device.name + ' port ' + str(remote_port) + '\n'
@@ -69,8 +65,7 @@ class UDPConnection:
             return ' is connected to ethernet switch ' + remote_device.name + ' port ' + str(remote_port) + '\n'
         elif remote_device == 'nothing':  #if this is only UDP NIO without the other side...used in dynamips <-> UDP for example
             return ' is connected to UDP NIO, with source port ' + str(self.sport) + ' and remote port ' + str(self.dport) + ' on ' + self.daddr + '\n'
-        else:
-            return ' is connected to unknown device ' + remote_device.name + '\n'
+
 
 class Qemu(object):
 
@@ -79,11 +74,7 @@ class Qemu(object):
         self.host = name
 
         #connect to Qemu Wrapper
-        if name.__contains__(':'):
-            # IPv6 address support
-            self.s = socket(AF_INET6, SOCK_STREAM)
-        else:
-            self.s = socket(AF_INET, SOCK_STREAM)
+        self.s = socket(AF_INET, SOCK_STREAM)
         self.s.setblocking(0)
         self.s.settimeout(300)
         self._type = 'qemuwrapper'
@@ -113,7 +104,7 @@ class Qemu(object):
             intver = 999999
 
         if intver < INTVER:
-            raise DynamipsVerError, 'This version of Dynagen requires at least version %s of qemuwrapper. \n Server %s is runnning version %s.' % (STRVER, self.host, version)
+            raise DynamipsVerError, 'This version of Dynagen requires at least version %s of qemuwrapper. \n Server %s is runnning version %s. \n Get the latest version from http://gdynagen.sourceforge.net/qemuwrapper/' % (STRVER, self.host, version)
         self._version = version
 
         #all other needed variables
@@ -137,22 +128,22 @@ class Qemu(object):
         """ Reset the Qemuwrapper (but leave it running)"""
 
         send(self, 'qemuwrapper reset')
-
+        
     def _setbaseconsole(self, baseconsole):
         """ Set the baseconsole
         baseconsole: (int) the base console port
         """
 
         self._baseconsole = baseconsole
-
+        
     def _getbaseconsole(self):
         """ Returns the base console port
         """
 
         return self._baseconsole
-
+    
     baseconsole = property(_getbaseconsole, _setbaseconsole, doc='The base console port')
-
+        
     def _setbaseudp(self, baseudp):
         """ Set the baseudp
         baseudp: (int) the base UDP port
@@ -161,13 +152,13 @@ class Qemu(object):
         self.udp = baseudp
         self.default_udp = self.udp
         self.starting_udp = self.udp
-
+        
     def _getbaseudp(self):
         """ Returns the base UDP port
         """
 
         return self.starting_udp
-
+    
     baseudp = property(_getbaseudp, _setbaseudp, doc='The base UDP port')
 
     def _setqemupath(self, qemupath):
@@ -188,7 +179,7 @@ class Qemu(object):
         return self._qemupath
 
     qemupath = property(_getqemupath, _setqemupath, doc='The Qemu path')
-
+    
     def _setqemuimgpath(self, qemuimgpath):
         """ Set the path to Qemu-img for this network
         qemuimgpath: (string) path
@@ -212,10 +203,6 @@ class Qemu(object):
         """ Set the working directory for this network
         directory: (string) the directory
         """
-
-        if directory == 'None':
-            #skip broken topology ini files
-            return
 
         if type(directory) not in [str, unicode]:
             raise DynamipsError, 'invalid directory'
@@ -242,9 +229,9 @@ class Qemu(object):
     def _getversion(self):
         """ Return the version of qemuwrapper"""
         return self._version
-
+    
     version = property(_getversion, doc='The qemuwrapper version')
-
+        
 
 class AnyEmuDevice(object):
 
@@ -273,13 +260,15 @@ class AnyEmuDevice(object):
             'image': None,
             'ram': 128,
             'nics': 6,
-            'netcard': 'rtl8139',
+            'netcard': 'pcnet',
+            'kqemu': False,
             'kvm': False,
             'options': None,
             }
         self._ram = self.defaults['ram']
         self._nics = self.defaults['nics']
         self._netcard = self.defaults['netcard']
+        self._kqemu = self.defaults['kqemu']
         self._kvm = self.defaults['kvm']
         self._options = self.defaults['options']
         self._capture = {}
@@ -288,17 +277,22 @@ class AnyEmuDevice(object):
         for i in range(self._nics):
             self.nios[i] = None
 
+        self.idlepc = '0'
+        self.idlemax = 0
+        self.idlesleep = 0
         self.nvram = 0
         self.disk0 = 16
+        self.disk1 = 0
+        self.ghost_status = 0
         send(self.p, 'qemu create %s %s' % (self.qemu_dev_type, self.name))
         self.p.devices.append(self)
         #set the console to Qemu baseconsole
         self.console = self.p.baseconsole
         self.p.baseconsole += 1
-
+        
     def delete(self):
         """delete the emulated device instance in Qemu"""
-
+        
         try:
             send(self.p, 'qemu delete %s' % self.name)
         except:
@@ -322,13 +316,13 @@ class AnyEmuDevice(object):
         r = send(self.p, 'qemu stop %s' % self.name)
         self.state = 'stopped'
         return r
-
+    
     def clean(self):
         """clean the disk files for this Qemu instance"""
 
         r = send(self.p, 'qemu clean %s' % self.name)
         return r
-
+    
     def unbase(self):
         """unbase the disk files to have no dependency"""
 
@@ -428,6 +422,25 @@ class AnyEmuDevice(object):
 
     netcard = property(_getnetcard, _setnetcard, doc='The netcard used by this emulated device')
 
+    def _setkqemu(self, kqemu):
+        """ Set the kqemu option to be used by this emulated device
+        kqemu: (bool) kqemu activation
+        """
+
+        if type(kqemu) != bool:
+            raise DynamipsError, 'invalid kqemu option'
+
+        send(self.p, 'qemu setattr %s kqemu %s' % (self.name, str(kqemu)))
+        self._kqemu = kqemu
+
+    def _getkqemu(self):
+        """ Returns the kqemu option used by this emulated device
+        """
+
+        return self._kqemu
+
+    kqemu = property(_getkqemu, _setkqemu, doc='The kqemu option used by this emulated device')
+
     def _setkvm(self, kvm):
         """ Set the kvm option to be used by this emulated device
         kvm: (bool) kvm activation
@@ -505,7 +518,7 @@ class AnyEmuDevice(object):
         """Returns nothing so that all function in console.py recognize that there are no idlepc value
         """
         return ['100-OK']
-
+        
     def add_interface(self, pa1, port1):
         # Some guest drivers won't accept non-standard MAC addresses
         # burned in the EEPROM! Watch for overlap with real NICs;
@@ -545,13 +558,8 @@ class AnyEmuDevice(object):
 
         (src_udp, dst_udp) = self.__allocate_udp_port(dynamips)
 
-        """ # WARNING: This code crashes on multi-host setups:
         if self.p.host == dynamips.host:
             # source and dest adapters are on the same dynamips server, perform loopback binding optimization
-            src_ip = '127.0.0.1'
-            dst_ip = '127.0.0.1'        
-        elif (self.p.host == 'localhost' or self.p.host == '127.0.0.1' or self.p.host == '::1') and (dynamips.host == 'localhost' or dynamips.host == '127.0.0.1' or dynamips.host == '::1'):
-            # 'localhost', IP: '127.0.0.1' and IPv6 '::1' are equal.
             src_ip = '127.0.0.1'
             dst_ip = '127.0.0.1'
         else:
@@ -562,14 +570,6 @@ class AnyEmuDevice(object):
             #check whether the user did not make a mistake in multi-server .net file
             if src_ip == 'localhost' or src_ip =='127.0.0.1' or dst_ip =='localhost' or dst_ip == '127.0.0.1':
                 dowarning('Connecting %s port %s to %s slot %s port %s:\nin case of multi-server operation make sure you do not use "localhost" string in definition of dynamips hypervisor.\n'% (self.name, local_port, remote_slot.router.name, remote_slot.adapter, remote_port))
-        """
-
-        src_ip = self.p.name
-        dst_ip = dynamips.host
-        if src_ip != dst_ip:
-            if (self.isLocalhost(src_ip)) or (self.isLocalhost(dst_ip)):
-                if (self.isLocalhost(src_ip) is False) or (self.isLocalhost(dst_ip) is False):
-                    dowarning('In case of multi-server operation, make sure you do not use "localhost" or "127.0.0.1" string in definition of dynamips hypervisor. Use actual IP addresses instead.')
 
         #create the emulated device side of UDP connection
         send(self.p, 'qemu create_udp %s %i %i %s %i' % (self.name, local_port, src_udp, dst_ip, dst_udp))
@@ -587,57 +587,39 @@ class AnyEmuDevice(object):
         #set reverse nios
         remote_nio.reverse_nio = self.nios[local_port]
         self.nios[local_port].reverse_nio = remote_nio
-
+        
     def disconnect_from_dynamips(self, local_port):
 
         #delete the emulated device side of UDP connection
         send(self.p, 'qemu delete_udp %s %i' % (self.name, local_port))
         if self.nios.has_key(local_port):
             del self.nios[local_port]
-
-    def isLocalhost(self, i_host):
-        if i_host == 'localhost' or i_host == '127.0.0.1' or i_host == '::1' or i_host == "0:0:0:0:0:0:0:1":
-            return True
-        else:
-            return False
-
+        
     def connect_to_emulated_device(self, local_port, remote_emulated_device, remote_port):
-
         (src_udp, dst_udp) = self.__allocate_udp_port(remote_emulated_device.p)
-        """ # WARNING: This code crashes on multi-host setups:
+
         if self.p.host == remote_emulated_device.p.host:
             # source and dest adapters are on the same dynamips server, perform loopback binding optimization
-            src_ip = '127.0.0.1'
-            dst_ip = '127.0.0.1'
-        elif (self.p.host == 'localhost' or self.p.host == '127.0.0.1' or self.p.host == '::1') and (remote_emulated_device.p.host == 'localhost' or remote_emulated_device.p.host == '127.0.0.1' or remote_emulated_device.p.host == '::1'):
-            # 'localhost', IP: '127.0.0.1' and IPv6 '::1' are equal.
             src_ip = '127.0.0.1'
             dst_ip = '127.0.0.1'
         else:
             # source and dest are on different dynamips servers
             src_ip = self.p.name
             dst_ip = remote_emulated_device.p.host
-        """
-        src_ip = self.p.name
-        dst_ip = remote_emulated_device.p.host
 
-        if src_ip != dst_ip:
-            if (self.isLocalhost(src_ip)) or (self.isLocalhost(dst_ip)):
-                if (self.isLocalhost(src_ip) is False) or (self.isLocalhost(dst_ip) is False):
-                    dowarning('In case of multi-server operation, make sure you do not use "localhost" or "127.0.0.1" string in definition of dynamips hypervisor. Use actual IP addresses instead.')
         #create the local emulated device side of UDP connection
         send(self.p, 'qemu create_udp %s %i %i %s %i' % (self.name, local_port, src_udp, dst_ip, dst_udp))
         self.nios[local_port] = UDPConnection(src_udp, dst_ip, dst_udp, self, local_port)
 
-        #create the remote device side of UDP connection
-        if isinstance(remote_emulated_device, AnyEmuDevice):
-            send(remote_emulated_device.p, 'qemu create_udp %s %i %i %s %i' % (remote_emulated_device.name, remote_port, dst_udp, src_ip, src_udp))
+        #create the remote emulated device side of UDP connection
+        send(remote_emulated_device.p, 'qemu create_udp %s %i %i %s %i' % (remote_emulated_device.name, remote_port, dst_udp, src_ip, src_udp))
         remote_emulated_device.nios[remote_port] = UDPConnection(dst_udp, src_ip, src_udp, remote_emulated_device, remote_port)
         
         #set reverse nios
         self.nios[local_port].reverse_nio = remote_emulated_device.nios[remote_port]
         remote_emulated_device.nios[remote_port].reverse_nio = self.nios[local_port]
-
+        
+        
     def disconnect_from_emulated_device(self, local_port, remote_emulated_device, remote_port):
         
         # disconnect the local emulated device side of UDP connection
@@ -645,10 +627,8 @@ class AnyEmuDevice(object):
         if self.nios.has_key(local_port):
             del self.nios[local_port]
         
-        # disconnect the remote device side of UDP connection
-        if isinstance(remote_emulated_device, AnyEmuDevice):
-            send(remote_emulated_device.p, 'qemu delete_udp %s %i' % (remote_emulated_device.name, remote_port))
-
+        # disconnect the remote emulated device side of UDP connection
+        send(remote_emulated_device.p, 'qemu delete_udp %s %i' % (remote_emulated_device.name, remote_port))
         if remote_emulated_device.nios.has_key(remote_port):
             del remote_emulated_device.nios[remote_port]
 
@@ -671,15 +651,13 @@ class AnyEmuDevice(object):
                     slot_info = slot_info + ' is connected to ethernet switch ' + remote_device.name + ' port ' + str(remote_port) + '\n'
                 elif remote_device == 'nothing':  #if this is only UDP NIO without the other side...used in dynamips <-> UDP for example
                     slot_info = slot_info + ' is connected to UDP NIO, with source port ' + str(self.nios[port].sport) + ' and remote port  ' + str(self.nios[port].dport) + ' on ' + self.nios[port].daddr + '\n'
-                else:
-                    slot_info = slot_info + ' is connected to unknown device ' + remote_device.name + '\n'
             else:  #no NIO on this port, so it must be empty
                 slot_info = slot_info + ' is empty\n'
         return slot_info
-
+    
     def info(self):
         """prints information about specific device"""
-
+       
         info = '\n'.join([
             '%s %s is %s' % (self._ufd_machine, self.name, self.state),
             '  Hardware is %s %s with %s MB RAM' % (self._ufd_hardware, self.model_string, self._ram),
@@ -694,7 +672,7 @@ class AnyEmuDevice(object):
         info += '\n' + self.slot_info()
 
         return info
-
+        
     def gen_cfg_name(self, name=None):
         if not name:
             name = self.name
@@ -706,16 +684,16 @@ class JunOS(AnyEmuDevice):
     basehostname = 'JUNOS'
     _ufd_machine = 'Juniper router'
     _ufd_hardware = 'Juniper Olive router'
-    available_options = ['image', 'ram', 'nics', 'netcard', 'kvm', 'options']
-
+    available_options = ['image', 'ram', 'nics', 'netcard', 'kqemu', 'kvm', 'options']
+    
 class IDS(AnyEmuDevice):
     model_string = 'IDS-4215'
     qemu_dev_type = 'ids'
     basehostname = 'IDS'
     _ufd_machine = 'IDS'
     _ufd_hardware = 'Qemu emulated Cisco IDS'
-    available_options = ['image1', 'image2', 'nics', 'ram', 'netcard', 'kvm', 'options']
-
+    available_options = ['image1', 'image2', 'nics', 'ram', 'netcard', 'kqemu', 'kvm', 'options']
+    
     def __init__(self, *args, **kwargs):
         super(IDS, self).__init__(*args, **kwargs)
         self.defaults.update({
@@ -745,7 +723,7 @@ class IDS(AnyEmuDevice):
         return self._image1
 
     image1 = property(_getimage1, _setimage1, doc='The image (hda) file for this device')
-
+    
     def _setimage2(self, image):
         """ Set the IOS image (hdb) for this emulated device
             image: path to IOS image file
@@ -766,17 +744,17 @@ class IDS(AnyEmuDevice):
         return self._image2
 
     image2 = property(_getimage2, _setimage2, doc='The image (hdb) file for this device')
-
+    
     def extended_info(self):
         return '  Image 1 (hda) path %s\n  Image 2 (hdb) path %s' % (self._image1, self._image2)
-
+    
 class QemuDevice(AnyEmuDevice):
     model_string = 'QemuDevice'
     qemu_dev_type = 'qemu'
     basehostname = 'QEMU'
     _ufd_machine = 'Qemu host'
     _ufd_hardware = 'Qemu Emulated System'
-    available_options = ['image', 'ram', 'nics', 'netcard', 'options']
+    available_options = ['image', 'ram', 'nics', 'netcard', 'kqemu', 'kvm', 'options']
 
 class ASA(AnyEmuDevice):
     model_string = '5520'
@@ -784,8 +762,8 @@ class ASA(AnyEmuDevice):
     basehostname = 'ASA'
     _ufd_machine = 'ASA firewall'
     _ufd_hardware = 'qemu-emulated Cisco ASA'
-    available_options = ['ram', 'nics', 'netcard', 'kvm', 'options', 'initrd', 'kernel', 'kernel_cmdline']
-
+    available_options = ['ram', 'nics', 'netcard', 'kqemu', 'kvm', 'options', 'initrd', 'kernel', 'kernel_cmdline']
+    
     def __init__(self, *args, **kwargs):
         super(ASA, self).__init__(*args, **kwargs)
         self.defaults.update({
@@ -796,7 +774,7 @@ class ASA(AnyEmuDevice):
         self._initrd = self.defaults['initrd']
         self._kernel = self.defaults['kernel']
         self._kernel_cmdline = self.defaults['kernel_cmdline']
-
+        
     def _setinitrd(self, initrd):
         """ Set the initrd for this emulated device
         initrd: path to initrd file
@@ -817,7 +795,7 @@ class ASA(AnyEmuDevice):
         return self._initrd
 
     initrd = property(_getinitrd, _setinitrd, doc='The initrd file for this device')
-
+    
     def _setkernel(self, kernel):
         """ Set the kernel for this emulated device
         kernel: path to kernel file
@@ -838,7 +816,7 @@ class ASA(AnyEmuDevice):
         return self._kernel
 
     kernel = property(_getkernel, _setkernel, doc='The kernel file for this device')
-
+    
     def _setkernel_cmdline(self, kernel_cmdline):
         """ Set the kernel command line for this emulated device
         kernel_cmdline: kernel command line
@@ -861,6 +839,65 @@ class ASA(AnyEmuDevice):
 
     def extended_info(self):
         return '  Initrd path %s\n  Kernel path %s\n  Kernel cmd line %s' % (self._initrd, self._kernel, self._kernel_cmdline)
+
+class FW(AnyEmuDevice):
+    model_string = '525'
+    qemu_dev_type = 'pix'
+    basehostname = 'FW'
+    available_options = ['image', 'ram', 'nics', 'netcard', 'kqemu', 'options', 'serial', 'key']
+    _ufd_machine = 'PIX firewall'
+    _ufd_hardware = 'qemu-emulated Cisco PIX'
+    def __init__(self, *args, **kwargs):
+        super(FW, self).__init__(*args, **kwargs)
+        self.defaults.update({
+            'serial': '0x12345678',
+            'key': '0x00000000,0x00000000,0x00000000,0x00000000',
+        })
+        self._serial = self.defaults['serial']
+        self._key = self.defaults['key']
+        
+    def _setserial(self, serial):
+        """ Set the serial for this fw
+        serial: serial number of this fw
+        """
+
+        if type(serial) not in [str, unicode]:
+            raise DynamipsError, 'invalid serial'
+        #TODO verify serial
+        if serial:
+            send(self.p, 'qemu setattr %s serial %s' % (self.name, serial))
+            self._serial = serial
+
+    def _getserial(self):
+        """ Returns path of the serial being used by this fw
+        """
+
+        return self._serial
+
+    serial = property(_getserial, _setserial, doc='The serial for this fw')
+
+    def _setkey(self, key):
+        """ Set the key for this fw
+        key: key number of this fw
+        """
+
+        if type(key) not in [str, unicode]:
+            raise DynamipsError, 'invalid key'
+        #TODO verify key
+        if key:
+            send(self.p, 'qemu setattr %s key %s' % (self.name, key))
+            self._key = key
+
+    def _getkey(self):
+        """ Returns path of the key being used by this fw
+        """
+
+        return self._key
+
+    key = property(_getkey, _setkey, doc='The key for this fw')
+
+    def extended_info(self):
+        return '  Serial number %s\n  Activation key %s' % (self._serial, self._key)
 
 def nosend_qemu(flag):
     """ If true, don't actually send any commands to the back end.

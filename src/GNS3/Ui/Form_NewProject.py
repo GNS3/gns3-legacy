@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_NewProject.ui'
 #
-# Created: Sun Oct  9 21:31:09 2011
-#      by: PyQt4 UI code generator 4.8.4
+# Created: Mon Apr 11 15:55:31 2011
+#      by: PyQt4 UI code generator 4.8.1
 #
 # WARNING! All changes made in this file will be lost!
 
